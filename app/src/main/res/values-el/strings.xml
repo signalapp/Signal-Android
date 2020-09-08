@@ -449,7 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Αιτήματα μελών σε εκκρεμότητα</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Δεν υπάρχουν αιτήματα μελών.</string>
-  <string name="RequestingMembersFragment_explanation">Τα άτομα σε αυτή τη λίστα έχουν προσπαθήσει να μπουν στην ομάδα μέσω του συνδέσμου για είσοδο στην ομάδα.</string>
+  <string name="RequestingMembersFragment_explanation">Τα άτομα σε αυτή τη λίστα έχουν προσπαθήσει να μπουν στην ομάδα μέσω του συνδέσμου της ομάδας.</string>
   <string name="RequestingMembersFragment_added_s">Ο/Η \"%1$s\" προστέθηκε</string>
   <string name="RequestingMembersFragment_denied_s">Ο/Η \"%1$s\" απορρίφθηκε</string>
   <!--AddMembersActivity-->
@@ -491,7 +491,7 @@
   <string name="ManageGroupActivity_edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Επέλεξε ποιός μπορεί να επεξεργαστεί το όνομα της ομάδας, το εικονίδιο, και τα μηνύματα που εξαφανίζονται.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Επέλεξε ποιος μπορεί να προσθέσει ή να προσκαλέσει νέα μέλη.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Σύνδεσμος για είσοδο στην ομάδα</string> -->
+  <string name="ManageGroupActivity_group_link">Σύνδεσμος ομάδας</string>
   <string name="ManageGroupActivity_block_group">Φραγή ομάδας</string>
   <string name="ManageGroupActivity_unblock_group">Κατάργηση φραγής ομάδας</string>
   <string name="ManageGroupActivity_leave_group">Αποχώρηση απ\' την ομάδα</string>
@@ -611,7 +611,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Οι σύνδεσμοι ομάδων έρχονται σύντομα</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Αναβάθμσε το Signal για να χρησιμοποιήσεις συνδέσμους σε ομάδες.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Η εγγραφή σε ομάδα μέσω συνδέσμου δεν υποστηρίζεται ακόμα από το Signal. Η δυνατότητα αυτή θα είναι διαθέσιμη σε επόμενη ενημέρωση.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Η έκδοση Signal που χρησιμοποιείς δεν υποστηρίζει μοιραζόμενους συνδέσμους σε ομάδες. Αναβάθμισε στη τελευταία έκδοση για να μπεις στην ομάδα μέσω συνδέσμου.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Η έκδοση Signal που χρησιμοποιείς δεν υποστηρίζει συνδέσμους ομαδών. Αναβάθμισε στη τελευταία έκδοση για να μπεις στην ομάδα μέσω του συνδέσμου.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Αναβάθμιση του Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ο σύνδεσμος ομάδας δεν είναι έγκυρος</string>
   <!--GV2 Request confirmation dialog-->
@@ -847,25 +847,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Ο/Η %1$s άλλαξε το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Άλλαξε το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Ενεργοποίησες το σύνδεσμο για είσοδο στην ομάδα.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Ενεργοποίησες το σύνδεσμο για είσοδο στην ομάδα με έγκριση διαχειριστή.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Απενεργοποίησες το σύνδεσμο για είσοδο στον ομάδα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">Ο/Η %1$s ενεργοποίησε το σύνδεσμο για είσοδο στην ομάδα.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">Ο/Η %1$s ενεργοποίησε το σύνδεσμο για είσοδο στην ομάδα με έγκριση διαχειριστή.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">Ο/Η %1$sαπενεργοποίησε το σύνδεσμο για είσοδο στην ομάδα.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Ο σύνδεσμος για είσοδο στην ομάδα ενεργοποιήθηκε.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Ο σύνδεσμος για είσοδο στην ομάδα με έγκριση διαχειριστή ενεργοποιήθηκε.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Ο σύνδεσμος για είσοδο στην ομάδα απενεργοποιήθηκε.</string> -->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Ενεργοποίησες το σύνδεσμο της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Ενεργοποίησες το σύνδεσμο της ομάδας με ενεργοποιημένη την έγκριση διαχειριστή.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Απενεργοποίησες το σύνδεσμο της ομάδας.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">Ο/Η %1$s ενεργοποίησε το σύνδεσμο της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">Ο/Η %1$s ενεργοποίησε το σύνδεσμο της ομάδας με ενεργοποιημένη την έγκριση διαχειριστή.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">Ο/Η %1$s απενεργοποίησε το σύνδεσμο της ομάδας.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Ενεργοποιήθηκε ο σύνδεσμος της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Ενεργοποιήθηκε ο σύνδεσμος της ομάδας με ενεργοποιημένη την έγκριση διαχειριστή.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Ο σύνδεσμος της ομάδας απενεργοποιήθηκε.</string>
   <!--GV2 group link reset-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Επανέφερες το σύνδεσμο για είσοδο στην ομάδα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">Ο/Η %1$s επανέφερε το σύνδεσμο για είσοδο στην ομάδα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Ο σύνδεσμος για είσοδο στην ομάδα επαναφέρθηκε.</string> -->
+  <string name="MessageRecord_you_reset_the_group_link">Επανέφερες το σύνδεσμο της ομάδας.</string>
+  <string name="MessageRecord_s_reset_the_group_link">Ο/Η %1$s επανέφερε το σύνδεσμο της ομάδας.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Ο σύνδεσμος της ομάδας επαναφέρθηκε.</string>
   <!--GV2 group link joins-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Μπήκες στην ομάδα μέσω του συνδέσμου για είσοδο στην ομάδα.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">Ο/Η %1$s μπήκε στην ομάδα μέσω του συνδέσμου για είσοδο στην ομάδα. </string> -->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Μπήκες στην ομάδα μέσω του συνδέσμου της ομάδας.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">Ο/Η %1$s μπήκε στην ομάδα μέσω του συνδέσμου της ομάδας.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Έστειλες αίτημα για να μπείς στην ομάδα.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">Ο/Η %1$s ζήτησε να μπει στην ομάδα μέσω του συνδέσμου για είσοδο στην ομάδα.</string> -->
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">Ο/Η %1$s ζήτησε να μπει στην ομάδα μέσω του συνδέσμου της ομάδας.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">Ο/Η %1$s ενέκρινε το αίτημά σου να μπεις στην ομάδα.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">Ο/Η %1$s ενέκρινε το αίτημα του/της %2$s να μπει στην ομάδα.</string>
@@ -1442,6 +1442,7 @@
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Αλλαγές αριθμού ασφαλείας</string>
   <string name="safety_number_change_dialog__send_anyway">Αποστόλη παρ\' όλα αυτά</string>
+  <string name="safety_number_change_dialog__call_anyway">Κλήση παρ\' όλα αυτά</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Τα παρακάτω άτομα ίσως επανεγκατεστησαν το Signal ή άλλαξαν συσκευή. Επαλήθευσε τους αριθμούς ασφαλείας με αυτά, για να διασφαλίσεις την ιδιωτικότητα.</string>
   <string name="safety_number_change_dialog__view">Εμφάνιση</string>
   <string name="safety_number_change_dialog__previous_verified">Προηγουμένως επαληθευμένοι</string>
@@ -1745,13 +1746,11 @@
   <string name="preferences__mmsc_password">Κωδικός MMSC</string>
   <string name="preferences__sms_delivery_reports">Αναφορές παράδοσης SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Αυτόματη διαγραφή παλαιότερων μηνυμάτων όταν μια συνομιλία ξεπεράσει ένα ορισμένο μήκος</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Διαγραφή παλιών μηνυμάτων</string> -->
   <string name="preferences__chats">Συνομιλίες και πολυμέσα</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Περικοπή όλων των συνομιλιών τώρα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Σκανάρισμα όλων των συνομιλιών και επιβολή του ορίου μήκους των συνομιλιών</string> -->
+  <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
+  <string name="preferences__clear_message_history">Εκκαθάριση ιστορικού μηνυμάτων</string>
   <string name="preferences__linked_devices">Συνδεμένες συσκευές</string>
   <string name="preferences__light_theme">Φωτεινό</string>
   <string name="preferences__dark_theme">Σκοτεινό</string>
@@ -1781,17 +1780,34 @@
   <string name="preferences_chats__when_using_wifi">Όταν χρησιμοποιείται WiFi</string>
   <string name="preferences_chats__when_roaming">Κατά το roaming</string>
   <string name="preferences_chats__media_auto_download">Αυτόματη λήψη πολυμέσων</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Περικοπή μηνυμάτων</string> -->
+  <string name="preferences_chats__message_history">Ιστορικό μηνυμάτων</string>
   <string name="preferences_storage__storage_usage">Χρήση αποθηκευτικού χώρου</string>
   <string name="preferences_storage__photos">Φωτογραφίες</string>
   <string name="preferences_storage__videos">Βίντεο</string>
   <string name="preferences_storage__files">Αρχεία</string>
   <string name="preferences_storage__audio">Ήχος</string>
   <string name="preferences_storage__review_storage">Ανασκόπηση χώρου</string>
+  <string name="preferences_storage__delete_older_messages">Διαγραφή παλαιότερων μηνυμάτων;</string>
+  <string name="preferences_storage__clear_message_history">Εκκαθάριση του ιστορικού μηνυμάτων;</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Αυτό θα διαγράψει μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου, τα οποία είναι παλαιότερα από %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Αυτό θα περικόψει όλες τις συνομιλίες στα %1$s πιο πρόσφατα μηνύματα.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Αυτό θα διαγράψει μόνιμα όλο το ιστορικό μηνυμάτων και τα πολυμέσα από τη συσκευή σου.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Είσαι σίγουρος/η πως θέλεις να διαγράψεις όλο το ιστορικό των μηνυμάτων;</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Όλο το ιστορικό των μηνυμάτων θα σβηστεί μόνιμα. Αυτή η ενέργεια δεν μπορεί να ανακληθεί.</string>
+  <string name="preferences_storage__delete_all_now">Διαγραφή όλων τώρα</string>
+  <string name="preferences_storage__forever">Για πάντα</string>
+  <string name="preferences_storage__one_year">1 έτος</string>
+  <string name="preferences_storage__six_months">6 μήνες</string>
+  <string name="preferences_storage__thirty_days">30 ημέρες</string>
+  <string name="preferences_storage__none">Κανένα</string>
+  <string name="preferences_storage__s_messages">%1$s μηνύματα</string>
+  <string name="preferences_storage__custom">Προσαρμοσμένο</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">Προσαρμοσμένο όριο μήκους συνομιλίας</string>
   <string name="preferences_advanced__use_system_emoji">Χρήση emoji συστήματος</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Απενεργοποίηση της ενσωματωμένης υποστήριξης για emoji του Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Αναμετάδοση όλων των κλήσεων μέσω του σέρβερ Signal για να αποφύγεις την αποκάλυψη της διεύθυνσης IP σου στην επαφή. Η ενεργοποίηση θα ρίξει την ποιότητα των κλήσεων.</string>
   <string name="preferences_advanced__always_relay_calls">Αναμετάδοση κλήσεων πάντα</string>
+  <string name="preferences_app_protection__who_can">Ποιοί μπορούν…</string>
   <string name="preferences_app_protection__app_access">Πρόσβαση εφαρμογής</string>
   <string name="preferences_app_protection__communication">Επικοινωνία</string>
   <string name="preferences_chats__chats">Συνομιλίες</string>
@@ -1816,6 +1832,7 @@
   <string name="preferences_notifications__notify_me">Να ειδοποιούμαι</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Λήψη ειδοποιήσεων όταν σε αναφέρουν σε σιγασμένες συνομιλίες</string>
   <string name="preferences_setup_a_username">Ορισμός ονόματος χρήστη`</string>
+  <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2115,6 +2132,14 @@
   <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επιβεβαίωσης για Android</string>
   <string name="BackupUtil_never">Ποτέ</string>
   <string name="BackupUtil_unknown">Άγνωστο</string>
+  <string name="preferences_app_protection__see_my_phone_number">Να δουν τον αριθμό τηλεφώνου μου</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Να με βρουν με τον αριθμό τηλεφώνου μου</string>
+  <string name="PhoneNumberPrivacy_everyone">Όλοι</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Οι επαφές μου</string>
+  <string name="PhoneNumberPrivacy_nobody">Κανένας</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Ο αριθμός τηλεφώνου σου θα είναι ορατός σε όλα τα άτομα και τις ομάδες που στέλνεις μηνύματα.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Οποιοσδήποτε έχει τον αριθμό τηλεφώνου σου στις επαφές του/της, θα μπορεί να σε δει ως επαφή στο Signal. Άλλοι θα μπορούν να σε βρουν στην αναζήτηση.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Μόνο οι επαφές σου θα βλέπουν τον αριθμό τηλεφώνου σου στο Signal.</string>
   <string name="preferences_app_protection__screen_lock">Κλείδωμα οθόνης</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Κλείδωμα της πρόσβασης στο Signal με την οθόνη κλειδώματος του Android ή με δακτυλικό αποτύπωμα</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Χρονικό όριο αδράνειας κλειδώματος οθόνης</string>

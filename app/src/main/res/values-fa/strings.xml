@@ -582,7 +582,6 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">برای استفاده از پیوند‌های گروه Signal را به‌روزرسانی کنید</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">نسخهٔ Signal که استفاده می‌کنید از پیوند‌های با قابلیت اشتراک‌گذاری پشتیبانی نمی‌کند. برای پیوستن به این گروه از طریق پیوند به آخرین نسخه به‌روزرسانی کنید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">بروزرسانی Signal</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">افزودن</string>
@@ -1686,13 +1685,9 @@
   <string name="preferences__mmsc_password">رمز عبور MMSC</string>
   <string name="preferences__sms_delivery_reports">گزارش‌های تحویل پیامک</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیامک ارسالی از جانب شما</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف خودکار پیام‌های قدیمی زمانی که یک مکالمه از طول مشخص شده بیشتر می‌شود</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">حذف پیام‌های قدیمی</string> -->
   <string name="preferences__chats">گفتگوها و رسانه‌ها</string>
   <string name="preferences__storage">حافظه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">همین حالا همهٔ مکالمه‌ها را پیرایش کن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">اسکن کردن تمام مکالمه‌ها و اعمال محدودیت طول مکالمه</string> -->
   <string name="preferences__linked_devices">دستگاه‌های پیوند داده شده</string>
   <string name="preferences__light_theme">روشن</string>
   <string name="preferences__dark_theme">تاریک</string>
@@ -1722,13 +1717,14 @@
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
   <string name="preferences_chats__when_roaming">هنگام رومینگ</string>
   <string name="preferences_chats__media_auto_download">دریافت خودکار رسانه</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">پیرایش پیام</string> -->
   <string name="preferences_storage__storage_usage">حافظهٔ مورد استفاده</string>
   <string name="preferences_storage__photos">تصاویر</string>
   <string name="preferences_storage__videos">ویدئو‌ها</string>
   <string name="preferences_storage__files">فایل‌ها</string>
   <string name="preferences_storage__audio">صوت</string>
   <string name="preferences_storage__review_storage">بازبینی حافظه</string>
+  <string name="preferences_storage__none">هیچکدام</string>
+  <string name="preferences_storage__custom">دلخواه</string>
   <string name="preferences_advanced__use_system_emoji">استفاده از شکلک‌های سیستم</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از شکلک‌های داخل Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور Signal به منظور جلوگیری از آشکار شدن نشانی اینترنتی شما برای مخاطبانتان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
@@ -2054,6 +2050,7 @@
   <string name="RegistrationActivity_code_support_subject">ثبت‌نام Signal - کد تأیید برای اندروید</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
+  <string name="PhoneNumberPrivacy_nobody">هیچ کس</string>
   <string name="preferences_app_protection__screen_lock">قفل صفحه</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">قفل دسترسی Signal با قفل صفحهٔ اندروید یا اثر انگشت</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">قفل خودکار صفحه به دلیل عدم فعالیت</string>

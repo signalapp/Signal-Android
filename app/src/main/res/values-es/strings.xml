@@ -491,7 +491,7 @@
   <string name="ManageGroupActivity_edit_group_info">Editar detalles del chat en grupo</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Selecciona quién puede modificar el nombre e imagen del chat en grupo y la desaparición de mensajes.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Selecciona quién puede agregar o invitar a más participantes.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Enlace para compartir chat en grupo</string> -->
+  <string name="ManageGroupActivity_group_link">Enlace del chat en grupo</string>
   <string name="ManageGroupActivity_block_group">Bloquear chat en grupo</string>
   <string name="ManageGroupActivity_unblock_group">Desbloquear chat en grupo</string>
   <string name="ManageGroupActivity_leave_group">Abandonar chat en grupo</string>
@@ -611,7 +611,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Los enlaces de compartir chats en grupo están al llegar</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualiza Signal para usar enlaces a chats en grupo</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">La función de unirse a un chat en grupo vía enlace todavía no está completamente implementada. Se activará en una próxima actualización de Signal. </string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta enlaces para compartir chats en grupo. Actualiza a la versión más actual para unirte a este grupo vía enlace.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta enlaces para compartir chats en grupo. Actualiza a la versión más actual para unirte a este chat en grupo vía enlace.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualiza Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Enlace a chat en grupo inválido</string>
   <!--GV2 Request confirmation dialog-->
@@ -847,25 +847,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha actualizado quién puede editar la lista de participantes del chat en grupo a «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ahora, «%1$s» pueden editar la lista de participantes del chat en grupo.</string>
   <!--GV2 group link invite access level change-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Has activado la opción de compartir el chat en grupo vía enlace.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Has activado la opción de compartir el chat en grupo vía enlace tras confirmación del admin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Has desactivado la función de compartir el chat en grupo vía enlace.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha activado la función de compartir el chat en grupo vía enlace.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha activado la opción de compartir el chat en grupo vía enlace tras confirmación de admin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha desactivado la función de compartir el chat en grupo vía enlace.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Se ha activado la opción de compartir el chat en grupo vía enlace.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Se ha activado la opción de compartir el chat en grupo vía enlace tras confirmación de admin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Se ha desactivado la función de compartir el chat en grupo vía enlace.</string> -->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Has activado el enlace para compartir el chat en grupo sin necesitar confirmación del admin.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Has activado el enlace para compartir el chat en grupo tras confirmación del admin.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Has desactivado el enlace para compartir el chat en grupo.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ha activado el enlace para compartir el chat en grupo sin necesitar confirmación del admin.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ha activado el enlace para compartir el chat en grupo tras confirmación del admin.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s ha desactivado el enlace para compartir el chat en grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Se ha activado el enlace para compartir el chat en grupo sin necesitar confirmación del admin.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Se ha activado el enlace para compartir el chat en grupo tras confirmación del admin.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Se ha desactivado el enlace para compartir el chat en grupo.</string>
   <!--GV2 group link reset-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Has restablecido el enlace para compartir el chat en grupo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha restablecido el enlace para compartir el chat en grupo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Se ha restablecido el enlace para compartir el chat en grupo.</string> -->
+  <string name="MessageRecord_you_reset_the_group_link">Has restablecido el enlace para compartir el chat en grupo.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s ha restablecido el enlace para compartir el chat en grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Se ha restablecido el enlace para compartir el chat en grupo.</string>
   <!--GV2 group link joins-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Te has unido al chat en grupo vía enlace.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s se ha unido al chat en grupo vía enlace.</string> -->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Te has unido al chat en grupo vía enlace.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se ha unido al chat en grupo vía enlace.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Has enviado una solicitud para unirte al chat en grupo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s ha solicitado unirse al chat en grupo vía enlace.</string> -->
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ha solicitado unirse al grupo vía enlace.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ha aprobado tu solicitud de unirte al chat en grupo.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ha aprobado la solicitud de %2$s de unirse al chat en grupo.</string>
@@ -1447,6 +1447,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Cambios en cifras de seguridad</string>
   <string name="safety_number_change_dialog__send_anyway">Enviar de todas formas</string>
+  <string name="safety_number_change_dialog__call_anyway">Llamar de todas formas</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Las siguentes personas pueden haber reinstalado Signal o cambiado su dispositivo. Verifica tus cifras de seguridas con ellas para asegurar vuestra privacidad.</string>
   <string name="safety_number_change_dialog__view">Ver</string>
   <string name="safety_number_change_dialog__previous_verified">Identidad previamente verificada</string>
@@ -1750,13 +1751,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__mmsc_password">Contraseña de MMSC</string>
   <string name="preferences__sms_delivery_reports">Confirmación de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicita la confirmación de entrega de SMS para todos los SMS enviados.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Elimina automáticamente los mensajes más antiguos cuando el chat exceda el número de mensajes especificado</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Eliminar mensajes antiguos</string> -->
   <string name="preferences__chats">Chats y multimedia</string>
   <string name="preferences__storage">Almacenamiento</string>
   <string name="preferences__conversation_length_limit">Límite de longitud de chat</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Recortar ahora todos los chats</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todos los chats e imponer límite de longitud</string> -->
+  <string name="preferences__keep_messages">Preservar mensajes</string>
+  <string name="preferences__clear_message_history">Eliminar historial de mensajes</string>
   <string name="preferences__linked_devices">Dispositivos enlazados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Oscuro</string>
@@ -1786,17 +1785,34 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">En itinerancia (roaming)</string>
   <string name="preferences_chats__media_auto_download">Auto-descarga de archivos multimedia</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Recorte de mensajes en chats</string> -->
+  <string name="preferences_chats__message_history">Historial de mensajes</string>
   <string name="preferences_storage__storage_usage">Uso de almacenamiento</string>
   <string name="preferences_storage__photos">Fotos</string>
   <string name="preferences_storage__videos">Vídeos</string>
   <string name="preferences_storage__files">Archivos</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Comprobar almacenamiento</string>
+  <string name="preferences_storage__delete_older_messages">¿Eliminar mensajes antiguos?</string>
+  <string name="preferences_storage__clear_message_history">¿Eliminar historial de mensajes?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo con más antigüedad de %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Esto recortará permanentemente todos los chat y mantendrá los %1$s mensajes más recientes.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Seguro que deseas eliminar todo tu historial de mensajes?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">El historial completo de mensajes se eliminará permanentemente. Esta acción no se puede deshacer.</string>
+  <string name="preferences_storage__delete_all_now">Borrar todos ahora</string>
+  <string name="preferences_storage__forever">cero días</string>
+  <string name="preferences_storage__one_year">1 año</string>
+  <string name="preferences_storage__six_months">6 meses</string>
+  <string name="preferences_storage__thirty_days">30 días</string>
+  <string name="preferences_storage__none">Ninguna</string>
+  <string name="preferences_storage__s_messages">%1$s mensajes</string>
+  <string name="preferences_storage__custom">Personalizado</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">Límite de longitud de chat personalizado</string>
   <string name="preferences_advanced__use_system_emoji">Usar emoji del sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desactivar soporte de emoji integrado de Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirige todas las llamadas a través del servidor de Signal para evitar revelar tu dirección IP. Activar la opción reducirá la calidad de las llamadas.</string>
   <string name="preferences_advanced__always_relay_calls">Redirigir llamadas siempre</string>
+  <string name="preferences_app_protection__who_can">Quién puede …</string>
   <string name="preferences_app_protection__app_access">Acceso a la aplicación</string>
   <string name="preferences_app_protection__communication">Comunicación</string>
   <string name="preferences_chats__chats">Chats</string>
@@ -1821,6 +1837,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_notifications__notify_me">Notificarme</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Recibe notificaciones si te mencionan en un chat silenciado</string>
   <string name="preferences_setup_a_username">Selecciona un alias</string>
+  <string name="configurable_single_select__customize_option">Personalizar opción</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2120,6 +2137,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationActivity_code_support_subject">Registro de Signal - Código de verificación para Android</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconocido</string>
+  <string name="preferences_app_protection__see_my_phone_number">Ver mi número de teléfono</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Encontrarme por mi número de teléfono</string>
+  <string name="PhoneNumberPrivacy_everyone">Tod*s</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Mis contactos</string>
+  <string name="PhoneNumberPrivacy_nobody">Nadie</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Tu número de teléfono será visible para la gente a quién envíes mensajes y para l*s participantes de tus chats en grupo.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Cualquiera que tenga tu número de teléfono entre sus contactos podrá ver que usas Signal. Otras te encontrarán si buscan tu número.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Sólo las personas entre tus contactos podrán ver que puedes comunicarte a través de Signal.</string>
   <string name="preferences_app_protection__screen_lock">Bloqueo de pantalla</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloquea el acceso a Signal con el código de bloqueo de Android o la huella dactilar.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tiempo de inactividad para el bloqueo de pantalla</string>

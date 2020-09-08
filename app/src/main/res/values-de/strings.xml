@@ -449,7 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Ausstehende Beitrittsanfragen</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Keine Beitrittsanfragen vorhanden.</string>
-  <string name="RequestingMembersFragment_explanation">Personen auf dieser Liste versuchen der Gruppe über den teilbaren Gruppen-Link beizutreten.</string>
+  <string name="RequestingMembersFragment_explanation">Personen auf dieser Liste versuchen der Gruppe über den Gruppen-Link beizutreten.</string>
   <string name="RequestingMembersFragment_added_s">»%1$s« hinzugefügt</string>
   <string name="RequestingMembersFragment_denied_s">»%1$s« abgelehnt</string>
   <!--AddMembersActivity-->
@@ -491,7 +491,7 @@
   <string name="ManageGroupActivity_edit_group_info">Gruppendetails bearbeiten</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Wähle aus, wer Gruppenname, Avatar und verschwindende Nachrichten bearbeiten kann.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Wähle aus, wer neue Mitglieder hinzufügen oder einladen kann.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Teilbarer Gruppen-Link</string> -->
+  <string name="ManageGroupActivity_group_link">Gruppen-Link</string>
   <string name="ManageGroupActivity_block_group">Gruppe blockieren</string>
   <string name="ManageGroupActivity_unblock_group">Gruppe freigeben</string>
   <string name="ManageGroupActivity_leave_group">Gruppe verlassen</string>
@@ -847,25 +847,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s hat die Bearbeitungsberechtigten für die Gruppenmitgliedschaft zu »%2$s« geändert.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Die Bearbeitungsberechtigten für die Gruppenmitgliedschaft wurden zu »%1$s« geändert.</string>
   <!--GV2 group link invite access level change-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Du hast den teilbaren Gruppen-Link aktiviert.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Du hast den teilbaren Gruppen-Link mit Admin-Bestätigung aktiviert.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Du hast den teilbaren Gruppen-Link deaktiviert.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s hat den teilbaren Gruppen-Link aktiviert.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s hat den teilbaren Gruppen-Link mit Admin-Bestätigung aktiviert.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s hat den teilbaren Gruppen-Link deaktiviert.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Der teilbare Gruppen-Link wurde aktiviert.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Der teilbare Gruppen-Link wurde mit Admin-Bestätigung aktiviert.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Der teilbare Gruppen-Link wurde deaktiviert.</string> -->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du hast den Gruppen-Link ohne Admin-Bestätigung aktiviert.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du hast den Gruppen-Link mit Admin-Bestätigung aktiviert.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Du hast den Gruppen-Link deaktiviert.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">»%1$s« hat den Gruppen-Link ohne Admin-Bestätigung aktiviert.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">»%1$s« hat den Gruppen-Link mit Admin-Bestätigung aktiviert.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">»%1$s« hat den Gruppen-Link deaktiviert.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Der Gruppen-Link ohne Admin-Bestätigung wurde aktiviert.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Der Gruppen-Link mit Admin-Bestätigung wurde aktiviert.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Der Gruppen-Link wurde deaktiviert.</string>
   <!--GV2 group link reset-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Du hast den teilbaren Gruppen-Link zurückgesetzt.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s hat den teilbaren Gruppen-Link zurückgesetzt.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Der teilbare Gruppen-Link wurde zurückgesetzt.</string> -->
+  <string name="MessageRecord_you_reset_the_group_link">Du hast den Gruppen-Link zurückgesetzt.</string>
+  <string name="MessageRecord_s_reset_the_group_link">»%1$s« hat den Gruppen-Link zurückgesetzt.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Der Gruppen-Link wurde zurückgesetzt.</string>
   <!--GV2 group link joins-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du bist der Gruppe über den teilbaren Gruppen-Link beigetreten.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s ist der Gruppe über den teilbaren Gruppen-Link beigetreten.</string> -->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du bist der Gruppe über den Gruppen-Link beigetreten.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">»%1$s« ist der Gruppe über den Gruppen-Link beigetreten.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du hast eine Gruppenbeitrittsanfrage versendet.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s hat eine Beitrittsanfrage über den teilbaren Gruppen-Link gestellt.</string> -->
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">»%1$s« hat eine Beitrittsanfrage über den Gruppen-Link gestellt.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s hat deine Gruppenbeitrittsanfrage bestätigt.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s hat eine Gruppenbeitrittsanfrage von %2$s bestätigt.</string>
@@ -1436,6 +1436,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Änderungen der Sicherheitsnummer</string>
   <string name="safety_number_change_dialog__send_anyway">Trotzdem versenden</string>
+  <string name="safety_number_change_dialog__call_anyway">Trotzdem anrufen</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Die folgenden Personen haben Signal vielleicht erneut installiert oder das Gerät gewechselt. Verifiziert eure gemeinsame Sicherheitsnummer zur Sicherstellung der Privatsphäre.</string>
   <string name="safety_number_change_dialog__view">Anzeigen</string>
   <string name="safety_number_change_dialog__previous_verified">Zuvor verifiziert</string>
@@ -1739,13 +1740,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__mmsc_password">MMSC-Passwort</string>
   <string name="preferences__sms_delivery_reports">SMS-Zustellberichte</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Alte Nachrichten automatisch löschen, sobald eine Unterhaltung die angegebene Länge überschreitet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Alte Nachrichten löschen</string> -->
   <string name="preferences__chats">Unterhaltungen und Medieninhalte</string>
   <string name="preferences__storage">Speicher</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Alle Unterhaltungen jetzt kürzen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Alle Unterhaltungen prüfen und Längenbegrenzung anwenden</string> -->
+  <string name="preferences__keep_messages">Nachrichten behalten</string>
+  <string name="preferences__clear_message_history">Nachrichtenverlauf löschen</string>
   <string name="preferences__linked_devices">Gekoppelte Geräte</string>
   <string name="preferences__light_theme">Hell</string>
   <string name="preferences__dark_theme">Dunkel</string>
@@ -1775,17 +1774,34 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
   <string name="preferences_chats__media_auto_download">Medieninhalte autom. herunterladen</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Unterhaltungen kürzen</string> -->
+  <string name="preferences_chats__message_history">Nachrichtenverlauf</string>
   <string name="preferences_storage__storage_usage">Speicherbelegung</string>
   <string name="preferences_storage__photos">Bilder</string>
   <string name="preferences_storage__videos">Videos</string>
   <string name="preferences_storage__files">Dateien</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Speicherinhalte überprüfen</string>
+  <string name="preferences_storage__delete_older_messages">Ältere Nachrichten löschen?</string>
+  <string name="preferences_storage__clear_message_history">Nachrichtenverlauf löschen?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dies wird alle Nachrichtenverläufe und Medien, die älter als %1$s sind, dauerhaft von deinem Gerät löschen.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dies löscht sofort alle Nachrichten bis auf die letzten %1$s Nachrichten je Unterhaltung.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dies wird alle Nachrichtenverläufe und Medien dauerhaft von deinem Gerät löschen.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Möchtest du wirklich alle Nachrichtenverläufe löschen?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle Nachrichtenverläufe werden dauerhaft gelöscht. Dies kann nicht rückgängig gemacht werden.</string>
+  <string name="preferences_storage__delete_all_now">Alle jetzt löschen</string>
+  <string name="preferences_storage__forever">Für immer</string>
+  <string name="preferences_storage__one_year">1 Jahr</string>
+  <string name="preferences_storage__six_months">6 Monate</string>
+  <string name="preferences_storage__thirty_days">30 Tage</string>
+  <string name="preferences_storage__none">Keine</string>
+  <string name="preferences_storage__s_messages">%1$s Nachrichten</string>
+  <string name="preferences_storage__custom">Personalisiert</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">personalisierte Höchstzahl an Nachrichten</string>
   <string name="preferences_advanced__use_system_emoji">System-Emojis verwenden</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Dies verringert die Anrufqualität.</string>
   <string name="preferences_advanced__always_relay_calls">Anrufe immer indirekt</string>
+  <string name="preferences_app_protection__who_can">Wer kann…</string>
   <string name="preferences_app_protection__app_access">App-Zugriff</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Unterhaltungen</string>
@@ -1810,6 +1826,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_notifications__notify_me">Mich benachrichtigen</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Benachrichtigungen erhalten, wenn du in stummgeschalteten Unterhaltungen erwähnt wirst</string>
   <string name="preferences_setup_a_username">Benutzername einrichten</string>
+  <string name="configurable_single_select__customize_option">Einstellungen anpassen</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2108,6 +2125,14 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_code_support_subject">Signal-Registrierung – Verifikationscode für Android</string>
   <string name="BackupUtil_never">Nie</string>
   <string name="BackupUtil_unknown">Unbekannt</string>
+  <string name="preferences_app_protection__see_my_phone_number">meine Telefonnummer sehen</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">mich über die Telefonnummer finden</string>
+  <string name="PhoneNumberPrivacy_everyone">Jeder</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Meine Kontakte</string>
+  <string name="PhoneNumberPrivacy_nobody">Niemand</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Deine Telefonnummer ist sichtbar für alle Personen und Gruppen, mit denen du dich unterhälst.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Jeder, der deine Telefonnummer in seinen Kontakten hat, sieht dich als Kontakt in Signal. Andere können dich per Suche finden.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Nur deine Kontakte sehen deine Telefonnummer in Signal.</string>
   <string name="preferences_app_protection__screen_lock">Bildschirmsperre</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zugriff auf Signal mit Android-Bildschirmsperre oder Fingerabdruck sperren</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Autom. Sperre bei Inaktivität</string>

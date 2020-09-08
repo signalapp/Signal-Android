@@ -450,7 +450,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Afventende medlemsanmodninger</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Ingen medlemsanmodninger</string>
-  <string name="RequestingMembersFragment_explanation">Personer på denne liste forsøger at deltage i gruppen via det delbare gruppelink</string>
+  <string name="RequestingMembersFragment_explanation">Personer på denne liste forsøger at deltage i gruppen via gruppelinket.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" tilføjet</string>
   <string name="RequestingMembersFragment_denied_s">%1$s\" afvist</string>
   <!--AddMembersActivity-->
@@ -492,7 +492,7 @@
   <string name="ManageGroupActivity_edit_group_info">Rediger gruppeinformation</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vælg hvem som kan ændre navn og avatar for gruppen, og beskeder med tidsudløb</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vælg hvem der kan tilføje eller invitere nye medlemmer</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Delbart gruppelink</string> -->
+  <string name="ManageGroupActivity_group_link">Gruppelink</string>
   <string name="ManageGroupActivity_block_group">Blokér gruppe</string>
   <string name="ManageGroupActivity_unblock_group">Ophæv blokering af gruppe</string>
   <string name="ManageGroupActivity_leave_group">Forlad gruppe</string>
@@ -612,7 +612,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppelinks kommer snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Opdatér Signal for at bruge gruppelinks</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Deltagelse i en gruppe via et link understøttes endnu ikke af Signal. Funktionen frigives i en kommende opdatering</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal versionen du bruger, understøtter ikke delbare gruppelinks. Opdater til den nyeste version for at deltage i gruppen via linket</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-versionen som du anvender, understøtter ikke gruppelinks. Opdater til den nyeste version for at deltage i denne gruppe via link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Opdatér Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelink er ikke gyldigt</string>
   <!--GV2 Request confirmation dialog-->
@@ -848,25 +848,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ændrede, hvem som kan redigere medlemskab af gruppen til \"%2$s\"</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Hvem som kan redigere medlemskaber af gruppen er blevet ændret til \"%1$s\"</string>
   <!--GV2 group link invite access level change-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Du aktiverede det delbare gruppelink</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Du aktiverede det delbare gruppelink med administratorgodkendelse</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Du déaktiverede det delbare gruppelink</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktiverede det delbare gruppelink</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktiverede det delbare gruppelink med administratorgodkendelse</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s déaktiverede det delbare gruppelink</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Det delbare gruppelink blev aktiveret</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Det delbare gruppelink blev aktiveret med administratorgodkendelse</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Det delbare gruppelink blev déaktiveret</string> -->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du aktiverede gruppelinket med administratorgodkendelse slået fra.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du aktiverede gruppelinket med administratorgodkendelse slået til.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Du deaktiverede gruppelinket.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s aktiverede gruppelinket med administratorgodkendelse slået fra.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s aktiverede gruppelinket med administratorgodkendelse slået til.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s deaktiverede gruppelinket.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Gruppelinket blev aktiveret med administratorgodkendelse slået fra.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Gruppelinket blev aktiveret med administratorgodkendelse slået til.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Gruppelinket blev deaktiveret.</string>
   <!--GV2 group link reset-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Du nulstiller det delbare gruppelink</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s nulstiller det delbare gruppelink</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Det delbare gruppelink blev nulstillet</string> -->
+  <string name="MessageRecord_you_reset_the_group_link">Du nulstiller gruppelinket.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s nulstiller gruppelinket.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Gruppelink blev nulstillet.</string>
   <!--GV2 group link joins-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du deltager i gruppen via det delbare gruppelink</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s deltager i gruppen via det delbare gruppelink</string> -->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du deltager i gruppen via gruppelinket.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s deltager i gruppen via gruppelinket.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du sendte en anmodning om at deltage i gruppen</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s anmodede om at deltage via det delbare gruppelink</string> -->
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s anmodede om at deltage via gruppelinket.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkendte din anmodning om at deltage i gruppen</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkendte en anmodning fra %2$s om at deltage i gruppen</string>
@@ -1447,6 +1447,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Sikkerhedsnummer ændringer</string>
   <string name="safety_number_change_dialog__send_anyway">Send alligevel</string>
+  <string name="safety_number_change_dialog__call_anyway">Ring alligevel</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan have geninstalleret eller skiftet enheder. Bekræft dit sikkerhedsnummer med dem for at sikre privatlivets fred</string>
   <string name="safety_number_change_dialog__view">Vis</string>
   <string name="safety_number_change_dialog__previous_verified">Tidligere bekræftet</string>
@@ -1750,13 +1751,11 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__mmsc_password">MMSC Kodeord</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapporter for SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Modtag leveringsrapporter for hver SMS besked du sender</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Sletter automatisk ældre beskeder når antallet overstiger det specificerede</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Slet gamle beskeder</string> -->
   <string name="preferences__chats">Chat og medier</string>
   <string name="preferences__storage">Hukommelse</string>
   <string name="preferences__conversation_length_limit">Max. grænse for samtaler</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Trim alle samtaler</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skan alle samtaler og reducér antallet til det maksimalt ønskede</string> -->
+  <string name="preferences__keep_messages">Bevar beskeder</string>
+  <string name="preferences__clear_message_history">Ryd beskedhistorik</string>
   <string name="preferences__linked_devices">Forbundne enheder</string>
   <string name="preferences__light_theme">Lyst</string>
   <string name="preferences__dark_theme">Mørkt</string>
@@ -1786,17 +1785,34 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_chats__when_using_wifi">Ved brug af WiFi</string>
   <string name="preferences_chats__when_roaming">Ved roaming</string>
   <string name="preferences_chats__media_auto_download">Hent automatisk multimedier</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Trimning af beskeder</string> -->
+  <string name="preferences_chats__message_history">Beskedhistorik</string>
   <string name="preferences_storage__storage_usage">Brug af hukommelse</string>
   <string name="preferences_storage__photos">Billeder</string>
   <string name="preferences_storage__videos">Videoer</string>
   <string name="preferences_storage__files">Filer</string>
   <string name="preferences_storage__audio">Lyd</string>
   <string name="preferences_storage__review_storage">Vis hukommelse</string>
+  <string name="preferences_storage__delete_older_messages">Slet ældre beskeder?</string>
+  <string name="preferences_storage__clear_message_history">Ryd beskedhistorik?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette sletter al beskedhistorik og medier permanent fra din enhed, der er ældre end %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dette vil reducere alle samtaler permanent til de %1$s seneste beskeder.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette sletter al beskedhistorik og medier permanent fra din enhed.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på, du vil slette al beskedhistorik?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Al beskedhistorik fjernes permanent. Denne handling kan ikke fortrydes.</string>
+  <string name="preferences_storage__delete_all_now">Slet det hele nu</string>
+  <string name="preferences_storage__forever">For evigt</string>
+  <string name="preferences_storage__one_year">1 år</string>
+  <string name="preferences_storage__six_months">6 måneder</string>
+  <string name="preferences_storage__thirty_days">30 dage</string>
+  <string name="preferences_storage__none">Ingen</string>
+  <string name="preferences_storage__s_messages">%1$s beskeder</string>
+  <string name="preferences_storage__custom">Tilpasset</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">Tilpas begrænsning af samtalelængde</string>
   <string name="preferences_advanced__use_system_emoji">Anvend system emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktivér Signal´s indbyggede emoji understøttelse</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal serveren, for at undgå at afsløre din IP-adresse for din kontakt. Opkaldskvaliteten vil blive forringet</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
+  <string name="preferences_app_protection__who_can">Hvem kan…</string>
   <string name="preferences_app_protection__app_access">App adgang</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Chats</string>
@@ -1821,6 +1837,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_notifications__notify_me">Underret mig</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Modtag meddelelser, når du er omtalt i udsatte chats</string>
   <string name="preferences_setup_a_username">Opret et brugernavn</string>
+  <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2119,6 +2136,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="RegistrationActivity_code_support_subject">Signal registration - Verifikationskode for Android</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Ukendt</string>
+  <string name="preferences_app_protection__see_my_phone_number">Se mit telefonnummer</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Find mig via telefonnummer</string>
+  <string name="PhoneNumberPrivacy_everyone">Alle</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Mine kontakter</string>
+  <string name="PhoneNumberPrivacy_nobody">Ingen</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Dit telefonnummer vil være synligt for alle personer og grupper, du sender beskeder til.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Enhver, der har dit telefonnummer i sine kontakter, vil se dig som en kontakt på Signal. Andre vil være i stand til at finde dig i søgning.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Kun dine kontakter kan se dit telefonnummer på Signal.</string>
   <string name="preferences_app_protection__screen_lock">Skærmlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås adgang til Signal med Android skærmlås eller fingeraftryk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout for inaktiv skærmlås</string>

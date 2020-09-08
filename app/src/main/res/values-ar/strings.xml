@@ -682,7 +682,6 @@
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">قم بتحديث Signal لاستخدام روابط المجموعة</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">إنّ نسخة Signal التي تستعملها لا تدعم روابط المجموعة القابلة للمشاركة. قم بالتحديث لأحدث نسخة لتستطيع الإنضمام إلى هذه المجموعة باستخدام رابط. </string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">قم بتحديث Signal</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">إضافة</string>
@@ -962,25 +961,10 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">غير %1$s الأشخاص الذين يستطيعون تعديل عضوية المجموعة إلى \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">تم تغيير من يمكنهم تعديل عضوية المجموعة ليصبح : \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">لقد فعلت رابط المجموعة القابل للمشاركة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">لقد فعلت رابط المجموعة القابل للمشاركة بعد موافقة أحد المشرفين.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">لقد عطلت رابط المجموعة القابل للمشاركة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">قام %1$s بتفعيل رابط المجموعة القابل للمشاركة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">قام %1$sبتفعيل رابط المجموعة القابل للمشاركة بعد موافقة أحد المشرفين.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">قام %1$s بتعطيل رابط المجموعة القابل للمشاركة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">تمّ تفعيل رابط المجموعة القابل للمشاركة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">تمّ تفعيل رابط المجموعة القابل للمشاركة بعد موافقة أحد المشرفين.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">تمّ تعطيل رابط المجموعة القابل للمشاركة.</string> -->
   <!--GV2 group link reset-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">لقد قمت بإعادة تعيين رابط المجموعة القابل للمشاركة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">قام %1$s بإعادة تعيين رابط المجموعة القابل للمشاركة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">تمت إعادة تعيين رابط المجموعة القابل للمشاركة.</string> -->
   <!--GV2 group link joins-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">لقد قمت بالانضمام للمجموعة من خلال رابط المجموعة القابل للمشاركة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">قام %1$s بالانضمام للمجموعة من خلال رابط المجموعة القابل للمشاركة.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">لقد أرسلت طلب للانضمام للمجموعة.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">أرسل %1$sطلباً للانضمام من خلال رابط المجموعة القابل للمشاركة.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">قبل %1$sطلبك للانضمام للمجموعة.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">قبل %1$s طلب %2$s انضمام للمجموعة.</string>
@@ -1919,13 +1903,9 @@
   <string name="preferences__mmsc_password">كلمة السر MMSC</string>
   <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف الرسائل القديمة بالمحادثة عند تجاوز أقصى طول محدد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">احذف الرسائل القديمة</string> -->
   <string name="preferences__chats">المحادثات والوسائط</string>
   <string name="preferences__storage">التخزين</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">تقليم كل المحادثات الآن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">فحص وتقليم كل المحادثات وفق الحد الأقصى</string> -->
   <string name="preferences__linked_devices">الأجهزة المتصلة</string>
   <string name="preferences__light_theme">فاتح</string>
   <string name="preferences__dark_theme">داكن</string>
@@ -1955,13 +1935,14 @@
   <string name="preferences_chats__when_using_wifi">عند استخدام واي فاي</string>
   <string name="preferences_chats__when_roaming">عند استخدام التجوال</string>
   <string name="preferences_chats__media_auto_download">تنزلي تلقائي للوسائط</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">تقليم الرسالة</string> -->
   <string name="preferences_storage__storage_usage">استخدام سعة التخزين</string>
   <string name="preferences_storage__photos">الصور</string>
   <string name="preferences_storage__videos">الفيديوهات</string>
   <string name="preferences_storage__files">الملفات</string>
   <string name="preferences_storage__audio">صوت</string>
   <string name="preferences_storage__review_storage">مراجعة سعة التخزين</string>
+  <string name="preferences_storage__none">لا شيء </string>
+  <string name="preferences_storage__custom">مخصص</string>
   <string name="preferences_advanced__use_system_emoji">استخدام الرموز التعبيرية بالنظام</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">تعطيل الرموز التعبيرية المدمجة في Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">تمرير جميع المكالمات عبر خادوم Signal لتجنّب الإفصاح عن عنوان بروتوكول الانترنت الخاص بك إلى جهة الاتصال. تفعيل الخاصيّة سيقلل من جودة المكالمة.</string>
@@ -2320,6 +2301,7 @@
   <string name="RegistrationActivity_code_support_subject">تسجيل Signal - رمز التّحقق لِ Android</string>
   <string name="BackupUtil_never">أبداً</string>
   <string name="BackupUtil_unknown">مجهول</string>
+  <string name="PhoneNumberPrivacy_nobody">لا أحد</string>
   <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">منع الوصول إلى Signal عبر قفل الشاشة أو بصمة الإصبع</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">نفاذ مهلة قفل الشاشة</string>

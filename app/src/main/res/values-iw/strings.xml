@@ -485,7 +485,6 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">בקשות ממתינות של חברי קבוצה</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">אין חברי קבוצה להראות.</string>
-  <string name="RequestingMembersFragment_explanation">אנשים ברשימה זו מנסים להצטרף אל קבוצה זו באמצעות קישור הקבוצה בר־השיתוף.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" התווסף/ה</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" נדחה/נדחתה</string>
   <!--AddMembersActivity-->
@@ -533,7 +532,7 @@
   <string name="ManageGroupActivity_edit_group_info">ערוך מידע קבוצה</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">בחר מי יכול לערוך את השם, היצגן וההודעות הנעלמות של הקבוצה.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">בחר מי יכול להוסיף או להזמין חברי קבוצה חדשים.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">קישור קבוצה בר־שיתוף</string> -->
+  <string name="ManageGroupActivity_group_link">קישור קבוצה</string>
   <string name="ManageGroupActivity_block_group">חסום קבוצה</string>
   <string name="ManageGroupActivity_unblock_group">בטל חסימת קבוצה</string>
   <string name="ManageGroupActivity_leave_group">עזוב קבוצה</string>
@@ -665,7 +664,6 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">קישורי קבוצה מגיעים בקרוב</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">עדכן את Signal כדי להשתמש בקישורי קבוצה</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">הצטרפות אל קבוצה באמצעות קישור אינה נתמכת עדין על ידי Signal. מאפיין זה ישוחרר בעדכון עתידי.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">הגרסה של Signal שאתה משתמש בה אינה תומכת בקישורי קבוצה שניתנים לשיתוף. עדכן אל הגרסה האחרונה כדי להצטרף אל קבוצה זו באמצעות קישור.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">עדכן את Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">קישור הקבוצה בלתי תקף</string>
   <!--GV2 Request confirmation dialog-->
@@ -925,25 +923,10 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s שינה מי יכול לערוך חברות קבוצה אל \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">מי יכול לערוך חברות קבוצה השתנה אל \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">הפעלת את קישור הקבוצה בר־השיתוף.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">הפעלת את קישור הקבוצה בר־השיתוף עם אישור מנהלן.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">כיבית את קישור הקבוצה בר־השיתוף.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s הפעיל/ה את קישור הקבוצה בר־השיתוף.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s הפעיל/ה את קישור הקבוצה בר־השיתוף עם אישור מנהלן.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s כיבה/כיבתה את קישור הקבוצה בר־השיתוף.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">קישור הקבוצה בר־השיתוף הופעל.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">קישור הקבוצה בר־השיתוף הופעל עם אישור מנהלן.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">קישור הקבוצה בר־השיתוף כובה.</string> -->
   <!--GV2 group link reset-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">איפסת את קישור הקבוצה בר־השיתוף.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s איפס/ה את קישור הקבוצה בר־השיתוף.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">קישור הקבוצה בר־השיתוף אופס.</string> -->
   <!--GV2 group link joins-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">הצטרפת אל הקבוצה באמצעות קישור הקבוצה בר־השיתוף.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s הצטרפ/ה אל הקבוצה באמצעות קישור הקבוצה בר־השיתוף.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">שלחת בקשה להצטרף אל הקבוצה.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s ביקש/ה להצטרף באמצעות קישור הקבוצה בר־השיתוף.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s אישר/ה את בקשתך להצטרף אל הקבוצה.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s אישר/ה בקשה להצטרף אל הקבוצה מאת %2$s.</string>
@@ -1858,13 +1841,9 @@
   <string name="preferences__mmsc_password">סיסמת MMSC</string>
   <string name="preferences__sms_delivery_reports">דוחות מסירת מסרונים</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">בקש דוח מסירה לכל מסרון שאתה שולח</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">מחק באופן אוטומטי הודעות ישנות יותר ברגע ששיחה חורגת מאורך שצוין</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">מחק הודעות ישנות</string> -->
   <string name="preferences__chats">התכתבויות ומדיה</string>
   <string name="preferences__storage">אחסון</string>
   <string name="preferences__conversation_length_limit">מגבלת אורך שיחה</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">קצץ את כל השיחות כעת</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">סרוק את כל השיחות ואכוף מגבלות אורך שיחה</string> -->
   <string name="preferences__linked_devices">מכשירים מקושרים</string>
   <string name="preferences__light_theme">בהירה</string>
   <string name="preferences__dark_theme">כהה</string>
@@ -1894,13 +1873,14 @@
   <string name="preferences_chats__when_using_wifi">בעת שימוש ב־Wi-Fi</string>
   <string name="preferences_chats__when_roaming">בעת נדידה</string>
   <string name="preferences_chats__media_auto_download">הורדה אוטומטית של מדיה</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">קיצוץ הודעה</string> -->
   <string name="preferences_storage__storage_usage">שימוש באחסון</string>
   <string name="preferences_storage__photos">תמונות</string>
   <string name="preferences_storage__videos">סרטונים</string>
   <string name="preferences_storage__files">קבצים</string>
   <string name="preferences_storage__audio">שמע</string>
   <string name="preferences_storage__review_storage">סקור אחסון</string>
+  <string name="preferences_storage__none">אין</string>
+  <string name="preferences_storage__custom">מותאם אישית</string>
   <string name="preferences_advanced__use_system_emoji">השתמש באימוג\'י של מערכת</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">השבת תמיכת אימוג\'י מובנית של Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">שדר את כל השיחות דרך שרת Signal כדי להימנע מחשיפת כתובת ה־IP שלך לאיש הקשר שלך. אפשור יפחית איכות שיחה.</string>

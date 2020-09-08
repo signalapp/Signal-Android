@@ -716,8 +716,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Zmenili ste, kto môže upravovať členstvo v skupine na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s zmenil/a, kto môže upravovať členstvo v skupine na \"%2$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Zapli ste odkaz do skupiny so schválením administrátorom neaktívnym.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Zapli ste odkaz do skupiny so schválením administrátorom aktívnym.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Odkaz do skupiny ste vypli.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Zresetovali ste odkaz do skupiny.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Pridali ste sa do skupiny prostredníctvom odkazu do skupiny.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste žiadosť o členstvo v skupine.</string>
   <!--GV2 group link approvals-->
@@ -1563,13 +1568,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__mmsc_password">MMSC heslo</string>
   <string name="preferences__sms_delivery_reports">Správy o doručení SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadať správu o doručení</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automaticky odstrániť staršie správy keď konverzácia presiahne určenú dĺžku</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Vymazať staré správy</string> -->
   <string name="preferences__chats">Chat a médiá</string>
   <string name="preferences__storage">Úložisko</string>
   <string name="preferences__conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Premazať všetky konverzácie teraz</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skenovať všetky konverzácie a uplatniť limity dĺžky konverzácie</string> -->
   <string name="preferences__linked_devices">Pripojené zariadenia</string>
   <string name="preferences__light_theme">Svetlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
@@ -1597,13 +1598,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Pri roamingu</string>
   <string name="preferences_chats__media_auto_download">Automatické preberanie médií</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Premazávanie správ</string> -->
   <string name="preferences_storage__storage_usage">Využitie úložiska</string>
   <string name="preferences_storage__photos">Fotografie</string>
   <string name="preferences_storage__videos">Videá</string>
   <string name="preferences_storage__files">Súbory</string>
   <string name="preferences_storage__audio">Zvuk</string>
   <string name="preferences_storage__review_storage">Skontrolovať úložisko</string>
+  <string name="preferences_storage__none">Žiadny</string>
+  <string name="preferences_storage__custom">Vlastné</string>
   <string name="preferences_advanced__use_system_emoji">Použiť systémové emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Vypnúť emoji zabudované v Signale</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Smerovať všetky hovory cez server Signal pre zabránenie odhaleniu vašej IP adresy kontaktu. Zapnutie zníži kvalitu hovoru.</string>
@@ -1933,6 +1935,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RegistrationActivity_code_support_subject">Registrácia v Signali – Overovací kód pre Android</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznáma</string>
+  <string name="PhoneNumberPrivacy_nobody">Nikto</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Len vaše kontakty budú vidieť vaše telefónne číslo v službe Signal.</string>
   <string name="preferences_app_protection__screen_lock">Zámok obrazovky</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Uzamknúť Signal pomocou zámku obrazovky Androidu alebo odtlačkom prstu</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časový limit neaktivity pred uzamknutím</string>

@@ -431,7 +431,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">待處理的成員要求</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">沒有成員要求顯示。</string>
-  <string name="RequestingMembersFragment_explanation">此清單中的人員正在嘗試透過可分享的群組連結加入該群組。</string>
+  <string name="RequestingMembersFragment_explanation">此清單中的人員正在嘗試透過群組連結加入此群組。</string>
   <string name="RequestingMembersFragment_added_s">已新增\"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">已拒絕 \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -470,7 +470,7 @@
   <string name="ManageGroupActivity_edit_group_info">編輯群組資訊</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">選擇誰可以編輯群組名稱，頭像和自動銷毀訊息。</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">選擇誰可以新增或邀請新成員。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">可分享的群組連結</string> -->
+  <string name="ManageGroupActivity_group_link">群組連結</string>
   <string name="ManageGroupActivity_block_group">封鎖群組</string>
   <string name="ManageGroupActivity_unblock_group">解封鎖群組</string>
   <string name="ManageGroupActivity_leave_group">離開對話群組</string>
@@ -584,7 +584,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">群組連結即將推出</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">更新Signal 以使用群組連結</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal尚不支援透過連結加入群組。 此功能將在即將進行的更新中發佈。</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">你使用的Signal版本不支援可共享的群組連結。透過連結更新到最新版本以加入該群組。</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">你使用的Signal版本不支援群組連結。 透過連結更新到最新版本以加入該群組。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">更新 Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">群組連結無效</string>
   <!--GV2 Request confirmation dialog-->
@@ -808,25 +808,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s變更了誰可以編輯群駔成員資格為\"%2$s\"。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">誰可以編輯群成員已變更為\"%1$s\"。</string>
   <!--GV2 group link invite access level change-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">你開啟了可分享的群組連結。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">你已通過管理員批准開啟了可共享的群組連結。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">你關閉了可共享的群組連結。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s開啟了共享群組連結。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s在獲得管理員批准的情況下開啟了可共享的群組連結。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s關閉了可共享的群組連結。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">可共享的群組連結已開啟。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">共享群組連結已在管理員批准下開啟。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">共享群組連結已關閉。</string> -->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">你已打開群組連結，但尚未獲得管理員批准。</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">你已啟用管理員批准的群組連結。</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">你關閉了群組連結。</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s 開啟了群組連結，但未獲得管理員批准。</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s 開啟了具有管理員批准功能的群組連結。</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s 關閉了群組連結。</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">群組連結已開啟，而管理員的批准已關閉。</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">群組連結已在管理員批准下開啟。</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">群組連結已關閉。</string>
   <!--GV2 group link reset-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">你重置可共享的群組連結。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s重置可共享的群組連結。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">可共享的群組連結已重置。</string> -->
+  <string name="MessageRecord_you_reset_the_group_link">你重置群組連結。</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s 重置了群組連結。</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">群組連結已重置。</string>
   <!--GV2 group link joins-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">你透過共享群組連結加入了該群組。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s透過共享群組連結加入了該群組。</string> -->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">你透過群組連結加入了群組。</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s 透過群組連結加入了群組。</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">你傳送了加入該群組的請求。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s透過共享群組連結請求加入。</string> -->
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s 透過群組連結要求加入。</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s批准了你加入群組的請求。</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s從%2$s批准了加入的請求。</string>
@@ -1398,6 +1398,7 @@
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">安全碼變更</string>
   <string name="safety_number_change_dialog__send_anyway">仍然傳送</string>
+  <string name="safety_number_change_dialog__call_anyway">無論如何要打電話</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下使用者可能已重新安裝或更換了裝置。與他們一起驗證你的安全碼，以確保隱私性。</string>
   <string name="safety_number_change_dialog__view">檢視</string>
   <string name="safety_number_change_dialog__previous_verified">先前已驗證</string>
@@ -1693,13 +1694,11 @@
   <string name="preferences__mmsc_password">MMSC 密碼</string>
   <string name="preferences__sms_delivery_reports">手機簡訊傳送狀態報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">針對每則手機簡訊都要求回覆傳送報告</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">當對話群組超過一定長度時自動刪除舊的訊息</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">刪除舊的訊息</string> -->
   <string name="preferences__chats">聊天與媒體</string>
   <string name="preferences__storage">儲存</string>
   <string name="preferences__conversation_length_limit">對話群組長度上限</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">現在開始精簡所有的對話群組</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">這會掃描目前所有的對話群組，並且強制刪除超過長度上限的部分。</string> -->
+  <string name="preferences__keep_messages">保留訊息</string>
+  <string name="preferences__clear_message_history">清除訊息歷史記錄</string>
   <string name="preferences__linked_devices">已連結裝置</string>
   <string name="preferences__light_theme">明亮</string>
   <string name="preferences__dark_theme">深色</string>
@@ -1729,17 +1728,34 @@
   <string name="preferences_chats__when_using_wifi">當使用 Wi-Fi 時</string>
   <string name="preferences_chats__when_roaming">當漫遊時</string>
   <string name="preferences_chats__media_auto_download">媒體自動下載</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">訊息整理</string> -->
+  <string name="preferences_chats__message_history">訊息歷史紀錄</string>
   <string name="preferences_storage__storage_usage">已使用的儲存容量</string>
   <string name="preferences_storage__photos">照片</string>
   <string name="preferences_storage__videos">影片</string>
   <string name="preferences_storage__files">檔案</string>
   <string name="preferences_storage__audio">音訊</string>
   <string name="preferences_storage__review_storage">檢視儲存空間</string>
+  <string name="preferences_storage__delete_older_messages">刪除舊訊息?</string>
+  <string name="preferences_storage__clear_message_history">清除訊息歷史記錄?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">這將從裝置中永久刪除所有早於%1$s的訊息歷史記錄和媒體檔案。</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">這將會永久整理所有對話到%1$s最近的訊息。</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">這將從你的裝置中永久刪除所有訊息歷史記錄和媒體檔案。</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">你確定要刪除所有訊息歷史記錄嗎?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">所有訊息歷史記錄將被永久刪除。 此操作無法取消。</string>
+  <string name="preferences_storage__delete_all_now">立即刪除全部</string>
+  <string name="preferences_storage__forever">永久</string>
+  <string name="preferences_storage__one_year">1年</string>
+  <string name="preferences_storage__six_months">6個月</string>
+  <string name="preferences_storage__thirty_days">30天</string>
+  <string name="preferences_storage__none">靜音</string>
+  <string name="preferences_storage__s_messages">%1$s則訊息</string>
+  <string name="preferences_storage__custom">自訂</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">自定義會話長度限制</string>
   <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
   <string name="preferences_advanced__always_relay_calls">永遠轉發通話</string>
+  <string name="preferences_app_protection__who_can">誰可以…</string>
   <string name="preferences_app_protection__app_access">應用程式存取</string>
   <string name="preferences_app_protection__communication">溝通</string>
   <string name="preferences_chats__chats">聊天</string>
@@ -1764,6 +1780,7 @@
   <string name="preferences_notifications__notify_me">通知我</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">在靜音聊天中提及你時接收通知</string>
   <string name="preferences_setup_a_username">設定使用者名稱</string>
+  <string name="configurable_single_select__customize_option">自定義選項</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2054,6 +2071,14 @@
   <string name="RegistrationActivity_code_support_subject">Signal 註冊 - Android驗證碼</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
+  <string name="preferences_app_protection__see_my_phone_number">查看我的電話號碼</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">透過電話號碼找到我</string>
+  <string name="PhoneNumberPrivacy_everyone">每個人</string>
+  <string name="PhoneNumberPrivacy_my_contacts">我的聯絡人</string>
+  <string name="PhoneNumberPrivacy_nobody">無人</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">你的電話號碼將可被與你傳送訊息的所有人員和群組看見。</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">任何在你的聯絡人中擁有你的電話號碼的人都會在 Signal 上將你視為聯絡人。 其他人將可以在搜尋中找到你。</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">只有你的聯絡人會在Signal上看到你的電話號碼。</string>
   <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">以 Android 螢幕鎖定或指紋來鎖定 Signal 存取</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">螢幕鎖定閒置逾時</string>

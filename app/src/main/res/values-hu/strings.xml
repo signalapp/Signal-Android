@@ -450,7 +450,6 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Függőben lévő tagsági kérések</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Nincs megjeleníthető tagsági kérés</string>
-  <string name="RequestingMembersFragment_explanation">A listán szereplő felhasználók megosztható csoporthivatkozások használatával szeretnének csatlakozni.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" hozzáadva</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" elutasítva</string>
   <!--AddMembersActivity-->
@@ -492,7 +491,7 @@
   <string name="ManageGroupActivity_edit_group_info">Csoportinfó szerkesztése</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Add meg, hogy ki változtathatja meg a csoport nevét, képét és az eltűnő üzenetekkel kapcsolatos beállításokat!</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Add meg, hogy ki adhat hozzá vagy hívhat meg új tagokat!</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Megosztható csoporthivatkozás</string> -->
+  <string name="ManageGroupActivity_group_link">Csoporthivatkozás</string>
   <string name="ManageGroupActivity_block_group">Csoport letiltása</string>
   <string name="ManageGroupActivity_unblock_group">Csoport blokkolásának feloldása</string>
   <string name="ManageGroupActivity_leave_group">Kilépés a csoportból</string>
@@ -612,7 +611,6 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">A csoporthivatkozások hamarosan megérkeznek</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Frissítsd a Signalt a csoporthivatkozások használatához</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">A csoporthivatkozások általi belépést egyelőre nem támogatja a Signal. Ez a funkció egy jövőbeli frissítéssel lesz elérhető.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Az általad használt verziójú Signal nem támogatja a megosztható csoporthivatkozásokat. Frissíts a legújabb verzióra, hogy a hivatkozás használatával csatlakozhass ehhez a csoporthoz!</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal frissítése</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">A csoporthivatkozás érvénytelen</string>
   <!--GV2 Request confirmation dialog-->
@@ -848,25 +846,10 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s megváltoztatta a csoport tagjainak szerkeszthetőségét erre: \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">A csoporttagságot szerkeszthetők köre megváltozott erre: \"%1$s\"</string>
   <!--GV2 group link invite access level change-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Bekapcsoltad a megosztható csoporthivatkozást.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Bekapcsoltad a megosztható csoporthivatkozást adminisztrátori jóváhagyással.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Kikapcsoltad a megosztható csoporthivatkozást.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s bekapcsolta a megosztható csoporthivatkozást.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s bekapcsolta a megosztható csoporthivatkozást adminisztrátori jóváhagyással.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s kikapcsolta a megosztható csoporthivatkozást.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">A megosztható csoporthivatkozás be lett kapcsolva.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">A megosztható csoporthivatkozás be lett kapcsolva adminisztrátori jóváhagyással.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">A megosztható csoporthivatkozás ki lett kapcsolva.</string> -->
   <!--GV2 group link reset-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Lecserélted a megosztható csoporthivatkozást.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s lecserélte a megosztható csoporthivatkozást.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">A megosztható csoporthivatkozás le lett cserélve.</string> -->
   <!--GV2 group link joins-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Beléptél a csoportba egy megosztható csoporthivatkozás használatával.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s belépett a csoportba egy megosztható csoporthivatkozás használatával.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Elküldted csatlakozási igényedet a csoportnak.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s csatlakozni szeretne megosztható csoporthivatkozás használatával.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s jóváhagyta csatlakozási igényedet a csoporthoz.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s jóváhagyott egy csatlakozási igényt tőle: %2$s.</string>
@@ -1753,13 +1736,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__mmsc_password">MMSC jelszó</string>
   <string name="preferences__sms_delivery_reports">SMS kézbesítési jelentések</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kézbesítési jelentés kérése az összes elküldött SMS-ről</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Régi üzenetek automatikus törlése, amint a beszélgetés üzeneteinek száma meghaladja a beállított értéket</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Régi üzenetek törlése</string> -->
   <string name="preferences__chats">Csevegések és média</string>
   <string name="preferences__storage">Tárolás</string>
   <string name="preferences__conversation_length_limit">Beszélgetés hosszának korlátja</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Összes beszélgetés csonkítása most</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Az összes beszélgetés vizsgálata, és a beszélgetésekre vonatkozó hosszkorlátozás érvényesítése</string> -->
   <string name="preferences__linked_devices">Társított eszközök</string>
   <string name="preferences__light_theme">Világos</string>
   <string name="preferences__dark_theme">Sötét</string>
@@ -1789,13 +1768,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_chats__when_using_wifi">Wi-Fi használata során</string>
   <string name="preferences_chats__when_roaming">Barangoláskor</string>
   <string name="preferences_chats__media_auto_download">Médiafájlok automatikus letöltése</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Beszélgetések csonkítása</string> -->
   <string name="preferences_storage__storage_usage">Tárhelyhasználat</string>
   <string name="preferences_storage__photos">Fotók</string>
   <string name="preferences_storage__videos">Videók</string>
   <string name="preferences_storage__files">Fájlok</string>
   <string name="preferences_storage__audio">Hang</string>
   <string name="preferences_storage__review_storage">Tárhely áttekintése</string>
+  <string name="preferences_storage__none">Egyik sem</string>
+  <string name="preferences_storage__custom">Egyéni</string>
   <string name="preferences_advanced__use_system_emoji">Rendszer emojik használata</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">A Signal beépített emoji-támogatásának letiltása</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">A hívások átjátszása a Signal szerverein annak érdekében, hogy IP címed telefonhívás során is rejtve maradjon partnered előtt. Engedélyezésével a hívások minősége gyengébb lesz.</string>
@@ -2122,6 +2102,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RegistrationActivity_code_support_subject">Signal regisztráció - megerősítő kód Androidhoz</string>
   <string name="BackupUtil_never">Soha</string>
   <string name="BackupUtil_unknown">Ismeretlen</string>
+  <string name="PhoneNumberPrivacy_nobody">Senki</string>
   <string name="preferences_app_protection__screen_lock">Képernyőzár</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal-hoz való hozzáférés védelme Android képernyőzárral vagy ujjlenyomattal</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inaktív képernyő lezárása előtti türelmi idő</string>
