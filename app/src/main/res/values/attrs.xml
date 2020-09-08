@@ -240,6 +240,7 @@
     <attr name="advanced_icon" format="reference" />
     <attr name="safety_number_icon" format="reference" />
     <attr name="help_icon" format="reference" />
+    <attr name="donate_icon" format="reference" />
 
     <attr name="help_problem_background" format="reference" />
     <attr name="help_next_background" format="reference" />

@@ -3,6 +3,7 @@
     <string name="app_name" translatable="false">Signal</string>
 
     <string name="install_url" translatable="false">https://signal.org/install</string>
+    <string name="donate_url" translatable="false">https://signal.org/donate</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -2049,6 +2050,7 @@
     <string name="preferences__slow">Slow</string>
     <string name="preferences__help">Help</string>
     <string name="preferences__advanced">Advanced</string>
+    <string name="preferences__donate_to_signal">Donate to Signal</string>
     <string name="preferences__privacy">Privacy</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>

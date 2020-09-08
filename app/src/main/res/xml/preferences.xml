@@ -46,4 +46,9 @@
                 android:title="@string/preferences__advanced"
                 android:icon="?attr/advanced_icon"/>
 
+    <Preference android:key="preference_category_donate"
+                android:title="@string/preferences__donate_to_signal"
+                android:icon="?attr/donate_icon"
+                android:widgetLayout="@layout/donate_preference_widget" />
+
 </PreferenceScreen>
