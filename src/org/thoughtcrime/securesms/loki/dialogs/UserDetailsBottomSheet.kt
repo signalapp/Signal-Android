@@ -28,7 +28,7 @@ public class UserDetailsBottomSheet : BottomSheetDialogFragment() {
         profilePictureView.glide = GlideApp.with(this)
         profilePictureView.isLarge = true
         profilePictureView.update()
-        nameTextView.text = DatabaseFactory.getLokiUserDatabase(requireContext()).getDisplayName(publicKey) ?: publicKey
+        nameTextView.text = DatabaseFactory.getLokiUserDatabase(requireContext()).getDisplayName(publicKey) ?: "Anonymous"
         publicKeyTextView.text = publicKey
         copyButton.setOnClickListener {
             val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
