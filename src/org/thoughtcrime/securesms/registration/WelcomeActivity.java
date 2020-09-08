@@ -55,7 +55,6 @@ public class WelcomeActivity extends BaseActionBarActivity {
   private void onContinueClicked() {
     Permissions.with(this)
         .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-        .ifNecessary()
         .withRationaleDialog(getString(R.string.activity_landing_permission_dialog_message), R.drawable.ic_baseline_folder_48)
         .onAnyResult(() -> {
           Intent nextIntent = getIntent().getParcelableExtra("next_intent");

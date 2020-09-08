@@ -98,7 +98,6 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
   public void onClick(View v) {
     Permissions.with(this)
                .request(Manifest.permission.CAMERA)
-               .ifNecessary()
                .withPermanentDenialDialog(getString(R.string.DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code))
                .onAllGranted(() -> {
                  getSupportFragmentManager().beginTransaction()

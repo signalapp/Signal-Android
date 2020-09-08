@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.permissions;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -63,27 +62,12 @@ public class Permissions {
     private @DrawableRes int[]  rationalDialogHeader;
     private              String rationaleDialogMessage;
 
-    private boolean ifNecesary;
-
-    private boolean condition = true;
-
     PermissionsBuilder(PermissionObject permissionObject) {
       this.permissionObject = permissionObject;
     }
 
     public PermissionsBuilder request(String... requestedPermissions) {
       this.requestedPermissions = requestedPermissions;
-      return this;
-    }
-
-    public PermissionsBuilder ifNecessary() {
-      this.ifNecesary = true;
-      return this;
-    }
-
-    public PermissionsBuilder ifNecessary(boolean condition) {
-      this.ifNecesary = true;
-      this.condition  = condition;
       return this;
     }
 
@@ -137,7 +121,7 @@ public class Permissions {
       PermissionsRequest request = new PermissionsRequest(allGrantedListener, anyDeniedListener, anyPermanentlyDeniedListener, anyResultListener,
                                                           someGrantedListener, someDeniedListener, somePermanentlyDeniedListener);
 
-      if (ifNecesary && (permissionObject.hasAll(requestedPermissions) || !condition)) {
+      if (permissionObject.hasAll(requestedPermissions)) {
         executePreGrantedPermissionsRequest(request);
       } else if (rationaleDialogMessage != null && rationalDialogHeader != null) {
         executePermissionsRequestWithRationale(request);

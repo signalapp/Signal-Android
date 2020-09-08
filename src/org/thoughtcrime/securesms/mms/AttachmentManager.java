@@ -373,7 +373,6 @@ public class AttachmentManager {
   public static void selectDocument(Activity activity, int requestCode) {
     Permissions.with(activity)
                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-               .ifNecessary()
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
                .onAllGranted(() -> selectMediaType(activity, "*/*", null, requestCode))
                .execute();
@@ -382,7 +381,6 @@ public class AttachmentManager {
   public static void selectGallery(Activity activity, int requestCode, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
     Permissions.with(activity)
                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-               .ifNecessary()
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
                .onAllGranted(() -> selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode))
                .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body, transport), requestCode))
@@ -392,7 +390,6 @@ public class AttachmentManager {
   public static void selectAudio(Activity activity, int requestCode) {
     Permissions.with(activity)
                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-               .ifNecessary()
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
                .onAllGranted(() -> selectMediaType(activity, "audio/*", null, requestCode))
                .execute();
@@ -401,7 +398,6 @@ public class AttachmentManager {
   public static void selectContactInfo(Activity activity, int requestCode) {
     Permissions.with(activity)
                .request(Manifest.permission.WRITE_CONTACTS)
-               .ifNecessary()
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information))
                .onAllGranted(() -> {
                  Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
@@ -414,7 +410,6 @@ public class AttachmentManager {
     /* Loki - Enable again once we have location sharing
     Permissions.with(activity)
                .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-               .ifNecessary()
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
                .onAllGranted(() -> {
                  try {
@@ -444,7 +439,6 @@ public class AttachmentManager {
   public void capturePhoto(Activity activity, int requestCode) {
     Permissions.with(activity)
             .request(Manifest.permission.CAMERA)
-            .ifNecessary()
             .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied))
             .onAllGranted(() -> {
               try {

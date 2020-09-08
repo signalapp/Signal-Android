@@ -375,7 +375,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private void navigateToCamera() {
     Permissions.with(this)
                .request(Manifest.permission.CAMERA)
-               .ifNecessary()
                .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_baseline_photo_camera_48)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                .onAllGranted(() -> {
