@@ -1155,12 +1155,12 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__mmsc_password">Kata Laluan MMSC</string>
   <string name="preferences__sms_delivery_reports">Laporan hantaran SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Minta laporan penghantaran untuk setiap mesej SMS yang anda hantar</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Memadam mesej lama apabila perbualan melebihi panjang yang ditentukan secara automatik</string>
-  <string name="preferences__delete_old_messages">Padam mesej lama</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Memadam mesej lama apabila perbualan melebihi panjang yang ditentukan secara automatik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Padam mesej lama</string> -->
   <string name="preferences__chats">Sembang dan media</string>
   <string name="preferences__conversation_length_limit">Had panjang perbualan</string>
-  <string name="preferences__trim_all_conversations_now">Potong semua perbualan sekarang</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Mengimbas semua perbualan dan melaksanakan had panjang perbualan</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Potong semua perbualan sekarang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Mengimbas semua perbualan dan melaksanakan had panjang perbualan</string> -->
   <string name="preferences__linked_devices">Peranti dipaut</string>
   <string name="preferences__light_theme">Cerah</string>
   <string name="preferences__dark_theme">Gelap</string>
@@ -1184,7 +1184,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_chats__when_using_wifi">Semasa mengguna WI-Fi</string>
   <string name="preferences_chats__when_roaming">Semasa perayauan</string>
   <string name="preferences_chats__media_auto_download">Memuat turun media secara automatik</string>
-  <string name="preferences_chats__message_trimming">Memotong mesej</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Memotong mesej</string> -->
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_advanced__use_system_emoji">Mengguna emoji sistem</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Menyahdayakan sokongan emoji terbina dalam Signal</string>

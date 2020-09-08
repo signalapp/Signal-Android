@@ -492,7 +492,7 @@
   <string name="ManageGroupActivity_edit_group_info">Groepsinformatie aanpassen</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Kies wie de naam van de groep, de groepsafbeelding en de timer voor zelfwissende berichten mag aanpassen.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Kies wie nieuwe leden mag toevoegen of uitnodigen.</string>
-  <string name="ManageGroupActivity_sharable_group_link">Deelbare groepslink</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Deelbare groepslink</string> -->
   <string name="ManageGroupActivity_block_group">Groepsgesprek blokkeren</string>
   <string name="ManageGroupActivity_unblock_group">Groep deblokkeren</string>
   <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
@@ -848,25 +848,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%2$s’ ingesteld.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Je hebt de deelbare groepslink ingeschakeld.</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Je hebt de deelbare groepslink met beheerderstoestemming ingeschakeld.</string>
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Je hebt de deelbare groepslink uitgeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s heeft de deelbare groepslink ingeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s heeft de deelbare groepslink met beheerderstoestemming ingeschakeld.</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s heeft de deelbare groepslink uitgeschakeld.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">De deelbare groepslink is ingeschakeld.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">De deelbare groepslink met beheerderstoestemming is ingeschakeld.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">De deelbare groepslink is uitgeschakeld.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Je hebt de deelbare groepslink ingeschakeld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Je hebt de deelbare groepslink met beheerderstoestemming ingeschakeld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Je hebt de deelbare groepslink uitgeschakeld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s heeft de deelbare groepslink ingeschakeld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s heeft de deelbare groepslink met beheerderstoestemming ingeschakeld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s heeft de deelbare groepslink uitgeschakeld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">De deelbare groepslink is ingeschakeld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">De deelbare groepslink met beheerderstoestemming is ingeschakeld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">De deelbare groepslink is uitgeschakeld.</string> -->
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">Je hebt de deelbare groepslink vernieuwd.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s heeft de deelbare groepslink vernieuwd.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">De deelbare groepslink is vernieuwd.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Je hebt de deelbare groepslink vernieuwd.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s heeft de deelbare groepslink vernieuwd.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">De deelbare groepslink is vernieuwd.</string> -->
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Je bent via de deelbare groepslink lid geworden van de groep.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s is lid geworden via de deelbare groepslink.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Je bent via de deelbare groepslink lid geworden van de groep.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s is lid geworden via de deelbare groepslink.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Je hebt een verzoek verstuurd om lid te worden van de groep.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s heeft verzocht om via de deelbare groepslink lid te worden.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s heeft verzocht om via de deelbare groepslink lid te worden.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s heeft je verzoek om lid te worden van de groep toegestaan.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s heeft het verzoek van %2$s om lid te worden van de groep toegestaan.</string>
@@ -1712,8 +1712,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__change_your_passphrase">Wijzig je wachtwoord</string>
   <string name="preferences__enable_passphrase">Schermvergrendeling met wachtwoord inschakelen</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel scherm en meldingen met een wachtwoord</string>
-  <string name="preferences__screen_security">Schermafdrukken blokkeren</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm je gesprekken tegen schermopnames door andere apps, zowel als Signal geopend is als in de lijst van recent gebruikte apps.</string>
+  <string name="preferences__screen_security">Meekijkpreventie</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Verberg Signal in de lijst van recent geopende apps en bescherm je gesprekken tegen schermopnames door andere apps door schermafdrukken te blokkeren</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
   <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
@@ -1755,13 +1755,13 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__mmsc_password">MMSC-wachtwoord</string>
   <string name="preferences__sms_delivery_reports">Sms-ontvangstbevestigingen</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Vraag een ontvangstbevestiging voor ieder verzonden sms-bericht</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Wis automatisch oudere berichten wanneer een gesprek meer dan een bepaald aantal berichten bevat</string>
-  <string name="preferences__delete_old_messages">Oude berichten wissen</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Wis automatisch oudere berichten wanneer een gesprek meer dan een bepaald aantal berichten bevat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Oude berichten wissen</string> -->
   <string name="preferences__chats">Gesprekken en media</string>
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__conversation_length_limit">Gesprekslengtelimiet</string>
-  <string name="preferences__trim_all_conversations_now">Oude berichten nu verwijderen</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan alle gesprekken en pas de maximale gesprekslengte toe</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Oude berichten nu verwijderen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan alle gesprekken en pas de maximale gesprekslengte toe</string> -->
   <string name="preferences__linked_devices">Gekoppelde apparaten</string>
   <string name="preferences__light_theme">Licht</string>
   <string name="preferences__dark_theme">Donker</string>
@@ -1791,7 +1791,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
-  <string name="preferences_chats__message_trimming">Bewaartermijn beperken</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Bewaartermijn beperken</string> -->
   <string name="preferences_storage__storage_usage">Opslaggebruik</string>
   <string name="preferences_storage__photos">Afbeeldingen</string>
   <string name="preferences_storage__videos">Video\'s</string>

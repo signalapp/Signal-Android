@@ -213,6 +213,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera je nedostupná</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Vo vašom zariadení nie je aplikácia schopná otvoriť tento odkaz.</string>
+  <string name="ConversationActivity_cancel_request">Zrušiť žiadosť</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pre posielanie zvukových správ potrebuje Signal prístup k mikrofónu.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal potrebuje prístup k mikrofónu aby mohol posielať zvukové správy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal potrebuje prístup k mikrofónu a fotoaparátu aby mohol zavolať %s, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\" a \"Fotoaparát\".</string>
@@ -479,10 +480,15 @@
   <string name="ShareableGroupLinkDialogFragment__enabled">Povolené</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Zakázané</string>
   <string name="ShareableGroupLinkDialogFragment__default">Predvolená</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vyžadovať schválenie adminom pri nových členoch, ktorí sa pridajú prostredníctvom odkazu do skupiny.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ste si istý/á, že chcete zresetovať odkaz do skupiny? Ľudia sa už viac nebudú môcť do skupiny pridať prostredníctvom aktuálneho odkazu.</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Ľudia, ktorí si tento kód zoskenujú, sa budú môcť pridať do vašej skupiny. Admini budú ešte stále musieť nových členov schváliť, ak zapnete príslušné nastavenie.</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_join">Pridať sa</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Vyskytla sa chyba siete.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Chcete sa pridať do tejto skupiny a zdieľať vaše meno a foto s jej členmi?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovať Signal</string>
   <!--GV2 Request confirmation dialog-->
@@ -713,8 +719,10 @@
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste žiadosť o členstvo v skupine.</string>
   <!--GV2 group link approvals-->
   <!--GV2 group link deny-->
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Zrušili ste vašu žiadosť o členstvo v skupine.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %s sa zmenilo.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Bezpečnostné číslo s %s ste označili ako overené</string>
@@ -1555,13 +1563,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__mmsc_password">MMSC heslo</string>
   <string name="preferences__sms_delivery_reports">Správy o doručení SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadať správu o doručení</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automaticky odstrániť staršie správy keď konverzácia presiahne určenú dĺžku</string>
-  <string name="preferences__delete_old_messages">Vymazať staré správy</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automaticky odstrániť staršie správy keď konverzácia presiahne určenú dĺžku</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Vymazať staré správy</string> -->
   <string name="preferences__chats">Chat a médiá</string>
   <string name="preferences__storage">Úložisko</string>
   <string name="preferences__conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
-  <string name="preferences__trim_all_conversations_now">Premazať všetky konverzácie teraz</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skenovať všetky konverzácie a uplatniť limity dĺžky konverzácie</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Premazať všetky konverzácie teraz</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skenovať všetky konverzácie a uplatniť limity dĺžky konverzácie</string> -->
   <string name="preferences__linked_devices">Pripojené zariadenia</string>
   <string name="preferences__light_theme">Svetlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
@@ -1589,7 +1597,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Pri roamingu</string>
   <string name="preferences_chats__media_auto_download">Automatické preberanie médií</string>
-  <string name="preferences_chats__message_trimming">Premazávanie správ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Premazávanie správ</string> -->
   <string name="preferences_storage__storage_usage">Využitie úložiska</string>
   <string name="preferences_storage__photos">Fotografie</string>
   <string name="preferences_storage__videos">Videá</string>
@@ -1659,6 +1667,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Skratka pre Nastavenia</string>
   <string name="conversation_list_search_description">Hľadať</string>
+  <string name="conversation_list__pinned">Pripnuté</string>
   <string name="conversation_list__chats">Chat</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Fotka kontaktu</string>
@@ -1994,6 +2003,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="GroupsLearnMore_paragraph_2">Zastarané skupiny nie je možné prerobiť na nové skupiny, môžete však vytvoriť novú skupinu s tými istými členmi.</string>
   <string name="GroupsLearnMore_paragraph_3">Na vytvorenie novej skupiny by všetci členovia mali prejsť na najnovšiu verziu aplikácie Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Zdieľať cez Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopírovať</string>
   <string name="GroupLinkBottomSheet_qr_code">QR kód</string>
   <string name="GroupLinkBottomSheet_share">Zdieľať</string>

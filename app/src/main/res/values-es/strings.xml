@@ -84,9 +84,9 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">¿Bloquear y abandonar «%1$s»?</string>
   <string name="BlockUnblockDialog_block_s">¿Bloquear a %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">No podrás enviar ni recibir más mensajes en este grupo y sus participantes no podrán agregarte de nuevo al grupo.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Participantes del grupo no podrán agregarte de nuevo.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Participantes del grupo podrán agregarte de nuevo.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">No podrás enviar ni recibir más mensajes en este chat en grupo y sus participantes no podrán agregarte de nuevo al grupo.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Participantes del chat en grupo no podrán agregarte de nuevo.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Participantes del chat en grupo podrán agregarte de nuevo.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podréis chatear y llamaros mutuamente. Tu nombre y foto de perfil se compartirá con esta persona.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas bloqueadas no podrán llamarte o enviarte mensajes.</string>
   <string name="BlockUnblockDialog_unblock_s">¿Desbloquear a %1$s?</string>
@@ -114,7 +114,7 @@
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contactos recientes</string>
   <string name="CameraContacts_signal_contacts">Personas en Signal</string>
-  <string name="CameraContacts_signal_groups">Grupos de Signal</string>
+  <string name="CameraContacts_signal_groups">Chats en grupo de Signal</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Puedes compartir con un máximo de %d chats.</string>
   <string name="CameraContacts_select_signal_recipients">Selecciona contactos de Signal</string>
   <string name="CameraContacts_no_signal_contacts">No hay contactos de Signal</string>
@@ -125,7 +125,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eliminar</string>
   <string name="ClearProfileActivity_remove_profile_photo">¿Eliminar foto de perfil?</string>
-  <string name="ClearProfileActivity_remove_group_photo">¿Eliminar imagen de grupo?</string>
+  <string name="ClearProfileActivity_remove_group_photo">¿Eliminar imagen de chat en grupo?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">No se ha encontrado un navegador web.</string>
   <string name="CommunicationActions_no_email_app_found">No se encontró la aplicación de email.</string>
@@ -143,7 +143,7 @@
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Chats recientes</string>
   <string name="ContactsCursorLoader_contacts">Personas</string>
-  <string name="ContactsCursorLoader_groups">Grupos</string>
+  <string name="ContactsCursorLoader_groups">Chats en Grupo</string>
   <string name="ContactsCursorLoader_phone_number_search">Buscar número de teléfono</string>
   <string name="ContactsCursorLoader_username_search">Buscar por alias (nombre de usuari*)</string>
   <!--ContactsDatabase-->
@@ -166,7 +166,7 @@
   <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente, toca para más detalles</string>
   <string name="ConversationItem_error_network_not_delivered">Fallo al enviar</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Se recibió un mensaje de intercambio de claves, toca para proceder.</string>
-  <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
+  <string name="ConversationItem_group_action_left">%1$s ha abandonado el chat en grupo.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Fallo al enviar. Toca para enviar sin cifrar</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">¿Enviar como SMS no cifrado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">¿Enviar como MMS no cifrado?</string>
@@ -190,15 +190,15 @@
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lo sentimos, ha habido un fallo al adjuntar el archivo.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">¡Esta persona no tiene un número que pueda recibir SMS o un correo válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
-  <string name="ConversationActivity_group_members">Participantes del grupo</string>
+  <string name="ConversationActivity_group_members">Participantes del chat en grupo</string>
   <string name="ConversationActivity_invalid_recipient">¡Destinatari* inválid*!</string>
   <string name="ConversationActivity_added_to_home_screen">Añadido a la pantalla de inicio</string>
   <string name="ConversationActivity_calls_not_supported">Llamadas no disponibles</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
-  <string name="ConversationActivity_leave_group">¿Abandonar grupo?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">¿Estás seguro de que quieres dejar este grupo?</string>
+  <string name="ConversationActivity_leave_group">¿Abandonar chat en grupo?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">¿Estás seguro de que quieres abandonar este chat en grupo?</string>
   <string name="ConversationActivity_choose_new_admin">Seleccionar nuev* admin</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de abandonar, selecciona un* nuev* admin para este grupo.</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de abandonar, selecciona un* nuev* admin para este chat en grupo.</string>
   <string name="ConversationActivity_choose_admin">Seleccionar admin</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS no seguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS no seguro</string>
@@ -206,16 +206,16 @@
   <string name="ConversationActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
   <string name="ConversationActivity_specify_recipient">Por favor, selecciona una persona</string>
   <string name="ConversationActivity_unblock_this_contact_question">¿Desbloquear a esta persona?</string>
-  <string name="ConversationActivity_unblock_this_group_question">¿Desbloquear este grupo?</string>
+  <string name="ConversationActivity_unblock_this_group_question">¿Desbloquear este chat en grupo?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Podrás volver a recibir mensajes y llamadas de esta persona.</string>
-  <string name="ConversationActivity_unblock_this_group_description">Participantes del grupo podrán agregarte de nuevo.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Participantes del chat en grupo podrán agregarte de nuevo.</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">El adjunto excede los límites de tamaño para el mensaje.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Cámara no disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar la nota de voz!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">No puedes enviar mensajes a este grupo porque ya no eres participante.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">No puedes enviar mensajes a este chat en grupo porque ya no eres participante.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hay ninguna aplicación disponible para abrir este enlace.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Se ha enviado tu solicitud de unirte al grupo al admin. Te llegará una notificación con su respuesta. </string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Se ha enviado tu solicitud de unirte al chat en grupo al admin. Te llegará una notificación con su respuesta. </string>
   <string name="ConversationActivity_cancel_request">Cancelar solicitud</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar notas de voz y hacer llamadas, permite a Signal acceder al micrófono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal necesita acceso al micrófono para enviar notas de voz. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Micrófono».</string>
@@ -236,14 +236,14 @@
   <string name="ConversationActivity_new_say_it_with_stickers">¡Novedad!: Dilo con cromos (stickers)</string>
   <string name="ConversationActivity_cancel">Cancelar</string>
   <string name="ConversationActivity_delete_conversation">¿Eliminar el chat?</string>
-  <string name="ConversationActivity_delete_and_leave_group">¿Eliminar y abandonar grupo?</string>
+  <string name="ConversationActivity_delete_and_leave_group">¿Eliminar y abandonar chat en grupo?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Este chat se eliminará de todos tus dispositivos.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este grupo, que se eliminará de todos tus dispositivos.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este chat en grupo, que se eliminará de todos tus dispositivos.</string>
   <string name="ConversationActivity_delete">Eliminar</string>
   <string name="ConversationActivity_delete_and_leave">Eliminar y abandonar</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal necesita acceder a tu micrófono para llamar a %1$s.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal necesita acceder a tu micrófono y cámara para llamar a %1$s.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">Ahora con más opciones en «Ajustes del grupo»</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Ahora con más opciones en «Ajustes del chat en grupo»</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -324,14 +324,14 @@
   <string name="ConversationTitleView_verified">Identidad verificada</string>
   <string name="ConversationTitleView_you">Tú</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algunas personas no pueden agregarse a grupos antiguos.</string>
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algunas personas no pueden agregarse a chats en grupo antiguos.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fallo al establecer la foto de perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema al crear el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto de perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de punto a punto. Sólo es visible para tus contactos, para personas con las que inicies o aceptes un chat nuevo y cuando te unas a nuevos grupos. Nadie más tiene acceso, ni siquiera l*s creador*s de Signal.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de punto a punto. Sólo es visible para tus contactos, para personas con las que inicies o aceptes un chat nuevo y cuando te unas a nuevos chats en grupo. Nadie más tiene acceso, ni siquiera l*s creador*s de Signal.</string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar personalizado: %s</string>
@@ -388,16 +388,16 @@
   <string name="AddToGroupActivity_add_member">¿Agregar participante?</string>
   <string name="AddToGroupActivity_add_s_to_s">¿Agregar a %1$s a «%2$s»?</string>
   <string name="AddToGroupActivity_s_added_to_s">Se ha agregado a %1$s a «%2$s».</string>
-  <string name="AddToGroupActivity_add_to_group">Agregar al grupo</string>
-  <string name="AddToGroupActivity_add_to_groups">Agregar a grupos</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">No se puede agregar a esta persona a grupos del sistema antiguo.</string>
+  <string name="AddToGroupActivity_add_to_group">Agregar al chat en grupo</string>
+  <string name="AddToGroupActivity_add_to_groups">Agregar a chats en grupo</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">No se puede agregar a esta persona a chats en grupo del sistema antiguo.</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Selecciona nuev* admin</string>
   <string name="ChooseNewAdminActivity_done">Hecho</string>
   <string name="ChooseNewAdminActivity_you_left">Has abandonado «%1$s».</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">¿Deseas compartir tu nombre y foto de perfil con este grupo?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">¿Deseas hacer visible tu nombre y foto de perfil a tod*s l*s participantes presentes y futuros de este grupo?</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">¿Deseas compartir tu nombre y foto de perfil con este chat en grupo?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">¿Deseas hacer visible tu nombre y foto de perfil a tod*s l*s participantes presentes y futuros de este chat en grupo?</string>
   <string name="GroupShareProfileView_make_visible">Hacer visible</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Tú</string>
@@ -411,16 +411,16 @@
     <item quantity="one">Invitación enviada</item>
     <item quantity="other">%d invitaciones enviadas</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">No se puede agregar automáticamente a %1$s al grupo. Ha recibido una invitación y no podrá ver ningún mensaje hasta que la acepte.</string>
+  <string name="GroupManagement_invite_single_user">No se puede agregar automáticamente a %1$s al chat en grupo. Ha recibido una invitación y no podrá ver ningún mensaje hasta que la acepte.</string>
   <string name="GroupManagement_learn_more">Saber más</string>
-  <string name="GroupManagement_invite_multiple_users">No se puede agregar automáticamente a estas personas al grupo. Han recibido una invitación y no podrán ver ningún mensaje hasta que la acepten.</string>
+  <string name="GroupManagement_invite_multiple_users">No se puede agregar automáticamente a estas personas al chat en grupo. Han recibido una invitación y no podrán ver ningún mensaje hasta que la acepten.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Desactivar</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Envía enlaces con vista previa</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Ahora se puede adjuntar la imagen para la vista previa de enlaces en los mensajes que envíes, trasmitida directamente desde la propia página web.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Vista previa no disponible</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">Este enlace de grupo no está disponible</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">El enlace a chat en grupo no está disponible</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -435,7 +435,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">No tienes invitaciones pendientes.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitaciones de otr*s participantes</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hay invitaciones pendientes de otr*s participantes.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">No se pueden mostrar los detalles de personas invitadas por otr*s participantes del grupo. Sólo compartirán sus detalles con el grupo y verán los mensajes que se envíen a partir del momento en que decidan participar.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">No se pueden mostrar los detalles de personas invitadas por otr*s participantes del chat en grupo. Sólo compartirán sus detalles con el grupo y verán los mensajes que se envíen a partir del momento en que decidan participar.</string>
   <string name="PendingMembersActivity_revoke_invite">Retirar invitación</string>
   <string name="PendingMembersActivity_revoke_invites">Retirar invitaciones</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -449,52 +449,52 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Solicitudes pendientes</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">No hay solicitudes que mostrar.</string>
-  <string name="RequestingMembersFragment_explanation">Las personas en esta lista han solicitado unirse al grupo vía enlace.</string>
+  <string name="RequestingMembersFragment_explanation">Las personas en esta lista han solicitado unirse al chat en grupo vía enlace.</string>
   <string name="RequestingMembersFragment_added_s">«%1$s» agregad*</string>
   <string name="RequestingMembersFragment_denied_s">«%1$s» denegad*</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Hecho</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">No se puede agregar a esta persona a grupos del sistema antiguo.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">No se puede agregar a esta persona a chats en grupo del sistema antiguo.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">¿Agregar %1$s a «%2$s»?</item>
     <item quantity="other">¿Agregar %3$d participantes a «%2$s»?</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">Nombra este grupo</string>
-  <string name="AddGroupDetailsFragment__create_group">Crear grupo</string>
+  <string name="AddGroupDetailsFragment__name_this_group">Nombra este chat en grupo</string>
+  <string name="AddGroupDetailsFragment__create_group">Crear chat en grupo</string>
   <string name="AddGroupDetailsFragment__create">Crear</string>
   <string name="AddGroupDetailsFragment__members">Participantes</string>
-  <string name="AddGroupDetailsFragment__group_name_required">Nombre del grupo (necesario)</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Nombre del chat en grupo (necesario)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Este campo es necesario.</string>
-  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Los chats de grupo requieren al menos dos participantes.</string>
-  <string name="AddGroupDetailsFragment__group_creation_failed">Fallo al crear el grupo.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Los chats en grupo requieren al menos dos participantes.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Fallo al crear el chat en grupo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Inténtalo de nuevo más tarde.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Has seleccionado una persona que no usa Signal, así que este grupo será de MMS.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Has seleccionado una persona que no usa Signal, así que este chat en grupo será de MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Eliminar</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacto SMS</string>
-  <string name="AddGroupDetailsFragment__remove_s_from_this_group">¿Expulsar a %1$s del grupo?</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">¿Expulsar a %1$s del chat en grupo?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">%d participante no soporta el nuevo sistema de grupos. Este será un grupo del sistema antiguo.</item>
-    <item quantity="other">%d participantes no soportan el nuevo sistema de grupos. Este será un grupo del sistema antiguo.</item>
+    <item quantity="one">%d participante no soporta el nuevo sistema de chats en grupo. Este será un chat en grupo del sistema antiguo.</item>
+    <item quantity="other">%d participantes no soportan el nuevo sistema de chats en grupo. Este será un chat en grupo del sistema antiguo.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Se creará un grupo del sistema antiguo porque «%1$s» usa una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esa persona actualice Signal. También puedes no agregar a esa persona al grupo.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Se creará un chat en grupo del sistema antiguo porque «%1$s» usa una versión antigua de Signal. Puedes crear un chat en grupo en el nuevo sistema después que esa persona actualice Signal. También puedes no agregar a esa persona al grupo.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Se creará un grupo del sistema antiguo porque %1$d participante usa una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esa persona actualice Signal. También puedes eliminar a esa persona del grupo.</item>
-    <item quantity="other">Se creará un grupo del sistema antiguo porque %1$d participantes usan una versión antigua de Signal. Puedes crear un grupo en el nuevo sistema después que esas personas actualicen Signal. También puedes no agregar a esas personas al grupo.</item>
+    <item quantity="other">Se creará un chat en grupo del sistema antiguo porque %1$d participantes usan una versión antigua de Signal. Puedes crear un chat en grupo en el nuevo sistema después que esas personas actualicen Signal. También puedes no agregar a esas personas al grupo.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Desaparición de mensajes</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitaciones pendientes</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitudes e invitaciones</string>
   <string name="ManageGroupActivity_add_members">Agregar participantes</string>
-  <string name="ManageGroupActivity_edit_group_info">Editar detalles del grupo</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Selecciona quién puede modificar el nombre e imagen del grupo y la desaparición de mensajes.</string>
+  <string name="ManageGroupActivity_edit_group_info">Editar detalles del chat en grupo</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Selecciona quién puede modificar el nombre e imagen del chat en grupo y la desaparición de mensajes.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Selecciona quién puede agregar o invitar a más participantes.</string>
-  <string name="ManageGroupActivity_sharable_group_link">Enlace para compartir grupo</string>
-  <string name="ManageGroupActivity_block_group">Bloquear grupo</string>
-  <string name="ManageGroupActivity_unblock_group">Desbloquear grupo</string>
-  <string name="ManageGroupActivity_leave_group">Abandonar grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Enlace para compartir chat en grupo</string> -->
+  <string name="ManageGroupActivity_block_group">Bloquear chat en grupo</string>
+  <string name="ManageGroupActivity_unblock_group">Desbloquear chat en grupo</string>
+  <string name="ManageGroupActivity_leave_group">Abandonar chat en grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificaciones</string>
   <string name="ManageGroupActivity_custom_notifications">Notificaciones personalizadas</string>
   <string name="ManageGroupActivity_mentions">Menciones</string>
@@ -513,14 +513,14 @@
     <item quantity="other">%d participantes agregad*s.</item>
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">No dispones de permisos para hacerlo</string>
-  <string name="ManageGroupActivity_not_capable">Alguien que has agregado no soporta los nuevos grupos ya que debe actualizar Signal.</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group">Fallo al actualizar el grupo</string>
-  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">No eres participante del grupo</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Fallo al actualizar el grupo, por favor inténtalo más tarde</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Fallo al actualizar el grupo por un problema de red, por favor inténtalo más tarde</string>
+  <string name="ManageGroupActivity_not_capable">Alguien que has agregado no soporta los nuevos chats en grupo ya que debe actualizar Signal.</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Fallo al actualizar el chat en grupo</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">No eres participante del chat en grupo</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Fallo al actualizar el chat en grupo, por favor inténtalo más tarde</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Fallo al actualizar el chat en grupo por un problema de red, por favor inténtalo más tarde</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nombre e imagen</string>
-  <string name="ManageGroupActivity_legacy_group">Grupo antiguo</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Este es un grupo que usa el sistema antiguo de Signal. Para acceder a características como admins de grupo, crea un grupo nuevo.</string>
+  <string name="ManageGroupActivity_legacy_group">Chat en grupo antiguo</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Este es un chat en grupo que usa el sistema antiguo de Signal. Para acceder a características como admins de grupo, crea un chat en grupo nuevo.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar cuando alguien me mencione</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">¿Deseas recibir notificationes si te mencionan en un chat silenciado?</string>
@@ -541,13 +541,13 @@
   <string name="ManageRecipientActivity_until_s">Hasta %1$s</string>
   <string name="ManageRecipientActivity_off">Inactivo</string>
   <string name="ManageRecipientActivity_on">Activo</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Agregar a un grupo</string>
-  <string name="ManageRecipientActivity_view_all_groups">Ver todos los grupos</string>
+  <string name="ManageRecipientActivity_add_to_a_group">Agregar a un chat en grupo</string>
+  <string name="ManageRecipientActivity_view_all_groups">Ver todos los chats en grupo</string>
   <string name="ManageRecipientActivity_see_all">Mostrar todos</string>
-  <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">No hay chats en grupo en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupo en común</item>
-    <item quantity="other">%d grupos en común</item>
+    <item quantity="other">%d chats en grupo en común</item>
   </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Editar nombre y foto</string>
   <string name="ManageRecipientActivity_message_description">Mensaje</string>
@@ -570,9 +570,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desactivada</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Enlace para compartir grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Enlace para compartir chat en grupo</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gestionar y compartir</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Enlace del grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Enlace del chat en grupo</string>
   <string name="ShareableGroupLinkDialogFragment__share">Compartir</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Restablecer enlace</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Solicitudes de participantes</string>
@@ -580,12 +580,12 @@
   <string name="ShareableGroupLinkDialogFragment__enabled">Activada</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Desactivada</string>
   <string name="ShareableGroupLinkDialogFragment__default">Por defecto</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Restablecer enlace del grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Restablecer enlace del chat en grupo</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Un* admin debe aprobar l*s nuev*s participantes que se unan vía enlace.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para compartir el grupo? Si lo restableces, nadie podrá unirse al grupo usando el enlace actual.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para compartir el chat en grupo? Si lo restableces, nadie podrá unirse al chat usando el enlace actual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escanéen este código podrán unirse al grupo. L*s admins deberán aprobar nuev*s participantes si se ha activado esa opción.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escanéen este código podrán unirse al chat en grupo. L*s admins deberán aprobar nuev*s participantes si se ha activado esa opción.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Compartir código</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">¿Deseas retirar la invitación enviada a %1$s?</string>
@@ -597,30 +597,30 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ya participas</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Unirse</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Solicitar unirse</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Fallo al unirse al grupo. Por favor, inténtalo más tarde</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Fallo al unirse al chat en grupo. Por favor, inténtalo más tarde</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este enlace de grupo no está disponible</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del grupo, por favor inténtalo más tarde</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un* admin del grupo debe aprobar tu solicitud antes de poder unirte. Al solicitar unirte al grupo, tu nombre y foto de perfil se compartirán con sus participantes.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este enlace al chat en grupo no está disponible</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del chat en grupo, por favor inténtalo más tarde</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este chat en grupo y compartir tu nombre y foto de perfil con sus participantes?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un* admin del chat en grupo debe aprobar tu solicitud antes de poder unirte. Al solicitar unirte al grupo, tu nombre y foto de perfil se compartirán con sus participantes.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
-    <item quantity="one">Grupo · %1$d participante</item>
-    <item quantity="other">Grupo · %1$d participantes</item>
+    <item quantity="one">Chat en grupo · %1$d participante</item>
+    <item quantity="other">Chat en grupo · %1$d participantes</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Los enlaces de compartir grupos están al llegar</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualiza Signal para usar enlaces de chats de grupo</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">La función de unirse a un grupo vía enlace todavía no está competamente implementada. Se activará en una próxima actualización de Signal. </string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta enlaces para compartir chats de grupo. Actualiza a la versión más actual para unirte a este grupo vía enlace.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Los enlaces de compartir chats en grupo están al llegar</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualiza Signal para usar enlaces a chats en grupo</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">La función de unirse a un chat en grupo vía enlace todavía no está completamente implementada. Se activará en una próxima actualización de Signal. </string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta enlaces para compartir chats en grupo. Actualiza a la versión más actual para unirte a este grupo vía enlace.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualiza Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Enlace de grupo inválido</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Enlace a chat en grupo inválido</string>
   <!--GV2 Request confirmation dialog-->
-  <string name="RequestConfirmationDialog_add_s_to_the_group">¿Agregar a %1$s al grupo?</string>
+  <string name="RequestConfirmationDialog_add_s_to_the_group">¿Agregar a %1$s al chat en grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">¿Denegar la solicitud de %1$s?</string>
   <string name="RequestConfirmationDialog_add">Agregar</string>
   <string name="RequestConfirmationDialog_deny">Denegar</string>
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">Avatar del grupo</string>
+  <string name="CropImageActivity_group_avatar">Avatar del chat en grupo</string>
   <string name="CropImageActivity_profile_avatar">Foto</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Enturbiar caras</string>
@@ -748,13 +748,13 @@
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconocid*</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has recibido un mensaje cifrado con una versión de Signal antigua que ya no está disponible. Por favor, solicita a esta persona a actualizar a la versión más reciente y a reenviar el mensaje.</string>
-  <string name="MessageRecord_left_group">Has abandonado el grupo.</string>
-  <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
-  <string name="MessageRecord_the_group_was_updated">Se actualizó el grupo.</string>
+  <string name="MessageRecord_left_group">Has abandonado el chat en grupo.</string>
+  <string name="MessageRecord_you_updated_group">Has actualizado el chat en grupo.</string>
+  <string name="MessageRecord_the_group_was_updated">Se actualizó el chat en grupo.</string>
   <string name="MessageRecord_you_called">Has llamado</string>
   <string name="MessageRecord_called_you">Llamada recibida</string>
   <string name="MessageRecord_missed_call">Llamada perdida</string>
-  <string name="MessageRecord_s_updated_group">%s ha actualizado el grupo.</string>
+  <string name="MessageRecord_s_updated_group">%s ha actualizado el chat en grupo.</string>
   <string name="MessageRecord_s_called_you">%s ha llamado</string>
   <string name="MessageRecord_called_s">Has llamado a %s</string>
   <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string>
@@ -769,22 +769,22 @@
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$sha cambiado su nombre de perfil de %2$s a %3$s.</string>
   <string name="MessageRecord_changed_their_profile">%1$s ha cambiado su nombre de perfil.</string>
   <!--GV2 specific-->
-  <string name="MessageRecord_you_created_the_group">Has creado el grupo.</string>
-  <string name="MessageRecord_group_updated">Grupo actualizado.</string>
+  <string name="MessageRecord_you_created_the_group">Has creado el chat en grupo.</string>
+  <string name="MessageRecord_group_updated">Chat en grupo actualizado.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Has agregado a «%1$s».</string>
   <string name="MessageRecord_s_added_s">%1$s ha agregado a «%2$s».</string>
-  <string name="MessageRecord_s_added_you">%1$s te ha agregado al grupo.</string>
-  <string name="MessageRecord_you_joined_the_group">Te has incorporado al grupo.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s se han unido al grupo.</string>
+  <string name="MessageRecord_s_added_you">%1$s te ha agregado al chat en grupo.</string>
+  <string name="MessageRecord_you_joined_the_group">Te has incorporado al chat en grupo.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s se han unido al chat en grupo.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Has expulsado a «%1$s».</string>
   <string name="MessageRecord_s_removed_s">%1$s ha expulsado a «%2$s».</string>
-  <string name="MessageRecord_s_removed_you_from_the_group">%1$s te ha expulsado del grupo.</string>
-  <string name="MessageRecord_you_left_the_group">Has abandonado el grupo.</string>
-  <string name="MessageRecord_s_left_the_group">%1$s ha abandonado el grupo.</string>
-  <string name="MessageRecord_you_are_no_longer_in_the_group">Ya no participas en el grupo.</string>
-  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ya no participa en el grupo.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s te ha expulsado del chat en grupo.</string>
+  <string name="MessageRecord_you_left_the_group">Has abandonado el chat en grupo.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s ha abandonado el chat en grupo.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Ya no participas en el chat en grupo.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ya no participa en el chat en grupo.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Has promovido a %1$s a admin.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s ha promovido a %2$s a admin.</string>
@@ -797,87 +797,87 @@
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ya no es admin.</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">Ya no eres admin.</string>
   <!--GV2 invitations-->
-  <string name="MessageRecord_you_invited_s_to_the_group">Has invitado a «%1$s» al grupo.</string>
-  <string name="MessageRecord_s_invited_you_to_the_group">«%1$s» te ha invitado al grupo.</string>
+  <string name="MessageRecord_you_invited_s_to_the_group">Has invitado a «%1$s» al chat en grupo.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">«%1$s» te ha invitado al chat en grupo.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">«%1$s» ha invitado a 1 persona al grupo.</item>
-    <item quantity="other">«%1$s» ha invitado a %2$d personas al grupo.</item>
+    <item quantity="other">«%1$s» ha invitado a %2$d personas al chat en grupo.</item>
   </plurals>
-  <string name="MessageRecord_you_were_invited_to_the_group">Te han invitado al grupo.</string>
+  <string name="MessageRecord_you_were_invited_to_the_group">Te han invitado al chat en grupo.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-    <item quantity="one">Se ha invitado a 1 persona al grupo.</item>
-    <item quantity="other">Se han invitado a %1$d personas al grupo.</item>
+    <item quantity="one">Se ha invitado a 1 persona al chat en grupo.</item>
+    <item quantity="other">Se han invitado a %1$d personas al chat en grupo.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
-    <item quantity="one">Has retirado una invitación al grupo.</item>
-    <item quantity="other">Has retirado %1$d invitaciones al grupo.</item>
+    <item quantity="one">Has retirado una invitación al chat en grupo.</item>
+    <item quantity="other">Has retirado %1$d invitaciones al chat en grupo.</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
-    <item quantity="one">«%1$s» ha retirado una invitación al grupo.</item>
-    <item quantity="other">«%1$s» ha retirado %2$d invitaciones al grupo.</item>
+    <item quantity="one">«%1$s» ha retirado una invitación al chat en grupo.</item>
+    <item quantity="other">«%1$s» ha retirado %2$d invitaciones al chat en grupo.</item>
   </plurals>
-  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación a participar en el grupo.</string>
-  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación a participar en el grupo.</string>
-  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s retiró tu invitación del chat de grupo.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un* admin retiró tu invitavión del chat de grupo.</string>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguien ha rechazado la invitación a participar en el chat en grupo.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Has rechazado la invitación a participar en el chat en grupo.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s retiró tu invitación del chat en grupo.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un* admin retiró tu invitavión del chat en grupo.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Se ha retirado una invitación para el grupo.</item>
-    <item quantity="other">Se han retirado %1$d invitaciones para el grupo.</item>
+    <item quantity="other">Se han retirado %1$d invitaciones al chat en grupo.</item>
   </plurals>
   <!--GV2 invitation acceptance-->
-  <string name="MessageRecord_you_accepted_invite">Has aceptado la invitación a participar en el grupo.</string>
-  <string name="MessageRecord_s_accepted_invite">«%1$s» ha aceptado la invitación al grupo.</string>
+  <string name="MessageRecord_you_accepted_invite">Has aceptado la invitación a participar en el chat en grupo.</string>
+  <string name="MessageRecord_s_accepted_invite">«%1$s» ha aceptado la invitación al chat en grupo.</string>
   <string name="MessageRecord_you_added_invited_member_s">Has agregado a «%1$s».</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s ha agregado a «%2$s».</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">Has modificado el nombre del grupo a «%1$s».</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">«%1$s» ha modificado el nombre del grupo a «%2$s».</string>
-  <string name="MessageRecord_the_group_name_has_changed_to_s">El nombre del grupo ha cambiado a «%1$s».</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Has modificado el nombre del chat en grupo a «%1$s».</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">«%1$s» ha modificado el nombre del chat en grupo a «%2$s».</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">El nombre del chat en grupo ha cambiado a «%1$s».</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">Has modificado la imagen del grupo.</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">«%1$s» ha modificado la imagen del grupo.</string>
-  <string name="MessageRecord_the_group_group_avatar_has_been_changed">La imagen del grupo ha cambiado.</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">Has modificado la imagen del chat en grupo.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">«%1$s» ha modificado la imagen del chat en grupo.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">La imagen del chat en grupo ha cambiado.</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Has actualizado quién puede editar los detalles del grupo a «%1$s».</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ha actualizado quién puede editar los detalles del grupo a «%2$s».</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Ahora, «%1$s» pueden editar los detalles del grupo.</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Has actualizado quién puede editar los detalles del chat en grupo a «%1$s».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ha actualizado quién puede editar los detalles del chat en grupo a «%2$s».</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Ahora, «%1$s» pueden editar los detalles del chat en grupo.</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Has actualizado quién puede editar la lista de participantes del grupo a «%1$s».</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha actualizado quién puede editar la lista de participantes del grupo a «%2$s».</string>
-  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ahora, «%1$s» pueden editar la lista de participantes del grupo.</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Has actualizado quién puede editar la lista de participantes del chat en grupo a «%1$s».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha actualizado quién puede editar la lista de participantes del chat en grupo a «%2$s».</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ahora, «%1$s» pueden editar la lista de participantes del chat en grupo.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Has activado la opción de compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Has activado la opción de compartir el grupo vía enlace tras confirmación de admin.</string>
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Has desactivado la función de compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha activado la función de compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha activado la opción de compartir el grupo vía enlace tras confirmación de admin.</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha desactivado la función de compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Se ha activado la opción de compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Se ha activado la opción de compartir el grupo vía enlace tras confirmación de admin.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Se ha desactivado la función de compartir el grupo vía enlace.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Has activado la opción de compartir el chat en grupo vía enlace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Has activado la opción de compartir el chat en grupo vía enlace tras confirmación del admin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Has desactivado la función de compartir el chat en grupo vía enlace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha activado la función de compartir el chat en grupo vía enlace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha activado la opción de compartir el chat en grupo vía enlace tras confirmación de admin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha desactivado la función de compartir el chat en grupo vía enlace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Se ha activado la opción de compartir el chat en grupo vía enlace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Se ha activado la opción de compartir el chat en grupo vía enlace tras confirmación de admin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Se ha desactivado la función de compartir el chat en grupo vía enlace.</string> -->
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">Has restablecido el enlace para compartir el grupo.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha restablecido el enlace para compartir el grupo.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">El enlace para compartir el grupo ha sido restablecido.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Has restablecido el enlace para compartir el chat en grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha restablecido el enlace para compartir el chat en grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Se ha restablecido el enlace para compartir el chat en grupo.</string> -->
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Te has unido al grupo vía enlace.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s se ha unido al grupo vía enlace.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Te has unido al chat en grupo vía enlace.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s se ha unido al chat en grupo vía enlace.</string> -->
   <!--GV2 group link requests-->
-  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Has enviado una solicitud para unirte al grupo.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s ha solicitado unirse al grupo vía enlace.</string>
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Has enviado una solicitud para unirte al chat en grupo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s ha solicitado unirse al chat en grupo vía enlace.</string> -->
   <!--GV2 group link approvals-->
-  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ha aprobado tu solicitud de unirte al grupo.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ha aprobado la solicitud de %2$s de unirse al grupo.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Has aprobado la solicitud de unirse al grupo de %1$s.</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Se ha aprobado tu solicitud de unirte al grupo.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Se ha aprobado la solicitud de %1$s de unirse al grupo.</string>
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ha aprobado tu solicitud de unirte al chat en grupo.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ha aprobado la solicitud de %2$s de unirse al chat en grupo.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Has aprobado la solicitud de unirse al chat en grupo de %1$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Se ha aprobado tu solicitud de unirte al chat en grupo.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Se ha aprobado la solicitud de %1$s de unirse al chat en grupo.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Un* admin ha denegado tu solicitud de unirte al grupo.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ha denegado la solicitud de %2$s de unirse al grupo.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Se ha denegado la solicitud de %1$s de unirse al grupo.</string>
-  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Has retirado tu solicitud de unirte al grupo.</string>
-  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ha retirado su solicitud de unirse al grupo.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Un* admin ha denegado tu solicitud de unirte al chat en grupo.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ha denegado la solicitud de %2$s de unirse al chat en grupo.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Se ha denegado la solicitud de %1$s de unirse al chat en grupo.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Has retirado tu solicitud de unirte al chat en grupo.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ha retirado su solicitud de unirse al chat en grupo.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Tus cifras de seguridad con %s han cambiado.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Has marcado tus cifras de seguridad con %s como verificadas.</string>
@@ -891,8 +891,8 @@
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto de perfil? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto de perfil? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirse a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirse a este chat en grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este chat en grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Participa en %1$s y %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Participa en %1$s, %2$s y %3$s</string>
@@ -905,8 +905,8 @@
     <item quantity="other">%1$d participantes (+%2$d pendientes)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-    <item quantity="one">%d grupo adicional</item>
-    <item quantity="other">%d grupos adicionales</item>
+    <item quantity="one">%d chat en grupo adicional</item>
+    <item quantity="other">%d chats en grupo adicionales</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">¡Las claves no coinciden!</string>
@@ -989,13 +989,13 @@
   <string name="ReactionsRecipientAdapter_you">Tú</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
-  <string name="RecipientPreferenceActivity_error_leaving_group">Fallo al abandonar el grupo</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Fallo al abandonar el chat en grupo</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
   <string name="RecipientPreferenceActivity_enabled">Activada</string>
   <string name="RecipientPreferenceActivity_disabled">Desactivada</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Disponible una vez que se ha enviado o recibido un mensaje</string>
   <!--RecipientProvider-->
-  <string name="RecipientProvider_unnamed_group">Grupo sin nombre</string>
+  <string name="RecipientProvider_unnamed_group">Chat en grupo sin nombre</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Respondiendo …</string>
   <string name="RedPhone_ending_call">Finalizando llamada …</string>
@@ -1147,8 +1147,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SupportEmailUtil_registration_lock">Bloqueo de registro:</string>
   <string name="SupportEmailUtil_locale">Idioma:</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_group_updated">Grupo actualizado</string>
-  <string name="ThreadRecord_left_the_group">Abandonó el grupo</string>
+  <string name="ThreadRecord_group_updated">Chat en grupo actualizado</string>
+  <string name="ThreadRecord_left_the_group">Abandonó el chat en grupo</string>
   <string name="ThreadRecord_secure_session_reset">Sesión segura restablecida.</string>
   <string name="ThreadRecord_draft">Borrador:</string>
   <string name="ThreadRecord_called">Has llamado</string>
@@ -1170,8 +1170,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_you_marked_unverified">Identidad no verificada</string>
   <string name="ThreadRecord_message_could_not_be_processed">Ha sido mposible procesar el mensaje</string>
   <string name="ThreadRecord_message_request">Solicitud de chat</string>
-  <string name="ThreadRecord_s_added_you_to_the_group">%1$s te ha agregado al grupo</string>
-  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s te ha invitado al grupo</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s te ha agregado al chat en grupo</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s te ha invitado al chat en grupo</string>
   <string name="ThreadRecord_photo">Foto</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Nota de voz</string>
@@ -1374,7 +1374,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Introduce un nombre o número</string>
   <string name="contact_selection_activity__invite_to_signal">Invitar a Signal</string>
-  <string name="contact_selection_activity__new_group">Nuevo grupo</string>
+  <string name="contact_selection_activity__new_group">Nuevo chat en grupo</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Eliminar texto introducido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostrar teclado</string>
@@ -1390,8 +1390,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ContactSelectionListFragment_username_not_found">Alias no encontrado</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$s no usa Signal. Asegúrate de introducir el alias correcto.</string>
   <string name="ContactSelectionListFragment_okay">De acuerdo</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Este grupo está completo</string>
-  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas agregarte a ti mism* al grupo</string>
+  <string name="ContactSelectionListFragment_the_group_is_full">Este chat en grupo está completo</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas agregarte a ti mism* al chat en grupo</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hay personas bloqueadas</string>
   <!--contact_selection_list_fragment-->
@@ -1549,17 +1549,17 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="message_recipients_list_item__resending">Reenviando …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
-    <item quantity="one">%1$s se ha unido al grupo.</item>
-    <item quantity="other">%1$s se han unido al grupo.</item>
+    <item quantity="one">%1$s se ha unido al chat en grupo.</item>
+    <item quantity="other">%1$s se han unido al chat en grupo.</item>
   </plurals>
-  <string name="GroupUtil_group_name_is_now">Ahora el nombre del grupo es «%1$s».</string>
+  <string name="GroupUtil_group_name_is_now">Ahora el nombre del chat en grupo es «%1$s».</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">¿Hacer visibles para este grupo el nombre y la foto de perfil?</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">¿Hacer visibles para este chat en grupo el nombre y la foto de perfil?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal necesita una configuración de MMS válida para enviar los mensajes multimedia y de grupo a través del proveedor móvil. Tu dispositivo no proporciona esta información, algo que ocasionalmente ocurre con dispositivos bloqueados y otras configuraciones restrictivas.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar mensajes multimedia y de grupo, toca «Aceptar» y completa las configuraciones solicitadas. Las configuraciones de MMS para tu proveedor generalmente se pueden localizar buscando por «APN de proveedor». Sólo necesitarás hacer esto una vez.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal necesita una configuración de MMS válida para enviar los mensajes multimedia y de chat en grupo a través del proveedor móvil. Tu dispositivo no proporciona esta información, algo que ocasionalmente ocurre con dispositivos bloqueados y otras configuraciones restrictivas.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar mensajes multimedia y de chat en grupo, toca «Aceptar» y completa las configuraciones solicitadas. Las configuraciones de MMS para tu proveedor generalmente se pueden localizar buscando por «APN de proveedor». Sólo necesitarás hacer esto una vez.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nombre (necesario)</string>
   <string name="CreateProfileActivity_last_name_optional">Apellido(s) (opcional)</string>
@@ -1567,8 +1567,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CreateProfileActivity__username">Alias (nombre de usuari*)</string>
   <string name="CreateProfileActivity__create_a_username">Crear alias (nombre de usuari*)</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen de grupo</string>
-  <string name="EditProfileFragment__group_name">Nombre del grupo</string>
+  <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen de chat en grupo</string>
+  <string name="EditProfileFragment__group_name">Nombre del chat en grupo</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Archivos multimedia compartidos</string>
   <!--- redphone_call_controls-->
@@ -1750,13 +1750,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__mmsc_password">Contraseña de MMSC</string>
   <string name="preferences__sms_delivery_reports">Confirmación de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicita la confirmación de entrega de SMS para todos los SMS enviados.</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Elimina automáticamente los mensajes más antiguos cuando el chat exceda el número de mensajes especificado</string>
-  <string name="preferences__delete_old_messages">Eliminar mensajes antiguos</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Elimina automáticamente los mensajes más antiguos cuando el chat exceda el número de mensajes especificado</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Eliminar mensajes antiguos</string> -->
   <string name="preferences__chats">Chats y multimedia</string>
   <string name="preferences__storage">Almacenamiento</string>
   <string name="preferences__conversation_length_limit">Límite de longitud de chat</string>
-  <string name="preferences__trim_all_conversations_now">Recortar ahora todos los chats</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todos los chats e imponer límite de longitud</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Recortar ahora todos los chats</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todos los chats e imponer límite de longitud</string> -->
   <string name="preferences__linked_devices">Dispositivos enlazados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Oscuro</string>
@@ -1786,7 +1786,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">En itinerancia (roaming)</string>
   <string name="preferences_chats__media_auto_download">Auto-descarga de archivos multimedia</string>
-  <string name="preferences_chats__message_trimming">Recorte de mensajes en chats</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Recorte de mensajes en chats</string> -->
   <string name="preferences_storage__storage_usage">Uso de almacenamiento</string>
   <string name="preferences_storage__photos">Fotos</string>
   <string name="preferences_storage__videos">Vídeos</string>
@@ -1827,7 +1827,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nuevo mensaje para …</string>
-  <string name="contact_selection_list__unknown_contact_add_to_group">Agregar al grupo</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">Agregar al chat en grupo</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Llamar</string>
   <!--conversation_callable_secure-->
@@ -1884,9 +1884,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_unmuted__mute_notifications">Silenciar notificaciones</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Añadir archivo adjunto</string>
-  <string name="conversation__menu_edit_group">Editar grupo</string>
-  <string name="conversation__menu_group_settings">Ajustes del grupo</string>
-  <string name="conversation__menu_leave_group">Abandonar grupo</string>
+  <string name="conversation__menu_edit_group">Editar chat en grupo</string>
+  <string name="conversation__menu_group_settings">Ajustes del chat en grupo</string>
+  <string name="conversation__menu_leave_group">Abandonar chat en grupo</string>
   <string name="conversation__menu_view_all_media">Todos los archivos multimedia</string>
   <string name="conversation__menu_conversation_settings">Ajustes de chat</string>
   <string name="conversation__menu_add_shortcut">Añadir a la pantalla de inicio</string>
@@ -1901,7 +1901,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_group_options__conversation">Chat</string>
   <string name="conversation_group_options__broadcast">Transmisión</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_group">Nuevo grupo</string>
+  <string name="text_secure_normal__menu_new_group">Nuevo chat en grupo</string>
   <string name="text_secure_normal__menu_settings">Ajustes</string>
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
@@ -2062,7 +2062,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo volveremos a recordar. Confirmar tu PIN será obligatorio en %1$d días.</string>
   <!--Mention Megaphone-->
   <string name="MentionsMegaphone__introducing_mentions">¡Ya puedes @mencionar en grupos de chat!</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Llama la atención de alguien en un chat de grupo del nuevo sistema al escribir @</string>
+  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Llama la atención de alguien en un chat en grupo del nuevo sistema al escribir @</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando …</string>
@@ -2183,18 +2183,18 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Añadir a contactos</string>
-  <string name="RecipientBottomSheet_add_to_a_group">Agregar a un grupo</string>
-  <string name="RecipientBottomSheet_add_to_another_group">Agregar a otro grupo</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Agregar a un chat en grupo</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Agregar a otro chat en grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver cifras de seguridad</string>
   <string name="RecipientBottomSheet_make_group_admin">Promover a admin</string>
   <string name="RecipientBottomSheet_remove_as_admin">Retirar permisos de admin</string>
-  <string name="RecipientBottomSheet_remove_from_group">Expulsar del grupo</string>
+  <string name="RecipientBottomSheet_remove_from_group">Expulsar del chat en grupo</string>
   <string name="RecipientBottomSheet_message_description">Mensaje</string>
   <string name="RecipientBottomSheet_voice_call_description">Llamada de voz</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Llamada no segura</string>
   <string name="RecipientBottomSheet_video_call_description">Vídeollamada</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">¿Retirar los permisos de admin a %1$s?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s podrá editar los detalles de este grupo y modificar la lista de participantes</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s podrá editar los detalles de este chat en grupo y modificar la lista de participantes</string>
   <string name="RecipientBottomSheet_remove_s_from_s">¿Expulsar a %1$s de «%2$s»?</string>
   <string name="RecipientBottomSheet_remove">Eliminar</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiado al portapapeles</string>
@@ -2202,12 +2202,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupRecipientListItem_approve_description">Aprobar</string>
   <string name="GroupRecipientListItem_deny_description">Denegar</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsLearnMore_legacy_vs_new_groups">Grupos nuevos y antiguos</string>
-  <string name="GroupsLearnMore_what_are_legacy_groups">¿Qué son los grupos antiguos?</string>
-  <string name="GroupsLearnMore_paragraph_1">Los grupos antiguos no son compatibles con las características de los grupos nuevos como admins o actualizaciones más descriptivas.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">¿Cómo uso los nuevos grupos?</string>
-  <string name="GroupsLearnMore_paragraph_2">Los grupos antiguos no pueden convertirse en grupos nuevos, pero puedes crear un grupo nuevo con la misma gente.</string>
-  <string name="GroupsLearnMore_paragraph_3">Para crear un nuevo grupo, tod*s l*s participantes deben tener su versión de Signal actualizada.</string>
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Chats en grupo nuevos y antiguos</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">¿Qué son los chats en grupo antiguos?</string>
+  <string name="GroupsLearnMore_paragraph_1">Los chats en grupo antiguos no son compatibles con las características de los chats en grupo nuevos como admins o actualizaciones más descriptivas.</string>
+  <string name="GroupsLearnMore_how_do_i_use_new_groups">¿Cómo uso los nuevos chats en grupo?</string>
+  <string name="GroupsLearnMore_paragraph_2">Los chats en grupo antiguos no pueden convertirse en chats en grupo nuevos, pero puedes crear un grupo nuevo con la misma gente.</string>
+  <string name="GroupsLearnMore_paragraph_3">Para crear un nuevo chat en grupo, tod*s l*s participantes deben tener su versión de Signal actualizada.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Compartir vía Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copiar</string>

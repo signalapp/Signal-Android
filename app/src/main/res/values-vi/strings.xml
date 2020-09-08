@@ -469,7 +469,7 @@
   <string name="ManageGroupActivity_edit_group_info">Sửa thông tin nhóm</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Chọn ai có quyền sửa tên nhóm, ảnh nhóm và tin nhắn tự hủy.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Chọn ai có quyền thêm hoặc mời thành viên mới</string>
-  <string name="ManageGroupActivity_sharable_group_link">Đường dẫn nhóm có thể chia sẻ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Đường dẫn nhóm có thể chia sẻ</string> -->
   <string name="ManageGroupActivity_block_group">Chặn nhóm</string>
   <string name="ManageGroupActivity_unblock_group">Bỏ chặn nhóm</string>
   <string name="ManageGroupActivity_leave_group">Rời nhóm</string>
@@ -1659,13 +1659,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__mmsc_password">Mật khẩu MMSC</string>
   <string name="preferences__sms_delivery_reports">Báo cáo đã gửi SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Yêu cầu báo cáo đã gửi cho từng tin nhắn SMS gửi đi</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Tự động xóa các tin nhắn cũ khi cuộc trò chuyện vượt quá độ dài ấn định</string>
-  <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Tự động xóa các tin nhắn cũ khi cuộc trò chuyện vượt quá độ dài ấn định</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string> -->
   <string name="preferences__chats">Trò chuyện và đa phương tiện</string>
   <string name="preferences__storage">Lưu trữ</string>
   <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc trò chuyện</string>
-  <string name="preferences__trim_all_conversations_now">Lập tức rút ngắn tất cả các cuộc trò chuyện</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Quét tất cả các cuộc trò chuyện và áp dụng giới hạn độ dài trò chuyện</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Lập tức rút ngắn tất cả các cuộc trò chuyện</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Quét tất cả các cuộc trò chuyện và áp dụng giới hạn độ dài trò chuyện</string> -->
   <string name="preferences__linked_devices">Các thiết bị được liên kết</string>
   <string name="preferences__light_theme">Sáng</string>
   <string name="preferences__dark_theme">Tối</string>
@@ -1695,7 +1695,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Khi chuyển vùng quốc tế</string>
   <string name="preferences_chats__media_auto_download">Tự động tải đa phương tiện</string>
-  <string name="preferences_chats__message_trimming">Thu gọn tin nhắn</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Thu gọn tin nhắn</string> -->
   <string name="preferences_storage__storage_usage">Quản lí bộ nhớ</string>
   <string name="preferences_storage__photos">Ảnh</string>
   <string name="preferences_storage__videos">Video</string>

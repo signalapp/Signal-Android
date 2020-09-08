@@ -533,7 +533,7 @@
   <string name="ManageGroupActivity_edit_group_info">Uredi podatke o skupini</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Izberite, kdo lahko ureja ime skupine, njen avatar in čas poteka sporočil.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Izberite, kdo lahko dodaja ali povabi nove člane</string>
-  <string name="ManageGroupActivity_sharable_group_link">Deljiva povezava do skupine</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Deljiva povezava do skupine</string> -->
   <string name="ManageGroupActivity_block_group">Blokiraj skupino</string>
   <string name="ManageGroupActivity_unblock_group">Odblokiraj skupino</string>
   <string name="ManageGroupActivity_leave_group">Zapusti skupino</string>
@@ -925,25 +925,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Oseba %1$s je spremenila, kdo lahko ureja članstvo v skupini: \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Sprememba: članstvo v skupini lahko odslej ureja uporabnik/ca \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Vklopili ste povezavo do skupine.</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Vklopili ste povezavo do skupine s skrbniškim privoljenjem.</string>
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Izklopili ste povezavo do skupine.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">Uporabnika/ca %1$s je vklopil/a povezavo so skupine.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">Uporabnik/ca %1$s je vklopil/a povezavo do skupine s skrbniškim privoljenjem.</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">Uporabnika/ca %1$s je izklopil/a povezavo do skupine.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Povezava do skupine je bila vklopljena.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Povezava do skupine je bila vklopljena s privoljenjem skrbnika.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Povezava do skupine je bila izklopljena.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Vklopili ste povezavo do skupine.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Vklopili ste povezavo do skupine s skrbniškim privoljenjem.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Izklopili ste povezavo do skupine.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">Uporabnika/ca %1$s je vklopil/a povezavo so skupine.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">Uporabnik/ca %1$s je vklopil/a povezavo do skupine s skrbniškim privoljenjem.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">Uporabnika/ca %1$s je izklopil/a povezavo do skupine.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Povezava do skupine je bila vklopljena.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Povezava do skupine je bila vklopljena s privoljenjem skrbnika.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Povezava do skupine je bila izklopljena.</string> -->
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">Ponastavili ste povezavo do skupine.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">Uporabnik/ca %1$s je ponastavil/a povezavo do skupine.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Povezava do skupine je bila ponastavljena.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Ponastavili ste povezavo do skupine.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">Uporabnik/ca %1$s je ponastavil/a povezavo do skupine.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Povezava do skupine je bila ponastavljena.</string> -->
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Preko deljene povezave ste se pridružili skupini.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">Uporabnik/ca %1$s se je pridružil/a skupini preko deljene povezave.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Preko deljene povezave ste se pridružili skupini.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">Uporabnik/ca %1$s se je pridružil/a skupini preko deljene povezave.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste prošnjo za pridružitev skupini.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">Uporabnik/ca %1$s je preko deljene povezave zaprosil/a za pridružitev skupini.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">Uporabnik/ca %1$s je preko deljene povezave zaprosil/a za pridružitev skupini.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">Uporabnik/ca %1$s je odobril/a vašo prošnjo za pridružitev skupini.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">Član/ica %1$s je odobril/a prošnjo uporabnika/ce %2$sza pridružitev skupini.</string>
@@ -1849,13 +1849,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__mmsc_password">Geslo MMSC</string>
   <string name="preferences__sms_delivery_reports">Potrdila o prejemu SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Za vsako poslano sporočilo SMS zahtevaj potrdilo o prejemu</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Samodejen izbris starih sporočil, ko pogovor preseže določeno dolžino</string>
-  <string name="preferences__delete_old_messages">Samodejen izbris</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Samodejen izbris starih sporočil, ko pogovor preseže določeno dolžino</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Samodejen izbris</string> -->
   <string name="preferences__chats">Pogovori in večpredstavnost</string>
   <string name="preferences__storage">Pomnilnik</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
-  <string name="preferences__trim_all_conversations_now">Obreži vse pogovore zdaj</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Uveljavitev omejitve dolžine vseh pogovorov</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Obreži vse pogovore zdaj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Uveljavitev omejitve dolžine vseh pogovorov</string> -->
   <string name="preferences__linked_devices">Povezane naprave</string>
   <string name="preferences__light_theme">Svetla</string>
   <string name="preferences__dark_theme">Temna</string>
@@ -1885,7 +1885,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_chats__when_using_wifi">Ob uporabi omrežja Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Med gostovanjem</string>
   <string name="preferences_chats__media_auto_download">Samodejen prenos priponk</string>
-  <string name="preferences_chats__message_trimming">Izbris starih sporočil</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Izbris starih sporočil</string> -->
   <string name="preferences_storage__storage_usage">Poraba pomnilnika</string>
   <string name="preferences_storage__photos">Fotografije</string>
   <string name="preferences_storage__videos">Video</string>

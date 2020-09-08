@@ -1333,13 +1333,13 @@
   <string name="preferences__mmsc_password">MMSC 비밀번호</string>
   <string name="preferences__sms_delivery_reports">SMS 전송 확인</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지를 보낼 때마다 전송 확인 요청</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">대화 저장 한도가 초과되면 이전 메시지 자동 삭제</string>
-  <string name="preferences__delete_old_messages">이전 메시지 삭제</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">대화 저장 한도가 초과되면 이전 메시지 자동 삭제</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">이전 메시지 삭제</string> -->
   <string name="preferences__chats">대화 및 미디어</string>
   <string name="preferences__storage">저장 공간</string>
   <string name="preferences__conversation_length_limit">대화 저장 한도</string>
-  <string name="preferences__trim_all_conversations_now">모든 대화 삭제</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">모든 대화 스캔 후 메시지 저장 한도 적용</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">모든 대화 삭제</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">모든 대화 스캔 후 메시지 저장 한도 적용</string> -->
   <string name="preferences__linked_devices">연결된 기기</string>
   <string name="preferences__light_theme">밝게</string>
   <string name="preferences__dark_theme">어둡게</string>
@@ -1365,7 +1365,7 @@
   <string name="preferences_chats__when_using_wifi">Wi-Fi 사용 시</string>
   <string name="preferences_chats__when_roaming">로밍 시</string>
   <string name="preferences_chats__media_auto_download">미디어 자동 다운로드</string>
-  <string name="preferences_chats__message_trimming">대화 삭제</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">대화 삭제</string> -->
   <string name="preferences_storage__storage_usage">저장 공간 사용</string>
   <string name="preferences_storage__photos">사진</string>
   <string name="preferences_storage__videos">동영상</string>

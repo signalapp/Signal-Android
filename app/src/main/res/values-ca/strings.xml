@@ -491,7 +491,7 @@
   <string name="ManageGroupActivity_edit_group_info">Edita la informació del grup</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Trieu qui pot editar el nom del grup, l\'avatar i els missatges efímers.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Trieu qui pot afegir-hi o convidar-hi membres nous.</string>
-  <string name="ManageGroupActivity_sharable_group_link">Enllaç de grup que es pot compartir</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Enllaç de grup que es pot compartir</string> -->
   <string name="ManageGroupActivity_block_group">Bloca el grup</string>
   <string name="ManageGroupActivity_unblock_group">Desbloca el grup</string>
   <string name="ManageGroupActivity_leave_group">Abandona el grup</string>
@@ -847,25 +847,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha canviat qui pot editar els membres del grup a \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">S\'ha canviat qui pot editar els membres del grup a \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Heu activat l\'enllaç de grup que es pot compartir.</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Heu activat l\'enllaç de grup que es pot compartir amb aprovació de l\'administrador/a.</string>
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Heu desactivat l\'enllaç de grup que es pot compartir.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha activat l\'enllaç de grup que es pot compartir.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha activat l\'enllaç de grup que es pot compartir amb aprovació de l\'administrador/a.</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha desactivat l\'enllaç de grup que es pot compartir.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">S\'ha activat l\'enllaç de grup que es pot compartir.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">S\'ha activat l\'enllaç de grup que es pot compartir amb aprovació de l\'administrador/a.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">S\'ha desactivat l\'enllaç de grup que es pot compartir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Heu activat l\'enllaç de grup que es pot compartir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Heu activat l\'enllaç de grup que es pot compartir amb aprovació de l\'administrador/a.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Heu desactivat l\'enllaç de grup que es pot compartir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha activat l\'enllaç de grup que es pot compartir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha activat l\'enllaç de grup que es pot compartir amb aprovació de l\'administrador/a.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha desactivat l\'enllaç de grup que es pot compartir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">S\'ha activat l\'enllaç de grup que es pot compartir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">S\'ha activat l\'enllaç de grup que es pot compartir amb aprovació de l\'administrador/a.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">S\'ha desactivat l\'enllaç de grup que es pot compartir.</string> -->
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">Heu restablert l\'enllaç de grup que es pot compartir.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha restablert l\'enllaç de grup que es pot compartir.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">S\'ha restablert l\'enllaç de grup que es pot compartir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Heu restablert l\'enllaç de grup que es pot compartir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha restablert l\'enllaç de grup que es pot compartir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">S\'ha restablert l\'enllaç de grup que es pot compartir.</string> -->
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Us heu afegit al grup per l\'enllaç de grup que es pot compartir.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$ss\'ha afegit al grup per l\'enllaç de grup que es pot compartir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Us heu afegit al grup per l\'enllaç de grup que es pot compartir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$ss\'ha afegit al grup per l\'enllaç de grup que es pot compartir.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Heu enviat la sol·licitud per afegir-vos al grup.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$sha demanat afegir-s\'hi per l\'enllaç de grup que es pot compartir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$sha demanat afegir-s\'hi per l\'enllaç de grup que es pot compartir.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ha aprovat la sol·licitud per afegir-vos al grup.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ha aprovat una sol·licitud de %2$sper afegir-se al grup.</string>
@@ -1744,13 +1744,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__mmsc_password">Contrasenya de MMSC</string>
   <string name="preferences__sms_delivery_reports">Informes de lliurament d\'SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demana un informe de lliurament per cada missatge SMS que envieu.</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Suprimeix automàticament els missatges antics si la conversa excedeix d\'una mida concreta.</string>
-  <string name="preferences__delete_old_messages">Suprimeix els missatges antics</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Suprimeix automàticament els missatges antics si la conversa excedeix d\'una mida concreta.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Suprimeix els missatges antics</string> -->
   <string name="preferences__chats">Xats i multimèdia</string>
   <string name="preferences__storage">Emmagatzematge</string>
   <string name="preferences__conversation_length_limit">Límit de la mida de la conversa</string>
-  <string name="preferences__trim_all_conversations_now">Escapça totes les converses</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escaneja totes les converses i aplica-hi els límits de mida</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Escapça totes les converses</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escaneja totes les converses i aplica-hi els límits de mida</string> -->
   <string name="preferences__linked_devices">Dispositius enllaçats</string>
   <string name="preferences__light_theme">Clar</string>
   <string name="preferences__dark_theme">Fosc</string>
@@ -1780,7 +1780,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_chats__when_using_wifi">En usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">En itinerància</string>
   <string name="preferences_chats__media_auto_download">Baixada automàtica de contingut multimèdia</string>
-  <string name="preferences_chats__message_trimming">Escapçament de missatges</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Escapçament de missatges</string> -->
   <string name="preferences_storage__storage_usage">Ús de l\'emmagatzematge</string>
   <string name="preferences_storage__photos">Fotografies</string>
   <string name="preferences_storage__videos">Vídeos</string>

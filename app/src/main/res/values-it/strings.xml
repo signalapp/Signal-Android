@@ -215,7 +215,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Impossibile registrare il messaggio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Non puoi inviare messaggi a questo gruppo perché non sei più un membro.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sul tuo dispositivo non sono presenti app per gestire questo link.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">La tua richiesta di unirti è stata inviata all\'amministratore del gruppo. Riceverai una notifica quando interverranno.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">La tua richiesta di unirti è stata inviata agli amministratori del gruppo. Riceverai una notifica quando interverranno.</string>
   <string name="ConversationActivity_cancel_request">Annulla richiesta</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Per poter mandare un messaggio audio, permetti a Signal di accedere al tuo microfono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal richiede l\'autorizzazione all\'uso del microfono per inviare messaggi audio, ma è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\".</string>
@@ -491,7 +491,7 @@
   <string name="ManageGroupActivity_edit_group_info">Modifica informazioni gruppo</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Scegli chi può modificare il nome del gruppo, l\'avatar e il timer dei messaggi a scomparsa.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Scegli chi può aggiungere o invitare nuovi membri.</string>
-  <string name="ManageGroupActivity_sharable_group_link">Link del gruppo condivisibile</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Link del gruppo condivisibile</string> -->
   <string name="ManageGroupActivity_block_group">Blocca gruppo</string>
   <string name="ManageGroupActivity_unblock_group">Sblocca gruppo</string>
   <string name="ManageGroupActivity_leave_group">Abbandona il gruppo</string>
@@ -847,25 +847,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha cambiato chi può modificare l\'appartenenza al gruppo in \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Chi può modificare l\'appartenenza al gruppo è stato cambiato in \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Hai attivato il link del gruppo condivisibile.</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Hai attivato il link del gruppo condivisibile con l\'approvazione degli amministratori.</string>
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Hai disattivato il link del gruppo condivisibile.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha attivato il link del gruppo condivisibile.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha attivato il link del gruppo condivisibile con l\'approvazione degli amministratori.</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha disattivato il link del gruppo condivisibile.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Il link del gruppo condivisibile è stato attivato.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Il link del gruppo condivisibile è stato attivato con l\'approvazione degli amministratori.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Il link del gruppo condivisibile è stato disattivato.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Hai attivato il link del gruppo condivisibile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Hai attivato il link del gruppo condivisibile con l\'approvazione degli amministratori.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Hai disattivato il link del gruppo condivisibile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s ha attivato il link del gruppo condivisibile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s ha attivato il link del gruppo condivisibile con l\'approvazione degli amministratori.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s ha disattivato il link del gruppo condivisibile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Il link del gruppo condivisibile è stato attivato.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Il link del gruppo condivisibile è stato attivato con l\'approvazione degli amministratori.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Il link del gruppo condivisibile è stato disattivato.</string> -->
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">Hai reimpostato il link del gruppo condivisibile.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha reimpostato il link del gruppo condivisibile.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Il link del gruppo condivisibile è stato reimpostato.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Hai reimpostato il link del gruppo condivisibile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ha reimpostato il link del gruppo condivisibile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Il link del gruppo condivisibile è stato reimpostato.</string> -->
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Ti sei unito al gruppo tramite il link del gruppo condivisibile.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s si è unito al gruppo tramite il link del gruppo condivisibile.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Ti sei unito al gruppo tramite il link del gruppo condivisibile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s si è unito al gruppo tramite il link del gruppo condivisibile.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Hai inviato una richiesta a unirsi al gruppo.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s ha richiesto di unirsi tramite il link del gruppo condivisibile.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s ha richiesto di unirsi tramite il link del gruppo condivisibile.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s ha approvato la tua richiesta di unirti al gruppo.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ha approvato una richiesta di unirsi al gruppo da %2$s.</string>
@@ -1750,13 +1750,13 @@
   <string name="preferences__mmsc_password">MMSC Password</string>
   <string name="preferences__sms_delivery_reports">Rapporti di consegna SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Richiedi un rapporto di consegna per ogni SMS inviato</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Elimina automaticamente i messaggi più vecchi quando una conversazione supera una certa lunghezza.</string>
-  <string name="preferences__delete_old_messages">Elimina i messaggi vecchi</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Elimina automaticamente i messaggi più vecchi quando una conversazione supera una certa lunghezza.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Elimina i messaggi vecchi</string> -->
   <string name="preferences__chats">Chat e download</string>
   <string name="preferences__storage">Memoria</string>
   <string name="preferences__conversation_length_limit">Limite di lunghezza conversazione</string>
-  <string name="preferences__trim_all_conversations_now">Riduci immediatamente tutte le conversazioni</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Analizza tutte le conversazioni e applica il limite di lunghezza</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Riduci immediatamente tutte le conversazioni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Analizza tutte le conversazioni e applica il limite di lunghezza</string> -->
   <string name="preferences__linked_devices">Dispositivi collegati</string>
   <string name="preferences__light_theme">Chiaro</string>
   <string name="preferences__dark_theme">Scuro</string>
@@ -1786,7 +1786,7 @@
   <string name="preferences_chats__when_using_wifi">Via Wi-Fi</string>
   <string name="preferences_chats__when_roaming">In roaming</string>
   <string name="preferences_chats__media_auto_download">Download automatico file</string>
-  <string name="preferences_chats__message_trimming">Cancellazione messaggi</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Cancellazione messaggi</string> -->
   <string name="preferences_storage__storage_usage">Utilizzo memoria</string>
   <string name="preferences_storage__photos">Foto</string>
   <string name="preferences_storage__videos">Video</string>

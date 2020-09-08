@@ -494,7 +494,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_edit_group_info">Përpunoni të dhëna grupi</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Zgjidhni kush mund të përpunojë emër grupi, avatar dhe mesazhe që zhduken.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Zgjidhni kush mund të shtojë ose ftojë anëtarë të rinj.</string>
-  <string name="ManageGroupActivity_sharable_group_link">Lidhje grupi e ndashme</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Lidhje grupi e ndashme</string> -->
   <string name="ManageGroupActivity_block_group">Blloko grup</string>
   <string name="ManageGroupActivity_unblock_group">Zhbllokoje grupin</string>
   <string name="ManageGroupActivity_leave_group">Braktise grupin</string>
@@ -840,25 +840,25 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ndryshoi se cilët mund të përpunojnë anëtarësi grupi te \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Te \"%1$s\" është ndryshuas se kush mund të përpunojë anëtarësi te grupi.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Aktivizuat lidhjen e grupit të ndashme me të tjerë.</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Aktivizuat lidhjen e grupit të ndashme me të tjerë, me miratim përgjegjësi.</string>
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Çaktivizuat lidhjen e grupit të ndashme me të tjerë.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktivizoi lidhjen e grupit të ndashme me të tjerë.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktivizoi lidhjen e grupit të ndashme me të tjerët, me miratim përgjegjësi.</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s çaktivizoi lidhjen e grupit të ndashme me të tjerë.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Lidhja e ndashme e grupit është aktivizuar.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Lidhja e ndashme e grupit është aktivizuar me miratim përgjegjësi.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Lidhja e grupit e ndashme me të tjerët është çaktivizuar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Aktivizuat lidhjen e grupit të ndashme me të tjerë.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Aktivizuat lidhjen e grupit të ndashme me të tjerë, me miratim përgjegjësi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Çaktivizuat lidhjen e grupit të ndashme me të tjerë.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktivizoi lidhjen e grupit të ndashme me të tjerë.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktivizoi lidhjen e grupit të ndashme me të tjerët, me miratim përgjegjësi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s çaktivizoi lidhjen e grupit të ndashme me të tjerë.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Lidhja e ndashme e grupit është aktivizuar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Lidhja e ndashme e grupit është aktivizuar me miratim përgjegjësi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Lidhja e grupit e ndashme me të tjerët është çaktivizuar.</string> -->
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">Kthyet te parazgjedhjet lidhjen e ndashme të grupit.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ktheu te parazgjedhjet lidhjen e ndashme të grupit.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Lidhja e ndashme e grupit është kthyer te parazgjedhjet.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Kthyet te parazgjedhjet lidhjen e ndashme të grupit.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s ktheu te parazgjedhjet lidhjen e ndashme të grupit.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Lidhja e ndashme e grupit është kthyer te parazgjedhjet.</string> -->
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">U bëtë pjesë e grupit përmes lidhjes së ndashme të grupit</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s u bë pjesë e grupit përmes lidhjes së ndashme të grupit.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">U bëtë pjesë e grupit përmes lidhjes së ndashme të grupit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s u bë pjesë e grupit përmes lidhjes së ndashme të grupit.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Dërguat një kërkesë të bëheni pjesë e grupit.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s kërkoi të bëhet pjesë e grupit përmes një lidhjes së ndashme të grupit.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s kërkoi të bëhet pjesë e grupit përmes një lidhjes së ndashme të grupit.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s miratoi kërkesën tuaj për t’u bërë pjesë e grupit.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s miratoi një kërkesë për t’u bërë pjesë e grupit nga %2$s.</string>
@@ -1735,13 +1735,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__mmsc_password">Fjalëkalim MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporte dërgimi SMS-sh</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kërko raport dorëzimi për çdo mesazh SMS që dërgoni.</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Fshi vetvetiu mesazhe më të vjetër, sapo një bisedë tejkalon një gjatësi specifike.</string>
-  <string name="preferences__delete_old_messages">Fshiji mesazhet e vjetër</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Fshi vetvetiu mesazhe më të vjetër, sapo një bisedë tejkalon një gjatësi specifike.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Fshiji mesazhet e vjetër</string> -->
   <string name="preferences__chats">Fjalosje dhe media</string>
   <string name="preferences__storage">Hapësirë</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
-  <string name="preferences__trim_all_conversations_now">Shkurtoji krejt bisedat tash</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skano krejt bisedat dhe zbato detyrimisht kufij gjatësie bisedash.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Shkurtoji krejt bisedat tash</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skano krejt bisedat dhe zbato detyrimisht kufij gjatësie bisedash.</string> -->
   <string name="preferences__linked_devices">Pajisje të lidhura</string>
   <string name="preferences__light_theme">E çelët</string>
   <string name="preferences__dark_theme">E errët</string>
@@ -1773,7 +1773,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_chats__when_using_wifi">Kur përdoret Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Nën roaming</string>
   <string name="preferences_chats__media_auto_download">Vetëshkarkim mediash</string>
-  <string name="preferences_chats__message_trimming">Shkurtim mesazhesh</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Shkurtim mesazhesh</string> -->
   <string name="preferences_storage__storage_usage">Përdorim hapësire</string>
   <string name="preferences_storage__photos">Foto</string>
   <string name="preferences_storage__videos">Video</string>

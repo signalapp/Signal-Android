@@ -1023,12 +1023,12 @@
   <string name="preferences__mmsc_password">Peyvborîna MMSCê</string>
   <string name="preferences__sms_delivery_reports">Rapora gihiştina SMSê</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Rapora gihiştinê ji bo her SMSê ku te şand daxwaz bike</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Peyamên kevin xwe-bi-xwe jê dibe piştî ku axaftin ji mezinahiya diyarkirî dirêjtir bibe</string>
-  <string name="preferences__delete_old_messages">Peyamên kevin jê bibe</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Peyamên kevin xwe-bi-xwe jê dibe piştî ku axaftin ji mezinahiya diyarkirî dirêjtir bibe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Peyamên kevin jê bibe</string> -->
   <string name="preferences__chats">Gotûbêj û medya</string>
   <string name="preferences__conversation_length_limit">Sînora direjiya axaftinê</string>
-  <string name="preferences__trim_all_conversations_now">Hemû axaftinan qut bike</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Hemû gotûbêjan sken bike û zorê bide ku sînorên dirêjiya axaftinê</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Hemû axaftinan qut bike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Hemû gotûbêjan sken bike û zorê bide ku sînorên dirêjiya axaftinê</string> -->
   <string name="preferences__linked_devices">Amûrên girêdayî</string>
   <string name="preferences__light_theme">Sivik</string>
   <string name="preferences__dark_theme">Tarî</string>
@@ -1052,7 +1052,7 @@
   <string name="preferences_chats__when_using_wifi">Dema bikaranîna dataya Wi-Fiyê</string>
   <string name="preferences_chats__when_roaming">Dema gerrê</string>
   <string name="preferences_chats__media_auto_download">Xwebixwe-daxistina medyayê</string>
-  <string name="preferences_chats__message_trimming">Qusandina peyamê</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Qusandina peyamê</string> -->
   <string name="preferences_storage__audio">Deng</string>
   <string name="preferences_advanced__use_system_emoji">Emojiya pergalê bi kar bîne</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Piştgiriya emojiyê a daxilî ya Signalê neçalak bike </string>

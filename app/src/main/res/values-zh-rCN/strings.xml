@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">屏幕锁定：%1$s，注册锁定：%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">屏幕锁定 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主题：%1$s，语言：%2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN 对于注册锁定是必需的。如需禁用 PIN，请先禁用注册锁定。</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN 已创建。</string>
   <string name="ApplicationPreferencesActivity_hide">隐藏</string>
   <!--AppProtectionPreferenceFragment-->
@@ -1362,13 +1363,13 @@
   <string name="preferences__mmsc_password">MMSC 密码</string>
   <string name="preferences__sms_delivery_reports">短信送达报告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">为每一条发送的短信请求送达报告</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">对话超过指定长度时，自动删除较旧消息</string>
-  <string name="preferences__delete_old_messages">删除旧消息</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">对话超过指定长度时，自动删除较旧消息</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">删除旧消息</string> -->
   <string name="preferences__chats">聊天和媒体</string>
   <string name="preferences__storage">存储</string>
   <string name="preferences__conversation_length_limit">对话长度限制</string>
-  <string name="preferences__trim_all_conversations_now">马上清理全部对话</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">扫描所有对话，实施对话长度限制</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">马上清理全部对话</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">扫描所有对话，实施对话长度限制</string> -->
   <string name="preferences__linked_devices">已关联设备</string>
   <string name="preferences__light_theme">浅色</string>
   <string name="preferences__dark_theme">深色</string>
@@ -1398,7 +1399,7 @@
   <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
   <string name="preferences_chats__when_roaming">当漫游时</string>
   <string name="preferences_chats__media_auto_download">自动下载媒体</string>
-  <string name="preferences_chats__message_trimming">清理消息</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">清理消息</string> -->
   <string name="preferences_storage__storage_usage">存储使用量</string>
   <string name="preferences_storage__photos">图片</string>
   <string name="preferences_storage__videos">视频</string>

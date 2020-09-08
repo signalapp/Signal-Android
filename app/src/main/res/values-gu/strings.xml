@@ -1292,13 +1292,13 @@
   <string name="preferences__mmsc_password">MMSC પાસવર્ડ</string>
   <string name="preferences__sms_delivery_reports">SMS ડિલિવરી અહેવાલો</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">તમે મોકલો છો તે દરેક SMS મેસેજ માટે ડિલિવરી રિપોર્ટની વિનંતી કરો</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">એકવાર સંવાદ ની ઉલ્લેખિત લંબાઈથી વધુ થઈ જાય ત્યારે જૂના મેસેજ આપમેળે કાઢી નાખો</string>
-  <string name="preferences__delete_old_messages">જૂના મેસેજ કાઢી નાખો</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">એકવાર સંવાદ ની ઉલ્લેખિત લંબાઈથી વધુ થઈ જાય ત્યારે જૂના મેસેજ આપમેળે કાઢી નાખો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">જૂના મેસેજ કાઢી નાખો</string> -->
   <string name="preferences__chats">ચેટ અને મીડિયા</string>
   <string name="preferences__storage">સ્ટોરેજ</string>
   <string name="preferences__conversation_length_limit">સંવાદ ની લંબાઈ મર્યાદા</string>
-  <string name="preferences__trim_all_conversations_now">બધા સંવાદ ને હવે ટ્રિમ કરો</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">બધા સંવાદ દ્વારા સ્કેન કરો અને સંવાદ ની લંબાઈ મર્યાદા લાગુ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">બધા સંવાદ ને હવે ટ્રિમ કરો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">બધા સંવાદ દ્વારા સ્કેન કરો અને સંવાદ ની લંબાઈ મર્યાદા લાગુ કરો</string> -->
   <string name="preferences__linked_devices">લિંક થયેલ ડિવાઇસ</string>
   <string name="preferences__light_theme">લાઈટ</string>
   <string name="preferences__dark_theme">ડાર્ક</string>
@@ -1322,7 +1322,7 @@
   <string name="preferences_chats__when_using_wifi">Wi-Fi નો ઉપયોગ કરતી વખતે</string>
   <string name="preferences_chats__when_roaming">રોમિંગ કરતી વખતે</string>
   <string name="preferences_chats__media_auto_download">મીડિયા સ્વત:ડાઉનલોડ</string>
-  <string name="preferences_chats__message_trimming">મેસેજ સુવ્યવસ્થિત</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">મેસેજ સુવ્યવસ્થિત</string> -->
   <string name="preferences_storage__storage_usage">સ્ટોરેજ વપરાશ</string>
   <string name="preferences_storage__photos">ફોટા</string>
   <string name="preferences_storage__videos">વિડિયો</string>

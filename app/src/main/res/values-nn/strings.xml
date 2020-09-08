@@ -48,6 +48,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">PIN oppretta.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN skrudd av.</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Gøym påminning?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -214,6 +215,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikkje å ta opp lydar.</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikkje senda meldingar til denne gruppa sidan du ikkje lenger er medlem.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenka.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Førespurnaden din om å bli med er sendt til gruppeadministratoren. Du får eit varsel når dei gjer noko med det.</string>
   <string name="ConversationActivity_cancel_request">Avslå førespurnad</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">La Signal få tilgang til mikrofonen for å senda lydmeldingar.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal treng tilgang til mikrofonen for å senda lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon».</string>
@@ -341,6 +343,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Ta bilde</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vel frå galleri</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fjern bilde</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Du må gi tillating til bruk av kameraet for å ta eit bilde.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">No</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -449,6 +452,9 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="other">Klarte ikkje trekka tilbake invitasjonar</item>
   </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Ventande medlemsførespurnader</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Ingen medlemsførespurnader</string>
+  <string name="RequestingMembersFragment_explanation">Personar på denne lista prøver å bli med via den delbare gruppelenka.</string>
   <string name="RequestingMembersFragment_added_s">La til «%1$s»</string>
   <string name="RequestingMembersFragment_denied_s">Avslo «%1$s»</string>
   <!--AddMembersActivity-->
@@ -485,11 +491,12 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Forsvinnande meldingar</string>
   <string name="ManageGroupActivity_pending_group_invites">Ventande gruppeinvitasjonar</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Medlemsførespurnader og invitasjonar</string>
   <string name="ManageGroupActivity_add_members">Legg til medlemmar</string>
   <string name="ManageGroupActivity_edit_group_info">Endra gruppeinfo</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vel kven som kan endra gruppenamnet, -bildet og forsvinnande meldingar.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vel kven som kan legga til eller invitera nye medlemmar.</string>
-  <string name="ManageGroupActivity_sharable_group_link">Delbar gruppelenke</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_sharable_group_link">Delbar gruppelenke</string> -->
   <string name="ManageGroupActivity_block_group">Blokker gruppa</string>
   <string name="ManageGroupActivity_unblock_group">Ikkje blokker gruppe</string>
   <string name="ManageGroupActivity_leave_group">Forlat gruppe</string>
@@ -845,25 +852,25 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endra kven som kan redigera gruppemedlemskap til «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Kven som kan endra gruppemedlemskap er endra til «%1$s».</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link">Du aktiverte den delbare gruppelenka.</string>
-  <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Du aktiverte den delbare gruppelenka med admin-godkjenning.</string>
-  <string name="MessageRecord_you_turned_off_the_sharable_group_link">Du deaktiverte den delbare gruppelenka.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktiverte den delbare gruppelenka.</string>
-  <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktiverte den delbare gruppelenka med admin-godkjenning.</string>
-  <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s deaktiverte den delbare gruppelenka.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Den delbare gruppelenka er aktivert.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Den delbare gruppelenka er aktivert med admin-godkjenning.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Den delbare gruppelenka er deaktivert.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link">Du aktiverte den delbare gruppelenka.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_on_the_sharable_group_link_with_admin_approval">Du aktiverte den delbare gruppelenka med admin-godkjenning.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_turned_off_the_sharable_group_link">Du deaktiverte den delbare gruppelenka.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link">%1$s aktiverte den delbare gruppelenka.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_on_the_sharable_group_link_with_admin_approval">%1$s aktiverte den delbare gruppelenka med admin-godkjenning.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_turned_off_the_sharable_group_link">%1$s deaktiverte den delbare gruppelenka.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on">Den delbare gruppelenka er aktivert.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_on_with_admin_approval">Den delbare gruppelenka er aktivert med admin-godkjenning.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_turned_off">Den delbare gruppelenka er deaktivert.</string> -->
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_sharable_group_link">Du nullstilte den delbare gruppelenka.</string>
-  <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s nullstilte den delbare gruppelenka.</string>
-  <string name="MessageRecord_the_sharable_group_link_has_been_reset">Den delbare gruppelenka er nullstilt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_reset_the_sharable_group_link">Du nullstilte den delbare gruppelenka.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_reset_the_sharable_group_link">%1$s nullstilte den delbare gruppelenka.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_the_sharable_group_link_has_been_reset">Den delbare gruppelenka er nullstilt.</string> -->
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du blei med i gruppa via den delbare gruppelenka.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s blei med i gruppa via den delbare gruppelenka.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_joined_the_group_via_the_sharable_group_link">Du blei med i gruppa via den delbare gruppelenka.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_joined_the_group_via_the_sharable_group_link">%1$s blei med i gruppa via den delbare gruppelenka.</string> -->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du spurde om å bli med i gruppa.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s spurde om å bli med via den delbare gruppelenka.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_requested_to_join_via_the_sharable_group_link">%1$s spurde om å bli med via den delbare gruppelenka.</string> -->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkjende førespurnaden din om å bli med i gruppa.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkjende førespurnaden frå %2$s om å bli med i gruppa.</string>
@@ -875,6 +882,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s avslo ein førespurnad frå %2$s om å bli med i gruppa.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Ein førespurnad frå %1$s om å bli med i gruppa er avslått.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du trekte tilbake førespurnaden om å bli med i gruppa.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s trekte tilbake førespurnaden om å bli med i gruppa.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerte at tryggleiksnummeret ditt med %s er stadfesta.</string>
@@ -1202,6 +1210,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukarnamn kan ikkje begynna med siffer.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukarnamnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukarnamn må vera mellom %1$d og %2$d teikn lange.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukarnamn er valfrie på Signal. Viss du vil laga eit brukarnamn, så kan andre Signal-brukarar finna deg med dette og kontakta deg utan å kjenna til telefonnummeret ditt.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten din køyrer ein gammal versjon av Signal. Ver venleg og be dei om å oppdatera før du stadfestar tryggleiksnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten din køyrer ein nyare versjon av Signal med eit inkompatibelt QR-kodeformat. Ver venleg og oppdater for å samanlikna.</string>
@@ -1747,13 +1756,13 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__mmsc_password">MMSC-passord</string>
   <string name="preferences__sms_delivery_reports">SMS-leveringsrapportar </string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om leveringsrapport når du sender SMS</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Slett gamle meldingar automatisk når ein samtale overskrid vald lengd</string>
-  <string name="preferences__delete_old_messages">Slett gamle meldingar</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Slett gamle meldingar automatisk når ein samtale overskrid vald lengd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Slett gamle meldingar</string> -->
   <string name="preferences__chats">Samtalar og media</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Lengdgrense for samtalar</string>
-  <string name="preferences__trim_all_conversations_now">Rydd opp i alle samtalar no</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Søk gjennom alle samtalar og tving lengdgrenser for samtalar</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Rydd opp i alle samtalar no</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Søk gjennom alle samtalar og tving lengdgrenser for samtalar</string> -->
   <string name="preferences__linked_devices">Tilkopla einingar</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
@@ -1783,7 +1792,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wifi</string>
   <string name="preferences_chats__when_roaming">I framandnett</string>
   <string name="preferences_chats__media_auto_download">Automatisk nedlasting av media</string>
-  <string name="preferences_chats__message_trimming">Meldingsforkorting</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Meldingsforkorting</string> -->
   <string name="preferences_storage__storage_usage">Lagringsbruk</string>
   <string name="preferences_storage__photos">Bilde</string>
   <string name="preferences_storage__videos">Videoar</string>
@@ -1817,6 +1826,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_notifications__mentions">Omtalar</string>
   <string name="preferences_notifications__notify_me">Varsla meg</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Få varsel når du blir nemnt i dempa samtalar</string>
+  <string name="preferences_setup_a_username">Lag eit brukarnamn</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2211,5 +2221,6 @@ Du er à jour!</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-kode</string>
   <string name="GroupLinkBottomSheet_share">Del</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiert til utklippstavla</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Denne lenka er ikkje aktiv no</string>
   <!--EOF-->
 </resources>
