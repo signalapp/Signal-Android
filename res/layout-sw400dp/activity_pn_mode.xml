@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -30,7 +31,7 @@
         android:textColor="@color/text"
         android:text="There are two ways Session can notify you of new messages." />
 
-    <LinearLayout
+    <org.thoughtcrime.securesms.loki.views.PNModeView
         android:id="@+id/fcmOptionView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,9 +67,9 @@
             android:textStyle="bold"
             android:text="@string/activity_pn_mode_recommended_option_tag" />
 
-    </LinearLayout>
+    </org.thoughtcrime.securesms.loki.views.PNModeView>
 
-    <LinearLayout
+    <org.thoughtcrime.securesms.loki.views.PNModeView
         android:id="@+id/backgroundPollingOptionView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -95,7 +96,7 @@
             android:textColor="@color/text"
             android:text="Session will occasionally check for new messages in the background. Full metadata protection is guaranteed, but message notifications will be unreliable." />
 
-    </LinearLayout>
+    </org.thoughtcrime.securesms.loki.views.PNModeView>
 
     <View
         android:layout_width="match_parent"
