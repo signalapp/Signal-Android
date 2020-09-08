@@ -528,6 +528,7 @@ public class ThreadDatabase extends Database {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
       } else {
+        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         return createThreadForRecipient(recipient.getAddress(), recipient.isGroupRecipient(), distributionType);
       }
     } finally {
