@@ -296,6 +296,10 @@ public class ThreadDatabase extends Database {
   }
 
   public void trimThread(long threadId, int length, long trimBeforeDate) {
+    if (length == NO_TRIM_MESSAGE_COUNT_SET && trimBeforeDate == NO_TRIM_BEFORE_DATE_SET) {
+      return;
+    }
+
     SQLiteDatabase       db                   = databaseHelper.getWritableDatabase();
     AttachmentDatabase   attachmentDatabase   = DatabaseFactory.getAttachmentDatabase(context);
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);

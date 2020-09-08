@@ -509,6 +509,8 @@ public class AttachmentDatabase extends Database {
       }
     }
 
+    filesInDb.addAll(DatabaseFactory.getStickerDatabase(context).getAllStickerFiles());
+
     Set<String> onDiskButNotInDatabase = SetUtil.difference(filesOnDisk, filesInDb);
 
     for (String filePath : onDiskButNotInDatabase) {

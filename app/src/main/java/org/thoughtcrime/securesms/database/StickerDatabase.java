@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
+import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.Closeable;
@@ -30,9 +31,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class StickerDatabase extends Database {
 
@@ -77,7 +78,7 @@ public class StickerDatabase extends Database {
       "CREATE INDEX IF NOT EXISTS sticker_sticker_id_index ON " + TABLE_NAME + " (" + STICKER_ID + ");"
   };
 
-  private static final String DIRECTORY = "stickers";
+  public static final String DIRECTORY = "stickers";
 
   private final AttachmentSecret attachmentSecret;
 
@@ -188,6 +189,19 @@ public class StickerDatabase extends Database {
     setNotifyStickerListeners(cursor);
 
     return cursor;
+  }
+
+  public @NonNull Set<String> getAllStickerFiles() {
+    SQLiteDatabase db        = databaseHelper.getReadableDatabase();
+
+    Set<String> files = new HashSet<>();
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { FILE_PATH }, null, null, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        files.add(CursorUtil.requireString(cursor, FILE_PATH));
+      }
+    }
+
+    return files;
   }
 
   public @Nullable InputStream getStickerStream(long rowId) throws IOException {
