@@ -2104,9 +2104,9 @@
     <string name="preferences_storage__review_storage">Review storage</string>
     <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
     <string name="preferences_storage__clear_message_history">Clear message history?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all messsage history and media from your device that are older than %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all conversations to the %1$s most recent messages.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all messsage history and media from your device.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
     <string name="preferences_storage__delete_all_now">Delete all now</string>
