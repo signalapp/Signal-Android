@@ -21,10 +21,12 @@
         android:textSize="@dimen/medium_font_size" />
 
     <TextView
+        style="@style/SessionIDTextView"
         android:id="@+id/seedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
+        android:padding="@dimen/small_spacing"
         android:text="habitat kiwi amply iceberg dog nerves spiderman soft match partial awakened maximum degrees"
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
@@ -70,9 +72,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
         android:text="@string/dialog_seed_disclaimer"
-        android:textStyle="bold"
         android:textColor="@color/text"
-        android:textSize="@dimen/very_small_font_size"
+        android:alpha="0.6"
+        android:textSize="10sp"
         android:textAlignment="center" />
 
 </LinearLayout>

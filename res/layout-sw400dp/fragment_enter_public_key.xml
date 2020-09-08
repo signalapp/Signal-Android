@@ -90,7 +90,7 @@
         android:layout_weight="1" />
 
     <Button
-        style="@style/Widget.Session.Button.Common.ProminentFilled"
+        style="@style/Widget.Session.Button.Common.ProminentOutline"
         android:id="@+id/createPrivateChatButton"
         android:layout_width="196dp"
         android:layout_height="@dimen/medium_button_height"

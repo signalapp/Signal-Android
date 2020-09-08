@@ -3103,15 +3103,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void updateSubtitleTextView() {
     muteIndicatorImageView.setVisibility(View.GONE);
     subtitleTextView.setVisibility(View.VISIBLE);
-    if (messageStatus != null) {
-      switch (messageStatus) {
-        case "calculatingPoW": subtitleTextView.setText("Encrypting message"); break;
-        case "contactingNetwork": subtitleTextView.setText("Tracing a path"); break;
-        case "sendingMessage": subtitleTextView.setText("Sending message"); break;
-        case "messageSent": subtitleTextView.setText("Message sent securely"); break;
-        case "messageFailed": subtitleTextView.setText("Message failed to send"); break;
-      }
-    } else if (recipient.isMuted()) {
+    if (recipient.isMuted()) {
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       subtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
     } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Session Updates") && !recipient.getName().equals("Loki News")) {
@@ -3125,10 +3117,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else {
         subtitleTextView.setVisibility(View.GONE);
       }
-    } else if (PublicKeyValidation.isValid(recipient.getAddress().toString())) {
-      String ourMasterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
-      String hexEncodedPublicKey = (recipient.isLocalNumber() && ourMasterHexEncodedPublicKey != null) ? ourMasterHexEncodedPublicKey : recipient.getAddress().toPhoneString();
-      subtitleTextView.setText(hexEncodedPublicKey);
     } else {
       subtitleTextView.setVisibility(View.GONE);
     }
