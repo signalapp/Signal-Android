@@ -44,7 +44,7 @@
                 android:negativeButtonText="@null"
                 android:positiveButtonText="@null"
                 android:persistent="false"
-                app:numColumns="5" />
+                app:columns="5" />
     </PreferenceCategory>
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>

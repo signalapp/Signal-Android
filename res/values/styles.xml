@@ -6,7 +6,6 @@
         <item name="android:background">?colorPrimary</item>
         <item name="elevation">1dp</item>
         <item name="titleTextStyle">@style/TextAppearance.Session.DarkActionBar.TitleTextStyle</item>
-        <item name="popupTheme">@style/Widget.Session.ActionBar</item>
     </style>
 
     <style name="Widget.Session.ActionBar.Flat">
