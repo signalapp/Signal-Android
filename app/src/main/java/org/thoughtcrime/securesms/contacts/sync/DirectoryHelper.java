@@ -216,6 +216,8 @@ public class DirectoryHelper {
       return;
     }
 
+    Stopwatch stopwatch = new Stopwatch("refresh");
+
     DirectoryResult result;
 
     if (FeatureFlags.cds()) {
@@ -223,6 +225,8 @@ public class DirectoryHelper {
     } else {
       result = ContactDiscoveryV1.getDirectoryResult(databaseNumbers, systemNumbers);
     }
+
+    stopwatch.split("network");
 
     if (result.getNumberRewrites().size() > 0) {
       Log.i(TAG, "[getDirectoryResult] Need to rewrite some numbers.");
@@ -238,9 +242,15 @@ public class DirectoryHelper {
                                                    .map(recipientDatabase::getOrInsertFromE164)
                                                    .collect(Collectors.toSet());
 
+    stopwatch.split("process-cds");
+
     recipientDatabase.bulkUpdatedRegisteredStatus(uuidMap, inactiveIds);
 
+    stopwatch.split("update-registered");
+
     updateContactsDatabase(context, activeIds, true, result.getNumberRewrites());
+
+    stopwatch.split("contacts-db");
 
     if (TextSecurePreferences.isMultiDevice(context)) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob());
@@ -258,6 +268,8 @@ public class DirectoryHelper {
     } else {
       TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true);
     }
+
+    stopwatch.stop(TAG);
   }
 
 
