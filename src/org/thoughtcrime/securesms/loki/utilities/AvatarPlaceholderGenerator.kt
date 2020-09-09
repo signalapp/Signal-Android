@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.todo
+package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import android.graphics.*

@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.todo.AvatarPlaceholderGenerator;
+import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
