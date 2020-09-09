@@ -5,15 +5,18 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
+import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
@@ -76,9 +79,16 @@ public class StickerDownloadJob extends BaseJob {
   protected void onRun() throws Exception {
     StickerDatabase db = DatabaseFactory.getStickerDatabase(context);
 
-    if (db.getSticker(sticker.getPackId(), sticker.getStickerId(), sticker.isCover()) != null) {
-      Log.w(TAG, "Sticker already downloaded.");
-      return;
+    StickerRecord stickerRecord = db.getSticker(sticker.getPackId(), sticker.getStickerId(), sticker.isCover());
+    if (stickerRecord != null) {
+      try (InputStream stream = PartAuthority.getAttachmentStream(context, stickerRecord.getUri())) {
+        if (stream != null) {
+          Log.w(TAG, "Sticker already downloaded.");
+          return;
+        }
+      } catch (FileNotFoundException e) {
+        Log.w(TAG, "Sticker file no longer exists, downloading again.");
+      }
     }
 
     if (!db.isPackInstalled(sticker.getPackId()) && !sticker.isCover()) {

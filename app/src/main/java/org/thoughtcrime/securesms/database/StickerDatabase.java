@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
 import org.thoughtcrime.securesms.util.CursorUtil;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.Closeable;
@@ -105,6 +106,12 @@ public class StickerDatabase extends Database {
     contentValues.put(FILE_RANDOM, fileInfo.getRandom());
 
     long id = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
+    if (id == -1) {
+      String   selection = PACK_ID + " = ? AND " + STICKER_ID + " = ? AND " + COVER + " = ?";
+      String[] args      = SqlUtil.buildArgs(sticker.getPackId(), sticker.getStickerId(), (sticker.isCover() ? 1 : 0));
+
+      id = databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, selection, args);
+    }
 
     if (id > 0) {
       notifyStickerListeners();
