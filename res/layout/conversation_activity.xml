@@ -108,6 +108,12 @@
                 android:indeterminate="false"
                 android:progress="0" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="?android:dividerHorizontal"
+                android:elevation="1dp" />
+
             <org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView
                 android:id="@+id/sessionRestoreBannerView"
                 android:layout_width="match_parent"
