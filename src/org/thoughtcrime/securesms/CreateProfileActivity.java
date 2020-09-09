@@ -213,10 +213,10 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     this.reveal       = ViewUtil.findById(this, R.id.reveal);
     this.nextIntent   = getIntent().getParcelableExtra(NEXT_INTENT);
 
-    this.avatar.setOnClickListener(view -> Permissions.with(this)
-                                                      .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                                                      .onAnyResult(this::startAvatarSelection)
-                                                      .execute());
+//    this.avatar.setOnClickListener(view -> Permissions.with(this)
+//                                                      .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                                                      .onAnyResult(this::startAvatarSelection)
+//                                                      .execute());
 
     this.name.getInput().addTextChangedListener(new TextWatcher() {
       @Override
