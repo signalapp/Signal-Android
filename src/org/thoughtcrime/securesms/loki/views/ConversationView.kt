@@ -2,12 +2,14 @@ package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
 import android.graphics.Typeface
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
@@ -80,6 +82,11 @@ class ConversationView : LinearLayout {
             thread.isRemoteRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
             else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
         }
+    }
+
+    private fun getUserDisplayName(publicKey: String?): String? {
+        if (TextUtils.isEmpty(publicKey)) return null
+        return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
     }
     // endregion
 }

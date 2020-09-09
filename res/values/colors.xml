@@ -7,6 +7,8 @@
     <color name="text">#FFFFFF</color>
     <color name="destructive">#FF453A</color>
     <color name="unimportant">#D8D8D8</color>
+    <color name="profile_picture_border">#23FFFFFF</color>
+    <color name="profile_picture_background">#353535</color>
     <color name="border">#979797</color>
     <color name="cell_background">#1B1B1B</color>
     <color name="cell_selected">#0C0C0C</color>
@@ -29,6 +31,13 @@
     <color name="pn_option_background">#1B1B1B</color>
     <color name="pn_option_border">#212121</color>
     <color name="paths_building">#FFCE3A</color>
+
+    <array name="profile_picture_placeholder_colors">
+        <item>#5ff8b0</item>
+        <item>#26cdb9</item>
+        <item>#f3c615</item>
+        <item>#fcac5a</item>
+    </array>
     <!-- Session -->
 
     <!-- Loki -->

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.loki.activities
 
 import android.app.AlertDialog
-import androidx.lifecycle.Observer
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,10 +10,6 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.Loader
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -22,6 +17,11 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
@@ -43,14 +43,13 @@ import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegat
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
 import org.whispersystems.signalservice.loki.utilities.toHexString
 
@@ -99,6 +98,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         // Set up toolbar buttons
         profileButton.glide = glide
         profileButton.publicKey = publicKey
+        profileButton.displayName = TextSecurePreferences.getProfileName(this)
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
         pathStatusViewContainer.disableClipping()
