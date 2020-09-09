@@ -11,10 +11,9 @@ import network.loki.messenger.R
 import java.util.*
 
 object AvatarPlaceholderGenerator {
+    private val tmpFloatArray = FloatArray(3)
 
     private const val EMPTY_LABEL = "0";
-
-    private val tmpFloatArray = FloatArray(3)
 
     fun generate(context: Context, pixelSize: Int, hashString: String, displayName: String?): BitmapDrawable {
         //TODO That should be replaced with a proper hash extraction code.
@@ -26,7 +25,7 @@ object AvatarPlaceholderGenerator {
         }
 
         // Do not cache color array, it may be different depends on the current theme.
-        val colorArray = context.resources.getIntArray(R.array.user_pic_placeholder_primary)
+        val colorArray = context.resources.getIntArray(R.array.profile_picture_placeholder_colors)
         val colorPrimary = colorArray[(hash % colorArray.size).toInt()]
         val colorSecondary = changeColorHueBy(colorPrimary, 12f)
 
@@ -43,7 +42,7 @@ object AvatarPlaceholderGenerator {
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.shader = LinearGradient(0f, 0f, 0f, pixelSize.toFloat(),
                 colorPrimary,
-                colorSecondary,
+                colorPrimary,
                 Shader.TileMode.REPEAT)
         canvas.drawCircle(pixelSize.toFloat() / 2, pixelSize.toFloat() / 2, pixelSize.toFloat() / 2, paint)
 

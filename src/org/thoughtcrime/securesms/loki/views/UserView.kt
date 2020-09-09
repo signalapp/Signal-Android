@@ -49,6 +49,13 @@ class UserView : LinearLayout {
 
     // region Updating
     fun bind(user: Recipient, glide: GlideRequests, actionIndicator: ActionIndicator, isSelected: Boolean = false) {
+        fun getUserDisplayName(publicKey: String?): String? {
+            if (publicKey == null || publicKey.isBlank()) {
+                return null
+            } else {
+                return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
+            }
+        }
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
             if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
@@ -58,15 +65,14 @@ class UserView : LinearLayout {
                 profilePictureView.isRSSFeed = true
             } else {
                 val threadID = GroupManager.getThreadIDFromGroupID(address, context)
-                val userKeys = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
-                val sortedUserKeys = userKeys.sorted() // Sort to provide a level of stability
-                val userKey0 = sortedUserKeys.getOrNull(0) ?: ""
-                val userKey1 = sortedUserKeys.getOrNull(1) ?: ""
-
-                profilePictureView.publicKey = userKey0
-                profilePictureView.displayName = getUserDisplayName(userKey0)
-                profilePictureView.additionalPublicKey = userKey1
-                profilePictureView.additionalDisplayName = getUserDisplayName(userKey1)
+                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
+                val randomUsers = users.sorted() // Sort to provide a level of stability
+                val pk = randomUsers.getOrNull(0) ?: ""
+                profilePictureView.publicKey = pk
+                profilePictureView.displayName = getUserDisplayName(pk)
+                val apk = randomUsers.getOrNull(1) ?: ""
+                profilePictureView.additionalPublicKey = apk
+                profilePictureView.additionalDisplayName = getUserDisplayName(apk)
                 profilePictureView.isRSSFeed = false
             }
         } else {
@@ -92,11 +98,6 @@ class UserView : LinearLayout {
                 actionIndicatorImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
             }
         }
-    }
-
-    private fun getUserDisplayName(publicKey: String?): String? {
-        if (TextUtils.isEmpty(publicKey)) return null
-        return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
     }
     // endregion
 }

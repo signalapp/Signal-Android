@@ -34,8 +34,7 @@
                     android:layout_height="@dimen/small_profile_picture_size"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="9dp"
-                    android:foreground="@drawable/circle_touch_highlight_background"/>
+                    android:layout_marginLeft="9dp" />
 
                 <TextView
                     android:layout_width="wrap_content"

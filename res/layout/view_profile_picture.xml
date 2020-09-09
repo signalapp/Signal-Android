@@ -19,8 +19,12 @@
                 android:id="@+id/doubleModeImageView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.65"
                 android:background="@drawable/profile_picture_view_small_background" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_foreground" />
 
         </RelativeLayout>
 
@@ -36,6 +40,11 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/profile_picture_view_small_background" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_foreground" />
+
         </RelativeLayout>
 
     </RelativeLayout>
@@ -50,6 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/profile_picture_view_medium_background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_medium_foreground" />
 
     </RelativeLayout>
 
@@ -72,6 +86,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/profile_picture_view_large_background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_large_foreground" />
 
     </RelativeLayout>
 

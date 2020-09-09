@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
-import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.annotation.DimenRes
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import kotlinx.android.synthetic.main.view_conversation.view.*
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
@@ -79,10 +77,12 @@ class ProfilePictureView : RelativeLayout {
                     users.remove(masterPublicKey)
                 }
                 val randomUsers = users.sorted() // Sort to provide a level of stability
-                publicKey = randomUsers.getOrNull(0) ?: ""
-                displayName = getUserDisplayName(randomUsers.getOrNull(0) ?: "")
-                additionalPublicKey = randomUsers.getOrNull(1) ?: ""
-                additionalDisplayName = getUserDisplayName(randomUsers.getOrNull(1) ?: "")
+                val pk = randomUsers.getOrNull(0) ?: ""
+                publicKey = pk
+                displayName = getUserDisplayName(pk)
+                val apk = randomUsers.getOrNull(1) ?: ""
+                additionalPublicKey = apk
+                additionalDisplayName = getUserDisplayName(apk)
                 isRSSFeed = recipient.name == "Loki News" || recipient.name == "Session Updates"
             }
         } else {
@@ -101,7 +101,6 @@ class ProfilePictureView : RelativeLayout {
         singleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && !isLarge) View.VISIBLE else View.INVISIBLE
         largeSingleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && isLarge) View.VISIBLE else View.INVISIBLE
         rssImageView.visibility = if (isRSSFeed) View.VISIBLE else View.INVISIBLE
-
         setProfilePictureIfNeeded(
                 doubleModeImageView1,
                 publicKey,
@@ -124,21 +123,21 @@ class ProfilePictureView : RelativeLayout {
                 R.dimen.large_profile_picture_size)
     }
 
-    private fun setProfilePictureIfNeeded(imageView: ImageView, hexEncodedPublicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
+    private fun setProfilePictureIfNeeded(imageView: ImageView, publicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
         glide.clear(imageView)
-        if (hexEncodedPublicKey.isNotEmpty()) {
-            val recipient = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false);
+        if (publicKey.isNotEmpty()) {
+            val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false);
             val signalProfilePicture = recipient.contactPhoto
-            if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0" && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
+            if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0"
+                && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
                 glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
             } else {
-                val sizePx = resources.getDimensionPixelSize(sizeResId)
-                val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                val hepk = if (recipient.isLocalNumber && masterHexEncodedPublicKey != null) masterHexEncodedPublicKey else hexEncodedPublicKey
-//                    val jazzIcon = JazzIdenticonDrawable(size, size, hepk)
+                val sizeInPX = resources.getDimensionPixelSize(sizeResId)
+                val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+                val hepk = if (recipient.isLocalNumber && masterPublicKey != null) masterPublicKey else publicKey
                 glide.load(AvatarPlaceholderGenerator.generate(
                         context,
-                        sizePx,
+                        sizeInPX,
                         hepk,
                         displayName
                 )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)

@@ -7,6 +7,8 @@
     <color name="text">#000000</color>
     <color name="destructive">#f26f55</color>
     <color name="unimportant">#606060</color>
+    <color name="profile_picture_border">#23000000</color>
+    <color name="profile_picture_background">#B0B0B0</color>
     <color name="cell_background">#FCFCFC</color>
     <color name="cell_selected">#DFDFDF</color>
     <color name="navigation_bar_background">#FCFCFC</color>

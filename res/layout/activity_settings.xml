@@ -24,8 +24,7 @@
                 android:id="@+id/profilePictureView"
                 android:layout_width="@dimen/large_profile_picture_size"
                 android:layout_height="@dimen/large_profile_picture_size"
-                android:layout_marginTop="@dimen/medium_spacing"
-                android:foreground="@drawable/circle_touch_highlight_background" />
+                android:layout_marginTop="@dimen/medium_spacing" />
 
             <RelativeLayout
                 android:id="@+id/ctnGroupNameSection"
