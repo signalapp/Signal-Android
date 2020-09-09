@@ -208,9 +208,10 @@ public final class GroupChangeReconstructTest {
 
   @Test
   public void to_admin() {
-    UUID           uuid = UUID.randomUUID();
-    DecryptedGroup from = DecryptedGroup.newBuilder().addMembers(member(uuid)).build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().addMembers(admin(uuid)).build();
+    UUID           uuid       = UUID.randomUUID();
+    ProfileKey     profileKey = randomProfileKey();
+    DecryptedGroup from       = DecryptedGroup.newBuilder().addMembers(withProfileKey(member(uuid), profileKey)).build();
+    DecryptedGroup to         = DecryptedGroup.newBuilder().addMembers(withProfileKey(admin(uuid), profileKey)).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 
@@ -219,9 +220,10 @@ public final class GroupChangeReconstructTest {
 
   @Test
   public void to_member() {
-    UUID           uuid = UUID.randomUUID();
-    DecryptedGroup from = DecryptedGroup.newBuilder().addMembers(admin(uuid)).build();
-    DecryptedGroup to   = DecryptedGroup.newBuilder().addMembers(member(uuid)).build();
+    UUID           uuid       = UUID.randomUUID();
+    ProfileKey     profileKey = randomProfileKey();
+    DecryptedGroup from       = DecryptedGroup.newBuilder().addMembers(withProfileKey(admin(uuid), profileKey)).build();
+    DecryptedGroup to         = DecryptedGroup.newBuilder().addMembers(withProfileKey(member(uuid), profileKey)).build();
 
     DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
 

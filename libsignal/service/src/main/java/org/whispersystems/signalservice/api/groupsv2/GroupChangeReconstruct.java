@@ -106,7 +106,7 @@ public final class GroupChangeReconstruct {
                                                               .setRole(newState.getRole()));
       }
 
-      if (oldState.getProfileKey() != newState.getProfileKey()) {
+      if (!oldState.getProfileKey().equals(newState.getProfileKey())) {
         builder.addModifiedProfileKeys(newState);
       }
     }
