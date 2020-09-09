@@ -11,4 +11,14 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="FakeChatViewMessageBubble.Incoming">
+        <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <style name="FakeChatViewMessageBubble.Outgoing">
+        <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
 </resources>

@@ -54,10 +54,8 @@ import java.security.SecureRandom
 import java.util.*
 
 class SettingsActivity : PassphraseRequiredActionBarActivity() {
-
     private var displayNameEditActionMode: ActionMode? = null
         set(value) { field = value; handleDisplayNameEditActionModeChanged() }
-
     private lateinit var glide: GlideRequests
     private var displayNameToBeUploaded: String? = null
     private var profilePictureToBeUploaded: ByteArray? = null
@@ -73,17 +71,17 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-
         setContentView(R.layout.activity_settings)
-
+        val displayName = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
         glide = GlideApp.with(this)
         profilePictureView.glide = glide
         profilePictureView.publicKey = hexEncodedPublicKey
+        profilePictureView.displayName = displayName
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
         ctnGroupNameSection.setOnClickListener { startActionMode(DisplayNameEditActionModeCallback()) }
-        btnGroupNameDisplay.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
+        btnGroupNameDisplay.text = displayName
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
@@ -105,12 +103,9 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.settings_general, menu)
-
-        // Update UI mode menu icon.
-        // It uses three-level selector where each level corresponds to the related UiMode ordinal value.
+        // Update UI mode menu icon
         val uiMode = UiModeUtilities.getUserSelectedUiMode(this)
         menu.findItem(R.id.action_change_theme).icon!!.level = uiMode.ordinal
-
         return true
     }
 

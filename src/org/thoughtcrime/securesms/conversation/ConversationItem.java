@@ -804,6 +804,7 @@ public class ConversationItem extends LinearLayout
     bodyBubble.setLayoutParams(layoutParams);
     if (profilePictureView == null) return;
     profilePictureView.setPublicKey(recipient.getAddress().toString());
+    profilePictureView.setDisplayName(recipient.getName());
     profilePictureView.setAdditionalPublicKey(null);
     profilePictureView.setRSSFeed(false);
     profilePictureView.setGlide(glideRequests);

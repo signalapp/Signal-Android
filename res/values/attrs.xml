@@ -19,16 +19,13 @@
     <attr name="conversation_list_toolbar_background" format="reference"/>
     <attr name="conversation_list_typing_tint" format="color"/>
 
-    <attr name="conversation_sent_card_background" format="reference|color"/>
     <attr name="conversation_group_member_name" format="reference|color"/>
-    <attr name="conversation_received_card_background" format="reference|color"/>
 
     <attr name="fab_color" format="reference|color" />
     <attr name="lower_right_divet" format="reference" />
 
-    <attr name="centered_app_title_color" format="reference|color" />
     <attr name="ic_arrow_forward" format="reference" />
-    <attr name="ic_visibility" format="reference" />
+    <attr name="ic_visibility_on" format="reference" />
     <attr name="ic_visibility_off" format="reference" />
 
     <attr name="conversation_background" format="reference|color"/>
@@ -76,9 +73,6 @@
     <attr name="quick_camera_icon" format="reference"/>
     <attr name="quick_mic_icon" format="reference"/>
 
-    <attr name="compose_icon_tint" />
-
-    <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_bubble_background" format="reference|color"/>
     <attr name="conversation_item_sent_text_primary_color" format="reference|color"/>
     <attr name="conversation_item_sent_text_secondary_color" format="reference|color"/>
@@ -87,12 +81,6 @@
     <attr name="conversation_item_sent_text_indicator_tab_color" format="reference|color"/>
     <attr name="conversation_item_sent_indicator_text_background" format="reference" />
     <attr name="conversation_item_sent_icon_color" format="color" />
-    <attr name="conversation_item_sent_download_icon_color" format="reference|color"/>
-    <attr name="conversation_item_update_text_color" format="reference"/>
-    <attr name="conversation_item_last_seen_text_color" format="reference"/>
-    <attr name="conversation_item_last_seen_line_color" format="reference"/>
-    <attr name="conversation_item_date_line_color" format="reference"/>
-    <attr name="conversation_item_quote_text_color" format="reference"/>
     <attr name="conversation_item_sticky_date_background" format="reference" />
     <attr name="conversation_item_sticky_date_text_color" format="color" />
     <attr name="conversation_item_image_outline_color" format="color" />
@@ -104,45 +92,21 @@
     <attr name="conversation_icon_attach_audio" format="reference"/>
     <attr name="conversation_icon_attach_video" format="reference" />
 
-    <attr name="contact_selection_push_user" format="reference|color" />
-    <attr name="contact_selection_lay_user" format="reference|color" />
-    <attr name="contact_selection_label_text" format="reference|color" />
-    <attr name="contact_selection_header_text" format="reference|color" />
-
     <attr name="device_link_item_card_background" format="reference|color" />
-
-    <attr name="mediapicker_image_outline" format="reference" />
-
-    <attr name="import_export_item_background_color" format="reference|color" />
-    <attr name="import_export_item_background_shadow_color" format="reference|color" />
-    <attr name="import_export_item_card_background" format="reference" />
-
-    <attr name="invite_background" format="color"/>
 
     <attr name="linkpreview_background_color" format="color" />
     <attr name="linkpreview_primary_text_color" format="color" />
     <attr name="linkpreview_secondary_text_color" format="color" />
     <attr name="linkpreview_divider_color" format="color" />
 
-    <attr name="reminder_header_background" format="color"/>
-
     <attr name="media_keyboard_button_color" format="color" />
 
-    <attr name="menu_new_conversation_icon" format="reference" />
-    <attr name="menu_search_icon" format="reference" />
-    <attr name="menu_call_icon" format="reference" />
     <attr name="menu_popup_expand" format="reference"/>
-    <attr name="menu_unlock_icon" format="reference" />
-    <attr name="menu_lock_icon" format="reference" />
-    <attr name="menu_lock_icon_small" format="reference" />
     <attr name="menu_trash_icon" format="reference" />
     <attr name="menu_selectall_icon" format="reference" />
-    <attr name="menu_group_icon" format="reference" />
     <attr name="menu_split_icon" format="reference" />
     <attr name="menu_accept_icon" format="reference" />
-    <attr name="menu_refresh_directory" format="reference" />
     <attr name="menu_copy_icon" format="reference" />
-    <attr name="menu_info_icon" format="reference" />
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
     <attr name="menu_reply_icon" format="reference" />
@@ -152,39 +116,22 @@
 
     <attr name="pref_icon_tint" format="color"/>
 
-    <attr name="pref_divider" format="reference" />
-
-    <attr name="quote_missing_icon_color" format="color" />
-
     <attr name="home_gradient_start" format="color|reference" />
     <attr name="home_gradient_end" format="color|reference" />
 
     <attr name="message_received_background_color" format="color|reference" />
     <attr name="message_sent_background_color" format="color|reference" />
 
-    <declare-styleable name="CustomDefaultPreference">
-        <attr name="custom_pref_toggle" format="string"/>
-    </declare-styleable>
-
     <attr name="group_members_dialog_icon" format="reference"/>
-    <attr name="lockscreen_watermark" format="reference" />
-
-    <attr name="recipient_preference_blocked" format="color"/>
 
     <attr name="verification_background" format="color"/>
 
     <attr name="media_overview_toolbar_background" format="color"/>
-    <attr name="media_overview_toolbar_foreground" format="color"/>
     <attr name="media_overview_header_foreground" format="color"/>
-    <attr name="media_overview_document_primary" format="color"/>
-    <attr name="media_overview_document_secondary" format="color"/>
 
     <attr name="shared_contact_details_header_background" format="color"/>
     <attr name="shared_contact_details_titlebar" format="color"/>
     <attr name="shared_contact_item_button_color" format="color"/>
-
-    <attr name="search_toolbar_background" format="color"/>
-    <attr name="search_background" format="color"/>
 
     <attr name="sticker_management_icon" format="reference" />
     <attr name="sticker_management_divider_color" format="color" />
@@ -197,15 +144,8 @@
 
     <attr name="tooltip_default_color" format="reference|color" />
 
-    <attr name="contact_list_divider" format="reference"/>
-
-    <attr name="login_top_background" format="color"/>
-    <attr name="login_floating_background" format="reference"/>
-
-    <declare-styleable name="ColorPreference">
-        <attr name="itemLayout" format="reference" />
-        <attr name="choices" format="reference" />
-        <attr name="numColumns" format="integer" />
+    <declare-styleable name="CustomDefaultPreference">
+        <attr name="custom_pref_toggle" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="AvatarImageView">
@@ -270,22 +210,12 @@
         <attr name="emoji_maxLength" format="integer" />
     </declare-styleable>
 
-    <declare-styleable name="RingtonePreference">
-        <attr name="showAdd" format="boolean" />
-        <attr name="summaryHasRingtone" format="string|reference" />
-    </declare-styleable>
-
     <declare-styleable name="ColorPickerPreference">
         <attr name="currentColor" format="reference" />
-
         <attr name="colors" format="reference" />
-
         <attr name="sortColors" format="boolean|reference" />
-
         <attr name="colorDescriptions" format="reference" />
-
         <attr name="columns" format="integer|reference" />
-
         <attr name="colorSize" format="enum|reference">
             <enum name="large" value="1" />
             <enum name="small" value="2" />

@@ -2,12 +2,14 @@ package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
 import android.graphics.Typeface
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
@@ -55,30 +57,8 @@ class ConversationView : LinearLayout {
             accentView.setBackgroundResource(R.color.accent)
             accentView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
         }
-        if (thread.recipient.isGroupRecipient) {
-            if ("Session Public Chat" == thread.recipient.name) {
-                profilePictureView.publicKey = ""
-                profilePictureView.additionalPublicKey = null
-                profilePictureView.isRSSFeed = true
-            } else {
-                val users = MentionsManager.shared.userPublicKeyCache[thread.threadId]?.toMutableList() ?: mutableListOf()
-                users.remove(TextSecurePreferences.getLocalNumber(context))
-                val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                if (masterPublicKey != null) {
-                    users.remove(masterPublicKey)
-                }
-                val randomUsers = users.sorted() // Sort to provide a level of stability
-                profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
-                profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
-                profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Session Updates"
-            }
-        } else {
-            profilePictureView.publicKey = thread.recipient.address.toString()
-            profilePictureView.additionalPublicKey = null
-            profilePictureView.isRSSFeed = false
-        }
         profilePictureView.glide = glide
-        profilePictureView.update()
+        profilePictureView.update(thread.recipient, thread.threadId)
         val senderDisplayName = if (thread.recipient.isLocalNumber) context.getString(R.string.note_to_self) else if (!thread.recipient.name.isNullOrEmpty()) thread.recipient.name else thread.recipient.address.toString()
         btnGroupNameDisplay.text = senderDisplayName
         timestampTextView.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), thread.date)
@@ -102,6 +82,11 @@ class ConversationView : LinearLayout {
             thread.isRemoteRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
             else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
         }
+    }
+
+    private fun getUserDisplayName(publicKey: String?): String? {
+        if (TextUtils.isEmpty(publicKey)) return null
+        return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
     }
     // endregion
 }

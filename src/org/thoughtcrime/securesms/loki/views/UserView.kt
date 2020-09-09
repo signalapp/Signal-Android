@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
 import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -47,22 +49,35 @@ class UserView : LinearLayout {
 
     // region Updating
     fun bind(user: Recipient, glide: GlideRequests, actionIndicator: ActionIndicator, isSelected: Boolean = false) {
+        fun getUserDisplayName(publicKey: String?): String? {
+            if (publicKey == null || publicKey.isBlank()) {
+                return null
+            } else {
+                return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
+            }
+        }
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
             if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
                 profilePictureView.publicKey = ""
+                profilePictureView.displayName = null
                 profilePictureView.additionalPublicKey = null
                 profilePictureView.isRSSFeed = true
             } else {
                 val threadID = GroupManager.getThreadIDFromGroupID(address, context)
                 val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
-                profilePictureView.publicKey = randomUsers.getOrNull(0) ?: ""
-                profilePictureView.additionalPublicKey = randomUsers.getOrNull(1) ?: ""
+                val pk = randomUsers.getOrNull(0) ?: ""
+                profilePictureView.publicKey = pk
+                profilePictureView.displayName = getUserDisplayName(pk)
+                val apk = randomUsers.getOrNull(1) ?: ""
+                profilePictureView.additionalPublicKey = apk
+                profilePictureView.additionalDisplayName = getUserDisplayName(apk)
                 profilePictureView.isRSSFeed = false
             }
         } else {
             profilePictureView.publicKey = address
+            profilePictureView.displayName = getUserDisplayName(address)
             profilePictureView.additionalPublicKey = null
             profilePictureView.isRSSFeed = false
         }
