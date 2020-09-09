@@ -158,6 +158,8 @@
     <attr name="conversation_scroll_to_bottom_background" format="reference" />
     <attr name="conversation_scroll_to_bottom_foreground_color" format="color" />
 
+    <attr name="low_priority_button_text_color" format="color|reference" />
+
     <attr name="safety_number_change_dialog_button_background" format="reference|color" />
     <attr name="safety_number_change_dialog_button_text_color" format="color" />
 

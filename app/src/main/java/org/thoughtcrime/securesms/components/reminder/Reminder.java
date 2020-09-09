@@ -58,7 +58,7 @@ public abstract class Reminder {
     return Importance.NORMAL;
   }
 
-  public void addAction(@NonNull Action action) {
+  protected void addAction(@NonNull Action action) {
     actions.add(action);
   }
 
@@ -71,7 +71,7 @@ public abstract class Reminder {
   }
 
   public enum Importance {
-    NORMAL, ERROR
+    NORMAL, ERROR, TERMINAL
   }
 
   public final class Action {

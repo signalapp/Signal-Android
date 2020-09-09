@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.components.reminder;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build.VERSION_CODES;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -19,7 +17,6 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.List;
 
@@ -48,7 +45,6 @@ public final class ReminderView extends FrameLayout {
     initialize();
   }
 
-  @TargetApi(VERSION_CODES.HONEYCOMB)
   public ReminderView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     initialize();
@@ -56,14 +52,14 @@ public final class ReminderView extends FrameLayout {
 
   private void initialize() {
     LayoutInflater.from(getContext()).inflate(R.layout.reminder_header, this, true);
-    progressBar     = ViewUtil.findById(this, R.id.reminder_progress);
-    progressText    = ViewUtil.findById(this, R.id.reminder_progress_text);
-    container       = ViewUtil.findById(this, R.id.container);
-    closeButton     = ViewUtil.findById(this, R.id.cancel);
-    title           = ViewUtil.findById(this, R.id.reminder_title);
-    text            = ViewUtil.findById(this, R.id.reminder_text);
-    space           = ViewUtil.findById(this, R.id.reminder_space);
-    actionsRecycler = ViewUtil.findById(this, R.id.reminder_actions);
+    progressBar     = findViewById(R.id.reminder_progress);
+    progressText    = findViewById(R.id.reminder_progress_text);
+    container       = findViewById(R.id.container);
+    closeButton     = findViewById(R.id.cancel);
+    title           = findViewById(R.id.reminder_title);
+    text            = findViewById(R.id.reminder_text);
+    space           = findViewById(R.id.reminder_space);
+    actionsRecycler = findViewById(R.id.reminder_actions);
   }
 
   public void showReminder(final Reminder reminder) {
@@ -76,9 +72,26 @@ public final class ReminderView extends FrameLayout {
       title.setVisibility(GONE);
       space.setVisibility(VISIBLE);
     }
+
+    if (!reminder.isDismissable()) {
+      space.setVisibility(GONE);
+    }
+
     text.setText(reminder.getText());
-    container.setBackgroundResource(reminder.getImportance() == Reminder.Importance.ERROR ? R.drawable.reminder_background_error
-                                                                                          : R.drawable.reminder_background_normal);
+
+    switch (reminder.getImportance()) {
+      case NORMAL:
+        container.setBackgroundResource(R.drawable.reminder_background_normal);
+        break;
+      case ERROR:
+        container.setBackgroundResource(R.drawable.reminder_background_error);
+        break;
+      case TERMINAL:
+        container.setBackgroundResource(R.drawable.reminder_background_terminal);
+        break;
+      default:
+        throw new IllegalStateException();
+    }
 
     setOnClickListener(reminder.getOkListener());
 

@@ -262,6 +262,10 @@
         <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
+    <style name="Button.Borderless.LowPriority" parent="Button.Borderless">
+        <item name="android:textColor">?attr/low_priority_button_text_color</item>
+    </style>
+
     <!-- RedPhone -->
 
     <!-- Buttons in the main "button row" of the in-call onscreen touch UI. -->

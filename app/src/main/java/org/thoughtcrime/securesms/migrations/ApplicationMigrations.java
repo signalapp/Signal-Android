@@ -75,6 +75,7 @@ public class ApplicationMigrations {
 
     if (!isUpdate(context)) {
       Log.d(TAG, "Not an update. Skipping.");
+      VersionTracker.updateLastSeenVersion(context);
       return;
     }
 

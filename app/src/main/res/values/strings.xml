@@ -151,6 +151,14 @@
     <string name="ClearProfileActivity_remove_profile_photo">Remove profile photo?</string>
     <string name="ClearProfileActivity_remove_group_photo">Remove group photo?</string>
 
+    <!-- ClientDeprecatedActivity -->
+    <string name="ClientDeprecatedActivity_update_signal">Update Signal</string>
+    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">This version of the app is no longer supported. To continue sending and receiving messages, update to the latest version.</string>
+    <string name="ClientDeprecatedActivity_update">Update</string>
+    <string name="ClientDeprecatedActivity_dont_update">Don\'t Update</string>
+    <string name="ClientDeprecatedActivity_warning">Warning</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Your version of Signal has expired. You can view your message history but you won\'t be able to send or receive messages until you update.</string>
+
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
     <string name="CommunicationActions_no_email_app_found">No email app found.</string>
@@ -427,6 +435,10 @@
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
     <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
+
+    <!-- ExpiredBuildReminder -->
+    <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">This version of Signal has expired. Update now to send and receive messages.</string>
+    <string name="ExpiredBuildReminder_update_now">Update now</string>
 
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
@@ -1086,6 +1098,14 @@
     <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
     <string name="ExpirationDialog_your_messages_will_not_expire">Your messages will not expire.</string>
     <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Messages sent and received in this conversation will disappear %s after they have been seen.</string>
+
+    <!-- OutdatedBuildReminder -->
+    <string name="OutdatedBuildReminder_update_now">Update now</string>
+    <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+        <item quantity="zero">This version of Signal will expire today. Update to the most recent version.</item>
+        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
+        <item quantity="other">This version of Signal will expire in %d days. Update to the most recent version.</item>
+    </plurals>
 
     <!-- PassphrasePromptActivity -->
     <string name="PassphrasePromptActivity_enter_passphrase">Enter passphrase</string>
@@ -2289,14 +2309,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compare with clipboard</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_outdated_build">Your version of Signal is outdated</string>
-    <plurals name="reminder_header_outdated_build_details">
-        <item quantity="one">Your version of Signal will expire in %d day. Tap to update to the most recent version.</item>
-        <item quantity="other">Your version of Signal will expire in %d days. Tap to update to the most recent version.</item>
-    </plurals>
-    <string name="reminder_header_outdated_build_details_today">Your version of Signal will expire today. Tap to update to the most recent version.</string>
-    <string name="reminder_header_expired_build">Your version of Signal has expired!</string>
-    <string name="reminder_header_expired_build_details">Messages will no longer send successfully. Tap to update to the most recent version.</string>
     <string name="reminder_header_sms_default_title">Use as default SMS app</string>
     <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
     <string name="reminder_header_sms_import_title">Import system SMS</string>

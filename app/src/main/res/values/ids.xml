@@ -6,4 +6,5 @@
 
     <item name="reminder_action_view_insights" type="id" />
     <item name="reminder_action_invite" type="id" />
+    <item name="reminder_action_update_now" type="id" />
 </resources>

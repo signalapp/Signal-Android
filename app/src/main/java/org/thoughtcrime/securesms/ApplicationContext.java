@@ -198,7 +198,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   public void checkBuildExpiration() {
     if (Util.getTimeUntilBuildExpiry() <= 0 && !SignalStore.misc().isClientDeprecated()) {
       Log.w(TAG, "Build expired!");
-      SignalStore.misc().markDeprecated();
+      SignalStore.misc().markClientDeprecated();
     }
   }
 

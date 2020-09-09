@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.AnyThread;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
@@ -100,6 +101,11 @@ public class MegaphoneRepository {
 
   @AnyThread
   public void markFinished(@NonNull Event event) {
+    markFinished(event, null);
+  }
+
+  @AnyThread
+  public void markFinished(@NonNull Event event, @Nullable Runnable onComplete) {
     executor.execute(() -> {
       MegaphoneRecord record = databaseCache.get(event);
       if (record != null && record.isFinished()) {
@@ -108,6 +114,10 @@ public class MegaphoneRepository {
 
       database.markFinished(event);
       resetDatabaseCache();
+
+      if (onComplete != null) {
+        onComplete.run();
+      }
     });
   }
 

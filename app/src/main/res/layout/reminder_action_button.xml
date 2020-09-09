@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:textColor="@color/white"
-    android:textSize="16sp"
+    android:textSize="14sp"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:layout_marginStart="3dp"

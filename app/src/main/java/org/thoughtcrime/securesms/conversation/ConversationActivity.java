@@ -240,6 +240,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
+import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TextSecurePreferences.MediaKeyboardMode;
@@ -1685,6 +1686,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       reminderView.get().showReminder(new UnauthorizedReminder(this));
     } else if (ExpiredBuildReminder.isEligible()) {
       reminderView.get().showReminder(new ExpiredBuildReminder(this));
+      reminderView.get().setOnActionClickListener(this::handleReminderAction);
     } else if (ServiceOutageReminder.isEligible(this)) {
       ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
       reminderView.get().showReminder(new ServiceOutageReminder(this));
@@ -1709,6 +1711,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
         break;
       case R.id.reminder_action_view_insights:
         InsightsLauncher.showInsightsDashboard(getSupportFragmentManager());
+        break;
+      case R.id.reminder_action_update_now:
+        PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(this);
         break;
       default:
         throw new IllegalArgumentException("Unknown ID: " + reminderActionId);
