@@ -65,8 +65,19 @@ public final class GroupsV2StateProcessor {
 
   private static final String TAG = Log.tag(GroupsV2StateProcessor.class);
 
-  public static final int LATEST               = GroupStateMapper.LATEST;
+  public static final int LATEST = GroupStateMapper.LATEST;
+
+  /**
+   * Used to mark a group state as a placeholder when there is partial knowledge (title and avater)
+   * gathered from a group join link.
+   */
   public static final int PLACEHOLDER_REVISION = GroupStateMapper.PLACEHOLDER_REVISION;
+
+  /**
+   * Used to mark a group state as a placeholder when you have no knowledge at all of the group
+   * e.g. from a group master key from a storage service restore.
+   */
+  public static final int RESTORE_PLACEHOLDER_REVISION = GroupStateMapper.RESTORE_PLACEHOLDER_REVISION;
 
   private final Context               context;
   private final JobManager            jobManager;
@@ -176,7 +187,8 @@ public final class GroupsV2StateProcessor {
 
       if (inputGroupState == null) {
         try {
-          inputGroupState = queryServer(localState, revision == LATEST && localState == null);
+          boolean latestRevisionOnly = revision == LATEST && (localState == null || localState.getRevision() == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION);
+          inputGroupState = queryServer(localState, latestRevisionOnly);
         } catch (GroupNotAMemberException e) {
           if (localState != null && signedGroupChange != null) {
             try {
@@ -212,7 +224,12 @@ public final class GroupsV2StateProcessor {
 
       updateLocalDatabaseGroupState(inputGroupState, newLocalState);
       determineProfileSharing(inputGroupState, newLocalState);
-      insertUpdateMessages(timestamp, advanceGroupStateResult.getProcessedLogEntries());
+      if (localState != null && localState.getRevision() == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION) {
+        Log.i(TAG, "Inserting single update message for restore placeholder");
+        insertUpdateMessages(timestamp, Collections.singleton(new LocalGroupLogEntry(newLocalState, null)));
+      } else {
+        insertUpdateMessages(timestamp, advanceGroupStateResult.getProcessedLogEntries());
+      }
       persistLearnedProfileKeys(inputGroupState);
 
       GlobalGroupState remainingWork = advanceGroupStateResult.getNewGlobalGroupState();

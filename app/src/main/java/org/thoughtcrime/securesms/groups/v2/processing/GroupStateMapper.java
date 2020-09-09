@@ -21,8 +21,9 @@ final class GroupStateMapper {
 
   private static final String TAG = Log.tag(GroupStateMapper.class);
 
-  static final int LATEST               = Integer.MAX_VALUE;
-  static final int PLACEHOLDER_REVISION = -1;
+  static final int LATEST                       = Integer.MAX_VALUE;
+  static final int PLACEHOLDER_REVISION         = -1;
+  static final int RESTORE_PLACEHOLDER_REVISION = -2;
 
   private static final Comparator<ServerGroupLogEntry> BY_REVISION = (o1, o2) -> Integer.compare(o1.getRevision(), o2.getRevision());
 

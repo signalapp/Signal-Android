@@ -15,6 +15,7 @@ import com.google.android.gms.common.util.ArrayUtils;
 import net.sqlcipher.database.SQLiteConstraintException;
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.profiles.ProfileKey;
@@ -28,8 +29,9 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
+import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.jobs.WakeGroupV2Job;
+import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -860,7 +862,17 @@ public class RecipientDatabase extends Database {
         GroupId.V2 groupId   = GroupId.v2(insert.getMasterKey());
         Recipient  recipient = Recipient.externalGroup(context, groupId);
 
-        ApplicationDependencies.getJobManager().add(new WakeGroupV2Job(insert.getMasterKey()));
+        Log.i(TAG, "Creating restore placeholder for " + groupId);
+
+        DatabaseFactory.getGroupDatabase(context)
+                       .create(insert.getMasterKey(),
+                               DecryptedGroup.newBuilder()
+                                             .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
+                                             .build());
+
+        Log.i(TAG, "Scheduling request for latest group info for " + groupId);
+
+        ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(groupId));
 
         threadDatabase.setArchived(recipient.getId(), insert.isArchived());
         needsRefresh.add(recipient.getId());
