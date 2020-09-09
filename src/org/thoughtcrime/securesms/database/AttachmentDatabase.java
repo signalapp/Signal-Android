@@ -54,7 +54,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
-import org.thoughtcrime.securesms.util.StorageUtil;
+import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
@@ -473,7 +473,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     ContentValues contentValues = new ContentValues(1);
-    contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(fileName));
+    contentValues.put(FILE_NAME, ExternalStorageUtil.getCleanFileName(fileName));
 
     database.update(TABLE_NAME, contentValues, PART_ID_WHERE, attachmentId.toStrings());
   }
@@ -724,7 +724,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(DIGEST, attachment.getDigest());
     contentValues.put(CONTENT_DISPOSITION, attachment.getKey());
     contentValues.put(NAME, attachment.getRelay());
-    contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));
+    contentValues.put(FILE_NAME, ExternalStorageUtil.getCleanFileName(attachment.getFileName()));
     contentValues.put(SIZE, attachment.getSize());
     contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
     contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);

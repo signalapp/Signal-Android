@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -54,6 +55,8 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.ExternalStorageUtil;
+import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -65,6 +68,7 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -72,6 +76,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import network.loki.messenger.R;
+
+import static android.provider.MediaStore.EXTRA_OUTPUT;
 
 
 public class AttachmentManager {
@@ -112,7 +118,6 @@ public class AttachmentManager {
       thumbnail.setOnClickListener(new ThumbnailClickListener());
       documentView.getBackground().setColorFilter(ThemeUtil.getThemedColor(context, R.attr.conversation_item_bubble_background), PorterDuff.Mode.MULTIPLY);
     }
-
   }
 
   public void clear(@NonNull GlideRequests glideRequests, boolean animate) {
@@ -438,25 +443,29 @@ public class AttachmentManager {
 
   public void capturePhoto(Activity activity, int requestCode) {
     Permissions.with(activity)
-               .request(Manifest.permission.CAMERA)
-               .ifNecessary()
-               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied))
-               .onAllGranted(() -> {
-                 try {
-                   Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                   if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-                     if (captureUri == null) {
-                       captureUri = DeprecatedPersistentBlobProvider.getInstance(context).createForExternal(context, MediaUtil.IMAGE_JPEG);
-                     }
-                     Log.d(TAG, "captureUri path is " + captureUri.getPath());
-                     captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, captureUri);
-                     activity.startActivityForResult(captureIntent, requestCode);
-                   }
-                 } catch (IOException ioe) {
-                   Log.w(TAG, ioe);
-                 }
-               })
-               .execute();
+            .request(Manifest.permission.CAMERA)
+            .ifNecessary()
+            .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied))
+            .onAllGranted(() -> {
+              try {
+                File captureFile = File.createTempFile(
+                        "conversation-capture",
+                        ".jpg",
+                        ExternalStorageUtil.getImageDir(activity));
+                Uri captureUri = FileProviderUtil.getUriFor(context, captureFile);
+                Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                captureIntent.putExtra(EXTRA_OUTPUT, captureUri);
+                captureIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
+                  Log.d(TAG, "captureUri path is " + captureUri.getPath());
+                  this.captureUri = captureUri;
+                  activity.startActivityForResult(captureIntent, requestCode);
+                }
+              } catch (IOException | NoExternalStorageException e) {
+                throw new RuntimeException("Error creating image capture intent.", e);
+              }
+            })
+            .execute();
   }
 
   private static void selectMediaType(Activity activity, @NonNull String type, @Nullable String[] extraMimeType, int requestCode) {

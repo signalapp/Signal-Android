@@ -59,10 +59,6 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       Context      context      = contextReference.get();
       String       directory    = null;
 
-      if (!StorageUtil.canWriteInSessionStorageDir()) {
-        return new Pair<>(WRITE_ACCESS_FAILURE, null);
-      }
-
       if (context == null) {
         return new Pair<>(FAILURE, null);
       }
@@ -114,13 +110,13 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     File outputDirectory;
 
     if (contentType.startsWith("video/")) {
-      outputDirectory = StorageUtil.getVideoDir();
+      outputDirectory = ExternalStorageUtil.getVideoDir(getContext());
     } else if (contentType.startsWith("audio/")) {
-      outputDirectory = StorageUtil.getAudioDir();
+      outputDirectory = ExternalStorageUtil.getAudioDir(getContext());
     } else if (contentType.startsWith("image/")) {
-      outputDirectory = StorageUtil.getImageDir();
+      outputDirectory = ExternalStorageUtil.getImageDir(getContext());
     } else {
-      outputDirectory = StorageUtil.getDownloadDir();
+      outputDirectory = ExternalStorageUtil.getDownloadDir(getContext());
     }
 
     if (!outputDirectory.mkdirs()) Log.w(TAG, "mkdirs() returned false, attempting to continue");
