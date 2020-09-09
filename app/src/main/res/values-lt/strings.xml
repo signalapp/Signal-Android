@@ -1849,6 +1849,7 @@
   <string name="preferences__slow">Lėtas</string>
   <string name="preferences__help">Pagalba</string>
   <string name="preferences__advanced">Išplėstiniai</string>
+  <string name="preferences__donate_to_signal">Paaukokite Signal programėlei</string>
   <string name="preferences__privacy">Privatumas</string>
   <string name="preferences__mms_user_agent">MMS naudotojo agentas</string>
   <string name="preferences__advanced_mms_access_point_names">Rankiniai MMS nustatymai</string>
@@ -1902,6 +1903,7 @@
   <string name="preferences_storage__review_storage">Peržiūrėti saugyklą</string>
   <string name="preferences_storage__delete_older_messages">Ištrinti senesnes žinutes?</string>
   <string name="preferences_storage__clear_message_history">Išvalyti žinučių istoriją?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tai visam laikui ištrins visą žinučių istoriją ir mediją iš jūsų įrenginio, kuri senesnė nei %1$s</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Tai visam laikui išvalys visus pokalbius iki %1$s naujausių žinučių.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tai visam laikui ištrins visą žinučių istoriją ir mediją iš jūsų įrenginio.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ar tikrai norite ištrinti visą žinučių istoriją?</string>
@@ -2034,16 +2036,16 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopijuoti į iškarpinę</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Palyginti su iškarpine</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Jūsų Signal versija yra pasenusi</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Jūsų Signal versija yra pasenusi</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Jūsų Signal versija nustos galioti po %d dienos. Bakstelėkite, norėdami atnaujinti į naujausią versiją.</item>
     <item quantity="few">Jūsų Signal versija nustos galioti po %d dienų. Bakstelėkite, norėdami atnaujinti į naujausią versiją.</item>
     <item quantity="many">Jūsų Signal versija nustos galioti po %d dienų. Bakstelėkite, norėdami atnaujinti į naujausią versiją.</item>
     <item quantity="other">Jūsų Signal versija nustos galioti po %d dienų. Bakstelėkite, norėdami atnaujinti į naujausią versiją.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Šiandien nustos galioti jūsų Signal versija. Bakstelėkite, kad atnaujintumėte į naujausią versiją.</string>
-  <string name="reminder_header_expired_build">Jūsų Signal versijos galiojimas baigėsi!</string>
-  <string name="reminder_header_expired_build_details">Žinutės daugiau nebebus siunčiamos sėkmingai. Bakstelėkite, kad atnaujintumėte į naujausią versiją.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Šiandien nustos galioti jūsų Signal versija. Bakstelėkite, kad atnaujintumėte į naujausią versiją.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Jūsų Signal versijos galiojimas baigėsi!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Žinutės daugiau nebebus siunčiamos sėkmingai. Bakstelėkite, kad atnaujintumėte į naujausią versiją.</string> -->
   <string name="reminder_header_sms_default_title">Naudoti kaip numatytąją SMS programėlę</string>
   <string name="reminder_header_sms_default_text">Bakstelėkite, kad padarytumėte Signal savo numatytąja SMS programėle.</string>
   <string name="reminder_header_sms_import_title">Importuoti sistemos SMS</string>
@@ -2264,6 +2266,9 @@
   <string name="PhoneNumberPrivacy_everyone">Visi</string>
   <string name="PhoneNumberPrivacy_my_contacts">Mano adresatai</string>
   <string name="PhoneNumberPrivacy_nobody">Niekas</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Jūsų telefono numeris bus matomas visiems žmonėms, kuriems rašysite žinutes ir grupėms, kuriose rašysite žinutes.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Bet kuris žmogus, turintis jūsų telefono numerį savo adresatuose, matys jus kaip Signal adresatą. Kiti žmonės galės rasti jus paieškoje.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Jūsų telefono numerį Signal programėlėje matys tik jūsų adresatai.</string>
   <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Užrakinti prieigą prie Signal, naudojant Android ekrano užraktą ar piršto atspaudą</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekrano užrakto neveiklumui skirtas laikas</string>

@@ -1841,6 +1841,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__slow">Wolno</string>
   <string name="preferences__help">Pomoc</string>
   <string name="preferences__advanced">Zaawansowane</string>
+  <string name="preferences__donate_to_signal">Datek na Signal</string>
   <string name="preferences__privacy">Prywatność</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manualne ustawienia MMS</string>
@@ -1854,7 +1855,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__chats">Rozmowy i multimedia</string>
   <string name="preferences__storage">Pamięć</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
-  <string name="preferences__keep_messages">Zachowaj wiadomości</string>
+  <string name="preferences__keep_messages">Zachowuj wiadomości</string>
   <string name="preferences__clear_message_history">Wyczyść historię wiadomości</string>
   <string name="preferences__linked_devices">Połączone urządzenia</string>
   <string name="preferences__light_theme">Jasny</string>
@@ -1906,7 +1907,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_storage__thirty_days">30 dni</string>
   <string name="preferences_storage__none">Brak</string>
   <string name="preferences_storage__s_messages">%1$s wiadomości</string>
-  <string name="preferences_storage__custom">Własne</string>
+  <string name="preferences_storage__custom">Własny</string>
   <string name="preferences_Storage__custom_conversation_length_limit">Własny limit długości konwersacji</string>
   <string name="preferences_advanced__use_system_emoji">Używaj emoji systemu</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Wyłącz wbudowane wspomaganie emoji Signal</string>
@@ -2027,16 +2028,16 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Skopiuj do schowka </string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porównaj ze schowkiem</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Twoja wersja Signal jest nieaktualna.</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Twoja wersja Signal jest nieaktualna.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Twoja wersja Signal wygaśnie za %d dzień. Dotknij, aby zaktualizować do najnowszej wersji.</item>
     <item quantity="few">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
     <item quantity="many">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
     <item quantity="other">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Twoja wersja Signal dzisiaj będzie już nieaktualna. Dotknij, aby zaktualizować do najnowszej wersji.</string>
-  <string name="reminder_header_expired_build">Twoja wersja Signal jest nieaktualna!</string>
-  <string name="reminder_header_expired_build_details">Wiadomości nie będą dłużej dostarczane. Dotknij, aby zaktualizować Signal do najnowszej wersji.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Twoja wersja Signal dzisiaj będzie już nieaktualna. Dotknij, aby zaktualizować do najnowszej wersji.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Twoja wersja Signal jest nieaktualna!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Wiadomości nie będą dłużej dostarczane. Dotknij, aby zaktualizować Signal do najnowszej wersji.</string> -->
   <string name="reminder_header_sms_default_title">Ustaw jako domyślną aplikację SMS</string>
   <string name="reminder_header_sms_default_text">Dotknij, aby Signal był Twoją domyślną aplikacją SMS.</string>
   <string name="reminder_header_sms_import_title">Importuj bazę SMS</string>

@@ -467,6 +467,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Zahtjevi za članstvo na čekanju</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Nema zahtjeva za članstvo.</string>
+  <string name="RequestingMembersFragment_explanation">Osobe s ovog popisa pokušavaju pristupiti grupi putem linka za grupu.</string>
   <string name="RequestingMembersFragment_added_s">Uvršten/a \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Odbijen/a \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -637,6 +638,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Uskoro: linkovi za grupe</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste mogli koristiti grupne linkove</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Pristupanje grupi putem linka nije još podržano u Signalu. To će biti moguće u jednoj od narednih verzija.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju koristite ne podržava linkove za grupu. Instalirajte zadnju verziju da biste se mogli priključiti ovoj grupi putem linka.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ažurirajte Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link za grupu nije ispravan</string>
   <!--GV2 Request confirmation dialog-->
@@ -884,10 +886,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s je promijenio/la ovlasti za upravljanje članstvom u grupi na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ko može upravljati članstvom u grupi promijenjeno je u \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Aktivirali ste link za grupu bez administratorskog odobrenja.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Aktivirali ste link za grupu sa administratorskim odobrenjem.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Isključili ste link za grupu.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s je aktivirao/la link za grupu bez administratorskog odobrenja.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s je aktivirao/la link za grupu sa administratorskim odobrenjem.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s je isključio/la link za grupu.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Link za grupu aktiviran je bez administratorskog odobrenja.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Link za grupu aktiviran je sa administratorskim odobrenjem.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Link za grupu je isključen.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Kreirali ste iznova link za grupu.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s je iznova kreirao/la link za grupu.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Link za grupu iznova je kreiran.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Pristupili ste grupi putem linka za grupu.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s je pristupio/la grupi putem linka za grupu.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste zahtjev za pristupanje grupi.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s traži odobrenje da pristupi grupi putem linka za grupu.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s odobrio/la je Vaš zahtjev za pristupanje grupi.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s odobrio/la je zahtjev za pristupanje grupi koji je uputio/la %2$s.</string>
@@ -1476,6 +1493,7 @@
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Promjene sigurnosnog broja</string>
   <string name="safety_number_change_dialog__send_anyway">Svakako pošalji</string>
+  <string name="safety_number_change_dialog__call_anyway">Svakako nazovi</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Ove su osobe možda iznova instalirale Signal ili promijenile uređaj. Potvrdite svoj sigurnosni broj s njima da osigurate privatnost.</string>
   <string name="safety_number_change_dialog__view">Pregled</string>
   <string name="safety_number_change_dialog__previous_verified">Ranije potvrđeno</string>
@@ -1777,6 +1795,7 @@
   <string name="preferences__slow">Spora</string>
   <string name="preferences__help">Pomoć</string>
   <string name="preferences__advanced">Napredno</string>
+  <string name="preferences__donate_to_signal">Donirajte za Signal</string>
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručna MMS podešavanja</string>
@@ -1790,6 +1809,8 @@
   <string name="preferences__chats">Poruke i datoteke</string>
   <string name="preferences__storage">Memorija</string>
   <string name="preferences__conversation_length_limit">Maksimalni broj poruka</string>
+  <string name="preferences__keep_messages">Zadrži poruke</string>
+  <string name="preferences__clear_message_history">Izbriši historiju poruka</string>
   <string name="preferences__linked_devices">Povezani uređaji</string>
   <string name="preferences__light_theme">Svijetla</string>
   <string name="preferences__dark_theme">Tamna</string>
@@ -1819,17 +1840,34 @@
   <string name="preferences_chats__when_using_wifi">Prilikom korištenja Wi-Fi konekcije</string>
   <string name="preferences_chats__when_roaming">Prilikom roaminga</string>
   <string name="preferences_chats__media_auto_download">Automatsko preuzimanje datoteka</string>
+  <string name="preferences_chats__message_history">Historija poruka</string>
   <string name="preferences_storage__storage_usage">Korištenje memorije</string>
   <string name="preferences_storage__photos">Slike</string>
   <string name="preferences_storage__videos">Videozapisi</string>
   <string name="preferences_storage__files">Datoteke</string>
   <string name="preferences_storage__audio">Zvuk</string>
   <string name="preferences_storage__review_storage">Provjerite memoriju</string>
+  <string name="preferences_storage__delete_older_messages">Izbrisati starije poruke?</string>
+  <string name="preferences_storage__clear_message_history">Izbrisati historiju poruka?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ovo će bespovratno izbrisati svu historiju poruka i datoteke s Vašeg uređaja koji su stariji od %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ovo će bespovratno svesti sve konverzacije na %1$s posljednjih poruka.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ovo će bespovratno izbrisati svu historiju poruka i datoteke s Vašeg uređaja.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Jeste li sigurni da želite izbrisati historiju poruka?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Cijela historija poruka bit će bespovratno uklonjena. Ova se akcija ne može opozvati.</string>
+  <string name="preferences_storage__delete_all_now">Izbriši sve odmah</string>
+  <string name="preferences_storage__forever">Zauvijek</string>
+  <string name="preferences_storage__one_year">1 godina</string>
+  <string name="preferences_storage__six_months">6 mjeseci</string>
+  <string name="preferences_storage__thirty_days">30 dana</string>
   <string name="preferences_storage__none">Nijedno</string>
+  <string name="preferences_storage__s_messages">%1$s poruka</string>
+  <string name="preferences_storage__custom">Ostalo</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">Maksimalni broj poruka</string>
   <string name="preferences_advanced__use_system_emoji">Koristi sistemske emoji sličice</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući Signalovu ugrađenu podršku za emoji sličice</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjeri sve pozive na Signal server kako bi Vaša IP adresa bila skrivena od sagovornika. Aktiviranjem ove opcije smanjit će se kvalitet poziva.</string>
   <string name="preferences_advanced__always_relay_calls">Uvijek preusmjeri pozive</string>
+  <string name="preferences_app_protection__who_can">Ko može…</string>
   <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
   <string name="preferences_chats__chats">Razgovori</string>
@@ -1854,6 +1892,7 @@
   <string name="preferences_notifications__notify_me">Obavijesti me</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Primiti obavještenja kad Vas neko spomene u prigušenim konverzacijama</string>
   <string name="preferences_setup_a_username">Podesite korisničko ime</string>
+  <string name="configurable_single_select__customize_option">Prilagodi</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1943,15 +1982,15 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Uporedi sa međuspremnikom</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Vaša je verzija Signala stara</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Vaša je verzija Signala stara</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Vaša verzija Signala ističe za %d dan. Pritisnite da preuzmete zadnju verziju.</item>
     <item quantity="few">Vaša verzija Signala ističe za %d dana. Pritisnite da preuzmete zadnju verziju.</item>
     <item quantity="other">Vaša verzija Signala ističe za %d dana. Pritisnite da preuzmete zadnju verziju.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Vaša verzija Signala ističe danas. Pritisnite da preuzmete zadnju verziju.</string>
-  <string name="reminder_header_expired_build">Vaša je verzija Signala istekla!</string>
-  <string name="reminder_header_expired_build_details">Poruke se više neće slati. Pritisnite da preuzmete zadnju verziju.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Vaša verzija Signala ističe danas. Pritisnite da preuzmete zadnju verziju.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Vaša je verzija Signala istekla!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Poruke se više neće slati. Pritisnite da preuzmete zadnju verziju.</string> -->
   <string name="reminder_header_sms_default_title">Koristi kao glavnu aplikaciju za SMS</string>
   <string name="reminder_header_sms_default_text">Pritisnite da Signal učinite svojom glavnom aplikacijom za slanje SMS poruka</string>
   <string name="reminder_header_sms_import_title">Unesi sistemske SMS poruke</string>
@@ -2160,6 +2199,14 @@
   <string name="RegistrationActivity_code_support_subject">Signal registracija – potvrda kōda za Android</string>
   <string name="BackupUtil_never">Nikad</string>
   <string name="BackupUtil_unknown">Nepoznato</string>
+  <string name="preferences_app_protection__see_my_phone_number">Vidi moj telefonski broj</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Pronađi me putem telefonskog broja</string>
+  <string name="PhoneNumberPrivacy_everyone">Svako</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Moji kontakti</string>
+  <string name="PhoneNumberPrivacy_nobody">Niko</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Vaš telefonski broj bit će dostupan svim osobama i grupama s kojima razmijenite poruke.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Svako ko ima Vaš telefonski broj zabilježen među kontaktima vidjet će Vas i među svojim kontaktima na Signalu. Drugi će Vas moći pronaći pomoću pretrage.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Samo Vaši kontakti moći će vidjeti Vaš telefonski broj na Signalu.</string>
   <string name="preferences_app_protection__screen_lock">Zaključavanje ekrana</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zaključaj pristup Signalu pomoću Androidovog zaključavanja ekrana ili otiska prsta</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Zaključavanje ekrana nakon neaktivnosti</string>

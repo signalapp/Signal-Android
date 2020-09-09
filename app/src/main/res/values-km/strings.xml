@@ -1659,13 +1659,13 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ចម្លងទៅ clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ប្រៀបធៀបជាមួយ clipboard</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">កំណែSignalរបស់អ្នកបានផុតកំណត់</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">កំណែSignalរបស់អ្នកបានផុតកំណត់</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="other">ជំនាន់Signalរបស់អ្នក នឹងផុតកំណត់ក្នុងពេល %d ថ្ងៃ។ ចុច ធ្វើបច្ចុប្បន្នភាពទៅកាន់ជំនាន់ចុងក្រោយបំផុត។</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">កំណែSignalរបស់អ្នកនឹងផុតកំណត់ថ្ងៃនេះ។ ចុច បច្ចុប្បន្នភាពទៅកាន់កំណែចុងក្រោយបំផុត។</string>
-  <string name="reminder_header_expired_build">កំណែស៊ីហ្គណ​លរបស់អ្នកបានផុតកំណត់!</string>
-  <string name="reminder_header_expired_build_details">សារនឹងបញ្ជូនទៅដោយបានមិនជោគជ័យ។ ចុចធ្វើបច្ចុប្បន្នភាពទៅកាន់កំណែចុងក្រោយបំផុត។</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">កំណែSignalរបស់អ្នកនឹងផុតកំណត់ថ្ងៃនេះ។ ចុច បច្ចុប្បន្នភាពទៅកាន់កំណែចុងក្រោយបំផុត។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">កំណែស៊ីហ្គណ​លរបស់អ្នកបានផុតកំណត់!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">សារនឹងបញ្ជូនទៅដោយបានមិនជោគជ័យ។ ចុចធ្វើបច្ចុប្បន្នភាពទៅកាន់កំណែចុងក្រោយបំផុត។</string> -->
   <string name="reminder_header_sms_default_title">ប្រើជាកម្មវិធីផ្ញើសារ</string>
   <string name="reminder_header_sms_default_text">ចុច ដើម្បីដាក់ Signal ជាកម្មវិធី​ផ្ញើសាររបស់អ្នក​</string>
   <string name="reminder_header_sms_import_title">នាំចូលប្រព័ន្ធ SMS</string>

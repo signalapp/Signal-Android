@@ -1436,14 +1436,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kwafa zuwa allon rubutu</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Hada da allon rubutu</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Sigar Signal dinka/ki ya tsufa</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Sigar Signal dinka/ki ya tsufa</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Sigar Signal dinka/ki zai zo karshen aiki cikin kwana %d. Taba domin sabuntawa zuwa sabon sigar.</item>
     <item quantity="other">Saura kwana %d wannan sigar Signal din zata daina aiki a naurarka/ki. Taba do saukar da sabuwar ingantacciyar manhajar Signal..</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Yau ne ranar wa\'adin sigar Signal dinka/ki. Taba domin sabunta zuwa mafi sabon siga.</string>
-  <string name="reminder_header_expired_build">Sigar Signal dinka/ki ya zo karshen aiki!</string>
-  <string name="reminder_header_expired_build_details">Za\'a daina samun nasarar aikar da sakonni. Taba domin sabunta zuwa mafi sabon sigar.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Yau ne ranar wa\'adin sigar Signal dinka/ki. Taba domin sabunta zuwa mafi sabon siga.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Sigar Signal dinka/ki ya zo karshen aiki!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Za\'a daina samun nasarar aikar da sakonni. Taba domin sabunta zuwa mafi sabon sigar.</string> -->
   <string name="reminder_header_sms_default_title">Yi amfani dashi a matsayin tanadadden manhajar SMS</string>
   <string name="reminder_header_sms_default_text">Taba domin mayar da Signal tanadadden manhajarka/ki wajen tura sakonin SMS dinka/ki.</string>
   <string name="reminder_header_sms_import_title">Shigar da SMS din na\'ura</string>

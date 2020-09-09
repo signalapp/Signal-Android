@@ -1708,6 +1708,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__slow">I ngadaltë</string>
   <string name="preferences__help">Ndihmë</string>
   <string name="preferences__advanced">Të mëtejshme</string>
+  <string name="preferences__donate_to_signal">Dhuroni për Signal-in</string>
   <string name="preferences__privacy">Privatësi</string>
   <string name="preferences__mms_user_agent">Agjent Përdoruesi MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Rregullime dorazi për MMS-në</string>
@@ -1876,14 +1877,14 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopjoje në të papastër</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahasoje me lëndën në të papastër</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versioni juaj i Signal-it është i vjetruar</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Versioni juaj i Signal-it është i vjetruar</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Versioni juaj i Signal-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
     <item quantity="other">Versioni juaj i Signal-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versioni juaj i Signal-it do të skadojë sot. Prekeni që të përditësohet me versionin më të ri.</string>
-  <string name="reminder_header_expired_build">Versioni juaj i Signal-it ka skaduar!</string>
-  <string name="reminder_header_expired_build_details">Mesazhet s\’do të dërgohen më me sukses. Prekeni që të përditësohet me versionin më të ri.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versioni juaj i Signal-it do të skadojë sot. Prekeni që të përditësohet me versionin më të ri.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versioni juaj i Signal-it ka skaduar!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesazhet s\’do të dërgohen më me sukses. Prekeni që të përditësohet me versionin më të ri.</string> -->
   <string name="reminder_header_sms_default_title">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
   <string name="reminder_header_sms_default_text">Prekeni për ta bërë Signal-in aplikacionin tuaj parazgjedhje për SMS-të.</string>
   <string name="reminder_header_sms_import_title">Importo SMS sistemi</string>

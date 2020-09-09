@@ -1593,13 +1593,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingkan dengan papan klip</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versi Signal Anda terlalu lama</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Versi Signal Anda terlalu lama</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="other">Versi Signal Anda akan berakhir dalam %d hari. Ketuk untuk memperbarui ke versi terkini.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versi Signal Anda akan berakhir hari ini. Ketuk untuk memperbarui ke versi terkini.</string>
-  <string name="reminder_header_expired_build">Versi Signal Anda telah kedaluwarsa!</string>
-  <string name="reminder_header_expired_build_details">Pesan tidak lagi dapat dikirim. Ketuk untuk memperbarui ke versi terkini.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versi Signal Anda akan berakhir hari ini. Ketuk untuk memperbarui ke versi terkini.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versi Signal Anda telah kedaluwarsa!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Pesan tidak lagi dapat dikirim. Ketuk untuk memperbarui ke versi terkini.</string> -->
   <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS utama</string>
   <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS utama Anda.</string>
   <string name="reminder_header_sms_import_title">Impor sistem SMS</string>

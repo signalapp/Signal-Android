@@ -1423,13 +1423,13 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin dhateng clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingaken kaliyan clipboard</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versi Signal sampeyan sampun dangu</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Versi Signal sampeyan sampun dangu</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="other">Versi Signal sampeyan bakal kedaluwaran saksampune %d dinten. Tutul kangge ngenggalaken dados versi paling enggal.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versi Signal sampeyan bakal kedaluwarsa dinten niki. Tutul kangge ngenggalaken dados versi paling enggal.</string>
-  <string name="reminder_header_expired_build">Versi Signal sampeyan sampun kedaluwarsa!</string>
-  <string name="reminder_header_expired_build_details">Pesen bakalan mboten saged dipunkirimaken sacara leres. Tutul kangge ngenggalaken dados versi paling enggal.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versi Signal sampeyan bakal kedaluwarsa dinten niki. Tutul kangge ngenggalaken dados versi paling enggal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versi Signal sampeyan sampun kedaluwarsa!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Pesen bakalan mboten saged dipunkirimaken sacara leres. Tutul kangge ngenggalaken dados versi paling enggal.</string> -->
   <string name="reminder_header_sms_default_title">Ginakaken dados aplikasi SMS default</string>
   <string name="reminder_header_sms_default_text">Tutul kangge ngginakaken Signal dados aplikasi SMS default.</string>
   <string name="reminder_header_sms_import_title">Impor SMS sistem</string>

@@ -1726,14 +1726,14 @@ grūpp ap‌ḍē</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ക്ലിപ്പ്ബോർഡുമായി താരതമ്യം ചെയ്യുക</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് കാലഹരണപ്പെട്ടു</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് കാലഹരണപ്പെട്ടു</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് %d ദിവസം അവസാനിക്കും. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യാൻ ടാപ്പുചെയ്യുക.</item>
     <item quantity="other">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് %d ദിവസത്തിനുള്ളിൽ കാലഹരണപ്പെടും. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യാൻ ടാപ്പുചെയ്യുക.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് ഇന്ന് കാലഹരണപ്പെടും. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
-  <string name="reminder_header_expired_build">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് കാലഹരണപ്പെട്ടു!</string>
-  <string name="reminder_header_expired_build_details">സന്ദേശങ്ങൾ മേലിൽ അയയ്‌ക്കില്ല. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് ഇന്ന് കാലഹരണപ്പെടും. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യാൻ ടാപ്പുചെയ്യുക.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">നിങ്ങളുടെ Signal-ന്റെ പതിപ്പ് കാലഹരണപ്പെട്ടു!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">സന്ദേശങ്ങൾ മേലിൽ അയയ്‌ക്കില്ല. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യാൻ ടാപ്പുചെയ്യുക.</string> -->
   <string name="reminder_header_sms_default_title">സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷനായി ഉപയോഗിക്കുക</string>
   <string name="reminder_header_sms_default_text">നിങ്ങളുടെ സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷൻ സിഗ്നൽ ആക്കാൻ ടാപ്പുചെയ്യുക.</string>
   <string name="reminder_header_sms_import_title">സിസ്റ്റം SMS ഇറക്കുമതി ചെയ്യുക</string>

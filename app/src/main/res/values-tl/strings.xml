@@ -1518,14 +1518,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopyahin sa clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Ikumpara sa clipboard</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Luma na ang iyong bersyon ng Signal</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Luma na ang iyong bersyon ng Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Ang iyong bersyon ng Signal ay lilipas na sa loob ng %d araw. Tapikin upang mag-update sa pinakabagong bersyon.</item>
     <item quantity="other">Mag-e-expire na ang iyong bersyon ng Signal sa loob ng %d araw. Pindutin upang mag-update sa pinakabagong bersyon.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Mag-e-expire na ngayong araw ang iyong bersyon ng Signal. Pindutin upang mag-update sa pinakabagong bersyon.</string>
-  <string name="reminder_header_expired_build">Nag-expire na ang iyong bersyon ng Signal!</string>
-  <string name="reminder_header_expired_build_details">Ang mga mensahe ay hindi na matagumpay na maipapadala. Pindutin upang mag-update sa pinakabagong bersyon.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Mag-e-expire na ngayong araw ang iyong bersyon ng Signal. Pindutin upang mag-update sa pinakabagong bersyon.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Nag-expire na ang iyong bersyon ng Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Ang mga mensahe ay hindi na matagumpay na maipapadala. Pindutin upang mag-update sa pinakabagong bersyon.</string> -->
   <string name="reminder_header_sms_default_title">Gamitin bilang default na app na pang-SMS</string>
   <string name="reminder_header_sms_default_text">Pindutin upang gawing Signal ang iyong default na app na pang-SMS</string>
   <string name="reminder_header_sms_import_title">I-import ang system SMS</string>

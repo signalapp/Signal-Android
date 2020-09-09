@@ -1654,15 +1654,15 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopēt starpenē</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Salīdzināt ar starpeni</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Jūsu Signal versija ir novecojusi/norakstāma</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Jūsu Signal versija ir novecojusi/norakstāma</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="zero">Jūsu Signal versija nestrādās pēc %d dienas. Pieskarieties, lai atjauninātu uz jaunāko versiju.</item>
     <item quantity="one">Jūsu Signal versija nestrādās pēc %d dienas. Pieskarieties, lai atjauninātu uz jaunāko versiju.</item>
     <item quantity="other">Šī Jūsu Signāla versija nestrādās pēc %d dienām. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Jūsu Signāla versija šodien pārstās darboties. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</string>
-  <string name="reminder_header_expired_build">Jūsu Signāla versija ir norakstīta/novecojusi!</string>
-  <string name="reminder_header_expired_build_details">Ziņas vairs netiks veiksmīgi nosūtītas. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Jūsu Signāla versija šodien pārstās darboties. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Jūsu Signāla versija ir norakstīta/novecojusi!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Ziņas vairs netiks veiksmīgi nosūtītas. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</string> -->
   <string name="reminder_header_sms_default_title">Izmantot kā noklusējuma SMS lietotni</string>
   <string name="reminder_header_sms_default_text">Pieskaries, lai padarītu Signāla par noklusēto SMS lietotni</string>
   <string name="reminder_header_sms_import_title">Importēt sistēmas SMS</string>

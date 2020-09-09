@@ -1661,6 +1661,7 @@
   <string name="preferences__slow">மெதுவாக</string>
   <string name="preferences__help">உதவி</string>
   <string name="preferences__advanced">மேம்பட்ட</string>
+  <string name="preferences__donate_to_signal">Donate to Signal சிக்னலுக்கு நன்கொடை</string>
   <string name="preferences__privacy">தனியுரிமை</string>
   <string name="preferences__mms_user_agent">எம்.எம்.எஸ் பயனர் முகவர்</string>
   <string name="preferences__advanced_mms_access_point_names">நீங்கள் செய்யவேண்டிய MMS அமைப்புகள்</string>
@@ -1827,14 +1828,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">கிளிப்போர்டுடன் ஒப்பிடுக</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Signal உங்கள் பதிப்பு காலாவதியானது</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Signal உங்கள் பதிப்பு காலாவதியானது</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Signal உங்கள் பதிப்பு %d நாளில் காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</item>
     <item quantity="other">Signal உங்கள் பதிப்பு %d நாட்களில் காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Signal உங்கள் பதிப்பு இன்று காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</string>
-  <string name="reminder_header_expired_build">Signal உங்கள் பதிப்பு காலாவதியானது!</string>
-  <string name="reminder_header_expired_build_details">செய்திகள் இனி வெற்றிகரமாக அனுப்பப்படாது. மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Signal உங்கள் பதிப்பு இன்று காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal உங்கள் பதிப்பு காலாவதியானது!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">செய்திகள் இனி வெற்றிகரமாக அனுப்பப்படாது. மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</string> -->
   <string name="reminder_header_sms_default_title">இயல்புநிலை எஸ்எம்எஸ் பயன்பாடு பயன்படுத்தவும்</string>
   <string name="reminder_header_sms_default_text">உங்கள் இயல்புநிலை எஸ்எம்எஸ் பயன்பாடு Signal மாற்ற தட்டவும்.</string>
   <string name="reminder_header_sms_import_title">கணினி எஸ்எம்எஸ் இறக்குமதி</string>

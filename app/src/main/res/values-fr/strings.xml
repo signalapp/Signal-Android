@@ -449,6 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Demandes de membres en attente</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Il n’y a aucune demande de membre à afficher.</string>
+  <string name="RequestingMembersFragment_explanation">Des personnes de cette liste tentent de se joindre à ce groupe grâce au lien de groupe.</string>
   <string name="RequestingMembersFragment_added_s">« %1$s » a été ajouté</string>
   <string name="RequestingMembersFragment_denied_s">« %1$s » a été refusé</string>
   <!--AddMembersActivity-->
@@ -845,11 +846,17 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a changé qui peut modifier les membres du groupe en « %2$s ».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Qui peut modifier les membres du groupe a été changé en « %1$s ».</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vous avez activé le lien de groupe partageable avec approbation d’un administrateur.</string>
-  <string name="MessageRecord_you_turned_off_the_group_link">Vous avez désactivé le lien de groupe partageable.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vous avez activé le lien de groupe et l’approbation d’un administrateur est désactivée.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vous avez activé le lien de groupe et l’approbation d’un administrateur est activée.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Vous avez désactivé le lien de groupe.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s a activé le lien de groupe et l’approbation d’un administrateur est désactivée.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s a activé le lien de groupe et l’approbation d’un administrateur est activée.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Le lien de groupe a été activé et l’approbation d’un administrateur est désactivée.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Le lien de groupe a été activé et l’approbation d’un administrateur est activée.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Vous avez réinitialisé le lien de groupe.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Vous avez rejoint le groupe grâce au lien de groupe.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Vous êtes joint au groupe grâce au lien de groupe.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Vous avez demandé à vous joindre au groupe.</string>
   <!--GV2 group link approvals-->
@@ -1716,6 +1723,7 @@
   <string name="preferences__slow">Lent</string>
   <string name="preferences__help">Aide </string>
   <string name="preferences__advanced">Avancés</string>
+  <string name="preferences__donate_to_signal">Faire un don à Signal</string>
   <string name="preferences__privacy">Confidentialité</string>
   <string name="preferences__mms_user_agent">Agent utilisateur MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Paramètres manuels de messagerie multimédia</string>
@@ -1765,7 +1773,7 @@
   <string name="preferences_storage__audio">Son</string>
   <string name="preferences_storage__review_storage">État de la mémoire</string>
   <string name="preferences_storage__one_year">1 an</string>
-  <string name="preferences_storage__none">Aucune</string>
+  <string name="preferences_storage__none">Aucun</string>
   <string name="preferences_storage__custom">Personnalisé</string>
   <string name="preferences_advanced__use_system_emoji">Utiliser les émojis du système</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Désactiver la prise en charge des émojis intégrés à Signal</string>
@@ -1837,7 +1845,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Raccourci des paramètres</string>
   <string name="conversation_list_search_description">Chercher</string>
-  <string name="conversation_list__pinned">Épinglé</string>
+  <string name="conversation_list__pinned">Épinglée</string>
   <string name="conversation_list__chats">Conversations</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Vous pouvez seulement épingler jusqu’à %1$d conversations</string>
   <!--conversation_list_item_view-->
@@ -1884,14 +1892,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copier dans le presse-papiers</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparer avec le presse-papiers</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Votre version de Signal est désuète</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Votre version de Signal est désuète</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Votre version de Signal expirera dans %d jour. Touchez pour passer à la version la plus récente.</item>
     <item quantity="other">Votre version de Signal expirera dans %d jours. Touchez pour passer à la version la plus récente.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Votre version de Signal expirera aujourd’hui. Touchez pour passer à la version la plus récente.</string>
-  <string name="reminder_header_expired_build">Cette version de Signal est expirée.</string>
-  <string name="reminder_header_expired_build_details">Les messages ne seront plus envoyés correctement. Touchez pour passer à la version la plus récente.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Votre version de Signal expirera aujourd’hui. Touchez pour passer à la version la plus récente.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Cette version de Signal est expirée.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Les messages ne seront plus envoyés correctement. Touchez pour passer à la version la plus récente.</string> -->
   <string name="reminder_header_sms_default_title">Utiliser comme appli de textos par défaut</string>
   <string name="reminder_header_sms_default_text">Touchez pour faire de Signal votre appli de texto par défaut.</string>
   <string name="reminder_header_sms_import_title">Importer les textos du système</string>

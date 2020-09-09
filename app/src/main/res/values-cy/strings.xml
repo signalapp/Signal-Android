@@ -1931,16 +1931,16 @@ Send neges heb ei ddiogelu?</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copïo i\'r clipfwrdd</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Cymharu â\'r clipfwrdd</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Mae\'ch fersiwn o Signal yn hen</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Mae\'ch fersiwn o Signal yn hen</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Bydd eich fersiwn o Signal yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
     <item quantity="two">Bydd eich fersiwn o Signal yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
     <item quantity="many">Bydd eich fersiwn o Signal yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
     <item quantity="other">Bydd eich fersiwn o Signal yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Bydd eich fersiwn o Signal yn dod i ben heddiw. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</string>
-  <string name="reminder_header_expired_build">Mae\'ch fersiwn o Signal wedi dod i ben!</string>
-  <string name="reminder_header_expired_build_details">Ni fydd negeseuon bellach yn cael eu hanfon yn llwyddiannus. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Bydd eich fersiwn o Signal yn dod i ben heddiw. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Mae\'ch fersiwn o Signal wedi dod i ben!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Ni fydd negeseuon bellach yn cael eu hanfon yn llwyddiannus. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</string> -->
   <string name="reminder_header_sms_default_title">Defnyddio fel yr ap SMS rhagosodedig</string>
   <string name="reminder_header_sms_default_text">Tapio i wneud Signal eich ap SMS.</string>
   <string name="reminder_header_sms_import_title">Mewnforio SMS y system</string>

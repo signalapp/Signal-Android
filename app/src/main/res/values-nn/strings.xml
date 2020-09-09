@@ -454,6 +454,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Ventande medlemsførespurnader</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Ingen medlemsførespurnader</string>
+  <string name="RequestingMembersFragment_explanation">Personar på denne lista prøver å bli med i gruppa via gruppelenka.</string>
   <string name="RequestingMembersFragment_added_s">La til «%1$s»</string>
   <string name="RequestingMembersFragment_denied_s">Avslo «%1$s»</string>
   <!--AddMembersActivity-->
@@ -615,6 +616,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppelenker kjem snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Oppdater Signal for å bruka gruppelenker</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal støtter ikkje enno å bli med i grupper via lenker. Denne funksjonaliteten kjem i ei seinare utgåve.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-utgåva di støttar ikkje gruppelenker. Oppdater til siste utgåve for å bli med denne gruppa via ei lenke.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelenka er ugyldig</string>
   <!--GV2 Request confirmation dialog-->
@@ -850,10 +852,25 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endra kven som kan redigera gruppemedlemskap til «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Kven som kan endra gruppemedlemskap er endra til «%1$s».</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du aktiverte gruppelenka utan admin-godkjenning.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du aktiverte gruppelenka med admin-godkjenning.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Du deaktiverte gruppelenka.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s skrudde på gruppelenka utan admin-godkjenning.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s skrudde på gruppelenka med admin-godkjenning.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s skrudde av gruppelenka.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Gruppelenka er aktivert utan admin-godkjenning.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Gruppelenka er aktivert med admin-godkjenning.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Gruppelenka er deaktivert.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Du nullstilte gruppelenka.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s nullstilte gruppelenka.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Gruppelenka er nullstilt.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du blei med i gruppa via gruppelenka.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s blei med i gruppa via gruppelenka.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du spurde om å bli med i gruppa.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s spurde om å bli med via gruppelenka.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkjende førespurnaden din om å bli med i gruppa.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkjende førespurnaden frå %2$s om å bli med i gruppa.</string>
@@ -1434,6 +1451,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Endringar med tryggleiksnummer.</string>
   <string name="safety_number_change_dialog__send_anyway">Send uansett</string>
+  <string name="safety_number_change_dialog__call_anyway">Ring uansett</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Desse personane kan ha reinstallert eller bytta einingar. Stadfest tryggleiksnummeret ditt med dei for å sikra personvernet.</string>
   <string name="safety_number_change_dialog__view">Sjå</string>
   <string name="safety_number_change_dialog__previous_verified">Tidlegare stadfesta</string>
@@ -1729,6 +1747,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__slow">Langsam</string>
   <string name="preferences__help">Hjelp</string>
   <string name="preferences__advanced">Avansert</string>
+  <string name="preferences__donate_to_signal">Doner til Signal</string>
   <string name="preferences__privacy">Personvern</string>
   <string name="preferences__mms_user_agent">MMS-brukaragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelt MMS-oppsett</string>
@@ -1742,6 +1761,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__chats">Samtalar og media</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Lengdgrense for samtalar</string>
+  <string name="preferences__keep_messages">Spar på meldingar</string>
+  <string name="preferences__clear_message_history">Tøm meldingshistorikk</string>
   <string name="preferences__linked_devices">Tilkopla einingar</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
@@ -1771,18 +1792,34 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wifi</string>
   <string name="preferences_chats__when_roaming">I framandnett</string>
   <string name="preferences_chats__media_auto_download">Automatisk nedlasting av media</string>
+  <string name="preferences_chats__message_history">Meldingshistorikk</string>
   <string name="preferences_storage__storage_usage">Lagringsbruk</string>
   <string name="preferences_storage__photos">Bilde</string>
   <string name="preferences_storage__videos">Videoar</string>
   <string name="preferences_storage__files">Filer</string>
   <string name="preferences_storage__audio">Lyd</string>
   <string name="preferences_storage__review_storage">Gå gjennom lagring</string>
+  <string name="preferences_storage__delete_older_messages">Slett eldre meldingar?</string>
+  <string name="preferences_storage__clear_message_history">Tøm meldingshistorikk?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette slettar all meldingshistorikk og media som er eldre enn %1$s frå eininga di for godt.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dette vil permanent forkorta alle samtalar til dei %1$s siste meldingane.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette vil permanent sletta all meldingshistorikk og media frå eininga di.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på at du vil sletta all meldingshistorikk?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meldingshistorikk blir permanent sletta. Denne handlinga kan ikkje angrast.</string>
+  <string name="preferences_storage__delete_all_now">Slett alt no</string>
+  <string name="preferences_storage__forever">For alltid</string>
+  <string name="preferences_storage__one_year">1 år</string>
+  <string name="preferences_storage__six_months">6 månader</string>
+  <string name="preferences_storage__thirty_days">30 dagar</string>
   <string name="preferences_storage__none">Inga</string>
+  <string name="preferences_storage__s_messages">%1$s meldingar</string>
   <string name="preferences_storage__custom">Sjølvvald</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">Sjølvvald lengdgrense for samtalar</string>
   <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vidaresend alle samtalar gjennom Signal-tenaren for å unngå å visa IP-adressa di til kontakten din. Dette vil gi dårlegare samtalekvalitet.</string>
   <string name="preferences_advanced__always_relay_calls">Alltid vidaresend samtalar</string>
+  <string name="preferences_app_protection__who_can">Kven kan  …</string>
   <string name="preferences_app_protection__app_access">App-tilgang</string>
   <string name="preferences_app_protection__communication">Kommunikasjon</string>
   <string name="preferences_chats__chats">Samtalar</string>
@@ -1807,6 +1844,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_notifications__notify_me">Varsla meg</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Få varsel når du blir nemnt i dempa samtalar</string>
   <string name="preferences_setup_a_username">Lag eit brukarnamn</string>
+  <string name="configurable_single_select__customize_option">Endra val</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1897,14 +1935,14 @@ Du er à jour!</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera til utklippstavle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Samanlikn med utklippstavla</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Denne Signal-installasjonen er utdatert</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Denne Signal-installasjonen er utdatert</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Signal-utgåva di blir utdatert om %d dag. Klikk for å oppdatera til nyaste utgåve.</item>
     <item quantity="other">Signal-utgåva di blir utdatert om %d dagar. Trykk for å oppdatera til nyaste utgåve.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Denne utgåva av Signal er forelda frå og med i dag. Trykk for å oppdatera til nyaste utgåve.</string>
-  <string name="reminder_header_expired_build">Denne utgåva av Signal er forelda!</string>
-  <string name="reminder_header_expired_build_details">Meldingar vert frå no av ikkje send. Trykk for å oppdatera til nyaste versjon.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Denne utgåva av Signal er forelda frå og med i dag. Trykk for å oppdatera til nyaste utgåve.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Denne utgåva av Signal er forelda!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Meldingar vert frå no av ikkje send. Trykk for å oppdatera til nyaste versjon.</string> -->
   <string name="reminder_header_sms_default_title">Bruk som standard SMS-program</string>
   <string name="reminder_header_sms_default_text">Trykk for å gjera Signal til standard SMS-program.</string>
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
@@ -2107,6 +2145,14 @@ Du er à jour!</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registrering – stadfestingskode for Android</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjend</string>
+  <string name="preferences_app_protection__see_my_phone_number">Sjå mitt telefonnummer</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Finna meg via telefonnummer</string>
+  <string name="PhoneNumberPrivacy_everyone">Alle</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Kontaktane mine</string>
+  <string name="PhoneNumberPrivacy_nobody">Ingen</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Telefonnummeret ditt blir synleg for alle personar og grupper som du melder med.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Alle som har telefonnummeret ditt i kontaktlista si kan få deg opp som ein Signal-kontakt. Andre kan finna deg i søk.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Berre kontaktane dine vil sjå telefonnummeret ditt på Signal.</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås tilgangen til Signal med Androids skjermlås eller fingeravtrykk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsgrense for inaktivitet før skjermlås</string>

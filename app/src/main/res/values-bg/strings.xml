@@ -1250,14 +1250,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копиране</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравняване с копирани</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Вашата версия на Signal е стара</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Вашата версия на Signal е стара</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Вашата версия на Сигнал ще изтече след %d ден. Натиснете, за да я обновите до най-новата версия.</item>
     <item quantity="other">Вашата версия на Signal ще изтече след %d дена. Натиснете, за да я обновите до най-новата версия.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Вашата версия на Signal ще изтече днес. Натиснете, за да обновите до най-новата версия.</string>
-  <string name="reminder_header_expired_build">Вашата версия на Signal е изтекла!</string>
-  <string name="reminder_header_expired_build_details">Съобщенията няма да бъдат успешно изпращани от сега нататък. Натиснете, за да обновите до най-новата версия.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Вашата версия на Signal ще изтече днес. Натиснете, за да обновите до най-новата версия.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Вашата версия на Signal е изтекла!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Съобщенията няма да бъдат успешно изпращани от сега нататък. Натиснете, за да обновите до най-новата версия.</string> -->
   <string name="reminder_header_sms_default_title">Използване като SMS програма по подразбиране</string>
   <string name="reminder_header_sms_default_text">Натисни, за да направиш Signal своята SMS програма по подразбиране.</string>
   <string name="reminder_header_sms_import_title">Внасяне на системните SMS-и</string>

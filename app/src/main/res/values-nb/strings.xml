@@ -1771,14 +1771,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiere til utklippstavle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med utklippstavlen</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Din versjon av Signal er utdatert</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Din versjon av Signal er utdatert</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Denne versjonen av Signal utløper om %ddag. Trykk for å oppdatere programmet til nyeste versjon.</item>
     <item quantity="other">Denne versjonen av Signal utløper om %d dag. Trykk for å oppdatere programmet til nyeste versjon.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Denne versjonen av Signal utgår i dag. Trykk for å oppdatere til nyeste versjon.</string>
-  <string name="reminder_header_expired_build">Denne versjonen av Signal er utgått.</string>
-  <string name="reminder_header_expired_build_details">Meldinger blir fra nå av ikke sendt. Trykk for å oppdatere til nyeste versjon.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Denne versjonen av Signal utgår i dag. Trykk for å oppdatere til nyeste versjon.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Denne versjonen av Signal er utgått.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Meldinger blir fra nå av ikke sendt. Trykk for å oppdatere til nyeste versjon.</string> -->
   <string name="reminder_header_sms_default_title">Bruk som forvalgt SMS-program</string>
   <string name="reminder_header_sms_default_text">Trykk for å gjøre Signal til forvalgt SMS-program.</string>
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>

@@ -1653,14 +1653,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি করুন</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ক্লিপবোর্ডের সাথে তুলনা করুন</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">আপনার Signal সংস্করণটি পুরানো</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">আপনার Signal সংস্করণটি পুরানো</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">আপনার Signal সংস্করণ %d দিন পরে বাতিল হয়ে যাবে। অতি সাম্প্রতিক সংস্করণে আপডেট করতে আলতো চাপুন।</item>
     <item quantity="other">আপনার Signal সংস্করণ %d দিনের মধ্যেই বাতিল হয়ে যাবে। অতি সাম্প্রতিক সংস্করণে আপডেট করতে আলতো চাপুন।</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">আপনার Signal সংস্করণ আজ বাতিল হয়ে যাবে। অতি সাম্প্রতিক সংস্করণে আপডেট করতে আলতো চাপুন।</string>
-  <string name="reminder_header_expired_build">আপনার Signal সংস্করণ বাতিল হয়ে গেছে।</string>
-  <string name="reminder_header_expired_build_details">বার্তা সফলভাবে আর প্রেরণ করবে না। অতি সাম্প্রতিক সংস্করণে আপডেট করতে আলতো চাপুন।</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">আপনার Signal সংস্করণ আজ বাতিল হয়ে যাবে। অতি সাম্প্রতিক সংস্করণে আপডেট করতে আলতো চাপুন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">আপনার Signal সংস্করণ বাতিল হয়ে গেছে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">বার্তা সফলভাবে আর প্রেরণ করবে না। অতি সাম্প্রতিক সংস্করণে আপডেট করতে আলতো চাপুন।</string> -->
   <string name="reminder_header_sms_default_title">ডিফল্ট এসএমএস অ্যাপ হিসাবে ব্যবহার করুন</string>
   <string name="reminder_header_sms_default_text">Signal কে আপনার ডিফল্ট এসএমএস অ্যাপ করতে আলতো চাপুন।</string>
   <string name="reminder_header_sms_import_title">সিস্টেম এসএমএস আমদানি করুন</string>

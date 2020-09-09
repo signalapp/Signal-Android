@@ -1927,15 +1927,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiază în clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compară cu clipboard-ul</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versiunea ta de Signal este veche</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Versiunea ta de Signal este veche</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
     <item quantity="few">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
     <item quantity="other">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versiunea ta de Signal va expira azi. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string>
-  <string name="reminder_header_expired_build">Versiunea ta de Signal a expirat!</string>
-  <string name="reminder_header_expired_build_details">Mesajele nu se vor mai trimite cu succes. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versiunea ta de Signal va expira azi. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versiunea ta de Signal a expirat!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesajele nu se vor mai trimite cu succes. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string> -->
   <string name="reminder_header_sms_default_title">Utilizează ca și aplicație SMS implicită</string>
   <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal ca și aplicație SMS implicită.</string>
   <string name="reminder_header_sms_import_title">Importă SMS de sistem</string>

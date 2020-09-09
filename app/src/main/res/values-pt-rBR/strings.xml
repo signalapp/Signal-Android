@@ -449,6 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Solicitações de membros pendentes</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Não há pedidos de membros para mostrar.</string>
+  <string name="RequestingMembersFragment_explanation">As pessoas desta lista estão tentando se conectar a este grupo através do link de grupo.</string>
   <string name="RequestingMembersFragment_added_s">Adicionado \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Negado \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -610,6 +611,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Links de grupos em breve</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atualize o Signal para usar links do grupo</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Participar no grupo através de um link ainda não é suportado pelo Signal. Este recurso será lançado na próxima atualização.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que você está usando não suporta links de grupo. Atualize para a versão mais recente para se conectar a este grupo via link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">O link de grupo não é válido</string>
   <!--GV2 Request confirmation dialog-->
@@ -845,10 +847,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s mudou quem pode editar os membros do grupo. Agora é \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Quem pode editar as informações do grupo foi alterado para \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Você ativou o link do grupo com a aprovação do administrador desativada.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Você ativou o link do grupo com a aprovação de administrador ativada.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Você desativou o link do grupo.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ativou o link do grupo com a aprovação de administrador desativada.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ativou o link do grupo com a aprovação de administrador ativada.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s desativou o link do grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">O link do grupo foi ativado com a aprovação de administrador desativada.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">O link do grupo foi ativado com a aprovação de administrador ativada.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">O link do grupo foi desativado.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Você resetou o link do grupo.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s resetou o link do grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">O link do grupo foi resetado.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Você se conectou ao grupo via o link do grupo.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se conectou ao grupo via o link do grupo.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Você enviou um pedido para participar no grupo.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou a participar via o link do grupo.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprovou seu pedido de participação no grupo.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou um pedido de participação no grupo de %2$s.</string>
@@ -1430,6 +1447,7 @@
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Mudanças no Número de Segurança</string>
   <string name="safety_number_change_dialog__send_anyway">Envie de qualquer forma</string>
+  <string name="safety_number_change_dialog__call_anyway">Ligue de qualquer maneira</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">As seguintes pessoas podem ter reinstalado ou mudado de aparelho. Verifique o seu número de segurança com elas para garantir a sua privacidade e a delas.</string>
   <string name="safety_number_change_dialog__view">Exibir</string>
   <string name="safety_number_change_dialog__previous_verified">Já verificado</string>
@@ -1736,6 +1754,8 @@
   <string name="preferences__chats">Chats e mídia</string>
   <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
+  <string name="preferences__keep_messages">Guardar mensagens</string>
+  <string name="preferences__clear_message_history">Excluir histórico de mensagens</string>
   <string name="preferences__linked_devices">Dispositivos vinculados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
@@ -1765,18 +1785,32 @@
   <string name="preferences_chats__when_using_wifi">Quando usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Quando em roaming</string>
   <string name="preferences_chats__media_auto_download">Download automático de mídia</string>
+  <string name="preferences_chats__message_history">Histórico da mensagens</string>
   <string name="preferences_storage__storage_usage">Uso do armazenamento</string>
   <string name="preferences_storage__photos">Fotos</string>
   <string name="preferences_storage__videos">Vídeos</string>
   <string name="preferences_storage__files">Arquivos</string>
   <string name="preferences_storage__audio">Áudio</string>
   <string name="preferences_storage__review_storage">Checar armazenamento</string>
+  <string name="preferences_storage__delete_older_messages">Excluir as mensagens mais antigas?</string>
+  <string name="preferences_storage__clear_message_history">Excluir histórico de mensagens?</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Isto excluirá permanentemente todas as conversas menos as %1$s mensagens mais recentes.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tem certeza que quer excluir todo o histórico de mensagens?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Todo o histórico de mensagens será excluído permanentemente. Esta ação não pode ser desfeita.</string>
+  <string name="preferences_storage__delete_all_now">Excluir tudo agora</string>
+  <string name="preferences_storage__forever">Para sempre</string>
+  <string name="preferences_storage__one_year">1 ano</string>
+  <string name="preferences_storage__six_months">6 meses</string>
+  <string name="preferences_storage__thirty_days">30 dias</string>
   <string name="preferences_storage__none">Nenhum</string>
+  <string name="preferences_storage__s_messages">%1$s mensagens</string>
   <string name="preferences_storage__custom">Personalizado</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">Limite personalizado de duração da conversa</string>
   <string name="preferences_advanced__use_system_emoji">Usar emoji do sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desabilitar o suporte a emoji embutido do Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Encaminhar todas as chamadas através do servidor Signal para evitar revelar seu endereço IP para seu contato. Habilitar reduzirá a qualidade da chamada.</string>
   <string name="preferences_advanced__always_relay_calls">Sempre reencaminhar chamadas</string>
+  <string name="preferences_app_protection__who_can">Quem pode…</string>
   <string name="preferences_app_protection__app_access">Acesso ao aplicativo</string>
   <string name="preferences_app_protection__communication">Comunicação</string>
   <string name="preferences_chats__chats">Chats</string>
@@ -1801,6 +1835,7 @@
   <string name="preferences_notifications__notify_me">Notifique-me</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Receba notificações quando você for mencionado em conversas silenciosas</string>
   <string name="preferences_setup_a_username">Definir um nome de usuário</string>
+  <string name="configurable_single_select__customize_option">Opção para personalizar</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1890,14 +1925,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar com a área de transferência</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Sua versão do Signal está desatualizada</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Sua versão do Signal está desatualizada</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Sua versão do Signal irá expirar em %d dia. Toque para atualizar para a versão mais recente.</item>
     <item quantity="other">Sua versão do Signal irá expirar em %d dias. Toque para atualizar para a versão mais recente.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Sua versão do Signal expirará hoje. Toque para atualizar para a versão mais recente.</string>
-  <string name="reminder_header_expired_build">Sua versão do Signal expirou!</string>
-  <string name="reminder_header_expired_build_details">As mensagens não serão mais enviadas com sucesso. Toque para atualizar para a versão mais recente.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Sua versão do Signal expirará hoje. Toque para atualizar para a versão mais recente.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Sua versão do Signal expirou!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">As mensagens não serão mais enviadas com sucesso. Toque para atualizar para a versão mais recente.</string> -->
   <string name="reminder_header_sms_default_title">Usar como aplicativo padrão de SMS</string>
   <string name="reminder_header_sms_default_text">Toque para tornar o Signal o seu aplicativo padrão de SMS.</string>
   <string name="reminder_header_sms_import_title">Importar SMS do sistema</string>
@@ -2099,7 +2134,14 @@
   <string name="RegistrationActivity_code_support_subject">Cadastro Signal - Código de verificação para Android</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
+  <string name="preferences_app_protection__see_my_phone_number">Ver meu número de telefone</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Pode me encontrar pelo número de telefone</string>
+  <string name="PhoneNumberPrivacy_everyone">Todo o mundo</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Meus contatos</string>
   <string name="PhoneNumberPrivacy_nobody">Ninguém</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Seu número de telefone estará visível para todas as pessoas e grupos dos quais você participe.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Qualquer pessoa que tenha seu número de telefone em seus contatos o verá como um contato no Signal. Outros poderão encontrá-lo em busca.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Somente seus contatos verão seu número de telefone no Signal.</string>
   <string name="preferences_app_protection__screen_lock">Bloqueio de tela</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Proteger acesso ao Signal com tela de bloqueio do Android ou impressão digital.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tempo de espera para bloquear tela</string>

@@ -1328,15 +1328,15 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копирај на клипборд</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Упореди са клипбордом</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Ваше издање Signal-a је застарело!</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Ваше издање Signal-a је застарело!</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Ваше издање Signal-a истиче за %d дан. Тапните да надоградите на најскорије издање.</item>
     <item quantity="few">Ваше издање Signal-a истиче за %d дана. Тапните да надоградите на најскорије издање.</item>
     <item quantity="other">Ваше издање Signal-a истиче за %d дана. Тапните да надоградите на најскорије издање.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Ваше издање Signal-a истиче данас. Тапните да надоградите на најскорије издање.</string>
-  <string name="reminder_header_expired_build">Ваше издање Signal-a је истекло!</string>
-  <string name="reminder_header_expired_build_details">Више нећете моћи успешно да шаљете поруке. Тапните да надоградите на најскорије издање.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Ваше издање Signal-a истиче данас. Тапните да надоградите на најскорије издање.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Ваше издање Signal-a је истекло!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Више нећете моћи успешно да шаљете поруке. Тапните да надоградите на најскорије издање.</string> -->
   <string name="reminder_header_sms_default_title">Користи као подразумевану апл. за СМС</string>
   <string name="reminder_header_sms_default_text">Тапните да поставите Signal за подразумевану апликацију за СМС.</string>
   <string name="reminder_header_sms_import_title">Увези системске СМС</string>

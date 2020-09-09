@@ -1684,6 +1684,7 @@
   <string name="preferences__slow">緩慢</string>
   <string name="preferences__help">幫助</string>
   <string name="preferences__advanced">進階</string>
+  <string name="preferences__donate_to_signal">捐贈 Signal</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">手動多媒體設定</string>
@@ -1737,7 +1738,7 @@
   <string name="preferences_storage__review_storage">檢視儲存空間</string>
   <string name="preferences_storage__delete_older_messages">刪除舊訊息?</string>
   <string name="preferences_storage__clear_message_history">清除訊息歷史記錄?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">這將從裝置中永久刪除所有早於%1$s的訊息歷史記錄和媒體檔案。</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">這將從裝置中永久刪除所有早於%1$s時間的訊息歷史記錄和媒體檔案。</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">這將會永久整理所有對話到%1$s最近的訊息。</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">這將從你的裝置中永久刪除所有訊息歷史記錄和媒體檔案。</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">你確定要刪除所有訊息歷史記錄嗎?</string>
@@ -1870,13 +1871,13 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">複製到剪貼簿</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">與剪貼簿中的內容進行比較</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">您的 Signal 版本已過期</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">您的 Signal 版本已過期</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="other">您的 Signal 版本將於 %d 日內到期，請更新至最新版本。</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">您的 Signal 版本今日到期，請更新至最新版本。</string>
-  <string name="reminder_header_expired_build">您的 Signal 版本已過期！</string>
-  <string name="reminder_header_expired_build_details">您的訊息將無法成功傳送，請更新至最新版本。</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">您的 Signal 版本今日到期，請更新至最新版本。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">您的 Signal 版本已過期！</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">您的訊息將無法成功傳送，請更新至最新版本。</string> -->
   <string name="reminder_header_sms_default_title">設定為預設簡訊應用程式</string>
   <string name="reminder_header_sms_default_text">輕觸將 Signal 設定為預設的簡訊應用程式。</string>
   <string name="reminder_header_sms_import_title">匯入系統簡訊</string>

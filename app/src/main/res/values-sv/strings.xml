@@ -1717,6 +1717,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__slow">Långsam</string>
   <string name="preferences__help">Hjälp</string>
   <string name="preferences__advanced">Avancerat</string>
+  <string name="preferences__donate_to_signal">Donera till Signal</string>
   <string name="preferences__privacy">Integritetsskydd</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
@@ -1885,14 +1886,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera till urklipp</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Jämför med urklipp</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Din version av Signal är förlegad</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Din version av Signal är förlegad</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Din version av Signal kommer att upphöra om %d dag. Klicka för att uppdatera till den senaste versionen.</item>
     <item quantity="other">Din version av Signal kommer att löpa ut om %d dagar. Klicka för att uppdatera till den senaste versionen.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Din version av Signal kommer att löpa ut idag. Tryck för att uppdatera till den senaste versionen.</string>
-  <string name="reminder_header_expired_build">Din version av Signal har löpt ut!</string>
-  <string name="reminder_header_expired_build_details">Meddelanden kommer inte längre att skickas. Tryck för att uppdatera till den senaste versionen.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Din version av Signal kommer att löpa ut idag. Tryck för att uppdatera till den senaste versionen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Din version av Signal har löpt ut!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Meddelanden kommer inte längre att skickas. Tryck för att uppdatera till den senaste versionen.</string> -->
   <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
   <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string>
   <string name="reminder_header_sms_import_title">Importera systemets SMS</string>

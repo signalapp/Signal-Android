@@ -1512,13 +1512,13 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">复制到剪切板</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">与剪切板中的内容进行比较</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Signal 版本已经过期</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Signal 版本已经过期</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="other">当前所用的 Signal 版本将在 %d 天后过期。请点击升级至最新版。</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">当前所用的 Signal 版本将在今天过期。点击升级至最新版。</string>
-  <string name="reminder_header_expired_build">当前所用的 Signal 版本已过期！</string>
-  <string name="reminder_header_expired_build_details">消息将无法成功发送。点击升级至最新版。</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">当前所用的 Signal 版本将在今天过期。点击升级至最新版。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">当前所用的 Signal 版本已过期！</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">消息将无法成功发送。点击升级至最新版。</string> -->
   <string name="reminder_header_sms_default_title">设置为默认短信应用</string>
   <string name="reminder_header_sms_default_text">点击将 Signal 设置为默认短信应用。</string>
   <string name="reminder_header_sms_import_title">导入系统短信</string>

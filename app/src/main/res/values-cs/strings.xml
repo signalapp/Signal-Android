@@ -485,6 +485,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Čekající žádosti o členství</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Ždáné žádosti o členství k zobrazení</string>
+  <string name="RequestingMembersFragment_explanation">Lidé na tomto seznamu se pokouší připojit k této skupině pomocí skupinového odkazu.</string>
   <string name="RequestingMembersFragment_added_s">Přidán \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Odmítnut \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -664,6 +665,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Těšte se na skupinové odkazy</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualizujte Signal pro používání skupinových odkazů</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Připojení ke skupině pomocí odkazu ještě není v Signalu podporováno. Tato funkce bude zahrnuta v nadcházející aktualizaci.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verze Signalu, kterou používáte, nepodporuje skupinové odkazy. Aktualizujte na nejnovější verzi pro připojení k této skupině pomocí odkazu.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovat Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Skupinový odkaz je neplatný</string>
   <!--GV2 Request confirmation dialog-->
@@ -923,10 +925,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s změnil, kdo může upravovat členství ve skupině, na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Osoba oprávněná upravovat členství ve skupině byla změněna na \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Zapnuli jste skupinový odkaz bez schvalování správcem.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Zapnuli jste skupinový odkaz se schvalováním správcem.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Vypnuli jste skupinový odkaz.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s zapnul skupinový odkaz bez schvalování správcem.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s zapnul skupinový odkaz se schvalováním správcem.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s vypnul skupinový odkaz.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Skupinový odkaz bez schvalování správcem byl zapnut.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Skupinový odkaz se schvalováním správcem byl zapnut.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Skupinový odkaz byl vypnut.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Obnovili jste skupinový odkaz.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s obnovil skupinový odkaz.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Skupinový odkaz byl obnoven.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Připojili jste se ke skupině pomocí skupinového odkazu.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se připojil ke skupině pomocí skupinového odkazu.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Odeslali jste požadavek na vstup do skupiny.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s požádal o připojení pomocí skupinového odkazu.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s schválil váš požadavek na připojení ke skupině.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s schválil požadavek na připojení ke skupině od %2$s.</string>
@@ -1521,6 +1538,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Změny bezpečnostního čísla</string>
   <string name="safety_number_change_dialog__send_anyway">Přesto poslat</string>
+  <string name="safety_number_change_dialog__call_anyway">Přesto zavolat</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Následující lidé možná přeinstalovali nebo změnili zařízení. Ověřte s nimi své bezpečnostní číslo pro zajištění soukromí.</string>
   <string name="safety_number_change_dialog__view">Zobrazit</string>
   <string name="safety_number_change_dialog__previous_verified">Předchozí ověřeno</string>
@@ -1830,6 +1848,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__slow">Pomalu</string>
   <string name="preferences__help">Nápověda</string>
   <string name="preferences__advanced">Rozšířené možnosti</string>
+  <string name="preferences__donate_to_signal">Podpořte Signal finančně</string>
   <string name="preferences__privacy">Soukromí</string>
   <string name="preferences__mms_user_agent">MMS  User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuální nastavení MMS</string>
@@ -1843,6 +1862,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__chats">Konverzace a média</string>
   <string name="preferences__storage">Úložiště</string>
   <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
+  <string name="preferences__keep_messages">Zachovat zprávy</string>
+  <string name="preferences__clear_message_history">Vyčistit historii zpráv</string>
   <string name="preferences__linked_devices">Propojená zařízení</string>
   <string name="preferences__light_theme">Světlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
@@ -1872,17 +1893,32 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_chats__when_using_wifi">Při použití WiFi</string>
   <string name="preferences_chats__when_roaming">Při roamingu</string>
   <string name="preferences_chats__media_auto_download">Automatické stahování multimédií</string>
+  <string name="preferences_chats__message_history">Historie zpráv</string>
   <string name="preferences_storage__storage_usage">Využití úložiště</string>
   <string name="preferences_storage__photos">Fotografie</string>
   <string name="preferences_storage__videos">Videa</string>
   <string name="preferences_storage__files">Soubory</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Zkontrolovat úložiště</string>
+  <string name="preferences_storage__delete_older_messages">Smazat starší zprávy?</string>
+  <string name="preferences_storage__clear_message_history">Smazat historii zpráv?</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Tímto trvale zkrátíte všechny konverzace na %1$s nejnovějších zpráv.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Jste si jistí, že chcete smazat celou historii zpráv?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Celá historie zpráv bude trvale odstraněna. Tuto akci nelze vrátit zpět.</string>
+  <string name="preferences_storage__delete_all_now">Vše nyní smazat</string>
+  <string name="preferences_storage__forever">Navždy</string>
+  <string name="preferences_storage__one_year">1 rok</string>
+  <string name="preferences_storage__six_months">6 měsíců</string>
+  <string name="preferences_storage__thirty_days">30 dní</string>
   <string name="preferences_storage__none">Nic</string>
+  <string name="preferences_storage__s_messages">%1$s zpráv</string>
+  <string name="preferences_storage__custom">Vlastní</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">Vlastní limit délky konverzace</string>
   <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Signal </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Přenášet všechna volání přes servery Signal, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.</string>
   <string name="preferences_advanced__always_relay_calls">Vždy předávat hovory</string>
+  <string name="preferences_app_protection__who_can">Kdo může…</string>
   <string name="preferences_app_protection__app_access">Přístup aplikace</string>
   <string name="preferences_app_protection__communication">Komunikace</string>
   <string name="preferences_chats__chats">Konverzace</string>
@@ -1907,6 +1943,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_notifications__notify_me">Upozornit mne</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Přijmout upozornění při zmínce ve ztišených rozhovorech</string>
   <string name="preferences_setup_a_username">Nastavit uživatelské jméno</string>
+  <string name="configurable_single_select__customize_option">Nastavit předvolbu</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1996,16 +2033,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Zkopírovat do schránky</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnat se schránkou</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Vaše verze aplikace Signal je zastaralá</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Vaše verze aplikace Signal je zastaralá</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Platnost vaší verze aplikace Signal skončí za %d den. Dotykem aktualizujte na nejnovější verzi.</item>
     <item quantity="few">Platnost vaší verze aplikace Signal skončí za %d dny. Dotykem aktualizujte na nejnovější verzi.</item>
     <item quantity="many">Platnost vaší verze aplikace Signal skončí za %d dnů. Dotykem aktualizujte na nejnovější verzi.</item>
     <item quantity="other">Platnost vaší verze aplikace Signal skončí za %d dnů. Klepnutím aktualizujte na nejnovější verzi.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Platnost vaší verze aplikace Signal skončí dnes. Klepnutím aktualizujte na nejnovější verzi.</string>
-  <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal vypršela!</string>
-  <string name="reminder_header_expired_build_details">Zprávy nemohou být úspěšně odesílány. Klepnutím aktualizujte na nejnovější verzi.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Platnost vaší verze aplikace Signal skončí dnes. Klepnutím aktualizujte na nejnovější verzi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Platnost vaší verze aplikace Signal vypršela!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Zprávy nemohou být úspěšně odesílány. Klepnutím aktualizujte na nejnovější verzi.</string> -->
   <string name="reminder_header_sms_default_title">Nastavit jako výchozí aplikaci pro SMS</string>
   <string name="reminder_header_sms_default_text">Klepnutím nastavíte Signal jako výchozí SMS aplikaci.</string>
   <string name="reminder_header_sms_import_title">Importovat SMS ze systému</string>
@@ -2221,6 +2258,14 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationActivity_code_support_subject">Registrace Signalu - ověřovací kód pro Android</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
+  <string name="preferences_app_protection__see_my_phone_number">Vidět mé telefonní číslo</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Najít mé telefonní číslo</string>
+  <string name="PhoneNumberPrivacy_everyone">Všichni</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Moje kontakty</string>
+  <string name="PhoneNumberPrivacy_nobody">Nikdo</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Vaše telefonní číslo bude viditelné pro všechny lidi a skupiny, kterým pošlete zprávu.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Kdokoli, kdo má vaše telefonní číslo ve svých kontaktech, vás bude vidět jako kontakt v Signalu. Ostatní vás budou schopni najít vyhledáváním.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Pouze vaše kontakty budou v Signalu vidět vaše telefonní číslo.</string>
   <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zamknout přístup k Signalu zámkem obrazovky Androidu nebo otiskem prstu</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časový limit neaktivity zámku obrazovky</string>

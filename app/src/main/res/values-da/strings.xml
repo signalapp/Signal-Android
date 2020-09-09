@@ -860,7 +860,7 @@
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du nulstiller gruppelinket.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s nulstiller gruppelinket.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">Gruppelink blev nulstillet.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Gruppelinket blev nulstillet.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du deltager i gruppen via gruppelinket.</string>
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s deltager i gruppen via gruppelinket.</string>
@@ -1741,6 +1741,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__slow">Langsom</string>
   <string name="preferences__help">Hjælp</string>
   <string name="preferences__advanced">Avanceret</string>
+  <string name="preferences__donate_to_signal">Doner til Signal</string>
   <string name="preferences__privacy">Privatliv</string>
   <string name="preferences__mms_user_agent">MMS brugeragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS indstillinger</string>
@@ -1794,9 +1795,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_storage__review_storage">Vis hukommelse</string>
   <string name="preferences_storage__delete_older_messages">Slet ældre beskeder?</string>
   <string name="preferences_storage__clear_message_history">Ryd beskedhistorik?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette sletter al beskedhistorik og medier permanent fra din enhed, der er ældre end %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dette vil reducere alle samtaler permanent til de %1$s seneste beskeder.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette sletter al beskedhistorik og medier permanent fra din enhed.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på, du vil slette al beskedhistorik?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Al beskedhistorik fjernes permanent. Denne handling kan ikke fortrydes.</string>
   <string name="preferences_storage__delete_all_now">Slet det hele nu</string>
@@ -1927,14 +1926,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiér til udklipsholder</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med udklipsholder</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Din version af Signal er forældet</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Din version af Signal er forældet</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Din version af Signal udløber om %d dage. Tap for at opdatere til den nyeste version</item>
     <item quantity="other">Din version af Signal vil udløbe om %d dage. Tap for at opdatere til den nyeste version</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Din version af Signal udløber i dag. Tap for at opdatere til den nyeste version</string>
-  <string name="reminder_header_expired_build">Din version af Signal er udløbet!</string>
-  <string name="reminder_header_expired_build_details">Beskeder kan ikke længere sendes korrekt. Tap for at opdatere til den seneste version</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Din version af Signal udløber i dag. Tap for at opdatere til den nyeste version</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Din version af Signal er udløbet!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Beskeder kan ikke længere sendes korrekt. Tap for at opdatere til den seneste version</string> -->
   <string name="reminder_header_sms_default_title">Anvend som standard SMS app</string>
   <string name="reminder_header_sms_default_text">Tap for at gøre Signal til din standard SMS app</string>
   <string name="reminder_header_sms_import_title">Importér system SMS\'er</string>

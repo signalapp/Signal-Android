@@ -1444,14 +1444,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کلپ بورڈ تے کاپی کرو</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">کلپ بورڈ نال موازنہ کرو</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">تہاڈا Signal دا ورژن پرانا اے</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">تہاڈا Signal دا ورژن پرانا اے</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">تہاڈے Signal دے ورژن دی %d دناں اچ معیاد ختم ہو جائے گی۔ سب توں نویں ورژن تے اپ ڈیٹ کرن لئی بٹن دبو ۔</item>
     <item quantity="other">تہاڈے Signal دے ورژن دی معیاد %d دناں اچ ختم ہوجاوے گی۔ سب توں نویں ورژن تے اپ ڈیٹ کرن لئی بٹن دبو ۔</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">تہاڈے Signal دے ورژن دی معیاد اج ختم ہو جائے گی۔ سب توں نویں ورژن تے اپ ڈیٹ کرن لئی بٹن دبو ۔</string>
-  <string name="reminder_header_expired_build">تہاڈے Signal دے ورژن دی معیاد ختم ہوگئی اے!</string>
-  <string name="reminder_header_expired_build_details">سنیہے کامیابی نال نئیں گھلے جاسکن گے۔ سب توں نویں ورژن تے اپ ڈیٹ کرن لئی بٹن دبو ۔</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">تہاڈے Signal دے ورژن دی معیاد اج ختم ہو جائے گی۔ سب توں نویں ورژن تے اپ ڈیٹ کرن لئی بٹن دبو ۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">تہاڈے Signal دے ورژن دی معیاد ختم ہوگئی اے!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">سنیہے کامیابی نال نئیں گھلے جاسکن گے۔ سب توں نویں ورژن تے اپ ڈیٹ کرن لئی بٹن دبو ۔</string> -->
   <string name="reminder_header_sms_default_title">ڈیفالٹ SMS ایپ دے طور تے ورتو</string>
   <string name="reminder_header_sms_default_text">Sgnal نوں اپناں ڈیفالٹ SMS ایپ بنان لئی بٹن دبو ۔</string>
   <string name="reminder_header_sms_import_title">درآمد سسٹم SMS</string>

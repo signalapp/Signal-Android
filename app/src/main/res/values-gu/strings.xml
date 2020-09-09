@@ -1432,14 +1432,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ક્લિપબોર્ડ પર કૉપી કરેલું</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ક્લિપબોર્ડ સાથે તુલના કરો</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">તમારું Signal નું વર્ઝન જૂનું છે</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">તમારું Signal નું વર્ઝન જૂનું છે</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">તમારું Signal નું વર્ઝન %d દિવસો સમાપ્ત થશે. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</item>
     <item quantity="other">તમારું Signal નું વર્ઝન%d દિવસોમાં સમાપ્ત થશે. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">તમારું Signal નું વર્ઝન આજે સમાપ્ત થશે. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</string>
-  <string name="reminder_header_expired_build">તમારું Signal નું વર્ઝન સમાપ્ત થઈ ગયું છે!</string>
-  <string name="reminder_header_expired_build_details">મેસેજ હવે સફળતાપૂર્વક મોકલશે નહીં. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">તમારું Signal નું વર્ઝન આજે સમાપ્ત થશે. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">તમારું Signal નું વર્ઝન સમાપ્ત થઈ ગયું છે!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">મેસેજ હવે સફળતાપૂર્વક મોકલશે નહીં. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</string> -->
   <string name="reminder_header_sms_default_title">ડિફોલ્ટ SMS એપ્લિકેશન તરીકે ઉપયોગ કરો</string>
   <string name="reminder_header_sms_default_text">તમારી ડિફોલ્ટ SMS એપ્લિકેશન Signal બનાવવા માટે ટેપ કરો.</string>
   <string name="reminder_header_sms_import_title">સિસ્ટમ SMS ઇમ્પોર્ટ કરો</string>

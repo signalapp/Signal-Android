@@ -1831,6 +1831,7 @@
   <string name="preferences__slow">איטי</string>
   <string name="preferences__help">עזרה</string>
   <string name="preferences__advanced">מתקדם</string>
+  <string name="preferences__donate_to_signal">תרום אל Signal</string>
   <string name="preferences__privacy">פרטיות</string>
   <string name="preferences__mms_user_agent">סוכן משתמש MMS</string>
   <string name="preferences__advanced_mms_access_point_names">הגדרות MMS ידניות</string>
@@ -1998,16 +1999,16 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">העתק ללוח העריכה</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">השווה עם לוח העריכה</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">גרסת Signal שלך אינה עדכנית</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">גרסת Signal שלך אינה עדכנית</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">גרסת Signal שלך תפוג תוך יום %d. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
     <item quantity="two">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
     <item quantity="many">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
     <item quantity="other">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">גרסת Signal שלך תפוג היום. הקש כדי לעדכן לגרסה העדכנית ביותר.</string>
-  <string name="reminder_header_expired_build">גרסת Signal שלך פגה!</string>
-  <string name="reminder_header_expired_build_details">הודעות לא יישלחו יותר בהצלחה. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">גרסת Signal שלך תפוג היום. הקש כדי לעדכן לגרסה העדכנית ביותר.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">גרסת Signal שלך פגה!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">הודעות לא יישלחו יותר בהצלחה. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</string> -->
   <string name="reminder_header_sms_default_title">השתמש כיישום המסרונים ברירת המחדל</string>
   <string name="reminder_header_sms_default_text">הקש כדי להפוך את Signal ליישום המסרונים ברירת המחדל שלך.</string>
   <string name="reminder_header_sms_import_title">ייבא מסרוני מערכת</string>

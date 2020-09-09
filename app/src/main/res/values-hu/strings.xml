@@ -1726,6 +1726,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__slow">Lassú</string>
   <string name="preferences__help">Súgó</string>
   <string name="preferences__advanced">Haladó</string>
+  <string name="preferences__donate_to_signal">Adomány a Signal számára</string>
   <string name="preferences__privacy">Adatvédelem</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuális MMS beállítások</string>
@@ -1893,14 +1894,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Másolás vágólapra</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Összehasonlítás vágólappal</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">A Signal-od verziója elavult</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">A Signal-od verziója elavult</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">A Signal-od verziója %d nap múlva lejár. Érints a legutóbbi verzióra történő frissítéshez.</item>
     <item quantity="other">A Signal-od verziója %d nap múlva lejár. Koppints ide a legfrissebb verzióra történő frissítéshez.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">A Signal-od verziója ma le fog járni. Koppints ide a legfrissebb verzióra történő frissítéshez.</string>
-  <string name="reminder_header_expired_build">A Signal-od verziója lejárt!</string>
-  <string name="reminder_header_expired_build_details">A továbbiakban üzeneteidet nem lehet sikeresen elküldeni. Koppints ide a legfrissebb verzióra történő frissítéshez.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">A Signal-od verziója ma le fog járni. Koppints ide a legfrissebb verzióra történő frissítéshez.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">A Signal-od verziója lejárt!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">A továbbiakban üzeneteidet nem lehet sikeresen elküldeni. Koppints ide a legfrissebb verzióra történő frissítéshez.</string> -->
   <string name="reminder_header_sms_default_title">Alapértelmezett SMS alkalmazás</string>
   <string name="reminder_header_sms_default_text">Koppints a Signal alapértelmezett SMS alkalmazássá tételéhez.</string>
   <string name="reminder_header_sms_import_title">SMS-ek importálása</string>

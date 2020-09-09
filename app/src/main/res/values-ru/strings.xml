@@ -1842,6 +1842,7 @@
   <string name="preferences__slow">Медленное</string>
   <string name="preferences__help">Помощь</string>
   <string name="preferences__advanced">Расширенные</string>
+  <string name="preferences__donate_to_signal">Поддержать Signal</string>
   <string name="preferences__privacy">Конфиденциальность</string>
   <string name="preferences__mms_user_agent">User Agent для MMS </string>
   <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
@@ -1907,8 +1908,8 @@
   <string name="preferences_storage__thirty_days">30 дней</string>
   <string name="preferences_storage__none">Нет</string>
   <string name="preferences_storage__s_messages">%1$s сообщений</string>
-  <string name="preferences_storage__custom">Пользовательское</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Пользовательское ограничение длины разговора</string>
+  <string name="preferences_storage__custom">Пользовательский</string>
+  <string name="preferences_Storage__custom_conversation_length_limit">Пользовательский предел длины разговора</string>
   <string name="preferences_advanced__use_system_emoji">Использовать системные эмодзи</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Отключить встроенные эмодзи Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через сервер Signal, чтобы не раскрывать ваш IP-адрес собеседнику. Качество звонка ухудшится.</string>
@@ -2028,16 +2029,16 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копировать в буфер обмена</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравнить с буфером обмена</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Ваша версия Signal скоро устареет</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Ваша версия Signal скоро устареет</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Ваша версия Signal перестанет работать через %d день. Обновиться до последней версии?</item>
     <item quantity="few">Ваша версия Signal перестанет работать через %d дня. Обновиться до последней версии?</item>
     <item quantity="many">Ваша версия Signal перестанет работать через %d дней. Обновиться до последней версии?</item>
     <item quantity="other">Ваша версия Signal перестанет работать через %d дней. Обновиться до последней версии?</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Ваша версия Signal перестанет работать сегодня. Обновиться до последней версии?</string>
-  <string name="reminder_header_expired_build">Ваша версия Signal устарела!</string>
-  <string name="reminder_header_expired_build_details">Сообщения более не будут отправляться. Нажмите, чтобы обновиться до последней версии.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Ваша версия Signal перестанет работать сегодня. Обновиться до последней версии?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Ваша версия Signal устарела!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Сообщения более не будут отправляться. Нажмите, чтобы обновиться до последней версии.</string> -->
   <string name="reminder_header_sms_default_title">Использовать для всех SMS</string>
   <string name="reminder_header_sms_default_text">Нажмите, чтобы сделать Signal своим приложением для SMS по умолчанию</string>
   <string name="reminder_header_sms_import_title">Импортировать SMS из системы</string>

@@ -1721,14 +1721,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Panoya kopyala</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Pano ile karşılaştır</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Signal sürümünüz eskimiş</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Signal sürümünüz eskimiş</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Signal sürümünüz %d gün içinde kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</item>
     <item quantity="other">Signal sürümünüz %d gün içinde kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Signal sürümünüz bugün kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</string>
-  <string name="reminder_header_expired_build">Signal sürümünüzün süresi doldu!</string>
-  <string name="reminder_header_expired_build_details">İletileriniz artık başarılı olarak gönderilemez. En yeni sürüme güncellemek için dokunun.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Signal sürümünüz bugün kullanım dışı kalacak. En yeni sürüme güncellemek için dokunun.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal sürümünüzün süresi doldu!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">İletileriniz artık başarılı olarak gönderilemez. En yeni sürüme güncellemek için dokunun.</string> -->
   <string name="reminder_header_sms_default_title">Varsayılan SMS uygulaması olarak ayarla</string>
   <string name="reminder_header_sms_default_text">Signal\'i varsayılan SMS uygulaması yapmak için dokunun.</string>
   <string name="reminder_header_sms_import_title">Sistem SMS\'lerini içe aktar</string>

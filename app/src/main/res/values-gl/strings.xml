@@ -1560,14 +1560,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar ao portapapeis</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar co portapapeis</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">A túa versión de Signal está desactualizada</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">A túa versión de Signal está desactualizada</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">A túa versión de Signal caduca en %d día. Toca para actualizar á versión máis recente.</item>
     <item quantity="other">A túa versión de Signal caduca en %d días. Toca para actualizar á versión máis recente.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">A túa versión de Signal caduca hoxe. Toca para actualizar á versión máis recente.</string>
-  <string name="reminder_header_expired_build">A túa versión de Signal caducou!</string>
-  <string name="reminder_header_expired_build_details">As mensaxes non se enviarán satisfactoriamente. Toca para actualizar á versión máis recente.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">A túa versión de Signal caduca hoxe. Toca para actualizar á versión máis recente.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">A túa versión de Signal caducou!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">As mensaxes non se enviarán satisfactoriamente. Toca para actualizar á versión máis recente.</string> -->
   <string name="reminder_header_sms_default_title">Aplicación predefinida das SMS</string>
   <string name="reminder_header_sms_default_text">Toca para facer de Signal a túa aplicación predefinida de SMS</string>
   <string name="reminder_header_sms_import_title">Importar SMS do sistema</string>

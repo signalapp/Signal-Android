@@ -1888,14 +1888,14 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopii al tondujo</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Kompari kun la tondujo</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Via Signal-versio estas neĝisdata</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Via Signal-versio estas neĝisdata</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Via Signal-versio senvalidiĝos post %d tago. Tuŝetu por ĝisdatigi al plej nova versio.</item>
     <item quantity="other">Via Signal-versio senvalidiĝos post %d tagoj. Tuŝetu por ĝisdatigi al plej nova versio.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Via Signal-versio senvalidiĝos hodiaŭ. Tuŝetu por ĝisdatigi al plej nova versio.</string>
-  <string name="reminder_header_expired_build">Via Signal-versio senvalidiĝis!</string>
-  <string name="reminder_header_expired_build_details">Mesaĝoj ne plu sendiĝos sukcese. Tuŝetu por ĝisdatigi al plej nova versio.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Via Signal-versio senvalidiĝos hodiaŭ. Tuŝetu por ĝisdatigi al plej nova versio.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Via Signal-versio senvalidiĝis!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesaĝoj ne plu sendiĝos sukcese. Tuŝetu por ĝisdatigi al plej nova versio.</string> -->
   <string name="reminder_header_sms_default_title">Uzi kiel defaŭltan SMS-aplikaĵon</string>
   <string name="reminder_header_sms_default_text">Tuŝetu, por ke Signal estu via defaŭlta SMS-aplikaĵo.</string>
   <string name="reminder_header_sms_import_title">Importi SMS-ojn el la sistemo</string>

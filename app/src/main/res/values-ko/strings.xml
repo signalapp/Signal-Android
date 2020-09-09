@@ -1477,13 +1477,13 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">클립보드에 복사</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">클립보드와 비교</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">설치된 Signal 버전이 곧 만료됨</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">설치된 Signal 버전이 곧 만료됨</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="other">%d일 후 Signal 버전이 만료됩니다. 탭하여 최신 버전으로 업데이트하세요.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">설치된 Signal 버전이 오늘 만료됩니다. 탭하여 최신 버전으로 업데이트하세요.</string>
-  <string name="reminder_header_expired_build">설치된 Signal 버전이 만료되었습니다!</string>
-  <string name="reminder_header_expired_build_details">메시지가 더 이상 전송되지 않습니다. 탭하여 최신 버전으로 업데이트하세요.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">설치된 Signal 버전이 오늘 만료됩니다. 탭하여 최신 버전으로 업데이트하세요.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">설치된 Signal 버전이 만료되었습니다!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">메시지가 더 이상 전송되지 않습니다. 탭하여 최신 버전으로 업데이트하세요.</string> -->
   <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string>
   <string name="reminder_header_sms_default_text">탭하여 Signal을 기본 SMS 앱으로 설정하세요.</string>
   <string name="reminder_header_sms_import_title">시스템 SMS 가져오기</string>

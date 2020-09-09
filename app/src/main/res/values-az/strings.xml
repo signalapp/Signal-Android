@@ -1209,14 +1209,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Mübadilə buferinə köçür</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Mübadilə buferi ilə müqayisə et</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Sənin Signal-ının vaxtı ötüb</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Sənin Signal-ının vaxtı ötüb</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Sənin Signal-ının %d gündən sonra vaxtı bitəcək. Ən son versiyaya yeniləmək üçün kliklə.</item>
     <item quantity="other">Sənin Signal-ının %d gündən sonra vaxtı bitəcək. Ən son versiyaya yeniləmək üçün kliklə.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Sənin Signal-ının vaxtı bugün bitir. Ən son versiyaya yeniləmək üçün kliklə.</string>
-  <string name="reminder_header_expired_build">Signal-ın versiyasının vaxtı bitib!</string>
-  <string name="reminder_header_expired_build_details">Mesajlar artıq göndərilə bilməyəcək. Ən sonr versiyaya yeniləmək üçün kliklə.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Sənin Signal-ının vaxtı bugün bitir. Ən son versiyaya yeniləmək üçün kliklə.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal-ın versiyasının vaxtı bitib!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesajlar artıq göndərilə bilməyəcək. Ən sonr versiyaya yeniləmək üçün kliklə.</string> -->
   <string name="reminder_header_sms_default_title">Əsas SMS aplikasiyası kimi istifadə et</string>
   <string name="reminder_header_sms_default_text">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə.</string>
   <string name="reminder_header_sms_import_title">Sistem SMS-ni daxil et</string>

@@ -1151,14 +1151,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopî ser rûnûsgehê bike</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bi rûnûsgehê re bide ber hev</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Guhertoya Signala te êdî kevn bûye</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Guhertoya Signala te êdî kevn bûye</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Guhertoya Signala te dê piştî %d rojê kevin bibe. Ji bo wê hildemînî guhertoya herî nû bitepîne.</item>
     <item quantity="other">Guhertoya Signala te dê piştî %d rojan kevin bibe. Ji bo wê hildemînî guhertoya herî nû bitepîne.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Guhertoya Signala te dê îro kevin bibe. Ji bo wê hildemînî guhertoya herî nû bitepîne.</string>
-  <string name="reminder_header_expired_build">Guhertoya Signala te êdî kevn bûye!</string>
-  <string name="reminder_header_expired_build_details">Êdî peyam nikarin bên şandin. Bo Signalê hildemînî guhertoya herî nû bitepîne.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Guhertoya Signala te dê îro kevin bibe. Ji bo wê hildemînî guhertoya herî nû bitepîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Guhertoya Signala te êdî kevn bûye!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Êdî peyam nikarin bên şandin. Bo Signalê hildemînî guhertoya herî nû bitepîne.</string> -->
   <string name="reminder_header_sms_default_title">Wek bernameya SMSê ya jixweber bi kar bîne.</string>
   <string name="reminder_header_sms_default_text">Ji bo Signalê wek bernameya SMSê ya sereke bi kar bînî bitepîne.</string>
   <string name="reminder_header_sms_import_title">SMSên pergalê bihundirîne</string>

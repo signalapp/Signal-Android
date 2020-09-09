@@ -1773,14 +1773,14 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiatu arbelera</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Zure Signal bertsioa zaharkitua dago</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Zure Signal bertsioa zaharkitua dago</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Zure Signal-en bertsioa egun %d barru iraungiko da. Sakatu azkenengo bertsiora eguneratzeko.</item>
     <item quantity="other">Zure Signal-en bertsioa %d egun barru iraungiko da. Sakatu azkenengo bertsiora eguneratzeko.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Gaur amaituko da zure Signal bertsioa erabiltzeko epea. Ukitu azken bertsioara eguneratzeko.</string>
-  <string name="reminder_header_expired_build">Amaitu da zure Signal bertsioa erabiltzeko epea!</string>
-  <string name="reminder_header_expired_build_details">Mezuak ezingo dira bidali.  Ukitu azken bertsiora eguneratzeko.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Gaur amaituko da zure Signal bertsioa erabiltzeko epea. Ukitu azken bertsioara eguneratzeko.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Amaitu da zure Signal bertsioa erabiltzeko epea!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mezuak ezingo dira bidali.  Ukitu azken bertsiora eguneratzeko.</string> -->
   <string name="reminder_header_sms_default_title">Lehenetsitako SMS aplikazio gisa erabili</string>
   <string name="reminder_header_sms_default_text">Ukitu Signal zure SMS aplikazio lehenetsia bihurtzeko</string>
   <string name="reminder_header_sms_import_title">Importatu sistemaren SMS mezuak</string>

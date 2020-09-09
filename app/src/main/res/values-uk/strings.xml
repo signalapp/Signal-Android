@@ -1209,16 +1209,16 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Скопіювати до буфера обміну</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Порівняти із буфером обміну</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Ваша версія Signal застаріла</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Ваша версія Signal застаріла</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Вашу версію Сигналу перестануть підтримувати за %d день. Торкніться, щоб оновити до останньої версії.</item>
     <item quantity="few">Вашу версію Сигналу перестануть підтримувати за %d днів. Торкніться, щоб оновити до останньої версії.</item>
     <item quantity="many">Вашу версію Сигналу перестануть підтримувати за %d днів. Торкніться, щоб оновити до останньої версії.</item>
     <item quantity="other">Вашу версію Signal перестануть підтримувати за %d днів. Торкніться, щоб оновити до останньої версії.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Вашу версію Signal перестануть підтримувати сьогодні. Торкніться, щоб оновити до останньої версії.</string>
-  <string name="reminder_header_expired_build">Ваша версія Signal застаріла!</string>
-  <string name="reminder_header_expired_build_details">Повідомлення більше не будуть відправлятися. Торкніться, щоб оновитися до останньої версії.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Вашу версію Signal перестануть підтримувати сьогодні. Торкніться, щоб оновити до останньої версії.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Ваша версія Signal застаріла!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Повідомлення більше не будуть відправлятися. Торкніться, щоб оновитися до останньої версії.</string> -->
   <string name="reminder_header_sms_default_title">Використовувати як типову програму для SMS</string>
   <string name="reminder_header_sms_default_text">Торкніться, щоб зробити Signal типовою програмою для SMS.</string>
   <string name="reminder_header_sms_import_title">Імпортувати системну базу SMS?</string>

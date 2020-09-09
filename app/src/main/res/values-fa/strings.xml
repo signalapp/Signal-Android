@@ -1841,14 +1841,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ بورد</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">نسخه Signal شما قدیمی است.</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">نسخه Signal شما قدیمی است.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">نسخهٔ Signal شما بعد از %d روز منقضی خواهد شد. برای به‌روزرسانی به آخرین نسخه ضربه بزنید.</item>
     <item quantity="other">نسخهٔ Signal شما بعد از %d روز منقضی خواهد شد. برای به‌روزرسانی به آخرین نسخه ضربه بزنید.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">نسخهٔ Signal شما امروز منقضی می‌شود. برای به‌روزرسانی به آخرین نسخه ضربه بزنید.</string>
-  <string name="reminder_header_expired_build">نسخهٔ Signal شما منقضی است.</string>
-  <string name="reminder_header_expired_build_details">پیام‌ها دیگر با موفقیت ارسال نخواهند شد. برای به‌روزرسانی به آخرین نسخه ضربه بزنید.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">نسخهٔ Signal شما امروز منقضی می‌شود. برای به‌روزرسانی به آخرین نسخه ضربه بزنید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">نسخهٔ Signal شما منقضی است.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">پیام‌ها دیگر با موفقیت ارسال نخواهند شد. برای به‌روزرسانی به آخرین نسخه ضربه بزنید.</string> -->
   <string name="reminder_header_sms_default_title">استفاده به صورت برنامهٔ پیش‌فرض پیامک</string>
   <string name="reminder_header_sms_default_text">برای تبدیل Signal به برنامهٔ پیش‌فرض پیامک خود ضربه بزنید.</string>
   <string name="reminder_header_sms_import_title">وارد کردن پیامک‌های سیستم</string>

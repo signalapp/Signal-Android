@@ -1840,6 +1840,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__slow">Počasi</string>
   <string name="preferences__help">Pomoč</string>
   <string name="preferences__advanced">Napredno</string>
+  <string name="preferences__donate_to_signal">Podprite Signal</string>
   <string name="preferences__privacy">Zasebnost</string>
   <string name="preferences__mms_user_agent">Uporabniški posrednik MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Ročne nastavitve MMS</string>
@@ -1853,7 +1854,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__chats">Pogovori in večpredstavnost</string>
   <string name="preferences__storage">Pomnilnik</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
-  <string name="preferences__keep_messages">Obdrži sporočila</string>
+  <string name="preferences__keep_messages">Hramba sporočil</string>
   <string name="preferences__clear_message_history">Izbriši zgodovino pogovorov</string>
   <string name="preferences__linked_devices">Povezane naprave</string>
   <string name="preferences__light_theme">Svetla</string>
@@ -1899,7 +1900,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ste prepričani, da želite izbrisati celotno zgodovino sporočil?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Celotna zgodovina vaših sporočil bo za vedno izbrisana. Ta korak je nepovraten.</string>
   <string name="preferences_storage__delete_all_now">Izbriši vse zdaj!</string>
-  <string name="preferences_storage__forever">kadarkoli</string>
+  <string name="preferences_storage__forever">Za vedno</string>
   <string name="preferences_storage__one_year">1 leto</string>
   <string name="preferences_storage__six_months">6 mesecev</string>
   <string name="preferences_storage__thirty_days">30 dni</string>
@@ -2026,16 +2027,16 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj v odložišče</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Primerjaj preko odložišča</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Vaša različica aplikacije Signal je zastarela</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Vaša različica aplikacije Signal je zastarela</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Vaša različica aplikacije Signal bo čez %d dan potekla. Tapnite za posodobitev na zadnjo različico.</item>
     <item quantity="two">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
     <item quantity="few">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
     <item quantity="other">Vaša različica aplikacije Signal bo potekla v %d dneh. Tapnite za posodobitev na zadnjo različico.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Vaša različica aplikacije Signal bo danes potekla. Tapnite za nadgradnjo na zadnjo različico.</string>
-  <string name="reminder_header_expired_build">Vaša različica aplikacije Signal je potekla!</string>
-  <string name="reminder_header_expired_build_details">Ne morete več pošiljati sporočil Signal. Tapnite za posodobitev na zadnjo različico aplikacije.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Vaša različica aplikacije Signal bo danes potekla. Tapnite za nadgradnjo na zadnjo različico.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Vaša različica aplikacije Signal je potekla!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Ne morete več pošiljati sporočil Signal. Tapnite za posodobitev na zadnjo različico aplikacije.</string> -->
   <string name="reminder_header_sms_default_title">Uporabljaj kot privzeto aplikacijo SMS</string>
   <string name="reminder_header_sms_default_text">Z dotikom nastavite Signal za privzeto aplikacijo SMS</string>
   <string name="reminder_header_sms_import_title">Uvoz iz sistemske zbirke sporočil SMS</string>

@@ -1558,6 +1558,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__slow">Pomaly</string>
   <string name="preferences__help">Pomocník</string>
   <string name="preferences__advanced">Rozšírené</string>
+  <string name="preferences__donate_to_signal">Prispieť na Signal</string>
   <string name="preferences__privacy">Súkromie</string>
   <string name="preferences__mms_user_agent">MMS používateľský agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuálne MMS nastavenia</string>
@@ -1714,16 +1715,16 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopírovať</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnať</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Vaša verzia Signalu nie je aktuálna</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Vaša verzia Signalu nie je aktuálna</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Vaša verzia Signalu vyprší za %d deň. Ťuknutím aktualizujte na najnovšiu verziu.</item>
     <item quantity="few">Vaša verzia Signalu vyprší za %d dni. Ťuknutím aktualizujte na najnovšiu verziu.</item>
     <item quantity="many">Vaša verzia Signalu vyprší za %d dní. Ťuknutím aktualizujte na najnovšiu verziu.</item>
     <item quantity="other">Vaša verzia Signalu vyprší za %d dní. Ťuknutím aktualizujte na najnovšiu verziu.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Vaša verzia Signalu dnes vyprší. Ťuknutím aktualizujte na najnovšiu verziu.</string>
-  <string name="reminder_header_expired_build">Vaša verzia Signalu vypršala!</string>
-  <string name="reminder_header_expired_build_details">Správy sa nepodarí úspešne odoslať. Ťuknutím aktualizujte na najnovšiu verziu.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Vaša verzia Signalu dnes vyprší. Ťuknutím aktualizujte na najnovšiu verziu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Vaša verzia Signalu vypršala!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Správy sa nepodarí úspešne odoslať. Ťuknutím aktualizujte na najnovšiu verziu.</string> -->
   <string name="reminder_header_sms_default_title">Použiť ako predvolenú SMS aplikáciu</string>
   <string name="reminder_header_sms_default_text">Ťuknutím nastavíte Signal ako Vašu predvolenú SMS aplikáciu.</string>
   <string name="reminder_header_sms_import_title">Importovať systémové SMS správy?</string>

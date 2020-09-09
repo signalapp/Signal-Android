@@ -1724,6 +1724,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__slow">Lento</string>
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançado</string>
+  <string name="preferences__donate_to_signal">Doar ao Signal</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente do utilizador de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Definições manuais de MMS</string>
@@ -1891,14 +1892,14 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar com a área de transferência</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">A sua versão do Signal encontra-se desatualizada</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">A sua versão do Signal encontra-se desatualizada</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">A sua versão do Signal irá expirar dentro de %d dias. Tocar para atualizar para a versão mais recente.</item>
     <item quantity="other">A sua versão do Signal irá expirar dentro de %d dias. Pressione para atualizar para a versão mais recente.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">A sua versão de Signal irá expirar hoje. Toque para atualizar para a versão mais recente.</string>
-  <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string>
-  <string name="reminder_header_expired_build_details">As mensagens deixarão de ser enviadas com sucesso. Toque para atualizar para a versão mais recente.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">A sua versão de Signal irá expirar hoje. Toque para atualizar para a versão mais recente.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">A sua versão de Signal expirou!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">As mensagens deixarão de ser enviadas com sucesso. Toque para atualizar para a versão mais recente.</string> -->
   <string name="reminder_header_sms_default_title">Definir como aplicação de SMS pré-definida</string>
   <string name="reminder_header_sms_default_text">Toque para tornar o Signal na sua aplicação de SMS pré-definida.</string>
   <string name="reminder_header_sms_import_title">Importar as SMS do sistema</string>

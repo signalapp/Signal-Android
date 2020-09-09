@@ -1462,15 +1462,15 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Usporedi s međuspremnikom</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Vaša Signal inačica je istekla!</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Vaša Signal inačica je istekla!</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Vaša verzija Signala ističe za %d dan. Dodirnite za ažuriranje najnovije verzije.</item>
     <item quantity="few">Vaša verzija Signala ističe za %d dana. Dodirnite za ažuriranje najnovije verzije.</item>
     <item quantity="other">Vaša verzija Signal-a ističe za %d dana. Dodirnite za ažuriranje najnovije verzije.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Vaša će verzija Signala isteći danas. Dodirnite za ažuriranje na najnoviju inačicu.</string>
-  <string name="reminder_header_expired_build">Vaša je verzija Signala istekla!</string>
-  <string name="reminder_header_expired_build_details">Poruke više neće moći biti uspješno poslane. Pritisnite za ažuriranje na najnoviju inačicu.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Vaša će verzija Signala isteći danas. Dodirnite za ažuriranje na najnoviju inačicu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Vaša je verzija Signala istekla!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Poruke više neće moći biti uspješno poslane. Pritisnite za ažuriranje na najnoviju inačicu.</string> -->
   <string name="reminder_header_sms_default_title">Koristi kao zadanu SMS aplikaciju</string>
   <string name="reminder_header_sms_default_text">Pritisnite kako biste postavili Signal kao zadanu SMS aplikaciju.</string>
   <string name="reminder_header_sms_import_title">Uvezi SMS poruke sustava</string>

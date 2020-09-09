@@ -1517,14 +1517,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">क्लिपबोर्ड वर कॉपी करा</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">क्लिपबोर्ड सोबत तुलना करा</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Signal ची आपली आवृत्ती कालबाह्य आहे</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Signal ची आपली आवृत्ती कालबाह्य आहे</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Signal ची आपली आवृत्ती %dदिवसामध्ये कालबाह्य होणार आहे. सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यासाठी टॅप करा.</item>
     <item quantity="other">Signal ची आपली आवृत्ती %dदिवसांमध्ये कालबाह्य होणार आहे. सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यासाठी टॅप करा.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Signal ची आपली आवृत्ती आज कालबाह्य होणार आहे. सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यासाठी टॅप करा.</string>
-  <string name="reminder_header_expired_build">Signal ची आपली आवृत्ती कालबाह्य झाली आहे</string>
-  <string name="reminder_header_expired_build_details">संदेश यापुढे यशस्वीरीत्या पाठविले जाणार नाहीत. सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यासाठी टॅप करा.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Signal ची आपली आवृत्ती आज कालबाह्य होणार आहे. सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यासाठी टॅप करा.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal ची आपली आवृत्ती कालबाह्य झाली आहे</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">संदेश यापुढे यशस्वीरीत्या पाठविले जाणार नाहीत. सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यासाठी टॅप करा.</string> -->
   <string name="reminder_header_sms_default_title">पूर्वनिर्धारित SMS अॅप म्हणून वापरा</string>
   <string name="reminder_header_sms_default_text">Signal ला आपले पूर्वनिर्धारित SMS अॅप बनवण्यासाठी टॅप करा.</string>
   <string name="reminder_header_sms_import_title">सिस्टिम SMS आयात करा</string>

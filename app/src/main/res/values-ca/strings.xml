@@ -1717,6 +1717,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__slow">Lent</string>
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançat</string>
+  <string name="preferences__donate_to_signal">Feu una donació a Signal</string>
   <string name="preferences__privacy">Privadesa</string>
   <string name="preferences__mms_user_agent">Agent usuari dels MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuració manual dels MMS</string>
@@ -1884,14 +1885,14 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copia al porta-retalls</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compara amb el porta-retalls</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">La vostra versió del Signal és obsoleta</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">La vostra versió del Signal és obsoleta</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">La vostra versió del Signal caducarà d\'aquí %d dia. Premeu per a actualitzar-la a la versió més recent.</item>
     <item quantity="other">La vostra versió del Signal caducarà d\'aquí %d dies. Premeu per a actualitzar-la a la versió més recent.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">La vostra versió del Signal caducarà avui. Premeu per actualitzar-la a la versió més recent.</string>
-  <string name="reminder_header_expired_build">La vostra versió del Signal ha caducat!</string>
-  <string name="reminder_header_expired_build_details">El missatges no s\'enviaran correctament. Premeu per actualitzar-la a la versió més recent.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">La vostra versió del Signal caducarà avui. Premeu per actualitzar-la a la versió més recent.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">La vostra versió del Signal ha caducat!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">El missatges no s\'enviaran correctament. Premeu per actualitzar-la a la versió més recent.</string> -->
   <string name="reminder_header_sms_default_title">Usa-la com a aplicació d\'SMS predeterminada</string>
   <string name="reminder_header_sms_default_text">Premeu per establir el Signal com a aplicació predeterminada per a SMS.</string>
   <string name="reminder_header_sms_import_title">Importació dels SMS del sistema</string>

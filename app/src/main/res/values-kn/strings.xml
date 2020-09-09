@@ -1478,14 +1478,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಗೆ ನಕಲಿಸಿ</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಜೊತೆ ಹೋಲಿಸಿ</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">ನಿಮ್ಮ Signal ನ ಆವೃತ್ತಿ ಹಳೆಯದು</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">ನಿಮ್ಮ Signal ನ ಆವೃತ್ತಿ ಹಳೆಯದು</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">ನಿಮ್ಮ ನ ಆವೃತ್ತಿ Signal ರಲ್ಲಿ ಮುಕ್ತಾಯಗೊಳ್ಳುತ್ತದೆ %d ದಿನ. ಟ್ಯಾಪ್ ಮಾಡಿ ಗೆ ನವೀಕರಿಸಿ ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ.</item>
     <item quantity="other">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯು %d ದಿನಗಳಲ್ಲಿ ಮುಕ್ತಾಯಗೊಳ್ಳುತ್ತದೆ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯು ಇಂದು ವಾಯಿದೆ ಮೀರಲಿದೆ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-  <string name="reminder_header_expired_build">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯ ವಾಯಿದೆ ಮುಗಿದಿದೆ!</string>
-  <string name="reminder_header_expired_build_details">ಸಂದೇಶಗಳನ್ನು ಇನ್ನು ಮುಂದೆ ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯು ಇಂದು ವಾಯಿದೆ ಮೀರಲಿದೆ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯ ವಾಯಿದೆ ಮುಗಿದಿದೆ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">ಸಂದೇಶಗಳನ್ನು ಇನ್ನು ಮುಂದೆ ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string> -->
   <string name="reminder_header_sms_default_title">ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿ ಬಳಸಿ </string>
   <string name="reminder_header_sms_default_text">Signal ಅನ್ನು ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <string name="reminder_header_sms_import_title">ಸಿಸ್ಟಂ ಎಸ್‌ಎಂಎಸ್ ಇಂಪೋರ್ಟ್ ಮಾಡಿ</string>

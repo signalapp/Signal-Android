@@ -1445,14 +1445,14 @@ nambari yako ya simu</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Nakili kwenye clipbodi</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Linganisha na clipbodi</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Toleo lako la Signal limepitwa na wakati</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Toleo lako la Signal limepitwa na wakati</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Toleo lako la Signal linaisha baada ya siku %d. Donoa ili usasishe hadi toleo la hivi punde zaidi.</item>
     <item quantity="other">Toleo lako la Signal linaisha muda siku %d. Donoa ili kusasisha hadi kwenye toleo la hivi punde zaidi.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Toleo lako la Signal litaisha muda leo. Gonga ili usasishe kwa toleo la hivi karibuni.</string>
-  <string name="reminder_header_expired_build">Toleo lako la Signal limepitwa na wakati.</string>
-  <string name="reminder_header_expired_build_details">Jumbe hazitatuma tena kwa mafanikio. Gonga ili usasishe kwa toleo la hivi karibuni.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Toleo lako la Signal litaisha muda leo. Gonga ili usasishe kwa toleo la hivi karibuni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Toleo lako la Signal limepitwa na wakati.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Jumbe hazitatuma tena kwa mafanikio. Gonga ili usasishe kwa toleo la hivi karibuni.</string> -->
   <string name="reminder_header_sms_default_title">Tumia kama chaguo msingi programu ya meseji</string>
   <string name="reminder_header_sms_default_text">Gonga ili kuifanya Signal programu chaguo msingi ya SMS.</string>
   <string name="reminder_header_sms_import_title">Ingiza SMS ya mfumo</string>

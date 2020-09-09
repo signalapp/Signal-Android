@@ -1443,14 +1443,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">क्लिपबोर्ड पर कॉपी करें</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">क्लिपबोर्ड के साथ तुलना करें</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Signal का आपका वर्ज़न पुराना है</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Signal का आपका वर्ज़न पुराना है</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Signal का आपका वर्ज़न %d दिनों में समाप्त हो जाएगा। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</item>
     <item quantity="other">Signal का आपका वर्ज़न %d दिनों में समाप्त हो जाएगा। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Signal का आपका वर्ज़न आज समाप्त हो जाएगा। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</string>
-  <string name="reminder_header_expired_build">Signal का आपका वर्ज़न समाप्त हो गया है!</string>
-  <string name="reminder_header_expired_build_details">मेसेज अब सफलतापूर्वक नहीं भेजे जाएंगे। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Signal का आपका वर्ज़न आज समाप्त हो जाएगा। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal का आपका वर्ज़न समाप्त हो गया है!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">मेसेज अब सफलतापूर्वक नहीं भेजे जाएंगे। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</string> -->
   <string name="reminder_header_sms_default_title">डिफ़ॉल्ट SMS ऐप के रूप में उपयोग करें</string>
   <string name="reminder_header_sms_default_text">अपने डिफ़ॉल्ट SMS ऐप को Signal करने के लिए टैप करें</string>
   <string name="reminder_header_sms_import_title">सिस्टम SMS आयात करें</string>

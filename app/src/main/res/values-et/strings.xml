@@ -1660,6 +1660,7 @@
   <string name="preferences__slow">Aeglane</string>
   <string name="preferences__help">Abi</string>
   <string name="preferences__advanced">Täpsem</string>
+  <string name="preferences__donate_to_signal">Anneta Signal-ile</string>
   <string name="preferences__privacy">Privaatsus</string>
   <string name="preferences__mms_user_agent">MMS kasutajaagent</string>
   <string name="preferences__advanced_mms_access_point_names">Käsitsi määratud MMS-seaded</string>
@@ -1826,14 +1827,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopeeri lõikelauale</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Võrdle lõikelauaga</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Sinu Signali versioon on aegunud</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Sinu Signali versioon on aegunud</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Sinu Signali versioon aegub %d päeva pärast. Koputa, et uuendada uusimale versioonile.</item>
     <item quantity="other">Sinu Signali versioon aegub %d päeva pärast. Koputa, et uuendada uusimale versioonile.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Sinu Signali versioon aegub täna. Koputa, et uuendada uusimale versioonile.</string>
-  <string name="reminder_header_expired_build">Sinu Signali versioon on aegunud!</string>
-  <string name="reminder_header_expired_build_details">Sõnumeid ei saadeta enam edukalt. Koputa, et uuendada uusimale versioonile.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Sinu Signali versioon aegub täna. Koputa, et uuendada uusimale versioonile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Sinu Signali versioon on aegunud!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Sõnumeid ei saadeta enam edukalt. Koputa, et uuendada uusimale versioonile.</string> -->
   <string name="reminder_header_sms_default_title">Kasuta vaikimisi SMS-rakendusena</string>
   <string name="reminder_header_sms_default_text">Koputa, et teha Signal SMSi vaikerakenduseks.</string>
   <string name="reminder_header_sms_import_title">Impordi süsteemi SMSid</string>

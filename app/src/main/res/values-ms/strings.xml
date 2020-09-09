@@ -1285,13 +1285,13 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingkan dengan papan klip</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versi Signal anda telah lapuk</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Versi Signal anda telah lapuk</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="other">Versi Signal anda akan tamat tempoh dalam %d hari. Ketik untuk kemas kini ke versi terbaru.</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versi Signal anda akan tamat tempoh pada hari ini. Ketik untuk kemas kini ke versi terbaru.</string>
-  <string name="reminder_header_expired_build">Versi Signal anda telah tamat tempoh!</string>
-  <string name="reminder_header_expired_build_details">Mesej tidak akan berjaya dihantar lagi. Ketik untuk kemas kini ke versi yang terbaru.</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versi Signal anda akan tamat tempoh pada hari ini. Ketik untuk kemas kini ke versi terbaru.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versi Signal anda telah tamat tempoh!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesej tidak akan berjaya dihantar lagi. Ketik untuk kemas kini ke versi yang terbaru.</string> -->
   <string name="reminder_header_sms_default_title">Guna sebagai aplikasi SMS lalai</string>
   <string name="reminder_header_sms_default_text">Ketik untuk menjadikan Signal sebagai aplikasi SMS lalai anda.</string>
   <string name="reminder_header_sms_import_title">Import SMS sistem</string>

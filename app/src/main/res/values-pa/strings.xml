@@ -1552,14 +1552,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕਰੋ </string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ਕਲਿਪਬੋਰਡ ਨਾਲ ਤੁਲਨਾ ਕਰੋ</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ ਪੁਰਾਣਾ ਹੈ</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ ਪੁਰਾਣਾ ਹੈ</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">Signal ਦਾ ਤੁਹਾਡਾ ਵਰਜਨ %d ਦਿਨਾਂ ਵਿੱਚ ਖ਼ਤਮ ਹੋ ਜਾਵੇਗਾ ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਵਰਜਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</item>
     <item quantity="other">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ %d ਦਿਨਾਂ ਵਿੱਚ ਖ਼ਤਮ ਹੋ ਜਾਵੇਗਾ ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਵਰਜਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ ਅੱਜ ਖਤਮ ਹੋ ਜਾਵੇਗਾ. ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਵਰਜਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <string name="reminder_header_expired_build">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ ਖਤਮ ਹੋ ਗਿਆ ਹੈ!</string>
-  <string name="reminder_header_expired_build_details">ਸੁਨੇਹੇ ਹੁਣ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜੇ ਨਹੀਂ ਜਾਣਗੇ. ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਵਰਜਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ ਅੱਜ ਖਤਮ ਹੋ ਜਾਵੇਗਾ. ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਵਰਜਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ ਖਤਮ ਹੋ ਗਿਆ ਹੈ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">ਸੁਨੇਹੇ ਹੁਣ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜੇ ਨਹੀਂ ਜਾਣਗੇ. ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਵਰਜਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string> -->
   <string name="reminder_header_sms_default_title">ਡਿਫੌਲਟ SMS ਐਪ ਦੇ ਤੌਰ ਤੇ ਉਪਯੋਗ ਕਰੋ</string>
   <string name="reminder_header_sms_default_text">Signal ਨੂੰ ਆਪਣੀ ਡਿਫੌਲਟ SMS ਐਪ ਬਣਾਉਣ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="reminder_header_sms_import_title">ਸਿਸਟਮ ਐਸਐਮਐਸ ਇੰਪੋਰਟ ਕਰੋ</string>

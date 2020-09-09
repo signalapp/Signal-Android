@@ -1440,14 +1440,14 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">کلپ بورڈ کے ساتھ موازنہ کریں</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">آپ کا Signal ورژن پرانا ہے</string>
-  <plurals name="reminder_header_outdated_build_details">
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">آپ کا Signal ورژن پرانا ہے</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
     <item quantity="one">آپ کے Signal کا ورژن %d دن میں ختم ہوجائے گا۔ حالیہ ورژن میں تازہ کاری کرنے کیلئے ٹیپ کریں۔</item>
     <item quantity="other">آپ کے Signal کا ورژن %d دن میں ختم ہوجائے گا۔ حالیہ ورژن میں تازہ کاری کرنے کیلئے ٹیپ کریں۔</item>
-  </plurals>
-  <string name="reminder_header_outdated_build_details_today">آپ کے Signal ورژن کی میعاد آج ختم ہو جائے گی۔ سب سے حالیہ ورژن اپ ڈیٹ کرنے کے لیے کلک کریں۔</string>
-  <string name="reminder_header_expired_build">آپ کے Signal ورژن کی میعاد ختم ہو چکی ہے!</string>
-  <string name="reminder_header_expired_build_details">پیغامات مزید کامیابی کے ساتھ نہیں بھیجے جائیں گے۔ حالیہ ورژن میں تازہ کاری کرنے کیلئے ٹیپ کریں۔</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">آپ کے Signal ورژن کی میعاد آج ختم ہو جائے گی۔ سب سے حالیہ ورژن اپ ڈیٹ کرنے کے لیے کلک کریں۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">آپ کے Signal ورژن کی میعاد ختم ہو چکی ہے!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">پیغامات مزید کامیابی کے ساتھ نہیں بھیجے جائیں گے۔ حالیہ ورژن میں تازہ کاری کرنے کیلئے ٹیپ کریں۔</string> -->
   <string name="reminder_header_sms_default_title">پہلے سے طے شدہ ایس ایم ایس ایپ استعمال کریں</string>
   <string name="reminder_header_sms_default_text">signal کو اپنا پہلے سے موجود ایس ایم ایس ایپ بنانے کیلئے ٹیپ کریں۔</string>
   <string name="reminder_header_sms_import_title">ایس ایم ایس نظام درآمد کریں</string>
