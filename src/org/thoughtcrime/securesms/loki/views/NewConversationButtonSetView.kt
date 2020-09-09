@@ -7,9 +7,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.graphics.PointF
-import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.VibrationEffect.DEFAULT_AMPLITUDE
@@ -66,24 +64,25 @@ class NewConversationButtonSetView : RelativeLayout {
         private val collapsedImageViewPosition by lazy { PointF((expandedSize - collapsedSize) / 2, (expandedSize - collapsedSize) / 2) }
 
         private val imageView by lazy {
-            val result = ImageView(context)
+            val result = NewConversationButtonImageView(context)
             val size = collapsedSize.toInt()
             result.layoutParams = LayoutParams(size, size)
             result.setBackgroundResource(R.drawable.new_conversation_button_background)
-            val background = result.background as GradientDrawable
-            @ColorRes val backgroundColorID = if (isMain)
-                R.color.accent else
-                R.color.new_conversation_button_collapsed_background
-            background.color = ColorStateList.valueOf(resources.getColorWithID(backgroundColorID, context.theme))
+            @ColorRes val backgroundColorID = if (isMain) R.color.accent else R.color.new_conversation_button_collapsed_background
+            @ColorRes val shadowColorID = if (isMain) {
+                R.color.new_conversation_button_shadow
+            } else {
+                if (UiModeUtilities.isDayUiMode(context)) R.color.transparent_black_30 else R.color.black
+            }
+            result.mainColor = resources.getColorWithID(backgroundColorID, context.theme)
+            result.sessionShadowColor = resources.getColorWithID(shadowColorID, context.theme)
             result.scaleType = ImageView.ScaleType.CENTER
             result.setImageResource(iconID)
-
-            result.imageTintList = if (isMain)
-                // Always use white icon for the main button.
+            result.imageTintList = if (isMain) {
                 ColorStateList.valueOf(resources.getColorWithID(android.R.color.white, context.theme))
-            else
+            } else {
                 ColorStateList.valueOf(resources.getColorWithID(R.color.text, context.theme))
-
+            }
             result
         }
 
@@ -106,28 +105,19 @@ class NewConversationButtonSetView : RelativeLayout {
         }
 
         fun expand() {
-            animateImageViewColorChange(R.color.new_conversation_button_collapsed_background, R.color.accent)
+            GlowViewUtilities.animateColorChange(context, imageView, R.color.new_conversation_button_collapsed_background, R.color.accent)
+            @ColorRes val startShadowColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.transparent_black_30 else R.color.black
+            GlowViewUtilities.animateShadowColorChange(context, imageView, startShadowColorID, R.color.new_conversation_button_shadow)
             imageView.animateSizeChange(R.dimen.new_conversation_button_collapsed_size, R.dimen.new_conversation_button_expanded_size, animationDuration)
             animateImageViewPositionChange(collapsedImageViewPosition, expandedImageViewPosition)
         }
 
         fun collapse() {
-            animateImageViewColorChange(R.color.accent, R.color.new_conversation_button_collapsed_background)
+            GlowViewUtilities.animateColorChange(context, imageView, R.color.accent, R.color.new_conversation_button_collapsed_background)
+            @ColorRes val endShadowColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.transparent_black_30 else R.color.black
+            GlowViewUtilities.animateShadowColorChange(context, imageView, R.color.new_conversation_button_shadow, endShadowColorID)
             imageView.animateSizeChange(R.dimen.new_conversation_button_expanded_size, R.dimen.new_conversation_button_collapsed_size, animationDuration)
             animateImageViewPositionChange(expandedImageViewPosition, collapsedImageViewPosition)
-        }
-
-        private fun animateImageViewColorChange(@ColorRes startColorID: Int, @ColorRes endColorID: Int) {
-            val drawable = imageView.background as GradientDrawable
-            val startColor = resources.getColorWithID(startColorID, context.theme)
-            val endColor = resources.getColorWithID(endColorID, context.theme)
-            val animation = ValueAnimator.ofObject(ArgbEvaluator(), startColor, endColor)
-            animation.duration = animationDuration
-            animation.addUpdateListener { animator ->
-                val color = animator.animatedValue as Int
-                drawable.color = ColorStateList.valueOf(color)
-            }
-            animation.start()
         }
 
         private fun animateImageViewPositionChange(startPosition: PointF, endPosition: PointF) {
@@ -170,6 +160,7 @@ class NewConversationButtonSetView : RelativeLayout {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) { setUpViewHierarchy() }
 
     private fun setUpViewHierarchy() {
+        disableClipping()
         // Set up session button
         addView(sessionButton)
         sessionButton.alpha = 0.0f

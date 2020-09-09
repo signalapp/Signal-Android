@@ -23,9 +23,6 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
-import androidx.core.os.CancellationSignal;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.SpannableString;
@@ -48,6 +45,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
+import androidx.core.os.CancellationSignal;
 
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
@@ -91,8 +91,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   public void onCreate(Bundle savedInstanceState) {
     Log.i(TAG, "onCreate()");
     dynamicLanguage.onCreate(this);
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.prompt_passphrase_activity);
@@ -204,7 +202,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private void initializeResources() {
 
     ImageButton okButton = findViewById(R.id.ok_button);
-    Toolbar     toolbar  = findViewById(R.id.toolbar);
 
     showButton                    = findViewById(R.id.passphrase_visibility);
     hideButton                    = findViewById(R.id.passphrase_visibility_off);
@@ -217,9 +214,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     fingerprintCancellationSignal = new CancellationSignal();
     fingerprintListener           = new FingerprintListener();
 
-    setSupportActionBar(toolbar);
-    getSupportActionBar().setTitle("");
-
     SpannableString hint = new SpannableString("  " + getString(R.string.PassphrasePromptActivity_enter_passphrase));
     hint.setSpan(new RelativeSizeSpan(0.9f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
@@ -229,8 +223,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     showButton.setOnClickListener(new ShowButtonOnClickListener());
     hideButton.setOnClickListener(new HideButtonOnClickListener());
     passphraseText.setOnEditorActionListener(new PassphraseActionListener());
-    passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock),
-                                     EditorInfo.IME_ACTION_DONE);
+    passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock), EditorInfo.IME_ACTION_DONE);
 
     fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
     fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.Session.ForceDark" parent="Base.Theme.Session.ForceDark">
         <item name="android:windowLightStatusBar">false</item>

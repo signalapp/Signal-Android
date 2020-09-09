@@ -16,7 +16,7 @@ class LabeledSeparatorView : RelativeLayout {
 
     private val path = Path()
 
-    private val paint: Paint by lazy{
+    private val paint: Paint by lazy {
         val result = Paint()
         result.style = Paint.Style.STROKE
         result.color = ThemeUtil.getThemedColor(context, R.attr.dividerHorizontal)

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingLeft="@dimen/large_spacing"
+    android:paddingRight="@dimen/large_spacing"
+    android:paddingBottom="@dimen/large_spacing"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+        android:id="@+id/profilePictureView"
+        android:layout_width="@dimen/large_profile_picture_size"
+        android:layout_height="@dimen/large_profile_picture_size"
+        android:layout_marginTop="@dimen/large_spacing" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:textSize="@dimen/massive_font_size"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:text="Spiderman" />
+
+    <TextView
+        style="@style/SessionIDTextView"
+        android:id="@+id/publicKeyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/large_font_size"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:textIsSelectable="true"
+        android:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
+
+    <Button
+        style="@style/Widget.Session.Button.Common.ProminentOutline"
+        android:id="@+id/copyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:paddingLeft="@dimen/large_spacing"
+        android:paddingRight="@dimen/large_spacing"
+        android:text="@string/copy" />
+
+</LinearLayout>

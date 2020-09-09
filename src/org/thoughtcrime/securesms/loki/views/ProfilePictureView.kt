@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +9,17 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.annotation.DimenRes
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import kotlinx.android.synthetic.main.view_conversation.view.*
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.todo.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 
 // TODO: Look into a better way of handling different sizes. Maybe an enum (with associated values) encapsulating the different modes?
 
@@ -53,6 +57,43 @@ class ProfilePictureView : RelativeLayout {
     // endregion
 
     // region Updating
+    fun update(recipient: Recipient, threadID: Long) {
+        fun getUserDisplayName(publicKey: String?): String? {
+            if (publicKey == null || publicKey.isBlank()) {
+                return null
+            } else {
+                return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
+            }
+        }
+        if (recipient.isGroupRecipient) {
+            if ("Session Public Chat" == recipient.name) {
+                publicKey = ""
+                displayName = ""
+                additionalPublicKey = null
+                isRSSFeed = true
+            } else {
+                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
+                users.remove(TextSecurePreferences.getLocalNumber(context))
+                val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+                if (masterPublicKey != null) {
+                    users.remove(masterPublicKey)
+                }
+                val randomUsers = users.sorted() // Sort to provide a level of stability
+                publicKey = randomUsers.getOrNull(0) ?: ""
+                displayName = getUserDisplayName(randomUsers.getOrNull(0) ?: "")
+                additionalPublicKey = randomUsers.getOrNull(1) ?: ""
+                additionalDisplayName = getUserDisplayName(randomUsers.getOrNull(1) ?: "")
+                isRSSFeed = recipient.name == "Loki News" || recipient.name == "Session Updates"
+            }
+        } else {
+            publicKey = recipient.address.toString()
+            displayName = recipient.name
+            additionalPublicKey = null
+            isRSSFeed = false
+        }
+        update()
+    }
+
     fun update() {
         val publicKey = publicKey ?: return
         val additionalPublicKey = additionalPublicKey

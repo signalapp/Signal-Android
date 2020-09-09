@@ -1851,7 +1851,7 @@
 
     <string name="activity_select_contacts_title">Select Contacts</string>
 
-    <string name="dialog_seed_disclaimer">*Please note that it is not possible to use the same Session ID on multiple devices simultaneously</string>
+    <string name="dialog_seed_disclaimer">It is not possible to use the same Session ID on multiple devices simultaneously</string>
 
     <string name="view_reset_secure_session_done_message">Secure session reset done</string>
     
@@ -1864,5 +1864,6 @@
 
     <string name="attachment">Attachment</string>
     <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
 
 </resources>

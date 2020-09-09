@@ -57,37 +57,8 @@ class ConversationView : LinearLayout {
             accentView.setBackgroundResource(R.color.accent)
             accentView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
         }
-        if (thread.recipient.isGroupRecipient) {
-            if ("Session Public Chat" == thread.recipient.name) {
-                profilePictureView.publicKey = ""
-                profilePictureView.displayName = ""
-                profilePictureView.additionalPublicKey = null
-                profilePictureView.isRSSFeed = true
-            } else {
-                val userKeys = MentionsManager.shared.userPublicKeyCache[thread.threadId]?.toMutableList() ?: mutableListOf()
-                userKeys.remove(TextSecurePreferences.getLocalNumber(context))
-                val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                if (masterPublicKey != null) {
-                    userKeys.remove(masterPublicKey)
-                }
-
-                val sortedUserKeys = userKeys.sorted() // Sort to provide a level of stability
-                val userKey0 = sortedUserKeys.getOrNull(0) ?: ""
-                val userKey1 = sortedUserKeys.getOrNull(1) ?: ""
-                profilePictureView.publicKey = userKey0
-                profilePictureView.displayName = getUserDisplayName(userKey0)
-                profilePictureView.additionalPublicKey = userKey1
-                profilePictureView.additionalDisplayName = getUserDisplayName(userKey1)
-                profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Session Updates"
-            }
-        } else {
-            profilePictureView.publicKey = thread.recipient.address.toString()
-            profilePictureView.displayName = thread.recipient.name
-            profilePictureView.additionalPublicKey = null
-            profilePictureView.isRSSFeed = false
-        }
         profilePictureView.glide = glide
-        profilePictureView.update()
+        profilePictureView.update(thread.recipient, thread.threadId)
         val senderDisplayName = if (thread.recipient.isLocalNumber) context.getString(R.string.note_to_self) else if (!thread.recipient.name.isNullOrEmpty()) thread.recipient.name else thread.recipient.address.toString()
         btnGroupNameDisplay.text = senderDisplayName
         timestampTextView.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), thread.date)

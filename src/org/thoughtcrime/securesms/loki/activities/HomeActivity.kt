@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
+import org.thoughtcrime.securesms.loki.dialogs.UserDetailsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -100,6 +101,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         profileButton.displayName = TextSecurePreferences.getProfileName(this)
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
+        pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
         // Set up seed reminder view
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
@@ -202,7 +204,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             seedReminderView.visibility = View.GONE
         }
 
-        // Multiple device removal notification
+        // Multi device removal sheet
         if (!TextSecurePreferences.getHasSeenMultiDeviceRemovalSheet(this)) {
             TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
             val userPublicKey = TextSecurePreferences.getLocalNumber(this)
@@ -223,7 +225,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             }
         }
 
-        // Light theme introduction
+        // Light theme introduction sheet
         if (!TextSecurePreferences.hasSeenLightThemeIntroSheet(this) &&
                 UiModeUtilities.isDayUiMode(this)) {
             TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)
@@ -271,6 +273,14 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val thread = view.thread ?: return
         val bottomSheet = ConversationOptionsBottomSheet()
         bottomSheet.recipient = thread.recipient
+        bottomSheet.onViewDetailsTapped = {
+            bottomSheet.dismiss()
+            val userDetailsBottomSheet = UserDetailsBottomSheet()
+            val bundle = Bundle()
+            bundle.putString("publicKey", thread.recipient.address.toPhoneString())
+            userDetailsBottomSheet.arguments = bundle
+            userDetailsBottomSheet.show(supportFragmentManager, userDetailsBottomSheet.tag)
+        }
         bottomSheet.onBlockTapped = {
             bottomSheet.dismiss()
             if (!thread.recipient.isBlocked) {

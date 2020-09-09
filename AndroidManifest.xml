@@ -342,7 +342,8 @@
         <activity
             android:name="org.thoughtcrime.securesms.PassphrasePromptActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Session.DayNight.NoActionBar"/>
         <activity
             android:name="org.thoughtcrime.securesms.NewConversationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"

@@ -28,7 +28,7 @@
 
 
     <color name="app_icon_background">#333132</color>
-    <color name="progress_bar_background">#0AFFFFFF</color>
+    <color name="progress_bar_background">#0A000000</color>
     <color name="quote_not_found_background">#99FFFFFF</color>
 
 </resources>

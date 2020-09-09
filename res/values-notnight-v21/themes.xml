@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.Session.Light" parent="Base.Theme.Session">
         <item name="android:navigationBarColor">?android:navigationBarColor</item>
@@ -23,6 +23,8 @@
         <item name="conversation_input_background">@drawable/compose_background_light</item>
 
         <item name="quick_camera_icon">@drawable/ic_outline_photo_camera_24</item>
+
+        <item name="media_keyboard_button_color">@color/core_grey_60</item>
     </style>
 
     <style name="Theme.Session.DayNight" parent="Theme.Session.Light">
@@ -38,8 +40,6 @@
         <item name="theme_type">light</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
-
-        <item name="compose_icon_tint">@color/core_grey_60</item>
 
         <item name="conversation_list_item_background">@drawable/conversation_list_item_background</item>
         <item name="conversation_list_item_contact_color">@color/core_grey_90</item>
@@ -74,8 +74,6 @@
         <item name="conversation_sticker_footer_icon_color">@color/core_grey_60</item>
         <item name="conversation_sticker_author_color">@color/core_grey_95</item>
 
-        <item name="contact_list_divider">@drawable/contact_list_divider_light</item>
-
         <item name="verification_background">@color/core_grey_05</item>
 
         <item name="emoji_tab_strip_background">@color/cell_background</item>
@@ -101,20 +99,12 @@
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
         <item name="conversation_item_sent_text_secondary_color">@color/transparent_black_90</item>
         <item name="conversation_item_sent_icon_color">@color/core_grey_60</item>
-        <item name="conversation_item_sent_download_icon_color">@color/core_grey_60</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99000000</item>
         <item name="conversation_item_received_text_primary_color">@color/text</item>
         <item name="conversation_item_received_text_secondary_color">@color/text</item>
-        <item name="conversation_item_update_text_color">@color/core_grey_60</item>
-        <item name="conversation_item_last_seen_text_color">@color/core_grey_90</item>
-        <item name="conversation_item_last_seen_line_color">@color/core_grey_60</item>
-        <item name="conversation_item_date_line_color">@color/core_grey_25</item>
-        <item name="conversation_item_quote_text_color">@color/core_grey_90</item>
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_light</item>
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_60</item>
         <item name="conversation_item_image_outline_color">@color/transparent_black_30</item>
-
-        <item name="quick_mic_icon">@drawable/ic_mic_grey600_24dp</item>
 
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape</item>
 
@@ -124,33 +114,13 @@
 
         <item name="device_link_item_card_background">@color/device_link_item_background_light</item>
 
-        <item name="mediapicker_image_outline">@drawable/mediapicker_item_border_light</item>
-
-        <item name="import_export_item_background_color">@color/import_export_item_background_light</item>
-        <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_light</item>
-        <item name="import_export_item_card_background">@drawable/clickable_card_light</item>
-
         <item name="linkpreview_background_color">@color/core_white</item>
         <item name="linkpreview_primary_text_color">@color/core_black</item>
         <item name="linkpreview_secondary_text_color">@color/core_grey_60</item>
         <item name="linkpreview_divider_color">@color/core_grey_25</item>
 
-        <item name="media_keyboard_button_color">@color/core_grey_60</item>
-
-        <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
-        <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
-        <item name="menu_search_icon">@drawable/ic_search_white_24dp</item>
-        <item name="menu_call_icon">@drawable/ic_call_white_24dp</item>
-        <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
-        <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
-        <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
-        <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
-
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
-
-        <item name="reminder_header_background">#ff1d85d7</item>
 
         <item name="sticker_management_icon">@drawable/sticker_button_light</item>
         <item name="sticker_management_divider_color">@color/core_grey_15</item>
@@ -165,16 +135,8 @@
 
         <item name="pref_icon_tint">@color/textsecure_primary_dark</item>
 
-        <item name="pref_divider">@drawable/preference_divider_light</item>
-
-        <item name="quote_missing_icon_color">@color/core_grey_60</item>
-
         <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
-
-        <item name="search_toolbar_background">@color/white</item>
-        <item name="search_background">@color/white</item>
-        <item name="invite_background">@color/signal_primary</item>
 
         <item name="shared_contact_details_header_background">@color/grey_100</item>
         <item name="shared_contact_details_titlebar">@color/grey_400</item>
