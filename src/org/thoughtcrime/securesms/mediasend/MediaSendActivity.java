@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.Manifest;
+
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -133,7 +135,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     countButtonText = findViewById(R.id.mediasend_count_button_text);
     cameraButton    = findViewById(R.id.mediasend_camera_button);
 
-    viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
+    viewModel = new ViewModelProvider(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
     recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 

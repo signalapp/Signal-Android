@@ -371,28 +371,34 @@ public class AttachmentManager {
   }
 
   public static void selectDocument(Activity activity, int requestCode) {
-    Permissions.with(activity)
-               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-               .onAllGranted(() -> selectMediaType(activity, "*/*", null, requestCode))
-               .execute();
+//    Permissions.with(activity)
+//               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+//               .onAllGranted(() -> selectMediaType(activity, "*/*", null, requestCode))
+//               .execute();
+
+    selectMediaType(activity, "*/*", null, requestCode);
   }
 
   public static void selectGallery(Activity activity, int requestCode, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
-    Permissions.with(activity)
-               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-               .onAllGranted(() -> selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode))
-               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body, transport), requestCode))
-               .execute();
+//    Permissions.with(activity)
+//               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+////               .onAllGranted(() -> selectMediaType(activity, "image/*", new String[] {"image/*", "video/*"}, requestCode))
+//               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body, transport), requestCode))
+//               .execute();
+
+    activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body, transport), requestCode);
   }
 
   public static void selectAudio(Activity activity, int requestCode) {
-    Permissions.with(activity)
-               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-               .onAllGranted(() -> selectMediaType(activity, "audio/*", null, requestCode))
-               .execute();
+//    Permissions.with(activity)
+////               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+////               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+////               .onAllGranted(() -> selectMediaType(activity, "audio/*", null, requestCode))
+////               .execute();
+
+    selectMediaType(activity, "audio/*", null, requestCode);
   }
 
   public static void selectContactInfo(Activity activity, int requestCode) {
@@ -463,6 +469,7 @@ public class AttachmentManager {
   }
 
   private static void selectMediaType(Activity activity, @NonNull String type, @Nullable String[] extraMimeType, int requestCode) {
+    //TODO Constrain media file size to match the Loki protocol limit.
     final Intent intent = new Intent();
     intent.setType(type);
 

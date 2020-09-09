@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
 import android.provider.OpenableColumns;
@@ -33,11 +32,6 @@ import java.util.Map;
 
 /**
  * Handles the retrieval of media present on the user's device.
- * @deprecated Usage of this class is unsafe on Android API 30 and up,
- * the public external directory is no longer exposed to the apps.
- * <p><b>
- * The functionality of this class should be refactored to use
- * <a href="https://developer.android.com/reference/android/provider/MediaStore">MediaStore</a>.
  */
 class MediaRepository {
 
@@ -82,30 +76,17 @@ class MediaRepository {
       }
     }
 
-    String            cameraBucketId = imageFolders.getCameraBucketId() != null ? imageFolders.getCameraBucketId() : videoFolders.getCameraBucketId();
-    FolderData        cameraFolder   = cameraBucketId != null ? folders.remove(cameraBucketId) : null;
-    List<MediaFolder> mediaFolders   = Stream.of(folders.values()).map(folder -> new MediaFolder(folder.getThumbnail(),
+    List<MediaFolder> mediaFolders = Stream.of(folders.values()).map(folder -> new MediaFolder(folder.getThumbnail(),
                                                                                                  folder.getTitle(),
                                                                                                  folder.getCount(),
-                                                                                                 folder.getBucketId(),
-                                                                                                 MediaFolder.FolderType.NORMAL))
+                                                                                                 folder.getBucketId()))
                                                                   .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()))
                                                                   .toList();
 
     Uri allMediaThumbnail = imageFolders.getThumbnailTimestamp() > videoFolders.getThumbnailTimestamp() ? imageFolders.getThumbnail() : videoFolders.getThumbnail();
-
     if (allMediaThumbnail != null) {
       int allMediaCount = Stream.of(mediaFolders).reduce(0, (count, folder) -> count + folder.getItemCount());
-
-      if (cameraFolder != null) {
-        allMediaCount += cameraFolder.getCount();
-      }
-
-      mediaFolders.add(0, new MediaFolder(allMediaThumbnail, context.getString(R.string.MediaRepository_all_media), allMediaCount, Media.ALL_MEDIA_BUCKET_ID, MediaFolder.FolderType.NORMAL));
-    }
-
-    if (cameraFolder != null) {
-      mediaFolders.add(0, new MediaFolder(cameraFolder.getThumbnail(), cameraFolder.getTitle(), cameraFolder.getCount(), cameraFolder.getBucketId(), MediaFolder.FolderType.CAMERA));
+      mediaFolders.add(0, new MediaFolder(allMediaThumbnail, context.getString(R.string.MediaRepository_all_media), allMediaCount, Media.ALL_MEDIA_BUCKET_ID));
     }
 
     return mediaFolders;
@@ -113,8 +94,6 @@ class MediaRepository {
 
   @WorkerThread
   private @NonNull FolderResult getFolders(@NonNull Context context, @NonNull Uri contentUri) {
-    String                  cameraPath         = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath() + File.separator + "Camera";
-    String                  cameraBucketId     = null;
     Uri                     globalThumbnail    = null;
     long                    thumbnailTimestamp = 0;
     Map<String, FolderData> folders            = new HashMap<>();
@@ -135,10 +114,6 @@ class MediaRepository {
         folder.incrementCount();
         folders.put(bucketId, folder);
 
-        if (cameraBucketId == null && path.startsWith(cameraPath)) {
-          cameraBucketId = bucketId;
-        }
-
         if (timestamp > thumbnailTimestamp) {
           globalThumbnail    = thumbnail;
           thumbnailTimestamp = timestamp;
@@ -146,7 +121,7 @@ class MediaRepository {
       }
     }
 
-    return new FolderResult(cameraBucketId, globalThumbnail, thumbnailTimestamp, folders);
+    return new FolderResult(globalThumbnail, thumbnailTimestamp, folders);
   }
 
   @WorkerThread
@@ -284,24 +259,17 @@ class MediaRepository {
   }
 
   private static class FolderResult {
-    private final String                  cameraBucketId;
     private final Uri                     thumbnail;
     private final long                    thumbnailTimestamp;
     private final Map<String, FolderData> folderData;
 
-    private FolderResult(@Nullable String cameraBucketId,
-                         @Nullable Uri thumbnail,
+    private FolderResult(@Nullable Uri thumbnail,
                          long thumbnailTimestamp,
                          @NonNull Map<String, FolderData> folderData)
     {
-      this.cameraBucketId     = cameraBucketId;
       this.thumbnail          = thumbnail;
       this.thumbnailTimestamp = thumbnailTimestamp;
       this.folderData         = folderData;
-    }
-
-    @Nullable String getCameraBucketId() {
-      return cameraBucketId;
     }
 
     @Nullable Uri getThumbnail() {
