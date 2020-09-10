@@ -329,18 +329,16 @@ public class ThreadDatabase extends Database {
       return;
     }
 
-    long trimDate = trimBeforeDate;
-
     if (length != NO_TRIM_MESSAGE_COUNT_SET) {
       try (Cursor cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId)) {
         if (cursor != null && length > 0 && cursor.getCount() > length) {
           cursor.moveToPosition(length - 1);
-          trimDate = Math.max(trimDate, cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED)));
+          trimBeforeDate = Math.max(trimBeforeDate, cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED)));
         }
       }
     }
 
-    if (trimDate != NO_TRIM_BEFORE_DATE_SET) {
+    if (trimBeforeDate != NO_TRIM_BEFORE_DATE_SET) {
       Log.i(TAG, "Trimming thread: " + threadId + " before: " + trimBeforeDate);
 
       DatabaseFactory.getMmsSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
