@@ -404,7 +404,7 @@
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">Quiconque</string>
   <string name="GroupManagement_access_level_all_members">Tous les membres</string>
-  <string name="GroupManagement_access_level_only_admins">Seulement les administrateurs</string>
+  <string name="GroupManagement_access_level_only_admins">Les administrateurs</string>
   <string name="GroupManagement_access_level_no_one">Personne</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">

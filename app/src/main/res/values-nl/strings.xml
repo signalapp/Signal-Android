@@ -1212,7 +1212,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersnamen in Signal zijn optioneel. Als je een gebruikersnaam aanmaakt zullen andere Signal gebruikers je kunnen vinden met deze naam en contact met je kunnen opnemen zonder je telefoonnummer te kennen.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Deze contactpersoon gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed geformatteerd veiligheidsnummer-verificatiecode. Probeer de code opnieuw te scannen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer doorsturen via …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
