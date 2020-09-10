@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -324,46 +323,48 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     }
 
     @SuppressWarnings("CodeBlock2Expr")
-    @SuppressLint({"InlinedApi","StaticFieldLeak"})
+    @SuppressLint({"InlinedApi", "StaticFieldLeak"})
     private void handleSaveMedia(@NonNull Collection<MediaDatabase.MediaRecord> mediaRecords) {
       final Context context = getContext();
+
       SaveAttachmentTask.showWarningDialog(context, (dialogInterface, which) -> {
         Permissions.with(this)
-                   .request(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-                   .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
-                   .onAnyDenied(() -> Toast.makeText(getContext(), R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
-                   .onAllGranted(() -> {
-                     new ProgressDialogAsyncTask<Void, Void, List<SaveAttachmentTask.Attachment>>(context,
-                                                                                                  R.string.MediaOverviewActivity_collecting_attachments,
-                                                                                                  R.string.please_wait) {
-                       @Override
-                       protected List<SaveAttachmentTask.Attachment> doInBackground(Void... params) {
-                         List<SaveAttachmentTask.Attachment> attachments = new LinkedList<>();
+                .request(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .maxSdkVersion(Build.VERSION_CODES.P)
+                .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+                .onAnyDenied(() -> Toast.makeText(getContext(), R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
+                .onAllGranted(() -> {
+                  new ProgressDialogAsyncTask<Void, Void, List<SaveAttachmentTask.Attachment>>(
+                          context,
+                          R.string.MediaOverviewActivity_collecting_attachments,
+                          R.string.please_wait) {
+                    @Override
+                    protected List<SaveAttachmentTask.Attachment> doInBackground(Void... params) {
+                      List<SaveAttachmentTask.Attachment> attachments = new LinkedList<>();
 
-                         for (MediaDatabase.MediaRecord mediaRecord : mediaRecords) {
-                           if (mediaRecord.getAttachment().getDataUri() != null) {
-                             attachments.add(new SaveAttachmentTask.Attachment(mediaRecord.getAttachment().getDataUri(),
-                                                                               mediaRecord.getContentType(),
-                                                                               mediaRecord.getDate(),
-                                                                               mediaRecord.getAttachment().getFileName()));
-                           }
-                         }
+                      for (MediaDatabase.MediaRecord mediaRecord : mediaRecords) {
+                        if (mediaRecord.getAttachment().getDataUri() != null) {
+                          attachments.add(new SaveAttachmentTask.Attachment(mediaRecord.getAttachment().getDataUri(),
+                                  mediaRecord.getContentType(),
+                                  mediaRecord.getDate(),
+                                  mediaRecord.getAttachment().getFileName()));
+                        }
+                      }
 
-                         return attachments;
-                       }
+                      return attachments;
+                    }
 
-                       @Override
-                       protected void onPostExecute(List<SaveAttachmentTask.Attachment> attachments) {
-                         super.onPostExecute(attachments);
-                         SaveAttachmentTask saveTask = new SaveAttachmentTask(context,
-                                                                              attachments.size());
-                         saveTask.executeOnExecutor(THREAD_POOL_EXECUTOR,
-                                                    attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
-                         actionMode.finish();
-                       }
-                     }.execute();
-                   })
-                   .execute();
+                    @Override
+                    protected void onPostExecute(List<SaveAttachmentTask.Attachment> attachments) {
+                      super.onPostExecute(attachments);
+                      SaveAttachmentTask saveTask = new SaveAttachmentTask(context, attachments.size());
+                      saveTask.executeOnExecutor(THREAD_POOL_EXECUTOR,
+                              attachments.toArray(new SaveAttachmentTask.Attachment[attachments.size()]));
+                      actionMode.finish();
+                    }
+                  }.execute();
+                })
+                .execute();
       }, mediaRecords.size());
     }
 

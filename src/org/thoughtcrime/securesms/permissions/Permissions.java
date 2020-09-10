@@ -62,6 +62,9 @@ public class Permissions {
     private @DrawableRes int[]  rationalDialogHeader;
     private              String rationaleDialogMessage;
 
+    private int minSdkVersion = 0;
+    private int maxSdkVersion = Integer.MAX_VALUE;
+
     PermissionsBuilder(PermissionObject permissionObject) {
       this.permissionObject = permissionObject;
     }
@@ -117,11 +120,29 @@ public class Permissions {
       return this;
     }
 
+    /**
+     * Min Android SDK version to request the permissions for (inclusive).
+     */
+    public PermissionsBuilder minSdkVersion(int minSdkVersion) {
+      this.minSdkVersion = minSdkVersion;
+      return this;
+    }
+
+    /**
+     * Max Android SDK version to request the permissions for (inclusive).
+     */
+    public PermissionsBuilder maxSdkVersion(int maxSdkVersion) {
+      this.maxSdkVersion = maxSdkVersion;
+      return this;
+    }
+
     public void execute() {
       PermissionsRequest request = new PermissionsRequest(allGrantedListener, anyDeniedListener, anyPermanentlyDeniedListener, anyResultListener,
                                                           someGrantedListener, someDeniedListener, somePermanentlyDeniedListener);
 
-      if (permissionObject.hasAll(requestedPermissions)) {
+      boolean targetSdk = Build.VERSION.SDK_INT >= minSdkVersion && Build.VERSION.SDK_INT <= maxSdkVersion;
+
+      if (!targetSdk || permissionObject.hasAll(requestedPermissions)) {
         executePreGrantedPermissionsRequest(request);
       } else if (rationaleDialogMessage != null && rationalDialogHeader != null) {
         executePermissionsRequestWithRationale(request);
