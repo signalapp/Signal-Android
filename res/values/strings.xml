@@ -1830,10 +1830,10 @@
     <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
     <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
 
+    <!-- Next round of translation -->
+
     <string name="menu_apply_button">Apply</string>
     <string name="menu_done_button">Done</string>
-
-    <!-- Next round of translation -->
 
     <string name="activity_edit_closed_group_title">Edit Group</string>
     <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
