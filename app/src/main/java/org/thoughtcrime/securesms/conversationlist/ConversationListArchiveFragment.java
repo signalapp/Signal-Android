@@ -111,13 +111,13 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   @Override
   @WorkerThread
   protected void archiveThreads(Set<Long> threadIds) {
-    DatabaseFactory.getThreadDatabase(getActivity()).setArchived(threadIds, true);
+    DatabaseFactory.getThreadDatabase(getActivity()).setArchived(threadIds, false);
   }
 
   @Override
   @WorkerThread
   protected void reverseArchiveThreads(Set<Long> threadIds) {
-    DatabaseFactory.getThreadDatabase(getActivity()).setArchived(threadIds, false);
+    DatabaseFactory.getThreadDatabase(getActivity()).setArchived(threadIds, true);
   }
 
   @SuppressLint("StaticFieldLeak")
