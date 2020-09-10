@@ -261,19 +261,19 @@ public final class GroupIdTest {
     groupId.requireV2();
   }
 
+  @Test(expected = BadGroupIdException.class)
+  public void cannot_create_v1_with_a_v2_length() throws IOException, BadGroupIdException {
+    GroupId.v1(Hex.fromStringCondensed("9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e"));
+  }
+
   @Test(expected = AssertionError.class)
-  public void cannot_create_v1_with_a_v2_length() throws IOException {
+  public void cannot_create_v1_with_a_v2_length_assert() throws IOException {
     GroupId.v1orThrow(Hex.fromStringCondensed("9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e"));
   }
 
   @Test(expected = BadGroupIdException.class)
-  public void cannot_create_v2_with_a_v1_length() throws IOException, BadGroupIdException {
-    GroupId.v2(Hex.fromStringCondensed("000102030405060708090a0b0c0d0e0f"));
-  }
-
-  @Test(expected = AssertionError.class)
-  public void cannot_create_v2_with_a_v1_length_assert() throws IOException {
-    GroupId.v2orThrow(Hex.fromStringCondensed("000102030405060708090a0b0c0d0e0f"));
+  public void cannot_create_v1_with_wrong_length() throws IOException, BadGroupIdException {
+    GroupId.v1Exact(Hex.fromStringCondensed("000102030405060708090a0b0c0d0e"));
   }
 
   @Test
@@ -287,6 +287,22 @@ public final class GroupIdTest {
   @Test
   public void create_v1() {
     GroupId.V1 v1 = GroupId.createV1(mockRandom(new byte[]{ 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8 }));
+
+    assertEquals("__textsecure_group__!090a0b0c0d0e0f000102030405060708", v1.toString());
+    assertTrue(v1.isV1());
+  }
+
+  @Test
+  public void v1_static_factory() throws BadGroupIdException {
+    GroupId.V1 v1 = GroupId.v1(new byte[]{ 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8 });
+
+    assertEquals("__textsecure_group__!090a0b0c0d0e0f000102030405060708", v1.toString());
+    assertTrue(v1.isV1());
+  }
+
+  @Test
+  public void v1Exact_static_factory() throws BadGroupIdException {
+    GroupId.V1 v1 = GroupId.v1Exact(new byte[]{ 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8 });
 
     assertEquals("__textsecure_group__!090a0b0c0d0e0f000102030405060708", v1.toString());
     assertTrue(v1.isV1());

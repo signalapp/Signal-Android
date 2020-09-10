@@ -11,20 +11,16 @@ import java.util.Objects;
 
 public final class SignalGroupV2Record implements SignalRecord {
 
-  private final StorageId      id;
-  private final GroupV2Record  proto;
-  private final GroupMasterKey masterKey;
-  private final boolean        hasUnknownFields;
+  private final StorageId     id;
+  private final GroupV2Record proto;
+  private final byte[]        masterKey;
+  private final boolean       hasUnknownFields;
 
   public SignalGroupV2Record(StorageId id, GroupV2Record proto) {
     this.id               = id;
     this.proto            = proto;
     this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
-    try {
-      this.masterKey = new GroupMasterKey(proto.getMasterKey().toByteArray());
-    } catch (InvalidInputException e) {
-      throw new AssertionError(e);
-    }
+    this.masterKey        = proto.getMasterKey().toByteArray();
   }
 
   @Override
@@ -40,8 +36,16 @@ public final class SignalGroupV2Record implements SignalRecord {
     return hasUnknownFields ? proto.toByteArray() : null;
   }
 
-  public GroupMasterKey getMasterKey() {
+  public byte[] getMasterKeyBytes() {
     return masterKey;
+  }
+
+  public GroupMasterKey getMasterKeyOrThrow() {
+    try {
+      return new GroupMasterKey(masterKey);
+    } catch (InvalidInputException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public boolean isBlocked() {
@@ -81,10 +85,14 @@ public final class SignalGroupV2Record implements SignalRecord {
     private byte[] unknownFields;
 
     public Builder(byte[] rawId, GroupMasterKey masterKey) {
+      this(rawId, masterKey.serialize());
+    }
+
+    public Builder(byte[] rawId, byte[] masterKey) {
       this.id      = StorageId.forGroupV2(rawId);
       this.builder = GroupV2Record.newBuilder();
 
-      builder.setMasterKey(ByteString.copyFrom(masterKey.serialize()));
+      builder.setMasterKey(ByteString.copyFrom(masterKey));
     }
 
     public Builder setUnknownFields(byte[] serializedUnknowns) {

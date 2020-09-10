@@ -130,6 +130,34 @@ public final class StorageSyncHelperTest {
   }
 
   @Test
+  public void resolveConflict_contact_deleteBadGv1() {
+    SignalGroupV1Record remote1 = badGroupV1(1, 1, true, false);
+    SignalGroupV1Record local1  = groupV1(2, 1, true, true);
+
+    MergeResult result = StorageSyncHelper.resolveConflict(recordSetOf(remote1), recordSetOf(local1));
+
+    assertTrue(result.getLocalContactInserts().isEmpty());
+    assertTrue(result.getLocalContactUpdates().isEmpty());
+    assertEquals(setOf(record(local1)), result.getRemoteInserts());
+    assertTrue(result.getRemoteUpdates().isEmpty());
+    assertEquals(setOf(remote1), result.getRemoteDeletes());
+  }
+
+  @Test
+  public void resolveConflict_contact_deleteBadGv2() {
+    SignalGroupV2Record remote1 = badGroupV2(1, 2, true, false);
+    SignalGroupV2Record local1  = groupV2(2, 2, true, false);
+
+    MergeResult result = StorageSyncHelper.resolveConflict(recordSetOf(remote1), recordSetOf(local1));
+
+    assertTrue(result.getLocalContactInserts().isEmpty());
+    assertTrue(result.getLocalContactUpdates().isEmpty());
+    assertEquals(setOf(record(local1)), result.getRemoteInserts());
+    assertTrue(result.getRemoteUpdates().isEmpty());
+    assertEquals(setOf(remote1), result.getRemoteDeletes());
+  }
+
+  @Test
   public void resolveConflict_contact_sameAsRemote() {
     SignalContactRecord remote1 = contact(1, UUID_A, E164_A, "a");
     SignalContactRecord local1  = contact(2, UUID_A, E164_A, "a");
@@ -417,7 +445,15 @@ public final class StorageSyncHelperTest {
                                              boolean blocked,
                                              boolean profileSharing)
   {
-    return new SignalGroupV1Record.Builder(byteArray(key), byteArray(groupId)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
+    return new SignalGroupV1Record.Builder(byteArray(key), byteArray(groupId, 16)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
+  }
+
+  private static SignalGroupV1Record badGroupV1(int key,
+                                                int groupId,
+                                                boolean blocked,
+                                                boolean profileSharing)
+  {
+    return new SignalGroupV1Record.Builder(byteArray(key), byteArray(groupId, 42)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
   }
 
   private static SignalGroupV2Record groupV2(int key,
@@ -425,11 +461,15 @@ public final class StorageSyncHelperTest {
                                              boolean blocked,
                                              boolean profileSharing)
   {
-    try {
-      return new SignalGroupV2Record.Builder(byteArray(key), new GroupMasterKey(byteArray(groupId, 32))).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
-    } catch (InvalidInputException e) {
-      throw new AssertionError(e);
-    }
+    return new SignalGroupV2Record.Builder(byteArray(key), byteArray(groupId, 32)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
+  }
+
+  private static SignalGroupV2Record badGroupV2(int key,
+                                                int groupId,
+                                                boolean blocked,
+                                                boolean profileSharing)
+  {
+    return new SignalGroupV2Record.Builder(byteArray(key), byteArray(groupId, 42)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
   }
 
   private static <E extends SignalRecord> StorageSyncHelper.RecordUpdate<E> update(E oldRecord, E newRecord) {

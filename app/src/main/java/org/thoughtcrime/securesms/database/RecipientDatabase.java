@@ -859,13 +859,14 @@ public class RecipientDatabase extends Database {
       for (SignalGroupV2Record insert : groupV2Inserts) {
         db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV2(insert));
 
-        GroupId.V2 groupId   = GroupId.v2(insert.getMasterKey());
-        Recipient  recipient = Recipient.externalGroup(context, groupId);
+        GroupMasterKey masterKey = insert.getMasterKeyOrThrow();
+        GroupId.V2     groupId   = GroupId.v2(masterKey);
+        Recipient      recipient = Recipient.externalGroup(context, groupId);
 
         Log.i(TAG, "Creating restore placeholder for " + groupId);
 
         DatabaseFactory.getGroupDatabase(context)
-                       .create(insert.getMasterKey(),
+                       .create(masterKey,
                                DecryptedGroup.newBuilder()
                                              .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
                                              .build());
@@ -886,7 +887,8 @@ public class RecipientDatabase extends Database {
           throw new AssertionError("Had an update, but it didn't match any rows!");
         }
 
-        Recipient recipient = Recipient.externalGroup(context, GroupId.v2(update.getOld().getMasterKey()));
+        GroupMasterKey masterKey = update.getOld().getMasterKeyOrThrow();
+        Recipient      recipient = Recipient.externalGroup(context, GroupId.v2(masterKey));
 
         threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
         needsRefresh.add(recipient.getId());
@@ -1031,7 +1033,7 @@ public class RecipientDatabase extends Database {
   
   private static @NonNull ContentValues getValuesForStorageGroupV2(@NonNull SignalGroupV2Record groupV2) {
     ContentValues values = new ContentValues();
-    values.put(GROUP_ID, GroupId.v2(groupV2.getMasterKey()).toString());
+    values.put(GROUP_ID, GroupId.v2(groupV2.getMasterKeyOrThrow()).toString());
     values.put(GROUP_TYPE, GroupType.SIGNAL_V2.getId());
     values.put(PROFILE_SHARING, groupV2.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, groupV2.isBlocked() ? "1" : "0");

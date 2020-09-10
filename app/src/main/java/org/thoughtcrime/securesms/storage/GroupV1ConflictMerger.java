@@ -5,16 +5,16 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 
-class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGroupV1Record> {
+final class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGroupV1Record> {
 
   private final Map<GroupId, SignalGroupV1Record> localByGroupId;
 
@@ -29,7 +29,9 @@ class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGr
 
   @Override
   public @NonNull Collection<SignalGroupV1Record> getInvalidEntries(@NonNull Collection<SignalGroupV1Record> remoteRecords) {
-    return Collections.emptySet();
+    return Stream.of(remoteRecords)
+                 .filterNot(GroupV1ConflictMerger::isValidGroupId)
+                 .toList();
   }
 
   @Override
@@ -52,6 +54,15 @@ class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGr
                                     .setBlocked(blocked)
                                     .setProfileSharingEnabled(blocked)
                                     .build();
+    }
+  }
+
+  private static boolean isValidGroupId(@NonNull SignalGroupV1Record record) {
+    try {
+      GroupId.v1Exact(record.getGroupId());
+      return true;
+    } catch (BadGroupIdException e) {
+      return false;
     }
   }
 }

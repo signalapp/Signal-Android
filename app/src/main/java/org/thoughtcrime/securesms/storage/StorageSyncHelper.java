@@ -282,6 +282,7 @@ public final class StorageSyncHelper {
     Set<SignalRecord> remoteDeletes = new HashSet<>();
     remoteDeletes.addAll(contactMergeResult.remoteDeletes);
     remoteDeletes.addAll(groupV1MergeResult.remoteDeletes);
+    remoteDeletes.addAll(groupV2MergeResult.remoteDeletes);
     remoteDeletes.addAll(accountMergeResult.remoteDeletes);
 
     return new MergeResult(contactMergeResult.localInserts,
@@ -603,8 +604,8 @@ public final class StorageSyncHelper {
     @Override
     public @NonNull String toString() {
       return String.format(Locale.ENGLISH,
-                           "localContactInserts: %d, localContactUpdates: %d, localGroupV1Inserts: %d, localGroupV1Updates: %d, localGroupV2Inserts: %d, localGroupV2Updates: %d, localUnknownInserts: %d, localUnknownDeletes: %d, localAccountUpdate: %b, remoteInserts: %d, remoteUpdates: %d",
-                           localContactInserts.size(), localContactUpdates.size(), localGroupV1Inserts.size(), localGroupV1Updates.size(), localGroupV2Inserts.size(), localGroupV2Updates.size(), localUnknownInserts.size(), localUnknownDeletes.size(), localAccountUpdate.isPresent(), remoteInserts.size(), remoteUpdates.size());
+                           "localContactInserts: %d, localContactUpdates: %d, localGroupV1Inserts: %d, localGroupV1Updates: %d, localGroupV2Inserts: %d, localGroupV2Updates: %d, localUnknownInserts: %d, localUnknownDeletes: %d, localAccountUpdate: %b, remoteInserts: %d, remoteUpdates: %d, remoteDeletes: %d",
+                           localContactInserts.size(), localContactUpdates.size(), localGroupV1Inserts.size(), localGroupV1Updates.size(), localGroupV2Inserts.size(), localGroupV2Updates.size(), localUnknownInserts.size(), localUnknownDeletes.size(), localAccountUpdate.isPresent(), remoteInserts.size(), remoteUpdates.size(), remoteDeletes.size());
     }
   }
 

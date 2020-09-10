@@ -38,7 +38,7 @@ public final class GroupUtil {
       throws BadGroupIdException
   {
     if (groupContext.getGroupV1().isPresent()) {
-      return GroupId.v1(groupContext.getGroupV1().get().getGroupId());
+      return GroupId.v1Exact(groupContext.getGroupV1().get().getGroupId());
     } else if (groupContext.getGroupV2().isPresent()) {
       return GroupId.v2(groupContext.getGroupV2().get().getMasterKey());
     } else {

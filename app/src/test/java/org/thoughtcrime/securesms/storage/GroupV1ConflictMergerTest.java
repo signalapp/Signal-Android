@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.storage;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.storage.GroupV1ConflictMerger;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyGenerator;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -14,10 +15,11 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.byteArray;
 
-public class GroupV1ConflictMergerTest {
+public final class GroupV1ConflictMergerTest {
 
-  private static byte[]       GENERATED_KEY = byteArray(8675309);
-  private static KeyGenerator KEY_GENERATOR = mock(KeyGenerator.class);
+  private static final byte[]       GENERATED_KEY = byteArray(8675309);
+  private static final KeyGenerator KEY_GENERATOR = mock(KeyGenerator.class);
+
   static {
     when(KEY_GENERATOR.generate()).thenReturn(GENERATED_KEY);
   }
@@ -77,5 +79,32 @@ public class GroupV1ConflictMergerTest {
     SignalGroupV1Record merged = new GroupV1ConflictMerger(Collections.singletonList(local)).merge(remote, local, mock(KeyGenerator.class));
 
     assertEquals(local, merged);
+  }
+
+   @Test
+  public void merge_excludeBadGroupId() {
+    SignalGroupV1Record badRemote  = new SignalGroupV1Record.Builder(byteArray(1), badGroupKey(99))
+                                                            .setBlocked(false)
+                                                            .setProfileSharingEnabled(true)
+                                                            .setArchived(true)
+                                                            .build();
+
+    SignalGroupV1Record goodRemote = new SignalGroupV1Record.Builder(byteArray(1), groupKey(99))
+                                                            .setBlocked(false)
+                                                            .setProfileSharingEnabled(true)
+                                                            .setArchived(true)
+                                                            .build();
+
+    Collection<SignalGroupV1Record> invalid = new GroupV1ConflictMerger(Collections.emptyList()).getInvalidEntries(Arrays.asList(badRemote, goodRemote));
+
+    assertEquals(Collections.singletonList(badRemote), invalid);
+  }
+
+  private static byte[] groupKey(int value) {
+    return byteArray(value, 16);
+  }
+
+  private static byte[] badGroupKey(int value) {
+    return byteArray(value, 32);
   }
 }
