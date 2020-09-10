@@ -91,11 +91,6 @@ class EditProfileViewModel extends ViewModel {
     return hasAvatar();
   }
 
-  @MainThread
-  public byte[] getAvatarSnapshot() {
-    return internalAvatar.getValue();
-  }
-
   public void setGivenName(String givenName) {
     this.givenName.setValue(givenName);
   }
