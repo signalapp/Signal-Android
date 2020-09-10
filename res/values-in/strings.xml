@@ -1282,7 +1282,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="view_fake_chat_bubble_5">Rekan yang baik tak membiarkan rekannya menggunakan aplikasi bertukar pesan yang tak aman. Terima kasih kembali.</string>
 
   <string name="activity_register_title">Ucapkan halo pada Session ID anda</string>
-  <string name="activity_register_explanation">"Session ID adalah alamat unik yang bisa digunakan untuk mengontak anda. Tanpa koneksi dengan identitas asli, Session ID anda didesain bersifat anonim dan rahasia."</string>
+  <string name="activity_register_explanation">Session ID adalah alamat unik yang bisa digunakan untuk mengontak anda. Tanpa koneksi dengan identitas asli, Session ID anda didesain bersifat anonim dan rahasia.</string>
   <string name="activity_register_public_key_copied_message">Salin ke clipboard</string>
 
   <string name="activity_restore_title">Kembalikan akun</string>
@@ -1292,17 +1292,17 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="activity_link_device_title">Tautkan perangkat</string>
   <string name="activity_link_device_enter_session_id_tab_title">Masuk ke Session ID</string>
   <string name="activity_link_device_scan_qr_code_tab_title">Pindai kode QR</string>
-  <string name="activity_link_device_scan_qr_code_explanation">""Tautkan Perangkat" di perangkat anda, kemudian pindai QR code yang muncul untuk mulai proses menautkan"</string>
+  <string name="activity_link_device_scan_qr_code_explanation">Tautkan Perangkat" di perangkat anda, kemudian pindai QR code yang muncul untuk mulai proses menautkan</string>
 
   <string name="fragment_enter_session_id_title">Tautkan perangkat</string>
-  <string name="fragment_enter_session_id_explanation">""Tautkan perangkat" di perangkat lain dan masuk ke Session ID anda untuk memulai proses menautkan"</string>
+  <string name="fragment_enter_session_id_explanation">Tautkan perangkat" di perangkat lain dan masuk ke Session ID anda untuk memulai proses menautkan</string>
   <string name="fragment_enter_session_id_edit_text_hint">Masuk ke Session ID</string>
 
   <string name="activity_display_name_title_2">Pilih nama yang ditampilkan</string>
-  <string name="activity_display_name_explanation">"Ini akan menjadi nama anda ketika menggunakan Session. Bisa merupakan nama asli, alias, atau apapun yang anda suka"</string>
+  <string name="activity_display_name_explanation">Ini akan menjadi nama anda ketika menggunakan Session. Bisa merupakan nama asli, alias, atau apapun yang anda suka</string>
   <string name="activity_display_name_edit_text_hint">Masukkan nama</string>
   <string name="activity_display_name_display_name_missing_error">Pilih nama yang ditampilkan</string>
-  <string name="activity_display_name_display_name_invalid_error">"Masukkan nama yang terdiri dari karakter 1-z, A-Z, 0-9, dan _"</string>
+  <string name="activity_display_name_display_name_invalid_error">Masukkan nama yang terdiri dari karakter 1-z, A-Z, 0-9, dan _</string>
   <string name="activity_display_name_display_name_too_long_error">Nama yang dibuat terlalu panjang</string>
 
   <string name="activity_pn_mode_recommended_option_tag">Direkomendasikan</string>
@@ -1321,7 +1321,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="activity_seed_reveal_button_title">Tekan untuk melihat</string>
 
   <string name="view_seed_reminder_subtitle_1">Amankan akun anda dengan menyimpan kata pemulihan</string>
-  <string name="view_seed_reminder_subtitle_2">"Ketuk dan tekan kata yang disensor untuk mengetahui kata pemulihan anda, lalu simpan baik-baik untuk mengamnkan Session ID anda"</string>
+  <string name="view_seed_reminder_subtitle_2">Ketuk dan tekan kata yang disensor untuk mengetahui kata pemulihan anda, lalu simpan baik-baik untuk mengamnkan Session ID anda</string>
   <string name="view_seed_reminder_subtitle_3">Pastikan untuk menyimpan kata pemulihan di tempat yang aman</string>
 
   <string name="activity_path_title">Path</string>
@@ -1338,7 +1338,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="activity_create_private_chat_scan_qr_code_explanation">Pindai kode QR pengguna lain untuk memulai Session. Kode QR bisa ditemukan dengan mengetukan gambar kode QR di pengaturan akun</string>
 
   <string name="fragment_enter_public_key_edit_text_hint">Masukkan Session ID penerima</string>
-  <string name="fragment_enter_public_key_explanation">"Pengguna bisa membagikan Session ID miliknya dengan masuk ke pengaturan akun dan mengetuk "Bagikan Session ID" atau dengan membagikan kode QR mereka"</string>
+  <string name="fragment_enter_public_key_explanation">Pengguna bisa membagikan Session ID miliknya dengan masuk ke pengaturan akun dan mengetuk "Bagikan Session ID" atau dengan membagikan kode QR mereka</string>
 
   <string name="fragment_scan_qr_code_camera_access_explanation">Session membutuhkan akses kamera untuk memindai kode QR</string>
   <string name="fragment_scan_qr_code_grant_camera_access_button_title">Berikan akses kamera</string>
@@ -1365,7 +1365,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="activity_settings_title">Pengaturan</string>
   <string name="activity_settings_display_name_edit_text_hint">Masukkan nama</string>
   <string name="activity_settings_display_name_missing_error">Pilih sebuah nama</string>
-  <string name="activity_settings_invalid_display_name_error">"Masukkan nama yang terdiri dari karakter 1-z, A-Z, 0-9, dan _"</string>
+  <string name="activity_settings_invalid_display_name_error">Masukkan nama yang terdiri dari karakter 1-z, A-Z, 0-9, dan _</string>
   <string name="activity_settings_display_name_too_long_error">Nama yang dibuat terlalu panjang</string>
   <string name="activity_settings_privacy_button_title">Privasi</string>
   <string name="activity_settings_notifications_button_title">Notifikasi</string>
@@ -1400,9 +1400,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="dialog_link_device_master_mode_title_1">Menunggu perangkat</string>
   <string name="dialog_link_device_master_mode_title_2">Permintaan penautan diterima</string>
   <string name="dialog_link_device_master_mode_title_3">Mengotorisasi tautan perangkat</string>
-  <string name="dialog_link_device_master_mode_explanation_1">"Unduh Session di perangkat baru anda lalu ketuk "Tautkan ke akun yang sudah ada" di bagian bawah layar. Jika ada akun lain di perangkat baru tersebut, anda harus menghapusnya terlebih dahulu"</string>
+  <string name="dialog_link_device_master_mode_explanation_1">Unduh Session di perangkat baru anda lalu ketuk "Tautkan ke akun yang sudah ada" di bagian bawah layar. Jika ada akun lain di perangkat baru tersebut, anda harus menghapusnya terlebih dahulu</string>
   <string name="dialog_link_device_master_mode_explanation_2">Pastikan kata di bawah sama dengan kata yang muncul di perangkat lainnya</string>
-  <string name="dialog_link_device_master_mode_explanation_3">"Mohon tunggu, tautan perangkat sedang dibuat. Proses ini mungkin berlangsung hingga beberapa menit"</string>
+  <string name="dialog_link_device_master_mode_explanation_3">Mohon tunggu, tautan perangkat sedang dibuat. Proses ini mungkin berlangsung hingga beberapa menit</string>
   <string name="dialog_link_device_master_mode_authorize_button_title">Otorisasi</string>
 
   <string name="fragment_device_list_bottom_sheet_change_name_button_title">Ubah nama</string>
@@ -1414,7 +1414,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="dialog_seed_explanation">Ini adalah kata pemulihan anda. Gunakan untuk mengembalikan atau memindahkan Session ID anda ke perangkat lain</string>
 
   <string name="dialog_clear_all_data_title">Hapus semua data</string>
-  <string name="dialog_clear_all_data_explanation">"Pesan, Session, dan kontak anda akan dihapus secara permanen"</string>
+  <string name="dialog_clear_all_data_explanation">Pesan, Session, dan kontak anda akan dihapus secara permanen</string>
 
   <string name="activity_qr_code_title">Kode QR</string>
   <string name="activity_qr_code_view_my_qr_code_tab_title">Lihat kode QR saya</string>
