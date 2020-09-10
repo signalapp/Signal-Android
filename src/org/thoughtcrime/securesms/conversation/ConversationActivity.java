@@ -30,6 +30,8 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -61,6 +63,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -158,6 +161,7 @@ import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
+import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
@@ -235,7 +239,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -737,10 +740,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (recipient.getExpireMessages() > 0) {
         inflater.inflate(R.menu.conversation_expiring_on, menu);
 
-        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
-        final View     actionView = MenuItemCompat.getActionView(item);
-        final TextView badgeView  = actionView.findViewById(R.id.expiration_badge);
+        final MenuItem  item       = menu.findItem(R.id.menu_expiring_messages);
+        final View      actionView = MenuItemCompat.getActionView(item);
+        final ImageView iconView   = actionView.findViewById(R.id.menu_badge_icon);
+        final TextView  badgeView  = actionView.findViewById(R.id.expiration_badge);
 
+        @ColorInt int color = GeneralUtilitiesKt.getColorWithID(getResources(), R.color.text, getTheme());
+        iconView.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipient.getExpireMessages()));
         actionView.setOnClickListener(v -> onOptionsItemSelected(item));
       } else {
