@@ -54,7 +54,8 @@ public final class FeatureFlags {
   private static final String REMOTE_DELETE                = "android.remoteDelete";
   private static final String GROUPS_V2_OLD_1              = "android.groupsv2";
   private static final String GROUPS_V2_OLD_2              = "android.groupsv2.2";
-  private static final String GROUPS_V2                    = "android.groupsv2.3";
+  private static final String GROUPS_V2_OLD_3              = "android.groupsv2.3";
+  private static final String GROUPS_V2                    = "android.groupsv2.4";
   private static final String GROUPS_V2_CREATE_VERSION     = "android.groupsv2.createVersion";
   private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
   private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
@@ -120,6 +121,7 @@ public final class FeatureFlags {
       GROUPS_V2,
       GROUPS_V2_OLD_1,
       GROUPS_V2_OLD_2,
+      GROUPS_V2_OLD_3,
       VERIFY_V2
     );
 
@@ -228,7 +230,8 @@ public final class FeatureFlags {
   /** Clients that previously saw these flags as true must continue to respect that */
   private static boolean groupsV2OlderStickyFlags() {
     return getBoolean(GROUPS_V2_OLD_1, false) ||
-           getBoolean(GROUPS_V2_OLD_2, false);
+           getBoolean(GROUPS_V2_OLD_2, false) ||
+           getBoolean(GROUPS_V2_OLD_3, false);
   }
 
   /**
