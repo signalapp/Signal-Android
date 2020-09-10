@@ -501,6 +501,14 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.Button.Rounded</item>
     </style>
 
+    <style name="Widget.Signal.CompoundButton.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="colorControlNormal">@color/core_grey_20</item>
+    </style>
+
+    <style name="Widget.Signal.CompoundButton.RadioButton.Light">
+        <item name="colorControlNormal">@color/core_grey_50</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.Button.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

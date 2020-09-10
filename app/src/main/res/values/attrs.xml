@@ -20,6 +20,8 @@
     <attr name="secondary_background" format="reference" />
     <attr name="secondary_background_bubble" format="reference" />
 
+    <attr name="radio_theme" format="reference" />
+
     <attr name="conversation_list_item_background" format="reference"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>
     <attr name="conversation_list_item_subject_color" format="reference|color"/>

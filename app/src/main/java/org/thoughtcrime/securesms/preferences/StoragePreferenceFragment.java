@@ -215,7 +215,7 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment {
       }
 
       AlertDialog dialog = new AlertDialog.Builder(activity)
-                                          .setTitle(R.string.preferences_Storage__custom_conversation_length_limit)
+                                          .setTitle(R.string.preferences__conversation_length_limit)
                                           .setView(view)
                                           .setPositiveButton(android.R.string.ok, (d, w) -> onSelectionChanged(Integer.parseInt(editText.getText().toString())))
                                           .setNegativeButton(android.R.string.cancel, (d, w) -> updateSettingsList())
