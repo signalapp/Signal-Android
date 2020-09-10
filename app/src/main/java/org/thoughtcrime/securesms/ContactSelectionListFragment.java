@@ -106,7 +106,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   public static final String MULTI_SELECT      = "multi_select";
   public static final String REFRESHABLE       = "refreshable";
   public static final String RECENTS           = "recents";
-  public static final String TOTAL_CAPACITY    = "total_capacity";
+  public static final String SELECTION_LIMIT   = "selection_limit";
   public static final String CURRENT_SELECTION = "current_selection";
 
   private ConstraintLayout            constraintLayout;
@@ -208,7 +208,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
     swipeRefresh.setEnabled(requireActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
 
-    selectionLimit   = requireActivity().getIntent().getIntExtra(TOTAL_CAPACITY, NO_LIMIT);
+    selectionLimit   = requireActivity().getIntent().getIntExtra(SELECTION_LIMIT, NO_LIMIT);
     currentSelection = getCurrentSelection();
 
     updateGroupLimit(getChipCount());

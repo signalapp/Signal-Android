@@ -199,6 +199,16 @@ final class ManageGroupRepository {
       return totalCapacity;
     }
 
+    public int getSelectionLimit() {
+      if (totalCapacity == ContactSelectionListFragment.NO_LIMIT) {
+        return totalCapacity;
+      }
+
+      boolean containsSelf = members.indexOf(Recipient.self().getId()) != -1;
+
+      return totalCapacity - (containsSelf ? 1 : 0);
+    }
+
     public int getRemainingCapacity() {
       return totalCapacity - members.size();
     }

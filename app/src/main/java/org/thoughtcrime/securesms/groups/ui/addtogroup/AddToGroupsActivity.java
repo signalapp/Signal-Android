@@ -51,7 +51,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
     intent.putExtra(EXTRA_RECIPIENT_ID, recipientId);
 
     intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_ACTIVE_GROUPS);
-    intent.putExtra(ContactSelectionListFragment.TOTAL_CAPACITY, ContactSelectionListFragment.NO_LIMIT);
+    intent.putExtra(ContactSelectionListFragment.SELECTION_LIMIT, ContactSelectionListFragment.NO_LIMIT);
 
     intent.putParcelableArrayListExtra(ContactSelectionListFragment.CURRENT_SELECTION, new ArrayList<>(currentGroupsMemberOf));
 

@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ManageGroupViewModel extends ViewModel {
@@ -321,7 +320,7 @@ public class ManageGroupViewModel extends ViewModel {
         Intent intent = new Intent(fragment.requireActivity(), AddMembersActivity.class);
         intent.putExtra(AddMembersActivity.GROUP_ID, manageGroupRepository.getGroupId().toString());
         intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_PUSH);
-        intent.putExtra(ContactSelectionListFragment.TOTAL_CAPACITY, capacity.getTotalCapacity() - 1);
+        intent.putExtra(ContactSelectionListFragment.SELECTION_LIMIT, capacity.getSelectionLimit());
         intent.putParcelableArrayListExtra(ContactSelectionListFragment.CURRENT_SELECTION, capacity.getMembersWithoutSelf());
         fragment.startActivityForResult(intent, resultCode);
       }
