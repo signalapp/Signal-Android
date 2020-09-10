@@ -48,6 +48,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">Sortu da PINa.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PINa desaktibatuta</string>
   <string name="ApplicationPreferencesActivity_hide">Ezkutatu</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Ezkutatu gogorarazlea?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">minutu %d</item>
@@ -214,6 +215,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Ezgai audioa grabatzeko!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ezin diozu talde honi mezurik bidali dagoeneko kide ez zarelako.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ez dago erabil daitekeen aplikaziorik lotura hau kudeatzeko zure gailuan.</string>
+  <string name="ConversationActivity_cancel_request">Bertan behera utzi eskaera</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Audio mezuak bidaltzeko, onartu Signalek zure mikrofonoa erabiltzea</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signalek Mikrofono baimena behar du audio mezuak bidaltzeko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Mikrofonoa\"</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal aplikazioak Mikronofoa eta Kamera baimenak behar ditu %skontaktuari deitzeko, baina ukatu egin dizkiozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Mikrofonoa\" eta \"Kamera\"</string>
@@ -339,6 +341,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Atera argazkia</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Aukeratu galeriatik</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Argazkia ezabatu</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Argazki bat ateratzeko kamera erabiltzeko baimena behar da.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Orain</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -401,6 +404,7 @@
   <string name="GroupManagement_access_level_anyone">Edozein</string>
   <string name="GroupManagement_access_level_all_members">Partaide guztiak</string>
   <string name="GroupManagement_access_level_only_admins">Administratzaileak bakarrik</string>
+  <string name="GroupManagement_access_level_no_one">Inor ez</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Gonbidapena bidalita</item>
@@ -411,16 +415,25 @@
   <string name="GroupManagement_invite_multiple_users">Ezin duzu erabiltzaile hauek modu automatikoan taldean sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Desgaitu</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">Aurreikusi edozein esteka</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Ez dago estekaren aurrebistarik</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Talde esteka hau ez dago indarrean</string>
   <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
+  <string name="PendingMembersActivity_requests">Eskaerak</string>
+  <string name="PendingMembersActivity_invites">Gonbidapenak</string>
   <string name="PendingMembersActivity_people_you_invited">Gondibatu duzun jendea</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Ez duzu ikusi gabeko gonbidapenik.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenak</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenik ez dago.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Taldeko beste partaideek gonbidatutako pertsonen xehetasunak ez dira erakusten. Gonbidatuek taldean sartzea erabakitzen badute, beraien informazioa une horretan partekatuko da taldearekin. Taldean sartu arte ez dute mezurik ikusiko.</string>
+  <string name="PendingMembersActivity_revoke_invite">Bertan behera utzi gonbidapena</string>
+  <string name="PendingMembersActivity_revoke_invites">Bertan behera utzi gonbidapenak</string>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_added_s">\"%1$s\" gehitua</string>
+  <string name="RequestingMembersFragment_denied_s">\"%1$s\" ukatua</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Eginda</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
@@ -450,11 +463,13 @@
   <string name="ManageGroupActivity_edit_group_info">Editatu taldeari buruzko informazioa</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Aukeratu taldearen izena, abatarra eta mezuak desagertzeko tenporizadorea alda dezakeena.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Aukeratu kide berriak gehitu edo gonbidatu dezakeena</string>
+  <string name="ManageGroupActivity_group_link">Talderako esteka</string>
   <string name="ManageGroupActivity_block_group">Blokeatu taldea</string>
   <string name="ManageGroupActivity_unblock_group">Desblokeatu taldea</string>
   <string name="ManageGroupActivity_leave_group">Utzi taldea</string>
   <string name="ManageGroupActivity_mute_notifications">Desaktibatu jakinarazpenak</string>
   <string name="ManageGroupActivity_custom_notifications">Jakinarazpen pertsonalizatuak</string>
+  <string name="ManageGroupActivity_mentions">Aipamenak</string>
   <string name="ManageGroupActivity_until_s">%1$s dataraino</string>
   <string name="ManageGroupActivity_off">Desaktibatuta</string>
   <string name="ManageGroupActivity_on">Aktibatuta</string>
@@ -479,6 +494,11 @@
   <string name="ManageGroupActivity_legacy_group">Jarauntsitako Taldea</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Hau Jarauntsitako Talde bat da. Talde administratzaile moduko ezaugarriak erabili ahal izateko, Talde Berri bat sortu.</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Lehenetsia (Jakinarazi)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Lehenetsia (Ez jakinarazi)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Beti jakinarazi</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Ez jakinarazi</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Gehitu sistemaren kontaktuetara</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Pertsona hau zure kontaktuetan dago</string>
@@ -521,18 +541,41 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desaktibatuta</string>
   <string name="CustomNotificationsDialogFragment__default">Lehenetsia</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Partekatu daitekeen taldeko esteka</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Kudeatu &amp; partekatu</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Talderako esteka</string>
   <string name="ShareableGroupLinkDialogFragment__share">Elkarbanatu</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Berrezarri esteka</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Kideen eskaerak</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Onartu kide berriak</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Aktibatuta</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Desaktibatuta</string>
   <string name="ShareableGroupLinkDialogFragment__default">Lehenetsia</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Berrezarri talderako esteka</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR kodea</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Partekatu kodea</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_join">Batu</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Eskatu batzea</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Ezin izan da taldean sartu. Mesedez, saia zaitez beranduago</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Sare errore bat izan da.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Talde esteka hau ez dago indarrean</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Ez da posible izan taldeari buruzko informazioa eskuratzea; mesedez, saia zaitez berriro beranduago</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Talde honetan sartu eta zure izena eta argazkia kideekin partekatu nahi duzu?</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Taldea · kide %1$d</item>
+    <item quantity="other">Taldea · %1$d kide</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Talderako estekak eskuragarri egongo dira laster</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Talderako estekak erabiltzeko Signal eguneatu behar duzu</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Eguneratu Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Talde esteka hau ez da baliagarria</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">Gehitu</string>
+  <string name="RequestConfirmationDialog_deny">Ukatu</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Taldearen abatarra</string>
   <string name="CropImageActivity_profile_avatar">Abatarra</string>
@@ -1688,6 +1731,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Edozeinengandik onartu</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Nahiz eta zure kontaktuetan ez egon eta beraiekin zure profila ez partekatu, gaitu igorle zigilatuta horrelako erabiltzaileek bidaltzen dituzten mezuetarako.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Gehiago jakin</string>
+  <string name="preferences_notifications__mentions">Aipamenak</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2060,6 +2104,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RecipientBottomSheet_remove">Ezabatu</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="GroupRecipientListItem_admin">Administratzailea</string>
+  <string name="GroupRecipientListItem_deny_description">Ukatu</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Jarauntsitako Taldeak vs. Talde Berriak</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Zer dira Jarauntsitako Taldeak?</string>

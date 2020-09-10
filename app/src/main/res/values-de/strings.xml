@@ -1797,7 +1797,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_storage__none">Keine</string>
   <string name="preferences_storage__s_messages">%1$s Nachrichten</string>
   <string name="preferences_storage__custom">Personalisiert</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Höchstzahl an Nachrichten</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Höchstzahl an Nachrichten</string> -->
   <string name="preferences_advanced__use_system_emoji">System-Emojis verwenden</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Dies verringert die Anrufqualität.</string>

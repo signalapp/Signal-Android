@@ -2102,6 +2102,7 @@
   <string name="BackupUtil_never">Jamais</string>
   <string name="BackupUtil_unknown">Inconnu</string>
   <string name="PhoneNumberPrivacy_nobody">Personne</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Seuls vos contacts verront votre numéro de téléphone sur Signal.</string>
   <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Verrouiller l’accès à Signal avec le verrouillage de l’écran d’Android ou une empreinte</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Délai d’inactivité avant verrouillage de l’écran</string>

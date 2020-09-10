@@ -1796,7 +1796,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_storage__none">Ei mitään</string>
   <string name="preferences_storage__s_messages">%1$s viestiä</string>
   <string name="preferences_storage__custom">Mukautettu</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Mukautettu keskustelun pituusraja</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Mukautettu keskustelun pituusraja</string> -->
   <string name="preferences_advanced__use_system_emoji">Käytä järjestelmän hymiöitä</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Ota Signalin oletushymiöt pois käytöstä</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Välitä kaikki puhelut Signal-palvelimen kautta välttääksesi IP-osoitteesi paljastumista yhteystiedollesi. Tämä toiminto heikentää puhelun laatua.</string>

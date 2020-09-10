@@ -1741,6 +1741,7 @@
   <string name="preferences__slow">Lento</string>
   <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançadas</string>
+  <string name="preferences__donate_to_signal">Doar para o Signal</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente de usuário MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configurações de MMS manuais</string>
@@ -1794,7 +1795,9 @@
   <string name="preferences_storage__review_storage">Checar armazenamento</string>
   <string name="preferences_storage__delete_older_messages">Excluir as mensagens mais antigas?</string>
   <string name="preferences_storage__clear_message_history">Excluir histórico de mensagens?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Isto excluirá para sempre do seu dispositivo todo o histórico de mensagens e mídias que são mais antigos que %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Isto excluirá permanentemente todas as conversas menos as %1$s mensagens mais recentes.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Isto excluirá para sempre do seu dispositivo todo o histórico de mensagens e mídias.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tem certeza que quer excluir todo o histórico de mensagens?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Todo o histórico de mensagens será excluído permanentemente. Esta ação não pode ser desfeita.</string>
   <string name="preferences_storage__delete_all_now">Excluir tudo agora</string>
@@ -1805,7 +1808,7 @@
   <string name="preferences_storage__none">Nenhum</string>
   <string name="preferences_storage__s_messages">%1$s mensagens</string>
   <string name="preferences_storage__custom">Personalizado</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Limite personalizado de duração da conversa</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Limite personalizado de duração da conversa</string> -->
   <string name="preferences_advanced__use_system_emoji">Usar emoji do sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desabilitar o suporte a emoji embutido do Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Encaminhar todas as chamadas através do servidor Signal para evitar revelar seu endereço IP para seu contato. Habilitar reduzirá a qualidade da chamada.</string>

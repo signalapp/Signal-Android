@@ -1907,7 +1907,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_storage__none">Brez</string>
   <string name="preferences_storage__s_messages">%1$s sporočil</string>
   <string name="preferences_storage__custom">Po meri</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Omejitev dolžine pogovorov</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Omejitev dolžine pogovorov</string> -->
   <string name="preferences_advanced__use_system_emoji">Sistemski znaki emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Izklop privzetih znakov emoji aplikacije Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vsi klici bodo posredovani preko strežnika Signal. S tem boste klicani strani onemogočili, da bi odkrila vaš naslov IP. Kvaliteta klica bo zaradi tega slabša.</string>

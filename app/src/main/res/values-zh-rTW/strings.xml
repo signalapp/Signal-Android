@@ -1751,7 +1751,7 @@
   <string name="preferences_storage__none">靜音</string>
   <string name="preferences_storage__s_messages">%1$s則訊息</string>
   <string name="preferences_storage__custom">自訂</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">自定義會話長度限制</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">自定義會話長度限制</string> -->
   <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>

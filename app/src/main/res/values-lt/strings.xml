@@ -1916,7 +1916,7 @@
   <string name="preferences_storage__none">Nėra</string>
   <string name="preferences_storage__s_messages">%1$s žinučių</string>
   <string name="preferences_storage__custom">Tinkintai</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Tinkinta pokalbio ilgio riba</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Tinkinta pokalbio ilgio riba</string> -->
   <string name="preferences_advanced__use_system_emoji">Naudoti sistemos jaustukus</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Išjungti Signal įtaisytą jaustukų palaikymą</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Retransliuoti visus skambučius per Signal serverį, kad būtų išvengta jūsų IP adreso atskleidimo jūsų adresatui. Įjungus, pablogės skambučių kokybė.</string>

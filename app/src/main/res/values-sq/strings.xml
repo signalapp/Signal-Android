@@ -141,7 +141,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mund të doni të verifikoni numrin tuaj të sigurisë me këtë kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Pranoje</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">Biseda së fundi</string>
+  <string name="ContactsCursorLoader_recent_chats">Fjalosje së fundi</string>
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
   <string name="ContactsCursorLoader_groups">Grupe</string>
   <string name="ContactsCursorLoader_phone_number_search">Kërkim numri telefoni</string>
@@ -449,6 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Kërkesa anëtarësie pezull</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">S’ka kërkesa anëtarësie për t’u shfaqur.</string>
+  <string name="RequestingMembersFragment_explanation">Persona në këtë listë po rreken të bëhen pjesë e këtij grupi përmes lidhjes së grupit.</string>
   <string name="RequestingMembersFragment_added_s">U shtua \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">U hodh poshtë \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -576,13 +577,19 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Administroni &amp; ndani me të tjerë</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Lidhje grupi</string>
   <string name="ShareableGroupLinkDialogFragment__share">Ndajeni Me të Tjerë</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Ricaktoni lidhje</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Kërkesa anëtarësie</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Miratoni anëtarë të rinj</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">E aktivizuar</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">E çaktivizuar</string>
   <string name="ShareableGroupLinkDialogFragment__default">Parazgjedhje</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ricaktim lidhjeje grupi</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Kërko doemos që një përgjegjës të miratojë anëtarë të rinj që vijnë prej një lidhjeje grupi.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Jeni i sigurt se doni të ricaktohet lidhja e grupit? Njerëzit s’do të jenë më në gjendje të bëhen pjesë e grupit duke përdorur lidhjen e tanishme.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Kod QR</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Njerëzit që skanojnë këtë kod, do të jenë në gjendje të bëhen pjesë e grupit tuaj. Përgjegjësve prapë do t’ju duhet të miratojnë anëtarë të rinj, nëse e keni të aktivizuar këtë mundësi.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Ndaj kod me të tjerë</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Doni të shfuqizohet ftesa që u dërgua te %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -593,6 +600,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jeni tashmë anëtar</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Merrni pjesë</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Kërkoni të bëheni pjesë</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">S’arrihet të bëhet pjesë e grupit. Ju lutemi, riprovoni më vonë</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">U has një gabim rrjeti.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Kjo lidhje grupi s’është aktive</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">S’arrihet të merren të dhëna grupi, ju lutemi, riprovoni më vonë</string>
@@ -603,8 +611,12 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="other">Grup · %1$d anëtarë</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Së shpejti mbërrijnë lidhje grupesh</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Që të përdorni lidhje grupi, përditësoni Signal-in</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Bërja pjesë e një grupi përmes një lidhjeje nuk mbulohet ende nga Signal-i. Kjo veçori do të hidhet në qarkullim në një përditësim të ardhshëm.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk mbulon lidhje grupesh. Që të bëheni pjesë e një grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Përditësoni Signal-in</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Lidhja e grupit s’është e vlefshme </string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Të shtohet “%1$s” te grupi?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Të hidhet poshtë kërkesa prej “%1$s”?</string>
@@ -838,19 +850,37 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ndryshoi se cilët mund të përpunojnë anëtarësi grupi te \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Te \"%1$s\" është ndryshuas se kush mund të përpunojë anëtarësi te grupi.</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Aktivizuat lidhjen e grupit me miratim nga përgjegjësi të çaktivizuar.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Aktivizuat lidhjen e grupit me miratim nga përgjegjësi të aktivizuar.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Çaktivizuat lidhjen e grupit.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s aktivizoi lidhjen e grupit me miratim nga përgjegjësi të çaktivizuar.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s aktivizoi lidhjen e grupit me miratim nga përgjegjësi të aktivizuar.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s çaktivizoi lidhjen e grupit.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Lidhja e grupit është aktivizuar me miratim nga përgjegjësi të çaktivizuar.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Lidhja e grupit është aktivizuar me miratim nga përgjegjësi të aktivizuar.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Lidhja e grupit është çaktivizuar.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Ricaktuat lidhjen e grupit.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s ricaktoi lidhjen e grupit.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Lidhja e grupit është ricaktuar.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">U bëtë pjesë e grupit përmes lidhjes së grupit.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s u bë pjesë e grupit përmes lidhjes së grupit.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Dërguat një kërkesë të bëheni pjesë e grupit.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s kërkoi të bëhet pjesë e grupit përmes lidhjes së grupit.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s miratoi kërkesën tuaj për t’u bërë pjesë e grupit.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s miratoi një kërkesë për t’u bërë pjesë e grupit nga %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Miratuat një kërkesë nga %1$s për t’u bërë pjesë e grupit.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Kërkesa jua për t’u bërë pjesë e grupit u miratua.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">U miratua një kërkesë për t’u bërë pjesë e grupit nga %1$s.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Kërkesa juaj për t’u bërë pjesë e grupit është hedhur poshtë nga një përgjegjës.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s hodhi poshtë një kërkesë për t’u bërë pjesë e grupit nga %2$s.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">U hodh poshtë një kërkesë për t’u bërë pjesë e grupit nga %1$s.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Anuluat kërkesën tuaj për t’u bërë pjesë e grupit.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s anuloi kërkesën e tij për t’u bërë pjesë e grupit.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">E shënuat numrin tuaj të sigurisë me %s si të verifikuar</string>
@@ -1175,6 +1205,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Emrat e përdoruesve s’mund të fillojnë me një numër.</string>
   <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Emrat e përdoruesve në Signal janë opsionalë. Nëse vendosni të krijoni një emër përdoruesi, përdorues të tjerë të Signal-it do të jenë në gjendje t’ju gjejnë me këtë emër përdoruesi dhe të lidhen me ju pa ditur numrin tuaj të telefonit.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj xhiron një version të vjetër të Signal-it. Ju lutemi, kërkojini ta përditësojë, para se të verifikohet numri juaj i sigurisë.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Signal-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>
@@ -1415,6 +1446,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Ndryshime Numri Sigurie</string>
   <string name="safety_number_change_dialog__send_anyway">Dërgoje, sido qoftë</string>
+  <string name="safety_number_change_dialog__call_anyway">Thirre, sido qoftë</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Personat vijues mund të kenë riinstaluar ose ndryshuar pajisjet. Për të siguruar privatësi, verifikoni me ta numrin tuaj të sigurisë.</string>
   <string name="safety_number_change_dialog__view">Shihni</string>
   <string name="safety_number_change_dialog__previous_verified">Verifikuar më herët</string>
@@ -1722,6 +1754,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__chats">Fjalosje dhe media</string>
   <string name="preferences__storage">Hapësirë</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
+  <string name="preferences__keep_messages">Mbaji mesazhet</string>
+  <string name="preferences__clear_message_history">Spastro historik mesazhesh</string>
   <string name="preferences__linked_devices">Pajisje të lidhura</string>
   <string name="preferences__light_theme">E çelët</string>
   <string name="preferences__dark_theme">E errët</string>
@@ -1753,21 +1787,37 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_chats__when_using_wifi">Kur përdoret Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Nën roaming</string>
   <string name="preferences_chats__media_auto_download">Vetëshkarkim mediash</string>
+  <string name="preferences_chats__message_history">Historik mesazhesh</string>
   <string name="preferences_storage__storage_usage">Përdorim hapësire</string>
   <string name="preferences_storage__photos">Foto</string>
   <string name="preferences_storage__videos">Video</string>
   <string name="preferences_storage__files">Kartela</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Shqyrtoni hapësirën</string>
+  <string name="preferences_storage__delete_older_messages">Të fshihen mesazhet e vjetër?</string>
+  <string name="preferences_storage__clear_message_history">Të spastrohet historiku i mesazheve?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Kjo do të sjellë fshirjen përgjithmonë nga pajisja juaj të krejt historikut dhe mediave të mesazheve që janë më të vjetër se %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Kjo do të qethë përgjithnjë krejt bisedat sa %1$s mesazhet më të freskët.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Kjo do të sjellë fshirjen përgjithmonë nga pajisja juaj të krejt historikut dhe mediave të mesazheve.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Jeni i sigurt se doni të fshihet krejt historiku i mesazheve?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Do të hiqet përgjithnjë krejt historiku i mesazheve. Ky veprim s’mund të zhbëhet.</string>
+  <string name="preferences_storage__delete_all_now">Fshije krejt tani</string>
+  <string name="preferences_storage__forever">Përgjithmonë</string>
+  <string name="preferences_storage__one_year">1 vit</string>
+  <string name="preferences_storage__six_months">6 muaj</string>
+  <string name="preferences_storage__thirty_days">30 ditë</string>
   <string name="preferences_storage__none">Asnjë</string>
+  <string name="preferences_storage__s_messages">%1$s mesazhe</string>
   <string name="preferences_storage__custom">Rregullo</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Kufi vetjak gjatësie mesazhesh</string> -->
   <string name="preferences_advanced__use_system_emoji">Përdor emoji të sistemit</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Çaktivizo mbulimin e brendshëm të Signal-it për emoji-t</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kaloji krejt thirrjet përmes shërbyesit Signal për të shmangur zbulimin e adresës tuaj IP nga kontakti juaj. Aktivizimi do të ulë cilësinë e thirrjes.</string>
   <string name="preferences_advanced__always_relay_calls">Kaloji përherë thirrjet përmes releje</string>
+  <string name="preferences_app_protection__who_can">Cili mund të…</string>
   <string name="preferences_app_protection__app_access">Hyrje aplikacioni</string>
   <string name="preferences_app_protection__communication">Komunikim</string>
-  <string name="preferences_chats__chats">Biseda</string>
+  <string name="preferences_chats__chats">Fjalosje</string>
   <string name="preferences_notifications__messages">Mesazhe</string>
   <string name="preferences_notifications__events">Veprimtari</string>
   <string name="preferences_notifications__in_chat_sounds">Tinguj në fjalosje</string>
@@ -1788,6 +1838,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_notifications__mentions">Përmendje</string>
   <string name="preferences_notifications__notify_me">Njoftomë</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Merrni njoftime kur përmendeni në fjalosje të heshtuara</string>
+  <string name="preferences_setup_a_username">Ujdisë një emër përdoruesi</string>
+  <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1831,7 +1883,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation_list_settings_shortcut">Shkurtore rregullimesh</string>
   <string name="conversation_list_search_description">Kërko</string>
   <string name="conversation_list__pinned">E fiksuar</string>
-  <string name="conversation_list__chats">Biseda</string>
+  <string name="conversation_list__chats">Fjalosje</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Mund të fiksoni deri në %1$d fjalosje</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto Kontakti</string>
@@ -2088,6 +2140,14 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RegistrationActivity_code_support_subject">Regjistrim Signal-i - Kod Verifikimi për Android</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
+  <string name="preferences_app_protection__see_my_phone_number">Shohë numrin tim të telefonit</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Të më gjejë përmes numrit të telefonit</string>
+  <string name="PhoneNumberPrivacy_everyone">Cilido</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Kontaktet e mia</string>
+  <string name="PhoneNumberPrivacy_nobody">Askush</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Numri juaj i telefonit do të jetë i dukshëm për krejt personat dhe grupet të cilëve u dërgoni mesazh.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Cilido që ka numrin tuaj të telefonit në kontaktet e tij, do t’ju shohë si një kontakt në Signal. Të tjerët do të jenë në gjendje t’ju gjejnë përmes kërkimi.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Numrin tuaj të telefonit do ta shohin në Signal vetëm kontaktet tuaj.</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">kyçni hyrjen në Signal përmes kyçje ekrani ose shenja gishtash Android</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Kohë mbarimi plogështie për kyçje ekrani</string>
@@ -2167,6 +2227,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RecipientBottomSheet_remove">Hiqe</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">U kopjua në të papastër!</string>
   <string name="GroupRecipientListItem_admin">Përgjegjës</string>
+  <string name="GroupRecipientListItem_approve_description">Miratoje</string>
   <string name="GroupRecipientListItem_deny_description">Hidhe poshtë</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grupe të Dikurshëm vs. Grupesh të Rinj</string>
@@ -2176,8 +2237,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupsLearnMore_paragraph_2">Grupet e Dikurshëm s’mund të shndërrohen në Grupe të Rinj, por mund të krijoni një Grup të ri me të njëjtët anëtarë.</string>
   <string name="GroupsLearnMore_paragraph_3">Që të krijoni një Grup të Ri, krejt anëtarët duhet ta përditësojnë Signal-in me versionin më të ri.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Ndajeni përmes Signal-i</string>
   <string name="GroupLinkBottomSheet_copy">Kopjoje</string>
+  <string name="GroupLinkBottomSheet_qr_code">Kod QR</string>
   <string name="GroupLinkBottomSheet_share">Ndajeni Me të Tjerë</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">U kopjua në të papastër!</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Lidhja hëpërhë s’është aktive</string>
   <!--EOF-->
 </resources>

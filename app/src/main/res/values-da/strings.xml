@@ -1795,7 +1795,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_storage__review_storage">Vis hukommelse</string>
   <string name="preferences_storage__delete_older_messages">Slet ældre beskeder?</string>
   <string name="preferences_storage__clear_message_history">Ryd beskedhistorik?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette vil slette al beskedhistorik og medier permanent fra din enhed, der er ældre end %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dette vil reducere alle samtaler permanent til de %1$s seneste beskeder.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette vil slette al beskedhistorik og medier permanent fra din enhed.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på, du vil slette al beskedhistorik?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Al beskedhistorik fjernes permanent. Denne handling kan ikke fortrydes.</string>
   <string name="preferences_storage__delete_all_now">Slet det hele nu</string>
@@ -1806,7 +1808,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_storage__none">Ingen</string>
   <string name="preferences_storage__s_messages">%1$s beskeder</string>
   <string name="preferences_storage__custom">Tilpasset</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Tilpas begrænsning af samtalelængde</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Tilpas begrænsning af samtalelængde</string> -->
   <string name="preferences_advanced__use_system_emoji">Anvend system emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktivér Signal´s indbyggede emoji understøttelse</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal serveren, for at undgå at afsløre din IP-adresse for din kontakt. Opkaldskvaliteten vil blive forringet</string>

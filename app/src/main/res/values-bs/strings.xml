@@ -1862,7 +1862,7 @@
   <string name="preferences_storage__none">Nijedno</string>
   <string name="preferences_storage__s_messages">%1$s poruka</string>
   <string name="preferences_storage__custom">Ostalo</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Maksimalni broj poruka</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Maksimalni broj poruka</string> -->
   <string name="preferences_advanced__use_system_emoji">Koristi sistemske emoji sličice</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući Signalovu ugrađenu podršku za emoji sličice</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjeri sve pozive na Signal server kako bi Vaša IP adresa bila skrivena od sagovornika. Aktiviranjem ove opcije smanjit će se kvalitet poziva.</string>

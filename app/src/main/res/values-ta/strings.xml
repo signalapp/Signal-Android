@@ -483,7 +483,7 @@
   <string name="ManageGroupActivity_on">இயக்க</string>
   <string name="ManageGroupActivity_view_all_members">காண்க அனைத்து உறுப்பினர்கள்</string>
   <string name="ManageGroupActivity_see_all">அனைத்தையும் பார்</string>
-  <string name="ManageGroupActivity_none">யாரும்</string>
+  <string name="ManageGroupActivity_none">எதுவும் இல்லை</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%dஅழைக்கப்பட்டார்</item>
     <item quantity="other">%d அழைக்கப்பட்டார்</item>
@@ -1661,7 +1661,7 @@
   <string name="preferences__slow">மெதுவாக</string>
   <string name="preferences__help">உதவி</string>
   <string name="preferences__advanced">மேம்பட்ட</string>
-  <string name="preferences__donate_to_signal">Donate to Signal சிக்னலுக்கு நன்கொடை</string>
+  <string name="preferences__donate_to_signal">Signal-க்கு நன்கொடை அளி</string>
   <string name="preferences__privacy">தனியுரிமை</string>
   <string name="preferences__mms_user_agent">எம்.எம்.எஸ் பயனர் முகவர்</string>
   <string name="preferences__advanced_mms_access_point_names">நீங்கள் செய்யவேண்டிய MMS அமைப்புகள்</string>
@@ -1675,6 +1675,7 @@
   <string name="preferences__chats">அரட்டைகள் மற்றும் ஊடகங்கள்</string>
   <string name="preferences__storage">சேமிப்பு</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
+  <string name="preferences__keep_messages">செய்திகள் வைப்பு</string>
   <string name="preferences__linked_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
   <string name="preferences__light_theme">ஒளி</string>
   <string name="preferences__dark_theme">இருட்டு</string>
@@ -1710,8 +1711,16 @@
   <string name="preferences_storage__files">கோப்பு</string>
   <string name="preferences_storage__audio">ஒலி</string>
   <string name="preferences_storage__review_storage">விமர்சனம் சேமிப்பு</string>
-  <string name="preferences_storage__none">யாரும்</string>
+  <string name="preferences_storage__delete_older_messages">பழைய செய்திகளை நீக்கவா?</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">இது எல்லா உரையாடல்களையும் மிக சமீபத்திய %1$s செய்திகளுக்கு நிரந்தரமாக நேர்த்தி செய்யும்.</string>
+  <string name="preferences_storage__forever">என்றென்றும்</string>
+  <string name="preferences_storage__one_year">1 வருடம்</string>
+  <string name="preferences_storage__six_months">6 மாதங்கள்</string>
+  <string name="preferences_storage__thirty_days">30 நாட்கள்</string>
+  <string name="preferences_storage__none">எதுவும் இல்லை</string>
+  <string name="preferences_storage__s_messages">%1$s செய்திகள்</string>
   <string name="preferences_storage__custom">விருப்பத்திர்க்கேர்ப்ப</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">விருப்பமான உரையாடலின் நீள அளவு</string> -->
   <string name="preferences_advanced__use_system_emoji">கணினி ஈமோஜியைப் பயன்படுத்தவும்</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal  உள்ளமைக்கப்பட்ட ஈமோஜி ஆதரவை முடக்கு</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">உங்கள் ஐபி முகவரியை உங்கள் தொடர்புக்கு வெளிப்படுத்தாமல் இருக்க Signal சேவையகம் மூலம் அனைத்து அழைப்புகளையும் ரிலே செய்யவும். இயக்குவது அழைப்பு தரத்தை குறைக்கும்.</string>

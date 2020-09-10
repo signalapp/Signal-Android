@@ -214,8 +214,8 @@
   <string name="ConversationActivity_quick_camera_unavailable">Camera niet beschikbaar</string>
   <string name="ConversationActivity_unable_to_record_audio">Kan audio niet opnemen!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Je kunt naar dit groepsgesprek geen berichten verzenden omdat je niet langer een lid van deze groep bent.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze koppeling te openen.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Je verzoek om lid te worden van de groep is doorgestuurd naar een beheerder. Je krijgt bericht zodra deze gereageerd heeft.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze verwijzing te openen.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Je verzoek om lid te worden van de groep is doorgestuurd naar een beheerder. Je krijgt een melding zodra deze een besluit heeft genomen.</string>
   <string name="ConversationActivity_cancel_request">Verzoek annuleren</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om audioberichten op te nemen, moet je Signal toegang geven tot je microfoon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal heeft toegang nodig tot de microfoon om audioberichten te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ in.</string>
@@ -420,7 +420,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Vanaf nu kun je voor elke website een voorbeeldafbeelding bijvoegen, maar wanneer je dat doet zou die website kunnen zien dat je ze vermeld.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Geen voorbeeldafbeelding beschikbaar.</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepslink is niet actief</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -523,10 +523,10 @@
   <string name="ManageGroupActivity_legacy_group">Verouderde groep</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten te kunnen gebruiken zoals beheerders moet je een nieuwe groep aanmaken.</string>
   <!--GroupMentionSettingDialog-->
-  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Geef een melding bij mentions</string>
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Geef me een melding bij naamsvermeldingen</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je meldingen ontvangen wanneer iemand je in een gedempt gesprek vermeld?</string>
-  <string name="GroupMentionSettingDialog_default_notify_me">Standaard (geef me een notificatie)</string>
-  <string name="GroupMentionSettingDialog_default_dont_notify_me">Standaard (geef me geen bericht)</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Standaard (geef me een melding)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Standaard (geef me geen melding)</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Geef me altijd een bericht</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Geef me nooit een bericht</string>
   <!--ManageRecipientActivity-->
@@ -566,24 +566,24 @@
   <string name="CustomNotificationsDialogFragment__notification_sound">Meldingsgeluid</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Trillen</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Oproep instellingen</string>
-  <string name="CustomNotificationsDialogFragment__ringtone">Beltoon</string>
+  <string name="CustomNotificationsDialogFragment__ringtone">Oproepgeluid</string>
   <string name="CustomNotificationsDialogFragment__enabled">Ingeschakeld</string>
   <string name="CustomNotificationsDialogFragment__disabled">Uitgeschakeld</string>
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepslink</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepsverwijzing</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheer &amp; delen</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Groepslink</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Groepsverwijzing</string>
   <string name="ShareableGroupLinkDialogFragment__share">Doorsturen via andere app</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">Link vernieuwen</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Verwijzing vernieuwen</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatschaps verzoeken</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Nieuwe groepsleden goedkeuren</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Ingeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Uitgeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__default">Systeemstandaard</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Groepslink vernieuwd</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Groepsverwijzing vernieuwd</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis dat een beheerder nodig is om nieuwe leden goed te keuren.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepslink wilt vernieuwen? Dan zullen mensen geen lid meer kunnen worden via de huidige link.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepsverwijzing wilt vernieuwen? Men zal dan niet langer lid van de groep kunnen worden via de huidige verwijzing.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR code</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Beheerders moeten deze personen nog steeds goedkeuren als deze instelling aan staat.</string>
@@ -600,7 +600,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Verzoek om lid te worden</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kan geen lid worden van de groep, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepslink is niet actief</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je naam en foto gedeeld worden met de groepsleden.</string>
@@ -609,12 +609,12 @@
     <item quantity="other">Groep · %1$d leden</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Groepslinks komen binnenkort</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepskoppelingen te kunnen gebruiken</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Binnenkort komen er groepsverwijzingen</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepsverwijzingen te kunnen gebruiken</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Lid worden van een groep is nog niet ondersteund in Signal. Deze functie zal in een komende versie uitgeleverd worden.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt groepsverwijzingen niet. Werk Signal bij naar de meest recente versie om via een verwijzing lid te kunnen worden van een groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepslink</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepsverwijzing</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Verzoek van “%1$s” afwijzen?</string>
@@ -998,10 +998,10 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Onbekende groep</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Antwoorden…</string>
-  <string name="RedPhone_ending_call">Oproep beëindigen</string>
-  <string name="RedPhone_dialing">Oproep…</string>
-  <string name="RedPhone_ringing">Bellen …</string>
+  <string name="RedPhone_answering">Wordt beantwoord …</string>
+  <string name="RedPhone_ending_call">Oproep aan het beëindigen …</string>
+  <string name="RedPhone_dialing">Verbinding aan het maken …</string>
+  <string name="RedPhone_ringing">Aan het bellen …</string>
   <string name="RedPhone_busy">Bezet</string>
   <string name="RedPhone_connected">Verbonden</string>
   <string name="RedPhone_recipient_unavailable">Ontvanger niet beschikbaar</string>
@@ -1035,7 +1035,7 @@
   <string name="RegistrationActivity_play_services_error">Google Play Services fout</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services is momenteel aan het updaten of is tijdelijk niet beschikbaar. Probeer het nog eens.</string>
   <string name="RegistrationActivity_terms_and_privacy">Gebruiksvoorwaarden &amp; privacybeleid</string>
-  <string name="RegistrationActivity_no_browser">Kan deze koppeling niet openen; geen webbrowser gevonden.</string>
+  <string name="RegistrationActivity_no_browser">Kan deze verwijzing niet openen; geen webbrowser gevonden.</string>
   <string name="RegistrationActivity_more_information">Meer informatie</string>
   <string name="RegistrationActivity_less_information">Minder informatie</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal zal je om een aantal toestemmingen vragen: Signal moet je contactenlijst lezen om berichten te kunnen verzenden en om beveiligde oproepen tot stand te kunnen brengen naar je opgeslagen contacten.
@@ -1706,7 +1706,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor het verzenden van tekstberichten</string>
   <string name="preferences__generate_link_previews">Voorbeeldafbeeldingen genereren</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Sta Signal toe om voor elke koppeling naar een website die je verzendt een voorbeeldafbeelding genereren en bij te voegen. Echter, als je dit inschakelt zouden websites kunnen detecteren dat je ze in je bericht vermeld.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Sta Signal toe om voor elke verwijzing naar een website die je verzendt een voorbeeldafbeelding genereren en aan je bericht bij te voegen. Echter, als je dit inschakelt zouden websites kunnen detecteren dat je ze in je bericht vermeld.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -1720,9 +1720,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
   <string name="preferences__notifications">Meldingen</string>
   <string name="preferences__system_notification_settings">Systeemmeldingsinstellingen</string>
-  <string name="preferences__led_color">Notificatie-LED-kleur</string>
+  <string name="preferences__led_color">Melding-LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
-  <string name="preferences__pref_led_blink_title">Notificatie-LED-knipperpatroon</string>
+  <string name="preferences__pref_led_blink_title">Melding-LED-knipperpatroon</string>
   <string name="preferences__sound">Geluid</string>
   <string name="preferences__silent">Stil</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
@@ -1813,7 +1813,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_storage__none">Niets</string>
   <string name="preferences_storage__s_messages">%1$s berichten</string>
   <string name="preferences_storage__custom">Aangepast</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Aangepaste gesprekslengtelimiet</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Aangepaste gesprekslengtelimiet</string> -->
   <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Signal uit</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd omgeleid via de Signal-server. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
@@ -1827,7 +1827,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopened gesprek</string>
   <string name="preferences_notifications__show">Laat zien</string>
   <string name="preferences_notifications__calls">Oproepen</string>
-  <string name="preferences_notifications__ringtone">Beltoon</string>
+  <string name="preferences_notifications__ringtone">Oproepgeluid</string>
   <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvoorstel weergeven</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon boven sms-gesprekken met gesprekspartners die niet op Signal zitten een suggestie om je gesprekspartner uit te nodigen op Signal</string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
@@ -2241,9 +2241,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Delen via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiëren</string>
-  <string name="GroupLinkBottomSheet_qr_code">QR Code</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR-code</string>
   <string name="GroupLinkBottomSheet_share">Doorsturen via andere app</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
-  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De link is momenteel niet actief</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De verwijzing is momenteel niet actief</string>
   <!--EOF-->
 </resources>

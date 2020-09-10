@@ -1808,7 +1808,7 @@
   <string name="preferences_storage__none">Nessuno</string>
   <string name="preferences_storage__s_messages">%1$s messaggi</string>
   <string name="preferences_storage__custom">Personalizzato</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Limite di lunghezza delle conversazioni personalizzato</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Limite di lunghezza delle conversazioni personalizzato</string> -->
   <string name="preferences_advanced__use_system_emoji">Usa le emoji di sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disattiva le emoji di Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ritrasmetti le chiamate attraverso i server di Signal per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>

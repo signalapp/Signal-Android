@@ -1909,7 +1909,7 @@
   <string name="preferences_storage__none">Нет</string>
   <string name="preferences_storage__s_messages">%1$s сообщений</string>
   <string name="preferences_storage__custom">Пользовательский</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Пользовательский предел длины разговора</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Пользовательский предел длины разговора</string> -->
   <string name="preferences_advanced__use_system_emoji">Использовать системные эмодзи</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Отключить встроенные эмодзи Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через сервер Signal, чтобы не раскрывать ваш IP-адрес собеседнику. Качество звонка ухудшится.</string>

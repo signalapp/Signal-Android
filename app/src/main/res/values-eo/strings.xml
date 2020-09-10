@@ -449,6 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Pritraktotaj petoj por aniĝi</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Neniu peto.</string>
+  <string name="RequestingMembersFragment_explanation">Homoj en tiu listo provas anigi tiun grupon per kunhavita grupligilo.</string>
   <string name="RequestingMembersFragment_added_s">„%1$s“ aldonita</string>
   <string name="RequestingMembersFragment_denied_s">„%1$s“ malaprobita</string>
   <!--AddMembersActivity-->
@@ -610,6 +611,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupligiloj baldaŭ disponeblos</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ĝisdatigu Signal-on por uzi grupligilojn</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Anigi grupon pere de ligilo ankoraŭ ne eblas en Signal. Tio alvenos per baldaŭa ĝisdatigo.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versio de Signal, kiun vi uzas ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu al lasta versio por anigi tiun grupon per ligilo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ĝisdatigi Signal-on</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupligilo ne validas</string>
   <!--GV2 Request confirmation dialog-->
@@ -845,6 +847,9 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ŝanĝis, kiu povas modifi la grupan membrecon al „%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Tiuj, kiuj povas modifi la grupan membrecon ŝanĝiĝis al „%1$s“.</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vi ŝaltis la grupligilon sen bezono de administranto-aprobo.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vi ŝaltis la grupligilon kun administranto-aprobo.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Vi malŝaltis la grupligilon.</string>
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->

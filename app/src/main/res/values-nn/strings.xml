@@ -1814,7 +1814,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_storage__none">Inga</string>
   <string name="preferences_storage__s_messages">%1$s meldingar</string>
   <string name="preferences_storage__custom">Sjølvvald</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Sjølvvald lengdgrense for samtalar</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Sjølvvald lengdgrense for samtalar</string> -->
   <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vidaresend alle samtalar gjennom Signal-tenaren for å unngå å visa IP-adressa di til kontakten din. Dette vil gi dårlegare samtalekvalitet.</string>

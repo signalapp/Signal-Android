@@ -1801,14 +1801,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Seguro que deseas eliminar todo tu historial de mensajes?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">El historial completo de mensajes se eliminará permanentemente. Esta acción no se puede deshacer.</string>
   <string name="preferences_storage__delete_all_now">Borrar todos ahora</string>
-  <string name="preferences_storage__forever">cero días</string>
+  <string name="preferences_storage__forever">Siempre</string>
   <string name="preferences_storage__one_year">1 año</string>
   <string name="preferences_storage__six_months">6 meses</string>
   <string name="preferences_storage__thirty_days">30 días</string>
   <string name="preferences_storage__none">Ninguna</string>
   <string name="preferences_storage__s_messages">%1$s mensajes</string>
   <string name="preferences_storage__custom">Personalizado</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Límite de longitud de chat personalizado</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Límite de longitud de chat personalizado</string> -->
   <string name="preferences_advanced__use_system_emoji">Usar emoji del sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desactivar soporte de emoji integrado de Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirige todas las llamadas a través del servidor de Signal para evitar revelar tu dirección IP. Activar la opción reducirá la calidad de las llamadas.</string>

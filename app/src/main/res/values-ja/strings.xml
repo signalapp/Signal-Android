@@ -86,9 +86,9 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">グループのメンバーはあなたをもう一度このグループに加えることができるようになります。</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">お互いにメッセージや通話ができるようになります。あなたの名前とプロフィール写真が相手と共有されます。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ブロックされた相手は、あなたへのメッセージ送信や通話発信ができなくなります。</string>
-  <string name="BlockUnblockDialog_unblock_s">%1$s をブロック解除しますか？</string>
-  <string name="BlockUnblockDialog_unblock">ブロックを解除</string>
-  <string name="BlockUnblockDialog_block">ブロック</string>
+  <string name="BlockUnblockDialog_unblock_s">%1$s のブロックを解除しますか？</string>
+  <string name="BlockUnblockDialog_unblock">ブロックを解除する</string>
+  <string name="BlockUnblockDialog_block">ブロックする</string>
   <string name="BlockUnblockDialog_block_and_leave">ブロックして抜ける</string>
   <string name="BlockUnblockDialog_block_and_delete">ブロックして削除</string>
   <!--BucketedThreadMedia-->
@@ -510,8 +510,8 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">このユーザは連絡先に入っています</string>
   <string name="ManageRecipientActivity_disappearing_messages">消えるメッセージ</string>
   <string name="ManageRecipientActivity_chat_color">チャットの色</string>
-  <string name="ManageRecipientActivity_block">ブロック</string>
-  <string name="ManageRecipientActivity_unblock">ブロック解除</string>
+  <string name="ManageRecipientActivity_block">ブロックする</string>
+  <string name="ManageRecipientActivity_unblock">ブロックを解除する</string>
   <string name="ManageRecipientActivity_view_safety_number">安全番号を表示</string>
   <string name="ManageRecipientActivity_mute_notifications">通知をミュート</string>
   <string name="ManageRecipientActivity_custom_notifications">カスタム通知</string>
@@ -808,8 +808,14 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s がグループ情報を編集できるユーザを「%2$s」に変更しました。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">グループ情報を編集できるユーザーが「%1$s」に変更されました。</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">管理者承認が不要なグループリンクを有効にしました。</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">管理者承認制のグループリンクを有効にしました。</string>
   <string name="MessageRecord_you_turned_off_the_group_link">グループリンクを無効にしました。</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s が管理者承認が不要なグループリンクを有効にしました。</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s が管理者承認制のグループリンクを有効にしました。</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s がグループリンクを無効にしました。</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">管理者承認が不要なグループリンクが有効になりました。</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">管理者承認制のグループリンクが有効になりました。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">グループリンクが無効になりました。</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">グループリンクをリセットしました。</string>
@@ -1070,7 +1076,7 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">編集</string>
   <string name="SubmitDebugLogActivity_done">完了</string>
-  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">線をタップして削除</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">タップした行を削除します</string>
   <string name="SubmitDebugLogActivity_submit">送信する</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ログの送信に失敗しました</string>
   <string name="SubmitDebugLogActivity_success">成功しました！</string>
@@ -1519,7 +1525,7 @@
   <string name="unknown_sender_view__add_to_contacts">連絡先に登録する</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">登録せずにプロフィール情報を提示する</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s との暗号化を検証したい場合は、上記の番号が相手端末上の番号と一致するか確認してください。相手の端末上のQRコードを読み取るか、こちらのQRコードを相手に読み取ってもらうことでもできます。<a href="https://signal.org/redirect/safety-numbers">詳細</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s との暗号化を検証したい場合は、上記の番号が相手端末上の番号と一致するか確認してください。相手の端末上のQRコードを読み取るか、こちらのQRコードを相手に読み取ってもらうことでも可能です。<a href="https://signal.org/redirect/safety-numbers">詳細</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">タップしてスキャンする</string>
   <string name="verify_display_fragment__loading">読み込んでいます…</string>
   <string name="verify_display_fragment__verified">検証済み</string>
@@ -1684,7 +1690,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSで配信レポートを要求します</string>
   <string name="preferences__chats">チャットとメディア</string>
   <string name="preferences__storage">ストレージ</string>
-  <string name="preferences__conversation_length_limit">会話の長さ制限</string>
+  <string name="preferences__conversation_length_limit">会話の最大メッセージ件数</string>
   <string name="preferences__keep_messages">メッセージの保存期間</string>
   <string name="preferences__clear_message_history">メッセージ履歴を消去する</string>
   <string name="preferences__linked_devices">リンク済み端末</string>
@@ -1725,7 +1731,9 @@
   <string name="preferences_storage__review_storage">ストレージを確認</string>
   <string name="preferences_storage__delete_older_messages">より古いメッセージを消去しますか？</string>
   <string name="preferences_storage__clear_message_history">メッセージ履歴を消去しますか？</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$sより古いすべてのメッセージ履歴とメディアを、この端末から完全に削除します。</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">すべての会話で最新%1$s件のメッセージを残して完全に削除します。</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">すべてのメッセージ履歴とメディアを、この端末から完全に削除します。</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">本当にすべてのメッセージ履歴を削除しますか？</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">すべてのメッセージ履歴を完全に削除します。取り消しはできません。</string>
   <string name="preferences_storage__delete_all_now">すべて削除する</string>
@@ -1736,11 +1744,12 @@
   <string name="preferences_storage__none">なし</string>
   <string name="preferences_storage__s_messages">%1$s件</string>
   <string name="preferences_storage__custom">カスタム</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">会話の長さ制限</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">会話の最大メッセージ件数</string> -->
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字を無効にします</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバで中継して、相手にIPアドレスを知られることを防ぎます。ただし通話の品質は下がります。</string>
   <string name="preferences_advanced__always_relay_calls">通話を常に中継する</string>
+  <string name="preferences_app_protection__who_can">電話番号のプライバシー</string>
   <string name="preferences_app_protection__app_access">アプリのアクセス</string>
   <string name="preferences_app_protection__communication">通信</string>
   <string name="preferences_chats__chats">チャット</string>
@@ -2055,19 +2064,20 @@
   <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
-  <string name="preferences_app_protection__see_my_phone_number">私の電話番号を見る</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">電話番号で私を見つける</string>
+  <string name="preferences_app_protection__see_my_phone_number">私の電話番号を確認できる人</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">電話番号で私を検索できる人</string>
   <string name="PhoneNumberPrivacy_everyone">全員</string>
   <string name="PhoneNumberPrivacy_my_contacts">自分の連絡先</string>
-  <string name="PhoneNumberPrivacy_nobody">無人</string>
-  <string name="PhoneNumberPrivacy_everyone_see_description">あなたの電話番号は、メッセージを送信したすべての相手とグループに表示されます。</string>
-  <string name="PhoneNumberPrivacy_my_contacts_see_description">あなたの連絡先だけが、Signal上であなたの電話番号を見ることができます。</string>
+  <string name="PhoneNumberPrivacy_nobody">なし</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">あなたの電話番号は、あなたがメッセージを送信したすべての相手とグループに表示されます。</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">あなたの電話番号を連絡先に登録している人には、あなたがSignalの連絡先として表示されます。他の人は検索であなたを見つけることができます。</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">あなたの連絡先だけが、Signal上であなたの電話番号を確認できます。</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">SignalをAndroidの画面ロックや指紋認証でロックします</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックの無操作タイムアウト</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-  <string name="preferences_app_protection__create_a_pin">PINを作成</string>
-  <string name="preferences_app_protection__change_your_pin">PINを変更</string>
+  <string name="preferences_app_protection__create_a_pin">PINを作成する</string>
+  <string name="preferences_app_protection__change_your_pin">PINを変更する</string>
   <string name="preferences_app_protection__pin_reminders">PINリマインダー</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal内に保存された情報は、PINにより暗号化を保持されるため、あなたのみアクセスできます。PINを使うことで、Signalの再インストール時にあなたのプロフィール、設定および連絡先が復元されます。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">電話番号を再度Signalに登録する際にSignal PINを要求することで、さらにセキュリティを強化します。</string>

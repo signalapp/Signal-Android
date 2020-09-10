@@ -623,7 +623,7 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">נהל ושתף</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">קישור קבוצה</string>
   <string name="ShareableGroupLinkDialogFragment__share">שתף</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">קישור איפוס</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">אפס קישור</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">בקשות חברי קבוצה</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">אשר חברי קבוצה חדשים</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">מאופשר</string>
@@ -924,6 +924,9 @@
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">מי יכול לערוך חברות קבוצה השתנה אל \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">איפסת את קישור הקבוצה.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s איפס/ה את קישור הקבוצה.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">קישור הקבוצה אופס.</string>
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">שלחת בקשה להצטרף אל הקבוצה.</string>
@@ -2224,6 +2227,7 @@
   <string name="RegistrationActivity_code_support_subject">הרשמת Signal - קוד וידוא עבור Android</string>
   <string name="BackupUtil_never">אף פעם</string>
   <string name="BackupUtil_unknown">בלתי ידוע</string>
+  <string name="PhoneNumberPrivacy_nobody">אף אחד</string>
   <string name="preferences_app_protection__screen_lock">נעילת מסך</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">נעל גישה אל Signal באמצעות נעילת מסך או טביעת אצבע</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">פסק זמן אי־פעילות של נעילת מסך</string>

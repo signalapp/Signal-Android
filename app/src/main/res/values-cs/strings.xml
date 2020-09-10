@@ -1913,7 +1913,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_storage__none">Nic</string>
   <string name="preferences_storage__s_messages">%1$s zpráv</string>
   <string name="preferences_storage__custom">Vlastní</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Vlastní limit délky konverzace</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Vlastní limit délky konverzace</string> -->
   <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Signal </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Přenášet všechna volání přes servery Signal, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.</string>

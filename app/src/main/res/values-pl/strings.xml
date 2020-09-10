@@ -1908,7 +1908,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_storage__none">Brak</string>
   <string name="preferences_storage__s_messages">%1$s wiadomości</string>
   <string name="preferences_storage__custom">Własny</string>
-  <string name="preferences_Storage__custom_conversation_length_limit">Własny limit długości konwersacji</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Własny limit długości konwersacji</string> -->
   <string name="preferences_advanced__use_system_emoji">Używaj emoji systemu</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Wyłącz wbudowane wspomaganie emoji Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia za pomocą serwerów Signal, aby uniknąć ujawnienia adresu IP Twoim kontaktom. Pogorszy to jakość połączenia.</string>
