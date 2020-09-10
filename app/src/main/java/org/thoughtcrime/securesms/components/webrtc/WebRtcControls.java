@@ -36,6 +36,10 @@ public final class WebRtcControls {
     this.audioOutput                  = audioOutput;
   }
 
+  boolean displayStartCallControls() {
+    return false;
+  }
+
   boolean displayEndCall() {
     return isOngoing();
   }
@@ -88,7 +92,7 @@ public final class WebRtcControls {
     return !isInPipMode;
   }
 
-  WebRtcAudioOutput getAudioOutput() {
+  @NonNull WebRtcAudioOutput getAudioOutput() {
     return audioOutput;
   }
 

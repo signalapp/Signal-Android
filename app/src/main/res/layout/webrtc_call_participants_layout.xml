@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.webrtc.CallParticipantsLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/call_screen_call_participants"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:alignContent="stretch"
+    app:flexDirection="row"
+    app:flexWrap="wrap" />

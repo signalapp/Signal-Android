@@ -10,31 +10,47 @@
         android:layout_height="match_parent"
         android:background="@color/transparent_black_40" />
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
-        android:id="@+id/call_screen_recipient_avatar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/call_screen_recipient_avatar_call_card"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/call_screen_participants_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/call_screen_participants_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:reverseLayout="true"
+            tools:listitem="@layout/webrtc_call_participant_recycler_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
-        android:id="@+id/call_screen_remote_renderer_holder"
+        android:id="@+id/call_screen_large_local_renderer_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:background="@color/black">
 
-    <FrameLayout
-        android:id="@+id/call_screen_large_local_renderer_holder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:visibility="gone" />
+        <org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
+            android:id="@+id/call_screen_large_local_renderer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen"
@@ -95,60 +111,28 @@
                 android:background="@null"
                 android:clipChildren="true"
                 android:translationX="100000dp"
-                android:translationY="-100000dp"
+                android:translationY="100000dp"
                 android:visibility="gone"
                 app:cardCornerRadius="8dp"
                 tools:background="@color/red"
                 tools:visibility="visible">
 
-                <FrameLayout
-                    android:id="@+id/call_screen_small_local_renderer_holder"
+                <org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
+                    android:id="@+id/call_screen_small_local_renderer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
             </androidx.cardview.widget.CardView>
         </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
 
-        <ImageView
-            android:id="@+id/call_screen_down_arrow"
-            android:layout_width="20dp"
-            android:layout_height="11dp"
-            android:layout_marginStart="13dp"
-            app:layout_constraintBottom_toBottomOf="@id/call_screen_recipient_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/call_screen_recipient_name" />
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/call_screen_recipient_name"
-            android:layout_width="wrap_content"
+        <include
+            android:id="@+id/call_screen_toolbar"
+            layout="@layout/webrtc_call_view_toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="39dp"
-            android:shadowColor="@color/transparent_black_20"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="4.0"
-            android:textAppearance="@style/TextAppearance.Signal.Title2"
-            android:textColor="@color/core_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/call_screen_status_bar_guideline"
-            tools:text="Kiera Thompson" />
-
-        <TextView
-            android:id="@+id/call_screen_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:shadowColor="@color/transparent_black_40"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="4.0"
-            android:textColor="@color/core_white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/call_screen_recipient_name"
-            tools:text="Signal Calling..." />
+            app:layout_constraintTop_toTopOf="@id/call_screen_status_bar_guideline" />
 
         <org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutputToggleButton
             android:id="@+id/call_screen_speaker_toggle"
@@ -158,7 +142,7 @@
             android:layout_marginBottom="34dp"
             android:scaleType="fitXY"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
             app:layout_constraintEnd_toStartOf="@id/call_screen_camera_direction_toggle"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
@@ -174,7 +158,7 @@
             android:clickable="false"
             android:scaleType="fitXY"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
             app:layout_constraintEnd_toStartOf="@id/call_screen_video_toggle"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_speaker_toggle"
@@ -189,7 +173,7 @@
             android:background="@drawable/webrtc_call_screen_video_toggle"
             android:stateListAnimator="@null"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
             app:layout_constraintEnd_toStartOf="@id/call_screen_audio_mic_toggle"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_camera_direction_toggle"
@@ -204,7 +188,7 @@
             android:background="@drawable/webrtc_call_screen_mic_toggle"
             android:stateListAnimator="@null"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
             app:layout_constraintEnd_toStartOf="@id/call_screen_end_call"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_video_toggle"
@@ -218,7 +202,7 @@
             android:clickable="false"
             android:scaleType="fitXY"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_start_call_controls"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_audio_mic_toggle"
@@ -303,6 +287,46 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/call_screen_start_call_controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="32dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/call_screen_start_call_cancel"
+                style="@style/Widget.Signal.Button.Flat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:text="@android:string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/core_white"
+                app:backgroundTint="@color/transparent_white_40" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/call_screen_start_call_start_call"
+                style="@style/Widget.Signal.Button.Flat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:text="@string/WebRtcCallView__start_call"
+                android:textAllCaps="false"
+                android:textColor="@color/core_white"
+                app:backgroundTint="@color/core_green" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

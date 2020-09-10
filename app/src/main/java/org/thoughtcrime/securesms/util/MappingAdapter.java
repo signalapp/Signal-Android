@@ -113,20 +113,20 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
   }
 
   public interface Factory<T extends MappingModel<T>> {
-    @NonNull MappingViewHolder<T> createViewHolder(ViewGroup parent);
+    @NonNull MappingViewHolder<T> createViewHolder(@NonNull ViewGroup parent);
   }
 
   public static class LayoutFactory<T extends MappingModel<T>> implements Factory<T> {
     private       Function<View, MappingViewHolder<T>> creator;
     private final int                                  layout;
 
-    public LayoutFactory(Function<View, MappingViewHolder<T>> creator, @LayoutRes int layout) {
+    public LayoutFactory(@NonNull Function<View, MappingViewHolder<T>> creator, @LayoutRes int layout) {
       this.creator = creator;
       this.layout  = layout;
     }
 
     @Override
-    public @NonNull MappingViewHolder<T> createViewHolder(ViewGroup parent) {
+    public @NonNull MappingViewHolder<T> createViewHolder(@NonNull ViewGroup parent) {
       return creator.apply(LayoutInflater.from(parent.getContext()).inflate(layout, parent, false));
     }
   }

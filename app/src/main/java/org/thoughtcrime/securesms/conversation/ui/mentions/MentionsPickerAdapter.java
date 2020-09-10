@@ -3,18 +3,20 @@ package org.thoughtcrime.securesms.conversation.ui.mentions;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.conversation.ui.mentions.MentionViewHolder.MentionEventsListener;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.MappingAdapter;
 import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.viewholders.RecipientViewHolder;
+import org.thoughtcrime.securesms.util.viewholders.RecipientViewHolder.EventListener;
 
 import java.util.List;
 
 public class MentionsPickerAdapter extends MappingAdapter {
   private final Runnable currentListChangedListener;
 
-  public MentionsPickerAdapter(@Nullable MentionEventsListener mentionEventsListener, @NonNull Runnable currentListChangedListener) {
+  public MentionsPickerAdapter(@Nullable EventListener<MentionViewState> listener, @NonNull Runnable currentListChangedListener) {
     this.currentListChangedListener = currentListChangedListener;
-    registerFactory(MentionViewState.class, MentionViewHolder.createFactory(mentionEventsListener));
+    registerFactory(MentionViewState.class, RecipientViewHolder.createFactory(R.layout.mentions_picker_recipient_list_item, listener));
   }
 
   @Override

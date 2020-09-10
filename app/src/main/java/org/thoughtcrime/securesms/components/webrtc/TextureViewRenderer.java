@@ -36,6 +36,8 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
   private boolean                       enableFixedSize;
   private int                           surfaceWidth;
   private int                           surfaceHeight;
+  private boolean                       isInitialized;
+  private BroadcastVideoSink            attachedVideoSink;
 
   public TextureViewRenderer(@NonNull Context context) {
     super(context);
@@ -49,8 +51,12 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     this.setSurfaceTextureListener(this);
   }
 
-  public void init(@NonNull EglBase.Context sharedContext, @NonNull RendererCommon.RendererEvents rendererEvents) {
-    this.init(sharedContext, rendererEvents, EglBase.CONFIG_PLAIN, new GlRectDrawer());
+  public void init(@NonNull EglBase eglBase) {
+    if (isInitialized) return;
+
+    isInitialized = true;
+
+    this.init(eglBase.getEglBaseContext(), null, EglBase.CONFIG_PLAIN, new GlRectDrawer());
   }
 
   public void init(@NonNull EglBase.Context sharedContext, @NonNull RendererCommon.RendererEvents rendererEvents, @NonNull int[] configAttributes, @NonNull RendererCommon.GlDrawer drawer) {
@@ -61,6 +67,24 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     this.rotatedFrameHeight = 0;
 
     this.eglRenderer.init(sharedContext, this, configAttributes, drawer);
+  }
+
+  public void attachBroadcastVideoSink(@Nullable BroadcastVideoSink videoSink) {
+    if (attachedVideoSink != null) {
+      attachedVideoSink.removeSink(this);
+    }
+
+    if (videoSink != null) {
+      videoSink.addSink(this);
+    }
+
+    attachedVideoSink = videoSink;
+  }
+
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    release();
   }
 
   public void release() {
@@ -124,6 +148,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
   @Override
   protected void onMeasure(int widthSpec, int heightSpec) {
     ThreadUtils.checkIsOnMainThread();
+
+    widthSpec  = MeasureSpec.makeMeasureSpec(resolveSizeAndState(0, widthSpec, 0), MeasureSpec.AT_MOST);
+    heightSpec = MeasureSpec.makeMeasureSpec(resolveSizeAndState(0, heightSpec, 0), MeasureSpec.AT_MOST);
 
     Point size = videoLayoutMeasure.measure(widthSpec, heightSpec, this.rotatedFrameWidth, this.rotatedFrameHeight);
 
@@ -205,7 +232,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
   @Override
   public void onFrame(VideoFrame videoFrame) {
-    eglRenderer.onFrame(videoFrame);
+    if (isShown()) {
+      eglRenderer.onFrame(videoFrame);
+    }
   }
 
   @Override

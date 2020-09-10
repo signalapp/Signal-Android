@@ -6,9 +6,9 @@
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
     android:gravity="center_vertical"
-    android:paddingStart="12dp"
+    android:paddingStart="16dp"
     android:paddingTop="8dp"
-    android:paddingEnd="8dp"
+    android:paddingEnd="16dp"
     android:paddingBottom="8dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
@@ -20,6 +20,7 @@
 
     <TextView
         android:id="@+id/recipient_view_name"
+        style="@style/TextAppearance.Signal.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

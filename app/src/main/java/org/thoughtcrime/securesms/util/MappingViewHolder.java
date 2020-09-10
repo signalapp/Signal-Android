@@ -23,5 +23,9 @@ public abstract class MappingViewHolder<Model extends MappingModel<Model>> exten
     return itemView.findViewById(id);
   }
 
+  public @NonNull Context getContext() {
+    return itemView.getContext();
+  }
+
   public abstract void bind(@NonNull Model model);
 }
