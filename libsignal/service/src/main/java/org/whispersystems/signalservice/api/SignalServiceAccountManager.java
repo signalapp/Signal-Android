@@ -470,10 +470,6 @@ public class SignalServiceAccountManager {
     String       authToken = this.pushServiceSocket.getStorageAuth();
     StorageItems items     = this.pushServiceSocket.readStorageItems(authToken, operation.build());
 
-    if (items.getItemsCount() != storageKeys.size()) {
-      Log.w(TAG, "Failed to find all remote keys! Requested: " + storageKeys.size() + ", Found: " + items.getItemsCount());
-    }
-
     for (StorageItem item : items.getItemsList()) {
       Integer type = typeMap.get(item.getKey());
       if (type != null) {

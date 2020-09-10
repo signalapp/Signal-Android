@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -41,6 +43,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -213,10 +216,30 @@ public final class StorageSyncHelper {
   public static @NonNull KeyDifferenceResult findKeyDifference(@NonNull Collection<StorageId> remoteKeys,
                                                                @NonNull Collection<StorageId> localKeys)
   {
-    Set<StorageId> remoteOnlyKeys = SetUtil.difference(remoteKeys, localKeys);
-    Set<StorageId> localOnlyKeys  = SetUtil.difference(localKeys, remoteKeys);
+    Map<String, StorageId> remoteByRawId = Stream.of(remoteKeys).collect(Collectors.toMap(id -> Base64.encodeBytes(id.getRaw()), id -> id));
+    Map<String, StorageId> localByRawId  = Stream.of(localKeys).collect(Collectors.toMap(id -> Base64.encodeBytes(id.getRaw()), id -> id));
 
-    return new KeyDifferenceResult(new ArrayList<>(remoteOnlyKeys), new ArrayList<>(localOnlyKeys));
+    boolean hasTypeMismatch = remoteByRawId.size() != remoteKeys.size() || localByRawId.size() != localKeys.size();
+
+    Set<String> remoteOnlyRawIds = SetUtil.difference(remoteByRawId.keySet(), localByRawId.keySet());
+    Set<String> localOnlyRawIds  = SetUtil.difference(localByRawId.keySet(), remoteByRawId.keySet());
+    Set<String> sharedRawIds     = SetUtil.intersection(localByRawId.keySet(), remoteByRawId.keySet());
+
+    for (String rawId : sharedRawIds) {
+      StorageId remote = Objects.requireNonNull(remoteByRawId.get(rawId));
+      StorageId local  = Objects.requireNonNull(localByRawId.get(rawId));
+
+      if (remote.getType() != local.getType()) {
+        remoteOnlyRawIds.remove(rawId);
+        localOnlyRawIds.remove(rawId);
+        hasTypeMismatch = true;
+      }
+    }
+
+    List<StorageId> remoteOnlyKeys = Stream.of(remoteOnlyRawIds).map(remoteByRawId::get).toList();
+    List<StorageId> localOnlyKeys  = Stream.of(localOnlyRawIds).map(localByRawId::get).toList();
+
+    return new KeyDifferenceResult(remoteOnlyKeys, localOnlyKeys, hasTypeMismatch);
   }
 
   /**
@@ -459,12 +482,15 @@ public final class StorageSyncHelper {
   public static final class KeyDifferenceResult {
     private final List<StorageId> remoteOnlyKeys;
     private final List<StorageId> localOnlyKeys;
+    private final boolean         hasTypeMismatches;
 
     private KeyDifferenceResult(@NonNull List<StorageId> remoteOnlyKeys,
-                                @NonNull List<StorageId> localOnlyKeys)
+                                @NonNull List<StorageId> localOnlyKeys,
+                                boolean hasTypeMismatches)
     {
-      this.remoteOnlyKeys = remoteOnlyKeys;
-      this.localOnlyKeys  = localOnlyKeys;
+      this.remoteOnlyKeys    = remoteOnlyKeys;
+      this.localOnlyKeys     = localOnlyKeys;
+      this.hasTypeMismatches = hasTypeMismatches;
     }
 
     public @NonNull List<StorageId> getRemoteOnlyKeys() {
@@ -473,6 +499,14 @@ public final class StorageSyncHelper {
 
     public @NonNull List<StorageId> getLocalOnlyKeys() {
       return localOnlyKeys;
+    }
+
+    /**
+     * @return True if there exist some keys that have matching raw ID's but different types,
+     *         otherwise false.
+     */
+    public boolean hasTypeMismatches() {
+      return hasTypeMismatches;
     }
 
     public boolean isEmpty() {

@@ -131,6 +131,7 @@ public class StorageSyncJob extends BaseJob {
     StorageKey                  storageServiceKey  = SignalStore.storageServiceValues().getOrCreateStorageKey();
 
     boolean                         needsMultiDeviceSync  = false;
+    boolean                         needsForcePush        = false;
     long                            localManifestVersion  = TextSecurePreferences.getStorageManifestVersion(context);
     Optional<SignalStorageManifest> remoteManifest        = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifestVersion);
     long                            remoteManifestVersion = remoteManifest.transform(SignalStorageManifest::getVersion).or(localManifestVersion);
@@ -143,6 +144,11 @@ public class StorageSyncJob extends BaseJob {
       List<StorageId>     allLocalStorageKeys = getAllLocalStorageIds(context, Recipient.self().fresh());
       KeyDifferenceResult keyDifference       = StorageSyncHelper.findKeyDifference(remoteManifest.get().getStorageIds(), allLocalStorageKeys);
 
+      if (keyDifference.hasTypeMismatches()) {
+        Log.w(TAG, "Found type mismatches in the key sets! Scheduling a force push after this sync completes.");
+        needsForcePush = true;
+      }
+
       if (!keyDifference.isEmpty()) {
         Log.i(TAG, "[Remote Newer] There's a difference in keys. Local-only: " + keyDifference.getLocalOnlyKeys().size() + ", Remote-only: " + keyDifference.getRemoteOnlyKeys().size());
 
@@ -151,6 +157,11 @@ public class StorageSyncJob extends BaseJob {
         List<SignalStorageRecord> remoteOnly           = accountManager.readStorageRecords(storageServiceKey, keyDifference.getRemoteOnlyKeys());
         MergeResult               mergeResult          = StorageSyncHelper.resolveConflict(remoteOnly, localOnly);
         WriteOperationResult      writeOperationResult = StorageSyncHelper.createWriteOperation(remoteManifest.get().getVersion(), allLocalStorageKeys, mergeResult);
+
+        if (remoteOnly.size() != keyDifference.getRemoteOnlyKeys().size()) {
+          Log.w(TAG, "Could not find all remote-only records! Requested: " + keyDifference.getRemoteOnlyKeys().size() + ", Found: " + remoteOnly.size() + ". Scheduling a force push after this sync completes.");
+          needsForcePush = true;
+        }
 
         StorageSyncValidations.validate(writeOperationResult);
 
@@ -246,6 +257,11 @@ public class StorageSyncJob extends BaseJob {
       TextSecurePreferences.setStorageManifestVersion(context, localWriteResult.get().getWriteResult().getManifest().getVersion());
     } else {
       Log.i(TAG, "[Local Changes] No local changes.");
+    }
+
+    if (needsForcePush) {
+      Log.w(TAG, "Scheduling a force push.");
+      ApplicationDependencies.getJobManager().add(new StorageForcePushJob());
     }
 
     return needsMultiDeviceSync;

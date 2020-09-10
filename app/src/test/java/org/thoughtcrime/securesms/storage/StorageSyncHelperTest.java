@@ -28,9 +28,11 @@ import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -85,20 +87,57 @@ public final class StorageSyncHelperTest {
     KeyDifferenceResult result = StorageSyncHelper.findKeyDifference(keyListOf(1, 2, 3), keyListOf(1, 2, 3));
     assertTrue(result.getLocalOnlyKeys().isEmpty());
     assertTrue(result.getRemoteOnlyKeys().isEmpty());
+    assertFalse(result.hasTypeMismatches());
   }
 
   @Test
   public void findKeyDifference_noOverlap() {
     KeyDifferenceResult result = StorageSyncHelper.findKeyDifference(keyListOf(1, 2, 3), keyListOf(4, 5, 6));
-    assertEquals(keyListOf(1, 2, 3), result.getRemoteOnlyKeys());
-    assertEquals(keyListOf(4, 5, 6), result.getLocalOnlyKeys());
+    assertContentsEqual(keyListOf(1, 2, 3), result.getRemoteOnlyKeys());
+    assertContentsEqual(keyListOf(4, 5, 6), result.getLocalOnlyKeys());
+    assertFalse(result.hasTypeMismatches());
   }
 
   @Test
   public void findKeyDifference_someOverlap() {
     KeyDifferenceResult result = StorageSyncHelper.findKeyDifference(keyListOf(1, 2, 3), keyListOf(2, 3, 4));
-    assertEquals(keyListOf(1), result.getRemoteOnlyKeys());
-    assertEquals(keyListOf(4), result.getLocalOnlyKeys());
+    assertContentsEqual(keyListOf(1), result.getRemoteOnlyKeys());
+    assertContentsEqual(keyListOf(4), result.getLocalOnlyKeys());
+    assertFalse(result.hasTypeMismatches());
+  }
+
+  @Test
+  public void findKeyDifference_typeMismatch_allOverlap() {
+    KeyDifferenceResult result = StorageSyncHelper.findKeyDifference(keyListOf(new HashMap<Integer, Integer>() {{
+                                                                                 put(100, 1);
+                                                                                 put(200, 2);
+                                                                               }}),
+                                                                     keyListOf(new HashMap<Integer, Integer>() {{
+                                                                                 put(100, 1);
+                                                                                 put(200, 1);
+                                                                               }}));
+
+    assertTrue(result.getLocalOnlyKeys().isEmpty());
+    assertTrue(result.getRemoteOnlyKeys().isEmpty());
+    assertTrue(result.hasTypeMismatches());
+  }
+
+  @Test
+  public void findKeyDifference_typeMismatch_someOverlap() {
+    KeyDifferenceResult result = StorageSyncHelper.findKeyDifference(keyListOf(new HashMap<Integer, Integer>() {{
+                                                                       put(100, 1);
+                                                                       put(200, 2);
+                                                                       put(300, 1);
+                                                                     }}),
+                                                                     keyListOf(new HashMap<Integer, Integer>() {{
+                                                                       put(100, 1);
+                                                                       put(200, 1);
+                                                                       put(400, 1);
+                                                                     }}));
+
+    assertContentsEqual(Arrays.asList(StorageId.forType(byteArray(300), 1)), result.getRemoteOnlyKeys());
+    assertContentsEqual(Arrays.asList(StorageId.forType(byteArray(400), 1)), result.getLocalOnlyKeys());
+    assertTrue(result.hasTypeMismatches());
   }
 
   @Test
@@ -486,6 +525,10 @@ public final class StorageSyncHelperTest {
 
   private static List<StorageId> keyListOf(int... vals) {
     return Stream.of(byteListOf(vals)).map(b -> StorageId.forType(b, 1)).toList();
+  }
+
+  private static List<StorageId> keyListOf(Map<Integer, Integer> vals) {
+    return Stream.of(vals).map(e -> StorageId.forType(byteArray(e.getKey()), e.getValue())).toList();
   }
 
   private static StorageId contactKey(int val) {
