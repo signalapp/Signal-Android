@@ -260,7 +260,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       InsightsLauncher.showInsightsModal(requireContext(), requireFragmentManager());
     }
 
-    SimpleTask.run(getLifecycle(), Recipient::self, this::initializeProfileIcon);
+    SimpleTask.run(getViewLifecycleOwner().getLifecycle(), Recipient::self, this::initializeProfileIcon);
 
     if (!searchToolbar.isVisible() && list.getAdapter() != defaultAdapter) {
       list.removeItemDecoration(searchAdapterDecoration);
