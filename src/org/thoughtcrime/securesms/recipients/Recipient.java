@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms.recipients;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.todo.JazzIdenticonContactPhoto;
 import org.thoughtcrime.securesms.loki.utilities.ProfilePictureModifiedEvent;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
@@ -465,15 +465,10 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
+    // TODO: I believe this is now completely unused
     if      (isResolving())            return new TransparentContactPhoto();
     else if (isGroupRecipient())       return new GeneratedContactPhoto(name, R.drawable.ic_profile_default);
-    else {
-      String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      String publicKey = address.serialize();
-      String userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-      String publicKeyToUse = (publicKey.equalsIgnoreCase(userPublicKey) && userMasterPublicKey != null) ? userMasterPublicKey : publicKey;
-      return new JazzIdenticonContactPhoto(publicKeyToUse);
-    }
+    else { return new TransparentContactPhoto(); }
   }
 
   public synchronized @Nullable ContactPhoto getContactPhoto() {

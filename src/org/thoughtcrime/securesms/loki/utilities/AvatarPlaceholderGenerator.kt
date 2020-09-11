@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.todo
+package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import android.graphics.*
@@ -30,7 +30,7 @@ object AvatarPlaceholderGenerator {
         val colorSecondary = changeColorHueBy(colorPrimary, 12f)
 
         val labelText = when {
-            !TextUtils.isEmpty(displayName) -> extractLabel(displayName!!)
+            !TextUtils.isEmpty(displayName) -> extractLabel(displayName!!.capitalize())
             !TextUtils.isEmpty(hashString) -> extractLabel(hashString)
             else -> EMPTY_LABEL
         }

@@ -29,10 +29,10 @@ class NewConversationButtonSetView : RelativeLayout {
     var delegate: NewConversationButtonSetViewDelegate? = null
 
     // region Convenience
-    private val sessionButtonExpandedPosition: PointF get() { return PointF(width.toFloat() / 2 - sessionButton.expandedSize / 2, 0.0f) }
-    private val closedGroupButtonExpandedPosition: PointF get() { return PointF(width.toFloat() - closedGroupButton.expandedSize, height.toFloat() - bottomMargin - closedGroupButton.expandedSize) }
-    private val openGroupButtonExpandedPosition: PointF get() { return PointF(0.0f, height.toFloat() - bottomMargin - openGroupButton.expandedSize) }
-    private val buttonRestPosition: PointF get() { return PointF(width.toFloat() / 2 - mainButton.expandedSize / 2, height.toFloat() - bottomMargin - mainButton.expandedSize) }
+    private val sessionButtonExpandedPosition: PointF get() { return PointF(width.toFloat() / 2 - sessionButton.expandedSize / 2 - sessionButton.shadowMargin, 0.0f) }
+    private val closedGroupButtonExpandedPosition: PointF get() { return PointF(width.toFloat() - closedGroupButton.expandedSize - 2 * closedGroupButton.shadowMargin, height.toFloat() - bottomMargin - closedGroupButton.expandedSize - 2 * closedGroupButton.shadowMargin) }
+    private val openGroupButtonExpandedPosition: PointF get() { return PointF(0.0f, height.toFloat() - bottomMargin - openGroupButton.expandedSize - 2 * openGroupButton.shadowMargin) }
+    private val buttonRestPosition: PointF get() { return PointF(width.toFloat() / 2 - mainButton.expandedSize / 2 - mainButton.shadowMargin, height.toFloat() - bottomMargin - mainButton.expandedSize - 2 * mainButton.shadowMargin) }
     // endregion
 
     // region Settings
@@ -60,8 +60,9 @@ class NewConversationButtonSetView : RelativeLayout {
 
         val expandedSize by lazy { resources.getDimension(R.dimen.new_conversation_button_expanded_size) }
         val collapsedSize by lazy { resources.getDimension(R.dimen.new_conversation_button_collapsed_size) }
-        private val expandedImageViewPosition by lazy { PointF(0.0f, 0.0f) }
-        private val collapsedImageViewPosition by lazy { PointF((expandedSize - collapsedSize) / 2, (expandedSize - collapsedSize) / 2) }
+        val shadowMargin by lazy { toPx(6, resources).toFloat() }
+        private val expandedImageViewPosition by lazy { PointF(shadowMargin, shadowMargin) }
+        private val collapsedImageViewPosition by lazy { PointF(shadowMargin + (expandedSize - collapsedSize) / 2, shadowMargin + (expandedSize - collapsedSize) / 2) }
 
         private val imageView by lazy {
             val result = NewConversationButtonImageView(context)
@@ -95,7 +96,7 @@ class NewConversationButtonSetView : RelativeLayout {
             this.iconID = iconID
             this.isMain = isMain
             disableClipping()
-            val size = resources.getDimension(R.dimen.new_conversation_button_expanded_size).toInt()
+            val size = resources.getDimension(R.dimen.new_conversation_button_expanded_size).toInt() + 2 * shadowMargin.toInt()
             val layoutParams = LayoutParams(size, size)
             this.layoutParams = layoutParams
             addView(imageView)

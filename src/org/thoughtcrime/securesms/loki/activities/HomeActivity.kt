@@ -52,6 +52,7 @@ import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionM
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
 import org.whispersystems.signalservice.loki.utilities.toHexString
+import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
@@ -361,10 +362,17 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             val isClosedGroup = recipient.address.isClosedGroup
             // Send a leave group message if this is an active closed group
             if (isClosedGroup && DatabaseFactory.getGroupDatabase(this).isActive(recipient.address.toGroupString())) {
-                val groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(recipient.address.toString()).toHexString()
-                val isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
+                var isSSKBasedClosedGroup: Boolean
+                var groupPublicKey: String?
+                try {
+                    groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(recipient.address.toString()).toHexString()
+                    isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
+                } catch (e: IOException) {
+                    groupPublicKey = null
+                    isSSKBasedClosedGroup = false
+                }
                 if (isSSKBasedClosedGroup) {
-                    ClosedGroupsProtocol.leave(this, groupPublicKey)
+                    ClosedGroupsProtocol.leave(this, groupPublicKey!!)
                 } else if (!ClosedGroupsProtocol.leaveLegacyGroup(this, recipient)) {
                     Toast.makeText(this, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@setPositiveButton

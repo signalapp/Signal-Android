@@ -8,6 +8,12 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="?android:dividerHorizontal"
+        android:elevation="1dp" />
+
     <EditText
         style="@style/SessionEditText"
         android:id="@+id/publicKeyEditText"

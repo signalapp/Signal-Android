@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?colorPrimary"
-        android:elevation="1dp"
         app:contentInsetStart="0dp">
 
         <LinearLayout
@@ -65,6 +64,12 @@
 
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="?android:dividerHorizontal"
+                android:elevation="1dp" />
+
             <org.thoughtcrime.securesms.loki.views.SeedReminderView
                 android:id="@+id/seedReminderView"
                 android:layout_width="match_parent"
@@ -95,8 +100,8 @@
 
         <org.thoughtcrime.securesms.loki.views.NewConversationButtonSetView
             android:id="@+id/newConversationButtonSet"
-            android:layout_width="252dp"
-            android:layout_height="212dp"
+            android:layout_width="276dp"
+            android:layout_height="236dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true" />
 
