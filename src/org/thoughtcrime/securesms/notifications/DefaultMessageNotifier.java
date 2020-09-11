@@ -222,9 +222,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
     Recipient      recipients = DatabaseFactory.getThreadDatabase(context)
                                                .getRecipientForThreadId(threadId);
 
-    if (isVisible && recipients != null && SessionMetaProtocol.shouldSendReadReceipt(recipients.getAddress())) {
+    if (isVisible && recipients != null) {
       List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
-      MarkReadReceiver.process(context, messageIds);
+      if (SessionMetaProtocol.shouldSendReadReceipt(recipients.getAddress())) { MarkReadReceiver.process(context, messageIds); }
     }
 
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||
