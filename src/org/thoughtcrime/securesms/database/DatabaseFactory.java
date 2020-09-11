@@ -74,6 +74,7 @@ public class DatabaseFactory {
   private final LokiMessageDatabase lokiMessageDatabase;
   private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDatabase lokiUserDatabase;
+  private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
   private final SharedSenderKeysDatabase sskDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
@@ -190,6 +191,10 @@ public class DatabaseFactory {
     return getInstance(context).lokiUserDatabase;
   }
 
+  public static LokiBackupFilesDatabase getLokiBackupFilesDatabase(Context context) {
+    return getInstance(context).lokiBackupFilesDatabase;
+  }
+
   public static SharedSenderKeysDatabase getSSKDatabase(Context context) {
     return getInstance(context).sskDatabase;
   }
@@ -232,6 +237,7 @@ public class DatabaseFactory {
     this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
     this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
+    this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
     this.sskDatabase               = new SharedSenderKeysDatabase(context, databaseHelper);
   }
 

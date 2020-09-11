@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
-import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.BackupUtilOld;
 import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 
 import java.io.File;
@@ -98,7 +98,7 @@ public class LocalBackupJob extends BaseJob {
         throw new IOException("Renaming temporary backup file failed!");
       }
 
-      BackupUtil.deleteOldBackups(context);
+      BackupUtilOld.deleteOldBackups(context);
     } finally {
       GenericForegroundService.stopForegroundTask(context);
     }

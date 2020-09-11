@@ -15,6 +15,7 @@ import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.BackupUtilOld;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -77,7 +78,7 @@ public class BackupDialog {
                    .setPositiveButton(R.string.BackupDialog_delete_backups_statement, (dialog, which) -> {
                      BackupPassphrase.set(context, null);
                      TextSecurePreferences.setBackupEnabled(context, false);
-                     BackupUtil.deleteAllBackups(context);
+                     BackupUtilOld.deleteAllBackups(context);
                      preference.setChecked(false);
                    })
                    .create()

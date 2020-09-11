@@ -5,12 +5,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
-import android.text.TextUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -106,8 +107,9 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   }
 
   private void setBackupSummary() {
-    findPreference(TextSecurePreferences.BACKUP_NOW)
-        .setSummary(String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s), BackupUtil.getLastBackupTime(getContext(), Locale.US)));
+    findPreference(TextSecurePreferences.BACKUP_NOW).setSummary(
+            String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s),
+                    BackupUtil.getLastBackupTimeString(getContext(), Locale.getDefault())));
   }
 
   private void setMediaDownloadSummaries() {
