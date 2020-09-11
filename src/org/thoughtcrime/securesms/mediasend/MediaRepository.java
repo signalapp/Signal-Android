@@ -8,14 +8,14 @@ import android.os.AsyncTask;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
 import android.provider.OpenableColumns;
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import android.util.Pair;
 
 import com.annimon.stream.Stream;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -29,6 +29,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import network.loki.messenger.R;
 
 /**
  * Handles the retrieval of media present on the user's device.
@@ -139,7 +141,6 @@ class MediaRepository {
 
   @WorkerThread
   private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Uri contentUri, boolean hasOrientation) {
-    //TODO Constrain media file size to match the Loki protocol limit.
     List<Media> media         = new LinkedList<>();
     String      selection     = Images.Media.BUCKET_ID + " = ? AND " + Images.Media.DATA + " NOT NULL";
     String[]    selectionArgs = new String[] { bucketId };
