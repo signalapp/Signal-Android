@@ -303,9 +303,7 @@ public final class PushGroupSendJob extends PushSendJob {
     boolean                                    isRecipientUpdate  = Stream.of(DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId))
                                                                           .anyMatch(info -> info.getStatus() > GroupReceiptDatabase.STATUS_UNDELIVERED);
 
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations)
-                                                                      .map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient))
-                                                                      .toList();
+    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);
 
     if (message.isGroup()) {
       OutgoingGroupUpdateMessage groupMessage = (OutgoingGroupUpdateMessage) message;

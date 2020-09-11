@@ -112,13 +112,16 @@ public class NotificationState {
   }
 
   public PendingIntent getMarkAsReadIntent(Context context, int notificationId) {
-    long[] threadArray = new long[threads.size()];
-    int    index       = 0;
+    long[]        threadArray  = new long[threads.size()];
+    int           index        = 0;
+    StringBuilder threadString = new StringBuilder();
 
     for (long thread : threads) {
-      Log.i(TAG, "Added thread: " + thread);
+      threadString.append(thread).append(" ");
       threadArray[index++] = thread;
     }
+
+    Log.i(TAG, "Added threads: " + threadString.toString());
 
     Intent intent = new Intent(MarkReadReceiver.CLEAR_ACTION);
     intent.setClass(context, MarkReadReceiver.class);

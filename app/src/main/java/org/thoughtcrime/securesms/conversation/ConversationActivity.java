@@ -1913,13 +1913,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
       if (previewState == null) return;
 
       if (previewState.isLoading()) {
-        Log.d(TAG, "Loading link preview.");
         inputPanel.setLinkPreviewLoading();
       } else if (previewState.hasLinks() && !previewState.getLinkPreview().isPresent()) {
-        Log.d(TAG, "No preview found.");
         inputPanel.setLinkPreviewNoPreview(previewState.getError());
       } else {
-        Log.d(TAG, "Setting link preview: " + previewState.getLinkPreview().isPresent());
         inputPanel.setLinkPreview(glideRequests, previewState.getLinkPreview());
       }
 

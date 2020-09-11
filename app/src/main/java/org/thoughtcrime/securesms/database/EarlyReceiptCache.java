@@ -22,8 +22,6 @@ public class EarlyReceiptCache {
   }
 
   public synchronized void increment(long timestamp, @NonNull RecipientId origin) {
-    Log.i(TAG, String.format(Locale.US, "[%s] Timestamp: %d, Recipient: %s", name, timestamp, origin.serialize()));
-
     Map<RecipientId, Long> receipts = cache.get(timestamp);
 
     if (receipts == null) {
@@ -43,10 +41,6 @@ public class EarlyReceiptCache {
 
   public synchronized Map<RecipientId, Long> remove(long timestamp) {
     Map<RecipientId, Long> receipts = cache.remove(timestamp);
-
-    Log.i(TAG, this+"");
-    Log.i(TAG, String.format(Locale.US, "Checking early receipts (%d): %d", timestamp, receipts == null ? 0 : receipts.size()));
-
     return receipts != null ? receipts : new HashMap<>();
   }
 }

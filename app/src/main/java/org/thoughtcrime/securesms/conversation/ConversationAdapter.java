@@ -170,8 +170,6 @@ public class ConversationAdapter
       case MESSAGE_TYPE_OUTGOING_TEXT:
       case MESSAGE_TYPE_OUTGOING_MULTIMEDIA:
       case MESSAGE_TYPE_UPDATE:
-        long start = System.currentTimeMillis();
-
         View                     itemView = CachedInflater.from(parent.getContext()).inflate(getLayoutForViewType(viewType), parent, false);
         BindableConversationItem bindable = (BindableConversationItem) itemView;
 
@@ -190,7 +188,6 @@ public class ConversationAdapter
 
         bindable.setEventListener(clickListener);
 
-        Log.d(TAG, String.format(Locale.US, "Inflate time: %d ms for View type: %d", System.currentTimeMillis() - start, viewType));
         return new ConversationViewHolder(itemView);
       case MESSAGE_TYPE_PLACEHOLDER:
         View v = new FrameLayout(parent.getContext());

@@ -413,7 +413,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     Notification notification = builder.build();
     NotificationManagerCompat.from(context).notify(notificationId, notification);
-    Log.i(TAG, "Posted notification. " + notification.toString());
+    Log.i(TAG, "Posted notification.");
   }
 
   private static void sendMultipleThreadNotification(@NonNull Context context,

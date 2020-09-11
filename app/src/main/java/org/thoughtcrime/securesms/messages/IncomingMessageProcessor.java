@@ -43,17 +43,10 @@ public class IncomingMessageProcessor {
    */
   public Processor acquire() {
     lock.lock();
-
-    Thread current = Thread.currentThread();
-    Log.d(TAG, "Lock acquired by thread " + current.getId() + " (" + current.getName() + ")");
-
     return new Processor(context);
   }
 
   private void release() {
-    Thread current = Thread.currentThread();
-    Log.d(TAG, "Lock about to be released by thread " + current.getId() + " (" + current.getName() + ")");
-
     lock.unlock();
   }
 
@@ -92,7 +85,7 @@ public class IncomingMessageProcessor {
     }
 
     private @Nullable String processMessage(@NonNull SignalServiceEnvelope envelope) {
-      Log.i(TAG, "Received message. Inserting in PushDatabase.");
+      Log.i(TAG, "Received message " + envelope.getTimestamp() + ". Inserting in PushDatabase.");
 
       long id  = pushDatabase.insert(envelope);
 
@@ -109,7 +102,7 @@ public class IncomingMessageProcessor {
     }
 
     private void processReceipt(@NonNull SignalServiceEnvelope envelope) {
-      Log.i(TAG, String.format(Locale.ENGLISH, "Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
+      Log.i(TAG, "Received server receipt for " + envelope.getTimestamp());
       mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(Recipient.externalHighTrustPush(context, envelope.getSourceAddress()).getId(), envelope.getTimestamp()),
                                                    System.currentTimeMillis());
     }

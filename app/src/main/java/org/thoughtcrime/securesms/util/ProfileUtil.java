@@ -123,7 +123,7 @@ public final class ProfileUtil {
   }
 
   private static Optional<UnidentifiedAccess> getUnidentifiedAccess(@NonNull Context context, @NonNull Recipient recipient) {
-    Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
+    Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient, false);
 
     if (unidentifiedAccess.isPresent()) {
       return unidentifiedAccess.get().getTargetUnidentifiedAccess();

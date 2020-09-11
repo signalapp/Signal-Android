@@ -241,16 +241,12 @@ public class WebSocketConnection extends WebSocketListener {
       WebSocketMessage message = WebSocketMessage.parseFrom(payload.toByteArray());
 
       if (message.getType().getNumber() == WebSocketMessage.Type.REQUEST_VALUE)  {
-        Log.d(TAG, "onMessage() -- incoming request");
         incomingRequests.add(message.getRequest());
       } else if (message.getType().getNumber() == WebSocketMessage.Type.RESPONSE_VALUE) {
         OutgoingRequest listener = outgoingRequests.get(message.getResponse().getId());
         if (listener != null) {
           listener.getResponseFuture().set(new WebsocketResponse(message.getResponse().getStatus(),
                                                                  new String(message.getResponse().getBody().toByteArray())));
-          Log.d(TAG, "onMessage() -- response received in " + (System.currentTimeMillis() - listener.getStartTimestamp()) + " ms");
-        } else {
-          Log.d(TAG, "onMessage() -- response received, but no listener");
         }
       }
 

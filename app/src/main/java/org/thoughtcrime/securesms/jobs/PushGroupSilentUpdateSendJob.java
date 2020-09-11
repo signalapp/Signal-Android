@@ -165,7 +165,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
   {
     SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
     List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations).map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient)).toList();
+    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);;
 
     SignalServiceGroupV2     group            = SignalServiceGroupV2.fromProtobuf(groupContextV2);
     SignalServiceDataMessage groupDataMessage = SignalServiceDataMessage.newBuilder()

@@ -134,7 +134,7 @@ public class LeaveGroupJob extends BaseJob {
     SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
     List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddresses(context, destinations);
     List<SignalServiceAddress>             memberAddresses    = RecipientUtil.toSignalServiceAddresses(context, members);
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations).map(Recipient::resolved).map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient)).toList();
+    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, Stream.of(destinations).map(Recipient::resolved).toList());
     SignalServiceGroup                     serviceGroup       = new SignalServiceGroup(SignalServiceGroup.Type.QUIT, groupId.getDecodedId(), name, memberAddresses, null);
     SignalServiceDataMessage.Builder       dataMessage        = SignalServiceDataMessage.newBuilder()
                                                                                         .withTimestamp(System.currentTimeMillis())

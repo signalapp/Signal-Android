@@ -69,10 +69,8 @@ public final class ThreadBodyUtil {
     } else if (hasImage) {
       return format(context, record, EmojiStrings.PHOTO, R.string.ThreadRecord_photo);
     } else if (TextUtils.isEmpty(record.getBody())) {
-      Log.w(TAG, "Got a media message without a body of a type we were not able to process. [contains media slide]:" + record.containsMediaSlide());
       return context.getString(R.string.ThreadRecord_media_message);
     } else {
-      Log.w(TAG, "Got a media message with a body of a type we were not able to process. [contains media slide]:" + record.containsMediaSlide());
       return getBody(context, record);
     }
   }

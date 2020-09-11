@@ -44,7 +44,6 @@ public class JobSchedulerScheduler implements Scheduler {
       constraint.applyToJobInfo(jobInfoBuilder);
     }
 
-    Log.i(TAG, "Scheduling a run in " + delay + " ms.");
     JobScheduler jobScheduler = application.getSystemService(JobScheduler.class);
     jobScheduler.schedule(jobInfoBuilder.build());
   }
@@ -64,8 +63,6 @@ public class JobSchedulerScheduler implements Scheduler {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-      Log.d(TAG, "onStartJob()");
-
       JobManager jobManager = ApplicationDependencies.getJobManager();
 
       jobManager.addOnEmptyQueueListener(new JobManager.EmptyQueueListener() {
@@ -73,7 +70,6 @@ public class JobSchedulerScheduler implements Scheduler {
         public void onQueueEmpty() {
           jobManager.removeOnEmptyQueueListener(this);
           jobFinished(params, false);
-          Log.d(TAG, "jobFinished()");
         }
       });
 
@@ -84,7 +80,6 @@ public class JobSchedulerScheduler implements Scheduler {
 
     @Override
     public boolean onStopJob(JobParameters params) {
-      Log.d(TAG, "onStopJob()");
       return false;
     }
   }

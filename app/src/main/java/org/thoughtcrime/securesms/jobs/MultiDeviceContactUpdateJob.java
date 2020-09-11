@@ -325,7 +325,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                                 .withLength(fd.getLength())
                                                 .build());
     } catch (IOException e) {
-      Log.i(TAG, "Could not find avatar for URI: " + displayPhotoUri);
+      // Ignored
     }
 
     Uri photoUri = Uri.withAppendedPath(uri, ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);

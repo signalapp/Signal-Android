@@ -12,8 +12,8 @@ public class SendMessageResult {
   private final boolean              unregisteredFailure;
   private final IdentityFailure      identityFailure;
 
-  public static SendMessageResult success(SignalServiceAddress address, boolean unidentified, boolean needsSync) {
-    return new SendMessageResult(address, new Success(unidentified, needsSync), false, false, null);
+  public static SendMessageResult success(SignalServiceAddress address, boolean unidentified, boolean needsSync, long duration) {
+    return new SendMessageResult(address, new Success(unidentified, needsSync, duration), false, false, null);
   }
 
   public static SendMessageResult networkFailure(SignalServiceAddress address) {
@@ -59,10 +59,12 @@ public class SendMessageResult {
   public static class Success {
     private final boolean unidentified;
     private final boolean needsSync;
+    private final long    duration;
 
-    private Success(boolean unidentified, boolean needsSync) {
+    private Success(boolean unidentified, boolean needsSync, long duration) {
       this.unidentified = unidentified;
       this.needsSync    = needsSync;
+      this.duration     = duration;
     }
 
     public boolean isUnidentified() {
@@ -71,6 +73,10 @@ public class SendMessageResult {
 
     public boolean isNeedsSync() {
       return needsSync;
+    }
+
+    public long getDuration() {
+      return duration;
     }
   }
 
