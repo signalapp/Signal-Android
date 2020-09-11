@@ -30,7 +30,7 @@ object AvatarPlaceholderGenerator {
         val colorSecondary = changeColorHueBy(colorPrimary, 12f)
 
         val labelText = when {
-            !TextUtils.isEmpty(displayName) -> extractLabel(displayName!!)
+            !TextUtils.isEmpty(displayName) -> extractLabel(displayName!!.capitalize())
             !TextUtils.isEmpty(hashString) -> extractLabel(hashString)
             else -> EMPTY_LABEL
         }
