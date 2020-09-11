@@ -50,7 +50,6 @@ public final class FeatureFlags {
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
   private static final String USERNAMES                    = "android.usernames";
-  private static final String ATTACHMENTS_V3               = "android.attachmentsV3.2";
   private static final String REMOTE_DELETE                = "android.remoteDelete";
   private static final String GROUPS_V2_OLD_1              = "android.groupsv2";
   private static final String GROUPS_V2_OLD_2              = "android.groupsv2.2";
@@ -73,7 +72,6 @@ public final class FeatureFlags {
    */
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
-      ATTACHMENTS_V3,
       REMOTE_DELETE,
       GROUPS_V2,
       GROUPS_V2_CREATE_VERSION,
@@ -106,7 +104,6 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
-      ATTACHMENTS_V3,
       GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
@@ -194,11 +191,6 @@ public final class FeatureFlags {
   /** Creating usernames, sending messages by username. */
   public static synchronized boolean usernames() {
     return getBoolean(USERNAMES, false);
-  }
-
-  /** Whether or not we use the attachments v3 form. */
-  public static boolean attachmentsV3() {
-    return getBoolean(ATTACHMENTS_V3, false);
   }
 
   /** Send support for remotely deleting a message. */

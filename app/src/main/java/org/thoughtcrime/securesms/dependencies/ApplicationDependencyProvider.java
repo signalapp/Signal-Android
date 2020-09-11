@@ -95,7 +95,6 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             new SignalProtocolStoreImpl(context),
                                             BuildConfig.SIGNAL_AGENT,
                                             TextSecurePreferences.isMultiDevice(context),
-                                            FeatureFlags.attachmentsV3(),
                                             Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                             Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                             Optional.of(new SecurityEventListener(context)),

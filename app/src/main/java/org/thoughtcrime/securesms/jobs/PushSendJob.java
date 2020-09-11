@@ -255,11 +255,8 @@ public abstract class PushSendJob extends SendJob {
                                                                            .withWidth(thumbnailData.getWidth())
                                                                            .withHeight(thumbnailData.getHeight())
                                                                            .withLength(thumbnailData.getBitmap().length)
-                                                                           .withStream(new ByteArrayInputStream(thumbnailData.getBitmap()));
-
-          if (FeatureFlags.attachmentsV3()) {
-            builder.withResumableUploadSpec(ApplicationDependencies.getSignalServiceMessageSender().getResumableUploadSpec());
-          }
+                                                                           .withStream(new ByteArrayInputStream(thumbnailData.getBitmap()))
+                                                                           .withResumableUploadSpec(ApplicationDependencies.getSignalServiceMessageSender().getResumableUploadSpec());
 
           thumbnail = builder.build();
         }

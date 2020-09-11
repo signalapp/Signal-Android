@@ -261,14 +261,11 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   {
     if (length > 0) {
       try {
-        SignalServiceAttachmentStream.Builder attachmentStream   = SignalServiceAttachment.newStreamBuilder()
-                                                                                          .withStream(stream)
-                                                                                          .withContentType("application/octet-stream")
-                                                                                          .withLength(length);
-
-        if (FeatureFlags.attachmentsV3()) {
-          attachmentStream.withResumableUploadSpec(messageSender.getResumableUploadSpec());
-        }
+        SignalServiceAttachmentStream.Builder attachmentStream = SignalServiceAttachment.newStreamBuilder()
+                                                                                        .withStream(stream)
+                                                                                        .withContentType("application/octet-stream")
+                                                                                        .withLength(length)
+                                                                                        .withResumableUploadSpec(messageSender.getResumableUploadSpec());
 
         messageSender.sendMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream.build(), complete)),
                                   UnidentifiedAccessUtil.getAccessForSync(context));

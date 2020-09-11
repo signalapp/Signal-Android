@@ -35,11 +35,6 @@ public class ResumableUploadSpecJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    if (!FeatureFlags.attachmentsV3()) {
-      Log.i(TAG, "Attachments V3 is not enabled so there is nothing to do!");
-      return;
-    }
-
     ResumableUploadSpec resumableUploadSpec = ApplicationDependencies.getSignalServiceMessageSender()
                                                                      .getResumableUploadSpec();
 

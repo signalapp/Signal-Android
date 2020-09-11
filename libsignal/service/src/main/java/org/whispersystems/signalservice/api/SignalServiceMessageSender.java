@@ -124,7 +124,6 @@ public class SignalServiceMessageSender {
   private final AtomicReference<Optional<SignalServiceMessagePipe>> pipe;
   private final AtomicReference<Optional<SignalServiceMessagePipe>> unidentifiedPipe;
   private final AtomicBoolean                                       isMultiDevice;
-  private final AtomicBoolean                                       attachmentsV3;
 
   private final ExecutorService                                     executor;
 
@@ -144,14 +143,13 @@ public class SignalServiceMessageSender {
                                     SignalProtocolStore store,
                                     String signalAgent,
                                     boolean isMultiDevice,
-                                    boolean attachmentsV3,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     Optional<EventListener> eventListener,
                                     ClientZkProfileOperations clientZkProfileOperations,
                                     ExecutorService executor)
   {
-    this(urls, new StaticCredentialsProvider(uuid, e164, password, null), store, signalAgent, isMultiDevice, attachmentsV3, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations, executor);
+    this(urls, new StaticCredentialsProvider(uuid, e164, password, null), store, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations, executor);
   }
 
   public SignalServiceMessageSender(SignalServiceConfiguration urls,
@@ -159,7 +157,6 @@ public class SignalServiceMessageSender {
                                     SignalProtocolStore store,
                                     String signalAgent,
                                     boolean isMultiDevice,
-                                    boolean attachmentsV3,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     Optional<EventListener> eventListener,
@@ -172,7 +169,6 @@ public class SignalServiceMessageSender {
     this.pipe             = new AtomicReference<>(pipe);
     this.unidentifiedPipe = new AtomicReference<>(unidentifiedPipe);
     this.isMultiDevice    = new AtomicBoolean(isMultiDevice);
-    this.attachmentsV3    = new AtomicBoolean(attachmentsV3);
     this.eventListener    = eventListener;
     this.executor         = executor != null ? executor : Executors.newSingleThreadExecutor();
   }
@@ -365,11 +361,10 @@ public class SignalServiceMessageSender {
     socket.cancelInFlightRequests();
   }
 
-  public void update(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe, boolean isMultiDevice, boolean attachmentsV3) {
+  public void update(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe, boolean isMultiDevice) {
     this.pipe.set(Optional.fromNullable(pipe));
     this.unidentifiedPipe.set(Optional.fromNullable(unidentifiedPipe));
     this.isMultiDevice.set(isMultiDevice);
-    this.attachmentsV3.set(attachmentsV3);
   }
 
   public SignalServiceAttachmentPointer uploadAttachment(SignalServiceAttachmentStream attachment) throws IOException {
