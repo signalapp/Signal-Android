@@ -27,11 +27,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class LocalBackupJob extends BaseJob {
+public final class LocalBackupJob extends BaseJob {
 
   public static final String KEY = "LocalBackupJob";
 
-  private static final String TAG = LocalBackupJob.class.getSimpleName();
+  private static final String TAG = Log.tag(LocalBackupJob.class);
+
+  public static final String TEMP_BACKUP_FILE_PREFIX = ".backup";
+  public static final String TEMP_BACKUP_FILE_SUFFIX = ".tmp";
 
   public LocalBackupJob() {
     this(new Job.Parameters.Builder()
@@ -76,6 +79,8 @@ public class LocalBackupJob extends BaseJob {
       String fileName        = String.format("signal-%s.backup", timestamp);
       File   backupFile      = new File(backupDirectory, fileName);
 
+      deleteOldTemporaryBackups(backupDirectory);
+
       if (backupFile.exists()) {
         throw new IOException("Backup file already exists?");
       }
@@ -84,7 +89,7 @@ public class LocalBackupJob extends BaseJob {
         throw new IOException("Backup password is null");
       }
 
-      File tempFile = File.createTempFile("backup", "tmp", StorageUtil.getBackupCacheDirectory(context));
+      File tempFile = File.createTempFile(TEMP_BACKUP_FILE_PREFIX, TEMP_BACKUP_FILE_SUFFIX, backupDirectory);
 
       try {
         FullBackupExporter.export(context,
@@ -108,6 +113,21 @@ public class LocalBackupJob extends BaseJob {
       }
 
       BackupUtil.deleteOldBackups();
+    }
+  }
+
+  private static void deleteOldTemporaryBackups(@NonNull File backupDirectory) {
+    for (File file : backupDirectory.listFiles()) {
+      if (file.isFile()) {
+        String name = file.getName();
+        if (name.startsWith(TEMP_BACKUP_FILE_PREFIX) && name.endsWith(TEMP_BACKUP_FILE_SUFFIX)) {
+          if (file.delete()) {
+            Log.w(TAG, "Deleted old temporary backup file");
+          } else {
+            Log.w(TAG, "Could not delete old temporary backup file");
+          }
+        }
+      }
     }
   }
 
