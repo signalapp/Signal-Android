@@ -503,12 +503,15 @@ public final class PushProcessMessageJob extends BaseJob {
       MessageDatabase database = DatabaseFactory.getSmsDatabase(context);
       database.markAsMissedCall(smsMessageId.get());
     } else {
-      Intent     intent     = new Intent(context, WebRtcCallService.class);
-      RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
+      Intent     intent            = new Intent(context, WebRtcCallService.class);
+      Recipient  recipient         = Recipient.externalHighTrustPush(context, content.getSender());
+      RemotePeer remotePeer        = new RemotePeer(recipient.getId());
+      byte[]     remoteIdentityKey = recipient.getIdentityKey();
 
       intent.setAction(WebRtcCallService.ACTION_RECEIVE_OFFER)
             .putExtra(WebRtcCallService.EXTRA_CALL_ID,                    message.getId())
             .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,                remotePeer)
+            .putExtra(WebRtcCallService.EXTRA_REMOTE_IDENTITY_KEY,        remoteIdentityKey)
             .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,              content.getSenderDevice())
             .putExtra(WebRtcCallService.EXTRA_OFFER_OPAQUE,               message.getOpaque())
             .putExtra(WebRtcCallService.EXTRA_OFFER_SDP,                  message.getSdp())
@@ -526,16 +529,19 @@ public final class PushProcessMessageJob extends BaseJob {
                                        @NonNull AnswerMessage message)
   {
     Log.i(TAG, "handleCallAnswerMessage...");
-    Intent     intent     = new Intent(context, WebRtcCallService.class);
-    RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());
+    Intent     intent            = new Intent(context, WebRtcCallService.class);
+    Recipient  recipient         = Recipient.externalHighTrustPush(context, content.getSender());
+    RemotePeer remotePeer        = new RemotePeer(recipient.getId());
+    byte[]     remoteIdentityKey = recipient.getIdentityKey();
 
     intent.setAction(WebRtcCallService.ACTION_RECEIVE_ANSWER)
-          .putExtra(WebRtcCallService.EXTRA_CALL_ID,       message.getId())
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice())
-          .putExtra(WebRtcCallService.EXTRA_ANSWER_OPAQUE, message.getOpaque())
-          .putExtra(WebRtcCallService.EXTRA_ANSWER_SDP,    message.getSdp())
-          .putExtra(WebRtcCallService.EXTRA_MULTI_RING,    content.getCallMessage().get().isMultiRing());
+          .putExtra(WebRtcCallService.EXTRA_CALL_ID,             message.getId())
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,         remotePeer)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_IDENTITY_KEY, remoteIdentityKey)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,       content.getSenderDevice())
+          .putExtra(WebRtcCallService.EXTRA_ANSWER_OPAQUE,       message.getOpaque())
+          .putExtra(WebRtcCallService.EXTRA_ANSWER_SDP,          message.getSdp())
+          .putExtra(WebRtcCallService.EXTRA_MULTI_RING,          content.getCallMessage().get().isMultiRing());
 
     context.startService(intent);
   }

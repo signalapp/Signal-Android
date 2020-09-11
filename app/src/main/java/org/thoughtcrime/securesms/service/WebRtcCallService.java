@@ -27,6 +27,7 @@ import org.signal.ringrtc.Remote;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -58,7 +59,11 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.EglBase;
 import org.webrtc.PeerConnection;
+import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.libsignal.InvalidKeyException;
+import org.whispersystems.libsignal.ecc.Curve;
+import org.whispersystems.libsignal.ecc.DjbECPublicKey;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -107,6 +112,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String EXTRA_REMOTE_PEER                = "remote_peer";
   public static final String EXTRA_REMOTE_PEER_KEY            = "remote_peer_key";
   public static final String EXTRA_REMOTE_DEVICE              = "remote_device";
+  public static final String EXTRA_REMOTE_IDENTITY_KEY        = "remote_identity_key";
   public static final String EXTRA_OFFER_OPAQUE               = "offer_opaque";
   public static final String EXTRA_OFFER_SDP                  = "offer_sdp";
   public static final String EXTRA_OFFER_TYPE                 = "offer_type";
@@ -161,8 +167,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String ACTION_ENDED_INTERNAL_FAILURE              = "ENDED_INTERNAL_FAILURE";
   public static final String ACTION_ENDED_SIGNALING_FAILURE             = "ENDED_SIGNALING_FAILURE";
   public static final String ACTION_ENDED_CONNECTION_FAILURE            = "ENDED_CONNECTION_FAILURE";
-  public static final String ACTION_ENDED_RX_OFFER_EXPIRED              = "ENDED_RX_OFFER_EXPIRED";
-  public static final String ACTION_ENDED_RX_OFFER_WHILE_ACTIVE         = "ENDED_RX_OFFER_WHILE_ACTIVE";
+  public static final String ACTION_RECEIVED_OFFER_EXPIRED              = "RECEIVED_OFFER_EXPIRED";
+  public static final String ACTION_RECEIVED_OFFER_WHILE_ACTIVE         = "RECEIVED_OFFER_WHILE_ACTIVE";
   public static final String ACTION_CALL_CONCLUDED                      = "CALL_CONCLUDED";
 
   public static final int BUSY_TONE_LENGTH = 2000;
@@ -263,8 +269,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       else if (intent.getAction().equals(ACTION_ENDED_INTERNAL_FAILURE))              handleEndedInternalFailure(intent);
       else if (intent.getAction().equals(ACTION_ENDED_SIGNALING_FAILURE))             handleEndedSignalingFailure(intent);
       else if (intent.getAction().equals(ACTION_ENDED_CONNECTION_FAILURE))            handleEndedConnectionFailure(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_RX_OFFER_EXPIRED))              handleEndedReceivedOfferExpired(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_RX_OFFER_WHILE_ACTIVE))         handleEndedReceivedOfferWhileActive(intent);
+      else if (intent.getAction().equals(ACTION_RECEIVED_OFFER_EXPIRED))              handleReceivedOfferExpired(intent);
+      else if (intent.getAction().equals(ACTION_RECEIVED_OFFER_WHILE_ACTIVE))         handleReceivedOfferWhileActive(intent);
       else if (intent.getAction().equals(ACTION_CALL_CONCLUDED))                      handleCallConcluded(intent);
     });
 
@@ -391,6 +397,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   private void handleReceivedOffer(Intent intent) {
     CallId            callId                      = getCallId(intent);
     RemotePeer        remotePeer                  = getRemotePeer(intent);
+    byte[]            remoteIdentityKey           = intent.getByteArrayExtra(EXTRA_REMOTE_IDENTITY_KEY);
     Integer           remoteDevice                = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
     byte[]            opaque                      = intent.getByteArrayExtra(EXTRA_OFFER_OPAQUE);
     String            sdp                         = intent.getStringExtra(EXTRA_OFFER_SDP);
@@ -429,8 +436,12 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     Log.i(TAG, "messageAgeSec: " + messageAgeSec + ", serverReceivedTimestamp: " + serverReceivedTimestamp + ", serverDeliveredTimestamp: " + serverDeliveredTimestamp);
 
     try {
-      callManager.receivedOffer(callId, remotePeer, remoteDevice, opaque, sdp, messageAgeSec, callType, 1, isMultiRing, true);
-    } catch  (CallException e) {
+      remoteIdentityKey = getPublicKeyBytes(remoteIdentityKey);
+
+      byte[] localIdentityKey = getPublicKeyBytes(IdentityKeyUtil.getIdentityKey(this).serialize());
+
+      callManager.receivedOffer(callId, remotePeer, remoteDevice, opaque, sdp, messageAgeSec, callType, 1, isMultiRing, true, remoteIdentityKey, localIdentityKey);
+    } catch  (CallException | InvalidKeyException e) {
       callFailure("Unable to process received offer: ", e);
     }
   }
@@ -770,10 +781,10 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleSendIceCandidates(Intent intent) {
-    RemotePeer remotePeer   = getRemotePeer(intent);
-    CallId     callId       = getCallId(intent);
-    Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
-    boolean    broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
+    RemotePeer                    remotePeer    = getRemotePeer(intent);
+    CallId                        callId        = getCallId(intent);
+    Integer                       remoteDevice  = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
+    boolean                       broadcast     = intent.getBooleanExtra(EXTRA_BROADCAST, false);
     ArrayList<IceCandidateParcel> iceCandidates = intent.getParcelableArrayListExtra(EXTRA_ICE_CANDIDATES);
 
     Log.i(TAG, "handleSendIceCandidates(): id: " + callId.format(remoteDevice));
@@ -823,24 +834,29 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleReceivedAnswer(Intent intent) {
-    CallId       callId         = getCallId(intent);
-    Integer      remoteDevice   = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
-    byte[]       opaque         = intent.getByteArrayExtra(EXTRA_ANSWER_OPAQUE);
-    String       sdp            = intent.getStringExtra(EXTRA_ANSWER_SDP);
-    boolean      isMultiRing    = intent.getBooleanExtra(EXTRA_MULTI_RING, false);
+    CallId  callId            = getCallId(intent);
+    byte[]  remoteIdentityKey = intent.getByteArrayExtra(EXTRA_REMOTE_IDENTITY_KEY);
+    Integer remoteDevice      = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
+    byte[]  opaque            = intent.getByteArrayExtra(EXTRA_ANSWER_OPAQUE);
+    String  sdp               = intent.getStringExtra(EXTRA_ANSWER_SDP);
+    boolean isMultiRing       = intent.getBooleanExtra(EXTRA_MULTI_RING, false);
 
     Log.i(TAG, "handleReceivedAnswer(): id: " + callId.format(remoteDevice));
 
     try {
-      callManager.receivedAnswer(callId, remoteDevice, opaque, sdp, isMultiRing);
-    } catch  (CallException e) {
+      remoteIdentityKey = getPublicKeyBytes(remoteIdentityKey);
+
+      byte[] localIdentityKey = getPublicKeyBytes(IdentityKeyUtil.getIdentityKey(this).serialize());
+
+      callManager.receivedAnswer(callId, remoteDevice, opaque, sdp, isMultiRing, remoteIdentityKey, localIdentityKey);
+    } catch  (CallException | InvalidKeyException e) {
       callFailure("receivedAnswer() failed: ", e);
     }
   }
 
   private void handleReceivedIceCandidates(Intent intent) {
-    CallId     callId       = getCallId(intent);
-    Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
+    CallId                        callId              = getCallId(intent);
+    Integer                       remoteDevice        = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
     ArrayList<IceCandidateParcel> iceCandidateParcels = intent.getParcelableArrayListExtra(EXTRA_ICE_CANDIDATES);
 
     Log.i(TAG, "handleReceivedIceCandidates(): id: " + callId.format(remoteDevice) + ", count: " + iceCandidateParcels.size());
@@ -874,8 +890,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleReceivedBusy(Intent intent) {
-    CallId     callId       = getCallId(intent);
-    Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
+    CallId  callId       = getCallId(intent);
+    Integer remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
 
     Log.i(TAG, "handleReceivedBusy(): id: " + callId.format(remoteDevice));
 
@@ -1070,25 +1086,25 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
   }
 
-  private void handleEndedReceivedOfferExpired(Intent intent) {
+  private void handleReceivedOfferExpired(Intent intent) {
     RemotePeer remotePeer = getRemotePeerFromMap(intent);
 
-    Log.i(TAG, "handleEndedReceivedOfferExpired(): call_id: " + remotePeer.getCallId());
+    Log.i(TAG, "handleReceivedOfferExpired(): call_id: " + remotePeer.getCallId());
 
     insertMissedCall(remotePeer, true);
 
     terminate(remotePeer);
   }
 
-  private void handleEndedReceivedOfferWhileActive(Intent intent) {
+  private void handleReceivedOfferWhileActive(Intent intent) {
     RemotePeer remotePeer = getRemotePeerFromMap(intent);
 
     if (activePeer == null) {
-      Log.w(TAG, "handleEndedReceivedOfferWhileActive(): Ignoring for inactive call.");
+      Log.w(TAG, "handleReceivedOfferWhileActive(): Ignoring for inactive call.");
       return;
     }
 
-    Log.i(TAG, "handleEndedReceivedOfferWhileActive(): call_id: " + remotePeer.getCallId());
+    Log.i(TAG, "handleReceivedOfferWhileActive(): call_id: " + remotePeer.getCallId());
 
     switch (activePeer.getState()) {
       case DIALING:
@@ -1270,6 +1286,15 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
   private boolean isIdle() {
     return activePeer == null;
+  }
+
+  private static byte[] getPublicKeyBytes(byte[] identityKey) throws InvalidKeyException {
+    ECPublicKey key = Curve.decodePoint(identityKey, 0);
+
+    if (key instanceof DjbECPublicKey) {
+      return ((DjbECPublicKey) key).getPublicKey();
+    }
+    throw new InvalidKeyException();
   }
 
   private void initializeVideo() {
@@ -1589,7 +1614,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private abstract class StateAwareListener<V> implements FutureTaskListener<V> {
-
     private final CallState expectedState;
     private final CallId    expectedCallId;
 
@@ -1830,15 +1854,16 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
         case ENDED_CONNECTION_FAILURE:
           intent.setAction(ACTION_ENDED_CONNECTION_FAILURE);
           break;
-        case ENDED_RECEIVED_OFFER_EXPIRED:
-          intent.setAction(ACTION_ENDED_RX_OFFER_EXPIRED);
+        case RECEIVED_OFFER_EXPIRED:
+          intent.setAction(ACTION_RECEIVED_OFFER_EXPIRED);
           break;
-        case ENDED_RECEIVED_OFFER_WHILE_ACTIVE:
-          intent.setAction(ACTION_ENDED_RX_OFFER_WHILE_ACTIVE);
+        case RECEIVED_OFFER_WHILE_ACTIVE:
+        case RECEIVED_OFFER_WITH_GLARE:
+          intent.setAction(ACTION_RECEIVED_OFFER_WHILE_ACTIVE);
           break;
         case ENDED_LOCAL_HANGUP:
         case ENDED_APP_DROPPED_CALL:
-        case ENDED_IGNORE_CALLS_FROM_NON_MULTIRING_CALLERS:
+        case IGNORE_CALLS_FROM_NON_MULTIRING_CALLERS:
           Log.i(TAG, "Ignoring event: " + event);
           return;
         default:
@@ -1928,10 +1953,10 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       }
 
       intent.setAction(ACTION_SEND_ICE_CANDIDATES)
-            .putExtra(EXTRA_CALL_ID,           callId.longValue())
-            .putExtra(EXTRA_REMOTE_PEER,       remotePeer)
-            .putExtra(EXTRA_REMOTE_DEVICE,     remoteDevice)
-            .putExtra(EXTRA_BROADCAST,         broadcast)
+            .putExtra(EXTRA_CALL_ID,       callId.longValue())
+            .putExtra(EXTRA_REMOTE_PEER,   remotePeer)
+            .putExtra(EXTRA_REMOTE_DEVICE, remoteDevice)
+            .putExtra(EXTRA_BROADCAST,     broadcast)
             .putParcelableArrayListExtra(EXTRA_ICE_CANDIDATES, iceCandidateParcels);
 
       startService(intent);
