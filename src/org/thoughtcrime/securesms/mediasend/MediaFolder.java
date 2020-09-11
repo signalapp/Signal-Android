@@ -12,14 +12,12 @@ public class MediaFolder {
   private final String     title;
   private final int        itemCount;
   private final String     bucketId;
-  private final FolderType folderType;
 
-  MediaFolder(@NonNull Uri thumbnailUri, @NonNull String title, int itemCount, @NonNull String bucketId, @NonNull FolderType folderType) {
+  MediaFolder(@NonNull Uri thumbnailUri, @NonNull String title, int itemCount, @NonNull String bucketId) {
     this.thumbnailUri = thumbnailUri;
     this.title        = title;
     this.itemCount    = itemCount;
     this.bucketId     = bucketId;
-    this.folderType   = folderType;
   }
 
   Uri getThumbnailUri() {
@@ -36,10 +34,6 @@ public class MediaFolder {
 
   public String getBucketId() {
     return bucketId;
-  }
-
-  FolderType getFolderType() {
-    return folderType;
   }
 
   enum FolderType {

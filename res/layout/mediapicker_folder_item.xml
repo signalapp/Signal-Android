@@ -33,7 +33,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="6dp"
-            android:src="@drawable/ic_folder_white_48dp"/>
+            android:tint="@android:color/white"
+            android:src="@drawable/ic_baseline_folder_24"/>
 
         <TextView
             android:id="@+id/mediapicker_folder_item_title"

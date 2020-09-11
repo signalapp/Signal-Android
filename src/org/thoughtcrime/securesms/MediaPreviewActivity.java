@@ -16,17 +16,16 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -341,22 +340,23 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @SuppressLint("InlinedApi")
   private void saveToDisk() {
     MediaItem mediaItem = getCurrentMediaItem();
+    if (mediaItem == null) return;
 
-    if (mediaItem != null) {
-      SaveAttachmentTask.showWarningDialog(this, (dialogInterface, i) -> {
-        Permissions.with(this)
-                   .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-                   .ifNecessary()
-                   .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
-                   .onAnyDenied(() -> Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
-                   .onAllGranted(() -> {
-                     SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this);
-                     long saveDate = (mediaItem.date > 0) ? mediaItem.date : System.currentTimeMillis();
-                     saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
-                   })
-                   .execute();
-      });
-    }
+    SaveAttachmentTask.showWarningDialog(this, (dialogInterface, i) -> {
+      Permissions.with(this)
+              .request(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+              .maxSdkVersion(Build.VERSION_CODES.P)
+              .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+              .onAnyDenied(() -> Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
+              .onAllGranted(() -> {
+                SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this);
+                long saveDate = (mediaItem.date > 0) ? mediaItem.date : System.currentTimeMillis();
+                saveTask.executeOnExecutor(
+                        AsyncTask.THREAD_POOL_EXECUTOR,
+                        new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
+              })
+              .execute();
+    });
   }
 
   @SuppressLint("StaticFieldLeak")

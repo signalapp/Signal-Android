@@ -26,6 +26,7 @@ import java.util.Locale;
 
 import network.loki.messenger.R;
 
+//TODO AC: Needs to be refactored to use Storage Access Framework or Media Store API.
 public class LocalBackupJob extends BaseJob {
 
   public static final String KEY = "LocalBackupJob";

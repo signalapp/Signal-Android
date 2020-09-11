@@ -172,7 +172,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
   public void onClick(View v) {
     Permissions.with(this)
                .request(Manifest.permission.CAMERA)
-               .ifNecessary()
                .withPermanentDenialDialog(getString(R.string.VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied))
                .onAllGranted(() -> {
                  FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

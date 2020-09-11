@@ -110,7 +110,7 @@ public class AttachmentTypeSelector extends PopupWindow {
   public void show(@NonNull Activity activity, final @NonNull View anchor) {
     updateHeight();
 
-    if (Permissions.hasAll(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+    if (Permissions.hasAll(activity, Manifest.permission.READ_EXTERNAL_STORAGE)) {
       recentRail.setVisibility(View.VISIBLE);
       loaderManager.restartLoader(1, null, recentRail);
     } else {

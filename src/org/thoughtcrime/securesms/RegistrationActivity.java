@@ -268,7 +268,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   @SuppressLint("StaticFieldLeak")
   private void initializeBackupDetection() {
-    if (!Permissions.hasAll(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+    if (!Permissions.hasAll(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
       Log.i(TAG, "Skipping backup detection. We don't have the permission.");
       return;
     }
