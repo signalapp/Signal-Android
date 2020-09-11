@@ -25,6 +25,8 @@
         <item name="quick_camera_icon">@drawable/ic_outline_photo_camera_24</item>
 
         <item name="media_keyboard_button_color">@color/core_grey_60</item>
+
+        <item name="menu_info_icon">@drawable/ic_outline_info_24</item>
     </style>
 
     <style name="Theme.Session.DayNight" parent="Theme.Session.Light">

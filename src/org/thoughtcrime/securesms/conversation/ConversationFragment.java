@@ -374,12 +374,14 @@ public class ConversationFragment extends Fragment
     }
 
     if (messageRecords.size() > 1) {
+      menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_reply).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
     } else {
       MessageRecord messageRecord = messageRecords.iterator().next();
 
+      menu.findItem(R.id.menu_context_details).setVisible(true);
       menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
       menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                                              &&
                                                                   messageRecord.isMms()                                       &&
@@ -1126,16 +1128,14 @@ public class ConversationFragment extends Fragment
           handleDeleteMessages(getListAdapter().getSelectedItems());
           actionMode.finish();
           return true;
-        /*
         case R.id.menu_context_details:
           handleDisplayDetails(getSelectedMessageRecord());
           actionMode.finish();
           return true;
-        case R.id.menu_context_forward:
-          handleForwardMessage(getSelectedMessageRecord());
-          actionMode.finish();
-          return true;
-         */
+//        case R.id.menu_context_forward:
+//          handleForwardMessage(getSelectedMessageRecord());
+//          actionMode.finish();
+//          return true;
         case R.id.menu_context_resend:
           handleResendMessage(getSelectedMessageRecord());
           actionMode.finish();

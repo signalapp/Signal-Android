@@ -326,6 +326,6 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
             ? TextSecurePreferences.getMasterHexEncodedPublicKey(context)
             : publicKey;
     String displayName = recipient.getName();
-    return AvatarPlaceholderGenerator.INSTANCE.generate(context, 128, hepk, displayName);
+    return AvatarPlaceholderGenerator.generate(context, 128, hepk, displayName);
   }
 }
