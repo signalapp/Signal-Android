@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
+//TODO AC: Needs to be refactored to use Storage Access Framework or Media Store API.
 public class BackupUtil {
 
   private static final String TAG = BackupUtil.class.getSimpleName();
