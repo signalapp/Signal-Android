@@ -230,28 +230,29 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class ScreenLockListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-      boolean enabled = (Boolean)newValue;
+      boolean enabled = (Boolean) newValue;
       TextSecurePreferences.setScreenLockEnabled(getContext(), enabled);
 
-            Intent intent = new Intent(getContext(), KeyCachingService.class);
-            intent.setAction(KeyCachingService.LOCK_TOGGLED_EVENT);
-            getContext().startService(intent);
-            return true;
-        }
+      Intent intent = new Intent(getContext(), KeyCachingService.class);
+      intent.setAction(KeyCachingService.LOCK_TOGGLED_EVENT);
+      getContext().startService(intent);
+      return true;
     }
+  }
 
   private class ScreenLockDurationListener implements SeekBarPreference.OnPreferenceChangeListener {
 
-     @Override
-     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (newValue instanceof Integer) {
-           TextSecurePreferences.setScreenLockAnimationDuration(getContext(), (Integer) newValue);
-            return true;
-        }
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      if (newValue instanceof Integer) {
+        TextSecurePreferences.setScreenLockAnimationDuration(getContext(), (Integer) newValue);
+        return true;
+      }
 
-        return false;
-     }
-   }
+      return false;
+    }
+  }
+   
 
   private class ScreenLockTimeoutListener implements Preference.OnPreferenceClickListener {
 
