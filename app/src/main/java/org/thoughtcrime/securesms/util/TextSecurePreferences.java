@@ -152,6 +152,7 @@ public class TextSecurePreferences {
   public static final String SCREEN_LOCK = "pref_android_screen_lock";
   public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
   public static final String SCREEN_LOCK_ANIMATION_DURATION = "pref_android_screen_lock_animation_duration";
+  public static final String SCREEN_LOCK_SHOW_NOTIFICATION_CONTENT = "pref_android_screen_lock_show_notification_content";
 
   @Deprecated
   public static final  String REGISTRATION_LOCK_PREF_V1                = "pref_registration_lock";
@@ -234,6 +235,14 @@ public class TextSecurePreferences {
 
   public static void setScreenLockAnimationDuration(@NonNull Context context, int value) {
     setIntegerPrefrence(context, SCREEN_LOCK_ANIMATION_DURATION, value);
+  }
+
+  public static boolean isScreenLockShowNotificationContentEnabled(@NonNull Context context){
+    return getBooleanPreference(context, SCREEN_LOCK_SHOW_NOTIFICATION_CONTENT, false);
+  }
+
+  public static void setScreenLockShowNotificationContentEnabled(@NonNull Context context, boolean value) {
+    setBooleanPreference(context, SCREEN_LOCK_SHOW_NOTIFICATION_CONTENT, value);
   }
 
   public static boolean isV1RegistrationLockEnabled(@NonNull Context context) {

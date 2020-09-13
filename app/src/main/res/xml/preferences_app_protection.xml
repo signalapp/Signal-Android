@@ -29,19 +29,26 @@
         android:key="pref_android_screen_lock_timeout"
         android:title="@string/preferences_app_protection__screen_lock_inactivity_timeout" />
 
-        <SeekBarPreference
-                android:defaultValue="500"
-                android:dependency="pref_android_screen_lock"
-                android:key="pref_android_screen_lock_animation_duration"
-                android:max="500"
-                android:summary="@string/preferences_app_protection__fingerprint_success_animation_duration"
-                android:title="@string/preferences_app_protection__screen_lock_fingerprint_animation_duration" />
+    <SeekBarPreference
+       android:defaultValue="500"
+       android:dependency="pref_android_screen_lock"
+       android:key="pref_android_screen_lock_animation_duration"
+       android:max="500"
+       android:summary="@string/preferences_app_protection__fingerprint_success_animation_duration"
+       android:title="@string/preferences_app_protection__screen_lock_fingerprint_animation_duration" />
 
-        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                android:defaultValue="true"
-                android:key="pref_enable_passphrase_temporary"
-                android:summary="@string/preferences__lock_signal_and_message_notifications_with_a_passphrase"
-                android:title="@string/preferences__enable_passphrase" />
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="pref_enable_passphrase_temporary"
+        android:summary="@string/preferences__lock_signal_and_message_notifications_with_a_passphrase"
+        android:title="@string/preferences__enable_passphrase" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:dependency="pref_android_screen_lock"
+        android:key="pref_android_screen_lock_show_notification_content"
+        android:defaultValue="false"
+        android:summary="@string/preferences_app_protection__show_notification_content"
+        android:title="@string/preferences_app_protection__screen_lock_show_notification_content" />
 
     <Preference
         android:dependency="pref_enable_passphrase_temporary"
