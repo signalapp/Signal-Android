@@ -149,8 +149,9 @@ public class TextSecurePreferences {
   public  static final String BACKUP_NOW                  = "pref_backup_create";
   public  static final String BACKUP_PASSPHRASE_VERIFY    = "pref_backup_passphrase_verify";
 
-  public static final String SCREEN_LOCK         = "pref_android_screen_lock";
-  public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
+    public static final String SCREEN_LOCK = "pref_android_screen_lock";
+    public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
+    public static final String SCREEN_LOCK_ANIMATION_DURATION = "pref_android_screen_lock_animation_duration";
 
   @Deprecated
   public static final  String REGISTRATION_LOCK_PREF_V1                = "pref_registration_lock";
@@ -227,10 +228,18 @@ public class TextSecurePreferences {
     setLongPreference(context, SCREEN_LOCK_TIMEOUT, value);
   }
 
-  public static boolean isV1RegistrationLockEnabled(@NonNull Context context) {
-    //noinspection deprecation
-    return getBooleanPreference(context, REGISTRATION_LOCK_PREF_V1, false);
-  }
+    public static long getScreenLockAnimationDuration(@NonNull Context context) {
+        return getIntegerPreference(context, SCREEN_LOCK_ANIMATION_DURATION, 500);
+    }
+
+    public static void setScreenLockAnimationDuration(@NonNull Context context, int value) {
+        setIntegerPrefrence(context, SCREEN_LOCK_ANIMATION_DURATION, value);
+    }
+
+    public static boolean isV1RegistrationLockEnabled(@NonNull Context context) {
+        //noinspection deprecation
+        return getBooleanPreference(context, REGISTRATION_LOCK_PREF_V1, false);
+    }
 
   /**
    * @deprecated Use only during re-reg where user had pinV1.

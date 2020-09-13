@@ -25,6 +25,7 @@ import androidx.core.app.DialogCompat;
 import androidx.core.view.ViewCompat;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
+import androidx.preference.SeekBarPreference;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -93,8 +94,9 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     ((SwitchPreferenceCompat) this.findPreference(PinValues.PIN_REMINDERS_ENABLED)).setChecked(SignalStore.pinValues().arePinRemindersEnabled());
     this.findPreference(PinValues.PIN_REMINDERS_ENABLED).setOnPreferenceChangeListener(new PinRemindersChangedListener());
 
-    this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
-    this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
+        this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
+        this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
+        this.findPreference(TextSecurePreferences.SCREEN_LOCK_ANIMATION_DURATION).setOnPreferenceChangeListener(new ScreenLockDurationListener());
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF).setOnPreferenceClickListener(new ChangePassphraseClickListener());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF).setOnPreferenceClickListener(new PassphraseIntervalClickListener());
@@ -231,12 +233,25 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       boolean enabled = (Boolean)newValue;
       TextSecurePreferences.setScreenLockEnabled(getContext(), enabled);
 
-      Intent intent = new Intent(getContext(), KeyCachingService.class);
-      intent.setAction(KeyCachingService.LOCK_TOGGLED_EVENT);
-      getContext().startService(intent);
-      return true;
+            Intent intent = new Intent(getContext(), KeyCachingService.class);
+            intent.setAction(KeyCachingService.LOCK_TOGGLED_EVENT);
+            getContext().startService(intent);
+            return true;
+        }
     }
-  }
+
+    private class ScreenLockDurationListener implements SeekBarPreference.OnPreferenceChangeListener {
+
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object newValue) {
+            if (newValue instanceof Integer) {
+                TextSecurePreferences.setScreenLockAnimationDuration(getContext(), (Integer) newValue);
+                return true;
+            }
+
+            return false;
+        }
+    }
 
   private class ScreenLockTimeoutListener implements Preference.OnPreferenceClickListener {
 
