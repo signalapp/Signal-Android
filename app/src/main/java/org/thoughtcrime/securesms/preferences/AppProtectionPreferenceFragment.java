@@ -94,9 +94,9 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     ((SwitchPreferenceCompat) this.findPreference(PinValues.PIN_REMINDERS_ENABLED)).setChecked(SignalStore.pinValues().arePinRemindersEnabled());
     this.findPreference(PinValues.PIN_REMINDERS_ENABLED).setOnPreferenceChangeListener(new PinRemindersChangedListener());
 
-      this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
-      this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
-      this.findPreference(TextSecurePreferences.SCREEN_LOCK_ANIMATION_DURATION).setOnPreferenceChangeListener(new ScreenLockDurationListener());
+    this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
+    this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
+    this.findPreference(TextSecurePreferences.SCREEN_LOCK_ANIMATION_DURATION).setOnPreferenceChangeListener(new ScreenLockDurationListener());
 
     this.findPreference(TextSecurePreferences.CHANGE_PASSPHRASE_PREF).setOnPreferenceClickListener(new ChangePassphraseClickListener());
     this.findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF).setOnPreferenceClickListener(new PassphraseIntervalClickListener());
