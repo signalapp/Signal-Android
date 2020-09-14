@@ -157,7 +157,7 @@ class SaveAttachmentTask : ProgressDialogAsyncTask<SaveAttachmentTask.Attachment
         val mimeTypeMap = MimeTypeMap.getSingleton()
         val extension = mimeTypeMap.getExtensionFromMimeType(contentType) ?: "attach"
         val dateFormatter = SimpleDateFormat("yyyy-MM-dd-HHmmss")
-        val base = "signal-${dateFormatter.format(timestamp)}"
+        val base = "session-${dateFormatter.format(timestamp)}"
 
         return "${base}.${extension}";
     }
