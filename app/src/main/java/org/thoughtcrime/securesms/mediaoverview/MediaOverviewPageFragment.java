@@ -17,10 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +63,7 @@ public final class MediaOverviewPageFragment extends Fragment
   private       boolean                       detail;
   private       MediaGalleryAllAdapter        adapter;
   private       GridMode                      gridMode;
+  private       MediaOverviewPageViewModel    pageViewModel;
 
   public static @NonNull Fragment newInstance(long threadId,
                                               @NonNull MediaLoader.MediaType mediaType,
@@ -110,6 +113,10 @@ public final class MediaOverviewPageFragment extends Fragment
     this.recyclerView.setLayoutManager(gridManager);
     this.recyclerView.setHasFixedSize(true);
 
+    return view;
+  }
+
+  private void initializeViewModel() {
     MediaOverviewViewModel viewModel = MediaOverviewViewModel.getMediaOverviewViewModel(requireActivity());
 
     viewModel.getSortOrder()
@@ -128,8 +135,18 @@ public final class MediaOverviewPageFragment extends Fragment
     } else {
       setDetailView(gridMode == GridMode.FIXED_DETAIL);
     }
+  }
 
-    return view;
+  private void initializeMediaOverviewPageViewModel() {
+    pageViewModel = ViewModelProviders.of(this).get(MediaOverviewPageViewModel.class);
+    pageViewModel.getActionModeTitleData().observe(getViewLifecycleOwner(), this::setActionModeTitle);
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    initializeMediaOverviewPageViewModel();
+    initializeViewModel();
   }
 
   private void setDetailView(boolean detail) {
@@ -256,11 +273,12 @@ public final class MediaOverviewPageFragment extends Fragment
 
   @Override
   public void onMediaLongClicked(MediaDatabase.MediaRecord mediaRecord) {
-    ((MediaGalleryAllAdapter) recyclerView.getAdapter()).toggleSelection(mediaRecord);
-    recyclerView.getAdapter().notifyDataSetChanged();
+    getListAdapter().toggleSelection(mediaRecord);
 
     if (actionMode == null) {
       enterMultiSelect();
+    } else {
+      refreshActionModeTitle();
     }
   }
 
@@ -270,29 +288,31 @@ public final class MediaOverviewPageFragment extends Fragment
   }
 
   private void refreshActionModeTitle() {
-    if (actionMode != null) {
-      actionMode.setTitle(getActionModeTitle());
-    }
+    pageViewModel.updateActionModeTitle(adapter.getSelectedMediaCount(),
+                                        adapter.getSelectedMediaTotalFileSize(),
+                                        detail, sorting, mediaType);
   }
 
-  private String getActionModeTitle() {
-    MediaGalleryAllAdapter adapter           = getListAdapter();
-    int                    mediaCount        = adapter.getSelectedMediaCount();
-    boolean                showTotalFileSize = detail                                     ||
-                                               mediaType != MediaLoader.MediaType.GALLERY ||
-                                               sorting   == MediaDatabase.Sorting.Largest;
-
-    if (showTotalFileSize) {
-      long                   totalFileSize = adapter.getSelectedMediaTotalFileSize();
-      return getResources().getQuantityString(R.plurals.MediaOverviewActivity_d_items_s,
-                                            mediaCount,
-                                            mediaCount,
-                                            Util.getPrettyFileSize(totalFileSize));
-    } else {
-      return getResources().getQuantityString(R.plurals.MediaOverviewActivity_d_items,
-                                            mediaCount,
-                                            mediaCount);
+  private void setActionModeTitle(ActionModeTitleData actionModeTitleData) {
+    if (actionMode == null) return;
+    if (actionModeTitleData.getMediaCount() == 0) {
+      actionMode.finish();
+      return;
     }
+
+    String title;
+    if (actionModeTitleData.isShowFileSize()) {
+      long totalFileSize = actionModeTitleData.getTotalMediaSize();
+      title = getResources().getQuantityString(R.plurals.MediaOverviewActivity_d_items_s,
+                                               actionModeTitleData.getMediaCount(),
+                                               actionModeTitleData.getMediaCount(),
+                                               Util.getPrettyFileSize(totalFileSize));
+    } else {
+      title = getResources().getQuantityString(R.plurals.MediaOverviewActivity_d_items,
+                                               actionModeTitleData.getMediaCount(),
+                                               actionModeTitleData.getMediaCount());
+    }
+    actionMode.setTitle(title);
   }
 
   private MediaGalleryAllAdapter getListAdapter() {
@@ -300,9 +320,9 @@ public final class MediaOverviewPageFragment extends Fragment
   }
 
   private void enterMultiSelect() {
-    FragmentActivity activity = requireActivity();
-    actionMode = ((AppCompatActivity) activity).startSupportActionMode(actionModeCallback);
-    ((MediaOverviewActivity) activity).onEnterMultiSelect();
+    MediaOverviewActivity activity = (MediaOverviewActivity) requireActivity();
+    activity.startSupportActionMode(actionModeCallback);
+    activity.onEnterMultiSelect();
   }
 
   private class ActionModeCallback implements ActionMode.Callback {
@@ -311,8 +331,9 @@ public final class MediaOverviewPageFragment extends Fragment
 
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+      actionMode = mode;
       mode.getMenuInflater().inflate(R.menu.media_overview_context, menu);
-      mode.setTitle(getActionModeTitle());
+      refreshActionModeTitle();
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = requireActivity().getWindow();
