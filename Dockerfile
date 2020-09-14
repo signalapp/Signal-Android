@@ -14,15 +14,15 @@ RUN apt-key add /etc/apt/buster.pubkey && \
 ENV SNAPSHOT "20200502T085134Z"
 
 RUN rm /etc/apt/sources.list && \
-    printf "deb http://snapshot.debian.org/archive/debian/${SNAPSHOT}/ buster main\n" >> /etc/apt/sources.list && \
-    printf "deb http://snapshot.debian.org/archive/debian-security/${SNAPSHOT}/ buster/updates main\n" >> /etc/apt/sources.list && \
-    printf "deb http://snapshot.debian.org/archive/debian/${SNAPSHOT}/ buster-updates main\n" >> /etc/apt/sources.list
+    printf "deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/${SNAPSHOT}/ buster main\n" >> /etc/apt/sources.list && \
+    printf "deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/${SNAPSHOT}/ buster/updates main\n" >> /etc/apt/sources.list && \
+    printf "deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/${SNAPSHOT}/ buster-updates main\n" >> /etc/apt/sources.list
 
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199#23
 RUN mkdir -p /usr/share/man/man1
 
 RUN dpkg --add-architecture i386 && \
-    apt-get update -o Acquire::Check-Valid-Until=false && \
+    apt-get update && \
     apt-get install -y \
         git \
         lib32z1=1:1.2.11.dfsg-1 \
