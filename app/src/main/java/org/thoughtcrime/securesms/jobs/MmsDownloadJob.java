@@ -13,6 +13,9 @@ import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
+import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.contactshare.ContactUtil;
+import org.thoughtcrime.securesms.contactshare.VCardUtil;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
@@ -33,6 +36,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -189,6 +193,7 @@ public class MmsDownloadJob extends BaseJob {
     Set<RecipientId>  members     = new HashSet<>();
     String            body        = null;
     List<Attachment>  attachments = new LinkedList<>();
+    List<Contact>     sharedContacts = new LinkedList<>();
 
     RecipientId from = null;
 
@@ -223,14 +228,18 @@ public class MmsDownloadJob extends BaseJob {
         PduPart part = media.getPart(i);
 
         if (part.getData() != null) {
-          Uri    uri  = BlobProvider.getInstance().forData(part.getData()).createForSingleUseInMemory();
-          String name = null;
+          if (Util.toIsoString(part.getContentType()).toLowerCase().equals(MediaUtil.VCARD)){
+            sharedContacts.addAll(VCardUtil.parseContacts(new String(part.getData())));
+          } else {
+            Uri    uri  = BlobProvider.getInstance().forData(part.getData()).createForSingleUseInMemory();
+            String name = null;
 
-          if (part.getName() != null) name = Util.toIsoString(part.getName());
+            if (part.getName() != null) name = Util.toIsoString(part.getName());
 
-          attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
-                                            AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length, name, false, false, false, null, null, null, null, null));
+            attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
+                    AttachmentDatabase.TRANSFER_PROGRESS_DONE,
+                    part.getData().length, name, false, false, false, null, null, null, null, null));
+          }
         }
       }
     }
@@ -240,7 +249,7 @@ public class MmsDownloadJob extends BaseJob {
       group = Optional.of(DatabaseFactory.getGroupDatabase(context).getOrCreateMmsGroupForMembers(recipients));
     }
 
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, -1, attachments, subscriptionId, 0, false, false, false);
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, -1, attachments, subscriptionId, 0, false, false, false, Optional.of(sharedContacts));
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {

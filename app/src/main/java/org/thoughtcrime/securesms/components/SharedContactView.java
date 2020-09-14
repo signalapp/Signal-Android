@@ -225,6 +225,10 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     }
   }
 
+  public Contact getContact() {
+    return this.contact;
+  }
+
   public interface EventListener {
     void onAddToContactsClicked(@NonNull Contact contact);
     void onInviteClicked(@NonNull List<Recipient> choices);

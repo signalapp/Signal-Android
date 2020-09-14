@@ -671,6 +671,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       sharedContactStub.get().setOnLongClickListener(passthroughClickListener);
 
       setSharedContactCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
+      setSharedContactWidth(messageRecord);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -892,13 +893,23 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   }
 
   private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
-      sharedContactStub.get().setSingularStyle();
-    } else if (current.isOutgoing()) {
-      sharedContactStub.get().setClusteredOutgoingStyle();
-    } else {
-      sharedContactStub.get().setClusteredIncomingStyle();
+    if (TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))){
+      if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
+          sharedContactStub.get().setSingularStyle();
+      } else if (current.isOutgoing()) {
+          sharedContactStub.get().setClusteredOutgoingStyle();
+      } else {
+          sharedContactStub.get().setClusteredIncomingStyle();
+      }
     }
+
+  }
+
+  private void setSharedContactWidth(@NonNull MessageRecord current) {
+    if (!TextUtils.isEmpty(current.getDisplayBody(getContext()))){
+      sharedContactStub.get().getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;;
+    }
+
   }
 
   private void setLinkPreviewCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, boolean bigImage) {
@@ -1075,7 +1086,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
     if (hasSticker(messageRecord) || isBorderless(messageRecord)) {
       return stickerFooter;
-    } else if (hasSharedContact(messageRecord)) {
+    } else if (hasSharedContact(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return sharedContactStub.get().getFooter();
     } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return mediaThumbnailStub.get().getFooter();
@@ -1331,7 +1342,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     @Override
     public void onClick(View view) {
       if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
-        eventListener.onSharedContactDetailsClicked(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), sharedContactStub.get().getAvatarView());
+        eventListener.onSharedContactDetailsClicked(((SharedContactView) view).getContact(), ((SharedContactView) view).getAvatarView());
       } else {
         passthroughClickListener.onClick(view);
       }
@@ -1442,7 +1453,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         Log.i(TAG, "Public URI: " + publicUri);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.setDataAndType(PartAuthority.getAttachmentPublicUri(slide.getUri()), slide.getContentType());
+        intent.setDataAndType(PartAuthority.getAttachmentPublicUri(slide.getUri()), Intent.normalizeMimeType(slide.getContentType()));
         try {
           context.startActivity(intent);
         } catch (ActivityNotFoundException anfe) {

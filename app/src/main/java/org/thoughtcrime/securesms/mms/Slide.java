@@ -210,7 +210,10 @@ public abstract class Slide {
     Optional<String> fileName = getFileName();
 
     if (fileName.isPresent()) {
-      return Optional.of(getFileType(fileName));
+      String fileType = getFileType(fileName);
+      if (!fileType.isEmpty()){
+        return Optional.of(fileType);
+      }
     }
 
     return Optional.fromNullable(MediaUtil.getExtension(context, getUri()));

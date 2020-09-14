@@ -9,17 +9,20 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class PartParser {
 
-  private static final String TAG = Log.tag(PartParser.class);
+  private static final String       TAG            = Log.tag(PartParser.class);
+  private static final List<String> DOCUMENT_TYPES = Arrays.asList("text/vcard", "text/x-vcard");
 
   public static String getMessageText(PduBody body) {
     String bodyText = null;
 
     for (int i=0;i<body.getPartsNum();i++) {
-      if (ContentType.isTextType(Util.toIsoString(body.getPart(i).getContentType()))) {
+      if (isText(body.getPart(i)) && !isDocument(body.getPart(i))) {
         String partText;
 
         try {
@@ -49,7 +52,7 @@ public class PartParser {
     PduBody stripped = new PduBody();
 
     for (int i=0;i<body.getPartsNum();i++) {
-      if (isDisplayableMedia(body.getPart(i))) {
+      if (isDisplayableMedia(body.getPart(i)) || isDocument(body.getPart(i))) {
         stripped.addPart(body.getPart(i));
       }
     }
@@ -61,7 +64,7 @@ public class PartParser {
     int partCount = 0;
 
     for (int i=0;i<body.getPartsNum();i++) {
-      if (isDisplayableMedia(body.getPart(i))) {
+      if (isDisplayableMedia(body.getPart(i)) || isDocument(body.getPart(i))) {
         partCount++;
       }
     }
@@ -87,5 +90,9 @@ public class PartParser {
 
   public static boolean isDisplayableMedia(PduPart part) {
     return isImage(part) || isAudio(part) || isVideo(part);
+  }
+
+  public static boolean isDocument(PduPart part) {
+    return DOCUMENT_TYPES.contains(Util.toIsoString(part.getContentType()).toLowerCase());
   }
 }
