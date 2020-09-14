@@ -336,6 +336,16 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       }
     }
 
+    if (hasSharedContact(messageRecord)) {
+      int contactWidth   = sharedContactStub.get().getMeasuredWidth();
+      int availableWidth = getAvailableMessageBubbleWidth(sharedContactStub.get());
+
+      if (contactWidth != availableWidth) {
+        sharedContactStub.get().getLayoutParams().width = availableWidth;
+        needsMeasure = true;
+      }
+    }
+
     ConversationItemFooter activeFooter   = getActiveFooter(messageRecord);
     int                    availableWidth = getAvailableMessageBubbleWidth(footer);
 
@@ -892,12 +902,14 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   }
 
   private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
-      sharedContactStub.get().setSingularStyle();
-    } else if (current.isOutgoing()) {
-      sharedContactStub.get().setClusteredOutgoingStyle();
-    } else {
-      sharedContactStub.get().setClusteredIncomingStyle();
+    if (TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))){
+      if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
+          sharedContactStub.get().setSingularStyle();
+      } else if (current.isOutgoing()) {
+          sharedContactStub.get().setClusteredOutgoingStyle();
+      } else {
+          sharedContactStub.get().setClusteredIncomingStyle();
+      }
     }
   }
 
@@ -1075,7 +1087,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
     if (hasSticker(messageRecord) || isBorderless(messageRecord)) {
       return stickerFooter;
-    } else if (hasSharedContact(messageRecord)) {
+    } else if (hasSharedContact(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return sharedContactStub.get().getFooter();
     } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return mediaThumbnailStub.get().getFooter();
@@ -1442,7 +1454,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         Log.i(TAG, "Public URI: " + publicUri);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.setDataAndType(PartAuthority.getAttachmentPublicUri(slide.getUri()), slide.getContentType());
+        intent.setDataAndType(PartAuthority.getAttachmentPublicUri(slide.getUri()), Intent.normalizeMimeType(slide.getContentType()));
         try {
           context.startActivity(intent);
         } catch (ActivityNotFoundException anfe) {

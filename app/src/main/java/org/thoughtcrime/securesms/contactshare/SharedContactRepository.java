@@ -93,66 +93,7 @@ public class SharedContactRepository {
 
     try (InputStream stream = PartAuthority.getAttachmentStream(context, uri)) {
       VCard vcard = Ezvcard.parse(stream).first();
-
-      ezvcard.property.StructuredName  vName            = vcard.getStructuredName();
-      List<ezvcard.property.Telephone> vPhones          = vcard.getTelephoneNumbers();
-      List<ezvcard.property.Email>     vEmails          = vcard.getEmails();
-      List<ezvcard.property.Address>   vPostalAddresses = vcard.getAddresses();
-
-      String organization = vcard.getOrganization() != null && !vcard.getOrganization().getValues().isEmpty() ? vcard.getOrganization().getValues().get(0) : null;
-      String displayName  = vcard.getFormattedName() != null ? vcard.getFormattedName().getValue() : null;
-
-      if (displayName == null && vName != null) {
-        displayName = vName.getGiven();
-      }
-
-      if (displayName == null && vcard.getOrganization() != null) {
-        displayName = organization;
-      }
-
-      if (displayName == null) {
-        throw new IOException("No valid name.");
-      }
-
-      Name name = new Name(displayName,
-                           vName != null ? vName.getGiven() : null,
-                           vName != null ? vName.getFamily() : null,
-                           vName != null && !vName.getPrefixes().isEmpty() ? vName.getPrefixes().get(0) : null,
-                           vName != null && !vName.getSuffixes().isEmpty() ? vName.getSuffixes().get(0) : null,
-                           null);
-
-
-      List<Phone> phoneNumbers = new ArrayList<>(vPhones.size());
-      for (ezvcard.property.Telephone vEmail : vPhones) {
-        String label = !vEmail.getTypes().isEmpty() ? getCleanedVcardType(vEmail.getTypes().get(0).getValue()) : null;
-
-        // Phone number is stored in the uri field in v4.0 only. In other versions, it is in the text field.
-        String phoneNumberFromText  = vEmail.getText();
-        String extractedPhoneNumber = phoneNumberFromText == null ? vEmail.getUri().getNumber() : phoneNumberFromText;
-        phoneNumbers.add(new Phone(extractedPhoneNumber, phoneTypeFromVcardType(label), label));
-      }
-
-      List<Email> emails = new ArrayList<>(vEmails.size());
-      for (ezvcard.property.Email vEmail : vEmails) {
-        String label = !vEmail.getTypes().isEmpty() ? getCleanedVcardType(vEmail.getTypes().get(0).getValue()) : null;
-        emails.add(new Email(vEmail.getValue(), emailTypeFromVcardType(label), label));
-      }
-
-      List<PostalAddress> postalAddresses = new ArrayList<>(vPostalAddresses.size());
-      for (ezvcard.property.Address vPostalAddress : vPostalAddresses) {
-        String label = !vPostalAddress.getTypes().isEmpty() ? getCleanedVcardType(vPostalAddress.getTypes().get(0).getValue()) : null;
-        postalAddresses.add(new PostalAddress(postalAddressTypeFromVcardType(label),
-                                              label,
-                                              vPostalAddress.getStreetAddress(),
-                                              vPostalAddress.getPoBox(),
-                                              null,
-                                              vPostalAddress.getLocality(),
-                                              vPostalAddress.getRegion(),
-                                              vPostalAddress.getPostalCode(),
-                                              vPostalAddress.getCountry()));
-      }
-
-      contact = new Contact(name, organization, phoneNumbers, emails, postalAddresses, null);
+      contact = VCardUtil.getContactFromVcard(vcard);
     } catch (IOException e) {
       Log.w(TAG, "Failed to parse the vcard.", e);
     }
@@ -201,7 +142,7 @@ public class SharedContactRepository {
 
         String number    = ContactUtil.getNormalizedPhoneNumber(context, cursorNumber);
         Phone  existing  = numberMap.get(number);
-        Phone  candidate = new Phone(number, phoneTypeFromContactType(cursorType), cursorLabel);
+        Phone  candidate = new Phone(number, VCardUtil.phoneTypeFromContactType(cursorType), cursorLabel);
 
         if (existing == null || (existing.getType() == Phone.Type.CUSTOM && existing.getLabel() == null)) {
           numberMap.put(number, candidate);
@@ -224,7 +165,7 @@ public class SharedContactRepository {
         int    cursorType  = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.TYPE));
         String cursorLabel = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.LABEL));
 
-        emails.add(new Email(cursorEmail, emailTypeFromContactType(cursorType), cursorLabel));
+        emails.add(new Email(cursorEmail, VCardUtil.emailTypeFromContactType(cursorType), cursorLabel));
       }
     }
 
@@ -247,7 +188,7 @@ public class SharedContactRepository {
         String cursorPostal       = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.StructuredPostal.POSTCODE));
         String cursorCountry      = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY));
 
-        postalAddresses.add(new PostalAddress(postalAddressTypeFromContactType(cursorType),
+        postalAddresses.add(new PostalAddress(VCardUtil.postalAddressTypeFromContactType(cursorType),
                                               cursorLabel,
                                               cursorStreet,
                                               cursorPoBox,
@@ -302,70 +243,6 @@ public class SharedContactRepository {
     }
 
     return null;
-  }
-
-  private Phone.Type phoneTypeFromContactType(int type) {
-    switch (type) {
-      case ContactsContract.CommonDataKinds.Phone.TYPE_HOME:
-        return Phone.Type.HOME;
-      case ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE:
-        return Phone.Type.MOBILE;
-      case ContactsContract.CommonDataKinds.Phone.TYPE_WORK:
-        return Phone.Type.WORK;
-    }
-    return Phone.Type.CUSTOM;
-  }
-
-  private Phone.Type phoneTypeFromVcardType(@Nullable String type) {
-    if      ("home".equalsIgnoreCase(type)) return Phone.Type.HOME;
-    else if ("cell".equalsIgnoreCase(type)) return Phone.Type.MOBILE;
-    else if ("work".equalsIgnoreCase(type)) return Phone.Type.WORK;
-    else                                    return Phone.Type.CUSTOM;
-  }
-
-  private Email.Type emailTypeFromContactType(int type) {
-    switch (type) {
-      case ContactsContract.CommonDataKinds.Email.TYPE_HOME:
-        return Email.Type.HOME;
-      case ContactsContract.CommonDataKinds.Email.TYPE_MOBILE:
-        return Email.Type.MOBILE;
-      case ContactsContract.CommonDataKinds.Email.TYPE_WORK:
-        return Email.Type.WORK;
-    }
-    return Email.Type.CUSTOM;
-  }
-
-  private Email.Type emailTypeFromVcardType(@Nullable String type) {
-    if      ("home".equalsIgnoreCase(type)) return Email.Type.HOME;
-    else if ("cell".equalsIgnoreCase(type)) return Email.Type.MOBILE;
-    else if ("work".equalsIgnoreCase(type)) return Email.Type.WORK;
-    else                                    return Email.Type.CUSTOM;
-  }
-
-  private PostalAddress.Type postalAddressTypeFromContactType(int type) {
-    switch (type) {
-      case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME:
-        return PostalAddress.Type.HOME;
-      case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK:
-        return PostalAddress.Type.WORK;
-    }
-    return PostalAddress.Type.CUSTOM;
-  }
-
-  private PostalAddress.Type postalAddressTypeFromVcardType(@Nullable String type) {
-    if      ("home".equalsIgnoreCase(type)) return PostalAddress.Type.HOME;
-    else if ("work".equalsIgnoreCase(type)) return PostalAddress.Type.WORK;
-    else                                    return PostalAddress.Type.CUSTOM;
-  }
-
-  private String getCleanedVcardType(@Nullable String type) {
-    if (TextUtils.isEmpty(type)) return "";
-
-    if (type.startsWith("x-") && type.length() > 2) {
-      return type.substring(2);
-    }
-
-    return type;
   }
 
   interface ValueCallback<T> {
