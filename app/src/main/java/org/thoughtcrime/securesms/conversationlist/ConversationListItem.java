@@ -453,11 +453,13 @@ public final class ConversationListItem extends RelativeLayout
       String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
       return emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time));
     } else if (SmsDatabase.Types.isIdentityUpdate(thread.getType())) {
-      if (thread.getRecipient().isGroup()) {
-        return emphasisAdded(context.getString(R.string.ThreadRecord_safety_number_changed));
-      } else {
-        return emphasisAdded(recipientToStringAsync(thread.getRecipient().getId(), r -> context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context))));
-      }
+      return emphasisAdded(recipientToStringAsync(thread.getRecipient().getId(), r -> {
+        if (r.isGroup()) {
+          return context.getString(R.string.ThreadRecord_safety_number_changed);
+        } else {
+          return context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context));
+        }
+      }));
     } else if (SmsDatabase.Types.isIdentityVerified(thread.getType())) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_verified));
     } else if (SmsDatabase.Types.isIdentityDefault(thread.getType())) {
