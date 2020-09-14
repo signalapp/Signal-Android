@@ -679,7 +679,7 @@
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Rozmyj twarze</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nowość: Rozmyj twarze lub rysuj, aby rozmyć</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">Rysuj gdziekolwiek, aby rozmyć</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Rysuj, aby rozmyć dowolne miejsce</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Rysuj, aby rozmyć dodatkowe twarze lub obszary</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Dotknij i przytrzymaj, aby nagrać wiadomość głosową. Puść, aby wysłać.</string>

@@ -1902,7 +1902,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_storage__review_storage">Zkontrolovat úložiště</string>
   <string name="preferences_storage__delete_older_messages">Smazat starší zprávy?</string>
   <string name="preferences_storage__clear_message_history">Smazat historii zpráv?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tímto trvale smažete veškerou historii zpráv a média z vašeho zařízení starší než %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Tímto trvale zkrátíte všechny konverzace na %1$s nejnovějších zpráv.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tímto trvale smažete celou historii zpráv a média z vašeho zařízení.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Jste si jistí, že chcete smazat celou historii zpráv?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Celá historie zpráv bude trvale odstraněna. Tuto akci nelze vrátit zpět.</string>
   <string name="preferences_storage__delete_all_now">Vše nyní smazat</string>

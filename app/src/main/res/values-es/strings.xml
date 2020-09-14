@@ -1881,7 +1881,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atajo a ajustes</string>
   <string name="conversation_list_search_description">Buscar</string>
-  <string name="conversation_list__pinned">Chat(s)  fijado(s)</string>
+  <string name="conversation_list__pinned">Chat(s) fijado(s)</string>
   <string name="conversation_list__chats">Chats</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Puedes fijar hasta %1$d chats destacados</string>
   <!--conversation_list_item_view-->
@@ -1934,7 +1934,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="one">Esta versión de Signal caducará en %d día. Toca para actualizar a la versión más reciente.</item>
     <item quantity="other">Esta versión de Signal caducará en %d días. Toca para actualizar a la versión más reciente.</item>
   </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Esta versión de Signal caduca hoy. Toca para actualizarla a la versión más reciente.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Esta versión de Signal caduca hoy. Toca para actualizar a la versión más reciente.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">¡Esta versión de Signal ha caducado!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Ya no se mandarán más mensajes. Toca para actualizar a la versión más reciente.</string> -->
   <string name="reminder_header_sms_default_title">Usar como aplicación de SMS predeterminada</string>

@@ -615,7 +615,9 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Rydych eisoes yn aelod</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Ymuno</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Profwyd gwall rhwydwaith.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Hoffech ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Diweddarwch Signal i ddefnyddio dolenni grŵp</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Diweddaru Signal</string>
@@ -873,7 +875,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Fe wnaeth %1$s newid pwy all olygu aelodaeth y grŵp i \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Mae pwy all olygu manylion y grŵp wedi\'i newid i \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Galluogasoch y ddolen grŵp gyda chaniatâd gewinyddwr i ffwrdd.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Galluogasoch y ddolen grŵp gyda chaniatâd gewinyddwr ymlaen.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Diffoddasoch y ddolen grŵp.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Galluogasoch y ddolen grŵp.</string>
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
   <!--GV2 group link approvals-->

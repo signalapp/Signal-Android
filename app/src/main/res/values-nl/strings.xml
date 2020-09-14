@@ -585,7 +585,7 @@
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis dat een beheerder nodig is om nieuwe leden goed te keuren.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepsverwijzing wilt vernieuwen? Men zal dan niet langer lid van de groep kunnen worden via de huidige verwijzing.</string>
   <!--GroupLinkShareQrDialogFragment-->
-  <string name="GroupLinkShareQrDialogFragment__qr_code">QR code</string>
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR-code</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Beheerders moeten deze personen nog steeds goedkeuren als deze instelling aan staat.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Deel code</string>
   <!--GV2 Invite Revoke confirmation dialog-->
@@ -987,7 +987,7 @@
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
-  <string name="ReactionsRecipientAdapter_you">jou</string>
+  <string name="ReactionsRecipientAdapter_you">Jij</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokkeren</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Fout bij het verlaten van de groep</string>
@@ -1810,7 +1810,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_storage__one_year">1 jaar</string>
   <string name="preferences_storage__six_months">6 maanden</string>
   <string name="preferences_storage__thirty_days">30 dagen</string>
-  <string name="preferences_storage__none">Niets</string>
+  <string name="preferences_storage__none">Geen limiet</string>
   <string name="preferences_storage__s_messages">%1$s berichten</string>
   <string name="preferences_storage__custom">Aangepast</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Aangepaste gesprekslengtelimiet</string> -->
@@ -1818,7 +1818,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Signal uit</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd omgeleid via de Signal-server. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
   <string name="preferences_advanced__always_relay_calls">Alle oproepen omleiden</string>
-  <string name="preferences_app_protection__who_can">Wie kan…</string>
+  <string name="preferences_app_protection__who_can">Wie kan …</string>
   <string name="preferences_app_protection__app_access">Toegang tot app</string>
   <string name="preferences_app_protection__communication">Communicatie</string>
   <string name="preferences_chats__chats">Gesprekken</string>
@@ -1876,7 +1876,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Geselecteerde gesprekken wissen</string>
   <string name="conversation_list_batch__menu_pin_selected">Geselecteerde vastprikken</string>
-  <string name="conversation_list_batch__menu_unpin_selected">Geselecteerde niet meer vastprikken</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Geselecteerde niet langer vastprikken</string>
   <string name="conversation_list_batch__menu_select_all">Alles selecteren</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Selectie archiveren</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Selectie dearchiveren</string>
@@ -2239,10 +2239,10 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden.</string>
   <string name="GroupsLearnMore_paragraph_3">Om een nieuwe groep aan te maken moeten alle leden hun Signal app bijwerken naar de meest recente versie.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_via_signal">Delen via Signal</string>
+  <string name="GroupLinkBottomSheet_share_via_signal">Verzenden via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiëren</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-code</string>
-  <string name="GroupLinkBottomSheet_share">Doorsturen via andere app</string>
+  <string name="GroupLinkBottomSheet_share">Verzenden via andere app</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De verwijzing is momenteel niet actief</string>
   <!--EOF-->

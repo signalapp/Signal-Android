@@ -215,8 +215,8 @@
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan inte skicka meddelanden till den här gruppen eftersom du inte längre är medlem.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din begäran om att gå med har skickats till gruppadministratören. Du får ett meddelande när de vidtar åtgärder.</string>
-  <string name="ConversationActivity_cancel_request">Avbryt begäran</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din förfrågan om att gå med har skickats till gruppadministratören. Du får ett meddelande när de vidtar åtgärder.</string>
+  <string name="ConversationActivity_cancel_request">Avbryt förfrågan</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal åtkomst till din mikrofon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal behöver behörigheterna Mikrofon och Kamera för att ringa%s men de har avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och Kamera\".</string>
@@ -449,6 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Väntande medlemsförfrågningar</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Inga medlemsförfrågningar att visa.</string>
+  <string name="RequestingMembersFragment_explanation">Personer på den här listan försöker gå med i den här gruppen via grupplänken.</string>
   <string name="RequestingMembersFragment_added_s">Lade till \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Avvisade \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -601,7 +602,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det går inte att få gruppinformation, försök igen senare</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vill du gå med i denna grupp och dela ditt namn och foto med dess medlemmar?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administratör av denna grupp måste godkänna din begäran innan du kan gå med i denna grupp. När du begär att gå med kommer ditt namn och foto att delas med medlemmarna.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administratör av denna grupp måste godkänna din förfrågan innan du kan gå med i denna grupp. När du begär att gå med kommer ditt namn och foto att delas med medlemmarna.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grupp · %1$d medlem</item>
     <item quantity="other">Grupp · %1$d medlemmar</item>
@@ -610,11 +611,12 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupplänkar kommer snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uppdatera Signal för att använda grupplänkar</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Att gå med i en grupp via en länk stöds ännu inte av Signal. Denna funktion kommer att släppas i en kommande uppdatering.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte grupplänkar. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupplänken är inte giltig</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Lägg till \"%1$s\" till gruppen?</string>
-  <string name="RequestConfirmationDialog_deny_request_from_s">Avvisa begäran från \"%1$s\"?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Avvisa förfrågan från \"%1$s\"?</string>
   <string name="RequestConfirmationDialog_add">Lägg till</string>
   <string name="RequestConfirmationDialog_deny">Avvisa</string>
   <!--CropImageActivity-->
@@ -845,22 +847,37 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ändrade vem som kan redigera gruppmedlemskap till \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Vem som kan redigera gruppmedlemskap har ändrats till \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du aktiverade grupplänken med administratörsgodkännande av.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du aktiverade grupplänken med administratörsgodkännande.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Du har inaktiverat grupplänken.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s aktiverade grupplänken med administratörsgodkännande av.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s aktiverade grupplänken med administratörsgodkännande på.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s inaktiverade grupplänken.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Grupplänken har aktiverats med administratörsgodkännande av.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Grupplänken har aktiverats med godkännande av administratör på.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Grupplänken har inaktiverats.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Du återställer grupplänken.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s återställde grupplänken.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Grupplänken har återställts.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du gick med i gruppen via grupplänken.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s gick med i gruppen via grupplänken.</string>
   <!--GV2 group link requests-->
-  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du skickade en begäran om att gå med i gruppen.</string>
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du skickade en förfrågan om att gå med i gruppen.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s begärde att gå med via grupplänken.</string>
   <!--GV2 group link approvals-->
-  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkände din begäran om att gå med i gruppen.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkände en begäran om att gå med i gruppen från %2$s.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Du godkände en begäran om att gå med i gruppen från %1$s.</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Din begäran om att gå med i gruppen har godkänts.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">En begäran om att gå med i gruppen från %1$s har godkänts.</string>
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godkände din förfrågan om att gå med i gruppen.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkände en förfrågan om att gå med i gruppen från %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Du godkände en förfrågan om att gå med i gruppen från %1$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Din förfrågan om att gå med i gruppen har godkänts.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">En förfrågan om att gå med i gruppen från %1$s har godkänts.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Din begäran om att gå med i gruppen har avvisats av en administratör.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s avvisade en begäran om att gå med i gruppen från %2$s.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">En begäran om att gå med i gruppen från %1$s har blivit avvisad.</string>
-  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du avbröt din begäran om att gå med i gruppen.</string>
-  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s avbröt sin begäran om att gå med i gruppen.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Din förfrågan om att gå med i gruppen har avvisats av en administratör.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s avvisade en förfrågan om att gå med i gruppen från %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">En förfrågan om att gå med i gruppen från %1$s har blivit avvisad.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du avbröt din förfrågan om att gå med i gruppen.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s avbröt sin förfrågan om att gå med i gruppen.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerade ditt säkerhetsnummer med %s som verifierat</string>
@@ -1146,7 +1163,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_you_marked_verified">Du markerade som verifierat</string>
   <string name="ThreadRecord_you_marked_unverified">Du markerade som overifierat</string>
   <string name="ThreadRecord_message_could_not_be_processed">Meddelandet kunde inte behandlas</string>
-  <string name="ThreadRecord_message_request">Meddelandebegäran</string>
+  <string name="ThreadRecord_message_request">Meddelandeförfrågan</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s lade till dig i gruppen</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s bjöd in dig till gruppen.</string>
   <string name="ThreadRecord_photo">Foto</string>
@@ -1424,6 +1441,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Säkerhetsnummerändringar</string>
   <string name="safety_number_change_dialog__send_anyway">Skicka ändå</string>
+  <string name="safety_number_change_dialog__call_anyway">Ring ändå</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Följande personer kan ha installerat om eller bytt enheter. Verifiera ditt säkerhetsnummer med dem för att säkerställa integriteten.</string>
   <string name="safety_number_change_dialog__view">Visa</string>
   <string name="safety_number_change_dialog__previous_verified">Tidigare verifierad</string>
@@ -1731,6 +1749,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__chats">Konversationer och media</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
+  <string name="preferences__keep_messages">Spara meddelanden</string>
+  <string name="preferences__clear_message_history">Rensa meddelandeshistorik</string>
   <string name="preferences__linked_devices">Länkade enheter</string>
   <string name="preferences__light_theme">Ljust</string>
   <string name="preferences__dark_theme">Mörkt</string>
@@ -1760,19 +1780,34 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_chats__when_using_wifi">Vid användning av Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Vid roaming</string>
   <string name="preferences_chats__media_auto_download">Automatisk hämtning av media</string>
+  <string name="preferences_chats__message_history">Meddelandeshistorik</string>
   <string name="preferences_storage__storage_usage">Lagringsutrymme</string>
   <string name="preferences_storage__photos">Foton</string>
   <string name="preferences_storage__videos">Videor</string>
   <string name="preferences_storage__files">Filer</string>
   <string name="preferences_storage__audio">Ljud</string>
   <string name="preferences_storage__review_storage">Granska lagring</string>
+  <string name="preferences_storage__delete_older_messages">Ta bort äldre meddelanden?</string>
+  <string name="preferences_storage__clear_message_history">Rensa meddelandeshistorik?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Detta tar bort all meddelandeshistorik och media från din enhet som är äldre än %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Detta kommer omedelbart att korta ner alla konversationer till de %1$s senaste meddelandena.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Detta tar bort all meddelandeshistorik och media permanent från din enhet.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Är du säker på att du vill ta bort all meddelandeshistorik?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meddelandeshistorik tas bort permanent. Denna åtgärd kan inte ångras.</string>
+  <string name="preferences_storage__delete_all_now">Ta bort allt nu</string>
+  <string name="preferences_storage__forever">För alltid</string>
   <string name="preferences_storage__one_year">1 år</string>
+  <string name="preferences_storage__six_months">6 månader</string>
+  <string name="preferences_storage__thirty_days">30 dagar</string>
   <string name="preferences_storage__none">Ingen</string>
+  <string name="preferences_storage__s_messages">%1$s meddelanden</string>
   <string name="preferences_storage__custom">Skräddarsydd</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Anpassad gräns för konversationslängd</string> -->
   <string name="preferences_advanced__use_system_emoji">Använd systemets emojier</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Inaktivera Signals inbyggda emojier</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Slussa alla samtal via Signal-servern för att undvika att avslöja din IP-adress för din kontakt. Aktivering försämrar samtalskvaliteten.</string>
   <string name="preferences_advanced__always_relay_calls">Slussa alltid samtal</string>
+  <string name="preferences_app_protection__who_can">Vem kan…</string>
   <string name="preferences_app_protection__app_access">Appåtkomst</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Konversationer</string>
@@ -1797,6 +1832,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_notifications__notify_me">Meddela mig</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Få aviseringar när du omnämns i tystade konversationer</string>
   <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
+  <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1828,7 +1864,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_insecure__invite">Bjud in</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ta bort valda</string>
-  <string name="conversation_list_batch__menu_pin_selected">Fäst valda</string>
+  <string name="conversation_list_batch__menu_pin_selected">Fästade valda</string>
   <string name="conversation_list_batch__menu_unpin_selected">Lossa valda</string>
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiv valt</string>
@@ -1839,7 +1875,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvägsinställningar</string>
   <string name="conversation_list_search_description">Sök</string>
-  <string name="conversation_list__pinned">Fäst</string>
+  <string name="conversation_list__pinned">Fästa</string>
   <string name="conversation_list__chats">Konversationer</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bara fästa %1$d konversationer</string>
   <!--conversation_list_item_view-->
@@ -2095,7 +2131,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registrering - Verifieringskod för Android</string>
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Okänd</string>
+  <string name="preferences_app_protection__see_my_phone_number">Se mitt telefonnummer</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Hitta mig med telefonnummer</string>
+  <string name="PhoneNumberPrivacy_everyone">Alla</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Mina kontakter</string>
   <string name="PhoneNumberPrivacy_nobody">Ingen</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Ditt telefonnummer kommer att vara synligt för alla personer och grupper som du meddelar.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Den som har ditt telefonnummer i sina kontakter ser dig som en kontakt på Signal. Andra kommer att kunna hitta dig i sökningen.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Endast dina kontakter ser ditt telefonnummer på Signal.</string>
   <string name="preferences_app_protection__screen_lock">Skärmlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås åtkomst till Signal med Android-skärmlås eller -fingeravtryck</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Skärmlåsets tidsgräns för inaktivitet </string>

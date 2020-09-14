@@ -449,6 +449,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Pedidos para membro pendentes</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Sem pedidos para membro.</string>
+  <string name="RequestingMembersFragment_explanation">As pessoas nesta lista estão a tentar entrar para este grupo através do link do grupo.</string>
   <string name="RequestingMembersFragment_added_s">Adicionado(s) \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Negado(s) \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -610,6 +611,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Links para grupo muito em breve</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atualize o Signal para utilizar hiperligações de grupo</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Entrar para um grupo através de um link ainda não é suportado pelo Signal. Este recurso será lançado numa atualização futura.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que está a utilizar não suporta links de grupo. Atualize para a última versão de forma a poder entrar para este grupo através do link do grupo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link do grupo inválido</string>
   <!--GV2 Request confirmation dialog-->
@@ -848,12 +850,22 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Ativou o link de grupo sem aprovação de administrador.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Ativou o link do grupo com aprovação de administrador.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Desativou o link do grupo.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ativou o link do grupo sem aprovação de administrador.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ativou o link do grupo com aprovação de administrador.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s desativou o link do grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">O link do grupo foi ativado sem aprovação de administrador.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">O link do grupo foi ativado com aprovação de administrador.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">O link do grupo foi desativado.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Redefiniu o link de grupo.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s redefinir o link do grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">O link do grupo foi redefinido.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">Entrou para o grupo através do link do grupo.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s entrou para o grupo através do link do grupo.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Enviou um pedido para entrar para o grupo.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou para entrar para o grupo através do link do grupo.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprovou o seu pedido para entrar para o grupo.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou um pedido de %2$s para entrar para o grupo.</string>
@@ -1431,6 +1443,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Alterações do número de segurança</string>
   <string name="safety_number_change_dialog__send_anyway">Enviar mesmo assim</string>
+  <string name="safety_number_change_dialog__call_anyway">Telefonar mesmo assim</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">As seguintes pessoas podem ter reinstalado ou mudado de dispositivo. Verifique o seu número de segurança com eles para assegurar a privacidade.</string>
   <string name="safety_number_change_dialog__view">Ver</string>
   <string name="safety_number_change_dialog__previous_verified">Verificado anteriormente</string>
@@ -1738,6 +1751,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__chats">Conversas e multimédia</string>
   <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo das conversas</string>
+  <string name="preferences__keep_messages">Manter mensagens</string>
+  <string name="preferences__clear_message_history">Apagar histórico de mensagens</string>
   <string name="preferences__linked_devices">Dispositivos associados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
@@ -1767,18 +1782,34 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_chats__when_using_wifi">Ao utilizar o Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Ao utilizar o roaming</string>
   <string name="preferences_chats__media_auto_download">Descarregar multimédia automaticamente</string>
+  <string name="preferences_chats__message_history">Histórico de mensagens</string>
   <string name="preferences_storage__storage_usage">Utilização do armazenamento</string>
   <string name="preferences_storage__photos">Fotografias</string>
   <string name="preferences_storage__videos">Vídeos</string>
   <string name="preferences_storage__files">Ficheiros</string>
   <string name="preferences_storage__audio">Áudio</string>
   <string name="preferences_storage__review_storage">Rever armazenamento</string>
+  <string name="preferences_storage__delete_older_messages">Eliminar mensagens antigas?</string>
+  <string name="preferences_storage__clear_message_history">Apagar histórico de mensagens?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Isto irá eliminar permanentemente do seu dispositivo todo o histórico de mensagens e multimédia que sejam mais velhos que %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Isto irá reduzir automaticamente todas as conversas para as %1$s mensagens mais recentes.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Isto irá eliminar permanentemente do seu dispositivo todo o histórico de mensagens e multimédia,</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tem a certeza que deseja eliminar todo o histórico de mensagens?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Todo o histórico de mensagens será eliminado permanentemente. Esta ação não poderá ser desfeita.</string>
+  <string name="preferences_storage__delete_all_now">Apagar tudo agora</string>
+  <string name="preferences_storage__forever">Para sempre</string>
+  <string name="preferences_storage__one_year">1 ano</string>
+  <string name="preferences_storage__six_months">6 meses</string>
+  <string name="preferences_storage__thirty_days">30 dias</string>
   <string name="preferences_storage__none">Nenhum(a)</string>
+  <string name="preferences_storage__s_messages">%1$s mensagens</string>
   <string name="preferences_storage__custom">Personalizado</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Limite personalizado do comprimento da conversa</string> -->
   <string name="preferences_advanced__use_system_emoji">Utilizar os emojis do sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desativar o suporte de emojis próprios do Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Passar todas as chamadas pelo servidor do Signal para evitar revelar o seu endereço IP ao destinatário. Ativar esta opção irá reduzir a qualidade da chamada.</string>
   <string name="preferences_advanced__always_relay_calls">Retransmitir todas as chamadas</string>
+  <string name="preferences_app_protection__who_can">Quem pode…</string>
   <string name="preferences_app_protection__app_access">Acesso da aplicação</string>
   <string name="preferences_app_protection__communication">Comunicação</string>
   <string name="preferences_chats__chats">Conversas</string>
@@ -1803,6 +1834,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_notifications__notify_me">Notificar-me</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Receba notificações quando for mencionado em chats silenciados</string>
   <string name="preferences_setup_a_username">Defina um nome de utilizador</string>
+  <string name="configurable_single_select__customize_option">Personalizar opção</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2101,7 +2133,14 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_code_support_subject">Registo Signal - Código de verificação para Android</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
+  <string name="preferences_app_protection__see_my_phone_number">Ver o meu número de telemóvel</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Encontrar-me através do número de telemóvel</string>
+  <string name="PhoneNumberPrivacy_everyone">Todos</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Os meus contactos</string>
   <string name="PhoneNumberPrivacy_nobody">Ninguém</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">O seu número de telemóvel ficará visível para todas as pessoas e grupos com quem troque mensagens.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Qualquer pessoa que tenha o seu número de telemóvel nos seus contactos irá vê-lo como contacto no Signal. As outras pessoas poderão encontrá-lo através da pesquisa.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Apenas os seus contactos irão ver o seu número de telemóvel no Signal.</string>
   <string name="preferences_app_protection__screen_lock">Bloqueio de ecrã</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloqueie o acesso ao Signal utilizando o bloqueio de ecrã do Android ou a impressão digital</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Bloqueio de ecrã devido a inatividade</string>

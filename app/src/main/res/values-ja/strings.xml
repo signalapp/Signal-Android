@@ -1503,7 +1503,7 @@
   <string name="CreateProfileActivity_last_name_optional">姓 (任意)</string>
   <string name="CreateProfileActivity_next">次へ</string>
   <string name="CreateProfileActivity__username">ユーザ名</string>
-  <string name="CreateProfileActivity__create_a_username">ユーザ名を作成</string>
+  <string name="CreateProfileActivity__create_a_username">ユーザ名の作成</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">グループ名と画像の編集</string>
   <string name="EditProfileFragment__group_name">グループ名</string>
@@ -1634,8 +1634,8 @@
   <string name="preferences__pref_all_mms_title">全てのMMSを受信</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">テキストメッセージの受信はすべてSignalで行う</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">マルチメディアメッセージの受信はすべてSignalで行う</string>
-  <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
+  <string name="preferences__pref_enter_sends_title">エンターキーで送信する</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーでテキストメッセージを送信します</string>
   <string name="preferences__generate_link_previews">リンクプレビューを生成する</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">送信メッセージのリンクプレビューをウェブサイトから直接取得します。</string>
   <string name="preferences__choose_identity">アイデンティティを選択</string>
@@ -1774,6 +1774,7 @@
   <string name="preferences_notifications__notify_me">通知を受け取る</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">ミュートした会話でメンションされた際に通知を受け取る</string>
   <string name="preferences_setup_a_username">ユーザ名の設定</string>
+  <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1804,13 +1805,13 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">招待</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">選択した会話を削除</string>
+  <string name="conversation_list_batch__menu_delete_selected">選択した会話を削除する</string>
   <string name="conversation_list_batch__menu_pin_selected">選択した会話をピン留めする</string>
   <string name="conversation_list_batch__menu_unpin_selected">選択した会話のピン留めを外す</string>
   <string name="conversation_list_batch__menu_select_all">すべて選択</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">選択した会話をアーカイブする</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">選択した会話のアーカイブを解除</string>
-  <string name="conversation_list_batch__menu_unarchive_selected">選択した会話のアーカイブを解除</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">選択した会話のアーカイブを解除する</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">選択した会話のアーカイブを解除する</string>
   <string name="conversation_list_batch__menu_mark_as_read">既読にする</string>
   <string name="conversation_list_batch__menu_mark_as_unread">未読にする</string>
   <!--conversation_list-->
@@ -2028,7 +2029,7 @@
   <string name="registration_activity__register">登録する</string>
   <string name="preferences_chats__chat_backups">チャットのバックアップ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">外部ストレージにチャットをバックアップします</string>
-  <string name="preferences_chats__create_backup">バックアップの作成</string>
+  <string name="preferences_chats__create_backup">バックアップを作成する</string>
   <string name="preferences_chats__verify_backup_passphrase">バックアップ用パスフレーズの確認</string>
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">バックアップ用パスフレーズが合っているか確認します</string>
   <string name="RegistrationActivity_enter_backup_passphrase">バックアップ用パスフレーズを入力してください</string>
