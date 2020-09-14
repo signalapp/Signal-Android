@@ -4,6 +4,8 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import org.thoughtcrime.securesms.database.model.BackupFileRecord;
 import org.thoughtcrime.securesms.logging.Log;
 
 import network.loki.messenger.R;
@@ -16,125 +18,29 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
-//TODO AC: Needs to be refactored to use Storage Access Framework or Media Store API.
+//TODO AC: Delete this class when its functionality is
+// fully replaced by the BackupUtil.kt and related classes.
 /** @deprecated in favor of {@link BackupUtil} */
 public class BackupUtilOld {
 
   private static final String TAG = BackupUtilOld.class.getSimpleName();
 
-  public static @NonNull String getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
-    try {
-      BackupInfo backup = getLatestBackup(context);
-
-      if (backup == null) return context.getString(R.string.BackupUtil_never);
-      else                return DateUtils.getExtendedRelativeTimeSpanString(context, locale, backup.getTimestamp());
-    } catch (NoExternalStorageException e) {
-      Log.w(TAG, e);
-      return context.getString(R.string.BackupUtil_unknown);
-    }
-  }
-
+  /**
+   * @deprecated this method exists only for the backward compatibility with the legacy Signal backup code.
+   * Use {@link BackupUtil} if possible.
+   */
   public static @Nullable BackupInfo getLatestBackup(Context context) throws NoExternalStorageException {
-    File       backupDirectory = ExternalStorageUtil.getBackupDir(context);
-    File[]     backups         = backupDirectory.listFiles();
-    BackupInfo latestBackup    = null;
+    BackupFileRecord backup = BackupUtil.getLastBackup(context);
+    if (backup == null) return null;
 
-    for (File backup : backups) {
-      long backupTimestamp = getBackupTimestamp(backup);
 
-      if (latestBackup == null || (backupTimestamp != -1 && backupTimestamp > latestBackup.getTimestamp())) {
-        latestBackup = new BackupInfo(backupTimestamp, backup.length(), backup);
-      }
-    }
-
-    return latestBackup;
+    return new BackupInfo(
+            backup.getTimestamp().getTime(),
+            backup.getFileSize(),
+            new File(backup.getUri().getPath()));
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
-  public static void deleteAllBackups(Context context) {
-    try {
-      File   backupDirectory = ExternalStorageUtil.getBackupDir(context);
-      File[] backups         = backupDirectory.listFiles();
-
-      for (File backup : backups) {
-        if (backup.isFile()) backup.delete();
-      }
-    } catch (NoExternalStorageException e) {
-      Log.w(TAG, e);
-    }
-  }
-
-  public static void deleteOldBackups(Context context) {
-    try {
-      File   backupDirectory = ExternalStorageUtil.getBackupDir(context);
-      File[] backups         = backupDirectory.listFiles();
-
-      if (backups != null && backups.length > 2) {
-        Arrays.sort(backups, (left, right) -> {
-          long leftTimestamp  = getBackupTimestamp(left);
-          long rightTimestamp = getBackupTimestamp(right);
-
-          if      (leftTimestamp == -1 && rightTimestamp == -1) return 0;
-          else if (leftTimestamp == -1)                         return 1;
-          else if (rightTimestamp == -1)                        return -1;
-
-          return (int)(rightTimestamp - leftTimestamp);
-        });
-
-        for (int i=2;i<backups.length;i++) {
-          Log.i(TAG, "Deleting: " + backups[i].getAbsolutePath());
-
-          if (!backups[i].delete()) {
-            Log.w(TAG, "Delete failed: " + backups[i].getAbsolutePath());
-          }
-        }
-      }
-    } catch (NoExternalStorageException e) {
-      Log.w(TAG, e);
-    }
-  }
-
-  public static @NonNull String[] generateBackupPassphrase() {
-    String[] result = new String[6];
-    byte[]   random = new byte[30];
-
-    new SecureRandom().nextBytes(random);
-
-    for (int i=0;i<30;i+=5) {
-      result[i/5] = String.format("%05d", ByteUtil.byteArray5ToLong(random, i) % 100000);
-    }
-
-    return result;
-  }
-
-  private static long getBackupTimestamp(File backup) {
-    String   name  = backup.getName();
-    String[] prefixSuffix = name.split("[.]");
-
-    if (prefixSuffix.length == 2) {
-      String[] parts = prefixSuffix[0].split("\\-");
-
-      if (parts.length == 7) {
-        try {
-          Calendar calendar = Calendar.getInstance();
-          calendar.set(Calendar.YEAR, Integer.parseInt(parts[1]));
-          calendar.set(Calendar.MONTH, Integer.parseInt(parts[2]) - 1);
-          calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(parts[3]));
-          calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[4]));
-          calendar.set(Calendar.MINUTE, Integer.parseInt(parts[5]));
-          calendar.set(Calendar.SECOND, Integer.parseInt(parts[6]));
-          calendar.set(Calendar.MILLISECOND, 0);
-
-          return calendar.getTimeInMillis();
-        } catch (NumberFormatException e) {
-          Log.w(TAG, e);
-        }
-      }
-    }
-
-    return -1;
-  }
-
+  @Deprecated
   public static class BackupInfo {
 
     private final long timestamp;

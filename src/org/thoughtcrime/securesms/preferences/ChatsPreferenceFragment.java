@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
@@ -24,7 +25,9 @@ import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.widgets.ProgressPreference;
+import org.thoughtcrime.securesms.util.BackupDirSelector;
 import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.FragmentContextProvider;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 
@@ -37,6 +40,8 @@ import network.loki.messenger.R;
 
 public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   private static final String TAG = ChatsPreferenceFragment.class.getSimpleName();
+
+  private BackupDirSelector backupDirSelector;
 
   @Override
   public void onCreate(Bundle paramBundle) {
@@ -65,6 +70,8 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
 
 //    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF));
 
+    backupDirSelector = new BackupDirSelector(this);
+
     EventBus.getDefault().register(this);
   }
 
@@ -89,6 +96,12 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+  }
+
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    backupDirSelector.onActivityResult(requestCode, resultCode, data);
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
@@ -143,7 +156,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
                  .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                  .onAllGranted(() -> {
                    if (!((SwitchPreferenceCompat)preference).isChecked()) {
-                     BackupDialog.showEnableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference);
+                     BackupDialog.showEnableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference, backupDirSelector);
                    } else {
                      BackupDialog.showDisableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference);
                    }

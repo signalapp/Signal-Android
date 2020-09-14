@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.net.Uri;
 import android.text.TextUtils;
 
 import com.annimon.stream.function.Consumer;
@@ -36,9 +38,10 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
 import org.whispersystems.libsignal.util.ByteUtil;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.Flushable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -64,49 +67,54 @@ public class FullBackupExporter extends FullBackupBase {
   public static void export(@NonNull Context context,
                             @NonNull AttachmentSecret attachmentSecret,
                             @NonNull SQLiteDatabase input,
-                            @NonNull File output,
+                            @NonNull Uri fileUri,
                             @NonNull String passphrase)
       throws IOException
   {
-    BackupFrameOutputStream outputStream = new BackupFrameOutputStream(output, passphrase);
-    outputStream.writeDatabaseVersion(input.getVersion());
+    OutputStream baseOutputStream = context.getContentResolver().openOutputStream(fileUri);
+    if (baseOutputStream == null) {
+      throw new IOException("Cannot open an output stream for the file URI: " + fileUri.toString());
+    }
 
-    List<String> tables = exportSchema(input, outputStream);
-    int          count  = 0;
+    try (BackupFrameOutputStream outputStream = new BackupFrameOutputStream(baseOutputStream, passphrase)) {
+      outputStream.writeDatabaseVersion(input.getVersion());
 
-    for (String table : tables) {
-      if (table.equals(SmsDatabase.TABLE_NAME) || table.equals(MmsDatabase.TABLE_NAME)) {
-        count = exportTable(table, input, outputStream, cursor -> cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0, null, count);
-      } else if (table.equals(GroupReceiptDatabase.TABLE_NAME)) {
-        count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count);
-      } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
-        count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), cursor -> exportAttachment(attachmentSecret, cursor, outputStream), count);
-      } else if (table.equals(StickerDatabase.TABLE_NAME)) {
-        count = exportTable(table, input, outputStream, cursor -> true, cursor -> exportSticker(attachmentSecret, cursor, outputStream), count);
-      } else if (!table.equals(SignedPreKeyDatabase.TABLE_NAME)       &&
-                 !table.equals(OneTimePreKeyDatabase.TABLE_NAME)      &&
-                 !table.equals(SessionDatabase.TABLE_NAME)            &&
-                 !table.startsWith(SearchDatabase.SMS_FTS_TABLE_NAME) &&
-                 !table.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME) &&
-                 !table.startsWith("sqlite_"))
-      {
-        count = exportTable(table, input, outputStream, null, null, count);
+      List<String> tables = exportSchema(input, outputStream);
+      int          count  = 0;
+
+      for (String table : tables) {
+        if (table.equals(SmsDatabase.TABLE_NAME) || table.equals(MmsDatabase.TABLE_NAME)) {
+          count = exportTable(table, input, outputStream, cursor -> cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0, null, count);
+        } else if (table.equals(GroupReceiptDatabase.TABLE_NAME)) {
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count);
+        } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), cursor -> exportAttachment(attachmentSecret, cursor, outputStream), count);
+        } else if (table.equals(StickerDatabase.TABLE_NAME)) {
+          count = exportTable(table, input, outputStream, cursor -> true, cursor -> exportSticker(attachmentSecret, cursor, outputStream), count);
+        } else if (!table.equals(SignedPreKeyDatabase.TABLE_NAME)       &&
+                   !table.equals(OneTimePreKeyDatabase.TABLE_NAME)      &&
+                   !table.equals(SessionDatabase.TABLE_NAME)            &&
+                   !table.startsWith(SearchDatabase.SMS_FTS_TABLE_NAME) &&
+                   !table.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME) &&
+                   !table.startsWith("sqlite_"))
+        {
+          count = exportTable(table, input, outputStream, null, null, count);
+        }
       }
-    }
 
-    for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
-      outputStream.write(preference);
-    }
+      for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+        outputStream.write(preference);
+      }
 
-    for (File avatar : AvatarHelper.getAvatarFiles(context)) {
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
-      outputStream.write(avatar.getName(), new FileInputStream(avatar), avatar.length());
-    }
+      for (File avatar : AvatarHelper.getAvatarFiles(context)) {
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+        outputStream.write(avatar.getName(), new FileInputStream(avatar), avatar.length());
+      }
 
-    outputStream.writeEnd();
-    outputStream.close();
-    EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, ++count));
+      outputStream.writeEnd();
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, ++count));
+    }
   }
 
   private static List<String> exportSchema(@NonNull SQLiteDatabase input, @NonNull BackupFrameOutputStream outputStream)
@@ -228,8 +236,9 @@ public class FullBackupExporter extends FullBackupBase {
       byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM));
 
       if (!TextUtils.isEmpty(data) && size > 0) {
-        InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
-        outputStream.writeSticker(rowId, inputStream, size);
+        try (InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0)) {
+          outputStream.writeSticker(rowId, inputStream, size);
+        }
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -268,7 +277,7 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
 
-  private static class BackupFrameOutputStream extends BackupStream {
+  private static class BackupFrameOutputStream extends BackupStream implements Closeable, Flushable {
 
     private final OutputStream outputStream;
     private final Cipher       cipher;
@@ -280,7 +289,7 @@ public class FullBackupExporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupFrameOutputStream(@NonNull File output, @NonNull String passphrase) throws IOException {
+    private BackupFrameOutputStream(@NonNull OutputStream outputStream, @NonNull String passphrase) throws IOException {
       try {
         byte[]   salt    = Util.getSecretBytes(32);
         byte[]   key     = getBackupKey(passphrase, salt);
@@ -292,7 +301,7 @@ public class FullBackupExporter extends FullBackupBase {
 
         this.cipher       = Cipher.getInstance("AES/CTR/NoPadding");
         this.mac          = Mac.getInstance("HmacSHA256");
-        this.outputStream = new FileOutputStream(output);
+        this.outputStream = outputStream;
         this.iv           = Util.getSecretBytes(16);
         this.counter      = Conversions.byteArrayToInt(iv);
 
@@ -408,7 +417,12 @@ public class FullBackupExporter extends FullBackupBase {
       }
     }
 
+    @Override
+    public void flush() throws IOException {
+      outputStream.flush();
+    }
 
+    @Override
     public void close() throws IOException {
       outputStream.close();
     }

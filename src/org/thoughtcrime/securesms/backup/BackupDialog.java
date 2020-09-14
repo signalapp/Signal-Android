@@ -6,22 +6,28 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import network.loki.messenger.R;
+
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
+import org.thoughtcrime.securesms.util.BackupDirSelector;
 import org.thoughtcrime.securesms.util.BackupUtil;
-import org.thoughtcrime.securesms.util.BackupUtilOld;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 public class BackupDialog {
 
-  public static void showEnableBackupDialog(@NonNull Context context, @NonNull SwitchPreferenceCompat preference) {
+  public static void showEnableBackupDialog(
+          @NonNull Context context,
+          @NonNull SwitchPreferenceCompat preference,
+          @NonNull BackupDirSelector backupDirSelector) {
+
     String[]    password = BackupUtil.generateBackupPassphrase();
     AlertDialog dialog   = new AlertDialog.Builder(context)
                                           .setTitle(R.string.BackupDialog_enable_local_backups)
@@ -35,12 +41,14 @@ public class BackupDialog {
       button.setOnClickListener(v -> {
         CheckBox confirmationCheckBox = dialog.findViewById(R.id.confirmation_check);
         if (confirmationCheckBox.isChecked()) {
-          BackupPassphrase.set(context, Util.join(password, " "));
-          TextSecurePreferences.setBackupEnabled(context, true);
-          LocalBackupListener.schedule(context);
+          backupDirSelector.selectBackupDir(true, uri -> {
+            BackupPassphrase.set(context, Util.join(password, " "));
+            TextSecurePreferences.setBackupEnabled(context, true);
+            LocalBackupListener.schedule(context);
 
-          preference.setChecked(true);
-          created.dismiss();
+            preference.setChecked(true);
+            created.dismiss();
+          });
         } else {
           Toast.makeText(context, R.string.BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box, Toast.LENGTH_LONG).show();
         }
@@ -78,7 +86,8 @@ public class BackupDialog {
                    .setPositiveButton(R.string.BackupDialog_delete_backups_statement, (dialog, which) -> {
                      BackupPassphrase.set(context, null);
                      TextSecurePreferences.setBackupEnabled(context, false);
-                     BackupUtilOld.deleteAllBackups(context);
+                     BackupUtil.deleteAllBackupFiles(context);
+                     BackupUtil.setBackupDirUri(context, null);
                      preference.setChecked(false);
                    })
                    .create()

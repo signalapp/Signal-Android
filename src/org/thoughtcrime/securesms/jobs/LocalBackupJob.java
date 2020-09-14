@@ -1,32 +1,22 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.Manifest;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.backup.BackupPassphrase;
-import org.thoughtcrime.securesms.backup.FullBackupExporter;
-import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.model.BackupFileRecord;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
-import org.thoughtcrime.securesms.util.BackupUtilOld;
-import org.thoughtcrime.securesms.util.ExternalStorageUtil;
+import org.thoughtcrime.securesms.util.BackupUtil;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.Collections;
 
 import network.loki.messenger.R;
 
-//TODO AC: Needs to be refactored to use Storage Access Framework or Media Store API.
 public class LocalBackupJob extends BaseJob {
 
   public static final String KEY = "LocalBackupJob";
@@ -59,10 +49,6 @@ public class LocalBackupJob extends BaseJob {
   public void onRun() throws NoExternalStorageException, IOException {
     Log.i(TAG, "Executing backup job...");
 
-    if (!Permissions.hasAll(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-      throw new IOException("No external storage permission!");
-    }
-
     GenericForegroundService.startForegroundTask(context,
                                                  context.getString(R.string.LocalBackupJob_creating_backup),
                                                  NotificationChannels.BACKUPS,
@@ -71,34 +57,9 @@ public class LocalBackupJob extends BaseJob {
     // TODO: Maybe create a new backup icon like ic_signal_backup?
 
     try {
-      String backupPassword  = BackupPassphrase.get(context);
-      File   backupDirectory = ExternalStorageUtil.getBackupDir(context);
-      String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
-      String fileName        = String.format("session-%s.backup", timestamp);
-      File   backupFile      = new File(backupDirectory, fileName);
+      BackupFileRecord record = BackupUtil.createBackupFile(context);
+      BackupUtil.deleteAllBackupFiles(context, Collections.singletonList(record));
 
-      if (backupFile.exists()) {
-        throw new IOException("Backup file already exists?");
-      }
-
-      if (backupPassword == null) {
-        throw new IOException("Backup password is null");
-      }
-
-      File tempFile = File.createTempFile("backup", "tmp", ExternalStorageUtil.getCacheDir(context));
-
-      FullBackupExporter.export(context,
-                                AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                                DatabaseFactory.getBackupDatabase(context),
-                                tempFile,
-                                backupPassword);
-
-      if (!tempFile.renameTo(backupFile)) {
-        tempFile.delete();
-        throw new IOException("Renaming temporary backup file failed!");
-      }
-
-      BackupUtilOld.deleteOldBackups(context);
     } finally {
       GenericForegroundService.stopForegroundTask(context);
     }

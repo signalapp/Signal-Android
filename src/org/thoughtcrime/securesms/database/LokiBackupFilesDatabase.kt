@@ -4,8 +4,10 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import androidx.annotation.NonNull
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.database.model.BackupFileRecord
+import java.lang.IllegalArgumentException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -56,7 +58,7 @@ class LokiBackupFilesDatabase(context: Context?, databaseHelper: SQLCipherOpenHe
     fun getBackupFiles(): List<BackupFileRecord> {
         databaseHelper.readableDatabase.query(TABLE_NAME, allColumns, null, null, null, null, null).use {
             val records = ArrayList<BackupFileRecord>()
-            while (it != null && it.moveToFirst()) {
+            while (it != null && it.moveToNext()) {
                 val record = mapCursorToRecord(it)
                 records.add(record)
             }
@@ -64,9 +66,10 @@ class LokiBackupFilesDatabase(context: Context?, databaseHelper: SQLCipherOpenHe
         }
     }
 
-    fun insertBackupFile(record: BackupFileRecord): Long {
+    fun insertBackupFile(record: BackupFileRecord): BackupFileRecord {
         val contentValues = mapRecordToValues(record)
-        return databaseHelper.writableDatabase.insertOrThrow(TABLE_NAME, null, contentValues)
+        val id = databaseHelper.writableDatabase.insertOrThrow(TABLE_NAME, null, contentValues)
+        return BackupFileRecord(id, record.uri, record.fileSize, record.timestamp)
     }
 
     fun getLastBackupFileTime(): Date? {
@@ -101,5 +104,16 @@ class LokiBackupFilesDatabase(context: Context?, databaseHelper: SQLCipherOpenHe
                 return null
             }
         }
+    }
+
+    fun deleteBackupFile(record: BackupFileRecord): Boolean {
+        return deleteBackupFile(record.id)
+    }
+
+    fun deleteBackupFile(id: Long): Boolean {
+        if (id < 0) {
+            throw IllegalArgumentException("ID must be zero or a positive number.")
+        }
+        return databaseHelper.writableDatabase.delete(TABLE_NAME, "$COLUMN_ID = $id", null) > 0
     }
 }
