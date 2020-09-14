@@ -165,7 +165,7 @@ android {
     }
 
     aaptOptions {
-        ignoreAssetsPattern '!contours.tfl:!LMprec_600.emd:!fssd_25_8bit_gray_v1.tflite:!fssd_25_8bit_v1.tflite:!blazeface.tfl'
+        ignoreAssetsPattern '!contours.tfl:!LMprec_600.emd:!blazeface.tfl'
     }
 
     buildTypes {
