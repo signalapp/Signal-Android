@@ -6,6 +6,9 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class EmojiFilter implements InputFilter {
   private TextView view;
 
@@ -26,5 +29,20 @@ public class EmojiFilter implements InputFilter {
     }
 
     return emojified;
+  }
+
+  public static void appendEmojiFilter(@NonNull TextView textView) {
+    InputFilter[] result;
+    InputFilter[] originalFilters = textView.getFilters();
+    if (originalFilters != null) {
+      result = new InputFilter[originalFilters.length + 1];
+      System.arraycopy(originalFilters, 0, result, 1, originalFilters.length);
+    } else {
+      result = new InputFilter[1];
+    }
+
+    result[0] = new EmojiFilter(textView);
+
+    textView.setFilters(result);
   }
 }

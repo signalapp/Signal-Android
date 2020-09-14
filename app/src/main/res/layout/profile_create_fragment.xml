@@ -86,7 +86,7 @@
                     app:layout_constraintStart_toStartOf="@+id/avatar_background"
                     app:layout_constraintTop_toTopOf="@+id/avatar_background" />
 
-                <TextView
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                     android:id="@+id/name_preview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

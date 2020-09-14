@@ -36,7 +36,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                 android:id="@+id/help_fragment_problem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

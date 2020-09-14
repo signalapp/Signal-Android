@@ -106,7 +106,7 @@
       app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
       tools:visibility="visible" />
 
-  <TextView
+  <org.thoughtcrime.securesms.components.emoji.EmojiTextView
       android:id="@+id/search_no_results"
       android:layout_width="0dp"
       android:layout_height="0dp"
