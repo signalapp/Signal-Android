@@ -21,6 +21,7 @@
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
+        android:inputType="textWebEmailAddress"
         android:hint="@string/fragment_enter_chat_url_edit_text_hint" />
 
     <View
