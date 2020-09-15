@@ -3,32 +3,42 @@ package org.thoughtcrime.securesms.util.task;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import androidx.annotation.Nullable;
-import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Lifecycle;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import org.thoughtcrime.securesms.logging.Log;
 
 public abstract class SnackbarAsyncTask<Params>
     extends AsyncTask<Params, Void, Void>
     implements View.OnClickListener
 {
+  private static final String TAG = Log.tag(SnackbarAsyncTask.class);
 
-  private final View    view;
-  private final String  snackbarText;
-  private final String  snackbarActionText;
-  private final int     snackbarActionColor;
-  private final int     snackbarDuration;
-  private final boolean showProgress;
+  private final Lifecycle lifecycle;
+  private final View      view;
+  private final String    snackbarText;
+  private final String    snackbarActionText;
+  private final int       snackbarActionColor;
+  private final int       snackbarDuration;
+  private final boolean   showProgress;
 
   private @Nullable Params         reversibleParameter;
   private @Nullable ProgressDialog progressDialog;
 
-  public SnackbarAsyncTask(View view,
+  public SnackbarAsyncTask(@NonNull Lifecycle lifecycle,
+                           @NonNull View view,
                            String snackbarText,
                            String snackbarActionText,
                            int snackbarActionColor,
                            int snackbarDuration,
                            boolean showProgress)
   {
+    this.lifecycle           = lifecycle;
     this.view                = view;
     this.snackbarText        = snackbarText;
     this.snackbarActionText  = snackbarActionText;
@@ -56,6 +66,11 @@ public abstract class SnackbarAsyncTask<Params>
     if (this.showProgress && this.progressDialog != null) {
       this.progressDialog.dismiss();
       this.progressDialog = null;
+    }
+
+    if (!lifecycle.getCurrentState().isAtLeast(Lifecycle.State.CREATED)) {
+      Log.w(TAG, "Not in at least created state. Refusing to show snack bar.");
+      return;
     }
 
     Snackbar.make(view, snackbarText, snackbarDuration)

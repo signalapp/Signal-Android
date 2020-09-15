@@ -123,11 +123,13 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   @SuppressLint("StaticFieldLeak")
   @Override
   protected void onItemSwiped(long threadId, int unreadCount) {
-    new SnackbarAsyncTask<Long>(getView(),
-        getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
-        getString(R.string.ConversationListFragment_undo),
-        getResources().getColor(R.color.amber_500),
-        Snackbar.LENGTH_LONG, false)
+    new SnackbarAsyncTask<Long>(getViewLifecycleOwner().getLifecycle(),
+                                requireView(),
+                                getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
+                                getString(R.string.ConversationListFragment_undo),
+                                getResources().getColor(R.color.amber_500),
+                                Snackbar.LENGTH_LONG,
+                                false)
     {
       @Override
       protected void executeAction(@Nullable Long parameter) {

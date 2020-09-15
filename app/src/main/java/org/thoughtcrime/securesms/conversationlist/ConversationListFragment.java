@@ -679,7 +679,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     int       count                 = selectedConversations.size();
     String    snackBarTitle         = getResources().getQuantityString(getArchivedSnackbarTitleRes(), count, count);
 
-    new SnackbarAsyncTask<Void>(getView(),
+    new SnackbarAsyncTask<Void>(getViewLifecycleOwner().getLifecycle(),
+                                requireView(),
                                 snackBarTitle,
                                 getString(R.string.ConversationListFragment_undo),
                                 getResources().getColor(R.color.amber_500),
@@ -1002,11 +1003,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @SuppressLint("StaticFieldLeak")
   protected void onItemSwiped(long threadId, int unreadCount) {
-    new SnackbarAsyncTask<Long>(getView(),
-        getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
-        getString(R.string.ConversationListFragment_undo),
-        getResources().getColor(R.color.amber_500),
-        Snackbar.LENGTH_LONG, false)
+    new SnackbarAsyncTask<Long>(getViewLifecycleOwner().getLifecycle(),
+                                requireView(),
+                                getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
+                                getString(R.string.ConversationListFragment_undo),
+                                getResources().getColor(R.color.amber_500),
+                                Snackbar.LENGTH_LONG,
+                                false)
     {
       @Override
       protected void executeAction(@Nullable Long parameter) {
