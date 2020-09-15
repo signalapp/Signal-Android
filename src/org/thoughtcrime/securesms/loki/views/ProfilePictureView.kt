@@ -81,7 +81,11 @@ class ProfilePictureView : RelativeLayout {
                 if (masterPublicKey != null) {
                     users.remove(masterPublicKey)
                 }
-                val randomUsers = users.sorted() // Sort to provide a level of stability
+                val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
+                if (users.count() == 1) {
+                    val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+                    randomUsers.add(0, userPublicKey) // Ensure the current user is at the back visually
+                }
                 val pk = randomUsers.getOrNull(0) ?: ""
                 publicKey = pk
                 displayName = getUserDisplayName(pk)
