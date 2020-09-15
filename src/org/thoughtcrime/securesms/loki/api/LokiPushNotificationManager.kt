@@ -111,9 +111,8 @@ object LokiPushNotificationManager {
 
     @JvmStatic
     fun performOperation(context: Context, operation: ClosedGroupOperation, closedGroupPublicKey: String, publicKey: String) {
-        Log.d("Loki", "Start to notify PN server of closed group.")
         if (!TextSecurePreferences.isUsingFCM(context)) { return }
-        val parameters = mapOf("closedGroupPublicKey" to closedGroupPublicKey, "pubKey" to publicKey)
+        val parameters = mapOf( "closedGroupPublicKey" to closedGroupPublicKey, "pubKey" to publicKey )
         val url = "$server/${operation.rawValue}"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
         val request = Request.Builder().url(url).post(body).build()
