@@ -1341,7 +1341,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     @Override
     public void onClick(View view) {
       if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
-        eventListener.onSharedContactDetailsClicked(((SharedContactView) view).getContact(), ((SharedContactView) view).getAvatarView());
+        eventListener.onSharedContactDetailsClicked(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), sharedContactStub.get().getAvatarView());
       } else {
         passthroughClickListener.onClick(view);
       }
