@@ -24,7 +24,7 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
   @Override
   protected long onAlarm(Context context, long scheduledTime) {
     if (TextSecurePreferences.isBackupEnabled(context)) {
-      ApplicationDependencies.getJobManager().add(new LocalBackupJob());
+      ApplicationDependencies.getJobManager().add(new LocalBackupJob(false));
     }
 
     return setNextBackupTimeToIntervalFromNow(context);

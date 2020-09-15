@@ -153,7 +153,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
                  .ifNecessary()
                  .onAllGranted(() -> {
                    Log.i(TAG, "Queing backup...");
-                   ApplicationDependencies.getJobManager().add(new LocalBackupJob());
+                   ApplicationDependencies.getJobManager().add(new LocalBackupJob(true));
                  })
                  .withPermanentDenialDialog(getString(R.string.ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
                  .execute();

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -36,12 +37,21 @@ public final class LocalBackupJob extends BaseJob {
   public static final String TEMP_BACKUP_FILE_PREFIX = ".backup";
   public static final String TEMP_BACKUP_FILE_SUFFIX = ".tmp";
 
-  public LocalBackupJob() {
-    this(new Job.Parameters.Builder()
-                           .setQueue("__LOCAL_BACKUP__")
-                           .setMaxInstances(1)
-                           .setMaxAttempts(3)
-                           .build());
+  public LocalBackupJob(boolean forceNow) {
+    this(buildParameters(forceNow));
+  }
+
+  private static @NonNull Job.Parameters buildParameters(boolean forceNow) {
+    Job.Parameters.Builder builder = new Job.Parameters.Builder()
+                                                       .setQueue("__LOCAL_BACKUP__")
+                                                       .setMaxInstances(1)
+                                                       .setMaxAttempts(3);
+
+    if (!forceNow) {
+      builder.addConstraint(ChargingConstraint.KEY);
+    }
+
+    return builder.build();
   }
 
   private LocalBackupJob(@NonNull Job.Parameters parameters) {

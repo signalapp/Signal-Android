@@ -5,14 +5,12 @@ import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.job.JobScheduler;
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.PowerManager;
 import android.os.Vibrator;
 import androidx.annotation.NonNull;
@@ -80,7 +78,7 @@ public class ServiceUtil {
     return (JobScheduler) context.getSystemService(JobScheduler.class);
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+  @RequiresApi(22)
   public static @Nullable SubscriptionManager getSubscriptionManager(@NonNull Context context) {
     return (SubscriptionManager) context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
   }
