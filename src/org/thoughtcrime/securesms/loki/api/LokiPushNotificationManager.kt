@@ -128,6 +128,9 @@ object LokiPushNotificationManager {
                             Log.d("Loki", "Couldn't subscribe/unsubscribe to/from PNs for closed group with ID: $closedGroupPublicKey due to error: ${json?.get("message") as? String ?: "null"}.")
                         }
                     }
+                    else -> {
+                        Log.d("Loki", "Couldn't subscribe/unsubscribe to/from PNs for closed group with ID: $closedGroupPublicKey.")
+                    }
                 }
             }
 
