@@ -211,7 +211,7 @@ public abstract class Slide {
 
     if (fileName.isPresent()) {
       String fileType = getFileType(fileName);
-      if (!fileType.isEmpty()){
+      if (!fileType.isEmpty()) {
         return Optional.of(fileType);
       }
     }

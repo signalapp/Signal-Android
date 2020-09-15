@@ -237,8 +237,8 @@ public class MmsDownloadJob extends BaseJob {
             if (part.getName() != null) name = Util.toIsoString(part.getName());
 
             attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
-                    AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                    part.getData().length, name, false, false, false, null, null, null, null, null));
+                            AttachmentDatabase.TRANSFER_PROGRESS_DONE,
+                            part.getData().length, name, false, false, false, null, null, null, null, null));
           }
         }
       }

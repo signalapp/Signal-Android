@@ -15,7 +15,9 @@ import java.util.List;
 import ezvcard.Ezvcard;
 import ezvcard.VCard;
 
-public class VCardUtil {
+public final class VCardUtil {
+
+    private VCardUtil(){}
 
     private static final String TAG = VCardUtil.class.getSimpleName();
 

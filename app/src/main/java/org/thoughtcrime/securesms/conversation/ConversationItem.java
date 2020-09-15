@@ -902,7 +902,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
           sharedContactStub.get().setClusteredIncomingStyle();
       }
     }
-
   }
 
   private void setSharedContactWidth(@NonNull MessageRecord current) {
