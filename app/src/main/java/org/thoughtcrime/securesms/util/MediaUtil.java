@@ -15,12 +15,15 @@ import android.webkit.MimeTypeMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
@@ -152,7 +155,7 @@ public class MediaUtil {
 
   @WorkerThread
   public static Pair<Integer, Integer> getDimensions(@NonNull Context context, @Nullable String contentType, @Nullable Uri uri) {
-    if (uri == null || !MediaUtil.isImageType(contentType)) {
+    if (uri == null || (!MediaUtil.isImageType(contentType) && !MediaUtil.isVideoType(contentType))) {
       return new Pair<>(0, 0);
     }
 
@@ -161,17 +164,23 @@ public class MediaUtil {
     if (MediaUtil.isGif(contentType)) {
       try {
         GifDrawable drawable = GlideApp.with(context)
-                .asGif()
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .load(new DecryptableUri(uri))
-                .submit()
-                .get();
+                                       .asGif()
+                                       .skipMemoryCache(true)
+                                       .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                       .load(new DecryptableUri(uri))
+                                       .submit()
+                                       .get();
         dimens = new Pair<>(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
       } catch (InterruptedException e) {
         Log.w(TAG, "Was unable to complete work for GIF dimensions.", e);
       } catch (ExecutionException e) {
         Log.w(TAG, "Glide experienced an exception while trying to get GIF dimensions.", e);
+      }
+    } else if (MediaUtil.hasVideoThumbnail(context, uri)) {
+      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, 1000);
+
+      if (thumbnail != null) {
+        dimens = new Pair<>(thumbnail.getWidth(), thumbnail.getHeight());
       }
     } else {
       InputStream attachmentStream = null;
@@ -297,12 +306,16 @@ public class MediaUtil {
     return (null != contentType) && contentType.equals(VIEW_ONCE);
   }
 
-  public static boolean hasVideoThumbnail(Uri uri) {
+  public static boolean hasVideoThumbnail(@NonNull Context context, @Nullable Uri uri) {
+    if (uri == null) {
+      return false;
+    }
+
     if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri)) && Build.VERSION.SDK_INT >= 23) {
       return true;
     }
 
-    if (uri == null || !isSupportedVideoUriScheme(uri.getScheme())) {
+    if (!isSupportedVideoUriScheme(uri.getScheme())) {
       return false;
     }
 
@@ -313,14 +326,18 @@ public class MediaUtil {
     } else if (uri.toString().startsWith("file://") &&
                MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
       return true;
+    } else if (PartAuthority.isAttachmentUri(uri) && MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri))) {
+      return true;
     } else {
       return false;
     }
   }
 
   @WorkerThread
-  public static @Nullable Bitmap getVideoThumbnail(Context context, Uri uri, long timeUs) {
-    if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
+  public static @Nullable Bitmap getVideoThumbnail(@NonNull Context context, @Nullable Uri uri, long timeUs) {
+    if (uri == null) {
+      return null;
+    } else if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
       long videoId = Long.parseLong(uri.getLastPathSegment().split(":")[1]);
 
       return MediaStore.Video.Thumbnails.getThumbnail(context.getContentResolver(),
@@ -338,22 +355,42 @@ public class MediaUtil {
                MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
       return ThumbnailUtils.createVideoThumbnail(uri.toString().replace("file://", ""),
                                                  MediaStore.Video.Thumbnails.MINI_KIND);
-    } else if (BlobProvider.isAuthority(uri) &&
-               MediaUtil.isVideo(BlobProvider.getMimeType(uri)) &&
-               Build.VERSION.SDK_INT >= 23) {
+    } else if (Build.VERSION.SDK_INT >= 23   &&
+               BlobProvider.isAuthority(uri) &&
+               MediaUtil.isVideo(BlobProvider.getMimeType(uri)))
+    {
       try {
-        MediaDataSource        mediaDataSource        = BlobProvider.getInstance().getMediaDataSource(context, uri);
-        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-
-        MediaMetadataRetrieverUtil.setDataSource(mediaMetadataRetriever, mediaDataSource);
-        return mediaMetadataRetriever.getFrameAtTime(timeUs);
+        MediaDataSource source = BlobProvider.getInstance().getMediaDataSource(context, uri);
+        return extractFrame(source, timeUs);
       } catch (IOException e) {
-        Log.w(TAG, "failed to get thumbnail for video blob uri: " + uri, e);
-        return null;
+        Log.w(TAG, "Failed to extract frame for URI: " + uri, e);
+      }
+    } else if (Build.VERSION.SDK_INT >= 23        &&
+               PartAuthority.isAttachmentUri(uri) &&
+               MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri)))
+    {
+      try {
+        AttachmentId    attachmentId = PartAuthority.requireAttachmentId(uri);
+        MediaDataSource source       = DatabaseFactory.getAttachmentDatabase(context).mediaDataSourceFor(attachmentId);
+        return extractFrame(source, timeUs);
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to extract frame for URI: " + uri, e);
       }
     }
 
     return null;
+  }
+
+  @RequiresApi(23)
+  private static @Nullable Bitmap extractFrame(@Nullable MediaDataSource dataSource, long timeUs) throws IOException {
+    if (dataSource == null) {
+      return null;
+    }
+
+    MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+
+    MediaMetadataRetrieverUtil.setDataSource(mediaMetadataRetriever, dataSource);
+    return mediaMetadataRetriever.getFrameAtTime(timeUs);
   }
 
   public static @Nullable String getDiscreteMimeType(@NonNull String mimeType) {

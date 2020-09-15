@@ -335,7 +335,6 @@ public class LinkPreviewRepository {
     Uri    uri   = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
 
     return Optional.of(new UriAttachment(uri,
-                                         uri,
                                          contentType,
                                          AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
                                          bytes.length,

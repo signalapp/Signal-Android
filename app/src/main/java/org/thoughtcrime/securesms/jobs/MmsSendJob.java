@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -273,7 +272,7 @@ public final class MmsSendJob extends SendJob {
 
     for (Attachment attachment : scaledAttachments) {
       try {
-        if (attachment.getDataUri() == null) throw new IOException("Assertion failed, attachment for outgoing MMS has no data!");
+        if (attachment.getUri() == null) throw new IOException("Assertion failed, attachment for outgoing MMS has no data!");
 
         String  fileName = attachment.getFileName();
         PduPart part     = new PduPart();
@@ -296,7 +295,7 @@ public final class MmsSendJob extends SendJob {
         int index = fileName.lastIndexOf(".");
         String contentId = (index == -1) ? fileName : fileName.substring(0, index);
         part.setContentId(contentId.getBytes());
-        part.setData(Util.readFully(PartAuthority.getAttachmentStream(context, attachment.getDataUri())));
+        part.setData(Util.readFully(PartAuthority.getAttachmentStream(context, attachment.getUri())));
 
         body.addPart(part);
         size += getPartSize(part);

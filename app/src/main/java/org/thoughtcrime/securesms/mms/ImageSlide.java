@@ -55,11 +55,6 @@ public class ImageSlide extends Slide {
   }
 
   @Override
-  public @Nullable Uri getThumbnailUri() {
-    return getUri();
-  }
-
-  @Override
   public boolean hasImage() {
     return true;
   }

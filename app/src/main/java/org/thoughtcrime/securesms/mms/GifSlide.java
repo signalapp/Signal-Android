@@ -27,11 +27,6 @@ public class GifSlide extends ImageSlide {
   }
 
   @Override
-  public @Nullable Uri getThumbnailUri() {
-    return getUri();
-  }
-
-  @Override
   public boolean isBorderless() {
     return borderless;
   }

@@ -676,11 +676,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       for (Media mediaItem : result.getNonUploadedMedia()) {
         if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new VideoSlide(this, mediaItem.getUri(), 0, mediaItem.getCaption().orNull(), mediaItem.getTransformProperties().orNull()));
+          slideDeck.addSlide(new VideoSlide(this, mediaItem.getUri(), mediaItem.getSize(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull(), mediaItem.getTransformProperties().orNull()));
         } else if (MediaUtil.isGif(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orNull()));
+          slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), mediaItem.getSize(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orNull()));
         } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), mediaItem.getMimeType(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orNull(), null));
+          slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), mediaItem.getMimeType(), mediaItem.getSize(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orNull(), null));
         } else {
           Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.getMimeType() + "'. Skipping.");
         }

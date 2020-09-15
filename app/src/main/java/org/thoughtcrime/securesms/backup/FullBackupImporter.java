@@ -138,13 +138,11 @@ public class FullBackupImporter extends FullBackupBase {
       inputStream.readAttachmentTo(output.second, attachment.getLength());
 
       contentValues.put(AttachmentDatabase.DATA, dataFile.getAbsolutePath());
-      contentValues.put(AttachmentDatabase.THUMBNAIL, (String)null);
       contentValues.put(AttachmentDatabase.DATA_RANDOM, output.first);
     } catch (BadMacException e) {
       Log.w(TAG, "Bad MAC for attachment " + attachment.getAttachmentId() + "! Can't restore it.", e);
       dataFile.delete();
       contentValues.put(AttachmentDatabase.DATA, (String) null);
-      contentValues.put(AttachmentDatabase.THUMBNAIL, (String) null);
       contentValues.put(AttachmentDatabase.DATA_RANDOM, (String) null);
     }
 

@@ -38,11 +38,6 @@ public class StickerSlide extends Slide {
   }
 
   @Override
-  public @Nullable Uri getThumbnailUri() {
-    return getUri();
-  }
-
-  @Override
   public boolean hasSticker() {
     return true;
   }

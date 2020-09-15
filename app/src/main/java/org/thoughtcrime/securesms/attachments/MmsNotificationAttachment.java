@@ -15,13 +15,7 @@ public class MmsNotificationAttachment extends Attachment {
 
   @Nullable
   @Override
-  public Uri getDataUri() {
-    return null;
-  }
-
-  @Nullable
-  @Override
-  public Uri getThumbnailUri() {
+  public Uri getUri() {
     return null;
   }
 

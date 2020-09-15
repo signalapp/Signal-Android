@@ -344,8 +344,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   private static Optional<Uri> getThumbnailUri(@Nullable Slide slide) {
-    if (slide != null && !slide.isInProgress() && slide.getThumbnailUri() != null) {
-      return Optional.of(slide.getThumbnailUri());
+    if (slide != null && !slide.isInProgress() && slide.getUri() != null) {
+      return Optional.of(slide.getUri());
     } else {
       return Optional.absent();
     }

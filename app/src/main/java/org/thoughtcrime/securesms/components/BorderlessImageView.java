@@ -54,7 +54,7 @@ public class BorderlessImageView extends FrameLayout {
   }
 
   public void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    boolean showControls = slide.asAttachment().getDataUri() == null;
+    boolean showControls = slide.asAttachment().getUri() == null;
 
     if (slide.hasSticker()) {
       image.setFit(new CenterInside());

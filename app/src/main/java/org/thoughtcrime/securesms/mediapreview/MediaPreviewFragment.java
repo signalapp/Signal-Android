@@ -29,7 +29,7 @@ public abstract class MediaPreviewFragment extends Fragment {
   protected Events       events;
 
   public static MediaPreviewFragment newInstance(@NonNull Attachment attachment, boolean autoPlay) {
-    return newInstance(attachment.getDataUri(), attachment.getContentType(), attachment.getSize(), autoPlay);
+    return newInstance(attachment.getUri(), attachment.getContentType(), attachment.getSize(), autoPlay);
   }
 
   public static MediaPreviewFragment newInstance(@NonNull Uri dataUri, @NonNull String contentType, long size, boolean autoPlay) {

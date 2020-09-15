@@ -47,8 +47,8 @@ final class MediaActions {
                             List<SaveAttachmentTask.Attachment> attachments = new LinkedList<>();
 
                             for (MediaDatabase.MediaRecord mediaRecord : mediaRecords) {
-                              if (mediaRecord.getAttachment().getDataUri() != null) {
-                                attachments.add(new SaveAttachmentTask.Attachment(mediaRecord.getAttachment().getDataUri(),
+                              if (mediaRecord.getAttachment().getUri() != null) {
+                                attachments.add(new SaveAttachmentTask.Attachment(mediaRecord.getAttachment().getUri(),
                                                                                   mediaRecord.getContentType(),
                                                                                   mediaRecord.getDate(),
                                                                                   mediaRecord.getAttachment().getFileName()));

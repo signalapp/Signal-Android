@@ -20,12 +20,7 @@ public class TombstoneAttachment extends Attachment {
   }
 
   @Override
-  public @Nullable Uri getDataUri() {
-    return null;
-  }
-
-  @Override
-  public @Nullable Uri getThumbnailUri() {
+  public @Nullable Uri getUri() {
     return null;
   }
 }

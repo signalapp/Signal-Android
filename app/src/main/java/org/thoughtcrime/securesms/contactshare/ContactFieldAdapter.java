@@ -215,7 +215,7 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
     Field(@NonNull Avatar avatar) {
       this.value      = "";
       this.iconResId  = R.drawable.baseline_account_circle_white_24;
-      this.iconUri    = avatar.getAttachment() != null ? avatar.getAttachment().getDataUri() : null;
+      this.iconUri    = avatar.getAttachment() != null ? avatar.getAttachment().getUri() : null;
       this.maxLines   = 1;
       this.selectable = avatar;
       this.label      = "";

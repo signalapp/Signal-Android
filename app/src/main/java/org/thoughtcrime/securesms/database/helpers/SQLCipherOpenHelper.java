@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -146,8 +147,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int UNKNOWN_STORAGE_FIELDS           = 71;
   private static final int STICKER_CONTENT_TYPE             = 72;
   private static final int STICKER_EMOJI_IN_NOTIFICATIONS   = 73;
+  private static final int THUMBNAIL_CLEANUP                = 74;
 
-  private static final int    DATABASE_VERSION = 73;
+  private static final int    DATABASE_VERSION = 74;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1021,6 +1023,30 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < STICKER_EMOJI_IN_NOTIFICATIONS) {
         db.execSQL("ALTER TABLE part ADD COLUMN sticker_emoji TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < THUMBNAIL_CLEANUP) {
+        int total   = 0;
+        int deleted = 0;
+
+        try (Cursor cursor = db.rawQuery("SELECT thumbnail FROM part WHERE thumbnail NOT NULL", null)) {
+          if (cursor != null) {
+            total = cursor.getCount();
+            Log.w(TAG, "Found " + total + " thumbnails to delete.");
+          }
+
+          while (cursor != null && cursor.moveToNext()) {
+            File file = new File(CursorUtil.requireString(cursor, "thumbnail"));
+
+            if (file.delete()) {
+              deleted++;
+            } else {
+              Log.w(TAG, "Failed to delete file! " + file.getAbsolutePath());
+            }
+          }
+        }
+
+        Log.w(TAG, "Deleted " + deleted + "/" + total + " thumbnail files.");
       }
 
       db.setTransactionSuccessful();

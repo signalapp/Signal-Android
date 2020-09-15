@@ -57,19 +57,9 @@ public class DatabaseAttachment extends Attachment {
 
   @Override
   @Nullable
-  public Uri getDataUri() {
+  public Uri getUri() {
     if (hasData) {
       return PartAuthority.getAttachmentDataUri(attachmentId);
-    } else {
-      return null;
-    }
-  }
-
-  @Override
-  @Nullable
-  public Uri getThumbnailUri() {
-    if (hasThumbnail) {
-      return PartAuthority.getAttachmentThumbnailUri(attachmentId);
     } else {
       return null;
     }

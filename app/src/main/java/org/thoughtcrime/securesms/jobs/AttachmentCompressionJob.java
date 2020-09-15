@@ -249,7 +249,7 @@ public final class AttachmentCompressionJob extends BaseJob {
 
     try {
       BitmapUtil.ScaleResult scaleResult = BitmapUtil.createScaledBytes(context,
-                                                                        new DecryptableStreamUriLoader.DecryptableUri(attachment.getDataUri()),
+                                                                        new DecryptableStreamUriLoader.DecryptableUri(attachment.getUri()),
                                                                         constraints);
 
       return new MediaStream(new ByteArrayInputStream(scaleResult.getBitmap()),

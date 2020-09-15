@@ -58,7 +58,7 @@ class EncryptedCoder {
     }
   }
 
-  InputStream createEncryptedInputStream(@NonNull byte[] masterKey, @NonNull File file) throws IOException {
+  CipherInputStream createEncryptedInputStream(@NonNull byte[] masterKey, @NonNull File file) throws IOException {
     try {
       Mac    mac    = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(masterKey, "HmacSHA256"));

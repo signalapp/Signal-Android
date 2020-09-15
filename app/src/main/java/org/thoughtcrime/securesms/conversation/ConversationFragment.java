@@ -810,7 +810,7 @@ public class ConversationFragment extends LoggingFragment {
                                                .toList();
 
           for (Attachment attachment : attachments) {
-            Uri uri = attachment.getDataUri() != null ? attachment.getDataUri() : attachment.getThumbnailUri();
+            Uri uri = attachment.getUri();
 
             if (uri != null) {
               mediaList.add(new Media(uri,

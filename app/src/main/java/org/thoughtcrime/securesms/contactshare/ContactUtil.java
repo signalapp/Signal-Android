@@ -186,11 +186,11 @@ public final class ContactUtil {
       intent.putExtra(ContactsContract.Intents.Insert.POSTAL_TYPE, getSystemType(contact.getPostalAddresses().get(0).getType()));
     }
 
-    if (contact.getAvatarAttachment() != null && contact.getAvatarAttachment().getDataUri() != null) {
+    if (contact.getAvatarAttachment() != null && contact.getAvatarAttachment().getUri() != null) {
       try {
         ContentValues values = new ContentValues();
         values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE);
-        values.put(ContactsContract.CommonDataKinds.Photo.PHOTO, Util.readFully(PartAuthority.getAttachmentStream(context, contact.getAvatarAttachment().getDataUri())));
+        values.put(ContactsContract.CommonDataKinds.Photo.PHOTO, Util.readFully(PartAuthority.getAttachmentStream(context, contact.getAvatarAttachment().getUri())));
 
         ArrayList<ContentValues> valuesArray = new ArrayList<>(1);
         valuesArray.add(values);

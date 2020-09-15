@@ -1,14 +1,11 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.graphics.Bitmap;
-import android.media.MediaDataSource;
-import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
@@ -28,8 +25,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
-import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.MediaMetadataRetrieverUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -40,6 +35,7 @@ import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -157,8 +153,8 @@ public final class AttachmentUploadJob extends BaseJob {
 
   private @NonNull SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, @Nullable ResumableUploadSpec resumableUploadSpec) throws InvalidAttachmentException {
     try {
-      if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
-      InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
+      if (attachment.getUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
+      InputStream is = PartAuthority.getAttachmentStream(context, attachment.getUri());
       SignalServiceAttachment.Builder builder = SignalServiceAttachment.newStreamBuilder()
                                                                        .withStream(is)
                                                                        .withContentType(attachment.getContentType())
@@ -193,43 +189,34 @@ public final class AttachmentUploadJob extends BaseJob {
 
   private @Nullable String getImageBlurHash(@NonNull Attachment attachment) throws IOException {
     if (attachment.getBlurHash() != null) return attachment.getBlurHash().getHash();
-    if (attachment.getDataUri() == null) return null;
+    if (attachment.getUri() == null) return null;
 
-    return BlurHashEncoder.encode(PartAuthority.getAttachmentStream(context, attachment.getDataUri()));
+    return BlurHashEncoder.encode(PartAuthority.getAttachmentStream(context, attachment.getUri()));
   }
 
   private @Nullable String getVideoBlurHash(@NonNull Attachment attachment) throws IOException {
-    if (attachment.getThumbnailUri() != null) {
-      return BlurHashEncoder.encode(PartAuthority.getAttachmentStream(context, attachment.getThumbnailUri()));
+    if (attachment.getBlurHash() != null) {
+      return attachment.getBlurHash().getHash();
     }
-
-    if (attachment.getBlurHash() != null) return attachment.getBlurHash().getHash();
 
     if (Build.VERSION.SDK_INT < 23) {
       Log.w(TAG, "Video thumbnails not supported...");
       return null;
     }
 
-    try (MediaDataSource dataSource = DatabaseFactory.getAttachmentDatabase(context).mediaDataSourceFor(attachmentId)) {
-      if (dataSource == null) return null;
+    Bitmap bitmap = MediaUtil.getVideoThumbnail(context, Objects.requireNonNull(attachment.getUri()), 1000);
 
-      MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-      MediaMetadataRetrieverUtil.setDataSource(retriever, dataSource);
+    if (bitmap != null) {
+      Bitmap thumb = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
+      bitmap.recycle();
 
-      Bitmap bitmap = retriever.getFrameAtTime(1000);
+      Log.i(TAG, "Generated video thumbnail...");
+      String hash = BlurHashEncoder.encode(thumb);
+      thumb.recycle();
 
-      if (bitmap != null) {
-        Bitmap thumb = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
-        bitmap.recycle();
-
-        Log.i(TAG, "Generated video thumbnail...");
-        String hash = BlurHashEncoder.encode(thumb);
-        thumb.recycle();
-
-        return hash;
-      } else {
-        return null;
-      }
+      return hash;
+    } else {
+      return null;
     }
   }
 

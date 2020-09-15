@@ -1673,7 +1673,6 @@ public final class PushProcessMessageJob extends BaseJob {
 
     if (stickerRecord != null) {
       return Optional.of(new UriAttachment(stickerRecord.getUri(),
-                                           stickerRecord.getUri(),
                                            stickerRecord.getContentType(),
                                            AttachmentDatabase.TRANSFER_PROGRESS_DONE,
                                            stickerRecord.getSize(),

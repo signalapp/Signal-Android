@@ -210,7 +210,7 @@ public final class MediaOverviewPageFragment extends Fragment
   }
 
   private void handleMediaPreviewClick(@NonNull MediaDatabase.MediaRecord mediaRecord) {
-    if (mediaRecord.getAttachment().getDataUri() == null) {
+    if (mediaRecord.getAttachment().getUri() == null) {
       return;
     }
 
@@ -231,7 +231,7 @@ public final class MediaOverviewPageFragment extends Fragment
       intent.putExtra(MediaPreviewActivity.SHOW_THREAD_EXTRA, threadId == MediaDatabase.ALL_THREADS);
       intent.putExtra(MediaPreviewActivity.SORTING_EXTRA, sorting.ordinal());
 
-      intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
+      intent.setDataAndType(mediaRecord.getAttachment().getUri(), mediaRecord.getContentType());
       context.startActivity(intent);
     } else {
       if (!MediaUtil.isAudio(attachment)) {
@@ -241,7 +241,7 @@ public final class MediaOverviewPageFragment extends Fragment
   }
 
   private static void showFileExternally(@NonNull Context context, @NonNull MediaDatabase.MediaRecord mediaRecord) {
-      Uri uri = mediaRecord.getAttachment().getDataUri();
+      Uri uri = mediaRecord.getAttachment().getUri();
 
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

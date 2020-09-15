@@ -48,8 +48,8 @@ public abstract class MediaConstraints {
 
   public boolean isSatisfied(@NonNull Context context, @NonNull Attachment attachment) {
     try {
-      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize(context)   && isWithinBounds(context, attachment.getDataUri())) ||
-             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize(context) && isWithinBounds(context, attachment.getDataUri())) ||
+      return (MediaUtil.isGif(attachment)    && attachment.getSize() <= getGifMaxSize(context)   && isWithinBounds(context, attachment.getUri())) ||
+             (MediaUtil.isImage(attachment)  && attachment.getSize() <= getImageMaxSize(context) && isWithinBounds(context, attachment.getUri())) ||
              (MediaUtil.isAudio(attachment)  && attachment.getSize() <= getAudioMaxSize(context)) ||
              (MediaUtil.isVideo(attachment)  && attachment.getSize() <= getVideoMaxSize(context)) ||
              (MediaUtil.isFile(attachment) && attachment.getSize() <= getDocumentMaxSize(context));

@@ -1095,7 +1095,7 @@ public class ThreadDatabase extends Database {
     Slide     thumbnail = Optional.fromNullable(slideDeck.getThumbnailSlide()).or(Optional.fromNullable(slideDeck.getStickerSlide())).orNull();
 
     if (thumbnail != null && !((MmsMessageRecord) record).isViewOnce()) {
-      return thumbnail.getThumbnailUri();
+      return thumbnail.getUri();
     }
 
     return null;

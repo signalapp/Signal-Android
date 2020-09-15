@@ -42,16 +42,9 @@ public class PointerAttachment extends Attachment {
 
   @Nullable
   @Override
-  public Uri getDataUri() {
+  public Uri getUri() {
     return null;
   }
-
-  @Nullable
-  @Override
-  public Uri getThumbnailUri() {
-    return null;
-  }
-
 
   public static List<Attachment> forPointers(Optional<List<SignalServiceAttachment>> pointers) {
     List<Attachment> results = new LinkedList<>();

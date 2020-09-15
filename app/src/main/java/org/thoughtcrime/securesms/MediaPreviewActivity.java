@@ -133,7 +133,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, attachment.getSize());
     intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, attachment.getCaption());
     intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, leftIsRecent);
-    intent.setDataAndType(attachment.getDataUri(), mediaRecord.getContentType());
+    intent.setDataAndType(attachment.getUri(), mediaRecord.getContentType());
     return intent;
   }
 
@@ -801,7 +801,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
       return new MediaItem(Recipient.live(recipientId).get(),
                            Recipient.live(threadRecipientId).get(),
                            attachment,
-                           Objects.requireNonNull(attachment.getDataUri()),
+                           Objects.requireNonNull(attachment.getUri()),
                            mediaRecord.getContentType(),
                            mediaRecord.getDate(),
                            mediaRecord.isOutgoing());

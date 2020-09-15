@@ -279,7 +279,7 @@ public class ThumbnailView extends FrameLayout {
       getTransferControls().setVisibility(View.GONE);
     }
 
-    if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() &&
+    if (slide.getUri() != null && slide.hasPlayOverlay() &&
         (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview))
     {
       this.playOverlay.setVisibility(View.VISIBLE);
@@ -288,12 +288,12 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (Util.equals(slide, this.slide)) {
-      Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getDataUri());
+      Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getUri());
       return new SettableFuture<>(false);
     }
 
     if (this.slide != null && this.slide.getFastPreflightId() != null      &&
-        (!slide.hasVideo() || Util.equals(this.slide.getThumbnailUri(), slide.getThumbnailUri())) &&
+        (!slide.hasVideo() || Util.equals(this.slide.getUri(), slide.getUri())) &&
         Util.equals(this.slide.getFastPreflightId(), slide.getFastPreflightId()))
     {
       Log.i(TAG, "Not re-loading slide for fast preflight: " + slide.getFastPreflightId());
@@ -301,7 +301,7 @@ public class ThumbnailView extends FrameLayout {
       return new SettableFuture<>(false);
     }
 
-    Log.i(TAG, "loading part with id " + slide.asAttachment().getDataUri()
+    Log.i(TAG, "loading part with id " + slide.asAttachment().getUri()
                + ", progress " + slide.getTransferState() + ", fast preflight id: " +
                slide.asAttachment().getFastPreflightId());
 
@@ -327,7 +327,7 @@ public class ThumbnailView extends FrameLayout {
       blurhash.setImageDrawable(null);
     }
 
-    if (slide.getThumbnailUri() != null) {
+    if (slide.getUri() != null) {
       if (!MediaUtil.isJpegType(slide.getContentType()) && !MediaUtil.isVideoType(slide.getContentType())) {
         SettableFuture<Boolean> thumbnailFuture = new SettableFuture<>();
         thumbnailFuture.deferTo(result);
@@ -412,7 +412,7 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private GlideRequest buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    GlideRequest request = applySizing(glideRequests.load(new DecryptableUri(slide.getThumbnailUri()))
+    GlideRequest request = applySizing(glideRequests.load(new DecryptableUri(slide.getUri()))
                                           .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                                           .transition(withCrossFade()), fit);
 
@@ -469,10 +469,10 @@ public class ThumbnailView extends FrameLayout {
   private class ThumbnailClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-      if (thumbnailClickListener            != null &&
-          slide                             != null &&
-          slide.asAttachment().getDataUri() != null &&
-          slide.getTransferState()          == AttachmentDatabase.TRANSFER_PROGRESS_DONE)
+      if (thumbnailClickListener        != null &&
+          slide                         != null &&
+          slide.asAttachment().getUri() != null &&
+          slide.getTransferState()      == AttachmentDatabase.TRANSFER_PROGRESS_DONE)
       {
         thumbnailClickListener.onClick(view, slide);
       } else if (parentClickListener != null) {

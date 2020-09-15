@@ -242,14 +242,14 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     if (!viewOnceSlides.isEmpty()) {
       thumbnailView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);
-    } else if (!imageVideoSlides.isEmpty() && imageVideoSlides.get(0).getThumbnailUri() != null) {
+    } else if (!imageVideoSlides.isEmpty() && imageVideoSlides.get(0).getUri() != null) {
       thumbnailView.setVisibility(VISIBLE);
       attachmentContainerView.setVisibility(GONE);
       dismissView.setBackgroundResource(R.drawable.dismiss_background);
       if (imageVideoSlides.get(0).hasVideo()) {
         attachmentVideoOverlayView.setVisibility(VISIBLE);
       }
-      glideRequests.load(new DecryptableUri(imageVideoSlides.get(0).getThumbnailUri()))
+      glideRequests.load(new DecryptableUri(imageVideoSlides.get(0).getUri()))
                    .centerCrop()
                    .override(getContext().getResources().getDimensionPixelSize(R.dimen.quote_thumb_size))
                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
