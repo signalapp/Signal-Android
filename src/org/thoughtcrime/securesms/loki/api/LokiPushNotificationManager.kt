@@ -17,19 +17,27 @@ import java.util.concurrent.TimeUnit
 
 object LokiPushNotificationManager {
     private val connection = OkHttpClient()
+    private val tokenExpirationInterval = 12 * 60 * 60 * 1000
 
     private val server by lazy {
         PushNotificationAcknowledgement.shared.server
     }
 
-    public const val subscribe = "subscribe_closed_group"
-    public const val unsubscribe = "unsubscribe_closed_group"
+    enum class ClosedGroupOperation {
+        Subscribe, Unsubscribe;
 
-    private const val tokenExpirationInterval = 12 * 60 * 60 * 1000
+        val rawValue: String
+            get() {
+                return when (this) {
+                    Subscribe -> "subscribe_closed_group"
+                    Unsubscribe -> "unsubscribe_closed_group"
+                }
+            }
+    }
 
     @JvmStatic
-    fun unregister(token: String, context: Context?) {
-        val parameters = mapOf("token" to token)
+    fun unregister(token: String, context: Context) {
+        val parameters = mapOf( "token" to token )
         val url = "$server/register"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
         val request = Request.Builder().url(url).post(body).build()
@@ -54,18 +62,20 @@ object LokiPushNotificationManager {
                 Log.d("Loki", "Couldn't disable FCM.")
             }
         })
-
-        for (closedGroup: String in DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()) {
-            operateClosedGroup(closedGroup, TextSecurePreferences.getLocalNumber(context), context, unsubscribe)
+        // Unsubscribe from all closed groups
+        val allClosedGroupPublicKeys = DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        allClosedGroupPublicKeys.forEach { closedGroup ->
+            performOperation(context, ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
         }
     }
 
     @JvmStatic
-    fun register(token: String, publicKey: String, context: Context?, force: Boolean) {
+    fun register(token: String, publicKey: String, context: Context, force: Boolean) {
         val oldToken = TextSecurePreferences.getFCMToken(context)
         val lastUploadDate = TextSecurePreferences.getLastFCMUploadTime(context)
         if (!force && token == oldToken && System.currentTimeMillis() - lastUploadDate < tokenExpirationInterval) { return }
-        val parameters = mapOf("token" to token, "pubKey" to publicKey)
+        val parameters = mapOf( "token" to token, "pubKey" to publicKey )
         val url = "$server/register"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
         val request = Request.Builder().url(url).post(body).build()
@@ -92,19 +102,19 @@ object LokiPushNotificationManager {
                 Log.d("Loki", "Couldn't register for FCM.")
             }
         })
-
-        for (closedGroup: String in DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()) {
-            operateClosedGroup(closedGroup, publicKey, context, subscribe)
+        // Subscribe to all closed groups
+        val allClosedGroupPublicKeys = DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
+        allClosedGroupPublicKeys.forEach { closedGroup ->
+            performOperation(context, ClosedGroupOperation.Subscribe, closedGroup, publicKey)
         }
-
     }
 
     @JvmStatic
-    fun operateClosedGroup(closedGroupPublicKey: String, publicKey: String, context: Context?, operation: String) {
+    fun performOperation(context: Context, operation: ClosedGroupOperation, closedGroupPublicKey: String, publicKey: String) {
         Log.d("Loki", "Start to notify PN server of closed group.")
         if (!TextSecurePreferences.isUsingFCM(context)) { return }
         val parameters = mapOf("closedGroupPublicKey" to closedGroupPublicKey, "pubKey" to publicKey)
-        val url = "$server/$operation"
+        val url = "$server/${operation.rawValue}"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
         val request = Request.Builder().url(url).post(body).build()
         connection.newCall(request).enqueue(object : Callback {
@@ -116,48 +126,15 @@ object LokiPushNotificationManager {
                         val json = JsonUtil.fromJson(bodyAsString, Map::class.java)
                         val code = json?.get("code") as? Int
                         if (code == null || code == 0) {
-                            Log.d("Loki", "Couldn't subscribe/unsubscribe $closedGroupPublicKey due to error: ${json?.get("message") as? String ?: "null"}.")
-                        } else {
-                            Log.d("Loki", "Subscribe/unsubscribe success.")
+                            Log.d("Loki", "Couldn't subscribe/unsubscribe to/from PNs for closed group with ID: $closedGroupPublicKey due to error: ${json?.get("message") as? String ?: "null"}.")
                         }
                     }
                 }
             }
 
             override fun onFailure(call: Call, exception: IOException) {
-                Log.d("Loki", "Couldn't subscribe/unsubscribe $closedGroupPublicKey.")
+                Log.d("Loki", "Couldn't subscribe/unsubscribe to/from PNs for closed group with ID: $closedGroupPublicKey due to error: $exception.")
             }
         })
     }
-}
-
-class ClosedGroupSubscribeJob private constructor(parameters: Parameters, private val closedGroupPublicKey: String) : BaseJob(parameters) {
-
-    companion object {
-        const val KEY = "ClosedGroupSubscribeJob"
-    }
-
-    constructor(closedGroupPublicKey: String) : this(Parameters.Builder()
-            .addConstraint(NetworkConstraint.KEY)
-            .setQueue(KEY)
-            .setLifespan(TimeUnit.DAYS.toMillis(1))
-            .setMaxAttempts(1)
-            .build(),
-            closedGroupPublicKey)
-
-    override fun serialize(): Data {
-        val builder = Data.Builder()
-        builder.putString("closedGroupPublicKey", closedGroupPublicKey)
-        return builder.build()
-    }
-
-    override fun getFactoryKey(): String { return KEY }
-
-    override fun onCanceled() { }
-
-    public override fun onRun() {
-        LokiPushNotificationManager.operateClosedGroup(closedGroupPublicKey, TextSecurePreferences.getLocalNumber(context), context, LokiPushNotificationManager.subscribe)
-    }
-
-    override fun onShouldRetry(e: Exception): Boolean { return false }
 }
