@@ -1424,7 +1424,10 @@ public class ConversationFragment extends LoggingFragment {
     public ConversationSnapToTopDataObserver(@NonNull RecyclerView recyclerView,
                                              @Nullable ScrollRequestValidator scrollRequestValidator)
     {
-      super(recyclerView, scrollRequestValidator);
+      super(recyclerView, scrollRequestValidator, () -> {
+        list.scrollToPosition(0);
+        list.post(ConversationFragment.this::postMarkAsReadRequest);
+      });
     }
 
     @Override

@@ -24,14 +24,22 @@ public class SnapToTopDataObserver extends RecyclerView.AdapterDataObserver {
   private final LinearLayoutManager    layoutManager;
   private final Deferred               deferred;
   private final ScrollRequestValidator scrollRequestValidator;
+  private final ScrollToTop            scrollToTop;
+
+  public SnapToTopDataObserver(@NonNull RecyclerView recyclerView) {
+    this(recyclerView, null, null);
+  }
 
   public SnapToTopDataObserver(@NonNull RecyclerView recyclerView,
-                               @Nullable ScrollRequestValidator scrollRequestValidator)
+                               @Nullable ScrollRequestValidator scrollRequestValidator,
+                               @Nullable ScrollToTop scrollToTop)
   {
     this.recyclerView           = recyclerView;
     this.layoutManager          = (LinearLayoutManager) recyclerView.getLayoutManager();
     this.deferred               = new Deferred();
     this.scrollRequestValidator = scrollRequestValidator;
+    this.scrollToTop            = scrollToTop == null ? () -> layoutManager.scrollToPosition(0)
+                                                      : scrollToTop;
   }
 
   /**
@@ -108,7 +116,7 @@ public class SnapToTopDataObserver extends RecyclerView.AdapterDataObserver {
     }
 
     if (layoutManager.findFirstVisibleItemPosition() == 0) {
-      layoutManager.scrollToPosition(0);
+      scrollToTop.scrollToTop();
     }
   }
 
@@ -142,6 +150,13 @@ public class SnapToTopDataObserver extends RecyclerView.AdapterDataObserver {
      * @param position      The position to scroll to.
      */
     void onPerformScroll(@NonNull LinearLayoutManager layoutManager, int position);
+  }
+
+  /**
+   * Method Object for scrolling to the top of a view, in case special handling is desired.
+   */
+  public interface ScrollToTop {
+    void scrollToTop();
   }
 
   public final class ScrollRequestBuilder {

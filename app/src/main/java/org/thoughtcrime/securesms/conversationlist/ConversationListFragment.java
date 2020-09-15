@@ -223,7 +223,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     list.setItemAnimator(new DeleteItemAnimator());
     list.addOnScrollListener(new ScrollListener());
 
-    snapToTopDataObserver = new SnapToTopDataObserver(list, null);
+    snapToTopDataObserver = new SnapToTopDataObserver(list);
 
     new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
 
