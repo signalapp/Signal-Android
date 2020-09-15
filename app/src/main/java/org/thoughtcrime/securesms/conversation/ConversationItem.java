@@ -336,6 +336,15 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       }
     }
 
+    if (hasSharedContact(messageRecord)) {
+      int contactWidth = sharedContactStub.get().getMeasuredWidth();
+      int availableWidth = getAvailableMessageBubbleWidth(sharedContactStub.get());
+      if (contactWidth != availableWidth) {
+        sharedContactStub.get().getLayoutParams().width = availableWidth;
+        needsMeasure = true;
+      }
+    }
+
     ConversationItemFooter activeFooter   = getActiveFooter(messageRecord);
     int                    availableWidth = getAvailableMessageBubbleWidth(footer);
 
@@ -671,7 +680,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       sharedContactStub.get().setOnLongClickListener(passthroughClickListener);
 
       setSharedContactCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
-      setSharedContactWidth(messageRecord);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -902,13 +910,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
           sharedContactStub.get().setClusteredIncomingStyle();
       }
     }
-  }
-
-  private void setSharedContactWidth(@NonNull MessageRecord current) {
-    if (!TextUtils.isEmpty(current.getDisplayBody(getContext()))){
-      sharedContactStub.get().getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;;
-    }
-
   }
 
   private void setLinkPreviewCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, boolean bigImage) {
