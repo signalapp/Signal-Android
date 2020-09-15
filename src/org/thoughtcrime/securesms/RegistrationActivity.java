@@ -76,6 +76,7 @@ import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.push.LockedException;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -267,7 +268,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   @SuppressLint("StaticFieldLeak")
   private void initializeBackupDetection() {
-    if (!Permissions.hasAll(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+    if (!Permissions.hasAll(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
       Log.i(TAG, "Skipping backup detection. We don't have the permission.");
       return;
     }
@@ -278,7 +279,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       @Override
       protected @Nullable BackupUtil.BackupInfo doInBackground(Void... voids) {
         try {
-          return BackupUtil.getLatestBackup();
+          return BackupUtil.getLatestBackup(RegistrationActivity.this);
         } catch (NoExternalStorageException e) {
           Log.w(TAG, e);
           return null;

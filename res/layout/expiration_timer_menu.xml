@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                style="?android:attr/actionButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?android:attr/actionButtonStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center">
 
     <ImageView
             android:id="@+id/menu_badge_icon"
@@ -25,6 +26,6 @@
             android:paddingBottom="3dp"
             android:paddingTop="1dp"
             android:background="@color/transparent"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text"
             android:textSize="10sp" />
 </FrameLayout>

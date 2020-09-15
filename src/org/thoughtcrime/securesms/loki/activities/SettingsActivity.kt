@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.activities
 
+import android.Manifest
 import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
@@ -52,10 +54,8 @@ import java.security.SecureRandom
 import java.util.*
 
 class SettingsActivity : PassphraseRequiredActionBarActivity() {
-
     private var displayNameEditActionMode: ActionMode? = null
         set(value) { field = value; handleDisplayNameEditActionModeChanged() }
-
     private lateinit var glide: GlideRequests
     private var displayNameToBeUploaded: String? = null
     private var profilePictureToBeUploaded: ByteArray? = null
@@ -71,17 +71,17 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-
         setContentView(R.layout.activity_settings)
-
+        val displayName = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
         glide = GlideApp.with(this)
         profilePictureView.glide = glide
         profilePictureView.publicKey = hexEncodedPublicKey
+        profilePictureView.displayName = displayName
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
         ctnGroupNameSection.setOnClickListener { startActionMode(DisplayNameEditActionModeCallback()) }
-        btnGroupNameDisplay.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
+        btnGroupNameDisplay.text = displayName
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
@@ -103,12 +103,9 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.settings_general, menu)
-
-        // Update UI mode menu icon.
-        // It uses three-level selector where each level corresponds to the related UiMode ordinal value.
+        // Update UI mode menu icon
         val uiMode = UiModeUtilities.getUserSelectedUiMode(this)
         menu.findItem(R.id.action_change_theme).icon!!.level = uiMode.ordinal
-
         return true
     }
 
@@ -152,6 +149,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 }
             }
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
     }
     // endregion
 
@@ -246,7 +248,13 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun showEditProfilePictureUI() {
-        tempFile = AvatarSelection.startAvatarSelection(this, false, true)
+        // Ask for an optional camera permission.
+        Permissions.with(this)
+                .request(Manifest.permission.CAMERA)
+                .onAnyResult {
+                    tempFile = AvatarSelection.startAvatarSelection(this, false, true)
+                }
+                .execute()
     }
 
     private fun copyPublicKey() {

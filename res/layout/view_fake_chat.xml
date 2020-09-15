@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/very_large_spacing"
     android:paddingRight="@dimen/very_large_spacing"
+    android:paddingBottom="@dimen/medium_spacing"
     android:orientation="vertical">
 
     <TextView

@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.BackupUtil;
-import org.thoughtcrime.securesms.util.StorageUtil;
+import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +26,7 @@ import java.util.Locale;
 
 import network.loki.messenger.R;
 
+//TODO AC: Needs to be refactored to use Storage Access Framework or Media Store API.
 public class LocalBackupJob extends BaseJob {
 
   public static final String KEY = "LocalBackupJob";
@@ -71,7 +72,7 @@ public class LocalBackupJob extends BaseJob {
 
     try {
       String backupPassword  = BackupPassphrase.get(context);
-      File   backupDirectory = StorageUtil.getBackupDirectory();
+      File   backupDirectory = ExternalStorageUtil.getBackupDir(context);
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
       String fileName        = String.format("session-%s.backup", timestamp);
       File   backupFile      = new File(backupDirectory, fileName);
@@ -84,7 +85,7 @@ public class LocalBackupJob extends BaseJob {
         throw new IOException("Backup password is null");
       }
 
-      File tempFile = File.createTempFile("backup", "tmp", StorageUtil.getBackupCacheDirectory(context));
+      File tempFile = File.createTempFile("backup", "tmp", ExternalStorageUtil.getCacheDir(context));
 
       FullBackupExporter.export(context,
                                 AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
@@ -97,7 +98,7 @@ public class LocalBackupJob extends BaseJob {
         throw new IOException("Renaming temporary backup file failed!");
       }
 
-      BackupUtil.deleteOldBackups();
+      BackupUtil.deleteOldBackups(context);
     } finally {
       GenericForegroundService.stopForegroundTask(context);
     }

@@ -1830,10 +1830,10 @@
     <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
     <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
 
+    <!-- Next round of translation -->
+
     <string name="menu_apply_button">Apply</string>
     <string name="menu_done_button">Done</string>
-
-    <!-- Next round of translation -->
 
     <string name="activity_edit_closed_group_title">Edit Group</string>
     <string name="activity_edit_closed_group_edit_text_hint">Enter a new group name</string>
@@ -1851,7 +1851,7 @@
 
     <string name="activity_select_contacts_title">Select Contacts</string>
 
-    <string name="dialog_seed_disclaimer">*Please note that it is not possible to use the same Session ID on multiple devices simultaneously</string>
+    <string name="dialog_seed_disclaimer">It is not possible to use the same Session ID on multiple devices simultaneously</string>
 
     <string name="view_reset_secure_session_done_message">Secure session reset done</string>
     
@@ -1864,5 +1864,6 @@
 
     <string name="attachment">Attachment</string>
     <string name="attachment_type_voice_message">Voice Message</string>
+    <string name="details">Details</string>
 
 </resources>

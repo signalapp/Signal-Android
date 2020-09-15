@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
 
     <!-- Session -->
@@ -43,16 +42,14 @@
         <item name="dividerHorizontal">?dividerVertical</item>
 
         <!-- App specific attributes -->
-        <item name="search_toolbar_background">@color/black</item>
-        <item name="search_background">@color/black</item>
+        <item name="ic_visibility_on">@drawable/ic_baseline_visibility_24</item>
+        <item name="ic_visibility_off">@drawable/ic_baseline_visibility_off_24</item>
+        <item name="ic_arrow_forward">@drawable/ic_baseline_arrow_forward_24</item>
 
         <item name="dialog_background_color">@color/dialog_background</item>
 
         <item name="media_overview_toolbar_background">@color/transparent</item>
-        <item name="media_overview_toolbar_foreground">@color/white</item>
         <item name="media_overview_header_foreground">@color/text</item>
-        <item name="media_overview_document_primary">@color/core_grey_05</item>
-        <item name="media_overview_document_secondary">#99FFFFFF</item>
         <item name="media_keyboard_button_color">@color/core_grey_25</item>
         <item name="searchViewStyle">@style/TextSecure.BaseDarkTheme.SearchView</item>
 
@@ -87,6 +84,7 @@
         <item name="conversation_input_background">@drawable/compose_background_dark</item>
 
         <item name="quick_camera_icon">@drawable/ic_baseline_photo_camera_24</item>
+        <item name="quick_mic_icon">@drawable/ic_baseline_mic_24</item>
     </style>
 
     <!-- This should be the default theme for the application. -->
@@ -158,14 +156,7 @@
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
 
-        <item name="recipient_preference_blocked">#d00000</item>
-        <item name="contact_selection_label_text">#66eeeeee</item>
-        <item name="contact_selection_push_user">#ffeeeeee</item>
-        <item name="contact_selection_lay_user">#afeeeeee</item>
-        <item name="contact_selection_header_text">#66eeeeee</item>
-
         <item name="media_overview_toolbar_background">@color/transparent</item>
-        <item name="media_overview_toolbar_foreground">@color/white</item>
         <item name="media_overview_header_foreground">@color/text</item>
 
         <item name="theme_type">dark</item>
@@ -174,8 +165,6 @@
 
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_dark</item>
-
-        <item name="compose_icon_tint">@color/core_grey_25</item>
 
         <item name="conversation_list_item_background">@drawable/conversation_list_item_background_dark</item>
         <item name="conversation_list_item_contact_color">#ffdddddd</item>
@@ -194,21 +183,13 @@
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_05</item>
         <item name="conversation_item_sent_text_secondary_color">@color/core_grey_25</item>
         <item name="conversation_item_sent_icon_color">@color/core_grey_25</item>
-        <item name="conversation_item_sent_download_icon_color">@color/core_white</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99ffffff</item>
         <item name="conversation_item_received_text_primary_color">@color/text</item>
         <item name="conversation_item_received_text_secondary_color">@color/text</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
-        <item name="conversation_item_update_text_color">@color/core_grey_45</item>
-        <item name="conversation_item_last_seen_text_color">@color/core_grey_25</item>
-        <item name="conversation_item_last_seen_line_color">@color/core_grey_25</item>
-        <item name="conversation_item_date_line_color">@color/core_grey_45</item>
-        <item name="conversation_item_quote_text_color">@color/core_grey_05</item>
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_dark</item>
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_45</item>
         <item name="conversation_item_image_outline_color">@color/transparent_white_30</item>
-
-        <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>
 
         <item name="verification_background">@color/core_grey_95</item>
 
@@ -216,12 +197,6 @@
         <item name="dialog_alert_icon">@drawable/ic_warning_dark</item>
 
         <item name="device_link_item_card_background">@color/device_link_item_background_dark</item>
-
-        <item name="mediapicker_image_outline">@drawable/mediapicker_item_border_dark</item>
-
-        <item name="import_export_item_background_color">@color/import_export_item_background_dark</item>
-        <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>
-        <item name="import_export_item_card_background">@drawable/clickable_card_dark</item>
 
         <item name="fab_color">@color/textsecure_primary_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
@@ -269,26 +244,8 @@
         <item name="linkpreview_secondary_text_color">@color/text</item>
         <item name="linkpreview_divider_color">@color/transparent</item>
 
-<!--        <item name="quick_camera_icon">@drawable/ic_baseline_photo_camera_24</item>-->
-        <item name="quick_mic_icon">@drawable/ic_mic_white_24dp</item>
-
-        <item name="media_keyboard_button_color">@color/core_grey_25</item>
-
-        <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
-        <item name="menu_group_icon">@drawable/ic_group_white_24dp</item>
-        <item name="menu_search_icon">@drawable/ic_search_white_24dp</item>
-        <item name="menu_call_icon">@drawable/ic_call_white_24dp</item>
-        <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
-        <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
-        <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_accept_icon">@drawable/ic_check_white_24dp</item>
-        <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
-        <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
-
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_dark</item>
-
-        <item name="reminder_header_background">@color/textsecure_primary_dark</item>
 
         <item name="sticker_management_icon">@drawable/sticker_button_dark</item>
         <item name="sticker_management_divider_color">@color/core_grey_75</item>
@@ -303,15 +260,8 @@
 
         <item name="pref_icon_tint">#FFFFFF</item>
 
-        <item name="pref_divider">@drawable/preference_divider_dark</item>
-
-        <item name="quote_missing_icon_color">@color/core_grey_05</item>
-
         <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
-        <item name="search_toolbar_background">@color/black</item>
-        <item name="search_background">@color/black</item>
-        <item name="invite_background">@color/black</item>
 
         <item name="shared_contact_details_header_background">@color/grey_800</item>
         <item name="shared_contact_details_titlebar">@color/grey_900</item>

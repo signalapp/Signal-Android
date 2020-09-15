@@ -4,9 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
@@ -14,9 +16,9 @@ import androidx.core.content.ContextCompat;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import network.loki.messenger.R;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.IntentUtils;
 
@@ -25,17 +27,19 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import network.loki.messenger.R;
+
 import static android.provider.MediaStore.EXTRA_OUTPUT;
 
 public final class AvatarSelection {
 
   private static final String TAG = AvatarSelection.class.getSimpleName();
 
+  public static final int REQUEST_CODE_CROP_IMAGE = CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE;
+  public static final int REQUEST_CODE_AVATAR = REQUEST_CODE_CROP_IMAGE + 1;
+
   private AvatarSelection() {
   }
-
-  public static final int REQUEST_CODE_CROP_IMAGE = CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE;
-  public static final int REQUEST_CODE_AVATAR     = REQUEST_CODE_CROP_IMAGE + 1;
 
   /**
    * Returns result on {@link #REQUEST_CODE_CROP_IMAGE}
@@ -63,16 +67,14 @@ public final class AvatarSelection {
    * @return Temporary capture file if created.
    */
   public static File startAvatarSelection(Activity activity, boolean includeClear, boolean attemptToIncludeCamera) {
-    File    captureFile  = null;
-
-    if (attemptToIncludeCamera) {
-      if (Permissions.hasAll(activity, Manifest.permission.CAMERA)) {
-        try {
-          captureFile = File.createTempFile("capture", "jpg", activity.getExternalCacheDir());
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          captureFile = null;
-        }
+    File captureFile = null;
+    boolean hasCameraPermission = ContextCompat
+            .checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+    if (attemptToIncludeCamera && hasCameraPermission) {
+      try {
+        captureFile = File.createTempFile("avatar-capture", ".jpg", ExternalStorageUtil.getImageDir(activity));
+      } catch (IOException | NoExternalStorageException e) {
+        Log.e("Cannot reserve a temporary avatar capture file.", e);
       }
     }
 
@@ -83,8 +85,7 @@ public final class AvatarSelection {
 
   private static Intent createAvatarSelectionIntent(Context context, @Nullable File tempCaptureFile, boolean includeClear) {
     List<Intent> extraIntents  = new LinkedList<>();
-    Intent       galleryIntent = new Intent(Intent.ACTION_PICK);
-
+    Intent galleryIntent = new Intent(Intent.ACTION_PICK);
     galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 
     if (!IntentUtils.isResolvable(context, galleryIntent)) {
@@ -93,12 +94,11 @@ public final class AvatarSelection {
     }
 
     if (tempCaptureFile != null) {
+      Uri uri = FileProviderUtil.getUriFor(context, tempCaptureFile);
       Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-      if (cameraIntent.resolveActivity(context.getPackageManager()) != null) {
-        cameraIntent.putExtra(EXTRA_OUTPUT, FileProviderUtil.getUriFor(context, tempCaptureFile));
-        extraIntents.add(cameraIntent);
-      }
+      cameraIntent.putExtra(EXTRA_OUTPUT, uri);
+      cameraIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+      extraIntents.add(cameraIntent);
     }
 
     if (includeClear) {

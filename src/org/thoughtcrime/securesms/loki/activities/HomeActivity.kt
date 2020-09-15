@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.loki.activities
 
 import android.app.AlertDialog
-import androidx.lifecycle.Observer
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,10 +10,6 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.Loader
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -22,6 +17,11 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
+import org.thoughtcrime.securesms.loki.dialogs.UserDetailsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -42,16 +43,16 @@ import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegat
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
 import org.whispersystems.signalservice.loki.utilities.toHexString
+import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
@@ -98,8 +99,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         // Set up toolbar buttons
         profileButton.glide = glide
         profileButton.publicKey = publicKey
+        profileButton.displayName = TextSecurePreferences.getProfileName(this)
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
+        pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
         // Set up seed reminder view
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
@@ -202,7 +205,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             seedReminderView.visibility = View.GONE
         }
 
-        // Multiple device removal notification
+        // Multi device removal sheet
         if (!TextSecurePreferences.getHasSeenMultiDeviceRemovalSheet(this)) {
             TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
             val userPublicKey = TextSecurePreferences.getLocalNumber(this)
@@ -223,7 +226,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             }
         }
 
-        // Light theme introduction
+        // Light theme introduction sheet
         if (!TextSecurePreferences.hasSeenLightThemeIntroSheet(this) &&
                 UiModeUtilities.isDayUiMode(this)) {
             TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)
@@ -271,6 +274,14 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val thread = view.thread ?: return
         val bottomSheet = ConversationOptionsBottomSheet()
         bottomSheet.recipient = thread.recipient
+        bottomSheet.onViewDetailsTapped = {
+            bottomSheet.dismiss()
+            val userDetailsBottomSheet = UserDetailsBottomSheet()
+            val bundle = Bundle()
+            bundle.putString("publicKey", thread.recipient.address.toPhoneString())
+            userDetailsBottomSheet.arguments = bundle
+            userDetailsBottomSheet.show(supportFragmentManager, userDetailsBottomSheet.tag)
+        }
         bottomSheet.onBlockTapped = {
             bottomSheet.dismiss()
             if (!thread.recipient.isBlocked) {
@@ -351,10 +362,17 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             val isClosedGroup = recipient.address.isClosedGroup
             // Send a leave group message if this is an active closed group
             if (isClosedGroup && DatabaseFactory.getGroupDatabase(this).isActive(recipient.address.toGroupString())) {
-                val groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(recipient.address.toString()).toHexString()
-                val isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
+                var isSSKBasedClosedGroup: Boolean
+                var groupPublicKey: String?
+                try {
+                    groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(recipient.address.toString()).toHexString()
+                    isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
+                } catch (e: IOException) {
+                    groupPublicKey = null
+                    isSSKBasedClosedGroup = false
+                }
                 if (isSSKBasedClosedGroup) {
-                    ClosedGroupsProtocol.leave(this, groupPublicKey)
+                    ClosedGroupsProtocol.leave(this, groupPublicKey!!)
                 } else if (!ClosedGroupsProtocol.leaveLegacyGroup(this, recipient)) {
                     Toast.makeText(this, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@setPositiveButton

@@ -5,18 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
 import android.provider.OpenableColumns;
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import android.util.Pair;
 
 import com.annimon.stream.Stream;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -30,6 +29,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import network.loki.messenger.R;
 
 /**
  * Handles the retrieval of media present on the user's device.
@@ -77,30 +78,17 @@ class MediaRepository {
       }
     }
 
-    String            cameraBucketId = imageFolders.getCameraBucketId() != null ? imageFolders.getCameraBucketId() : videoFolders.getCameraBucketId();
-    FolderData        cameraFolder   = cameraBucketId != null ? folders.remove(cameraBucketId) : null;
-    List<MediaFolder> mediaFolders   = Stream.of(folders.values()).map(folder -> new MediaFolder(folder.getThumbnail(),
+    List<MediaFolder> mediaFolders = Stream.of(folders.values()).map(folder -> new MediaFolder(folder.getThumbnail(),
                                                                                                  folder.getTitle(),
                                                                                                  folder.getCount(),
-                                                                                                 folder.getBucketId(),
-                                                                                                 MediaFolder.FolderType.NORMAL))
+                                                                                                 folder.getBucketId()))
                                                                   .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()))
                                                                   .toList();
 
     Uri allMediaThumbnail = imageFolders.getThumbnailTimestamp() > videoFolders.getThumbnailTimestamp() ? imageFolders.getThumbnail() : videoFolders.getThumbnail();
-
     if (allMediaThumbnail != null) {
       int allMediaCount = Stream.of(mediaFolders).reduce(0, (count, folder) -> count + folder.getItemCount());
-
-      if (cameraFolder != null) {
-        allMediaCount += cameraFolder.getCount();
-      }
-
-      mediaFolders.add(0, new MediaFolder(allMediaThumbnail, context.getString(R.string.MediaRepository_all_media), allMediaCount, Media.ALL_MEDIA_BUCKET_ID, MediaFolder.FolderType.NORMAL));
-    }
-
-    if (cameraFolder != null) {
-      mediaFolders.add(0, new MediaFolder(cameraFolder.getThumbnail(), cameraFolder.getTitle(), cameraFolder.getCount(), cameraFolder.getBucketId(), MediaFolder.FolderType.CAMERA));
+      mediaFolders.add(0, new MediaFolder(allMediaThumbnail, context.getString(R.string.MediaRepository_all_media), allMediaCount, Media.ALL_MEDIA_BUCKET_ID));
     }
 
     return mediaFolders;
@@ -108,8 +96,6 @@ class MediaRepository {
 
   @WorkerThread
   private @NonNull FolderResult getFolders(@NonNull Context context, @NonNull Uri contentUri) {
-    String                  cameraPath         = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath() + File.separator + "Camera";
-    String                  cameraBucketId     = null;
     Uri                     globalThumbnail    = null;
     long                    thumbnailTimestamp = 0;
     Map<String, FolderData> folders            = new HashMap<>();
@@ -130,10 +116,6 @@ class MediaRepository {
         folder.incrementCount();
         folders.put(bucketId, folder);
 
-        if (cameraBucketId == null && path.startsWith(cameraPath)) {
-          cameraBucketId = bucketId;
-        }
-
         if (timestamp > thumbnailTimestamp) {
           globalThumbnail    = thumbnail;
           thumbnailTimestamp = timestamp;
@@ -141,7 +123,7 @@ class MediaRepository {
       }
     }
 
-    return new FolderResult(cameraBucketId, globalThumbnail, thumbnailTimestamp, folders);
+    return new FolderResult(globalThumbnail, thumbnailTimestamp, folders);
   }
 
   @WorkerThread
@@ -158,7 +140,7 @@ class MediaRepository {
   }
 
   @WorkerThread
-  private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Uri contentUri, boolean hasOrienation) {
+  private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Uri contentUri, boolean hasOrientation) {
     List<Media> media         = new LinkedList<>();
     String      selection     = Images.Media.BUCKET_ID + " = ? AND " + Images.Media.DATA + " NOT NULL";
     String[]    selectionArgs = new String[] { bucketId };
@@ -166,7 +148,7 @@ class MediaRepository {
 
     String[] projection;
 
-    if (hasOrienation) {
+    if (hasOrientation) {
       projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
     } else {
       projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
@@ -182,7 +164,7 @@ class MediaRepository {
         Uri    uri         = Uri.withAppendedPath(contentUri, cursor.getString(cursor.getColumnIndexOrThrow(Images.Media._ID)));
         String mimetype    = cursor.getString(cursor.getColumnIndexOrThrow(Images.Media.MIME_TYPE));
         long   dateTaken   = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.DATE_TAKEN));
-        int    orientation = hasOrienation ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
+        int    orientation = hasOrientation ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;
         int    width       = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
         int    height      = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
@@ -279,24 +261,17 @@ class MediaRepository {
   }
 
   private static class FolderResult {
-    private final String                  cameraBucketId;
     private final Uri                     thumbnail;
     private final long                    thumbnailTimestamp;
     private final Map<String, FolderData> folderData;
 
-    private FolderResult(@Nullable String cameraBucketId,
-                         @Nullable Uri thumbnail,
+    private FolderResult(@Nullable Uri thumbnail,
                          long thumbnailTimestamp,
                          @NonNull Map<String, FolderData> folderData)
     {
-      this.cameraBucketId     = cameraBucketId;
       this.thumbnail          = thumbnail;
       this.thumbnailTimestamp = thumbnailTimestamp;
       this.folderData         = folderData;
-    }
-
-    @Nullable String getCameraBucketId() {
-      return cameraBucketId;
     }
 
     @Nullable Uri getThumbnail() {

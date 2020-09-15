@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.security.MessageDigest
 
 object SessionMetaProtocol {
@@ -37,24 +36,16 @@ object SessionMetaProtocol {
 
     @JvmStatic
     fun handleProfileUpdateIfNeeded(context: Context, content: SignalServiceContent) {
-        val rawDisplayName = content.senderDisplayName.orNull() ?: return
-        if (rawDisplayName.isBlank()) { return }
+        val displayName = content.senderDisplayName.orNull() ?: return
+        if (displayName.isBlank()) { return }
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
         val sender = content.sender.toLowerCase()
         if (userMasterPublicKey == sender) {
             // Update the user's local name if the message came from their master device
-            TextSecurePreferences.setProfileName(context, rawDisplayName)
+            TextSecurePreferences.setProfileName(context, displayName)
         }
-        // Don't overwrite if the message came from a linked device; the device name is
-        // stored as a user name
-        val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
-        if (!allUserDevices.contains(sender)) {
-            val displayName = rawDisplayName + " (..." + sender.substring(sender.length - 8) + ")"
-            DatabaseFactory.getLokiUserDatabase(context).setDisplayName(sender, displayName)
-        } else {
-            DatabaseFactory.getLokiUserDatabase(context).setDisplayName(sender, rawDisplayName)
-        }
+        DatabaseFactory.getLokiUserDatabase(context).setDisplayName(sender, displayName)
     }
 
     @JvmStatic

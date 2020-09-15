@@ -215,7 +215,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
     this.avatar.setOnClickListener(view -> Permissions.with(this)
                                                       .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                                                      .ifNecessary()
                                                       .onAnyResult(this::startAvatarSelection)
                                                       .execute());
 

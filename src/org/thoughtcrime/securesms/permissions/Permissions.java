@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.permissions;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,20 +8,20 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Consumer;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
@@ -31,6 +30,8 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import network.loki.messenger.R;
 
 public class Permissions {
 
@@ -63,9 +64,8 @@ public class Permissions {
     private @DrawableRes int[]  rationalDialogHeader;
     private              String rationaleDialogMessage;
 
-    private boolean ifNecesary;
-
-    private boolean condition = true;
+    private int minSdkVersion = 0;
+    private int maxSdkVersion = Integer.MAX_VALUE;
 
     PermissionsBuilder(PermissionObject permissionObject) {
       this.permissionObject = permissionObject;
@@ -73,17 +73,6 @@ public class Permissions {
 
     public PermissionsBuilder request(String... requestedPermissions) {
       this.requestedPermissions = requestedPermissions;
-      return this;
-    }
-
-    public PermissionsBuilder ifNecessary() {
-      this.ifNecesary = true;
-      return this;
-    }
-
-    public PermissionsBuilder ifNecessary(boolean condition) {
-      this.ifNecesary = true;
-      this.condition  = condition;
       return this;
     }
 
@@ -133,11 +122,29 @@ public class Permissions {
       return this;
     }
 
+    /**
+     * Min Android SDK version to request the permissions for (inclusive).
+     */
+    public PermissionsBuilder minSdkVersion(int minSdkVersion) {
+      this.minSdkVersion = minSdkVersion;
+      return this;
+    }
+
+    /**
+     * Max Android SDK version to request the permissions for (inclusive).
+     */
+    public PermissionsBuilder maxSdkVersion(int maxSdkVersion) {
+      this.maxSdkVersion = maxSdkVersion;
+      return this;
+    }
+
     public void execute() {
       PermissionsRequest request = new PermissionsRequest(allGrantedListener, anyDeniedListener, anyPermanentlyDeniedListener, anyResultListener,
                                                           someGrantedListener, someDeniedListener, somePermanentlyDeniedListener);
 
-      if (ifNecesary && (permissionObject.hasAll(requestedPermissions) || !condition)) {
+      boolean isInTargetSDKRange = (Build.VERSION.SDK_INT >= minSdkVersion && Build.VERSION.SDK_INT <= maxSdkVersion);
+
+      if (!isInTargetSDKRange || permissionObject.hasAll(requestedPermissions)) {
         executePreGrantedPermissionsRequest(request);
       } else if (rationaleDialogMessage != null && rationalDialogHeader != null) {
         executePermissionsRequestWithRationale(request);
@@ -171,7 +178,7 @@ public class Permissions {
       }
 
       for (String permission : requestedPermissions) {
-        request.addMapping(permission, permissionObject.shouldShouldPermissionRationale(permission));
+        request.addMapping(permission, permissionObject.shouldShowPermissionRationale(permission));
       }
 
       permissionObject.requestPermissions(requestCode, requestedPermissions);
@@ -240,7 +247,7 @@ public class Permissions {
 
     for (int i=0;i<permissions.length;i++) {
       if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-        shouldShowRationaleDialog[i] = context.shouldShouldPermissionRationale(permissions[i]);
+        shouldShowRationaleDialog[i] = context.shouldShowPermissionRationale(permissions[i]);
       }
     }
 
@@ -259,7 +266,7 @@ public class Permissions {
   private abstract static class PermissionObject {
 
     abstract Context getContext();
-    abstract boolean shouldShouldPermissionRationale(String permission);
+    abstract boolean shouldShowPermissionRationale(String permission);
     abstract boolean hasAll(String... permissions);
     abstract void requestPermissions(int requestCode, String... permissions);
 
@@ -287,7 +294,7 @@ public class Permissions {
     }
 
     @Override
-    public boolean shouldShouldPermissionRationale(String permission) {
+    public boolean shouldShowPermissionRationale(String permission) {
       return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
     }
 
@@ -316,7 +323,7 @@ public class Permissions {
     }
 
     @Override
-    public boolean shouldShouldPermissionRationale(String permission) {
+    public boolean shouldShowPermissionRationale(String permission) {
       return fragment.shouldShowRequestPermissionRationale(permission);
     }
 

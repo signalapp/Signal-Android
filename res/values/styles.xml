@@ -6,7 +6,6 @@
         <item name="android:background">?colorPrimary</item>
         <item name="elevation">1dp</item>
         <item name="titleTextStyle">@style/TextAppearance.Session.DarkActionBar.TitleTextStyle</item>
-        <item name="popupTheme">@style/Widget.Session.ActionBar</item>
     </style>
 
     <style name="Widget.Session.ActionBar.Flat">
@@ -184,10 +183,12 @@
 
     <style name="FakeChatViewMessageBubble.Incoming">
         <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
+        <item name="android:elevation">10dp</item>
     </style>
 
     <style name="FakeChatViewMessageBubble.Outgoing">
         <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
+        <item name="android:elevation">10dp</item>
     </style>
     <!-- Session -->
 

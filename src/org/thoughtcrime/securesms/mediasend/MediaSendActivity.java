@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.Manifest;
+
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -133,7 +135,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     countButtonText = findViewById(R.id.mediasend_count_button_text);
     cameraButton    = findViewById(R.id.mediasend_camera_button);
 
-    viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
+    viewModel = new ViewModelProvider(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
     recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 
@@ -375,7 +377,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private void navigateToCamera() {
     Permissions.with(this)
                .request(Manifest.permission.CAMERA)
-               .ifNecessary()
                .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_baseline_photo_camera_48)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                .onAllGranted(() -> {

@@ -30,6 +30,8 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -61,6 +63,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -158,8 +161,10 @@ import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
+import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
+import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -300,6 +305,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AnimatingToggle             buttonToggle;
   private   SendButton                  sendButton;
   private   ImageButton                 attachButton;
+  private   ProfilePictureView          profilePictureView;
   private   TextView                    titleTextView;
   private   TextView                    charactersLeft;
   private   ConversationFragment        fragment;
@@ -527,6 +533,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setTransport(sendButton.getSelectedTransport());
 
     updateTitleTextView(recipient);
+    updateProfilePicture();
     updateSubtitleTextView();
     setActionBarColor(recipient.getColor());
     updateInputUI(recipient, isSecureText, isDefaultSms);
@@ -621,6 +628,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       recipient = Recipient.from(this, data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
       recipient.addListener(this);
       updateTitleTextView(recipient);
+      updateProfilePicture();
       updateSubtitleTextView();
       NotificationChannels.updateContactChannelName(this, recipient);
       updateInputUI(recipient, isSecureText, isDefaultSms);
@@ -732,10 +740,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (recipient.getExpireMessages() > 0) {
         inflater.inflate(R.menu.conversation_expiring_on, menu);
 
-        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
-        final View     actionView = MenuItemCompat.getActionView(item);
-        final TextView badgeView  = actionView.findViewById(R.id.expiration_badge);
+        final MenuItem  item       = menu.findItem(R.id.menu_expiring_messages);
+        final View      actionView = MenuItemCompat.getActionView(item);
+        final ImageView iconView   = actionView.findViewById(R.id.menu_badge_icon);
+        final TextView  badgeView  = actionView.findViewById(R.id.expiration_badge);
 
+        @ColorInt int color = GeneralUtilitiesKt.getColorWithID(getResources(), R.color.text, getTheme());
+        iconView.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipient.getExpireMessages()));
         actionView.setOnClickListener(v -> onOptionsItemSelected(item));
       } else {
@@ -1654,6 +1665,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
+    profilePictureView                     = findViewById(R.id.profilePictureView);
     titleTextView                          = findViewById(R.id.titleTextView);
     buttonToggle                           = ViewUtil.findById(this, R.id.button_toggle);
     sendButton                             = ViewUtil.findById(this, R.id.send_button);
@@ -1872,6 +1884,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Util.runOnMain(() -> {
       Log.i(TAG, "onModifiedRun(): " + recipient.getRegistered());
       updateTitleTextView(recipient);
+      updateProfilePicture();
       updateSubtitleTextView();
 //      titleView.setVerified(identityRecords.isVerified());
       updateInputUI(recipient, isSecureText, isDefaultSms);
@@ -2551,7 +2564,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public void onRecorderPermissionRequired() {
     Permissions.with(this)
                .request(Manifest.permission.RECORD_AUDIO)
-               .ifNecessary()
                .withRationaleDialog(getString(R.string.ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone), R.drawable.ic_baseline_mic_48)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages))
                .execute();
@@ -2752,7 +2764,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     public void onClick(View v) {
       Permissions.with(ConversationActivity.this)
                  .request(Manifest.permission.CAMERA)
-                 .ifNecessary()
                  .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_baseline_photo_camera_48)
                  .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                  .onAllGranted(() -> {
@@ -3100,18 +3111,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  private void updateProfilePicture() {
+    profilePictureView.glide = GlideApp.with(this);
+    profilePictureView.update(recipient, threadId);
+  }
+
   private void updateSubtitleTextView() {
     muteIndicatorImageView.setVisibility(View.GONE);
     subtitleTextView.setVisibility(View.VISIBLE);
-    if (messageStatus != null) {
-      switch (messageStatus) {
-        case "calculatingPoW": subtitleTextView.setText("Encrypting message"); break;
-        case "contactingNetwork": subtitleTextView.setText("Tracing a path"); break;
-        case "sendingMessage": subtitleTextView.setText("Sending message"); break;
-        case "messageSent": subtitleTextView.setText("Message sent securely"); break;
-        case "messageFailed": subtitleTextView.setText("Message failed to send"); break;
-      }
-    } else if (recipient.isMuted()) {
+    if (recipient.isMuted()) {
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       subtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
     } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Session Updates") && !recipient.getName().equals("Loki News")) {
@@ -3125,10 +3133,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else {
         subtitleTextView.setVisibility(View.GONE);
       }
-    } else if (PublicKeyValidation.isValid(recipient.getAddress().toString())) {
-      String ourMasterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
-      String hexEncodedPublicKey = (recipient.isLocalNumber() && ourMasterHexEncodedPublicKey != null) ? ourMasterHexEncodedPublicKey : recipient.getAddress().toPhoneString();
-      subtitleTextView.setText(hexEncodedPublicKey);
     } else {
       subtitleTextView.setVisibility(View.GONE);
     }

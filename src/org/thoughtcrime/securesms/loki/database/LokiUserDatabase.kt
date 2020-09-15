@@ -33,8 +33,14 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
             return TextSecurePreferences.getProfileName(context)
         } else {
             val database = databaseHelper.readableDatabase
-            return database.get(displayNameTable, "${Companion.publicKey} = ?", arrayOf( publicKey )) { cursor ->
+            val result = database.get(displayNameTable, "${Companion.publicKey} = ?", arrayOf( publicKey )) { cursor ->
                 cursor.getString(cursor.getColumnIndexOrThrow(displayName))
+            } ?: return null
+            val suffix = " (...${publicKey.substring(publicKey.count() - 8)})"
+            if (result.endsWith(suffix)) {
+                return result.substring(0..(result.count() - suffix.count()))
+            } else {
+                return result
             }
         }
     }

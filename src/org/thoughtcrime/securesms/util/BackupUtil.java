@@ -16,13 +16,14 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
+//TODO AC: Needs to be refactored to use Storage Access Framework or Media Store API.
 public class BackupUtil {
 
   private static final String TAG = BackupUtil.class.getSimpleName();
 
   public static @NonNull String getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
     try {
-      BackupInfo backup = getLatestBackup();
+      BackupInfo backup = getLatestBackup(context);
 
       if (backup == null) return context.getString(R.string.BackupUtil_never);
       else                return DateUtils.getExtendedRelativeTimeSpanString(context, locale, backup.getTimestamp());
@@ -32,8 +33,8 @@ public class BackupUtil {
     }
   }
 
-  public static @Nullable BackupInfo getLatestBackup() throws NoExternalStorageException {
-    File       backupDirectory = StorageUtil.getBackupDirectory();
+  public static @Nullable BackupInfo getLatestBackup(Context context) throws NoExternalStorageException {
+    File       backupDirectory = ExternalStorageUtil.getBackupDir(context);
     File[]     backups         = backupDirectory.listFiles();
     BackupInfo latestBackup    = null;
 
@@ -49,9 +50,9 @@ public class BackupUtil {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  public static void deleteAllBackups() {
+  public static void deleteAllBackups(Context context) {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory();
+      File   backupDirectory = ExternalStorageUtil.getBackupDir(context);
       File[] backups         = backupDirectory.listFiles();
 
       for (File backup : backups) {
@@ -62,9 +63,9 @@ public class BackupUtil {
     }
   }
 
-  public static void deleteOldBackups() {
+  public static void deleteOldBackups(Context context) {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory();
+      File   backupDirectory = ExternalStorageUtil.getBackupDir(context);
       File[] backups         = backupDirectory.listFiles();
 
       if (backups != null && backups.length > 2) {

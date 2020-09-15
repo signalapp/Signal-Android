@@ -14,21 +14,22 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.text.SpannableStringBuilder;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Action;
 import androidx.core.app.RemoteInput;
-import android.text.SpannableStringBuilder;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -80,9 +81,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
         addPerson(recipient.getContactUri().toString());
       }
 
-      ContactPhoto         contactPhoto         = recipient.getContactPhoto();
-      FallbackContactPhoto fallbackContactPhoto = recipient.getFallbackContactPhoto();
-
+      ContactPhoto contactPhoto = recipient.getContactPhoto();
       if (contactPhoto != null) {
         try {
           setLargeIcon(GlideApp.with(context.getApplicationContext())
@@ -94,10 +93,10 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                                .get());
         } catch (InterruptedException | ExecutionException e) {
           Log.w(TAG, e);
-          setLargeIcon(fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context)));
+          setLargeIcon(getPlaceholderDrawable(context, recipient));
         }
       } else {
-        setLargeIcon(fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context)));
+        setLargeIcon(getPlaceholderDrawable(context, recipient));
       }
 
     } else {
@@ -321,4 +320,12 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     return content;
   }
 
+  private static Drawable getPlaceholderDrawable(Context context, Recipient recipient) {
+    String publicKey = recipient.getAddress().serialize();
+    String hepk = (recipient.isLocalNumber() && publicKey != null)
+            ? TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+            : publicKey;
+    String displayName = recipient.getName();
+    return AvatarPlaceholderGenerator.INSTANCE.generate(context, 128, hepk, displayName);
+  }
 }

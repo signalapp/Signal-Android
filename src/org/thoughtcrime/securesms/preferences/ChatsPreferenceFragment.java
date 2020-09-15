@@ -139,7 +139,6 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
     public boolean onPreferenceClick(Preference preference) {
       Permissions.with(ChatsPreferenceFragment.this)
                  .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                 .ifNecessary()
                  .onAllGranted(() -> {
                    if (!((SwitchPreferenceCompat)preference).isChecked()) {
                      BackupDialog.showEnableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference);
@@ -160,7 +159,6 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
     public boolean onPreferenceClick(Preference preference) {
       Permissions.with(ChatsPreferenceFragment.this)
                  .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                 .ifNecessary()
                  .onAllGranted(() -> {
                    Log.i(TAG, "Queing backup...");
                    ApplicationContext.getInstance(getContext())

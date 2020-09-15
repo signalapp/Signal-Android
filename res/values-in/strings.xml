@@ -1252,5 +1252,184 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="prompt_passphrase_activity__tap_to_unlock">KETUK UNTUK MEMBUKA</string>
   <string name="RegistrationLockDialog_reminder">Peringatan:</string>
   <string name="recipient_preferences__about">Tentang</string>
-  <!--EOF-->
+
+
+
+
+
+  <!-- Session -->
+  <string name="continue_2">Lanjut</string>
+  <string name="copy">Salin</string>
+  <string name="invalid_url">URL salah</string>
+  <string name="copied_to_clipboard">Salin ke clipboard</string>
+  <string name="device_linking_failed">Gagal menyambungkan perangkat</string>
+  <string name="next">Selanjutnya</string>
+  <string name="share">Bagikan</string>
+  <string name="invalid_session_id">Session salah</string>
+  <string name="cancel">Batal</string>
+  <string name="your_session_id">Session ID anda</string>
+
+  <string name="activity_landing_title_2">Session anda dimulai di sini</string>
+  <string name="activity_landing_register_button_title">Buat Session ID</string>
+  <string name="activity_landing_restore_button_title">Lanjutkan Session</string>
+  <string name="activity_landing_link_button_title">Tautkan dengan akun</string>
+  <string name="activity_landing_device_unlinked_dialog_title">Sukses memutus koneksi perangkat</string>
+
+  <string name="view_fake_chat_bubble_1">Apa itu Session?</string>
+  <string name="view_fake_chat_bubble_2">Session adalah aplikasi pesan terenkripsi yang terdesentralisasi</string>
+  <string name="view_fake_chat_bubble_3">Bagaimana dengan pengumpulan informasi personal atau metadata percakapan? Bagaimana cara kerjanya?</string>
+  <string name="view_fake_chat_bubble_4">Menggunakan kombinasi routing yang anonim canggih dan teknologi enkripsi ujung-ke-ujung (end-to-end encryption)</string>
+  <string name="view_fake_chat_bubble_5">Rekan yang baik tak membiarkan rekannya menggunakan aplikasi bertukar pesan yang tak aman. Terima kasih kembali.</string>
+
+  <string name="activity_register_title">Ucapkan halo pada Session ID anda</string>
+  <string name="activity_register_explanation">Session ID adalah alamat unik yang bisa digunakan untuk mengontak anda. Tanpa koneksi dengan identitas asli, Session ID anda didesain bersifat anonim dan rahasia.</string>
+  <string name="activity_register_public_key_copied_message">Salin ke clipboard</string>
+
+  <string name="activity_restore_title">Kembalikan akun</string>
+  <string name="activity_restore_explanation">Masukkan kata pemulihan yang diberikan saat anda mencoba masuk ke akun</string>
+  <string name="activity_restore_seed_edit_text_hint">masukan kata pemulihan</string>
+
+  <string name="activity_link_device_title">Tautkan perangkat</string>
+  <string name="activity_link_device_enter_session_id_tab_title">Masuk ke Session ID</string>
+  <string name="activity_link_device_scan_qr_code_tab_title">Pindai kode QR</string>
+  <string name="activity_link_device_scan_qr_code_explanation">Tautkan Perangkat" di perangkat anda, kemudian pindai QR code yang muncul untuk mulai proses menautkan</string>
+
+  <string name="fragment_enter_session_id_title">Tautkan perangkat</string>
+  <string name="fragment_enter_session_id_explanation">Tautkan perangkat" di perangkat lain dan masuk ke Session ID anda untuk memulai proses menautkan</string>
+  <string name="fragment_enter_session_id_edit_text_hint">Masuk ke Session ID</string>
+
+  <string name="activity_display_name_title_2">Pilih nama yang ditampilkan</string>
+  <string name="activity_display_name_explanation">Ini akan menjadi nama anda ketika menggunakan Session. Bisa merupakan nama asli, alias, atau apapun yang anda suka</string>
+  <string name="activity_display_name_edit_text_hint">Masukkan nama</string>
+  <string name="activity_display_name_display_name_missing_error">Pilih nama yang ditampilkan</string>
+  <string name="activity_display_name_display_name_invalid_error">Masukkan nama yang terdiri dari karakter 1-z, A-Z, 0-9, dan _</string>
+  <string name="activity_display_name_display_name_too_long_error">Nama yang dibuat terlalu panjang</string>
+
+  <string name="activity_pn_mode_recommended_option_tag">Direkomendasikan</string>
+  <string name="activity_pn_mode_no_option_picked_dialog_title">Pilih salah satu opsi</string>
+
+  <string name="activity_home_empty_state_message">Anda belum memiliki kontak</string>
+  <string name="activity_home_empty_state_button_title">Mulai sebuah Session</string>
+  <string name="activity_home_leave_group_dialog_message">Apakah anda yakin ingin meninggalkan grup ini?</string>
+  <string name="activity_home_leaving_group_failed_message">Tak bisa meninggalkan grup</string>
+  <string name="activity_home_delete_conversation_dialog_message">Apakah anda yakin ingin menghapus percakapan ini?</string>
+  <string name="activity_home_conversation_deleted_message">Percakapan terhapus</string>
+
+  <string name="activity_seed_title">Kata pemulihan anda</string>
+  <string name="activity_seed_title_2">Inilah kata pemulihan anda</string>
+  <string name="activity_seed_explanation">Kata pemulihan adalah kunci Session ID -- bisa digunakan untuk mengembalikan Session ID ketika anda kehilangan perangkat. Simpan kata pemulihan di tempat yang aman dan jangan berikan kepada siapapun</string>
+  <string name="activity_seed_reveal_button_title">Tekan untuk melihat</string>
+
+  <string name="view_seed_reminder_subtitle_1">Amankan akun anda dengan menyimpan kata pemulihan</string>
+  <string name="view_seed_reminder_subtitle_2">Ketuk dan tekan kata yang disensor untuk mengetahui kata pemulihan anda, lalu simpan baik-baik untuk mengamnkan Session ID anda</string>
+  <string name="view_seed_reminder_subtitle_3">Pastikan untuk menyimpan kata pemulihan di tempat yang aman</string>
+
+  <string name="activity_path_title">Path</string>
+  <string name="activity_path_explanation">Session menyembunyikan IP dengan memantulkan pesan melalui berbagai simpul layanan di jaringan Session yang terdesentralisasi. Ini adalah negara yang menjadi lokasi pesan anda dipantulkan</string>
+  <string name="activity_path_device_row_title">Anda</string>
+  <string name="activity_path_guard_node_row_title">Simpul masuk</string>
+  <string name="activity_path_service_node_row_title">Simpul layanan</string>
+  <string name="activity_path_destination_row_title">Tujuan</string>
+  <string name="activity_path_learn_more_button_title">Pelajari lebih lanjut</string>
+
+  <string name="activity_create_private_chat_title">Session baru</string>
+  <string name="activity_create_private_chat_enter_session_id_tab_title">Masukkan Session ID</string>
+  <string name="activity_create_private_chat_scan_qr_code_tab_title">Pindai kode QR</string>
+  <string name="activity_create_private_chat_scan_qr_code_explanation">Pindai kode QR pengguna lain untuk memulai Session. Kode QR bisa ditemukan dengan mengetukan gambar kode QR di pengaturan akun</string>
+
+  <string name="fragment_enter_public_key_edit_text_hint">Masukkan Session ID penerima</string>
+  <string name="fragment_enter_public_key_explanation">Pengguna bisa membagikan Session ID miliknya dengan masuk ke pengaturan akun dan mengetuk "Bagikan Session ID" atau dengan membagikan kode QR mereka</string>
+
+  <string name="fragment_scan_qr_code_camera_access_explanation">Session membutuhkan akses kamera untuk memindai kode QR</string>
+  <string name="fragment_scan_qr_code_grant_camera_access_button_title">Berikan akses kamera</string>
+
+  <string name="activity_create_closed_group_title">Grup tertutup baru</string>
+  <string name="activity_create_closed_group_edit_text_hint">Masukkan nama grup</string>
+  <string name="activity_create_closed_group_explanation">Grup tertutup maksimal berisi 10 anggota dan memiliki perlindungan privasi yang sama dengan Session antara dua pengguna</string>
+  <string name="activity_create_closed_group_empty_state_message">anda belum memiliki kontak</string>
+  <string name="activity_create_closed_group_empty_state_button_title">Mulai sebuah Session</string>
+  <string name="activity_create_closed_group_group_name_missing_error">Masukkan nama grup</string>
+  <string name="activity_create_closed_group_group_name_too_long_error">Masukkan nama grup yang lebih pendek</string>
+  <string name="activity_create_closed_group_not_enough_group_members_error">Pilih setidaknya 2 anggota grup</string>
+  <string name="activity_create_closed_group_too_many_group_members_error">Grup tertutup maksimal berisi 10 anggota</string>
+  <string name="activity_create_closed_group_invalid_session_id_error">Salah satu anggota di grup memiliki Session ID yang salah</string>
+
+  <string name="activity_join_public_chat_title">Gabung ke grup terbuka</string>
+  <string name="activity_join_public_chat_error">Tak bisa bergabung dengan grup</string>
+  <string name="activity_join_public_chat_enter_group_url_tab_title">Buka URL grup</string>
+  <string name="activity_join_public_chat_scan_qr_code_tab_title">Pindai kode QR</string>
+  <string name="activity_join_public_chat_scan_qr_code_explanation">Pindai kode QR grup terbuka yang ingin anda masuki</string>
+
+  <string name="fragment_enter_chat_url_edit_text_hint">Masukkan sebuah URL grup terbuka</string>
+
+  <string name="activity_settings_title">Pengaturan</string>
+  <string name="activity_settings_display_name_edit_text_hint">Masukkan nama</string>
+  <string name="activity_settings_display_name_missing_error">Pilih sebuah nama</string>
+  <string name="activity_settings_invalid_display_name_error">Masukkan nama yang terdiri dari karakter 1-z, A-Z, 0-9, dan _</string>
+  <string name="activity_settings_display_name_too_long_error">Nama yang dibuat terlalu panjang</string>
+  <string name="activity_settings_privacy_button_title">Privasi</string>
+  <string name="activity_settings_notifications_button_title">Notifikasi</string>
+  <string name="activity_settings_chats_button_title">Percakapan</string>
+  <string name="activity_settings_devices_button_title">Perangkat</string>
+  <string name="activity_settings_recovery_phrase_button_title">Kata pemulihan</string>
+  <string name="activity_settings_clear_all_data_button_title">Hapus data</string>
+
+  <string name="activity_notification_settings_title">Notifikasi</string>
+  <string name="activity_notification_settings_style_section_title">Gaya notifikasi</string>
+  <string name="activity_notification_settings_content_section_title">Isi notifikasi</string>
+
+  <string name="activity_privacy_settings_title">Privasi</string>
+
+  <string name="activity_chat_settings_title">Percakapan</string>
+
+  <string name="activity_linked_devices_title">Perangkat</string>
+  <string name="activity_linked_devices_multi_device_limit_reached_dialog_explanation">Saat ini anda tak diperbolehkan menautkan lebih dari satu perangkat</string>
+  <string name="activity_linked_devices_unlinking_failed_message">Tak bisa memutus perangkat</string>
+  <string name="activity_linked_devices_unlinking_successful_message">Sukses memutus perangkat</string>
+  <string name="activity_linked_devices_linking_failed_message">Tidak bisa menautkan perangkat</string>
+  <string name="activity_linked_devices_empty_state_message">anda belum menautkan satupun perangkat</string>
+  <string name="activity_linked_devices_empty_state_button_title">tautkan perangkat (beta)</string>
+
+  <string name="preferences_notifications_strategy_category_title">Strategi notofikasi</string>
+
+  <string name="dialog_link_device_slave_mode_title_1">Menunggu otorisasi</string>
+  <string name="dialog_link_device_slave_mode_title_2">Menautkan perangkat diotorisasi</string>
+  <string name="dialog_link_device_slave_mode_explanation_1">Pastikan kata di bawah sama dengan kata yang muncul di perangkat lainnya</string>
+  <string name="dialog_link_device_slave_mode_explanation_2">Perangkat sukses ditautkan</string>
+
+  <string name="dialog_link_device_master_mode_title_1">Menunggu perangkat</string>
+  <string name="dialog_link_device_master_mode_title_2">Permintaan penautan diterima</string>
+  <string name="dialog_link_device_master_mode_title_3">Mengotorisasi tautan perangkat</string>
+  <string name="dialog_link_device_master_mode_explanation_1">Unduh Session di perangkat baru anda lalu ketuk "Tautkan ke akun yang sudah ada" di bagian bawah layar. Jika ada akun lain di perangkat baru tersebut, anda harus menghapusnya terlebih dahulu</string>
+  <string name="dialog_link_device_master_mode_explanation_2">Pastikan kata di bawah sama dengan kata yang muncul di perangkat lainnya</string>
+  <string name="dialog_link_device_master_mode_explanation_3">Mohon tunggu, tautan perangkat sedang dibuat. Proses ini mungkin berlangsung hingga beberapa menit</string>
+  <string name="dialog_link_device_master_mode_authorize_button_title">Otorisasi</string>
+
+  <string name="fragment_device_list_bottom_sheet_change_name_button_title">Ubah nama</string>
+  <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Putuskan koneksi dengan perangkat</string>
+
+  <string name="dialog_edit_device_name_edit_text_hint">Masukkan nama</string>
+
+  <string name="dialog_seed_title">Kata pemulihan anda</string>
+  <string name="dialog_seed_explanation">Ini adalah kata pemulihan anda. Gunakan untuk mengembalikan atau memindahkan Session ID anda ke perangkat lain</string>
+
+  <string name="dialog_clear_all_data_title">Hapus semua data</string>
+  <string name="dialog_clear_all_data_explanation">Pesan, Session, dan kontak anda akan dihapus secara permanen</string>
+
+  <string name="activity_qr_code_title">Kode QR</string>
+  <string name="activity_qr_code_view_my_qr_code_tab_title">Lihat kode QR saya</string>
+  <string name="activity_qr_code_view_scan_qr_code_tab_title">Pindai kode QR</string>
+  <string name="activity_qr_code_view_scan_qr_code_explanation">Pindai kode QR pengguna lain untuk memulai percakapan</string>
+
+  <string name="fragment_view_my_qr_code_explanation">Ini adalah kode QR anda. Pengguna lain bisa memindainya untuk memulai percakapan dengan anda</string>
+  <string name="fragment_view_my_qr_code_share_title">Bagikan kode QR</string>
+
+  <string name="session_reset_banner_message">Apakah anda ingin mengembalikan session dengan %1$s</string>
+  <string name="session_reset_banner_dismiss_button_title">Batalkan</string>
+  <string name="session_reset_banner_restore_button_title">Kembalikan</string>
+
+  <string name="fragment_contact_selection_contacts_title">Kontak</string>
+  <string name="fragment_contact_selection_closed_groups_title">Grup tertutup</string>
+  <string name="fragment_contact_selection_open_groups_title">Grup terbuka</string>
+
 </resources>
