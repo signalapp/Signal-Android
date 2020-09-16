@@ -141,7 +141,7 @@ public class TextSecurePreferences {
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
   private static final String NEXT_SIGNED_PRE_KEY_ID   = "pref_next_signed_pre_key_id";
 
-  public  static final String BACKUP_ENABLED              = "pref_backup_enabled";
+  public  static final String BACKUP_ENABLED              = "pref_backup_enabled_v2";
   private static final String BACKUP_PASSPHRASE           = "pref_backup_passphrase";
   private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
   private static final String BACKUP_TIME                 = "pref_backup_next_time";

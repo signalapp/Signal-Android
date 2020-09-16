@@ -170,7 +170,6 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
       ApplicationContext.getInstance(getContext())
               .getJobManager()
               .add(new LocalBackupJob());
-
       return true;
     }
   }

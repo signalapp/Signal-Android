@@ -4,32 +4,36 @@ package org.thoughtcrime.securesms.backup;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import network.loki.messenger.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
-import org.thoughtcrime.securesms.service.LocalBackupListener;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.BackupDirSelector;
 import org.thoughtcrime.securesms.util.BackupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.io.IOException;
+
+import network.loki.messenger.R;
+
 public class BackupDialog {
+  private static final String TAG = "BackupDialog";
 
   public static void showEnableBackupDialog(
           @NonNull Context context,
           @NonNull SwitchPreferenceCompat preference,
           @NonNull BackupDirSelector backupDirSelector) {
 
-    String[]    password = BackupUtil.generateBackupPassphrase();
-    AlertDialog dialog   = new AlertDialog.Builder(context)
+    String[] password   = BackupUtil.generateBackupPassphrase();
+    String   passwordSt = Util.join(password, " ");
+
+    AlertDialog dialog = new AlertDialog.Builder(context)
                                           .setTitle(R.string.BackupDialog_enable_local_backups)
                                           .setView(R.layout.backup_enable_dialog)
                                           .setPositiveButton(R.string.BackupDialog_enable_backups, null)
@@ -42,9 +46,16 @@ public class BackupDialog {
         CheckBox confirmationCheckBox = dialog.findViewById(R.id.confirmation_check);
         if (confirmationCheckBox.isChecked()) {
           backupDirSelector.selectBackupDir(true, uri -> {
-            BackupPassphrase.set(context, Util.join(password, " "));
-            TextSecurePreferences.setBackupEnabled(context, true);
-            LocalBackupListener.schedule(context);
+            try {
+              BackupUtil.enableBackups(context, passwordSt);
+            } catch (IOException e) {
+              Log.e(TAG, "Failed to activate backups.", e);
+              Toast.makeText(context,
+                      context.getString(R.string.BackupDialog_activation_error),
+                      Toast.LENGTH_LONG)
+                      .show();
+              return;
+            }
 
             preference.setChecked(true);
             created.dismiss();
@@ -71,7 +82,7 @@ public class BackupDialog {
     textView.setOnClickListener(v -> checkBox.toggle());
 
     dialog.findViewById(R.id.number_table).setOnClickListener(v -> {
-      ((ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", Util.join(password, " ")));
+      ((ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", passwordSt));
       Toast.makeText(context, R.string.BackupDialog_copied_to_clipboard, Toast.LENGTH_LONG).show();
     });
 
@@ -84,10 +95,7 @@ public class BackupDialog {
                    .setMessage(R.string.BackupDialog_disable_and_delete_all_local_backups)
                    .setNegativeButton(android.R.string.cancel, null)
                    .setPositiveButton(R.string.BackupDialog_delete_backups_statement, (dialog, which) -> {
-                     BackupPassphrase.set(context, null);
-                     TextSecurePreferences.setBackupEnabled(context, false);
-                     BackupUtil.deleteAllBackupFiles(context);
-                     BackupUtil.setBackupDirUri(context, null);
+                     BackupUtil.disableBackups(context, true);
                      preference.setChecked(false);
                    })
                    .create()

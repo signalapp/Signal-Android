@@ -18,8 +18,10 @@ import org.thoughtcrime.securesms.backup.FullBackupExporter
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.BackupFileRecord
+import org.thoughtcrime.securesms.service.LocalBackupListener
 import org.whispersystems.libsignal.util.ByteUtil
 import java.io.IOException
+import java.lang.IllegalStateException
 import java.security.SecureRandom
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,6 +29,44 @@ import kotlin.jvm.Throws
 
 object BackupUtil {
     private const val TAG = "BackupUtil"
+
+    /**
+     * Set app-wide configuration to enable the backups and schedule them.
+     *
+     * Make sure that the backup dir is selected prior activating the backup.
+     * Use [BackupDirSelector] or [setBackupDirUri] manually.
+     */
+    @JvmStatic
+    @Throws(IOException::class)
+    fun enableBackups(context: Context, password: String) {
+        val backupDir = getBackupDirUri(context)
+        if (backupDir == null || validateDirAccess(context, backupDir)) {
+            throw IOException("Backup dir is not set or invalid.")
+        }
+
+        BackupPassphrase.set(context, password)
+        TextSecurePreferences.setBackupEnabled(context, true)
+        LocalBackupListener.schedule(context)
+    }
+
+    /**
+     * Set app-wide configuration to disable the backups.
+     *
+     * This call resets the backup dir value.
+     * Make sure to call [setBackupDirUri] prior next call to [enableBackups].
+     *
+     * @param deleteBackupFiles if true, deletes all the previously created backup files
+     * (if the app has access to them)
+     */
+    @JvmStatic
+    fun disableBackups(context: Context, deleteBackupFiles: Boolean) {
+        BackupPassphrase.set(context, null)
+        TextSecurePreferences.setBackupEnabled(context, false)
+        if (deleteBackupFiles) {
+            deleteAllBackupFiles(context)
+        }
+        setBackupDirUri(context, null)
+    }
 
     @JvmStatic
     fun getLastBackupTimeString(context: Context, locale: Locale): String {
