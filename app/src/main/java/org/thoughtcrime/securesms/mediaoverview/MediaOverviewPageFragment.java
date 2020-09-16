@@ -261,6 +261,8 @@ public final class MediaOverviewPageFragment extends Fragment
 
     if (actionMode == null) {
       enterMultiSelect();
+    } else {
+      refreshActionModeTitle();
     }
   }
 
