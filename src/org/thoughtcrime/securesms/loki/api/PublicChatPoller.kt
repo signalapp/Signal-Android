@@ -5,6 +5,7 @@ import android.os.Handler
 import android.util.Log
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
+import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
@@ -156,7 +157,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
         return SignalServiceDataMessage(message.timestamp, serviceGroup, attachments, body, false, 0, false, null, false, quote, null, signalLinkPreviews, null)
     }
 
-    fun pollForNewMessages() {
+    fun pollForNewMessages(): Promise<Unit, Exception> {
         fun processIncomingMessage(message: PublicChatMessage) {
             // If the sender of the current message is not a slave device, set the display name in the database
             val masterHexEncodedPublicKey = MultiDeviceProtocol.shared.getMasterDevice(message.senderPublicKey)
@@ -217,7 +218,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
                 }
             }
         }
-        if (isPollOngoing) { return }
+        if (isPollOngoing) { return Promise.of(Unit) }
         isPollOngoing = true
         val userDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userHexEncodedPublicKey)
         var uniqueDevices = setOf<String>()
@@ -225,7 +226,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
         val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
         FileServerAPI.configure(userHexEncodedPublicKey, userPrivateKey, apiDB)
         // Kovenant propagates a context to chained promises, so LokiPublicChatAPI.sharedContext should be used for all of the below
-        api.getMessages(group.channel, group.server).bind(PublicChatAPI.sharedContext) { messages ->
+        val promise = api.getMessages(group.channel, group.server).bind(PublicChatAPI.sharedContext) { messages ->
             /*
             if (messages.isNotEmpty()) {
                 // We need to fetch the device mapping for any devices we don't have
@@ -237,7 +238,8 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
             }
              */
             Promise.of(messages)
-        }.successBackground {
+        }
+        promise.successBackground {
             /*
             val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
                 // This will return null if the current device is a master device
@@ -246,7 +248,8 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
             // Fetch the display names of the master devices
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
              */
-        }.successBackground { messages ->
+        }
+        promise.successBackground { messages ->
             // Process messages in the background
             messages.forEach { message ->
                 if (userDevices.contains(message.senderPublicKey)) {
@@ -257,10 +260,12 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
             }
             isCaughtUp = true
             isPollOngoing = false
-        }.fail {
+        }
+        promise.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: ${group.channel} on server: ${group.server}.")
             isPollOngoing = false
         }
+        return promise.map { Unit }
     }
 
     private fun pollForDisplayNames() {

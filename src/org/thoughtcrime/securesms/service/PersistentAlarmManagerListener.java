@@ -13,6 +13,7 @@ public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
   private static final String TAG = PersistentAlarmManagerListener.class.getSimpleName();
 
   protected abstract long getNextScheduledExecutionTime(Context context);
+
   protected abstract long onAlarm(Context context, long scheduledTime);
 
   @Override
