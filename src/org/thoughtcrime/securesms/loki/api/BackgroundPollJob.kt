@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.loki.api
 
 import android.content.Context
+import kotlinx.coroutines.awaitAll
 import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -45,6 +47,7 @@ class BackgroundPollJob private constructor(parameters: Parameters) : BaseJob(pa
 
     public override fun onRun() {
         try {
+            Log.d("Loki", "Performing background poll.")
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)
             val promises = mutableListOf<Promise<Unit, Exception>>()
             val promise = SnodeAPI.shared.getMessages(userPublicKey).map { envelopes ->
@@ -60,6 +63,7 @@ class BackgroundPollJob private constructor(parameters: Parameters) : BaseJob(pa
                 poller.stop()
                 promises.add(poller.pollForNewMessages())
             }
+            all(promises).get()
         } catch (exception: Exception) {
             Log.d("Loki", "Background poll failed due to error: $exception.")
         }

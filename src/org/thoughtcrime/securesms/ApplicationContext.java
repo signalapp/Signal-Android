@@ -254,6 +254,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     messageNotifier.setVisibleThread(-1);
     // Loki
     if (poller != null) { poller.stopIfNeeded(); }
+    if (closedGroupPoller != null) { closedGroupPoller.stopIfNeeded(); }
     if (publicChatManager != null) { publicChatManager.stopPollers(); }
   }
 
@@ -534,6 +535,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void stopPolling() {
     if (poller != null) { poller.stopIfNeeded(); }
     if (closedGroupPoller != null) { closedGroupPoller.stopIfNeeded(); }
+    if (publicChatManager != null) { publicChatManager.stopPollers(); }
   }
 
   private void resubmitProfilePictureIfNeeded() {
