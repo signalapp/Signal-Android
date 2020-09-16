@@ -148,7 +148,7 @@ public final class LinkPreviewUtil {
 
     Matcher titleMatcher = TITLE_PATTERN.matcher(html);
     if (titleMatcher.find() && titleMatcher.groupCount() > 0) {
-      htmlTitle = titleMatcher.group(1);
+      htmlTitle = htmlDecoder.fromEncoded(titleMatcher.group(1));
     }
 
     Matcher faviconMatcher = FAVICON_PATTERN.matcher(html);
