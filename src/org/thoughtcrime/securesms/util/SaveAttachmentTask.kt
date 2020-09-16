@@ -18,9 +18,11 @@ import java.io.File
 import java.io.IOException
 import java.lang.ref.WeakReference
 import java.text.SimpleDateFormat
+import kotlin.jvm.Throws
 
 /**
  * Saves attachment files to an external storage using [MediaStore] API.
+ * Requires [android.Manifest.permission.WRITE_EXTERNAL_STORAGE] on API 28 and below.
  */
 class SaveAttachmentTask : ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Int, String?>> {
 

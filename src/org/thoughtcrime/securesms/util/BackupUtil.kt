@@ -23,6 +23,7 @@ import java.io.IOException
 import java.security.SecureRandom
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.jvm.Throws
 
 object BackupUtil {
     private const val TAG = "BackupUtil"
@@ -43,14 +44,10 @@ object BackupUtil {
 
     @JvmStatic
     fun generateBackupPassphrase(): Array<String> {
-        val result = arrayOfNulls<String>(6)
-        val random = ByteArray(30)
-        SecureRandom().nextBytes(random)
-        for (i in 0..5) {
-            result[i] = String.format("%05d", ByteUtil.byteArray5ToLong(random, i * 5) % 100000)
+        val random = ByteArray(30).also { SecureRandom().nextBytes(it) }
+        return Array(6) {i ->
+            String.format("%05d", ByteUtil.byteArray5ToLong(random, i * 5) % 100000)
         }
-        @Suppress("UNCHECKED_CAST")
-        return result as Array<String>
     }
 
     @JvmStatic

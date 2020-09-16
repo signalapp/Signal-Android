@@ -152,17 +152,11 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   private class BackupClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      Permissions.with(ChatsPreferenceFragment.this)
-                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                 .onAllGranted(() -> {
-                   if (!((SwitchPreferenceCompat)preference).isChecked()) {
-                     BackupDialog.showEnableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference, backupDirSelector);
-                   } else {
-                     BackupDialog.showDisableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference);
-                   }
-                 })
-                 .withPermanentDenialDialog(getString(R.string.ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
-                 .execute();
+      if (!((SwitchPreferenceCompat)preference).isChecked()) {
+        BackupDialog.showEnableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference, backupDirSelector);
+      } else {
+        BackupDialog.showDisableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference);
+      }
 
       return true;
     }
@@ -172,16 +166,10 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
     @SuppressLint("StaticFieldLeak")
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      Permissions.with(ChatsPreferenceFragment.this)
-                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                 .onAllGranted(() -> {
-                   Log.i(TAG, "Queing backup...");
-                   ApplicationContext.getInstance(getContext())
-                                     .getJobManager()
-                                     .add(new LocalBackupJob());
-                 })
-                 .withPermanentDenialDialog(getString(R.string.ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
-                 .execute();
+      Log.i(TAG, "Queuing backup...");
+      ApplicationContext.getInstance(getContext())
+              .getJobManager()
+              .add(new LocalBackupJob());
 
       return true;
     }
