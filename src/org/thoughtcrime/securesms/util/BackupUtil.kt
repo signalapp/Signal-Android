@@ -40,7 +40,7 @@ object BackupUtil {
     @Throws(IOException::class)
     fun enableBackups(context: Context, password: String) {
         val backupDir = getBackupDirUri(context)
-        if (backupDir == null || validateDirAccess(context, backupDir)) {
+        if (backupDir == null || !validateDirAccess(context, backupDir)) {
             throw IOException("Backup dir is not set or invalid.")
         }
 
