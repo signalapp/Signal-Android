@@ -269,11 +269,11 @@ public final class MediaOverviewPageFragment extends Fragment
 
   @Override
   public void onMediaLongClicked(MediaDatabase.MediaRecord mediaRecord) {
-    ((MediaGalleryAllAdapter) recyclerView.getAdapter()).toggleSelection(mediaRecord);
-
     if (actionMode == null) {
       enterMultiSelect();
     }
+
+    handleMediaMultiSelectClick(mediaRecord);
   }
 
   private void handleSelectAllMedia() {
