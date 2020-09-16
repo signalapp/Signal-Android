@@ -337,8 +337,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     }
 
     if (hasSharedContact(messageRecord)) {
-      int contactWidth = sharedContactStub.get().getMeasuredWidth();
+      int contactWidth   = sharedContactStub.get().getMeasuredWidth();
       int availableWidth = getAvailableMessageBubbleWidth(sharedContactStub.get());
+
       if (contactWidth != availableWidth) {
         sharedContactStub.get().getLayoutParams().width = availableWidth;
         needsMeasure = true;
