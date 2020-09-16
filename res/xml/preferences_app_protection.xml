@@ -40,7 +40,7 @@
             android:dependency="pref_timeout_passphrase" />
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="pref_screen_security"
             android:title="@string/preferences__screen_security"
             android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots" />
