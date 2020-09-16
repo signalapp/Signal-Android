@@ -132,7 +132,6 @@ class ClosedGroupUpdateMessageSendJob private constructor(parameters: Parameters
                     useFallbackEncryption, false, false)
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send closed group update message to: $destination due to error: $e.")
-            throw e
         }
     }
 

@@ -21,4 +21,9 @@
         <item name="android:elevation">4dp</item>
     </style>
 
+    <style name="Widget.Session.Button.Dialog.Destructive">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/destructive</item>
+    </style>
+
 </resources>

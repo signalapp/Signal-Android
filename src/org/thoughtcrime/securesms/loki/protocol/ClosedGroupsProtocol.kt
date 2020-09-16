@@ -8,6 +8,8 @@ import nl.komponents.kovenant.deferred
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager
+import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGroupOperation
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -66,13 +68,15 @@ object ClosedGroupsProtocol {
                 if (member == userPublicKey) { continue }
                 val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
                 job.setContext(context)
-                job.onRun() // Run the job immediately
+                job.onRun() // Run the job immediately to make all of this sync
             }
             // Add the group to the user's set of public keys to poll for
             DatabaseFactory.getSSKDatabase(context).setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
             // Notify the user
             val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
             insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
+            // Notify the PN server
+            LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
             // Fulfill the promise
             deferred.resolve(groupID)
         }.start()
@@ -137,6 +141,8 @@ object ClosedGroupsProtocol {
                 sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
                 groupDB.setActive(groupID, false)
                 groupDB.remove(groupID, Address.fromSerialized(userPublicKey))
+                // Notify the PN server
+                LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
             } else {
                 // Establish sessions if needed
                 establishSessionsWithMembersIfNeeded(context, members)
@@ -231,6 +237,7 @@ object ClosedGroupsProtocol {
 
     public fun handleNewClosedGroup(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate, senderPublicKey: String) {
         // Prepare
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val sskDatabase = DatabaseFactory.getSSKDatabase(context)
         // Unwrap the message
         val groupPublicKey = closedGroupUpdate.groupPublicKey.toByteArray().toHexString()
@@ -258,6 +265,8 @@ object ClosedGroupsProtocol {
         insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
         // Establish sessions if needed
         establishSessionsWithMembersIfNeeded(context, members)
+        // Notify the PN server
+        LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
     }
 
     public fun handleClosedGroupUpdate(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdate, senderPublicKey: String) {
@@ -303,6 +312,8 @@ object ClosedGroupsProtocol {
                 sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
                 groupDB.setActive(groupID, false)
                 groupDB.remove(groupID, Address.fromSerialized(userPublicKey))
+                // Notify the PN server
+                LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
             } else {
                 establishSessionsWithMembersIfNeeded(context, members)
                 val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)

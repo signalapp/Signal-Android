@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.loki.api.BackgroundPollJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
@@ -61,6 +62,7 @@ public final class JobManagerFactories {
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory(application));
       put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory(application));
       put(RotateCertificateJob.KEY,                  new RotateCertificateJob.Factory());
+      put(BackgroundPollJob.KEY,                     new BackgroundPollJob.Factory());
       put(RotateProfileKeyJob.KEY,                   new RotateProfileKeyJob.Factory());
       put(RotateSignedPreKeyJob.KEY,                 new RotateSignedPreKeyJob.Factory());
       put(SendDeliveryReceiptJob.KEY,                new SendDeliveryReceiptJob.Factory());

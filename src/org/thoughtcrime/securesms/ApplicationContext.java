@@ -16,16 +16,17 @@
  */
 package org.thoughtcrime.securesms;
 
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ProcessLifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -60,7 +61,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
+import org.thoughtcrime.securesms.loki.api.BackgroundPollListener;
 import org.thoughtcrime.securesms.loki.api.ClosedGroupPoller;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
@@ -115,10 +116,10 @@ import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderK
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities;
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink;
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink;
+import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol;
 
 import java.io.File;
@@ -253,6 +254,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     messageNotifier.setVisibleThread(-1);
     // Loki
     if (poller != null) { poller.stopIfNeeded(); }
+    if (closedGroupPoller != null) { closedGroupPoller.stopIfNeeded(); }
     if (publicChatManager != null) { publicChatManager.stopPollers(); }
   }
 
@@ -383,7 +385,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     RotateSignedPreKeyListener.schedule(this);
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
-    BackgroundPollWorker.schedule(this); // Loki
+    BackgroundPollListener.schedule(this); // Loki
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);
@@ -513,9 +515,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Context context = this;
     SwarmAPI.Companion.configureIfNeeded(apiDB);
     SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
-    poller = new Poller(userPublicKey, apiDB, protos -> {
-      for (SignalServiceProtos.Envelope proto : protos) {
-        new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto), false);
+    poller = new Poller(userPublicKey, apiDB, envelopes -> {
+      for (SignalServiceProtos.Envelope envelope : envelopes) {
+        new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(envelope), false);
       }
       return Unit.INSTANCE;
     });
@@ -533,6 +535,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void stopPolling() {
     if (poller != null) { poller.stopIfNeeded(); }
     if (closedGroupPoller != null) { closedGroupPoller.stopIfNeeded(); }
+    if (publicChatManager != null) { publicChatManager.stopPollers(); }
   }
 
   private void resubmitProfilePictureIfNeeded() {

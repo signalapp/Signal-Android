@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,19 +27,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.ActionMode;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -54,6 +42,20 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Stream;
 
@@ -405,7 +407,7 @@ public class ConversationFragment extends Fragment
       for (MessageRecord message : messageRecords) {
         if (!message.isOutgoing()) { areAllSentByUser = false; }
       }
-      menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !areAllSentByUser);
+      menu.findItem(R.id.menu_context_copy_public_key).setVisible(selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
       boolean userCanModerate = isPublicChat && PublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
@@ -488,8 +490,11 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleCopyPublicKey(MessageRecord messageRecord) {
-    ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-    clipboard.setText(messageRecord.getRecipient().getAddress().toString());
+    String sessionID = messageRecord.getRecipient().getAddress().toPhoneString();
+    android.content.ClipboardManager clipboard = (android.content.ClipboardManager)requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipData clip = ClipData.newPlainText("Session ID", sessionID);
+    clipboard.setPrimaryClip(clip);
+    Toast.makeText(getContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show();
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
