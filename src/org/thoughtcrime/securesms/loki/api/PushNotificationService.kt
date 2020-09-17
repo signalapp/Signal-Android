@@ -26,7 +26,7 @@ class PushNotificationService : FirebaseMessagingService() {
                 val envelope = MessageWrapper.unwrap(data)
                 PushContentReceiveJob(this).processEnvelope(SignalServiceEnvelope(envelope), true)
             } catch (e: Exception) {
-                Log.d("Loki", "Failed to unwrap data for message.")
+                Log.d("Loki", "Failed to unwrap data for message due to error: $e.")
             }
         } else {
             Log.d("Loki", "Failed to decode data for message.")

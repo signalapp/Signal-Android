@@ -680,7 +680,7 @@
             </intent-filter>
         </receiver>
         <!-- Session -->
-        <receiver android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollWorker">
+        <receiver android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollListener" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -694,7 +694,6 @@
         <service
             android:name="org.thoughtcrime.securesms.jobmanager.KeepAliveService"
             android:enabled="@bool/enable_alarm_manager" />
-
         <receiver
             android:name="org.thoughtcrime.securesms.jobmanager.AlarmManagerScheduler$RetryReceiver"
             android:enabled="@bool/enable_alarm_manager" /> <!-- Probably don't need this one -->

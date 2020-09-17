@@ -60,7 +60,12 @@ class ProfilePictureView : RelativeLayout {
             if (publicKey == null || publicKey.isBlank()) {
                 return null
             } else {
-                return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
+                var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
+                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+                if (result == null && publicChat != null) {
+                    result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
+                }
+                return result
             }
         }
         if (recipient.isGroupRecipient) {
@@ -76,7 +81,11 @@ class ProfilePictureView : RelativeLayout {
                 if (masterPublicKey != null) {
                     users.remove(masterPublicKey)
                 }
-                val randomUsers = users.sorted() // Sort to provide a level of stability
+                val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
+                if (users.count() == 1) {
+                    val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+                    randomUsers.add(0, userPublicKey) // Ensure the current user is at the back visually
+                }
                 val pk = randomUsers.getOrNull(0) ?: ""
                 publicKey = pk
                 displayName = getUserDisplayName(pk)

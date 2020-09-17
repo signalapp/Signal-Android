@@ -797,14 +797,21 @@ public class ConversationItem extends LinearLayout
     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
     int groupThreadMargin = (int)((12 * getResources().getDisplayMetrics().density) + getResources().getDimension(R.dimen.small_profile_picture_size));
     int defaultMargin = 0;
-    Recipient r = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId());
+    long threadID = messageRecord.getThreadId();
+    Recipient r = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID);
     String threadName = r != null ? r.getName() : "";
     boolean isRSSFeed = threadName != null && (threadName.equals("Loki News") || threadName.equals("Session Updates"));
     layoutParams.setMarginStart((groupThread && !isRSSFeed) ? groupThreadMargin : defaultMargin);
     bodyBubble.setLayoutParams(layoutParams);
     if (profilePictureView == null) return;
-    profilePictureView.setPublicKey(recipient.getAddress().toString());
-    profilePictureView.setDisplayName(recipient.getName());
+    String publicKey = recipient.getAddress().toString();
+    profilePictureView.setPublicKey(publicKey);
+    String displayName = recipient.getName();
+    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
+    if (displayName == null && publicChat != null) {
+      displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.getId(), publicKey);
+    }
+    profilePictureView.setDisplayName(displayName);
     profilePictureView.setAdditionalPublicKey(null);
     profilePictureView.setRSSFeed(false);
     profilePictureView.setGlide(glideRequests);

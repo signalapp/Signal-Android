@@ -8,20 +8,20 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Consumer;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
@@ -30,6 +30,8 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import network.loki.messenger.R;
 
 public class Permissions {
 
@@ -140,9 +142,9 @@ public class Permissions {
       PermissionsRequest request = new PermissionsRequest(allGrantedListener, anyDeniedListener, anyPermanentlyDeniedListener, anyResultListener,
                                                           someGrantedListener, someDeniedListener, somePermanentlyDeniedListener);
 
-      boolean targetSdk = Build.VERSION.SDK_INT >= minSdkVersion && Build.VERSION.SDK_INT <= maxSdkVersion;
+      boolean isInTargetSDKRange = (Build.VERSION.SDK_INT >= minSdkVersion && Build.VERSION.SDK_INT <= maxSdkVersion);
 
-      if (!targetSdk || permissionObject.hasAll(requestedPermissions)) {
+      if (!isInTargetSDKRange || permissionObject.hasAll(requestedPermissions)) {
         executePreGrantedPermissionsRequest(request);
       } else if (rationaleDialogMessage != null && rationalDialogHeader != null) {
         executePermissionsRequestWithRationale(request);

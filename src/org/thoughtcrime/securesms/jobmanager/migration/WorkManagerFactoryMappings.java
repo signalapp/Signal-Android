@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.jobs.SmsSentJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.jobs.UpdateApkJob;
+import org.thoughtcrime.securesms.loki.api.BackgroundPollJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
 
@@ -85,6 +86,7 @@ public class WorkManagerFactoryMappings {
     put(RetrieveProfileAvatarJob.class.getName(), RetrieveProfileAvatarJob.KEY);
     put(RetrieveProfileJob.class.getName(), RetrieveProfileJob.KEY);
     put(RotateCertificateJob.class.getName(), RotateCertificateJob.KEY);
+    put(BackgroundPollJob.class.getName(), BackgroundPollJob.KEY);
     put(RotateProfileKeyJob.class.getName(), RotateProfileKeyJob.KEY);
     put(RotateSignedPreKeyJob.class.getName(), RotateSignedPreKeyJob.KEY);
     put(SendDeliveryReceiptJob.class.getName(), SendDeliveryReceiptJob.KEY);
