@@ -155,6 +155,7 @@
             android:layout_height="56dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="34dp"
+            android:contentDescription="@string/WebRtcCallControls_speaker_button_description"
             android:scaleType="fitXY"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -162,7 +163,6 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/webrtc_call_screen_speaker_toggle"
-            android:contentDescription="@string/WebRtcCallControls_speaker_button_description"
             tools:visibility="visible" />
 
         <ImageView
@@ -172,6 +172,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="34dp"
             android:clickable="false"
+            android:contentDescription="@string/WebRtcCallControls_toggle_camera_description"
             android:scaleType="fitXY"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -179,7 +180,6 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_speaker_toggle"
             app:srcCompat="@drawable/webrtc_call_screen_camera_toggle"
-            android:contentDescription="@string/WebRtcCallControls_switch_to_rear_camera_button_description"
             tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.components.AccessibleToggleButton
@@ -188,6 +188,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="34dp"
             android:background="@drawable/webrtc_call_screen_video_toggle"
+            android:contentDescription="@string/WebRtcCallControls_video_button_description"
             android:stateListAnimator="@null"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -195,7 +196,6 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_camera_direction_toggle"
             tools:checked="true"
-            android:contentDescription="@string/WebRtcCallControls_video_button_description"
             tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.components.AccessibleToggleButton
@@ -204,13 +204,13 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="34dp"
             android:background="@drawable/webrtc_call_screen_mic_toggle"
+            android:contentDescription="@string/WebRtcCallControls_mute_button_description"
             android:stateListAnimator="@null"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/call_screen_end_call"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_video_toggle"
-            android:contentDescription="@string/WebRtcCallControls_mute_button_description"
             tools:visibility="visible" />
 
         <ImageView
@@ -219,6 +219,7 @@
             android:layout_height="56dp"
             android:layout_marginBottom="34dp"
             android:clickable="false"
+            android:contentDescription="@string/WebRtcCallScreen_end_call"
             android:scaleType="fitXY"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -226,7 +227,6 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/call_screen_audio_mic_toggle"
             app:srcCompat="@drawable/webrtc_call_screen_hangup"
-            android:contentDescription="@string/WebRtcCallScreen_end_call"
             tools:visibility="visible" />
 
         <ImageView
@@ -235,13 +235,13 @@
             android:layout_height="56dp"
             android:layout_marginStart="66dp"
             android:layout_marginBottom="65dp"
+            android:contentDescription="@string/WebRtcCallControls_reject_call_description"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/call_screen_answer_call"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/webrtc_call_screen_hangup"
-            android:contentDescription="@string/WebRtcCallControls_reject_call_description"
             tools:visibility="visible" />
 
         <TextView
@@ -263,13 +263,13 @@
             android:layout_height="56dp"
             android:layout_marginEnd="66dp"
             android:layout_marginBottom="65dp"
+            android:contentDescription="@string/WebRtcCallControls_answer_call_description"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toEndOf="@id/call_screen_decline_call"
             app:srcCompat="@drawable/webrtc_call_screen_answer"
-            android:contentDescription="@string/WebRtcCallControls_answer_call_description"
             tools:visibility="visible" />
 
         <TextView
@@ -290,12 +290,12 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginBottom="5dp"
+            android:contentDescription="@string/WebRtcCallScreen__answer_without_video"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/call_screen_answer_with_audio_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/webrtc_call_screen_answer_without_video"
-            android:contentDescription="@string/WebRtcCallScreen__answer_without_video"
             tools:visibility="visible" />
 
         <TextView

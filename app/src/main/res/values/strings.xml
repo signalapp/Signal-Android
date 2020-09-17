@@ -1366,6 +1366,7 @@
     <string name="WebRtcCallControls_mute_button_description">Mute</string>
     <string name="WebRtcCallControls_your_camera_button_description">Your camera</string>
     <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Switch to rear camera</string>
+    <string name="WebRtcCallControls_toggle_camera_description">Toggle camera</string>
 
     <string name="WebRtcCallControls_answer_call_description">Answer call</string>
     <string name="WebRtcCallControls_reject_call_description">Reject call</string>
