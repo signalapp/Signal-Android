@@ -221,7 +221,7 @@ message DataMessage {
   message Reaction {
     optional string emoji               = 1;
     optional bool   remove              = 2;
-    optional string targetAuthorE164    = 3;
+    // optional string targetAuthorE164    = 3;
     optional string targetAuthorUuid    = 4;
     optional uint64 targetSentTimestamp = 5;
   }

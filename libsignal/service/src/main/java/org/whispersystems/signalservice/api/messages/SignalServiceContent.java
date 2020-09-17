@@ -49,6 +49,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext.Type.DELIVER;
 
@@ -745,19 +746,25 @@ public final class SignalServiceContent {
   }
 
   private static SignalServiceDataMessage.Reaction createReaction(SignalServiceProtos.DataMessage content) {
-    if (!content.hasReaction()                                                                        ||
-        !content.getReaction().hasEmoji()                                                             ||
-        !(content.getReaction().hasTargetAuthorE164() || content.getReaction().hasTargetAuthorUuid()) ||
+    if (!content.hasReaction()                           ||
+        !content.getReaction().hasEmoji()                ||
+        !content.getReaction().hasTargetAuthorUuid()     ||
         !content.getReaction().hasTargetSentTimestamp())
     {
       return null;
     }
 
     SignalServiceProtos.DataMessage.Reaction reaction = content.getReaction();
+    UUID                                     uuid     = UuidUtil.parseOrNull(reaction.getTargetAuthorUuid());
+
+    if (uuid == null) {
+      Log.w(TAG, "Cannot parse author UUID on reaction");
+      return null;
+    }
 
     return new SignalServiceDataMessage.Reaction(reaction.getEmoji(),
                         reaction.getRemove(),
-                        new SignalServiceAddress(UuidUtil.parseOrNull(reaction.getTargetAuthorUuid()), reaction.getTargetAuthorE164()),
+                        new SignalServiceAddress(uuid, null),
                         reaction.getTargetSentTimestamp());
   }
 

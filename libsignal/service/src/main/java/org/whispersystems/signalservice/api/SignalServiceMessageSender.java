@@ -681,11 +681,6 @@ public class SignalServiceMessageSender {
                                                                          .setRemove(message.getReaction().get().isRemove())
                                                                          .setTargetSentTimestamp(message.getReaction().get().getTargetSentTimestamp());
 
-      // TODO [Alan] PhoneNumberPrivacy: Do not set this number
-      if (message.getReaction().get().getTargetAuthor().getNumber().isPresent()) {
-        reactionBuilder.setTargetAuthorE164(message.getReaction().get().getTargetAuthor().getNumber().get());
-      }
-
       if (message.getReaction().get().getTargetAuthor().getUuid().isPresent()) {
         reactionBuilder.setTargetAuthorUuid(message.getReaction().get().getTargetAuthor().getUuid().get().toString());
       }
