@@ -1,12 +1,11 @@
-package org.thoughtcrime.securesms.database
+package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
-import androidx.annotation.NonNull
+import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.database.model.BackupFileRecord
 import java.lang.IllegalArgumentException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -15,7 +14,7 @@ import kotlin.collections.ArrayList
  * Keeps track of the backup files saved by the app.
  * Uses [BackupFileRecord] as an entry data projection.
  */
-class LokiBackupFilesDatabase(context: Context?, databaseHelper: SQLCipherOpenHelper?)
+class LokiBackupFilesDatabase(context: Context, databaseHelper: SQLCipherOpenHelper)
     : Database(context, databaseHelper) {
 
     companion object {

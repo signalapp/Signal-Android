@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
-import org.thoughtcrime.securesms.database.LokiBackupFilesDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -92,7 +92,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV13                          = 34;
   private static final int lokiV14_BACKUP_FILES             = 35;
 
-  private static final int    DATABASE_VERSION = lokiV14_BACKUP_FILES; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Session makes any database changes
+  private static final int    DATABASE_VERSION = lokiV14_BACKUP_FILES; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;

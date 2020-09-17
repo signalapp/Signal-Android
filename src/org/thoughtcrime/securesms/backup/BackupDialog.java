@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.backup;
 
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -51,7 +50,7 @@ public class BackupDialog {
             } catch (IOException e) {
               Log.e(TAG, "Failed to activate backups.", e);
               Toast.makeText(context,
-                      context.getString(R.string.BackupDialog_activation_error),
+                      context.getString(R.string.dialog_backup_activation_failed),
                       Toast.LENGTH_LONG)
                       .show();
               return;

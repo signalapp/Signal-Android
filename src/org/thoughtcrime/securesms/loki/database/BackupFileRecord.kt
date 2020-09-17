@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database.model
+package org.thoughtcrime.securesms.loki.database
 
 import android.net.Uri
 import java.util.*
@@ -8,5 +8,5 @@ import java.util.*
  */
 data class BackupFileRecord(val id: Long, val uri: Uri, val fileSize: Long, val timestamp: Date) {
 
-    constructor(uri: Uri, fileSize: Long, timestamp: Date): this(-1, uri, fileSize, timestamp)
+    constructor(uri: Uri, fileSize: Long, timestamp: Date) : this(-1, uri, fileSize, timestamp)
 }

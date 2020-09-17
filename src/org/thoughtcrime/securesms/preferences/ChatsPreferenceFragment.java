@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.preferences;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,7 +26,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.widgets.ProgressPreference;
 import org.thoughtcrime.securesms.util.BackupDirSelector;
 import org.thoughtcrime.securesms.util.BackupUtil;
-import org.thoughtcrime.securesms.util.FragmentContextProvider;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Trimmer;
 
@@ -120,9 +118,8 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   }
 
   private void setBackupSummary() {
-    findPreference(TextSecurePreferences.BACKUP_NOW).setSummary(
-            String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s),
-                    BackupUtil.getLastBackupTimeString(getContext(), Locale.getDefault())));
+    findPreference(TextSecurePreferences.BACKUP_NOW)
+            .setSummary(String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s), BackupUtil.getLastBackupTimeString(getContext(), Locale.getDefault())));
   }
 
   private void setMediaDownloadSummaries() {
@@ -152,7 +149,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   private class BackupClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      if (!((SwitchPreferenceCompat)preference).isChecked()) {
+      if (!((SwitchPreferenceCompat) preference).isChecked()) {
         BackupDialog.showEnableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference, backupDirSelector);
       } else {
         BackupDialog.showDisableBackupDialog(getActivity(), (SwitchPreferenceCompat)preference);

@@ -15,6 +15,7 @@ interface ContextProvider {
 }
 
 class ActivityContextProvider(private val activity: Activity): ContextProvider {
+    
     override fun getContext(): Context {
         return activity
     }
@@ -25,6 +26,7 @@ class ActivityContextProvider(private val activity: Activity): ContextProvider {
 }
 
 class FragmentContextProvider(private val fragment: Fragment): ContextProvider {
+
     override fun getContext(): Context {
         return fragment.requireContext()
     }

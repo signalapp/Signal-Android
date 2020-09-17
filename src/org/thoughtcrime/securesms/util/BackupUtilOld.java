@@ -2,21 +2,14 @@ package org.thoughtcrime.securesms.util;
 
 
 import android.content.Context;
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.model.BackupFileRecord;
-import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.database.BackupFileRecord;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Locale;
 
 //TODO AC: Delete this class when its functionality is
 // fully replaced by the BackupUtil.kt and related classes.

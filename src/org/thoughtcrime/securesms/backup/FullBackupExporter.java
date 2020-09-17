@@ -1,13 +1,12 @@
 package org.thoughtcrime.securesms.backup;
 
-
 import android.content.Context;
 import android.database.Cursor;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.net.Uri;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.function.Consumer;
 import com.annimon.stream.function.Predicate;
