@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
+import org.thoughtcrime.securesms.loki.views.TapJackingProofLinearLayout;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -129,7 +130,7 @@ import network.loki.messenger.R;
  *
  */
 
-public class ConversationItem extends LinearLayout
+public class ConversationItem extends TapJackingProofLinearLayout
     implements RecipientModifiedListener, BindableConversationItem
 {
   private static final String TAG = ConversationItem.class.getSimpleName();
