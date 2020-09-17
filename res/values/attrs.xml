@@ -113,6 +113,7 @@
     <attr name="menu_block_icon" format="reference" />
     <attr name="menu_photo_library_icon" format="reference" />
     <attr name="menu_delete_icon" format="reference" />
+    <attr name="menu_info_icon" format="reference" />
 
     <attr name="pref_icon_tint" format="color"/>
 

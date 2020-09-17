@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -128,17 +130,21 @@ public class AvatarImageView extends AppCompatImageView {
           requestManager.clear(this);
           recipientContactPhoto = photo;
 
-          Drawable fallbackContactPhotoDrawable = photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
+          Drawable photoPlaceholderDrawable = AvatarPlaceholderGenerator.generate(
+                  getContext(), 128, recipient.getAddress().serialize(), recipient.getName());
 
           if (photo.contactPhoto != null) {
             requestManager.load(photo.contactPhoto)
-                          .fallback(fallbackContactPhotoDrawable)
-                          .error(fallbackContactPhotoDrawable)
+                          .fallback(photoPlaceholderDrawable)
+                          .error(photoPlaceholderDrawable)
                           .diskCacheStrategy(DiskCacheStrategy.ALL)
                           .circleCrop()
                           .into(this);
           } else {
-            setImageDrawable(fallbackContactPhotoDrawable);
+            requestManager.load(photoPlaceholderDrawable)
+                    .circleCrop()
+                    .into(this);
+//            setImageDrawable(photoPlaceholderDrawable);
           }
         }
       }

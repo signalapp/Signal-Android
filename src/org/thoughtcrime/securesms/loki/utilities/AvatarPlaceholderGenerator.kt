@@ -15,6 +15,7 @@ object AvatarPlaceholderGenerator {
 
     private const val EMPTY_LABEL = "0";
 
+    @JvmStatic
     fun generate(context: Context, pixelSize: Int, hashString: String, displayName: String?): BitmapDrawable {
         //TODO That should be replaced with a proper hash extraction code.
         val hash: Long

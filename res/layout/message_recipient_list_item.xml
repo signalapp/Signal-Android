@@ -8,25 +8,21 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
-            android:id="@+id/contact_photo_image"
-            android:foreground="@drawable/contact_photo_background"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+    <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+            android:id="@+id/profilePictureView"
+            android:layout_width="@dimen/medium_profile_picture_size"
+            android:layout_height="@dimen/medium_profile_picture_size"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
-            android:layout_marginEnd="10dp"
-            android:cropToPadding="true"
-            tools:src="@drawable/ic_contact_picture"
-            android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
+            android:layout_marginEnd="10dp" />
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginTop="4dip"
                   android:layout_marginBottom="4dip"
-                  android:layout_toEndOf="@id/contact_photo_image"
+                  android:layout_toEndOf="@id/profilePictureView"
                   android:layout_centerVertical="true"
                   android:gravity="center_vertical"
                   android:orientation="horizontal">
