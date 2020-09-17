@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -122,7 +124,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   protected void onCreate(Bundle bundle, boolean ready) {
     dynamicLanguage.onCreate(this);
 
-    viewModel = ViewModelProviders.of(this).get(MediaPreviewViewModel.class);
+    viewModel = new ViewModelProvider(this).get(MediaPreviewViewModel.class);
 
     setContentView(R.layout.media_preview_activity);
 
@@ -224,8 +226,10 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     captionContainer          = findViewById(R.id.media_preview_caption_container);
     playbackControlsContainer = findViewById(R.id.media_preview_playback_controls_container);
 
-
     setSupportActionBar(findViewById(R.id.toolbar));
+    ActionBar actionBar = getSupportActionBar();
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setHomeButtonEnabled(true);
   }
 
   private void initializeResources() {
