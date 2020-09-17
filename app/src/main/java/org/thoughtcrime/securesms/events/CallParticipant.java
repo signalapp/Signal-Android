@@ -12,6 +12,8 @@ import java.util.Objects;
 
 public class CallParticipant {
 
+  public static final CallParticipant EMPTY = createRemote(Recipient.UNKNOWN, null, new BroadcastVideoSink(null), false);
+
   private final @NonNull  CameraState        cameraState;
   private final @NonNull  Recipient          recipient;
   private final @Nullable IdentityKey        identityKey;

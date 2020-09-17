@@ -11,6 +11,7 @@
         android:background="@color/transparent_black_40" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/call_screen_participants_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -23,19 +24,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:orientation="vertical" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/call_screen_participants_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:reverseLayout="true"
-            tools:listitem="@layout/webrtc_call_participant_recycler_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -92,6 +80,20 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/call_screen_participants_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_video_toggle"
+            app:reverseLayout="true"
+            tools:listitem="@layout/webrtc_call_participant_recycler_item" />
 
         <org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
             android:id="@+id/call_screen_pip_area"

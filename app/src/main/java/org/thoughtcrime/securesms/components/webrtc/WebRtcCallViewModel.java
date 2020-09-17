@@ -147,6 +147,18 @@ public class WebRtcCallViewModel extends ViewModel {
         callState = WebRtcControls.CallState.INCOMING;
         answerWithVideoAvailable = isRemoteVideoOffer;
         break;
+      case CALL_OUTGOING:
+      case CALL_RINGING:
+        callState = WebRtcControls.CallState.OUTGOING;
+        break;
+      case CALL_ACCEPTED_ELSEWHERE:
+      case CALL_DECLINED_ELSEWHERE:
+      case CALL_ONGOING_ELSEWHERE:
+      case CALL_NEEDS_PERMISSION:
+      case CALL_BUSY:
+      case CALL_DISCONNECTED:
+        callState = WebRtcControls.CallState.ENDING;
+        break;
       default:
         callState = WebRtcControls.CallState.ONGOING;
     }

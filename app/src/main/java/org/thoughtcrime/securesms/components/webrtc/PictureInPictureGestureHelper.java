@@ -9,6 +9,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,6 @@ import androidx.core.view.GestureDetectorCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout;
 
 import java.util.Arrays;
@@ -26,11 +26,14 @@ import java.util.Queue;
 
 public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestureListener {
 
-  private static final float DECELERATION_RATE = 0.99f;
+  private static final float        DECELERATION_RATE   = 0.99f;
+  private static final Interpolator FLING_INTERPOLATOR  = new ViscousFluidInterpolator();
+  private static final Interpolator ADJUST_INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
-  private final ViewGroup parent;
-  private final View      child;
-  private final int       framePadding;
+  private final ViewGroup       parent;
+  private final View            child;
+  private final int             framePadding;
+  private final Queue<Runnable> runAfterFling;
 
   private int             pipWidth;
   private int             pipHeight;
@@ -46,7 +49,7 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   private VelocityTracker velocityTracker;
   private int             maximumFlingVelocity;
   private boolean         isLockedToBottomEnd;
-  private Queue<Runnable> runAfterFling;
+  private Interpolator    interpolator;
 
   @SuppressLint("ClickableViewAccessibility")
   public static PictureInPictureGestureHelper applyTo(@NonNull View child) {
@@ -101,6 +104,7 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     this.pipHeight            = child.getResources().getDimensionPixelSize(R.dimen.picture_in_picture_gesture_helper_pip_height);
     this.maximumFlingVelocity = ViewConfiguration.get(child.getContext()).getScaledMaximumFlingVelocity();
     this.runAfterFling        = new LinkedList<>();
+    this.interpolator         = ADJUST_INTERPOLATOR;
   }
 
   public void clearVerticalBoundaries() {
@@ -130,8 +134,12 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     pipHeight = child.getMeasuredHeight();
 
     if (isAnimating) {
+      interpolator = ADJUST_INTERPOLATOR;
+
       fling();
     } else if (!isDragging) {
+      interpolator = ADJUST_INTERPOLATOR;
+
       onFling(null, null, 0, 0);
     }
   }
@@ -160,6 +168,7 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     isDragging      = true;
     pipWidth        = child.getMeasuredWidth();
     pipHeight       = child.getMeasuredHeight();
+    interpolator    = FLING_INTERPOLATOR;
 
     return true;
   }
@@ -216,7 +225,7 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
          .translationX(getTranslationXForPoint(nearestCornerPosition))
          .translationY(getTranslationYForPoint(nearestCornerPosition))
          .setDuration(250)
-         .setInterpolator(new ViscousFluidInterpolator())
+         .setInterpolator(interpolator)
          .setListener(new AnimationCompleteListener() {
            @Override
            public void onAnimationEnd(Animator animation) {

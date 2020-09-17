@@ -20,8 +20,10 @@ import androidx.constraintlayout.widget.Guideline;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.AutoTransition;
+import androidx.transition.ChangeBounds;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
+import androidx.transition.TransitionSet;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -51,6 +53,7 @@ public class WebRtcCallView extends FrameLayout {
 
   public static final int FADE_OUT_DELAY      = 5000;
   public static final int PIP_RESIZE_DURATION = 300;
+  public static final int CONTROLS_HEIGHT     = 98;
 
   private WebRtcAudioOutputToggleButton audioToggle;
   private AccessibleToggleButton        videoToggle;
@@ -62,6 +65,7 @@ public class WebRtcCallView extends FrameLayout {
   private TextView                      recipientName;
   private TextView                      status;
   private ConstraintLayout              parent;
+  private ConstraintLayout              participantsParent;
   private ControlsListener              controlsListener;
   private RecipientId                   recipientId;
   private ImageView                     answer;
@@ -75,6 +79,8 @@ public class WebRtcCallView extends FrameLayout {
   private ViewPager2                    callParticipantsPager;
   private RecyclerView                  callParticipantsRecycler;
   private Toolbar                       toolbar;
+  private int                           pagerBottomMarginDp;
+  private boolean                       controlsVisible = true;
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
@@ -114,6 +120,7 @@ public class WebRtcCallView extends FrameLayout {
     recipientName            = findViewById(R.id.call_screen_recipient_name);
     status                   = findViewById(R.id.call_screen_status);
     parent                   = findViewById(R.id.call_screen);
+    participantsParent       = findViewById(R.id.call_screen_participants_parent);
     answer                   = findViewById(R.id.call_screen_answer_call);
     cameraDirectionToggle    = findViewById(R.id.call_screen_camera_direction_toggle);
     hangup                   = findViewById(R.id.call_screen_end_call);
@@ -229,6 +236,12 @@ public class WebRtcCallView extends FrameLayout {
     pagerAdapter.submitList(pages);
     recyclerAdapter.submitList(state.getListParticipants());
     updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant());
+
+    if (state.isLargeVideoGroup()) {
+      layoutParticipantsForLargeCount();
+    } else {
+      layoutParticipantsForSmallCount();
+    }
   }
 
   public void updateLocalCallParticipant(@NonNull WebRtcLocalRenderState state, @NonNull CallParticipant localCallParticipant) {
@@ -371,6 +384,12 @@ public class WebRtcCallView extends FrameLayout {
       updateButtonStateForLargeButtons();
     }
 
+    if (webRtcControls.displayRemoteVideoRecycler()) {
+      callParticipantsRecycler.setVisibility(View.VISIBLE);
+    } else {
+      callParticipantsRecycler.setVisibility(View.GONE);
+    }
+
     if (webRtcControls.isFadeOutEnabled()) {
       if (!controls.isFadeOutEnabled()) {
         scheduleFadeOut();
@@ -443,8 +462,43 @@ public class WebRtcCallView extends FrameLayout {
     scheduleFadeOut();
   }
 
-  private void fadeControls(int visibility) {
+  private void layoutParticipantsForSmallCount() {
+    pagerBottomMarginDp = 0;
+
+    layoutParticipants();
+  }
+
+  private void layoutParticipantsForLargeCount() {
+    pagerBottomMarginDp = 104;
+
+    layoutParticipants();
+  }
+
+  private int withControlsHeight(int margin) {
+    if (margin == 0) {
+      return 0;
+    }
+
+    return controlsVisible ? margin + CONTROLS_HEIGHT : margin;
+  }
+
+  private void layoutParticipants() {
     Transition transition = new AutoTransition().setDuration(TRANSITION_DURATION_MILLIS);
+
+    TransitionManager.beginDelayedTransition(participantsParent, transition);
+
+    ConstraintSet constraintSet = new ConstraintSet();
+    constraintSet.clone(participantsParent);
+
+    constraintSet.setMargin(R.id.call_screen_participants_pager, ConstraintSet.BOTTOM, ViewUtil.dpToPx(withControlsHeight(pagerBottomMarginDp)));
+    constraintSet.applyTo(participantsParent);
+  }
+
+  private void fadeControls(int visibility) {
+    controlsVisible = visibility == VISIBLE;
+
+    Transition transition = new AutoTransition().setOrdering(TransitionSet.ORDERING_TOGETHER)
+                                                .setDuration(TRANSITION_DURATION_MILLIS);
 
     TransitionManager.beginDelayedTransition(parent, transition);
 
@@ -456,6 +510,8 @@ public class WebRtcCallView extends FrameLayout {
     }
 
     constraintSet.applyTo(parent);
+
+    layoutParticipants();
   }
 
   private void fadeInNewUiState(@NonNull Set<View> previouslyVisibleViewSet, boolean useSmallMargins) {

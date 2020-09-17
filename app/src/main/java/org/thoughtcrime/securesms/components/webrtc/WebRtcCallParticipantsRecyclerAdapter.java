@@ -14,13 +14,20 @@ import org.thoughtcrime.securesms.events.CallParticipant;
 
 class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant, WebRtcCallParticipantsRecyclerAdapter.ViewHolder> {
 
+  private static final int PARTICIPANT = 0;
+  private static final int EMPTY       = 1;
+
   protected WebRtcCallParticipantsRecyclerAdapter() {
     super(new DiffCallback());
   }
 
   @Override
   public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.webrtc_call_participant_recycler_item, parent, false));
+    if (viewType == PARTICIPANT) {
+      return new ParticipantViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.webrtc_call_participant_recycler_item, parent, false));
+    } else {
+      return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.webrtc_call_participant_recycler_empty_item, parent, false));
+    }
   }
 
   @Override
@@ -28,15 +35,29 @@ class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant,
     holder.bind(getItem(position));
   }
 
+  @Override
+  public int getItemViewType(int position) {
+    return getItem(position) == CallParticipant.EMPTY ? EMPTY : PARTICIPANT;
+  }
+
   static class ViewHolder extends RecyclerView.ViewHolder {
+    ViewHolder(@NonNull View itemView) {
+      super(itemView);
+    }
+
+    void bind(@NonNull CallParticipant callParticipant) {}
+  }
+
+  private static class ParticipantViewHolder extends ViewHolder {
 
     private final CallParticipantView callParticipantView;
 
-    ViewHolder(@NonNull View itemView) {
+    ParticipantViewHolder(@NonNull View itemView) {
       super(itemView);
       callParticipantView = itemView.findViewById(R.id.call_participant);
     }
 
+    @Override
     void bind(@NonNull CallParticipant callParticipant) {
       callParticipantView.setCallParticipant(callParticipant);
     }

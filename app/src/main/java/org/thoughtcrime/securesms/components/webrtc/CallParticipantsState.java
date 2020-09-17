@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import java.util.List;
  */
 public final class CallParticipantsState {
 
-  public static final CallParticipantsState STARTING_STATE = new CallParticipantsState(WebRtcViewModel.State.CALL_DISCONNECTED,
+  private static final int SMALL_GROUP_MAX = 6;
+
+  public static final CallParticipantsState STARTING_STATE  = new CallParticipantsState(WebRtcViewModel.State.CALL_DISCONNECTED,
                                                                                        Collections.emptyList(),
                                                                                        CallParticipant.createLocal(CameraState.UNKNOWN, new BroadcastVideoSink(null), false),
                                                                                        null,
@@ -55,21 +58,29 @@ public final class CallParticipantsState {
   }
 
   public @NonNull List<CallParticipant> getGridParticipants() {
-    if (getAllRemoteParticipants().size() > 6) {
-      return getAllRemoteParticipants().subList(0, 6);
+    if (getAllRemoteParticipants().size() > SMALL_GROUP_MAX) {
+      return getAllRemoteParticipants().subList(0, SMALL_GROUP_MAX);
     } else {
       return getAllRemoteParticipants();
     }
   }
 
   public @NonNull List<CallParticipant> getListParticipants() {
+    List<CallParticipant> listParticipants = new ArrayList<>();
+
     if (isViewingFocusedParticipant && getAllRemoteParticipants().size() > 1) {
-      return getAllRemoteParticipants().subList(1, getAllRemoteParticipants().size());
-    } else if (getAllRemoteParticipants().size() > 6) {
-      return getAllRemoteParticipants().subList(6, getAllRemoteParticipants().size());
+      listParticipants.addAll(getAllRemoteParticipants().subList(1, getAllRemoteParticipants().size()));
+    } else if (getAllRemoteParticipants().size() > SMALL_GROUP_MAX) {
+      listParticipants.addAll(getAllRemoteParticipants().subList(SMALL_GROUP_MAX, getAllRemoteParticipants().size()));
     } else {
       return Collections.emptyList();
     }
+
+    listParticipants.add(CallParticipant.EMPTY);
+
+    Collections.reverse(listParticipants);
+
+    return listParticipants;
   }
 
   public @NonNull List<CallParticipant> getAllRemoteParticipants() {
@@ -86,6 +97,10 @@ public final class CallParticipantsState {
 
   public @NonNull WebRtcLocalRenderState getLocalRenderState() {
     return localRenderState;
+  }
+
+  public boolean isLargeVideoGroup() {
+    return getAllRemoteParticipants().size() > SMALL_GROUP_MAX;
   }
 
   public boolean isInPipMode() {

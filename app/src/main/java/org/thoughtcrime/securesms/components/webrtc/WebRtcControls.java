@@ -41,23 +41,27 @@ public final class WebRtcControls {
   }
 
   boolean displayEndCall() {
-    return isOngoing();
+    return isAtLeastOutgoing();
   }
 
   boolean displayMuteAudio() {
-    return isOngoing();
+    return isAtLeastOutgoing();
   }
 
   boolean displayVideoToggle() {
-    return isOngoing();
+    return isAtLeastOutgoing();
   }
 
   boolean displayAudioToggle() {
-    return isOngoing() && (!isLocalVideoEnabled || isBluetoothAvailable);
+    return isAtLeastOutgoing() && (!isLocalVideoEnabled || isBluetoothAvailable);
   }
 
   boolean displayCameraToggle() {
-    return isOngoing() && isLocalVideoEnabled && isMoreThanOneCameraAvailable;
+    return isAtLeastOutgoing() && isLocalVideoEnabled && isMoreThanOneCameraAvailable;
+  }
+
+  boolean displayRemoteVideoRecycler() {
+    return isOngoing();
   }
 
   boolean displayAnswerWithAudio() {
@@ -77,15 +81,15 @@ public final class WebRtcControls {
   }
 
   boolean isFadeOutEnabled() {
-    return isOngoing() && isRemoteVideoEnabled;
+    return isAtLeastOutgoing() && isRemoteVideoEnabled;
   }
 
   boolean displaySmallOngoingCallButtons() {
-    return isOngoing() && displayAudioToggle() && displayCameraToggle();
+    return isAtLeastOutgoing() && displayAudioToggle() && displayCameraToggle();
   }
 
   boolean displayLargeOngoingCallButtons() {
-    return isOngoing() && !(displayAudioToggle() && displayCameraToggle());
+    return isAtLeastOutgoing() && !(displayAudioToggle() && displayCameraToggle());
   }
 
   boolean displayTopViews() {
@@ -104,9 +108,19 @@ public final class WebRtcControls {
     return callState == CallState.INCOMING;
   }
 
+  private boolean isAtLeastOutgoing() {
+    return callState.isAtLeast(CallState.OUTGOING);
+  }
+
   public enum CallState {
     NONE,
     INCOMING,
-    ONGOING
+    OUTGOING,
+    ONGOING,
+    ENDING;
+
+    boolean isAtLeast(@NonNull CallState other) {
+      return compareTo(other) >= 0;
+    }
   }
 }
