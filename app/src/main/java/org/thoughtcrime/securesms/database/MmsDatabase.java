@@ -389,7 +389,7 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address) {
+  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp) {
     throw new UnsupportedOperationException();
   }
 

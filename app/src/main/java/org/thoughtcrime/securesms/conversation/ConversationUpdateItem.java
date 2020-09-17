@@ -186,7 +186,7 @@ public final class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isOutgoingCall()) icon.setImageResource(R.drawable.ic_call_made_grey600_24dp);
     else                                     icon.setImageResource(R.drawable.ic_call_missed_grey600_24dp);
 
-    date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateReceived()));
+    date.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getDateSent()));
 
     title.setVisibility(GONE);
     date.setVisibility(View.VISIBLE);

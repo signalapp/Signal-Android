@@ -270,7 +270,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public long getTimestamp() {
-    if (isPush() && getDateSent() < getDateReceived()) {
+    if ((isPush() || isCallLog()) && getDateSent() < getDateReceived()) {
       return getDateSent();
     }
     return getDateReceived();
