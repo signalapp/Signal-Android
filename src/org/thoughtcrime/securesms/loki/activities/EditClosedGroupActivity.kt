@@ -12,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
 import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
 import kotlinx.android.synthetic.main.activity_edit_closed_group.*
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.ThemeUtil
 import org.whispersystems.signalservice.loki.utilities.toHexString
 import java.io.IOException
 
@@ -60,11 +62,12 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-
         setContentView(R.layout.activity_edit_closed_group)
-        supportActionBar!!.title = resources.getString(R.string.activity_edit_closed_group_title)
 
-        groupID = intent.getStringExtra(Companion.groupIDKey)
+        supportActionBar!!.setHomeAsUpIndicator(
+                ThemeUtil.getThemedDrawableResId(this, R.attr.actionModeCloseDrawable))
+
+        groupID = intent.getStringExtra(groupIDKey)!!
         originalName = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title
         name = originalName
 
@@ -88,7 +91,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             }
         }
 
-        LoaderManager.getInstance(this).initLoader(Companion.loaderID, null, object : LoaderManager.LoaderCallbacks<List<String>> {
+        LoaderManager.getInstance(this).initLoader(loaderID, null, object : LoaderManager.LoaderCallbacks<List<String>> {
 
             override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<List<String>> {
                 return EditClosedGroupLoader(this@EditClosedGroupActivity, groupID)
@@ -97,7 +100,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             override fun onLoadFinished(loader: Loader<List<String>>, members: List<String>) {
                 // We no longer need any subsequent loading events
                 // (they will occur on every activity resume).
-                LoaderManager.getInstance(this@EditClosedGroupActivity).destroyLoader(Companion.loaderID)
+                LoaderManager.getInstance(this@EditClosedGroupActivity).destroyLoader(loaderID)
 
                 originalMembers.clear()
                 originalMembers.addAll(members.toHashSet())
@@ -120,7 +123,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            Companion.addUsersRequestCode -> {
+            addUsersRequestCode -> {
                 if (resultCode != RESULT_OK) return
                 if (data == null || data.extras == null || !data.hasExtra(SelectContactsActivity.selectedContactsKey)) return
 
@@ -180,8 +183,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
     private fun onAddMembersClick() {
         val intent = Intent(this@EditClosedGroupActivity, SelectContactsActivity::class.java)
-        intent.putExtra(SelectContactsActivity.Companion.usersToExcludeKey, members.toTypedArray())
-        startActivityForResult(intent, Companion.addUsersRequestCode)
+        intent.putExtra(SelectContactsActivity.usersToExcludeKey, members.toTypedArray())
+        startActivityForResult(intent, addUsersRequestCode)
     }
 
     private fun saveName() {
@@ -227,7 +230,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
 
-        val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocol.groupSizeLimit else Companion.legacyGroupSizeLimit
+        val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocol.groupSizeLimit else legacyGroupSizeLimit
         if (members.size >= maxGroupMembers) {
             // TODO: Update copy for SSK based closed groups
             return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()

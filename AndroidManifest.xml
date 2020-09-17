@@ -143,6 +143,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity"
+            android:label="@string/activity_edit_closed_group_title"
             android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.activities.JoinPublicChatActivity"
