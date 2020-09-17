@@ -59,7 +59,7 @@ class UserView : LinearLayout {
                 if (result == null && publicChat != null) {
                     result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
                 }
-                return result
+                return result ?: publicKey
             }
         }
         val address = user.address.serialize()
