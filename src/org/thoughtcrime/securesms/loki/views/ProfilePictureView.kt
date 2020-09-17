@@ -96,7 +96,7 @@ class ProfilePictureView : RelativeLayout {
             }
         } else {
             publicKey = recipient.address.toString()
-            displayName = recipient.name
+            displayName = getUserDisplayName(publicKey)
             additionalPublicKey = null
             isRSSFeed = false
         }
