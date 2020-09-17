@@ -141,11 +141,12 @@ public class TextSecurePreferences {
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
   private static final String NEXT_SIGNED_PRE_KEY_ID   = "pref_next_signed_pre_key_id";
 
-  public  static final String BACKUP_ENABLED              = "pref_backup_enabled";
+  public  static final String BACKUP_ENABLED              = "pref_backup_enabled_v2";
   private static final String BACKUP_PASSPHRASE           = "pref_backup_passphrase";
   private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
   private static final String BACKUP_TIME                 = "pref_backup_next_time";
   public  static final String BACKUP_NOW                  = "pref_backup_create";
+  private static final String BACKUP_SAVE_DIR             = "pref_save_dir";
 
   public static final String SCREEN_LOCK         = "pref_android_screen_lock";
   public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
@@ -294,6 +295,14 @@ public class TextSecurePreferences {
 
   public static long getNextBackupTime(@NonNull Context context) {
     return getLongPreference(context, BACKUP_TIME, -1);
+  }
+
+  public static void setBackupSaveDir(@NonNull Context context, String dirUri) {
+    setStringPreference(context, BACKUP_SAVE_DIR, dirUri);
+  }
+
+  public static String getBackupSaveDir(@NonNull Context context) {
+    return getStringPreference(context, BACKUP_SAVE_DIR, null);
   }
 
   public static int getNextPreKeyId(@NonNull Context context) {

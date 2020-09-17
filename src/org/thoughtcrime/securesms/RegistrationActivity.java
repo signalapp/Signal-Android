@@ -57,7 +57,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.registration.CaptchaActivity;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
-import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.BackupUtilOld;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -76,7 +76,6 @@ import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.push.LockedException;
 
 import java.io.IOException;
-import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -275,11 +274,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
     if (getIntent().getBooleanExtra(RE_REGISTRATION_EXTRA, false)) return;
 
-    new AsyncTask<Void, Void, BackupUtil.BackupInfo>() {
+    new AsyncTask<Void, Void, BackupUtilOld.BackupInfo>() {
       @Override
-      protected @Nullable BackupUtil.BackupInfo doInBackground(Void... voids) {
+      protected @Nullable BackupUtilOld.BackupInfo doInBackground(Void... voids) {
         try {
-          return BackupUtil.getLatestBackup(RegistrationActivity.this);
+          return BackupUtilOld.getLatestBackup(RegistrationActivity.this);
         } catch (NoExternalStorageException e) {
           Log.w(TAG, e);
           return null;
@@ -287,7 +286,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       }
 
       @Override
-      protected void onPostExecute(@Nullable BackupUtil.BackupInfo backup) {
+      protected void onPostExecute(@Nullable BackupUtilOld.BackupInfo backup) {
         if (backup != null) displayRestoreView(backup);
       }
     }.execute();
@@ -304,7 +303,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   @SuppressLint("StaticFieldLeak")
-  private void handleRestore(BackupUtil.BackupInfo backup) {
+  private void handleRestore(BackupUtilOld.BackupInfo backup) {
     View     view   = LayoutInflater.from(this).inflate(R.layout.enter_backup_passphrase_dialog, null);
     EditText prompt = view.findViewById(R.id.restore_passphrase_input);
 
@@ -661,7 +660,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     finish();
   }
 
-  private void displayRestoreView(@NonNull BackupUtil.BackupInfo backup) {
+  private void displayRestoreView(@NonNull BackupUtilOld.BackupInfo backup) {
     title.animate().translationX(title.getWidth()).setDuration(SCENE_TRANSITION_DURATION).setListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
