@@ -1,24 +1,36 @@
 package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Intent
-import androidx.appcompat.app.ActionBar
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Gravity
-import android.widget.ImageView
-import android.widget.RelativeLayout
+import androidx.appcompat.widget.Toolbar
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.BaseActionBarActivity
 
-fun AppCompatActivity.setUpActionBarSessionLogo() {
-    supportActionBar!!.setDisplayShowHomeEnabled(false)
-    supportActionBar!!.setDisplayShowTitleEnabled(false)
-    val logoImageView = ImageView(this)
-    logoImageView.setImageResource(R.drawable.session_logo)
-    val logoImageViewContainer = RelativeLayout(this)
-    logoImageViewContainer.addView(logoImageView)
-    logoImageViewContainer.gravity = Gravity.CENTER
-    val logoImageViewContainerLayoutParams = ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT)
-    supportActionBar!!.setCustomView(logoImageViewContainer, logoImageViewContainerLayoutParams)
-    supportActionBar!!.setDisplayShowCustomEnabled(true)
+fun BaseActionBarActivity.setUpActionBarSessionLogo(hideBackButton: Boolean = false) {
+    val actionbar = supportActionBar!!
+
+    actionbar.setDisplayShowHomeEnabled(false)
+    actionbar.setDisplayShowTitleEnabled(false)
+    actionbar.setDisplayHomeAsUpEnabled(false)
+    actionbar.setHomeButtonEnabled(false)
+
+    actionbar.setCustomView(R.layout.session_logo_action_bar_content)
+    actionbar.setDisplayShowCustomEnabled(true)
+
+    val rootView: Toolbar = actionbar.customView!!.parent as Toolbar
+    rootView.setPadding(0,0,0,0)
+    rootView.setContentInsetsAbsolute(0,0);
+
+    val backButton = actionbar.customView!!.findViewById<View>(R.id.back_button)
+    if (hideBackButton) {
+        backButton.visibility = View.GONE
+    } else {
+        backButton.visibility = View.VISIBLE
+        backButton.setOnClickListener {
+            onSupportNavigateUp()
+        }
+    }
 }
 
 val AppCompatActivity.defaultSessionRequestCode: Int
