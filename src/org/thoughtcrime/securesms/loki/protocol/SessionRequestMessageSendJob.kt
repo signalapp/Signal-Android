@@ -72,7 +72,7 @@ class SessionRequestMessageSendJob private constructor(parameters: Parameters, p
         try {
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                     Date().time, serializedContentMessage, false, ttl, false,
-                    true, false, false)
+                    true, false, false, false)
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send session request to: $publicKey due to error: $e.")
             throw e
