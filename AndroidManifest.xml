@@ -524,7 +524,7 @@
         <service
             android:name="org.thoughtcrime.securesms.loki.api.PushNotificationService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -681,7 +681,9 @@
             </intent-filter>
         </receiver>
         <!-- Session -->
-        <receiver android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollListener" >
+        <receiver
+            android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollListener"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
