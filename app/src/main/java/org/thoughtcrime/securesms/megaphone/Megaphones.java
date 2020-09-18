@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestMegaphoneActivit
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ResearchMegaphone;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.LinkedHashMap;
@@ -85,9 +86,9 @@ public final class Megaphones {
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
       put(Event.MESSAGE_REQUESTS, shouldShowMessageRequestsMegaphone() ? ALWAYS : NEVER);
-      put(Event.MENTIONS, shouldShowMentionsMegaphone() ? ALWAYS : NEVER);
       put(Event.LINK_PREVIEWS, shouldShowLinkPreviewsMegaphone(context) ? ALWAYS : NEVER);
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
+      put(Event.RESEARCH, shouldShowResearchMegaphone() ? ShowForDurationSchedule.showForDays(7) : NEVER);
     }};
   }
 
@@ -101,12 +102,12 @@ public final class Megaphones {
         return buildPinReminderMegaphone(context);
       case MESSAGE_REQUESTS:
         return buildMessageRequestsMegaphone(context);
-      case MENTIONS:
-        return buildMentionsMegaphone();
       case LINK_PREVIEWS:
         return buildLinkPreviewsMegaphone();
       case CLIENT_DEPRECATED:
         return buildClientDeprecatedMegaphone(context);
+      case RESEARCH:
+        return buildResearchMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -189,14 +190,6 @@ public final class Megaphones {
                         .build();
   }
 
-  private static Megaphone buildMentionsMegaphone() {
-    return new Megaphone.Builder(Event.MENTIONS, Megaphone.Style.POPUP)
-                        .setTitle(R.string.MentionsMegaphone__introducing_mentions)
-                        .setBody(R.string.MentionsMegaphone__get_someones_attention_in_a_group_by_typing)
-                        .setImage(R.drawable.mention_megaphone)
-                        .build();
-  }
-
   private static @NonNull Megaphone buildLinkPreviewsMegaphone() {
     return new Megaphone.Builder(Event.LINK_PREVIEWS, Megaphone.Style.LINK_PREVIEWS)
                         .setPriority(Megaphone.Priority.HIGH)
@@ -207,9 +200,22 @@ public final class Megaphones {
     return new Megaphone.Builder(Event.CLIENT_DEPRECATED, Megaphone.Style.FULLSCREEN)
                         .disableSnooze()
                         .setPriority(Megaphone.Priority.HIGH)
-                        .setOnVisibleListener((megaphone, listener) -> {
-                          listener.onMegaphoneNavigationRequested(new Intent(context, ClientDeprecatedActivity.class));
+                        .setOnVisibleListener((megaphone, listener) -> listener.onMegaphoneNavigationRequested(new Intent(context, ClientDeprecatedActivity.class)))
+                        .build();
+  }
+
+  private static @NonNull Megaphone buildResearchMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.RESEARCH, Megaphone.Style.BASIC)
+                        .disableSnooze()
+                        .setTitle(R.string.ResearchMegaphone_tell_signal_what_you_think)
+                        .setBody(R.string.ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet)
+                        .setImage(R.drawable.ic_research_megaphone)
+                        .setActionButton(R.string.ResearchMegaphone_learn_more, (megaphone, controller) -> {
+                          controller.onMegaphoneCompleted(megaphone.getEvent());
+                          controller.onMegaphoneDialogFragmentRequested(new ResearchMegaphoneDialog());
                         })
+                        .setSecondaryButton(R.string.ResearchMegaphone_dismiss, (megaphone, controller) -> controller.onMegaphoneCompleted(megaphone.getEvent()))
+                        .setPriority(Megaphone.Priority.DEFAULT)
                         .build();
   }
 
@@ -217,9 +223,8 @@ public final class Megaphones {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
 
-  private static boolean shouldShowMentionsMegaphone() {
-    return false;
-//    return FeatureFlags.mentions();
+  private static boolean shouldShowResearchMegaphone() {
+    return ResearchMegaphone.isInResearchMegaphone();
   }
 
   private static boolean shouldShowLinkPreviewsMegaphone(@NonNull Context context) {
@@ -231,9 +236,9 @@ public final class Megaphones {
     PINS_FOR_ALL("pins_for_all"),
     PIN_REMINDER("pin_reminder"),
     MESSAGE_REQUESTS("message_requests"),
-    MENTIONS("mentions"),
     LINK_PREVIEWS("link_previews"),
-    CLIENT_DEPRECATED("client_deprecated");
+    CLIENT_DEPRECATED("client_deprecated"),
+    RESEARCH("research");
 
     private final String key;
 

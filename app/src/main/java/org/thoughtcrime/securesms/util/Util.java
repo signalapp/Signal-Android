@@ -664,6 +664,14 @@ public class Util {
     }
   }
 
+  public static int parseInt(String integer, int defaultValue) {
+    try {
+      return Integer.parseInt(integer);
+    } catch (NumberFormatException e) {
+      return defaultValue;
+    }
+  }
+
   /**
    * Appends the stack trace of the provided throwable onto the provided primary exception. This is
    * useful for when exceptions are thrown inside of asynchronous systems (like runnables in an

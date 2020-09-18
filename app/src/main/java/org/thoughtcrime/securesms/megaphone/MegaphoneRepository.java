@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.megaphone;
 import android.content.Context;
 
 import androidx.annotation.AnyThread;
-import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -53,7 +52,7 @@ public class MegaphoneRepository {
     executor.execute(() -> {
       database.markFinished(Event.REACTIONS);
       database.markFinished(Event.MESSAGE_REQUESTS);
-      database.markFinished(Event.MENTIONS);
+      database.markFinished(Event.RESEARCH);
       resetDatabaseCache();
     });
   }

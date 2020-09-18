@@ -40,6 +40,19 @@
         <item name="android:textColor">@null</item>
     </style>
 
+    <style name="TextSecure.DarkTheme.FullScreenDialog">
+        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
+    </style>
+
+    <style name="TextSecure.LightTheme.FullScreenDialog">
+        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
+    </style>
+    
+    <style name="TextSecure.Animation.FullScreenDialog" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
+    </style>
+
     <!-- ActionBar styles -->
     <style name="TextSecure.DarkActionBar"
            parent="@style/Widget.AppCompat.ActionBar">

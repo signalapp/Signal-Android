@@ -55,6 +55,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.ViewCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -421,6 +422,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onMegaphoneCompleted(@NonNull Megaphones.Event event) {
     viewModel.onMegaphoneCompleted(event);
+  }
+
+  @Override
+  public void onMegaphoneDialogFragmentRequested(@NonNull DialogFragment dialogFragment) {
+    dialogFragment.show(getChildFragmentManager(), "megaphone_dialog");
   }
 
   private void onReminderAction(@IdRes int reminderActionId) {

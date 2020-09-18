@@ -23,7 +23,7 @@
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/profile_splash"/>
+        tools:src="@tools:sample/avatars"/>
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/basic_megaphone_title"
@@ -63,14 +63,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         style="@style/Button.Borderless"
-        app:layout_constraintStart_toEndOf="@id/basic_megaphone_snooze"
+        app:layout_constraintStart_toEndOf="@id/basic_megaphone_secondary"
         app:layout_constraintTop_toBottomOf="@id/basic_megaphone_content_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="*sigh*"
         tools:visibility="visible"/>
 
     <Button
-        android:id="@+id/basic_megaphone_snooze"
+        android:id="@+id/basic_megaphone_secondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"

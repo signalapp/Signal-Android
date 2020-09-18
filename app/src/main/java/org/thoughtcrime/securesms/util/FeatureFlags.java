@@ -7,6 +7,9 @@ import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
 import com.google.android.collect.Sets;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +20,10 @@ import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -65,6 +71,7 @@ public final class FeatureFlags {
   private static final String VERIFY_V2                    = "android.verifyV2";
   private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION            = "android.clientExpiration";
+  public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -83,7 +90,8 @@ public final class FeatureFlags {
       USERNAMES,
       MENTIONS,
       VERIFY_V2,
-      CLIENT_EXPIRATION
+      CLIENT_EXPIRATION,
+      RESEARCH_MEGAPHONE_1
   );
 
   /**
@@ -281,6 +289,11 @@ public final class FeatureFlags {
   /** The raw client expiration JSON string. */
   public static String clientExpiration() {
     return getString(CLIENT_EXPIRATION, null);
+  }
+
+  /** The raw research megaphone CSV string */
+  public static String researchMegaphone() {
+    return getString(RESEARCH_MEGAPHONE_1, "");
   }
 
   /**
