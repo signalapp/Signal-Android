@@ -8,6 +8,8 @@ import android.text.TextUtils
 import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
 import network.loki.messenger.R
+import java.math.BigInteger
+import java.security.MessageDigest
 import java.util.*
 
 object AvatarPlaceholderGenerator {
@@ -15,11 +17,29 @@ object AvatarPlaceholderGenerator {
 
     private const val EMPTY_LABEL = "0";
 
+    fun getSHA512(input:String):String{
+        val md: MessageDigest = MessageDigest.getInstance("SHA-512")
+        val messageDigest = md.digest(input.toByteArray())
+
+        // Convert byte array into signum representation
+        val no = BigInteger(1, messageDigest)
+
+        // Convert message digest into hex value
+        var hashtext: String = no.toString(16)
+
+        // Add preceding 0s to make it 32 bit
+        while (hashtext.length < 32) {
+            hashtext = "0$hashtext"
+        }
+
+        // return the HashText
+        return hashtext
+    }
+
     fun generate(context: Context, pixelSize: Int, hashString: String, displayName: String?): BitmapDrawable {
-        //TODO That should be replaced with a proper hash extraction code.
         val hash: Long
         if (hashString.length >= 12 && hashString.matches(Regex("^[0-9A-Fa-f]+\$"))) {
-            hash = hashString.substring(0 until 12).toLong(16)
+            hash = AvatarPlaceholderGenerator.getSHA512(hashString).substring(0 until 12).toLong(16)
         } else {
             hash = 0
         }
@@ -27,7 +47,6 @@ object AvatarPlaceholderGenerator {
         // Do not cache color array, it may be different depends on the current theme.
         val colorArray = context.resources.getIntArray(R.array.profile_picture_placeholder_colors)
         val colorPrimary = colorArray[(hash % colorArray.size).toInt()]
-        val colorSecondary = changeColorHueBy(colorPrimary, 12f)
 
         val labelText = when {
             !TextUtils.isEmpty(displayName) -> extractLabel(displayName!!.capitalize())
@@ -62,18 +81,13 @@ object AvatarPlaceholderGenerator {
         return BitmapDrawable(context.resources, bitmap)
     }
 
-    @ColorInt
-    private fun changeColorHueBy(@ColorInt color: Int, hueDelta: Float): Int {
-        val hslColor = tmpFloatArray
-        ColorUtils.colorToHSL(color, hslColor)
-        hslColor[0] = (hslColor[0] + hueDelta) % 360f
-        return ColorUtils.HSLToColor(hslColor)
-    }
-
     private fun extractLabel(content: String): String {
         var content = content.trim()
         if (content.isEmpty()) return EMPTY_LABEL
-
-        return content.first().toString().toUpperCase(Locale.ROOT)
+        return if (content.length > 2 && content.startsWith("05")) {
+            content[2].toString().toUpperCase(Locale.ROOT)
+        } else {
+            content.first().toString().toUpperCase(Locale.ROOT)
+        }
     }
 }
