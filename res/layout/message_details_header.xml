@@ -155,6 +155,7 @@
     <View
         android:id="@+id/separator"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/medium_spacing"
         android:layout_height="1px"
         android:background="?android:dividerHorizontal" />
 
