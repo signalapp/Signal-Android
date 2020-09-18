@@ -189,7 +189,7 @@ public class TextSecurePreferences {
   // region FCM
   private static final String IS_USING_FCM = "pref_is_using_fcm";
   private static final String FCM_TOKEN = "pref_fcm_token";
-  private static final String LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time";
+  private static final String LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time_2";
   private static final String HAS_SEEN_PN_MODE_SHEET = "pref_has_seen_pn_mode_sheet";
 
   public static boolean isUsingFCM(Context context) {
