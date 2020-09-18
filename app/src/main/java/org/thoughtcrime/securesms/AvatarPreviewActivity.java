@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,12 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
-import android.view.DisplayCutout;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +34,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FullscreenHelper;
 
 /**
  * Activity for displaying avatars full screen.
@@ -81,17 +76,7 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
 
     setSupportActionBar(toolbar);
 
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                         WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-    if (Build.VERSION.SDK_INT >= 28) {
-      getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-      toolbar.getViewTreeObserver().addOnGlobalLayoutListener(new DisplayCutoutAdjuster(toolbar, findViewById(R.id.toolbar_cutout_spacer)));
-    }
-
-    showSystemUI();
-
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    requireSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Context     context     = getApplicationContext();
     RecipientId recipientId = RecipientId.from(getIntent().getStringExtra(RECIPIENT_ID_EXTRA));
@@ -140,84 +125,18 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
       toolbar.setTitle(recipient.getDisplayName(context));
     });
 
-    avatar.setOnClickListener(v -> toggleUiVisibility());
+    FullscreenHelper fullscreenHelper = new FullscreenHelper(this);
 
-    showAndHideWithSystemUI(getWindow(), findViewById(R.id.toolbar_layout));
-  }
+    findViewById(android.R.id.content).setOnClickListener(v -> fullscreenHelper.toggleUiVisibility());
 
-  private static void showAndHideWithSystemUI(@NonNull Window window, @NonNull View... views) {
-    window.getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
-      boolean hide = (visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
+    fullscreenHelper.configureToolbarSpacer(findViewById(R.id.toolbar_cutout_spacer));
 
-      for (View view : views) {
-        view.animate()
-            .alpha(hide ? 0 : 1)
-            .start();
-      }
-    });
-  }
-
-  private void toggleUiVisibility() {
-    int systemUiVisibility = getWindow().getDecorView().getSystemUiVisibility();
-    if ((systemUiVisibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0) {
-      showSystemUI();
-    } else {
-      hideSystemUI();
-    }
-  }
-
-  private void hideSystemUI() {
-    getWindow().getDecorView().setSystemUiVisibility(
-        View.SYSTEM_UI_FLAG_IMMERSIVE              |
-        View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
-        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN      |
-        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION        |
-        View.SYSTEM_UI_FLAG_FULLSCREEN              );
-  }
-
-  private void showSystemUI() {
-    getWindow().getDecorView().setSystemUiVisibility(
-        View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
-        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN       );
+    fullscreenHelper.showAndHideWithSystemUI(getWindow(), findViewById(R.id.toolbar_layout));
   }
 
   @Override
   public boolean onSupportNavigateUp() {
     onBackPressed();
     return true;
-  }
-
-  /**
-   * Adjust a spacer for the toolbar when a display cutout is detected. Runs within
-   * a layout listener because the activity delays view attachment due to the transitions
-   * and needs to update on device rotation.
-   */
-  @TargetApi(28)
-  private static class DisplayCutoutAdjuster implements ViewTreeObserver.OnGlobalLayoutListener {
-
-    private final View view;
-    private final View spacer;
-
-    private DisplayCutoutAdjuster(@NonNull View view, @NonNull View spacer) {
-      this.view   = view;
-      this.spacer = spacer;
-    }
-
-    @Override
-    public void onGlobalLayout() {
-      if (view.getRootWindowInsets() == null) {
-        return;
-      }
-
-      DisplayCutout cutout = view.getRootWindowInsets().getDisplayCutout();
-      if (cutout != null) {
-        ViewGroup.LayoutParams params = spacer.getLayoutParams();
-        params.height = cutout.getSafeInsetTop();
-        spacer.setLayoutParams(params);
-        spacer.setVisibility(View.VISIBLE);
-      }
-    }
   }
 }

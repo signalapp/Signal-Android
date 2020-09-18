@@ -72,6 +72,12 @@
         android:background="@color/media_preview_bar_background"
         app:elevation="0dp">
 
+        <View
+            android:id="@+id/toolbar_cutout_spacer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
