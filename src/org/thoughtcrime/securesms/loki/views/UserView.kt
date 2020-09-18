@@ -90,7 +90,7 @@ class UserView : LinearLayout {
         actionIndicatorImageView.setImageResource(R.drawable.ic_baseline_edit_24)
         profilePictureView.glide = glide
         profilePictureView.update()
-        nameTextView.text = getUserDisplayName(address)
+        nameTextView.text = if (user.isGroupRecipient) user.name else getUserDisplayName(address)
         when (actionIndicator) {
             ActionIndicator.None -> {
                 actionIndicatorImageView.visibility = View.GONE
