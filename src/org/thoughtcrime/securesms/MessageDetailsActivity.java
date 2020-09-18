@@ -24,16 +24,17 @@ import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.Loader;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.app.LoaderManager.LoaderCallbacks;
+import androidx.loader.content.Loader;
 
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -55,10 +56,10 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
 
 import java.lang.ref.WeakReference;
 import java.sql.Date;
@@ -97,17 +98,16 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private View             receivedContainer;
   private TextView         transport;
   private TextView         toFrom;
+  private View             separator;
   private ListView         recipientsList;
   private LayoutInflater   inflater;
 
-  private DynamicTheme     dynamicTheme    = new DynamicTheme();
   private DynamicLanguage  dynamicLanguage = new DynamicLanguage();
 
   private boolean running;
 
   @Override
   protected void onPreCreate() {
-    dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
   }
 
@@ -119,14 +119,12 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
     initializeResources();
     initializeActionBar();
-    getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar_background));
     getSupportLoaderManager().initLoader(0, null, this);
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
     assert getSupportActionBar() != null;
@@ -181,6 +179,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     receivedDate      = header.findViewById(R.id.received_time);
     transport         = header.findViewById(R.id.transport);
     toFrom            = header.findViewById(R.id.tofrom);
+    separator         = header.findViewById(R.id.separator);
     expiresContainer  = header.findViewById(R.id.expires_container);
     expiresInText     = header.findViewById(R.id.expires_in);
     recipientsList.setHeaderDividersEnabled(false);
@@ -266,6 +265,12 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       toFromRes = R.string.message_details_header__from;
     }
     toFrom.setText(toFromRes);
+    long threadID = messageRecord.getThreadId();
+    PublicChat openGroup = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadID);
+    if (openGroup != null && messageRecord.isOutgoing()) {
+      toFrom.setVisibility(View.GONE);
+      separator.setVisibility(View.GONE);
+    }
     conversationItem.bind(messageRecord, Optional.absent(), Optional.absent(), glideRequests, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient, null, false);
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, glideRequests, messageRecord, recipients, isPushGroup));
   }

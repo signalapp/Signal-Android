@@ -1,14 +1,15 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.loki.views.UserView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Conversions;
@@ -16,8 +17,6 @@ import org.thoughtcrime.securesms.util.Conversions;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
-import network.loki.messenger.R;
 
 class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
@@ -59,14 +58,11 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    if (convertView == null) {
-      convertView = LayoutInflater.from(context).inflate(R.layout.message_recipient_list_item, parent, false);
-    }
-
-    RecipientDeliveryStatus member = members.get(position);
-
-    ((MessageRecipientListItem)convertView).set(glideRequests, record, member, isPushGroup);
-    return convertView;
+    UserView result = new UserView(context);
+    Recipient recipient = members.get(position).getRecipient();
+    result.setOpenGroupThreadID(record.getThreadId());
+    result.bind(recipient, glideRequests, UserView.ActionIndicator.None, false);
+    return result;
   }
 
   @Override

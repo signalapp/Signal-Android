@@ -134,10 +134,10 @@ class EnterPublicKeyFragment : Fragment() {
     }
 
     private fun copyPublicKey() {
-        val clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipboard = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Session ID", hexEncodedPublicKey)
         clipboard.setPrimaryClip(clip)
-        Toast.makeText(context!!, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }
 
     private fun sharePublicKey() {
@@ -149,8 +149,8 @@ class EnterPublicKeyFragment : Fragment() {
     }
 
     private fun createPrivateChatIfPossible() {
-        val hexEncodedPublicKey = publicKeyEditText.text.trim().toString()
-        (activity!! as CreatePrivateChatActivity).createPrivateChatIfPossible(hexEncodedPublicKey)
+        val hexEncodedPublicKey = publicKeyEditText.text?.trim().toString() ?: ""
+        (requireActivity() as CreatePrivateChatActivity).createPrivateChatIfPossible(hexEncodedPublicKey)
     }
 }
 // endregion

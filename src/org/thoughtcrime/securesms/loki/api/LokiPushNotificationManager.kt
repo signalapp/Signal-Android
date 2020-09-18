@@ -51,15 +51,19 @@ object LokiPushNotificationManager {
                         val code = json?.get("code") as? Int
                         if (code != null && code != 0) {
                             TextSecurePreferences.setIsUsingFCM(context, false)
+                            Log.d("Loki", "Successfully unregistered from FCM.")
                         } else {
                             Log.d("Loki", "Couldn't disable FCM due to error: ${json?.get("message") as? String ?: "null"}.")
                         }
+                    }
+                    else -> {
+                        Log.d("Loki", "Couldn't disable FCM.")
                     }
                 }
             }
 
             override fun onFailure(call: Call, exception: IOException) {
-                Log.d("Loki", "Couldn't disable FCM.")
+                Log.d("Loki", "Couldn't disable FCM due to error: $exception.")
             }
         })
         // Unsubscribe from all closed groups
@@ -91,15 +95,19 @@ object LokiPushNotificationManager {
                             TextSecurePreferences.setIsUsingFCM(context, true)
                             TextSecurePreferences.setFCMToken(context, token)
                             TextSecurePreferences.setLastFCMUploadTime(context, System.currentTimeMillis())
+                            Log.d("Loki", "Successfully registered for FCM.")
                         } else {
                             Log.d("Loki", "Couldn't register for FCM due to error: ${json?.get("message") as? String ?: "null"}.")
                         }
+                    }
+                    else -> {
+                        Log.d("Loki", "Couldn't register for FCM due.")
                     }
                 }
             }
 
             override fun onFailure(call: Call, exception: IOException) {
-                Log.d("Loki", "Couldn't register for FCM.")
+                Log.d("Loki", "Couldn't register for FCM due to error: $exception.")
             }
         })
         // Subscribe to all closed groups

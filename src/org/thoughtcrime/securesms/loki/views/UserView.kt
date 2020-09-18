@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 
 class UserView : LinearLayout {
+    var openGroupThreadID: Long = -1 // FIXME: This is a bit ugly
 
     enum class ActionIndicator {
         None,
@@ -53,7 +54,12 @@ class UserView : LinearLayout {
             if (publicKey == null || publicKey.isBlank()) {
                 return null
             } else {
-                return DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey!!)
+                var result = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(publicKey)
+                val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(openGroupThreadID)
+                if (result == null && publicChat != null) {
+                    result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
+                }
+                return result ?: publicKey
             }
         }
         val address = user.address.serialize()
@@ -84,7 +90,7 @@ class UserView : LinearLayout {
         actionIndicatorImageView.setImageResource(R.drawable.ic_baseline_edit_24)
         profilePictureView.glide = glide
         profilePictureView.update()
-        nameTextView.text = user.name ?: "Unknown Contact"
+        nameTextView.text = getUserDisplayName(address)
         when (actionIndicator) {
             ActionIndicator.None -> {
                 actionIndicatorImageView.visibility = View.GONE

@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiPreKeyRecordDatabase;
@@ -74,6 +75,7 @@ public class DatabaseFactory {
   private final LokiMessageDatabase lokiMessageDatabase;
   private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDatabase lokiUserDatabase;
+  private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
   private final SharedSenderKeysDatabase sskDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
@@ -190,6 +192,10 @@ public class DatabaseFactory {
     return getInstance(context).lokiUserDatabase;
   }
 
+  public static LokiBackupFilesDatabase getLokiBackupFilesDatabase(Context context) {
+    return getInstance(context).lokiBackupFilesDatabase;
+  }
+
   public static SharedSenderKeysDatabase getSSKDatabase(Context context) {
     return getInstance(context).sskDatabase;
   }
@@ -232,6 +238,7 @@ public class DatabaseFactory {
     this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
     this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
+    this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
     this.sskDatabase               = new SharedSenderKeysDatabase(context, databaseHelper);
   }
 

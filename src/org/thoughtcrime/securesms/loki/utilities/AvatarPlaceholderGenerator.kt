@@ -17,6 +17,7 @@ object AvatarPlaceholderGenerator {
 
     private const val EMPTY_LABEL = "0";
 
+    @JvmStatic
     fun getSHA512(input:String):String{
         val md: MessageDigest = MessageDigest.getInstance("SHA-512")
         val messageDigest = md.digest(input.toByteArray())
@@ -36,6 +37,7 @@ object AvatarPlaceholderGenerator {
         return hashtext
     }
 
+    @JvmStatic
     fun generate(context: Context, pixelSize: Int, hashString: String, displayName: String?): BitmapDrawable {
         val hash: Long
         if (hashString.length >= 12 && hashString.matches(Regex("^[0-9A-Fa-f]+\$"))) {

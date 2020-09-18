@@ -61,6 +61,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" tools:node="remove"/>
 
+    <!-- The allowBackup="false" below is important to guard against potential malicious backups -->
     <application
         android:name="org.thoughtcrime.securesms.ApplicationContext"
         android:allowBackup="false"
@@ -310,7 +311,7 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="Message Details"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Session.DayNight"
+            android:theme="@style/Theme.TextSecure.DayNight"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -523,7 +524,7 @@
         <service
             android:name="org.thoughtcrime.securesms.loki.api.PushNotificationService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -680,7 +681,9 @@
             </intent-filter>
         </receiver>
         <!-- Session -->
-        <receiver android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollListener" >
+        <receiver
+            android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollListener"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

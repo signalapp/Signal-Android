@@ -1866,4 +1866,6 @@
     <string name="attachment_type_voice_message">Voice Message</string>
     <string name="details">Details</string>
 
+    <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+
 </resources>

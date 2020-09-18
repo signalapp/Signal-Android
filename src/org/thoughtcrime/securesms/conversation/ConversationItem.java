@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
+import org.thoughtcrime.securesms.loki.views.TapJackingProofLinearLayout;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -129,7 +130,7 @@ import network.loki.messenger.R;
  *
  */
 
-public class ConversationItem extends LinearLayout
+public class ConversationItem extends TapJackingProofLinearLayout
     implements RecipientModifiedListener, BindableConversationItem
 {
   private static final String TAG = ConversationItem.class.getSimpleName();
@@ -793,7 +794,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setContactPhoto(@NonNull Recipient recipient) {
-    if (messageRecord == null) return; // TODO: Figure out how this happens
+    if (messageRecord == null) { return; } // TODO: Figure out how this happens
     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
     int groupThreadMargin = (int)((12 * getResources().getDisplayMetrics().density) + getResources().getDimension(R.dimen.small_profile_picture_size));
     int defaultMargin = 0;
@@ -803,7 +804,7 @@ public class ConversationItem extends LinearLayout
     boolean isRSSFeed = threadName != null && (threadName.equals("Loki News") || threadName.equals("Session Updates"));
     layoutParams.setMarginStart((groupThread && !isRSSFeed) ? groupThreadMargin : defaultMargin);
     bodyBubble.setLayoutParams(layoutParams);
-    if (profilePictureView == null) return;
+    if (profilePictureView == null) { return; }
     String publicKey = recipient.getAddress().toString();
     profilePictureView.setPublicKey(publicKey);
     String displayName = recipient.getName();

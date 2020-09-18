@@ -103,8 +103,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     initializeResources();
     initializeSearch();
     initializeMedia();
-
-    getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar_background));
   }
 
   @Override
