@@ -5,43 +5,20 @@ import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.text.TextPaint
 import android.text.TextUtils
-import androidx.annotation.ColorInt
-import androidx.core.graphics.ColorUtils
 import network.loki.messenger.R
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.util.*
 
 object AvatarPlaceholderGenerator {
-    private val tmpFloatArray = FloatArray(3)
 
-    private const val EMPTY_LABEL = "0";
-
-    @JvmStatic
-    fun getSHA512(input:String):String{
-        val md: MessageDigest = MessageDigest.getInstance("SHA-512")
-        val messageDigest = md.digest(input.toByteArray())
-
-        // Convert byte array into signum representation
-        val no = BigInteger(1, messageDigest)
-
-        // Convert message digest into hex value
-        var hashtext: String = no.toString(16)
-
-        // Add preceding 0s to make it 32 bit
-        while (hashtext.length < 32) {
-            hashtext = "0$hashtext"
-        }
-
-        // return the HashText
-        return hashtext
-    }
+    private const val EMPTY_LABEL = "0"
 
     @JvmStatic
     fun generate(context: Context, pixelSize: Int, hashString: String, displayName: String?): BitmapDrawable {
         val hash: Long
         if (hashString.length >= 12 && hashString.matches(Regex("^[0-9A-Fa-f]+\$"))) {
-            hash = AvatarPlaceholderGenerator.getSHA512(hashString).substring(0 until 12).toLong(16)
+            hash = getSha512(hashString).substring(0 until 12).toLong(16)
         } else {
             hash = 0
         }
@@ -61,10 +38,7 @@ object AvatarPlaceholderGenerator {
 
         // Draw background/frame
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-        paint.shader = LinearGradient(0f, 0f, 0f, pixelSize.toFloat(),
-                colorPrimary,
-                colorPrimary,
-                Shader.TileMode.REPEAT)
+        paint.color = colorPrimary
         canvas.drawCircle(pixelSize.toFloat() / 2, pixelSize.toFloat() / 2, pixelSize.toFloat() / 2, paint)
 
         // Draw text
@@ -91,5 +65,26 @@ object AvatarPlaceholderGenerator {
         } else {
             content.first().toString().toUpperCase(Locale.ROOT)
         }
+    }
+
+    private fun getSha512(input: String): String {
+        val messageDigest = MessageDigest.getInstance("SHA-512").digest(input.toByteArray())
+
+        // Convert byte array into signum representation
+        val no = BigInteger(1, messageDigest)
+
+        // Convert message digest into hex value
+        var hashText: String = no.toString(16)
+
+        // Add preceding 0s to make it 32 bit
+        if (hashText.length < 32) {
+            val sb = StringBuilder()
+            for (i in 0 until 32 - hashText.length) {
+                sb.append('0')
+            }
+            hashText = sb.append(hashText).toString()
+        }
+
+        return hashText
     }
 }
