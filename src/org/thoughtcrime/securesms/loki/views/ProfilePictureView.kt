@@ -65,7 +65,7 @@ class ProfilePictureView : RelativeLayout {
                 if (result == null && publicChat != null) {
                     result = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, publicKey)
                 }
-                return result
+                return result ?: publicKey
             }
         }
         if (recipient.isGroupRecipient) {

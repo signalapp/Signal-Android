@@ -13,7 +13,7 @@
         android:background="?android:dividerHorizontal"
         android:elevation="1dp" />
 
-    <EditText
+    <org.thoughtcrime.securesms.loki.views.TapJackingProofEditText
         style="@style/SmallSessionEditText"
         android:id="@+id/publicKeyEditText"
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing" />
 
-    <TextView
+    <org.thoughtcrime.securesms.loki.views.TapJackingProofTextView
         android:id="@+id/publicKeyTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
         android:layout_marginRight="@dimen/large_spacing"
         android:orientation="horizontal">
 
-        <Button
+        <org.thoughtcrime.securesms.loki.views.TapJackingProofButton
             style="@style/Widget.Session.Button.Common.UnimportantFilled"
             android:id="@+id/copyButton"
             android:layout_width="0dp"
@@ -78,7 +78,7 @@
             android:layout_weight="1"
             android:text="@string/copy" />
 
-        <Button
+        <org.thoughtcrime.securesms.loki.views.TapJackingProofButton
             style="@style/Widget.Session.Button.Common.UnimportantFilled"
             android:id="@+id/shareButton"
             android:layout_width="0dp"

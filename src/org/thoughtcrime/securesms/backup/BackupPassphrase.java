@@ -16,7 +16,7 @@ public class BackupPassphrase {
 
   private static final String TAG = BackupPassphrase.class.getSimpleName();
 
-  public static String get(@NonNull Context context) {
+  public static @Nullable String get(@NonNull Context context) {
     String passphrase          = TextSecurePreferences.getBackupPassphrase(context);
     String encryptedPassphrase = TextSecurePreferences.getEncryptedBackupPassphrase(context);
 

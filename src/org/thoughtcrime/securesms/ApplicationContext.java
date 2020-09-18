@@ -484,7 +484,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Context context = this;
     FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
       if (!task.isSuccessful()) {
-        Log.w(TAG, "getInstanceId failed", task.getException());
+        Log.w("Loki", "FirebaseInstanceId.getInstance().getInstanceId() failed." + task.getException());
         return;
       }
       String token = task.getResult().getToken();

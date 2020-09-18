@@ -1,5 +1,11 @@
 package org.thoughtcrime.securesms.loki.api
 
+import android.R
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
+import android.graphics.Color
+import android.media.RingtoneManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
@@ -8,6 +14,7 @@ import org.whispersystems.libsignal.logging.Log
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
 import org.whispersystems.signalservice.internal.util.Base64
 import org.whispersystems.signalservice.loki.api.MessageWrapper
+
 
 class PushNotificationService : FirebaseMessagingService() {
 
@@ -19,7 +26,8 @@ class PushNotificationService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
-        val base64EncodedData = message.data["ENCRYPTED_DATA"]
+        Log.d("Loki", "Received a push notification.")
+        val base64EncodedData = message.data?.get("ENCRYPTED_DATA")
         val data = base64EncodedData?.let { Base64.decode(it) }
         if (data != null) {
             try {
