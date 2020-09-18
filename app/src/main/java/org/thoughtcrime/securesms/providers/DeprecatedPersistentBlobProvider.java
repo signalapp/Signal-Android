@@ -4,16 +4,17 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
-
 import android.webkit.MimeTypeMap;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 
 import java.io.File;
@@ -29,11 +30,11 @@ import java.io.InputStream;
 @Deprecated
 public class DeprecatedPersistentBlobProvider {
 
-  private static final String TAG = DeprecatedPersistentBlobProvider.class.getSimpleName();
+  private static final String TAG = Log.tag(DeprecatedPersistentBlobProvider.class);
 
-  private static final String     URI_STRING            = "content://org.thoughtcrime.securesms/capture-new";
+  public  static final String     AUTHORITY             = BuildConfig.APPLICATION_ID;
+  private static final String     URI_STRING            = "content://" + AUTHORITY + "/capture-new";
   public  static final Uri        CONTENT_URI           = Uri.parse(URI_STRING);
-  public  static final String     AUTHORITY             = "org.thoughtcrime.securesms";
   public  static final String     EXPECTED_PATH_OLD     = "capture/*/*/#";
   public  static final String     EXPECTED_PATH_NEW     = "capture-new/*/*/*/*/#";
 

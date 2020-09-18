@@ -25,3 +25,4 @@ obj/
 jni/libspeex/.deps/
 *.sh
 pkcs11.password
+dev.keystore

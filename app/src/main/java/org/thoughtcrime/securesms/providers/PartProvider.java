@@ -26,12 +26,14 @@ import android.net.Uri;
 import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
-import androidx.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
 
+import androidx.annotation.NonNull;
+
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MemoryFileUtil;
@@ -46,7 +48,8 @@ public class PartProvider extends ContentProvider {
 
   private static final String TAG = PartProvider.class.getSimpleName();
 
-  private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.provider.securesms/part";
+  private static final String CONTENT_AUTHORITY  = BuildConfig.APPLICATION_ID + ".part";
+  private static final String CONTENT_URI_STRING = "content://" + CONTENT_AUTHORITY + "/part";
   private static final Uri    CONTENT_URI        = Uri.parse(CONTENT_URI_STRING);
   private static final int    SINGLE_ROW         = 1;
 
@@ -54,7 +57,7 @@ public class PartProvider extends ContentProvider {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.provider.securesms", "part/*/#", SINGLE_ROW);
+    uriMatcher.addURI(CONTENT_AUTHORITY, "part/*/#", SINGLE_ROW);
   }
 
   @Override

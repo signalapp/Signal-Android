@@ -154,7 +154,7 @@
         android:layout_marginTop="16dp"
         android:elevation="8dp"
         android:transitionName="avatar"
-        app:layout_behavior=".recipients.ui.RecipientSettingsCoordinatorLayoutBehavior" />
+        app:layout_behavior="org.thoughtcrime.securesms.recipients.ui.RecipientSettingsCoordinatorLayoutBehavior" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/name"

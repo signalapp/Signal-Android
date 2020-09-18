@@ -183,7 +183,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior=".util.views.SlideUpWithSnackbarBehavior">
+        app:layout_behavior="org.thoughtcrime.securesms.util.views.SlideUpWithSnackbarBehavior">
 
       <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
           android:id="@+id/camera_fab"

@@ -100,6 +100,15 @@ android {
         javaMaxHeapSize "4g"
     }
 
+    signingConfigs {
+        staging {
+            storeFile file("${project.rootDir}/dev.keystore")
+            storePassword 'android'
+            keyAlias 'staging'
+            keyPassword 'android'
+        }
+    }
+
     defaultConfig {
         versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
@@ -195,6 +204,8 @@ android {
         }
         staging {
             initWith debug
+            applicationIdSuffix ".staging"
+            signingConfig signingConfigs.staging
 
             buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service-staging.whispersystems.org\""
             buildConfigField "String", "STORAGE_URL", "\"https://storage-staging.signal.org\""

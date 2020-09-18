@@ -4,25 +4,26 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.providers.PartProvider;
-import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class PartAuthority {
 
-  private static final String PART_URI_STRING     = "content://org.thoughtcrime.securesms/part";
-  private static final String STICKER_URI_STRING  = "content://org.thoughtcrime.securesms/sticker";
+  private static final String AUTHORITY           = BuildConfig.APPLICATION_ID;
+  private static final String PART_URI_STRING     = "content://" + AUTHORITY + "/part";
+  private static final String STICKER_URI_STRING  = "content://" + AUTHORITY + "/sticker";
   private static final Uri    PART_CONTENT_URI    = Uri.parse(PART_URI_STRING);
   private static final Uri    STICKER_CONTENT_URI = Uri.parse(STICKER_URI_STRING);
 
@@ -35,8 +36,8 @@ public class PartAuthority {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.securesms", "part/*/#", PART_ROW);
-    uriMatcher.addURI("org.thoughtcrime.securesms", "sticker/#", STICKER_ROW);
+    uriMatcher.addURI(AUTHORITY, "part/*/#", PART_ROW);
+    uriMatcher.addURI(AUTHORITY, "sticker/#", STICKER_ROW);
     uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_OLD, PERSISTENT_ROW);
     uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_NEW, PERSISTENT_ROW);
     uriMatcher.addURI(BlobProvider.AUTHORITY, BlobProvider.PATH, BLOB_ROW);

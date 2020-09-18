@@ -5,7 +5,7 @@
 
     <uses-sdk tools:overrideLibrary="androidx.camera.core,androidx.camera.camera2,androidx.camera.lifecycle" />
 
-    <permission android:name="org.thoughtcrime.securesms.ACCESS_SECRETS"
+    <permission android:name="${applicationId}.ACCESS_SECRETS"
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />
 
@@ -113,7 +113,7 @@
     <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
     <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
 
-    <activity android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
+    <activity android:name=".WebRtcCallActivity"
               android:theme="@style/TextSecure.LightTheme.WebRTCCall"
               android:excludeFromRecents="true"
               android:screenOrientation="portrait"
@@ -136,7 +136,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="org.thoughtcrime.securesms.MainActivity" />
+            android:value=".MainActivity" />
     </activity>
 
     <activity android:name=".PromptMmsActivity"
@@ -528,7 +528,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
               android:launchMode="singleTask" />
 
-    <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
+    <service android:enabled="true" android:name=".service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".messages.IncomingMessageObserver$ForegroundService"/>
@@ -650,15 +650,15 @@
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:exported="false"
-              android:authorities="org.thoughtcrime.provider.securesms" />
+              android:authorities="${applicationId}.part" />
 
     <provider android:name=".providers.MmsBodyProvider"
               android:grantUriPermissions="true"
               android:exported="false"
-              android:authorities="org.thoughtcrime.provider.securesms.mms" />
+              android:authorities="${applicationId}.mms" />
 
     <provider android:name="androidx.core.content.FileProvider"
-              android:authorities="org.thoughtcrime.securesms.fileprovider"
+              android:authorities="${applicationId}.fileprovider"
               android:exported="false"
               android:grantUriPermissions="true">
 
@@ -667,23 +667,23 @@
     </provider>
 
     <provider android:name=".database.DatabaseContentProviders$Conversation"
-              android:authorities="org.thoughtcrime.securesms.database.conversation"
+              android:authorities="${applicationId}.database.conversation"
               android:exported="false" />
 
     <provider android:name=".database.DatabaseContentProviders$ConversationList"
-              android:authorities="org.thoughtcrime.securesms.database.conversationlist"
+              android:authorities="${applicationId}.database.conversationlist"
               android:exported="false" />
 
     <provider android:name=".database.DatabaseContentProviders$Attachment"
-              android:authorities="org.thoughtcrime.securesms.database.attachment"
+              android:authorities="${applicationId}.database.attachment"
               android:exported="false" />
 
     <provider android:name=".database.DatabaseContentProviders$Sticker"
-              android:authorities="org.thoughtcrime.securesms.database.sticker"
+              android:authorities="${applicationId}.database.sticker"
               android:exported="false" />
 
     <provider android:name=".database.DatabaseContentProviders$StickerPack"
-              android:authorities="org.thoughtcrime.securesms.database.stickerpack"
+              android:authorities="${applicationId}.database.stickerpack"
               android:exported="false" />
 
     <receiver android:name=".service.BootReceiver">

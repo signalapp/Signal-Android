@@ -5,5 +5,12 @@
 
     <application
         android:name=".FlipperApplicationContext"
-        tools:replace="android:name"/>
+        tools:replace="android:name">
+
+        <activity
+            android:name="com.facebook.flipper.android.diagnostics.FlipperDiagnosticActivity"
+            android:exported="true" />
+
+    </application>
+
 </manifest>
