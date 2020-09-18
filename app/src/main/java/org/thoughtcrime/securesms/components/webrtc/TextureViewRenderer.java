@@ -70,12 +70,18 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
   }
 
   public void attachBroadcastVideoSink(@Nullable BroadcastVideoSink videoSink) {
+    if (attachedVideoSink == videoSink) {
+      return;
+    }
+
     if (attachedVideoSink != null) {
       attachedVideoSink.removeSink(this);
     }
 
     if (videoSink != null) {
       videoSink.addSink(this);
+    } else {
+      clearImage();
     }
 
     attachedVideoSink = videoSink;
@@ -232,9 +238,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
   @Override
   public void onFrame(VideoFrame videoFrame) {
-    if (isShown()) {
-      eglRenderer.onFrame(videoFrame);
-    }
+    eglRenderer.onFrame(videoFrame);
   }
 
   @Override

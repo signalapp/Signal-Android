@@ -14,6 +14,7 @@ public class WebRtcViewModel {
 
   public enum State {
     // Normal states
+    CALL_PRE_JOIN,
     CALL_INCOMING,
     CALL_OUTGOING,
     CALL_CONNECTED,

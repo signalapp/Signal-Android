@@ -57,6 +57,10 @@ public final class CallParticipantsState {
     this.isViewingFocusedParticipant = isViewingFocusedParticipant;
   }
 
+  public @NonNull WebRtcViewModel.State getCallState() {
+    return callState;
+  }
+
   public @NonNull List<CallParticipant> getGridParticipants() {
     if (getAllRemoteParticipants().size() > SMALL_GROUP_MAX) {
       return getAllRemoteParticipants().subList(0, SMALL_GROUP_MAX);
@@ -194,9 +198,11 @@ public final class CallParticipantsState {
         } else {
           localRenderState = WebRtcLocalRenderState.SMALL_RECTANGLE;
         }
-      } else {
+      } else if (callState != WebRtcViewModel.State.CALL_DISCONNECTED) {
         localRenderState = WebRtcLocalRenderState.LARGE;
       }
+    } else if (callState == WebRtcViewModel.State.CALL_PRE_JOIN) {
+      localRenderState = WebRtcLocalRenderState.LARGE_NO_VIDEO;
     }
 
     return localRenderState;

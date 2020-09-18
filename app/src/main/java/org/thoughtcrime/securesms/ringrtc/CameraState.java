@@ -32,6 +32,21 @@ public class CameraState {
   }
 
   public enum Direction {
-    FRONT, BACK, NONE, PENDING
+    FRONT, BACK, NONE, PENDING;
+
+    public boolean isUsable() {
+      return this == FRONT || this == BACK;
+    }
+
+    public Direction switchDirection() {
+      switch (this) {
+        case FRONT:
+          return BACK;
+        case BACK:
+          return FRONT;
+        default:
+          return this;
+      }
+    }
   }
 }

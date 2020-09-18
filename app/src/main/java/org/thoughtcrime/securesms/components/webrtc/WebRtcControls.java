@@ -37,7 +37,7 @@ public final class WebRtcControls {
   }
 
   boolean displayStartCallControls() {
-    return false;
+    return isPreJoin();
   }
 
   boolean displayEndCall() {
@@ -45,19 +45,19 @@ public final class WebRtcControls {
   }
 
   boolean displayMuteAudio() {
-    return isAtLeastOutgoing();
+    return isPreJoin() || isAtLeastOutgoing();
   }
 
   boolean displayVideoToggle() {
-    return isAtLeastOutgoing();
+    return isPreJoin() || isAtLeastOutgoing();
   }
 
   boolean displayAudioToggle() {
-    return isAtLeastOutgoing() && (!isLocalVideoEnabled || isBluetoothAvailable);
+    return (isPreJoin() || isAtLeastOutgoing()) && (!isLocalVideoEnabled || isBluetoothAvailable);
   }
 
   boolean displayCameraToggle() {
-    return isAtLeastOutgoing() && isLocalVideoEnabled && isMoreThanOneCameraAvailable;
+    return (isPreJoin() || isAtLeastOutgoing()) && isLocalVideoEnabled && isMoreThanOneCameraAvailable;
   }
 
   boolean displayRemoteVideoRecycler() {
@@ -100,6 +100,10 @@ public final class WebRtcControls {
     return audioOutput;
   }
 
+  private boolean isPreJoin() {
+    return callState == CallState.PRE_JOIN;
+  }
+
   private boolean isOngoing() {
     return callState == CallState.ONGOING;
   }
@@ -114,6 +118,7 @@ public final class WebRtcControls {
 
   public enum CallState {
     NONE,
+    PRE_JOIN,
     INCOMING,
     OUTGOING,
     ONGOING,

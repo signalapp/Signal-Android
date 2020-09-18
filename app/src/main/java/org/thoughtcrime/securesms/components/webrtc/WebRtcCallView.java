@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import android.content.Context;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,14 +29,20 @@ import androidx.transition.TransitionSet;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.mediasend.SimpleAnimationListener;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
+import org.thoughtcrime.securesms.util.BlurTransformation;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
@@ -58,10 +66,12 @@ public class WebRtcCallView extends FrameLayout {
   private WebRtcAudioOutputToggleButton audioToggle;
   private AccessibleToggleButton        videoToggle;
   private AccessibleToggleButton        micToggle;
-  private ViewGroup                     localRenderPipFrame;
+  private ViewGroup                     smallLocalRenderFrame;
   private TextureViewRenderer           smallLocalRender;
   private View                          largeLocalRenderFrame;
   private TextureViewRenderer           largeLocalRender;
+  private View                          largeLocalRenderNoVideo;
+  private ImageView                     largeLocalRenderNoVideoAvatar;
   private TextView                      recipientName;
   private TextView                      status;
   private ConstraintLayout              parent;
@@ -74,7 +84,7 @@ public class WebRtcCallView extends FrameLayout {
   private ImageView                     hangup;
   private View                          answerWithAudio;
   private View                          answerWithAudioLabel;
-  private View                          ongoingFooterGradient;
+  private View                          footerGradient;
   private View                          startCallControls;
   private ViewPager2                    callParticipantsPager;
   private RecyclerView                  callParticipantsRecycler;
@@ -110,33 +120,34 @@ public class WebRtcCallView extends FrameLayout {
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    audioToggle              = findViewById(R.id.call_screen_speaker_toggle);
-    videoToggle              = findViewById(R.id.call_screen_video_toggle);
-    micToggle                = findViewById(R.id.call_screen_audio_mic_toggle);
-    localRenderPipFrame      = findViewById(R.id.call_screen_pip);
-    smallLocalRender         = findViewById(R.id.call_screen_small_local_renderer);
-    largeLocalRenderFrame    = findViewById(R.id.call_screen_large_local_renderer_frame);
-    largeLocalRender         = findViewById(R.id.call_screen_large_local_renderer);
-    recipientName            = findViewById(R.id.call_screen_recipient_name);
-    status                   = findViewById(R.id.call_screen_status);
-    parent                   = findViewById(R.id.call_screen);
-    participantsParent       = findViewById(R.id.call_screen_participants_parent);
-    answer                   = findViewById(R.id.call_screen_answer_call);
-    cameraDirectionToggle    = findViewById(R.id.call_screen_camera_direction_toggle);
-    hangup                   = findViewById(R.id.call_screen_end_call);
-    answerWithAudio          = findViewById(R.id.call_screen_answer_with_audio);
-    answerWithAudioLabel     = findViewById(R.id.call_screen_answer_with_audio_label);
-    ongoingFooterGradient    = findViewById(R.id.call_screen_ongoing_footer_gradient);
-    startCallControls        = findViewById(R.id.call_screen_start_call_controls);
-    callParticipantsPager    = findViewById(R.id.call_screen_participants_pager);
-    callParticipantsRecycler = findViewById(R.id.call_screen_participants_recycler);
-    toolbar                  = findViewById(R.id.call_screen_toolbar);
+    audioToggle                   = findViewById(R.id.call_screen_speaker_toggle);
+    videoToggle                   = findViewById(R.id.call_screen_video_toggle);
+    micToggle                     = findViewById(R.id.call_screen_audio_mic_toggle);
+    smallLocalRenderFrame         = findViewById(R.id.call_screen_pip);
+    smallLocalRender              = findViewById(R.id.call_screen_small_local_renderer);
+    largeLocalRenderFrame         = findViewById(R.id.call_screen_large_local_renderer_frame);
+    largeLocalRender              = findViewById(R.id.call_screen_large_local_renderer);
+    largeLocalRenderNoVideo       = findViewById(R.id.call_screen_large_local_video_off);
+    largeLocalRenderNoVideoAvatar = findViewById(R.id.call_screen_large_local_video_off_avatar);
+    recipientName                 = findViewById(R.id.call_screen_recipient_name);
+    status                        = findViewById(R.id.call_screen_status);
+    parent                        = findViewById(R.id.call_screen);
+    participantsParent            = findViewById(R.id.call_screen_participants_parent);
+    answer                        = findViewById(R.id.call_screen_answer_call);
+    cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
+    hangup                        = findViewById(R.id.call_screen_end_call);
+    answerWithAudio               = findViewById(R.id.call_screen_answer_with_audio);
+    answerWithAudioLabel          = findViewById(R.id.call_screen_answer_with_audio_label);
+    footerGradient                = findViewById(R.id.call_screen_footer_gradient);
+    startCallControls             = findViewById(R.id.call_screen_start_call_controls);
+    callParticipantsPager         = findViewById(R.id.call_screen_participants_pager);
+    callParticipantsRecycler      = findViewById(R.id.call_screen_participants_recycler);
+    toolbar                       = findViewById(R.id.call_screen_toolbar);
 
     View      topGradient            = findViewById(R.id.call_screen_header_gradient);
     View      decline                = findViewById(R.id.call_screen_decline_call);
     View      answerLabel            = findViewById(R.id.call_screen_answer_call_label);
     View      declineLabel           = findViewById(R.id.call_screen_decline_call_label);
-    View      incomingFooterGradient = findViewById(R.id.call_screen_incoming_footer_gradient);
     Guideline statusBarGuideline     = findViewById(R.id.call_screen_status_bar_guideline);
     View      startCall              = findViewById(R.id.call_screen_start_call_start_call);
     View      cancelStartCall        = findViewById(R.id.call_screen_start_call_cancel);
@@ -163,7 +174,7 @@ public class WebRtcCallView extends FrameLayout {
     incomingCallViews.add(answerLabel);
     incomingCallViews.add(decline);
     incomingCallViews.add(declineLabel);
-    incomingCallViews.add(incomingFooterGradient);
+    incomingCallViews.add(footerGradient);
 
     adjustableMarginsSet.add(micToggle);
     adjustableMarginsSet.add(cameraDirectionToggle);
@@ -190,10 +201,15 @@ public class WebRtcCallView extends FrameLayout {
     answer.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallPressed));
     answerWithAudio.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallWithVoiceOnlyPressed));
 
-    pictureInPictureGestureHelper = PictureInPictureGestureHelper.applyTo(localRenderPipFrame);
+    pictureInPictureGestureHelper = PictureInPictureGestureHelper.applyTo(smallLocalRenderFrame);
 
-    startCall.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onStartCall));
+    startCall.setOnClickListener(v -> runIfNonNull(controlsListener, listener -> listener.onStartCall(videoToggle.isChecked())));
     cancelStartCall.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCancelStartCall));
+
+    ColorMatrix greyScaleMatrix = new ColorMatrix();
+    greyScaleMatrix.setSaturation(0);
+    largeLocalRenderNoVideoAvatar.setAlpha(0.6f);
+    largeLocalRenderNoVideoAvatar.setColorFilter(new ColorMatrixColorFilter(greyScaleMatrix));
 
     int statusBarHeight = ViewUtil.getStatusBarHeight(this);
     statusBarGuideline.setGuidelineBegin(statusBarHeight);
@@ -245,8 +261,6 @@ public class WebRtcCallView extends FrameLayout {
   }
 
   public void updateLocalCallParticipant(@NonNull WebRtcLocalRenderState state, @NonNull CallParticipant localCallParticipant) {
-    videoToggle.setChecked(state != WebRtcLocalRenderState.GONE, false);
-
     smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
     largeLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
 
@@ -258,27 +272,65 @@ public class WebRtcCallView extends FrameLayout {
       largeLocalRender.init(localCallParticipant.getVideoSink().getEglBase());
     }
 
-    smallLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
-    largeLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
-
     switch (state) {
-      case LARGE:
-        largeLocalRenderFrame.setVisibility(View.VISIBLE);
-        localRenderPipFrame.setVisibility(View.GONE);
-        break;
       case GONE:
+        largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
-        localRenderPipFrame.setVisibility(View.GONE);
+        smallLocalRender.attachBroadcastVideoSink(null);
+        smallLocalRenderFrame.setVisibility(View.GONE);
+
+        videoToggle.setChecked(false, false);
         break;
       case SMALL_RECTANGLE:
-        largeLocalRenderFrame.setVisibility(View.GONE);
-        localRenderPipFrame.setVisibility(View.VISIBLE);
+        smallLocalRenderFrame.setVisibility(View.VISIBLE);
+        smallLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
         animatePipToRectangle();
+
+        largeLocalRender.attachBroadcastVideoSink(null);
+        largeLocalRenderFrame.setVisibility(View.GONE);
+
+        videoToggle.setChecked(true, false);
         break;
       case SMALL_SQUARE:
-        largeLocalRenderFrame.setVisibility(View.GONE);
-        localRenderPipFrame.setVisibility(View.VISIBLE);
+        smallLocalRenderFrame.setVisibility(View.VISIBLE);
+        smallLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
         animatePipToSquare();
+
+        largeLocalRender.attachBroadcastVideoSink(null);
+        largeLocalRenderFrame.setVisibility(View.GONE);
+
+        videoToggle.setChecked(true, false);
+        break;
+      case LARGE:
+        largeLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
+        largeLocalRenderFrame.setVisibility(View.VISIBLE);
+
+        largeLocalRenderNoVideo.setVisibility(View.GONE);
+        largeLocalRenderNoVideoAvatar.setVisibility(View.GONE);
+
+        smallLocalRender.attachBroadcastVideoSink(null);
+        smallLocalRenderFrame.setVisibility(View.GONE);
+
+        videoToggle.setChecked(true, false);
+        break;
+      case LARGE_NO_VIDEO:
+        largeLocalRender.attachBroadcastVideoSink(null);
+        largeLocalRenderFrame.setVisibility(View.VISIBLE);
+
+        largeLocalRenderNoVideo.setVisibility(View.VISIBLE);
+        largeLocalRenderNoVideoAvatar.setVisibility(View.VISIBLE);
+
+        GlideApp.with(getContext().getApplicationContext())
+                .load(new ProfileContactPhoto(localCallParticipant.getRecipient(), localCallParticipant.getRecipient().getProfileAvatar()))
+                .transform(new CenterCrop(), new BlurTransformation(getContext(), 0.25f, BlurTransformation.MAX_RADIUS))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(largeLocalRenderNoVideoAvatar);
+
+        smallLocalRender.attachBroadcastVideoSink(null);
+        smallLocalRenderFrame.setVisibility(View.GONE);
+
+        videoToggle.setChecked(false, false);
+        break;
     }
   }
 
@@ -330,6 +382,7 @@ public class WebRtcCallView extends FrameLayout {
     visibleViewSet.clear();
 
     if (webRtcControls.displayStartCallControls()) {
+      visibleViewSet.add(footerGradient);
       visibleViewSet.add(startCallControls);
     }
 
@@ -367,7 +420,7 @@ public class WebRtcCallView extends FrameLayout {
 
     if (webRtcControls.displayEndCall()) {
       visibleViewSet.add(hangup);
-      visibleViewSet.add(ongoingFooterGradient);
+      visibleViewSet.add(footerGradient);
     }
 
     if (webRtcControls.displayMuteAudio()) {
@@ -411,7 +464,7 @@ public class WebRtcCallView extends FrameLayout {
   }
 
   private void animatePipToRectangle() {
-    ResizeAnimation animation = new ResizeAnimation(localRenderPipFrame, ViewUtil.dpToPx(90), ViewUtil.dpToPx(160));
+    ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, ViewUtil.dpToPx(90), ViewUtil.dpToPx(160));
     animation.setDuration(PIP_RESIZE_DURATION);
     animation.setAnimationListener(new SimpleAnimationListener() {
       @Override
@@ -421,14 +474,14 @@ public class WebRtcCallView extends FrameLayout {
       }
     });
 
-    localRenderPipFrame.startAnimation(animation);
+    smallLocalRenderFrame.startAnimation(animation);
   }
 
   private void animatePipToSquare() {
     pictureInPictureGestureHelper.lockToBottomEnd();
 
     pictureInPictureGestureHelper.performAfterFling(() -> {
-      ResizeAnimation animation = new ResizeAnimation(localRenderPipFrame, ViewUtil.dpToPx(72), ViewUtil.dpToPx(72));
+      ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, ViewUtil.dpToPx(72), ViewUtil.dpToPx(72));
       animation.setDuration(PIP_RESIZE_DURATION);
       animation.setAnimationListener(new SimpleAnimationListener() {
         @Override
@@ -437,7 +490,7 @@ public class WebRtcCallView extends FrameLayout {
         }
       });
 
-      localRenderPipFrame.startAnimation(animation);
+      smallLocalRenderFrame.startAnimation(animation);
     });
   }
 
@@ -580,7 +633,7 @@ public class WebRtcCallView extends FrameLayout {
   }
 
   public interface ControlsListener {
-    void onStartCall();
+    void onStartCall(boolean isVideoCall);
     void onCancelStartCall();
     void onControlsFadeOut();
     void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput);

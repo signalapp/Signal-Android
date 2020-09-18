@@ -4,5 +4,6 @@ public enum WebRtcLocalRenderState {
   GONE,
   SMALL_RECTANGLE,
   SMALL_SQUARE,
-  LARGE
+  LARGE,
+  LARGE_NO_VIDEO
 }

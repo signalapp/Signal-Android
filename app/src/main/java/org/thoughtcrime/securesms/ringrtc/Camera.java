@@ -6,19 +6,14 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.LinkedList;
-
 import org.signal.ringrtc.CameraControl;
-
 import org.thoughtcrime.securesms.logging.Log;
-
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Capturer;
 import org.webrtc.Camera2Enumerator;
@@ -27,6 +22,9 @@ import org.webrtc.CameraVideoCapturer;
 import org.webrtc.CapturerObserver;
 import org.webrtc.EglBase;
 import org.webrtc.SurfaceTextureHelper;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.thoughtcrime.securesms.ringrtc.CameraState.Direction.BACK;
 import static org.thoughtcrime.securesms.ringrtc.CameraState.Direction.FRONT;
@@ -48,9 +46,10 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
   @NonNull  private       CameraState.Direction activeDirection;
             private       boolean               enabled;
 
-  public Camera(@NonNull Context             context,
+  public Camera(@NonNull Context context,
                 @NonNull CameraEventListener cameraEventListener,
-                @NonNull EglBase             eglBase)
+                @NonNull EglBase eglBase,
+                @NonNull CameraState.Direction desiredCameraDirection)
   {
     this.context                = context;
     this.cameraEventListener    = cameraEventListener;
@@ -58,13 +57,16 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     CameraEnumerator enumerator = getCameraEnumerator(context);
     cameraCount                 = enumerator.getDeviceNames().length;
 
-    CameraVideoCapturer capturerCandidate = createVideoCapturer(enumerator, FRONT);
+    CameraState.Direction firstChoice = desiredCameraDirection.isUsable() ? desiredCameraDirection : FRONT;
+
+    CameraVideoCapturer capturerCandidate = createVideoCapturer(enumerator, firstChoice);
     if (capturerCandidate != null) {
-      activeDirection = FRONT;
+      activeDirection = firstChoice;
     } else {
-      capturerCandidate = createVideoCapturer(enumerator, BACK);
+      CameraState.Direction secondChoice = firstChoice.switchDirection();
+      capturerCandidate = createVideoCapturer(enumerator, secondChoice);
       if (capturerCandidate != null) {
-        activeDirection = BACK;
+        activeDirection = secondChoice;
       } else {
         activeDirection = NONE;
       }

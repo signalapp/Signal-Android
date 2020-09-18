@@ -94,7 +94,7 @@ public class WebRtcCallViewModel extends ViewModel {
 
   @MainThread
   public void updateFromWebRtcViewModel(@NonNull WebRtcViewModel webRtcViewModel, boolean enableVideo) {
-    canEnterPipMode = true;
+    canEnterPipMode = webRtcViewModel.getState() != WebRtcViewModel.State.CALL_PRE_JOIN;
 
     CallParticipant localParticipant = webRtcViewModel.getLocalParticipant();
 
@@ -143,6 +143,9 @@ public class WebRtcCallViewModel extends ViewModel {
     final WebRtcControls.CallState callState;
 
     switch (state) {
+      case CALL_PRE_JOIN:
+        callState = WebRtcControls.CallState.PRE_JOIN;
+        break;
       case CALL_INCOMING:
         callState = WebRtcControls.CallState.INCOMING;
         answerWithVideoAvailable = isRemoteVideoOffer;
@@ -167,7 +170,7 @@ public class WebRtcCallViewModel extends ViewModel {
                                                isRemoteVideoEnabled || isRemoteVideoOffer,
                                                isMoreThanOneCameraAvailable,
                                                isBluetoothAvailable,
-                                               isInPipMode.getValue() == Boolean.TRUE,
+                                               Boolean.TRUE.equals(isInPipMode.getValue()),
                                                callState,
                                                audioOutput));
   }

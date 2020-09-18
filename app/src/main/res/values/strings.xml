@@ -1207,6 +1207,7 @@
     <string name="WebRtcCallView__start_call">Start Call</string>
     <string name="WebRtcCallView__group_call">Group Call</string>
     <string name="WebRtcCallView__view_participants_list">View participants</string>
+    <string name="WebRtcCallView__your_video_is_off">Your video is off</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">

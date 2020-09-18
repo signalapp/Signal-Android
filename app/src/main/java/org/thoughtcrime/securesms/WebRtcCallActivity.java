@@ -19,8 +19,6 @@ package org.thoughtcrime.securesms;
 
 import android.Manifest;
 import android.app.PictureInPictureParams;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -42,10 +40,10 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
-import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
+import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
@@ -57,7 +55,6 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -89,6 +86,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.webrtc_call_activity);
+    //noinspection ConstantConditions
     getSupportActionBar().hide();
 
     setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
@@ -136,11 +134,13 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     super.onStop();
 
     EventBus.getDefault().unregister(this);
-  }
 
-  @Override
-  public void onConfigurationChanged(Configuration newConfiguration) {
-    super.onConfigurationChanged(newConfiguration);
+    CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+    if (state != null && state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
+      Intent intent = new Intent(this, WebRtcCallService.class);
+      intent.setAction(WebRtcCallService.ACTION_CANCEL_PRE_JOIN_CALL);
+      startService(intent);
+    }
   }
 
   @Override
@@ -200,7 +200,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   }
 
   private void initializeResources() {
-    callScreen = ViewUtil.findById(this, R.id.callScreen);
+    callScreen = findViewById(R.id.callScreen);
     callScreen.setControlsListener(new ControlsListener());
   }
 
@@ -376,7 +376,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     startService(intent);
   }
 
-  private void handleOutgoingCall(@NonNull WebRtcViewModel event) {
+  private void handleOutgoingCall() {
     callScreen.setStatus(getString(R.string.WebRtcCallActivity__calling));
   }
 
@@ -393,27 +393,27 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     delayedFinish();
   }
 
-  private void handleCallRinging(@NonNull WebRtcViewModel event) {
+  private void handleCallRinging() {
     callScreen.setStatus(getString(R.string.RedPhone_ringing));
   }
 
-  private void handleCallBusy(@NonNull WebRtcViewModel event) {
+  private void handleCallBusy() {
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
     callScreen.setStatus(getString(R.string.RedPhone_busy));
     delayedFinish(WebRtcCallService.BUSY_TONE_LENGTH);
   }
 
-  private void handleCallConnected(@NonNull WebRtcViewModel event) {
+  private void handleCallConnected() {
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES);
   }
 
-  private void handleRecipientUnavailable(@NonNull WebRtcViewModel event) {
+  private void handleRecipientUnavailable() {
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
     callScreen.setStatus(getString(R.string.RedPhone_recipient_unavailable));
     delayedFinish();
   }
 
-  private void handleServerFailure(@NonNull WebRtcViewModel event) {
+  private void handleServerFailure() {
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
     callScreen.setStatus(getString(R.string.RedPhone_network_failed));
     delayedFinish();
@@ -421,24 +421,14 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
 
   private void handleNoSuchUser(final @NonNull WebRtcViewModel event) {
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
-    AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-    dialog.setTitle(R.string.RedPhone_number_not_registered);
-    dialog.setIconAttribute(R.attr.dialog_alert_icon);
-    dialog.setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice);
-    dialog.setCancelable(true);
-    dialog.setPositiveButton(R.string.RedPhone_got_it, new OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        WebRtcCallActivity.this.handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);
-      }
-    });
-    dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-      @Override
-      public void onCancel(DialogInterface dialog) {
-        WebRtcCallActivity.this.handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);
-      }
-    });
-    dialog.show();
+    new AlertDialog.Builder(this)
+                   .setTitle(R.string.RedPhone_number_not_registered)
+                   .setIconAttribute(R.attr.dialog_alert_icon)
+                   .setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice)
+                   .setCancelable(true)
+                   .setPositiveButton(R.string.RedPhone_got_it, (d, w) -> handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL))
+                   .setOnCancelListener(d -> handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL))
+                   .show();
   }
 
   private void handleUntrustedIdentity(@NonNull WebRtcViewModel event) {
@@ -490,18 +480,18 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     callScreen.setRecipient(event.getRecipient());
 
     switch (event.getState()) {
-      case CALL_CONNECTED:          handleCallConnected(event);                                                break;
-      case NETWORK_FAILURE:         handleServerFailure(event);                                                break;
-      case CALL_RINGING:            handleCallRinging(event);                                                  break;
+      case CALL_CONNECTED:          handleCallConnected();                                                     break;
+      case NETWORK_FAILURE:         handleServerFailure();                                                     break;
+      case CALL_RINGING:            handleCallRinging();                                                       break;
       case CALL_DISCONNECTED:       handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);          break;
       case CALL_ACCEPTED_ELSEWHERE: handleTerminate(event.getRecipient(), HangupMessage.Type.ACCEPTED);        break;
       case CALL_DECLINED_ELSEWHERE: handleTerminate(event.getRecipient(), HangupMessage.Type.DECLINED);        break;
       case CALL_ONGOING_ELSEWHERE:  handleTerminate(event.getRecipient(), HangupMessage.Type.BUSY);            break;
       case CALL_NEEDS_PERMISSION:   handleTerminate(event.getRecipient(), HangupMessage.Type.NEED_PERMISSION); break;
       case NO_SUCH_USER:            handleNoSuchUser(event);                                                   break;
-      case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable(event);                                         break;
-      case CALL_OUTGOING:           handleOutgoingCall(event);                                                 break;
-      case CALL_BUSY:               handleCallBusy(event);                                                     break;
+      case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable();                                              break;
+      case CALL_OUTGOING:           handleOutgoingCall();                                                      break;
+      case CALL_BUSY:               handleCallBusy();                                                          break;
       case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);                                            break;
     }
 
@@ -518,12 +508,14 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   private final class ControlsListener implements WebRtcCallView.ControlsListener {
 
     @Override
-    public void onStartCall() {
+    public void onStartCall(boolean isVideoCall) {
+      enableVideoIfAvailable = isVideoCall;
+
       Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
       intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
             .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(viewModel.getRecipient().getId()))
-            .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE, OfferMessage.Type.VIDEO_CALL.getCode());
-      WebRtcCallActivity.this.startService(intent);
+            .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE, (isVideoCall ? OfferMessage.Type.VIDEO_CALL : OfferMessage.Type.AUDIO_CALL).getCode());
+      startService(intent);
 
       MessageSender.onMessageSent();
     }
