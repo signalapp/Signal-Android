@@ -229,8 +229,8 @@ object ClosedGroupsProtocol {
             SignalServiceProtos.ClosedGroupUpdate.Type.INFO -> {
                 return !closedGroupUpdate.name.isNullOrEmpty() && closedGroupUpdate.membersCount > 0 && closedGroupUpdate.adminsCount > 0 // senderKeys may be empty
             }
-            SignalServiceProtos.ClosedGroupUpdate.Type.SENDER_KEY -> return true
-            SignalServiceProtos.ClosedGroupUpdate.Type.SENDER_KEY_REQUEST -> return closedGroupUpdate.senderKeysCount > 0
+            SignalServiceProtos.ClosedGroupUpdate.Type.SENDER_KEY_REQUEST -> return true
+            SignalServiceProtos.ClosedGroupUpdate.Type.SENDER_KEY -> return closedGroupUpdate.senderKeysCount > 0
             else -> return false
         }
     }
