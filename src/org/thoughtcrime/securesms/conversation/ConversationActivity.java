@@ -475,6 +475,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
       collapsedKeyboardHeight = Math.min(collapsedKeyboardHeight, height);
       keyboardHeight = expandedKeyboardHeight - collapsedKeyboardHeight;
+
+      // Use 300dp if the keyboard wasn't opened yet.
+      if (keyboardHeight == 0) {
+        keyboardHeight = (int)(300f * getResources().getDisplayMetrics().density);
+      }
     });
   }
 
@@ -493,6 +498,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
     Log.i(TAG, "onNewIntent()");
     
     if (isFinishing()) {

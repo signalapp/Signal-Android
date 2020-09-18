@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import org.whispersystems.signalservice.loki.utilities.toHexString
 import java.io.IOException
 import java.util.*
+import kotlin.jvm.Throws
 
 object ClosedGroupsProtocol {
     val isSharedSenderKeysEnabled = false
