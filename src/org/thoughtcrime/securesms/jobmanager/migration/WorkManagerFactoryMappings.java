@@ -47,6 +47,8 @@ import org.thoughtcrime.securesms.jobs.UpdateApkJob;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
+import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
+import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceOpenGroupUpdateJob;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +59,9 @@ public class WorkManagerFactoryMappings {
     put(AttachmentDownloadJob.class.getName(), AttachmentDownloadJob.KEY);
     put(AttachmentUploadJob.class.getName(), AttachmentUploadJob.KEY);
     put(AvatarDownloadJob.class.getName(), AvatarDownloadJob.KEY);
+    put(BackgroundPollJob.class.getName(), BackgroundPollJob.KEY);
     put(CleanPreKeysJob.class.getName(), CleanPreKeysJob.KEY);
+    put(ClosedGroupUpdateMessageSendJob.class.getName(), ClosedGroupUpdateMessageSendJob.KEY);
     put(CreateSignedPreKeyJob.class.getName(), CreateSignedPreKeyJob.KEY);
     put(LocalBackupJob.class.getName(), LocalBackupJob.KEY);
     put(MmsDownloadJob.class.getName(), MmsDownloadJob.KEY);
@@ -68,8 +72,10 @@ public class WorkManagerFactoryMappings {
     put(MultiDeviceContactUpdateJob.class.getName(), MultiDeviceContactUpdateJob.KEY);
     put(MultiDeviceGroupUpdateJob.class.getName(), MultiDeviceGroupUpdateJob.KEY);
     put(MultiDeviceProfileKeyUpdateJob.class.getName(), MultiDeviceProfileKeyUpdateJob.KEY);
+    put(MultiDeviceOpenGroupUpdateJob.class.getName(), MultiDeviceOpenGroupUpdateJob.KEY);
     put(MultiDeviceReadUpdateJob.class.getName(), MultiDeviceReadUpdateJob.KEY);
     put(MultiDeviceVerifiedUpdateJob.class.getName(), MultiDeviceVerifiedUpdateJob.KEY);
+    put(NullMessageSendJob.class.getName(), NullMessageSendJob.KEY);
     put(PushContentReceiveJob.class.getName(), PushContentReceiveJob.KEY);
     put(PushDecryptJob.class.getName(), PushDecryptJob.KEY);
     put(PushGroupSendJob.class.getName(), PushGroupSendJob.KEY);
@@ -77,8 +83,6 @@ public class WorkManagerFactoryMappings {
     put(PushMediaSendJob.class.getName(), PushMediaSendJob.KEY);
     put(PushNotificationReceiveJob.class.getName(), PushNotificationReceiveJob.KEY);
     put(PushTextSendJob.class.getName(), PushTextSendJob.KEY);
-    put(NullMessageSendJob.class.getName(), NullMessageSendJob.KEY);
-    put(ClosedGroupUpdateMessageSendJob.class.getName(), ClosedGroupUpdateMessageSendJob.KEY);
     put(RefreshAttributesJob.class.getName(), RefreshAttributesJob.KEY);
     put(RefreshPreKeysJob.class.getName(), RefreshPreKeysJob.KEY);
     put(RefreshUnidentifiedDeliveryAbilityJob.class.getName(), RefreshUnidentifiedDeliveryAbilityJob.KEY);
@@ -86,12 +90,12 @@ public class WorkManagerFactoryMappings {
     put(RetrieveProfileAvatarJob.class.getName(), RetrieveProfileAvatarJob.KEY);
     put(RetrieveProfileJob.class.getName(), RetrieveProfileJob.KEY);
     put(RotateCertificateJob.class.getName(), RotateCertificateJob.KEY);
-    put(BackgroundPollJob.class.getName(), BackgroundPollJob.KEY);
     put(RotateProfileKeyJob.class.getName(), RotateProfileKeyJob.KEY);
     put(RotateSignedPreKeyJob.class.getName(), RotateSignedPreKeyJob.KEY);
     put(SendDeliveryReceiptJob.class.getName(), SendDeliveryReceiptJob.KEY);
     put(SendReadReceiptJob.class.getName(), SendReadReceiptJob.KEY);
     put(ServiceOutageDetectionJob.class.getName(), ServiceOutageDetectionJob.KEY);
+    put(SessionRequestMessageSendJob.class.getName(), SessionRequestMessageSendJob.KEY);
     put(SmsReceiveJob.class.getName(), SmsReceiveJob.KEY);
     put(SmsSendJob.class.getName(), SmsSendJob.KEY);
     put(SmsSentJob.class.getName(), SmsSentJob.KEY);
