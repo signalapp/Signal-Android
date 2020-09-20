@@ -352,9 +352,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
 
       if (animateSuccessOnDraw) {
         animateSuccessOnDraw = false;
+        verified.setChecked(true);
         animateVerifiedSuccess();
       } else if (animateFailureOnDraw) {
         animateFailureOnDraw = false;
+        verified.setChecked(false);
         animateVerifiedFailure();
       }
     }
