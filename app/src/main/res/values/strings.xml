@@ -623,6 +623,8 @@
     <string name="ManageGroupActivity_edit_name_and_picture">Edit name and picture</string>
     <string name="ManageGroupActivity_legacy_group">Legacy Group</string>
     <string name="ManageGroupActivity_legacy_group_learn_more">This is a Legacy Group. To access features like group admins, create a New Group.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">This is an insecure MMS Group. To chat privately and access features like group names, invite your contacts to Signal.</string>
+    <string name="ManageGroupActivity_invite_now">Invite now</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notify me for Mentions</string>

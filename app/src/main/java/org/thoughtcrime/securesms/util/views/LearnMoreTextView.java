@@ -14,6 +14,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import org.thoughtcrime.securesms.R;
@@ -38,26 +39,7 @@ public class LearnMoreTextView extends AppCompatTextView {
 
   private void init() {
     setMovementMethod(LinkMovementMethod.getInstance());
-
-    ClickableSpan clickable = new ClickableSpan() {
-      @Override
-      public void updateDrawState(@NonNull TextPaint ds) {
-        super.updateDrawState(ds);
-        ds.setUnderlineText(false);
-        ds.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.colorAccent));
-      }
-
-      @Override
-      public void onClick(@NonNull View widget) {
-        if (linkListener != null) {
-          linkListener.onClick(widget);
-        }
-      }
-    };
-
-    link = new SpannableString(getContext().getString(R.string.LearnMoreTextView_learn_more));
-    link.setSpan(clickable, 0, link.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-
+    setLinkTextInternal(R.string.LearnMoreTextView_learn_more);
     visible = true;
   }
 
@@ -79,6 +61,33 @@ public class LearnMoreTextView extends AppCompatTextView {
   public void setLearnMoreVisible(boolean visible) {
     this.visible = visible;
     setTextInternal(baseText, visible ? BufferType.SPANNABLE : BufferType.NORMAL);
+  }
+
+  public void setLearnMoreVisible(boolean visible, @StringRes int linkText) {
+    setLinkTextInternal(linkText);
+    this.visible = visible;
+    setTextInternal(baseText, visible ? BufferType.SPANNABLE : BufferType.NORMAL);
+  }
+
+  private void setLinkTextInternal(@StringRes int linkText) {
+    ClickableSpan clickable = new ClickableSpan() {
+      @Override
+      public void updateDrawState(@NonNull TextPaint ds) {
+        super.updateDrawState(ds);
+        ds.setUnderlineText(false);
+        ds.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.colorAccent));
+      }
+
+      @Override
+      public void onClick(@NonNull View widget) {
+        if (linkListener != null) {
+          linkListener.onClick(widget);
+        }
+      }
+    };
+
+    link = new SpannableString(getContext().getString(linkText));
+    link.setSpan(clickable, 0, link.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
   }
 
   private void setTextInternal(CharSequence text, BufferType type) {

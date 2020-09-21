@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
+import org.thoughtcrime.securesms.InviteActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
@@ -78,7 +79,7 @@ public class ManageGroupFragment extends LoggingFragment {
   private TextView                           pendingAndRequestingCount;
   private Toolbar                            toolbar;
   private TextView                           groupName;
-  private LearnMoreTextView                  groupV1Indicator;
+  private LearnMoreTextView                  groupInfoText;
   private TextView                           memberCountUnderAvatar;
   private TextView                           memberCountAboveList;
   private AvatarImageView                    avatar;
@@ -139,7 +140,7 @@ public class ManageGroupFragment extends LoggingFragment {
     avatar                      = view.findViewById(R.id.group_avatar);
     toolbar                     = view.findViewById(R.id.toolbar);
     groupName                   = view.findViewById(R.id.name);
-    groupV1Indicator            = view.findViewById(R.id.manage_group_group_v1_indicator);
+    groupInfoText               = view.findViewById(R.id.manage_group_info_text);
     memberCountUnderAvatar      = view.findViewById(R.id.member_count);
     memberCountAboveList        = view.findViewById(R.id.member_count_2);
     groupMemberList             = view.findViewById(R.id.group_members);
@@ -175,9 +176,6 @@ public class ManageGroupFragment extends LoggingFragment {
     toggleAllMembers            = view.findViewById(R.id.toggle_all_members);
     groupLinkRow                = view.findViewById(R.id.group_link_row);
     groupLinkButton             = view.findViewById(R.id.group_link_button);
-
-    groupV1Indicator.setOnLinkClickListener(v -> GroupsLearnMoreBottomSheetDialogFragment.show(requireFragmentManager()));
-    groupV1Indicator.setLearnMoreVisible(true);
 
     return view;
   }
@@ -249,7 +247,6 @@ public class ManageGroupFragment extends LoggingFragment {
 
     viewModel.getTitle().observe(getViewLifecycleOwner(), groupName::setText);
     viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
-    viewModel.getShowLegacyIndicator().observe(getViewLifecycleOwner(), showLegacyIndicators -> groupV1Indicator.setVisibility(showLegacyIndicators ? View.VISIBLE : View.GONE));
     viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
     viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), groupRecipient -> {
       avatar.setRecipient(groupRecipient);
@@ -375,6 +372,26 @@ public class ManageGroupFragment extends LoggingFragment {
     viewModel.getCanBlockGroup().observe(getViewLifecycleOwner(), canBlock -> {
       blockGroup.setVisibility(canBlock ? View.VISIBLE : View.GONE);
       unblockGroup.setVisibility(canBlock ? View.GONE : View.VISIBLE);
+    });
+
+    viewModel.getGroupInfoMessage().observe(getViewLifecycleOwner(), message -> {
+      switch (message) {
+        case LEGACY_GROUP_LEARN_MORE:
+          groupInfoText.setText(R.string.ManageGroupActivity_legacy_group_learn_more);
+          groupInfoText.setOnLinkClickListener(v -> GroupsLearnMoreBottomSheetDialogFragment.show(requireFragmentManager()));
+          groupInfoText.setLearnMoreVisible(true);
+          groupInfoText.setVisibility(View.VISIBLE);
+          break;
+        case MMS_WARNING:
+          groupInfoText.setText(R.string.ManageGroupActivity_this_is_an_insecure_mms_group);
+          groupInfoText.setOnLinkClickListener(v -> startActivity(new Intent(requireContext(), InviteActivity.class)));
+          groupInfoText.setLearnMoreVisible(true, R.string.ManageGroupActivity_invite_now);
+          groupInfoText.setVisibility(View.VISIBLE);
+          break;
+        default:
+          groupInfoText.setVisibility(View.GONE);
+          break;
+      }
     });
   }
 

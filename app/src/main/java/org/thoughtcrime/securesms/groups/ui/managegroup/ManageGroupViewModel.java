@@ -80,6 +80,7 @@ public class ManageGroupViewModel extends ViewModel {
   private final LiveData<Boolean>                           showLegacyIndicator;
   private final LiveData<String>                            mentionSetting;
   private final LiveData<Boolean>                           groupLinkOn;
+  private final LiveData<GroupInfoMessage>                  groupInfoMessage;
 
   private ManageGroupViewModel(@NonNull Context context, @NonNull ManageGroupRepository manageGroupRepository) {
     this.context               = context;
@@ -123,6 +124,16 @@ public class ManageGroupViewModel extends ViewModel {
     this.mentionSetting            = Transformations.distinctUntilChanged(Transformations.map(this.groupRecipient,
                                                                                               recipient -> MentionUtil.getMentionSettingDisplayValue(context, recipient.getMentionSetting())));
     this.groupLinkOn               = Transformations.map(liveGroup.getGroupLink(), GroupLinkUrlAndStatus::isEnabled);
+    this.groupInfoMessage          = Transformations.map(this.showLegacyIndicator,
+                                                         showLegacyInfo -> {
+                                                           if (showLegacyInfo) {
+                                                             return GroupInfoMessage.LEGACY_GROUP_LEARN_MORE;
+                                                           } else if (groupId.isMms()) {
+                                                             return GroupInfoMessage.MMS_WARNING;
+                                                           } else {
+                                                             return GroupInfoMessage.NONE;
+                                                           }
+                                                         });
   }
 
   @WorkerThread
@@ -150,10 +161,6 @@ public class ManageGroupViewModel extends ViewModel {
 
   LiveData<String> getFullMemberCountSummary() {
     return fullMemberCountSummary;
-  }
-
-  LiveData<Boolean> getShowLegacyIndicator() {
-    return showLegacyIndicator;
   }
 
   LiveData<Recipient> getGroupRecipient() {
@@ -226,6 +233,10 @@ public class ManageGroupViewModel extends ViewModel {
 
   LiveData<Boolean> getGroupLinkOn() {
     return groupLinkOn;
+  }
+
+  LiveData<GroupInfoMessage> getGroupInfoMessage() {
+    return groupInfoMessage;
   }
 
   void handleExpirationSelection() {
@@ -395,6 +406,12 @@ public class ManageGroupViewModel extends ViewModel {
     public @NonNull List<Recipient> getNewInvitedMembers() {
       return newInvitedMembers;
     }
+  }
+
+  enum GroupInfoMessage {
+    NONE,
+    LEGACY_GROUP_LEARN_MORE,
+    MMS_WARNING
   }
 
   private enum CollapseState {
