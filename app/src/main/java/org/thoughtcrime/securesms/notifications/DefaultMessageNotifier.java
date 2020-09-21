@@ -560,6 +560,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
       }
 
       if (hasUnreadReactions) {
+        CharSequence originalBody = body;
         for (ReactionRecord reaction : record.getReactions()) {
           Recipient reactionSender = Recipient.resolved(reaction.getAuthor());
           if (reactionSender.equals(Recipient.self()) || !record.isOutgoing() || reaction.getDateReceived() <= lastReactionRead) {
@@ -569,7 +570,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
           if (KeyCachingService.isLocked(context)) {
             body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
           } else {
-            String   text  = SpanUtil.italic(getReactionMessageBody(context, record)).toString();
+            String   text  = SpanUtil.italic(getReactionMessageBody(context, record, originalBody)).toString();
             String[] parts = text.split(EMOJI_REPLACEMENT_STRING);
 
             SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -599,9 +600,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
     return notificationState;
   }
 
-  private static CharSequence getReactionMessageBody(@NonNull Context context, @NonNull MessageRecord record) {
-    CharSequence body        = record.getDisplayBody(context);
-    boolean      bodyIsEmpty = TextUtils.isEmpty(body);
+  private static CharSequence getReactionMessageBody(@NonNull Context context, @NonNull MessageRecord record, @NonNull CharSequence body) {
+    boolean bodyIsEmpty = TextUtils.isEmpty(body);
 
     if (MessageRecordUtil.hasSharedContact(record)) {
       Contact       contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
