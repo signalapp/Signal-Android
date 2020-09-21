@@ -103,7 +103,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.Poller;
-import org.whispersystems.signalservice.loki.api.PushNotificationAcknowledgement;
+import org.whispersystems.signalservice.loki.api.PushNotificationAPI;
 import org.whispersystems.signalservice.loki.api.SnodeAPI;
 import org.whispersystems.signalservice.loki.api.SwarmAPI;
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI;
@@ -206,7 +206,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
     SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, sskDatabase, this);
     setUpP2PAPIIfNeeded();
-    PushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
+    PushNotificationAPI.Companion.configureIfNeeded(BuildConfig.DEBUG);
     if (setUpStorageAPIIfNeeded()) {
       if (userPublicKey != null) {
         Set<DeviceLink> deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey);

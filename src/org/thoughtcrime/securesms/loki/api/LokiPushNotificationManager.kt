@@ -7,17 +7,17 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.logging.Log
 import org.whispersystems.signalservice.internal.util.JsonUtil
-import org.whispersystems.signalservice.loki.api.PushNotificationAcknowledgement
+import org.whispersystems.signalservice.loki.api.PushNotificationAPI
 import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
 
 object LokiPushNotificationManager {
     private val tokenExpirationInterval = 12 * 60 * 60 * 1000
 
     private val server by lazy {
-        PushNotificationAcknowledgement.shared.server
+        PushNotificationAPI.shared.server
     }
     private val pnServerPublicKey by lazy {
-        PushNotificationAcknowledgement.pnServerPublicKey
+        PushNotificationAPI.pnServerPublicKey
     }
 
     enum class ClosedGroupOperation {

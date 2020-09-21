@@ -15,7 +15,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
 import org.whispersystems.signalservice.internal.util.Base64
 import org.whispersystems.signalservice.loki.api.MessageWrapper
 
-
 class PushNotificationService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
