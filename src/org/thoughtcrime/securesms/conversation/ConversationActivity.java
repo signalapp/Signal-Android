@@ -458,7 +458,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null) {
       ApplicationContext.getInstance(this).getPublicChatAPI().getChannelInfo(publicChat.getChannel(), publicChat.getServer()).success(displayName -> {
-        updateSubtitleTextView();
+        runOnUiThread(ConversationActivity.this::updateSubtitleTextView);
         return Unit.INSTANCE;
       });
     }
@@ -492,6 +492,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
     Log.i(TAG, "onNewIntent()");
     
     if (isFinishing()) {
