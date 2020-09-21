@@ -64,7 +64,7 @@ public class VerificationCodeParserTest extends BaseUnitTest {
   @Test
   public void testChallenges() {
     for (String[] challenge : challenges()) {
-      Optional<String> result = VerificationCodeParser.parse(context, challenge[0]);
+      Optional<String> result = VerificationCodeParser.parse(challenge[0]);
       assertTrue(result.isPresent());
       assertEquals(challenge[1], result.get());
     }

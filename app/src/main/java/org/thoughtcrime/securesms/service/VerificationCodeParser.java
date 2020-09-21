@@ -16,9 +16,7 @@
  */
 package org.thoughtcrime.securesms.service;
 
-import android.content.Context;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.regex.Matcher;
@@ -28,14 +26,14 @@ public class VerificationCodeParser {
 
   private static final Pattern CHALLENGE_PATTERN = Pattern.compile("(.*\\D|^)([0-9]{3,4})-([0-9]{3,4}).*", Pattern.DOTALL);
 
-  public static Optional<String> parse(Context context, String messageBody) {
+  public static Optional<String> parse(String messageBody) {
     if (messageBody == null) {
       return Optional.absent();
     }
 
     Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
 
-    if (!challengeMatcher.matches() || !TextSecurePreferences.isVerifying(context)) {
+    if (!challengeMatcher.matches()) {
       return Optional.absent();
     }
 

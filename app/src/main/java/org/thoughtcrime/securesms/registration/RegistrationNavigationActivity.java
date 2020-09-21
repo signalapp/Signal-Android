@@ -77,7 +77,7 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
 
         switch (status.getStatusCode()) {
           case CommonStatusCodes.SUCCESS:
-            Optional<String> code = VerificationCodeParser.parse(context, (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE));
+            Optional<String> code = VerificationCodeParser.parse((String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE));
             if (code.isPresent()) {
               Log.i(TAG, "Received verification code.");
               handleVerificationCodeReceived(code.get());

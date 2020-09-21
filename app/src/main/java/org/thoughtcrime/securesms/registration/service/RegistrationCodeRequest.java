@@ -77,8 +77,6 @@ public final class RegistrationCodeRequest {
   }
 
   private static void markAsVerifying(Context context) {
-    TextSecurePreferences.setVerifying(context, true);
-
     TextSecurePreferences.setPushRegistered(context, false);
   }
 

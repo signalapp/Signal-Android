@@ -258,7 +258,6 @@ public final class CodeVerificationRequest {
                                  identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED,
                                  true, System.currentTimeMillis(), true);
 
-    TextSecurePreferences.setVerifying(context, false);
     TextSecurePreferences.setPushRegistered(context, true);
     TextSecurePreferences.setPushServerPassword(context, credentials.getPassword());
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);

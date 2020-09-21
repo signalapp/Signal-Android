@@ -2,9 +2,19 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.Person;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
 import android.telephony.SmsMessage;
 
-import org.thoughtcrime.securesms.database.Database;
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.common.api.Status;
+
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -14,16 +24,21 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
-import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.service.VerificationCodeParser;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SmsReceiveJob extends BaseJob {
 
@@ -41,7 +56,7 @@ public class SmsReceiveJob extends BaseJob {
   public SmsReceiveJob(@Nullable Object[] pdus, int subscriptionId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(SqlCipherMigrationConstraint.KEY)
-                           .setMaxAttempts(25)
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .build(),
          pdus,
          subscriptionId);
@@ -72,12 +87,35 @@ public class SmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public void onRun() throws MigrationPendingException {
-    if (TextSecurePreferences.getLocalUuid(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
-      throw new NotReadyException();
-    }
-
+  public void onRun() throws MigrationPendingException, RetryLaterException {
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus, subscriptionId);
+
+    if (TextSecurePreferences.getLocalUuid(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
+      Log.i(TAG, "Received an SMS before we're registered...");
+
+      if (message.isPresent()) {
+        Optional<String> token = VerificationCodeParser.parse(message.get().getMessageBody());
+
+        if (token.isPresent()) {
+          Log.i(TAG, "Received something that looks like a registration SMS. Posting a notification and broadcast.");
+
+          NotificationManager manager      = ServiceUtil.getNotificationManager(context);
+          Notification        notification = buildPreRegistrationNotification(context, message.get());
+          manager.notify(NotificationIds.PRE_REGISTRATION_SMS, notification);
+
+          Intent smsRetrieverIntent = buildSmsRetrieverIntent(message.get());
+          context.sendBroadcast(smsRetrieverIntent);
+
+          return;
+        } else {
+          Log.w(TAG, "Received an SMS before registration is complete. We'll try again later.");
+          throw new RetryLaterException();
+        }
+      } else {
+        Log.w(TAG, "Received an SMS before registration is complete, but couldn't assemble the message anyway. Ignoring.");
+        return;
+      }
+    }
 
     if (message.isPresent() && !isBlocked(message.get())) {
       Optional<InsertResult> insertResult = storeMessage(message.get());
@@ -99,7 +137,8 @@ public class SmsReceiveJob extends BaseJob {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    return exception instanceof MigrationPendingException;
+    return exception instanceof MigrationPendingException ||
+           exception instanceof RetryLaterException;
   }
 
   private boolean isBlocked(IncomingTextMessage message) {
@@ -150,7 +189,29 @@ public class SmsReceiveJob extends BaseJob {
     return Optional.of(new IncomingTextMessage(messages));
   }
 
-  private class MigrationPendingException extends Exception {
+  private static Notification buildPreRegistrationNotification(@NonNull Context context, @NonNull IncomingTextMessage message) {
+    Recipient sender = Recipient.resolved(message.getSender());
+
+    return new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
+                                 .setStyle(new NotificationCompat.MessagingStyle(new Person.Builder()
+                                                                 .setName(sender.getE164().or(""))
+                                                                 .build())
+                                                                 .addMessage(new NotificationCompat.MessagingStyle.Message(message.getMessageBody(),
+                                                                                                                           message.getSentTimestampMillis(),
+                                                                                                                           (Person) null)))
+                                 .setSmallIcon(R.drawable.ic_notification)
+                                 .build();
+  }
+
+  /**
+   * @return An intent that is identical to the one the {@link SmsRetriever} API uses, so that
+   *         we can auto-populate the SMS code on capable devices.
+   */
+  private static Intent buildSmsRetrieverIntent(@NonNull IncomingTextMessage message) {
+    Intent intent = new Intent(SmsRetriever.SMS_RETRIEVED_ACTION);
+    intent.putExtra(SmsRetriever.EXTRA_STATUS, Status.RESULT_SUCCESS);
+    intent.putExtra(SmsRetriever.EXTRA_SMS_MESSAGE, message.getMessageBody());
+    return intent;
   }
 
   public static final class Factory implements Job.Factory<SmsReceiveJob> {
@@ -172,6 +233,6 @@ public class SmsReceiveJob extends BaseJob {
     }
   }
 
-  private static class NotReadyException extends RuntimeException {
+  private class MigrationPendingException extends Exception {
   }
 }

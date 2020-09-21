@@ -75,7 +75,6 @@ public class TextSecurePreferences {
   private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
   private static final String LOCAL_UUID_PREF                  = "pref_local_uuid";
   private static final String LOCAL_USERNAME_PREF              = "pref_local_username";
-  private static final String VERIFYING_STATE_PREF             = "pref_verifying";
   public  static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String SEEN_WELCOME_SCREEN_PREF         = "pref_seen_welcome_screen";
@@ -838,14 +837,6 @@ public class TextSecurePreferences {
 
   public static String getTheme(Context context) {
     return getStringPreference(context, THEME_PREF, DynamicTheme.systemThemeAvailable() ? DynamicTheme.SYSTEM : DynamicTheme.LIGHT);
-  }
-
-  public static boolean isVerifying(Context context) {
-    return getBooleanPreference(context, VERIFYING_STATE_PREF, false);
-  }
-
-  public static void setVerifying(Context context, boolean verifying) {
-    setBooleanPreference(context, VERIFYING_STATE_PREF, verifying);
   }
 
   public static boolean isPushRegistered(Context context) {
