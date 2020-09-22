@@ -103,12 +103,6 @@ public class SignalServiceProfile {
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean uuid, boolean gv2, boolean storage) {
-      this.uuid    = uuid;
-      this.gv2     = gv2;
-      this.storage = storage;
-    }
-
     public boolean isUuid() {
       return uuid;
     }

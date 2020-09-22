@@ -32,6 +32,7 @@ import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -293,7 +294,7 @@ public class PushServiceSocket {
   public VerifyAccountResponse verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,
                                                  String pin, String registrationLock,
                                                  byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                                 SignalServiceProfile.Capabilities capabilities,
+                                                 AccountAttributes.Capabilities capabilities,
                                                  boolean discoverableByPhoneNumber)
       throws IOException
   {
@@ -307,7 +308,7 @@ public class PushServiceSocket {
   public void setAccountAttributes(String signalingKey, int registrationId, boolean fetchesMessages,
                                    String pin, String registrationLock,
                                    byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                   SignalServiceProfile.Capabilities capabilities,
+                                   AccountAttributes.Capabilities capabilities,
                                    boolean discoverableByPhoneNumber)
       throws IOException
   {

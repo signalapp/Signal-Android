@@ -4,8 +4,9 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
-package org.whispersystems.signalservice.internal.push;
+package org.whispersystems.signalservice.api.account;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
@@ -43,7 +44,7 @@ public class AccountAttributes {
   private boolean discoverableByPhoneNumber;
 
   @JsonProperty
-  private SignalServiceProfile.Capabilities capabilities;
+  private Capabilities capabilities;
 
   public AccountAttributes(String signalingKey,
                            int registrationId,
@@ -52,7 +53,7 @@ public class AccountAttributes {
                            String registrationLock,
                            byte[] unidentifiedAccessKey,
                            boolean unrestrictedUnidentifiedAccess,
-                           SignalServiceProfile.Capabilities capabilities,
+                           Capabilities capabilities,
                            boolean discoverableByPhoneNumber)
   {
     this.signalingKey                   = signalingKey;
@@ -110,7 +111,39 @@ public class AccountAttributes {
     return discoverableByPhoneNumber;
   }
 
-  public SignalServiceProfile.Capabilities getCapabilities() {
+  public Capabilities getCapabilities() {
     return capabilities;
+  }
+
+  public static class Capabilities {
+    @JsonProperty
+    private boolean uuid;
+
+    @JsonProperty("gv2-2")
+    private boolean gv2;
+
+    @JsonProperty
+    private boolean storage;
+
+    @JsonCreator
+    public Capabilities() {}
+
+    public Capabilities(boolean uuid, boolean gv2, boolean storage) {
+      this.uuid    = uuid;
+      this.gv2     = gv2;
+      this.storage = storage;
+    }
+
+    public boolean isUuid() {
+      return uuid;
+    }
+
+    public boolean isGv2() {
+      return gv2;
+    }
+
+    public boolean isStorage() {
+      return storage;
+    }
   }
 }
