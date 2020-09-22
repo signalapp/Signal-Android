@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
-import com.google.android.gms.common.Feature;
 
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -29,7 +28,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -88,6 +86,17 @@ public class RecipientUtil {
   public static @NonNull List<SignalServiceAddress> toSignalServiceAddressesFromResolved(@NonNull Context context, @NonNull List<Recipient> recipients)
       throws IOException
   {
+    ensureUuidsAreAvailable(context, recipients);
+
+    return Stream.of(recipients)
+                 .map(Recipient::resolve)
+                 .map(r -> new SignalServiceAddress(r.getUuid().orNull(), r.getE164().orNull()))
+                 .toList();
+  }
+
+  public static void ensureUuidsAreAvailable(@NonNull Context context, @NonNull Collection<Recipient> recipients)
+      throws IOException
+  {
     if (FeatureFlags.cds()) {
       List<Recipient> recipientsWithoutUuids = Stream.of(recipients)
                                                      .map(Recipient::resolve)
@@ -98,11 +107,6 @@ public class RecipientUtil {
         DirectoryHelper.refreshDirectoryFor(context, recipientsWithoutUuids, false);
       }
     }
-
-    return Stream.of(recipients)
-                 .map(Recipient::resolve)
-                 .map(r -> new SignalServiceAddress(r.getUuid().orNull(), r.getE164().orNull()))
-                 .toList();
   }
 
   public static boolean isBlockable(@NonNull Recipient recipient) {
@@ -241,7 +245,7 @@ public class RecipientUtil {
 
   @WorkerThread
   public static void shareProfileIfFirstSecureMessage(@NonNull Context context, @NonNull Recipient recipient) {
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient.getId());
 
     if (isPreMessageRequestThread(context, threadId)) {
       return;

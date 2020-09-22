@@ -1801,6 +1801,12 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  /**
+   * Handles inserts the (e164, UUID) pairs, which could result in merges. Does not mark users as
+   * registered.
+   *
+   * @return A mapping of (RecipientId, UUID)
+   */
   public @NonNull Map<RecipientId, String> bulkProcessCdsResult(@NonNull Map<String, UUID> mapping) {
     SQLiteDatabase               db      = databaseHelper.getWritableDatabase();
     HashMap<RecipientId, String> uuidMap = new HashMap<>();

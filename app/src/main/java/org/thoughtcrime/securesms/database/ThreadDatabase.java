@@ -872,22 +872,17 @@ public class ThreadDatabase extends Database {
     deleteAllThreads();
   }
 
-  public long getThreadIdIfExistsFor(Recipient recipient) {
+  public long getThreadIdIfExistsFor(@NonNull RecipientId recipientId) {
     SQLiteDatabase db            = databaseHelper.getReadableDatabase();
     String         where         = RECIPIENT_ID + " = ?";
-    String[]       recipientsArg = new String[] {recipient.getId().serialize()};
-    Cursor         cursor        = null;
+    String[]       recipientsArg = new String[] {recipientId.serialize()};
 
-    try {
-      cursor = db.query(TABLE_NAME, new String[]{ID}, where, recipientsArg, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst())
-        return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-      else
-        return -1L;
-    } finally {
-      if (cursor != null)
-        cursor.close();
+    try (Cursor cursor = db.query(TABLE_NAME, new String[]{ ID }, where, recipientsArg, null, null, null, "1")) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return CursorUtil.requireLong(cursor, ID);
+      } else {
+        return -1;
+      }
     }
   }
 
@@ -948,6 +943,10 @@ public class ThreadDatabase extends Database {
     RecipientId id = getRecipientIdForThreadId(threadId);
     if (id == null) return null;
     return Recipient.resolved(id);
+  }
+
+  public boolean hasThread(@NonNull RecipientId recipientId) {
+    return getThreadIdIfExistsFor(recipientId) > -1;
   }
 
   public void setHasSent(long threadId, boolean hasSent) {
