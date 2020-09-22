@@ -155,7 +155,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
     FeatureFlags.GroupJoinStatus groupJoinStatus = FeatureFlags.clientLocalGroupJoinStatus();
 
     if (groupJoinStatus == FeatureFlags.GroupJoinStatus.LOCAL_CAN_JOIN) {
-      if (!FeatureFlags.groupsV2() || Recipient.self().getGroupsV2Capability() == Recipient.Capability.NOT_SUPPORTED) {
+      if (Recipient.self().getGroupsV2Capability() == Recipient.Capability.NOT_SUPPORTED) {
         // TODO [Alan] GV2 additional copy could be presented in these cases
         return FeatureFlags.GroupJoinStatus.UPDATE_TO_JOIN;
       }

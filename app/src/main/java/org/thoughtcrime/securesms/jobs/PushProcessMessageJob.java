@@ -82,7 +82,6 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -1822,12 +1821,6 @@ public final class PushProcessMessageJob extends BaseJob {
       } else if (conversation.isGroup()) {
         GroupDatabase     groupDatabase = DatabaseFactory.getGroupDatabase(context);
         Optional<GroupId> groupId       = GroupUtil.idFromGroupContext(message.getGroupContext());
-        boolean           isGv2Message  = message.isGroupV2Message();
-
-        if (isGv2Message && !FeatureFlags.groupsV2() && groupDatabase.isUnknownGroup(groupId.get())) {
-          Log.i(TAG, "Ignoring GV2 message for a new group by feature flag.");
-          return true;
-        }
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
           return false;

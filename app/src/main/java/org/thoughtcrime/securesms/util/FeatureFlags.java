@@ -7,23 +7,15 @@ import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
 import com.google.android.collect.Sets;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -57,10 +49,6 @@ public final class FeatureFlags {
 
   private static final String USERNAMES                    = "android.usernames";
   private static final String REMOTE_DELETE                = "android.remoteDelete";
-  private static final String GROUPS_V2_OLD_1              = "android.groupsv2";
-  private static final String GROUPS_V2_OLD_2              = "android.groupsv2.2";
-  private static final String GROUPS_V2_OLD_3              = "android.groupsv2.3";
-  private static final String GROUPS_V2                    = "android.groupsv2.4";
   private static final String GROUPS_V2_CREATE_VERSION     = "android.groupsv2.createVersion";
   private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
   private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
@@ -80,7 +68,6 @@ public final class FeatureFlags {
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
       REMOTE_DELETE,
-      GROUPS_V2,
       GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_CAPACITY,
       GROUPS_V2_JOIN_VERSION,
@@ -123,10 +110,6 @@ public final class FeatureFlags {
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
   private static final Set<String> STICKY = Sets.newHashSet(
-      GROUPS_V2,
-      GROUPS_V2_OLD_1,
-      GROUPS_V2_OLD_2,
-      GROUPS_V2_OLD_3,
       VERIFY_V2
     );
 
@@ -142,13 +125,6 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(GROUPS_V2, (change) -> {
-      if (change == Change.ENABLED) {
-        ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob())
-                               .then(new RefreshOwnProfileJob())
-                               .enqueue();
-      }
-    });
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -206,32 +182,15 @@ public final class FeatureFlags {
     return getBoolean(REMOTE_DELETE, false);
   }
 
-  /** Groups v2 send and receive. */
-  public static boolean groupsV2() {
-    return groupsV2OlderStickyFlags() || groupsV2LatestFlag();
-  }
-
   /** Attempt groups v2 creation. */
   public static boolean groupsV2create() {
-    return groupsV2LatestFlag() &&
-           getVersionFlag(GROUPS_V2_CREATE_VERSION) == VersionFlag.ON &&
+    return getVersionFlag(GROUPS_V2_CREATE_VERSION) == VersionFlag.ON &&
            !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
   }
 
   /** Allow creation and managing of group links. */
   public static boolean groupsV2manageGroupLinks() {
-    return groupsV2() && getVersionFlag(GROUPS_V2_LINKS_VERSION) == VersionFlag.ON;
-  }
-
-  private static boolean groupsV2LatestFlag() {
-    return getBoolean(GROUPS_V2, false);
-  }
-
-  /** Clients that previously saw these flags as true must continue to respect that */
-  private static boolean groupsV2OlderStickyFlags() {
-    return getBoolean(GROUPS_V2_OLD_1, false) ||
-           getBoolean(GROUPS_V2_OLD_2, false) ||
-           getBoolean(GROUPS_V2_OLD_3, false);
+    return getVersionFlag(GROUPS_V2_LINKS_VERSION) == VersionFlag.ON;
   }
 
   /**
@@ -278,7 +237,7 @@ public final class FeatureFlags {
 
   /** Whether or not we allow mentions send support in groups. */
   public static boolean mentions() {
-    return groupsV2() && getBoolean(MENTIONS, false);
+    return getBoolean(MENTIONS, false);
   }
 
   /** Whether or not to use the UUID in verification codes. */
