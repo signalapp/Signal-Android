@@ -99,6 +99,10 @@ public final class ProfileName implements Parcelable {
     givenName  = StringUtil.trimToFit(givenName.trim(), ProfileName.MAX_PART_LENGTH);
     familyName = StringUtil.trimToFit(familyName.trim(), ProfileName.MAX_PART_LENGTH);
 
+    if (givenName.isEmpty() && familyName.isEmpty()) {
+      return EMPTY;
+    }
+
     return new ProfileName(givenName, familyName);
   }
 
