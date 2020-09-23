@@ -208,5 +208,8 @@ public class NotificationState {
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
   }
 
+  public boolean canReply() {
+    return notifications.size() == 1 && notifications.get(0).canReply();
+  }
 
 }
