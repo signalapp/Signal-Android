@@ -62,7 +62,11 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -555,10 +559,15 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
       final PhoneNumberPrivacyValues.PhoneNumberSharingMode[] value = { phoneNumberPrivacyValues.getPhoneNumberSharingMode() };
 
+      Map<PhoneNumberPrivacyValues.PhoneNumberSharingMode, CharSequence> items        = items(requireContext());
+      List<PhoneNumberPrivacyValues.PhoneNumberSharingMode>              modes        = new ArrayList<>(items.keySet());
+      CharSequence[]                                                     modeStrings  = items.values().toArray(new CharSequence[0]);
+      int                                                                selectedMode = modes.indexOf(value[0]);
+
       new AlertDialog.Builder(requireActivity())
                      .setTitle(R.string.preferences_app_protection__see_my_phone_number)
                      .setCancelable(true)
-                     .setSingleChoiceItems(items(requireContext()), value[0].ordinal(), (dialog, which) -> value[0] = PhoneNumberPrivacyValues.PhoneNumberSharingMode.values()[which])
+                     .setSingleChoiceItems(modeStrings, selectedMode, (dialog, which) -> value[0] = modes.get(which))
                      .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                        PhoneNumberPrivacyValues.PhoneNumberSharingMode phoneNumberSharingMode = value[0];
                        phoneNumberPrivacyValues.setPhoneNumberSharingMode(phoneNumberSharingMode);
@@ -572,13 +581,14 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       return true;
     }
 
-    private CharSequence[] items(Context context) {
-      return new CharSequence[]{
-        titleAndDescription(context, context.getString(R.string.PhoneNumberPrivacy_everyone), context.getString(R.string.PhoneNumberPrivacy_everyone_see_description)),
-        titleAndDescription(context, context.getString(R.string.PhoneNumberPrivacy_my_contacts), context.getString(R.string.PhoneNumberPrivacy_my_contacts_see_description)),
-        context.getString(R.string.PhoneNumberPrivacy_nobody) };
-    }
+    private Map<PhoneNumberPrivacyValues.PhoneNumberSharingMode, CharSequence> items(Context context) {
+      Map<PhoneNumberPrivacyValues.PhoneNumberSharingMode, CharSequence> map = new LinkedHashMap<>();
 
+      map.put(PhoneNumberPrivacyValues.PhoneNumberSharingMode.EVERYONE, titleAndDescription(context, context.getString(R.string.PhoneNumberPrivacy_everyone), context.getString(R.string.PhoneNumberPrivacy_everyone_see_description)));
+      map.put(PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY, context.getString(R.string.PhoneNumberPrivacy_nobody));
+
+      return map;
+    }
   }
 
   private final class PhoneNumberPrivacyWhoCanFindClickListener implements Preference.OnPreferenceClickListener {
