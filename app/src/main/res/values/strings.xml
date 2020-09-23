@@ -727,6 +727,7 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Joining a group via a link is not yet supported by Signal. This feature will be released in an upcoming update.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">The version of Signal you’re using does not support group links. Update to the latest version to join this group via link.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Update Signal</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">One or more of your linked devices are running a version of Signal that doesn\'t support group links. Update Signal on your linked device(s) to join this group.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Group link is not valid</string>
 
     <!-- GV2 Request confirmation dialog -->
