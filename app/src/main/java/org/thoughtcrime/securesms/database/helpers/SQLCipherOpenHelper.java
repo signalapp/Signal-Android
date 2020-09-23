@@ -148,8 +148,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int STICKER_CONTENT_TYPE             = 72;
   private static final int STICKER_EMOJI_IN_NOTIFICATIONS   = 73;
   private static final int THUMBNAIL_CLEANUP                = 74;
+  private static final int STICKER_CONTENT_TYPE_CLEANUP     = 75;
 
-  private static final int    DATABASE_VERSION = 74;
+  private static final int    DATABASE_VERSION = 75;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1047,6 +1048,16 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         }
 
         Log.w(TAG, "Deleted " + deleted + "/" + total + " thumbnail files.");
+      }
+
+      if (oldVersion < STICKER_CONTENT_TYPE_CLEANUP) {
+        ContentValues values = new ContentValues();
+        values.put("ct", "image/webp");
+
+        String query = "sticker_id NOT NULL AND (ct IS NULL OR ct = '')";
+
+        int rows = db.update("part", values, query, null);
+        Log.i(TAG, "Updated " + rows + " sticker attachment content types.");
       }
 
       db.setTransactionSuccessful();

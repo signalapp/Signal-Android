@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Objects;
 
@@ -68,7 +69,7 @@ public final class StickerRecord {
   }
 
   public @NonNull String getContentType() {
-    return contentType == null ? MediaUtil.IMAGE_WEBP : contentType;
+    return Util.isEmpty(contentType) ? MediaUtil.IMAGE_WEBP : contentType;
   }
 
   public long getSize() {

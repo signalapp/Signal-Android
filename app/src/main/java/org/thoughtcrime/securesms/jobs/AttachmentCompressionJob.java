@@ -153,8 +153,8 @@ public final class AttachmentCompressionJob extends BaseJob {
         if (MediaUtil.isJpeg(attachment)) {
           MediaStream stripped = getResizedMedia(context, attachment, constraints);
           attachmentDatabase.updateAttachmentData(attachment, stripped, false);
-          attachmentDatabase.markAttachmentAsTransformed(attachmentId);
         }
+        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
       } else if (constraints.canResize(attachment)) {
         MediaStream resized = getResizedMedia(context, attachment, constraints);
         attachmentDatabase.updateAttachmentData(attachment, resized, false);
