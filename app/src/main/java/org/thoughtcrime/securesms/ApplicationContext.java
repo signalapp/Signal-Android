@@ -137,7 +137,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     NotificationChannels.create(this);
     RefreshPreKeysJob.scheduleIfNecessary();
     StorageSyncHelper.scheduleRoutineSync();
-    RetrieveProfileJob.enqueueRoutineFetchIfNecessary(this);
     RegistrationUtil.maybeMarkRegistrationComplete(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
@@ -155,6 +154,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     Log.i(TAG, "App is now visible.");
     FeatureFlags.refreshIfNecessary();
     ApplicationDependencies.getRecipientCache().warmUp();
+    RetrieveProfileJob.enqueueRoutineFetchIfNecessary(this);
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     ApplicationDependencies.getFrameRateTracker().begin();

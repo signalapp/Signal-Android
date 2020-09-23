@@ -181,6 +181,8 @@ public class RetrieveProfileJob extends BaseJob {
                                                                      current - TimeUnit.DAYS.toMillis(1),
                                                                      50);
 
+      ids.add(Recipient.self().getId());
+
       if (ids.size() > 0) {
         Log.i(TAG, "Optimistically refreshing " + ids.size() + " eligible recipient(s).");
         enqueue(new HashSet<>(ids));
