@@ -27,6 +27,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
@@ -84,6 +85,7 @@ public class ConversationAdapter
   private static final long FOOTER_ID = Long.MIN_VALUE + 1;
 
   private final ItemClickListener clickListener;
+  private final LifecycleOwner    lifecycleOwner;
   private final GlideRequests     glideRequests;
   private final Locale            locale;
   private final Recipient         recipient;
@@ -99,12 +101,14 @@ public class ConversationAdapter
   private View                headerView;
   private View                footerView;
 
-  ConversationAdapter(@NonNull GlideRequests glideRequests,
+  ConversationAdapter(@NonNull LifecycleOwner lifecycleOwner,
+                      @NonNull GlideRequests glideRequests,
                       @NonNull Locale locale,
                       @Nullable ItemClickListener clickListener,
                       @NonNull Recipient recipient)
   {
     super(new DiffCallback());
+    this.lifecycleOwner = lifecycleOwner;
 
     this.glideRequests       = glideRequests;
     this.locale              = locale;
@@ -216,7 +220,8 @@ public class ConversationAdapter
         ConversationMessage previousMessage = adapterPosition < getItemCount() - 1  && !isFooterPosition(adapterPosition + 1) ? getItem(adapterPosition + 1) : null;
         ConversationMessage nextMessage     = adapterPosition > 0                   && !isHeaderPosition(adapterPosition - 1) ? getItem(adapterPosition - 1) : null;
 
-        conversationViewHolder.getBindable().bind(conversationMessage,
+        conversationViewHolder.getBindable().bind(lifecycleOwner,
+                                                  conversationMessage,
                                                   Optional.fromNullable(previousMessage != null ? previousMessage.getMessageRecord() : null),
                                                   Optional.fromNullable(nextMessage != null ? nextMessage.getMessageRecord() : null),
                                                   glideRequests,

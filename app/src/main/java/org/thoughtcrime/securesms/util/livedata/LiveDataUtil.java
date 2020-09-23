@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.util.livedata;
 
+import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -11,7 +13,6 @@ import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Function;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -86,7 +87,7 @@ public final class LiveDataUtil {
    * Merges the supplied live data streams.
    */
   public static <T> LiveData<T> merge(@NonNull List<LiveData<T>> liveDataList) {
-    Set<LiveData<T>> set = new LinkedHashSet<>(liveDataList);
+    Set<LiveData<T>> set = new LinkedHashSet<>(liveDataList.size());
 
     set.addAll(liveDataList);
 
@@ -108,6 +109,40 @@ public final class LiveDataUtil {
    */
   public static <T> LiveData<T> just(@NonNull T item) {
     return new MutableLiveData<>(item);
+  }
+
+  /**
+   * Emits {@param whileWaiting} until {@param main} starts emitting.
+   */
+  public static @NonNull <T> LiveData<T> until(@NonNull LiveData<T> main,
+                                               @NonNull LiveData<T> whileWaiting)
+  {
+    MediatorLiveData<T> mediatorLiveData = new MediatorLiveData<>();
+
+    mediatorLiveData.addSource(whileWaiting, mediatorLiveData::setValue);
+
+    mediatorLiveData.addSource(main, value -> {
+      mediatorLiveData.removeSource(whileWaiting);
+      mediatorLiveData.setValue(value);
+    });
+
+    return mediatorLiveData;
+  }
+
+  /**
+   * After {@param delay} ms after observation, emits a single Object, {@param value}.
+   */
+  public static <T> LiveData<T> delay(long delay, T value) {
+    return new MutableLiveData<T>() {
+      boolean emittedValue;
+
+      @Override
+      protected void onActive() {
+        if (emittedValue) return;
+        new Handler().postDelayed(() -> setValue(value), delay);
+        emittedValue = true;
+      }
+    };
   }
 
   public interface Combine<A, B, R> {

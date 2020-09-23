@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
@@ -29,13 +30,12 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
@@ -44,9 +44,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public final class ConversationUpdateItem extends LinearLayout
-                                          implements RecipientForeverObserver,
-                                                     BindableConversationItem,
-                                                     Observer<SpannableString>
+                                          implements BindableConversationItem
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
 
@@ -62,7 +60,8 @@ public final class ConversationUpdateItem extends LinearLayout
   private Locale                    locale;
   private LiveData<SpannableString> displayBody;
 
-  private final Debouncer bodyClearDebouncer = new Debouncer(150);
+  private final UpdateObserver updateObserver = new UpdateObserver();
+  private final SenderObserver senderObserver = new SenderObserver();
 
   public ConversationUpdateItem(Context context) {
     super(context);
@@ -85,7 +84,8 @@ public final class ConversationUpdateItem extends LinearLayout
   }
 
   @Override
-  public void bind(@NonNull ConversationMessage conversationMessage,
+  public void bind(@NonNull LifecycleOwner lifecycleOwner,
+                   @NonNull ConversationMessage conversationMessage,
                    @NonNull Optional<MessageRecord> previousMessageRecord,
                    @NonNull Optional<MessageRecord> nextMessageRecord,
                    @NonNull GlideRequests glideRequests,
@@ -97,13 +97,7 @@ public final class ConversationUpdateItem extends LinearLayout
   {
     this.batchSelected = batchSelected;
 
-    bind(conversationMessage, locale);
-  }
-
-  @Override
-  protected void onDetachedFromWindow() {
-    unbind();
-    super.onDetachedFromWindow();
+    bind(lifecycleOwner, conversationMessage, locale);
   }
 
   @Override
@@ -116,49 +110,66 @@ public final class ConversationUpdateItem extends LinearLayout
     return conversationMessage;
   }
 
-  private void bind(@NonNull ConversationMessage conversationMessage, @NonNull Locale locale) {
-    if (this.sender != null) {
-      this.sender.removeForeverObserver(this);
-    }
-
-    observeDisplayBody(null);
-    setBodyText(null);
-
+  private void bind(@NonNull LifecycleOwner lifecycleOwner, @NonNull ConversationMessage conversationMessage, @NonNull Locale locale) {
     this.conversationMessage = conversationMessage;
     this.messageRecord       = conversationMessage.getMessageRecord();
-    this.sender              = messageRecord.getIndividualRecipient().live();
     this.locale              = locale;
 
-    this.sender.observeForever(this);
+    observeSender(lifecycleOwner, messageRecord.getIndividualRecipient());
 
     UpdateDescription         updateDescription      = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext()));
     LiveData<String>          liveUpdateMessage      = LiveUpdateMessage.fromMessageDescription(updateDescription);
-    LiveData<SpannableString> spannableStringMessage = Transformations.map(liveUpdateMessage, SpannableString::new);
+    LiveData<SpannableString> spannableStringMessage = toSpannable(loading(liveUpdateMessage));
 
     present(conversationMessage);
 
-    observeDisplayBody(spannableStringMessage);
+    observeDisplayBody(lifecycleOwner, spannableStringMessage);
   }
 
-  private void observeDisplayBody(@Nullable LiveData<SpannableString> displayBody) {
+  /** After a short delay, if the main data hasn't shown yet, then a loading message is displayed. */
+  private @NonNull LiveData<String> loading(@NonNull LiveData<String> string) {
+    return LiveDataUtil.until(string, LiveDataUtil.delay(250, getContext().getString(R.string.ConversationUpdateItem_loading)));
+  }
+
+  private static LiveData<SpannableString> toSpannable(LiveData<String> loading) {
+    return Transformations.map(loading, source -> source == null ? null : new SpannableString(source));
+  }
+
+  @Override
+  public void unbind() {
+  }
+
+  private void observeSender(@NonNull LifecycleOwner lifecycleOwner, @Nullable Recipient recipient) {
+    if (sender != null) {
+      sender.getLiveData().removeObserver(senderObserver);
+    }
+
+    if (recipient != null) {
+      sender = recipient.live();
+      sender.getLiveData().observe(lifecycleOwner, senderObserver);
+    } else {
+      sender = null;
+    }
+  }
+
+  private void observeDisplayBody(@NonNull LifecycleOwner lifecycleOwner, @Nullable LiveData<SpannableString> displayBody) {
     if (this.displayBody != displayBody) {
       if (this.displayBody != null) {
-        this.displayBody.removeObserver(this);
+        this.displayBody.removeObserver(updateObserver);
       }
 
       this.displayBody = displayBody;
 
       if (this.displayBody != null) {
-        this.displayBody.observeForever(this);
+        this.displayBody.observe(lifecycleOwner, updateObserver);
       }
     }
   }
 
   private void setBodyText(@Nullable CharSequence text) {
     if (text == null) {
-      bodyClearDebouncer.publish(() -> body.setText(null));
+      body.setVisibility(INVISIBLE);
     } else {
-      bodyClearDebouncer.clear();
       body.setText(text);
       body.setVisibility(VISIBLE);
     }
@@ -258,27 +269,24 @@ public final class ConversationUpdateItem extends LinearLayout
   }
 
   @Override
-  public void onRecipientChanged(@NonNull Recipient recipient) {
-    present(conversationMessage);
-  }
-
-  @Override
   public void setOnClickListener(View.OnClickListener l) {
     super.setOnClickListener(new InternalClickListener(l));
   }
 
-  @Override
-  public void unbind() {
-    if (sender != null) {
-      sender.removeForeverObserver(this);
-    }
+  private final class SenderObserver implements Observer<Recipient> {
 
-    observeDisplayBody(null);
+    @Override
+    public void onChanged(Recipient recipient) {
+      present(conversationMessage);
+    }
   }
 
-  @Override
-  public void onChanged(SpannableString update) {
-    setBodyText(update);
+  private final class UpdateObserver implements Observer<SpannableString> {
+
+    @Override
+    public void onChanged(SpannableString update) {
+      setBodyText(update);
+    }
   }
 
   private class InternalClickListener implements View.OnClickListener {

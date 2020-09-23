@@ -8,6 +8,8 @@ import android.view.ViewStub;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
@@ -64,9 +66,9 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
     receivedStub    = itemView.findViewById(R.id.message_details_header_message_view_received_multimedia);
   }
 
-  void bind(ConversationMessage conversationMessage, boolean running) {
+  void bind(@NonNull LifecycleOwner lifecycleOwner, @Nullable ConversationMessage conversationMessage, boolean running) {
     MessageRecord messageRecord = conversationMessage.getMessageRecord();
-    bindMessageView(conversationMessage);
+    bindMessageView(lifecycleOwner, conversationMessage);
     bindErrorState(messageRecord);
     bindSentReceivedDates(messageRecord);
     bindExpirationTime(messageRecord, running);
@@ -77,7 +79,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
     bindExpirationTime(conversationMessage.getMessageRecord(), running);
   }
 
-  private void bindMessageView(ConversationMessage conversationMessage) {
+  private void bindMessageView(@NonNull LifecycleOwner lifecycleOwner, @Nullable ConversationMessage conversationMessage) {
     if (conversationItem == null) {
       if (conversationMessage.getMessageRecord().isGroupAction()) {
         conversationItem = (ConversationItem) updateStub.inflate();
@@ -87,7 +89,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
         conversationItem = (ConversationItem) receivedStub.inflate();
       }
     }
-    conversationItem.bind(conversationMessage, Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), conversationMessage.getMessageRecord().getRecipient(), null, false);
+    conversationItem.bind(lifecycleOwner, conversationMessage, Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), conversationMessage.getMessageRecord().getRecipient(), null, false);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {

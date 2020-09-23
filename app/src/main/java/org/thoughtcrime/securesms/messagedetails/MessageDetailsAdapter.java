@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,13 +21,15 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
 
   private static final Object EXPIRATION_TIMER_CHANGE_PAYLOAD = new Object();
 
+  private final LifecycleOwner lifecycleOwner;
   private final GlideRequests glideRequests;
   private       boolean       running;
 
-  MessageDetailsAdapter(GlideRequests glideRequests) {
+  MessageDetailsAdapter(@NonNull LifecycleOwner lifecycleOwner, @NonNull GlideRequests glideRequests) {
     super(new MessageDetailsDiffer());
-    this.glideRequests = glideRequests;
-    running            = true;
+    this.lifecycleOwner = lifecycleOwner;
+    this.glideRequests  = glideRequests;
+    this.running        = true;
   }
 
   @Override
@@ -46,7 +49,7 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     if (holder instanceof MessageHeaderViewHolder) {
-      ((MessageHeaderViewHolder) holder).bind((ConversationMessage) getItem(position).data, running);
+      ((MessageHeaderViewHolder) holder).bind(lifecycleOwner, (ConversationMessage) getItem(position).data, running);
     } else if (holder instanceof RecipientHeaderViewHolder) {
       ((RecipientHeaderViewHolder) holder).bind((RecipientHeader) getItem(position).data);
     } else if (holder instanceof RecipientViewHolder) {

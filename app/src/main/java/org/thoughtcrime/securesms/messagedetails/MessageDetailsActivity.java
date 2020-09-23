@@ -91,7 +91,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
 
   private void initializeList() {
     RecyclerView list = findViewById(R.id.message_details_list);
-    adapter           = new MessageDetailsAdapter(glideRequests);
+    adapter           = new MessageDetailsAdapter(this, glideRequests);
 
     list.setAdapter(adapter);
     list.setItemAnimator(null);
