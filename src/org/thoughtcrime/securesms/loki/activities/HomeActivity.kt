@@ -172,6 +172,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         SessionManagementProtocol.configureIfNeeded(sessionResetImpl, sskDatabase, application)
         MultiDeviceProtocol.configureIfNeeded(apiDB)
         IP2Country.configureIfNeeded(this)
+        application.registerForFCMIfNeeded(false)
         // Preload device links to make message sending quicker
         val publicKeys = ContactUtilities.getAllContacts(this).filter { contact ->
             !contact.recipient.isGroupRecipient && !contact.isOurDevice && !contact.isSlave

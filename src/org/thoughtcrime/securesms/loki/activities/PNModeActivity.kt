@@ -158,7 +158,6 @@ class PNModeActivity : BaseActionBarActivity() {
         val application = ApplicationContext.getInstance(this)
         application.setUpStorageAPIIfNeeded()
         application.setUpP2PAPIIfNeeded()
-        application.registerForFCMIfNeeded(true)
         val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         show(intent)
