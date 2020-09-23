@@ -58,7 +58,8 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     override fun removeAllClosedGroupRatchets(groupPublicKey: String) {
         val database = databaseHelper.writableDatabase
-        database.delete(closedGroupRatchetTable, null, null)
+        val query = "${Companion.closedGroupPublicKey} = ?"
+        database.delete(closedGroupRatchetTable, query, arrayOf( groupPublicKey ))
     }
 
     override fun getAllClosedGroupSenderKeys(groupPublicKey: String): Set<ClosedGroupSenderKey> {
