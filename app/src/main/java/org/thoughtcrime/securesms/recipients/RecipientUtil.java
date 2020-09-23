@@ -66,7 +66,7 @@ public class RecipientUtil {
       throw new AssertionError(recipient.getId() + " - No UUID or phone number!");
     }
 
-    if (FeatureFlags.cds() && !recipient.getUuid().isPresent()) {
+    if (!recipient.getUuid().isPresent()) {
       Log.i(TAG, recipient.getId() + " is missing a UUID...");
       RegisteredState state = DirectoryHelper.refreshDirectoryFor(context, recipient, false);
 
@@ -97,15 +97,13 @@ public class RecipientUtil {
   public static void ensureUuidsAreAvailable(@NonNull Context context, @NonNull Collection<Recipient> recipients)
       throws IOException
   {
-    if (FeatureFlags.cds()) {
-      List<Recipient> recipientsWithoutUuids = Stream.of(recipients)
-                                                     .map(Recipient::resolve)
-                                                     .filterNot(Recipient::hasUuid)
-                                                     .toList();
+    List<Recipient> recipientsWithoutUuids = Stream.of(recipients)
+                                                   .map(Recipient::resolve)
+                                                   .filterNot(Recipient::hasUuid)
+                                                   .toList();
 
-      if (recipientsWithoutUuids.size() > 0) {
-        DirectoryHelper.refreshDirectoryFor(context, recipientsWithoutUuids, false);
-      }
+    if (recipientsWithoutUuids.size() > 0) {
+      DirectoryHelper.refreshDirectoryFor(context, recipientsWithoutUuids, false);
     }
   }
 
@@ -115,13 +113,9 @@ public class RecipientUtil {
   }
 
   public static List<Recipient> getEligibleForSending(@NonNull List<Recipient> recipients) {
-    if (FeatureFlags.cds()) {
-      return Stream.of(recipients)
-                   .filter(r -> r.getRegistered() != RegisteredState.NOT_REGISTERED)
-                   .toList();
-    } else {
-      return recipients;
-    }
+    return Stream.of(recipients)
+                 .filter(r -> r.getRegistered() != RegisteredState.NOT_REGISTERED)
+                 .toList();
   }
 
   /**

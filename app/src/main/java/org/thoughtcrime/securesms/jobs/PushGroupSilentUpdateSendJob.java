@@ -78,13 +78,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                         .filter(uuid -> !UuidUtil.UNKNOWN_UUID.equals(uuid))
                                         .filter(uuid -> !Recipient.self().getUuid().get().equals(uuid))
                                         .map(uuid -> Recipient.externalPush(context, uuid, null, false))
-                                        .filter(recipient -> {
-                                          if (FeatureFlags.cds()) {
-                                            return recipient.getRegistered() != RecipientDatabase.RegisteredState.NOT_REGISTERED;
-                                          } else {
-                                            return true;
-                                          }
-                                        })
+                                        .filter(recipient -> recipient.getRegistered() != RecipientDatabase.RegisteredState.NOT_REGISTERED)
                                         .map(Recipient::getId)
                                         .collect(Collectors.toSet());
 

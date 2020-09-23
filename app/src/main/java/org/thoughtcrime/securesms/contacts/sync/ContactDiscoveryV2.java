@@ -31,6 +31,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * Uses CDS to map E164's to UUIDs.
+ */
 class ContactDiscoveryV2 {
 
   private static final String TAG = Log.tag(ContactDiscoveryV2.class);

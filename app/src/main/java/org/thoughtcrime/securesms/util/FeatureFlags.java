@@ -53,7 +53,6 @@ public final class FeatureFlags {
   private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
   private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
   private static final String GROUPS_V2_CAPACITY           = "global.groupsv2.maxGroupSize";
-  private static final String CDS_VERSION                  = "android.cdsVersion";
   private static final String INTERNAL_USER                = "android.internalUser";
   private static final String MENTIONS                     = "android.mentions";
   private static final String VERIFY_V2                    = "android.verifyV2";
@@ -72,7 +71,6 @@ public final class FeatureFlags {
       GROUPS_V2_CAPACITY,
       GROUPS_V2_JOIN_VERSION,
       GROUPS_V2_LINKS_VERSION,
-      CDS_VERSION,
       INTERNAL_USER,
       USERNAMES,
       MENTIONS,
@@ -102,7 +100,6 @@ public final class FeatureFlags {
       GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
-      CDS_VERSION,
       CLIENT_EXPIRATION
   );
 
@@ -228,11 +225,6 @@ public final class FeatureFlags {
   /** Internal testing extensions. */
   public static boolean internalUser() {
     return getBoolean(INTERNAL_USER, false);
-  }
-
-  /** Whether or not to use the new contact discovery service endpoint, which supports UUIDs. */
-  public static boolean cds() {
-    return getVersionFlag(CDS_VERSION) == VersionFlag.ON;
   }
 
   /** Whether or not we allow mentions send support in groups. */

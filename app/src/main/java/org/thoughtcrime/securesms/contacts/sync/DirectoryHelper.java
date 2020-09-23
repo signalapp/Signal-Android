@@ -158,13 +158,7 @@ public class DirectoryHelper {
       return RegisteredState.NOT_REGISTERED;
     }
 
-    DirectoryResult result;
-
-    if (FeatureFlags.cds()) {
-      result = ContactDiscoveryV2.getDirectoryResult(context, recipient.getE164().get());
-    } else {
-      result = ContactDiscoveryV1.getDirectoryResult(recipient.getE164().get());
-    }
+    DirectoryResult result = ContactDiscoveryV2.getDirectoryResult(context, recipient.getE164().get());
 
     stopwatch.split("e164-network");
 
@@ -229,13 +223,7 @@ public class DirectoryHelper {
 
     Stopwatch stopwatch = new Stopwatch("refresh");
 
-    DirectoryResult result;
-
-    if (FeatureFlags.cds()) {
-      result = ContactDiscoveryV2.getDirectoryResult(context, databaseNumbers, systemNumbers);
-    } else {
-      result = ContactDiscoveryV1.getDirectoryResult(databaseNumbers, systemNumbers);
-    }
+    DirectoryResult result = ContactDiscoveryV2.getDirectoryResult(context, databaseNumbers, systemNumbers);
 
     stopwatch.split("network");
 
