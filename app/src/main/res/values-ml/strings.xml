@@ -47,6 +47,8 @@
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">രജിസ്ട്രേഷൻ ലോക്കിനായി പിൻ ആവശ്യമാണ്. പിൻ അപ്രാപ്‌തമാക്കുന്നതിന്, ആദ്യം രജിസ്‌ട്രേഷൻ ലോക്ക് പ്രവർത്തനരഹിതമാക്കുക.</string>
   <string name="ApplicationPreferencesActivity_pin_created">പിൻ സൃഷ്ടിച്ചു.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">പിൻ പ്രവർത്തനരഹിതമാക്കി.</string>
+  <string name="ApplicationPreferencesActivity_hide">മറയ്ക്കുക</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">ഓർമ്മപ്പെടുത്തൽ മറയ്‌ക്കുക</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d മിനിറ്റ്</item>
@@ -213,6 +215,7 @@
   <string name="ConversationActivity_unable_to_record_audio">ഓഡിയോ റെക്കോർഡുചെയ്യാനായില്ല!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">നിങ്ങൾ മേലിൽ അംഗമല്ലാത്തതിനാൽ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയില്ല.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഈ ലിങ്ക് കൈകാര്യം ചെയ്യുന്നതിന് ഒരു അപ്ലിക്കേഷനും ലഭ്യമല്ല.</string>
+  <string name="ConversationActivity_cancel_request">അഭ്യർത്ഥന റദ്ദാക്കുക</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ഓഡിയോ സന്ദേശങ്ങൾ അയയ്‌ക്കാൻ, നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് Signal ന് ആക്‌സസ്സ് അനുവദിക്കുക.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ഓഡിയോ സന്ദേശങ്ങൾ അയയ്‌ക്കാൻ Signal ന് മൈക്രോഫോൺ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s-നെ വിളിക്കുന്നതിന് Signal ന് മൈക്രോഫോൺ, ക്യാമറ അനുമതികൾ ആവശ്യമാണ്, പക്ഷേ അവ ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>
@@ -336,6 +339,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">ഫോട്ടോ എടുക്കുക</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">ഗാലറിയിൽ നിന്ന് തിരഞ്ഞെടുക്കുക</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ഫോട്ടോ ഇല്ലാതാക്കുക</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">ഒരു ഫോട്ടോ എടുക്കുന്നതിന് ക്യാമറ അനുമതി ആവശ്യമാണ്.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ഇപ്പോൾ</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -397,14 +401,21 @@
   <string name="GroupManagement_access_level_anyone">ആർക്കും</string>
   <string name="GroupManagement_access_level_all_members">എല്ലാ അംഗങ്ങളും</string>
   <string name="GroupManagement_access_level_only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
+  <string name="GroupManagement_access_level_no_one">ആരുമില്ല</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">കൂടുതൽ അറിയുക</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">ഏതെങ്കിലും ലിങ്ക് പ്രിവ്യൂ ചെയ്യുക</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available"> ലിങ്ക് പ്രിവ്യൂ ലഭ്യമല്ല </string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
+  <string name="PendingMembersActivity_requests">അഭ്യർത്ഥനകൾ</string>
+  <string name="PendingMembersActivity_invites">കഷണങ്ങൾ </string>
   <string name="PendingMembersActivity_people_you_invited">നിങ്ങൾ ക്ഷണിച്ച ആളുകൾ</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">നിങ്ങൾക്ക് തീർപ്പുകൽപ്പിക്കാത്ത ക്ഷണങ്ങളൊന്നുമില്ല.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">മറ്റ് ഗ്രൂപ്പ് അംഗങ്ങളുടെ ക്ഷണങ്ങൾ</string>
@@ -413,6 +424,7 @@
   <string name="PendingMembersActivity_revoke_invite">ക്ഷണം അസാധുവാക്കുക</string>
   <string name="PendingMembersActivity_revoke_invites">ക്ഷണങ്ങൾ അസാധുവാക്കുക</string>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_added_s">\"%1$s\" ചേർത്തു</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ചെയ്‌തു</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -439,6 +451,8 @@
   <string name="ManageGroupActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ManageGroupActivity_edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
+  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">പുതിയ അംഗങ്ങളെ ആർക്കൊക്കെ ചേർക്കാനോ ക്ഷണിക്കാനോ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക.</string>
+  <string name="ManageGroupActivity_group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
   <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് ബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_leave_group">ഗ്രൂപ്പ് വിടുക</string>
@@ -467,6 +481,8 @@
   <string name="GroupMentionSettingDialog_always_notify_me">എല്ലായ്പ്പോഴും എന്നെ അറിയിക്കുക</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">എന്നെ അറിയിക്കരുത്</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">സിസ്റ്റം കോൺടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ഈ വ്യക്തി നിങ്ങളുടെ കോണ്ടാക്ടുകളിലുണ്ട് </string>
   <string name="ManageRecipientActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="ManageRecipientActivity_chat_color">ചാറ്റ് നിറം</string>
   <string name="ManageRecipientActivity_block">ബ്ലോക്ക്</string>
@@ -506,14 +522,22 @@
   <string name="CustomNotificationsDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
   <string name="CustomNotificationsDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">പങ്കിടാവുന്ന ഗ്രൂപ്പ് ലിങ്ക്</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
   <string name="ShareableGroupLinkDialogFragment__share">പങ്കിടുക</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">പുതിയ അംഗങ്ങളെ അംഗീകരിക്കുക</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
   <string name="ShareableGroupLinkDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__share_code">കോഡ് പങ്കിടുക</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">നിങ്ങൾ ഇതിനകം ഒരു അംഗമാണ്</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">ചേരുക</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">ചേരാൻ അഭ്യർത്ഥിക്കുക</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <!--GV2 Request confirmation dialog-->
   <!--CropImageActivity-->

@@ -1737,7 +1737,7 @@
   <string name="preferences_storage__review_storage">விமர்சனம் சேமிப்பு</string>
   <string name="preferences_storage__delete_older_messages">பழைய செய்திகளை நீக்கவா?</string>
   <string name="preferences_storage__clear_message_history">செய்தி வரலாற்றை அழிக்கவா?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் சாதனத்திலிருந்து %1$s ஐ விட பழைய செய்தி செய்தி மற்றும் ஊடகங்களை நிரந்தரமாக நீக்கும்.</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் சாதனத்திலிருந்து %1$s விட பழைய செய்தி மற்றும் ஊடகங்களை நிரந்தரமாக நீக்கும்.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">இது எல்லா உரையாடல்களையும் மிக சமீபத்திய %1$s செய்திகளுக்கு நிரந்தரமாக நேர்த்தி செய்யும்.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">இது உங்கள் சாதனத்திலிருந்து எல்லா செய்தி வரலாற்றையும் ஊடகத்தையும் நிரந்தரமாக நீக்கும்.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">எல்லா செய்தி வரலாற்றையும் நீக்க விரும்புகிறீர்களா?</string>
@@ -2020,8 +2020,8 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம். PIN ஐ உருவாக்குவது %1$dநாட்களில் கட்டாயமாகிவிடும்.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம்.%1$dநாட்களில் உங்கள் பின்னை உறுதிப்படுத்துவது கட்டாயமாகிவிடும்.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">அறிமுகம் @ குறிப்புகள்</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">@ தட்டச்சு செய்வதன் மூலம் \"புதிய குழுவில்\" ஒருவரின் கவனத்தைப் பெறுங்கள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">அறிமுகம் @ குறிப்புகள்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">@ தட்டச்சு செய்வதன் மூலம் \"புதிய குழுவில்\" ஒருவரின் கவனத்தைப் பெறுங்கள்</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>

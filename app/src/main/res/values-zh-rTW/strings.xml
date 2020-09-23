@@ -181,10 +181,10 @@
   <string name="ConversationActivity_reset_secure_session_question">重設安全對話？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">該選項將會有助於解決您在對話中遇到的加密問題。您的訊息將被保留。</string>
   <string name="ConversationActivity_reset">重設</string>
-  <string name="ConversationActivity_add_attachment">增加附件檔案</string>
+  <string name="ConversationActivity_add_attachment">新增附檔</string>
   <string name="ConversationActivity_select_contact_info">選擇聯絡人資訊</string>
   <string name="ConversationActivity_compose_message">撰寫訊息</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，無法成功設定您指定的附件檔案</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">抱歉，無法成功設定你指定的附檔。</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人並不是一個有效的 手機門號 或 Email 地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">訊息內容是空的！</string>
   <string name="ConversationActivity_group_members">群組成員</string>
@@ -207,7 +207,7 @@
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您將可以再次收到來自此聯絡人的訊息與通話。</string>
   <string name="ConversationActivity_unblock_this_group_description">現存的成員將可以再次將你加入群組。</string>
   <string name="ConversationActivity_unblock">解除封鎖</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">當前訊息的附件類型已經超越大小限制。</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">當前訊息的附檔類型已經超越大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">無法使用相機</string>
   <string name="ConversationActivity_unable_to_record_audio">無法錄製音訊！</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">你不再是該成員，因此無法向該群組傳送訊息。</string>
@@ -257,14 +257,14 @@
     <item quantity="other">保存所有的 %1$d 媒體至存儲將會允許您設備上的其它軟體開啓它們。\n\n繼續嗎？</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="other">保存附件至存儲時遇到錯誤！</item>
+    <item quantity="other">保存附檔至儲存時出現錯誤！</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">無法寫入儲存裝置！</string>
   <plurals name="ConversationFragment_saving_n_attachments">
-    <item quantity="other">正在保存 %1$d 個附件</item>
+    <item quantity="other">正在保存 %1$d 個附檔</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="other">儲存%1$d附件到儲存空間中…</item>
+    <item quantity="other">儲存%1$d附檔到儲存空間中…</item>
   </plurals>
   <string name="ConversationFragment_pending">暫待等候中…</string>
   <string name="ConversationFragment_push">資料 (Signal)</string>
@@ -648,7 +648,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">刪除訊息中…    </string>
   <string name="MediaOverviewActivity_Select_all">全選</string>
-  <string name="MediaOverviewActivity_collecting_attachments">搜集附件中…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">搜集附檔中…</string>
   <string name="MediaOverviewActivity_Sort_by">排列方式</string>
   <string name="MediaOverviewActivity_Newest">最新的</string>
   <string name="MediaOverviewActivity_Oldest">最舊的</string>
@@ -1318,7 +1318,7 @@
   <string name="attachment_type_selector__file_description">檔案</string>
   <string name="attachment_type_selector__gallery">圖片庫</string>
   <string name="attachment_type_selector__file">檔案</string>
-  <string name="attachment_type_selector__drawer_description">切換附件抽屜</string>
+  <string name="attachment_type_selector__drawer_description">切換附檔抽屜</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">舊密碼</string>
   <string name="change_passphrase_activity__new_passphrase">新密碼</string>
@@ -1362,10 +1362,10 @@
   <string name="conversation_activity__send">送出</string>
   <string name="conversation_activity__compose_description">編輯簡訊</string>
   <string name="conversation_activity__emoji_toggle_description">切換表情符號鍵盤</string>
-  <string name="conversation_activity__attachment_thumbnail">附件縮圖</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切換快速相機附件抽屜</string>
-  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">錄製並傳送語音附件</string>
-  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">鎖定語音錄製附件檔案</string>
+  <string name="conversation_activity__attachment_thumbnail">附檔縮圖</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切換快速相機附檔抽屜</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">錄製並傳送語音附檔</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">鎖定語音錄製附檔</string>
   <string name="conversation_activity__enable_signal_for_sms">啟動 Signal 簡訊功能</string>
   <string name="conversation_activity__message_could_not_be_sent">無法傳送訊息。 檢查你的連線，然後重試。</string>
   <!--conversation_input_panel-->
@@ -1804,7 +1804,7 @@
   <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">選擇多個</string>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">儲存附件檔案</string>
+  <string name="conversation_context_image__save_attachment">儲存附檔</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">自動銷毀訊息</string>
   <!--conversation_expiring_on-->
@@ -1843,7 +1843,7 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">將通知調整為靜音</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">新增附件檔案</string>
+  <string name="conversation__menu_add_attachment">新增附檔</string>
   <string name="conversation__menu_edit_group">編輯群組</string>
   <string name="conversation__menu_group_settings">群組設定</string>
   <string name="conversation__menu_leave_group">離開對話群組</string>
@@ -2013,8 +2013,8 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">我們稍後會提醒你。 建立PIN碼將在%1$d天之內成為強制性的。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">我們稍後會提醒你。 在%1$d天之內，必須確認你的PIN碼。</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">介紹 @Mentions</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">在“新群組”中輸入@吸引某人的注意</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">介紹 @Mentions</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">在“新群組”中輸入@吸引某人的注意</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
   <string name="ConversationListFragment_loading">讀取中…</string>

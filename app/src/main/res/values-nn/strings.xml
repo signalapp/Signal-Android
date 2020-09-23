@@ -2085,8 +2085,8 @@ Du er à jour!</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Me minner deg på det seinare. Du må oppretta ein PIN-kode innan %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Me minner deg på det seinare. Du må stadfesta PIN-koden innan %1$d dagar.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">Her kjem @Nemningar</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Få merksemda til nokon i ei «Ny gruppe» ved å skriva @</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Her kjem @Nemningar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Få merksemda til nokon i ei «Ny gruppe» ved å skriva @</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>

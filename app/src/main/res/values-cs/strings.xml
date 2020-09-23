@@ -625,7 +625,7 @@
   <string name="ShareableGroupLinkDialogFragment__group_link">Skupinový odkaz</string>
   <string name="ShareableGroupLinkDialogFragment__share">Sdílet</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Obnovit odkaz</string>
-  <string name="ShareableGroupLinkDialogFragment__member_requests">Požadavky členů</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Žádosti o členství</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Schválit nové členy</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Povoleno</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Zakázáno</string>
@@ -1863,7 +1863,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__storage">Úložiště</string>
   <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
   <string name="preferences__keep_messages">Zachovat zprávy</string>
-  <string name="preferences__clear_message_history">Vyčistit historii zpráv</string>
+  <string name="preferences__clear_message_history">Smazat historii zpráv</string>
   <string name="preferences__linked_devices">Propojená zařízení</string>
   <string name="preferences__light_theme">Světlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
@@ -1912,7 +1912,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_storage__one_year">1 rok</string>
   <string name="preferences_storage__six_months">6 měsíců</string>
   <string name="preferences_storage__thirty_days">30 dní</string>
-  <string name="preferences_storage__none">Nic</string>
+  <string name="preferences_storage__none">Žádný</string>
   <string name="preferences_storage__s_messages">%1$s zpráv</string>
   <string name="preferences_storage__custom">Vlastní</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Vlastní limit délky konverzace</string> -->
@@ -2201,8 +2201,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Připomeneme se vám později. Vytvoření PIN bude povinné během %1$d dnů.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Připomeneme se vám později. Potvrzení vašeho PIN bude povinné během %1$d  dnů.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">Představujeme @Zmínky</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Pozornost někoho v \"Nové skupině\" získáte napsáním @</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Představujeme @Zmínky</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Pozornost někoho v \"Nové skupině\" získáte napsáním @</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <string name="ConversationListFragment_loading">Načítání…</string>
@@ -2261,7 +2261,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
   <string name="preferences_app_protection__see_my_phone_number">Vidět mé telefonní číslo</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">Najít mé telefonní číslo</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Najít mě podle telefonního čísla</string>
   <string name="PhoneNumberPrivacy_everyone">Všichni</string>
   <string name="PhoneNumberPrivacy_my_contacts">Moje kontakty</string>
   <string name="PhoneNumberPrivacy_nobody">Nikdo</string>

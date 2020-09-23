@@ -467,6 +467,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Cereri de membru în așteptare</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Nici o cerere de membru de afișat.</string>
+  <string name="RequestingMembersFragment_explanation">Persoanele din această listă încearcă să se alăture acestui grup prin intermediul link-ului de grup.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" a fost adăugat</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" a fost refuzat</string>
   <!--AddMembersActivity-->
@@ -506,6 +507,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Dispariție mesaje</string>
   <string name="ManageGroupActivity_pending_group_invites">Invitații la grup în așteptare</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Solicitări și invitații ale membrilor</string>
   <string name="ManageGroupActivity_add_members">Adăugați membri</string>
   <string name="ManageGroupActivity_edit_group_info">Editare informații despre grup</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Alegeți cine poate edita numele grupului, avatarul și dispariția mesajelor.</string>
@@ -594,6 +596,7 @@
   <string name="CustomNotificationsDialogFragment__default">Implicit</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link grup partajabil</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gestionează și distribuie</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Link grup</string>
   <string name="ShareableGroupLinkDialogFragment__share">Partajați</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Resetare link</string>
@@ -602,6 +605,9 @@
   <string name="ShareableGroupLinkDialogFragment__enabled">Activat</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Dezactivat</string>
   <string name="ShareableGroupLinkDialogFragment__default">Implicit</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Resetare link grup</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Solicitați unui administrator să aprobe membrii noi care se alătură prin link-ul grupului.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Sigur doriți să resetați linkul de grup? Oamenii nu vor mai putea să se alăture grupului folosind link-ul curent.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Cod QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Persoanele care scanează acest cod se vor putea alătura grupului dvs. Administratorii vor trebui în continuare să aprobe noi membri dacă aveți setarea activată.</string>
@@ -617,8 +623,10 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ești deja membru</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Alăturați-vă</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Cerere de înscriere</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Alăturarea la grup nu a reușit. Vă rugăm să încercați din nou mai târziu</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">A apărut o eroare de rețea.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Acest link de grup nu este activ</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nu s-au putut obține informații despre grup, încercați din nou mai târziu</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Doriți să vă alăturați acestui grup și să vă împărtășiți numele și fotografia cu membrii săi?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să vă aprobe solicitarea înainte de a vă putea alătura acestui grup. Când solicitați să vă înscrieți, numele și fotografia dvs. vor fi partajate membrilor săi.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -630,10 +638,12 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Linkurile de grup vin în curând</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizați Signal pentru a folosi link-uri la grupuri</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Înscrierea la un grup printr-un link nu este încă suportată de Signal. Această funcționalitate va fi lansată într-o actualizare viitoare.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versiune de Signal pe care o folosiți nu suportă link-uri către grupuri. Actualizați la ultima versine pentru a te alătura acestui grup printr-un link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizați Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Linkul de grup nu este valid</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adăugați pe “%1$s” la grup?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Respingeți cererea de la “%1$s”?</string>
   <string name="RequestConfirmationDialog_add">Adaugă</string>
   <string name="RequestConfirmationDialog_deny">Refuzați</string>
   <!--CropImageActivity-->
@@ -876,16 +886,37 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a modificat cine poate edita apartenența la grup la \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Persoana care poate edita apartenența la grup este acum \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Ați activat linkul de grup cu aprobarea administratorului dezactivată.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Ați activat linkul de grup cu aprobarea administratorului.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Ați dezactivat link-ul către grup.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s a activat link-ul de grup cu aprobarea administratorului dezactivată.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s a activat link-ul de grup cu aprobarea administratorului.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s a dezactivat link-ul către grup.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Link-ul de grup a fost activat cu aprobarea administratorului dezactivată.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Link-ul de grup a fost activat cu aprobarea administratorului.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Link-ul grupului a fost dezactivat.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Ați resetat link-ul grupului.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s a resetat link-ul de grup.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Link-ul grupului a fost resetat.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Te-ai alăturat grupului printr-un link de grup.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s s-a alăturat grupului prin link-ul de grup.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Ați trimis o cerere de alăturare la grup.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s a solicitat să se alăture prin link-ul grupului.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s a aprobat solicitarea dvs. de a vă alătura grupului.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s a aprobat o cerere de alăturare la grup de la %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Ați aprobat o solicitare de aderare la grup de la %1$s.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Solicitarea dvs. de a vă alătura grupului a fost aprobată.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">O cerere de alăturare la grup de la %1$s a fost aprobată.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Solicitarea dvs. de a vă alătura grupului a fost respinsă de un administrator.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s a respins o cerere de alăturare la grup de la %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">O cerere de alăturare la grup de la %1$s a fost respinsă.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Ați anulat solicitarea de a vă alătura grupului.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s a anulat solicitarea lor de a se alătura grupului.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul dvs. de siguranță pentru %s s-a schimbat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ați marcat numărul tău de siguranță cu %s ca și verificat</string>
@@ -1458,6 +1489,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Modificări ale numărului de siguranță</string>
   <string name="safety_number_change_dialog__send_anyway">Trimite oricum</string>
+  <string name="safety_number_change_dialog__call_anyway">Sunați oricum</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Este posibil ca următoarele persoane să fi reinstalat sau schimbat dispozitivele. Verificați numărul de siguranță cu acestea pentru a vă asigura confidențialitatea.</string>
   <string name="safety_number_change_dialog__view">Vizualizare</string>
   <string name="safety_number_change_dialog__previous_verified">Verificat anterior</string>
@@ -1759,6 +1791,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__slow">Încet</string>
   <string name="preferences__help">Ajutor</string>
   <string name="preferences__advanced">Avansat</string>
+  <string name="preferences__donate_to_signal">Donați pentru Signal</string>
   <string name="preferences__privacy">Confidenţialitate</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Setări MMS manuale</string>
@@ -1772,6 +1805,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__chats">Conversaţii şi media</string>
   <string name="preferences__storage">Spaţiu stocare</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
+  <string name="preferences__keep_messages">Păstrare mesaje</string>
+  <string name="preferences__clear_message_history">Ștergeți istoricul mesajelor</string>
   <string name="preferences__linked_devices">Dispozitive asociate</string>
   <string name="preferences__light_theme">Luminoasă</string>
   <string name="preferences__dark_theme">Întunecată</string>
@@ -1802,18 +1837,34 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_chats__when_using_wifi">Când se utilizează Wi-Fi </string>
   <string name="preferences_chats__when_roaming">Când se utilizează roaming-ul </string>
   <string name="preferences_chats__media_auto_download">Descărcare automată Media</string>
+  <string name="preferences_chats__message_history">Istoric mesaje</string>
   <string name="preferences_storage__storage_usage">Utilizare spațiu stocare</string>
   <string name="preferences_storage__photos">Poze</string>
   <string name="preferences_storage__videos">Video</string>
   <string name="preferences_storage__files">Fișiere</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Examinați stocarea</string>
+  <string name="preferences_storage__delete_older_messages">Șterg mesajele vechi?</string>
+  <string name="preferences_storage__clear_message_history">Ștergeți istoricul mesajelor?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Această acțiune va șterge definitiv tot istoricul mesajelor și fișierele media de pe dispozitiv care sunt mai vechi de %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Această acțiune va șterge definitiv toate conversațiile până la cele mai recente %1$s mesaje.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Această acțiune va șterge definitiv tot istoricul mesajelor și fișierele media de pe dispozitiv.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Sigur doriți să ștergeți tot istoricul mesajelor?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tot istoricul mesajelor va fi eliminat definitiv. Această acțiune nu poate fi anulată.</string>
+  <string name="preferences_storage__delete_all_now">Ștergeți toate acum</string>
+  <string name="preferences_storage__forever">Pentru totdeauna</string>
+  <string name="preferences_storage__one_year">1 an</string>
+  <string name="preferences_storage__six_months">6 luni</string>
+  <string name="preferences_storage__thirty_days">30 zile</string>
   <string name="preferences_storage__none">Niciunul</string>
+  <string name="preferences_storage__s_messages">%1$s mesaje</string>
   <string name="preferences_storage__custom">Specific</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Limită personalizată a lungimii conversației</string> -->
   <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivați icoanele emoji oferite de Signal </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționați toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contact tău. Activarea va reduce calitatea apelului.</string>
   <string name="preferences_advanced__always_relay_calls">Redirecționează întotdeauna apelurile</string>
+  <string name="preferences_app_protection__who_can">Cine poate…</string>
   <string name="preferences_app_protection__app_access">Acces aplicație</string>
   <string name="preferences_app_protection__communication">Comunicare</string>
   <string name="preferences_chats__chats">Conversații</string>
@@ -1838,6 +1889,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_notifications__notify_me">Anunță-mă</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Primire notificări atunci când sunteți menționat în convorbiri fără sunet</string>
   <string name="preferences_setup_a_username">Configurați un nume de utilizator</string>
+  <string name="configurable_single_select__customize_option">Personalizați opțiunea</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2085,8 +2137,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vă amintim mai târziu. Creearea unui PIN o să devină obligatorie în %1$d zile.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vă amintim mai târziu. Confirmarea PIN-ului dvs. o să devină obligatorie în %1$d zile.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">Vă prezentăm @Mențiuni</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Obțineți atenția cuiva într-un \"Grup Nou\", tastând @</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Vă prezentăm @Mențiuni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Obțineți atenția cuiva într-un \"Grup Nou\", tastând @</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -2144,7 +2196,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_code_support_subject">Înregistrare Signal - Cod de verificare pentru Android</string>
   <string name="BackupUtil_never">Niciodată</string>
   <string name="BackupUtil_unknown">Necunoscut</string>
+  <string name="preferences_app_protection__see_my_phone_number">Să-mi vadă numarul de telefon</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Să mă găsească după numărul de telefon</string>
+  <string name="PhoneNumberPrivacy_everyone">Toată lumea</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Contactele mele</string>
   <string name="PhoneNumberPrivacy_nobody">Nimeni</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Numărul dvs. de telefon va fi vizibil pentru toate persoanele și grupurile cărora le trimiteți mesaje.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Oricine are numărul dvs. de telefon în contactele lor vă va vedea ca un contact pe Signal. Alții vă vor putea găsi prin căutare.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Numai contactele dvs. vă vor vedea numărul de telefon pe Signal.</string>
   <string name="preferences_app_protection__screen_lock">Blocare ecran</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>

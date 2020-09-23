@@ -449,6 +449,8 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">درخواست‌‌های عضویت در حال انتظار</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">هیچ درخواست عضویت برای نمایش وجود ندارد</string>
+  <string name="RequestingMembersFragment_added_s">«%1$s» اضافه شد</string>
+  <string name="RequestingMembersFragment_denied_s">«%1$s» رد شد</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">انجام شد</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
@@ -483,10 +485,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageGroupActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">درخواست‌های عضویت و دعوت‌ها</string>
   <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
   <string name="ManageGroupActivity_edit_group_info">ویرایش اطلاعات گروه</string>
   <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">انتخاب کنید چه کسی می‌تواند نام، عکس گروه و پیام‌های ناپدید شونده را ویرایش کند.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">انتخاب کنید چه کسی می‌تواند اعضای جدید را دعوت یا اضافه کند.</string>
+  <string name="ManageGroupActivity_group_link">پیوند گروه</string>
   <string name="ManageGroupActivity_block_group">مسدود کردن گروه</string>
   <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
   <string name="ManageGroupActivity_leave_group">ترک گروه</string>
@@ -565,6 +569,8 @@
   <string name="CustomNotificationsDialogFragment__disabled">غیرفعال</string>
   <string name="CustomNotificationsDialogFragment__default">پیش‌فرض</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">پیوند قابل اشتراک گروه</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">پیوند گروه</string>
   <string name="ShareableGroupLinkDialogFragment__share">اشتراک‌گذاری</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">فعال</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">غیرفعال</string>
@@ -1675,6 +1681,7 @@
   <string name="preferences__slow">آهسته</string>
   <string name="preferences__help">راهنمایی</string>
   <string name="preferences__advanced">پیشرفته</string>
+  <string name="preferences__donate_to_signal">حمایت از Signal</string>
   <string name="preferences__privacy">حریم خصوصی</string>
   <string name="preferences__mms_user_agent">عامل کاربر فراپیام</string>
   <string name="preferences__advanced_mms_access_point_names">تنظیمات دستی فراپیام</string>
@@ -1991,8 +1998,8 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">معرفی @اشاره‌ها</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">توجه یک نفر را در یک «گروه جدید» با نوشتن @ جلب کنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">معرفی @اشاره‌ها</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">توجه یک نفر را در یک «گروه جدید» با نوشتن @ جلب کنید</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>

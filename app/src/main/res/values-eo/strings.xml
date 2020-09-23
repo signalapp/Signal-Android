@@ -664,7 +664,7 @@
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Eraro dum legado de la MMS-agordoj el sen-drata provizanto</string>
   <!--MediaOverviewActivity-->
-  <string name="MediaOverviewActivity_Media">Aŭdvidaĵo</string>
+  <string name="MediaOverviewActivity_Media">Aŭdvid.</string>
   <string name="MediaOverviewActivity_Files">Dosieroj</string>
   <string name="MediaOverviewActivity_Audio">Sonaĵo</string>
   <string name="MediaOverviewActivity_All">Ĉiuj</string>
@@ -850,10 +850,22 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vi ŝaltis la grupligilon sen bezono de administranto-aprobo.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vi ŝaltis la grupligilon kun administranto-aprobo.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Vi malŝaltis la grupligilon.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ŝaltis la grupligilon sen bezono de administranto-aprobo.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ŝaltis grupligilon kun administranto-aprobo.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s malŝaltis la grupligilon.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Oni ŝaltis grupligilon sen bezono de administranto-aprobo.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Oni malŝaltis grupligilon kun administranto-aprobo.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">La grupligilo malŝaltiĝis.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">Vi restarigis la grupligilon.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s restarigis la grupligilon.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">La grupligilo restariĝis.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Vi anigis la grupon per la grupligilo.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s anigis la grupon per la grupligilo.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Vi sendis peton por anigi la grupon.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s sendis peton por anigi per grupligilo.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprobis vian peton por anigi la grupon.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprobis peton por anigi la grupon el %2$s.</string>
@@ -1434,6 +1446,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Ŝanĝoj pri la sekuriga numero</string>
   <string name="safety_number_change_dialog__send_anyway">Tamen sendi</string>
+  <string name="safety_number_change_dialog__call_anyway">Tamen alvoki</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">La jenaj homoj eble restarigis aŭ ŝanĝis iliajn aparatojn. Kontrolu vian sekurigan numeron kun ili por certigi vian privatecon.</string>
   <string name="safety_number_change_dialog__view">Montri pli</string>
   <string name="safety_number_change_dialog__previous_verified">Antaŭe kontrolita</string>
@@ -1727,6 +1740,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__slow">Malrapida</string>
   <string name="preferences__help">Helpo</string>
   <string name="preferences__advanced">Speciala</string>
+  <string name="preferences__donate_to_signal">Donaci al Signal</string>
   <string name="preferences__privacy">Privateco</string>
   <string name="preferences__mms_user_agent">MMS-a uzant-ilo („user agent“)</string>
   <string name="preferences__advanced_mms_access_point_names">Permanaj agordoj de MMS</string>
@@ -1740,6 +1754,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__chats">Interparoloj kaj aŭdvidaĵoj</string>
   <string name="preferences__storage">Konservejo</string>
   <string name="preferences__conversation_length_limit">Maksimumo de mesaĝoj en interparolo</string>
+  <string name="preferences__keep_messages">Konservi mesaĝojn</string>
+  <string name="preferences__clear_message_history">Forviŝi mesaĝojn</string>
   <string name="preferences__linked_devices">Ligitaj aparatoj</string>
   <string name="preferences__light_theme">Hela</string>
   <string name="preferences__dark_theme">Malhela</string>
@@ -1769,17 +1785,34 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_chats__when_using_wifi">Kiam uziĝas vifio</string>
   <string name="preferences_chats__when_roaming">Dum retmigrado</string>
   <string name="preferences_chats__media_auto_download">Aŭdvidaĵa aŭtomata elŝuto</string>
+  <string name="preferences_chats__message_history">Mesaĝoj</string>
   <string name="preferences_storage__storage_usage">Uzado de la konservejo</string>
   <string name="preferences_storage__photos">Fotoj</string>
   <string name="preferences_storage__videos">Videaĵoj</string>
   <string name="preferences_storage__files">Dosieroj</string>
   <string name="preferences_storage__audio">Sonaĵoj</string>
   <string name="preferences_storage__review_storage">Kontroli la konservejon</string>
-  <string name="preferences_storage__none">Neniu</string>
+  <string name="preferences_storage__delete_older_messages">Ĉu forigi malnovajn mesaĝojn?</string>
+  <string name="preferences_storage__clear_message_history">Ĉu forviŝi mesaĝojn?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tio daŭre forigos ĉiujn mesaĝojn kaj ĉiujn aŭdvidaĵojn ĉe via aparato, kiu aĝas pli ol %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ĉiuj interparoloj estos tuj limigitaj al la %1$s plej lastatempaj mesaĝoj. La plej malnovaj mesaĝoj foriĝos.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tio daŭre forigos ĉiujn mesaĝojn kaj ĉiujn aŭdvidaĵojn ĉe via aparato.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ĉu vi certas, ke vi volas daŭre forigis ĉiujn mesaĝojn?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Ĉiuj mesaĝoj foriĝos porĉiame.</string>
+  <string name="preferences_storage__delete_all_now">Forigi ĉiujn nun</string>
+  <string name="preferences_storage__forever">Porĉiame</string>
+  <string name="preferences_storage__one_year">1 jaron</string>
+  <string name="preferences_storage__six_months">6 monatojn</string>
+  <string name="preferences_storage__thirty_days">30 tagojn</string>
+  <string name="preferences_storage__none">Senlima</string>
+  <string name="preferences_storage__s_messages">%1$s mesaĝoj</string>
+  <string name="preferences_storage__custom">Elekti</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Maksimumo de mesaĝoj en interparolo</string> -->
   <string name="preferences_advanced__use_system_emoji">Uzi sisteman emoĝiaron</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Malebligi emoĝiaron de Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Trapasigi ĉiujn alvokojn tra la Signal-servilo por eviti sciigi vian IP-adreson al via kontakto. Tio malaltigos la alvokan kvaliton.</string>
   <string name="preferences_advanced__always_relay_calls">Ĉiam trapasigi la alvokojn per Signal-servilo</string>
+  <string name="preferences_app_protection__who_can">Kiu povas…</string>
   <string name="preferences_app_protection__app_access">Aliro al aplikaĵo</string>
   <string name="preferences_app_protection__communication">Komunikado</string>
   <string name="preferences_chats__chats">Interparoloj</string>
@@ -1804,6 +1837,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_notifications__notify_me">Sciigi al mi</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Ricevi sciigoj, kiam oni mencias vin en silentigitaj interparoloj</string>
   <string name="preferences_setup_a_username">Krei uzantnomon</string>
+  <string name="configurable_single_select__customize_option">Elekti opcion</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2043,8 +2077,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Ni memorigos vin poste. Kreado de PIN nepros post %1$d tagoj.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Ni memorigos vin poste. Konfirmado de PIN nepros post %1$d tagoj.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">Jen la @mencioj</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Kaptu ies atenton en novtipa grupo per tajpado de @</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Jen la @mencioj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Kaptu ies atenton en novtipa grupo per tajpado de @</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>
@@ -2102,6 +2136,14 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationActivity_code_support_subject">Signal-registriĝo — Konfirman kodo por Android</string>
   <string name="BackupUtil_never">Neniam</string>
   <string name="BackupUtil_unknown">Nekonata</string>
+  <string name="preferences_app_protection__see_my_phone_number">Vidi mian telefonnumeron</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Trovi min per mia telefonnumero</string>
+  <string name="PhoneNumberPrivacy_everyone">Ĉiuj</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Miaj kontaktoj</string>
+  <string name="PhoneNumberPrivacy_nobody">Neniu</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Via telefonnumero videblos al ĉiuj homoj kaj grupoj, al kiuj vi mesaĝas.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Iu ajn, kiu havas vian telefonnumeron en sia kontaktlisto vidos vin kiel kontakton ĉe Signal. Aliaj eblos trovi vin per serĉado.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Nur viaj kontaktoj vidos vian telefonnumeron ĉe Signal.</string>
   <string name="preferences_app_protection__screen_lock">Ekranŝloso</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Ŝlosi aliron al Signal per Androida ekranŝloso aŭ fingropremaĵo</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Neaktiveca eltempiĝo antaŭ ol ŝlosi la ekranon</string>

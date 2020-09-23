@@ -63,7 +63,7 @@
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(paveikslas)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(garsas)</string>
-  <string name="DraftDatabase_Draft_video_snippet">(vaizdas)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(vaizdo įrašas)</string>
   <string name="DraftDatabase_Draft_location_snippet">(vieta)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(atsakymas)</string>
   <!--AttachmentKeyboard-->
@@ -1184,7 +1184,7 @@
   <string name="Slide_image">Paveikslas</string>
   <string name="Slide_sticker">Lipdukas</string>
   <string name="Slide_audio">Garsas</string>
-  <string name="Slide_video">Vaizdas</string>
+  <string name="Slide_video">Vaizdo įrašas</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Gauta sugadinta šifro
         apsikeitimo žinutė!
@@ -2202,8 +2202,8 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Priminsime jums vėliau. PIN kodo sukūrimas po %1$d dienų taps privalomu.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">Pristatome @paminėjimus</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Atkreipkite kažkieno dėmesį „Naujoje grupėję“, parašydami @</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Pristatome @paminėjimus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Atkreipkite kažkieno dėmesį „Naujoje grupėję“, parašydami @</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>

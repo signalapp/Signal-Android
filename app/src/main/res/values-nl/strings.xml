@@ -576,7 +576,7 @@
   <string name="ShareableGroupLinkDialogFragment__group_link">Groepsverwijzing</string>
   <string name="ShareableGroupLinkDialogFragment__share">Doorsturen via andere app</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Verwijzing vernieuwen</string>
-  <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatschaps verzoeken</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatschapsverzoeken</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Nieuwe groepsleden goedkeuren</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Ingeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Uitgeschakeld</string>
@@ -2083,8 +2083,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Je zult er later aan worden herinnert dat je nog een pincode moet aanmaken. Dit wordt binnen %1$d dagen verplicht.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Je zult er later aan worden herinnert dat je nog moet bevestigen dat je je huidige pincode nog bezit. Dit wordt binnen %1$d dagen verplicht.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">We introduceren @Vermeldingen</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Krijg iemands aandacht in een ‘nieuwe stijl groep’ door een @ gevolgd door zijn of haar gebruikersnaam te typen</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">We introduceren @Vermeldingen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Krijg iemands aandacht in een ‘nieuwe stijl groep’ door een @ gevolgd door zijn of haar gebruikersnaam te typen</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden …</string>

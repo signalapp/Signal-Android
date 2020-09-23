@@ -232,7 +232,7 @@
   <string name="ConversationActivity_no">Nej</string>
   <string name="ConversationActivity_search_position">%1$d av %2$d</string>
   <string name="ConversationActivity_no_results">Inga resultat</string>
-  <string name="ConversationActivity_sticker_pack_installed">Klistermärkespaket installerat</string>
+  <string name="ConversationActivity_sticker_pack_installed">Klistermärkepaket installerat</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nytt! Säg det med klistermärken</string>
   <string name="ConversationActivity_cancel">Avbryt</string>
   <string name="ConversationActivity_delete_conversation">Radera konversation?</string>
@@ -2072,8 +2072,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi påminner dig senare. Att skapa en PIN-kod blir obligatorisk om %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi påminner dig senare. Bekräfta din PIN-kod blir obligatorisk om %1$d dagar.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">Introducerar @Omnämnanden</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Få någons uppmärksamhet i en \"Ny grupp\" genom att skriva @</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Introducerar @Omnämnanden</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Få någons uppmärksamhet i en \"Ny grupp\" genom att skriva @</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>

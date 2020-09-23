@@ -923,6 +923,7 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s שינה מי יכול לערוך חברות קבוצה אל \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">מי יכול לערוך חברות קבוצה השתנה אל \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_off_the_group_link">כיבית את קישור הקבוצה.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">איפסת את קישור הקבוצה.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s איפס/ה את קישור הקבוצה.</string>
@@ -1883,7 +1884,12 @@
   <string name="preferences_storage__files">קבצים</string>
   <string name="preferences_storage__audio">שמע</string>
   <string name="preferences_storage__review_storage">סקור אחסון</string>
+  <string name="preferences_storage__forever">לנצח</string>
+  <string name="preferences_storage__one_year">שנה 1</string>
+  <string name="preferences_storage__six_months">6 חודשים</string>
+  <string name="preferences_storage__thirty_days">30 ימים</string>
   <string name="preferences_storage__none">אין</string>
+  <string name="preferences_storage__s_messages">%1$s הודעות</string>
   <string name="preferences_storage__custom">מותאם אישית</string>
   <string name="preferences_advanced__use_system_emoji">השתמש באימוג\'י של מערכת</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">השבת תמיכת אימוג\'י מובנית של Signal</string>
@@ -2168,8 +2174,8 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">נזכיר לך מאוחר יותר. יצירת PIN תהיה חובה עוד %1$d ימים.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">נזכיר לך מאוחר יותר. אימות PIN יהיה חובה עוד %1$d ימים.</string>
   <!--Mention Megaphone-->
-  <string name="MentionsMegaphone__introducing_mentions">היכרות עם @אזכורים</string>
-  <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">תפוס תשומת לב של מישהו ב\"קבוצה חדשה\" על ידי הקלדת @</string>
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">היכרות עם @אזכורים</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">תפוס תשומת לב של מישהו ב\"קבוצה חדשה\" על ידי הקלדת @</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>
@@ -2227,6 +2233,8 @@
   <string name="RegistrationActivity_code_support_subject">הרשמת Signal - קוד וידוא עבור Android</string>
   <string name="BackupUtil_never">אף פעם</string>
   <string name="BackupUtil_unknown">בלתי ידוע</string>
+  <string name="PhoneNumberPrivacy_everyone">כולם</string>
+  <string name="PhoneNumberPrivacy_my_contacts">אנשי הקשר שלי</string>
   <string name="PhoneNumberPrivacy_nobody">אף אחד</string>
   <string name="preferences_app_protection__screen_lock">נעילת מסך</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">נעל גישה אל Signal באמצעות נעילת מסך או טביעת אצבע</string>
