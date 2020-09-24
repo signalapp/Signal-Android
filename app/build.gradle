@@ -273,7 +273,7 @@ android {
 dependencies {
     lintChecks project(':lintchecks')
 
-    implementation('androidx.appcompat:appcompat:1.1.0-beta01') {
+    implementation('androidx.appcompat:appcompat:1.2.0') {
         force = true
     }
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
