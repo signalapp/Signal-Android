@@ -435,7 +435,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">Ez duzu ikusi gabeko gonbidapenik.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenak</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenik ez dago.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Taldeko beste partaideek gonbidatutako pertsonen xehetasunak ez dira erakusten. Gonbidatuek taldean sartzea erabakitzen badute, beraien informazioa une horretan partekatuko da taldearekin. Taldean sartu arte ez dute mezurik ikusiko.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Taldeko beste kideek gonbidatutako pertsonen xehetasunak ez dira erakusten. Gonbidatuek taldean sartzea erabakitzen badute, beraien informazioa une horretan partekatuko da taldearekin. Taldean sartu arte ez dute mezurik ikusiko.</string>
   <string name="PendingMembersActivity_revoke_invite">Bertan behera utzi gonbidapena</string>
   <string name="PendingMembersActivity_revoke_invites">Bertan behera utzi gonbidapenak</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">

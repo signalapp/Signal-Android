@@ -847,8 +847,14 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s muutti kuka voi muokata ryhmän jäsenyyttä käyttäjiin \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ryhmän jäsenyyttä voi nyt muokata \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Otit ryhmälinkin käyttöön ilman jäsenten hyväksymistä.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Otit ryhmälinkin käyttöön. Ylläpitäjä tarkistaa ryhmäänliittymispyynnöt.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Poistit ryhmälinkin käytöstä.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s otti ryhmälinkin käyttöön. Jäsenten hyväksyminen ei ole käytössä.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s otti ryhmälinkin käyttöön. Ylläpitäjä tarkistaa ryhmäänliittymispyynnöt.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s poisti ryhmälinkin käytöstä.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Ryhmälinkki on otettu käyttöön. Jäsenten hyväksyminen ei ole käytössä.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Ryhmälinkki on otettu käyttöön. Ylläpitäjä tarkistaa ryhmäänliittymispyynnöt.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Ryhmälinkki on poistettu käytöstä.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Sinä uudelleenasetit ryhmälinkin.</string>
