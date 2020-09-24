@@ -196,12 +196,11 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   private IncomingPstnCallReceiver        callReceiver;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
 
-  @Nullable private CallManager             callManager;
-  @Nullable private RemotePeer              activePeer;
-  @Nullable private RemotePeer              busyPeer;
-  @Nullable private RemotePeer              preJoinPeer;
-  @Nullable private SparseArray<RemotePeer> peerMap;
-            private long                    callStartTimestamp;
+  @Nullable private CallManager           callManager;
+  @Nullable private RemotePeer            activePeer;
+  @Nullable private RemotePeer            busyPeer;
+  @Nullable private RemotePeer            preJoinPeer;
+  @Nullable private SparseArray<CallData> callDataMap;
 
   @Nullable private EglBase            eglBase;
   @Nullable private BroadcastVideoSink localSink;
@@ -352,7 +351,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     this.lockManager           = new LockManager(this);
     this.audioManager          = new SignalAudioManager(this);
     this.bluetoothStateManager = new BluetoothStateManager(this, this);
-    this.peerMap               = new SparseArray<>();
+    this.callDataMap           = new SparseArray<>();
 
     this.messageSender.setSoTimeoutMillis(TimeUnit.SECONDS.toMillis(10));
     this.accountManager.setSoTimeoutMillis(TimeUnit.SECONDS.toMillis(10));
@@ -435,8 +434,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       return;
     }
 
-    peerMap.append(remotePeer.hashCode(), remotePeer);
-    callStartTimestamp = serverReceivedTimestamp;
+    callDataMap.append(remotePeer.hashCode(), new CallData(remotePeer, serverReceivedTimestamp));
     Log.i(TAG, "add remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
 
     isRemoteVideoOffer = offerType == OfferMessage.Type.VIDEO_CALL;
@@ -523,8 +521,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
 
-    peerMap.append(remotePeer.hashCode(), remotePeer);
-    callStartTimestamp = System.currentTimeMillis();
+    callDataMap.append(remotePeer.hashCode(), new CallData(remotePeer, System.currentTimeMillis()));
     Log.i(TAG, "add remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
 
     initializeVideo();
@@ -695,7 +692,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       throw new IllegalStateException("handleStartOutgoingCall(): activePeer already set");
     }
 
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
     activePeer = remotePeer;
     activePeer.dialing();
     Log.i(TAG, "assign activePeer callId: " + activePeer.getCallId() + " key: " + activePeer.hashCode());
@@ -748,7 +745,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       throw new IllegalStateException("handleStartIncomingCall(): activePeer already set");
     }
 
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
     activePeer = remotePeer;
     activePeer.answering();
     Log.i(TAG, "assign activePeer callId: " + activePeer.getCallId() + " key: " + activePeer.hashCode());
@@ -972,7 +969,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleLocalRinging(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
     Recipient  recipient  = remotePeer.getRecipient();
 
     if (!remotePeer.callIdEquals(activePeer)) {
@@ -1006,7 +1003,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleRemoteRinging(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
 
     if (!remotePeer.callIdEquals(activePeer)) {
       Log.w(TAG, "handleRemoteRinging(): Ignoring for inactive call.");
@@ -1020,7 +1017,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleCallConnected(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
 
     if (!remotePeer.callIdEquals(activePeer)) {
       Log.w(TAG, "handleCallConnected(): Ignoring for inactive call.");
@@ -1164,17 +1161,19 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleReceivedOfferExpired(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    CallData   callData   = getCallDataFromMap(intent);
+    RemotePeer remotePeer = callData.remotePeer;
 
     Log.i(TAG, "handleReceivedOfferExpired(): call_id: " + remotePeer.getCallId());
 
-    insertMissedCall(remotePeer, true, callStartTimestamp);
+    insertMissedCall(remotePeer, true, callData.timestamp);
 
     terminate(remotePeer);
   }
 
   private void handleReceivedOfferWhileActive(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    CallData   callData   = getCallDataFromMap(intent);
+    RemotePeer remotePeer = callData.remotePeer;
 
     if (activePeer == null) {
       Log.w(TAG, "handleReceivedOfferWhileActive(): Ignoring for inactive call.");
@@ -1197,13 +1196,14 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       stopForeground(true);
     }
 
-    insertMissedCall(remotePeer, true, callStartTimestamp);
+    insertMissedCall(remotePeer, true, callData.timestamp);
 
     terminate(remotePeer);
   }
 
   private void handleEndedRemoteHangup(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    CallData   callData   = getCallDataFromMap(intent);
+    RemotePeer remotePeer = callData.remotePeer;
 
     Log.i(TAG, "handleEndedRemoteHangup(): call_id: " + remotePeer.getCallId());
 
@@ -1218,14 +1218,14 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     boolean incomingBeforeAccept = remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING;
     if (incomingBeforeAccept) {
-      insertMissedCall(remotePeer, true, callStartTimestamp);
+      insertMissedCall(remotePeer, true, callData.timestamp);
     }
 
     terminate(remotePeer);
   }
 
   private void handleEndedRemoteHangupAccepted(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
 
     Log.i(TAG, "handleEndedRemoteHangupAccepted(): call_id: " + remotePeer.getCallId());
 
@@ -1237,7 +1237,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleEndedRemoteHangupBusy(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
 
     Log.i(TAG, "handleEndedRemoteHangupBusy(): call_id: " + remotePeer.getCallId());
 
@@ -1249,7 +1249,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleEndedRemoteHangupDeclined(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
 
     Log.i(TAG, "handleEndedRemoteHangupDeclined(): call_id: " + remotePeer.getCallId());
 
@@ -1261,7 +1261,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleEndedRemoteBusy(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
 
     Log.i(TAG, "handleEndedRemoteBusy(): call_id: " + remotePeer.getCallId());
 
@@ -1283,7 +1283,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleEndedRemoteNeedPermission(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
 
     Log.i(TAG, "handleEndedRemoteNeedPermission(): call_id: " + remotePeer.getCallId());
 
@@ -1295,7 +1295,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleEndedRemoteGlare(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    CallData   callData   = getCallDataFromMap(intent);
+    RemotePeer remotePeer = callData.remotePeer;
 
     Log.i(TAG, "handleEndedRemoteGlare(): call_id: " + remotePeer.getCallId());
 
@@ -1305,14 +1306,15 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     boolean incomingBeforeAccept = remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING;
     if (incomingBeforeAccept) {
-      insertMissedCall(remotePeer, true, callStartTimestamp);
+      insertMissedCall(remotePeer, true, callData.timestamp);
     }
 
     terminate(remotePeer);
   }
 
   private void handleEndedFailure(Intent intent) {
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    CallData   callData   = getCallDataFromMap(intent);
+    RemotePeer remotePeer = callData.remotePeer;
 
     Log.i(TAG, "handleEndedFailure(): call_id: " + remotePeer.getCallId());
 
@@ -1321,7 +1323,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
 
     if (remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING) {
-      insertMissedCall(remotePeer, true, callStartTimestamp);
+      insertMissedCall(remotePeer, true, callData.timestamp);
     }
 
     terminate(remotePeer);
@@ -1354,11 +1356,11 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   private void handleCallConcluded(Intent intent) {
     Log.i(TAG, "handleCallConcluded():");
 
-    RemotePeer remotePeer = getRemotePeerFromMap(intent);
+    RemotePeer remotePeer = getCallDataFromMap(intent).remotePeer;
 
     Log.i(TAG, "delete remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
 
-    peerMap.delete(remotePeer.hashCode());
+    callDataMap.delete(remotePeer.hashCode());
   }
 
   private boolean isIdle() {
@@ -1516,14 +1518,14 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     return remotePeerKey;
   }
 
-  private @NonNull RemotePeer getRemotePeerFromMap(Intent intent) {
+  private @NonNull CallData getCallDataFromMap(Intent intent) {
     int remotePeerKey = getRemotePeerKey(intent);
-    RemotePeer remotePeer = peerMap.get(remotePeerKey);
-    if (remotePeer == null) {
-      throw new AssertionError("No RemotePeer in map for key: " + remotePeerKey + "!");
+    CallData callData = callDataMap.get(remotePeerKey);
+    if (callData == null) {
+      throw new AssertionError("No CallData in map for key: " + remotePeerKey + "!");
     }
 
-    return remotePeer;
+    return callData;
   }
 
   private void callFailure(String message, Throwable error) {
@@ -1545,7 +1547,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     terminate(activePeer);
 
-    peerMap.clear();
+    callDataMap.clear();
   }
 
   private static @NonNull CallManager.CallMediaType getCallMediaTypeFromOfferType(@NonNull OfferMessage.Type offerType) {
@@ -1844,7 +1846,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     if (remote instanceof RemotePeer) {
       RemotePeer remotePeer = (RemotePeer) remote;
-      if (peerMap.get(remotePeer.hashCode()) == null) {
+      if (callDataMap.get(remotePeer.hashCode()) == null) {
         Log.w(TAG, "remotePeer not found in map with key: " + remotePeer.hashCode() + "! Dropping.");
         try {
           callManager.drop(callId);
@@ -1875,7 +1877,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public void onCallEvent(Remote remote, CallEvent event) {
     if (remote instanceof RemotePeer) {
       RemotePeer remotePeer = (RemotePeer) remote;
-      if (peerMap.get(remotePeer.hashCode()) == null) {
+      if (callDataMap.get(remotePeer.hashCode()) == null) {
         throw new AssertionError("remotePeer not found in map!");
       }
 
@@ -2093,6 +2095,17 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       startService(intent);
     } else {
       throw new AssertionError("Received remote is not instanceof RemotePeer");
+    }
+  }
+
+  private static class CallData {
+
+    private final RemotePeer remotePeer;
+    private final long       timestamp;
+
+    private CallData(RemotePeer remotePeer, long timestamp) {
+      this.remotePeer = remotePeer;
+      this.timestamp  = timestamp;
     }
   }
 }
