@@ -84,7 +84,7 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
     IdentityState        identityState  = remote.getIdentityState();
     byte[]               identityKey    = remote.getIdentityKey().or(local.getIdentityKey()).orNull();
     boolean              blocked        = remote.isBlocked();
-    boolean              profileSharing = remote.isProfileSharingEnabled() || local.isProfileSharingEnabled();
+    boolean              profileSharing = remote.isProfileSharingEnabled();
     boolean              archived       = remote.isArchived();
     boolean              matchesRemote  = doParamsMatch(remote, unknownFields, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived);
     boolean              matchesLocal   = doParamsMatch(local, unknownFields, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived);

@@ -44,7 +44,7 @@ public class ContactConflictMergerTest {
   }
 
   @Test
-  public void merge_alwaysPreferRemote_exceptProfileSharingIsEitherOr() {
+  public void merge_alwaysPreferRemote() {
     SignalContactRecord remote = new SignalContactRecord.Builder(byteArray(1), new SignalServiceAddress(UUID_A, E164_A))
                                                         .setBlocked(true)
                                                         .setIdentityKey(byteArray(2))
@@ -79,7 +79,7 @@ public class ContactConflictMergerTest {
     assertEquals("AFirst", merged.getGivenName().get());
     assertEquals("ALast", merged.getFamilyName().get());
     assertEquals("username A", merged.getUsername().get());
-    assertTrue(merged.isProfileSharingEnabled());
+    assertFalse(merged.isProfileSharingEnabled());
     assertFalse(merged.isArchived());
   }
 
