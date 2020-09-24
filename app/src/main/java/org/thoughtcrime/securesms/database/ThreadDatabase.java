@@ -283,12 +283,12 @@ public class ThreadDatabase extends Database {
       mmsSmsDatabase.deleteAbandonedMessages();
       attachmentDatabase.trimAllAbandonedAttachments();
       groupReceiptDatabase.deleteAbandonedRows();
+      attachmentDatabase.deleteAbandonedAttachmentFiles();
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
     }
 
-    attachmentDatabase.deleteAbandonedAttachmentFiles();
 
     notifyAttachmentListeners();
     notifyStickerListeners();
@@ -312,12 +312,12 @@ public class ThreadDatabase extends Database {
       mmsSmsDatabase.deleteAbandonedMessages();
       attachmentDatabase.trimAllAbandonedAttachments();
       groupReceiptDatabase.deleteAbandonedRows();
+      attachmentDatabase.deleteAbandonedAttachmentFiles();
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
     }
 
-    attachmentDatabase.deleteAbandonedAttachmentFiles();
 
     notifyAttachmentListeners();
     notifyStickerListeners();

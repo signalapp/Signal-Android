@@ -437,7 +437,7 @@ public class AttachmentDatabase extends Database {
   public void trimAllAbandonedAttachments() {
     SQLiteDatabase db              = databaseHelper.getWritableDatabase();
     String         selectAllMmsIds = "SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME;
-    String         selectDataInUse = "SELECT DISTINCT " + DATA + " FROM " + TABLE_NAME + " WHERE " + QUOTE + " = 0 AND " + MMS_ID + " IN (" + selectAllMmsIds + ")";
+    String         selectDataInUse = "SELECT DISTINCT " + DATA + " FROM " + TABLE_NAME + " WHERE " + QUOTE + " = 0 AND (" + MMS_ID + " IN (" + selectAllMmsIds + ") OR " + MMS_ID + " = " + PREUPLOAD_MESSAGE_ID + ")";
     String         where           = MMS_ID + " NOT IN (" + selectAllMmsIds + ") AND " + DATA + " NOT IN (" + selectDataInUse + ")";
 
     db.delete(TABLE_NAME, where, null);
@@ -1209,87 +1209,94 @@ public class AttachmentDatabase extends Database {
       throws MmsException
   {
     Log.d(TAG, "Inserting attachment for mms id: " + mmsId);
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
-    SQLiteDatabase database        = databaseHelper.getWritableDatabase();
-    DataInfo       dataInfo        = null;
-    long           uniqueId        = System.currentTimeMillis();
+    database.beginTransaction();
+    try {
+      DataInfo       dataInfo        = null;
+      long           uniqueId        = System.currentTimeMillis();
 
-    if (attachment.getUri() != null) {
-      dataInfo = setAttachmentData(attachment.getUri(), null);
-      Log.d(TAG, "Wrote part to file: " + dataInfo.file.getAbsolutePath());
-    }
-
-    Attachment template = attachment;
-
-    if (dataInfo != null && dataInfo.hash != null) {
-      Attachment possibleTemplate = findTemplateAttachment(dataInfo.hash);
-
-      if (possibleTemplate != null) {
-        Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.");
-        template = possibleTemplate;
+      if (attachment.getUri() != null) {
+        dataInfo = setAttachmentData(attachment.getUri(), null);
+        Log.d(TAG, "Wrote part to file: " + dataInfo.file.getAbsolutePath());
       }
-    }
 
-    boolean useTemplateUpload = template.getUploadTimestamp() > attachment.getUploadTimestamp() &&
-                                template.getTransferState() == TRANSFER_PROGRESS_DONE           &&
-                                template.getTransformProperties().shouldSkipTransform()         &&
-                                !attachment.getTransformProperties().isVideoEdited();
+      Attachment template = attachment;
 
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(MMS_ID, mmsId);
-    contentValues.put(CONTENT_TYPE, template.getContentType());
-    contentValues.put(TRANSFER_STATE, attachment.getTransferState());
-    contentValues.put(UNIQUE_ID, uniqueId);
-    contentValues.put(CDN_NUMBER, useTemplateUpload ? template.getCdnNumber() : attachment.getCdnNumber());
-    contentValues.put(CONTENT_LOCATION, useTemplateUpload ? template.getLocation() : attachment.getLocation());
-    contentValues.put(DIGEST, useTemplateUpload ? template.getDigest() : attachment.getDigest());
-    contentValues.put(CONTENT_DISPOSITION, useTemplateUpload ? template.getKey() : attachment.getKey());
-    contentValues.put(NAME, useTemplateUpload ? template.getRelay() : attachment.getRelay());
-    contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));
-    contentValues.put(SIZE, template.getSize());
-    contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
-    contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);
-    contentValues.put(BORDERLESS, attachment.isBorderless() ? 1 : 0);
-    contentValues.put(WIDTH, template.getWidth());
-    contentValues.put(HEIGHT, template.getHeight());
-    contentValues.put(QUOTE, quote);
-    contentValues.put(CAPTION, attachment.getCaption());
-    contentValues.put(UPLOAD_TIMESTAMP, useTemplateUpload ? template.getUploadTimestamp() : attachment.getUploadTimestamp());
-    if (attachment.getTransformProperties().isVideoEdited()) {
-      contentValues.putNull(VISUAL_HASH);
-      contentValues.put(TRANSFORM_PROPERTIES, attachment.getTransformProperties().serialize());
-    } else {
-      contentValues.put(VISUAL_HASH, getVisualHashStringOrNull(template));
-      contentValues.put(TRANSFORM_PROPERTIES, template.getTransformProperties().serialize());
-    }
+      if (dataInfo != null && dataInfo.hash != null) {
+        Attachment possibleTemplate = findTemplateAttachment(dataInfo.hash);
 
-    if (attachment.isSticker()) {
-      contentValues.put(STICKER_PACK_ID, attachment.getSticker().getPackId());
-      contentValues.put(STICKER_PACK_KEY, attachment.getSticker().getPackKey());
-      contentValues.put(STICKER_ID, attachment.getSticker().getStickerId());
-      contentValues.put(STICKER_EMOJI, attachment.getSticker().getEmoji());
-    }
+        if (possibleTemplate != null) {
+          Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.");
+          template = possibleTemplate;
+        }
+      }
 
-    if (dataInfo != null) {
-      contentValues.put(DATA, dataInfo.file.getAbsolutePath());
-      contentValues.put(SIZE, dataInfo.length);
-      contentValues.put(DATA_RANDOM, dataInfo.random);
+      boolean useTemplateUpload = template.getUploadTimestamp() > attachment.getUploadTimestamp() &&
+                                  template.getTransferState() == TRANSFER_PROGRESS_DONE           &&
+                                  template.getTransformProperties().shouldSkipTransform()         &&
+                                  !attachment.getTransformProperties().isVideoEdited();
+
+      ContentValues contentValues = new ContentValues();
+      contentValues.put(MMS_ID, mmsId);
+      contentValues.put(CONTENT_TYPE, template.getContentType());
+      contentValues.put(TRANSFER_STATE, attachment.getTransferState());
+      contentValues.put(UNIQUE_ID, uniqueId);
+      contentValues.put(CDN_NUMBER, useTemplateUpload ? template.getCdnNumber() : attachment.getCdnNumber());
+      contentValues.put(CONTENT_LOCATION, useTemplateUpload ? template.getLocation() : attachment.getLocation());
+      contentValues.put(DIGEST, useTemplateUpload ? template.getDigest() : attachment.getDigest());
+      contentValues.put(CONTENT_DISPOSITION, useTemplateUpload ? template.getKey() : attachment.getKey());
+      contentValues.put(NAME, useTemplateUpload ? template.getRelay() : attachment.getRelay());
+      contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));
+      contentValues.put(SIZE, template.getSize());
+      contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
+      contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);
+      contentValues.put(BORDERLESS, attachment.isBorderless() ? 1 : 0);
+      contentValues.put(WIDTH, template.getWidth());
+      contentValues.put(HEIGHT, template.getHeight());
+      contentValues.put(QUOTE, quote);
+      contentValues.put(CAPTION, attachment.getCaption());
+      contentValues.put(UPLOAD_TIMESTAMP, useTemplateUpload ? template.getUploadTimestamp() : attachment.getUploadTimestamp());
       if (attachment.getTransformProperties().isVideoEdited()) {
-        contentValues.putNull(DATA_HASH);
+        contentValues.putNull(VISUAL_HASH);
+        contentValues.put(TRANSFORM_PROPERTIES, attachment.getTransformProperties().serialize());
       } else {
-        contentValues.put(DATA_HASH, dataInfo.hash);
+        contentValues.put(VISUAL_HASH, getVisualHashStringOrNull(template));
+        contentValues.put(TRANSFORM_PROPERTIES, template.getTransformProperties().serialize());
       }
+
+      if (attachment.isSticker()) {
+        contentValues.put(STICKER_PACK_ID, attachment.getSticker().getPackId());
+        contentValues.put(STICKER_PACK_KEY, attachment.getSticker().getPackKey());
+        contentValues.put(STICKER_ID, attachment.getSticker().getStickerId());
+        contentValues.put(STICKER_EMOJI, attachment.getSticker().getEmoji());
+      }
+
+      if (dataInfo != null) {
+        contentValues.put(DATA, dataInfo.file.getAbsolutePath());
+        contentValues.put(SIZE, dataInfo.length);
+        contentValues.put(DATA_RANDOM, dataInfo.random);
+        if (attachment.getTransformProperties().isVideoEdited()) {
+          contentValues.putNull(DATA_HASH);
+        } else {
+          contentValues.put(DATA_HASH, dataInfo.hash);
+        }
+      }
+
+      boolean      notifyPacks  = attachment.isSticker() && !hasStickerAttachments();
+      long         rowId        = database.insert(TABLE_NAME, null, contentValues);
+      AttachmentId attachmentId = new AttachmentId(rowId, uniqueId);
+
+      if (notifyPacks) {
+        notifyStickerPackListeners();
+      }
+
+      database.setTransactionSuccessful();
+
+      return attachmentId;
+    } finally {
+      database.endTransaction();
     }
-
-    boolean      notifyPacks  = attachment.isSticker() && !hasStickerAttachments();
-    long         rowId        = database.insert(TABLE_NAME, null, contentValues);
-    AttachmentId attachmentId = new AttachmentId(rowId, uniqueId);
-
-    if (notifyPacks) {
-      notifyStickerPackListeners();
-    }
-
-    return attachmentId;
   }
 
   private @Nullable DatabaseAttachment findTemplateAttachment(@NonNull String dataHash) {
