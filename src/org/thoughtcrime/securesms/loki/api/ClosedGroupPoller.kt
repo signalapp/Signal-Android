@@ -17,7 +17,7 @@ import org.whispersystems.signalservice.loki.utilities.getRandomElementOrNull
 
 class ClosedGroupPoller private constructor(private val context: Context, private val database: SharedSenderKeysDatabase) {
     private var isPolling = false
-    private val handler = Handler()
+    private val handler: Handler by lazy { Handler() }
 
     private val task = object : Runnable {
 

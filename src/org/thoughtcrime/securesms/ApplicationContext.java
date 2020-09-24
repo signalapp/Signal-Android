@@ -61,7 +61,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.api.BackgroundPollListener;
+import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.api.ClosedGroupPoller;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
@@ -385,7 +385,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     RotateSignedPreKeyListener.schedule(this);
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
-    BackgroundPollListener.schedule(this); // Loki
+    BackgroundPollWorker.schedulePeriodic(this); // Loki
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);

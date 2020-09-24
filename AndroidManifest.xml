@@ -682,7 +682,7 @@
         </receiver>
         <!-- Session -->
         <receiver
-            android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollListener"
+            android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollWorker$BootBroadcastReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -700,13 +700,6 @@
         <receiver
             android:name="org.thoughtcrime.securesms.jobmanager.AlarmManagerScheduler$RetryReceiver"
             android:enabled="@bool/enable_alarm_manager" /> <!-- Probably don't need this one -->
-        <receiver
-            android:name="org.thoughtcrime.securesms.jobmanager.BootReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
 
         <uses-library
             android:name="com.sec.android.app.multiwindow"

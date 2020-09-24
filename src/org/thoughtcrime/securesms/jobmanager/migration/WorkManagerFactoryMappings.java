@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.jobs.SmsSentJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.jobs.UpdateApkJob;
-import org.thoughtcrime.securesms.loki.api.BackgroundPollJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
@@ -59,7 +58,6 @@ public class WorkManagerFactoryMappings {
     put(AttachmentDownloadJob.class.getName(), AttachmentDownloadJob.KEY);
     put(AttachmentUploadJob.class.getName(), AttachmentUploadJob.KEY);
     put(AvatarDownloadJob.class.getName(), AvatarDownloadJob.KEY);
-    put(BackgroundPollJob.class.getName(), BackgroundPollJob.KEY);
     put(CleanPreKeysJob.class.getName(), CleanPreKeysJob.KEY);
     put(ClosedGroupUpdateMessageSendJob.class.getName(), ClosedGroupUpdateMessageSendJob.KEY);
     put(CreateSignedPreKeyJob.class.getName(), CreateSignedPreKeyJob.KEY);
