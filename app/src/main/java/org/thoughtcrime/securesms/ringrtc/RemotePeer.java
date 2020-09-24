@@ -23,17 +23,20 @@ public final class RemotePeer implements Remote, Parcelable
   @NonNull private final RecipientId recipientId;
   @NonNull private       CallState   callState;
   @NonNull private       CallId      callId;
+           private       long        callStartTimestamp;
 
   public RemotePeer(@NonNull RecipientId recipientId) {
-    this.recipientId = recipientId;
-    this.callState   = CallState.IDLE;
-    this.callId      = new CallId(-1L);
+    this.recipientId        = recipientId;
+    this.callState          = CallState.IDLE;
+    this.callId             = new CallId(-1L);
+    this.callStartTimestamp = 0;
   }
 
   private RemotePeer(@NonNull Parcel in) {
-    this.recipientId = RecipientId.CREATOR.createFromParcel(in);
-    this.callState   = CallState.values()[in.readInt()];
-    this.callId      = new CallId(in.readLong());
+    this.recipientId        = RecipientId.CREATOR.createFromParcel(in);
+    this.callState          = CallState.values()[in.readInt()];
+    this.callId             = new CallId(in.readLong());
+    this.callStartTimestamp = in.readLong();
   }
 
   public @NonNull CallId getCallId() {
@@ -42,6 +45,14 @@ public final class RemotePeer implements Remote, Parcelable
 
   public void setCallId(@NonNull CallId callId) {
     this.callId = callId;
+  }
+
+  public void setCallStartTimestamp(long callStartTimestamp) {
+    this.callStartTimestamp = callStartTimestamp;
+  }
+
+  public long getCallStartTimestamp() {
+    return callStartTimestamp;
   }
 
   public @NonNull CallState getState() {
@@ -135,6 +146,7 @@ public final class RemotePeer implements Remote, Parcelable
     recipientId.writeToParcel(dest, flags);
     dest.writeInt(callState.ordinal());
     dest.writeLong(callId.longValue());
+    dest.writeLong(callStartTimestamp);
   }
 
   public static final Creator<RemotePeer> CREATOR = new Creator<RemotePeer>() {

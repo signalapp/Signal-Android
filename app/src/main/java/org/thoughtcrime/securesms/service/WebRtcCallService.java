@@ -201,7 +201,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   @Nullable private RemotePeer              busyPeer;
   @Nullable private RemotePeer              preJoinPeer;
   @Nullable private SparseArray<RemotePeer> peerMap;
-            private long                    callStartTimestamp;
 
   @Nullable private EglBase            eglBase;
   @Nullable private BroadcastVideoSink localSink;
@@ -436,7 +435,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
 
     peerMap.append(remotePeer.hashCode(), remotePeer);
-    callStartTimestamp = serverReceivedTimestamp;
+    remotePeer.setCallStartTimestamp(serverReceivedTimestamp);
     Log.i(TAG, "add remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
 
     isRemoteVideoOffer = offerType == OfferMessage.Type.VIDEO_CALL;
@@ -524,7 +523,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
 
     peerMap.append(remotePeer.hashCode(), remotePeer);
-    callStartTimestamp = System.currentTimeMillis();
+    remotePeer.setCallStartTimestamp(System.currentTimeMillis());
     Log.i(TAG, "add remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
 
     initializeVideo();
@@ -1168,7 +1167,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     Log.i(TAG, "handleReceivedOfferExpired(): call_id: " + remotePeer.getCallId());
 
-    insertMissedCall(remotePeer, true, callStartTimestamp);
+    insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp());
 
     terminate(remotePeer);
   }
@@ -1197,7 +1196,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       stopForeground(true);
     }
 
-    insertMissedCall(remotePeer, true, callStartTimestamp);
+    insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp());
 
     terminate(remotePeer);
   }
@@ -1218,7 +1217,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     boolean incomingBeforeAccept = remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING;
     if (incomingBeforeAccept) {
-      insertMissedCall(remotePeer, true, callStartTimestamp);
+      insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp());
     }
 
     terminate(remotePeer);
@@ -1305,7 +1304,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     boolean incomingBeforeAccept = remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING;
     if (incomingBeforeAccept) {
-      insertMissedCall(remotePeer, true, callStartTimestamp);
+      insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp());
     }
 
     terminate(remotePeer);
@@ -1321,7 +1320,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
 
     if (remotePeer.getState() == CallState.ANSWERING || remotePeer.getState() == CallState.LOCAL_RINGING) {
-      insertMissedCall(remotePeer, true, callStartTimestamp);
+      insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp());
     }
 
     terminate(remotePeer);
