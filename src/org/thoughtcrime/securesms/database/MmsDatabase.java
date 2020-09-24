@@ -914,7 +914,7 @@ public class MmsDatabase extends MessagingDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
-    return insertMessageInbox(retrieved, "", threadId, type, 0);
+    return insertMessageInbox(retrieved, "", threadId, type, serverTimestamp);
   }
 
   public Optional<InsertResult> insertSecureDecryptedMessageInbox(IncomingMediaMessage retrieved, long threadId)
