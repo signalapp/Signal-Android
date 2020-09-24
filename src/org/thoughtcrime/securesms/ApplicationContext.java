@@ -216,7 +216,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     resubmitProfilePictureIfNeeded();
     publicChatManager = new PublicChatManager(this);
     updateOpenGroupProfilePicturesIfNeeded();
-    registerForFCMIfNeeded(false);
+    if (userPublicKey != null) {
+      registerForFCMIfNeeded(false);
+    }
     // Set application UI mode (day/night theme) to the user selected one.
     UiModeUtilities.setupUiModeToUserSelected(this);
     // ========
