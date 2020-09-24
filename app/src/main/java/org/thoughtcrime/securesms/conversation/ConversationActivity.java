@@ -3334,7 +3334,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     long       expiresIn      = recipient.get().getExpireMessages() * 1000L;
     int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
     boolean    initiating     = threadId == -1;
-    QuoteModel quote          = inputPanel.getQuote().orNull();
     SlideDeck  slideDeck      = new SlideDeck();
 
     if (MediaUtil.isGif(contentType)) {
@@ -3348,7 +3347,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     sendMediaMessage(isSmsForced(),
                      "",
                      slideDeck,
-                     quote,
+                     null,
                      Collections.emptyList(),
                      Collections.emptyList(),
                      composeText.getMentions(),
@@ -3356,7 +3355,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                      false,
                      subscriptionId,
                      initiating,
-                     true);
+                     false);
   }
 
   private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {
