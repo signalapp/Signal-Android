@@ -458,37 +458,37 @@ public final class PushProcessMessageJob extends BaseJob {
     switch (messageState) {
 
       case INVALID_VERSION:
-        Log.w(TAG, "Handling invalid version");
+        Log.w(TAG, "Handling invalid version (" + timestamp + ")");
         handleInvalidVersionMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
         break;
 
       case CORRUPT_MESSAGE:
-        Log.w(TAG, "Handling corrupt message");
+        Log.w(TAG, "Handling corrupt message (" + timestamp + ")");
         handleCorruptMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
         break;
 
       case NO_SESSION:
-        Log.w(TAG, "Handling no session");
+        Log.w(TAG, "Handling no session (" + timestamp + ")");
         handleNoSessionMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
         break;
 
       case LEGACY_MESSAGE:
-        Log.w(TAG, "Handling legacy message");
+        Log.w(TAG, "Handling legacy message (" + timestamp + ")");
         handleLegacyMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
         break;
 
       case DUPLICATE_MESSAGE:
-        Log.w(TAG, "Handling duplicate message");
+        Log.w(TAG, "Handling duplicate message (" + timestamp + ")");
         handleDuplicateMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
         break;
 
       case UNSUPPORTED_DATA_MESSAGE:
-        Log.w(TAG, "Handling unsupported data message");
+        Log.w(TAG, "Handling unsupported data message (" + timestamp + ")");
         handleUnsupportedDataMessage(e.sender, e.senderDevice, Optional.fromNullable(e.groupId), timestamp, smsMessageId);
         break;
 
       default:
-        throw new AssertionError("Not handled " + messageState);
+        throw new AssertionError("Not handled " + messageState + ". (" + timestamp + ")");
     }
   }
 
