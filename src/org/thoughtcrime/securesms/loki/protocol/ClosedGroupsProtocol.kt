@@ -37,7 +37,7 @@ import kotlin.jvm.Throws
 
 object ClosedGroupsProtocol {
     val isSharedSenderKeysEnabled = true
-    val groupSizeLimit = 10
+    val groupSizeLimit = 20
     
     public fun createClosedGroup(context: Context, name: String, members: Collection<String>): Promise<String, Exception> {
         val deferred = deferred<String, Exception>()
