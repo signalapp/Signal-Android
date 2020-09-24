@@ -167,6 +167,11 @@ public class RetrieveProfileJob extends BaseJob {
    * certain time period.
    */
   public static void enqueueRoutineFetchIfNecessary(Application application) {
+    if (!SignalStore.registrationValues().isRegistrationComplete()) {
+      Log.i(TAG, "Registration not complete. Skipping.");
+      return;
+    }
+
     long timeSinceRefresh = System.currentTimeMillis() - SignalStore.misc().getLastProfileRefreshTime();
     if (timeSinceRefresh < TimeUnit.HOURS.toMillis(12)) {
       Log.i(TAG, "Too soon to refresh. Did the last refresh " + timeSinceRefresh + " ms ago.");
