@@ -126,6 +126,11 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     if (!isInPipMode()) {
       EventBus.getDefault().unregister(this);
     }
+
+    CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+    if (state != null && state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
+      finish();
+    }
   }
 
   @Override
