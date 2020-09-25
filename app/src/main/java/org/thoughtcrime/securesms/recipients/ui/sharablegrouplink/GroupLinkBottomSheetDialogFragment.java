@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.recipients.ui.sharablegrouplink;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.qr.GroupLinkShareQrDialogFragment;
+import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -68,8 +70,14 @@ public final class GroupLinkBottomSheetDialogFragment extends BottomSheetDialogF
         return;
       }
 
-      shareViaSignalButton.setOnClickListener(v -> dismiss()); // Todo [Alan] GV2 Add share within signal
-      shareViaSignalButton.setVisibility(View.GONE);
+      shareViaSignalButton.setOnClickListener(v -> {
+        Context context = requireContext();
+        Intent  intent  = new Intent(context, ShareActivity.class);
+        intent.putExtra(Intent.EXTRA_TEXT, groupLink.getUrl());
+        context.startActivity(intent);
+
+        dismiss();
+      });
 
       copyButton.setOnClickListener(v -> {
         Context context = requireContext();
