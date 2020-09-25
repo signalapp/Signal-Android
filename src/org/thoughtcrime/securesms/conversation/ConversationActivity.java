@@ -323,6 +323,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ProgressBar                 messageStatusProgressBar;
   private   ImageView                   muteIndicatorImageView;
   private   TextView                    subtitleTextView;
+  private   View                        homeButtonContainer;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
@@ -474,6 +475,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
       collapsedKeyboardHeight = Math.min(collapsedKeyboardHeight, height);
       keyboardHeight = expandedKeyboardHeight - collapsedKeyboardHeight;
+
+      // Use 300dp if the keyboard wasn't opened yet.
+      if (keyboardHeight == 0) {
+        keyboardHeight = (int)(300f * getResources().getDisplayMetrics().density);
+      }
     });
   }
 
@@ -1691,6 +1697,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     messageStatusProgressBar               = ViewUtil.findById(this, R.id.messageStatusProgressBar);
     muteIndicatorImageView                 = ViewUtil.findById(this, R.id.muteIndicatorImageView);
     subtitleTextView                       = ViewUtil.findById(this, R.id.subtitleTextView);
+    homeButtonContainer                    = ViewUtil.findById(this, R.id.homeButtonContainer);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -1745,6 +1752,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     searchNav.setEventListener(this);
 
     inlineAttachmentButton.setOnClickListener(v -> handleAddAttachment());
+
+    homeButtonContainer.setOnClickListener(v -> onSupportNavigateUp());
   }
 
   protected void initializeActionBar() {

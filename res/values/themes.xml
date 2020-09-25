@@ -41,6 +41,8 @@
         <item name="dividerVertical">@color/separator</item>
         <item name="dividerHorizontal">?dividerVertical</item>
 
+        <item name="searchViewStyle">@style/Widget.Session.SearchView</item>
+
         <!-- App specific attributes -->
         <item name="ic_visibility_on">@drawable/ic_baseline_visibility_24</item>
         <item name="ic_visibility_off">@drawable/ic_baseline_visibility_off_24</item>
@@ -50,8 +52,7 @@
 
         <item name="media_overview_toolbar_background">@color/transparent</item>
         <item name="media_overview_header_foreground">@color/text</item>
-        <item name="media_keyboard_button_color">@color/core_grey_25</item>
-        <item name="searchViewStyle">@style/TextSecure.BaseDarkTheme.SearchView</item>
+        <item name="media_keyboard_button_color">@color/core_grey_25</item>\
 
         <item name="attachment_type_selector_background">?android:windowBackground</item>
         <item name="attachment_type_selector_hide_button_background">@color/gray50</item>
@@ -161,7 +162,6 @@
         <item name="media_overview_header_foreground">@color/text</item>
 
         <item name="theme_type">dark</item>
-        <item name="searchViewStyle">@style/TextSecure.BaseDarkTheme.SearchView</item>
         <item name="android:navigationBarColor">@color/compose_view_background</item>
 
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>

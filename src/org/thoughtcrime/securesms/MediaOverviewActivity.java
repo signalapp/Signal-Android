@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
@@ -136,9 +137,12 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
   private void initializeToolbar() {
     setSupportActionBar(this.toolbar);
-    getSupportActionBar().setTitle(recipient.toShortString());
+    ActionBar actionBar = getSupportActionBar();
+    actionBar.setTitle(recipient.toShortString());
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setHomeButtonEnabled(true);
     this.recipient.addListener(recipient -> {
-      Util.runOnMain(() -> getSupportActionBar().setTitle(recipient.toShortString()));
+      Util.runOnMain(() -> actionBar.setTitle(recipient.toShortString()));
     });
   }
 
