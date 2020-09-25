@@ -118,6 +118,10 @@
     <style name="TextAppearance.Signal.Caption" parent="@style/TextAppearance.AppCompat.Caption">
     </style>
 
+    <style name="TextAppearance.Signal.Subtitle" parent="TextAppearance.Signal.Caption">
+        <item name="android:textSize">13sp</item>
+    </style>
+
     <style name="TextAppearance.Signal.Subtitle2" parent="@style/TextAppearance.MaterialComponents.Subtitle2">
     </style>
 
