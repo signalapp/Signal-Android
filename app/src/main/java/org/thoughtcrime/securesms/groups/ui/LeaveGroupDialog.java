@@ -91,7 +91,7 @@ public final class LeaveGroupDialog {
                    .setCancelable(true)
                    .setMessage(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group)
                    .setPositiveButton(R.string.yes, (dialog, which) -> {
-                     SimpleProgressDialog.DismissibleDialog progressDialog = SimpleProgressDialog.showDelayed(activity);
+                     AlertDialog progressDialog = SimpleProgressDialog.show(activity);
                      SimpleTask.run(activity.getLifecycle(), this::leaveGroup, result -> {
                        progressDialog.dismiss();
                        handleLeaveGroupResult(result);
