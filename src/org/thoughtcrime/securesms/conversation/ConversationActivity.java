@@ -2278,7 +2278,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           MarkReadReceiver.process(context, messageIds);
         }
-
+        ApplicationContext.getInstance(context).messageNotifier.updateNotification(context);
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
