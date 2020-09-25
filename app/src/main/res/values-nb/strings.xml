@@ -2062,7 +2062,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Legacy vs nye grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hva er \"legacy\" grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Legacy grupper er grupper som ikke er kompatible med nye gruppefunksjoner som administrator og mer beskrivende gruppeoppdateringer.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Hvordan bruker jeg nye grupper?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Hvordan bruker jeg nye grupper?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Legacy grupper kan ikke konverteres til nye grupper, men du kan lage en ny gruppe med de samme medlemmene.</string>
   <string name="GroupsLearnMore_paragraph_3">For å lage en ny gruppe, burde alle medlemmer oppdatere til den nyeste versjonen av Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

@@ -2292,7 +2292,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare spram novih grupa</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Šta su stare gurpe?</string>
   <string name="GroupsLearnMore_paragraph_1">Stare su one grupe koje nisu kompatibilne s novim grupnim opcijama poput administratora i detaljnih grupnih izvještaja.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kako ću koristiti nove grupe?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Kako ću koristiti nove grupe?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Stare grupe ne mogu se preinačiti u nove, ali možete kreirati novu grupu sa istim članovima.</string>
   <string name="GroupsLearnMore_paragraph_3">Da biste mogli kreirati novu grupu, svi članovi moraju koristiti zadnju objavljenu verziju Signala.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

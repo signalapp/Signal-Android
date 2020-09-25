@@ -2119,7 +2119,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Vanad vs uued grupid</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Mis on vana tüüpi grupid?</string>
   <string name="GroupsLearnMore_paragraph_1">Vana tüüpi grupid on need grupid, mis pole ühilduvad uut tüüpi gruppide funktsionaalsustega nagu administraatorid ja rohkem kirjeldavad grupi muudatused.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kuidas ma saan uusi gruppe kasutada?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Kuidas ma saan uusi gruppe kasutada?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Vana tüüpi gruppe ei saa uut tüüpi gruppideks teisendada, aga sa saad luua samade liikmetega uut tüüpi grupi.</string>
   <string name="GroupsLearnMore_paragraph_3">Uue grupi loomiseks peavad kõik liikmed uuendama enda Signal-i uusimale versioonile.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

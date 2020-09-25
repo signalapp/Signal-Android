@@ -2220,7 +2220,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Les groupes hérités comparés aux nouveaux</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Que sont les groupes hérités ?</string>
   <string name="GroupsLearnMore_paragraph_1">Les groupes hérités sont des groupes qui ne sont pas compatibles avec les fonctions des nouveaux groupes, telles que les administrateurs et les mises à jour plus descriptives des groupes.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Comment utiliser les nouveaux groupes ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Comment utiliser les nouveaux groupes ?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Les groupes hérités ne peuvent pas être convertis en nouveaux groupes, mais vous pouvez créer un nouveau groupe avec les mêmes membres.</string>
   <string name="GroupsLearnMore_paragraph_3">Pour créer un nouveau groupe, tous les membres devraient mettre Signal à jour vers la version la plus récente.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

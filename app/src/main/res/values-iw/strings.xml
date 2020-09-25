@@ -924,6 +924,7 @@
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">מי יכול לערוך חברות קבוצה השתנה אל \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_off_the_group_link">כיבית את קישור הקבוצה.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s כיבה/כיבתה את קישור הקבוצה.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">איפסת את קישור הקבוצה.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s איפס/ה את קישור הקבוצה.</string>
@@ -2323,7 +2324,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">קבוצות מיושנות לעומת חדשות</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">מהן קבוצות מיושנות?</string>
   <string name="GroupsLearnMore_paragraph_1">קבוצות מיושנות הן קבוצות שאינן תואמות עם מאפיינים של קבוצה חדשה כמו מנהלנים ועדכוני קבוצה תיאוריים יותר.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">איך אני משתמש בקבוצות חדשות?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">איך אני משתמש בקבוצות חדשות?</string> -->
   <string name="GroupsLearnMore_paragraph_2">קבוצות מיושנות אינן ניתנות להמרה אל קבוצות חדשות, אבל אתה יכול ליצור קבוצה חדשה עם אותם חברי קבוצה.</string>
   <string name="GroupsLearnMore_paragraph_3">כדי ליצור קבוצה חדשה, כל חברי הקבוצה צריכים לעדכן אל הגרסה האחרונה של Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

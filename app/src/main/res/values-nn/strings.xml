@@ -2238,7 +2238,7 @@ Du er à jour!</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Eldre vs. Nye grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Kva er Eldre grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Eldre grupper er grupper som ikkje er kompatible med funksjonane til Nye grupper, slik som administratorar og meir beskrivande gruppeoppdateringar.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Korleis bruker eg Nye grupper?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Korleis bruker eg Nye grupper?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Eldre grupper kan ikkje konverterast til Nye grupper, men du kan oppretta ei Ny gruppe med same medlem.</string>
   <string name="GroupsLearnMore_paragraph_3">For å laga ei Ny gruppe bør alle medlem oppdatera til nyaste utgåve av Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

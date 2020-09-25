@@ -2224,7 +2224,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Äldre vs. Nya grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Vad är Äldre grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Äldre grupper är grupper som inte är kompatibla med nya gruppfunktioner som administratörer och mer beskrivande gruppuppdateringar.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Hur använder jag Nya grupper?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Hur använder jag Nya grupper?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan inte konverteras till nya grupper, men du kan skapa en ny grupp med samma medlemmar.</string>
   <string name="GroupsLearnMore_paragraph_3">För att skapa en Ny grupp, bör alla medlemmar uppdatera till den senaste versionen av Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

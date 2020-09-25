@@ -578,6 +578,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">设置阅后即焚消失时间为 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 设置阅后即焚消失时间为 %2$s。</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 的个人资料名称已从 %2$s 更改为 %3$s。</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">您创建了群组</string>
   <string name="MessageRecord_group_updated">群组更新完成。</string>
@@ -1144,7 +1145,7 @@
   </plurals>
   <string name="expiration_days_abbreviated">%d 天</string>
   <plurals name="expiration_weeks">
-    <item quantity="other">%d weeks</item>
+    <item quantity="other">%d 周</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d 周</string>
   <string name="expiration_combined">%1$s %2$s</string>
@@ -1371,6 +1372,7 @@
   <string name="preferences__slow">缓慢</string>
   <string name="preferences__help">帮助</string>
   <string name="preferences__advanced">高级</string>
+  <string name="preferences__donate_to_signal">捐赠 Signal</string>
   <string name="preferences__privacy">隐私</string>
   <string name="preferences__mms_user_agent">彩信用户代理</string>
   <string name="preferences__advanced_mms_access_point_names">手动设置彩信</string>

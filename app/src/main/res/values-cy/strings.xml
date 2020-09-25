@@ -2356,7 +2356,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Hen Grŵp o\'i gymharu â Grŵp Newydd</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Beth yw Hen Grwpiau?</string>
   <string name="GroupsLearnMore_paragraph_1">Mae Hen Grwpiau yn grwpiau sydd ddim yn gydnaws â nodweddion Grŵp Newydd fel gweinyddwyr a diweddariadau grwpiau mwy disgrifiadol.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Sut mae defnyddio Grwpiau Newydd?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Sut mae defnyddio Grwpiau Newydd?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Nid oes modd trosi Hen Grwpiau yn Grwpiau Newydd, ond gallwch greu Grŵp Newydd gyda\'r un aelodau.</string>
   <string name="GroupsLearnMore_paragraph_3">I greu Grŵp Newydd, dylai\'r holl aelodau ddiweddaru i\'r fersiwn ddiweddaraf o Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

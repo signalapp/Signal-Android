@@ -2039,7 +2039,7 @@ grūpp ap‌ḍē</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">ലെഗസി vs. പുതിയ ഗ്രൂപ്പുകൾ</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">ലെഗസി ഗ്രൂപ്പുകൾ എന്താണ്?</string>
   <string name="GroupsLearnMore_paragraph_1">പുതിയ ഗ്രൂപ്പ് സവിശേഷതകളായ അഡ്‌മിനുകൾ, കൂടുതൽ വിവരണാത്മക ഗ്രൂപ്പ് അപ്‌ഡേറ്റുകൾ എന്നിവയുമായി പൊരുത്തപ്പെടാത്ത ഗ്രൂപ്പുകളാണ് ലെഗസി ഗ്രൂപ്പുകൾ.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">പുതിയ ഗ്രൂപ്പുകൾ എങ്ങനെ ഉപയോഗിക്കാം?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">പുതിയ ഗ്രൂപ്പുകൾ എങ്ങനെ ഉപയോഗിക്കാം?</string> -->
   <string name="GroupsLearnMore_paragraph_2">ലെഗസി ഗ്രൂപ്പുകളെ പുതിയ ഗ്രൂപ്പുകളായി പരിവർത്തനം ചെയ്യാൻ കഴിയില്ല, എന്നാൽ സമാന അംഗങ്ങളുമായി നിങ്ങൾക്ക് ഒരു പുതിയ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയും.</string>
   <string name="GroupsLearnMore_paragraph_3">ഒരു പുതിയ ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന്, എല്ലാ അംഗങ്ങൾക്കും Signalന്റെ ഏറ്റവും പുതിയ വേർഷൻ ഉണ്ടായിരിക്കണം</string>
   <!--GroupLinkBottomSheetDialogFragment-->

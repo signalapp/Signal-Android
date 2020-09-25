@@ -2229,7 +2229,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="GroupsLearnMore_legacy_vs_new_groups">Malnovtipaj kaj novtipaj grupoj</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Kio estas malnovtipaj grupoj?</string>
   <string name="GroupsLearnMore_paragraph_1">Malnovtipaj grupoj estas grupoj, kiuj ne kongruas kun trajtoj de Novtipaj grupoj kiel administrantoj kaj grupaj ĝisdatigoj.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kiel uzi Novtipajn grupojn?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Kiel uzi Novtipajn grupojn?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Malnovtipaj grupoj ne konverteblas al Novtipaj grupoj, sed vi povas krei novtipan grupon kun la samaj anoj.</string>
   <string name="GroupsLearnMore_paragraph_3">Por krei novtipan grupon, ĉiuj anoj devas ĝisdatigi ilian Signal-version al la lasta.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

@@ -2345,7 +2345,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare in Nove skupine</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Kaj so stare skupine?</string>
   <string name="GroupsLearnMore_paragraph_1">Stare skupine so skupine, ki niso združljive z naprednimi funkcijami Novih skupin, kot so skrbniki in bolj natančno upravljanje.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kako uporabljam Nove skupine?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Kako uporabljam Nove skupine?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Stare skupine ne morejo biti pretvorjene v Nove, lahko pa ustvarite Novo skupino z identičnim članstvom.</string>
   <string name="GroupsLearnMore_paragraph_3">Če želite ustvariti Novo skupino, morajo vsi člani nadgraditi Signal na zadnjo različico.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

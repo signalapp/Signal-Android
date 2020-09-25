@@ -1543,7 +1543,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="import_fragment__import_plaintext_backup">Onversleuteld back-up-bestand importeren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importeer een onversleuteld back-up-bestand. Compatibel met ‘Sms back-up &amp; Herstellen’.</string>
   <!--load_more_header-->
-  <string name="load_more_header__see_full_conversation">Volledig gesprek bekijken</string>
+  <string name="load_more_header__see_full_conversation">Volledig gesprek weergeven</string>
   <string name="load_more_header__loading">Aan het laden</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Geen media</string>
@@ -1797,7 +1797,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_storage__videos">Video\'s</string>
   <string name="preferences_storage__files">Documenten</string>
   <string name="preferences_storage__audio">Audio</string>
-  <string name="preferences_storage__review_storage">Alle bestanden bekijken</string>
+  <string name="preferences_storage__review_storage">Alle bestanden weergeven</string>
   <string name="preferences_storage__delete_older_messages">Oude berichten wissen?</string>
   <string name="preferences_storage__clear_message_history">Berichtengeschiedenis wissen?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal pertinent alle gespreksgeschiedenis en media ouder dan %1$s van dit apparaat wissen.</string>
@@ -2215,7 +2215,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RecipientBottomSheet_add_to_contacts">Aan contactenlijst toevoegen</string>
   <string name="RecipientBottomSheet_add_to_a_group">Aan een groep toevoegen</string>
   <string name="RecipientBottomSheet_add_to_another_group">Aan nog een andere groep toevoegen</string>
-  <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer bekijken</string>
+  <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer weergeven</string>
   <string name="RecipientBottomSheet_make_group_admin">Groepsbeheerder maken</string>
   <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
   <string name="RecipientBottomSheet_remove_from_group">Van de groep verwijderen</string>
@@ -2235,7 +2235,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="GroupsLearnMore_legacy_vs_new_groups">Verouderde groepen tegenover nieuwe groepen</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Wat zijn oude groepen?</string>
   <string name="GroupsLearnMore_paragraph_1">Verouderde groepen zijn groepen waarin je geen gebruik kunt maken van nieuwe functionaliteiten zoals beheerders en meer gedetailleerde meldingen.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Hoe kan ik de nieuwe groepen gebruiken?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Hoe kan ik de nieuwe groepen gebruiken?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden.</string>
   <string name="GroupsLearnMore_paragraph_3">Om een nieuwe groep aan te maken moeten alle leden hun Signal app bijwerken naar de meest recente versie.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

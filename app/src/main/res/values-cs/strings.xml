@@ -2353,7 +2353,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="GroupsLearnMore_legacy_vs_new_groups">Starší a nové skupiny</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Co jsou starší skupiny?</string>
   <string name="GroupsLearnMore_paragraph_1">Starší skupiny neumí vlastnosti nových skupin, jako je nastavení administrátorů a popisnější aktualizace skupin,</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak použít nové skupiny?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak použít nové skupiny?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Starší skupiny nemohou být převedeny na nové, ale můžete vytvořit novou skupinu se stejnými členy.</string>
   <string name="GroupsLearnMore_paragraph_3">Pro vytvoření nové skupiny je třeba, aby všichni členové skupiny aktualizovali na poslední verzi Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

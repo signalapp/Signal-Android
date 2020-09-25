@@ -2231,7 +2231,7 @@ Der er %d dage tilbage</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Forældede vs. nye grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hvad er forældede grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Forældede grupper, er grupper der ikke er kompatible med nye gruppefunktioner, som administratorer og mere beskrivende opdateringer af grupper</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Hvordan bruger jeg nye grupper?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Hvordan bruger jeg nye grupper?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Forældede grupper kan ikke konverteres til nye grupper, men du kan oprette en ny gruppe med de samme medlemmer</string>
   <string name="GroupsLearnMore_paragraph_3">For at oprette en ny gruppe, skal alle medlemmer opdatere til den nyeste version af Signal</string>
   <!--GroupLinkBottomSheetDialogFragment-->

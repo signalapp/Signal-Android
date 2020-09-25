@@ -865,7 +865,7 @@
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s از طریق پیوند گروه به گروه پیوست.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">شما یک درخواست برای پیوستن به گروه ارسال کردید</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s درخواست برای پیوستن به گروه از طریق پیوند ارسال کرد.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s درخواستی برای پیوستن به گروه از طریق پیوند ارسال کرد.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s با درخواست شما را برای پیوستن به گروه موافقت کرد.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s با درخواستی از %2$s برای پیوستن به گروه موافقت کرد.</string>
@@ -873,6 +873,7 @@
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">با درخواست شما برای پیوستن به گروه موافقت شد.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">با درخواستی از %1$s برای پیوستن به گروه موافقت شد.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">درخواست شما برای پیوستن به گروه از طرف یک مدیر رد شد.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s درخواست %2$s برای پیوستن به گروه را رد کرد</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">درخواست %1$s برای پیوستن به گروه رد شد.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">شما درخواست خود را برای پیوستن به گروه لغو کردید.</string>
@@ -1407,7 +1408,7 @@
   <string name="conversation_activity__sim_n">سیم کارت %1$d</string>
   <string name="conversation_activity__send">ارسال</string>
   <string name="conversation_activity__compose_description">نوشتن پیام</string>
-  <string name="conversation_activity__emoji_toggle_description">تعویض صفحه‌کلید شکلک‌ها</string>
+  <string name="conversation_activity__emoji_toggle_description">تعویض صفحه‌کلید ایموجی</string>
   <string name="conversation_activity__attachment_thumbnail">تصویر بندانگشتی پیوست</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">تغییر وضعیت نگه دارنده پیوست دوربین سریع</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ضبط و ارسال پیوست صوتی</string>
@@ -1806,8 +1807,8 @@
   <string name="preferences_storage__s_messages">%1$s پیام</string>
   <string name="preferences_storage__custom">دلخواه</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">محدودیت طول مکالمه سفارشی</string> -->
-  <string name="preferences_advanced__use_system_emoji">استفاده از شکلک‌های سیستم</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از شکلک‌های داخل Signal</string>
+  <string name="preferences_advanced__use_system_emoji">استفاده از ایموجی‌های سیستم</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از ایموجی‌های درونی Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور Signal به منظور جلوگیری از آشکار شدن نشانی اینترنتی شما برای مخاطبانتان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
   <string name="preferences_advanced__always_relay_calls">عبور تمامی تماس‌ها از سرور Signal</string>
   <string name="preferences_app_protection__who_can">چه کسی می‌تواند….</string>
@@ -2227,7 +2228,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">گروه‌های قدیمی در مقابل گروه‌های جدید</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">گروه‌های قدیمی چیستند؟</string>
   <string name="GroupsLearnMore_paragraph_1">گروه‌های قدیمی گروه‌هایی هستند که با قابلیت‌های گروه‌ جدید مثل مدیران و به‌روزرسانی‌های مشروح گروه سازگار نیستند.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">چگونه از گروه‌های جدید استفاده کنم؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">چگونه از گروه‌های جدید استفاده کنم؟</string> -->
   <string name="GroupsLearnMore_paragraph_2">گروه‌های قدیمی نمی‌توانند به گروه‌های جدید تبدیل شوند، اما شما می‌توانید گروهی جدید با همان اعضا بسازید.</string>
   <string name="GroupsLearnMore_paragraph_3">برای ایجاد یک گروه جدید، همهٔ اعضا باید به آخرین نسخهٔ Signal به‌روزرسانی کنند.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

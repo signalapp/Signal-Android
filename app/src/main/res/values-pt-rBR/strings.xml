@@ -2230,7 +2230,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Legado vs Novos Grupos</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">O que são Grupos Legados?</string>
   <string name="GroupsLearnMore_paragraph_1">Grupos Legados são grupos que não são compatíveis com recursos  dos Novos grupos como admins e atualizações de grupo mais descritivas.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Como utilizar Novos Grupos?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Como utilizar Novos Grupos?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Grupos Legados não podem ser convertidos em Novos Grupos, mas você pode criar um Novo Grupo com os mesmos membros.</string>
   <string name="GroupsLearnMore_paragraph_3">Para criar um Novo Grupo, todos os membros devem atualizar para a versão do Signal mais recente.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

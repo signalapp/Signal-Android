@@ -2233,7 +2233,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupsLearnMore_legacy_vs_new_groups">Régi vs. új csoportok</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Mik azok a régi típusú csoportok?</string>
   <string name="GroupsLearnMore_paragraph_1">A régi típusú csoportok olyan csoportok, amelyek nem kompatibilisek az új típusú csoportokban rendelkezésre álló újabb funkciókkal, mint amilyen pl. a csoport-adminok kijelölése vagy a részletesebb csoportfrissítések használata.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Hogyan használhatóm az új típusú csoportokat?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Hogyan használhatóm az új típusú csoportokat?</string> -->
   <string name="GroupsLearnMore_paragraph_2">A régi típusú csoportokat nem lehet új típusúvá alakítani, viszont lehetőséged van egy új típusú csoport létrehozására a régivel megegyező csoporttagsággal.</string>
   <string name="GroupsLearnMore_paragraph_3">Az új típusú csoport létrehozásához az összes tagnak frissítenie kell a Signal legújabb verziójára.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

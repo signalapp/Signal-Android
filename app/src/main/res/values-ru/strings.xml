@@ -2347,7 +2347,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Сравнение Старых и Новых групп</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Что такое Старые группы?</string>
   <string name="GroupsLearnMore_paragraph_1">Старые группы — это группы, которые несовместимы с функциями Новых групп, например администраторами и более подробными описаниями изменений в группе.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Как я могу использовать Новые группы?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Как я могу использовать Новые группы?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Старые группы не могут быть преобразованы в Новые, но вы можете создать Новую группу с теми же участниками.</string>
   <string name="GroupsLearnMore_paragraph_3">Для создания Новой группы все участники должны обновиться до новейшей версии Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

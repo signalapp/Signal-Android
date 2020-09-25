@@ -798,12 +798,12 @@
   <string name="MessageRecord_you_are_no_longer_an_admin">Et ole enää ylläpitäjä.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Kutsuit käyttäjän %1$s ryhmään.</string>
-  <string name="MessageRecord_s_invited_you_to_the_group">%1$s kutsui sinut ryhmään.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s kutsui sinut liittymään ryhmään.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">%1$s kutsui 1 henkilön ryhmään.</item>
     <item quantity="other">%1$s kutsui %2$d henkilöä ryhmään.</item>
   </plurals>
-  <string name="MessageRecord_you_were_invited_to_the_group">Sinut kutsuttiin ryhmään.</string>
+  <string name="MessageRecord_you_were_invited_to_the_group">Sinut kutsuttiin liittymään ryhmään.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
     <item quantity="one">1 henkilö kutsuttiin ryhmään.</item>
     <item quantity="other">%1$d henkilöä kutsuttiin ryhmään.</item>
@@ -811,7 +811,7 @@
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Peruutit yhden kutsun ryhmään.</item>
-    <item quantity="other">Peruutit %1$d kutsua ryhmään.</item>
+    <item quantity="other">Peruutit %1$d kutsua liittyä ryhmään.</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
     <item quantity="one">%1$s perui yhden kutsun ryhmään.</item>
@@ -2224,7 +2224,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="GroupsLearnMore_legacy_vs_new_groups">Vanhan tyyliset vs. uudet ryhmät</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Mitä ovat vanhan tyylin ryhmät?</string>
   <string name="GroupsLearnMore_paragraph_1">Vanhan tyylin ryhmät ovat ryhmiä, jotka eivät ole yhteensopivia uusien ryhmien ominaisuuksien kanssa, kuten ylläpitäjyyden ja kuvaavien ryhmäpäivityksien.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kuinka voin käyttää uusia ryhmiä?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Kuinka voin käyttää uusia ryhmiä?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Vanhan tyylin ryhmiä ei voida muuttaa uusiksi ryhmiksi, mutta voit luoda uuden ryhmän samoilla jäsenillä.</string>
   <string name="GroupsLearnMore_paragraph_3">Uuden ryhmän luomiseksi kaikkien jäsenten tulee päivittää Signalin uusimpaan versioon.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

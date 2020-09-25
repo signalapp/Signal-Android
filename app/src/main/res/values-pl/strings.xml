@@ -531,7 +531,7 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Prośby o przyjęcie i zaproszenia</string>
   <string name="ManageGroupActivity_add_members">Dodaj członków</string>
   <string name="ManageGroupActivity_edit_group_info">Edytuj informacje o grupie</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Wybierz kto może edytować nazwę i awatara grupy, oraz czas znikania wiadomości.</string>
+  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Kto może edytować nazwę i awatara grupy, i czas znikania wiadomości.</string>
   <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Wybierz, kto może dodawać lub zapraszać nowych członków.</string>
   <string name="ManageGroupActivity_group_link">Link do grupy</string>
   <string name="ManageGroupActivity_block_group">Zablokuj grupę</string>
@@ -2346,7 +2346,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare vs. Nowe grupy</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Czym są Stare grupy?</string>
   <string name="GroupsLearnMore_paragraph_1">Stare grupy nie obsługują takich funkcji nowych grup jak administratorzy i dokładniejsze informacje o zmianach w grupach.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak skorzystać z Nowych grup?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak skorzystać z Nowych grup?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Starych grup nie można przekonwertować na Nowe, ale możesz stworzyć Nową grupę z tymi samymi członkami.</string>
   <string name="GroupsLearnMore_paragraph_3">Aby utworzyć Nową grupę, wszyscy członkowie muszą zaktualizować Signal do najnowszej wersji.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

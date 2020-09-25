@@ -2231,7 +2231,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="GroupsLearnMore_legacy_vs_new_groups">Jarauntsitako Taldeak vs. Talde Berriak</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Zer dira Jarauntsitako Taldeak?</string>
   <string name="GroupsLearnMore_paragraph_1">Jarauntsitako Taldeak ez dira taldeen ezaugarri berriekin bateragarriak; esate baterako, administratzaileak eta taldeen egunerapenei buruzko informazio zehatzagoa izateko aukerak.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Nola erabili dezaket Talde Berriak?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Nola erabili dezaket Talde Berriak?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Jarauntsitako Taldeak ezin dira Talde Berri bihurtu, baina kide berak dituen Talde Berri bat sortu dezakezu.</string>
   <string name="GroupsLearnMore_paragraph_3">Talde Berri bat sortzeko, kide guztiek Signal-en azkenengo bertsioa izan behar dute.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

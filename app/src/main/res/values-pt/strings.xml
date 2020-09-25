@@ -2226,7 +2226,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grupos legados vs Grupos novos</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">O que são \'Grupos legados\'?</string>
   <string name="GroupsLearnMore_paragraph_1">Os \'Grupos legados\' são grupos que não são compatíveis com os recursos de \'Grupo novo\' tais como administradores e atualizações mais descritivas do grupo.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Como utilizo os \'Grupos novos\'?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Como utilizo os \'Grupos novos\'?</string> -->
   <string name="GroupsLearnMore_paragraph_2">OS \'Grupos legados\' não podem ser convertidos em \'Grupos novos\', mas você pode criar um \'Grupo novo\' com os mesmos membros.</string>
   <string name="GroupsLearnMore_paragraph_3">Para criar um \'Grupo novo\', todos os membros deverão atualizar para a última versão do Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

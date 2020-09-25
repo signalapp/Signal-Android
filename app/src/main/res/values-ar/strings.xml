@@ -2385,7 +2385,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">المجموعات من الطراز القديم مقارنة بالمجموعات من الطراز القديم</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">ماهي المجموعات من الطراز القديم؟</string>
   <string name="GroupsLearnMore_paragraph_1">المجموعات من الطراز القديم هي المجموعات الغير متوائمة مع الميزات الجديدة الموجودة في الطراز الجديد مثل خاصية المشرفين وتحديثات وصف المجموعة.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">كيف استعمل المجموعات من الطراز الجديد؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">كيف استعمل المجموعات من الطراز الجديد؟</string> -->
   <string name="GroupsLearnMore_paragraph_2">المجموعات من الطراز القديم لا يمكن تحويلها إلى الطراز الجديد، ولكن يمكنك أن تنشأ مجموعة جديدة بنفس الأعضاء ولكن من الطراز الجديد.</string>
   <string name="GroupsLearnMore_paragraph_3">عندما تنشئ مجموعة من الطراز الجديد، جميع الأعضاء يتوجب عليهم تحديث Signal لأحدث نسخة.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

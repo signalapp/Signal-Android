@@ -2165,7 +2165,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">舊版 vs. 新群組</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">什麼是舊版的群組?</string>
   <string name="GroupsLearnMore_paragraph_1">舊版群組是與新群組功能，例如管理員和更具描述性的群組更新，不相容的群組。</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">我該如何使用新群組?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">我該如何使用新群組?</string> -->
   <string name="GroupsLearnMore_paragraph_2">舊版群組無法轉換為新群組，但是你可以建立具有相同成員的新群組。</string>
   <string name="GroupsLearnMore_paragraph_3">要建立新群組，所有成員都應更新到Signal的最新版本。</string>
   <!--GroupLinkBottomSheetDialogFragment-->

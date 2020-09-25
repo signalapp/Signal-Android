@@ -2289,7 +2289,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grupuri vechi vs. grupuri noi</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Ce sunt grupurile vechi?</string>
   <string name="GroupsLearnMore_paragraph_1">Grupurile vechi sunt grupuri care nu sunt compatibile cu funcționalitățiile Grupului nou, cum ar fi administratorii și actualizări mai descriptive ale grupului.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Cum folosesc noile grupuri?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Cum folosesc noile grupuri?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Grupurile vechi nu pot fi convertite la Noul grup, dar puteți creea un nou grup cu aceeași membrii.</string>
   <string name="GroupsLearnMore_paragraph_3">Pentru a creea un grup nou, toți membrii ar trebui să se actualizeze la cea mai recentă versiune a Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

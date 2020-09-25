@@ -2224,7 +2224,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grups de llegat vs. grups nous</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Què són els grups de llegat?</string>
   <string name="GroupsLearnMore_paragraph_1">Els grups de llegat són grups que no són compatibles amb les funcions dels grups nous com ara els administradors i les actualitzacions més descriptives.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Com uso els grups nous?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Com uso els grups nous?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Els grups de llegat no es poden convertir a grups nous, però podeu crear un grup nou amb els mateixos membres.</string>
   <string name="GroupsLearnMore_paragraph_3">Per crear un grup nou, tots els membres han d\'actualitzar el Signal a la darrera versió.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

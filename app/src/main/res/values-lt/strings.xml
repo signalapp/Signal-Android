@@ -2354,7 +2354,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Pasenusios grupės lyginant su naujosiomis</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Kas yra pasenusios grupės?</string>
   <string name="GroupsLearnMore_paragraph_1">Pasenusios grupės – tai grupės, kurios yra nesuderinamos su naujųjų grupių ypatybėmis, tokiomis kaip administratoriai ir išsamesni grupių atnaujinimai.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Kaip naudoti naująsias grupes?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Kaip naudoti naująsias grupes?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Pasenusios grupės negali būti pakeistos į naująsias grupes, bet galite sukurti naująją grupę su tais pačiais nariais.</string>
   <string name="GroupsLearnMore_paragraph_3">Norint sukurti naująją grupę, visi nariai turėtų atsinaujinti į naujausią Signal versiją.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

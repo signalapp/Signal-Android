@@ -2219,7 +2219,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="GroupsLearnMore_legacy_vs_new_groups">Alt- vs. Neu-Gruppen</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Was sind Alt-Gruppen?</string>
   <string name="GroupsLearnMore_paragraph_1">Alt-Gruppen sind Gruppen, die nicht kompatibel sind mit Features von Neu-Gruppen wie Admins oder anschaulicheren Gruppenaktualisierungen.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Wie verwende ich Neu-Gruppen?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Wie verwende ich Neu-Gruppen?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Alt-Gruppen können nicht in Neu-Gruppen umgewandelt werden, aber du kannst eine Neu-Gruppe mit denselben Mitgliedern erstellen.</string>
   <string name="GroupsLearnMore_paragraph_3">Zum Erstellen einer Neu-Gruppe sollten alle Mitglieder Signal auf die neueste Version aktualisieren.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

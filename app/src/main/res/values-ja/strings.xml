@@ -2158,7 +2158,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">レガシーグループと新グループ</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">レガシーグループとは？</string>
   <string name="GroupsLearnMore_paragraph_1">レガシーグループは新グループとは互換性がなく、管理機能や詳細なグループ内の更新情報などの機能を使用できません。</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">どうすれば新グループを使えますか？</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">どうすれば新グループを使えますか？</string> -->
   <string name="GroupsLearnMore_paragraph_2">レガシーグループを新グループに変換することはできませんが、同じメンバーで新グループを作成できます。</string>
   <string name="GroupsLearnMore_paragraph_3">新グループを作成するには、すべてのメンバーが最新バージョンのSignalにアップデートしてください。</string>
   <!--GroupLinkBottomSheetDialogFragment-->

@@ -2231,7 +2231,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupsLearnMore_legacy_vs_new_groups">Chats en grupo nuevos y antiguos</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">¿Qué son los chats en grupo antiguos?</string>
   <string name="GroupsLearnMore_paragraph_1">Los chats en grupo antiguos no son compatibles con las características de los chats en grupo nuevos como admins o actualizaciones más descriptivas.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">¿Cómo uso los nuevos chats en grupo?</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">¿Cómo uso los nuevos chats en grupo?</string> -->
   <string name="GroupsLearnMore_paragraph_2">Los chats en grupo antiguos no pueden convertirse en chats en grupo nuevos, pero puedes crear un grupo nuevo con la misma gente.</string>
   <string name="GroupsLearnMore_paragraph_3">Para crear un nuevo chat en grupo, tod*s l*s participantes deben tener su versión de Signal actualizada.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

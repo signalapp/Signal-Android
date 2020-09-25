@@ -2226,7 +2226,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Ομάδες παλαιού τύπου και νέες ομάδες</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Τι είναι οι ομάδες παλαιού τύπου;</string>
   <string name="GroupsLearnMore_paragraph_1">Οι ομάδες παλαιού τύπου είναι ομάδες που δεν είναι συμβατές με χαρακτηριστικά των νέων ομαδών, όπως οι διαχειριστές και οι πιο περιγραφικές ανανεώσεις της ομάδας.</string>
-  <string name="GroupsLearnMore_how_do_i_use_new_groups">Πως χρησιμοποιώ τις νέες ομάδες;</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Πως χρησιμοποιώ τις νέες ομάδες;</string> -->
   <string name="GroupsLearnMore_paragraph_2">Οι ομάδες παλαιού τύπου δεν μπορούν να μετατραπούν σε νέες ομάδες, αλλά μπορείς να δημιουργήσεις μια νέα ομάδα με τα ίδια μέλη.</string>
   <string name="GroupsLearnMore_paragraph_3">Για τη δημιουργία ομάδας νέου τύπου, όλα τα μέλη θα πρέπει να αναβαθμίσουν στην πιο πρόσφατη έκδοση του Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
