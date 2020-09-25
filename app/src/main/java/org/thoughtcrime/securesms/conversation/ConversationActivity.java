@@ -1991,7 +1991,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     });
 
     composeText.setMentionQueryChangedListener(query -> {
-      if (getRecipient().isPushV2Group()) {
+      if (getRecipient().isPushV2Group() && getRecipient().isActiveGroup()) {
         if (!mentionsSuggestions.resolved()) {
           mentionsSuggestions.get();
         }
@@ -2000,7 +2000,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     });
 
     composeText.setMentionValidator(annotations -> {
-      if (!getRecipient().isPushV2Group()) {
+      if (!getRecipient().isPushV2Group() || !getRecipient().isActiveGroup()) {
         return annotations;
       }
 

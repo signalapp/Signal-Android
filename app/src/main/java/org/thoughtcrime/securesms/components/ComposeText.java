@@ -46,7 +46,8 @@ import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
 
 public class ComposeText extends EmojiEditText {
 
-  private CharSequence            combinedHint;
+  private CharSequence            hint;
+  private SpannableString         subHint;
   private MentionRendererDelegate mentionRendererDelegate;
   private MentionValidatorWatcher mentionValidatorWatcher;
 
@@ -84,8 +85,14 @@ public class ComposeText extends EmojiEditText {
   protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
     super.onLayout(changed, left, top, right, bottom);
 
-    if (!TextUtils.isEmpty(combinedHint)) {
-      setHint(combinedHint);
+    if (!TextUtils.isEmpty(hint)) {
+      if (!TextUtils.isEmpty(subHint)) {
+        setHint(new SpannableStringBuilder().append(ellipsizeToWidth(hint))
+                                            .append("\n")
+                                            .append(ellipsizeToWidth(subHint)));
+      } else {
+        setHint(ellipsizeToWidth(hint));
+      }
     }
   }
 
@@ -143,18 +150,24 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setHint(@NonNull String hint, @Nullable CharSequence subHint) {
-    if (subHint != null) {
-      Spannable subHintSpannable = new SpannableString(subHint);
-      subHintSpannable.setSpan(new RelativeSizeSpan(0.5f), 0, subHintSpannable.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+    this.hint = hint;
 
-      combinedHint = new SpannableStringBuilder().append(ellipsizeToWidth(hint))
-                                                 .append("\n")
-                                                 .append(ellipsizeToWidth(subHintSpannable));
+    if (subHint != null) {
+      this.subHint = new SpannableString(subHint);
+      this.subHint.setSpan(new RelativeSizeSpan(0.5f), 0, subHint.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     } else {
-      combinedHint = ellipsizeToWidth(hint);
+      this.subHint = null;
     }
 
-    super.setHint(combinedHint);
+    if (this.subHint != null) {
+      super.setHint(new SpannableStringBuilder().append(ellipsizeToWidth(this.hint))
+                                                .append("\n")
+                                                .append(ellipsizeToWidth(this.subHint)));
+    } else {
+      super.setHint(ellipsizeToWidth(this.hint));
+    }
+
+    super.setHint(hint);
   }
 
   public void appendInvite(String invite) {

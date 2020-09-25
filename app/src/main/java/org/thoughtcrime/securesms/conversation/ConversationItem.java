@@ -1521,7 +1521,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
     @Override
     public void onClick(@NonNull View widget) {
-      if (eventListener != null && !Recipient.resolved(mentionedRecipientId).isLocalNumber()) {
+      if (eventListener != null) {
         VibrateUtil.vibrateTick(context);
         eventListener.onGroupMemberClicked(mentionedRecipientId, conversationRecipient.get().requireGroupId());
       }

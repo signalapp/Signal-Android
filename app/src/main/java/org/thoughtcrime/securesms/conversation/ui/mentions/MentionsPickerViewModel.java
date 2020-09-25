@@ -38,8 +38,8 @@ public class MentionsPickerViewModel extends ViewModel {
 
     LiveData<Recipient>         recipient    = Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData);
     LiveData<List<RecipientId>> fullMembers  = Transformations.distinctUntilChanged(LiveDataUtil.mapAsync(recipient, mentionsPickerRepository::getMembers));
-    LiveData<Query>             query        = Transformations.distinctUntilChanged(liveQuery);
-    LiveData<MentionQuery>      mentionQuery = LiveDataUtil.combineLatest(query, fullMembers, (q, m) -> new MentionQuery(q.query, m));
+
+    LiveData<MentionQuery>      mentionQuery = LiveDataUtil.combineLatest(liveQuery, fullMembers, (q, m) -> new MentionQuery(q.query, m));
 
     this.mentionList = LiveDataUtil.mapAsync(mentionQuery, q -> Stream.of(mentionsPickerRepository.search(q)).<MappingModel<?>>map(MentionViewState::new).toList());
   }

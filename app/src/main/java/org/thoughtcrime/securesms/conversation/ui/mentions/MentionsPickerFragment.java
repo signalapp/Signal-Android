@@ -30,6 +30,7 @@ public class MentionsPickerFragment extends LoggingFragment {
   private View                      bottomDivider;
   private BottomSheetBehavior<View> behavior;
   private MentionsPickerViewModel   viewModel;
+  private Runnable                  lockSheetAfterListUpdate = () -> behavior.setHideable(false);
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class MentionsPickerFragment extends LoggingFragment {
   }
 
   private void initializeBehavior() {
+    behavior.setHideable(true);
     behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
     behavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -69,6 +71,7 @@ public class MentionsPickerFragment extends LoggingFragment {
       public void onStateChanged(@NonNull View bottomSheet, int newState) {
         if (newState == BottomSheetBehavior.STATE_HIDDEN) {
           adapter.submitList(Collections.emptyList());
+          showDividers(false);
         } else {
           showDividers(true);
         }
@@ -109,9 +112,10 @@ public class MentionsPickerFragment extends LoggingFragment {
     if (isShowing) {
       list.scrollToPosition(0);
       behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-      list.post(() -> behavior.setHideable(false));
+      list.post(lockSheetAfterListUpdate);
       showDividers(true);
     } else {
+      list.getHandler().removeCallbacks(lockSheetAfterListUpdate);
       behavior.setHideable(true);
       behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
