@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.loki.database.LokiGroupDatabaseProtocol;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -29,7 +30,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GroupDatabase extends Database {
+public class GroupDatabase extends Database implements LokiGroupDatabaseProtocol {
 
   @SuppressWarnings("unused")
   private static final String TAG = GroupDatabase.class.getSimpleName();
@@ -240,6 +241,7 @@ public class GroupDatabase extends Database {
     notifyConversationListListeners();
   }
 
+  @Override
   public void updateTitle(String groupId, String title) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(TITLE, title);
@@ -254,6 +256,7 @@ public class GroupDatabase extends Database {
     updateAvatar(groupId, BitmapUtil.toByteArray(avatar));
   }
 
+  @Override
   public void updateAvatar(String groupId, byte[] avatar) {
     long avatarId;
 
@@ -269,6 +272,15 @@ public class GroupDatabase extends Database {
                                                 new String[] {groupId});
 
     Recipient.applyCached(Address.fromSerialized(groupId), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
+  }
+
+  public boolean hasAvatar(String groupId) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(
+            "SELECT COUNT("+ID+") FROM "+TABLE_NAME+" WHERE "+GROUP_ID+" == ? AND "+AVATAR+" NOT NULL",
+            new String[]{groupId})) {
+      cursor.moveToFirst();
+      return cursor.getInt(0) > 0;
+    }
   }
 
   public void updateMembers(String groupId, List<Address> members) {

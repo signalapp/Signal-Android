@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.api
 
 import android.content.Context
 import android.database.ContentObserver
+import android.graphics.Bitmap
 import android.text.TextUtils
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
@@ -10,8 +11,10 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatInfo
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 
 class PublicChatManager(private val context: Context) {
@@ -56,7 +59,8 @@ class PublicChatManager(private val context: Context) {
   }
 
   public fun addChat(server: String, channel: Long): Promise<PublicChat, Exception> {
-    val groupChatAPI = ApplicationContext.getInstance(context).publicChatAPI ?: return Promise.ofFail(IllegalStateException("LokiPublicChatAPI is not set!"))
+    val groupChatAPI = ApplicationContext.getInstance(context).publicChatAPI
+            ?: return Promise.ofFail(IllegalStateException("LokiPublicChatAPI is not set!"))
     return groupChatAPI.getAuthToken(server).bind {
       groupChatAPI.getChannelInfo(channel, server)
     }.map {
@@ -64,12 +68,20 @@ class PublicChatManager(private val context: Context) {
     }
   }
 
-  public fun addChat(server: String, channel: Long, name: String): PublicChat {
-    val chat = PublicChat(channel, server, name, true)
+  public fun addChat(server: String, channel: Long, info: LokiPublicChatInfo): PublicChat {
+    val chat = PublicChat(channel, server, info.displayName, true)
     var threadID =  GroupManager.getOpenGroupThreadID(chat.id, context)
+    var avatar: Bitmap? = null
     // Create the group if we don't have one
     if (threadID < 0) {
-      val result = GroupManager.createOpenGroup(chat.id, context, null, chat.displayName)
+      if (!info.profilePictureURL.isEmpty()) {
+        val avatarBytes = ApplicationContext.getInstance(context).publicChatAPI
+                ?.downloadOpenGroupAvatar(server, info.profilePictureURL)
+        avatar = BitmapUtil.fromByteArray(avatarBytes)
+      }
+      // FIXME: If updating the avatar here, there can be a memory issue if a public chat message contains some attachment.
+      // The error message is "Failed to execute task in background: Canvas: trying to use a recycled bitmap android.graphics.Bitmap"
+      val result = GroupManager.createOpenGroup(chat.id, context, avatar, chat.displayName)
       threadID = result.threadId
     }
     DatabaseFactory.getLokiThreadDatabase(context).setPublicChat(chat, threadID)

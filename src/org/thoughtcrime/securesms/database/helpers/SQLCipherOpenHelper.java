@@ -91,8 +91,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV12                          = 33;
   private static final int lokiV13                          = 34;
   private static final int lokiV14_BACKUP_FILES             = 35;
+  private static final int lokiV15_OPEN_GROUP_AVATARS       = 36;
 
-  private static final int    DATABASE_VERSION = lokiV14_BACKUP_FILES; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV15_OPEN_GROUP_AVATARS; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -154,6 +155,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestSentTimestampTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestProcessedTimestampTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupPublicKeyTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateOpenGroupAvatarCacheCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageIDTableCommand());
@@ -624,6 +626,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV14_BACKUP_FILES) {
         db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
+      }
+
+      if (oldVersion < lokiV15_OPEN_GROUP_AVATARS) {
+        db.execSQL(LokiAPIDatabase.getCreateOpenGroupAvatarCacheCommand());
       }
 
       db.setTransactionSuccessful();

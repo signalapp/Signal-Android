@@ -68,12 +68,21 @@ class ProfilePictureView : RelativeLayout {
                 return result ?: publicKey
             }
         }
+        fun isOpenGroupWithAvatar(recipient: Recipient): Boolean {
+            return recipient.isOpenGroupRecipient &&
+                    DatabaseFactory.getGroupDatabase(context).hasAvatar(recipient.address.toString())
+        }
         if (recipient.isGroupRecipient) {
             if ("Session Public Chat" == recipient.name) {
                 publicKey = ""
                 displayName = ""
                 additionalPublicKey = null
                 isRSSFeed = true
+            } else if (isOpenGroupWithAvatar(recipient)) {
+                publicKey = recipient.address.toString()
+                displayName = getUserDisplayName(publicKey)
+                additionalPublicKey = null
+                isRSSFeed = false
             } else {
                 val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
                 users.remove(TextSecurePreferences.getLocalNumber(context))
