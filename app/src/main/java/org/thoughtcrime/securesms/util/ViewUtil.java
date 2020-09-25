@@ -263,4 +263,17 @@ public final class ViewUtil {
     InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
     inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
   }
+
+  /**
+   * Enables or disables a view and all child views recursively.
+   */
+  public static void setEnabledRecursive(@NonNull View view, boolean enabled) {
+    view.setEnabled(enabled);
+    if (view instanceof ViewGroup) {
+      ViewGroup viewGroup = (ViewGroup) view;
+      for (int i = 0; i < viewGroup.getChildCount(); i++) {
+        setEnabledRecursive(viewGroup.getChildAt(i), enabled);
+      }
+    }
+  }
 }

@@ -90,7 +90,7 @@
             android:text="@string/ShareableGroupLinkDialogFragment__share"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
-            android:textColor="?title_text_color_secondary"
+            android:textColor="@color/text_color_secondary_enabled_selector"
             tools:text="https://signal.group/#CjQKIKUBM1ER-gTjdWwktuuHJk4t-2Iujh0zkXl2VBB3bASIEhDwi34i-5OMAl5sFYt9VElW" />
 
     </LinearLayout>
@@ -115,12 +115,13 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:drawablePadding="8dp"
+            android:drawableTint="@color/text_color_primary_enabled_selector"
             android:enabled="false"
             android:gravity="center_vertical|start"
             android:text="@string/ShareableGroupLinkDialogFragment__share"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
-            android:textColor="?title_text_color_primary"
+            android:textColor="@color/text_color_primary_enabled_selector"
             app:drawableStartCompat="?share_icon" />
 
     </LinearLayout>
@@ -145,12 +146,13 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:drawablePadding="8dp"
+            android:drawableTint="@color/text_color_primary_enabled_selector"
             android:enabled="false"
             android:gravity="center_vertical|start"
             android:text="@string/ShareableGroupLinkDialogFragment__reset_link"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
-            android:textColor="?title_text_color_primary"
+            android:textColor="@color/text_color_primary_enabled_selector"
             app:drawableStartCompat="?reset_link_icon" />
 
     </LinearLayout>
@@ -163,7 +165,7 @@
         android:layout_marginTop="36dp"
         android:text="@string/ShareableGroupLinkDialogFragment__member_requests"
         android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
-        android:textColor="?attr/colorAccent"
+        android:textColor="@color/text_color_accent_enabled_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shareable_group_link_reset_link_row" />
@@ -189,7 +191,8 @@
             android:gravity="center_vertical|start"
             android:text="@string/ShareableGroupLinkDialogFragment__approve_new_members"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/text_color_primary_enabled_selector" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/shareable_group_link_approve_new_members_switch"
@@ -226,7 +229,7 @@
             android:text="@string/ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
-            android:textColor="?title_text_color_secondary" />
+            android:textColor="@color/text_color_secondary_enabled_selector" />
 
     </LinearLayout>
 

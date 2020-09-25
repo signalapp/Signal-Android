@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 public final class ShareableGroupLinkDialogFragment extends DialogFragment {
@@ -78,6 +79,8 @@ public final class ShareableGroupLinkDialogFragment extends DialogFragment {
     View         shareRow                  = view.findViewById(R.id.shareable_group_link_share_row);
     View         resetLinkRow              = view.findViewById(R.id.shareable_group_link_reset_link_row);
     View         approveNewMembersRow      = view.findViewById(R.id.shareable_group_link_approve_new_members_row);
+    View         membersSectionHeader      = view.findViewById(R.id.shareable_group_link_member_requests_section_header);
+    View         descriptionRow            = view.findViewById(R.id.shareable_group_link_display_row2);
 
     Toolbar toolbar = view.findViewById(R.id.shareable_group_link_toolbar);
 
@@ -87,6 +90,13 @@ public final class ShareableGroupLinkDialogFragment extends DialogFragment {
       shareableGroupLinkSwitch.setChecked(groupLink.isEnabled());
       approveNewMembersSwitch.setChecked(groupLink.isRequiresApproval());
       shareableGroupLinkDisplay.setText(formatForFullWidthWrapping(groupLink.getUrl()));
+
+      ViewUtil.setEnabledRecursive(shareableGroupLinkDisplay, groupLink.isEnabled());
+      ViewUtil.setEnabledRecursive(shareRow, groupLink.isEnabled());
+      ViewUtil.setEnabledRecursive(resetLinkRow, groupLink.isEnabled());
+      ViewUtil.setEnabledRecursive(membersSectionHeader, groupLink.isEnabled());
+      ViewUtil.setEnabledRecursive(approveNewMembersRow, groupLink.isEnabled());
+      ViewUtil.setEnabledRecursive(descriptionRow, groupLink.isEnabled());
     });
 
     shareRow.setOnClickListener(v -> GroupLinkBottomSheetDialogFragment.show(requireFragmentManager(), groupId));

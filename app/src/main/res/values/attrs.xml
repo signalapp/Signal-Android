@@ -9,6 +9,7 @@
 
     <attr name="title_text_color_primary" format="color"/>
     <attr name="title_text_color_secondary" format="color"/>
+    <attr name="title_text_color_disabled" format="color"/>
 
     <attr name="attachment_type_selector_background" format="color"/>
     <attr name="attachment_document_icon_small" format="reference" />

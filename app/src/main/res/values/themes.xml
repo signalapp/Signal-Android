@@ -172,6 +172,7 @@
 
         <item name="title_text_color_primary">@color/core_grey_90</item>
         <item name="title_text_color_secondary">@color/core_grey_60</item>
+        <item name="title_text_color_disabled">@color/core_grey_25</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
@@ -510,6 +511,7 @@
 
         <item name="title_text_color_primary">@color/core_grey_05</item>
         <item name="title_text_color_secondary">@color/core_grey_25</item>
+        <item name="title_text_color_disabled">@color/core_grey_60</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
