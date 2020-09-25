@@ -181,6 +181,12 @@ public final class StringUtil {
               .toString();
   }
 
+  public static @Nullable String stripBidiProtection(@Nullable String text) {
+    if (text == null) return null;
+
+    return text.replaceAll("[\\u2068\\u2069\\u202c]", "");
+  }
+
   /**
    * Trims a {@link CharSequence} of starting and trailing whitespace. Behavior matches
    * {@link String#trim()} to preserve expectations around results.
