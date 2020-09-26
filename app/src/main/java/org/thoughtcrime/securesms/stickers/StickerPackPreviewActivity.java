@@ -92,12 +92,6 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
-  @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     onScreenWidthChanged(getScreenWidth());

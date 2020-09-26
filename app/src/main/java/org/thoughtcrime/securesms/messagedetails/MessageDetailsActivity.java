@@ -70,7 +70,6 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     adapter.resumeMessageExpirationTimer();
   }
 

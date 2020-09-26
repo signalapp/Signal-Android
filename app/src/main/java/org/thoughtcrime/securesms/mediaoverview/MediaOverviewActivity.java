@@ -156,12 +156,6 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
   }
 
   @Override
-  public void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
-  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
 

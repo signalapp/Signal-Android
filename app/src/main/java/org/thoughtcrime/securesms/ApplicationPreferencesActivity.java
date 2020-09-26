@@ -116,7 +116,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
 
@@ -152,6 +151,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   @Override
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     if (key.equals(TextSecurePreferences.THEME_PREF)) {
+      wasConfigurationUpdated = true;
       recreate();
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
       wasConfigurationUpdated = true;

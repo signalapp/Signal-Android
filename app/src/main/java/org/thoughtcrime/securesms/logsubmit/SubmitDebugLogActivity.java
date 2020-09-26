@@ -64,12 +64,6 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
-  @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.submit_debug_log_normal, menu);
 

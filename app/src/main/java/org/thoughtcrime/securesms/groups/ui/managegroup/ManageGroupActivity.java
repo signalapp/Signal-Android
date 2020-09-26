@@ -52,10 +52,4 @@ public class ManageGroupActivity extends PassphraseRequiredActivity {
                                  .commitNow();
     }
   }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
 }

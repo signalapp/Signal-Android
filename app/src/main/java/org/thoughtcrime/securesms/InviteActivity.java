@@ -71,12 +71,6 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     initializeResources();
   }
 
-  @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
   private void initializeAppBar() {
     primaryToolbar = findViewById(R.id.toolbar);
     setSupportActionBar(primaryToolbar);

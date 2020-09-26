@@ -63,11 +63,4 @@ public class MessageRequestMegaphoneActivity extends PassphraseRequiredActivity 
   @Override
   public void onBackPressed() {
   }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-
-    dynamicTheme.onResume(this);
-  }
 }

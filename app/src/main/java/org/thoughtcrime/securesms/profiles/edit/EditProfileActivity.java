@@ -84,12 +84,6 @@ public class EditProfileActivity extends BaseActivity implements EditProfileFrag
   }
 
   @Override
-  public void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
-  @Override
   public void onProfileNameUploadCompleted() {
     setResult(RESULT_OK);
     finish();

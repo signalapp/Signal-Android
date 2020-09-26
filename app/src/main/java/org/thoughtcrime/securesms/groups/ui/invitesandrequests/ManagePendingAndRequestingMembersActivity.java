@@ -95,12 +95,6 @@ public class ManagePendingAndRequestingMembersActivity extends PassphraseRequire
   }
 
   @Override
-  public void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
-  @Override
   public boolean onSupportNavigateUp() {
     onBackPressed();
     return true;

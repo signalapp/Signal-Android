@@ -87,13 +87,6 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
     viewModel.getEvents().observe(this, this::presentEvent);
   }
 
-  @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-    dynamicTheme.onResume(this);
-  }
-
   private void presentEvent(@Nullable Event event) {
     if (event == null) {
       return;

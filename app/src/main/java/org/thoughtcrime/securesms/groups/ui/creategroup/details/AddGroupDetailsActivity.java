@@ -54,12 +54,6 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    theme.onResume(this);
-  }
-
-  @Override
   public void onGroupCreated(@NonNull RecipientId recipientId,
                              long threadId,
                              @NonNull List<Recipient> invitedMembers)

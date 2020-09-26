@@ -38,12 +38,6 @@ public class KbsMigrationActivity extends BaseActivity {
     setContentView(R.layout.kbs_migration_activity);
   }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
   private Intent getPromptPassphraseIntent() {
     return getRoutedIntent(PassphrasePromptActivity.class, getIntent());
   }

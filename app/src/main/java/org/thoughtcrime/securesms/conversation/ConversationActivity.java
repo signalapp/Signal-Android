@@ -520,7 +520,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   protected void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
     EventBus.getDefault().register(this);

@@ -92,7 +92,6 @@ public class DeviceActivity extends PassphraseRequiredActivity
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
 

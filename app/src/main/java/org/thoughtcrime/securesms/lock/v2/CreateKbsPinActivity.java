@@ -74,12 +74,6 @@ public class CreateKbsPinActivity extends BaseActivity {
     Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, arguments.toBundle());
   }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
   private Intent getPromptPassphraseIntent() {
     return getRoutedIntent(PassphrasePromptActivity.class, getIntent());
   }

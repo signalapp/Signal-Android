@@ -42,12 +42,6 @@ public class MainActivity extends PassphraseRequiredActivity {
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
-  @Override
   public void onBackPressed() {
     if (!navigator.onBackPressed()) {
       super.onBackPressed();

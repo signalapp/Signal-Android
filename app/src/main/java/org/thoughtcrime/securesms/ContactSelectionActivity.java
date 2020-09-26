@@ -77,12 +77,6 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
     initializeSearch();
   }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
   protected ContactFilterToolbar getToolbar() {
     return toolbar;
   }

@@ -66,7 +66,6 @@ public class PassphraseChangeActivity extends PassphraseActivity {
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
 

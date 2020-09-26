@@ -92,7 +92,6 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
   protected void onResume() {
     super.onResume();
     dynamicLanguage.onResume(this);
-    dynamicTheme.onResume(this);
   }
 
   @Override

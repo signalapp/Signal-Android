@@ -33,12 +33,6 @@ public class ClientDeprecatedActivity extends PassphraseRequiredActivity {
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    theme.onResume(this);
-  }
-
-  @Override
   public void onBackPressed() {
     // Disabled
   }

@@ -53,12 +53,6 @@ public final class StickerManagementActivity extends PassphraseRequiredActivity 
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
-  }
-
-  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == android.R.id.home) {
       onBackPressed();

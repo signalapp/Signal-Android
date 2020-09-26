@@ -119,7 +119,6 @@ public class ShareActivity extends PassphraseRequiredActivity
   public void onResume() {
     Log.i(TAG, "onResume()");
     super.onResume();
-    dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
   }
 

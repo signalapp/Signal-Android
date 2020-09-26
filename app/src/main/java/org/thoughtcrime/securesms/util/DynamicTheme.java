@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 
@@ -30,17 +29,6 @@ public class DynamicTheme {
     activity.setTheme(currentTheme);
 
     if (isDarkTheme != wasDarkTheme) {
-      CachedInflater.from(activity).clear();
-    }
-  }
-
-  public void onResume(Activity activity) {
-    if (currentTheme != getSelectedTheme(activity)) {
-      Intent intent = activity.getIntent();
-      activity.finish();
-      OverridePendingTransition.invoke(activity);
-      activity.startActivity(intent);
-      OverridePendingTransition.invoke(activity);
       CachedInflater.from(activity).clear();
     }
   }
