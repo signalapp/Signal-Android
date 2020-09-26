@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 
 public class MainNavigator {
 
+  public static final int REQUEST_CONFIG_CHANGES = 901;
+
   private final MainActivity activity;
 
   public MainNavigator(@NonNull MainActivity activity) {
@@ -65,9 +67,8 @@ public class MainNavigator {
 
   public void goToAppSettings() {
     Intent intent = new Intent(activity, ApplicationPreferencesActivity.class);
-    activity.startActivity(intent);
+    activity.startActivityForResult(intent, REQUEST_CONFIG_CHANGES);
   }
-
 
   public void goToArchiveList() {
     getFragmentManager().beginTransaction()

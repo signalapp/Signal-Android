@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,6 @@ import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageActivityHelper;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
 import java.util.Objects;
@@ -41,7 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected void onResume() {
     super.onResume();
     initializeScreenshotSecurity();
-    DynamicLanguageActivityHelper.recreateIfNotInCorrectLanguage(this, TextSecurePreferences.getLanguage(this));
   }
 
   @Override
