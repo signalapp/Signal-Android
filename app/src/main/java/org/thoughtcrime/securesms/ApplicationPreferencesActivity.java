@@ -82,8 +82,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   private static final String PREFERENCE_CATEGORY_ADVANCED       = "preference_category_advanced";
   private static final String PREFERENCE_CATEGORY_DONATE         = "preference_category_donate";
 
+  private static final String WAS_CONFIGURATION_UPDATED          = "was_configuration_updated";
+
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+
+  private boolean wasConfigurationUpdated = false;
 
   @Override
   protected void onPreCreate() {
@@ -102,7 +106,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       initFragment(android.R.id.content, new BackupsPreferenceFragment());
     } else if (icicle == null) {
       initFragment(android.R.id.content, new ApplicationPreferenceFragment());
+    } else {
+      wasConfigurationUpdated = icicle.getBoolean(WAS_CONFIGURATION_UPDATED);
     }
+  }
+
+  @Override
+  protected void onSaveInstanceState(@NonNull Bundle outState) {
+    outState.putBoolean(WAS_CONFIGURATION_UPDATED, wasConfigurationUpdated);
+    super.onSaveInstanceState(outState);
   }
 
   @Override
@@ -126,13 +138,19 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     if (fragmentManager.getBackStackEntryCount() > 0) {
       fragmentManager.popBackStack();
     } else {
-      // TODO [greyson] Navigation
-      Intent intent = new Intent(this, MainActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-      startActivity(intent);
+      if (wasConfigurationUpdated) {
+        setResult(MainActivity.RESULT_CONFIG_CHANGED);
+      } else {
+        setResult(RESULT_OK);
+      }
       finish();
     }
     return true;
+  }
+
+  @Override
+  public void onBackPressed() {
+    onSupportNavigateUp();
   }
 
   @Override
@@ -141,6 +159,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       DynamicTheme.setDefaultDayNightMode(this);
       recreate();
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
+      wasConfigurationUpdated = true;
       recreate();
 
       Intent intent = new Intent(this, KeyCachingService.class);

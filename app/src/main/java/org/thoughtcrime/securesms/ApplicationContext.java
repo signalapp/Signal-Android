@@ -408,7 +408,8 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   @Override
   protected void attachBaseContext(Context base) {
-    super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(base, TextSecurePreferences.getLanguage(base)));
+    DynamicLanguageContextWrapper.updateContext(base);
+    super.attachBaseContext(base);
   }
 
   private static class ProviderInitializationException extends RuntimeException {
