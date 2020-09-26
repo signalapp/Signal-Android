@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -84,7 +85,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   @Override
   protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(newBase, TextSecurePreferences.getLanguage(newBase)));
+    super.attachBaseContext(newBase);
+    applyOverrideConfiguration(new Configuration());
+  }
+
+  @Override
+  public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+    DynamicLanguageContextWrapper.prepareOverrideConfiguration(this, overrideConfiguration);
+    super.applyOverrideConfiguration(overrideConfiguration);
   }
 
   private void logEvent(@NonNull String event) {

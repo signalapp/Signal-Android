@@ -2,7 +2,8 @@ package org.thoughtcrime.securesms.util.dynamiclanguage;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
+
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
 
@@ -10,25 +11,19 @@ import java.util.Locale;
  * Updates a context with an alternative language.
  */
 public final class DynamicLanguageContextWrapper {
+  private DynamicLanguageContextWrapper() {}
 
-  public static Context updateContext(Context context, String language) {
-    final Locale newLocale = LocaleParser.findBestMatchingLocaleForLanguage(language);
+  public static void prepareOverrideConfiguration(Context context, Configuration base) {
+    String language  = TextSecurePreferences.getLanguage(context);
+    Locale newLocale = LocaleParser.findBestMatchingLocaleForLanguage(language);
 
     Locale.setDefault(newLocale);
-
-    final Resources     resources = context.getResources();
-    final Configuration config    = resources.getConfiguration();
-    final Configuration newConfig = copyWithNewLocale(config, newLocale);
-
-    resources.updateConfiguration(newConfig, resources.getDisplayMetrics());
-
-    return context;
+    base.setLocale(newLocale);
   }
 
-  private static Configuration copyWithNewLocale(Configuration config, Locale locale) {
-    final Configuration copy = new Configuration(config);
-    copy.setLocale(locale);
-    return copy;
-  }
+  public static void updateContext(Context base) {
+    Configuration config = base.getResources().getConfiguration();
 
+    prepareOverrideConfiguration(base, config);
+  }
 }
