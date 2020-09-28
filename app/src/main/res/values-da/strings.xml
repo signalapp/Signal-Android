@@ -2189,7 +2189,7 @@ Der er %d dage tilbage</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslås er slået til for dit telefonnummer. For at hjælpe dig med at huske PIN-koden, beder Signal dig bekræfte den periodisk</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Jeg har glemt min PIN-kode</string>
   <string name="RegistrationLockDialog_forgotten_pin">Glemt PIN-kode?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås hjælper dig med at beskytte dit telefonnummer fra uautoriserede registreringsforsøg. Denne funktion kan til enhver tid slås fra under Privatlivsindstillinger</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås hjælper dig med at beskytte dit telefonnummer fra uautoriserede registreringsforsøg. Denne funktion kan til enhver tid slås fra i dine Signal privatlivsindstillinger</string>
   <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
   <string name="RegistrationLockDialog_enable">Aktivér</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Registreringslås PIN skal være på mindst %d cifre</string>
@@ -2199,7 +2199,7 @@ Der er %d dage tilbage</string>
   <string name="RegistrationLockDialog_disable">Deaktivér</string>
   <string name="RegistrationActivity_pin_incorrect">Forkert PIN</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Du har %d forsøg tilbage</string>
-  <string name="preferences_chats__backups">Backup´s</string>
+  <string name="preferences_chats__backups">Backups</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAP FOR AT LÅSE OP</string>
   <string name="RegistrationLockDialog_reminder">Påmindelse:</string>

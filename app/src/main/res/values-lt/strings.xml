@@ -1149,7 +1149,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Įjungti registracijos užraktą?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Išjungti registracijos užraktą?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jeigu registruodamiesi su Signal, vėl pamiršite savo Signal PIN kodą, tuomet 7 dienoms būsite užblokuoti nuo savo paskyros.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jeigu registruodamiesi su Signal, vėl užmiršite savo Signal PIN kodą, tuomet 7 dienoms būsite užblokuoti nuo savo paskyros.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Įjungti</string>
   <string name="RegistrationLockV2Dialog_turn_off">Išjungti</string>
   <!--RevealableMessageView-->
@@ -2138,11 +2138,11 @@
   <string name="KbsSplashFragment__learn_more_about_pins">Sužinokite daugiau apie PIN kodus</string>
   <string name="KbsSplashFragment__disable_pin">Išjungti PIN kodą</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Įveskite savo Signal PIN</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Įveskite savo Signal PIN kodą</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Tam, kad įsimintumėte savo PIN kodą, mes periodiškai prašysime jį įvesti. Bėgant laikui, mes tai darysime rečiau.</string>
   <string name="KbsReminderDialog__skip">Praleisti</string>
   <string name="KbsReminderDialog__submit">Pateikti</string>
-  <string name="KbsReminderDialog__forgot_pin">Pamiršote PIN?</string>
+  <string name="KbsReminderDialog__forgot_pin">Užmiršote PIN kodą?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Paskyra užrakinta</string>
@@ -2156,9 +2156,9 @@
   <string name="RegistrationLockFragment__enter_numeric_pin">Įvesti skaitinį PIN kodą</string>
   <string name="RegistrationLockFragment__next">Kitas</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
-  <string name="RegistrationLockFragment__forgot_pin">Pamiršote PIN?</string>
+  <string name="RegistrationLockFragment__forgot_pin">Užmiršote PIN kodą?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Neteisingas PIN</string>
-  <string name="RegistrationLockFragment__forgot_your_pin">Pamiršote savo PIN?</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Užmiršote savo PIN kodą?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Liko tik keli bandymai!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienos neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
@@ -2282,15 +2282,15 @@
   <string name="preferences_app_protection__turn_off">Išjungti</string>
   <string name="preferences_app_protection__confirm_pin">Patvirtinkite PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Patvirtinkite savo Signal PIN kodą</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Įsiminkite arba laikykite savo PIN kodą saugioje vietoje, nes jo neįmanoma atkurti. Jei pamiršite savo PIN kodą, galite prarasti duomenis, kai iš naujo registruosite savo Signal paskyrą.</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Įsiminkite arba laikykite savo PIN kodą saugioje vietoje, nes jo neįmanoma atkurti. Jei užmiršite savo PIN kodą, galite prarasti duomenis, kai iš naujo registruosite savo Signal paskyrą.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nepavyko įjungti registracijos užrakto.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nepavyko išjungti registracijos užrakto.</string>
   <string name="AppProtectionPreferenceFragment_none">Nėra</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registracijos užrakto PIN kodas nėra tas pats, kas jūsų gautas SMS patvirtinimo kodas. Įveskite PIN, kurį esate anksčiau sukonfigūravę programėlėje.</string>
   <string name="registration_activity__registration_lock_pin">Registracijos užrakto PIN kodas</string>
-  <string name="registration_activity__forgot_pin">Pamiršote PIN kodą?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN kodas yra sudarytas iš keturių ar daugiau skaitmenų. Jei pamiršite savo PIN, galite iki septynių dienų būti užblokuoti nuo savo paskyros.</string>
+  <string name="registration_activity__forgot_pin">Užmiršote PIN kodą?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN kodas yra sudarytas iš keturių ar daugiau skaitmenų. Jei užmiršite savo PIN kodą, galite iki septynių dienų būti užblokuoti nuo savo paskyros.</string>
   <string name="registration_lock_dialog_view__enter_pin">Įveskite PIN kodą</string>
   <string name="registration_lock_dialog_view__confirm_pin">Patvirtinkite PIN kodą</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Įveskite savo Registracijos užrakto PIN kodą</string>
@@ -2310,8 +2310,8 @@
   <string name="RegistrationActivity_registration_lock_pin">Registracijos užrakto PIN kodas</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Šiam telefono numeriui yra įjungtas Registracijos užraktas. Įveskite Registracijos užrakto PIN kodą.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Jūsų telefono numeriui yra įjungtas Registracijos užraktas. Norint jums padėti įsiminti Registracijos užrakto PIN kodą, Signal periodiškai prašys jūsų jį patvirtinti.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Aš pamiršau savo PIN kodą.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">Pamirštas PIN kodas?</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Aš užmiršau savo PIN kodą.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Užmirštas PIN kodas?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registracijos užraktas padeda apsaugoti jūsų telefono numerį nuo neteisėtų registracijos bandymų. Ši ypatybė bet kuriuo metu gali būti išjungta jūsų Signal privatumo nustatymuose.</string>
   <string name="RegistrationLockDialog_registration_lock">Registracijos užraktas</string>
   <string name="RegistrationLockDialog_enable">Įjungti</string>

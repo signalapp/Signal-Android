@@ -2327,7 +2327,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Dodaj do grupy</string>
   <string name="RecipientBottomSheet_add_to_another_group">Dodaj do innej grupy</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobacz numer bezpieczeństwa</string>
-  <string name="RecipientBottomSheet_make_group_admin">Mianuj administratorem grupy</string>
+  <string name="RecipientBottomSheet_make_group_admin">Mianuj administratorem</string>
   <string name="RecipientBottomSheet_remove_as_admin">Usuń administratora</string>
   <string name="RecipientBottomSheet_remove_from_group">Usuń z grupy</string>
   <string name="RecipientBottomSheet_message_description">Wiadomość</string>

@@ -1008,7 +1008,9 @@
   <string name="WebRtcCallScreen_accept">接受</string>
   <string name="WebRtcCallScreen_end_call">结束呼叫</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">拒绝</string>
   <string name="WebRtcCallScreen__answer">接听</string>
+  <string name="WebRtcCallScreen__answer_without_video">关视频接</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__speaker">扬声器</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">蓝牙</string>
@@ -1386,6 +1388,8 @@
   <string name="preferences__chats">聊天和媒体</string>
   <string name="preferences__storage">存储</string>
   <string name="preferences__conversation_length_limit">对话长度限制</string>
+  <string name="preferences__keep_messages">保留消息</string>
+  <string name="preferences__clear_message_history">清除消息记录</string>
   <string name="preferences__linked_devices">已关联设备</string>
   <string name="preferences__light_theme">浅色</string>
   <string name="preferences__dark_theme">深色</string>
@@ -1415,14 +1419,22 @@
   <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
   <string name="preferences_chats__when_roaming">当漫游时</string>
   <string name="preferences_chats__media_auto_download">自动下载媒体</string>
+  <string name="preferences_chats__message_history">消息记录</string>
   <string name="preferences_storage__storage_usage">存储使用量</string>
   <string name="preferences_storage__photos">图片</string>
   <string name="preferences_storage__videos">视频</string>
   <string name="preferences_storage__files">文件</string>
   <string name="preferences_storage__audio">音频</string>
   <string name="preferences_storage__review_storage">查看存储</string>
+  <string name="preferences_storage__clear_message_history">清除消息记录？</string>
+  <string name="preferences_storage__forever">永久</string>
+  <string name="preferences_storage__one_year">1 年</string>
+  <string name="preferences_storage__six_months">6 个月</string>
+  <string name="preferences_storage__thirty_days">30 天</string>
   <string name="preferences_storage__none">无</string>
+  <string name="preferences_storage__s_messages">%1$s 条消息</string>
   <string name="preferences_storage__custom">自定义</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">自定义对话长度限制</string> -->
   <string name="preferences_advanced__use_system_emoji">使用系统表情符号</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">禁用 Signal 内置表情</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">通过 Signal 服务器中转全部通话，避免向联系人显示 IP 地址。启用该选项会降低通话质量。</string>

@@ -204,7 +204,7 @@
   <string name="ConversationActivity_leave_group">לעזוב קבוצה?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">האם אתה בטוח שאתה רוצה לעזוב קבוצה זו?</string>
   <string name="ConversationActivity_choose_new_admin">בחר מנהלן חדש</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">לפני שאתה עוזב, אתה חייב לבחור לפחות מנהלן חדש אחד עבור קבוצה זו.</string>
+  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">לפני עזיבתך, חובה לבחור מנהלן חדש אחד לפחות עבור קבוצה זו.</string>
   <string name="ConversationActivity_choose_admin">בחר מנהלן</string>
   <string name="ConversationActivity_transport_insecure_sms">מסרון בלתי מאובטח</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS בלתי מאובטח</string>
@@ -849,7 +849,7 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s הסיר אותך מהקבוצה.</string>
   <string name="MessageRecord_you_left_the_group">עזבת את הקבוצה.</string>
   <string name="MessageRecord_s_left_the_group">%1$s עזב את הקבוצה.</string>
-  <string name="MessageRecord_you_are_no_longer_in_the_group">אתה לא נמצא יותר בקבוצה.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">אינך בקבוצה יותר.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s לא נמצא יותר בקבוצה.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">עשית את %1$s מנהלן.</string>
@@ -1965,7 +1965,7 @@
   <string name="conversation_list_search_description">חפש</string>
   <string name="conversation_list__pinned">מוצמד</string>
   <string name="conversation_list__chats">התכתבויות</string>
-  <string name="conversation_list__you_can_only_pin_up_to_d_chats">אתה יכול להצמיד רק עד %1$d התכתבויות</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">ניתן להצמיד עד %1$d התכתבויות בלבד</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">תמונת איש קשר</string>
   <string name="conversation_list_item_view__archived">בארכיון</string>
@@ -2090,7 +2090,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">צור PIN חדש</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">אתה יכול לשנות את ה־PIN שלך כל עוד מכשיר זה רשום.</string>
   <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal. לא תצטרך את ה־PIN שלך כדי לפתוח את היישום.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">קודי PIN שומרים על המידע שמאוחסן עם Signal מוצפן כך שרק באפשרותך לגשת אליו. הפרופיל שלך, ההגדרות, ואנשי הקשר שלך יתאפסו בעת התקנה מחדש. אין צורך בקוד PIN לפתיחת יישום זה.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">בחר PIN חזק יותר</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">קודי PIN אינם תואמים. נסה שוב.</string>

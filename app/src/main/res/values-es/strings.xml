@@ -403,7 +403,7 @@
   <string name="GroupMembersDialog_you">Tú</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">Cualquiera</string>
-  <string name="GroupManagement_access_level_all_members">Cualquier participante</string>
+  <string name="GroupManagement_access_level_all_members">Cualquiera</string>
   <string name="GroupManagement_access_level_only_admins">Sólo admins</string>
   <string name="GroupManagement_access_level_no_one">Nadie</string>
   <!--GV2 invites sent-->
@@ -2140,7 +2140,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BackupUtil_unknown">Desconocido</string>
   <string name="preferences_app_protection__see_my_phone_number">Ver mi número de teléfono</string>
   <string name="preferences_app_protection__find_me_by_phone_number">Encontrarme por mi número de teléfono</string>
-  <string name="PhoneNumberPrivacy_everyone">Tod*s</string>
+  <string name="PhoneNumberPrivacy_everyone">Cualquiera</string>
   <string name="PhoneNumberPrivacy_my_contacts">Mis contactos</string>
   <string name="PhoneNumberPrivacy_nobody">Nadie</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Tu número de teléfono será visible para la gente a quién envíes mensajes y para l*s participantes de tus chats en grupo.</string>
