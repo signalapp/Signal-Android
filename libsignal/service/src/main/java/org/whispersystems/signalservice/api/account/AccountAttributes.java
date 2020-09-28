@@ -119,7 +119,7 @@ public class AccountAttributes {
     @JsonProperty
     private boolean uuid;
 
-    @JsonProperty("gv2-2")
+    @JsonProperty("gv2-3")
     private boolean gv2;
 
     @JsonProperty

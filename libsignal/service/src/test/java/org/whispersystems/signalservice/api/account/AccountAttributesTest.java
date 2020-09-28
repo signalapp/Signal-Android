@@ -28,19 +28,19 @@ public final class AccountAttributesTest {
                  "\"unidentifiedAccessKey\":\"AAAAAAAAAAAAAA==\"," +
                  "\"unrestrictedUnidentifiedAccess\":false," +
                  "\"discoverableByPhoneNumber\":false," +
-                 "\"capabilities\":{\"uuid\":true,\"storage\":true,\"gv2-2\":true}}", json);
+                 "\"capabilities\":{\"uuid\":true,\"storage\":true,\"gv2-3\":true}}", json);
   }
 
   @Test
   public void gv2_true() {
     String json = JsonUtil.toJson(new AccountAttributes.Capabilities(false, true, false));
-    assertEquals("{\"uuid\":false,\"storage\":false,\"gv2-2\":true}", json);
+    assertEquals("{\"uuid\":false,\"storage\":false,\"gv2-3\":true}", json);
   }
 
   @Test
   public void gv2_false() {
     String json = JsonUtil.toJson(new AccountAttributes.Capabilities(false, false, false));
-    assertEquals("{\"uuid\":false,\"storage\":false,\"gv2-2\":false}", json);
+    assertEquals("{\"uuid\":false,\"storage\":false,\"gv2-3\":false}", json);
   }
 
 }
