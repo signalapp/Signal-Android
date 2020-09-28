@@ -12,14 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:clipChildren="false"
-        android:contentInsetLeft="24dp"
-        android:contentInsetStart="24dp"
-        app:contentInsetLeft="24dp"
-        app:contentInsetStart="24dp"
-        android:contentInsetRight="20dp"
-        android:contentInsetEnd="20dp"
-        app:contentInsetRight="20dp"
-        app:contentInsetEnd="20dp">
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,8 +30,7 @@
                 android:orientation="horizontal"
                 android:background="@drawable/conversation_home_touch_highlight"
                 android:clickable="true"
-                android:focusable="true"
-                android:layout_marginLeft="-24dp">
+                android:focusable="true">
 
                 <ImageView
                     android:layout_width="18dp"
