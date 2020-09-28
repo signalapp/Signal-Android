@@ -159,7 +159,21 @@ public class SignalServiceDataMessage {
 
   public boolean isGroupV2Update() {
     return isGroupV2Message() &&
-           !body.isPresent();
+           group.get().getGroupV2().get().hasSignedGroupChange() &&
+           !hasRenderableContent();
+  }
+
+  /** Contains some user data that affects the conversation */
+  public boolean hasRenderableContent() {
+    return attachments.isPresent()   ||
+           body.isPresent()          ||
+           quote.isPresent()         ||
+           contacts.isPresent()      ||
+           previews.isPresent()      ||
+           mentions.isPresent()      ||
+           sticker.isPresent()       ||
+           reaction.isPresent()      ||
+           remoteDelete.isPresent();
   }
 
   public int getExpiresInSeconds() {

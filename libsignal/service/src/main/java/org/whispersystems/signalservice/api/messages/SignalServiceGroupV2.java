@@ -55,6 +55,10 @@ public final class SignalServiceGroupV2 {
     return signedGroupChange;
   }
 
+  public boolean hasSignedGroupChange() {
+    return signedGroupChange != null && signedGroupChange.length > 0;
+  }
+
   public static Builder newBuilder(GroupMasterKey masterKey) {
     return new Builder(masterKey);
   }
