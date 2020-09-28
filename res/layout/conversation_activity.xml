@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:clipChildren="false"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp">
+        app:contentInsetStart="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +36,7 @@
                     android:layout_height="18dp"
                     android:src="@drawable/ic_baseline_arrow_back_compact_24"
                     android:layout_marginRight="-2dp"
-                    android:layout_marginLeft="8dp"/>
+                    android:layout_marginLeft="8dp" />
 
                 <org.thoughtcrime.securesms.loki.views.ProfilePictureView
                     android:id="@+id/profilePictureView"
