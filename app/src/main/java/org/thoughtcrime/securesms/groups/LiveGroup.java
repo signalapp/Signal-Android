@@ -208,6 +208,10 @@ public final class LiveGroup {
     return Transformations.map(getFullMembers(), fullMembers -> getMembershipDescription(resources, 0, fullMembers.size()));
   }
 
+  public LiveData<GroupDatabase.MemberLevel> getMemberLevel(@NonNull Recipient recipient) {
+    return Transformations.map(groupRecord, g -> g.memberLevel(recipient));
+  }
+
   private static String getMembershipDescription(@NonNull Resources resources, int invitedCount, int fullMemberCount) {
     return invitedCount > 0 ? resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, fullMemberCount,
                                                           fullMemberCount, invitedCount)
