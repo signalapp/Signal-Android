@@ -258,6 +258,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     albumRail        = findViewById(R.id.media_preview_album_rail);
     albumRailAdapter = new MediaRailAdapter(GlideApp.with(this), this, false);
 
+    albumRail.setItemAnimator(null); // Or can crash when set to INVISIBLE while animating by FullscreenHelper https://issuetracker.google.com/issues/148720682
     albumRail.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     albumRail.setAdapter(albumRailAdapter);
 
