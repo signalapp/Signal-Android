@@ -72,37 +72,27 @@ class ProfilePictureView : RelativeLayout {
             return recipient.isOpenGroupRecipient &&
                     DatabaseFactory.getGroupDatabase(context).hasAvatar(recipient.address.toString())
         }
-        if (recipient.isGroupRecipient) {
-            if ("Session Public Chat" == recipient.name) {
-                publicKey = ""
-                displayName = ""
-                additionalPublicKey = null
-                isRSSFeed = true
-            } else if (isOpenGroupWithAvatar(recipient)) {
-                publicKey = recipient.address.toString()
-                displayName = getUserDisplayName(publicKey)
-                additionalPublicKey = null
-                isRSSFeed = false
-            } else {
-                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
-                users.remove(TextSecurePreferences.getLocalNumber(context))
-                val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                if (masterPublicKey != null) {
-                    users.remove(masterPublicKey)
-                }
-                val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
-                if (users.count() == 1) {
-                    val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-                    randomUsers.add(0, userPublicKey) // Ensure the current user is at the back visually
-                }
-                val pk = randomUsers.getOrNull(0) ?: ""
-                publicKey = pk
-                displayName = getUserDisplayName(pk)
-                val apk = randomUsers.getOrNull(1) ?: ""
-                additionalPublicKey = apk
-                additionalDisplayName = getUserDisplayName(apk)
-                isRSSFeed = recipient.name == "Loki News" || recipient.name == "Session Updates"
+        if (recipient.isGroupRecipient && !isOpenGroupWithAvatar(recipient)) {
+            val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
+            users.remove(TextSecurePreferences.getLocalNumber(context))
+            val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+            if (masterPublicKey != null) {
+                users.remove(masterPublicKey)
             }
+            val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
+            if (users.count() == 1) {
+                val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+                randomUsers.add(0, userPublicKey) // Ensure the current user is at the back visually
+            }
+            val pk = randomUsers.getOrNull(0) ?: ""
+            publicKey = pk
+            displayName = getUserDisplayName(pk)
+            val apk = randomUsers.getOrNull(1) ?: ""
+            additionalPublicKey = apk
+            additionalDisplayName = getUserDisplayName(apk)
+            isRSSFeed = recipient.name == "Loki News" ||
+                    recipient.name == "Session Updates" ||
+                    recipient.name == "Session Public Chat"
         } else {
             publicKey = recipient.address.toString()
             displayName = getUserDisplayName(publicKey)

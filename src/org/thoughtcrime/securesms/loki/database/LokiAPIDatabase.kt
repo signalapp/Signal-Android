@@ -355,11 +355,17 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }?.toString()
     }
 
-    override fun setOpenGroupAvatarURL(url: String, group: Long, server: String) {
+    override fun setOpenGroupAvatarURL(group: Long, server: String, url: String) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
         val row = wrap(mapOf(publicChatID to index, openGroupAvatar to url))
         database.insertOrUpdate(openGroupAvatarCacheTable, row, "$publicChatID = ?", wrap(index))
+    }
+
+    fun clearOpenGroupAvatarURL(group: Long, server: String): Boolean {
+        val database = databaseHelper.writableDatabase
+        val index = "$server.$group"
+        return database.delete(openGroupAvatarCacheTable, "$publicChatID == ?", arrayOf(index)) > 0
     }
 
     // region Deprecated
