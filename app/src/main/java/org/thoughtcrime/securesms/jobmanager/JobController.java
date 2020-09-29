@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager;
 
 import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -23,7 +24,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -158,9 +158,8 @@ class JobController {
 
   @WorkerThread
   synchronized void cancelAllInQueue(@NonNull String queue) {
-    Stream.of(runningJobs.values())
-          .filter(j -> Objects.equals(j.getParameters().getQueue(), queue))
-          .map(Job::getId)
+    Stream.of(jobStorage.getJobsInQueue(queue))
+          .map(JobSpec::getId)
           .forEach(this::cancelJob);
   }
 

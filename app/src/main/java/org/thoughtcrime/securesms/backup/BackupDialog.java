@@ -41,6 +41,7 @@ public class BackupDialog {
         CheckBox confirmationCheckBox = dialog.findViewById(R.id.confirmation_check);
         if (confirmationCheckBox.isChecked()) {
           BackupPassphrase.set(context, Util.join(password, " "));
+          TextSecurePreferences.setNextBackupTime(context, 0);
           TextSecurePreferences.setBackupEnabled(context, true);
           LocalBackupListener.schedule(context);
 
