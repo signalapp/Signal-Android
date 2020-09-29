@@ -2440,28 +2440,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
-    new AsyncTask<Void, Void, Long>() {
-      @Override
-      protected Long doInBackground(Void... param) {
-        if (initiating) {
-          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
-        }
+    if (initiating) {
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
+    }
 
-        long result = MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+    long result = MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
 
-        if (!recipient.isGroupRecipient()) {
-          ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-        }
+    if (!recipient.isGroupRecipient()) {
+      ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
+    }
 
-        return result;
-      }
-
-      @Override
-      protected void onPostExecute(Long result) {
-        sendComplete(result);
-        future.set(null);
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    sendComplete(result);
+    future.set(null);
 
     return future;
   }
@@ -2489,27 +2479,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     silentlySetComposeText("");
     final long id = fragment.stageOutgoingMessage(message);
 
-    new AsyncTask<OutgoingTextMessage, Void, Long>() {
-      @Override
-      protected Long doInBackground(OutgoingTextMessage... messages) {
-        if (initiatingConversation) {
-          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
-        }
+    if (initiatingConversation) {
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
+    }
 
-        long result = MessageSender.send(context, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+    long result = MessageSender.send(context, message, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
 
-        if (!recipient.isGroupRecipient()) {
-          ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-        }
+    if (!recipient.isGroupRecipient()) {
+      ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
+    }
 
-        return result;
-      }
-
-      @Override
-      protected void onPostExecute(Long result) {
-         sendComplete(result);
-       }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
+    sendComplete(result);
   }
 
   private void showDefaultSmsPrompt() {
