@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.ui.mentions;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +25,14 @@ import java.util.List;
 
 public class MentionsPickerFragment extends LoggingFragment {
 
-  private MentionsPickerAdapter     adapter;
-  private RecyclerView              list;
-  private View                      topDivider;
-  private View                      bottomDivider;
-  private BottomSheetBehavior<View> behavior;
-  private MentionsPickerViewModel   viewModel;
-  private Runnable                  lockSheetAfterListUpdate = () -> behavior.setHideable(false);
+  private       MentionsPickerAdapter     adapter;
+  private       RecyclerView              list;
+  private       View                      topDivider;
+  private       View                      bottomDivider;
+  private       BottomSheetBehavior<View> behavior;
+  private       MentionsPickerViewModel   viewModel;
+  private final Runnable                  lockSheetAfterListUpdate = () -> behavior.setHideable(false);
+  private final Handler                   handler                  = new Handler();
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -112,10 +114,10 @@ public class MentionsPickerFragment extends LoggingFragment {
     if (isShowing) {
       list.scrollToPosition(0);
       behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-      list.post(lockSheetAfterListUpdate);
+      handler.post(lockSheetAfterListUpdate);
       showDividers(true);
     } else {
-      list.getHandler().removeCallbacks(lockSheetAfterListUpdate);
+      handler.removeCallbacks(lockSheetAfterListUpdate);
       behavior.setHideable(true);
       behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
