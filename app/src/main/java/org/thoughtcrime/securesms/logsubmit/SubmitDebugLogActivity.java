@@ -187,7 +187,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   }
 
   private void presentLines(@NonNull List<LogLine> lines) {
-    if (loadingDialog != null) {
+    if (loadingDialog != null && lines.size() > 0) {
       loadingDialog.dismiss();
       loadingDialog = null;
 
