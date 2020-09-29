@@ -316,7 +316,6 @@ object ClosedGroupsProtocol {
         }
         // Store the ratchets for any new members (it's important that this happens before the code below)
         senderKeys.forEach { senderKey ->
-            if (!members.contains(senderKey.publicKey.toHexString())) { return@forEach }
             val ratchet = ClosedGroupRatchet(senderKey.chainKey.toHexString(), senderKey.keyIndex, listOf())
             sskDatabase.setClosedGroupRatchet(groupPublicKey, senderKey.publicKey.toHexString(), ratchet)
         }
