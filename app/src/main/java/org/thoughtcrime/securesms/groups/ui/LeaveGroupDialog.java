@@ -77,27 +77,26 @@ public final class LeaveGroupDialog {
 
   private void showSelectNewAdminDialog() {
     new AlertDialog.Builder(activity)
-                   .setTitle(R.string.ConversationActivity_choose_new_admin)
-                   .setMessage(R.string.ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group)
+                   .setTitle(R.string.LeaveGroupDialog_choose_new_admin)
+                   .setMessage(R.string.LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group)
                    .setNegativeButton(android.R.string.cancel, null)
-                   .setPositiveButton(R.string.ConversationActivity_choose_admin, (d,w) -> activity.startActivity(ChooseNewAdminActivity.createIntent(activity, groupId.requireV2())))
+                   .setPositiveButton(R.string.LeaveGroupDialog_choose_admin, (d,w) -> activity.startActivity(ChooseNewAdminActivity.createIntent(activity, groupId.requireV2())))
                    .show();
   }
 
   private void showLeaveDialog() {
     new AlertDialog.Builder(activity)
-                   .setTitle(R.string.ConversationActivity_leave_group)
-                   .setIconAttribute(R.attr.dialog_info_icon)
+                   .setTitle(R.string.LeaveGroupDialog_leave_group)
                    .setCancelable(true)
-                   .setMessage(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group)
-                   .setPositiveButton(R.string.yes, (dialog, which) -> {
+                   .setMessage(R.string.LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group)
+                   .setNegativeButton(android.R.string.cancel, null)
+                   .setPositiveButton(R.string.LeaveGroupDialog_leave, (dialog, which) -> {
                      AlertDialog progressDialog = SimpleProgressDialog.show(activity);
                      SimpleTask.run(activity.getLifecycle(), this::leaveGroup, result -> {
                        progressDialog.dismiss();
                        handleLeaveGroupResult(result);
                      });
                    })
-                   .setNegativeButton(R.string.no, null)
                    .show();
   }
 

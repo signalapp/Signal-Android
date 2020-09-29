@@ -103,7 +103,7 @@ public class AddMembersActivity extends PushContactSelectionActivity {
     return new AlertDialog.Builder(this)
                           .setMessage(" ")
                           .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
-                          .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                          .setPositiveButton(R.string.AddMembersActivity__add, (dialog, which) -> {
                             dialog.dismiss();
                             onFinishedSelection();
                           })

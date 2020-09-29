@@ -74,12 +74,6 @@ final class RecipientDialogRepository {
     });
   }
 
-  void getGroupName(@NonNull Consumer<String> stringConsumer) {
-    SimpleTask.run(SignalExecutors.BOUNDED,
-                   () -> DatabaseFactory.getGroupDatabase(context).requireGroup(Objects.requireNonNull(groupId)).getTitle(),
-                   stringConsumer::accept);
-  }
-
   void removeMember(@NonNull Consumer<Boolean> onComplete, @NonNull GroupChangeErrorCallback error) {
     SimpleTask.run(SignalExecutors.UNBOUNDED,
                    () -> {

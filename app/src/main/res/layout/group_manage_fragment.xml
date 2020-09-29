@@ -445,10 +445,10 @@
 
                     </LinearLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <LinearLayout
                         android:id="@+id/edit_group_access_row"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/group_manage_fragment_row_height"
                         android:background="?selectableItemBackground"
                         android:clickable="true"
                         android:focusable="true">
@@ -456,53 +456,28 @@
                         <TextView
                             android:id="@+id/edit_group_access_title"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="start"
+                            android:gravity="center_vertical|start"
                             android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:paddingTop="16dp"
                             android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:paddingBottom="8dp"
                             android:text="@string/ManageGroupActivity_edit_group_info"
                             android:textAlignment="viewStart"
-                            android:textAppearance="@style/Signal.Text.Body"
-                            app:layout_constraintEnd_toStartOf="@+id/edit_group_access_value"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:textAppearance="@style/Signal.Text.Body" />
 
                         <TextView
                             android:id="@+id/edit_group_access_value"
                             android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:gravity="end"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|end"
                             android:minWidth="136dp"
                             android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:paddingTop="16dp"
                             android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
                             android:textAppearance="@style/Signal.Text.Body"
                             android:textColor="@color/ultramarine_text_button"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
                             tools:text="All members" />
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:paddingBottom="16dp"
-                            android:text="@string/ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages"
-                            android:textAlignment="viewStart"
-                            android:textAppearance="@style/Signal.Text.Caption"
-                            android:textColor="?title_text_color_secondary"
-                            app:layout_constraintEnd_toEndOf="@+id/edit_group_access_title"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/edit_group_access_title" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
 

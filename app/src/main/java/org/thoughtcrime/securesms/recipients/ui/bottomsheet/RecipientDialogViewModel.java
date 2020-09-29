@@ -178,22 +178,21 @@ final class RecipientDialogViewModel extends ViewModel {
   }
 
   void onRemoveFromGroupClicked(@NonNull Activity activity, @NonNull Runnable onSuccess) {
-    recipientDialogRepository.getGroupName(title ->
-      new AlertDialog.Builder(activity)
-                     .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_from_s, Objects.requireNonNull(recipient.getValue()).getDisplayName(context), title))
-                     .setPositiveButton(R.string.RecipientBottomSheet_remove,
-                                        (dialog, which) -> {
-                                          adminActionBusy.setValue(true);
-                                          recipientDialogRepository.removeMember(result -> {
-                                            adminActionBusy.setValue(false);
-                                            if (result) {
-                                              onSuccess.run();
-                                            }
-                                          },
-                                          this::showErrorToast);
-                                        })
-                     .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
-                     .show());
+    new AlertDialog.Builder(activity)
+                   .setMessage(context.getString(R.string.RecipientBottomSheet_remove_s_from_the_group, Objects.requireNonNull(recipient.getValue()).getDisplayName(context)))
+                   .setPositiveButton(R.string.RecipientBottomSheet_remove,
+                                      (dialog, which) -> {
+                                        adminActionBusy.setValue(true);
+                                        recipientDialogRepository.removeMember(result -> {
+                                          adminActionBusy.setValue(false);
+                                          if (result) {
+                                            onSuccess.run();
+                                          }
+                                        },
+                                        this::showErrorToast);
+                                      })
+                   .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
+                   .show();
   }
 
   void onAddedToContacts() {

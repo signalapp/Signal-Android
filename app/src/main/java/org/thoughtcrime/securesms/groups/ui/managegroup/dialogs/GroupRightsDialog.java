@@ -47,10 +47,10 @@ public final class GroupRightsDialog {
 
   public enum Type {
 
-    MEMBERSHIP(R.string.ManageGroupActivity_choose_who_can_add_or_invite_new_members,
+    MEMBERSHIP(R.string.ManageGroupActivity_who_can_add_new_members,
                R.array.GroupManagement_edit_group_membership_choices),
 
-    ATTRIBUTES(R.string.ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages,
+    ATTRIBUTES(R.string.ManageGroupActivity_who_can_edit_this_groups_info,
                R.array.GroupManagement_edit_group_info_choices);
 
     @StringRes private final int message;

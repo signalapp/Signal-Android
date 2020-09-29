@@ -88,7 +88,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
         new AlertDialog.Builder(this)
                        .setTitle(addEvent.getTitle())
                        .setMessage(addEvent.getMessage())
-                       .setPositiveButton(android.R.string.ok, (dialog, which) -> viewModel.onAddToGroupsConfirmed(addEvent))
+                       .setPositiveButton(R.string.AddToGroupActivity_add, (dialog, which) -> viewModel.onAddToGroupsConfirmed(addEvent))
                        .setNegativeButton(android.R.string.cancel, null)
                        .show();
       } else if (event instanceof Event.LegacyGroupDenialEvent) {
