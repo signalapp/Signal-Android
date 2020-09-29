@@ -143,7 +143,7 @@ public final class FeatureFlags {
   public static synchronized void refreshIfNecessary() {
     long timeSinceLastFetch = System.currentTimeMillis() - SignalStore.remoteConfigValues().getLastFetchTime();
 
-    if (timeSinceLastFetch > FETCH_INTERVAL) {
+    if (timeSinceLastFetch < 0 || timeSinceLastFetch > FETCH_INTERVAL) {
       Log.i(TAG, "Scheduling remote config refresh.");
       ApplicationDependencies.getJobManager().add(new RemoteConfigRefreshJob());
     } else {
