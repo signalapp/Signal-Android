@@ -192,8 +192,12 @@ object ClosedGroupsProtocol {
             groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
         }
         // Notify the user
+        var infoType = GroupContext.Type.UPDATE
+        if (isUserLeaving) {
+            infoType = GroupContext.Type.QUIT
+        }
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-        insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
+        insertOutgoingInfoMessage(context, groupID, infoType, name, members, admins, threadID)
     }
 
     @JvmStatic
