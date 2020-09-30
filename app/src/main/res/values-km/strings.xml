@@ -192,10 +192,10 @@
   <string name="ConversationActivity_added_to_home_screen">បានបន្ថែមទៅអេក្រង់ដើម</string>
   <string name="ConversationActivity_calls_not_supported">មិនគាំទ្រការហៅចេញ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ឧបករណ៍នេះមិនបង្ហាញដើម្បីគាំទ្រសកម្មភាពការហៅ។</string>
-  <string name="ConversationActivity_leave_group">ចាកចេញពីក្រុម?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">តើអ្នកប្រាកដទេ ថាចង់ចាកចេញពីក្រុមនេះ?</string>
-  <string name="ConversationActivity_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string>
-  <string name="ConversationActivity_choose_admin">ជ្រើសរើសអ្នកគ្រប់គ្រង</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ចាកចេញពីក្រុម?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">តើអ្នកប្រាកដទេ ថាចង់ចាកចេញពីក្រុមនេះ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">ជ្រើសរើសអ្នកគ្រប់គ្រង</string> -->
   <string name="ConversationActivity_transport_insecure_sms">សារ មិនមានសុវត្ថិភាព</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS មិនមានសុវត្ថិភាព</string>
   <string name="ConversationActivity_transport_signal"> Signal</string>
@@ -1976,7 +1976,7 @@
   <string name="RecipientBottomSheet_video_call_description">ហៅជាវីដេអូ</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">លុប %1$s ពីអ្នកគ្រប់គ្រងក្រុម?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s នឹងមិនអាចកែប្រែក្រុមនេះ និងសមាជិកទេ</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">លុប %1$s ពី \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">លុប %1$s ពី \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">លុបចេញ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="GroupRecipientListItem_admin">អ្នកគ្រប់គ្រង</string>

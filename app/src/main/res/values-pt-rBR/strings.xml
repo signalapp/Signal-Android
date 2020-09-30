@@ -84,7 +84,7 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e sair %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear %1$s ?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Você deixará de receber mensagens e atualizações do grupo, e nenhum membro poderá adicionar você ao grupo novamente.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Você deixará de receber as mensagens e atualizações do grupo, e nenhum membro poderá adicionar você ao grupo novamente.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Os membros do grupo não poderão adicionar você novamente.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membros do grupo poderão adicionar você ao grupo novamente</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vocês poderão trocar mensagens e fazer chamadas entre si, e o seu nome e foto serão compartilhados com essa pessoa..</string>
@@ -179,7 +179,7 @@
   <string name="ConversationItem_download_more">  Baixe mais</string>
   <string name="ConversationItem_pending">  Pendente</string>
   <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi suprimida.</string>
-  <string name="ConversationItem_you_deleted_this_message">Você suprimiu esta mensagem.</string>
+  <string name="ConversationItem_you_deleted_this_message">Você excluiu esta mensagem.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">Adicionada à tela inicial</string>
   <string name="ConversationActivity_calls_not_supported">Sem suporte para chamadas</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo parece não possuir suporte para chamadas.</string>
-  <string name="ConversationActivity_leave_group">Sair do grupo?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
-  <string name="ConversationActivity_choose_new_admin">Escolha novo admin</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de sair, você deve escolher pelo menos um novo administrador para este grupo.</string>
-  <string name="ConversationActivity_choose_admin">Escolha administrador </string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Sair do grupo?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Escolha novo admin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de sair, você deve escolher pelo menos um novo administrador para este grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Escolha administrador </string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -213,9 +213,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede os limites de tamanho para o tipo de mensagem sendo enviada.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Câmera indisponível</string>
   <string name="ConversationActivity_unable_to_record_audio">Não foi possível gravar o áudio!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Você não pode enviar mensagens para este grupo porque não é mais um membro.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Você não pode enviar as mensagens para este grupo porque não é mais um membro.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não há nenhum aplicativo disponível no seu dispositivo para abrir este link.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Seu pedido para participar foi enviado ao administrador do grupo. Você será notificado quando as medidas foram tomadas.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Seu pedido para participar foi enviado ao administrador do grupo. Você será notificado quando a decisão for tomada.</string>
   <string name="ConversationActivity_cancel_request">Cancelar Pedido</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens de áudio, permita ao Signal acesso ao seu microfone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Signal precisa da permissão Microfone para enviar mensagens de áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\".</string>
@@ -235,10 +235,10 @@
   <string name="ConversationActivity_sticker_pack_installed">Pacote de figurinhas instalado</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Novidade! Se expresse com figurinhas</string>
   <string name="ConversationActivity_cancel">Cancelar</string>
-  <string name="ConversationActivity_delete_conversation">Excluir conversa?</string>
-  <string name="ConversationActivity_delete_and_leave_group">Deletar e sair do grupo ?</string>
-  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Esta conversa será deletada de todos os seus dispositivos.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Você deixará este grupo, que será deletado de todos os seus dispositivos.</string>
+  <string name="ConversationActivity_delete_conversation">Excluir a conversa?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Excluir e sair do grupo?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Esta conversa será excluída de todos os seus dispositivos.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Você deixará este grupo, que será excluído de todos os seus dispositivos.</string>
   <string name="ConversationActivity_delete">Excluir</string>
   <string name="ConversationActivity_delete_and_leave">Deletar e sair</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para chamar %1$s, Signal precisa acessar seu microfone</string>
@@ -282,9 +282,9 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Excluindo</string>
   <string name="ConversationFragment_deleting_messages">Excluindo mensagens…</string>
-  <string name="ConversationFragment_delete_for_me">Suprimir para mim</string>
-  <string name="ConversationFragment_delete_for_everyone">Suprimir para todas as pessoas</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Essa mensagem será definitivamente suprimida da conversa para todas as pessoas. Elas verão que você suprimiu a mensagem.</string>
+  <string name="ConversationFragment_delete_for_me">Excluir para mim</string>
+  <string name="ConversationFragment_delete_for_everyone">Excluir para todas as pessoas</string>
+  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Essa mensagem será definitivamente excluída da conversa para todas as pessoas. Os membros verão que você excluiu a mensagem.</string>
   <string name="ConversationFragment_quoted_message_not_found">Mensagem original não encontrada</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mensagem original indisponível</string>
   <string name="ConversationFragment_failed_to_open_message">Falha ao abrir mensagem</string>
@@ -331,7 +331,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema ao definir perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto do perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O seu perfil é encriptado de ponta-a-ponta. O seu perfil e mudanças à ele serão visíveis aos seus contatos, quando você iniciar ou aceitar uma conversa nova, e quando você entrar em grupos.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O seu perfil é criptografado de ponta-a-ponta. O seu perfil e as mudanças à ele serão visíveis aos seus contatos, quando você iniciar ou aceitar uma nova conversa, e quando você participar em grupos.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
@@ -388,7 +388,7 @@
   <string name="AddToGroupActivity_add_member">Adicional membro?</string>
   <string name="AddToGroupActivity_add_s_to_s">Adicionar \"%1$s\" a \"%2$s\"?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" foi adicionado/a a \"%2$s\".</string>
-  <string name="AddToGroupActivity_add_to_group">Adicional ao grupo</string>
+  <string name="AddToGroupActivity_add_to_group">Adicionar ao grupo</string>
   <string name="AddToGroupActivity_add_to_groups">Adicionar aos grupos</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legado.</string>
   <!--ChooseNewAdminActivity-->
@@ -413,7 +413,7 @@
   </plurals>
   <string name="GroupManagement_invite_single_user">“%1$s” não pode ser automaticamente adicionado a este grupo por você.\n\nEles foram convidados a participar, e não verão nenhuma mensagem de grupo até que aceitem.</string>
   <string name="GroupManagement_learn_more">Saiba mais</string>
-  <string name="GroupManagement_invite_multiple_users">Estes usuários não podem ser adicionados automaticamente a este grupo por você.\n\nEles foram convidados a participar do grupo, e não verão nenhuma mensagem de grupo até que aceitem.</string>
+  <string name="GroupManagement_invite_multiple_users">Estes usuários não podem ser adicionados automaticamente a este grupo por você.\n\nEles foram convidados a participar no grupo, e não verão nenhuma mensagem de grupo até que aceitem.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Desabilitar</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Pré-visualizar qualquer link</string>
@@ -460,7 +460,7 @@
     <item quantity="other">Adicionar os membros de %3$d a \"%2$s\"?</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">Dê um nome a esse grupo</string>
+  <string name="AddGroupDetailsFragment__name_this_group">Escolha um nome para este grupo</string>
   <string name="AddGroupDetailsFragment__create_group">Criar grupo</string>
   <string name="AddGroupDetailsFragment__create">Criar</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
@@ -472,16 +472,16 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Você selecionou um contato que não tem suporte para grupos do Signal. Então este grupo será de MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Remover</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contato de SMS</string>
-  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Suprimir %1$s desse grupo?</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Excluir %1$s desse grupo?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d membro não suporta Novos Grupos, portanto, este será um Grupo Legado.</item>
     <item quantity="other">%d membros não suportam Novos Grupos, portanto, este grupo será um Grupo Legado.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Um Grupo Legado será criado porque \"%1$s\" está usando uma versão antiga do Signal. Você pode criar um Grupo Novo Estilo com eles após de atualização do Signal, ou removê-los antes de criar o grupo.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Um Grupo Legado será criado porque \"%1$s\" está usando uma versão desatualizada do Signal. Você pode criar um Grupo Novo Estilo com eles depois de atualizarem o Signal, ou removê-los antes de criar o grupo.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Um Grupo Legado será criado porque %1$d está usando uma versão antiga do Signal. Você pode criar um Grupo Novo Estilo com eles após de atualização do Signal, ou removê-los antes de criar o grupo.</item>
-    <item quantity="other">Um Grupo Legado será criado porque membros %1$d estão usando uma versão antiga do Signal. Você pode criar um Grupo Novo Estilo com eles após de atualização do Signal, ou removê-los antes de criar o grupo</item>
+    <item quantity="other">Um Grupo Legado será criado porque membros %1$d estão usando uma versão desatualizada do Signal. Você pode criar um Grupo Novo Estilo com eles depois atualizarem o Signal, ou removê-los antes de criar o grupo.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mensagens efêmeras</string>
@@ -489,10 +489,10 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Pedidos de membros &amp; convites</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_edit_group_info">Editar informações do grupo</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Escolha quem pode editar o nome do grupo, avatar, e mensagens efémeras.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Escolha quem pode adicionar ou convidar novos membros.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Escolha quem pode editar o nome do grupo, avatar, e mensagens efémeras.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Escolha quem pode adicionar ou convidar novos membros.</string> -->
   <string name="ManageGroupActivity_group_link">O link de grupo</string>
-  <string name="ManageGroupActivity_block_group">Bloquear grupo</string>
+  <string name="ManageGroupActivity_block_group">Bloquear o grupo</string>
   <string name="ManageGroupActivity_unblock_group">Desbloquear o grupo</string>
   <string name="ManageGroupActivity_leave_group">Sair do grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
@@ -514,16 +514,16 @@
   </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Você não dispõe de privilégio para fazer isso</string>
   <string name="ManageGroupActivity_not_capable">Alguém que você adicionou não suporta novos grupos e precisa atualizar o Signal</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar grupo</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar o grupo</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Você não é membro do grupo</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Não foi possível atualizar o grupo, por favor, tente novamente mais tarde</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Falha na atualização do grupo devido a um erro da rede, favor tentar novamente mais tarde</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Falha ao atualizar o grupo devido a um erro da rede, favor tentar novamente mais tarde</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e foto</string>
   <string name="ManageGroupActivity_legacy_group">Grupo Legado</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Este é um Grupo Legado. Para acessar recursos como administradores de grupos, crie um Novo Grupo.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifique-me ao ser Mencionado</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Quer receber notificações quando você for mencionado nas conversas silenciosas?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Quer receber as notificações quando você for mencionado nas conversas silenciadas?</string>
   <string name="GroupMentionSettingDialog_default_notify_me">Predefinido (Notifique-me)</string>
   <string name="GroupMentionSettingDialog_default_dont_notify_me">Predefinido (Não me notifique)</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Notifique-me sempre</string>
@@ -585,7 +585,7 @@
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Tem certeza que quer resetar o link do grupo? As pessoas não poderão mais se conectar ao grupo usando o link atual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">As pessoas que escanearem este código poderão participar no seu grupo. Os administradores ainda precisarão aprovar novos membros se você tiver essa opção ativada.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">As pessoas que escanearem este código poderão participar no seu grupo. Os administradores ainda precisarão aprovar os novos membros se você tiver essa opção ativada.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Compartilhar código</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Você deseja anular o convite que você enviou para %1$s?</string>
@@ -778,9 +778,9 @@
   <string name="MessageRecord_you_joined_the_group">Você entrou no grupo.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s entraram no  grupo.</string>
   <!--GV2 member removals-->
-  <string name="MessageRecord_you_removed_s">Você suprimiu %1$s..</string>
-  <string name="MessageRecord_s_removed_s">%1$s suprimiu %2$s.</string>
-  <string name="MessageRecord_s_removed_you_from_the_group">%1$s suprimiu você desse grupo.</string>
+  <string name="MessageRecord_you_removed_s">Você excluiu %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s excluiu %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s excluiu você desse grupo.</string>
   <string name="MessageRecord_you_left_the_group">Você saiu do grupo.</string>
   <string name="MessageRecord_s_left_the_group">%1$s saiu do grupo.</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">Você não está mais no grupo.</string>
@@ -1130,7 +1130,7 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Editar</string>
   <string name="SubmitDebugLogActivity_done">Pronto</string>
-  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Toque em uma linha para deletar</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Toque numa linha para excluir</string>
   <string name="SubmitDebugLogActivity_submit">Enviar</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Falha ao enviar os relatórios</string>
   <string name="SubmitDebugLogActivity_success">Sucesso!</string>
@@ -1159,8 +1159,8 @@
   <string name="ThreadRecord_view_once_photo">Imagem efêmera</string>
   <string name="ThreadRecord_view_once_video">Vídeo efêmero</string>
   <string name="ThreadRecord_view_once_media">Mídia efêmera</string>
-  <string name="ThreadRecord_this_message_was_deleted">Essa mensagem foi suprimida.</string>
-  <string name="ThreadRecord_you_deleted_this_message">Você suprimiu esta mensagem.</string>
+  <string name="ThreadRecord_this_message_was_deleted">Essa mensagem foi excluída.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Você excluiu esta mensagem.</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de duração da mensagem efêmera definido para %s</string>
@@ -1277,7 +1277,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagiu com %1$s à sua imagem efêmera.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagiu com %1$s ao seu vídeo efêmero.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu com %1$s à sua figurinha.</string>
-  <string name="MessageNotifier_this_message_was_deleted">Essa mensagem foi suprimida.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Essa mensagem foi excluída.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desativar Contato Juntou-se ao Signal Notificação? Você pode activá-las novamente em Signal &gt; Configurações  &gt; Notificações.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Padrão</string>
@@ -1631,7 +1631,7 @@
   <string name="MessageRequestsMegaphone__add_profile_name">Adicionar nome de perfil</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Novo: Solicitações de mensagens</string>
   <string name="MessageRequestsMegaphone__add_name">Adicionar nome</string>
-  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Agora você pode escolher se quer aceitar uma nova conversa. Você irá ver opções para \"Aceitar\", \"Deletar,\" ou \"Bloquear\".</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Agora você pode escolher se quer aceitar uma nova conversa. Você irá ver opções para \"Aceitar,\" \"Excluir,\" ou \"Bloquear\".</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Ajuda</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Você já leu nosso FAQ ?</string>
@@ -1836,7 +1836,7 @@
   <string name="preferences_communication__sealed_sender_learn_more">Saiba mais</string>
   <string name="preferences_notifications__mentions">Menções</string>
   <string name="preferences_notifications__notify_me">Notifique-me</string>
-  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Receba notificações quando você for mencionado em conversas silenciosas</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Receba as notificações quando você for mencionado nas conversas silenciadas</string>
   <string name="preferences_setup_a_username">Definir um nome de usuário</string>
   <string name="configurable_single_select__customize_option">Opção para personalizar</string>
   <!--Internal only preferences-->
@@ -2220,7 +2220,7 @@
   <string name="RecipientBottomSheet_video_call_description">Chamada de vídeo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Remover %1$s como administrador do grupo?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s poderá editar este grupo e seus membros</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Excluir %1$s de \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Excluir %1$s de \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Remover</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
@@ -2228,11 +2228,11 @@
   <string name="GroupRecipientListItem_deny_description">Negar</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Legado vs Novos Grupos</string>
-  <string name="GroupsLearnMore_what_are_legacy_groups">O que são Grupos Legados?</string>
-  <string name="GroupsLearnMore_paragraph_1">Grupos Legados são grupos que não são compatíveis com recursos  dos Novos grupos como admins e atualizações de grupo mais descritivas.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Como utilizar Novos Grupos?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Grupos Legados não podem ser convertidos em Novos Grupos, mas você pode criar um Novo Grupo com os mesmos membros.</string>
-  <string name="GroupsLearnMore_paragraph_3">Para criar um Novo Grupo, todos os membros devem atualizar para a versão do Signal mais recente.</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">O que são Grupos Legado?</string>
+  <string name="GroupsLearnMore_paragraph_1">Grupos Legado são grupos que não são compatíveis com recursos  de Novos Grupos como administração e atualizações de grupo mais descritivas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Como utilizar os Novos Grupos?</string> -->
+  <string name="GroupsLearnMore_paragraph_2">Grupos Legado não podem ser convertidos em Novos Grupos, mas você pode criar um Novo Grupo com os mesmos membros.</string>
+  <string name="GroupsLearnMore_paragraph_3">Para criar um Novo Grupo, todos os membros devem atualizar o Signal para a versão mais recente.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Compartilhar via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copiar</string>

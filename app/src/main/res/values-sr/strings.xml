@@ -190,8 +190,8 @@
   <string name="ConversationActivity_added_to_home_screen">Додато на почетни екран</string>
   <string name="ConversationActivity_calls_not_supported">Позивање није подржано</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Овај уређај изгледа не подржава радње бирања.</string>
-  <string name="ConversationActivity_leave_group">Напустити групу?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Желите ли заиста да напустите ову групу?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Напустити групу?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Желите ли заиста да напустите ову групу?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Необезбеђени СМС</string>
   <string name="ConversationActivity_transport_insecure_mms">Необезбеђени ММС</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

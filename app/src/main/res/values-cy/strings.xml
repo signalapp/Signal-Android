@@ -203,11 +203,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_added_to_home_screen">Ychwanegwyd at y sgrin gartref</string>
   <string name="ConversationActivity_calls_not_supported">Galwadau heb eu cefnogi</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Nid yw\'n ymddangos bod y ddyfais hon yn cefnogi gweithrediadau deialu.</string>
-  <string name="ConversationActivity_leave_group">Gadael y grŵp?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ydych chi\'n siŵr eich bod am adael y grŵp?</string>
-  <string name="ConversationActivity_choose_new_admin">Dewiswch gweinyddwr newydd</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Cyn i chi adael, rhaid i chi ddewis o leiaf un gweinyddwr newydd ar gyfer y grŵp hwn.</string>
-  <string name="ConversationActivity_choose_admin">Dewiswch weinyddwr</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Gadael y grŵp?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ydych chi\'n siŵr eich bod am adael y grŵp?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Dewiswch gweinyddwr newydd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Cyn i chi adael, rhaid i chi ddewis o leiaf un gweinyddwr newydd ar gyfer y grŵp hwn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Dewiswch weinyddwr</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS aniogel</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS anniogel</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -533,8 +533,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Ceisiadau aelodau a gwahoddiadau</string>
   <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
   <string name="ManageGroupActivity_edit_group_info">Golygu manylion y grŵp</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Dewiswch pwy all olygu enw\'r grŵp, afatar, a negeseuon sy\'n diflannu.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Dewiswch pwy all ychwanegu neu wahodd aelodau newydd</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Dewiswch pwy all olygu enw\'r grŵp, afatar, a negeseuon sy\'n diflannu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Dewiswch pwy all ychwanegu neu wahodd aelodau newydd</string> -->
   <string name="ManageGroupActivity_group_link">Dolen grŵp</string>
   <string name="ManageGroupActivity_block_group">Rhwystro\'r grŵp</string>
   <string name="ManageGroupActivity_unblock_group">Dad-rwystro grŵp</string>
@@ -2346,7 +2346,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_video_call_description">Galwad fideo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Tynnu %1$s fel gweinyddwr grŵp?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Bydd %1$s yn gallu golygu\'r grŵp hwn a\'i aelodau</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Tynnu %1$s o \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Tynnu %1$s o \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Tynnu</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
   <string name="GroupRecipientListItem_admin">Gweinyddwr</string>

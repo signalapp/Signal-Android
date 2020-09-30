@@ -201,11 +201,11 @@
   <string name="ConversationActivity_added_to_home_screen">Přidáno na plochu</string>
   <string name="ConversationActivity_calls_not_supported">Volání není podporováno</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Toto zařízení zřejmě neumí vytáčet telefonní čísla</string>
-  <string name="ConversationActivity_leave_group">Opustit skupinu?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jsi si jistý, že chceš opustit tuto skupinu?</string>
-  <string name="ConversationActivity_choose_new_admin">Vyberte nového administrátora.</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Než opustíte skupinu, vyberte nového administrátora.</string>
-  <string name="ConversationActivity_choose_admin">Vyberte administrátora</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Opustit skupinu?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jsi si jistý, že chceš opustit tuto skupinu?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Vyberte nového administrátora.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Než opustíte skupinu, vyberte nového administrátora.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Vyberte administrátora</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Nezabezpečená SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -531,8 +531,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Požadavky &amp; pozvánky členů</string>
   <string name="ManageGroupActivity_add_members">Přidat členy</string>
   <string name="ManageGroupActivity_edit_group_info">Upravit informace o skupině</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vyberte kdo může měnit jméno a obrázek skupiny a časovač mizejících zpráv.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vyberte, kdo může přidat nebo pozvat nové členy.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vyberte kdo může měnit jméno a obrázek skupiny a časovač mizejících zpráv.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vyberte, kdo může přidat nebo pozvat nové členy.</string> -->
   <string name="ManageGroupActivity_group_link">Skupinový odkaz</string>
   <string name="ManageGroupActivity_block_group">Zablokovat skupinu</string>
   <string name="ManageGroupActivity_unblock_group">Odblokovat skupinu</string>
@@ -2343,7 +2343,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RecipientBottomSheet_video_call_description">Videohovor</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Odebrat %1$s jako správce skupiny?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s bude schopen upravovat tuto skupinu a její členy</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Odebrat %1$s z \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Odebrat %1$s z \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Odebrat</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Zkopírováno do schránky</string>
   <string name="GroupRecipientListItem_admin">Správce</string>

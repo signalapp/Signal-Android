@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">ഹോം സ്‌ക്രീനിൽ ചേർത്തു</string>
   <string name="ConversationActivity_calls_not_supported">കോളുകൾ അനുവദനീയമല്ല</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ഈ ഉപകരണം ഡയൽ പ്രവർത്തനങ്ങളെ പിന്തുണയ്ക്കുന്നതായി കാണുന്നില്ല.</string>
-  <string name="ConversationActivity_leave_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയണോ?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയുന്നത് ഉറപ്പാണോ ?</string>
-  <string name="ConversationActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">നിങ്ങൾ പോകുന്നതിനുമുമ്പ്, ഈ ഗ്രൂപ്പിനായി ഒരു പുതിയ അഡ്‌മിനെയെങ്കിലും തിരഞ്ഞെടുക്കണം.</string>
-  <string name="ConversationActivity_choose_admin">അഡ്‌മിനെ തിരഞ്ഞെടുക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയണോ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയുന്നത് ഉറപ്പാണോ ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">നിങ്ങൾ പോകുന്നതിനുമുമ്പ്, ഈ ഗ്രൂപ്പിനായി ഒരു പുതിയ അഡ്‌മിനെയെങ്കിലും തിരഞ്ഞെടുക്കണം.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">അഡ്‌മിനെ തിരഞ്ഞെടുക്കുക</string> -->
   <string name="ConversationActivity_transport_insecure_sms">സുരക്ഷിതമല്ലാത്ത SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">സുരക്ഷിതമല്ലാത്ത MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -451,7 +451,7 @@
   <string name="ManageGroupActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ManageGroupActivity_edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">പുതിയ അംഗങ്ങളെ ആർക്കൊക്കെ ചേർക്കാനോ ക്ഷണിക്കാനോ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">പുതിയ അംഗങ്ങളെ ആർക്കൊക്കെ ചേർക്കാനോ ക്ഷണിക്കാനോ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക.</string> -->
   <string name="ManageGroupActivity_group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
   <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് ബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
@@ -2031,7 +2031,7 @@ grūpp ap‌ḍē</string>
   <string name="RecipientBottomSheet_video_call_description">വീഡിയോ കോൾ</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s-നെ അഡ്മിൻ സ്ഥാനത്ത് നിന്ന് ഒഴിവാക്കണോ?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">ഈ ഗ്രൂപ്പിനെയും അതിന്റെ അംഗങ്ങളെയും എഡിറ്റുചെയ്യാൻ %1$s-ന് കഴിയും</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">\"%2$s\" യിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">\"%2$s\" യിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string> -->
   <string name="RecipientBottomSheet_remove">ഒഴിവാക്കുക</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupRecipientListItem_admin">അഡ്‌മിൻ‌</string>

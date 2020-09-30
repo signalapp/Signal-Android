@@ -172,8 +172,8 @@
   <string name="ConversationActivity_added_to_home_screen">હોમ સ્ક્રીન પર ઉમેર્યું</string>
   <string name="ConversationActivity_calls_not_supported">કોલ્સ ઉપલબ્ધ નથી </string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">આ ડિવાઇસ ડાયલ ક્રિયાઓ માટે ઉપયુક્ત નથી.</string>
-  <string name="ConversationActivity_leave_group">ગ્રુપ છોડવુ છે?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">શું તમે ખરેખર આ ગ્રુપ ને છોડવા માંગો છો?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ગ્રુપ છોડવુ છે?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">શું તમે ખરેખર આ ગ્રુપ ને છોડવા માંગો છો?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">અસુરક્ષિત SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">અસુરક્ષિત MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

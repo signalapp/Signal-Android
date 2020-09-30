@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">A été ajoutée à l’écran d’accueil</string>
   <string name="ConversationActivity_calls_not_supported">Les appels ne sont pas pris en charge</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Cet appareil ne semble pas prendre en charge les actions de numérotation.</string>
-  <string name="ConversationActivity_leave_group">Quitter le groupe ?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Souhaitez-vous vraiment quitter ce groupe ?</string>
-  <string name="ConversationActivity_choose_new_admin">Choisir un nouvel administrateur</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Avant de quitter le groupe, vous devez choisir au moins un nouvel administrateur pour ce groupe.</string>
-  <string name="ConversationActivity_choose_admin">Choisir un administrateur</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Quitter le groupe ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Souhaitez-vous vraiment quitter ce groupe ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Choisir un nouvel administrateur</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Avant de quitter le groupe, vous devez choisir au moins un nouvel administrateur pour ce groupe.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Choisir un administrateur</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Texto non sécurisé</string>
   <string name="ConversationActivity_transport_insecure_mms">Message multimédia non sécurisé</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -489,8 +489,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Demandes et invitations de membres</string>
   <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
   <string name="ManageGroupActivity_edit_group_info">Modifier les renseignements du groupe</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Choisissez qui peut modifier le nom, l’avatar et les messages éphémères du groupe.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Choisissez qui peut ajouter ou inviter de nouveaux membres.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Choisissez qui peut modifier le nom, l’avatar et les messages éphémères du groupe.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Choisissez qui peut ajouter ou inviter de nouveaux membres.</string> -->
   <string name="ManageGroupActivity_group_link">Lien de groupe</string>
   <string name="ManageGroupActivity_block_group">Bloquer le groupe</string>
   <string name="ManageGroupActivity_unblock_group">Débloquer le groupe</string>
@@ -2210,7 +2210,7 @@
   <string name="RecipientBottomSheet_video_call_description">Appel vidéo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Supprimer %1$s en tant qu’administrateur du groupe ?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s pourra modifier ce groupe et ses membres</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Supprimer %1$s de « %2$s » ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Supprimer %1$s de « %2$s » ?</string> -->
   <string name="RecipientBottomSheet_remove">Supprimer</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
   <string name="GroupRecipientListItem_admin">Administrateur</string>

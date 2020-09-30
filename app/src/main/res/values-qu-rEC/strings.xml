@@ -132,8 +132,8 @@
   <string name="ConversationActivity_added_to_home_screen">Kallari rikuchiman churashka</string>
   <string name="ConversationActivity_calls_not_supported">Mana paktalla kayachikuna</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Kay antahillayka mana kayachiyta ruray ushanchu.</string>
-  <string name="ConversationActivity_leave_group">Kay tantanakuy ukumanta llukshinkapak munankichu</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tantanakuymanta  llukshinkapak munankipachachu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Kay tantanakuy ukumanta llukshinkapak munankichu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tantanakuymanta  llukshinkapak munankipachachu</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS mana allikakta yacharinchu</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS mana allikakta yacharinchu</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

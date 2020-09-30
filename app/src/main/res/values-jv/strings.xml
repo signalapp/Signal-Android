@@ -170,9 +170,9 @@
   <string name="ConversationActivity_added_to_home_screen">Dipunminggahaken dhateng laman ngajeng</string>
   <string name="ConversationActivity_calls_not_supported">Telepon mboten dipundukung</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Pirantos niki kadosipun mboten ndukung tumindak kangge nelepon.</string>
-  <string name="ConversationActivity_leave_group">Medal saking grup?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sampeyan sampun mantep badhe medal saking grup niki?</string>
-  <string name="ConversationActivity_choose_new_admin">Pileh admin enggal</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Medal saking grup?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sampeyan sampun mantep badhe medal saking grup niki?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Pileh admin enggal</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS ingkang Mboten Aman</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ingkang Mboten Aman</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

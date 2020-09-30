@@ -198,11 +198,11 @@
   <string name="ConversationActivity_added_to_home_screen">Adăugat pe ecranul principal</string>
   <string name="ConversationActivity_calls_not_supported">Nu există suport pentru apeluri</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Acest dispozitiv nu pare să suporte acțiune de apelare.</string>
-  <string name="ConversationActivity_leave_group">Părăsiți grupul?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteți sigur că doriți să părăsiți acest grup?</string>
-  <string name="ConversationActivity_choose_new_admin">Alegeți un nou admin</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Înainte de a pleca, trebuie să alegeți cel puțin un nou administrator pentru acest grup.</string>
-  <string name="ConversationActivity_choose_admin">Alegeți un admin</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Părăsiți grupul?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteți sigur că doriți să părăsiți acest grup?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Alegeți un nou admin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Înainte de a pleca, trebuie să alegeți cel puțin un nou administrator pentru acest grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Alegeți un admin</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS nesecurizat</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -510,8 +510,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitări și invitații ale membrilor</string>
   <string name="ManageGroupActivity_add_members">Adăugați membri</string>
   <string name="ManageGroupActivity_edit_group_info">Editare informații despre grup</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Alegeți cine poate edita numele grupului, avatarul și dispariția mesajelor.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Alegeți cine poate adăuga sau invita membri noi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Alegeți cine poate edita numele grupului, avatarul și dispariția mesajelor.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Alegeți cine poate adăuga sau invita membri noi.</string> -->
   <string name="ManageGroupActivity_group_link">Link grup</string>
   <string name="ManageGroupActivity_block_group">Blocați grupul</string>
   <string name="ManageGroupActivity_unblock_group">Deblocare grup</string>
@@ -2279,7 +2279,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_video_call_description">Apel video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Eliminați pe %1$s ca și admin de grup?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s va putea edita acest grup și membrii acestuia</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Eliminați pe %1$s din \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Eliminați pe %1$s din \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Eliminați</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>

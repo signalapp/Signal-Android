@@ -189,9 +189,9 @@
   <string name="ConversationActivity_added_to_home_screen">হোম স্ক্রিনে যুক্ত হয়েছে</string>
   <string name="ConversationActivity_calls_not_supported">কলগুলি সাপোর্ট করেনা</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">এই ডিভাইস ডায়াল ক্রিয়া সমর্থন করে বলে মনে হচ্ছে না।</string>
-  <string name="ConversationActivity_leave_group">গ্রুপ ত্যাগ করবেন?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">আপনি কি সত্যিই গ্রুপ ত্যাগ করতে চাচ্ছেন?</string>
-  <string name="ConversationActivity_choose_new_admin">নতুন প্রশাসক চয়ন করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">গ্রুপ ত্যাগ করবেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">আপনি কি সত্যিই গ্রুপ ত্যাগ করতে চাচ্ছেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">নতুন প্রশাসক চয়ন করুন</string> -->
   <string name="ConversationActivity_transport_insecure_sms">অনিরাপদ এসএমএস</string>
   <string name="ConversationActivity_transport_insecure_mms">অনিরাপদ এমএমএস</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -1911,7 +1911,7 @@
   <string name="RecipientBottomSheet_message_description">বার্তা</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s কে গ্রুপ এডমিন থেকে সরাবেন?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s গ্রুপ এবং এর সদস্য সম্পাদনা করতে সমর্থ হবে</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">%1$s কে %2$s থেকে সরান</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">%1$s কে %2$s থেকে সরান</string> -->
   <string name="RecipientBottomSheet_remove">সরান</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
   <string name="GroupRecipientListItem_admin">প্রশাসক</string>

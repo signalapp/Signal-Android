@@ -192,11 +192,11 @@
   <string name="ConversationActivity_added_to_home_screen">Thêm vào màn hình chính</string>
   <string name="ConversationActivity_calls_not_supported">Không hỗ trợ gọi điện</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Thiết bị này không hỗ trợ thao tác quay số.</string>
-  <string name="ConversationActivity_leave_group">Rời nhóm?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc muốn rời nhóm này?</string>
-  <string name="ConversationActivity_choose_new_admin">Chọn quản trị viên mới</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Trước khi rời nhóm, bạn phải chọn ít nhất một quản trị viên mới cho nhóm này.</string>
-  <string name="ConversationActivity_choose_admin">Chọn quản trị viên</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Rời nhóm?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc muốn rời nhóm này?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Chọn quản trị viên mới</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Trước khi rời nhóm, bạn phải chọn ít nhất một quản trị viên mới cho nhóm này.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Chọn quản trị viên</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -468,8 +468,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Yêu cầu tham gia &amp; Lời mời</string>
   <string name="ManageGroupActivity_add_members">Thêm thành viên</string>
   <string name="ManageGroupActivity_edit_group_info">Sửa thông tin nhóm</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Chọn ai có quyền sửa tên nhóm, ảnh nhóm và tin nhắn tự hủy.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Chọn ai có quyền thêm hoặc mời thành viên mới</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Chọn ai có quyền sửa tên nhóm, ảnh nhóm và tin nhắn tự hủy.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Chọn ai có quyền thêm hoặc mời thành viên mới</string> -->
   <string name="ManageGroupActivity_group_link">Đường dẫn nhóm</string>
   <string name="ManageGroupActivity_block_group">Chặn nhóm</string>
   <string name="ManageGroupActivity_unblock_group">Bỏ chặn nhóm</string>
@@ -2146,7 +2146,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RecipientBottomSheet_video_call_description">Gọi video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Loại bỏ quyền quản trị của %1$s?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s sẽ có quyền thay đổi thông tin và thành viên nhóm</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Loại bỏ %1$s khỏi \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Loại bỏ %1$s khỏi \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Loại bỏ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Đã sao chép vào clipboard</string>
   <string name="GroupRecipientListItem_admin">Quản trị viên</string>

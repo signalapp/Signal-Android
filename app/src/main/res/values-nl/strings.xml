@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">Aan thuisscherm toegevoegd</string>
   <string name="ConversationActivity_calls_not_supported">Bellen niet ondersteund</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt belacties niet te ondersteunen.</string>
-  <string name="ConversationActivity_leave_group">Groep verlaten?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet je zeker dat je deze groep wilt verlaten?</string>
-  <string name="ConversationActivity_choose_new_admin">Kies een nieuwe beheerder</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string>
-  <string name="ConversationActivity_choose_admin">Beheerder kiezen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Groep verlaten?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet je zeker dat je deze groep wilt verlaten?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Kies een nieuwe beheerder</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Beheerder kiezen</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde sms</string>
   <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -428,12 +428,12 @@
     <item quantity="other">%1$d leden</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Uitnodigingen in afwachting</string>
   <string name="PendingMembersActivity_requests">Verzoeken</string>
   <string name="PendingMembersActivity_invites">Uitnodigingen</string>
-  <string name="PendingMembersActivity_people_you_invited">Personen die jij hebt uitgenodigd</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">Er zijn geen uitnodiging in afwachting van je reactie.</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">Uitnodigingen door andere leden verzonden</string>
+  <string name="PendingMembersActivity_people_you_invited">Personen die jij voor de groep hebt uitgenodigd</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Er zijn geen door jou verzonden uitnodigingen in afwachting van een reactie.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Persinen die door andere leden voor de groep zijn uitgenodigd</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Er zijn geen door andere groepsleden verzonden uitnodigingen in afwachting van een reactie.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen wie door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment zijn of haar profielnaam en -foto zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet aanvaard hebben zullen ze nog geen groepsberichten ontvangen.</string>
   <string name="PendingMembersActivity_revoke_invite">Uitnodiging intrekken</string>
@@ -449,7 +449,7 @@
   </plurals>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Groepsuitnodigingen in afwachting</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">Er zijn geen groeps uitnodigingen om weer te geven.</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Er zijn geen groepsuitnodigingen om weer te geven.</string>
   <string name="RequestingMembersFragment_explanation">Personen in deze lijst proberen via de groepsverwijzing lid te worden van deze groep.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" toegevoegd</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" afgewezen</string>
@@ -490,10 +490,10 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatschaps verzoeken &amp; uitnodigingen</string>
   <string name="ManageGroupActivity_add_members">Leden toevoegen</string>
   <string name="ManageGroupActivity_edit_group_info">Groepsinformatie aanpassen</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Kies wie de naam van de groep, de groepsafbeelding en de timer voor zelfwissende berichten mag aanpassen.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Kies wie nieuwe leden mag toevoegen of uitnodigen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Kies wie de naam van de groep, de groepsafbeelding en de timer voor zelfwissende berichten mag aanpassen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Kies wie nieuwe leden mag toevoegen of uitnodigen.</string> -->
   <string name="ManageGroupActivity_group_link">Groepsverwijzing</string>
-  <string name="ManageGroupActivity_block_group">Groepsgesprek blokkeren</string>
+  <string name="ManageGroupActivity_block_group">Groep blokkeren en verlaten</string>
   <string name="ManageGroupActivity_unblock_group">Groep deblokkeren</string>
   <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
   <string name="ManageGroupActivity_mute_notifications">Meldingen dempen</string>
@@ -504,7 +504,7 @@
   <string name="ManageGroupActivity_on">Aan</string>
   <string name="ManageGroupActivity_view_all_members">Alle leden weergeven</string>
   <string name="ManageGroupActivity_see_all">Alles weergeven</string>
-  <string name="ManageGroupActivity_none">Niets</string>
+  <string name="ManageGroupActivity_none">Geen</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d genodigde</item>
     <item quantity="other">%d genodigden</item>
@@ -1571,7 +1571,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CreateProfileActivity__username">Gebruikersnaam</string>
   <string name="CreateProfileActivity__create_a_username">Gebruikersnaam aanmaken</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Naam en afbeelding van het groepsgesprek aanpassen</string>
+  <string name="EditProfileFragment__edit_group_name_and_photo">Groepsnaam en -afbeelding</string>
   <string name="EditProfileFragment__group_name">Groepsnaam</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Uitgewisselde media</string>
@@ -2224,8 +2224,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RecipientBottomSheet_insecure_voice_call_description">Onbeveiligde spraakoproep</string>
   <string name="RecipientBottomSheet_video_call_description">Video-oproep</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">De beheerdersbevoegdheden van %1$s intrekken?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s zal dit groepsgesprek en de deelnemers kunnen aanpassen</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">%1$s verwijderen van “%2$s”?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s zal de groepsinformatie en groepslidmaatschap kunnen aanpassen</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">%1$s verwijderen van “%2$s”?</string> -->
   <string name="RecipientBottomSheet_remove">Verwijderen</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="GroupRecipientListItem_admin">Beheerder</string>

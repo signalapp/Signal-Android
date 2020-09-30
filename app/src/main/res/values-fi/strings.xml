@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">Lisätty kotiruudulle</string>
   <string name="ConversationActivity_calls_not_supported">Puheluita ei tueta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Tämä laite ei näytä tukevan valintanäppäintoimintoja.</string>
-  <string name="ConversationActivity_leave_group">Poistu ryhmästä?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Haluatko varmasti poistua tästä ryhmästä?</string>
-  <string name="ConversationActivity_choose_new_admin">Valitse uusi ylläpitäjä</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Ennen kuin lähdet, sinun on valittava vähintään yksi uusi ylläpitäjä tälle ryhmälle.</string>
-  <string name="ConversationActivity_choose_admin">Valitse ylläpitäjä</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Poistu ryhmästä?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Haluatko varmasti poistua tästä ryhmästä?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Valitse uusi ylläpitäjä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Ennen kuin lähdet, sinun on valittava vähintään yksi uusi ylläpitäjä tälle ryhmälle.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Valitse ylläpitäjä</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Salaamaton tekstiviesti</string>
   <string name="ConversationActivity_transport_insecure_mms">Salaamaton MMS-viesti</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -489,8 +489,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Jäsenpyynnöt &amp; kutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Valitse ketkä voivat muokata ryhmän nimeä, kuvaketta ja katoavien viestien ajastinta.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Valitse ketkä voivat lisätä tai kutsua uusia jäseniä.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Valitse ketkä voivat muokata ryhmän nimeä, kuvaketta ja katoavien viestien ajastinta.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Valitse ketkä voivat lisätä tai kutsua uusia jäseniä.</string> -->
   <string name="ManageGroupActivity_group_link">Ryhmälinkki</string>
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
   <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
@@ -2214,7 +2214,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_video_call_description">Videopuhelu</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Poista %1$s ryhmän ylläpitäjistä?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s voi tulevaisuudessa muokata ryhmää ja sen jäseniä</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Poista %1$s ryhmästä \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Poista %1$s ryhmästä \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Poista</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="GroupRecipientListItem_admin">Ylläpitäjä</string>

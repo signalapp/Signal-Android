@@ -190,10 +190,10 @@
   <string name="ConversationActivity_added_to_home_screen">ਹੋਮ ਸਕਰੀਨ ਦੇ ਨਾਲ ਜੋੜ ਦਿੱਤਾ ਗਿਆ ਹੈ </string>
   <string name="ConversationActivity_calls_not_supported">ਕਾਲਾਂ ਸਹਾਇਕ ਨਹੀਂ ਹਨ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ਇਸ ਡਿਵਾਈਸ ਤੇ ਕਾਲ਼ਾਂ ਨਹੀਂ ਹੋ ਸਕਦੀਆਂ </string>
-  <string name="ConversationActivity_leave_group">ਗਰੁੱਪ ਛੱਡੋ?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ਕੀ ਤੁਸੀਂ ਨਿਸ਼ਚਤ ਰੂਪ ਤੋਂ ਇਸ ਗਰੁੱਪ ਨੂੰ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
-  <string name="ConversationActivity_choose_new_admin">ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ</string>
-  <string name="ConversationActivity_choose_admin">ਐਡਮਿਨ ਚੁਣੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ਗਰੁੱਪ ਛੱਡੋ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ਕੀ ਤੁਸੀਂ ਨਿਸ਼ਚਤ ਰੂਪ ਤੋਂ ਇਸ ਗਰੁੱਪ ਨੂੰ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">ਐਡਮਿਨ ਚੁਣੋ</string> -->
   <string name="ConversationActivity_transport_insecure_sms">ਅਸੁਰੱਖਿਅਤ ਐਸਐਮਐਸ</string>
   <string name="ConversationActivity_transport_insecure_mms">ਅਸੁਰੱਖਿਅਤ ਐਮਐਮਐਸ</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

@@ -146,8 +146,8 @@
   <string name="ConversationActivity_added_to_home_screen">home screen သို့ထည့်ပါ</string>
   <string name="ConversationActivity_calls_not_supported">ဖုန်းခေါ်ဆိုမှုများ မပြုလုပ်နိုင်ပါ </string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ဖုန်းနံပါတ်နှိပ် ခေါ်ဆိုမှုကို ယခုစက်တွင်မရပါ။ </string>
-  <string name="ConversationActivity_leave_group">အုပ်စုမှ နှုတ်ထွက်မလား? </string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ဤအုပ်စုမှ နှုတ်ထွက်ချင်သည်မှာ သေချာပါသလား? </string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">အုပ်စုမှ နှုတ်ထွက်မလား? </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ဤအုပ်စုမှ နှုတ်ထွက်ချင်သည်မှာ သေချာပါသလား? </string> -->
   <string name="ConversationActivity_transport_insecure_sms">မလုံခြုံသော SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">မလုံခြုံသော MMS</string>
   <string name="ConversationActivity_transport_signal">Signal </string>

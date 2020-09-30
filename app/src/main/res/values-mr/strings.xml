@@ -193,11 +193,11 @@
   <string name="ConversationActivity_added_to_home_screen">मुख्यस्क्रीन वर जोडले</string>
   <string name="ConversationActivity_calls_not_supported">कॉल समर्थित नाही</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">हा डिव्हाईस डायल क्रिया समर्थन करताना दिसत नाही.</string>
-  <string name="ConversationActivity_leave_group">गट सोडायचा?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">आपल्याला हा गट सोडण्याची खात्री आहे का?</string>
-  <string name="ConversationActivity_choose_new_admin">नवीन प्रशासक निवडा</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">आपण सोडण्यापूर्वी, आपण या गटासाठी कमीत कमी एक नवीन प्रशासक निवडणे आवश्यक आहे.</string>
-  <string name="ConversationActivity_choose_admin">प्रशासक निवडा</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">गट सोडायचा?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">आपल्याला हा गट सोडण्याची खात्री आहे का?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">नवीन प्रशासक निवडा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">आपण सोडण्यापूर्वी, आपण या गटासाठी कमीत कमी एक नवीन प्रशासक निवडणे आवश्यक आहे.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">प्रशासक निवडा</string> -->
   <string name="ConversationActivity_transport_insecure_sms">असुरक्षित SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

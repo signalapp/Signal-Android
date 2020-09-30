@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">S\'ha afegit a la pantalla d\'inici.</string>
   <string name="ConversationActivity_calls_not_supported">Trucades no compatibles</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Aquest dispositiu sembla no suportar accions de trucada.</string>
-  <string name="ConversationActivity_leave_group">Voleu abandonar el grup?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Segur que voleu abandonar aquest grup?</string>
-  <string name="ConversationActivity_choose_new_admin">Trieu un administrador nou</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Abans d\'abandonar-lo, heu de triar almenys un administrador nou per a aquest grup.</string>
-  <string name="ConversationActivity_choose_admin">Trieu un administrador</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Voleu abandonar el grup?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Segur que voleu abandonar aquest grup?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Trieu un administrador nou</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Abans d\'abandonar-lo, heu de triar almenys un administrador nou per a aquest grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Trieu un administrador</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS no segur</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS no segur</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -489,8 +489,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Sol·licituds d\'adhesió i invitacions</string>
   <string name="ManageGroupActivity_add_members">Afegiu-hi membres</string>
   <string name="ManageGroupActivity_edit_group_info">Edita la informació del grup</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Trieu qui pot editar el nom del grup, l\'avatar i els missatges efímers.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Trieu qui pot afegir-hi o convidar-hi membres nous.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Trieu qui pot editar el nom del grup, l\'avatar i els missatges efímers.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Trieu qui pot afegir-hi o convidar-hi membres nous.</string> -->
   <string name="ManageGroupActivity_group_link">Enllaç del grup</string>
   <string name="ManageGroupActivity_block_group">Bloca el grup</string>
   <string name="ManageGroupActivity_unblock_group">Desbloca el grup</string>
@@ -2214,7 +2214,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RecipientBottomSheet_video_call_description">Trucada de vídeo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Voleu suprimir %1$s com a administrador del grup?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s podrà editar aquest grup i els seus membres.</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Voleu suprimir %1$s de \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Voleu suprimir %1$s de \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Suprimeix</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiat al porta-retalls</string>
   <string name="GroupRecipientListItem_admin">Administrador</string>

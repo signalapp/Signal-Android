@@ -173,9 +173,9 @@
   <string name="ConversationActivity_added_to_home_screen">ھوم سکرین میں شامل ہو گیا</string>
   <string name="ConversationActivity_calls_not_supported">کالوں کی تائید نہیں ہو رہی</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">یہ ڈیوائس ڈائل سرگرمیوں کی تائید کو ظاہر نہیں کر رہی۔</string>
-  <string name="ConversationActivity_leave_group">گروپ چھوڑنا ہے؟</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">کیا آپ واقعی اس گروپ کو چھوڑنا چاہتے ہیں؟</string>
-  <string name="ConversationActivity_choose_new_admin">نیا ایڈمن منتخب کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">گروپ چھوڑنا ہے؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">کیا آپ واقعی اس گروپ کو چھوڑنا چاہتے ہیں؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">نیا ایڈمن منتخب کریں</string> -->
   <string name="ConversationActivity_transport_insecure_sms">غیر محفوظ ایس ایم ایس</string>
   <string name="ConversationActivity_transport_insecure_mms">غیر محفوظ ایم ایم ایس</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

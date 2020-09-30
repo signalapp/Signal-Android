@@ -192,11 +192,11 @@
   <string name="ConversationActivity_added_to_home_screen">新增到主畫面</string>
   <string name="ConversationActivity_calls_not_supported">不支援的通話</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">您使用的裝置看來不支援撥號通話功能。</string>
-  <string name="ConversationActivity_leave_group">離開群組？</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">您確定要離開此群組？</string>
-  <string name="ConversationActivity_choose_new_admin">選擇新的管理者</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">在你離開之前，你必須為此群組至少選擇一個新管理員。</string>
-  <string name="ConversationActivity_choose_admin">選擇管理員</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">離開群組？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">您確定要離開此群組？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">選擇新的管理者</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">在你離開之前，你必須為此群組至少選擇一個新管理員。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">選擇管理員</string> -->
   <string name="ConversationActivity_transport_insecure_sms">不安全的簡訊</string>
   <string name="ConversationActivity_transport_insecure_mms">不安全的多媒體訊息</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -468,8 +468,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">成員要求 &amp; 邀請</string>
   <string name="ManageGroupActivity_add_members">新增成員</string>
   <string name="ManageGroupActivity_edit_group_info">編輯群組資訊</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">選擇誰可以編輯群組名稱，頭像和自動銷毀訊息。</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">選擇誰可以新增或邀請新成員。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">選擇誰可以編輯群組名稱，頭像和自動銷毀訊息。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">選擇誰可以新增或邀請新成員。</string> -->
   <string name="ManageGroupActivity_group_link">群組連結</string>
   <string name="ManageGroupActivity_block_group">封鎖群組</string>
   <string name="ManageGroupActivity_unblock_group">解封鎖群組</string>
@@ -2155,7 +2155,7 @@
   <string name="RecipientBottomSheet_video_call_description">視訊電話</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">以管理員身分移除%1$s嗎？</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s將可以編輯此群組及其成員</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">從\"%2$s\"移除%1$s嗎？</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">從\"%2$s\"移除%1$s嗎？</string> -->
   <string name="RecipientBottomSheet_remove">移除</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">已複製到剪貼簿</string>
   <string name="GroupRecipientListItem_admin">管理員</string>

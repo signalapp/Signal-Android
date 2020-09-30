@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">Lagt til heimeskjermen</string>
   <string name="ConversationActivity_calls_not_supported">Samtalar er ikkje støtta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne eininga ser ikkje ut til å støtta oppringing.</string>
-  <string name="ConversationActivity_leave_group">Vil du forlata gruppa?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du vil forlata gruppa?</string>
-  <string name="ConversationActivity_choose_new_admin">Vel ny administrator.</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Før du forlèt gruppa, må du velja minst éin ny administrator.</string>
-  <string name="ConversationActivity_choose_admin">Vel administrator.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Vil du forlata gruppa?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du vil forlata gruppa?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Vel ny administrator.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Før du forlèt gruppa, må du velja minst éin ny administrator.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Vel administrator.</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Usikker SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -494,8 +494,8 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Medlemsførespurnader og invitasjonar</string>
   <string name="ManageGroupActivity_add_members">Legg til medlemmar</string>
   <string name="ManageGroupActivity_edit_group_info">Endra gruppeinfo</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vel kven som kan endra gruppenamnet, -bildet og forsvinnande meldingar.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vel kven som kan legga til eller invitera nye medlemmar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Vel kven som kan endra gruppenamnet, -bildet og forsvinnande meldingar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Vel kven som kan legga til eller invitera nye medlemmar.</string> -->
   <string name="ManageGroupActivity_group_link">Gruppelenke</string>
   <string name="ManageGroupActivity_block_group">Blokker gruppa</string>
   <string name="ManageGroupActivity_unblock_group">Ikkje blokker gruppe</string>
@@ -2228,7 +2228,7 @@ Du er à jour!</string>
   <string name="RecipientBottomSheet_video_call_description">Videosamtale</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Fjern %1$s som gruppeadministrator?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s vil kunna endra denne gruppa og medlemmane i ho</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Fjern %1$s frå «%2$s»?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Fjern %1$s frå «%2$s»?</string> -->
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavla</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>

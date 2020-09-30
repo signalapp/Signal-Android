@@ -189,10 +189,10 @@
   <string name="ConversationActivity_added_to_home_screen">홈 화면에 추가됨</string>
   <string name="ConversationActivity_calls_not_supported">지원되지 않는 전화</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">해당 기기에서는 전화를 지원하지 않는 것 같습니다.</string>
-  <string name="ConversationActivity_leave_group">그룹을 탈퇴하시겠습니까?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">그룹에서 정말로 탈퇴하시겠습니까?</string>
-  <string name="ConversationActivity_choose_new_admin">새 관리자 선택</string>
-  <string name="ConversationActivity_choose_admin">관리자를 선택하십시오.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">그룹을 탈퇴하시겠습니까?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">그룹에서 정말로 탈퇴하시겠습니까?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">새 관리자 선택</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">관리자를 선택하십시오.</string> -->
   <string name="ConversationActivity_transport_insecure_sms">비보안 SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">비보안 MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

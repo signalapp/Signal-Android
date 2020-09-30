@@ -182,9 +182,9 @@
   <string name="ConversationActivity_added_to_home_screen">Naidagdag sa home screen</string>
   <string name="ConversationActivity_calls_not_supported">Hindi suportado ang mga tawag</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Mukhang hindi suportado ng device na ito ang mga pag-dial na aksyon.</string>
-  <string name="ConversationActivity_leave_group">Umalis sa grupo?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sigurado ka bang gusto mong umalis sa grupong ito?</string>
-  <string name="ConversationActivity_choose_new_admin">Pumili ng bagong admin</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Umalis sa grupo?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sigurado ka bang gusto mong umalis sa grupong ito?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Pumili ng bagong admin</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Hindi secure na SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Hindi secure na MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

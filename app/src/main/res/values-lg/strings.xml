@@ -82,8 +82,8 @@
   <string name="ConversationActivity_calls_not_supported">Amasimu agakubwa tegawagiddwa</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Kino ekyuma tekirabika kuwanirira ebikubidwa
 a</string>
-  <string name="ConversationActivity_leave_group">Vva mu kibinja?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Okakasa oyagala kuva mu kibija kino?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Vva mu kibinja?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Okakasa oyagala kuva mu kibija kino?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Obubaka obutalina bukuumi</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS terina bukumi</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

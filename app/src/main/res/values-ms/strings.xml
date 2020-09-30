@@ -167,8 +167,8 @@
   <string name="ConversationActivity_added_to_home_screen">Ditambah ke skrin utama</string>
   <string name="ConversationActivity_calls_not_supported">Panggilan tidak disokong</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Peranti ini tidak menyokong tindakan dail.</string>
-  <string name="ConversationActivity_leave_group">Keluar kumpulan?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Adakah anda pasti mahu keluar daripada kumpulan ini?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Keluar kumpulan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Adakah anda pasti mahu keluar daripada kumpulan ini?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS yang tidak selamat</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS yang tidak selamat</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

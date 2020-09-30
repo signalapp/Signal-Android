@@ -198,11 +198,11 @@
   <string name="ConversationActivity_added_to_home_screen">Dodano na početni ekran</string>
   <string name="ConversationActivity_calls_not_supported">Pozivi nisu podržani</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ovaj uređaj možda ne podržava pozivanje.</string>
-  <string name="ConversationActivity_leave_group">Napustiti grupu?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jeste li sigurni da želite napustiti ovu grupu?</string>
-  <string name="ConversationActivity_choose_new_admin">Odredite novog administratora</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prije napuštanja, morate imenovati makar jednog novog administratora za grupu.</string>
-  <string name="ConversationActivity_choose_admin">Odredite administratora</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Napustiti grupu?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jeste li sigurni da želite napustiti ovu grupu?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Odredite novog administratora</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prije napuštanja, morate imenovati makar jednog novog administratora za grupu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Odredite administratora</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Nezaštićen SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezaštićen MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -510,8 +510,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Zahtjevi za članstvo i pozivnice</string>
   <string name="ManageGroupActivity_add_members">Dodajte članove</string>
   <string name="ManageGroupActivity_edit_group_info">Izmijeni informacije o grupi</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Odredite ko može promijeniti naziv i sliku grupe, te vrijeme za nestajanje poruka.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Odredite ko može uvrstiti ili pozvati nove članove.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Odredite ko može promijeniti naziv i sliku grupe, te vrijeme za nestajanje poruka.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Odredite ko može uvrstiti ili pozvati nove članove.</string> -->
   <string name="ManageGroupActivity_group_link">Link grupe</string>
   <string name="ManageGroupActivity_block_group">Blokiraj grupu</string>
   <string name="ManageGroupActivity_unblock_group">Prestani s blokiranjem grupe</string>
@@ -2282,7 +2282,7 @@
   <string name="RecipientBottomSheet_video_call_description">Videopoziv</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Smijeniti %1$s kao administratora grupe?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s će moći uređivati ovu grupu i njene članove</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Udaljiti %1$s iz \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Udaljiti %1$s iz \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Ukloni</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>

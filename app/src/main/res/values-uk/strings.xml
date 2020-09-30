@@ -151,8 +151,8 @@
   <string name="ConversationActivity_added_to_home_screen">Додано до домашнього екрану</string>
   <string name="ConversationActivity_calls_not_supported">Дзвінки не підтримуються</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Здається, цей пристрій не підтримує виклики.</string>
-  <string name="ConversationActivity_leave_group">Покинути групу?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ви дійсно хочете покинути цю групу?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Покинути групу?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ви дійсно хочете покинути цю групу?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Незахищене SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незахищене MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

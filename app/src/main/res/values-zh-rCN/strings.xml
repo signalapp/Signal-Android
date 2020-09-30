@@ -184,9 +184,9 @@
   <string name="ConversationActivity_added_to_home_screen">已添加到主屏幕</string>
   <string name="ConversationActivity_calls_not_supported">呼叫不支持</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">该设备看起来不支持拨号操作。</string>
-  <string name="ConversationActivity_leave_group">离开群组？</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">是否确定离开该群组？</string>
-  <string name="ConversationActivity_choose_new_admin">选择新的管理员。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">离开群组？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">是否确定离开该群组？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">选择新的管理员。</string> -->
   <string name="ConversationActivity_transport_insecure_sms">不安全的短信</string>
   <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

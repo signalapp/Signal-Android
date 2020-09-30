@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">Προστέθηκε στην κεντρική οθόνη</string>
   <string name="ConversationActivity_calls_not_supported">Οι κλήσεις δεν υποστηρίζονται</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Αυτή η συσκευή δε φαίνεται να υποστηρίζει ενέργειες κλήσης.</string>
-  <string name="ConversationActivity_leave_group">Αποχώρηση απ\' την ομάδα;</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είσαι σίγουρος/η πως θέλεις να αποχωρήσεις απ\' την ομάδα;</string>
-  <string name="ConversationActivity_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Πριν αποχωρήσεις, θα πρέπει να επιλέξεις τουλάχιστον έναν νέο διαχειριστή ή διαχειρίστρια για την ομάδα.</string>
-  <string name="ConversationActivity_choose_admin">Επιλογή διαχειριστή</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Αποχώρηση απ\' την ομάδα;</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είσαι σίγουρος/η πως θέλεις να αποχωρήσεις απ\' την ομάδα;</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Πριν αποχωρήσεις, θα πρέπει να επιλέξεις τουλάχιστον έναν νέο διαχειριστή ή διαχειρίστρια για την ομάδα.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Επιλογή διαχειριστή</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Μη ασφαλές μήνυμα SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -489,8 +489,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Αιτήματα μελών &amp; προσκλήσεις</string>
   <string name="ManageGroupActivity_add_members">Προσθήκη μελών</string>
   <string name="ManageGroupActivity_edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Επέλεξε ποιός μπορεί να επεξεργαστεί το όνομα της ομάδας, το εικονίδιο, και τα μηνύματα που εξαφανίζονται.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Επέλεξε ποιος μπορεί να προσθέσει ή να προσκαλέσει νέα μέλη.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Επέλεξε ποιός μπορεί να επεξεργαστεί το όνομα της ομάδας, το εικονίδιο, και τα μηνύματα που εξαφανίζονται.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Επέλεξε ποιος μπορεί να προσθέσει ή να προσκαλέσει νέα μέλη.</string> -->
   <string name="ManageGroupActivity_group_link">Σύνδεσμος ομάδας</string>
   <string name="ManageGroupActivity_block_group">Φραγή ομάδας</string>
   <string name="ManageGroupActivity_unblock_group">Κατάργηση φραγής ομάδας</string>
@@ -2216,7 +2216,7 @@
   <string name="RecipientBottomSheet_video_call_description">Βιντεοκλήση</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Αφαίρεση των δικαιωμάτων διαχείρισης της ομάδας από τον/την %1$s;</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Ο/Η %1$s θα μπορεί να επεξεργάζεται αυτή την ομάδα και τα μέλη της.</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Αφαίρεση του/της %1$s από \"%2$s\";</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Αφαίρεση του/της %1$s από \"%2$s\";</string> -->
   <string name="RecipientBottomSheet_remove">Αφαίρεση</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="GroupRecipientListItem_admin">Διαχειριστής/τρια</string>

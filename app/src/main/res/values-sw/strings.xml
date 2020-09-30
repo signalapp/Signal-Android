@@ -176,9 +176,9 @@
   <string name="ConversationActivity_added_to_home_screen">Imeongezwa kwenye skrini ya mwanzo</string>
   <string name="ConversationActivity_calls_not_supported">Simu hazikubaliki</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Kifaa hiki hakionekani kuwezesha matendo ya kupiga </string>
-  <string name="ConversationActivity_leave_group">Ondoka kwenye kundi</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Una uhakika unataka kuondoka kwenye kundi hili?</string>
-  <string name="ConversationActivity_choose_new_admin">Chagua msimamizi mpya</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Ondoka kwenye kundi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Una uhakika unataka kuondoka kwenye kundi hili?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Chagua msimamizi mpya</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Ujumbe usio salama</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS isiyo salama</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

@@ -169,8 +169,8 @@
   <string name="ConversationActivity_added_to_home_screen">Добавено на работния плот</string>
   <string name="ConversationActivity_calls_not_supported">Функцията за разговори не се подържа</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Това устройство не поддържа повиквания.</string>
-  <string name="ConversationActivity_leave_group">Напускане на групата?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Сигурен ли си, че искаш да напуснеш тази група?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Напускане на групата?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Сигурен ли си, че искаш да напуснеш тази група?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Некриптиран SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Некриптиран MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

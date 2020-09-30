@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">Hasiera pantailara gehituta</string>
   <string name="ConversationActivity_calls_not_supported">Deiak ez daude onartuta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Badirudi gailu honek ez duela onartzen telefono deiekin lotutako ekintzak.</string>
-  <string name="ConversationActivity_leave_group">Taldea utzi?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ziur zaude talde hau utzi nahi izateaz?</string>
-  <string name="ConversationActivity_choose_new_admin">Hautatu administratzaile berria</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Taldea utzi baino lehenago, gutxienez administratzaile berri bat aukeratu behar duzu talde honetarako.</string>
-  <string name="ConversationActivity_choose_admin">Hautatu administratzailea</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Taldea utzi?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ziur zaude talde hau utzi nahi izateaz?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Hautatu administratzaile berria</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Taldea utzi baino lehenago, gutxienez administratzaile berri bat aukeratu behar duzu talde honetarako.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Hautatu administratzailea</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS ez segurua</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -489,8 +489,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Kideen eskaera &amp; gonbidapenak</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
   <string name="ManageGroupActivity_edit_group_info">Editatu taldeari buruzko informazioa</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Aukeratu taldearen izena, abatarra eta mezuak desagertzeko tenporizadorea alda dezakeena.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Aukeratu kide berriak gehitu edo gonbidatu dezakeena</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Aukeratu taldearen izena, abatarra eta mezuak desagertzeko tenporizadorea alda dezakeena.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Aukeratu kide berriak gehitu edo gonbidatu dezakeena</string> -->
   <string name="ManageGroupActivity_group_link">Talderako esteka</string>
   <string name="ManageGroupActivity_block_group">Blokeatu taldea</string>
   <string name="ManageGroupActivity_unblock_group">Desblokeatu taldea</string>
@@ -2221,7 +2221,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RecipientBottomSheet_video_call_description">Bideo deia</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s erabiltzailea talde administratzaile gisa ezabatu nahi duzu?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s erabiltzailea talde hau eta bere kideak editatzeko gai izango da</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">%1$s erabiltzailea \"%2$s\"-tik ezabatu?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">%1$s erabiltzailea \"%2$s\"-tik ezabatu?</string> -->
   <string name="RecipientBottomSheet_remove">Ezabatu</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="GroupRecipientListItem_admin">Administratzailea</string>

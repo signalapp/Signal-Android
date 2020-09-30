@@ -175,9 +175,9 @@
   <string name="ConversationActivity_added_to_home_screen">ہوم اسکرین تے شامل کیتا</string>
   <string name="ConversationActivity_calls_not_supported">کالز معاونت شدہ نئیں </string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ایہہ آلہ ڈائل کارروائیاں دی معاونت کردا وکھائی نئیں دیندا اے۔</string>
-  <string name="ConversationActivity_leave_group">گروپ چھڈ دئی اے ؟</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">کیہ تسیں سچی مچی ایس گروپ نوں چھڈنا چاہندے او؟</string>
-  <string name="ConversationActivity_choose_new_admin">نواں ایڈمن منتخب کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">گروپ چھڈ دئی اے ؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">کیہ تسیں سچی مچی ایس گروپ نوں چھڈنا چاہندے او؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">نواں ایڈمن منتخب کرو</string> -->
   <string name="ConversationActivity_transport_insecure_sms">غیر محفوظ SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">غیر محفوظ MMS</string>
   <string name="ConversationActivity_transport_signal"> Signal </string>

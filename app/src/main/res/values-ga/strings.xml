@@ -157,8 +157,8 @@
   <string name="ConversationActivity_added_to_home_screen">Cuireadh leis an scáileán baile é</string>
   <string name="ConversationActivity_calls_not_supported">Ní thugtar tacaíocht do ghlaonna</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Tá an dealramh ar an ngléas seo nach dtacaíonn sé le gníomhartha dialála.</string>
-  <string name="ConversationActivity_leave_group">Fág an bhaicle?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">An bhfuil tú cinnte gur mian leat an bhaicle seo a fhágáil?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Fág an bhaicle?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">An bhfuil tú cinnte gur mian leat an bhaicle seo a fhágáil?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS easlán</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS easlán</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

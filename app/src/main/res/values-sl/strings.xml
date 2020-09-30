@@ -201,11 +201,11 @@
   <string name="ConversationActivity_added_to_home_screen">Dodano na domači zaslon</string>
   <string name="ConversationActivity_calls_not_supported">Klici niso podprti</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Izgleda, da naprava ne podpira klicanja.</string>
-  <string name="ConversationActivity_leave_group">Želite zapustiti skupino?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste prepričani, da res želite zapustiti to skupino?</string>
-  <string name="ConversationActivity_choose_new_admin">Določi novega skrbnika/co</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Pred odhodom iz skupine morate določiti vsaj enega skrbnika skupine.</string>
-  <string name="ConversationActivity_choose_admin">Določi skrbnika</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Želite zapustiti skupino?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste prepričani, da res želite zapustiti to skupino?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Določi novega skrbnika/co</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Pred odhodom iz skupine morate določiti vsaj enega skrbnika skupine.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Določi skrbnika</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Nezavarovan SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezavarovan MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -531,8 +531,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Vabila in prošnje za članstvo</string>
   <string name="ManageGroupActivity_add_members">Dodaj člane/ice</string>
   <string name="ManageGroupActivity_edit_group_info">Uredi podatke o skupini</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Izberite, kdo lahko ureja ime skupine, njen avatar in čas poteka sporočil.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Izberite, kdo lahko dodaja ali povabi nove člane</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Izberite, kdo lahko ureja ime skupine, njen avatar in čas poteka sporočil.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Izberite, kdo lahko dodaja ali povabi nove člane</string> -->
   <string name="ManageGroupActivity_group_link">Povezava do skupine</string>
   <string name="ManageGroupActivity_block_group">Blokiraj skupino</string>
   <string name="ManageGroupActivity_unblock_group">Odblokiraj skupino</string>
@@ -2335,7 +2335,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RecipientBottomSheet_video_call_description">Video klic</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Odstranim uporabnika/co %1$s kot skrbnika/co skupine?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Uporabnik/ca %1$s bo lahko urejal/a skupino in njeno članstvo</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Odtsranim uporabnika/co %1$s iz skupine \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Odtsranim uporabnika/co %1$s iz skupine \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Odstrani</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopirano v odložišče</string>
   <string name="GroupRecipientListItem_admin">Skrbnik</string>

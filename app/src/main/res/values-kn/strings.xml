@@ -178,9 +178,9 @@
   <string name="ConversationActivity_added_to_home_screen"> ಹೋಮ್‌ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
   <string name="ConversationActivity_calls_not_supported">ಕರೆಗಳ ಬೆಂಬಲವಿರುವುದಿಲ್ಲ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನವು ಡಯಲ್ ಕ್ರಮಗಳನ್ನು ಬೆಂಬಲಿಸುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
-  <string name="ConversationActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯುವುದೇ?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ಈ ಗುಂಪನ್ನು ಬಿಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
-  <string name="ConversationActivity_choose_new_admin">ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯುವುದೇ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ಈ ಗುಂಪನ್ನು ಬಿಡಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ</string> -->
   <string name="ConversationActivity_transport_insecure_sms">ಅಸುರಕ್ಷಿತ ಎಸ್ಎಂಎಸ್ </string>
   <string name="ConversationActivity_transport_insecure_mms">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ </string>
   <string name="ConversationActivity_transport_signal">Signal</string>

@@ -137,8 +137,8 @@
   <string name="ConversationActivity_added_to_home_screen">Tevlî ekrana destpêkê bû</string>
   <string name="ConversationActivity_calls_not_supported">Bang nayê piştgirîkirin</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Xuyaye ev amûr piştgiriya çalakiyên bangê nake.</string>
-  <string name="ConversationActivity_leave_group">Ji komê derkeve?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bi rastî jî tu dixwaze ji vê komê derkeve?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Ji komê derkeve?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bi rastî jî tu dixwaze ji vê komê derkeve?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMSa neparastî</string>
   <string name="ConversationActivity_transport_insecure_mms">MMSa neparastî</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

@@ -186,9 +186,9 @@
   <string name="ConversationActivity_added_to_home_screen">హోమ్ స్క్రీన్కు జోడించబడింది</string>
   <string name="ConversationActivity_calls_not_supported">కాల్స్‌కు మద్దతు లేదు</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ఈ పరికరం డయల్ చర్యలుకు మద్దతు కనిపించడం లేదు.</string>
-  <string name="ConversationActivity_leave_group">సమూహం నుండి వైదొలగాలా?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">మీరు ఈ సమూహాన్ని వదిలిపెట్టాలనుకుంటున్నారా?</string>
-  <string name="ConversationActivity_choose_new_admin">క్రొత్త నిర్వాహకుడిని ఎంచుకోండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">సమూహం నుండి వైదొలగాలా?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">మీరు ఈ సమూహాన్ని వదిలిపెట్టాలనుకుంటున్నారా?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">క్రొత్త నిర్వాహకుడిని ఎంచుకోండి</string> -->
   <string name="ConversationActivity_transport_insecure_sms">అసురక్షిత సందేశం</string>
   <string name="ConversationActivity_transport_insecure_mms">అసురక్షిత ఎమ్మెమ్మెస్</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

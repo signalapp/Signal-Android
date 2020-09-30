@@ -90,8 +90,8 @@
   <string name="ConversationActivity_invalid_recipient">Погрешен примател!</string>
   <string name="ConversationActivity_calls_not_supported">Неподдржан повик</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Овој уред не поддржува повици.</string>
-  <string name="ConversationActivity_leave_group">Напушти група?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Дали сте сигурни дека сакате да ја напуштите групата?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Напушти група?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Дали сте сигурни дека сакате да ја напуштите групата?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Незаштитена SMS порака</string>
   <string name="ConversationActivity_transport_insecure_mms">Незаштитена MMS порака</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

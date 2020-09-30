@@ -201,11 +201,11 @@
   <string name="ConversationActivity_added_to_home_screen">Pridėta į pradžios ekraną</string>
   <string name="ConversationActivity_calls_not_supported">Skambučiai nepalaikomi</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Atrodo, kad šis įrenginys nepalaiko numerio rinkimo veiksmų.</string>
-  <string name="ConversationActivity_leave_group">Išeiti iš grupės?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ar tikrai norite išeiti iš šios grupės?</string>
-  <string name="ConversationActivity_choose_new_admin">Pasirinkti naują administratorių</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prieš išeidami, privalote pasirinkti šiai grupei bent vieną naują administratorių.</string>
-  <string name="ConversationActivity_choose_admin">Pasirinkite administratorių</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Išeiti iš grupės?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ar tikrai norite išeiti iš šios grupės?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Pasirinkti naują administratorių</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prieš išeidami, privalote pasirinkti šiai grupei bent vieną naują administratorių.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Pasirinkite administratorių</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Nesaugi SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesaugi MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -531,8 +531,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Narių prašymai ir pakvietimai</string>
   <string name="ManageGroupActivity_add_members">Pridėti narių</string>
   <string name="ManageGroupActivity_edit_group_info">Taisyti grupės informaciją</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Pasirinkite, kas gali taisyti grupės pavadinimą, avatarą bei išnykstančias žinutes.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Pasirinkite, kas gali taisyti grupės pavadinimą, avatarą bei išnykstančias žinutes.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Pasirinkite, kas gali pridėti ar pakviesti naujus narius.</string> -->
   <string name="ManageGroupActivity_group_link">Grupės nuoroda</string>
   <string name="ManageGroupActivity_block_group">Užblokuoti grupę</string>
   <string name="ManageGroupActivity_unblock_group">Atblokuoti grupę</string>
@@ -2344,7 +2344,7 @@
   <string name="RecipientBottomSheet_video_call_description">Vaizdo skambutis</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Pašalinti %1$s iš grupės administratorių?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s galės taisyti šią grupę ir jos narių sąrašą</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Šalinti %1$s iš „%2$s“?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Šalinti %1$s iš „%2$s“?</string> -->
   <string name="RecipientBottomSheet_remove">Šalinti</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="GroupRecipientListItem_admin">Administratorius</string>

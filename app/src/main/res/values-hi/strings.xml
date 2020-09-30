@@ -175,9 +175,9 @@
   <string name="ConversationActivity_added_to_home_screen">मुख्य स्क्रीन में जोड़ा गया</string>
   <string name="ConversationActivity_calls_not_supported">कॉल समर्थित नहीं है</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">यह डिवाइस डायल क्रियाओं का समर्थन करने के लिए प्रकट नहीं होता है।</string>
-  <string name="ConversationActivity_leave_group">समूह छोड़ दें?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">क्या आप वाकई इस समूह को छोड़ना चाहते हैं?</string>
-  <string name="ConversationActivity_choose_new_admin">नया एडमिन चुनें</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">समूह छोड़ दें?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">क्या आप वाकई इस समूह को छोड़ना चाहते हैं?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">नया एडमिन चुनें</string> -->
   <string name="ConversationActivity_transport_insecure_sms">असुरक्षित SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>

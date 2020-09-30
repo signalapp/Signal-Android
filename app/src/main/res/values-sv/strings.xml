@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">Lagt till på hemskärmen</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds inte</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp-handlingar.</string>
-  <string name="ConversationActivity_leave_group">Lämna grupp?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna denna grupp?</string>
-  <string name="ConversationActivity_choose_new_admin">Välj ny administratör</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Innan du lämnar måste du välja minst en ny administratör för denna grupp.</string>
-  <string name="ConversationActivity_choose_admin">Välj administratör</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Lämna grupp?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna denna grupp?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Välj ny administratör</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Innan du lämnar måste du välja minst en ny administratör för denna grupp.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Välj administratör</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Osäkert SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Osäkert MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -489,8 +489,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Medlemsförfrågningar &amp; inbjudningar</string>
   <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
   <string name="ManageGroupActivity_edit_group_info">Redigera gruppinformation</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Välj vem som kan redigera gruppnamn, avatar och försvinnande meddelanden.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Välj vem som kan redigera gruppnamn, avatar och försvinnande meddelanden.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar.</string> -->
   <string name="ManageGroupActivity_group_link">Grupplänk</string>
   <string name="ManageGroupActivity_block_group">Blockera grupp</string>
   <string name="ManageGroupActivity_unblock_group">Sluta blockera grupp</string>
@@ -2214,7 +2214,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_video_call_description">Videosamtal</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Ta bort %1$s som gruppadministratör?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s kommer att kunna redigera denna grupp och dess medlemmar</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">Ta bort %1$s från \"%2$s\"?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Ta bort %1$s från \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Ta bort</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="GroupRecipientListItem_admin">Administratör</string>

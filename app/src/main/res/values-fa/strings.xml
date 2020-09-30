@@ -195,11 +195,11 @@
   <string name="ConversationActivity_added_to_home_screen">به صفحهٔ اصلی افزوده شد</string>
   <string name="ConversationActivity_calls_not_supported">تماس‌ پشتیبانی نمی‌شود</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">این دستگاه قابلیت پشتیبانی از عملیات‌ شماره‌گیری را ندارد.</string>
-  <string name="ConversationActivity_leave_group">ترک گروه؟</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">آیا مطمئنید که می‌خواهید این گروه را ترک کنید؟</string>
-  <string name="ConversationActivity_choose_new_admin">مدیر جدید را انتخاب کنید</string>
-  <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">قبل از ترک کردن، باید حداقل یک مدیر جدید برای این گروه انتخاب کنید.</string>
-  <string name="ConversationActivity_choose_admin">انتخاب مدیر</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ترک گروه؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">آیا مطمئنید که می‌خواهید این گروه را ترک کنید؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">مدیر جدید را انتخاب کنید</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">قبل از ترک کردن، باید حداقل یک مدیر جدید برای این گروه انتخاب کنید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">انتخاب مدیر</string> -->
   <string name="ConversationActivity_transport_insecure_sms">پیامک ناامن</string>
   <string name="ConversationActivity_transport_insecure_mms">فراپیام ناامن</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -489,8 +489,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">درخواست‌های عضویت و دعوت‌ها</string>
   <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
   <string name="ManageGroupActivity_edit_group_info">ویرایش اطلاعات گروه</string>
-  <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">انتخاب کنید چه کسی می‌تواند نام، عکس گروه و پیام‌های ناپدید شونده را ویرایش کند.</string>
-  <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">انتخاب کنید چه کسی می‌تواند اعضای جدید را دعوت یا اضافه کند.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">انتخاب کنید چه کسی می‌تواند نام، عکس گروه و پیام‌های ناپدید شونده را ویرایش کند.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">انتخاب کنید چه کسی می‌تواند اعضای جدید را دعوت یا اضافه کند.</string> -->
   <string name="ManageGroupActivity_group_link">پیوند گروه</string>
   <string name="ManageGroupActivity_block_group">مسدود کردن گروه</string>
   <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
@@ -2218,7 +2218,7 @@
   <string name="RecipientBottomSheet_video_call_description">تماس تصویری</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">آیا می‌خواهید %1$s را بعنوان مدیر حذف کنید؟</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s قادر خواهد بود که این گروه‌ و اعضایش را ویرایش کند</string>
-  <string name="RecipientBottomSheet_remove_s_from_s">آیا می‌خواهید %1$s را از «%2$s» حذف کنید؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">آیا می‌خواهید %1$s را از «%2$s» حذف کنید؟</string> -->
   <string name="RecipientBottomSheet_remove">حذف</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
   <string name="GroupRecipientListItem_admin">مدیر</string>

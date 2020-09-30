@@ -172,8 +172,8 @@
   <string name="ConversationActivity_added_to_home_screen">Ansa a fuskar na\'ura</string>
   <string name="ConversationActivity_calls_not_supported">Kira bazai yiwu ba</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Na\'aurar nan bata goyon bayan aikin buga lamba.</string>
-  <string name="ConversationActivity_leave_group">Fita daga rukuni?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ka/kin tabbatar kana/kina son barin wannan rukuni?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Fita daga rukuni?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ka/kin tabbatar kana/kina son barin wannan rukuni?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS dinnan ba tsaro.</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS mara tsaro</string>
   <string name="ConversationActivity_transport_signal">Signal.</string>

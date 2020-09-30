@@ -144,8 +144,8 @@
   <string name="ConversationActivity_added_to_home_screen">Baş səhifəyə əlavə edildi</string>
   <string name="ConversationActivity_calls_not_supported">Zənglər dəstəklənmir</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Sanki bu cihaz zəng xidmətini dəstəkləmir.</string>
-  <string name="ConversationActivity_leave_group">Qrupdan çıxırsan?</string>
-  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bu qrupdan çıxmaq istədiyinə əminsən?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Qrupdan çıxırsan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bu qrupdan çıxmaq istədiyinə əminsən?</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Zəmanətsiz SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Zəmanətsiz MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
