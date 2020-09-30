@@ -455,6 +455,13 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   private void handleExceptionMessage(@NonNull ExceptionMetadata e, @NonNull Optional<Long> smsMessageId) {
+    Recipient sender = Recipient.external(context, e.sender);
+
+    if (sender.isBlocked()) {
+      Log.w(TAG, "Ignoring exception content from blocked sender, message state:" + messageState);
+      return;
+    }
+
     switch (messageState) {
 
       case INVALID_VERSION:
