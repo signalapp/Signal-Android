@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper.RecordUpdate;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
@@ -852,14 +851,19 @@ public class RecipientDatabase extends Database {
       }
       
       for (SignalGroupV2Record insert : groupV2Inserts) {
-        db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV2(insert));
-
         GroupMasterKey masterKey = insert.getMasterKeyOrThrow();
         GroupId.V2     groupId   = GroupId.v2(masterKey);
+        ContentValues  values    = getValuesForStorageGroupV2(insert);
+        long           id        = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
         Recipient      recipient = Recipient.externalGroup(context, groupId);
 
-        Log.i(TAG, "Creating restore placeholder for " + groupId);
+        if (id < 0) {
+          Log.w(TAG, String.format("Recipient %s is already linked to group %s", recipient.getId(), groupId));
+        } else {
+          Log.i(TAG, String.format("Inserted recipient %s for group %s", recipient.getId(), groupId));
+        }
 
+        Log.i(TAG, "Creating restore placeholder for " + groupId);
         DatabaseFactory.getGroupDatabase(context)
                        .create(masterKey,
                                DecryptedGroup.newBuilder()
