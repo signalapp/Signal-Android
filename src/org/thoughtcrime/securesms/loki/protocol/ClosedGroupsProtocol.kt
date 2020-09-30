@@ -124,6 +124,7 @@ object ClosedGroupsProtocol {
         val wasAnyUserRemoved = members.toSet().intersect(oldMembers) != oldMembers.toSet()
         val removedMembers = oldMembers.minus(members)
         val isUserLeaving = removedMembers.contains(userPublicKey)
+        var allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey);
         var newSenderKeys = listOf<ClosedGroupSenderKey>()
         if (wasAnyUserRemoved) {
             if (isUserLeaving && removedMembers.count() != 1) {
@@ -161,7 +162,7 @@ object ClosedGroupsProtocol {
                     ApplicationContext.getInstance(context).jobManager.add(job)
                 }
             }
-        } else {
+        } else if (newMembers.isNotEmpty()) {
             // Generate ratchets for any new members
             newSenderKeys = newMembers.map { publicKey ->
                 val ratchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, publicKey)
@@ -172,11 +173,16 @@ object ClosedGroupsProtocol {
                 newSenderKeys, membersAsData, adminsAsData)
             val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
             ApplicationContext.getInstance(context).jobManager.add(job)
+        } else {
+            val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey), name,
+                allSenderKeys, membersAsData, adminsAsData)
+            val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
+            ApplicationContext.getInstance(context).jobManager.add(job)
         }
         // Establish sessions if needed
         establishSessionsWithMembersIfNeeded(context, newMembers)
         // Send closed group update messages to the new members using established channels
-        val allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey) + newSenderKeys
+        allSenderKeys = allSenderKeys.union(newSenderKeys)
         for (member in newMembers) {
             @Suppress("NAME_SHADOWING")
             val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name,
