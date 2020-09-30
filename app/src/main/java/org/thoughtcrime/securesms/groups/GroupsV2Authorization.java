@@ -40,6 +40,9 @@ public final class GroupsV2Authorization {
     } catch (NoCredentialForRedemptionTimeException e) {
       Log.i(TAG, "Auth out of date, will update auth and try again");
       cache.clear();
+    } catch (VerificationFailedException e) {
+      Log.w(TAG, "Verification failed, will update auth and try again", e);
+      cache.clear();
     }
 
     Log.i(TAG, "Getting new auth credential responses");
