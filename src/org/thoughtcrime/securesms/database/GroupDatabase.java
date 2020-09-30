@@ -276,10 +276,10 @@ public class GroupDatabase extends Database implements LokiGroupDatabaseProtocol
 
   public boolean hasAvatar(String groupId) {
     try (Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(
-            "SELECT COUNT("+ID+") FROM "+TABLE_NAME+" WHERE "+GROUP_ID+" == ? AND "+AVATAR+" NOT NULL",
+            "SELECT EXISTS(SELECT 1 FROM "+TABLE_NAME+" WHERE "+GROUP_ID+" == ? AND "+AVATAR+" NOT NULL LIMIT 1)",
             new String[]{groupId})) {
       cursor.moveToFirst();
-      return cursor.getInt(0) > 0;
+      return cursor.getInt(0) == 1;
     }
   }
 
