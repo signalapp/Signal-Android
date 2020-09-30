@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,8 @@ import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity;
@@ -53,10 +56,12 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.ShareableGroupLinkDialogFragment;
+import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.List;
 import java.util.Locale;
@@ -365,9 +370,6 @@ public class ManageGroupFragment extends LoggingFragment {
     mentionsRow.setOnClickListener(v -> viewModel.handleMentionNotificationSelection());
     viewModel.getMentionSetting().observe(getViewLifecycleOwner(), value -> mentionsValue.setText(value));
 
-    viewModel.getSnackbarEvents().observe(getViewLifecycleOwner(), this::handleSnackbarEvent);
-    viewModel.getInvitedDialogEvents().observe(getViewLifecycleOwner(), this::handleInvitedDialogEvent);
-
     viewModel.getCanLeaveGroup().observe(getViewLifecycleOwner(), canLeave -> leaveGroup.setVisibility(canLeave ? View.VISIBLE : View.GONE));
     viewModel.getCanBlockGroup().observe(getViewLifecycleOwner(), canBlock -> {
       blockGroup.setVisibility(canBlock ? View.VISIBLE : View.GONE);
@@ -435,28 +437,38 @@ public class ManageGroupFragment extends LoggingFragment {
     }
   }
 
-  private void handleSnackbarEvent(@NonNull ManageGroupViewModel.SnackbarEvent snackbarEvent) {
-    Snackbar.make(requireView(), buildSnackbarString(snackbarEvent), Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
-  }
-
-  private void handleInvitedDialogEvent(@NonNull ManageGroupViewModel.InvitedDialogEvent invitedDialogEvent) {
-    GroupInviteSentDialog.showInvitesSent(requireContext(), invitedDialogEvent.getNewInvitedMembers());
-  }
-
-  private @NonNull String buildSnackbarString(@NonNull ManageGroupViewModel.SnackbarEvent snackbarEvent) {
-    return getResources().getQuantityString(R.plurals.ManageGroupActivity_added,
-                                            snackbarEvent.getNumberOfMembersAdded(),
-                                            snackbarEvent.getNumberOfMembersAdded());
-  }
-
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
+
     if (requestCode == RETURN_FROM_MEDIA) {
       applyMediaCursorFactory();
     } else if (requestCode == PICK_CONTACT && data != null) {
-      List<RecipientId> selected = data.getParcelableArrayListExtra(PushContactSelectionActivity.KEY_SELECTED_RECIPIENTS);
-      viewModel.onAddMembers(selected);
+      List<RecipientId>                      selected = data.getParcelableArrayListExtra(PushContactSelectionActivity.KEY_SELECTED_RECIPIENTS);
+      SimpleProgressDialog.DismissibleDialog progress = SimpleProgressDialog.showDelayed(requireContext());
+
+      viewModel.onAddMembers(selected, new AsynchronousCallback.MainThread<ManageGroupViewModel.AddMembersResult, GroupChangeFailureReason>() {
+        @Override
+        public void onComplete(ManageGroupViewModel.AddMembersResult result) {
+          progress.dismiss();
+          if (!result.getNewInvitedMembers().isEmpty()) {
+            GroupInviteSentDialog.showInvitesSent(requireContext(), result.getNewInvitedMembers());
+          }
+
+          if (result.getNumberOfMembersAdded() > 0) {
+            String string = getResources().getQuantityString(R.plurals.ManageGroupActivity_added,
+                                                             result.getNumberOfMembersAdded(),
+                                                             result.getNumberOfMembersAdded());
+            Snackbar.make(requireView(), string, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
+          }
+        }
+
+        @Override
+        public void onError(@Nullable GroupChangeFailureReason error) {
+          progress.dismiss();
+          Toast.makeText(requireContext(), GroupErrors.getUserDisplayMessage(error), Toast.LENGTH_LONG).show();
+        }
+      });
     }
   }
 }

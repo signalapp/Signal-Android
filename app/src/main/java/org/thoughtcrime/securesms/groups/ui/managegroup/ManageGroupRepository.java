@@ -20,13 +20,13 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupProtoUtil;
 import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
-import org.thoughtcrime.securesms.groups.ui.AddMembersResultCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -130,14 +130,16 @@ final class ManageGroupRepository {
     });
   }
 
-  void addMembers(@NonNull List<RecipientId> selected, @NonNull AddMembersResultCallback addMembersResultCallback, @NonNull GroupChangeErrorCallback error) {
+  void addMembers(@NonNull List<RecipientId> selected,
+                  @NonNull AsynchronousCallback.WorkerThread<ManageGroupViewModel.AddMembersResult, GroupChangeFailureReason> callback)
+  {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         GroupManager.GroupActionResult groupActionResult = GroupManager.addMembers(context, groupId.requirePush(), selected);
-        addMembersResultCallback.onMembersAdded(groupActionResult.getAddedMemberCount(), groupActionResult.getInvitedMembers());
+        callback.onComplete(new ManageGroupViewModel.AddMembersResult(groupActionResult.getAddedMemberCount(), Recipient.resolvedList(groupActionResult.getInvitedMembers())));
       } catch (GroupChangeException | MembershipNotSuitableForV2Exception | IOException e) {
         Log.w(TAG, e);
-        error.onError(GroupChangeFailureReason.fromException(e));
+        callback.onError(GroupChangeFailureReason.fromException(e));
       }
     });
   }
