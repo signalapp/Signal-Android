@@ -459,10 +459,11 @@ class MediaSendViewModel extends ViewModel {
       throw new IllegalStateException("Provided recipients to send to, but this is SMS!");
     }
 
-    MutableLiveData<MediaSendActivityResult> result         = new MutableLiveData<>();
-    Runnable                                 dialogRunnable = () -> event.postValue(Event.SHOW_RENDER_PROGRESS);
-    String                                   trimmedBody    = isViewOnce() ? "" : body.toString().trim();
-    List<Media>                              initialMedia   = getSelectedMediaOrDefault();
+    MutableLiveData<MediaSendActivityResult> result          = new MutableLiveData<>();
+    Runnable                                 dialogRunnable  = () -> event.postValue(Event.SHOW_RENDER_PROGRESS);
+    String                                   trimmedBody     = isViewOnce() ? "" : body.toString().trim();
+    List<Media>                              initialMedia    = getSelectedMediaOrDefault();
+    List<Mention>                            trimmedMentions = isViewOnce() ? Collections.emptyList() : mentions;
 
     Preconditions.checkState(initialMedia.size() > 0, "No media to send!");
 
@@ -477,7 +478,7 @@ class MediaSendViewModel extends ViewModel {
 
       if (isSms || MessageSender.isLocalSelfSend(application, recipient, isSms)) {
         Log.i(TAG, "SMS or local self-send. Skipping pre-upload.");
-        result.postValue(MediaSendActivityResult.forTraditionalSend(updatedMedia, trimmedBody, transport, isViewOnce(), mentions));
+        result.postValue(MediaSendActivityResult.forTraditionalSend(updatedMedia, trimmedBody, transport, isViewOnce(), trimmedMentions));
         return;
       }
 
@@ -494,12 +495,12 @@ class MediaSendViewModel extends ViewModel {
       uploadRepository.updateDisplayOrder(updatedMedia);
       uploadRepository.getPreUploadResults(uploadResults -> {
         if (recipients.size() > 0) {
-          sendMessages(recipients, splitBody, uploadResults, mentions);
+          sendMessages(recipients, splitBody, uploadResults, trimmedMentions);
           uploadRepository.deleteAbandonedAttachments();
         }
 
         Util.cancelRunnableOnMain(dialogRunnable);
-        result.postValue(MediaSendActivityResult.forPreUpload(uploadResults, splitBody, transport, isViewOnce(), mentions));
+        result.postValue(MediaSendActivityResult.forPreUpload(uploadResults, splitBody, transport, isViewOnce(), trimmedMentions));
       });
     });
 

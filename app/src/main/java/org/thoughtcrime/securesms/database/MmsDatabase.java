@@ -704,6 +704,7 @@ public class MmsDatabase extends MessageDatabase {
     db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(messageId) });
 
     DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentsForMessage(messageId);
+    DatabaseFactory.getMentionDatabase(context).deleteMentionsForMessage(messageId);
 
     long threadId = getThreadIdForMessage(messageId);
     DatabaseFactory.getThreadDatabase(context).update(threadId, false);
@@ -1467,6 +1468,9 @@ public class MmsDatabase extends MessageDatabase {
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
     groupReceiptDatabase.deleteRowsForMessage(messageId);
 
+    MentionDatabase mentionDatabase = DatabaseFactory.getMentionDatabase(context);
+    mentionDatabase.deleteMentionsForMessage(messageId);
+
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
     boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
@@ -1601,6 +1605,7 @@ public class MmsDatabase extends MessageDatabase {
   public void deleteAllThreads() {
     DatabaseFactory.getAttachmentDatabase(context).deleteAllAttachments();
     DatabaseFactory.getGroupReceiptDatabase(context).deleteAllRows();
+    DatabaseFactory.getMentionDatabase(context).deleteAllMentions();
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);

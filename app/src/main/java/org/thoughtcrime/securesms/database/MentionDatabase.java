@@ -125,6 +125,25 @@ public class MentionDatabase extends Database {
     }
   }
 
+  void deleteMentionsForMessage(long messageId) {
+    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    String         where = MESSAGE_ID + " = ?";
+
+    db.delete(TABLE_NAME, where, SqlUtil.buildArgs(messageId));
+  }
+
+  void deleteAbandonedMentions() {
+    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    String         where = MESSAGE_ID + " NOT IN (SELECT _id FROM " + MmsDatabase.TABLE_NAME + ")";
+
+    db.delete(TABLE_NAME, where, null);
+  }
+
+  void deleteAllMentions() {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.delete(TABLE_NAME, null, null);
+  }
+
   private @NonNull Map<Long, List<Mention>> readMentions(@Nullable Cursor cursor) {
     Map<Long, List<Mention>> mentions = new HashMap<>();
     while (cursor != null && cursor.moveToNext()) {

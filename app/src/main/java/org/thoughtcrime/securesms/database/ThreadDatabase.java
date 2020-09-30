@@ -270,6 +270,7 @@ public class ThreadDatabase extends Database {
     AttachmentDatabase   attachmentDatabase   = DatabaseFactory.getAttachmentDatabase(context);
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
     MmsSmsDatabase       mmsSmsDatabase       = DatabaseFactory.getMmsSmsDatabase(context);
+    MentionDatabase      mentionDatabase      = DatabaseFactory.getMentionDatabase(context);
 
     try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] { ID }, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
@@ -283,6 +284,7 @@ public class ThreadDatabase extends Database {
       mmsSmsDatabase.deleteAbandonedMessages();
       attachmentDatabase.trimAllAbandonedAttachments();
       groupReceiptDatabase.deleteAbandonedRows();
+      mentionDatabase.deleteAbandonedMentions();
       attachmentDatabase.deleteAbandonedAttachmentFiles();
       db.setTransactionSuccessful();
     } finally {
@@ -304,6 +306,7 @@ public class ThreadDatabase extends Database {
     AttachmentDatabase   attachmentDatabase   = DatabaseFactory.getAttachmentDatabase(context);
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
     MmsSmsDatabase       mmsSmsDatabase       = DatabaseFactory.getMmsSmsDatabase(context);
+    MentionDatabase      mentionDatabase      = DatabaseFactory.getMentionDatabase(context);
 
     db.beginTransaction();
 
@@ -312,6 +315,7 @@ public class ThreadDatabase extends Database {
       mmsSmsDatabase.deleteAbandonedMessages();
       attachmentDatabase.trimAllAbandonedAttachments();
       groupReceiptDatabase.deleteAbandonedRows();
+      mentionDatabase.deleteAbandonedMentions();
       attachmentDatabase.deleteAbandonedAttachmentFiles();
       db.setTransactionSuccessful();
     } finally {
