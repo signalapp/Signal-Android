@@ -345,10 +345,11 @@ public final class SignalServiceContent {
     boolean                                endSession       = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.END_SESSION_VALUE            ) != 0);
     boolean                                expirationUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0);
     boolean                                profileKeyUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE     ) != 0);
-    SignalServiceDataMessage.Quote         quote            = createQuote(content);
+    boolean                                isGroupV2        = groupInfoV2 != null;
+    SignalServiceDataMessage.Quote         quote            = createQuote(content, isGroupV2);
     List<SharedContact>                    sharedContacts   = createSharedContacts(content);
     List<SignalServiceDataMessage.Preview> previews         = createPreviews(content);
-    List<SignalServiceDataMessage.Mention> mentions         = createMentions(content.getBodyRangesList(), content.getBody());
+    List<SignalServiceDataMessage.Mention> mentions         = createMentions(content.getBodyRangesList(), content.getBody(), isGroupV2);
     SignalServiceDataMessage.Sticker       sticker          = createSticker(content);
     SignalServiceDataMessage.Reaction      reaction         = createReaction(content);
     SignalServiceDataMessage.RemoteDelete  remoteDelete     = createRemoteDelete(content);
@@ -648,7 +649,7 @@ public final class SignalServiceContent {
                                                                  Optional.<byte[]>absent());
   }
 
-  private static SignalServiceDataMessage.Quote createQuote(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+  private static SignalServiceDataMessage.Quote createQuote(SignalServiceProtos.DataMessage content, boolean isGroupV2) throws ProtocolInvalidMessageException {
     if (!content.hasQuote()) return null;
 
     List<SignalServiceDataMessage.Quote.QuotedAttachment> attachments = new LinkedList<>();
@@ -666,7 +667,7 @@ public final class SignalServiceContent {
                                                 address,
                                                 content.getQuote().getText(),
                                                 attachments,
-                                                createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText()));
+                                                createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText(), isGroupV2));
     } else {
       Log.w(TAG, "Quote was missing an author! Returning null.");
       return null;
@@ -695,7 +696,7 @@ public final class SignalServiceContent {
     return results;
   }
 
-  private static List<SignalServiceDataMessage.Mention> createMentions(List<SignalServiceProtos.DataMessage.BodyRange> bodyRanges, String body) throws ProtocolInvalidMessageException {
+  private static List<SignalServiceDataMessage.Mention> createMentions(List<SignalServiceProtos.DataMessage.BodyRange> bodyRanges, String body, boolean isGroupV2) throws ProtocolInvalidMessageException {
     if (bodyRanges == null || bodyRanges.isEmpty() || body == null) {
       return null;
     }
@@ -711,6 +712,10 @@ public final class SignalServiceContent {
           throw new ProtocolInvalidMessageException(new InvalidMessageException(e), null, 0);
         }
       }
+    }
+
+    if (mentions.size() > 0 && !isGroupV2) {
+      throw new ProtocolInvalidMessageException(new InvalidMessageException("Mentions received in non-GV2 message"), null, 0);
     }
 
     return mentions;
