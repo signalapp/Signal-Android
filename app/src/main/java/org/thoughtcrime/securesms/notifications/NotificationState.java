@@ -209,7 +209,7 @@ public class NotificationState {
   }
 
   public boolean canReply() {
-    return notifications.size() == 1 && notifications.get(0).canReply();
+    return notifications.size() >= 1 && notifications.get(0).canReply();
   }
 
 }
