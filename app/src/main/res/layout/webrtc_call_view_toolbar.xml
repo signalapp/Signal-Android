@@ -8,8 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:minWidth="160dp">
+        android:layout_gravity="center_horizontal">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/action_bar_guideline"
@@ -34,7 +33,7 @@
             android:id="@+id/call_screen_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Signal.Caption"
+            android:textAppearance="@style/TextAppearance.Signal.Subtitle"
             android:textColor="@color/core_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

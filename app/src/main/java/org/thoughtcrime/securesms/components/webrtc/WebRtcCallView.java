@@ -455,7 +455,7 @@ public class WebRtcCallView extends FrameLayout {
 
     if (!visibleViewSet.equals(lastVisibleSet) || !controls.isFadeOutEnabled()) {
       fadeInNewUiState(lastVisibleSet, webRtcControls.displaySmallOngoingCallButtons());
-      post(() -> pictureInPictureGestureHelper.setVerticalBoundaries(status.getBottom(), videoToggle.getTop()));
+      post(() -> pictureInPictureGestureHelper.setVerticalBoundaries(toolbar.getBottom(), videoToggle.getTop()));
     }
   }
 
@@ -510,7 +510,7 @@ public class WebRtcCallView extends FrameLayout {
 
   private void fadeInControls() {
     fadeControls(ConstraintSet.VISIBLE);
-    pictureInPictureGestureHelper.setVerticalBoundaries(status.getBottom(), videoToggle.getTop());
+    pictureInPictureGestureHelper.setVerticalBoundaries(toolbar.getBottom(), videoToggle.getTop());
 
     scheduleFadeOut();
   }
