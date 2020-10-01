@@ -1109,8 +1109,8 @@
 
     <!-- OutdatedBuildReminder -->
     <string name="OutdatedBuildReminder_update_now">Update now</string>
+    <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">This version of Signal will expire today. Update to the most recent version.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="zero">This version of Signal will expire today. Update to the most recent version.</item>
         <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
         <item quantity="other">This version of Signal will expire in %d days. Update to the most recent version.</item>
     </plurals>
