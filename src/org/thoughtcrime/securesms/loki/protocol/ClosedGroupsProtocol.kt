@@ -400,10 +400,7 @@ object ClosedGroupsProtocol {
         Log.d("Loki", "Responding to sender key request from: $senderPublicKey.")
         ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(senderPublicKey)
         val userRatchet = DatabaseFactory.getSSKDatabase(context).getClosedGroupRatchet(groupPublicKey, userPublicKey)
-        if (userRatchet == null) {
-            Log.d("Loki", "Missing own ratchet.")
-            return
-        }
+            ?: SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
         val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
         val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.SenderKey(Hex.fromStringCondensed(groupPublicKey), userSenderKey)
         val job = ClosedGroupUpdateMessageSendJob(senderPublicKey, closedGroupUpdateKind)
