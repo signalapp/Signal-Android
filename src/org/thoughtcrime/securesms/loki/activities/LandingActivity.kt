@@ -40,7 +40,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
-        setUpActionBarSessionLogo()
+        setUpActionBarSessionLogo(true)
         fakeChatView.startAnimating()
         registerButton.setOnClickListener { register() }
         restoreButton.setOnClickListener { restore() }

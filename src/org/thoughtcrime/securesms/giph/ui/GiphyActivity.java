@@ -71,8 +71,8 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
 
     setSupportActionBar(toolbar);
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-    getSupportActionBar().setDisplayShowTitleEnabled(false);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setHomeButtonEnabled(true);
   }
 
   private void initializeResources() {

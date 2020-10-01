@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit
 class NullMessageSendJob private constructor(parameters: Parameters, private val publicKey: String) : BaseJob(parameters) {
 
     companion object {
-        const val KEY = "PushNullMessageSendJob"
+        const val KEY = "NullMessageSendJob"
     }
 
     constructor(publicKey: String) : this(Parameters.Builder()

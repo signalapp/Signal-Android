@@ -18,8 +18,8 @@
         <item name="android:textSize">@dimen/very_large_font_size</item>
     </style>
 
-    <style name="TextSecure.BaseDarkTheme.SearchView" parent="@style/Widget.AppCompat.SearchView">
-        <item name="closeIcon">@drawable/ic_baseline_clear_24</item>
+    <style name="Widget.Session.SearchView" parent="@style/Widget.AppCompat.SearchView">
+        <item name="closeIcon">@drawable/ic_clear</item>
     </style>
 
     <style name="ThemeOverlay.Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">

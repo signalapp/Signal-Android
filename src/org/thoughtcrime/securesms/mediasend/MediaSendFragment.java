@@ -91,6 +91,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   private Stub<MediaKeyboard> emojiDrawer;
   private ViewGroup         playbackControlsContainer;
   private TextView          charactersLeft;
+  private View              closeButton;
 
   private ControllableViewPager         fragmentPager;
   private MediaSendFragmentPagerAdapter fragmentPagerAdapter;
@@ -154,6 +155,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     mediaRail                 = view.findViewById(R.id.mediasend_media_rail);
     playbackControlsContainer = view.findViewById(R.id.mediasend_playback_controls_container);
     charactersLeft            = view.findViewById(R.id.mediasend_characters_left);
+    closeButton               = view.findViewById(R.id.mediasend_close_button);
 
     View sendButtonBkg = view.findViewById(R.id.mediasend_send_button_bkg);
 
@@ -227,6 +229,8 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     } else {
       emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
     }
+
+    closeButton.setOnClickListener(v -> requireActivity().onBackPressed());
   }
 
   @Override

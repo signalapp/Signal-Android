@@ -1,16 +1,10 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.Manifest;
-
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
@@ -21,8 +15,13 @@ import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
+
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
@@ -40,6 +39,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import network.loki.messenger.R;
 
 /**
  * Encompasses the entire flow of sending media, starting from the selection process to the actual
@@ -124,6 +125,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
+    super.onCreate(savedInstanceState, ready);
+
     setContentView(R.layout.mediasend_activity);
     setResult(RESULT_CANCELED);
 

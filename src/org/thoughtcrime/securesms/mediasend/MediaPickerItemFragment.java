@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -166,8 +167,12 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   }
 
   private void initToolbar(Toolbar toolbar) {
-    ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(folderTitle);
+    AppCompatActivity activity = (AppCompatActivity) requireActivity();
+    activity.setSupportActionBar(toolbar);
+    ActionBar actionBar = activity.getSupportActionBar();
+    actionBar.setTitle(folderTitle);
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setHomeButtonEnabled(true);
 
     toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
   }
