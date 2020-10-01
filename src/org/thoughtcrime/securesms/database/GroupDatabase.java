@@ -274,15 +274,6 @@ public class GroupDatabase extends Database implements LokiGroupDatabaseProtocol
     Recipient.applyCached(Address.fromSerialized(groupId), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
   }
 
-  public boolean hasAvatar(String groupId) {
-    try (Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(
-            "SELECT EXISTS(SELECT 1 FROM "+TABLE_NAME+" WHERE "+GROUP_ID+" == ? AND "+AVATAR+" NOT NULL LIMIT 1)",
-            new String[]{groupId})) {
-      cursor.moveToFirst();
-      return cursor.getInt(0) == 1;
-    }
-  }
-
   public void updateMembers(String groupId, List<Address> members) {
     Collections.sort(members);
 
