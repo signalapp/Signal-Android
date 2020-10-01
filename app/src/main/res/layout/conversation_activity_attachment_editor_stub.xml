@@ -36,6 +36,7 @@
                 android:id="@+id/attachment_audio"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
+                android:layoutDirection="ltr"
                 android:visibility="gone"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"

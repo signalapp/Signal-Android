@@ -6,6 +6,7 @@
         android:id="@+id/audio_view"
         android:layout_width="@dimen/message_audio_width"
         android:layout_height="wrap_content"
+        android:layoutDirection="ltr"
         android:visibility="gone"
         app:foregroundTintColor="@color/white"
         app:backgroundTintColor="@color/blue_500"
