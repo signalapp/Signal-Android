@@ -79,8 +79,6 @@ class PublicChatManager(private val context: Context) {
                 ?.downloadOpenGroupAvatar(server, info.profilePictureURL)
         avatar = BitmapUtil.fromByteArray(avatarBytes)
       }
-      // FIXME: If updating the avatar here, there can be a memory issue if a public chat message contains some attachment.
-      // The error message is "Failed to execute task in background: Canvas: trying to use a recycled bitmap android.graphics.Bitmap"
       val result = GroupManager.createOpenGroup(chat.id, context, avatar, chat.displayName)
       threadID = result.threadId
     }

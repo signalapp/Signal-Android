@@ -69,8 +69,7 @@ class ProfilePictureView : RelativeLayout {
             }
         }
         fun isOpenGroupWithAvatar(recipient: Recipient): Boolean {
-            return recipient.isOpenGroupRecipient &&
-                    DatabaseFactory.getGroupDatabase(context).hasAvatar(recipient.address.toString())
+            return recipient.isOpenGroupRecipient && recipient.groupAvatarId != null
         }
         if (recipient.isGroupRecipient && !isOpenGroupWithAvatar(recipient)) {
             val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()

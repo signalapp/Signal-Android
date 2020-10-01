@@ -509,6 +509,11 @@ public class Recipient implements RecipientModifiedListener {
     if (notify) notifyListeners();
   }
 
+  @Nullable
+  public synchronized Long getGroupAvatarId() {
+    return groupAvatarId;
+  }
+
   public synchronized @Nullable Uri getMessageRingtone() {
     if (messageRingtone != null && messageRingtone.getScheme() != null && messageRingtone.getScheme().startsWith("file")) {
       return null;
