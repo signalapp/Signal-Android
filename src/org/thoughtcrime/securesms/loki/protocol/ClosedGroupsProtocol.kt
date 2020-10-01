@@ -124,7 +124,6 @@ object ClosedGroupsProtocol {
         val wasAnyUserRemoved = members.toSet().intersect(oldMembers) != oldMembers.toSet()
         val removedMembers = oldMembers.minus(members)
         val isUserLeaving = removedMembers.contains(userPublicKey)
-        var allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey);
         var newSenderKeys = listOf<ClosedGroupSenderKey>()
         if (wasAnyUserRemoved) {
             if (isUserLeaving && removedMembers.count() != 1) {
@@ -150,6 +149,15 @@ object ClosedGroupsProtocol {
             } else {
                 // Establish sessions if needed
                 establishSessionsWithMembersIfNeeded(context, members)
+                // Send closed group update messages to any new members using established channels
+                for (member in newMembers) {
+                    @Suppress("NAME_SHADOWING")
+                    val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name,
+                        Hex.fromStringCondensed(groupPrivateKey), listOf(), membersAsData, adminsAsData)
+                    @Suppress("NAME_SHADOWING")
+                    val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
+                    ApplicationContext.getInstance(context).jobManager.add(job)
+                }
                 // Send out the user's new ratchet to all members (minus the removed ones) using established channels
                 val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
                 val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
@@ -173,22 +181,24 @@ object ClosedGroupsProtocol {
                 newSenderKeys, membersAsData, adminsAsData)
             val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
             ApplicationContext.getInstance(context).jobManager.add(job)
+            // Establish sessions if needed
+            establishSessionsWithMembersIfNeeded(context, newMembers)
+            // Send closed group update messages to the new members using established channels
+            var allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey);
+            allSenderKeys = allSenderKeys.union(newSenderKeys)
+            for (member in newMembers) {
+                @Suppress("NAME_SHADOWING")
+                val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name,
+                    Hex.fromStringCondensed(groupPrivateKey), allSenderKeys, membersAsData, adminsAsData)
+                @Suppress("NAME_SHADOWING")
+                val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
+                ApplicationContext.getInstance(context).jobManager.add(job)
+            }
         } else {
+            val allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey);
             val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey), name,
                 allSenderKeys, membersAsData, adminsAsData)
             val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
-            ApplicationContext.getInstance(context).jobManager.add(job)
-        }
-        // Establish sessions if needed
-        establishSessionsWithMembersIfNeeded(context, newMembers)
-        // Send closed group update messages to the new members using established channels
-        allSenderKeys = allSenderKeys.union(newSenderKeys)
-        for (member in newMembers) {
-            @Suppress("NAME_SHADOWING")
-            val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.New(Hex.fromStringCondensed(groupPublicKey), name,
-                Hex.fromStringCondensed(groupPrivateKey), allSenderKeys, membersAsData, adminsAsData)
-            @Suppress("NAME_SHADOWING")
-            val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
             ApplicationContext.getInstance(context).jobManager.add(job)
         }
         // Update the group
@@ -265,7 +275,7 @@ object ClosedGroupsProtocol {
         // Sort out any discrepancies between the provided sender keys and what's required
         val missingSenderKeys = members.toSet().subtract(senderKeys.map { Hex.toStringCondensed(it.publicKey) })
         if (missingSenderKeys.contains(userPublicKey)) {
-            establishSessionsWithMembersIfNeeded(context, missingSenderKeys)
+            establishSessionsWithMembersIfNeeded(context, members)
             val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
             val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
             for (member in members) {
@@ -282,8 +292,15 @@ object ClosedGroupsProtocol {
         }
         // Create the group
         val groupID = doubleEncodeGroupID(groupPublicKey)
-        DatabaseFactory.getGroupDatabase(context).create(groupID, name, LinkedList<Address>(members.map { Address.fromSerialized(it) }),
-            null, null, LinkedList<Address>(admins.map { Address.fromSerialized(it) }))
+        val groupDB = DatabaseFactory.getGroupDatabase(context)
+        if (groupDB.getGroup(groupID).orNull() != null) {
+            // Update the group
+            groupDB.updateTitle(groupID, name)
+            groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        } else {
+            groupDB.create(groupID, name, LinkedList<Address>(members.map { Address.fromSerialized(it) }),
+                null, null, LinkedList<Address>(admins.map { Address.fromSerialized(it) }))
+        }
         DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
         // Add the group to the user's set of public keys to poll for
         sskDatabase.setClosedGroupPrivateKey(groupPublicKey, groupPrivateKey.toHexString())
@@ -382,7 +399,11 @@ object ClosedGroupsProtocol {
         // Respond to the request
         Log.d("Loki", "Responding to sender key request from: $senderPublicKey.")
         ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(senderPublicKey)
-        val userRatchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
+        val userRatchet = DatabaseFactory.getSSKDatabase(context).getClosedGroupRatchet(groupPublicKey, userPublicKey)
+        if (userRatchet == null) {
+            Log.d("Loki", "Missing own ratchet.")
+            return
+        }
         val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
         val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.SenderKey(Hex.fromStringCondensed(groupPublicKey), userSenderKey)
         val job = ClosedGroupUpdateMessageSendJob(senderPublicKey, closedGroupUpdateKind)
@@ -393,24 +414,12 @@ object ClosedGroupsProtocol {
         // Prepare
         val sskDatabase = DatabaseFactory.getSSKDatabase(context)
         val groupPublicKey = closedGroupUpdate.groupPublicKey.toByteArray().toHexString()
-        val groupDB = DatabaseFactory.getGroupDatabase(context)
-        val groupID = doubleEncodeGroupID(groupPublicKey)
-        val group = groupDB.getGroup(groupID).orNull()
-        if (group == null) {
-            Log.d("Loki", "Ignoring closed group sender key for nonexistent group.")
-            return
-        }
         val senderKeyProto = closedGroupUpdate.senderKeysList.firstOrNull()
         if (senderKeyProto == null) {
             Log.d("Loki", "Ignoring invalid closed group sender key.")
             return
         }
         val senderKey = ClosedGroupSenderKey(senderKeyProto.chainKey.toByteArray(), senderKeyProto.keyIndex, senderKeyProto.publicKey.toByteArray())
-        // Check that the sending user is a member of the group
-        if (!group.members.map { it.serialize() }.contains(senderPublicKey)) {
-            Log.d("Loki", "Ignoring closed group sender key from non-member.")
-            return
-        }
         if (senderKeyProto.publicKey.toByteArray().toHexString() != senderPublicKey) {
             Log.d("Loki", "Ignoring invalid closed group sender key.")
             return
