@@ -498,4 +498,11 @@
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
+
+    <style name="Widget.TimeDurationPicker.Dialog">
+        <item name="durationDisplayBackground">?colorControlActivated</item>
+        <item name="textAppearanceDisplay">@style/TextAppearance.TimeDurationPicker.Display.Large.Dark</item>
+        <item name="textAppearanceUnit">@style/TextAppearance.TimeDurationPicker.Unit.Large.Dark</item>
+        <item name="android:layoutDirection">ltr</item>
+    </style>
 </resources>
