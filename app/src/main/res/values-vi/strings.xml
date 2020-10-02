@@ -123,6 +123,10 @@
   <string name="ClearProfileActivity_remove">Loại bỏ</string>
   <string name="ClearProfileActivity_remove_profile_photo">Bỏ ảnh đại diện?</string>
   <string name="ClearProfileActivity_remove_group_photo">Loại bỏ ảnh nhóm?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Cập nhật Signal</string>
+  <string name="ClientDeprecatedActivity_update">Cập nhật</string>
+  <string name="ClientDeprecatedActivity_warning">Cảnh báo</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Không tìm thấy trình duyệt.</string>
   <string name="CommunicationActions_no_email_app_found">Không tìm thấy ứng dụng email.</string>
@@ -192,11 +196,6 @@
   <string name="ConversationActivity_added_to_home_screen">Thêm vào màn hình chính</string>
   <string name="ConversationActivity_calls_not_supported">Không hỗ trợ gọi điện</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Thiết bị này không hỗ trợ thao tác quay số.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Rời nhóm?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc muốn rời nhóm này?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Chọn quản trị viên mới</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Trước khi rời nhóm, bạn phải chọn ít nhất một quản trị viên mới cho nhóm này.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Chọn quản trị viên</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -357,6 +356,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Tối ưu hóa khi không có dịch vụ Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Thiết bị này không hỗ trợ dịch vụ Google Play. Nhấn để tắt tính năng tối ưu hóa pin khiến Signal không thể nhận tin nhắn duới nền.</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Gửi nhiều tệp đính kèm chỉ áp dụng cho ảnh và video</string>
@@ -377,6 +377,7 @@
   <string name="AddToGroupActivity_add_to_group">Thêm vào nhóm</string>
   <string name="AddToGroupActivity_add_to_groups">Thêm vào các nhóm</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Người này không thể được thêm vào nhóm cũ.</string>
+  <string name="AddToGroupActivity_add">Thêm</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Chọn quản trị viên mới</string>
   <string name="ChooseNewAdminActivity_done">Xong</string>
@@ -399,6 +400,13 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" không thể được tự động thêm vào nhóm bởi bạn.\n\nHọ đã được mời tham gia và sẽ không thấy tin nhắn trong nhóm cho đến khi họ chấp nhận.</string>
   <string name="GroupManagement_learn_more">Tìm hiểu thêm</string>
   <string name="GroupManagement_invite_multiple_users">Những người dùng này không thể được tự động thêm vào nhóm bởi bạn.\n\nHọ đã được mời tham gia và sẽ không thấy tin nhắn trong nhóm cho đến khi họ chấp nhận.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Rời nhóm?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Bạn sẽ không thể gửi hoặc nhận tin nhắn trong nhóm này nữa.</string>
+  <string name="LeaveGroupDialog_leave">Rời khỏi</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Chọn quản trị viên mới</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Trước khi rời nhóm, bạn phải chọn ít nhất một quản trị viên mới cho nhóm này.</string>
+  <string name="LeaveGroupDialog_choose_admin">Chọn quản trị viên</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Tắt</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Xem trước tất cả liên kết</string>
@@ -440,6 +448,7 @@
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">Thêm %3$d thành viên vào \"%2$s\"?</item>
   </plurals>
+  <string name="AddMembersActivity__add">Thêm</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Đặt tên nhóm này</string>
   <string name="AddGroupDetailsFragment__create_group">Tạo nhóm</string>
@@ -468,8 +477,6 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Yêu cầu tham gia &amp; Lời mời</string>
   <string name="ManageGroupActivity_add_members">Thêm thành viên</string>
   <string name="ManageGroupActivity_edit_group_info">Sửa thông tin nhóm</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Chọn ai có quyền sửa tên nhóm, ảnh nhóm và tin nhắn tự hủy.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Chọn ai có quyền thêm hoặc mời thành viên mới</string> -->
   <string name="ManageGroupActivity_group_link">Đường dẫn nhóm</string>
   <string name="ManageGroupActivity_block_group">Chặn nhóm</string>
   <string name="ManageGroupActivity_unblock_group">Bỏ chặn nhóm</string>
@@ -497,7 +504,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Không thể cập nhật nhóm vì lỗi mạng, vui lòng thử lại sau</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Sửa tên và ảnh</string>
   <string name="ManageGroupActivity_legacy_group">Nhóm Cũ</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Đây là một Nhóm Cũ. Để truy cập các tính năng mới như quản trị viên, hãy tạo Nhóm Mới.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Thông báo khi tôi được nhắc tên</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nhận thông báo khi bạn được nhắc tên trong cuộc trò chuyện đã im lặng?</string>
@@ -888,6 +894,7 @@
   <string name="ExpirationDialog_disappearing_messages">Tin nhắn tự hủy</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Tin nhắn sẽ không tự hủy.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Tin nhắn gửi và nhận trong cuộc trò chuyện này sẽ tự hủy sau %s sau khi đã được xem.</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Điền mật khẩu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Signal</string>
@@ -967,6 +974,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Đang gọi âm thanh Signal</string>
   <string name="WebRtcCallView__signal_video_call">Đang gọi video Signal…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết
@@ -1372,6 +1380,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="conversation_item_sent__message_read">Đã xem tin nhắn</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Ảnh liên hệ</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Đang tải…</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Phát … Tạm dừng</string>
   <string name="audio_view__download_accessibility_description">Tải xuống</string>
@@ -1742,7 +1752,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_storage__none">Không</string>
   <string name="preferences_storage__s_messages">%1$s tin nhắn</string>
   <string name="preferences_storage__custom">Tùy chỉnh</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Giới hạn độ dài cuộc trò chuyện</string> -->
   <string name="preferences_advanced__use_system_emoji">Sử dụng biểu tượng cảm xúc hệ thống</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Tắt hỗ trợ biểu tượng cảm xúc của Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Chuyển tiếp tất cả cuộc gọi qua máy chủ Signal để tránh lộ địa chỉ IP với đối tác. Bật tính năng này sẽ giảm chất lượng cuộc gọi.</string>
@@ -1862,13 +1871,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Sao chép vào clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">So sánh với clipboard</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Phiên bản Signal của bạn đã quá cũ</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Phiên bản Signal của bạn sẽ hết hạn trong %d ngày. Nhấn để cập nhật lên phiên bản mới nhất.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Phiên bản Signal của bạn sẽ hết hạn vào hôm nay. Nhấn để cập nhật lên phiên bản mới nhất.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Phiên bản Signal của bạn đã hết hạn!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Tin nhắn sẽ không thể gửi đi được nữa. Nhấn để cập nhật lên phiên bản mới nhất.</string> -->
   <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định</string>
   <string name="reminder_header_sms_default_text">Nhấn để đặt Signal làm ứng dụng SMS mặc định.</string>
   <string name="reminder_header_sms_import_title">Nhập SMS hệ thống</string>
@@ -2003,9 +2005,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="KbsMegaphone__update_pin">Cập nhật mã PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Chúng tôi sẽ nhắc bạn sau. Việc tạo mã PIN sẽ trở nên bắt buộc sau %1$d ngày.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Chúng tôi sẽ nhắc bạn sau. Xác minh mã PIN của bạn sẽ trở nên bắt buộc sau %1$d ngày.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Giới thiệu tính năng @Nhắc tên</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Lấy sự chú ý của ai đó trong \"Nhóm Mới\" bằng cách gõ @</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_learn_more">Tìm hiểu thêm</string>
+  <string name="ResearchMegaphone_dismiss">Bỏ qua</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Xin miễn</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
   <string name="ConversationListFragment_loading">Đang tải…</string>
@@ -2145,8 +2148,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RecipientBottomSheet_insecure_voice_call_description">Gọi thoại không bảo mật</string>
   <string name="RecipientBottomSheet_video_call_description">Gọi video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Loại bỏ quyền quản trị của %1$s?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s sẽ có quyền thay đổi thông tin và thành viên nhóm</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Loại bỏ %1$s khỏi \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Loại bỏ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Đã sao chép vào clipboard</string>
   <string name="GroupRecipientListItem_admin">Quản trị viên</string>
@@ -2156,9 +2157,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="GroupsLearnMore_legacy_vs_new_groups">Nhóm Mới và Nhóm Cũ</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Nhóm Cũ là gì?</string>
   <string name="GroupsLearnMore_paragraph_1">Nhóm Cũ là nhóm không tương thích với các tính năng mới như quản trị viên hay cập nhật cụ thể thông tin nhóm.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Làm thế nào tôi có thể sử dụng Nhóm Mới?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Nhóm Cũ không thể được chuyển đổi thành Nhóm Mới, nhưng bạn có thể tạo một Nhóm Mới với những thành viên cũ.</string>
-  <string name="GroupsLearnMore_paragraph_3">Để tạo Nhóm Mới, tất cả thành viên cần phải cập nhật lên phiên bản Signal mới nhất.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Chia sẻ qua Signal</string>
   <string name="GroupLinkBottomSheet_copy">Sao chép</string>

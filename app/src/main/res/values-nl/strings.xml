@@ -126,6 +126,13 @@
   <string name="ClearProfileActivity_remove">Verwijderen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
   <string name="ClearProfileActivity_remove_group_photo">Groepsafbeelding verwijderen?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Signal bijwerken</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Deze versie van de app wordt niet langer ondersteund. Om berichten te kunnen blijven verzenden en ontvangen moet je Signal bijwerken naar de meest recente versie.</string>
+  <string name="ClientDeprecatedActivity_update">Bijwerken</string>
+  <string name="ClientDeprecatedActivity_dont_update">Niet bijwerken</string>
+  <string name="ClientDeprecatedActivity_warning">Waarschuwing</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Jouw versie van Signal is verlopen. Je kunt je gespreksgeschiedenis nog weergeven maar je kunt geen nieuwe berichten verzenden of ontvangen totdat je Signal hebt bijgewerkt.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
   <string name="CommunicationActions_no_email_app_found">Geen e-mail-app gevonden op je apparaat.</string>
@@ -195,11 +202,6 @@
   <string name="ConversationActivity_added_to_home_screen">Aan thuisscherm toegevoegd</string>
   <string name="ConversationActivity_calls_not_supported">Bellen niet ondersteund</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt belacties niet te ondersteunen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Groep verlaten?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet je zeker dat je deze groep wilt verlaten?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Kies een nieuwe beheerder</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Beheerder kiezen</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde sms</string>
   <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -371,6 +373,9 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
+  <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Deze versie van Signal is verlopen. Werk Signal bij om weer berichten te kunnen verzenden en ontvangen.</string>
+  <string name="ExpiredBuildReminder_update_now">Nu bijwerken</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Doorsturen naar</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Het verzenden van meerdere bijlagen is alleen mogelijk voor afbeeldingen en video\'s</string>
@@ -391,6 +396,7 @@
   <string name="AddToGroupActivity_add_to_group">Aan groep toevoegen</string>
   <string name="AddToGroupActivity_add_to_groups">Aan groepen toevoegen</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan een oude groep.</string>
+  <string name="AddToGroupActivity_add">Toevoegen</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Kies een nieuwe beheerder</string>
   <string name="ChooseNewAdminActivity_done">Klaar</string>
@@ -414,6 +420,13 @@
   <string name="GroupManagement_invite_single_user">“%1$s” kan niet direct door jou worden toegevoegd aan de groep. In plaats daarvan heeft hij of zij een uitnodiging gekregen om lid te worden van de groep, en hij of zij zal geen berichten van de groep kunnen zien totdat hij of zij de uitnodiging heeft aanvaard.</string>
   <string name="GroupManagement_learn_more">Meer leren hierover</string>
   <string name="GroupManagement_invite_multiple_users">Deze gebruikers kunnen niet direct door jou aan de groep worden toegevoegd. In plaats daarvan hebben ze een uitnodiging gekregen om lid te worden van de groep, en ze zullen geen berichten van de groep kunnen zien totdat ze de uitnodiging hebben aanvaard.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Groep verlaten?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult in dit groepsgesprek niet langer berichten  kunnen verzenden of ontvangen.</string>
+  <string name="LeaveGroupDialog_leave">Verlaten</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Kies een nieuwe beheerder</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string>
+  <string name="LeaveGroupDialog_choose_admin">Beheerder kiezen</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Uitschakelen</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Voor elke website voorbeeldafbeeldingen</string>
@@ -433,7 +446,7 @@
   <string name="PendingMembersActivity_invites">Uitnodigingen</string>
   <string name="PendingMembersActivity_people_you_invited">Personen die jij voor de groep hebt uitgenodigd</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Er zijn geen door jou verzonden uitnodigingen in afwachting van een reactie.</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">Persinen die door andere leden voor de groep zijn uitgenodigd</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Personen die door andere leden voor de groep zijn uitgenodigd</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Er zijn geen door andere groepsleden verzonden uitnodigingen in afwachting van een reactie.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen wie door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment zijn of haar profielnaam en -foto zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet aanvaard hebben zullen ze nog geen groepsberichten ontvangen.</string>
   <string name="PendingMembersActivity_revoke_invite">Uitnodiging intrekken</string>
@@ -460,6 +473,7 @@
     <item quantity="one">%1$s toevoegen aan “%2$s”?</item>
     <item quantity="other">%3$d personen toevoegen aan “%2$s”?</item>
   </plurals>
+  <string name="AddMembersActivity__add">Toevoegen</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Geef dit groepsgesprek een naam </string>
   <string name="AddGroupDetailsFragment__create_group">Groep aanmaken</string>
@@ -490,8 +504,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatschaps verzoeken &amp; uitnodigingen</string>
   <string name="ManageGroupActivity_add_members">Leden toevoegen</string>
   <string name="ManageGroupActivity_edit_group_info">Groepsinformatie aanpassen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Kies wie de naam van de groep, de groepsafbeelding en de timer voor zelfwissende berichten mag aanpassen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Kies wie nieuwe leden mag toevoegen of uitnodigen.</string> -->
+  <string name="ManageGroupActivity_who_can_add_new_members">Wie mag nieuwe leden toevoegen?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Wie mag de groepsinformatie aanpassen?</string>
   <string name="ManageGroupActivity_group_link">Groepsverwijzing</string>
   <string name="ManageGroupActivity_block_group">Groep blokkeren en verlaten</string>
   <string name="ManageGroupActivity_unblock_group">Groep deblokkeren</string>
@@ -521,7 +535,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Het bijwerken van de groep is mislukt vanwege een netwerkfout. Probeer het later opnieuw</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Naam en afbeelding aanpassen</string>
   <string name="ManageGroupActivity_legacy_group">Verouderde groep</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten te kunnen gebruiken zoals beheerders moet je een nieuwe groep aanmaken.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten zoals groepsbeheer te kunnen gebruiken moet je een nieuwe groep aanmaken.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal berichtenapp te gebruiken.</string>
+  <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Wil je meldingen ontvangen wanneer iemand je in een gedempt gesprek vermeld?</string>
@@ -614,6 +630,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Lid worden van een groep is nog niet ondersteund in Signal. Deze functie zal in een komende versie uitgeleverd worden.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt groepsverwijzingen niet. Werk Signal bij naar de meest recente versie om via een verwijzing lid te kunnen worden van een groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Een of meerdere van je gekoppelde apparaten gebruikt een versie van Signal die geen groepsverwijzingen ondersteunt. Werk Signal op die apparaten bij om lid te worden van deze groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepsverwijzing</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
@@ -937,6 +954,13 @@
   <string name="ExpirationDialog_disappearing_messages">Zelfwissende berichten</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Nieuwe berichten die in dit gesprek verzonden of ontvangen worden zullen zichzelf niet wissen. – Gebruik zelfwissende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Elk nieuwe bericht dat in dit gesprek verzonden of ontvangen wordt zal zichzelf na %s wissen. Voor iedere deelnemer aan het gesprek begint de tijd pas te lopen als hij het bericht heeft gezien. – Gebruik zelfwissende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Nu bijwerken</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Deze versie van Signal zal vandaag verlopen. Werk bij naar de meest recente versie.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Deze versie van Signal zal morgen verlopen. Werk bij naar de meest recente versie.</item>
+    <item quantity="other">Deze versie van Signal zal in %d dagen verlopen. Werk bij naar de meest recente versie.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-pictogram</string>
@@ -1014,9 +1038,19 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal heeft toegang nodig tot je camera om %1$s te bellen</string>
   <string name="WebRtcCallActivity__signal_s">Signal-oproep %1$s</string>
   <string name="WebRtcCallActivity__calling">Aan het bellen …</string>
+  <string name="WebRtcCallActivity__group_call">Groepsoproep</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal audio-oproep …</string>
   <string name="WebRtcCallView__signal_video_call">Signal video-oproep …</string>
+  <string name="WebRtcCallView__start_call">Oproep beginnen</string>
+  <string name="WebRtcCallView__group_call">Groepsoproep</string>
+  <string name="WebRtcCallView__view_participants_list">Deelnemers weergeven</string>
+  <string name="WebRtcCallView__your_video_is_off">Je camera staat uit</string>
+  <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">In deze oproep · %1$d persoon</item>
+    <item quantity="other">In deze oproep · %1$d personen</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet jouw
@@ -1433,6 +1467,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="conversation_item_sent__message_read">Bericht gelezen</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto van contactpersoon</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Aan het laden</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -1813,7 +1849,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_storage__none">Geen limiet</string>
   <string name="preferences_storage__s_messages">%1$s berichten</string>
   <string name="preferences_storage__custom">Aangepast</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Aangepaste gesprekslengtelimiet</string> -->
   <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Signal uit</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd omgeleid via de Signal-server. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
@@ -1933,14 +1968,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiëren naar klembord</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vergelijken met klembord</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Je versie van Signal is verouderd</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Deze versie van Signal zal over %d dag verlopen. Tik hier om bij te werken naar de meest recente versie.</item>
-    <item quantity="other">Deze versie van Signal zal over %d dagen verlopen. Tik hier om bij te werken naar de meest recente versie.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Deze versie van Signal zal vandaag verlopen. Tik hier om bij te werken naar de meest recente versie.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Deze versie van Signal is verlopen!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Berichten kunnen niet langer verzonden worden. Tik hier om bij te werken naar de meest recente versie.</string> -->
   <string name="reminder_header_sms_default_title">Als standaard sms-app gebruiken</string>
   <string name="reminder_header_sms_default_text">Tik hier om van Signal je standaard sms-app te maken.</string>
   <string name="reminder_header_sms_import_title">Sms uit systeem importeren</string>
@@ -2082,9 +2109,16 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="KbsMegaphone__update_pin">Pincode bijwerken</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Je zult er later aan worden herinnert dat je nog een pincode moet aanmaken. Dit wordt binnen %1$d dagen verplicht.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Je zult er later aan worden herinnert dat je nog moet bevestigen dat je je huidige pincode nog bezit. Dit wordt binnen %1$d dagen verplicht.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">We introduceren @Vermeldingen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Krijg iemands aandacht in een ‘nieuwe stijl groep’ door een @ gevolgd door zijn of haar gebruikersnaam te typen</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Vertel Signal-organisatie wat je van de Signal app vindt</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Om Signal de beste berichtenapp op deze planeet te maken, horen we graag ook van jou wat je van Signal vindt.</string>
+  <string name="ResearchMegaphone_learn_more">Meer leren hierover</string>
+  <string name="ResearchMegaphone_dismiss">Sluiten</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Signal-onderzoek</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We geloven in privacy.</b></p><p>Signal volgt je gedrag niet en verzamelt je gegevens niet. Om Signal zonder die gegevens toch voor iedereen beter te maken zijn we afhankelijk van terugkoppeling van gebruikers, <b>en we zouden ook graag van je horen wat je van Signal vindt</b>.</p><p>We organiseren een enquête om te begrijpen op welke manier en waarvoor jij Signal gebruikt. Onze enquête verzamelt geen gegevens waarmee jij geïdentificeerd kan worden. Als je graag meer terugkoppeling geeft, dan kun je gebruik maken van de vrijblijvende optie om je contactgegevens in te vullen.</p><p>Als je een aantal minuten tijd vrij hebt, en als je iets hebt om terug te koppelen, dan horen we graag van je.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">De enquête invullen</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Nee bedankt</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">De enquête wordt beschikbaar gesteld door Surveygizmo via het beveiligde domein surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden …</string>
@@ -2224,8 +2258,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RecipientBottomSheet_insecure_voice_call_description">Onbeveiligde spraakoproep</string>
   <string name="RecipientBottomSheet_video_call_description">Video-oproep</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">De beheerdersbevoegdheden van %1$s intrekken?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s zal de groepsinformatie en groepslidmaatschap kunnen aanpassen</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">%1$s verwijderen van “%2$s”?</string> -->
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">“%1$s” zal de groepsinformatie en groepslidmaatschap kunnen aanpassen.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s van deze groep verwijderen?</string>
   <string name="RecipientBottomSheet_remove">Verwijderen</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="GroupRecipientListItem_admin">Beheerder</string>
@@ -2235,9 +2269,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="GroupsLearnMore_legacy_vs_new_groups">Verouderde groepen tegenover nieuwe groepen</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Wat zijn oude groepen?</string>
   <string name="GroupsLearnMore_paragraph_1">Verouderde groepen zijn groepen waarin je geen gebruik kunt maken van nieuwe functionaliteiten zoals beheerders en meer gedetailleerde meldingen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Hoe kan ik de nieuwe groepen gebruiken?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden.</string>
-  <string name="GroupsLearnMore_paragraph_3">Om een nieuwe groep aan te maken moeten alle leden hun Signal app bijwerken naar de meest recente versie.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan ik een verouderde groep omzetten in een nieuwe groep?</string>
+  <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden mits ze allemaal de meeste recente versie van Signal gebruiken.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal zal in de toekomst een manier aanbieden om verouderde groepen om te zetten in nieuwe groepen.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Verzenden via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiëren</string>

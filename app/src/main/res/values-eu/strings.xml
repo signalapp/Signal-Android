@@ -126,6 +126,10 @@
   <string name="ClearProfileActivity_remove">Ezabatu</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profileko argazkia ezabatu?</string>
   <string name="ClearProfileActivity_remove_group_photo">Taldeko argazkia ezabatu?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Eguneratu Signal</string>
+  <string name="ClientDeprecatedActivity_update">Eguneratu</string>
+  <string name="ClientDeprecatedActivity_warning">Markatutako zenbakia ez dago Signalen erregistratuta. SMS bidez gonbidatu nahiko zenuke?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ezin izan da nabigatzailerik aurkitu.</string>
   <string name="CommunicationActions_no_email_app_found">Ez da e-posta aplikaziorik aurkitu.</string>
@@ -195,11 +199,6 @@
   <string name="ConversationActivity_added_to_home_screen">Hasiera pantailara gehituta</string>
   <string name="ConversationActivity_calls_not_supported">Deiak ez daude onartuta</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Badirudi gailu honek ez duela onartzen telefono deiekin lotutako ekintzak.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Taldea utzi?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ziur zaude talde hau utzi nahi izateaz?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Hautatu administratzaile berria</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Taldea utzi baino lehenago, gutxienez administratzaile berri bat aukeratu behar duzu talde honetarako.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Hautatu administratzailea</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS ez segurua</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -371,6 +370,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizatu Google Play-ren zerbitzuetarko</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Gailu honek ez dauka Play Services erabiltzerik. Signal irekita ez dagoenean, sistemaren bateria optimizazioek galarazten diote mezuak jasotzea. Ukitu sistemaren bateria optimizazioak ezgaitzeko.</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Honekin partekatu:</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Eranskin anitzak bakarrik irudi eta bideoetan onartzen dira</string>
@@ -391,6 +391,7 @@
   <string name="AddToGroupActivity_add_to_group">Gehitu taldera</string>
   <string name="AddToGroupActivity_add_to_groups">Gehitu taldeetara</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
+  <string name="AddToGroupActivity_add">Gehitu</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Hautatu administratzaile berria</string>
   <string name="ChooseNewAdminActivity_done">Eginda</string>
@@ -414,6 +415,13 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" erabiltzailea ezin duzu talde honetan modu automatikoan sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
   <string name="GroupManagement_learn_more">Gehiago jakin</string>
   <string name="GroupManagement_invite_multiple_users">Ezin duzu erabiltzaile hauek modu automatikoan taldean sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Taldea utzi?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Talde honetan ezin izango duzu mezurik bidali eta jaso.</string>
+  <string name="LeaveGroupDialog_leave">Utzi</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Hautatu administratzaile berria</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Taldea utzi baino lehenago, gutxienez administratzaile berri bat aukeratu behar duzu talde honetarako.</string>
+  <string name="LeaveGroupDialog_choose_admin">Hautatu administratzailea</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Desgaitu</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Aurreikusi edozein esteka</string>
@@ -459,6 +467,7 @@
     <item quantity="one">\"%1$s\" kidea gehitu \"%2$s\" taldera</item>
     <item quantity="other">%3$d kideak gehitu \"%2$s\"  taldera?</item>
   </plurals>
+  <string name="AddMembersActivity__add">Gehitu</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Eman izena talde honi</string>
   <string name="AddGroupDetailsFragment__create_group">Taldea sortu</string>
@@ -489,8 +498,6 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Kideen eskaera &amp; gonbidapenak</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
   <string name="ManageGroupActivity_edit_group_info">Editatu taldeari buruzko informazioa</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Aukeratu taldearen izena, abatarra eta mezuak desagertzeko tenporizadorea alda dezakeena.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Aukeratu kide berriak gehitu edo gonbidatu dezakeena</string> -->
   <string name="ManageGroupActivity_group_link">Talderako esteka</string>
   <string name="ManageGroupActivity_block_group">Blokeatu taldea</string>
   <string name="ManageGroupActivity_unblock_group">Desblokeatu taldea</string>
@@ -520,7 +527,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ezin izan da taldea eguneratu sare errore bat dela eta; mesedez, beranduago saia zaitez</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editatu izena eta irudia</string>
   <string name="ManageGroupActivity_legacy_group">Jarauntsitako Taldea</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Hau Jarauntsitako Talde bat da. Talde administratzaile moduko ezaugarriak erabili ahal izateko, Talde Berri bat sortu.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nahi duzu jakinarazpenak jaso mutututako txatetan aipatzen zaituztenean?</string>
@@ -936,6 +942,7 @@
   <string name="ExpirationDialog_disappearing_messages">Mezuen desagerpena</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Zure mezuak ez dira iraungiko.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetako mezu guztiak, bai jasoak zein bidaliak, irakurri eta %s igaro ondoren desagertu egingo dira.</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Pasahitza sartu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonoa</string>
@@ -1016,6 +1023,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal ahots deia…</string>
   <string name="WebRtcCallView__signal_video_call">Signal bideo deia…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Aukeratu zure herrialdea</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zure herrialdearen 
@@ -1430,6 +1438,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_item_sent__message_read">Mezua irakurrita</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktuaren argazkia</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Kargatzen</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Erreproduzitu … Pausatu</string>
   <string name="audio_view__download_accessibility_description">Deskargatu</string>
@@ -1809,7 +1819,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_storage__none">Bat ere ez</string>
   <string name="preferences_storage__s_messages">%1$s mezu</string>
   <string name="preferences_storage__custom">Pertsonalizatua</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Solasaldirako egindako luzera muga pertsonalizatua.</string> -->
   <string name="preferences_advanced__use_system_emoji">Erabili sistemaren emojiak</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desaktibatu Signalen emoji integratuak</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Birtransmititu dei guztiak Signal zerbitzari baten bitartez; horrela ez diozu erakutsiko zure IP helbidea kontaktuari. Aktibatzeak deiaren kalitatea gutxiagotuko du.</string>
@@ -1929,14 +1938,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiatu arbelera</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Zure Signal bertsioa zaharkitua dago</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Zure Signal-en bertsioa egun %d barru iraungiko da. Sakatu azkenengo bertsiora eguneratzeko.</item>
-    <item quantity="other">Zure Signal-en bertsioa %d egun barru iraungiko da. Sakatu azkenengo bertsiora eguneratzeko.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Gaur amaituko da zure Signal bertsioa erabiltzeko epea. Ukitu azken bertsioara eguneratzeko.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Amaitu da zure Signal bertsioa erabiltzeko epea!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mezuak ezingo dira bidali.  Ukitu azken bertsiora eguneratzeko.</string> -->
   <string name="reminder_header_sms_default_title">Lehenetsitako SMS aplikazio gisa erabili</string>
   <string name="reminder_header_sms_default_text">Ukitu Signal zure SMS aplikazio lehenetsia bihurtzeko</string>
   <string name="reminder_header_sms_import_title">Importatu sistemaren SMS mezuak</string>
@@ -2078,9 +2079,10 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="KbsMegaphone__update_pin">Eguneratu PINa</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Beranduago gogoraraziko dizugu. PIN bat sortzea beharrezkoa izango da %1$d eguneta.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Beranduago gogoraraziko dizugu. Zure PINa baieztatzea derrigorrezkoa izango da %1$d egunetan.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">@Aipamenak Aurkezten</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Eskuratu norbaiten arreta \"Talde Berri\" batean @ ikurra idatziz</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_learn_more">Gehiago jakin</string>
+  <string name="ResearchMegaphone_dismiss">Baztertu</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Ez, eskerrik asko</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>
@@ -2220,8 +2222,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RecipientBottomSheet_insecure_voice_call_description">Ahots dei ez segurua</string>
   <string name="RecipientBottomSheet_video_call_description">Bideo deia</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s erabiltzailea talde administratzaile gisa ezabatu nahi duzu?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s erabiltzailea talde hau eta bere kideak editatzeko gai izango da</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">%1$s erabiltzailea \"%2$s\"-tik ezabatu?</string> -->
   <string name="RecipientBottomSheet_remove">Ezabatu</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="GroupRecipientListItem_admin">Administratzailea</string>
@@ -2231,9 +2231,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="GroupsLearnMore_legacy_vs_new_groups">Jarauntsitako Taldeak vs. Talde Berriak</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Zer dira Jarauntsitako Taldeak?</string>
   <string name="GroupsLearnMore_paragraph_1">Jarauntsitako Taldeak ez dira taldeen ezaugarri berriekin bateragarriak; esate baterako, administratzaileak eta taldeen egunerapenei buruzko informazio zehatzagoa izateko aukerak.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Nola erabili dezaket Talde Berriak?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Jarauntsitako Taldeak ezin dira Talde Berri bihurtu, baina kide berak dituen Talde Berri bat sortu dezakezu.</string>
-  <string name="GroupsLearnMore_paragraph_3">Talde Berri bat sortzeko, kide guztiek Signal-en azkenengo bertsioa izan behar dute.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partekatu Signal bidez</string>
   <string name="GroupLinkBottomSheet_copy">Kopiatu</string>

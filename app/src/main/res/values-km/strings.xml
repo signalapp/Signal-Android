@@ -123,6 +123,9 @@
   <string name="ClearProfileActivity_remove">លុបចេញ</string>
   <string name="ClearProfileActivity_remove_profile_photo">លុបរូបថតប្រវត្តិរូប?</string>
   <string name="ClearProfileActivity_remove_group_photo">លុបរូបក្រុម?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">ដំឡើង Signal</string>
+  <string name="ClientDeprecatedActivity_update">បច្ចុប្បន្នភាព</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ទំព័រវែបសាយរកមិនឃើញ.</string>
   <string name="CommunicationActions_no_email_app_found">អ៊ីម៉ែលរកមិនឃើញ។</string>
@@ -192,10 +195,6 @@
   <string name="ConversationActivity_added_to_home_screen">បានបន្ថែមទៅអេក្រង់ដើម</string>
   <string name="ConversationActivity_calls_not_supported">មិនគាំទ្រការហៅចេញ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ឧបករណ៍នេះមិនបង្ហាញដើម្បីគាំទ្រសកម្មភាពការហៅ។</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ចាកចេញពីក្រុម?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">តើអ្នកប្រាកដទេ ថាចង់ចាកចេញពីក្រុមនេះ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">ជ្រើសរើសអ្នកគ្រប់គ្រង</string> -->
   <string name="ConversationActivity_transport_insecure_sms">សារ មិនមានសុវត្ថិភាព</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS មិនមានសុវត្ថិភាព</string>
   <string name="ConversationActivity_transport_signal"> Signal</string>
@@ -350,6 +349,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">បង្កើនប្រសិទ្ធភាពសម្រាប់ការបាត់ Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ចែកទៅកាន់</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">ពហុឯកសារភ្ជាប់ គាំទ្រសម្រាប់តែរូបភាព និងវីដេអូ</string>
@@ -370,6 +370,7 @@
   <string name="AddToGroupActivity_add_to_group">បន្ថែមចូលក្រុម</string>
   <string name="AddToGroupActivity_add_to_groups">បន្ថែមទៅក្រុម</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">មនុស្សនេះ មិនអាចបន្ថែមចូលក្រុមមុនទេ។</string>
+  <string name="AddToGroupActivity_add">បន្ថែម</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string>
   <string name="ChooseNewAdminActivity_done">បញ្ចប់</string>
@@ -390,6 +391,12 @@
     <item quantity="other">ការអញ្ជើញ%d បានផ្ញើ</item>
   </plurals>
   <string name="GroupManagement_learn_more">សិក្សាបន្ថែម</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">ចាកចេញពីក្រុម?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">អ្នកនឹងមិនអាចផ្ញើ ឬទទួលសារក្នុងក្រុមនេះទៀតទេ។</string>
+  <string name="LeaveGroupDialog_leave">ចាកចេញ</string>
+  <string name="LeaveGroupDialog_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string>
+  <string name="LeaveGroupDialog_choose_admin">ជ្រើសរើសអ្នកគ្រប់គ្រង</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">បិទ</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">មើលមុនតំណណាមួយ</string>
@@ -431,6 +438,7 @@
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">បន្ថែមសមាជិក %3$d នាក់ទៅ \"%2$s\"?</item>
   </plurals>
+  <string name="AddMembersActivity__add">បន្ថែម</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ដាក់ឈ្មោះក្រុមនេះ</string>
   <string name="AddGroupDetailsFragment__create_group">បង្កើតក្រុម</string>
@@ -785,6 +793,7 @@
   <string name="ExpirationDialog_disappearing_messages">សារដែលមិនបង្ហាញ</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">សាររបស់អ្នកនឹងមិនផុតកំណត់ទេ។</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">សារ ដែលបានផ្ញើនិងទទួលក្នុងការសន្ទនានេះ នឹងបាត់ក្នុងពេល %s បន្ទាប់ពីត្រូវបានបើកមើល។</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">បញ្ចូលឃ្លាសម្ងាត់</string>
   <string name="PassphrasePromptActivity_watermark_content_description">រូប Signal </string>
@@ -858,6 +867,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal ហៅជាសំឡេង…</string>
   <string name="WebRtcCallView__signal_video_call">Signal ហៅជាវីដេអូ…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">ជ្រើសរើសប្រទេសរបស់អ្នក</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">អ្នកត្រូវបញ្ជាក់
@@ -1256,6 +1266,8 @@
   <string name="conversation_item_sent__message_read">សារបានអានរួច</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">រូបភាពទំនាក់ទំនង</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">កំពុងផ្ទុក</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">លេង … ផ្អាក</string>
   <string name="audio_view__download_accessibility_description">ទាញយក</string>
@@ -1705,13 +1717,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ចម្លងទៅ clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ប្រៀបធៀបជាមួយ clipboard</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">កំណែSignalរបស់អ្នកបានផុតកំណត់</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">ជំនាន់Signalរបស់អ្នក នឹងផុតកំណត់ក្នុងពេល %d ថ្ងៃ។ ចុច ធ្វើបច្ចុប្បន្នភាពទៅកាន់ជំនាន់ចុងក្រោយបំផុត។</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">កំណែSignalរបស់អ្នកនឹងផុតកំណត់ថ្ងៃនេះ។ ចុច បច្ចុប្បន្នភាពទៅកាន់កំណែចុងក្រោយបំផុត។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">កំណែស៊ីហ្គណ​លរបស់អ្នកបានផុតកំណត់!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">សារនឹងបញ្ជូនទៅដោយបានមិនជោគជ័យ។ ចុចធ្វើបច្ចុប្បន្នភាពទៅកាន់កំណែចុងក្រោយបំផុត។</string> -->
   <string name="reminder_header_sms_default_title">ប្រើជាកម្មវិធីផ្ញើសារ</string>
   <string name="reminder_header_sms_default_text">ចុច ដើម្បីដាក់ Signal ជាកម្មវិធី​ផ្ញើសាររបស់អ្នក​</string>
   <string name="reminder_header_sms_import_title">នាំចូលប្រព័ន្ធ SMS</string>
@@ -1843,7 +1848,10 @@
   <string name="KbsMegaphone__update_pin">បច្ចុប្បន្នភាពកូដ PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបង្កើតលេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបញ្ជាក់លេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
-  <!--Mention Megaphone-->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_learn_more">សិក្សាបន្ថែម</string>
+  <string name="ResearchMegaphone_dismiss">ច្រានចោល</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">ទេ អរគុណ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
   <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>
@@ -1975,8 +1983,6 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">ហៅជាសំឡេងគ្មានសុវត្ថិភាព</string>
   <string name="RecipientBottomSheet_video_call_description">ហៅជាវីដេអូ</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">លុប %1$s ពីអ្នកគ្រប់គ្រងក្រុម?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s នឹងមិនអាចកែប្រែក្រុមនេះ និងសមាជិកទេ</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">លុប %1$s ពី \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">លុបចេញ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="GroupRecipientListItem_admin">អ្នកគ្រប់គ្រង</string>

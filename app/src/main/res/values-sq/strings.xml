@@ -126,6 +126,13 @@
   <string name="ClearProfileActivity_remove">Hiqe</string>
   <string name="ClearProfileActivity_remove_profile_photo">Të hiqet foto profili?</string>
   <string name="ClearProfileActivity_remove_group_photo">Të hiqet foto grupi?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Përditësoni Signal-in</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Ky version i aplikacionit nuk mbulohet më. Që të vazhdoni të dërgoni dhe merrni mesazhe, përditësojeni me versionin më të ri.</string>
+  <string name="ClientDeprecatedActivity_update">Përditësoje</string>
+  <string name="ClientDeprecatedActivity_dont_update">Mos e Përditëso</string>
+  <string name="ClientDeprecatedActivity_warning">Paralajmërim</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versioni juaj i Signal-it ka skaduar. Mund të shihni historikun e mesazheve tuaj, por s’do të jeni në gjendje të dërgoni apo merrni mesazhe, para se ta përditësoni.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">S\’u gjet shfletues.</string>
   <string name="CommunicationActions_no_email_app_found">S’u gjet aplikacion email-esh.</string>
@@ -195,11 +202,6 @@
   <string name="ConversationActivity_added_to_home_screen">U shtua te skena e kreut</string>
   <string name="ConversationActivity_calls_not_supported">Thirrjet nuk mbulohen</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Kjo pajisje s\’duket se mbulon veprime formimi numrash.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Të braktiset grupi?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">A jeni i sigurt se dëshironi ta braktisni grupin?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Zgjidhni përgjegjës të ri</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Përpara se të largoheni, duhet të zgjidhni të paktën një përgjegjës të ri për këtë grup.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Zgjidhni përgjegjës</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS i pasigurt</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS i pasigurt</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -371,6 +373,9 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizoje për Shërbime Play që mungojnë</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Signal-in të marrë mesazhe teksa është joaktiv.</string>
+  <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ky version i Signal-it ka skaduar. Që të dërgoni dhe merrni mesazhe, përditësojeni që tani.</string>
+  <string name="ExpiredBuildReminder_update_now">Përditësoje tani</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Ndaje me</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Disa bashkëngjitje njëherësh mbulohen vetëm për figura dhe video</string>
@@ -391,6 +396,7 @@
   <string name="AddToGroupActivity_add_to_group">Shtoje te grupi</string>
   <string name="AddToGroupActivity_add_to_groups">Shtoni te grupe</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ky person s’mund të shtohet te grupe të dikurshëm.</string>
+  <string name="AddToGroupActivity_add">Shtoje</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Zgjidhni përgjegjës të ri</string>
   <string name="ChooseNewAdminActivity_done">U bë</string>
@@ -414,6 +420,13 @@
   <string name="GroupManagement_invite_single_user">“%1$s” s’mund të shtohet automatikisht te ky grup nga ju.\n\nËshtë ftuar të marrë pjesë, dhe s’do të shohë ndonjë mesazh grupi, para se të pranojnë ftesën.</string>
   <string name="GroupManagement_learn_more">Mësoni më tepër</string>
   <string name="GroupManagement_invite_multiple_users">Këta përdorues s’mund të shtohen automatikisht te ky grup nga ju.\n\n Janë ftuar të marrin pjesë te grupi, dhe s’do të shohin ndonjë mesazh grupi, përpara se të pranojnë ftesat.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Të braktiset grupi?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">S’do të jeni më në gjendje të dërgoni ose merrni mesazhe në këtë grup.</string>
+  <string name="LeaveGroupDialog_leave">Braktise</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Zgjidhni përgjegjës të ri</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Përpara se të largoheni, duhet të zgjidhni të paktën një përgjegjës të ri për këtë grup.</string>
+  <string name="LeaveGroupDialog_choose_admin">Zgjidhni përgjegjës</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Çaktivizoje</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Bëni paraparje të çfarëdo lidhjeje</string>
@@ -459,6 +472,7 @@
     <item quantity="one">Të shtohet \"%1$s\" te \"%2$s\"?</item>
     <item quantity="other">Të shtohen %3$d anëtarë te \"%2$s\"?</item>
   </plurals>
+  <string name="AddMembersActivity__add">Shtoje</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Emërtojeni këtë grup</string>
   <string name="AddGroupDetailsFragment__create_group">Krijo grup</string>
@@ -492,8 +506,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_member_requests_and_invites">Kërkesa &amp; ftesa anëtarësie</string>
   <string name="ManageGroupActivity_add_members">Shtoni anëtarë</string>
   <string name="ManageGroupActivity_edit_group_info">Përpunoni të dhëna grupi</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Zgjidhni kush mund të përpunojë emër grupi, avatar dhe mesazhe që zhduken.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Zgjidhni kush mund të shtojë ose ftojë anëtarë të rinj.</string> -->
+  <string name="ManageGroupActivity_who_can_add_new_members">Cilët mund të shtojnë anëtarë të rinj?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Cilët mund të përpunojnë të dhënat mbi këtë grup?</string>
   <string name="ManageGroupActivity_group_link">Lidhje grupi</string>
   <string name="ManageGroupActivity_block_group">Blloko grup</string>
   <string name="ManageGroupActivity_unblock_group">Zhbllokoje grupin</string>
@@ -523,7 +537,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">S’u arrit të përditësohet grupi, për shkak të një gabimi rrjeti, ju lutemi, riprovoni më vonë</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Përpunoni emër dhe foto</string>
   <string name="ManageGroupActivity_legacy_group">Grup i Dikurshëm</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Ky është një Grup i Dikurshëm. Për të përdorur veçori të tilla si përgjegjës grupi, krijoni një Grup të Ri.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Ky është një Grup i Dikurshëm. Veçori të tilla, bie fjala, përgjegjës grupi mund të kihen vetëm për Grupe të Rinj.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht dhe të përdorni veçori të tilla si emra grupesh, për shembull, ftojini kontaktet tuaj te Signal-i.</string>
+  <string name="ManageGroupActivity_invite_now">Ftojini tani</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Të merren njoftime, kur jeni përmendur në fjalosje të heshtuara?</string>
@@ -616,6 +632,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Bërja pjesë e një grupi përmes një lidhjeje nuk mbulohet ende nga Signal-i. Kjo veçori do të hidhet në qarkullim në një përditësim të ardhshëm.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk mbulon lidhje grupesh. Që të bëheni pjesë e një grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Përditësoni Signal-in</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Një ose më tepër prej pajisjeve tuaja të lidhura po xhirojnë një version të Signal-it që nuk mbulon lidhje grupesh. Që të bëheni pjesë e këtij grupi, përditësojeni Signal-in te pajisja(et) tuaj të lidhur.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Lidhja e grupit s’është e vlefshme </string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Të shtohet “%1$s” te grupi?</string>
@@ -938,6 +955,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ExpirationDialog_disappearing_messages">Zhdukje mesazhesh</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Mesazhet tuaja nuk do të skadojnë.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesazhet e dërguara dhe të marra në këtë bisedë do të zhduken %s pasi të jenë parë.</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Përditësoje tani</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ky version i Signal-it do të skadojë sot. Përditësojeni me versionin më të freskët.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Ky version i Signal-it do të skadojë nesër. Përditësojeni me versionin më të freskët.</item>
+    <item quantity="other">Ky version i Signal-it do të skadojë për %d ditë. Përditësojeni me versionin më të freskët.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Jepni frazëkalimin</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona e Signal-it</string>
@@ -1015,9 +1039,19 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Për të thirrur %1$s, Signal-i lyp leje përdorimi të kamerës tuaj</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Po thirret…</string>
+  <string name="WebRtcCallActivity__group_call">Thirrje Grupi</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Thirrje Signal me zë…</string>
   <string name="WebRtcCallView__signal_video_call">Thirrje Signal me video…</string>
+  <string name="WebRtcCallView__start_call">Nise Thirrjen</string>
+  <string name="WebRtcCallView__group_call">Thirrje Grupi</string>
+  <string name="WebRtcCallView__view_participants_list">Shihni pjesëmarrësit</string>
+  <string name="WebRtcCallView__your_video_is_off">Videoja juaj është e fikur</string>
+  <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Në këtë thirrje · %1$d person</item>
+    <item quantity="other">Në këtë thirrje · %1$d vetë</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Përzgjidhni vendin tuaj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet të specifikoni
@@ -1429,6 +1463,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="conversation_item_sent__message_read">Mesazhi u lexua</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto kontakti</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Po ngarkohet</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -1809,7 +1845,6 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_storage__none">Asnjë</string>
   <string name="preferences_storage__s_messages">%1$s mesazhe</string>
   <string name="preferences_storage__custom">Rregullo</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Kufi vetjak gjatësie mesazhesh</string> -->
   <string name="preferences_advanced__use_system_emoji">Përdor emoji të sistemit</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Çaktivizo mbulimin e brendshëm të Signal-it për emoji-t</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kaloji krejt thirrjet përmes shërbyesit Signal për të shmangur zbulimin e adresës tuaj IP nga kontakti juaj. Aktivizimi do të ulë cilësinë e thirrjes.</string>
@@ -1929,14 +1964,6 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopjoje në të papastër</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahasoje me lëndën në të papastër</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Versioni juaj i Signal-it është i vjetruar</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Versioni juaj i Signal-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
-    <item quantity="other">Versioni juaj i Signal-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versioni juaj i Signal-it do të skadojë sot. Prekeni që të përditësohet me versionin më të ri.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versioni juaj i Signal-it ka skaduar!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesazhet s\’do të dërgohen më me sukses. Prekeni që të përditësohet me versionin më të ri.</string> -->
   <string name="reminder_header_sms_default_title">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
   <string name="reminder_header_sms_default_text">Prekeni për ta bërë Signal-in aplikacionin tuaj parazgjedhje për SMS-të.</string>
   <string name="reminder_header_sms_import_title">Importo SMS sistemi</string>
@@ -2080,9 +2107,16 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="KbsMegaphone__update_pin">Përditësoni PIN-in</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Do t’jua kujtojmë më vonë. Krijimi i një PIN-i do të jetë i detyrueshëm pas %1$d ditësh.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Do t’jua kujtojmë më vonë. Ripohimi i PIN-it tuaj do të jetë i detyrueshëm pas %1$d ditësh.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Ju paraqesim @Përmendjet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Tërhiqini vëmendjen dikujt në një “Grup të Ri” duke shtypur @</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Tregojini Signal-it se çfarë mendoni</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Për ta bërë Signal-in aplikacionin më të mirë në planet për shkëmbim mesazhesh, do të na pëlqente fort të dëgjonim mendimin tuaj.</string>
+  <string name="ResearchMegaphone_learn_more">Mësoni më tepër</string>
+  <string name="ResearchMegaphone_dismiss">Hidhe tej</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Kërkime rreth Signal-it</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Besojmë në privatësinë.</b></p><p>Signal-i nuk ju ndjek, as grumbullon të dhëna tuajat. Që Signal-i të përmirësohet për këdo, bazohemi në mendimet e përdoruesve, <b>dhe do ta donim edhe tuajin.</b></p><p>Po kryejmë një pyetësor për të kuptuar se si e përdorni Signal-in. Pyetësori ynë s’grumbullon ndonjë të dhënë që lejon identifikimin tuaj. Nëse ju intereson të jepni përshtypje shtesë, keni mundësinë të jepni të dhëna kontakti.</p><p>Nëse keni ndoca minuta dhe përshtypje për të dhënë, do të donim fort t’i dëgjonim.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">Plotësoni pyetësorin</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Jo, faleminderit</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Pyetësori strehohet nga Syrveygizmo te përkatësia e sigurt surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>
@@ -2222,8 +2256,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Thirrje zanore jo e sigurt</string>
   <string name="RecipientBottomSheet_video_call_description">Thirrje video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Të hiqet %1$s nga përgjegjës grupi?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s do të jetë në gjendje të përpunojë këtë grup dhe anëtarët e tij</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Të hiqet %1$s nga \"%2$s\"?</string> -->
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" do të jetë në gjendje të përpunojë këtë grup dhe anëtarët e tij</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Të hiqet \"%1$s\" prej grupit?</string>
   <string name="RecipientBottomSheet_remove">Hiqe</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">U kopjua në të papastër!</string>
   <string name="GroupRecipientListItem_admin">Përgjegjës</string>
@@ -2233,9 +2267,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grupe të Dikurshëm vs. Grupesh të Rinj</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Ç’janë Grupet e Dikurshëm?</string>
   <string name="GroupsLearnMore_paragraph_1">Grupet e dikurshëm janë grupe që nuk janë të përputhshëm me veçori Grupesh të Rinj, bie fjala, përgjegjës dhe përditësime grupi më përshkruese.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Si t’i përdor Grupet e Rinj?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Grupet e Dikurshëm s’mund të shndërrohen në Grupe të Rinj, por mund të krijoni një Grup të ri me të njëjtët anëtarë.</string>
-  <string name="GroupsLearnMore_paragraph_3">Që të krijoni një Grup të Ri, krejt anëtarët duhet ta përditësojnë Signal-in me versionin më të ri.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">A mund të përmirësoj një Grup të Dikurshëm?</string>
+  <string name="GroupsLearnMore_paragraph_2">Grupet e Dikurshme s’mund të përmirësohen në Grupe të Rinj, por mundeni të krijoni një Grup të Ri me të njëjtët anëtarë, nëse gjenden nën versionin më të ri të Signal-it.</string>
+  <string name="GroupsLearnMore_paragraph_3">Në të ardhmen, Signal-i do të ofrojë një rrugë për përmirësim Grupesh të Dikurshëm.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Ndajeni përmes Signal-i</string>
   <string name="GroupLinkBottomSheet_copy">Kopjoje</string>

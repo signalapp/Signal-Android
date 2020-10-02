@@ -124,6 +124,9 @@
   <string name="ClearProfileActivity_remove">Noņemt</string>
   <string name="ClearProfileActivity_remove_profile_photo">Vai noņemt profila attēlu?</string>
   <string name="ClearProfileActivity_remove_group_photo">Noņemt grupas bildi?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update">Atjaunināt</string>
+  <string name="ClientDeprecatedActivity_warning">Brīdinājums</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Neizdevās atrast interneta pārlūku.</string>
   <string name="CommunicationActions_no_email_app_found">Netika atrasta instalēta e-pasta lietotne.</string>
@@ -190,9 +193,6 @@
   <string name="ConversationActivity_added_to_home_screen">Pievienots sākuma ekrānam/skatam</string>
   <string name="ConversationActivity_calls_not_supported">Zvani netiek atbalstīti</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Izskatās, ka šī ierīce neatbalsta zvanu veikšanu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Pamest grupu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Vai tiešām vēlaties pamest šo grupu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Izvēlēties jaunu administratoru</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Nedrošs SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nedrošs MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -367,6 +367,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizē iztrūkstošajiem proprietārajiem Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Par laimi šajā ierīcē nav Google Play Services. Pieskaries, lai atspējotu sistēmas baterijas optimizāciju, kas traucē Signal saņemt ziņas, kamēr tas ir neaktīvs (darbojas fonā).</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dalīties ar</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Vairāku pielikumu sūtīšana ir atbalstīta tikai attēliem un video</string>
@@ -396,6 +397,11 @@
   <string name="GroupManagement_access_level_only_admins">Tikai administratori</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">Lasīt vairāk</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Pamest grupu?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Jūs vairs nevarēsiet sūtīt vai saņemt ziņas šajā grupā.</string>
+  <string name="LeaveGroupDialog_leave">Pamest</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Izvēlēties jaunu administratoru</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Atspējot</string>
   <!--LinkPreviewView-->
@@ -728,6 +734,7 @@
   <string name="ExpirationDialog_disappearing_messages">Gaistošās ziņas</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Jūsu ziņas neizgaisīs.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ziņas, kuras nosūtītas un saņemtas šajā sarunā,  pazudīs %s pēc to apskatīšanas. </string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ievadiet paroli</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikona</string>
@@ -800,6 +807,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal balss zvans…</string>
   <string name="WebRtcCallView__signal_video_call">Signal video zvans…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Izvēlieties savu valsti</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Jums jānorāda savs
@@ -1197,6 +1205,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="conversation_item_sent__message_read">Ziņa izlasīta</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontakta attēls</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Ielādē</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atskaņot … Pauzēt</string>
   <string name="audio_view__download_accessibility_description">Lejupielādēt</string>
@@ -1654,15 +1664,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopēt starpenē</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Salīdzināt ar starpeni</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Jūsu Signal versija ir novecojusi/norakstāma</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="zero">Jūsu Signal versija nestrādās pēc %d dienas. Pieskarieties, lai atjauninātu uz jaunāko versiju.</item>
-    <item quantity="one">Jūsu Signal versija nestrādās pēc %d dienas. Pieskarieties, lai atjauninātu uz jaunāko versiju.</item>
-    <item quantity="other">Šī Jūsu Signāla versija nestrādās pēc %d dienām. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Jūsu Signāla versija šodien pārstās darboties. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Jūsu Signāla versija ir norakstīta/novecojusi!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Ziņas vairs netiks veiksmīgi nosūtītas. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</string> -->
   <string name="reminder_header_sms_default_title">Izmantot kā noklusējuma SMS lietotni</string>
   <string name="reminder_header_sms_default_text">Pieskaries, lai padarītu Signāla par noklusēto SMS lietotni</string>
   <string name="reminder_header_sms_import_title">Importēt sistēmas SMS</string>
@@ -1799,7 +1800,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="KbsMegaphone__update_pin">Aktualizēt PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tas tiks atgādināts vēlāk. PIN izveide kļūs obligāta pēc %1$d dienām.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Jums tiks atgādināts vēlāk. PIN apstiprināšana kļūs obligāta pēc %1$d dienām.</string>
-  <!--Mention Megaphone-->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_learn_more">Lasīt vairāk</string>
+  <string name="ResearchMegaphone_dismiss">Nerādīt</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Nē, paldies</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
   <string name="ConversationListFragment_loading">Notiek ielāde…</string>
@@ -1921,8 +1925,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RecipientBottomSheet_remove_from_group">Noņemt no grupas</string>
   <string name="RecipientBottomSheet_message_description">Ziņa</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Noņemt %1$sgrupas administratora tiesības?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s varēs labot grupu un tās dalībniekus</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Noņemt %1$s no \" %2$s \"?</string> -->
   <string name="RecipientBottomSheet_remove">Noņemt/Izņemt</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="GroupRecipientListItem_admin">Administrators</string>

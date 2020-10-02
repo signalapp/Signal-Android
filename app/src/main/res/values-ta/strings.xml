@@ -126,6 +126,10 @@
   <string name="ClearProfileActivity_remove">நீக்கு</string>
   <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை நீக்கவா?</string>
   <string name="ClearProfileActivity_remove_group_photo">குழு புகைப்படத்தை அகற்றவா?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
+  <string name="ClientDeprecatedActivity_update">புதுப்பிக்கப்பட்டது</string>
+  <string name="ClientDeprecatedActivity_warning">எச்சரிக்கை</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">இணைய உலாவி இல்லை.</string>
   <string name="CommunicationActions_no_email_app_found">மின்னஞ்சல் பயன்பாடு எதுவும் கிடைக்கவில்லை.</string>
@@ -195,11 +199,6 @@
   <string name="ConversationActivity_added_to_home_screen">முகப்பு திரையில் சேர்க்கப்பட்டது</string>
   <string name="ConversationActivity_calls_not_supported">அழைப்புக்களுக்கு ஆதரவில்லை</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">இந்த சாதனம் டயல் செயல்பாட்டை ஆதரிப்பதுபோல் தோன்றவில்லை.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">குழுவிலுருந்து விலகலாமா?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">நீங்கள் குழுவை விட்டு நிச்சயமாக விலகவேண்டுமா?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">நீங்கள் வெளியேறுவதற்கு முன், இந்த குழுவிற்கு குறைந்தபட்சம் ஒரு புதிய new admin நிர்வாகியையாவது தேர்வு செய்ய வேண்டும்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">நிர்வாகியைத் admin தேர்வுசெய்க</string> -->
   <string name="ConversationActivity_transport_insecure_sms">பாதுகாப்பற்ற SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">பாதுகாப்பற்ற MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -371,6 +370,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">காணாமல் போன விளையாட்டு சேவைகளை மேம்படுத்தவும்</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">பகிர்</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">பல இணைப்புகள் படங்கள் மற்றும் வீடியோக்களுக்கு மட்டுமே துணைபுரிகின்றன</string>
@@ -414,6 +414,13 @@
   <string name="GroupManagement_invite_single_user">“%1$s” ஐ தானாக இந்த குழுவில் சேர்க்க முடியாது. குழுவில் சேர அவர்கள் அழைக்கப்பட்டுள்ளனர். எந்தவொரு குழு செய்திகளையும் அவர்கள் ஏற்றுக்கொள்ளும் வரை பார்க்க மாட்டார்கள்.</string>
   <string name="GroupManagement_learn_more">மேலும் அறிக</string>
   <string name="GroupManagement_invite_multiple_users">இந்த பயனர்களை இந்த குழுவில் தானாக உங்களால் சேர்க்க முடியாது. குழுவில் சேர அவர்கள் அழைக்கப்பட்டுள்ளனர், அவர்கள் ஏற்றுக்கொள்ளும் வரை எந்த குழு செய்திகளையும் பார்க்க மாட்டார்கள்.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">குழுவிலுருந்து விலகலாமா?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">இந்த குழுவில் நீங்கள் இனி செய்திகளை அனுப்பவோ பெறவோ முடியாது.</string>
+  <string name="LeaveGroupDialog_leave">விலகு</string>
+  <string name="LeaveGroupDialog_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">நீங்கள் வெளியேறுவதற்கு முன், இந்த குழுவிற்கு குறைந்தபட்சம் ஒரு புதிய new admin நிர்வாகியையாவது தேர்வு செய்ய வேண்டும்.</string>
+  <string name="LeaveGroupDialog_choose_admin">நிர்வாகியைத் admin தேர்வுசெய்க</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">முடக்கு</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">எந்த இணைப்பையும் முன்னோட்டமிடுங்கள்</string>
@@ -485,8 +492,6 @@
   <string name="ManageGroupActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string>
   <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்தல்</string>
   <string name="ManageGroupActivity_edit_group_info">குழு தகவலைத் திருத்தல்</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">குழு பெயர், சின்னம் மற்றும் காணாமல் போகும் செய்திகளை யார் திருத்தலாம் என்பதை தேர்வுசெய்க.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">புதிய உறுப்பினர்களை யார் சேர்க்கலாம் அல்லது அழைக்கலாம் என்பதைத் தேர்வுசெய்க.</string> -->
   <string name="ManageGroupActivity_block_group">குழுவைத் தடு</string>
   <string name="ManageGroupActivity_unblock_group">குழுவைத் தடைநீக்கு</string>
   <string name="ManageGroupActivity_leave_group">குழுவிலுருந்து விலகு</string>
@@ -515,7 +520,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">இணைய பிழை காரணமாக குழுவைப் புதுப்பிப்பதில் தோல்வி, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்</string>
   <string name="ManageGroupActivity_edit_name_and_picture">பெயர் மற்றும் படத்தைத் திருத்தவும்</string>
   <string name="ManageGroupActivity_legacy_group">பழைய மரபு குழு</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">இது ஒரு பழைய மரபு குழு. குழு நிர்வாகிகள் போன்ற புதிய அம்சங்களை அணுக, புதிய குழுவை உருவாக்கவும்.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">என் பெயர் குறிப்புகளை எனக்கு அறிவி</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">முடக்கிய அரட்டைகளில் மற்றவர்களால் நீங்கள் குறிப்பிடப்படும்போது அறிவிப்புகள் பெறலாமா?</string>
@@ -879,6 +883,7 @@
   <string name="ExpirationDialog_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">உங்கள் செய்திகள் காலாவதியாகாது.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">இந்த உரையாடலில் அனுப்பப்பட்ட மற்றும் பெறப்பட்ட செய்திகள் காணப்பட்ட பிறகு %s மறைந்துவிடும்.</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">கடவுச்சொல்லை உள்ளிடவும். </string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ஐகான்</string>
@@ -959,6 +964,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal குரல் அழைப்பு…</string>
   <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக  குறிப்பிடவேண்டியது உங்கள்:
@@ -1370,6 +1376,8 @@
   <string name="conversation_item_sent__message_read">செய்தி வாசிக்கப்பட்டது</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">தொடர்பின் புகைப்படம்</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">ஏற்றுதல்</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">விளையாடு … இடைநிறுத்து</string>
   <string name="audio_view__download_accessibility_description">பதிவிறக்க</string>
@@ -1750,7 +1758,6 @@
   <string name="preferences_storage__none">எதுவும் இல்லை</string>
   <string name="preferences_storage__s_messages">%1$s செய்திகள்</string>
   <string name="preferences_storage__custom">விருப்பத்திர்க்கேர்ப்ப</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">விருப்பமான உரையாடலின் நீள அளவு</string> -->
   <string name="preferences_advanced__use_system_emoji">கணினி ஈமோஜியைப் பயன்படுத்தவும்</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal  உள்ளமைக்கப்பட்ட ஈமோஜி ஆதரவை முடக்கு</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">உங்கள் ஐபி முகவரியை உங்கள் தொடர்புக்கு வெளிப்படுத்தாமல் இருக்க Signal சேவையகம் மூலம் அனைத்து அழைப்புகளையும் ரிலே செய்யவும். இயக்குவது அழைப்பு தரத்தை குறைக்கும்.</string>
@@ -1870,14 +1877,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">கிளிப்போர்டுடன் ஒப்பிடுக</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Signal உங்கள் பதிப்பு காலாவதியானது</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Signal உங்கள் பதிப்பு %d நாளில் காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</item>
-    <item quantity="other">Signal உங்கள் பதிப்பு %d நாட்களில் காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Signal உங்கள் பதிப்பு இன்று காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal உங்கள் பதிப்பு காலாவதியானது!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">செய்திகள் இனி வெற்றிகரமாக அனுப்பப்படாது. மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்க தட்டவும்.</string> -->
   <string name="reminder_header_sms_default_title">இயல்புநிலை SMS பயன்பாடாக பயன்படுத்தவும்</string>
   <string name="reminder_header_sms_default_text">Signal-ஐ இயல்புநிலை SMS பயன்பாடாக தொடவும்</string>
   <string name="reminder_header_sms_import_title">தொலைபேசியிலுள்ள SMS-களை இறக்குமதி</string>
@@ -2019,9 +2018,10 @@
   <string name="KbsMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம். PIN ஐ உருவாக்குவது %1$dநாட்களில் கட்டாயமாகிவிடும்.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம்.%1$dநாட்களில் உங்கள் பின்னை உறுதிப்படுத்துவது கட்டாயமாகிவிடும்.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">அறிமுகம் @குறிப்புகள்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">@ தட்டச்சு செய்வதன் மூலம் \"புதிய குழுவில்\" ஒருவரின் கவனத்தைப் பெறுங்கள்</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_learn_more">மேலும் அறிக</string>
+  <string name="ResearchMegaphone_dismiss">நிராகரி</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">தேவையில்லை,நன்றி</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
@@ -2161,8 +2161,6 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">பாதுகாப்பற்ற குரல் அழைப்பு </string>
   <string name="RecipientBottomSheet_video_call_description">காணொளி அழைப்பு</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">குழு நிர்வாக நிலையாக %1$sஐ அகற்றவா?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s இந்த குழுவையும் அதன் உறுப்பினர்களையும் திருத்த மற்றும் மாற்ற முடியும்</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">\"%2$s\" இலிருந்து %1$sஐ அகற்றவா?</string> -->
   <string name="RecipientBottomSheet_remove">நீக்கு</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="GroupRecipientListItem_admin">நிர்வாகி</string>
@@ -2172,9 +2170,6 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">பழைய மரபு vs புதிய குழுக்கள்</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">பழைய மரபு குழுக்கள் என்றால் என்ன?</string>
   <string name="GroupsLearnMore_paragraph_1">பழைய மரபு குழுக்கள் என்பது நிர்வாகிகள் மற்றும் மேம்பட்ட குழு புதுப்பிப்பு விளக்கங்கள் போன்ற புதிய குழு அம்சங்களுடன் பொருந்தாத குழுக்கள்.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">புதிய குழுக்களை எவ்வாறு பயன்படுத்துவது?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">மரபு குழுக்களை புதிய குழுக்களாக மாற்ற முடியாது, ஆனால் அதே உறுப்பினர்களுடன் புதிய குழுவை உருவாக்கலாம்.</string>
-  <string name="GroupsLearnMore_paragraph_3">புதிய குழுவை உருவாக்க, அனைத்து உறுப்பினர்களும் சிக்னலின் சமீபத்திய பதிப்பிற்கு புதுப்பிக்க Signal Update வேண்டும்.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">சிக்னல் Signal வழியாக பகிரவும்</string>
   <string name="GroupLinkBottomSheet_copy">நகல்</string>

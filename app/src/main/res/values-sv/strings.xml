@@ -126,6 +126,13 @@
   <string name="ClearProfileActivity_remove">Ta bort</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ta bort profilbild?</string>
   <string name="ClearProfileActivity_remove_group_photo">Ta bort gruppfoto?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Uppdatera Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Den här versionen av appen stöds inte längre. För att fortsätta skicka och ta emot meddelanden, uppdatera till den senaste versionen.</string>
+  <string name="ClientDeprecatedActivity_update">Uppdatera</string>
+  <string name="ClientDeprecatedActivity_dont_update">Uppdatera inte</string>
+  <string name="ClientDeprecatedActivity_warning">Varning</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Din version av Signal har gått ut. Du kan visa din meddelandehistorik men du kan inte skicka eller ta emot meddelanden förrän du uppdaterar.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen webbläsare hittades.</string>
   <string name="CommunicationActions_no_email_app_found">Ingen e-postapp hittades.</string>
@@ -195,11 +202,6 @@
   <string name="ConversationActivity_added_to_home_screen">Lagt till på hemskärmen</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds inte</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denna enhet verkar inte stödja ringa upp-handlingar.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Lämna grupp?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Är du säker på att du vill lämna denna grupp?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Välj ny administratör</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Innan du lämnar måste du välja minst en ny administratör för denna grupp.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Välj administratör</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Osäkert SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Osäkert MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -371,6 +373,9 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denna enhet stödjer inte Play-tjänster. Tryck för att slå av systemets batterioptimeringar som förhindrar Signal från att ta emot meddelanden medan den är inaktiv.</string>
+  <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denna version av Signal har gått ut. Uppdatera nu för att skicka och ta emot meddelanden.</string>
+  <string name="ExpiredBuildReminder_update_now">Uppdatera nu</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flera bilagor stöds endast för bilder och videoklipp</string>
@@ -391,6 +396,7 @@
   <string name="AddToGroupActivity_add_to_group">Lägg till i grupp</string>
   <string name="AddToGroupActivity_add_to_groups">Lägg till i grupper</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Den här personen kan inte läggas till i äldre grupper.</string>
+  <string name="AddToGroupActivity_add">Lägg till</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Välj ny administratör</string>
   <string name="ChooseNewAdminActivity_done">Klar</string>
@@ -414,6 +420,13 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" kan inte läggas till automatiskt till denna grupp av dig.\n\nDe har blivit inbjudna att gå med och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
   <string name="GroupManagement_learn_more">Läs mer</string>
   <string name="GroupManagement_invite_multiple_users">Dessa användare kan inte automatiskt läggas till i denna grupp.\n\nDe har blivit inbjudna att gå med i gruppen och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Lämna grupp?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Du kommer inte längre att kunna skicka eller ta emot meddelanden i denna grupp.</string>
+  <string name="LeaveGroupDialog_leave">Lämna</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Välj ny administratör</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Innan du lämnar måste du välja minst en ny administratör för denna grupp.</string>
+  <string name="LeaveGroupDialog_choose_admin">Välj administratör</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Inaktivera</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Förhandsgranska vilken länk som helst</string>
@@ -459,6 +472,7 @@
     <item quantity="one">Lägg till \"%1$s\" i \"%2$s\"?</item>
     <item quantity="other">Lägg till %3$d medlemmar i \"%2$s\"?</item>
   </plurals>
+  <string name="AddMembersActivity__add">Lägg till</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Namnge denna grupp</string>
   <string name="AddGroupDetailsFragment__create_group">Skapa grupp</string>
@@ -489,8 +503,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Medlemsförfrågningar &amp; inbjudningar</string>
   <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
   <string name="ManageGroupActivity_edit_group_info">Redigera gruppinformation</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Välj vem som kan redigera gruppnamn, avatar och försvinnande meddelanden.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Välj vem som kan lägga till eller bjuda in nya medlemmar.</string> -->
+  <string name="ManageGroupActivity_who_can_add_new_members">Vem kan lägga till nya medlemmar?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Vem kan redigera denna grupps information?</string>
   <string name="ManageGroupActivity_group_link">Grupplänk</string>
   <string name="ManageGroupActivity_block_group">Blockera grupp</string>
   <string name="ManageGroupActivity_unblock_group">Sluta blockera grupp</string>
@@ -520,7 +534,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Det gick inte att uppdatera gruppen på grund av ett nätverksfel, vänligen försök igen senare</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Redigera namn och bild</string>
   <string name="ManageGroupActivity_legacy_group">Äldre grupp</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en äldre grupp. Skapa en ny grupp för att få åtkomst till funktioner som gruppadministratörer.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en Äldre grupp. Funktioner som gruppadministratörer är endast tillgängliga för Nya grupper.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Det här är en osäker MMS-grupp. Om du vill samtala privat och få tillgång till funktioner som gruppnamn, bjud in dina kontakter till Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Bjud in nu</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meddela mig om omnämnanden</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Få aviseringar när du omnämns i tystade konversationer?</string>
@@ -613,6 +629,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Att gå med i en grupp via en länk stöds ännu inte av Signal. Denna funktion kommer att släppas i en kommande uppdatering.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte grupplänkar. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flera av dina länkade enheter kör en version av Signal som inte stöder grupplänkar. Uppdatera Signal på dina länkade enheter för att gå med i denna grupp.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupplänken är inte giltig</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Lägg till \"%1$s\" till gruppen?</string>
@@ -935,6 +952,13 @@
   <string name="ExpirationDialog_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Dina meddelanden kommer inte att försvinna.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meddelanden som skickas och tas emot i den här konversationen kommer att försvinna %s efter att de har setts.</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Uppdatera nu</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denna version av Signal går ut idag. Uppdatera till den senaste versionen.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Denna version av Signal går ut i morgon. Uppdatera till den senaste versionen.</item>
+    <item quantity="other">Denna version av Signal går ut om %d dagar. Uppdatera till den senaste versionen.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
@@ -1012,9 +1036,19 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">För att ringa %1$s behöver Signal åtkomst till din kamera</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
+  <string name="WebRtcCallActivity__group_call">Gruppsamtal</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal-röstsamtal…</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtal…</string>
+  <string name="WebRtcCallView__start_call">Starta samtal</string>
+  <string name="WebRtcCallView__group_call">Gruppsamtal</string>
+  <string name="WebRtcCallView__view_participants_list">Visa deltagare</string>
+  <string name="WebRtcCallView__your_video_is_off">Din video är avstängd</string>
+  <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">I detta samtal · %1$d person</item>
+    <item quantity="other">I detta samtal · %1$d personer</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din 
@@ -1424,6 +1458,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_item_sent__message_read">Meddelande läst</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Läser in</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
@@ -1802,7 +1838,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_storage__none">Ingen</string>
   <string name="preferences_storage__s_messages">%1$s meddelanden</string>
   <string name="preferences_storage__custom">Skräddarsydd</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Anpassad gräns för konversationslängd</string> -->
   <string name="preferences_advanced__use_system_emoji">Använd systemets emojier</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Inaktivera Signals inbyggda emojier</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Slussa alla samtal via Signal-servern för att undvika att avslöja din IP-adress för din kontakt. Aktivering försämrar samtalskvaliteten.</string>
@@ -1922,14 +1957,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera till urklipp</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Jämför med urklipp</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Din version av Signal är förlegad</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Din version av Signal kommer att upphöra om %d dag. Klicka för att uppdatera till den senaste versionen.</item>
-    <item quantity="other">Din version av Signal kommer att löpa ut om %d dagar. Klicka för att uppdatera till den senaste versionen.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Din version av Signal kommer att löpa ut idag. Tryck för att uppdatera till den senaste versionen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Din version av Signal har löpt ut!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Meddelanden kommer inte längre att skickas. Tryck för att uppdatera till den senaste versionen.</string> -->
   <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
   <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string>
   <string name="reminder_header_sms_import_title">Importera systemets SMS</string>
@@ -2071,9 +2098,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsMegaphone__update_pin">Uppdatera PIN-kod</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi påminner dig senare. Att skapa en PIN-kod blir obligatorisk om %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi påminner dig senare. Bekräfta din PIN-kod blir obligatorisk om %1$d dagar.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Introducerar @Omnämnanden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Få någons uppmärksamhet i en \"Ny grupp\" genom att skriva @</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Berätta för Signal vad du tycker</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">För att göra Signal till den bästa meddelande-appen på planeten, skulle vi gärna höra din åsikt.</string>
+  <string name="ResearchMegaphone_learn_more">Läs mer</string>
+  <string name="ResearchMegaphone_dismiss">Avfärda</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Signal-forskning</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi tror på integritet.</b></p><p>Signal spårar inte dig och samlar inte in dina uppgifter. För att förbättra Signal för alla förlitar vi oss på användarrespons, <b>och vi skulle vilja få din.</b></p><p>Vi genomför en undersökning för att förstå hur du använder Signal. Vår undersökning samlar inte in några uppgifter som kommer att identifiera dig. Om du är intresserad av att dela ytterligare åsikter har du möjlighet att ge kontaktinformation.</p><p>Om du har några minuter och respons att erbjuda skulle vi gärna höra från dig.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">Ta undersökningen</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Nej tack</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersökningen anordnas av Surveygizmo på den säkra domänen surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>
@@ -2213,8 +2247,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Osäkert röstsamtal</string>
   <string name="RecipientBottomSheet_video_call_description">Videosamtal</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Ta bort %1$s som gruppadministratör?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s kommer att kunna redigera denna grupp och dess medlemmar</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Ta bort %1$s från \"%2$s\"?</string> -->
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" kommer att kunna redigera denna grupp och dess medlemmar.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Ta bort %1$s från gruppen?</string>
   <string name="RecipientBottomSheet_remove">Ta bort</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="GroupRecipientListItem_admin">Administratör</string>
@@ -2224,9 +2258,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Äldre vs. Nya grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Vad är Äldre grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Äldre grupper är grupper som inte är kompatibla med nya gruppfunktioner som administratörer och mer beskrivande gruppuppdateringar.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Hur använder jag Nya grupper?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan inte konverteras till nya grupper, men du kan skapa en ny grupp med samma medlemmar.</string>
-  <string name="GroupsLearnMore_paragraph_3">För att skapa en Ny grupp, bör alla medlemmar uppdatera till den senaste versionen av Signal.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan jag uppgradera en Äldre grupp?</string>
+  <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan ännu inte uppgraderas till Nya grupper, men du kan skapa en Ny grupp med samma medlemmar om de använder den senaste versionen av Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal kommer att erbjuda ett sätt att uppgradera Äldre grupper i framtiden.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Dela via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiera</string>

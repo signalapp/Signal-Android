@@ -132,6 +132,13 @@
   <string name="ClearProfileActivity_remove">Usuń</string>
   <string name="ClearProfileActivity_remove_profile_photo">Usunąć zdjęcie profilowe?</string>
   <string name="ClearProfileActivity_remove_group_photo">Usunąć zdjęcie grupy?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Zaktualizuj Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Ta wersja aplikacji nie jest już wspierana. Zaktualizuj do najnowszej wersji, aby nadal móc wysyłać i odbierać wiadomości.</string>
+  <string name="ClientDeprecatedActivity_update">Uaktualnij</string>
+  <string name="ClientDeprecatedActivity_dont_update">Nie aktualizuj</string>
+  <string name="ClientDeprecatedActivity_warning">Uwaga</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Twoja wersja Signal wygasła. Możesz przeglądać swoją historię wiadomości, ale nie będziesz móc wysyłać, ani dobierać wiadomości, dopóki go nie zaktualizujesz.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nie znaleziono przeglądarki internetowej.</string>
   <string name="CommunicationActions_no_email_app_found">Nie znaleziono aplikacji e-mail.</string>
@@ -201,11 +208,6 @@
   <string name="ConversationActivity_added_to_home_screen">Dodano do ekranu głównego</string>
   <string name="ConversationActivity_calls_not_supported">Połączenia nie są obsługiwane</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Wygląda na to, że urządzenie nie wspiera wybierania numeru.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Opuścić grupę?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Czy na pewno chcesz opuścić grupę?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Wybierz nowego administratora</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Przed opuszczeniem tej grupy musisz wybrać co najmniej jednego nowego administratora.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Wybierz administratora</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Nieszyfrowany SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -399,6 +401,9 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optymalizacja dla brakujących Usług Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Urządzenie nie wspiera Usług Play. Dotknij, aby wyłączyć systemową optymalizację baterii uniemożliwiającą odbieranie wiadomości w czasie braku aktywności.</string>
+  <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ta wersja Signal wygasła. Zaktualizuj teraz, aby móc wysyłać i odbierać wiadomości.</string>
+  <string name="ExpiredBuildReminder_update_now">Aktualizuj teraz</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Wysyłanie kilku załączników na raz jest obsługiwane tylko dla zdjęć i filmów.</string>
@@ -419,6 +424,7 @@
   <string name="AddToGroupActivity_add_to_group">Dodaj do grupy</string>
   <string name="AddToGroupActivity_add_to_groups">Dodaj do grup</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Nie można dodać tej osoby do Starych grup.</string>
+  <string name="AddToGroupActivity_add">Dodaj</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Wybierz nowego administratora</string>
   <string name="ChooseNewAdminActivity_done">Gotowe</string>
@@ -444,6 +450,13 @@
   <string name="GroupManagement_invite_single_user">Nie możesz automatycznie dodać \"%1$s\" do tej grupy.\n\nUżytkownik został zaproszony i nie zobaczy żadnych wiadomości grupowych, dopóki nie przyjmie zaproszenia.</string>
   <string name="GroupManagement_learn_more">Dowiedz się więcej</string>
   <string name="GroupManagement_invite_multiple_users">Nie możesz automatycznie dodać tych użytkowników do tej grupy.\n\nUżytkownicy zostali zaproszeni i nie zobaczą żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Opuścić grupę?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nie będziesz już móc odbierać lub wysyłać wiadomości w tej grupie.</string>
+  <string name="LeaveGroupDialog_leave">Opuść</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Wybierz nowego administratora</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Przed opuszczeniem tej grupy musisz wybrać co najmniej jednego nowego administratora.</string>
+  <string name="LeaveGroupDialog_choose_admin">Wybierz administratora</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Wyłączone</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Podgląd każdego linku</string>
@@ -497,6 +510,7 @@
     <item quantity="many">Dodać %3$d członków do \"%2$s\"?</item>
     <item quantity="other">Dodać %3$d członków do \"%2$s\"?</item>
   </plurals>
+  <string name="AddMembersActivity__add">Dodaj</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nazwij grupę</string>
   <string name="AddGroupDetailsFragment__create_group">Utwórz grupę</string>
@@ -531,8 +545,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Prośby o przyjęcie i zaproszenia</string>
   <string name="ManageGroupActivity_add_members">Dodaj członków</string>
   <string name="ManageGroupActivity_edit_group_info">Edytuj informacje o grupie</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Kto może edytować nazwę i awatara grupy, i czas znikania wiadomości.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Wybierz, kto może dodawać lub zapraszać nowych członków.</string> -->
+  <string name="ManageGroupActivity_who_can_add_new_members">Kto może dodawać nowych członków?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kto może edytować informacje o tej grupie?</string>
   <string name="ManageGroupActivity_group_link">Link do grupy</string>
   <string name="ManageGroupActivity_block_group">Zablokuj grupę</string>
   <string name="ManageGroupActivity_unblock_group">Odblokuj grupę</string>
@@ -566,7 +580,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Aktualizacja grupy nie powiodła się z powodu błędu sieci, spróbuj później</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Edytuj nazwę i zdjęcie</string>
   <string name="ManageGroupActivity_legacy_group">Stara grupa</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">To stara wersja grupy. Aby móc korzystać z takich funkcji jak administratorzy grup, stwórz Nową grupę.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">To stara wersja grupy. Takie funkcje jak administratorzy grup są dostępne tylko w Nowej grupie.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To niezabezpieczona grupa MMS. Zaproś swoje kontakty do używania z Signal, aby korzystać z prywatnych rozmów i mieć dostęp do takich funkcji jak nazwy grup.</string>
+  <string name="ManageGroupActivity_invite_now">Zaproś teraz</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Powiadom mnie o wzmiankach</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Powiadamiać, gdy zostaniesz wspomniany(a) w wyciszonych rozmowach?</string>
@@ -667,6 +683,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Dołączanie do grupy przez link, nie jest jeszcze obsługiwane w Signal. Ta funkcja znajdzie się w kolejnej aktualizacji.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Używana przez Ciebie wersja Signal nie obsługuje linków do grup. Zaktualizuj do najnowszej wersji, aby dołączyć do tej grupy przez link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Zaktualizuj Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedno lub więcej z Twoich połączonych urządzeń używa wersji Signal, która nie obsługuje linków do grup. Zaktualizuj aplikację Signal  na swoim połączonym urządzeniu(ach) do najnowszej wersji, aby dołączyć do tej grupy.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link do grupy jest nieprawidłowy</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Dodać “%1$s” do grupy?</string>
@@ -1019,6 +1036,15 @@
   <string name="ExpirationDialog_disappearing_messages">Znikające wiadomości</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Twoje wiadomości nie wygasną.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Wiadomości wysłane i odebrane w tej rozmowie znikną %s po odczytaniu.</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Aktualizuj teraz</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Twoja wersja Signal wygaśnie dzisiaj. Zaktualizuj do najnowszej wersji.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Twoja wersja Signal wygaśnie jutro. Zaktualizuj do najnowszej wersji.</item>
+    <item quantity="few">Twoja wersja Signal wygaśnie za %d dni. Zaktualizuj do najnowszej wersji.</item>
+    <item quantity="many">Twoja wersja Signal wygaśnie za %d dni. Zaktualizuj do najnowszej wersji.</item>
+    <item quantity="other">Twoja wersja Signal wygaśnie za %d dni. Zaktualizuj do najnowszej wersji.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Podaj hasło</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -1098,9 +1124,21 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Aby zadzwonić do %1$s, Signal potrzebuje dostępu do aparatu</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Łączenie…</string>
+  <string name="WebRtcCallActivity__group_call">Połączenie grupowe</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Połączenie głosowe Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal…</string>
+  <string name="WebRtcCallView__start_call">Rozpocznij połączenie</string>
+  <string name="WebRtcCallView__group_call">Połączenie grupowe</string>
+  <string name="WebRtcCallView__view_participants_list">Zobacz uczestników</string>
+  <string name="WebRtcCallView__your_video_is_off">Twoje wideo jest wyłączone</string>
+  <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">W tej rozmowie · %1$d osoba</item>
+    <item quantity="few">W tej rozmowie · %1$d osoby</item>
+    <item quantity="many">W tej rozmowie · %1$d osób</item>
+    <item quantity="other">W tej rozmowie · %1$d osoby</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Wybierz swój kraj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Podaj kod telefoniczny kraju</string>
@@ -1514,6 +1552,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_item_sent__message_read">Wiadomość odczytana</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Zdjęcie kontaktu</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Ładowanie</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
@@ -1686,7 +1726,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="unknown_sender_view__add_to_contacts">DODAJ DO KONTAKTÓW</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NIE DODAWAJ, ALE UCZYŃ MÓJ PROFIL WIDOCZNYM</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeśli chcesz zweryfikować bezpieczeństwo szyfrowania end-to-end z %s, porównaj numery bezpieczeństwa na waszych urządzeniach. Możesz również zeskanować lub poprosić o zeskanowanie Twojego kodu. <a href="https://signal.org/redirect/safety-numbers">Dowiedz się więcej</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jeśli chcesz zweryfikować bezpieczeństwo szyfrowania end-to-end z %s, porównaj numery bezpieczeństwa na waszych urządzeniach. Możesz również zeskanować kod kontaktu lub poprosić go o zeskanowanie Twojego kodu. <a href="https://signal.org/redirect/safety-numbers">Dowiedz się więcej</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Dotknij, aby zeskanować</string>
   <string name="verify_display_fragment__loading">Wczytywanie…</string>
   <string name="verify_display_fragment__verified">Zweryfikowano</string>
@@ -1908,7 +1948,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_storage__none">Brak</string>
   <string name="preferences_storage__s_messages">%1$s wiadomości</string>
   <string name="preferences_storage__custom">Własny</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Własny limit długości konwersacji</string> -->
   <string name="preferences_advanced__use_system_emoji">Używaj emoji systemu</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Wyłącz wbudowane wspomaganie emoji Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia za pomocą serwerów Signal, aby uniknąć ujawnienia adresu IP Twoim kontaktom. Pogorszy to jakość połączenia.</string>
@@ -2028,16 +2067,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Skopiuj do schowka </string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porównaj ze schowkiem</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Twoja wersja Signal jest nieaktualna.</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Twoja wersja Signal wygaśnie za %d dzień. Dotknij, aby zaktualizować do najnowszej wersji.</item>
-    <item quantity="few">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
-    <item quantity="many">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
-    <item quantity="other">Twoja wersja Signal wygaśnie za %d dni. Dotknij, aby zaktualizować do najnowszej wersji.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Twoja wersja Signal dzisiaj będzie już nieaktualna. Dotknij, aby zaktualizować do najnowszej wersji.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Twoja wersja Signal jest nieaktualna!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Wiadomości nie będą dłużej dostarczane. Dotknij, aby zaktualizować Signal do najnowszej wersji.</string> -->
   <string name="reminder_header_sms_default_title">Ustaw jako domyślną aplikację SMS</string>
   <string name="reminder_header_sms_default_text">Dotknij, aby Signal był Twoją domyślną aplikacją SMS.</string>
   <string name="reminder_header_sms_import_title">Importuj bazę SMS</string>
@@ -2193,9 +2222,16 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KbsMegaphone__update_pin">Uaktualnij PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Przypomnimy Ci o tym później. Utworzenie PINu stanie się obowiązkowe za %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Przypomnimy Ci o tym później. Potwierdzenie Twojego PINu stanie się obowiązkowe za %1$d dni.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Przedstawiamy @wzmianki</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Przyciągnij czyjąś uwagę w \"Nowej grupie\", wpisując @</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Przekaż Signal swoją opinię</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Chcemy poznać Twoją opinię, aby uczynić Signal najlepszym komunikatorem na świecie.</string>
+  <string name="ResearchMegaphone_learn_more">Dowiedz się więcej</string>
+  <string name="ResearchMegaphone_dismiss">Odrzuć</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Badanie Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Wierzymy w prawo do prywatności.</b></p><p>Signal nie śledzi Cię, ani nie gromadzi Twoich danych. Przy ulepszaniu aplikacji Signal polegamy na opiniach naszych użytkowników i  <b>pragniemy poznać również Twoją.</b></p><p>Przeprowadzamy ankietę, aby zrozumie jak korzystasz z Signal. Nasza ankieta nie zbiera żadnych informacji, które mogą Cię zidentyfikować. Jeśli chcesz podzielić się dodatkowymi informacjami, będziesz mieć możliwość podania informacji kontaktowych.</p><p>Jeśli masz kilka minut i jakieś uwagi, chcielibyśmy je poznać.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">Wypełnij ankietę</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Nie, dzięki</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Ta ankieta jest hostowana przez Surveygizmo na zabezpieczonej domenie surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
   <string name="ConversationListFragment_loading">Wczytywanie…</string>
@@ -2335,8 +2371,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Niezaszyfrowane połączenie głosowe</string>
   <string name="RecipientBottomSheet_video_call_description">Połączenie wideo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Usunąć %1$s, jako administratora grupy?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s będzie w stanie edytować tę grupę i jej członków</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Usunąć %1$s z \"%2$s\"?</string> -->
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" będzie w stanie edytować tę grupę i jej członków.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Usunąć %1$s z grupy?</string>
   <string name="RecipientBottomSheet_remove">Usuń</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Skopiowano do schowka</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
@@ -2346,9 +2382,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare vs. Nowe grupy</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Czym są Stare grupy?</string>
   <string name="GroupsLearnMore_paragraph_1">Stare grupy nie obsługują takich funkcji nowych grup jak administratorzy i dokładniejsze informacje o zmianach w grupach.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Jak skorzystać z Nowych grup?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Starych grup nie można przekonwertować na Nowe, ale możesz stworzyć Nową grupę z tymi samymi członkami.</string>
-  <string name="GroupsLearnMore_paragraph_3">Aby utworzyć Nową grupę, wszyscy członkowie muszą zaktualizować Signal do najnowszej wersji.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Czy mogę zaktualizować Starą grupę?</string>
+  <string name="GroupsLearnMore_paragraph_2">Stare grupy nie mogą jeszcze zostać zaktualizowane do Nowych grup, ale możesz stworzyć Nową grupę z tymi samymi członkami, jeśli korzystają oni z najnowszej wersji Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">W przyszłości Signal zaoferuje możliwość zaktualizowania Starych grup</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Udostępnij przez Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiuj</string>

@@ -132,6 +132,10 @@
   <string name="ClearProfileActivity_remove">הסר</string>
   <string name="ClearProfileActivity_remove_profile_photo">להסיר תמונת פרופיל?</string>
   <string name="ClearProfileActivity_remove_group_photo">להסיר תמונת קבוצה?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">עדכן את Signal</string>
+  <string name="ClientDeprecatedActivity_update">עדכן</string>
+  <string name="ClientDeprecatedActivity_warning">אזהרה</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">דפדפן רשת לא נמצא.</string>
   <string name="CommunicationActions_no_email_app_found">יישום דוא״ל לא נמצא.</string>
@@ -201,11 +205,6 @@
   <string name="ConversationActivity_added_to_home_screen">התווסף אל מסך הבית</string>
   <string name="ConversationActivity_calls_not_supported">שיחות אינן נתמכות</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">נראה כי מכשיר זה אינו תומך בפעולות חיוג.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">לעזוב קבוצה?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">האם אתה בטוח שאתה רוצה לעזוב קבוצה זו?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">בחר מנהלן חדש</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">לפני שאתה עוזב, אתה חייב לבחור לפחות מנהלן חדש אחד עבור קבוצה זו.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">בחר מנהלן</string> -->
   <string name="ConversationActivity_transport_insecure_sms">מסרון בלתי מאובטח</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS בלתי מאובטח</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -399,6 +398,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">מטב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ־Signal לאחזר הודעות בעת אי־פעילות.</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">שתף עם</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">צרופות מרובות נתמכות רק עבור תמונות וסרטונים</string>
@@ -419,6 +419,7 @@
   <string name="AddToGroupActivity_add_to_group">הוסף לקבוצה</string>
   <string name="AddToGroupActivity_add_to_groups">הוסף לקבוצות</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
+  <string name="AddToGroupActivity_add">הוסף</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">בחר מנהלן חדש</string>
   <string name="ChooseNewAdminActivity_done">סיים</string>
@@ -444,6 +445,13 @@
   <string name="GroupManagement_invite_single_user">“%1$s” אינו יכול להתווסף באופן אוטומטי אל קבוצה זו על ידך.\n\nהוא הוזמן להצטרף, ולא יראה הודעות קבוצה כלשהן עד שהוא יסכים.</string>
   <string name="GroupManagement_learn_more">למד עוד</string>
   <string name="GroupManagement_invite_multiple_users">משתמשים אלו אינם יכולים להתווסף באופן אוטומטי אל קבוצה זו על ידך.\n\nהם הוזמנו להצטרף אל הקבוצה, ולא יראו הודעות קבוצה כלשהן עד שהם יסכימו.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">לעזוב קבוצה?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">לא תוכל יותר לשלוח או לקבל הודעות בקבוצה זו.</string>
+  <string name="LeaveGroupDialog_leave">עזוב</string>
+  <string name="LeaveGroupDialog_choose_new_admin">בחר מנהלן חדש</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">לפני שאתה עוזב, אתה חייב לבחור לפחות מנהלן חדש אחד עבור קבוצה זו.</string>
+  <string name="LeaveGroupDialog_choose_admin">בחר מנהלן</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">השבת</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">הצג מראש כל קישור שהוא</string>
@@ -497,6 +505,7 @@
     <item quantity="many">להוסיף %3$d חברי קבוצה אל \"%2$s\"?</item>
     <item quantity="other">להוסיף %3$d חברי קבוצה אל \"%2$s\"?</item>
   </plurals>
+  <string name="AddMembersActivity__add">הוסף</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">תן שם לקבוצה זו</string>
   <string name="AddGroupDetailsFragment__create_group">צור קבוצה</string>
@@ -531,8 +540,6 @@
   <string name="ManageGroupActivity_member_requests_and_invites">בקשות והזמנות של חברי קבוצה</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
   <string name="ManageGroupActivity_edit_group_info">ערוך מידע קבוצה</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">בחר מי יכול לערוך את השם, היצגן וההודעות הנעלמות של הקבוצה.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">בחר מי יכול להוסיף או להזמין חברי קבוצה חדשים.</string> -->
   <string name="ManageGroupActivity_group_link">קישור קבוצה</string>
   <string name="ManageGroupActivity_block_group">חסום קבוצה</string>
   <string name="ManageGroupActivity_unblock_group">בטל חסימת קבוצה</string>
@@ -566,7 +573,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">נכשל בעדכון הקבוצה עקב שגיאת רשת, אנא נסה שוב מאוחר יותר.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ערוך שם ותמונה</string>
   <string name="ManageGroupActivity_legacy_group">קבוצה מיושנת</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">זוהי קבוצה מיושנת. כדי להשיג גישה אל מאפיינים כמו מנהלני קבוצה, צור קבוצה חדשה.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">יידע אותי לגבי אזכורים</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">לקבל התראות כאשר אתה מוזכר בהתכתבויות מושתקות?</string>
@@ -1020,6 +1026,7 @@
   <string name="ExpirationDialog_disappearing_messages">הודעות נעלמות</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">ההודעות שלך לא יפוגו.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">הודעות שנשלחות ומתקבלות בשיחה זו ייעלמו %s אחרי שייראו.</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">הכנס משפט־סיסמה</string>
   <string name="PassphrasePromptActivity_watermark_content_description">צלמית Signal</string>
@@ -1102,6 +1109,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">שיחה קולית של Signal…</string>
   <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">בחר את מדינתך</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">אתה חייב לציין את
@@ -1522,6 +1530,8 @@
   <string name="conversation_item_sent__message_read">הודעה נקראה</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">תמונת איש קשר</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">טוען</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -1916,7 +1926,6 @@
   <string name="preferences_storage__none">אין</string>
   <string name="preferences_storage__s_messages">%1$s הודעות</string>
   <string name="preferences_storage__custom">מותאם אישית</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">מגבלת אורך שיחה</string> -->
   <string name="preferences_advanced__use_system_emoji">השתמש באימוג\'י של מערכת</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">השבת תמיכת אימוג\'י מובנית של Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">שדר את כל השיחות דרך שרת Signal כדי להימנע מחשיפת כתובת ה־IP שלך לאיש הקשר שלך. אפשור יפחית איכות שיחה.</string>
@@ -2036,16 +2045,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">העתק ללוח העריכה</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">השווה עם לוח העריכה</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">גרסת Signal שלך אינה עדכנית</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">גרסת Signal שלך תפוג תוך יום %d. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
-    <item quantity="two">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
-    <item quantity="many">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
-    <item quantity="other">גרסת Signal שלך תפוג תוך %d ימים. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">גרסת Signal שלך תפוג היום. הקש כדי לעדכן לגרסה העדכנית ביותר.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">גרסת Signal שלך פגה!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">הודעות לא יישלחו יותר בהצלחה. הקש כדי לעדכן אל הגרסה העדכנית ביותר.</string> -->
   <string name="reminder_header_sms_default_title">השתמש כיישום המסרונים ברירת המחדל</string>
   <string name="reminder_header_sms_default_text">הקש כדי להפוך את Signal ליישום המסרונים ברירת המחדל שלך.</string>
   <string name="reminder_header_sms_import_title">ייבא מסרוני מערכת</string>
@@ -2201,9 +2200,14 @@
   <string name="KbsMegaphone__update_pin">עדכן PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">נזכיר לך מאוחר יותר. יצירת PIN תהיה חובה עוד %1$d ימים.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">נזכיר לך מאוחר יותר. אימות PIN יהיה חובה עוד %1$d ימים.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">היכרות עם @אזכורים</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">תפוס תשומת לב של מישהו ב\"קבוצה חדשה\" על ידי הקלדת @</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">אמור אל Signal מה אתה חושב</string>
+  <string name="ResearchMegaphone_learn_more">למד עוד</string>
+  <string name="ResearchMegaphone_dismiss">בטל</string>
+  <string name="ResearchMegaphoneDialog_signal_research">מחקר Signal</string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">ענה על הסקר</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">לא תודה</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">הסקר מאורח על ידי Surveygizmo בתחום המאובטח surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>
@@ -2343,8 +2347,6 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">שיחת וידאו בלתי מאובטחת</string>
   <string name="RecipientBottomSheet_video_call_description">שיחת וידאו</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">להסיר את %1$s מתפקיד מנהלן קבוצה?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s יוכל לערוך קבוצה זו ואת חברי הקבוצה שלה</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">להסיר את %1$s מן \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">הסר</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupRecipientListItem_admin">מנהלן</string>
@@ -2354,9 +2356,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">קבוצות מיושנות לעומת חדשות</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">מהן קבוצות מיושנות?</string>
   <string name="GroupsLearnMore_paragraph_1">קבוצות מיושנות הן קבוצות שאינן תואמות עם מאפיינים של קבוצה חדשה כמו מנהלנים ועדכוני קבוצה תיאוריים יותר.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">איך אני משתמש בקבוצות חדשות?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">קבוצות מיושנות אינן ניתנות להמרה אל קבוצות חדשות, אבל אתה יכול ליצור קבוצה חדשה עם אותם חברי קבוצה.</string>
-  <string name="GroupsLearnMore_paragraph_3">כדי ליצור קבוצה חדשה, כל חברי הקבוצה צריכים לעדכן אל הגרסה האחרונה של Signal.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">האם אני יכול לשדרג קבוצה מיושנת?</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">שתף באמצעות Signal</string>
   <string name="GroupLinkBottomSheet_copy">העתק</string>

@@ -129,6 +129,10 @@
   <string name="ClearProfileActivity_remove">Eliminați</string>
   <string name="ClearProfileActivity_remove_profile_photo">Elimin poza de profil?</string>
   <string name="ClearProfileActivity_remove_group_photo">Eliminați poza de grup?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Actualizați Signal</string>
+  <string name="ClientDeprecatedActivity_update">Actualizează</string>
+  <string name="ClientDeprecatedActivity_warning">Avertizare</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nu s-a găsit nici un web browser.</string>
   <string name="CommunicationActions_no_email_app_found">Nu a fost găsită nici o aplicație de email.</string>
@@ -198,11 +202,6 @@
   <string name="ConversationActivity_added_to_home_screen">Adăugat pe ecranul principal</string>
   <string name="ConversationActivity_calls_not_supported">Nu există suport pentru apeluri</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Acest dispozitiv nu pare să suporte acțiune de apelare.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Părăsiți grupul?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteți sigur că doriți să părăsiți acest grup?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Alegeți un nou admin</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Înainte de a pleca, trebuie să alegeți cel puțin un nou administrator pentru acest grup.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Alegeți un admin</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS nesecurizat</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -385,6 +384,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Distribuie cu</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Atașamentele multiple sunt suportate doar pentru imagini și videouri</string>
@@ -405,6 +405,7 @@
   <string name="AddToGroupActivity_add_to_group">Adaugaţi la grup</string>
   <string name="AddToGroupActivity_add_to_groups">Adaugaţi la grupuri</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
+  <string name="AddToGroupActivity_add">Adaugă</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Alegeți un nou admin</string>
   <string name="ChooseNewAdminActivity_done">Gata</string>
@@ -429,6 +430,13 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" nu poate fi adăugat automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
   <string name="GroupManagement_learn_more">Aflați mai multe</string>
   <string name="GroupManagement_invite_multiple_users">Acești utilizatori nu pot fi adăugați automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Părăsiți grupul?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nu vei mai putea trimite sau primi mesaje in acest grup.</string>
+  <string name="LeaveGroupDialog_leave">Părăsește</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Alegeți un nou admin</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Înainte de a pleca, trebuie să alegeți cel puțin un nou administrator pentru acest grup.</string>
+  <string name="LeaveGroupDialog_choose_admin">Alegeți un admin</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Dezactivați</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Previzualizare orice link</string>
@@ -478,6 +486,7 @@
     <item quantity="few">Adăugați %3$d membrii la \"%2$s\"?</item>
     <item quantity="other">Adăugați %3$d membrii la \"%2$s\"?</item>
   </plurals>
+  <string name="AddMembersActivity__add">Adaugă</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Numiți acest grup</string>
   <string name="AddGroupDetailsFragment__create_group">Creează grup </string>
@@ -510,8 +519,6 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitări și invitații ale membrilor</string>
   <string name="ManageGroupActivity_add_members">Adăugați membri</string>
   <string name="ManageGroupActivity_edit_group_info">Editare informații despre grup</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Alegeți cine poate edita numele grupului, avatarul și dispariția mesajelor.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Alegeți cine poate adăuga sau invita membri noi.</string> -->
   <string name="ManageGroupActivity_group_link">Link grup</string>
   <string name="ManageGroupActivity_block_group">Blocați grupul</string>
   <string name="ManageGroupActivity_unblock_group">Deblocare grup</string>
@@ -543,7 +550,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Grupul nu a putut fi actualizat din cauza unei erori de rețea, vă rugăm să încercați mai târziu</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editare nume și poză</string>
   <string name="ManageGroupActivity_legacy_group">Grup vechi</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Pentru a accesa funcții precum administratorii de grup, creați un grup nou.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Doriți să primiți notificări atunci când sunteți menționat în convorbiri fără sunet?</string>
@@ -978,6 +984,7 @@
   <string name="ExpirationDialog_disappearing_messages">Dispariție mesaje</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Mesajele dvs. nu vor expira.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduceți parola</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Pictogramă Signal</string>
@@ -1059,6 +1066,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Apel vocal Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Apel video Signal…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Alegeți ţara dvs.</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie să introduceți
@@ -1472,6 +1480,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_item_sent__message_read">Mesaj citit</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Poză contact</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Se încarcă</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Redare … Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
@@ -1859,7 +1869,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_storage__none">Niciunul</string>
   <string name="preferences_storage__s_messages">%1$s mesaje</string>
   <string name="preferences_storage__custom">Specific</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Limită personalizată a lungimii conversației</string> -->
   <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivați icoanele emoji oferite de Signal </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționați toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contact tău. Activarea va reduce calitatea apelului.</string>
@@ -1979,15 +1988,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiază în clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compară cu clipboard-ul</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Versiunea ta de Signal este veche</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
-    <item quantity="few">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
-    <item quantity="other">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versiunea ta de Signal va expira azi. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versiunea ta de Signal a expirat!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesajele nu se vor mai trimite cu succes. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string> -->
   <string name="reminder_header_sms_default_title">Utilizează ca și aplicație SMS implicită</string>
   <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal ca și aplicație SMS implicită.</string>
   <string name="reminder_header_sms_import_title">Importă SMS de sistem</string>
@@ -2136,9 +2136,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KbsMegaphone__update_pin">Actualizați PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vă amintim mai târziu. Creearea unui PIN o să devină obligatorie în %1$d zile.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vă amintim mai târziu. Confirmarea PIN-ului dvs. o să devină obligatorie în %1$d zile.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Vă prezentăm @Mențiuni</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Obțineți atenția cuiva într-un \"Grup Nou\", tastând @</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Spune-ne ce părere ai</string>
+  <string name="ResearchMegaphone_learn_more">Aflați mai multe</string>
+  <string name="ResearchMegaphone_dismiss">Revocare</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Cercetare Signal</string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">Completează studiul</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Nu, mulţumesc</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -2278,8 +2282,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_insecure_voice_call_description">Apel vocal nesecurizat</string>
   <string name="RecipientBottomSheet_video_call_description">Apel video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Eliminați pe %1$s ca și admin de grup?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s va putea edita acest grup și membrii acestuia</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Eliminați pe %1$s din \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Eliminați</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
@@ -2289,9 +2291,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grupuri vechi vs. grupuri noi</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Ce sunt grupurile vechi?</string>
   <string name="GroupsLearnMore_paragraph_1">Grupurile vechi sunt grupuri care nu sunt compatibile cu funcționalitățiile grupurilor noi, cum ar fi administratorii și actualizări mai descriptive ale grupului.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Cum folosesc noile grupuri?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Grupurile vechi nu pot fi convertite la noile grupuri, dar puteți creea un nou grup cu aceeași membrii.</string>
-  <string name="GroupsLearnMore_paragraph_3">Pentru a creea un grup nou, toți membrii ar trebui să se actualizeze la cea mai recentă versiune a Signal.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Pot să migrez un grup vechi?</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partajează prin Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copy</string>

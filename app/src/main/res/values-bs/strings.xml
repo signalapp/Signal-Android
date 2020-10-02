@@ -129,6 +129,10 @@
   <string name="ClearProfileActivity_remove">Ukloni</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ukloni fotografiju profila?</string>
   <string name="ClearProfileActivity_remove_group_photo">Ukloni sliku grupe</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Ažurirajte Signal</string>
+  <string name="ClientDeprecatedActivity_update">Ažuriraj</string>
+  <string name="ClientDeprecatedActivity_warning">Upozorenje</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nije pronađen internet-preglednik.</string>
   <string name="CommunicationActions_no_email_app_found">Nije pronađena aplikacija za email.</string>
@@ -198,11 +202,6 @@
   <string name="ConversationActivity_added_to_home_screen">Dodano na početni ekran</string>
   <string name="ConversationActivity_calls_not_supported">Pozivi nisu podržani</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ovaj uređaj možda ne podržava pozivanje.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Napustiti grupu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jeste li sigurni da želite napustiti ovu grupu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Odredite novog administratora</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prije napuštanja, morate imenovati makar jednog novog administratora za grupu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Odredite administratora</string> -->
   <string name="ConversationActivity_transport_insecure_sms">Nezaštićen SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezaštićen MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -385,6 +384,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuj za nepostojanje Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite ovdje kako biste onemogućili sistemske optimizacije korištenja baterije koje sprečavaju Signal da prima poruke dok je aplikacija zatvorena.</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dijeli sa</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Višestruki prilozi podržani su samo za slike i videozapise</string>
@@ -405,6 +405,7 @@
   <string name="AddToGroupActivity_add_to_group">Uvrsti u grupu</string>
   <string name="AddToGroupActivity_add_to_groups">Uvrsti u grupe</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ovu osobu nije moguće uvrstiti u stare grupe.</string>
+  <string name="AddToGroupActivity_add">Dodaj</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Odredite novog administratora</string>
   <string name="ChooseNewAdminActivity_done">Uredu</string>
@@ -429,6 +430,13 @@
   <string name="GroupManagement_invite_single_user">“%1$s” ne može preko Vas biti automatski uvršten/a u grupu.\n\nPozvan/a je da se pridruži i neće vidjeti grupne poruke sve dok ne prihvati pozivnicu.</string>
   <string name="GroupManagement_learn_more">Saznajte više</string>
   <string name="GroupManagement_invite_multiple_users">Ove osobe ne mogu se preko Vas automatski uvrstiti u grupu.\n\nPozvane su da se pridruže grupi i neće vidjeti grupne poruke sve dok ne prihvate pozivnicu.</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Napustiti grupu?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nećete više biti u mogućnosti slati i primati poruke u ovoj grupi.</string>
+  <string name="LeaveGroupDialog_leave">Napusti</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Odredite novog administratora</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prije napuštanja, morate imenovati makar jednog novog administratora za grupu.</string>
+  <string name="LeaveGroupDialog_choose_admin">Odredite administratora</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Onemogući</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Pregledaj link</string>
@@ -478,6 +486,7 @@
     <item quantity="few">Uvrstiti %3$d člana u \"%2$s\"?</item>
     <item quantity="other">Uvrstiti %3$d članova u \"%2$s\"?</item>
   </plurals>
+  <string name="AddMembersActivity__add">Dodaj</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Dodijeli naziv grupi</string>
   <string name="AddGroupDetailsFragment__create_group">Kreiraj grupu</string>
@@ -510,8 +519,6 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Zahtjevi za članstvo i pozivnice</string>
   <string name="ManageGroupActivity_add_members">Dodajte članove</string>
   <string name="ManageGroupActivity_edit_group_info">Izmijeni informacije o grupi</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_edit_the_group_name_avatar_and_disappearing_messages">Odredite ko može promijeniti naziv i sliku grupe, te vrijeme za nestajanje poruka.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_choose_who_can_add_or_invite_new_members">Odredite ko može uvrstiti ili pozvati nove članove.</string> -->
   <string name="ManageGroupActivity_group_link">Link grupe</string>
   <string name="ManageGroupActivity_block_group">Blokiraj grupu</string>
   <string name="ManageGroupActivity_unblock_group">Prestani s blokiranjem grupe</string>
@@ -543,7 +550,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Neuspjelo ažuriranje grupe usljed greške u mreži, molimo, pokušajte kasnije</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Upišite ime i dodajte sliku</string>
   <string name="ManageGroupActivity_legacy_group">Stara grupa</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Ovo je stara grupa. Da biste mogli koristiti opcije poput grupnog administratora, kreirajte novu grupu.</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me kad me neko spomene</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Primiti obavještenja kad Vas neko spomene u prigušenim konverzacijama?</string>
@@ -978,6 +984,7 @@
   <string name="ExpirationDialog_disappearing_messages">Nestajuće poruke</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Vaše poruke neće isteći.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Poslane i primljene poruke u ovoj konverzaciji nestat će %s nakon što su viđene.</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal sličica</string>
@@ -1059,6 +1066,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal glasovni poziv…</string>
   <string name="WebRtcCallView__signal_video_call">Signal videopoziv…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Odaberite svoju zemlju</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Morate precizirati
@@ -1476,6 +1484,8 @@
   <string name="conversation_item_sent__message_read">Poruka pročitana</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Slika kontakta</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Učitavam</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Sviraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
@@ -1862,7 +1872,6 @@
   <string name="preferences_storage__none">Nijedno</string>
   <string name="preferences_storage__s_messages">%1$s poruka</string>
   <string name="preferences_storage__custom">Ostalo</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_Storage__custom_conversation_length_limit">Maksimalni broj poruka</string> -->
   <string name="preferences_advanced__use_system_emoji">Koristi sistemske emoji sličice</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući Signalovu ugrađenu podršku za emoji sličice</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjeri sve pozive na Signal server kako bi Vaša IP adresa bila skrivena od sagovornika. Aktiviranjem ove opcije smanjit će se kvalitet poziva.</string>
@@ -1982,15 +1991,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Uporedi sa međuspremnikom</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Vaša je verzija Signala stara</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Vaša verzija Signala ističe za %d dan. Pritisnite da preuzmete zadnju verziju.</item>
-    <item quantity="few">Vaša verzija Signala ističe za %d dana. Pritisnite da preuzmete zadnju verziju.</item>
-    <item quantity="other">Vaša verzija Signala ističe za %d dana. Pritisnite da preuzmete zadnju verziju.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Vaša verzija Signala ističe danas. Pritisnite da preuzmete zadnju verziju.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Vaša je verzija Signala istekla!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Poruke se više neće slati. Pritisnite da preuzmete zadnju verziju.</string> -->
   <string name="reminder_header_sms_default_title">Koristi kao glavnu aplikaciju za SMS</string>
   <string name="reminder_header_sms_default_text">Pritisnite da Signal učinite svojom glavnom aplikacijom za slanje SMS poruka</string>
   <string name="reminder_header_sms_import_title">Unesi sistemske SMS poruke</string>
@@ -2139,9 +2139,10 @@
   <string name="KbsMegaphone__update_pin">Ažurirajte PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Podsjetit ćemo Vas kasnije. Kreiranje PIN-a postat će obavezno za %1$d dana.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Podsjetit ćemo Vas kasnije. Potvrda Vašeg PIN-a postat će obavezna za %1$d dana.</string>
-  <!--Mention Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__introducing_mentions">Novo: @spomen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MentionsMegaphone__get_someones_attention_in_a_group_by_typing">Skrenite nečiju pažnju u novoj grupi kucajući @</string> -->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_learn_more">Saznajte više</string>
+  <string name="ResearchMegaphone_dismiss">Odbaci</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Sličica transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>
@@ -2281,8 +2282,6 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">Nezaštićen poziv</string>
   <string name="RecipientBottomSheet_video_call_description">Videopoziv</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Smijeniti %1$s kao administratora grupe?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s će moći uređivati ovu grupu i njene članove</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">Udaljiti %1$s iz \"%2$s\"?</string> -->
   <string name="RecipientBottomSheet_remove">Ukloni</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
@@ -2292,9 +2291,6 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare spram novih grupa</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Šta su stare gurpe?</string>
   <string name="GroupsLearnMore_paragraph_1">Stare su one grupe koje nisu kompatibilne s novim grupnim opcijama poput administratora i detaljnih grupnih izvještaja.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsLearnMore_how_do_i_use_new_groups">Kako ću koristiti nove grupe?</string> -->
-  <string name="GroupsLearnMore_paragraph_2">Stare grupe ne mogu se preinačiti u nove, ali možete kreirati novu grupu sa istim članovima.</string>
-  <string name="GroupsLearnMore_paragraph_3">Da biste mogli kreirati novu grupu, svi članovi moraju koristiti zadnju objavljenu verziju Signala.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Podijeli preko Signala</string>
   <string name="GroupLinkBottomSheet_copy">Kopiraj</string>

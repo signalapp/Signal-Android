@@ -119,6 +119,9 @@
   <string name="ClearProfileActivity_remove">เอาออก</string>
   <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่?</string>
   <string name="ClearProfileActivity_remove_group_photo">ลบภาพกลุ่มหรือไม่?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">ปรับปรุง Signal</string>
+  <string name="ClientDeprecatedActivity_update">ปรับปรุง</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ไม่เจอเว็บเบราว์เซอร์</string>
   <string name="CommunicationActions_no_email_app_found">ไม่พอแอปอีเมล</string>
@@ -185,9 +188,6 @@
   <string name="ConversationActivity_added_to_home_screen">เพิ่มไปยังหน้าจอหลักแล้ว</string>
   <string name="ConversationActivity_calls_not_supported">ไม่รองรับการโทร</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">อุปกรณ์นี้ไม่รองรับการโทรออก</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">ออกจากกลุ่มหรือไม่?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">คุณแน่ใจหรือไม่ว่าต้องการออกจากกลุ่มนี้?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">เลือกผู้ดูแลใหม่</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS ที่ไม่ปลอดภัย</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ที่ไม่ปลอดภัย</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -337,6 +337,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ปรับปรุงการทำงานให้รับกับการไม่มี Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">อุปกรณ์นี้ไม่รองรับ Play Services แตะเพื่อปิดใช้งานการปรับประสิทธิภาพแบตเตอรีซึ่งจะทำให้ Signal ไม่สามารถรับข้อความได้ในขณะที่ไม่ได้เปิดแอปบนหน้าจอ</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">แบ่งปันกับ</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">การแนบแฟ้มหลายชิ้นแนบได้เฉพาะรูปภาพและวิดีโอ</string>
@@ -352,6 +353,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">สติกเกอร์</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_to_group">เพิ่มเข้ากลุ่ม</string>
+  <string name="AddToGroupActivity_add">เพิ่ม</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">เลือกผู้ดูแลใหม่</string>
   <string name="ChooseNewAdminActivity_done">เสร็จสิ้น</string>
@@ -367,6 +369,11 @@
   <string name="GroupManagement_access_level_only_admins">เฉพาะผู้ดูแล</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">เรียนรู้เพิ่มเติม</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">ออกจากกลุ่มหรือไม่?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">คุณจะไม่สามารถส่งหรือรับข้อความในกลุ่มนี้ได้อีกต่อไป</string>
+  <string name="LeaveGroupDialog_leave">ออก</string>
+  <string name="LeaveGroupDialog_choose_new_admin">เลือกผู้ดูแลใหม่</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">หยุดใช้</string>
   <!--LinkPreviewView-->
@@ -384,6 +391,7 @@
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">เพิ่มสมาชิก %3$d คนไปยัง \"%2$s\" หรือไม่?</item>
   </plurals>
+  <string name="AddMembersActivity__add">เพิ่ม</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ตั้งชื่อกลุ่มนี้</string>
   <string name="AddGroupDetailsFragment__create_group">สร้างกลุ่ม</string>
@@ -699,6 +707,7 @@
   <string name="ExpirationDialog_disappearing_messages">ข้อความที่ลบตัวเอง</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">ข้อความของคุณจะไม่หมดอายุ</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ข้อความที่ถูกส่งและได้รับในการสนทนานี้จะลบตัวเองไป %s หลังจากที่คู่สนทนาเห็นข้อความแล้ว</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">ใส่วลีรหัสผ่าน</string>
   <string name="PassphrasePromptActivity_watermark_content_description">ไอคอน Signal</string>
@@ -765,6 +774,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">การโทรเสียง Signal…</string>
   <string name="WebRtcCallView__signal_video_call">การโทรวิดีโอ Signal…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">เลือกประเทศของคุณ</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">คุณต้องระบุรหัส
@@ -1155,6 +1165,8 @@
   <string name="conversation_item_sent__message_read">ข้อความถูกอ่านแล้ว</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">ภาพของผู้ติดต่อ</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">กำลังโหลด</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">เล่น … หยุด</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
@@ -1597,13 +1609,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">เปรียบเทียบกับคลิปบอร์ด</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Signal รุ่นที่คุณมีล้าสมัยแล้ว</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Signal รุ่นที่คุณมีจะหมดอายุในอีก %d วัน แตะเพื่อปรับปรุงเป็นรุ่นล่าสุด</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Signal รุ่นที่คุณมีจะหมดอายุวันนี้ แตะเพื่อปรับปรุงเป็นรุ่นล่าสุด</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal รุ่นที่คุณมีหมดอายุแล้ว!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">จะไม่สามารถส่งข้อความได้อีกต่อไป แตะเพื่อปรับปรุงเป็นรุ่นล่าสุด</string> -->
   <string name="reminder_header_sms_default_title">ใช้เป็นแอป SMS หลัก</string>
   <string name="reminder_header_sms_default_text">แตะเพื่อกำหนดให้ Signal เป็นแอป SMS หลักของคุณ</string>
   <string name="reminder_header_sms_import_title">นำเข้า SMS ของระบบ</string>
@@ -1733,7 +1738,10 @@
   <string name="KbsMegaphone__update_pin">ปรับปรุงรหัส PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">เราจะเตือนคุณในภายหลัง การสร้างรหัส PIN จะถูกบังคับให้ทำภายใน %1$d วัน</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">เราจะเตือนคุณในภายหลัง การยืนยันรหัส PIN ของคุณจะถูกบังคับให้ทำภายใน %1$d วัน</string>
-  <!--Mention Megaphone-->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="ResearchMegaphone_dismiss">เลิกกัน</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">ไม่ ขอบคุณ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ไอคอนขนส่ง</string>
   <string name="ConversationListFragment_loading">กำลังโหลด…</string>
@@ -1852,7 +1860,6 @@
   <string name="RecipientBottomSheet_remove_as_admin">ลบจากการเป็นผู้ดูแล</string>
   <string name="RecipientBottomSheet_remove_from_group">ลบจากลุ่ม</string>
   <string name="RecipientBottomSheet_message_description">ข้อความ</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_remove_s_from_s">ลบ %1$s จาก \"%2$s\" หรือไม่?</string> -->
   <string name="RecipientBottomSheet_remove">เอาออก</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="GroupRecipientListItem_admin">ผู้ดูแล</string>

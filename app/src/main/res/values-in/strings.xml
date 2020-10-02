@@ -121,6 +121,10 @@
   <string name="ClearProfileActivity_remove">Hapus</string>
   <string name="ClearProfileActivity_remove_profile_photo">Hapus foto profil?</string>
   <string name="ClearProfileActivity_remove_group_photo">Hapus foto grup?</string>
+  <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Perbarui Signal</string>
+  <string name="ClientDeprecatedActivity_update">Perbarui</string>
+  <string name="ClientDeprecatedActivity_warning">Peringatan</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Peramban web tidak ditemukan.</string>
   <string name="CommunicationActions_no_email_app_found">Aplikasi pengirim email tidak ditemukan.</string>
@@ -190,11 +194,6 @@
   <string name="ConversationActivity_added_to_home_screen">Telah ditambahkan ke tampilan depan</string>
   <string name="ConversationActivity_calls_not_supported">Panggilan tidak didukung</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Perangkat ini sepertinya tidak mendukung untuk melakukan panggilan.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_leave_group">Tinggalkan grup?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Apakah Anda yakin ingin meninggalkan grup ini?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_new_admin">Pilih admin baru</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Sebelum Anda keluar, pilih admin baru untuk grup ini.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_choose_admin">Pilih admin.</string> -->
   <string name="ConversationActivity_transport_insecure_sms">SMS tidak terenkripsi</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS tidak terenkripsi</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
@@ -346,6 +345,7 @@
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalkan untuk mengabaikan Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Perangkat ini tidak mendukung Play Services. Ketuk untuk menonaktifkan pengoptimalan baterai sistem yang mencegah Signal untuk mengambil pesan saat tidak aktif.</string>
+  <!--ExpiredBuildReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Lampiran jamak hanya berupa gambar dan video</string>
@@ -360,6 +360,7 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Stiker</string>
   <!--AddToGroupActivity-->
+  <string name="AddToGroupActivity_add">Tambahkan</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Pilih admin baru</string>
   <string name="ChooseNewAdminActivity_done">Selesai</string>
@@ -375,6 +376,13 @@
   <string name="GroupManagement_access_level_only_admins">Khusus para admin</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">Pelajari lebih lanjut</string>
+  <!--LeaveGroupDialog-->
+  <string name="LeaveGroupDialog_leave_group">Tinggalkan grup?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Anda tidak dapat lagi mengirim atau menerima pesan dari grup ini.</string>
+  <string name="LeaveGroupDialog_leave">Tinggalkan</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Pilih admin baru</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Sebelum Anda keluar, pilih admin baru untuk grup ini.</string>
+  <string name="LeaveGroupDialog_choose_admin">Pilih admin.</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Nonaktifkan</string>
   <!--LinkPreviewView-->
@@ -389,6 +397,7 @@
   <!--RequestingMembersFragment-->
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Selesai</string>
+  <string name="AddMembersActivity__add">Tambahkan</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Beri nama grup ini</string>
   <string name="AddGroupDetailsFragment__create_group">Buat grup</string>
@@ -697,6 +706,7 @@
   <string name="ExpirationDialog_disappearing_messages">Penghilangan pesan</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Pesan Anda tidak akan kedaluwarsa.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesan yang terkirim dan diterima pada percakapan ini akan hilang dalam waktu %s setelah dibaca.</string>
+  <!--OutdatedBuildReminder-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Masukkan frasa sandi</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikon Signal</string>
@@ -763,6 +773,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Panggilan suara Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Panggilan video Signal…</string>
+  <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Pilih negara Anda</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus mengisi
@@ -1156,6 +1167,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_item_sent__message_read">Pesan terbaca</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto kontak</string>
+  <!--ConversationUpdateItem-->
+  <string name="ConversationUpdateItem_loading">Memuat</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Putar … Jeda</string>
   <string name="audio_view__download_accessibility_description">Unduh</string>
@@ -1593,13 +1606,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingkan dengan papan klip</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Versi Signal Anda terlalu lama</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Versi Signal Anda akan berakhir dalam %d hari. Ketuk untuk memperbarui ke versi terkini.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versi Signal Anda akan berakhir hari ini. Ketuk untuk memperbarui ke versi terkini.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versi Signal Anda telah kedaluwarsa!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Pesan tidak lagi dapat dikirim. Ketuk untuk memperbarui ke versi terkini.</string> -->
   <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS utama</string>
   <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS utama Anda.</string>
   <string name="reminder_header_sms_import_title">Impor sistem SMS</string>
@@ -1729,7 +1735,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KbsMegaphone__update_pin">Perbarui PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Kami akan mengingatkan Anda nanti. Membuat PIN akan menjadi kewajiban dalam %1$d hari.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Kami akan mengingatkan Anda nanti. Mengonfirmasi PIN akan menjadi kewajiban dalam %1$d hari.</string>
-  <!--Mention Megaphone-->
+  <!--Research Megaphone-->
+  <string name="ResearchMegaphone_learn_more">Pelajari lebih lanjut</string>
+  <string name="ResearchMegaphone_dismiss">Batalkan</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">Tidak, terima kasih</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindahkan ikon</string>
   <string name="ConversationListFragment_loading">Memuat…</string>
