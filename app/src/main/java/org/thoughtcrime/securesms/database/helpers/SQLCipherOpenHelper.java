@@ -62,14 +62,17 @@ import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Triple;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -151,8 +154,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int THUMBNAIL_CLEANUP                = 74;
   private static final int STICKER_CONTENT_TYPE_CLEANUP     = 75;
   private static final int MENTION_CLEANUP                  = 76;
+  private static final int MENTION_CLEANUP_V2               = 77;
 
-  private static final int    DATABASE_VERSION = 76;
+  private static final int    DATABASE_VERSION = 77;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1083,6 +1087,39 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         if (Util.hasItems(idsToDelete)) {
           String ids = TextUtils.join(",", idsToDelete);
           db.delete("mention", "_id in (" + ids + ")", null);
+        }
+      }
+
+      if (oldVersion < MENTION_CLEANUP_V2) {
+        String selectMentionIdsWithMismatchingThreadIds = "select mention._id from mention left join mms on mention.message_id = mms._id where mention.thread_id != mms.thread_id";
+        db.delete("mention", "_id in (" + selectMentionIdsWithMismatchingThreadIds + ")", null);
+
+        List<Long>                          idsToDelete   = new LinkedList<>();
+        Set<Triple<Long, Integer, Integer>> mentionTuples = new HashSet<>();
+        try (Cursor cursor = db.rawQuery("select mention.*, mms.body from mention inner join mms on mention.message_id = mms._id order by mention._id desc", null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            long   mentionId   = CursorUtil.requireLong(cursor, "_id");
+            long   messageId   = CursorUtil.requireLong(cursor, "message_id");
+            int    rangeStart  = CursorUtil.requireInt(cursor, "range_start");
+            int    rangeLength = CursorUtil.requireInt(cursor, "range_length");
+            String body        = CursorUtil.requireString(cursor, "body");
+
+            if (body != null && rangeStart < body.length() && body.charAt(rangeStart) != '\uFFFC') {
+              idsToDelete.add(mentionId);
+            } else {
+              Triple<Long, Integer, Integer> tuple = new Triple<>(messageId, rangeStart, rangeLength);
+              if (mentionTuples.contains(tuple)) {
+                idsToDelete.add(mentionId);
+              } else {
+                mentionTuples.add(tuple);
+              }
+            }
+          }
+
+          if (Util.hasItems(idsToDelete)) {
+            String ids = TextUtils.join(",", idsToDelete);
+            db.delete("mention", "_id in (" + ids + ")", null);
+          }
         }
       }
 

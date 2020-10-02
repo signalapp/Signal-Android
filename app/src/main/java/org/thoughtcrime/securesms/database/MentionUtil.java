@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -24,6 +23,8 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public final class MentionUtil {
 
@@ -68,14 +69,13 @@ public final class MentionUtil {
       return new UpdatedBodyAndMentions(body, mentions);
     }
 
+    SortedSet<Mention>     sortedMentions  = new TreeSet<>(mentions);
     SpannableStringBuilder updatedBody     = new SpannableStringBuilder();
     List<Mention>          updatedMentions = new ArrayList<>();
 
-    Collections.sort(mentions);
-
     int bodyIndex = 0;
 
-    for (Mention mention : mentions) {
+    for (Mention mention : sortedMentions) {
       updatedBody.append(body.subSequence(bodyIndex, mention.getStart()));
       CharSequence replaceWith    = replacementTextGenerator.apply(mention);
       Mention      updatedMention = new Mention(mention.getRecipientId(), updatedBody.length(), replaceWith.length());
