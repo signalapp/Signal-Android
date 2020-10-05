@@ -3039,7 +3039,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     messageRequestBottomView.setBlockOnClickListener(v -> onMessageRequestBlockClicked(viewModel));
     messageRequestBottomView.setUnblockOnClickListener(v -> onMessageRequestUnblockClicked(viewModel));
 
-    viewModel.getRecipient().observe(this, this::presentMessageRequestBottomViewTo);
+    viewModel.getMessageData().observe(this, this::presentMessageRequestBottomViewTo);
     viewModel.getMessageRequestDisplayState().observe(this, this::presentMessageRequestDisplayState);
     viewModel.getFailures().observe(this, this::showGroupChangeErrorToast);
     viewModel.getMessageRequestStatus().observe(this, status -> {
@@ -3452,10 +3452,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
   }
 
-  private void presentMessageRequestBottomViewTo(@Nullable Recipient recipient) {
-    if (recipient == null) return;
+  private void presentMessageRequestBottomViewTo(@Nullable MessageRequestViewModel.MessageData messageData) {
+    if (messageData == null) return;
 
-    messageRequestBottomView.setRecipient(recipient);
+    messageRequestBottomView.setMessageData(messageData);
   }
 
   private static class KeyboardImageDetails {

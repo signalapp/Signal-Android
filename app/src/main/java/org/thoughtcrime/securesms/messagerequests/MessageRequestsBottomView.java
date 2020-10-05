@@ -60,23 +60,33 @@ public class MessageRequestsBottomView extends ConstraintLayout {
     busyIndicator  = findViewById(R.id.message_request_busy_indicator);
   }
 
-  public void setRecipient(@NonNull Recipient recipient) {
-    if (recipient.isBlocked()) {
-      if (recipient.isGroup()) {
+  public void setMessageData(@NonNull MessageRequestViewModel.MessageData messageData) {
+    Recipient recipient = messageData.getRecipient();
+
+    switch (messageData.getMessageClass()) {
+      case BLOCKED_INDIVIDUAL:
+        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them,
+                                                                    HtmlUtil.bold(recipient.getShortDisplayName(getContext()))), 0));
+        setActiveInactiveGroups(blockedButtons, normalButtons);
+        break;
+      case BLOCKED_GROUP:
         question.setText(R.string.MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members);
-      } else {
-        String name = recipient.getShortDisplayName(getContext());
-        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them, HtmlUtil.bold(name)), 0));
-      }
-      setActiveInactiveGroups(blockedButtons, normalButtons);
-    } else {
-      if (recipient.isGroup()) {
+        setActiveInactiveGroups(blockedButtons, normalButtons);
+        break;
+      case GROUP_V1:
+      case GROUP_V2_INVITE:
         question.setText(R.string.MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept);
-      } else {
-        String name = recipient.getShortDisplayName(getContext());
-        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept, HtmlUtil.bold(name)), 0));
-      }
-      setActiveInactiveGroups(normalButtons, blockedButtons);
+        setActiveInactiveGroups(normalButtons, blockedButtons);
+        break;
+      case GROUP_V2_ADD:
+        question.setText(R.string.MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept);
+        setActiveInactiveGroups(normalButtons, blockedButtons);
+        break;
+      case INDIVIDUAL:
+        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept,
+                                                                    HtmlUtil.bold(recipient.getShortDisplayName(getContext()))), 0));
+        setActiveInactiveGroups(normalButtons, blockedButtons);
+        break;
     }
   }
 

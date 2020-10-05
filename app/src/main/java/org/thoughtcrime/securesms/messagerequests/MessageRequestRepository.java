@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
@@ -227,6 +228,10 @@ final class MessageRequestRepository {
 
       onMessageRequestUnblocked.run();
     });
+  }
+
+  boolean isPendingMember(@NonNull GroupId.V2 groupId) {
+    return DatabaseFactory.getGroupDatabase(context).isPendingMember(groupId, Recipient.self());
   }
 
   enum MessageRequestState {
