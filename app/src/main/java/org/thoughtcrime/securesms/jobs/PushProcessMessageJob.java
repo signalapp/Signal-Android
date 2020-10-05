@@ -1830,7 +1830,7 @@ public final class PushProcessMessageJob extends BaseJob {
         Optional<GroupId> groupId       = GroupUtil.idFromGroupContext(message.getGroupContext());
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
-          return false;
+          return sender.isBlocked();
         }
 
         boolean isTextMessage    = message.getBody().isPresent();
