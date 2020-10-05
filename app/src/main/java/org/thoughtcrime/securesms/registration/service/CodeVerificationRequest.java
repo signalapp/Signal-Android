@@ -22,6 +22,8 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.pin.PinRestoreRepository;
+import org.thoughtcrime.securesms.pin.PinRestoreRepository.TokenData;
 import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -65,41 +67,40 @@ public final class CodeVerificationRequest {
   /**
    * Asynchronously verify the account via the code.
    *
-   * @param fcmToken         The FCM token for the device.
-   * @param code             The code that was delivered to the user.
-   * @param pin              The users registration pin.
-   * @param callback         Exactly one method on this callback will be called.
-   * @param kbsTokenResponse By keeping the token, on failure, a newly returned token will be reused in subsequent pin
-   *                         attempts, preventing certain attacks, we can also track the attempts making missing replies easier to spot.
+   * @param fcmToken     The FCM token for the device.
+   * @param code         The code that was delivered to the user.
+   * @param pin          The users registration pin.
+   * @param callback     Exactly one method on this callback will be called.
+   * @param kbsTokenData By keeping the token, on failure, a newly returned token will be reused in subsequent pin
+   *                     attempts, preventing certain attacks, we can also track the attempts making missing replies easier to spot.
    */
   static void verifyAccount(@NonNull Context context,
                             @NonNull Credentials credentials,
                             @Nullable String fcmToken,
                             @NonNull String code,
                             @Nullable String pin,
-                            @Nullable String basicStorageCredentials,
-                            @Nullable TokenResponse kbsTokenResponse,
+                            @Nullable TokenData kbsTokenData,
                             @NonNull VerifyCallback callback)
   {
     new AsyncTask<Void, Void, Result>() {
 
       private volatile LockedException lockedException;
-      private volatile TokenResponse   kbsToken;
+      private volatile TokenData       tokenData;
 
       @Override
       protected Result doInBackground(Void... voids) {
         final boolean pinSupplied = pin != null;
-        final boolean tryKbs      = kbsTokenResponse != null;
+        final boolean tryKbs      = tokenData != null;
 
         try {
-          kbsToken = kbsTokenResponse;
-          verifyAccount(context, credentials, code, pin, kbsTokenResponse, basicStorageCredentials, fcmToken);
+          this.tokenData = kbsTokenData;
+          verifyAccount(context, credentials, code, pin, tokenData, fcmToken);
           return Result.SUCCESS;
         } catch (KeyBackupSystemNoDataException e) {
           Log.w(TAG, "No data found on KBS");
           return Result.KBS_ACCOUNT_LOCKED;
         } catch (KeyBackupSystemWrongPinException e) {
-          kbsToken = e.getTokenResponse();
+          tokenData = TokenData.withResponse(tokenData, e.getTokenResponse());
           return Result.KBS_WRONG_PIN;
         } catch (LockedException e) {
           if (pinSupplied && tryKbs) {
@@ -110,8 +111,8 @@ public final class CodeVerificationRequest {
           lockedException = e;
           if (e.getBasicStorageCredentials() != null) {
             try {
-              kbsToken = getToken(e.getBasicStorageCredentials());
-              if (kbsToken == null || kbsToken.getTries() == 0) {
+              tokenData = getToken(e.getBasicStorageCredentials());
+              if (tokenData == null || tokenData.getTriesRemaining() == 0) {
                 return Result.KBS_ACCOUNT_LOCKED;
               }
             } catch (IOException ex) {
@@ -137,12 +138,12 @@ public final class CodeVerificationRequest {
             callback.onSuccessfulRegistration();
             break;
           case PIN_LOCKED:
-            if (kbsToken != null) {
+            if (tokenData != null) {
               if (lockedException.getBasicStorageCredentials() == null) {
                 throw new AssertionError("KBS Token set, but no storage credentials supplied.");
               }
               Log.w(TAG, "Reg Locked: V2 pin needed for registration");
-              callback.onKbsRegistrationLockPinRequired(lockedException.getTimeRemaining(), kbsToken, lockedException.getBasicStorageCredentials());
+              callback.onKbsRegistrationLockPinRequired(lockedException.getTimeRemaining(), tokenData, lockedException.getBasicStorageCredentials());
             } else {
               Log.w(TAG, "Reg Locked: V1 pin needed for registration");
               callback.onV1RegistrationLockPinRequiredOrIncorrect(lockedException.getTimeRemaining());
@@ -156,7 +157,7 @@ public final class CodeVerificationRequest {
             break;
           case KBS_WRONG_PIN:
             Log.w(TAG, "KBS Pin was wrong");
-            callback.onIncorrectKbsRegistrationLockPin(kbsToken);
+            callback.onIncorrectKbsRegistrationLockPin(tokenData);
             break;
           case KBS_ACCOUNT_LOCKED:
             Log.w(TAG, "KBS Account is locked");
@@ -167,9 +168,9 @@ public final class CodeVerificationRequest {
     }.executeOnExecutor(SignalExecutors.UNBOUNDED);
   }
 
-  private static TokenResponse getToken(@Nullable String basicStorageCredentials) throws IOException {
+  private static TokenData getToken(@Nullable String basicStorageCredentials) throws IOException {
     if (basicStorageCredentials == null) return null;
-    return ApplicationDependencies.getKeyBackupService().getToken(basicStorageCredentials);
+    return new PinRestoreRepository().getTokenSync(basicStorageCredentials);
   }
 
   private static void handleSuccessfulRegistration(@NonNull Context context) {
@@ -185,12 +186,11 @@ public final class CodeVerificationRequest {
                                     @NonNull Credentials credentials,
                                     @NonNull String code,
                                     @Nullable String pin,
-                                    @Nullable TokenResponse kbsTokenResponse,
-                                    @Nullable String kbsStorageCredentials,
+                                    @Nullable TokenData kbsTokenData,
                                     @Nullable String fcmToken)
     throws IOException, KeyBackupSystemWrongPinException, KeyBackupSystemNoDataException
   {
-    boolean    isV2RegistrationLock        = kbsTokenResponse != null;
+    boolean    isV2RegistrationLock        = kbsTokenData != null;
     int        registrationId              = KeyHelper.generateRegistrationId(false);
     boolean    universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
     ProfileKey profileKey                  = findExistingProfileKey(context, credentials.getE164number());
@@ -206,7 +206,7 @@ public final class CodeVerificationRequest {
     SessionUtil.archiveAllSessions(context);
 
     SignalServiceAccountManager accountManager     = AccountManagerFactory.createUnauthenticated(context, credentials.getE164number(), credentials.getPassword());
-    KbsPinData                  kbsData            = isV2RegistrationLock ? PinState.restoreMasterKey(pin, kbsStorageCredentials, kbsTokenResponse) : null;
+    KbsPinData                  kbsData            = isV2RegistrationLock ? PinState.restoreMasterKey(pin, kbsTokenData.getEnclave(), kbsTokenData.getBasicAuth(), kbsTokenData.getTokenResponse()) : null;
     String                      registrationLockV2 = kbsData != null ? kbsData.getMasterKey().deriveRegistrationLock() : null;
     String                      registrationLockV1 = isV2RegistrationLock ? null : pin;
     boolean                     hasFcm             = fcmToken != null;
@@ -292,14 +292,14 @@ public final class CodeVerificationRequest {
     /**
      * The account is locked with a V2 (KBS) pin. Called before any user pin guesses.
      */
-    void onKbsRegistrationLockPinRequired(long timeRemaining, @NonNull TokenResponse kbsTokenResponse, @NonNull String kbsStorageCredentials);
+    void onKbsRegistrationLockPinRequired(long timeRemaining, @NonNull TokenData kbsTokenData, @NonNull String kbsStorageCredentials);
 
     /**
      * The account is locked with a V2 (KBS) pin. Called after a user pin guess.
      * <p>
      * i.e. an attempt has likely been used.
      */
-    void onIncorrectKbsRegistrationLockPin(@NonNull TokenResponse kbsTokenResponse);
+    void onIncorrectKbsRegistrationLockPin(@NonNull TokenData kbsTokenResponse);
 
     /**
      * V2 (KBS) pin is set, but there is no data on KBS.

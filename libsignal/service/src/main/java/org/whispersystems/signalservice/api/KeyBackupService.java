@@ -17,6 +17,7 @@ import org.whispersystems.signalservice.internal.keybackup.protos.BackupResponse
 import org.whispersystems.signalservice.internal.keybackup.protos.RestoreResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
+import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
@@ -216,6 +217,21 @@ public final class KeyBackupService {
     }
 
     @Override
+    public void removePin()
+        throws IOException, UnauthenticatedResponseException
+    {
+      try {
+        RemoteAttestation remoteAttestation = getAndVerifyRemoteAttestation();
+        KeyBackupRequest  request           = KeyBackupCipher.createKeyDeleteRequest(currentToken, remoteAttestation, serviceId);
+        KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
+
+        KeyBackupCipher.getKeyDeleteResponseStatus(response, remoteAttestation);
+      } catch (InvalidCiphertextException e) {
+        throw new UnauthenticatedResponseException(e);
+      }
+    }
+
+    @Override
     public void enableRegistrationLock(MasterKey masterKey) throws IOException {
       pushServiceSocket.setRegistrationLockV2(masterKey.deriveRegistrationLock());
     }
@@ -265,6 +281,9 @@ public final class KeyBackupService {
   public interface PinChangeSession extends HashSession {
     /** Creates a PIN. Does nothing to registration lock. */
     KbsPinData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException;
+
+    /** Removes the PIN data from KBS. */
+    void removePin() throws IOException, UnauthenticatedResponseException;
 
     /** Enables registration lock. This assumes a PIN is set. */
     void enableRegistrationLock(MasterKey masterKey) throws IOException;

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.components.registration.CallMeCountDownView;
 import org.thoughtcrime.securesms.components.registration.VerificationCodeView;
 import org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.pin.PinRestoreRepository;
 import org.thoughtcrime.securesms.registration.ReceivedSmsEvent;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -107,7 +107,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
 
       RegistrationService registrationService = RegistrationService.getInstance(model.getNumber().getE164Number(), model.getRegistrationSecret());
 
-      registrationService.verifyAccount(requireActivity(), model.getFcmToken(), code, null, null, null,
+      registrationService.verifyAccount(requireActivity(), model.getFcmToken(), code, null, null,
         new CodeVerificationRequest.VerifyCallback() {
 
           @Override
@@ -133,10 +133,9 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
           }
 
           @Override
-          public void onKbsRegistrationLockPinRequired(long timeRemaining, @NonNull TokenResponse tokenResponse, @NonNull String kbsStorageCredentials) {
+          public void onKbsRegistrationLockPinRequired(long timeRemaining, @NonNull PinRestoreRepository.TokenData tokenData, @NonNull String kbsStorageCredentials) {
             model.setLockedTimeRemaining(timeRemaining);
-            model.setStorageCredentials(kbsStorageCredentials);
-            model.setKeyBackupCurrentToken(tokenResponse);
+            model.setKeyBackupTokenData(tokenData);
             keyboard.displayLocked().addListener(new AssertedSuccessListener<Boolean>() {
               @Override
               public void onSuccess(Boolean r) {
@@ -147,7 +146,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
           }
 
           @Override
-          public void onIncorrectKbsRegistrationLockPin(@NonNull TokenResponse tokenResponse) {
+          public void onIncorrectKbsRegistrationLockPin(@NonNull PinRestoreRepository.TokenData tokenData) {
             throw new AssertionError("Unexpected, user has made no pin guesses");
           }
 

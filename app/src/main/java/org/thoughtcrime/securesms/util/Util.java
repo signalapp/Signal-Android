@@ -116,6 +116,18 @@ public class Util {
     return join(boxed, delimeter);
   }
 
+  @SafeVarargs
+  public static @NonNull <E> List<E> join(@NonNull List<E>... lists) {
+    int     totalSize = Stream.of(lists).reduce(0, (sum, list) -> sum + list.size());
+    List<E> joined    = new ArrayList<>(totalSize);
+
+    for (List<E> list : lists) {
+      joined.addAll(list);
+    }
+
+    return joined;
+  }
+
   public static String join(List<Long> list, String delimeter) {
     StringBuilder sb = new StringBuilder();
 

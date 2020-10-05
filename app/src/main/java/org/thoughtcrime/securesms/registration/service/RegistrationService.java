@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.pin.PinRestoreRepository;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.io.IOException;
@@ -39,10 +40,9 @@ public final class RegistrationService {
                             @Nullable String fcmToken,
                             @NonNull String code,
                             @Nullable String pin,
-                            @Nullable String basicStorageCredentials,
-                            @Nullable TokenResponse tokenResponse,
+                            @Nullable PinRestoreRepository.TokenData tokenData,
                             @NonNull CodeVerificationRequest.VerifyCallback callback)
   {
-    CodeVerificationRequest.verifyAccount(activity, credentials, fcmToken, code, pin, basicStorageCredentials, tokenResponse, callback);
+    CodeVerificationRequest.verifyAccount(activity, credentials, fcmToken, code, pin, tokenData, callback);
   }
 }

@@ -137,6 +137,10 @@ public final class KbsValues extends SignalStoreValues {
     }
   }
 
+  public synchronized @Nullable String getPin() {
+    return getString(PIN, null);
+  }
+
   public synchronized @Nullable String getLocalPinHash() {
     return getString(LOCK_LOCAL_PIN_HASH, null);
   }

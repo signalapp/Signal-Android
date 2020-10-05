@@ -25,12 +25,12 @@ import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.pin.PinRestoreRepository.TokenData;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.util.concurrent.TimeUnit;
 
@@ -106,10 +106,10 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     getModel().getLockedTimeRemaining()
               .observe(getViewLifecycleOwner(), t -> timeRemaining = t);
 
-    TokenResponse keyBackupCurrentToken = getModel().getKeyBackupCurrentToken();
+    TokenData keyBackupCurrentToken = getModel().getKeyBackupCurrentToken();
 
     if (keyBackupCurrentToken != null) {
-      int triesRemaining = keyBackupCurrentToken.getTries();
+      int triesRemaining = keyBackupCurrentToken.getTriesRemaining();
       if (triesRemaining <= 3) {
         int daysRemaining = getLockoutDays(timeRemaining);
 
@@ -158,8 +158,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
     RegistrationViewModel model                   = getModel();
     RegistrationService   registrationService     = RegistrationService.getInstance(model.getNumber().getE164Number(), model.getRegistrationSecret());
-    TokenResponse         tokenResponse           = model.getKeyBackupCurrentToken();
-    String                basicStorageCredentials = model.getBasicStorageCredentials();
+    TokenData             tokenData               = model.getKeyBackupCurrentToken();
 
     setSpinning(pinButton);
 
@@ -167,8 +166,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
                                       model.getFcmToken(),
                                       model.getTextCodeEntered(),
                                       pin,
-                                      basicStorageCredentials,
-                                      tokenResponse,
+                                      tokenData,
 
       new CodeVerificationRequest.VerifyCallback() {
 
@@ -189,19 +187,19 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
         }
 
         @Override
-        public void onKbsRegistrationLockPinRequired(long timeRemaining, @NonNull TokenResponse kbsTokenResponse, @NonNull String kbsStorageCredentials) {
+        public void onKbsRegistrationLockPinRequired(long timeRemaining, @NonNull TokenData kbsTokenData, @NonNull String kbsStorageCredentials) {
           throw new AssertionError("Not expected after a pin guess");
         }
 
         @Override
-        public void onIncorrectKbsRegistrationLockPin(@NonNull TokenResponse tokenResponse) {
+        public void onIncorrectKbsRegistrationLockPin(@NonNull TokenData tokenData) {
           cancelSpinning(pinButton);
           pinEntry.getText().clear();
           enableAndFocusPinEntry();
 
-          model.setKeyBackupCurrentToken(tokenResponse);
+          model.setKeyBackupTokenData(tokenData);
 
-          int triesRemaining = tokenResponse.getTries();
+          int triesRemaining = tokenData.getTriesRemaining();
 
           if (triesRemaining == 0) {
             Log.w(TAG, "Account locked. User out of attempts on KBS.");

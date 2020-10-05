@@ -9,6 +9,7 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.pin.PinRestoreRepository.TokenData;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
@@ -28,11 +29,10 @@ public final class RegistrationViewModel extends ViewModel {
   private final MutableLiveData<String>                      textCodeEntered;
   private final MutableLiveData<String>                      captchaToken;
   private final MutableLiveData<String>                      fcmToken;
-  private final MutableLiveData<String>                      basicStorageCredentials;
   private final MutableLiveData<Boolean>                     restoreFlowShown;
   private final MutableLiveData<Integer>                     successfulCodeRequestAttempts;
   private final MutableLiveData<LocalCodeRequestRateLimiter> requestLimiter;
-  private final MutableLiveData<String>                      keyBackupCurrentTokenJson;
+  private final MutableLiveData<TokenData>                   kbsTokenData;
   private final MutableLiveData<Long>                        lockedTimeRemaining;
   private final MutableLiveData<Long>                        canCallAtTime;
 
@@ -43,11 +43,10 @@ public final class RegistrationViewModel extends ViewModel {
     textCodeEntered               = savedStateHandle.getLiveData("TEXT_CODE_ENTERED", "");
     captchaToken                  = savedStateHandle.getLiveData("CAPTCHA");
     fcmToken                      = savedStateHandle.getLiveData("FCM_TOKEN");
-    basicStorageCredentials       = savedStateHandle.getLiveData("BASIC_STORAGE_CREDENTIALS");
     restoreFlowShown              = savedStateHandle.getLiveData("RESTORE_FLOW_SHOWN", false);
     successfulCodeRequestAttempts = savedStateHandle.getLiveData("SUCCESSFUL_CODE_REQUEST_ATTEMPTS", 0);
     requestLimiter                = savedStateHandle.getLiveData("REQUEST_RATE_LIMITER", new LocalCodeRequestRateLimiter(60_000));
-    keyBackupCurrentTokenJson     = savedStateHandle.getLiveData("KBS_TOKEN");
+    kbsTokenData                  = savedStateHandle.getLiveData("KBS_TOKEN");
     lockedTimeRemaining           = savedStateHandle.getLiveData("TIME_REMAINING", 0L);
     canCallAtTime                 = savedStateHandle.getLiveData("CAN_CALL_AT_TIME", 0L);
   }
@@ -158,28 +157,12 @@ public final class RegistrationViewModel extends ViewModel {
     requestLimiter.setValue(requestLimiter.getValue());
   }
 
-  public void setStorageCredentials(@Nullable String storageCredentials) {
-    basicStorageCredentials.setValue(storageCredentials);
+  public @Nullable TokenData getKeyBackupCurrentToken() {
+    return kbsTokenData.getValue();
   }
 
-  public @Nullable String getBasicStorageCredentials() {
-    return basicStorageCredentials.getValue();
-  }
-
-  public @Nullable TokenResponse getKeyBackupCurrentToken() {
-    String json = keyBackupCurrentTokenJson.getValue();
-    if (json == null) return null;
-    try {
-      return JsonUtil.fromJson(json, TokenResponse.class);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      return null;
-    }
-  }
-
-  public void setKeyBackupCurrentToken(TokenResponse tokenResponse) {
-    String json = tokenResponse == null ? null : JsonUtil.toJson(tokenResponse);
-    keyBackupCurrentTokenJson.setValue(json);
+  public void setKeyBackupTokenData(TokenData tokenData) {
+    kbsTokenData.setValue(tokenData);
   }
 
   public LiveData<Long> getLockedTimeRemaining() {
