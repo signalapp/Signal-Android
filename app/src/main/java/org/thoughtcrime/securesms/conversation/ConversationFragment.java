@@ -226,7 +226,10 @@ public class ConversationFragment extends LoggingFragment {
 
     new ConversationItemSwipeCallback(
             conversationMessage -> actionMode == null &&
-                                   MenuState.canReplyToMessage(MenuState.isActionMessage(conversationMessage.getMessageRecord()), conversationMessage.getMessageRecord(), messageRequestViewModel.shouldShowMessageRequest()),
+                                   MenuState.canReplyToMessage(recipient.get(),
+                                                               MenuState.isActionMessage(conversationMessage.getMessageRecord()),
+                                                               conversationMessage.getMessageRecord(),
+                                                               messageRequestViewModel.shouldShowMessageRequest()),
             this::handleReplyMessage
     ).attachToRecyclerView(list);
 
@@ -573,7 +576,7 @@ public class ConversationFragment extends LoggingFragment {
       return;
     }
 
-    MenuState menuState = MenuState.getMenuState(Stream.of(messages).map(ConversationMessage::getMessageRecord).collect(Collectors.toSet()), messageRequestViewModel.shouldShowMessageRequest());
+    MenuState menuState = MenuState.getMenuState(recipient.get(), Stream.of(messages).map(ConversationMessage::getMessageRecord).collect(Collectors.toSet()), messageRequestViewModel.shouldShowMessageRequest());
 
     menu.findItem(R.id.menu_context_forward).setVisible(menuState.shouldShowForwardAction());
     menu.findItem(R.id.menu_context_reply).setVisible(menuState.shouldShowReplyAction());
@@ -1223,11 +1226,12 @@ public class ConversationFragment extends LoggingFragment {
 
       MessageRecord messageRecord = conversationMessage.getMessageRecord();
 
-      if (messageRecord.isSecure()                            &&
-          !messageRecord.isRemoteDelete()                     &&
-          !messageRecord.isUpdate()                           &&
-          !recipient.get().isBlocked()                        &&
-          !messageRequestViewModel.shouldShowMessageRequest() &&
+      if (messageRecord.isSecure()                                        &&
+          !messageRecord.isRemoteDelete()                                 &&
+          !messageRecord.isUpdate()                                       &&
+          !recipient.get().isBlocked()                                    &&
+          !messageRequestViewModel.shouldShowMessageRequest()             &&
+          (!recipient.get().isGroup() || recipient.get().isActiveGroup()) &&
           ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
       {
         isReacting = true;

@@ -5,9 +5,7 @@ import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PointF;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
@@ -24,7 +22,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.content.ContextCompat;
 import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 
 import com.annimon.stream.Stream;
@@ -60,6 +57,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private final PointF   lastSeenDownPoint       = new PointF();
 
   private Activity      activity;
+  private Recipient     conversationRecipient;
   private MessageRecord messageRecord;
   private OverlayState  overlayState = OverlayState.HIDDEN;
 
@@ -145,15 +143,21 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     maskView.setTargetParentTranslationY(translationY);
   }
 
-  public void show(@NonNull Activity activity, @NonNull View maskTarget, @NonNull MessageRecord messageRecord, int maskPaddingBottom) {
+  public void show(@NonNull Activity activity,
+                   @NonNull View maskTarget,
+                   @NonNull Recipient conversationRecipient,
+                   @NonNull MessageRecord messageRecord,
+                   int maskPaddingBottom)
+  {
 
     if (overlayState != OverlayState.HIDDEN) {
       return;
     }
 
-    this.messageRecord = messageRecord;
-    overlayState       = OverlayState.UNINITAILIZED;
-    selected           = -1;
+    this.messageRecord         = messageRecord;
+    this.conversationRecipient = conversationRecipient;
+    overlayState               = OverlayState.UNINITAILIZED;
+    selected                   = -1;
 
     setupToolbarMenuItems();
     setupSelectedEmoji();
@@ -498,7 +502,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private void setupToolbarMenuItems() {
-    MenuState menuState = MenuState.getMenuState(Collections.singleton(messageRecord), false);
+    MenuState menuState = MenuState.getMenuState(conversationRecipient, Collections.singleton(messageRecord), false);
 
     toolbar.getMenu().findItem(R.id.action_copy).setVisible(menuState.shouldShowCopyAction());
     toolbar.getMenu().findItem(R.id.action_download).setVisible(menuState.shouldShowSaveAttachmentAction());
