@@ -42,6 +42,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private val originalMembers = HashSet<String>()
     private val members = HashSet<String>()
     private var hasNameChanged = false
+    private var isLoading = false
+        set(newValue) { field = newValue; invalidateOptionsMenu() }
 
     private lateinit var groupID: String
     private lateinit var originalName: String
@@ -121,7 +123,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_edit_closed_group, menu)
-        return members.isNotEmpty()
+        return members.isNotEmpty() && !isLoading
     }
     // endregion
 
@@ -171,8 +173,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.action_apply -> commitChanges()
+        when (item.itemId) {
+            R.id.action_apply -> if (!isLoading) { commitChanges() }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -244,13 +246,16 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         }
 
         if (isSSKBasedClosedGroup) {
+            isLoading = true
             loader.fadeIn()
             ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name).successUi {
                 loader.fadeOut()
+                isLoading = false
                 finish()
             }.failUi { exception ->
                 val message = if (exception is ClosedGroupsProtocol.Error) exception.description else "An error occurred"
                 Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
+                isLoading = false
             }
         } else {
             GroupManager.updateGroup(this, groupID, members, null, name, admins)
