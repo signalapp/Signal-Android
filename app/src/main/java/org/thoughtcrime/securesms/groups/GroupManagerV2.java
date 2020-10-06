@@ -193,7 +193,7 @@ final class GroupManagerV2 {
                                                                .setEditor(UuidUtil.toByteString(selfUuid))
                                                                .build();
 
-        RecipientAndThread recipientAndThread = sendGroupUpdate(masterKey, decryptedGroup, groupChange, null);
+        RecipientAndThread recipientAndThread = sendGroupUpdate(masterKey, new GroupMutation(null, groupChange, decryptedGroup), null);
 
         return new GroupManager.GroupActionResult(recipientAndThread.groupRecipient,
                                                   recipientAndThread.threadId,
@@ -505,16 +505,18 @@ final class GroupManagerV2 {
     private GroupManager.GroupActionResult commitChange(@NonNull GroupChange.Actions.Builder change)
         throws GroupNotAMemberException, GroupChangeFailedException, IOException, GroupInsufficientRightsException
     {
-      final GroupDatabase.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
-      final GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
-      final int                             nextRevision      = v2GroupProperties.getGroupRevision() + 1;
-      final GroupChange.Actions             changeActions     = change.setRevision(nextRevision).build();
+      final GroupDatabase.GroupRecord       groupRecord         = groupDatabase.requireGroup(groupId);
+      final GroupDatabase.V2GroupProperties v2GroupProperties   = groupRecord.requireV2GroupProperties();
+      final int                             nextRevision        = v2GroupProperties.getGroupRevision() + 1;
+      final GroupChange.Actions             changeActions       = change.setRevision(nextRevision).build();
       final DecryptedGroupChange            decryptedChange;
       final DecryptedGroup                  decryptedGroupState;
+      final DecryptedGroup                  previousGroupState;
 
       try {
+        previousGroupState  = v2GroupProperties.getDecryptedGroup();
         decryptedChange     = groupOperations.decryptChange(changeActions, selfUuid);
-        decryptedGroupState = DecryptedGroupUtil.apply(v2GroupProperties.getDecryptedGroup(), decryptedChange);
+        decryptedGroupState = DecryptedGroupUtil.apply(previousGroupState, decryptedChange);
       } catch (VerificationFailedException | InvalidGroupStateException | NotAbleToApplyGroupV2ChangeException e) {
         Log.w(TAG, e);
         throw new IOException(e);
@@ -523,7 +525,8 @@ final class GroupManagerV2 {
       GroupChange signedGroupChange = commitToServer(changeActions);
       groupDatabase.update(groupId, decryptedGroupState);
 
-      RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, decryptedGroupState, decryptedChange, signedGroupChange);
+      GroupMutation      groupMutation      = new GroupMutation(previousGroupState, decryptedChange, decryptedGroupState);
+      RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, groupMutation, signedGroupChange);
       int                newMembersCount    = decryptedChange.getNewMembersCount();
       List<RecipientId>  newPendingMembers  = getPendingMemberRecipientIds(decryptedChange.getNewPendingMembersList());
 
@@ -681,7 +684,7 @@ final class GroupManagerV2 {
       } else if (requestToJoin) {
         Log.i(TAG, "Requested to join, cannot send update");
 
-        RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, decryptedGroup, decryptedChange, signedGroupChange);
+        RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, new GroupMutation(null, decryptedChange, decryptedGroup), signedGroupChange);
 
         return new GroupManager.GroupActionResult(groupRecipient,
                                                   recipientAndThread.threadId,
@@ -706,7 +709,7 @@ final class GroupManagerV2 {
                                                                        System.currentTimeMillis(),
                                                                        decryptedChange);
 
-        RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, decryptedGroup, decryptedChange, signedGroupChange);
+        RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, new GroupMutation(null, decryptedChange, decryptedGroup), signedGroupChange);
 
         return new GroupManager.GroupActionResult(groupRecipient,
                                                   recipientAndThread.threadId,
@@ -905,7 +908,7 @@ final class GroupManagerV2 {
 
         groupDatabase.update(groupId, resetRevision(newGroup, decryptedGroup.getRevision()));
 
-        sendGroupUpdate(groupMasterKey, decryptedGroup, decryptedChange, signedGroupChange);
+        sendGroupUpdate(groupMasterKey, new GroupMutation(decryptedGroup, decryptedChange, newGroup), signedGroupChange);
       } catch (VerificationFailedException | InvalidGroupStateException | NotAbleToApplyGroupV2ChangeException e) {
         throw new GroupChangeFailedException(e);
       }
@@ -959,13 +962,12 @@ final class GroupManagerV2 {
   }
 
   private @NonNull RecipientAndThread sendGroupUpdate(@NonNull GroupMasterKey masterKey,
-                                                      @NonNull DecryptedGroup decryptedGroup,
-                                                      @Nullable DecryptedGroupChange plainGroupChange,
+                                                      @NonNull GroupMutation groupMutation,
                                                       @Nullable GroupChange signedGroupChange)
   {
     GroupId.V2                groupId                 = GroupId.v2(masterKey);
     Recipient                 groupRecipient          = Recipient.externalGroup(context, groupId);
-    DecryptedGroupV2Context   decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, decryptedGroup, plainGroupChange, signedGroupChange);
+    DecryptedGroupV2Context   decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, groupMutation, signedGroupChange);
     OutgoingGroupUpdateMessage outgoingMessage        = new OutgoingGroupUpdateMessage(groupRecipient,
                                                                                        decryptedGroupV2Context,
                                                                                        null,
@@ -977,8 +979,11 @@ final class GroupManagerV2 {
                                                                                        Collections.emptyList(),
                                                                                        Collections.emptyList());
 
+
+    DecryptedGroupChange plainGroupChange = groupMutation.getGroupChange();
+
     if (plainGroupChange != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(plainGroupChange)) {
-      ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, decryptedGroup, outgoingMessage));
+      ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, groupMutation.getNewGroupState(), outgoingMessage));
       return new RecipientAndThread(groupRecipient, -1);
     } else {
       long threadId = MessageSender.send(context, outgoingMessage, -1, false, null);

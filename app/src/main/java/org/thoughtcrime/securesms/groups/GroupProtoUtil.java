@@ -49,12 +49,13 @@ public final class GroupProtoUtil {
   }
 
   public static DecryptedGroupV2Context createDecryptedGroupV2Context(@NonNull GroupMasterKey masterKey,
-                                                                      @NonNull DecryptedGroup decryptedGroup,
-                                                                      @Nullable DecryptedGroupChange plainGroupChange,
+                                                                      @NonNull GroupMutation groupMutation,
                                                                       @Nullable GroupChange signedServerChange)
   {
-    int revision = plainGroupChange != null ? plainGroupChange.getRevision() : decryptedGroup.getRevision();
-    SignalServiceProtos.GroupContextV2.Builder contextBuilder = SignalServiceProtos.GroupContextV2.newBuilder()
+    DecryptedGroupChange                       plainGroupChange = groupMutation.getGroupChange();
+    DecryptedGroup                             decryptedGroup   = groupMutation.getNewGroupState();
+    int                                        revision         = plainGroupChange != null ? plainGroupChange.getRevision() : decryptedGroup.getRevision();
+    SignalServiceProtos.GroupContextV2.Builder contextBuilder   = SignalServiceProtos.GroupContextV2.newBuilder()
                                                                                                   .setMasterKey(ByteString.copyFrom(masterKey.serialize()))
                                                                                                   .setRevision(revision);
 
@@ -65,6 +66,10 @@ public final class GroupProtoUtil {
     DecryptedGroupV2Context.Builder builder = DecryptedGroupV2Context.newBuilder()
                                                                      .setContext(contextBuilder.build())
                                                                      .setGroupState(decryptedGroup);
+
+    if (groupMutation.getPreviousGroupState() != null) {
+      builder.setPreviousGroupState(groupMutation.getPreviousGroupState());
+    }
 
     if (plainGroupChange != null) {
       builder.setChange(plainGroupChange);

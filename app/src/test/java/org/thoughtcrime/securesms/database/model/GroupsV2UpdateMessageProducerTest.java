@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database.model;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.test.core.app.ApplicationProvider;
 
 import com.annimon.stream.Stream;
@@ -35,6 +36,7 @@ import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -921,6 +923,56 @@ public final class GroupsV2UpdateMessageProducerTest {
     assertThat(describeChange(change), is(singletonList("The group link has been turned off.")));
   }
 
+  // Group link with known previous group state
+
+  @Test
+  public void group_link_access_from_unknown_to_administrator() {
+    assertEquals("You turned on the group link with admin approval on.", describeGroupLinkChange(you, AccessControl.AccessRequired.UNKNOWN, AccessControl.AccessRequired.ADMINISTRATOR));
+    assertEquals("Alice turned on the group link with admin approval on.", describeGroupLinkChange(alice, AccessControl.AccessRequired.UNKNOWN, AccessControl.AccessRequired.ADMINISTRATOR));
+    assertEquals("The group link has been turned on with admin approval on.", describeGroupLinkChange(null, AccessControl.AccessRequired.UNKNOWN, AccessControl.AccessRequired.ADMINISTRATOR));
+  }
+
+  @Test
+  public void group_link_access_from_administrator_to_unsatisfiable() {
+    assertEquals("You turned off the group link.", describeGroupLinkChange(you, AccessControl.AccessRequired.ADMINISTRATOR, AccessControl.AccessRequired.UNSATISFIABLE));
+    assertEquals("Bob turned off the group link.", describeGroupLinkChange(bob, AccessControl.AccessRequired.ADMINISTRATOR, AccessControl.AccessRequired.UNSATISFIABLE));
+    assertEquals("The group link has been turned off.", describeGroupLinkChange(null, AccessControl.AccessRequired.ADMINISTRATOR, AccessControl.AccessRequired.UNSATISFIABLE));
+  }
+
+  @Test
+  public void group_link_access_from_unsatisfiable_to_administrator() {
+    assertEquals("You turned on the group link with admin approval on.", describeGroupLinkChange(you, AccessControl.AccessRequired.UNSATISFIABLE, AccessControl.AccessRequired.ADMINISTRATOR));
+    assertEquals("Alice turned on the group link with admin approval on.", describeGroupLinkChange(alice, AccessControl.AccessRequired.UNSATISFIABLE, AccessControl.AccessRequired.ADMINISTRATOR));
+    assertEquals("The group link has been turned on with admin approval on.", describeGroupLinkChange(null, AccessControl.AccessRequired.UNSATISFIABLE, AccessControl.AccessRequired.ADMINISTRATOR));
+  }
+
+  @Test
+  public void group_link_access_from_administrator_to_any() {
+    assertEquals("You turned off admin approval for the group link.", describeGroupLinkChange(you, AccessControl.AccessRequired.ADMINISTRATOR, AccessControl.AccessRequired.ANY));
+    assertEquals("Bob turned off admin approval for the group link.", describeGroupLinkChange(bob, AccessControl.AccessRequired.ADMINISTRATOR, AccessControl.AccessRequired.ANY));
+    assertEquals("The admin approval for the group link has been turned off.", describeGroupLinkChange(null, AccessControl.AccessRequired.ADMINISTRATOR, AccessControl.AccessRequired.ANY));
+  }
+
+  @Test
+  public void group_link_access_from_any_to_administrator() {
+    assertEquals("You turned on admin approval for the group link.", describeGroupLinkChange(you, AccessControl.AccessRequired.ANY, AccessControl.AccessRequired.ADMINISTRATOR));
+    assertEquals("Bob turned on admin approval for the group link.", describeGroupLinkChange(bob, AccessControl.AccessRequired.ANY, AccessControl.AccessRequired.ADMINISTRATOR));
+    assertEquals("The admin approval for the group link has been turned on.", describeGroupLinkChange(null, AccessControl.AccessRequired.ANY, AccessControl.AccessRequired.ADMINISTRATOR));
+  }
+
+  private String describeGroupLinkChange(@Nullable UUID editor, @NonNull AccessControl.AccessRequired fromAccess, AccessControl.AccessRequired toAccess){
+    DecryptedGroup       previousGroupState = DecryptedGroup.newBuilder()
+                                                            .setAccessControl(AccessControl.newBuilder()
+                                                                                           .setAddFromInviteLink(fromAccess))
+                                                            .build();
+    DecryptedGroupChange change             = (editor != null ? changeBy(editor) : changeByUnknown()).inviteLinkAccess(toAccess)
+                                                                                                     .build();
+
+    List<String> strings = describeChange(previousGroupState, change);
+    assertEquals(1, strings.size());
+    return strings.get(0);
+  }
+
   // Group link reset
 
   @Test
@@ -1271,8 +1323,14 @@ public final class GroupsV2UpdateMessageProducerTest {
   } 
   
   private @NonNull List<String> describeChange(@NonNull DecryptedGroupChange change) {
+    return describeChange(null, change);
+  }
+
+  private @NonNull List<String> describeChange(@Nullable DecryptedGroup previousGroupState,
+                                               @NonNull DecryptedGroupChange change)
+  {
     MainThreadUtil.setMainThread(false);
-    return Stream.of(producer.describeChanges(change))
+    return Stream.of(producer.describeChanges(previousGroupState, change))
                  .map(UpdateDescription::getString)
                  .toList();
   }
@@ -1291,7 +1349,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private void assertSingleChangeMentioning(DecryptedGroupChange change, List<UUID> expectedMentions) {
-    List<UpdateDescription> changes = producer.describeChanges(change);
+    List<UpdateDescription> changes = producer.describeChanges(null, change);
 
     assertThat(changes.size(), is(1));
 

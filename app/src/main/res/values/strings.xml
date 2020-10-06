@@ -1013,6 +1013,12 @@
     <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">The group link has been turned on with admin approval off.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">The group link has been turned on with admin approval on.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_off">The group link has been turned off.</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">You turned off admin approval for the group link.</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s turned off admin approval for the group link.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">The admin approval for the group link has been turned off.</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">You turned on admin approval for the group link.</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s turned on admin approval for the group link.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">The admin approval for the group link has been turned on.</string>
 
     <!-- GV2 group link reset -->
     <string name="MessageRecord_you_reset_the_group_link">You reset the group link.</string>

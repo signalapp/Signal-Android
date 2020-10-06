@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database.model;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.google.protobuf.ByteString;
@@ -81,7 +82,11 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
-  List<UpdateDescription> describeChanges(@NonNull DecryptedGroupChange change) {
+  List<UpdateDescription> describeChanges(@Nullable DecryptedGroup previousGroupState, @NonNull DecryptedGroupChange change) {
+    if (DecryptedGroup.getDefaultInstance().equals(previousGroupState)) {
+      previousGroupState = null;
+    }
+
     List<UpdateDescription> updates = new LinkedList<>();
 
     if (change.getEditor().isEmpty() || UuidUtil.UNKNOWN_UUID.equals(UuidUtil.fromByteString(change.getEditor()))) {
@@ -96,7 +101,7 @@ final class GroupsV2UpdateMessageProducer {
       describeUnknownEditorNewTimer(change, updates);
       describeUnknownEditorNewAttributeAccess(change, updates);
       describeUnknownEditorNewMembershipAccess(change, updates);
-      describeUnknownEditorNewGroupInviteLinkAccess(change, updates);
+      describeUnknownEditorNewGroupInviteLinkAccess(previousGroupState, change, updates);
       describeRequestingMembers(change, updates);
       describeUnknownEditorRequestingMembersApprovals(change, updates);
       describeUnknownEditorRequestingMembersDeletes(change, updates);
@@ -119,7 +124,7 @@ final class GroupsV2UpdateMessageProducer {
       describeNewTimer(change, updates);
       describeNewAttributeAccess(change, updates);
       describeNewMembershipAccess(change, updates);
-      describeNewGroupInviteLinkAccess(change, updates);
+      describeNewGroupInviteLinkAccess(previousGroupState, change, updates);
       describeRequestingMembers(change, updates);
       describeRequestingMembersApprovals(change, updates);
       describeRequestingMembersDeletes(change, updates);
@@ -509,7 +514,16 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
-  private void describeNewGroupInviteLinkAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+  private void describeNewGroupInviteLinkAccess(@Nullable DecryptedGroup previousGroupState,
+                                                @NonNull DecryptedGroupChange change,
+                                                @NonNull List<UpdateDescription> updates)
+  {
+    AccessControl.AccessRequired previousAccessControl = null;
+
+    if (previousGroupState != null) {
+      previousAccessControl = previousGroupState.getAccessControl().getAddFromInviteLink();
+    }
+
     boolean editorIsYou      = change.getEditor().equals(selfUuidBytes);
     boolean groupLinkEnabled = false;
 
@@ -517,17 +531,33 @@ final class GroupsV2UpdateMessageProducer {
       case ANY:
         groupLinkEnabled = true;
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_off)));
+          if (previousAccessControl == AccessControl.AccessRequired.ADMINISTRATOR) {
+            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_admin_approval_for_the_group_link)));
+          } else {
+            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_off)));
+          }
         } else {
-          updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_off, editor)));
+          if (previousAccessControl == AccessControl.AccessRequired.ADMINISTRATOR) {
+            updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_turned_off_admin_approval_for_the_group_link, editor)));
+          } else {
+            updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_off, editor)));
+          }
         }
         break;
       case ADMINISTRATOR:
         groupLinkEnabled = true;
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_on)));
+          if (previousAccessControl == AccessControl.AccessRequired.ANY) {
+            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_admin_approval_for_the_group_link)));
+          } else {
+            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_on)));
+          }
         } else {
-          updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_on, editor)));
+          if (previousAccessControl == AccessControl.AccessRequired.ANY) {
+            updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_turned_on_admin_approval_for_the_group_link, editor)));
+          } else {
+            updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_on, editor)));
+          }
         }
         break;
       case UNSATISFIABLE:
@@ -548,13 +578,30 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
-  private void describeUnknownEditorNewGroupInviteLinkAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+  private void describeUnknownEditorNewGroupInviteLinkAccess(@Nullable DecryptedGroup previousGroupState,
+                                                             @NonNull DecryptedGroupChange change,
+                                                             @NonNull List<UpdateDescription> updates)
+  {
+    AccessControl.AccessRequired previousAccessControl = null;
+
+    if (previousGroupState != null) {
+      previousAccessControl = previousGroupState.getAccessControl().getAddFromInviteLink();
+    }
+
     switch (change.getNewInviteLinkAccess()) {
       case ANY:
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off)));
+        if (previousAccessControl == AccessControl.AccessRequired.ADMINISTRATOR) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off)));
+        } else {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off)));
+        }
         break;
       case ADMINISTRATOR:
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on)));
+        if (previousAccessControl == AccessControl.AccessRequired.ANY) {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on)));
+        } else {
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on)));
+        }
         break;
       case UNSATISFIABLE:
         updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_off)));
