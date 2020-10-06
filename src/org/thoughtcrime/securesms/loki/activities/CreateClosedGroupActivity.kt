@@ -32,11 +32,10 @@ import org.whispersystems.libsignal.util.guava.Optional
 import java.lang.ref.WeakReference
 
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
+    private var isLoading = false
+        set(newValue) { field = newValue; invalidateOptionsMenu() }
     private var members = listOf<String>()
-        set(value) {
-            field = value
-            selectContactsAdapter.members = value
-        }
+        set(value) { field = value; selectContactsAdapter.members = value }
 
     private val selectContactsAdapter by lazy {
         SelectContactsAdapter(this, GlideApp.with(this))
@@ -49,21 +48,17 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-
         setContentView(R.layout.activity_create_closed_group)
         supportActionBar!!.title = resources.getString(R.string.activity_create_closed_group_title)
-
         recyclerView.adapter = this.selectContactsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        btnCreateNewPrivateChat.setOnClickListener { createNewPrivateChat() }
-
+        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_done, menu)
-        return members.isNotEmpty()
+        return members.isNotEmpty() && !isLoading
     }
     // endregion
 
@@ -91,7 +86,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.doneButton -> createClosedGroup()
+            R.id.doneButton -> if (!isLoading) { createClosedGroup() }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -125,9 +120,11 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        isLoading = true
         loader.fadeIn()
         ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
             loader.fadeOut()
+            isLoading = false
             val threadID = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
             if (!isFinishing) {
                 openConversationActivity(this, threadID, Recipient.from(this, Address.fromSerialized(groupID), false))
