@@ -130,12 +130,18 @@ object ClosedGroupsProtocol {
                 Log.d("Loki", "Can't remove self and others simultaneously.")
                 return
             }
-            // Send the update to the group (don't include new ratchets as everyone should regenerate new ratchets individually)
-            val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey),
-                name, setOf(), membersAsData, adminsAsData)
-            val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
-            job.setContext(context)
-            job.onRun() // Run the job immediately
+            // Establish sessions if needed
+            establishSessionsWithMembersIfNeeded(context, members)
+            // Send the update to the existing members using established channels (don't include new ratchets as everyone should regenerate new ratchets individually)
+            for (member in oldMembers) {
+                @Suppress("NAME_SHADOWING")
+                val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey),
+                    name, setOf(), membersAsData, adminsAsData)
+                @Suppress("NAME_SHADOWING")
+                val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
+                job.setContext(context)
+                job.onRun() // Run the job immediately
+            }
             // Delete all ratchets (it's important that this happens * after * sending out the update)
             sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
             // Remove the group from the user's set of public keys to poll for if the user is leaving. Otherwise generate a new ratchet and
@@ -147,8 +153,6 @@ object ClosedGroupsProtocol {
                 // Notify the PN server
                 LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
             } else {
-                // Establish sessions if needed
-                establishSessionsWithMembersIfNeeded(context, members)
                 // Send closed group update messages to any new members using established channels
                 for (member in newMembers) {
                     @Suppress("NAME_SHADOWING")
