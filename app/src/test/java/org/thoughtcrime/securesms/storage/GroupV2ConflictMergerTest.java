@@ -25,7 +25,7 @@ public final class GroupV2ConflictMergerTest {
   }
 
   @Test
-  public void merge_alwaysPreferRemote_exceptProfileSharingIsEitherOr() {
+  public void merge_alwaysPreferRemote() {
     SignalGroupV2Record remote = new SignalGroupV2Record.Builder(byteArray(1), groupKey(100))
                                                         .setBlocked(false)
                                                         .setProfileSharingEnabled(false)
@@ -39,8 +39,9 @@ public final class GroupV2ConflictMergerTest {
 
     SignalGroupV2Record merged = new GroupV2ConflictMerger(Collections.singletonList(local)).merge(remote, local, KEY_GENERATOR);
 
-    assertArrayEquals(GENERATED_KEY, merged.getId().getRaw());
+    assertArrayEquals(remote.getId().getRaw(), merged.getId().getRaw());
     assertArrayEquals(groupKey(100), merged.getMasterKeyBytes());
+    assertFalse(merged.isProfileSharingEnabled());
     assertFalse(merged.isBlocked());
     assertFalse(merged.isArchived());
   }
@@ -61,24 +62,6 @@ public final class GroupV2ConflictMergerTest {
     SignalGroupV2Record merged = new GroupV2ConflictMerger(Collections.singletonList(local)).merge(remote, local, mock(KeyGenerator.class));
 
     assertEquals(remote, merged);
-  }
-
-  @Test
-  public void merge_returnLocalIfEndResultMatchesLocal() {
-    SignalGroupV2Record remote = new SignalGroupV2Record.Builder(byteArray(1), groupKey(100))
-                                                        .setBlocked(false)
-                                                        .setProfileSharingEnabled(false)
-                                                        .setArchived(false)
-                                                        .build();
-    SignalGroupV2Record local  = new SignalGroupV2Record.Builder(byteArray(2), groupKey(100))
-                                                        .setBlocked(false)
-                                                        .setProfileSharingEnabled(true)
-                                                        .setArchived(false)
-                                                        .build();
-
-    SignalGroupV2Record merged = new GroupV2ConflictMerger(Collections.singletonList(local)).merge(remote, local, mock(KeyGenerator.class));
-
-    assertEquals(local, merged);
   }
 
   @Test

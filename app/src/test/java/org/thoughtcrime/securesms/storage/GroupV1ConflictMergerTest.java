@@ -25,7 +25,7 @@ public final class GroupV1ConflictMergerTest {
   }
 
   @Test
-  public void merge_alwaysPreferRemote_exceptProfileSharingIsEitherOr() {
+  public void merge_alwaysPreferRemote() {
     SignalGroupV1Record remote = new SignalGroupV1Record.Builder(byteArray(1), byteArray(100))
                                                         .setBlocked(false)
                                                         .setProfileSharingEnabled(false)
@@ -39,8 +39,9 @@ public final class GroupV1ConflictMergerTest {
 
     SignalGroupV1Record merged = new GroupV1ConflictMerger(Collections.singletonList(local)).merge(remote, local, KEY_GENERATOR);
 
-    assertArrayEquals(GENERATED_KEY, merged.getId().getRaw());
+    assertArrayEquals(remote.getId().getRaw(), merged.getId().getRaw());
     assertArrayEquals(byteArray(100), merged.getGroupId());
+    assertFalse(merged.isProfileSharingEnabled());
     assertFalse(merged.isBlocked());
     assertFalse(merged.isArchived());
   }
@@ -64,24 +65,6 @@ public final class GroupV1ConflictMergerTest {
   }
 
   @Test
-  public void merge_returnLocalIfEndResultMatchesLocal() {
-    SignalGroupV1Record remote = new SignalGroupV1Record.Builder(byteArray(1), byteArray(100))
-                                                        .setBlocked(false)
-                                                        .setProfileSharingEnabled(false)
-                                                        .setArchived(false)
-                                                        .build();
-    SignalGroupV1Record local  = new SignalGroupV1Record.Builder(byteArray(2), byteArray(100))
-                                                        .setBlocked(false)
-                                                        .setProfileSharingEnabled(true)
-                                                        .setArchived(false)
-                                                        .build();
-
-    SignalGroupV1Record merged = new GroupV1ConflictMerger(Collections.singletonList(local)).merge(remote, local, mock(KeyGenerator.class));
-
-    assertEquals(local, merged);
-  }
-
-   @Test
   public void merge_excludeBadGroupId() {
     SignalGroupV1Record badRemote  = new SignalGroupV1Record.Builder(byteArray(1), badGroupKey(99))
                                                             .setBlocked(false)
