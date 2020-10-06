@@ -26,6 +26,10 @@ public final class CursorUtil {
     return requireInt(cursor, column) != 0;
   }
 
+  public static byte[] requireBlob(@NonNull Cursor cursor, @NonNull String column) {
+    return cursor.getBlob(cursor.getColumnIndexOrThrow(column));
+  }
+
   public static Optional<String> getString(@NonNull Cursor cursor, @NonNull String column) {
     if (cursor.getColumnIndex(column) < 0) {
       return Optional.absent();
@@ -39,6 +43,22 @@ public final class CursorUtil {
       return Optional.absent();
     } else {
       return Optional.of(requireInt(cursor, column));
+    }
+  }
+
+  public static Optional<Boolean> getBoolean(@NonNull Cursor cursor, @NonNull String column) {
+    if (cursor.getColumnIndex(column) < 0) {
+      return Optional.absent();
+    } else {
+      return Optional.of(requireBoolean(cursor, column));
+    }
+  }
+
+  public static Optional<byte[]> getBlob(@NonNull Cursor cursor, @NonNull String column) {
+    if (cursor.getColumnIndex(column) < 0) {
+      return Optional.absent();
+    } else {
+      return Optional.fromNullable(requireBlob(cursor, column));
     }
   }
 }

@@ -83,8 +83,7 @@ public final class StorageSyncHelper {
                                                                                 @NonNull List<RecipientSettings> inserts,
                                                                                 @NonNull List<RecipientSettings> deletes,
                                                                                 @NonNull Optional<SignalAccountRecord> accountUpdate,
-                                                                                @NonNull Optional<SignalAccountRecord> accountInsert,
-                                                                                @NonNull Set<RecipientId> archivedRecipients)
+                                                                                @NonNull Optional<SignalAccountRecord> accountInsert)
   {
     int accountCount = Stream.of(currentLocalKeys)
                              .filter(id -> id.getType() == ManifestRecord.Identifier.Type.ACCOUNT_VALUE)
@@ -119,12 +118,12 @@ public final class StorageSyncHelper {
     Map<RecipientId, byte[]> storageKeyUpdates = new HashMap<>();
 
     for (RecipientSettings insert : inserts) {
-      if (insert.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 && insert.getGroupMasterKey() == null) {
+      if (insert.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 && insert.getSyncExtras().getGroupMasterKey() == null) {
         Log.w(TAG, "Missing master key on gv2 recipient");
         continue;
       }
 
-      storageInserts.add(StorageSyncModels.localToRemoteRecord(insert, archivedRecipients));
+      storageInserts.add(StorageSyncModels.localToRemoteRecord(insert));
 
       switch (insert.getGroupType()) {
         case NONE:
@@ -173,7 +172,7 @@ public final class StorageSyncHelper {
           throw new AssertionError("Unsupported type!");
       }
 
-      storageInserts.add(StorageSyncModels.localToRemoteRecord(update, newId.getRaw(), archivedRecipients));
+      storageInserts.add(StorageSyncModels.localToRemoteRecord(update, newId.getRaw()));
       storageDeletes.add(ByteBuffer.wrap(oldId.getRaw()));
       completeIds.remove(oldId);
       completeIds.add(newId);
@@ -413,7 +412,7 @@ public final class StorageSyncHelper {
     RecipientSettings settings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettingsForSync(self.getId());
 
     SignalAccountRecord account = new SignalAccountRecord.Builder(self.getStorageServiceId())
-                                                         .setUnknownFields(settings != null ? settings.getStorageProto() : null)
+                                                         .setUnknownFields(settings != null ? settings.getSyncExtras().getStorageProto() : null)
                                                          .setProfileKey(self.getProfileKey())
                                                          .setGivenName(self.getProfileName().getGivenName())
                                                          .setFamilyName(self.getProfileName().getFamilyName())

@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -64,6 +66,14 @@ public final class GroupUtil {
       return Optional.of(idFromGroupContext(groupContext.get()));
     }
     return Optional.absent();
+  }
+
+  public static @NonNull GroupMasterKey requireMasterKey(@NonNull byte[] masterKey) {
+    try {
+      return new GroupMasterKey(masterKey);
+    } catch (InvalidInputException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public static @NonNull GroupDescription getNonV2GroupDescription(@NonNull Context context, @Nullable String encodedGroup) {

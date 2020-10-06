@@ -20,42 +20,42 @@ public final class StorageSyncModels {
 
   private StorageSyncModels() {}
 
-  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings, @NonNull Set<RecipientId> archived) {
+  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings) {
     if (settings.getStorageId() == null) {
       throw new AssertionError("Must have a storage key!");
     }
 
-    return localToRemoteRecord(settings, settings.getStorageId(), archived);
+    return localToRemoteRecord(settings, settings.getStorageId());
   }
 
-  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings, @NonNull byte[] rawStorageId, @NonNull Set<RecipientId> archived) {
+  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings, @NonNull byte[] rawStorageId) {
     switch (settings.getGroupType()) {
-      case NONE:      return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId, archived));
-      case SIGNAL_V1: return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId, archived));
-      case SIGNAL_V2: return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, archived));
+      case NONE:      return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId));
+      case SIGNAL_V1: return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
+      case SIGNAL_V2: return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId));
       default:        throw new AssertionError("Unsupported type!");
     }
   }
 
-  private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientSettings recipient, byte[] rawStorageId, @NonNull Set<RecipientId> archived) {
+  private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientSettings recipient, byte[] rawStorageId) {
     if (recipient.getUuid() == null && recipient.getE164() == null) {
       throw new AssertionError("Must have either a UUID or a phone number!");
     }
 
     return new SignalContactRecord.Builder(rawStorageId, new SignalServiceAddress(recipient.getUuid(), recipient.getE164()))
-                                  .setUnknownFields(recipient.getStorageProto())
+                                  .setUnknownFields(recipient.getSyncExtras().getStorageProto())
                                   .setProfileKey(recipient.getProfileKey())
                                   .setGivenName(recipient.getProfileName().getGivenName())
                                   .setFamilyName(recipient.getProfileName().getFamilyName())
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing() || recipient.getSystemContactUri() != null)
-                                  .setIdentityKey(recipient.getIdentityKey())
-                                  .setIdentityState(localToRemoteIdentityState(recipient.getIdentityStatus()))
-                                  .setArchived(archived.contains(recipient.getId()))
+                                  .setIdentityKey(recipient.getSyncExtras().getIdentityKey())
+                                  .setIdentityState(localToRemoteIdentityState(recipient.getSyncExtras().getIdentityStatus()))
+                                  .setArchived(recipient.getSyncExtras().isArchived())
                                   .build();
   }
 
-  private static @NonNull SignalGroupV1Record localToRemoteGroupV1(@NonNull RecipientSettings recipient, byte[] rawStorageId, @NonNull Set<RecipientId> archived) {
+  private static @NonNull SignalGroupV1Record localToRemoteGroupV1(@NonNull RecipientSettings recipient, byte[] rawStorageId) {
     GroupId groupId = recipient.getGroupId();
 
     if (groupId == null) {
@@ -67,14 +67,14 @@ public final class StorageSyncModels {
     }
 
     return new SignalGroupV1Record.Builder(rawStorageId, groupId.getDecodedId())
-                                  .setUnknownFields(recipient.getStorageProto())
+                                  .setUnknownFields(recipient.getSyncExtras().getStorageProto())
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing())
-                                  .setArchived(archived.contains(recipient.getId()))
+                                  .setArchived(recipient.getSyncExtras().isArchived())
                                   .build();
   }
 
-  private static @NonNull SignalGroupV2Record localToRemoteGroupV2(@NonNull RecipientSettings recipient, byte[] rawStorageId, @NonNull Set<RecipientId> archived) {
+  private static @NonNull SignalGroupV2Record localToRemoteGroupV2(@NonNull RecipientSettings recipient, byte[] rawStorageId) {
     GroupId groupId = recipient.getGroupId();
 
     if (groupId == null) {
@@ -85,17 +85,17 @@ public final class StorageSyncModels {
       throw new AssertionError("Group is not V2");
     }
 
-    GroupMasterKey groupMasterKey = recipient.getGroupMasterKey();
+    GroupMasterKey groupMasterKey = recipient.getSyncExtras().getGroupMasterKey();
 
     if (groupMasterKey == null) {
       throw new AssertionError("Group master key not on recipient record");
     }
 
     return new SignalGroupV2Record.Builder(rawStorageId, groupMasterKey)
-                                  .setUnknownFields(recipient.getStorageProto())
+                                  .setUnknownFields(recipient.getSyncExtras().getStorageProto())
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing())
-                                  .setArchived(archived.contains(recipient.getId()))
+                                  .setArchived(recipient.getSyncExtras().isArchived())
                                   .build();
   }
 

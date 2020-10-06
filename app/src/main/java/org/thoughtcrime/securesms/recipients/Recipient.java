@@ -102,8 +102,6 @@ public class Recipient {
   private final Capability             groupsV2Capability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
-  private final byte[]                 identityKey;
-  private final VerifiedStatus         identityStatus;
   private final MentionSetting         mentionSetting;
 
 
@@ -317,8 +315,6 @@ public class Recipient {
     this.uuidCapability         = Capability.UNKNOWN;
     this.groupsV2Capability     = Capability.UNKNOWN;
     this.storageId              = null;
-    this.identityKey            = null;
-    this.identityStatus         = VerifiedStatus.DEFAULT;
     this.mentionSetting         = MentionSetting.ALWAYS_NOTIFY;
   }
 
@@ -361,8 +357,6 @@ public class Recipient {
     this.uuidCapability         = details.uuidCapability;
     this.groupsV2Capability     = details.groupsV2Capability;
     this.storageId              = details.storageId;
-    this.identityKey            = details.identityKey;
-    this.identityStatus         = details.identityStatus;
     this.mentionSetting         = details.mentionSetting;
   }
 
@@ -780,14 +774,6 @@ public class Recipient {
 
   public @Nullable byte[] getStorageServiceId() {
     return storageId;
-  }
-
-  public @NonNull VerifiedStatus getIdentityVerifiedStatus() {
-    return identityStatus;
-  }
-
-  public @Nullable byte[] getIdentityKey() {
-    return identityKey;
   }
 
   public @NonNull UnidentifiedAccessMode getUnidentifiedAccessMode() {
