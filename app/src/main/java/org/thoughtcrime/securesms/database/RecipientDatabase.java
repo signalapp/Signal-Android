@@ -696,6 +696,10 @@ public class RecipientDatabase extends Database {
     } finally {
       db.endTransaction();
     }
+
+    for (RecipientId id : storageIds.keySet()) {
+      Recipient.live(id).refresh();
+    }
   }
 
   public void applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord>               contactInserts,
@@ -2171,6 +2175,10 @@ public class RecipientDatabase extends Database {
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
+    }
+
+    for (RecipientId id : keys.keySet()) {
+      Recipient.live(id).refresh();
     }
   }
 
