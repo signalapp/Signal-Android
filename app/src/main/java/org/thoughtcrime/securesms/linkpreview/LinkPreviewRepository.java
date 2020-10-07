@@ -252,7 +252,7 @@ public class LinkPreviewRepository {
   {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        GroupInviteLinkUrl groupInviteLinkUrl = GroupInviteLinkUrl.fromUrl(groupUrl);
+        GroupInviteLinkUrl groupInviteLinkUrl = GroupInviteLinkUrl.fromUri(groupUrl);
         if (groupInviteLinkUrl == null) {
           throw new AssertionError();
         }

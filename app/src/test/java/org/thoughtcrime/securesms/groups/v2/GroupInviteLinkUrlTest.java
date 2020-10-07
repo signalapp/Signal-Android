@@ -37,7 +37,11 @@ public final class GroupInviteLinkUrlTest {
 
       givenGroup().withMasterKey("00f7e0c2a71ab064cc3ced4c04f08d7b7ef4b84b2c2206f69833be6cfe34df80")
                   .andPassword("9b")
-                  .expectUrl("https://signal.group/#CiUKIAD34MKnGrBkzDztTATwjXt-9LhLLCIG9pgzvmz-NN-AEgGb")
+                  .expectUrl("https://signal.group/#CiUKIAD34MKnGrBkzDztTATwjXt-9LhLLCIG9pgzvmz-NN-AEgGb"),
+
+      givenGroup().withMasterKey("2ca23c04d7cf60fe04039ae76d1912202c2a463d345d9cd48cf27f260dd37f6f")
+                  .andPassword("2734457c02ce51da71ad0b62f3c222f7")
+                  .expectUrl("sgnl://signal.group/#CjQKICyiPATXz2D-BAOa520ZEiAsKkY9NF2c1IzyfyYN039vEhAnNEV8As5R2nGtC2LzwiL3")
     );
   }
 
@@ -49,27 +53,33 @@ public final class GroupInviteLinkUrlTest {
 
   @Test
   public void can_extract_group_master_key_from_url() throws GroupInviteLinkUrl.InvalidGroupLinkException, GroupInviteLinkUrl.UnknownGroupLinkVersionException {
-    assertEquals(groupMasterKey, GroupInviteLinkUrl.fromUrl(expectedUrl).getGroupMasterKey());
+    assertEquals(groupMasterKey, GroupInviteLinkUrl.fromUri(expectedUrl).getGroupMasterKey());
   }
 
   @Test
   public void can_extract_group_master_key_from_url_padded() throws GroupInviteLinkUrl.InvalidGroupLinkException, GroupInviteLinkUrl.UnknownGroupLinkVersionException {
-    assertEquals(groupMasterKey, GroupInviteLinkUrl.fromUrl(expectedUrl + "=").getGroupMasterKey());
+    assertEquals(groupMasterKey, GroupInviteLinkUrl.fromUri(expectedUrl + "=").getGroupMasterKey());
   }
 
   @Test
   public void can_extract_password_from_url() throws GroupInviteLinkUrl.InvalidGroupLinkException, GroupInviteLinkUrl.UnknownGroupLinkVersionException {
-    assertEquals(password, GroupInviteLinkUrl.fromUrl(expectedUrl).getPassword());
+    assertEquals(password, GroupInviteLinkUrl.fromUri(expectedUrl).getPassword());
   }
 
   @Test
   public void can_extract_password_from_url_padded() throws GroupInviteLinkUrl.InvalidGroupLinkException, GroupInviteLinkUrl.UnknownGroupLinkVersionException {
-    assertEquals(password, GroupInviteLinkUrl.fromUrl(expectedUrl + "=").getPassword());
+    assertEquals(password, GroupInviteLinkUrl.fromUri(expectedUrl + "=").getPassword());
   }
 
   @Test
   public void can_reconstruct_url() {
-    assertEquals(expectedUrl, GroupInviteLinkUrl.createUrl(groupMasterKey, password));
+    String urlToCompare = expectedUrl;
+
+    if (urlToCompare.startsWith("sgnl")) {
+      urlToCompare = urlToCompare.replace("sgnl", "https");
+    }
+
+    assertEquals(urlToCompare, GroupInviteLinkUrl.createUrl(groupMasterKey, password));
   }
 
   private static TestBuilder givenGroup() {

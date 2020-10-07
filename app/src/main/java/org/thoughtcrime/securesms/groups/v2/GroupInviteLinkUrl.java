@@ -12,8 +12,8 @@ import org.signal.zkgroup.groups.GroupMasterKey;
 import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public final class GroupInviteLinkUrl {
 
@@ -38,24 +38,24 @@ public final class GroupInviteLinkUrl {
    * @return null iff not a group url.
    * @throws InvalidGroupLinkException If group url, but cannot be parsed.
    */
-  public static @Nullable GroupInviteLinkUrl fromUrl(@NonNull String urlString)
+  public static @Nullable GroupInviteLinkUrl fromUri(@NonNull String urlString)
       throws InvalidGroupLinkException, UnknownGroupLinkVersionException
   {
-    URL url = getGroupUrl(urlString);
+    URI uri = getGroupUrl(urlString);
 
-    if (url == null) {
+    if (uri == null) {
       return null;
     }
 
     try {
-      if (!"/".equals(url.getPath()) && url.getPath().length() > 0) {
-        throw new InvalidGroupLinkException("No path was expected in url");
+      if (!"/".equals(uri.getPath()) && uri.getPath().length() > 0) {
+        throw new InvalidGroupLinkException("No path was expected in uri");
       }
 
-      String encoding = url.getRef();
+      String encoding = uri.getFragment();
 
       if (encoding == null || encoding.length() == 0) {
-        throw new InvalidGroupLinkException("No reference was in the url");
+        throw new InvalidGroupLinkException("No reference was in the uri");
       }
 
       byte[]          bytes           = Base64UrlSafe.decodePaddingAgnostic(encoding);
@@ -78,16 +78,23 @@ public final class GroupInviteLinkUrl {
   }
 
   /**
-   * @return {@link URL} if the host name matches.
+   * @return {@link URI} if the host name matches.
    */
-  private static URL getGroupUrl(@NonNull String urlString) {
+  private static URI getGroupUrl(@NonNull String urlString) {
     try {
-      URL url = new URL(urlString);
+      URI url = new URI(urlString);
+
+      if (!"https".equalsIgnoreCase(url.getScheme()) &&
+          !"sgnl".equalsIgnoreCase(url.getScheme()))
+      {
+        return null;
+      }
 
       return GROUP_URL_HOST.equalsIgnoreCase(url.getHost())
              ? url
              : null;
-    } catch (MalformedURLException e) {
+
+    } catch (URISyntaxException e) {
       return null;
     }
   }

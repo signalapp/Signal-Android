@@ -195,7 +195,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
   private GroupInviteLinkUrl getGroupInviteLinkUrl() {
     try {
       //noinspection ConstantConditions
-      return GroupInviteLinkUrl.fromUrl(requireArguments().getString(ARG_GROUP_INVITE_LINK_URL));
+      return GroupInviteLinkUrl.fromUri(requireArguments().getString(ARG_GROUP_INVITE_LINK_URL));
     } catch (GroupInviteLinkUrl.InvalidGroupLinkException | GroupInviteLinkUrl.UnknownGroupLinkVersionException e) {
       throw new AssertionError();
     }
