@@ -8,10 +8,8 @@ import java.util.Set;
 public final class CameraXModelBlacklist {
   private static final Set<String> BLACKLIST = new HashSet<String>() {{
     // Pixel 4
-    if (Build.VERSION.SDK_INT < 30) {
-      add("Pixel 4");
-      add("Pixel 4 XL");
-    }
+    add("Pixel 4");
+    add("Pixel 4 XL");
 
     // Huawei Mate 10
     add("ALP-L29");
