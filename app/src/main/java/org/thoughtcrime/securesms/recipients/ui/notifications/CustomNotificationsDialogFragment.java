@@ -71,9 +71,9 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     if (ThemeUtil.isDarkTheme(requireActivity())) {
-      setStyle(STYLE_NO_FRAME, R.style.TextSecure_DarkTheme);
+      setStyle(STYLE_NO_FRAME, R.style.TextSecure_DarkTheme_AnimatedDialog);
     } else {
-      setStyle(STYLE_NO_FRAME, R.style.TextSecure_LightTheme);
+      setStyle(STYLE_NO_FRAME, R.style.TextSecure_LightTheme_AnimatedDialog);
     }
   }
 

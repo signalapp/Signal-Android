@@ -132,6 +132,11 @@
         <item name="android:windowExitAnimation">@anim/slide_to_top</item>
     </style>
 
+    <style name="FadeScale" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
+    </style>
+
     <style name="StickerPopupAnimation" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/fade_in</item>
         <item name="android:windowExitAnimation">@anim/fade_out</item>
@@ -911,6 +916,14 @@
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny.Light</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+    </style>
+
+    <style name="TextSecure.DarkTheme.AnimatedDialog">
+        <item name="android:windowAnimationStyle">@style/FadeScale</item>
+    </style>
+
+    <style name="TextSecure.LightTheme.AnimatedDialog">
+        <item name="android:windowAnimationStyle">@style/FadeScale</item>
     </style>
 
     <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">
