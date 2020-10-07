@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Eliminazione messaggi…</string>
   <string name="ConversationFragment_delete_for_me">Elimina per me</string>
   <string name="ConversationFragment_delete_for_everyone">Elimina per tutti</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Questo messaggio verrà eliminato definitivamente per tutti nella conversazione. I membri potranno vedere che hai eliminato un messaggio.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Questo messaggio verrà eliminato definitivamente per tutti nella conversazione. I membri potranno vedere che hai eliminato un messaggio.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Messaggio originale non trovato</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Messaggio originale non più disponibile</string>
   <string name="ConversationFragment_failed_to_open_message">Apertura messaggio fallita</string>

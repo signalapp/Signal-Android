@@ -295,7 +295,7 @@
   <string name="ConversationFragment_deleting_messages">Mažú sa správy…</string>
   <string name="ConversationFragment_delete_for_me">Zmazať pre mňa</string>
   <string name="ConversationFragment_delete_for_everyone">Zmazať pre všetkých</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Táto správa sa natrvalo vymaže pre všetkých v tejto konverzácii. Členovia budú vidieť, že ste vymazali správu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Táto správa sa natrvalo vymaže pre všetkých v tejto konverzácii. Členovia budú vidieť, že ste vymazali správu.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Pôvodná správa sa nenašla</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pôvodná správa už nie je k dispozícii</string>
   <string name="ConversationFragment_failed_to_open_message">Nepodarilo sa otvoriť správu</string>

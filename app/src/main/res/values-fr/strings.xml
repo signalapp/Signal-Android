@@ -128,7 +128,7 @@
   <string name="ClearProfileActivity_remove_group_photo">Supprimer la photo du groupe ?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Mettre Signal à jour</string>
-  <string name="ClientDeprecatedActivity_update">Mettre à jour</string>
+  <string name="ClientDeprecatedActivity_update">Mise à jour</string>
   <string name="ClientDeprecatedActivity_warning">Avertissement</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
@@ -226,7 +226,7 @@
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal a besoin de l’autorisation Microphone afin d’enregistrer des vidéos, mais elle a été refusée. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Microphone et Appareil photo.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal a besoin de l’autorisation Microphone afin d’enregistrer des vidéos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne peut ni envoyer de textos ni de messages multimédias, car ce n’est pas votre appli de textos par défaut. Souhaitez-vous changer cela dans vos paramètres d’Android ?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne peut ni envoyer de textos ni de messages multimédias, car ce n’est pas votre appli de textos par défaut. Voulez-vous changer cela dans vos paramètres d’Android ?</string>
   <string name="ConversationActivity_yes">Oui</string>
   <string name="ConversationActivity_no">Non</string>
   <string name="ConversationActivity_search_position">%1$d sur %2$d</string>
@@ -283,7 +283,7 @@
   <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
   <string name="ConversationFragment_delete_for_me">Supprimer pour moi</string>
   <string name="ConversationFragment_delete_for_everyone">Supprimer pour tous</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ce message sera irrémédiablement supprimé pour tous les membres de la conversation. Les membres pourront voir que vous avez supprimé un message.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ce message sera irrémédiablement supprimé pour tous les membres de la conversation. Les membres pourront voir que vous avez supprimé un message.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Échec d’ouverture du message</string>
@@ -398,7 +398,7 @@
   <string name="ChooseNewAdminActivity_you_left">Vous avez quitté « %1$s ».</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partager vos nom et photo de profil avec ce groupe ?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Souhaitez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voulez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
   <string name="GroupShareProfileView_make_visible">Rendre visible</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vous</string>
@@ -588,16 +588,16 @@
   <string name="ShareableGroupLinkDialogFragment__default">Valeur par défaut</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Réinitialisation du lien de groupe</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Exiger qu’un administrateur approuve les nouveaux membres qui se joignent grâce au lien de groupe.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Souhaitez-vous vraiment réinitialiser le lien du groupe ? Personne ne pourra plus se joindre au groupe grâce au lien actuel.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Voulez-vous vraiment réinitialiser le lien du groupe ? Personne ne pourra plus se joindre au groupe grâce au lien actuel.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Code QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Les personnes qui balaieront ce code pourront se joindre à votre groupe. Les administrateurs devront quand même approuver les nouveaux membres si vous avez activé ce paramètre.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Partager le code</string>
   <!--GV2 Invite Revoke confirmation dialog-->
-  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Souhaitez-vous révoquer l’invitation envoyée à %1$s ?</string>
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Voulez-vous révoquer l’invitation envoyée à %1$s ?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-    <item quantity="one">Souhaitez-vous révoquer l’invitation envoyée par %1$s ?</item>
-    <item quantity="other">Souhaitez-vous révoquer %2$d invitations envoyées par %1$s ?</item>
+    <item quantity="one">Voulez-vous révoquer l’invitation envoyée par %1$s ?</item>
+    <item quantity="other">Voulez-vous révoquer %2$d invitations envoyées par %1$s ?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Vous êtes déjà membre</string>
@@ -607,7 +607,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ce lien de groupe est inactif</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Impossible de récupérer les renseignements du groupe, veuillez réessayer plus tard</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Souhaitez-vous vous joindre à ce groupe et partager votre nom et votre photo avec ses membres ?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Voulez-vous vous joindre à ce groupe et partager votre nom et votre photo avec ses membres ?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrateur de ce groupe doit approuver votre demande avant que vous puissiez vous joindre à ce groupe. Quand vous demandez à vous joindre, votre nom et votre photo sont partagés avec ses membres.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Groupe · %1$d membre</item>
@@ -1529,7 +1529,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">Veuillez examiner ce journal provenant de mon appli : %1$s</string>
   <string name="log_submit_activity__network_failure">Échec réseau. Veuillez réessayer.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Souhaitez-vous importer vos textos existants dans la base de données chiffrée de Signal ?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voulez-vous importer vos textos existants dans la base de données chiffrée de Signal ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de données par défaut du système ne sera aucunement modifiée ni altérée.</string>
   <string name="database_migration_activity__skip">Ignorer</string>
   <string name="database_migration_activity__import">Importer</string>
@@ -1798,7 +1798,7 @@
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">L’historique et les contenus multimédias des messages de plus de %1$s seront irrémédiablement supprimés de votre appareil.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Toutes les conversations seront irrémédiablement réduites aux %1$s messages les plus récents.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tout l’historique et tous les contenus multimédias des messages seront irrémédiablement supprimés de votre appareil.</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Souhaitez-vous vraiment supprimer tout l’historique des messages ?</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Voulez-vous vraiment supprimer tout l’historique des messages ?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tout l’historique des messages sera irrémédiablement supprimé. Cette action ne peut pas être annulée.</string>
   <string name="preferences_storage__delete_all_now">Tout supprimer maintenant</string>
   <string name="preferences_storage__forever">Pour toujours</string>
@@ -2224,7 +2224,7 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Les groupes hérités comparés aux nouveaux</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Que sont les groupes hérités ?</string>
   <string name="GroupsLearnMore_paragraph_1">Les groupes hérités sont des groupes qui ne sont pas compatibles avec les fonctions des nouveaux groupes, telles que les administrateurs et les mises à jour plus descriptives des groupes.</string>
-  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Puis-je mettre un groupe hérité à niveau ?</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Puis-je transformer un groupe hérité en nouveau groupe ?</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partager avec Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copier</string>

@@ -239,7 +239,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Taksih mbrusaki</string>
   <string name="ConversationFragment_deleting_messages">Taksih mbrusaki pesen…</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Pesen niki bakal dibrusak kangge piyambak sedaya ing obrolan niki sacara permanen Anggota sedaya bakal saged ningali menawi sampeyan mbrusaki pesen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Pesen niki bakal dibrusak kangge piyambak sedaya ing obrolan niki sacara permanen Anggota sedaya bakal saged ningali menawi sampeyan mbrusaki pesen.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Pesen asli mboten saged kepanggih</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pesen asli sampun mboten enten malih</string>
   <string name="ConversationFragment_failed_to_open_message">Gagal mbikak pesen</string>

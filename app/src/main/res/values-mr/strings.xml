@@ -280,7 +280,7 @@
   <string name="ConversationFragment_deleting_messages">संदेश हटवत आहे…</string>
   <string name="ConversationFragment_delete_for_me">माझ्यासाठी हटवा</string>
   <string name="ConversationFragment_delete_for_everyone">प्रत्येकासाठी हटवा</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">हा संदेश संभाषणातील प्रत्येकासाठी कायमचा हटविला जाईल. आपण संदेश हटविला हे सदस्य पाहण्यास सक्षम असतील.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">हा संदेश संभाषणातील प्रत्येकासाठी कायमचा हटविला जाईल. आपण संदेश हटविला हे सदस्य पाहण्यास सक्षम असतील.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">मूळ संदेश आढळला नाही</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">मूळ संदेश आता उपलब्ध नाही</string>
   <string name="ConversationFragment_failed_to_open_message">संदेश उघडण्यात अयशस्वी</string>

@@ -261,7 +261,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Binubura</string>
   <string name="ConversationFragment_deleting_messages">Binubura ang mga mensahe…</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ang mensaheng ito ay permanenterng mabubura para sa lahat na kalahok ng pag-uusap. Makikita ng mga kasapi na binura mo ang mensahe.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ang mensaheng ito ay permanenterng mabubura para sa lahat na kalahok ng pag-uusap. Makikita ng mga kasapi na binura mo ang mensahe.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Ang orihinal na mensahe ay hindi mahanap</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Ang orihinal na mensahe ay wala na</string>
   <string name="ConversationFragment_failed_to_open_message">Nabigong buksan ang mensahe</string>

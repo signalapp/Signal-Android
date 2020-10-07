@@ -128,11 +128,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Fjern gruppefoto?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Opdatér Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Denne version af appen understøttes ikke længere. Opdater til den nyeste version for at fortsætte med at sende og modtage beskeder.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Denne version af app´en understøttes ikke længere. Opdatér til den nyeste version for at fortsætte med at sende og modtage beskeder</string>
   <string name="ClientDeprecatedActivity_update">Opdatér</string>
   <string name="ClientDeprecatedActivity_dont_update">Opdatér ikke</string>
   <string name="ClientDeprecatedActivity_warning">Advarsel</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Din version af Signal er udløbet. Du kan se din beskedhistorik, men du kan ikke sende eller modtage beskeder, før du opdaterer.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Din version af Signal er udløbet. Du kan se din beskedhistorik, men du kan ikke sende eller modtage beskeder, før du opdaterer</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen Webbrowser fundet</string>
   <string name="CommunicationActions_no_email_app_found">Ingen email app fundet</string>
@@ -287,7 +287,7 @@
   <string name="ConversationFragment_deleting_messages">Sletter beskeder…</string>
   <string name="ConversationFragment_delete_for_me">Slet for mig</string>
   <string name="ConversationFragment_delete_for_everyone">Slet for alle</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meddelelse slettes permanent for alle i samtalen. Medlemmerne kan se at du har slettet en besked</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meddelelse slettes permanent for alle i samtalen. Medlemmerne kan se at du har slettet en besked</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Original besked blev ikke fundet</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Original besked er ikke længere tilgængelig</string>
   <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
@@ -375,7 +375,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheden understøtter ikke Play Services. Tap for at slå batterioptimering fra, som forhindrer Signal i at modtage beskeder i baggrunden</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denne version af Signal er udløbet. Opdater nu for at sende og modtage beskeder</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denne version af Signal er udløbet. Opdatér nu for at sende og modtage beskeder</string>
   <string name="ExpiredBuildReminder_update_now">Opdatér nu</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
@@ -423,7 +423,7 @@
   <string name="GroupManagement_invite_multiple_users">Disse brugere kan ikke automatisk tilføjes gruppen af dig. De er blevet inviteret til at deltage, og kan ikke se gruppebeskeder før de accepterer</string>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Forlad gruppe?</string>
-  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Du vil ikke længere kunde sende eller modtage beskeder i gruppen</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Du vil ikke længere kunne sende eller modtage beskeder i gruppen</string>
   <string name="LeaveGroupDialog_leave">Forlad</string>
   <string name="LeaveGroupDialog_choose_new_admin">Vælg ny administrator</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Før du forlader gruppen, skal du vælge mindst én ny administrator</string>
@@ -505,7 +505,7 @@
   <string name="ManageGroupActivity_add_members">Tilføj medlemmer</string>
   <string name="ManageGroupActivity_edit_group_info">Rediger gruppeinformation</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Hvem kan tilføje nye medlemmer?</string>
-  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Hvem kan redigere denne gruppes information?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Hvem kan redigere gruppens information?</string>
   <string name="ManageGroupActivity_group_link">Gruppelink</string>
   <string name="ManageGroupActivity_block_group">Blokér gruppe</string>
   <string name="ManageGroupActivity_unblock_group">Ophæv blokering af gruppe</string>
@@ -535,8 +535,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gruppen kunne ikke opdateres på grund af en netværksfejl. Prøv igen senere</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Redigér navn og billede</string>
   <string name="ManageGroupActivity_legacy_group">Forældet gruppe</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Dette er en forældret gruppe. Funktioner som gruppeadministratorer er kun tilgængelige for nye grupper.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. For at chatte privat og få adgang til funktioner som gruppenavne skal du invitere dine kontakter til Signal.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Dette er en forældret gruppe. Funktioner som gruppeadministratorer, er kun tilgængelige for nye grupper</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. For at chatte privat og få adgang til funktioner som gruppenavne, skal du invitere dine kontakter til Signal</string>
   <string name="ManageGroupActivity_invite_now">Invitér nu</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Underret mig ved omtaler</string>
@@ -630,7 +630,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Deltagelse i en gruppe via et link understøttes endnu ikke af Signal. Funktionen frigives i en kommende opdatering</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-versionen som du anvender, understøtter ikke gruppelinks. Opdater til den nyeste version for at deltage i denne gruppe via link</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Opdatér Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flere af din(e) forbundne enhed(er) kører en version af Signal, der ikke understøtter gruppelinks. Opdater Signal for at deltage i denne gruppe.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flere af din(e) forbundne enhed(er) kører en version af Signal, der ikke understøtter gruppelinks. Opdatér Signal for at deltage i gruppen</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelink er ikke gyldigt</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Føj \"%1$s\" til gruppen?</string>
@@ -956,10 +956,10 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Beskeder sendt eller modtaget i denne samtale, vil udløbe %s efter de er læst</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Opdatér nu</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne version af Signal udløber i dag. Opdater til den nyeste version.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne version af Signal udløber i dag. Opdatér til den nyeste version</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="one">Denne version af Signal udløber i morgen. Opdater til den nyeste version.</item>
-    <item quantity="other">Denne version af Signal udløber om %d dage. Opdater til den nyeste version.</item>
+    <item quantity="other">Denne version af Signal udløber om %d dage. Opdatér til den nyeste version</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Indtast kodeord</string>
@@ -2106,11 +2106,11 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Du vil blive påmindet senere. Bekræftelse af din PIN vil blive krævet om %1$d dage</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Fortæl Signal hvad du synes</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">For at gøre Signal til den bedste besked-app på planeten, vil vi meget gerne høre din feedback.</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">For at gøre Signal til den bedste besked-app på planeten, vil vi meget gerne bede om din feedback</string>
   <string name="ResearchMegaphone_learn_more">Læs mere</string>
   <string name="ResearchMegaphone_dismiss">Afvis</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Forskning af Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi tror på fortrolighed.</b></p><p>Signal sporer ikke dig eller indsamler dine data. For at forbedre Signal for alle er vi afhængige af brugerfeedback, <b>og vi vil meget gerne høre din.</b></p><p>Vi kører en undersøgelse for at forstå, hvordan du bruger Signal. Vores undersøgelse indsamler ikke nogen data, der identificerer dig. Hvis du er interesseret i at dele yderligere feedback, har du mulighed for at give kontaktoplysninger.</p><p>Hvis du har et par minutter og feedback at tilbyde, vil vi meget gerne høre fra dig.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_signal_research">Signal forskning</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi tror på fortrolighed.</b></p><p>Signal sporer dig ikke eller indsamler dine data. For at forbedre Signal for alle er vi afhængige af feedback fra brugerne, <b>og vi vil meget gerne høre din.</b></p><p>Vi laver en undersøgelse for at forstå, hvordan du bruger Signal. Vores undersøgelse indsamler ingen data der identificerer dig. Hvis du er interesseret i at dele yderligere feedback, har du mulighed for at afgive dine kontaktoplysninger.</p><p>Hvis du har et par minutter og noget feedback at tilbyde, vil vi meget gerne høre fra dig.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Tag undersøgelsen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nej tak</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersøgelsen er startet af  Surveygizmo på det sikre domæne surveys.signalusers.org</string>
@@ -2254,7 +2254,7 @@ Der er %d dage tilbage</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Ukrypteret taleopkald</string>
   <string name="RecipientBottomSheet_video_call_description">Videoopkald</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Fjern %1$s som gruppeadministrator?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" vil være i stand til at redigere gruppen og dens medlemmer.</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" vil være i stand til at redigere gruppen og dens medlemmer</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Fjern %1$s fra gruppen?</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopieret til udklipsholder</string>
@@ -2266,8 +2266,8 @@ Der er %d dage tilbage</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hvad er forældede grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Forældede grupper, er grupper der ikke er kompatible med nye gruppefunktioner, som administratorer og mere beskrivende opdateringer af grupper</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan jeg opgradere en forældet gruppe?</string>
-  <string name="GroupsLearnMore_paragraph_2">Forældede grupper kan endnu ikke opgraderes til nye grupper, men du kan oprette en ny gruppe med de samme medlemmer, hvis de har i den nyeste version af Signal.</string>
-  <string name="GroupsLearnMore_paragraph_3">Signal vil tilbyde en måde at opgradere Forældede grupper i fremtiden.</string>
+  <string name="GroupsLearnMore_paragraph_2">Forældede grupper kan endnu ikke opgraderes til nye grupper, men du kan oprette en ny gruppe med de samme medlemmer, hvis de har i den nyeste version af Signal</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal vil tilbyde en måde at opgradere Forældede grupper på, i fremtiden</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Del via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiér</string>

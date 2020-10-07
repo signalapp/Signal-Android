@@ -276,7 +276,7 @@
   <string name="ConversationFragment_deleting_messages">刪除訊息中…</string>
   <string name="ConversationFragment_delete_for_me">為我刪除</string>
   <string name="ConversationFragment_delete_for_everyone">為大家刪除</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">該訊息將被永久刪除。 成員將能夠看到你刪除了一則訊息。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">該訊息將被永久刪除。 成員將能夠看到你刪除了一則訊息。</string> -->
   <string name="ConversationFragment_quoted_message_not_found">無法找到原始訊息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原始訊息已不存在</string>
   <string name="ConversationFragment_failed_to_open_message">開啟訊息失敗</string>

@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Po fshihen mesazhet…</string>
   <string name="ConversationFragment_delete_for_me">Fshije për mua</string>
   <string name="ConversationFragment_delete_for_everyone">Fshije për këdo</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ky mesazh do të fshihet përgjithmonë për këdo te biseda. Anëtarët do të jenë në gjendje të shohin që ju fshitë një mesazh.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ky mesazh do të fshihet përgjithmonë për këdo te biseda. Anëtarët do të jenë në gjendje të shohin që ju fshitë një mesazh.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">S\’u gjet mesazhi origjinal</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesazhi origjinal s\’gjendet më</string>
   <string name="ConversationFragment_failed_to_open_message">S’u arrit të hapet mesazhe</string>

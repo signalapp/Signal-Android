@@ -306,7 +306,7 @@
   <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości…</string>
   <string name="ConversationFragment_delete_for_me">Usuń u mnie</string>
   <string name="ConversationFragment_delete_for_everyone">Usuń u wszystkich</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ta wiadomość zostanie trwale usunięta u wszystkich, uczestników tej konwersacji. Będą oni mogli zobaczyć, że skasowałeś(aś) wiadomość.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ta wiadomość zostanie trwale usunięta u wszystkich, uczestników tej konwersacji. Będą oni mogli zobaczyć, że skasowałeś(aś) wiadomość.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
   <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>

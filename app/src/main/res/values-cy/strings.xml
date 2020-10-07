@@ -134,8 +134,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Tynnu llun y grŵp?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Diweddaru Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Nid yw\'r fersiwn hon o\'r ap yn cael ei chefnogi mwyach. I barhau i anfon a derbyn negeseuon, diweddarwch nhw i\'r fersiwn ddiweddaraf.</string>
   <string name="ClientDeprecatedActivity_update">Diweddaru</string>
+  <string name="ClientDeprecatedActivity_dont_update">Peidio â Diweddaru</string>
   <string name="ClientDeprecatedActivity_warning">Rhybudd</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Mae eich fersiwn o Signal wedi dod i ben. Gallwch weld hanes eich neges ond ni fyddwch yn gallu anfon na derbyn negeseuon nes i chi ddiweddaru.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Heb ganfod porwr gwe.</string>
   <string name="CommunicationActions_no_email_app_found">Heb ganfod ap e-bost.</string>
@@ -305,7 +308,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_deleting_messages">Dileu negeseuon…</string>
   <string name="ConversationFragment_delete_for_me">Dileu i mi</string>
   <string name="ConversationFragment_delete_for_everyone">Dileu i bawb</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Bydd y neges hon yn cael ei dileu yn barhaol i bawb sydd yn y sgwrs. Bydd aelodau\'n gallu gweld eich bod wedi dileu y neges.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Bydd y neges hon yn cael ei dileu yn barhaol i bawb sydd yn y sgwrs. Bydd aelodau\'n gallu gweld eich bod wedi dileu y neges.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Heb ganfod y neges wreiddiol</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Nid yw\'r neges wreiddiol bellach ar gael</string>
   <string name="ConversationFragment_failed_to_open_message">Methu agor neges</string>
@@ -401,6 +404,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeiddio ar gyfer Play Services coll</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Nid yw\'r ddyfais hon yn cefnogi Play Services Tapiwch i analluogi gwelliannau batri system sy\'n atal Signal rhag adfer negeseuon tra\'n anweithredol.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Mae\'r fersiwn hon o Signal wedi dod i ben. Diweddarwch nawr i anfon a derbyn negeseuon.</string>
+  <string name="ExpiredBuildReminder_update_now">Diweddaru nawr</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Rhannu â</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Dim ond ar gyfer delweddau a fideos y mae atodiadau lluosog yn cael eu cynnal</string>
@@ -542,6 +547,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Ceisiadau aelodau a gwahoddiadau</string>
   <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
   <string name="ManageGroupActivity_edit_group_info">Golygu manylion y grŵp</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Pwy all ychwanegu aelodau newydd?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Pwy all olygu manylion y grŵp hwn?</string>
   <string name="ManageGroupActivity_group_link">Dolen grŵp</string>
   <string name="ManageGroupActivity_block_group">Rhwystro\'r grŵp</string>
   <string name="ManageGroupActivity_unblock_group">Dad-rwystro grŵp</string>
@@ -575,6 +582,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Wedi methu diweddaru\'r grŵp oherwydd gwall rhwydwaith, ceisiwch eto yn nes ymlaen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Golygu enw a llun</string>
   <string name="ManageGroupActivity_legacy_group">Hen Grŵp</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Hen Grŵp yw hwn. Dim ond ar gyfer Grwpiau Newydd y mae nodweddion fel gweinyddwyr grwpiau ar gael.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Mae hwn yn Grŵp MMS anniogel. I sgwrsio\'n breifat a chael nodweddion fel enwau grwpiau, gwahoddwch eich cysylltiadau i Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Gwahodd nawr</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Rhowch wybod i mi am Grybwylliadau</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Derbyn hysbysiadau pan soniwyd amdanoch mewn sgyrsiau tawel?</string>
@@ -675,6 +685,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Nid yw Signal yn cefnogi ymuno â grŵp trwy ddolen eto. Bydd y nodwedd hon yn cael ei rhyddhau mewn diweddariad sydd ar ddod.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Nid yw\'r fersiwn o Signal rydych chi\'n ei defnyddio yn cefnogi cysylltiadau grŵp. Diweddariad i\'r fersiwn ddiweddaraf i ymuno â\'r grŵp hwn trwy ddolen.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Diweddaru Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mae un neu fwy o\'ch dyfeisiau cysylltiedig yn rhedeg fersiwn o Signal nad yw\'n cefnogi cysylltiadau grŵp. Diweddarwch y Signal ar eich dyfais\dyfeisiau cysylltiedig i ymuno â\'r grŵp hwn.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Nid yw\'r cyswllt grŵp yn ddilys</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Ychwanegu “%1$s” i\'r grŵp?</string>
@@ -1029,6 +1040,14 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Ni fydd eich negeseuon yn dod i ben.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bydd negeseuon sy\'n cael eu anfon a\'u derbyn yn y sgwrs yn diflannu %s ar ôl iddynt gael eu gweld.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Diweddaru nawr</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Bydd y fersiwn hon o Signal yn dod i ben heddiw. Diweddarwch i\'r fersiwn ddiweddaraf.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Bydd y fersiwn hon o Signal yn dod i ben yfory. Diweddarwch i\'r fersiwn ddiweddaraf.</item>
+    <item quantity="two">Bydd y fersiwn hon o Signal yn dod i ben mewn% d diwrnod. Diweddarwch i\'r fersiwn ddiweddaraf.</item>
+    <item quantity="many">Bydd y fersiwn hon o Signal yn dod i ben mewn% d diwrnod. Diweddarwch i\'r fersiwn ddiweddaraf.</item>
+    <item quantity="other">Bydd y fersiwn hon o Signal yn dod i ben mewn% d diwrnod. Diweddarwch i\'r fersiwn ddiweddaraf.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Rhoi cyfrinymadrodd</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Eicon Signal</string>
@@ -1108,10 +1127,21 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">I alw %1$s, mae angen i Signal gael mynediad i\'ch camera.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Yn galw…</string>
+  <string name="WebRtcCallActivity__group_call">Galwad Grŵp</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Galwad llais Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Galwad fideo Signal</string>
+  <string name="WebRtcCallView__start_call">Cychwyn Galwad</string>
+  <string name="WebRtcCallView__group_call">Galwad Grŵp</string>
+  <string name="WebRtcCallView__view_participants_list">Gweld cyfranogwyr</string>
+  <string name="WebRtcCallView__your_video_is_off">Mae\'ch fideo i ffwrdd</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Yn yr alwad hon · %1$d person</item>
+    <item quantity="two">Yn yr alwad hon · %1$d o bobl</item>
+    <item quantity="many">Yn yr alwad hon · %1$d o bobl</item>
+    <item quantity="other">Yn yr alwad hon · %1$d o bobl</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Dewiswch eich gwlad</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Rhaid i chi roi
@@ -2204,9 +2234,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Dywedwch wrth Signal beth you eich barn</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">I wneud Signal yr ap negeseuon gorau ar y blaned, byddem wrth ein bodd yn clywed eich adborth.</string>
   <string name="ResearchMegaphone_learn_more">Dysgu rhagor</string>
   <string name="ResearchMegaphone_dismiss">Diddymu</string>
   <string name="ResearchMegaphoneDialog_signal_research">Ymchwil Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Rydym yn credu mewn preifatrwydd.</b></p><p>Nid yw Signal yn eich tracio nac yn casglu\'ch data. Er mwyn gwella Signal i bawb, rydym yn dibynnu ar adborth defnyddwyr, <b>a byddem wrth ein bodd â\'ch adborth chi.</b></p><p> Rydyn ni\'n cynnal arolwg i ddeall sut rydych chi\'n defnyddio Signal. Nid yw ein harolwg yn casglu unrhyw ddata a fydd yn eich adnabod chi. Os oes gennych ddiddordeb mewn rhannu adborth ychwanegol, bydd gennych yr opsiwn i ddarparu gwybodaeth gyswllt.</p><p>Os oes gennych ychydig funudau ac adborth i\'w gynnig, byddem wrth ein bodd yn clywed gennych.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Cymryd yr Arolwg</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Dim diolch</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Surveygizmo sydd yn cynnal yr arolwg yn y parth diogel surveys.signalusers.org</string>
@@ -2349,6 +2381,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Galwad llais anniogel</string>
   <string name="RecipientBottomSheet_video_call_description">Galwad fideo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Tynnu %1$s fel gweinyddwr grŵp?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Bydd \"%1$s\" yn gallu golygu\'r grŵp hwn a\'i aelodau</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Tynnu %1$s o\'r grŵp hwn?</string>
   <string name="RecipientBottomSheet_remove">Tynnu</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
   <string name="GroupRecipientListItem_admin">Gweinyddwr</string>
@@ -2359,6 +2393,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Beth yw Hen Grwpiau?</string>
   <string name="GroupsLearnMore_paragraph_1">Mae Hen Grwpiau yn grwpiau sydd ddim yn gydnaws â nodweddion Grŵp Newydd fel gweinyddwyr a diweddariadau grwpiau mwy disgrifiadol.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Gai “uwchraddio” Hen Grŵp?</string>
+  <string name="GroupsLearnMore_paragraph_2">Nid oes modd uwchraddio Hen Grwpiau i Grwpiau Newydd eto, ond gallwch greu Grŵp Newydd gyda\'r un aelodau os ydyn nhw ar y fersiwn ddiweddaraf o Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Bydd Signal yn cynnig ffordd i uwchraddio Hen Etifeddiaeth yn y dyfodol.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Rhannu trwy Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copïo</string>

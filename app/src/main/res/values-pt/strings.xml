@@ -132,6 +132,7 @@
   <string name="ClientDeprecatedActivity_update">Atualizar</string>
   <string name="ClientDeprecatedActivity_dont_update">Não atualizar</string>
   <string name="ClientDeprecatedActivity_warning">Aviso</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">A sua versão do Signal expirou. Pode ver o seu histórico de mensagens mas não será capaz de enviar ou receber mensagens até que atualize.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Não foi encontrado nenhum navegador de Internet.</string>
   <string name="CommunicationActions_no_email_app_found">Não foi encontrada nenhuma aplicação de e-mail.</string>
@@ -285,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">A eliminar mensagens…</string>
   <string name="ConversationFragment_delete_for_me">Eliminar para mim</string>
   <string name="ConversationFragment_delete_for_everyone">Eliminar para todos</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Esta mensagem será eliminada para todos os presentes na conversa. Os membros serão capazes de ver que você eliminou a mensagem.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Esta mensagem será eliminada para todos os presentes na conversa. Os membros serão capazes de ver que você eliminou a mensagem.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Não foi encontrada a mensagem original</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">A mensagem original já não se encontra disponível</string>
   <string name="ConversationFragment_failed_to_open_message">Falha ao abrir a mensagem</string>
@@ -373,6 +374,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para os \"Play Services\" em falta.</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não suporta os Play Services. Toque para desativar o sistema de otimização de bateria que impede o Signal de recolher mensagens enquanto inativo.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Esta versão do Signal expirou. Faça agora a atualização par aenviar e receber mensagens.</string>
   <string name="ExpiredBuildReminder_update_now">Atualizar agora</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partilhar com</string>
@@ -501,6 +503,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Pedidos e convites para membro</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_edit_group_info">Editar informação do grupo</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Quem pode adicionar novos membros?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Quem pode editar a informação do grupo?</string>
   <string name="ManageGroupActivity_group_link">Link do grupo</string>
   <string name="ManageGroupActivity_block_group">Bloquear grupo</string>
   <string name="ManageGroupActivity_unblock_group">Desbloquear grupo</string>
@@ -530,6 +534,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo devido a um erro de rede. Por favor, tente novamente mais tarde</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e imagem</string>
   <string name="ManageGroupActivity_legacy_group">Grupo legado</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Este é um \'Grupo legado\'. Recursos como grupos de administradores apenas se encontram disponíveis para \'Grupos novos\'.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é um Grupo MMS inseguro. Para conversar de forma privada e aceder a recursos como nomes do grupo, convide os seus contactos para o Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Convidar agora</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar-me quando for \'Mencionado\'</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Receber notificações quando for mencionado em chats silenciados?</string>
@@ -622,6 +629,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Entrar para um grupo através de um link ainda não é suportado pelo Signal. Este recurso será lançado numa atualização futura.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que está a utilizar não suporta links de grupo. Atualize para a última versão de forma a poder entrar para este grupo através do link do grupo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Um ou mias dos seus dispositivos ligados estão a correr uma versão do Signal que não suporta ligações para grupos. Atualize o Signal nos seus dispositivos ligados para entrar para este grupo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link do grupo inválido</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adicionar “%1$s” ao grupo?</string>
@@ -946,6 +954,11 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">As mensagens enviadas e recebidas nesta conversa irão ser destruídas %s após serem vistas.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Atualizar agora</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Esta versão do Signal expira hoje. Atualize para a versão mais recente.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Esta versão do Signal expira amanhã. Atualize para a versão mais recente.</item>
+    <item quantity="other">Esta versão do Signal irá expirar dentro de %d dias. Atualize para a versão mais recente.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Insira a frase-passe</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Signal</string>
@@ -1023,10 +1036,19 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para telefonar a %1$s, o Signal necessita de aceder à sua câmara</string>
   <string name="WebRtcCallActivity__signal_s">Chamada Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">A chamar…</string>
+  <string name="WebRtcCallActivity__group_call">Chamada de grupo</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Chamada de voz do Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Chamada de vídeo do Signal…</string>
+  <string name="WebRtcCallView__start_call">Iniciar chamada</string>
+  <string name="WebRtcCallView__group_call">Chamada de grupo</string>
+  <string name="WebRtcCallView__view_participants_list">Ver participantes</string>
+  <string name="WebRtcCallView__your_video_is_off">O seu vídeo encontra-se desligado</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Nesta chamada · %1$d pessoa</item>
+    <item quantity="other">Nesta chamada · %1$d pessoas</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Escolha o seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Deve escolher o
@@ -2080,9 +2102,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Iremos lembrá-lo(a) mais tarde. Confirmar o seu PIN será obrigatório dentro de %1$d dias.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Diga ao Signal o que acha</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Para poder transformar o Signal na melhor aplicação de mensagens do planeta, gostaríamos de obter o seu feedback.</string>
   <string name="ResearchMegaphone_learn_more">Saber mais</string>
   <string name="ResearchMegaphone_dismiss">Ignorar</string>
   <string name="ResearchMegaphoneDialog_signal_research">Pesquisa Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Acreditamos na privacidade.</b></p><p>O Signal não rastreia ou recolhe os seus dados. Para melhorar o Signal para todos, dependemos do feedback dos seus utilizadores, <b>e nós adoramos os seus.</b></p></p>Estamos a lançar um questionário para perceber como é que utiliza o Signal. O nosso questionário não recolhe nenhuns dados que o possam identificar. Se está interessado em partilhar o seu feedback adicional tem a opção para fornecer a informação de contacto.</p><p>Se tiver alguns minutos e feedback para fornecer iríamos adorar ouvi-lo.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Preencher o questionário</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Não, obrigado</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">O questionário está alojado pela Surveygizmo no domínio seguro surveys.signalusers.org</string>
@@ -2225,6 +2249,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RecipientBottomSheet_insecure_voice_call_description">Chamada de voz insegura</string>
   <string name="RecipientBottomSheet_video_call_description">Vídeochamada</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Remover %1$s de administrador de grupo?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" será capaz de editar este grupo e os seus membros.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Remover %1$s deste grupo?</string>
   <string name="RecipientBottomSheet_remove">Remover</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupRecipientListItem_admin">Administrador</string>
@@ -2235,6 +2261,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="GroupsLearnMore_what_are_legacy_groups">O que são \'Grupos legados\'?</string>
   <string name="GroupsLearnMore_paragraph_1">Os \'Grupos legados\' são grupos que não são compatíveis com os recursos de \'Grupo novo\' tais como administradores e atualizações mais descritivas do grupo.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Posso fazer o upgrade para um \'Grupo legado\'?</string>
+  <string name="GroupsLearnMore_paragraph_2">OS \'Grupos legados\' não podem ser convertidos em \'Grupos novos\', mas você pode criar um \'Grupo novo\' com os mesmos membros caso eles tenham a última versão do Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">O Signal irá oferecer futuramente uma forma de atualizar os \'Grupos legados\'.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partilhar através do Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copiar</string>

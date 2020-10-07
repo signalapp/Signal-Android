@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Tar bort meddelanden…</string>
   <string name="ConversationFragment_delete_for_me">Ta bort för mig</string>
   <string name="ConversationFragment_delete_for_everyone">Ta bort för alla</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Detta meddelande tas bort permanent för alla i konversationen. Medlemmar kan se att du har tagit bort ett meddelande.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Detta meddelande tas bort permanent för alla i konversationen. Medlemmar kan se att du har tagit bort ett meddelande.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Hittade inte originalmeddelandet.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalmeddelandet inte längre tillgänglig.</string>
   <string name="ConversationFragment_failed_to_open_message">Det gick inte att öppna meddelandet</string>

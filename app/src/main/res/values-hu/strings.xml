@@ -287,7 +287,7 @@
   <string name="ConversationFragment_deleting_messages">Üzenetek törlése…</string>
   <string name="ConversationFragment_delete_for_me">Törlés számomra</string>
   <string name="ConversationFragment_delete_for_everyone">Törlés mindenki számára</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ez az üzenet a beszélgetés minden tagja számára véglegesen törlésre kerül. A tagok számára látható lesz, hogy törölted az üzenetet.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ez az üzenet a beszélgetés minden tagja számára véglegesen törlésre kerül. A tagok számára látható lesz, hogy törölted az üzenetet.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Az eredeti üzenet nem található</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Az eredeti üzenet már nem érhető el</string>
   <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>

@@ -134,8 +134,11 @@
   <string name="ClearProfileActivity_remove_group_photo">להסיר תמונת קבוצה?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">עדכן את Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">גרסה זו של היישום אינה נתמכת יותר. כדי להמשיך לשלוח ולקבל הודעות, עדכן אל הגרסה האחרונה.</string>
   <string name="ClientDeprecatedActivity_update">עדכן</string>
+  <string name="ClientDeprecatedActivity_dont_update">אל תעדכן</string>
   <string name="ClientDeprecatedActivity_warning">אזהרה</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">גרסת Signal שלך פגה. אתה יכול לצפות בהיסטורית ההודעות שלך אבל לא תוכל לשלוח או לקבל הודעות עד שתעדכן.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">דפדפן רשת לא נמצא.</string>
   <string name="CommunicationActions_no_email_app_found">יישום דוא״ל לא נמצא.</string>
@@ -303,7 +306,7 @@
   <string name="ConversationFragment_deleting_messages">מוחק הודעות…</string>
   <string name="ConversationFragment_delete_for_me">מחק עבורי</string>
   <string name="ConversationFragment_delete_for_everyone">מחק עבור כולם</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">הודעה זו תימחק לצמיתות עבור כל אחד שנמצא בשיחה. חברי קבוצה יוכלו לראות שמחקת הודעה.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">הודעה זו תימחק לצמיתות עבור כל אחד שנמצא בשיחה. חברי קבוצה יוכלו לראות שמחקת הודעה.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">ההודעה המקורית אינה זמינה יותר</string>
   <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>
@@ -399,6 +402,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">מטב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ־Signal לאחזר הודעות בעת אי־פעילות.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">גרסה זו של Signal פגה. עדכן עכשיו כדי לשלוח ולקבל הודעות.</string>
+  <string name="ExpiredBuildReminder_update_now">עדכן עכשיו</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">שתף עם</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">צרופות מרובות נתמכות רק עבור תמונות וסרטונים</string>
@@ -540,6 +545,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">בקשות והזמנות של חברי קבוצה</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
   <string name="ManageGroupActivity_edit_group_info">ערוך מידע קבוצה</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">מי יכול להוסיף חברי קבוצה חדשים?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">מי יכול לערוך את המידע של קבוצה הזאת?</string>
   <string name="ManageGroupActivity_group_link">קישור קבוצה</string>
   <string name="ManageGroupActivity_block_group">חסום קבוצה</string>
   <string name="ManageGroupActivity_unblock_group">בטל חסימת קבוצה</string>
@@ -573,6 +580,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">נכשל בעדכון הקבוצה עקב שגיאת רשת, אנא נסה שוב מאוחר יותר.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ערוך שם ותמונה</string>
   <string name="ManageGroupActivity_legacy_group">קבוצה מיושנת</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">זוהי קבוצה מיושנת. מאפיינים כמו מנהלני קבוצה זמינים רק בקבוצות חדשות.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">זוהי קבוצת MMS בלתי מאובטחת. כדי להתכתב באופן פרטי ולהשיג גישה אל מאפיינים כמו שמות קבוצה, הזמן את אנשי הקשר שלך אל Signal.</string>
+  <string name="ManageGroupActivity_invite_now">הזמן עכשיו</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">יידע אותי לגבי אזכורים</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">לקבל התראות כאשר אתה מוזכר בהתכתבויות מושתקות?</string>
@@ -673,6 +683,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">הצטרפות אל קבוצה באמצעות קישור אינה נתמכת עדין על ידי Signal. מאפיין זה ישוחרר בעדכון עתידי.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">הגרסה של Signal שאתה משתמש בה אינה תומכת בקישורי קבוצה. עדכן אל הגרסה האחרונה כדי להצטרף אל קבוצה זו באמצעות קישור.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">עדכן את Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">מכשיר מקושר אחד או יותר שלך מריצים גרסה של Signal שאינה תומכת בקישורי קבוצה. עדכן את Signal במכשירים המקושרים שלך כדי להצטרף אל קבוצה זו.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">קישור הקבוצה בלתי תקף</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">להוסיף את ”%1$s“ אל הקבוצה?</string>
@@ -1027,6 +1038,14 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">ההודעות שלך לא יפוגו.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">הודעות שנשלחות ומתקבלות בשיחה זו ייעלמו %s אחרי שייראו.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">עדכן עכשיו</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">גרסה זו של Signal תפוג היום. עדכן אל הגרסה האחרונה.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">גרסה זו של Signal תפוג מחר. עדכן אל הגרסה האחרונה.</item>
+    <item quantity="two">גרסה זו של Signal תפוג עוד %d ימים. עדכן אל הגרסה האחרונה.</item>
+    <item quantity="many">גרסה זו של Signal תפוג עוד %d ימים. עדכן אל הגרסה האחרונה.</item>
+    <item quantity="other">גרסה זו של Signal תפוג עוד %d ימים. עדכן אל הגרסה האחרונה.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">הכנס משפט־סיסמה</string>
   <string name="PassphrasePromptActivity_watermark_content_description">צלמית Signal</string>
@@ -1106,10 +1125,21 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">כדי להתקשר אל %1$s, היישום Signal צריך גישה אל המצלמה שלך</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">מתקשר…</string>
+  <string name="WebRtcCallActivity__group_call">שיחה קבוצתית</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">שיחה קולית של Signal…</string>
   <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal…</string>
+  <string name="WebRtcCallView__start_call">התחל שיחה</string>
+  <string name="WebRtcCallView__group_call">שיחה קבוצתית</string>
+  <string name="WebRtcCallView__view_participants_list">הצג משתתפים</string>
+  <string name="WebRtcCallView__your_video_is_off">הוידאו שלך כבוי</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">בשיחה זו  · איש %1$d</item>
+    <item quantity="two">בשיחה זו · %1$d אנשים</item>
+    <item quantity="many">בשיחה זו · %1$d אנשים</item>
+    <item quantity="other">בשיחה זו · %1$d אנשים</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">בחר את מדינתך</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">אתה חייב לציין את
@@ -2202,9 +2232,11 @@
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">נזכיר לך מאוחר יותר. אימות PIN יהיה חובה עוד %1$d ימים.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">אמור אל Signal מה אתה חושב</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">כדי להפוך את Signal ליישום ההתכתבות הטוב ביותר ביקום, נשמח לשמוע את המשוב שלך.</string>
   <string name="ResearchMegaphone_learn_more">למד עוד</string>
   <string name="ResearchMegaphone_dismiss">בטל</string>
   <string name="ResearchMegaphoneDialog_signal_research">מחקר Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>אנחנו מאמינים בפרטיות.</b></p><p>Signal אינו עוקב אחריך או אוסף את הנתונים שלך. כדי לשפר את Signal עבור כולם, אנחנו מסתמכים על משוב משתמשים, <b>ונשמח לקבל את שלך.</b></p><p>אנחנו מפעילים סקר כדי להבין כיצד אתה משתמש ב־Signal. הסקר שלנו אינו אוסף נתונים כלשהם שיזהו אותך. אם אתה מעוניין בשיתוף של משוב נוסף, תהיה לך אפשרות לספק מידע ליצירת קשר.</p><p>אם יש לך כמה דקות ומשוב להציע, נשמח לשמוע ממך.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">ענה על הסקר</string>
   <string name="ResearchMegaphoneDialog_no_thanks">לא תודה</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">הסקר מאורח על ידי Surveygizmo בתחום המאובטח surveys.signalusers.org</string>
@@ -2347,6 +2379,8 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">שיחת וידאו בלתי מאובטחת</string>
   <string name="RecipientBottomSheet_video_call_description">שיחת וידאו</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">להסיר את %1$s מתפקיד מנהלן קבוצה?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" יוכל/תוכל לערוך קבוצה זו ואת חבריה.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">להסיר את %1$s מהקבוצה?</string>
   <string name="RecipientBottomSheet_remove">הסר</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupRecipientListItem_admin">מנהלן</string>
@@ -2357,6 +2391,8 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">מהן קבוצות מיושנות?</string>
   <string name="GroupsLearnMore_paragraph_1">קבוצות מיושנות הן קבוצות שאינן תואמות עם מאפיינים של קבוצה חדשה כמו מנהלנים ועדכוני קבוצה תיאוריים יותר.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">האם אני יכול לשדרג קבוצה מיושנת?</string>
+  <string name="GroupsLearnMore_paragraph_2">קבוצות מיושנות אינן יכולות להשתדרג עדין אל קבוצות חדשות, אבל אתה יכול ליצור קבוצה חדשה עם אותם חברי קבוצה אם יש להם את הגרסה האחרונה של Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal יציע דרך לשדרג קבוצות מיושנות בעתיד.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">שתף באמצעות Signal</string>
   <string name="GroupLinkBottomSheet_copy">העתק</string>

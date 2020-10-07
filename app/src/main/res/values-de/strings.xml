@@ -128,11 +128,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Gruppenfoto entfernen?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signal aktualisieren</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Diese Version von Signal wird nicht mehr unterstützt. Um weiterhin Nachrichten senden und empfangen zu können, aktualisiere auf neueste Version.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Diese Signal-Version wird nicht mehr unterstützt. Um weiterhin Nachrichten senden und empfangen zu können, aktualisiere auf neueste Version.</string>
   <string name="ClientDeprecatedActivity_update">Aktualisieren</string>
   <string name="ClientDeprecatedActivity_dont_update">Nicht aktualisieren</string>
   <string name="ClientDeprecatedActivity_warning">Warnung</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Deine Version von Signal ist veraltet. Du kannst deinen Nachrichtenverlauf einsehen, aber du kannst keine neuen Nachrichten senden oder empfangen bis du aktualisiert hast.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Deine Signal-Version ist veraltet. Bis du Signal aktualisiert hast, kannst du deinen Nachrichtenverlauf einsehen, jedoch keine neuen Nachrichten senden oder empfangen.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Kein Webbrowser gefunden.</string>
   <string name="CommunicationActions_no_email_app_found">Keine E-Mail-App gefunden.</string>
@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
   <string name="ConversationFragment_delete_for_me">Für mich löschen</string>
   <string name="ConversationFragment_delete_for_everyone">Für jeden löschen</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Diese Nachricht wird für jeden Teilnehmer der Unterhaltung unwiderruflich gelöscht. Gruppenmitglieder werden sehen können, dass du eine Nachricht gelöscht hast.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Diese Nachricht wird für jeden Teilnehmer der Unterhaltung unwiderruflich gelöscht. Gruppenmitglieder werden sehen können, dass du eine Nachricht gelöscht hast.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Originalnachricht nicht gefunden</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalnachricht nicht mehr verfügbar</string>
   <string name="ConversationFragment_failed_to_open_message">Nachricht konnte nicht geöffnet werden</string>
@@ -374,7 +374,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Für Betrieb ohne Google-Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungen zu deaktivieren, die Signal daran hindern, Nachrichten im Hintergrund zu empfangen.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Diese Version von Signal ist veraltet. Aktualisiere jetzt um Nachrichten senden und empfangen zu können.</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Diese Signal-Version ist veraltet. Aktualisiere jetzt, um Nachrichten senden und empfangen zu können.</string>
   <string name="ExpiredBuildReminder_update_now">Jetzt aktualisieren</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Teilen mit</string>
@@ -535,7 +535,7 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Name und Bild bearbeiten</string>
   <string name="ManageGroupActivity_legacy_group">Gruppe alten Typs</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dies ist eine Gruppe alten Typs. Funktionen wie Gruppen-Admins sind nur in Gruppen neuen Typs verfügbar.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dies ist eine unsichere MMS-Gruppe. Lade deine Kontakte zu Signal ein, um sich vertraulich zu unterhalten und Zugang zu Funktionen, wie Gruppen-Namen, zu haben.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dies ist eine unverschlüsselte MMS-Gruppe. Lade deine Kontakte zu Signal ein, um dich vertraulich zu unterhalten und Funktionen wie Gruppennamen verwenden zu können.</string>
   <string name="ManageGroupActivity_invite_now">Jetzt einladen</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Mich über Erwähnungen benachrichtigen</string>
@@ -629,7 +629,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Der Gruppenbeitritt über einen Link wird derzeit noch nicht von Signal unterstützt. Diese Funktion wird in einer kommenden Aktualisierung veröffentlicht.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Die von dir verwendete Signal-Version unterstützt keine Gruppen-Links. Aktualisiere auf die neueste Version, um dieser Gruppe über einen Link beizutreten.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal aktualisieren</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Ein gekoppeltes Gerät verwendet eine Signal-Version, die keine Gruppen-Links unterstützt. Aktualisiere Signal auf dem gekoppeltem Gerät, um diese Gruppe beizutreten.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mindestens ein gekoppeltes Gerät verwendet eine Signal-Version, die keine Gruppen-Links unterstützt. Aktualisiere Signal auf deinen gekoppelten Geräten, um dieser Gruppe beizutreten.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppen-Link ist ungültig</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">»%1$s« zur Gruppe hinzufügen?</string>
@@ -953,10 +953,10 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">In dieser Unterhaltung gesendete und empfangene Nachrichten werden %s nach dem Lesen verschwinden.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Jetzt aktualisieren</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Version von Signal wird heute ablaufen. Aktualisiere zur neuesten Version.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Signal-Version wird heute ablaufen. Aktualisiere zur neuesten Version.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="one">Diese Version von Signal wird morgen ablaufen. Aktualisiere zur neuesten Version.</item>
-    <item quantity="other">Diese Version von Signal wird in %d Tagen ablaufen. Aktualisiere zur neuesten Version.</item>
+    <item quantity="one">Diese Signal-Version wird morgen ablaufen. Aktualisiere auf die neueste Version.</item>
+    <item quantity="other">Diese Signal-Version wird in %d Tagen ablaufen. Aktualisiere auf die neueste Version.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Passphrase eingeben</string>
@@ -2095,11 +2095,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Wir erinnern dich später. Das Bestätigen deiner PIN wird in %1$d Tagen zwingend erforderlich.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Sag Signal, was du denkst</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Damit Signal die beste Messaging-App des Planeten wird, möchten wir gerne deine Meinung hören.</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Damit Signal die beste Messaging-App der Welt wird, möchten wir gerne deine Meinung hören.</string>
   <string name="ResearchMegaphone_learn_more">Mehr erfahren</string>
   <string name="ResearchMegaphone_dismiss">Verwerfen</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal-Forschung</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Wir glauben an Datenschutz.</b></p><p>Signal verfolgt dich nicht und sammelt auch nicht deine Daten. Um Signal für alle zu verbessern, stützen wir uns auf Rückmeldungen der Benutzer, <b>und wir wären sehr an deinen interessiert.</b></p><p>Zum besseren Verständnis darüber, wie du Signal nutzt, führen wir eine Umfrage durch. Unsere Umfrage sammelt keinerlei Daten, die Rückschlüsse auf deine Identität erlauben. Falls du weiteres Feedback geben möchtest,  kannst du optional deine Kontaktinformationen hinterlassen.</p><p>Wenn du einige Minuten erübrigen kannst, würden wir sehr gerne von dir hören.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Wir glauben an Datenschutz.</b></p><p>Signal verfolgt dich nicht und sammelt auch nicht deine Daten. Um Signal für alle zu verbessern, stützen wir uns auf Rückmeldungen der Benutzer, <b>und wir wären sehr an deinen interessiert.</b></p><p>Zum besseren Verständnis darüber, wie du Signal nutzt, führen wir eine Umfrage durch. Unsere Umfrage sammelt keinerlei Daten, die Rückschlüsse auf deine Identität erlauben. Falls du weiteres Feedback geben möchtest, kannst du optional deine Kontaktinformationen hinterlassen.</p><p>Wenn du einige Minuten erübrigen kannst, würden wir sehr gerne von dir hören.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">An Umfrage teilnehmen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nein, danke</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Diese Umfrage wird bei »Surveygizmo« auf der sicheren Domain »surveys.signalusers.org« gehostet.</string>

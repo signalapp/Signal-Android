@@ -280,7 +280,7 @@
   <string name="ConversationFragment_deleting_messages">Tiek dzēstas ziņas…</string>
   <string name="ConversationFragment_delete_for_me">Dzēst tikai man</string>
   <string name="ConversationFragment_delete_for_everyone">Dzēst no visiem</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Šī ziņa tiks dzēsta no visiem dalībniekiem. Dalībnieki var redzēt, ka jūs izdzēsāt ziņu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Šī ziņa tiks dzēsta no visiem dalībniekiem. Dalībnieki var redzēt, ka jūs izdzēsāt ziņu.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Oriģinālā ziņa netika atrasta</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Oriģinālā ziņa vairs nav pieejama</string>
   <string name="ConversationFragment_failed_to_open_message">Neizdevās atvērt ziņu</string>

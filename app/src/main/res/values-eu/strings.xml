@@ -128,8 +128,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Taldeko argazkia ezabatu?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Eguneratu Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Aplikazioaren bertsio honek jadanikez dauka bermerik. Mezuak jasotzen eta bidaltzen jarraitzeko, eguneratu azken bertsiora.</string>
   <string name="ClientDeprecatedActivity_update">Eguneratu</string>
+  <string name="ClientDeprecatedActivity_dont_update">Ez Eguneratu</string>
   <string name="ClientDeprecatedActivity_warning">Markatutako zenbakia ez dago Signalen erregistratuta. SMS bidez gonbidatu nahiko zenuke?</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Zure Signal bertsioa iraungi da. Zure mezuen historia ikusi dezakezu, baina ezingo duzu mezuak bidali edo jaso eguneratu arte.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ezin izan da nabigatzailerik aurkitu.</string>
   <string name="CommunicationActions_no_email_app_found">Ez da e-posta aplikaziorik aurkitu.</string>
@@ -283,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Mezuak ezabatzen…</string>
   <string name="ConversationFragment_delete_for_me">Ezabatu niretzat</string>
   <string name="ConversationFragment_delete_for_everyone">Ezabatu guztientzat</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Mezu hau betiko ezabatuko da solasaldian dago edonorentzat. Kideek ikusi ahal izango dute mezu bat ezabatu duzula.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Mezu hau betiko ezabatuko da solasaldian dago edonorentzat. Kideek ikusi ahal izango dute mezu bat ezabatu duzula.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Jatorrizko mezua ez da aurkitu</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Jatorrizko mezua ez dago eskuragarri jada</string>
   <string name="ConversationFragment_failed_to_open_message">Akatsa mezua irekitzean</string>
@@ -371,6 +374,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizatu Google Play-ren zerbitzuetarko</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Gailu honek ez dauka Play Services erabiltzerik. Signal irekita ez dagoenean, sistemaren bateria optimizazioek galarazten diote mezuak jasotzea. Ukitu sistemaren bateria optimizazioak ezgaitzeko.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signalen bertsio hau iraungi da. Eguneratu orain mezuak bidali eta jaso ahal izateko.</string>
+  <string name="ExpiredBuildReminder_update_now">Eguneratu orain</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Honekin partekatu:</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Eranskin anitzak bakarrik irudi eta bideoetan onartzen dira</string>
@@ -498,6 +503,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Kideen eskaera &amp; gonbidapenak</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
   <string name="ManageGroupActivity_edit_group_info">Editatu taldeari buruzko informazioa</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Nork gehitu ditzake kide berriak?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Nork edita dezake talde honen informazioa?</string>
   <string name="ManageGroupActivity_group_link">Talderako esteka</string>
   <string name="ManageGroupActivity_block_group">Blokeatu taldea</string>
   <string name="ManageGroupActivity_unblock_group">Desblokeatu taldea</string>
@@ -527,6 +534,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ezin izan da taldea eguneratu sare errore bat dela eta; mesedez, beranduago saia zaitez</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editatu izena eta irudia</string>
   <string name="ManageGroupActivity_legacy_group">Jarauntsitako Taldea</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Hau Jarauntsitako Talde bat da. Talde administratzaile moduko ezaugarriak Talde Berrietan erabil daitezke bakarrik.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Hau segurtasunik gabeko MMS Talde bat da. Modu pribatuan txateatzeko eta talde izenak moduko ezaugarriak erabili ahal izateko, Signalera gonbidatu zure kontaktuak.</string>
+  <string name="ManageGroupActivity_invite_now">Gonbidatu orain</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nahi duzu jakinarazpenak jaso mutututako txatetan aipatzen zaituztenean?</string>
@@ -619,6 +629,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Talde batean sartzea link baten bidez oraindik ez dago onartuta Signal-en. Ezaugarri hau eskuragarri egongo da aurrerantzean egingo den egunerapen batean.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Erabiltzen ari zare Signalen bertsioak ez du talde estekak onartzen. Eguneratu azken bertsiora esteka bidez talde honetan sartzeko.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Eguneratu Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Gutxienez lotuta dituzun gailuetako batek Talde estekak onartzen ez dituen Signalen bertsio bat dauka instalatuta. Signal eguneratu lotutako gailuetan talde honetan sartu ahal izateko.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Talde esteka hau ez da baliagarria</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Nahi duzu \"%1$s\" erabiltzailea taldean sartu?</string>
@@ -943,6 +954,12 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">Zure mezuak ez dira iraungiko.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Solasaldi honetako mezu guztiak, bai jasoak zein bidaliak, irakurri eta %s igaro ondoren desagertu egingo dira.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Eguneratu orain</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Singalen bertsio hau gaur iraungiko da. Eguneratu azken bertsiora.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Signalen bertsio hau bihar iraungiko da. Eguneratu azken bertsiora.</item>
+    <item quantity="other">Signalen bertsio hau %d egunetan iraungiko da. Eguneratu azken bertsiora.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Pasahitza sartu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonoa</string>
@@ -1020,10 +1037,19 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s erabiltzaileari deitzeko, Signalek zure kamera erabiltzeko baimena behar du</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Deitzen…</string>
+  <string name="WebRtcCallActivity__group_call">Talde Deia</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal ahots deia…</string>
   <string name="WebRtcCallView__signal_video_call">Signal bideo deia…</string>
+  <string name="WebRtcCallView__start_call">Hasi Deia</string>
+  <string name="WebRtcCallView__group_call">Talde Deia</string>
+  <string name="WebRtcCallView__view_participants_list">Kideak ikusi</string>
+  <string name="WebRtcCallView__your_video_is_off">Zure bideoa itzalita dago</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Dei honetan - pertsona %1$d</item>
+    <item quantity="other">Dei honetan - %1$d pertsona</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Aukeratu zure herrialdea</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zure herrialdearen 
@@ -2080,9 +2106,15 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Beranduago gogoraraziko dizugu. PIN bat sortzea beharrezkoa izango da %1$d eguneta.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Beranduago gogoraraziko dizugu. Zure PINa baieztatzea derrigorrezkoa izango da %1$d egunetan.</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Esan Signali pentsatzen duzuna</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal munduko mezularitza aplikaziorik onena bilakatzeko, zure iritzia entzutea gustatuko litzaiguke.</string>
   <string name="ResearchMegaphone_learn_more">Gehiago jakin</string>
   <string name="ResearchMegaphone_dismiss">Baztertu</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Signal Ikerketa</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Pribatutasunean sinesten dugu</b></p><p>Signalek ez du jarraitzen egiten duzuna edo zure datuak bildu. Signal guztiontzat hobetzeko, erabiltzaileen iruzkinetan oinarritzen gara, <b>eta zurea edukitzea gustatuko litzaiguke. </b></p><p> Inkesta bat egiten ari gara Signal nola erabiltzen duzun ulertzeko. Gure inkestak identifika zaitzakeen daturik ez du biltzen. Informazio gehiago partekatu nahi baduzu, kontakturako informazioa emateko aukera izango duzu. </p><p> Minutu batzuk eta iruzkinak egiteko baduzu, gustatuko litzaiguke zure iritzia entzutea. </p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">Inkesta egin</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ez, eskerrik asko</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Inkesta Surveygizmo zerbitzuan dago ostatuta, surveys.signalusers.org domeinuan</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>
@@ -2222,6 +2254,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RecipientBottomSheet_insecure_voice_call_description">Ahots dei ez segurua</string>
   <string name="RecipientBottomSheet_video_call_description">Bideo deia</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s erabiltzailea talde administratzaile gisa ezabatu nahi duzu?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" erabiltzailea talde hau eta bere kideak editatzeko gai izango da.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Ezabatu nahi duzu %1$s kidea taldetik?</string>
   <string name="RecipientBottomSheet_remove">Ezabatu</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="GroupRecipientListItem_admin">Administratzailea</string>
@@ -2231,6 +2265,9 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="GroupsLearnMore_legacy_vs_new_groups">Jarauntsitako Taldeak vs. Talde Berriak</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Zer dira Jarauntsitako Taldeak?</string>
   <string name="GroupsLearnMore_paragraph_1">Jarauntsitako Taldeak ez dira taldeen ezaugarri berriekin bateragarriak; esate baterako, administratzaileak eta taldeen egunerapenei buruzko informazio zehatzagoa izateko aukerak.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Eguneratu dezaket Jarauntsitako Taldea?</string>
+  <string name="GroupsLearnMore_paragraph_2">Jarauntsitako Taldeak oraindik ezin dira Talde Berrietara eguneratu, baina Signalen azkenengo bertsioa baduzu, kide berak dituen Talde Berri bat sortu dezakezu.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signalek Jarauntsitako Taldeak eguneratzeko modu bat eskainiko du aurrerantzean.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partekatu Signal bidez</string>
   <string name="GroupLinkBottomSheet_copy">Kopiatu</string>

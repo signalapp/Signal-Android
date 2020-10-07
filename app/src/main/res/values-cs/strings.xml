@@ -303,7 +303,7 @@
   <string name="ConversationFragment_deleting_messages">Mažu zprávy…</string>
   <string name="ConversationFragment_delete_for_me">Smazat pro mne</string>
   <string name="ConversationFragment_delete_for_everyone">Smazat pro všechny</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tato zpráva bude trvale smazána pro všechny členy konverzace. Členové konverzace budou moci vidět, ze jste zprávu smazali.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tato zpráva bude trvale smazána pro všechny členy konverzace. Členové konverzace budou moci vidět, ze jste zprávu smazali.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
   <string name="ConversationFragment_failed_to_open_message">Zprávu se nepovedlo otevřít</string>

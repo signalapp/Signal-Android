@@ -280,7 +280,7 @@
   <string name="ConversationFragment_deleting_messages">Sõnumite kustutamine…</string>
   <string name="ConversationFragment_delete_for_me">Kustuta minu jaoks</string>
   <string name="ConversationFragment_delete_for_everyone">Kustuta kõigi jaoks</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">See sõnum kustutatakse jäädavalt kõigi vestluses osalejate jaoks. Liikmed näevad, et sa kustutasid sõnumi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">See sõnum kustutatakse jäädavalt kõigi vestluses osalejate jaoks. Liikmed näevad, et sa kustutasid sõnumi.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
   <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>

@@ -128,8 +128,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Voleu suprimir la foto del grup?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Actualitza el Signal</string>
-  <string name="ClientDeprecatedActivity_update">Actualització</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Aquesta versió de l\'aplicació ja no té assistència. Per continuar enviant i rebent missatges, actualitzeu-la a la darrera versió.</string>
+  <string name="ClientDeprecatedActivity_update">Actualitza-la</string>
+  <string name="ClientDeprecatedActivity_dont_update">No l\'actualitzis</string>
   <string name="ClientDeprecatedActivity_warning">Advertiment</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">La versió del Signal ha vençut. Podeu veure l\'historial de missatges però no podreu enviar-ne ni rebre\'n fins que l\'actualitzeu.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">No s\'ha trobat cap navegador web.</string>
   <string name="CommunicationActions_no_email_app_found">No s\'ha trobat cap aplicació de correu.</string>
@@ -283,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Se suprimeixen missatges…</string>
   <string name="ConversationFragment_delete_for_me">Suprimeix per a mi</string>
   <string name="ConversationFragment_delete_for_everyone">Suprimeix per a tothom</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Aquest missatge se suprimirà permanentment per a tothom que sigui a la conversa. Els membres podran veure que heu suprimit un missatge.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Aquest missatge se suprimirà permanentment per a tothom que sigui a la conversa. Els membres podran veure que heu suprimit un missatge.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">No s\'ha trobat el missatge original.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El missatge original ja no està disponible.</string>
   <string name="ConversationFragment_failed_to_open_message">Ha fallat obrir el missatge.</string>
@@ -371,6 +374,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimitza per a la no presència dels Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">El dispositiu no és compatible amb Play Services. Toqueu per desactivar les optimitzacions de la bateria que impedeixen que el Signal rebi missatges quan estigui inactiu.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Aquesta versió del Signal ha vençut. Actualitzeu-la ara per enviar i rebre missatges.</string>
+  <string name="ExpiredBuildReminder_update_now">Actualitza-la ara</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comparteix amb</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Els adjunts múltiples només s\'admeten per a imatges i vídeos.</string>
@@ -498,6 +503,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Sol·licituds d\'adhesió i invitacions</string>
   <string name="ManageGroupActivity_add_members">Afegiu-hi membres</string>
   <string name="ManageGroupActivity_edit_group_info">Edita la informació del grup</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Qui pot afegir membres nous?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Qui pot editar la informació del grup?</string>
   <string name="ManageGroupActivity_group_link">Enllaç del grup</string>
   <string name="ManageGroupActivity_block_group">Bloca el grup</string>
   <string name="ManageGroupActivity_unblock_group">Desbloca el grup</string>
@@ -527,6 +534,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ha fallat actualitzar el grup a causa d\'un error de xarxa. Torneu-ho a provar més tard.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editeu el nom i la imatge</string>
   <string name="ManageGroupActivity_legacy_group">Grup de llegat</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Aquest és un grup de llegat. Característiques com ara els administradors de grup només estan disponibles per als grups nous.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per conversar privadament i accedir a funcions com ara els noms de grup, convideu els contactes al Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Convida ara</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifica\'m les mencions</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Voleu rebre notificacions quan us mencionin en converses silenciades?</string>
@@ -619,6 +629,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Afegir-se a un grup per un enllaç encara no és possible amb el Signal. Aquesta funció s\'activarà en una actualització propera.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versió del Signal que useu no admet enllaços de grup. Actualitzeu-lo a la versió més recent per afegir-vos a aquest grup per l\'enllaç.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualitza el Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un o més dels vostres dispositius enllaçats executen una versió del Signal que no admet enllaços de grup. Actualitzeu el Signal dels dispositius enllaçats per afegir-vos a aquest grup.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">L\'enllaç de grup no és vàlid.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Voleu afegir %1$s al grup?</string>
@@ -939,9 +950,15 @@
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No es pot escanejar un codi QR sense permís de la càmera.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Missatges efímers</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">El missatges no expiraran.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">El missatges no venceran.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Els missatges enviats i rebuts a aquesta conversa desapareixeran %s després que s\'hagin llegit.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Actualitza-la ara</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">La vostra versió del Signal vencerà avui. Actualitzeu-la a la versió més recent.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Aquesta versió del Signal vencerà demà. Actualitzeu-la a la versió més recent.</item>
+    <item quantity="other">Aquesta versió del Signal vencerà d\'aquí a %d dies. Actualitzeu-la a la versió més recent.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Escriviu la contrasenya</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona del Signal</string>
@@ -1019,10 +1036,19 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Per trucar a %1$s, el Signal necessita accés a la càmera.</string>
   <string name="WebRtcCallActivity__signal_s">Trucada del Signal: %1$s</string>
   <string name="WebRtcCallActivity__calling">Es truca…</string>
+  <string name="WebRtcCallActivity__group_call">Trucada de grup</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Trucada de veu del Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Trucada de vídeo del Signal…</string>
+  <string name="WebRtcCallView__start_call">Inicia una trucada</string>
+  <string name="WebRtcCallView__group_call">Trucada de grup</string>
+  <string name="WebRtcCallView__view_participants_list">Mostra els participants</string>
+  <string name="WebRtcCallView__your_video_is_off">El vídeo està desactivat.</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">En aquesta trucada · %1$d persona</item>
+    <item quantity="other">En aquesta trucada · %1$d persones</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Seleccioneu el país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Heu d\'especificar el
@@ -1868,7 +1894,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Missatges efímers</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">Missatges que caduquen</string>
+  <string name="menu_conversation_expiring_on__messages_expiring">Missatges que vencen</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convida</string>
   <!--conversation_list_batch-->
@@ -2074,9 +2100,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Us ho recordarem més tard. Confirmar el PIN serà obligatori d\'aquí a %1$d dies.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Expliqueu a Signal què en penseu</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Per fer del Signal la millor aplicació de missatgeria del planeta, ens agradaria rebre\'n els vostres comentaris.</string>
   <string name="ResearchMegaphone_learn_more">Més informació</string>
   <string name="ResearchMegaphone_dismiss">Descarta</string>
   <string name="ResearchMegaphoneDialog_signal_research">Recerca del Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[ <p><b>Creiem en la privadesa.</b></p><p> El Signal no us fa un seguiment ni recopila les vostres dades. Per millorar el Signal per a tothom, confiem en els comentaris dels usuaris i <b>ens encantaria rebre el vostre.</b></p><p> Estem fent una enquesta per entendre com useu el Signal. La nostra enquesta no recull cap dada que us identifiqui. Si esteu interessats a compartir comentaris addicionals, podreu proporcionar la informació de contacte.</p><p> Si teniu uns quants minuts i comentaris a oferir, ens encantaria rebre notícies vostres.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Feu l\'enquesta</string>
   <string name="ResearchMegaphoneDialog_no_thanks">No, gràcies.</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Surveygizmo allotja l\'enquesta al domini segur surveys.signalusers.org.</string>
@@ -2219,6 +2247,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RecipientBottomSheet_insecure_voice_call_description">Trucada de veu no segura</string>
   <string name="RecipientBottomSheet_video_call_description">Trucada de vídeo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Voleu suprimir %1$s com a administrador del grup?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s podrà editar aquest grup i els seus membres.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Voleu suprimir %1$s d\'aquest grup?</string>
   <string name="RecipientBottomSheet_remove">Suprimeix</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiat al porta-retalls</string>
   <string name="GroupRecipientListItem_admin">Administrador</string>
@@ -2229,6 +2259,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="GroupsLearnMore_what_are_legacy_groups">Què són els grups de llegat?</string>
   <string name="GroupsLearnMore_paragraph_1">Els grups de llegat són grups que no són compatibles amb les funcions dels grups nous com ara els administradors i les actualitzacions més descriptives.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Puc actualitzar un grup de llegat?</string>
+  <string name="GroupsLearnMore_paragraph_2">Els grups de llegat no es poden actualitzar a grups nous, però podeu crear un grup nou amb els mateixos membres sempre que tinguin la darrera versió del Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">El Signal oferirà una manera d\'actualitzar els grups de llegat més endavant.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Comparteix per Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copia</string>

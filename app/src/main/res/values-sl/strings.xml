@@ -134,8 +134,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Želite odstraniti fotografijo skupine?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Posodobite aplikacijo Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Ta različica aplikacije Signal ni več podprta. Za nadaljnje pošiljanje in prejemanje sporočil jo morate nadgraditi.</string>
   <string name="ClientDeprecatedActivity_update">Posodobitev</string>
+  <string name="ClientDeprecatedActivity_dont_update">Ne nadgradi</string>
   <string name="ClientDeprecatedActivity_warning">Opozorilo</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Različica aplikacije Signal na vaši napravi je potekla. Še vedno lahko pregledujete zgodovino svojih sporočil, ne morete pa jih pošiljati ali prejemati dokler je ne nadgradite.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Spletnega brskalnika ni bilo mogoče najti.</string>
   <string name="CommunicationActions_no_email_app_found">Nismo našli nobene aplikacije za e-pošto.</string>
@@ -303,7 +306,7 @@
   <string name="ConversationFragment_deleting_messages">Izbris sporočil …</string>
   <string name="ConversationFragment_delete_for_me">Izbriši zame</string>
   <string name="ConversationFragment_delete_for_everyone">Izbriši za vse</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">To sporočilo bo za vedno izbrisano za vse udeležene v pogovoru. Člani/ce skupine bodo lahko videli/e, da ste izbrisali sporočilo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">To sporočilo bo za vedno izbrisano za vse udeležene v pogovoru. Člani/ce skupine bodo lahko videli/e, da ste izbrisali sporočilo.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
   <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
@@ -399,6 +402,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za manjkajočo aplikacijo Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Naprava ne podpira storitev Play Services. Tapnite za izklop optimizacije baterije, ki aplikaciji Signal preprečuje povezavo v času neaktivnosti naprave.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ta različica aplikacije Signal je potekla. Posodobite jo, da boste lahko spet pošiljali in prejemali sporočila.</string>
+  <string name="ExpiredBuildReminder_update_now">Posodobi zdaj</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Več priponk je možnih le pri slikah in videu</string>
@@ -540,6 +545,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Vabila in prošnje za članstvo</string>
   <string name="ManageGroupActivity_add_members">Dodaj člane/ice</string>
   <string name="ManageGroupActivity_edit_group_info">Uredi podatke o skupini</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Kdo lahko dodaja nove člane?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kdo lahko ureja informacije o skupini</string>
   <string name="ManageGroupActivity_group_link">Povezava do skupine</string>
   <string name="ManageGroupActivity_block_group">Blokiraj skupino</string>
   <string name="ManageGroupActivity_unblock_group">Odblokiraj skupino</string>
@@ -573,6 +580,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Posodobitev skupine ni uspela zaradi omrežne napake, poskusite znova kasneje</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Uredi ime in sliko</string>
   <string name="ManageGroupActivity_legacy_group">Stara oblika skupine</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">To je Stara skupina. Funkcije, kot so skrbniki skupin, so na voljo le pri Novih skupinah.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To je nezavarovana skupina MMS. Za bolj zasebno komunikacijo in napredne funkcije, kot so imena skupin, povabite svoje stike na Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Povabi zdaj</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščajte me o omembah</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Želite prejemati obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali?</string>
@@ -673,6 +683,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Pridružitev skupini prek povezave v aplikaciji Signal še ni mogoča. Dodana bo v eni prihodnjih posodobitev.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Različica aplikacije Signal, ki jo uporabljate, ne podpira povezav do skupine. Za priključitev k skupini preko povezave jo morate nadgraditi.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Posodobite aplikacijo Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na eni izmed vaših povezanih naprav je Signal, ki ne podpira povezav do skupine. Za pridružitev k skupini nadgradite aplikacijo Signal na svojih povezanih napravah.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Povezava do skupine ni veljavna</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Želite dodati uporabnika/co“%1$s” v skupino?</string>
@@ -1026,6 +1037,14 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">Vaša sporočila ne bodo potekla.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Sporočila, poslana ali prejeta v tem pogovoru, bodo izginila %s po ogledu.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Posodobi zdaj</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ta različica aplikacije Signal poteče danes. Nadgradite je na najnovejšo različico.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Ta različica aplikacije Signal poteče jutri. Nadgradite je na najnovejšo različico.</item>
+    <item quantity="two">Ta različica aplikacije Signal poteče čez %d dni. Nadgradite je na najnovejšo različico.</item>
+    <item quantity="few">Ta različica aplikacije Signal poteče čez %d dni. Nadgradite je na najnovejšo različico.</item>
+    <item quantity="other">Ta različica aplikacije Signal poteče čez %d dni. Nadgradite je na najnovejšo različico.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
@@ -1105,10 +1124,21 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Za klic uporabnika/ce %1$s, potrebuje Signal dostop do kamere</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Klicanje …</string>
+  <string name="WebRtcCallActivity__group_call">Skupinski klic</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Zvočni klic Signal …</string>
   <string name="WebRtcCallView__signal_video_call">Video klic Signal …</string>
+  <string name="WebRtcCallView__start_call">Začni klic</string>
+  <string name="WebRtcCallView__group_call">Skupinski klic</string>
+  <string name="WebRtcCallView__view_participants_list">Prikaži sodelujoče</string>
+  <string name="WebRtcCallView__your_video_is_off">Vaš video je izključen</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Na tem klicu · %1$d človek</item>
+    <item quantity="two">Na tem klicu · %1$d človeka</item>
+    <item quantity="few">Na tem klicu · %1$d ljudje</item>
+    <item quantity="other">Na tem klicu · %1$d ljudi</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Izberite svojo državo</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Navesti morate mednarodno kodo svoje države</string>
@@ -2192,9 +2222,15 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Spomnili vas bomo kasneje. Uporaba PINa postala obvezna čez %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Spomnili vas bomo kasneje. Potrditev PINa bo obvezna čez %1$d dni.</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Sporočite Signalu svoje mnenje</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Da bi bil Signal najboljša aplikacije za sporočanje v vesolju, pa tudi širše, bi radi slišali vaše mnenje.</string>
   <string name="ResearchMegaphone_learn_more">Več o funkciji zakriti pošiljatelj</string>
   <string name="ResearchMegaphone_dismiss">Prekini</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Raziskava Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Verjamemo v zasebno komunikacijo.</b></p><p>Signal vam ne sledi in ne zbira vaših podatkov. Za izboljšave aplikacije se zanašamo na vaše povratne informacije, <b>ki jih zelo cenimo.</b></p><p>Zato delamo raziskavo, da bi ugotovili, kako uporabljate aplikacijo Signal. Raziskava ne zahteva od vas nobenih podatkov, po katerih bi vas lahko prepoznali. Če pa bi radi z nami delili dodatne informacije, nam lahko tudi posredujete svoj kontakt.</p><p>Če imate nekaj minut časa in izdelano mnenje o nas, vam bomo z veseljem prisluhnili.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">Izpolnite anketo</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala!</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketa gostuje pri Surveygizmo na domain surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalaganje …</string>
@@ -2334,6 +2370,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RecipientBottomSheet_insecure_voice_call_description">Nezavarovan zvočni klic</string>
   <string name="RecipientBottomSheet_video_call_description">Video klic</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Odstranim uporabnika/co %1$s kot skrbnika/co skupine?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Uporabnik/ca %1$s bo lahko urejal/a skupino in njeno članstvo.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Želite odstraniti uporabnika/co %1$s iz skupine?</string>
   <string name="RecipientBottomSheet_remove">Odstrani</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopirano v odložišče</string>
   <string name="GroupRecipientListItem_admin">Skrbnik</string>
@@ -2343,6 +2381,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="GroupsLearnMore_legacy_vs_new_groups">Stare in Nove skupine</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Kaj so stare skupine?</string>
   <string name="GroupsLearnMore_paragraph_1">Stare skupine so skupine, ki niso združljive z naprednimi funkcijami Novih skupin, kot so skrbniki in bolj natančno upravljanje.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Ali lahko nadgradim Staro skupino v Novo?</string>
+  <string name="GroupsLearnMore_paragraph_2">Stare skupine zaenkrat ne morejo biti pretvorjene v Nove, lahko pa ustvarite Novo skupino z identičnim članstvom, če vaši sogovorniki uporabljajo najnovejšo različico aplikacije Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">V prihodnosti bo ponujena tudi možnost nadgradnje Starih v Nove skupine Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Deli preko Signala</string>
   <string name="GroupLinkBottomSheet_copy">Kopiraj</string>

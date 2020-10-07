@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Slettar meldingar …</string>
   <string name="ConversationFragment_delete_for_me">Slett for meg</string>
   <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meldinga blir permanent sletta for alle i samtalen. Medlem vil sjå at du sletta ei melding.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meldinga blir permanent sletta for alle i samtalen. Medlem vil sjå at du sletta ei melding.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Fann ikkje den opphavlege meldinga</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Den opphavlege meldinga er ikkje lenger tilgjengeleg</string>
   <string name="ConversationFragment_failed_to_open_message">Klarte ikkje opna meldinga</string>

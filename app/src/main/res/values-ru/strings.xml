@@ -306,7 +306,7 @@
   <string name="ConversationFragment_deleting_messages">Удаляем сообщения…</string>
   <string name="ConversationFragment_delete_for_me">Удалить для меня</string>
   <string name="ConversationFragment_delete_for_everyone">Удалить для всех</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Это сообщение будет навсегда удалено для всех в этом разговоре. Участники смогут увидеть, что вы удалили сообщение.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Это сообщение будет навсегда удалено для всех в этом разговоре. Участники смогут увидеть, что вы удалили сообщение.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Исходное сообщение не найдено</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Исходное сообщение больше не доступно</string>
   <string name="ConversationFragment_failed_to_open_message">Не удалось открыть сообщение</string>

@@ -134,8 +134,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Šalinti grupės nuotrauką?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Atnaujinti Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Ši programėlės versija daugiau nebepalaikoma. Norėdami ir toliau siųsti bei gauti žinutes, atnaujinkite programėlę iki naujausios versijos.</string>
   <string name="ClientDeprecatedActivity_update">Atnaujinti</string>
+  <string name="ClientDeprecatedActivity_dont_update">Neatnaujinti</string>
   <string name="ClientDeprecatedActivity_warning">Įspėjimas</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Jūsų Signal versija nebegalioja. Galite žiūrėti žinučių istoriją, tačiau nebegalėsite siųsti ar gauti žinučių tol, kol neatnaujinsite programėlės.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nerasta jokios saityno naršyklės.</string>
   <string name="CommunicationActions_no_email_app_found">Nerasta jokios el. pašto programėlės.</string>
@@ -303,7 +306,7 @@
   <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės…</string>
   <string name="ConversationFragment_delete_for_me">Ištrinti man</string>
   <string name="ConversationFragment_delete_for_everyone">Ištrinti visiems</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ši žinutė šiame pokalbyje bus visam laikui ištrinta visiems žmonėms. Nariai galės matyti, kad ištrynėte žinutę.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ši žinutė šiame pokalbyje bus visam laikui ištrinta visiems žmonėms. Nariai galės matyti, kad ištrynėte žinutę.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
   <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
@@ -399,6 +402,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuoti trūkstamoms „Play“ paslaugoms</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Šis įrenginys nepalaiko „Play“ paslaugų. Bakstelėkite, norėdami išjungti sistemos baterijos optimizavimus, kurie neleidžia Signal gauti žinučių tol, kol įrenginys yra neaktyvus.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ši Signal versija nebegalioja. Norėdami siųsti ir gauti žinutes, atnaujinkite programėlę dabar.</string>
+  <string name="ExpiredBuildReminder_update_now">Atnaujinti dabar</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Bendrinti su</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Keli priedai yra palaikomi tik paveikslams ir vaizdo įrašams</string>
@@ -540,6 +545,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Narių prašymai ir pakvietimai</string>
   <string name="ManageGroupActivity_add_members">Pridėti narių</string>
   <string name="ManageGroupActivity_edit_group_info">Taisyti grupės informaciją</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Kas gali pridėti naujus narius?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kas gali taisyti šios grupės informaciją?</string>
   <string name="ManageGroupActivity_group_link">Grupės nuoroda</string>
   <string name="ManageGroupActivity_block_group">Užblokuoti grupę</string>
   <string name="ManageGroupActivity_unblock_group">Atblokuoti grupę</string>
@@ -573,6 +580,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Nepavyko atnaujinti grupės dėl tinklo klaidos, vėliau bandykite dar kartą</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Taisyti pavadinimą ir paveikslą</string>
   <string name="ManageGroupActivity_legacy_group">Pasenusi grupė</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Tai yra pasenusi grupė. Tokios ypatybės, kaip grupės administratoriai, yra prieinamos tik naujosiose grupėse.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tai yra nesaugi MMS grupė. Norėdami kalbėtis privačiai ir turėti prieigą prie tokių ypatybių, kaip grupių pavadinimai, pakvieskite savo adresatus į Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Pakviesti dabar</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Pranešti apie paminėjimus</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Gauti pranešimus, kai jus pamini pokalbiuose, kuriuose pranešimai yra išjungti?</string>
@@ -673,6 +683,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal kol kas nepalaiko prisijungimo prie grupių per nuorodas. Ši ypatybė bus išleista būsimajame atnaujinime.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Jūsų naudojama Signal versija nepalaiko grupės nuorodų. Norėdami prisijungti prie šios grupės per nuorodą, atnaujinkite Signal iki naujausios versijos.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atnaujinti Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Vienas ar daugiau iš jūsų susietų įrenginių naudoja Signal versiją, kuri nepalaiko grupės nuorodų. Norėdami prisijungti prie šios grupės, atnaujinkite Signal savo susietame įrenginyje(-iuose).</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupės nuoroda negalioja</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Pridėti „%1$s“ į grupę?</string>
@@ -1027,6 +1038,14 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">Jūsų žinučių galiojimas nesibaigs.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Šiame pokalbyje išsiųstos ir gautos žinutės išnyks %s po to, kai jos buvo pamatytos.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Atnaujinti dabar</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Šiandien nustos galioti ši Signal versija. Atnaujinkite Signal iki naujausios versijos.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Rytoj nustos galioti ši Signal versija. Atnaujinkite Signal iki naujausios versijos.</item>
+    <item quantity="few">Po %d dienų nustos galioti ši Signal versija. Atnaujinkite Signal iki naujausios versijos.</item>
+    <item quantity="many">Po %d dienų nustos galioti ši Signal versija. Atnaujinkite Signal iki naujausios versijos.</item>
+    <item quantity="other">Po %d dienos nustos galioti ši Signal versija. Atnaujinkite Signal iki naujausios versijos.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Įveskite slaptafrazę</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal piktograma</string>
@@ -1106,10 +1125,21 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų kameros</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Skambinama…</string>
+  <string name="WebRtcCallActivity__group_call">Grupės skambutis</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal balso skambutis…</string>
   <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis…</string>
+  <string name="WebRtcCallView__start_call">Pradėti skambutį</string>
+  <string name="WebRtcCallView__group_call">Grupės skambutis</string>
+  <string name="WebRtcCallView__view_participants_list">Rodyti dalyvius</string>
+  <string name="WebRtcCallView__your_video_is_off">Jūsų vaizdas yra išjungtas</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Šiame skambutyje · %1$d žmogus</item>
+    <item quantity="few">Šiame skambutyje · %1$d žmonės</item>
+    <item quantity="many">Šiame skambutyje · %1$d žmonių</item>
+    <item quantity="other">Šiame skambutyje · %1$d žmogus</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Pasirinkite savo šalį</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Jūs privalote nurodyti savo
@@ -1816,8 +1846,8 @@
   <string name="preferences__pref_all_mms_title">Gauti visas MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Naudoti Signal visoms gaunamosioms tekstinėms žinutėms</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Naudoti Signal visoms gaunamosioms multimedijos žinutėms</string>
-  <string name="preferences__pref_enter_sends_title">Enter (Įvedimo) klavišas išsiunčia</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
+  <string name="preferences__pref_enter_sends_title">„Enter“ (Įvedimo) klavišas išsiunčia</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">„Enter“ (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
   <string name="preferences__generate_link_previews">Generuoti nuorodų peržiūras</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Gauti savo siunčiamoms žinutėms nuorodų peržiūras tiesiogiai iš internetinių svetainių.</string>
   <string name="preferences__choose_identity">Pasirinkti tapatybę</string>
@@ -2202,9 +2232,11 @@
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Pasakykite Signal ką galvojate</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Norėdami padaryti Signal geriausia susirašinėjimo programėle pasaulyje, norėtume išgirsti jūsų atsiliepimus.</string>
   <string name="ResearchMegaphone_learn_more">Sužinoti daugiau</string>
   <string name="ResearchMegaphone_dismiss">Atmesti</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal tyrimas</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Mes tikime privatumu.</b></p><p>Signal neseka jūsų ir nerenka jokių jūsų duomenų. Norėdami visiems patobulinti Signal, remiamės naudotojų atsiliepimais, <b>ir norėtume išgirsti jūsų atsiliepimą.</b></p><p>Mes vykdome apklausą, kad suprastume kaip naudojatės Signal. Apklausoje mes nerenkame jokių duomenų, galinčių jus identifikuoti. Jei pageidaujate pateikti papildomą atsiliepimą, turėsite galimybę pateikti kontaktinę informaciją.</p><p>Jei turite kelias minutes ir norėtumėte pateikti atsiliepimą, mes su malonumu jus išklausysime.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Dalyvauti apklausoje</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, ačiū</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Apklausą talpina Surveygizmo, saugioje srityje surveys.signalusers.org</string>
@@ -2347,6 +2379,8 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">Nesaugus balso skambutis</string>
   <string name="RecipientBottomSheet_video_call_description">Vaizdo skambutis</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Pašalinti %1$s iš grupės administratorių?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ galės taisyti šią grupę ir jos narių sąrašą.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Pašalinti %1$s iš grupės?</string>
   <string name="RecipientBottomSheet_remove">Šalinti</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="GroupRecipientListItem_admin">Administratorius</string>
@@ -2357,6 +2391,8 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">Kas yra pasenusios grupės?</string>
   <string name="GroupsLearnMore_paragraph_1">Pasenusios grupės – tai grupės, kurios yra nesuderinamos su naujųjų grupių ypatybėmis, tokiomis kaip administratoriai ir išsamesni grupių atnaujinimai.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Ar galiu naujinti pasenusią grupę?</string>
+  <string name="GroupsLearnMore_paragraph_2">Pasenusios grupės negali būti naujintos į naująsias grupes, bet galite sukurti naująją grupę su tais pačiais nariais, jeigu jie naudoja naujausią Signal versiją.</string>
+  <string name="GroupsLearnMore_paragraph_3">Ateityje Signal pateiks būdą kaip naujinti pasenusias grupes į naująsias.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Bendrinti per Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopijuoti</string>

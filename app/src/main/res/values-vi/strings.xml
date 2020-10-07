@@ -273,7 +273,7 @@
   <string name="ConversationFragment_deleting_messages">Đang xóa tin nhắn…</string>
   <string name="ConversationFragment_delete_for_me">Xóa cho tôi</string>
   <string name="ConversationFragment_delete_for_everyone">Xóa cho mọi người</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tin nhắn này sẽ được xóa vĩnh viễn cho tất cả thành viên trong cuộc trò chuyện. Các thành viên sẽ biết rằng bạn đã xóa tin nhắn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tin nhắn này sẽ được xóa vĩnh viễn cho tất cả thành viên trong cuộc trò chuyện. Các thành viên sẽ biết rằng bạn đã xóa tin nhắn.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Không tìm thấy tin nhắn ban đầu</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Tin nhắn ban đầu không khả dụng</string>
   <string name="ConversationFragment_failed_to_open_message">Không thể mở tin nhắn</string>

@@ -131,8 +131,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Eliminați poza de grup?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Actualizați Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Această versiune a aplicației nu mai este suportată. Pentru a continua să trimiteți și să primiți mesaje, actualizați la cea mai recentă versiune.</string>
   <string name="ClientDeprecatedActivity_update">Actualizează</string>
+  <string name="ClientDeprecatedActivity_dont_update">Nu actualizați</string>
   <string name="ClientDeprecatedActivity_warning">Avertizare</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versiunea dvs. de Signal a expirat. Puteți vizualiza istoricul mesajelor dvs., dar nu veți mai putea trimite sau primi mesaje până nu actualizați.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nu s-a găsit nici un web browser.</string>
   <string name="CommunicationActions_no_email_app_found">Nu a fost găsită nici o aplicație de email.</string>
@@ -293,7 +296,7 @@
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele…</string>
   <string name="ConversationFragment_delete_for_me">Șterge doar pentru mine</string>
   <string name="ConversationFragment_delete_for_everyone">Șterge pentru toată lumea</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Acest mesaj va fi șters definitiv pentru toți cei din conversație. Membrii vor putea vedea că ați șters un mesaj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Acest mesaj va fi șters definitiv pentru toți cei din conversație. Membrii vor putea vedea că ați șters un mesaj.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Mesajul original nu a fost găsit</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesajul original nu mai este disponibil</string>
   <string name="ConversationFragment_failed_to_open_message">Mesajul nu a putut fi deschis</string>
@@ -385,6 +388,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Această versiune a Signal a expirat. Actualizați acum pentru a trimite și primi mesaje.</string>
+  <string name="ExpiredBuildReminder_update_now">Actualizează acum</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Distribuie cu</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Atașamentele multiple sunt suportate doar pentru imagini și videouri</string>
@@ -519,6 +524,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitări și invitații ale membrilor</string>
   <string name="ManageGroupActivity_add_members">Adăugați membri</string>
   <string name="ManageGroupActivity_edit_group_info">Editare informații despre grup</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Cine poate adăuga membrii?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Cine poate edita informațiile grupului?</string>
   <string name="ManageGroupActivity_group_link">Link grup</string>
   <string name="ManageGroupActivity_block_group">Blocați grupul</string>
   <string name="ManageGroupActivity_unblock_group">Deblocare grup</string>
@@ -550,6 +557,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Grupul nu a putut fi actualizat din cauza unei erori de rețea, vă rugăm să încercați mai târziu</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editare nume și poză</string>
   <string name="ManageGroupActivity_legacy_group">Grup vechi</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Funcții precum administratorii de grup sunt disponibile doar grupurilor noi.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Acesta este un grup MMS nesigur. Pentru a comunica în mod privat și a accesa funcții precum numele de grupuri, invitați-vă contactele la Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Invită acum</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Doriți să primiți notificări atunci când sunteți menționat în convorbiri fără sunet?</string>
@@ -646,6 +656,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Înscrierea la un grup printr-un link nu este încă suportată de Signal. Această funcționalitate va fi lansată într-o actualizare viitoare.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versiune de Signal pe care o folosiți nu suportă link-uri către grupuri. Actualizați la ultima versine pentru a te alătura acestui grup printr-un link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizați Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Unul sau mai multe dintre dispozitivele asociate rulează o versiune de Signal care nu acceptă link-uri către grup. Actualizați Signal pe dispozitivele asociate pentru a vă alătura acestui grup.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Linkul de grup nu este valid</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adăugați pe “%1$s” la grup?</string>
@@ -985,6 +996,13 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">Mesajele dvs. nu vor expira.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Actualizează acum</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Această versiune de Signal va expira astăzi. Actualizați la cea mai recentă versiune.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Această versiune de Signal va expira mâine. Actualizați la cea mai recentă versiune.</item>
+    <item quantity="few">Această versiune de Signal va expira în %d zile. Actualizați la cea mai recentă versiune.</item>
+    <item quantity="other">Această versiune de Signal va expira în %d zile. Actualizați la cea mai recentă versiune.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduceți parola</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Pictogramă Signal</string>
@@ -1063,10 +1081,20 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pentru a apela pe %1$s, Signal are nevoie de acces la camera dvs.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Apel în curs…</string>
+  <string name="WebRtcCallActivity__group_call">Apel de grup</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Apel vocal Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Apel video Signal…</string>
+  <string name="WebRtcCallView__start_call">Începeți apelul</string>
+  <string name="WebRtcCallView__group_call">Apel de grup</string>
+  <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
+  <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">În acest apel · %1$d persoană</item>
+    <item quantity="few">În acest apel · %1$d persoane</item>
+    <item quantity="other">În acest apel · %1$d persoane</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Alegeți ţara dvs.</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie să introduceți
@@ -2138,11 +2166,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vă amintim mai târziu. Confirmarea PIN-ului dvs. o să devină obligatorie în %1$d zile.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Spune-ne ce părere ai</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Pentru a putea să facem din Signal cea mai bună aplicație de mesagerie de pe planetă, ne-ar plăcea să-ți auzim părerea. </string>
   <string name="ResearchMegaphone_learn_more">Aflați mai multe</string>
   <string name="ResearchMegaphone_dismiss">Revocare</string>
   <string name="ResearchMegaphoneDialog_signal_research">Cercetare Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Credem în confidențialitate.</b></p><p>Signal nu vă urmărește și nu vă colectează informațiile. Pentru a îmbunătăți aplicația pentru toată lumea, ne bazăm pe opiniile utilizatorilor noștri, <b>și ne-ar plăcea să o auzim pe a dvs.</b></p><p>Derulăm un sondaj pentru a înțelege mai bine cum folosiți Signal. Studiul nostru nu colectează informații care v-ar putea identifica. Dacă sunteți interesat în a împărtăși păreri suplimentare cu noi, veți avea opțiunea să ne furnizați informații de contact.</p><p>Dacă aveți câteva minute la dispoziție și păreri de oferit, ne-ar plăcea să aflăm de la dvs.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Completează studiul</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nu, mulţumesc</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Acest studiu este găzduit de Surveygizmo pe domeniul securizat surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -2282,6 +2313,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_insecure_voice_call_description">Apel vocal nesecurizat</string>
   <string name="RecipientBottomSheet_video_call_description">Apel video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Eliminați pe %1$s ca și admin de grup?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" va putea edita acest grup și membrii acestuia.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Eliminați pe %1$s din grup?</string>
   <string name="RecipientBottomSheet_remove">Eliminați</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
@@ -2292,6 +2325,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupsLearnMore_what_are_legacy_groups">Ce sunt grupurile vechi?</string>
   <string name="GroupsLearnMore_paragraph_1">Grupurile vechi sunt grupuri care nu sunt compatibile cu funcționalitățiile grupurilor noi, cum ar fi administratorii și actualizări mai descriptive ale grupului.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Pot să migrez un grup vechi?</string>
+  <string name="GroupsLearnMore_paragraph_2">Grupurile vechi nu pot fi încă migrate la cele noi, dar poți crea un Grup Nou cu aceeași membri dacă aceștia folosesc toți ultima versiune de Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal va oferi în viitor o modalitate de actualizare a grupurilor vechi.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partajează prin Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copy</string>

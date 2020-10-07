@@ -274,7 +274,7 @@
   <string name="ConversationFragment_deleting_messages">ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
   <string name="ConversationFragment_delete_for_me">ਮੇਰੇ ਲਈ ਮਿਟਾਓ</string>
   <string name="ConversationFragment_delete_for_everyone">ਹਰ ਕਿਸੇ ਲਈ ਮਿਟਾਓ</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">ਇਹ ਸੰਦੇਸ਼ ਗੱਲਬਾਤ ਵਿਚਲੇ ਹਰੇਕ ਲਈ ਸਥਾਈ ਤੌਰ ਤੇ ਮਿਟਾ ਦਿੱਤਾ ਜਾਏਗਾ. ਮੈਂਬਰ ਇਹ ਵੇਖਣ ਦੇ ਯੋਗ ਹੋਣਗੇ ਕਿ ਤੁਸੀਂ ਇੱਕ ਸੁਨੇਹਾ ਮਿਟਾ ਦਿੱਤਾ ਹੈ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">ਇਹ ਸੰਦੇਸ਼ ਗੱਲਬਾਤ ਵਿਚਲੇ ਹਰੇਕ ਲਈ ਸਥਾਈ ਤੌਰ ਤੇ ਮਿਟਾ ਦਿੱਤਾ ਜਾਏਗਾ. ਮੈਂਬਰ ਇਹ ਵੇਖਣ ਦੇ ਯੋਗ ਹੋਣਗੇ ਕਿ ਤੁਸੀਂ ਇੱਕ ਸੁਨੇਹਾ ਮਿਟਾ ਦਿੱਤਾ ਹੈ.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">ਅਸਲੀ ਸੁਨੇਹਾ ਨਹੀਂ ਲੱਭਿਆ </string>
   <string name="ConversationFragment_quoted_message_no_longer_available">ਮੂਲ ਸੁਨੇਹਾ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
   <string name="ConversationFragment_failed_to_open_message">ਸੁਨੇਹਾ ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਫਲ</string>

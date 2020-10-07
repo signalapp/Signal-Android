@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων…</string>
   <string name="ConversationFragment_delete_for_me">Διαγραφή για εμένα</string>
   <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Αυτό το μήνυμα θα διαγραφτεί μόνιμα για όλους στη συνομιλία. Τα μέλη θα μπορούν να δουν ότι διέγραψες ένα μήνυμα.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Αυτό το μήνυμα θα διαγραφτεί μόνιμα για όλους στη συνομιλία. Τα μέλη θα μπορούν να δουν ότι διέγραψες ένα μήνυμα.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Το αρχικό μήνυμα δε βρέθηκε</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Το αρχικό μήνυμα δεν είναι πια διαθέσιμο</string>
   <string name="ConversationFragment_failed_to_open_message">Αποτυχία ανοίγματος μηνύματος</string>
@@ -2106,6 +2106,7 @@
   <string name="ResearchMegaphone_learn_more">Μάθε περισσότερα</string>
   <string name="ResearchMegaphone_dismiss">Απόρριψη</string>
   <string name="ResearchMegaphoneDialog_signal_research">Έρευνα Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Πιστεύουμε στην ιδιωτικότητα.</b></p><p>Το Signal δεν σε παρακολουθεί ούτε συλλέγει τα δεδομένα σου. Για να βελτιώσουμε το Signal για όλους, βασιζόμαστε στα σχόλια των χρηστών <b>και θα εκτιμούσαμε πολύ να ακούσουμε τα δικά σου.</b></p><p>Κάνουμε μαι έρευνα που θα μας βοηθήσει να καταλάβουμε πως χρησιμοποιείς το Signal. Η έρευνά μας δεν συλλέγει δεδομένα που θα μπορούσαν να αποκαλύψουν την ταυτότητά σου. Αν ενδιαφέρεσαι να μας βοηθήσεις με περαιτέρω πληροφορίες και σχόλια, μπορείς να μας δώσεις στοιχεία επικοινωνίας.</p><p>Αν έχεις μερικά λεπτά διαθέσιμα, και έχεις κάτι να σχολιάσεις, με χαρά θα θέλαμε να το ακούσουμε.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Πάρε μέρος στην έρευνα</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Όχι, ευχαριστώ</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Αυτή η έρευνα φιλοξενείται από το Surveygizmo στον ασφαλή σύνδεσμο surveys.signalusers.org</string>

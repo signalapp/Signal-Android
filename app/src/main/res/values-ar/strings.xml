@@ -320,7 +320,7 @@
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ…</string>
   <string name="ConversationFragment_delete_for_me">إحذف بالنسبة لي</string>
   <string name="ConversationFragment_delete_for_everyone">إحذف بالنسبة للجميع</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">سيتم حذف هذه الرسالة لجميع الأعضاء في هذه المحادثة. الجميع سيرى أنك حذفت رسالة.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">سيتم حذف هذه الرسالة لجميع الأعضاء في هذه المحادثة. الجميع سيرى أنك حذفت رسالة.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
   <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>

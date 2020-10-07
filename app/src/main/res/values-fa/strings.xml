@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">حذف پیام‌‌ها…</string>
   <string name="ConversationFragment_delete_for_me">حذف برای من</string>
   <string name="ConversationFragment_delete_for_everyone">حذف برای همه</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">این پیام به طور دائم برای همه در این مکالمه حذف خواهد شد. اعضا قادر خواهند بود تا ببینند که شما پیامی را حذف کرده‌اید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">این پیام به طور دائم برای همه در این مکالمه حذف خواهد شد. اعضا قادر خواهند بود تا ببینند که شما پیامی را حذف کرده‌اید.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
   <string name="ConversationFragment_failed_to_open_message">عدم موفقیت در باز کردن پیام</string>

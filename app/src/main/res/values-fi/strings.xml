@@ -129,6 +129,7 @@
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Päivitä Signal</string>
   <string name="ClientDeprecatedActivity_update">Päivitä</string>
+  <string name="ClientDeprecatedActivity_dont_update">Älä päivitä</string>
   <string name="ClientDeprecatedActivity_warning">Varoitus</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Verkkoselainta ei löytynyt.</string>
@@ -283,7 +284,7 @@
   <string name="ConversationFragment_deleting_messages">Viestejä poistetaan…</string>
   <string name="ConversationFragment_delete_for_me">Poista minulta</string>
   <string name="ConversationFragment_delete_for_everyone">Poista kaikilta</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tämä viesti poistetaan pysyvästi kaikilta keskustelun jäseniltä. Jäsenet voivat nähdä, että olet poistanut viestin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tämä viesti poistetaan pysyvästi kaikilta keskustelun jäseniltä. Jäsenet voivat nähdä, että olet poistanut viestin.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Alkuperäistä viestiä ei löytynyt</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Alkuperäinen viesti ei ole enää saatavilla</string>
   <string name="ConversationFragment_failed_to_open_message">Viestin avaaminen epäonnistui</string>
@@ -371,6 +372,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimoi Play Servicesin puuttumista</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tämä laite ei tue Play Servicesiä. Napauta tästä ottaaksesi pois päältä virransäästöominaisuudet, jotka estävät Signalia hakemasta viestejä taustalla.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_update_now">Päivitä nyt</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Useiden tiedostojen liittämistä tuetaan vain kuvilla ja videoilla</string>
@@ -498,6 +500,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Jäsenpyynnöt &amp; kutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Ketkä voivat lisätä uusia jäseniä?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Ketkä voivat muokata tämän ryhmän tietoja?</string>
   <string name="ManageGroupActivity_group_link">Ryhmälinkki</string>
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
   <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
@@ -942,6 +946,7 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">Viestisi eivät vanhene.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">Päivitä nyt</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-kuvake</string>
@@ -1019,9 +1024,12 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Jotta voit soittaa yhteystiedolle %1$s, Signal tarvitsee lupaa käyttää kameraa.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Soitetaan…</string>
+  <string name="WebRtcCallActivity__group_call">Ryhmäpuhelu</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal-puhelu…</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videopuhelu…</string>
+  <string name="WebRtcCallView__start_call">Aloita puhelu</string>
+  <string name="WebRtcCallView__group_call">Ryhmäpuhelu</string>
   <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
@@ -2215,6 +2223,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_insecure_voice_call_description">Salaamaton äänipuhelu</string>
   <string name="RecipientBottomSheet_video_call_description">Videopuhelu</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Poista %1$s ryhmän ylläpitäjistä?</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Poista %1$s ryhmästä?</string>
   <string name="RecipientBottomSheet_remove">Poista</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="GroupRecipientListItem_admin">Ylläpitäjä</string>

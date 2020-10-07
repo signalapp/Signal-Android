@@ -283,7 +283,7 @@
   <string name="ConversationFragment_deleting_messages">செய்திகள் நீக்கப்படுகிறது…</string>
   <string name="ConversationFragment_delete_for_me">எனக்கு மட்டும் நீக்கு</string>
   <string name="ConversationFragment_delete_for_everyone">அனைவருக்கும் நீக்கு</string>
-  <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">உரையாடலில் உள்ள அனைவருக்கும் இந்த செய்தி நிரந்தரமாக நீக்கப்படும். நீங்கள் ஒரு செய்தியை நீக்கியதை உறுப்பினர்களால் பார்க்க முடியும்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">உரையாடலில் உள்ள அனைவருக்கும் இந்த செய்தி நிரந்தரமாக நீக்கப்படும். நீங்கள் ஒரு செய்தியை நீக்கியதை உறுப்பினர்களால் பார்க்க முடியும்.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">அசல் செய்தி கிடைக்கவில்லை</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">அசல் செய்தி இனி கிடப்பில்  இல்லை  </string>
   <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
