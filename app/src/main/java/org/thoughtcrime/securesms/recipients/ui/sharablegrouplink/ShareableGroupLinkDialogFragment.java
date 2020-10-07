@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
@@ -101,16 +102,19 @@ public final class ShareableGroupLinkDialogFragment extends DialogFragment {
 
     shareRow.setOnClickListener(v -> GroupLinkBottomSheetDialogFragment.show(requireFragmentManager(), groupId));
 
-    shareableGroupLinkRow.setOnClickListener(v -> viewModel.onToggleGroupLink(requireContext()));
-    approveNewMembersRow.setOnClickListener(v -> viewModel.onToggleApproveMembers(requireContext()));
-    resetLinkRow.setOnClickListener(v ->
-      new AlertDialog.Builder(requireContext())
-                     .setMessage(R.string.ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link)
-                     .setPositiveButton(R.string.ShareableGroupLinkDialogFragment__reset_link, (dialog, which) -> viewModel.onResetLink(requireContext()))
-                     .setNegativeButton(android.R.string.cancel, null)
-                     .show());
+    viewModel.getCanEdit().observe(getViewLifecycleOwner(), canEdit -> {
+      if (canEdit) {
+        shareableGroupLinkRow.setOnClickListener(v -> viewModel.onToggleGroupLink());
+        approveNewMembersRow.setOnClickListener(v -> viewModel.onToggleApproveMembers());
+        resetLinkRow.setOnClickListener(v -> onResetGroupLink());
+      } else {
+        shareableGroupLinkRow.setOnClickListener(v -> toast(R.string.ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link));
+        approveNewMembersRow.setOnClickListener(v -> toast(R.string.ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members));
+        resetLinkRow.setOnClickListener(v -> toast(R.string.ManageGroupActivity_only_admins_can_reset_the_sharable_group_link));
+      }
+    });
 
-    viewModel.getToasts().observe(getViewLifecycleOwner(), t -> Toast.makeText(requireContext(), t, Toast.LENGTH_SHORT).show());
+    viewModel.getToasts().observe(getViewLifecycleOwner(), this::toast);
 
     viewModel.getBusy().observe(getViewLifecycleOwner(), busy -> {
       if (busy) {
@@ -124,6 +128,18 @@ public final class ShareableGroupLinkDialogFragment extends DialogFragment {
         }
       }
     });
+  }
+
+  private void onResetGroupLink() {
+    new AlertDialog.Builder(requireContext())
+                   .setMessage(R.string.ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link)
+                   .setPositiveButton(R.string.ShareableGroupLinkDialogFragment__reset_link, (dialog, which) -> viewModel.onResetLink())
+                   .setNegativeButton(android.R.string.cancel, null)
+                   .show();
+  }
+
+  protected void toast(@StringRes int message) {
+    Toast.makeText(requireContext(), getString(message), Toast.LENGTH_SHORT).show();
   }
 
   /**

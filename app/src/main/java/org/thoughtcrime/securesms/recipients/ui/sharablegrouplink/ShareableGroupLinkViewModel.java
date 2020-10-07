@@ -1,14 +1,11 @@
 package org.thoughtcrime.securesms.recipients.ui.sharablegrouplink;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
@@ -21,12 +18,16 @@ final class ShareableGroupLinkViewModel extends ViewModel {
 
   private final ShareableGroupLinkRepository    repository;
   private final LiveData<GroupLinkUrlAndStatus> groupLink;
-  private final SingleLiveEvent<String>         toasts;
+  private final SingleLiveEvent<Integer>        toasts;
   private final SingleLiveEvent<Boolean>        busy;
+  private final LiveData<Boolean>               canEdit;
 
   private ShareableGroupLinkViewModel(@NonNull GroupId.V2 groupId, @NonNull ShareableGroupLinkRepository repository) {
+    LiveGroup liveGroup = new LiveGroup(groupId);
+
     this.repository = repository;
-    this.groupLink  = new LiveGroup(groupId).getGroupLink();
+    this.groupLink  = liveGroup.getGroupLink();
+    this.canEdit    = liveGroup.isSelfAdmin();
     this.toasts     = new SingleLiveEvent<>();
     this.busy       = new SingleLiveEvent<>();
   }
@@ -35,7 +36,7 @@ final class ShareableGroupLinkViewModel extends ViewModel {
     return groupLink;
   }
 
-  LiveData<String> getToasts() {
+  LiveData<Integer> getToasts() {
     return toasts;
   }
 
@@ -43,7 +44,11 @@ final class ShareableGroupLinkViewModel extends ViewModel {
     return busy;
   }
 
-  void onToggleGroupLink(@NonNull Context context) {
+  LiveData<Boolean> getCanEdit() {
+    return canEdit;
+  }
+
+  void onToggleGroupLink() {
     busy.setValue(true);
     repository.toggleGroupLinkEnabled(new AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason>() {
       @Override
@@ -54,12 +59,12 @@ final class ShareableGroupLinkViewModel extends ViewModel {
       @Override
       public void onError(@Nullable GroupChangeFailureReason error) {
         busy.postValue(false);
-        toasts.postValue(context.getString(GroupErrors.getUserDisplayMessage(error)));
+        toasts.postValue(GroupErrors.getUserDisplayMessage(error));
       }
     });
   }
 
-  void onToggleApproveMembers(@NonNull Context context) {
+  void onToggleApproveMembers() {
     busy.setValue(true);
     repository.toggleGroupLinkApprovalRequired(new AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason>() {
       @Override
@@ -70,24 +75,23 @@ final class ShareableGroupLinkViewModel extends ViewModel {
       @Override
       public void onError(@Nullable GroupChangeFailureReason error) {
         busy.postValue(false);
-        toasts.postValue(context.getString(GroupErrors.getUserDisplayMessage(error)));
+        toasts.postValue(GroupErrors.getUserDisplayMessage(error));
       }
     });
   }
 
-  void onResetLink(@NonNull Context context) {
+  void onResetLink() {
     busy.setValue(true);
     repository.cycleGroupLinkPassword(new AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason>() {
       @Override
       public void onComplete(@Nullable Void result) {
          busy.postValue(false);
-         toasts.postValue(context.getString(R.string.ShareableGroupLinkDialogFragment__group_link_reset));
       }
 
       @Override
       public void onError(@Nullable GroupChangeFailureReason error) {
         busy.postValue(false);
-        toasts.postValue(context.getString(GroupErrors.getUserDisplayMessage(error)));
+        toasts.postValue(GroupErrors.getUserDisplayMessage(error));
       }
     });
   }

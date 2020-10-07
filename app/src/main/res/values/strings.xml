@@ -618,6 +618,10 @@
         <item quantity="other">%d members added.</item>
     </plurals>
 
+    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Only admins can enable or disable the sharable group link.</string>
+    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Only admins can enable or disable the option to approve new members.</string>
+    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Only admins can reset the sharable group link.</string>
+
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
     <string name="ManageGroupActivity_not_capable">Someone you added does not support new groups and needs to update Signal</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Failed to update the group</string>
