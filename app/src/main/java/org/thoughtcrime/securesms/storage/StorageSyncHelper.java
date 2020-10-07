@@ -440,6 +440,15 @@ public final class StorageSyncHelper {
     }
   }
 
+  private static PhoneNumberPrivacyValues.PhoneNumberSharingMode remoteToLocalPhoneNumberSharingMode(AccountRecord.PhoneNumberSharingMode phoneNumberPhoneNumberSharingMode) {
+    switch (phoneNumberPhoneNumberSharingMode) {
+      case EVERYBODY    : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.EVERYONE;
+      case CONTACTS_ONLY: return PhoneNumberPrivacyValues.PhoneNumberSharingMode.CONTACTS;
+      case NOBODY       : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY;
+      default           : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.CONTACTS;
+    }
+  }
+
   public static void applyAccountStorageSyncUpdates(@NonNull Context context, Optional<StorageSyncHelper.RecordUpdate<SignalAccountRecord>> update) {
     if (!update.isPresent()) {
       return;
@@ -454,6 +463,8 @@ public final class StorageSyncHelper {
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.isTypingIndicatorsEnabled());
     TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.isSealedSenderIndicatorsEnabled());
     SignalStore.settings().setLinkPreviewsEnabled(update.isLinkPreviewsEnabled());
+    SignalStore.phoneNumberPrivacy().setPhoneNumberListingMode(update.isPhoneNumberUnlisted() ? PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED : PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED);
+    SignalStore.phoneNumberPrivacy().setPhoneNumberSharingMode(remoteToLocalPhoneNumberSharingMode(update.getPhoneNumberSharingMode()));
 
     if (fetchProfile && update.getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), update.getAvatarUrlPath().get()));
