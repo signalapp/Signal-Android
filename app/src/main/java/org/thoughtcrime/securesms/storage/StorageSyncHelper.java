@@ -330,21 +330,23 @@ public final class StorageSyncHelper {
                                                                    @NonNull List<StorageId> currentLocalStorageKeys,
                                                                    @NonNull MergeResult mergeResult)
   {
-    Set<StorageId> completeKeys = new HashSet<>(currentLocalStorageKeys);
-
-    completeKeys.addAll(Stream.of(mergeResult.getAllNewRecords()).map(SignalRecord::getId).toList());
-    completeKeys.removeAll(Stream.of(mergeResult.getAllRemovedRecords()).map(SignalRecord::getId).toList());
-
-    SignalStorageManifest manifest = new SignalStorageManifest(currentManifestVersion + 1, new ArrayList<>(completeKeys));
-
     List<SignalStorageRecord> inserts = new ArrayList<>();
     inserts.addAll(mergeResult.getRemoteInserts());
     inserts.addAll(Stream.of(mergeResult.getRemoteUpdates()).map(RecordUpdate::getNew).toList());
 
-    List<byte[]> deletes = Stream.of(mergeResult.getRemoteUpdates()).map(RecordUpdate::getOld).map(SignalStorageRecord::getId).map(StorageId::getRaw).toList();
-    deletes.addAll(Stream.of(mergeResult.getRemoteDeletes()).map(SignalRecord::getId).map(StorageId::getRaw).toList());
+    List<StorageId> deletes = new ArrayList<>();
+    deletes.addAll(Stream.of(mergeResult.getRemoteDeletes()).map(SignalRecord::getId).toList());
+    deletes.addAll(Stream.of(mergeResult.getRemoteUpdates()).map(RecordUpdate::getOld).map(SignalStorageRecord::getId).toList());
 
-    return new WriteOperationResult(manifest, inserts, deletes);
+    Set<StorageId> completeKeys = new HashSet<>(currentLocalStorageKeys);
+    completeKeys.addAll(Stream.of(mergeResult.getAllNewRecords()).map(SignalRecord::getId).toList());
+    completeKeys.removeAll(Stream.of(mergeResult.getAllRemovedRecords()).map(SignalRecord::getId).toList());
+    completeKeys.addAll(Stream.of(inserts).map(SignalStorageRecord::getId).toList());
+    completeKeys.removeAll(deletes);
+
+    SignalStorageManifest manifest = new SignalStorageManifest(currentManifestVersion + 1, new ArrayList<>(completeKeys));
+
+    return new WriteOperationResult(manifest, inserts, Stream.of(deletes).map(StorageId::getRaw).toList());
   }
 
   public static @NonNull byte[] generateKey() {
