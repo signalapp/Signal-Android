@@ -52,6 +52,7 @@ public final class StorageSyncModels {
                                   .setIdentityKey(recipient.getSyncExtras().getIdentityKey())
                                   .setIdentityState(localToRemoteIdentityState(recipient.getSyncExtras().getIdentityStatus()))
                                   .setArchived(recipient.getSyncExtras().isArchived())
+                                  .setForcedUnread(recipient.getSyncExtras().isForcedUnread())
                                   .build();
   }
 
@@ -71,6 +72,7 @@ public final class StorageSyncModels {
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing())
                                   .setArchived(recipient.getSyncExtras().isArchived())
+                                  .setForcedUnread(recipient.getSyncExtras().isForcedUnread())
                                   .build();
   }
 
@@ -96,6 +98,7 @@ public final class StorageSyncModels {
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing())
                                   .setArchived(recipient.getSyncExtras().isArchived())
+                                  .setForcedUnread(recipient.getSyncExtras().isForcedUnread())
                                   .build();
   }
 

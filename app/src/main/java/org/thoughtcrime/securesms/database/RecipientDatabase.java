@@ -668,6 +668,20 @@ public class RecipientDatabase extends Database {
     return null;
   }
 
+  public void markNeedsSync(@NonNull Collection<RecipientId> recipientIds) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      for (RecipientId recipientId : recipientIds) {
+        markDirty(recipientId, DirtyState.UPDATE);
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
   public void markNeedsSync(@NonNull RecipientId recipientId) {
     markDirty(recipientId, DirtyState.UPDATE);
   }
@@ -768,7 +782,7 @@ public class RecipientDatabase extends Database {
           }
         }
 
-        threadDatabase.setArchived(recipientId, insert.isArchived());
+        threadDatabase.applyStorageSyncUpdate(recipientId, insert);
         needsRefresh.add(recipientId);
       }
 
@@ -821,7 +835,7 @@ public class RecipientDatabase extends Database {
           Log.w(TAG, "Failed to process identity key during update! Skipping.", e);
         }
 
-        threadDatabase.setArchived(recipientId, update.getNew().isArchived());
+        threadDatabase.applyStorageSyncUpdate(recipientId, update.getNew());
         needsRefresh.add(recipientId);
       }
 
@@ -830,7 +844,7 @@ public class RecipientDatabase extends Database {
 
         Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(insert.getGroupId()));
 
-        threadDatabase.setArchived(recipient.getId(), insert.isArchived());
+        threadDatabase.applyStorageSyncUpdate(recipient.getId(), insert);
         needsRefresh.add(recipient.getId());
       }
 
@@ -844,7 +858,7 @@ public class RecipientDatabase extends Database {
 
         Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(update.getOld().getGroupId()));
 
-        threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
+        threadDatabase.applyStorageSyncUpdate(recipient.getId(), update.getNew());
         needsRefresh.add(recipient.getId());
       }
       
@@ -872,7 +886,7 @@ public class RecipientDatabase extends Database {
 
         ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(groupId));
 
-        threadDatabase.setArchived(recipient.getId(), insert.isArchived());
+        threadDatabase.applyStorageSyncUpdate(recipient.getId(), insert);
         needsRefresh.add(recipient.getId());
       }
 
@@ -887,7 +901,7 @@ public class RecipientDatabase extends Database {
         GroupMasterKey masterKey = update.getOld().getMasterKeyOrThrow();
         Recipient      recipient = Recipient.externalGroup(context, GroupId.v2(masterKey));
 
-        threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
+        threadDatabase.applyStorageSyncUpdate(recipient.getId(), update.getNew());
         needsRefresh.add(recipient.getId());
       }
 
@@ -935,6 +949,8 @@ public class RecipientDatabase extends Database {
     if (!remoteKey.equals(localKey)) {
       ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
     }
+
+    DatabaseFactory.getThreadDatabase(context).applyStorageSyncUpdate(Recipient.self().getId(), update);
 
     Recipient.self().live().refresh();
   }
@@ -1236,12 +1252,13 @@ public class RecipientDatabase extends Database {
     String         storageProtoRaw = CursorUtil.getString(cursor, STORAGE_PROTO).orNull();
     byte[]         storageProto    = storageProtoRaw != null ? Base64.decodeOrThrow(storageProtoRaw) : null;
     boolean        archived        = CursorUtil.getBoolean(cursor, ThreadDatabase.ARCHIVED).or(false);
+    boolean        forcedUnread    = CursorUtil.getInt(cursor, ThreadDatabase.READ).transform(status -> status == ThreadDatabase.ReadStatus.FORCED_UNREAD.serialize()).or(false);
     GroupMasterKey groupMasterKey  = CursorUtil.getBlob(cursor, GroupDatabase.V2_MASTER_KEY).transform(GroupUtil::requireMasterKey).orNull();
     byte[]         identityKey     = CursorUtil.getString(cursor, IDENTITY_KEY).transform(Base64::decodeOrThrow).orNull();
     VerifiedStatus identityStatus  = CursorUtil.getInt(cursor, IDENTITY_STATUS).transform(VerifiedStatus::forState).or(VerifiedStatus.DEFAULT);
 
 
-    return new RecipientSettings.SyncExtras(storageProto, groupMasterKey, identityKey, identityStatus, archived);
+    return new RecipientSettings.SyncExtras(storageProto, groupMasterKey, identityKey, identityStatus, archived, forcedUnread);
   }
 
   public BulkOperationsHandle beginBulkSystemContactUpdate() {
@@ -1422,7 +1439,7 @@ public class RecipientDatabase extends Database {
     valuesToSet.putNull(PROFILE_KEY_CREDENTIAL);
     valuesToSet.put(UNIDENTIFIED_ACCESS_MODE, UnidentifiedAccessMode.UNKNOWN.getMode());
 
-    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare);
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare);
 
     if (update(updateQuery, valuesToSet)) {
       markDirty(id, DirtyState.UPDATE);
@@ -1471,7 +1488,7 @@ public class RecipientDatabase extends Database {
 
     values.put(PROFILE_KEY_CREDENTIAL, Base64.encodeBytes(profileKeyCredential.serialize()));
 
-    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
     if (update(updateQuery, values)) {
       // TODO [greyson] If we sync this in future, mark dirty
@@ -2250,9 +2267,7 @@ public class RecipientDatabase extends Database {
    * query such that this will only return true if a row was *actually* updated.
    */
   private boolean update(@NonNull RecipientId id, @NonNull ContentValues contentValues) {
-    String              selection   = ID + " = ?";
-    String[]            args        = new String[]{id.serialize()};
-    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, contentValues);
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(ID_WHERE, SqlUtil.buildArgs(id), contentValues);
 
     return update(updateQuery, contentValues);
   }
@@ -2262,7 +2277,7 @@ public class RecipientDatabase extends Database {
    * <p>
    * This will only return true if a row was *actually* updated with respect to the where clause of the {@param updateQuery}.
    */
-  private boolean update(@NonNull SqlUtil.UpdateQuery updateQuery, @NonNull ContentValues contentValues) {
+  private boolean update(@NonNull SqlUtil.Query updateQuery, @NonNull ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     return database.update(TABLE_NAME, contentValues, updateQuery.getWhere(), updateQuery.getWhereArgs()) > 0;
@@ -2816,18 +2831,21 @@ public class RecipientDatabase extends Database {
       private final byte[]         identityKey;
       private final VerifiedStatus identityStatus;
       private final boolean        archived;
+      private final boolean        forcedUnread;
 
       public SyncExtras(@Nullable byte[] storageProto,
                         @Nullable GroupMasterKey groupMasterKey,
                         @Nullable byte[] identityKey,
                         @NonNull VerifiedStatus identityStatus,
-                        boolean archived)
+                        boolean archived,
+                        boolean forcedUnread)
       {
         this.storageProto   = storageProto;
         this.groupMasterKey = groupMasterKey;
         this.identityKey    = identityKey;
         this.identityStatus = identityStatus;
         this.archived       = archived;
+        this.forcedUnread   = forcedUnread;
       }
 
       public @Nullable byte[] getStorageProto() {
@@ -2848,6 +2866,10 @@ public class RecipientDatabase extends Database {
 
       public @NonNull VerifiedStatus getIdentityStatus() {
         return identityStatus;
+      }
+
+      public boolean isForcedUnread() {
+        return forcedUnread;
       }
     }
   }

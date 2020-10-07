@@ -64,6 +64,10 @@ public final class SignalAccountRecord implements SignalRecord {
     return proto.getNoteToSelfArchived();
   }
 
+  public boolean isNoteToSelfForcedUnread() {
+    return proto.getNoteToSelfMarkedUnread();
+  }
+
   public boolean isReadReceiptsEnabled() {
     return proto.getReadReceipts();
   }
@@ -144,6 +148,11 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setNoteToSelfArchived(boolean archived) {
       builder.setNoteToSelfArchived(archived);
+      return this;
+    }
+
+    public Builder setNoteToSelfForcedUnread(boolean forcedUnread) {
+      builder.setNoteToSelfMarkedUnread(forcedUnread);
       return this;
     }
 

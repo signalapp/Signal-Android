@@ -80,20 +80,23 @@ message ContactRecord {
   bool          blocked       = 9;
   bool          whitelisted   = 10;
   bool          archived      = 11;
+  bool          markedUnread  = 12;
 }
 
 message GroupV1Record {
-  bytes id          = 1;
-  bool  blocked     = 2;
-  bool  whitelisted = 3;
-  bool  archived    = 4;
+  bytes id           = 1;
+  bool  blocked      = 2;
+  bool  whitelisted  = 3;
+  bool  archived     = 4;
+  bool  markedUnread = 5;
 }
 
 message GroupV2Record {
-  bytes masterKey   = 1;
-  bool  blocked     = 2;
-  bool  whitelisted = 3;
-  bool  archived    = 4;
+  bytes masterKey    = 1;
+  bool  blocked      = 2;
+  bool  whitelisted  = 3;
+  bool  archived     = 4;
+  bool  markedUnread = 5;
 }
 
 message AccountRecord {
@@ -113,7 +116,7 @@ message AccountRecord {
   bool                   sealedSenderIndicators = 7;
   bool                   typingIndicators       = 8;
   bool                   proxiedLinkPreviews    = 9;
-  // 10 is reserved for unread
+  bool                   noteToSelfMarkedUnread = 10;
   bool                   linkPreviews           = 11;
   PhoneNumberSharingMode phoneNumberSharingMode = 12;
   bool                   unlistedPhoneNumber    = 13;

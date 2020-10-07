@@ -8,6 +8,10 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.Arrays;
+
+import edu.emory.mathcs.backport.java.util.Collections;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -23,7 +27,7 @@ public final class SqlUtilTest {
     ContentValues values = new ContentValues();
     values.put("a", 2);
 
-    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
     assertEquals("(_id = ?) AND (a != ? OR a IS NULL)", updateQuery.getWhere());
     assertArrayEquals(new String[] { "1", "2" }, updateQuery.getWhereArgs());
@@ -37,7 +41,7 @@ public final class SqlUtilTest {
     ContentValues values = new ContentValues();
     values.put("a", 4);
 
-    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
     assertEquals("(_id = ? AND (foo = ? OR bar != ?)) AND (a != ? OR a IS NULL)", updateQuery.getWhere());
     assertArrayEquals(new String[] { "1", "2", "3", "4" }, updateQuery.getWhereArgs());
@@ -53,7 +57,7 @@ public final class SqlUtilTest {
     values.put("b", 3);
     values.put("c", 4);
 
-    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
     assertEquals("(_id = ?) AND (a != ? OR a IS NULL OR b != ? OR b IS NULL OR c != ? OR c IS NULL)", updateQuery.getWhere());
     assertArrayEquals(new String[] { "1", "2", "3", "4"}, updateQuery.getWhereArgs());
@@ -67,7 +71,7 @@ public final class SqlUtilTest {
     ContentValues values = new ContentValues();
     values.put("a", (String) null);
 
-    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
     assertEquals("(_id = ?) AND (a NOT NULL)", updateQuery.getWhere());
     assertArrayEquals(new String[] { "1" }, updateQuery.getWhereArgs());
@@ -85,9 +89,30 @@ public final class SqlUtilTest {
     values.put("d", (String) null);
     values.put("e", (String) null);
 
-    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
     assertEquals("(_id = ?) AND (a NOT NULL OR b != ? OR b IS NULL OR c != ? OR c IS NULL OR d NOT NULL OR e NOT NULL)", updateQuery.getWhere());
     assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
+  public void buildCollectionQuery_single() {
+    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1));
+
+    assertEquals("a IN (?)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
+  public void buildCollectionQuery_multiple() {
+    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1, 2, 3));
+
+    assertEquals("a IN (?, ?, ?)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void buildCollectionQuery_none() {
+    SqlUtil.buildCollectionQuery("a", Collections.emptyList());
   }
 }

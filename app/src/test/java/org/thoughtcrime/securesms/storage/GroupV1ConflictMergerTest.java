@@ -30,11 +30,13 @@ public final class GroupV1ConflictMergerTest {
                                                         .setBlocked(false)
                                                         .setProfileSharingEnabled(false)
                                                         .setArchived(false)
+                                                        .setForcedUnread(false)
                                                         .build();
     SignalGroupV1Record local  = new SignalGroupV1Record.Builder(byteArray(2), byteArray(100))
                                                         .setBlocked(true)
                                                         .setProfileSharingEnabled(true)
                                                         .setArchived(true)
+                                                        .setForcedUnread(true)
                                                         .build();
 
     SignalGroupV1Record merged = new GroupV1ConflictMerger(Collections.singletonList(local)).merge(remote, local, KEY_GENERATOR);
@@ -44,6 +46,7 @@ public final class GroupV1ConflictMergerTest {
     assertFalse(merged.isProfileSharingEnabled());
     assertFalse(merged.isBlocked());
     assertFalse(merged.isArchived());
+    assertFalse(merged.isForcedUnread());
   }
 
   @Test

@@ -40,9 +40,10 @@ final class GroupV2ConflictMerger implements StorageSyncHelper.ConflictMerger<Si
     boolean blocked        = remote.isBlocked();
     boolean profileSharing = remote.isProfileSharingEnabled();
     boolean archived       = remote.isArchived();
+    boolean forcedUnread   = remote.isForcedUnread();
 
-    boolean matchesRemote = Arrays.equals(unknownFields, remote.serializeUnknownFields()) && blocked == remote.isBlocked() && profileSharing == remote.isProfileSharingEnabled() && archived == remote.isArchived();
-    boolean matchesLocal  = Arrays.equals(unknownFields, local.serializeUnknownFields())  && blocked == local.isBlocked()  && profileSharing == local.isProfileSharingEnabled()  && archived == local.isArchived();
+    boolean matchesRemote = Arrays.equals(unknownFields, remote.serializeUnknownFields()) && blocked == remote.isBlocked() && profileSharing == remote.isProfileSharingEnabled() && archived == remote.isArchived() && forcedUnread == remote.isForcedUnread();
+    boolean matchesLocal  = Arrays.equals(unknownFields, local.serializeUnknownFields())  && blocked == local.isBlocked()  && profileSharing == local.isProfileSharingEnabled()  && archived == local.isArchived()  && forcedUnread == local.isForcedUnread();
 
     if (matchesRemote) {
       return remote;
@@ -53,6 +54,8 @@ final class GroupV2ConflictMerger implements StorageSyncHelper.ConflictMerger<Si
                                     .setUnknownFields(unknownFields)
                                     .setBlocked(blocked)
                                     .setProfileSharingEnabled(blocked)
+                                    .setArchived(archived)
+                                    .setForcedUnread(forcedUnread)
                                     .build();
     }
   }

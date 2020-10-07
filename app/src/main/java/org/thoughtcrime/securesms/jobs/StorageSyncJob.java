@@ -183,6 +183,8 @@ public class StorageSyncJob extends BaseJob {
           }
 
           remoteManifestVersion = writeOperationResult.getManifest().getVersion();
+
+          needsMultiDeviceSync = true;
         } else {
           Log.i(TAG, "[Remote Newer] After resolving the conflict, all changes are local. No remote writes needed.");
         }
@@ -190,7 +192,6 @@ public class StorageSyncJob extends BaseJob {
         recipientDatabase.applyStorageSyncUpdates(mergeResult.getLocalContactInserts(), mergeResult.getLocalContactUpdates(), mergeResult.getLocalGroupV1Inserts(), mergeResult.getLocalGroupV1Updates(), mergeResult.getLocalGroupV2Inserts(), mergeResult.getLocalGroupV2Updates());
         storageKeyDatabase.applyStorageSyncUpdates(mergeResult.getLocalUnknownInserts(), mergeResult.getLocalUnknownDeletes());
         StorageSyncHelper.applyAccountStorageSyncUpdates(context, mergeResult.getLocalAccountUpdate());
-        needsMultiDeviceSync = true;
 
         Log.i(TAG, "[Remote Newer] Updating local manifest version to: " + remoteManifestVersion);
         TextSecurePreferences.setStorageManifestVersion(context, remoteManifestVersion);

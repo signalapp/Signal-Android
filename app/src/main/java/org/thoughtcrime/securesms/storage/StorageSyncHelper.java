@@ -12,6 +12,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
@@ -417,7 +418,8 @@ public final class StorageSyncHelper {
                                                          .setGivenName(self.getProfileName().getGivenName())
                                                          .setFamilyName(self.getProfileName().getFamilyName())
                                                          .setAvatarUrlPath(self.getProfileAvatar())
-                                                         .setNoteToSelfArchived(DatabaseFactory.getThreadDatabase(context).isArchived(self.getId()))
+                                                         .setNoteToSelfArchived(settings != null && settings.getSyncExtras().isArchived())
+                                                         .setNoteToSelfForcedUnread(settings != null && settings.getSyncExtras().isForcedUnread())
                                                          .setTypingIndicatorsEnabled(TextSecurePreferences.isTypingIndicatorsEnabled(context))
                                                          .setReadReceiptsEnabled(TextSecurePreferences.isReadReceiptsEnabled(context))
                                                          .setSealedSenderIndicatorsEnabled(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context))
@@ -447,7 +449,6 @@ public final class StorageSyncHelper {
 
   public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull StorageId storageId, @NonNull SignalAccountRecord update, boolean fetchProfile) {
     DatabaseFactory.getRecipientDatabase(context).applyStorageSyncUpdates(storageId, update);
-    DatabaseFactory.getThreadDatabase(context).setArchived(Recipient.self().getId(), update.isNoteToSelfArchived());
 
     TextSecurePreferences.setReadReceiptsEnabled(context, update.isReadReceiptsEnabled());
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.isTypingIndicatorsEnabled());
