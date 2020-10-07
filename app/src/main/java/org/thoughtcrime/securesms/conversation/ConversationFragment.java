@@ -772,7 +772,7 @@ public class ConversationFragment extends LoggingFragment {
       deleteForEveryone.run();
     } else {
       new AlertDialog.Builder(requireActivity())
-                     .setMessage(R.string.ConversationFragment_this_message_will_be_permanently_deleted_for_everyone)
+                     .setMessage(R.string.ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation)
                      .setPositiveButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> {
                        SignalStore.uiHints().markHasConfirmedDeleteForEveryoneOnce();
                        deleteForEveryone.run();
