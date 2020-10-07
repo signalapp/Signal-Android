@@ -70,10 +70,18 @@
 
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 
-            <SeekBar android:id="@+id/seek"
+            <!-- TODO: Extract styling attributes into a theme. -->
+            <org.thoughtcrime.securesms.components.WaveformSeekBar
+                     android:id="@+id/seek"
                      android:layout_width="fill_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_gravity="center_vertical"/>
+                     android:layout_height="30dp"
+                     android:layout_gravity="center_vertical"
+                     app:wave_background_color="#bbb"
+                     app:wave_progress_color="?colorPrimary"
+                     app:wave_gravity="center"
+                     app:wave_width="4dp"
+                     app:wave_corner_radius="2dp"
+                     app:wave_gap="1dp"/>
 
         </LinearLayout>
 

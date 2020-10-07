@@ -32,6 +32,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
+import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.attachments.AttachmentServer;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AudioSlide;
@@ -150,7 +151,11 @@ public class AudioSlidePlayer implements SensorEventListener {
 
           case Player.STATE_ENDED:
             Log.i(TAG, "onComplete");
+
+            long millis = mediaPlayer.getDuration();
+
             synchronized (AudioSlidePlayer.this) {
+              mediaPlayer.release();
               mediaPlayer = null;
 
               if (audioAttachmentServer != null) {
@@ -167,6 +172,7 @@ public class AudioSlidePlayer implements SensorEventListener {
               }
             }
 
+            notifyOnProgress(1.0, millis);
             notifyOnStop();
             progressEventHandler.removeMessages(0);
         }
@@ -233,6 +239,22 @@ public class AudioSlidePlayer implements SensorEventListener {
     }
   }
 
+  public synchronized boolean isReady() {
+    if (mediaPlayer == null) return false;
+
+    return mediaPlayer.getPlaybackState() == Player.STATE_READY && mediaPlayer.getPlayWhenReady();
+  }
+
+  public synchronized void seekTo(double progress) throws IOException {
+    if (mediaPlayer == null) return;
+
+    if (isReady()) {
+      mediaPlayer.seekTo((long) (mediaPlayer.getDuration() * progress));
+    } else {
+      play(progress);
+    }
+  }
+
   public void setListener(@NonNull Listener listener) {
     this.listener = new WeakReference<>(listener);
 
@@ -256,30 +278,15 @@ public class AudioSlidePlayer implements SensorEventListener {
   }
 
   private void notifyOnStart() {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        getListener().onStart();
-      }
-    });
+    Util.runOnMain(() -> getListener().onPlayerStart(AudioSlidePlayer.this));
   }
 
   private void notifyOnStop() {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        getListener().onStop();
-      }
-    });
+    Util.runOnMain(() -> getListener().onPlayerStop(AudioSlidePlayer.this));
   }
 
   private void notifyOnProgress(final double progress, final long millis) {
-    Util.runOnMain(new Runnable() {
-      @Override
-      public void run() {
-        getListener().onProgress(progress, millis);
-      }
-    });
+    Util.runOnMain(() -> getListener().onPlayerProgress(AudioSlidePlayer.this, progress, millis));
   }
 
   private @NonNull Listener getListener() {
@@ -288,11 +295,11 @@ public class AudioSlidePlayer implements SensorEventListener {
     if (listener != null) return listener;
     else                  return new Listener() {
       @Override
-      public void onStart() {}
+      public void onPlayerStart(@NotNull AudioSlidePlayer player) { }
       @Override
-      public void onStop() {}
+      public void onPlayerStop(@NotNull AudioSlidePlayer player) { }
       @Override
-      public void onProgress(double progress, long millis) {}
+      public void onPlayerProgress(@NotNull AudioSlidePlayer player, double progress, long millis) { }
     };
   }
 
@@ -355,9 +362,9 @@ public class AudioSlidePlayer implements SensorEventListener {
   }
 
   public interface Listener {
-    void onStart();
-    void onStop();
-    void onProgress(double progress, long millis);
+    void onPlayerStart(@NonNull AudioSlidePlayer player);
+    void onPlayerStop(@NonNull AudioSlidePlayer player);
+    void onPlayerProgress(@NonNull AudioSlidePlayer player, double progress, long millis);
   }
 
   private static class ProgressEventHandler extends Handler {

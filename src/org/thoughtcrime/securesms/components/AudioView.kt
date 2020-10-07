@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.mms.AudioSlide
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import java.io.IOException
+import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.floor
 
@@ -45,7 +46,7 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
     private val pauseButton: ImageView
     private val downloadButton: ImageView
     private val downloadProgress: ProgressWheel
-    private val seekBar: SeekBar
+    private val seekBar: WaveformSeekBar
     private val timestamp: TextView
 
     private var downloadListener: SlideClickListener? = null
@@ -58,21 +59,25 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int): super(context, attrs, defStyleAttr) {
         View.inflate(context, R.layout.audio_view, this)
-        container = findViewById<View>(R.id.audio_widget_container) as ViewGroup
-        controlToggle = findViewById<View>(R.id.control_toggle) as AnimatingToggle
-        playButton = findViewById<View>(R.id.play) as ImageView
-        pauseButton = findViewById<View>(R.id.pause) as ImageView
-        downloadButton = findViewById<View>(R.id.download) as ImageView
-        downloadProgress = findViewById<View>(R.id.download_progress) as ProgressWheel
-        seekBar = findViewById<View>(R.id.seek) as SeekBar
-        timestamp = findViewById<View>(R.id.timestamp) as TextView
+        container = findViewById(R.id.audio_widget_container)
+        controlToggle = findViewById(R.id.control_toggle)
+        playButton = findViewById(R.id.play)
+        pauseButton = findViewById(R.id.pause)
+        downloadButton = findViewById(R.id.download)
+        downloadProgress = findViewById(R.id.download_progress)
+        seekBar = findViewById(R.id.seek)
+        timestamp = findViewById(R.id.timestamp)
 
         playButton.setOnClickListener {
             try {
                 Log.d(TAG, "playbutton onClick")
                 if (audioSlidePlayer != null) {
                     togglePlayToPause()
-                    audioSlidePlayer!!.play(getProgress())
+
+                    // Restart the playback if progress bar is near at the end.
+                    val progress = if (seekBar.progress < 0.99f) seekBar.progress.toDouble() else 0.0
+
+                    audioSlidePlayer!!.play(progress)
                 }
             } catch (e: IOException) {
                 Log.w(TAG, e)
@@ -85,7 +90,17 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
                 audioSlidePlayer!!.stop()
             }
         }
-        seekBar.setOnSeekBarChangeListener(SeekBarModifiedListener())
+        seekBar.progressChangeListener = object : WaveformSeekBar.ProgressChangeListener {
+            override fun onProgressChanged(waveformSeekBar: WaveformSeekBar, progress: Float, fromUser: Boolean) {
+                if (fromUser && audioSlidePlayer != null) {
+                    synchronized(audioSlidePlayer!!) {
+                        audioSlidePlayer!!.seekTo(progress.toDouble())
+                    }
+                }
+            }
+        }
+        //TODO Remove this.
+        seekBar.sample = Random().let { (0 until 64).map { i -> it.nextFloat() }.toFloatArray() }
 
         playButton.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.play_icon))
         pauseButton.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.pause_icon))
@@ -153,25 +168,41 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
         downloadProgress.barColor = foregroundTint
         timestamp.setTextColor(foregroundTint)
 
-        val colorFilter = createBlendModeColorFilterCompat(foregroundTint, BlendModeCompat.SRC_IN)
-        seekBar.progressDrawable.colorFilter = colorFilter
-        seekBar.thumb.colorFilter = colorFilter
+//        val colorFilter = createBlendModeColorFilterCompat(foregroundTint, BlendModeCompat.SRC_IN)
+//        seekBar.progressDrawable.colorFilter = colorFilter
+//        seekBar.thumb.colorFilter = colorFilter
     }
 
-    override fun onStart() {
+    override fun onPlayerStart(player: AudioSlidePlayer) {
         if (pauseButton.visibility != View.VISIBLE) {
             togglePlayToPause()
         }
     }
 
-    override fun onStop() {
+    override fun onPlayerStop(player: AudioSlidePlayer) {
         if (playButton.visibility != View.VISIBLE) {
             togglePauseToPlay()
         }
-        if (seekBar.progress + 5 >= seekBar.max) {
-            backwardsCounter = 4
-            onProgress(0.0, 0)
-        }
+
+//        if (seekBar.progress + 5 >= seekBar.max) {
+//            backwardsCounter = 4
+//            onProgress(0.0, 0)
+//        }
+    }
+
+    override fun onPlayerProgress(player: AudioSlidePlayer, progress: Double, millis: Long) {
+//        val seekProgress = floor(progress * seekBar.max).toInt()
+        //TODO Update text.
+        seekBar.progress = progress.toFloat()
+//        if (/*seekProgress > 1f || */backwardsCounter > 3) {
+//            backwardsCounter = 0
+//            seekBar.progress = 1f
+//            timestamp.text = String.format("%02d:%02d",
+//                    TimeUnit.MILLISECONDS.toMinutes(millis),
+//                    TimeUnit.MILLISECONDS.toSeconds(millis))
+//        } else {
+//            backwardsCounter++
+//        }
     }
 
     override fun setFocusable(focusable: Boolean) {
@@ -201,27 +232,6 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
         downloadButton.isEnabled = enabled
     }
 
-    override fun onProgress(progress: Double, millis: Long) {
-        val seekProgress = floor(progress * seekBar.max).toInt()
-        if (seekProgress > seekBar.progress || backwardsCounter > 3) {
-            backwardsCounter = 0
-            seekBar.progress = seekProgress
-            timestamp.text = String.format("%02d:%02d",
-                    TimeUnit.MILLISECONDS.toMinutes(millis),
-                    TimeUnit.MILLISECONDS.toSeconds(millis))
-        } else {
-            backwardsCounter++
-        }
-    }
-
-    private fun getProgress(): Double {
-        return if (seekBar.progress <= 0 || seekBar.max <= 0) {
-            0.0
-        } else {
-            seekBar.progress.toDouble() / seekBar.max.toDouble()
-        }
-    }
-
     private fun togglePlayToPause() {
         controlToggle.displayQuick(pauseButton)
         val playToPauseDrawable = ContextCompat.getDrawable(context, R.drawable.play_to_pause_animation) as AnimatedVectorDrawable
@@ -236,27 +246,27 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
         pauseToPlayDrawable.start()
     }
 
-    private inner class SeekBarModifiedListener : OnSeekBarChangeListener {
-        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {}
-
-        @Synchronized
-        override fun onStartTrackingTouch(seekBar: SeekBar) {
-            if (audioSlidePlayer != null && pauseButton.visibility == View.VISIBLE) {
-                audioSlidePlayer!!.stop()
-            }
-        }
-
-        @Synchronized
-        override fun onStopTrackingTouch(seekBar: SeekBar) {
-            try {
-                if (audioSlidePlayer != null && pauseButton.visibility == View.VISIBLE) {
-                    audioSlidePlayer!!.play(getProgress())
-                }
-            } catch (e: IOException) {
-                Log.w(TAG, e)
-            }
-        }
-    }
+//    private inner class SeekBarModifiedListener : OnSeekBarChangeListener {
+//        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {}
+//
+//        @Synchronized
+//        override fun onStartTrackingTouch(seekBar: SeekBar) {
+//            if (audioSlidePlayer != null && pauseButton.visibility == View.VISIBLE) {
+//                audioSlidePlayer!!.stop()
+//            }
+//        }
+//
+//        @Synchronized
+//        override fun onStopTrackingTouch(seekBar: SeekBar) {
+//            try {
+//                if (audioSlidePlayer != null && pauseButton.visibility == View.VISIBLE) {
+//                    audioSlidePlayer!!.play(getProgress())
+//                }
+//            } catch (e: IOException) {
+//                Log.w(TAG, e)
+//            }
+//        }
+//    }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     fun onEventAsync(event: PartProgressEvent) {
