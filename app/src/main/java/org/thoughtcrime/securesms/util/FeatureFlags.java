@@ -48,7 +48,6 @@ public final class FeatureFlags {
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
   private static final String USERNAMES                    = "android.usernames";
-  private static final String REMOTE_DELETE                = "android.remoteDelete";
   private static final String GROUPS_V2_CREATE_VERSION     = "android.groupsv2.createVersion";
   private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
   private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
@@ -66,7 +65,6 @@ public final class FeatureFlags {
    */
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
-      REMOTE_DELETE,
       GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_CAPACITY,
       GROUPS_V2_JOIN_VERSION,
@@ -172,11 +170,6 @@ public final class FeatureFlags {
   /** Creating usernames, sending messages by username. */
   public static synchronized boolean usernames() {
     return getBoolean(USERNAMES, false);
-  }
-
-  /** Send support for remotely deleting a message. */
-  public static boolean remoteDelete() {
-    return getBoolean(REMOTE_DELETE, false);
   }
 
   /** Attempt groups v2 creation. */

@@ -665,53 +665,7 @@ public class ConversationFragment extends LoggingFragment {
 
   private void handleDeleteMessages(final Set<ConversationMessage> conversationMessages) {
     Set<MessageRecord> messageRecords = Stream.of(conversationMessages).map(ConversationMessage::getMessageRecord).collect(Collectors.toSet());
-    if (FeatureFlags.remoteDelete()) {
-      buildRemoteDeleteConfirmationDialog(messageRecords).show();
-    } else {
-      buildLegacyDeleteConfirmationDialog(messageRecords).show();
-    }
-  }
-
-  private AlertDialog.Builder buildLegacyDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
-    int                 messagesCount = messageRecords.size();
-    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
-
-    builder.setIconAttribute(R.attr.dialog_alert_icon);
-    builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
-    builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
-    builder.setCancelable(true);
-
-    builder.setPositiveButton(R.string.delete, (dialog, which) -> {
-      new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
-                                                    R.string.ConversationFragment_deleting,
-                                                    R.string.ConversationFragment_deleting_messages)
-      {
-        @Override
-        protected Void doInBackground(Void... voids) {
-          for (MessageRecord messageRecord : messageRecords) {
-            boolean threadDeleted;
-
-            if (messageRecord.isMms()) {
-              threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
-            } else {
-              threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
-            }
-
-            if (threadDeleted) {
-              threadId = -1;
-              conversationViewModel.clearThreadId();
-              messageCountsViewModel.clearThreadId();
-              listener.setThreadId(threadId);
-            }
-          }
-
-          return null;
-        }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    });
-
-    builder.setNegativeButton(android.R.string.cancel, null);
-    return builder;
+    buildRemoteDeleteConfirmationDialog(messageRecords).show();
   }
 
   private AlertDialog.Builder buildRemoteDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
