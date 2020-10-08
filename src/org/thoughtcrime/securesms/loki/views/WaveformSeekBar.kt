@@ -1,17 +1,23 @@
 package org.thoughtcrime.securesms.loki.views
 
+import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.RectF
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
+import android.view.animation.DecelerateInterpolator
 import network.loki.messenger.R
-import java.lang.IllegalArgumentException
 import java.lang.Math.abs
+import kotlin.math.max
 
 class WaveformSeekBar : View {
 
@@ -19,17 +25,20 @@ class WaveformSeekBar : View {
         @JvmStatic
         inline fun dp(context: Context, dp: Float): Float {
             return TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dp,
-                context.resources.displayMetrics
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    dp,
+                    context.resources.displayMetrics
             )
         }
     }
 
-    var sample: FloatArray = floatArrayOf(0f)
+    private val sampleDataHolder = SampleDataHolder(::invalidate)
+    var sampleData: FloatArray?
+        get() {
+            return sampleDataHolder.getSamples()
+        }
         set(value) {
-            if (value.isEmpty()) throw IllegalArgumentException("Sample array cannot be empty")
-            field = value
+            sampleDataHolder.setSamples(value)
             invalidate()
         }
 
@@ -51,44 +60,43 @@ class WaveformSeekBar : View {
             return _progress
         }
 
-    var waveBackgroundColor: Int = Color.LTGRAY
+    var barBackgroundColor: Int = Color.LTGRAY
         set(value) {
             field = value
             invalidate()
         }
 
-    var waveProgressColor: Int = Color.WHITE
+    var barProgressColor: Int = Color.WHITE
         set(value) {
             field = value
             invalidate()
         }
 
-    var waveGap: Float = dp(context, 2f)
+    var barGap: Float = dp(context, 2f)
         set(value) {
             field = value
             invalidate()
         }
 
-    var waveWidth: Float = dp(context, 5f)
+    var barWidth: Float = dp(context, 5f)
         set(value) {
             field = value
             invalidate()
         }
 
-    var waveMinHeight: Float = waveWidth
+    var barMinHeight: Float = barWidth
         set(value) {
             field = value
             invalidate()
         }
 
-    var waveCornerRadius: Float = dp(context, 2.5f)
+    var barCornerRadius: Float = dp(context, 2.5f)
         set(value) {
             field = value
             invalidate()
         }
 
-    var waveGravity: WaveGravity =
-            WaveGravity.CENTER
+    var barGravity: WaveGravity = WaveGravity.CENTER
         set(value) {
             field = value
             invalidate()
@@ -101,8 +109,8 @@ class WaveformSeekBar : View {
         progressChangeListener?.onProgressChanged(this, progress, true)
     }
 
-    private val wavePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val waveRect = RectF()
+    private val barPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val barRect = RectF()
     private val progressCanvas = Canvas()
 
     private var canvasWidth = 0
@@ -117,28 +125,25 @@ class WaveformSeekBar : View {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
             : super(context, attrs, defStyleAttr) {
 
-        val typedAttrs = context.obtainStyledAttributes(attrs,
-            R.styleable.WaveformSeekBar
+        val typedAttrs = context.obtainStyledAttributes(attrs, R.styleable.WaveformSeekBar)
+        barWidth = typedAttrs.getDimension(R.styleable.WaveformSeekBar_bar_width, barWidth)
+        barGap = typedAttrs.getDimension(R.styleable.WaveformSeekBar_bar_gap, barGap)
+        barCornerRadius = typedAttrs.getDimension(
+                R.styleable.WaveformSeekBar_bar_corner_radius,
+                barCornerRadius
         )
-
-        waveWidth = typedAttrs.getDimension(R.styleable.WaveformSeekBar_wave_width, waveWidth)
-        waveGap = typedAttrs.getDimension(R.styleable.WaveformSeekBar_wave_gap, waveGap)
-        waveCornerRadius = typedAttrs.getDimension(
-            R.styleable.WaveformSeekBar_wave_corner_radius,
-            waveCornerRadius
+        barMinHeight =
+                typedAttrs.getDimension(R.styleable.WaveformSeekBar_bar_min_height, barMinHeight)
+        barBackgroundColor = typedAttrs.getColor(
+                R.styleable.WaveformSeekBar_bar_background_color,
+                barBackgroundColor
         )
-        waveMinHeight =
-            typedAttrs.getDimension(R.styleable.WaveformSeekBar_wave_min_height, waveMinHeight)
-        waveBackgroundColor = typedAttrs.getColor(
-            R.styleable.WaveformSeekBar_wave_background_color,
-            waveBackgroundColor
-        )
-        waveProgressColor =
-            typedAttrs.getColor(R.styleable.WaveformSeekBar_wave_progress_color, waveProgressColor)
-        progress = typedAttrs.getFloat(R.styleable.WaveformSeekBar_wave_progress, progress)
-        waveGravity =
+        barProgressColor =
+                typedAttrs.getColor(R.styleable.WaveformSeekBar_bar_progress_color, barProgressColor)
+        progress = typedAttrs.getFloat(R.styleable.WaveformSeekBar_progress, progress)
+        barGravity =
                 WaveGravity.fromString(
-                        typedAttrs.getString(R.styleable.WaveformSeekBar_wave_gravity)
+                        typedAttrs.getString(R.styleable.WaveformSeekBar_bar_gravity)
                 )
 
         typedAttrs.recycle()
@@ -146,47 +151,39 @@ class WaveformSeekBar : View {
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
+
         canvasWidth = w
         canvasHeight = h
+        invalidate()
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val totalWidth = getAvailableWith()
+        val totalWidth = getAvailableWidth()
+        val barAmount = (totalWidth / (barWidth + barGap)).toInt()
 
-        val step = (totalWidth / (waveGap + waveWidth)) / sample.size
+        var lastBarRight = paddingLeft.toFloat()
 
-        var lastWaveRight = paddingLeft.toFloat()
+        (0 until barAmount).forEach { barIdx ->
+            val barValue = sampleDataHolder.computeBarValue(barIdx, barAmount)
 
-        var i = 0f
-        while (i < sample.size) {
+            val barHeight = max(barMinHeight, getAvailableHeight() * barValue)
 
-            var waveHeight = getAvailableHeight() * sample[i.toInt()]
-
-            if (waveHeight < waveMinHeight) {
-                waveHeight = waveMinHeight
-            }
-
-            val top: Float = when (waveGravity) {
+            val top: Float = when (barGravity) {
                 WaveGravity.TOP -> paddingTop.toFloat()
-                WaveGravity.CENTER -> paddingTop + getAvailableHeight() / 2f - waveHeight / 2f
-                WaveGravity.BOTTOM -> canvasHeight - paddingBottom - waveHeight
+                WaveGravity.CENTER -> paddingTop + getAvailableHeight() * 0.5f - barHeight * 0.5f
+                WaveGravity.BOTTOM -> canvasHeight - paddingBottom - barHeight
             }
 
-            waveRect.set(lastWaveRight, top, lastWaveRight + waveWidth, top + waveHeight)
+            barRect.set(lastBarRight, top, lastBarRight + barWidth, top + barHeight)
 
-            wavePaint.color = if (waveRect.right <= totalWidth * progress)
-                waveProgressColor else waveBackgroundColor
+            barPaint.color = if (barRect.right <= totalWidth * progress)
+                barProgressColor else barBackgroundColor
 
-            canvas.drawRoundRect(waveRect, waveCornerRadius, waveCornerRadius, wavePaint)
+            canvas.drawRoundRect(barRect, barCornerRadius, barCornerRadius, barPaint)
 
-            lastWaveRight = waveRect.right + waveGap
-
-            if (lastWaveRight + waveWidth > totalWidth + paddingLeft)
-                break
-
-            i += 1f / step
+            lastBarRight = barRect.right + barGap
         }
     }
 
@@ -240,7 +237,7 @@ class WaveformSeekBar : View {
     }
 
     private fun updateProgress(event: MotionEvent, notify: Boolean) {
-        updateProgress(event.x / getAvailableWith(), notify)
+        updateProgress(event.x / getAvailableWidth(), notify)
     }
 
     private fun updateProgress(progress: Float, notify: Boolean) {
@@ -270,8 +267,59 @@ class WaveformSeekBar : View {
         return true
     }
 
-    private fun getAvailableWith() = canvasWidth - paddingLeft - paddingRight
+    private fun getAvailableWidth() = canvasWidth - paddingLeft - paddingRight
     private fun getAvailableHeight() = canvasHeight - paddingTop - paddingBottom
+
+    private class SampleDataHolder(private val invalidateDelegate: () -> Any) {
+
+        private var sampleDataFrom: FloatArray? = null
+        private var sampleDataTo: FloatArray? = null
+        private var progress = 1f // Mix between from and to values.
+
+        private var animation: ValueAnimator? = null
+
+        fun computeBarValue(barIdx: Int, barAmount: Int): Float {
+            fun getSampleValue(sampleData: FloatArray?): Float {
+                if (sampleData == null || sampleData.isEmpty())
+                    return 0f
+                else {
+                    val sampleIdx = (barIdx * (sampleData.size / barAmount.toFloat())).toInt()
+                    return sampleData[sampleIdx]
+                }
+            }
+
+            if (progress == 1f) {
+                return getSampleValue(sampleDataTo)
+            }
+
+            val fromValue = getSampleValue(sampleDataFrom)
+            val toValue = getSampleValue(sampleDataTo)
+
+            return fromValue * (1f - progress) + toValue * progress
+        }
+
+        fun setSamples(sampleData: FloatArray?) {
+            //TODO Animate from the current value.
+            sampleDataFrom = sampleDataTo
+            sampleDataTo = sampleData
+
+            animation?.cancel()
+            animation = ValueAnimator.ofFloat(0f, 1f).apply {
+                addUpdateListener { animation ->
+                    progress = animation.animatedValue as Float
+                    Log.d("MTPHR", "Progress: $progress")
+                    invalidateDelegate()
+                }
+                interpolator = DecelerateInterpolator(3f)
+                duration = 500
+                start()
+            }
+        }
+
+        fun getSamples(): FloatArray? {
+            return sampleDataTo
+        }
+    }
 
     enum class WaveGravity {
         TOP,

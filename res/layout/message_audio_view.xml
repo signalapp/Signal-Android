@@ -79,12 +79,13 @@
                      android:layout_gravity="center_vertical"
                      android:layout_marginStart="4dp"
                      android:layout_marginEnd="4dp"
-                     app:wave_gravity="center"
-                     app:wave_width="4dp"
-                     app:wave_corner_radius="2dp"
-                     app:wave_gap="1dp"
-                     tools:wave_background_color="#bbb"
-                     tools:wave_progress_color="?colorPrimary"/>
+                     app:bar_gravity="center"
+                     app:bar_width="4dp"
+                     app:bar_corner_radius="2dp"
+                     app:bar_gap="1dp"
+                     tools:progress="0.5"
+                     tools:bar_background_color="#bbb"
+                     tools:bar_progress_color="?colorPrimary"/>
 
             <TextView android:id="@+id/total_duration"
                 android:layout_width="wrap_content"

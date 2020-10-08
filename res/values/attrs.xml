@@ -289,15 +289,15 @@
     </declare-styleable>
 
     <declare-styleable name="WaveformSeekBar">
-        <attr name="wave_progress" format="float"/>
-        <attr name="wave_width" format="dimension"/>
-        <attr name="wave_gap" format="dimension"/>
-        <attr name="wave_min_height" format="dimension"/>
-        <attr name="wave_corner_radius" format="dimension"/>
-        <attr name="wave_background_color" format="color"/>
-        <attr name="wave_progress_color" format="color"/>
+        <attr name="progress" format="float"/>
+        <attr name="bar_width" format="dimension"/>
+        <attr name="bar_gap" format="dimension"/>
+        <attr name="bar_min_height" format="dimension"/>
+        <attr name="bar_corner_radius" format="dimension"/>
+        <attr name="bar_background_color" format="color"/>
+        <attr name="bar_progress_color" format="color"/>
         <!-- Corresponds to WaveformSeekBar.WaveGravity enum. -->
-        <attr name="wave_gravity" format="enum">
+        <attr name="bar_gravity" format="enum">
             <enum name="top" value="1" />
             <enum name="center" value="2" />
             <enum name="bottom" value="3" />

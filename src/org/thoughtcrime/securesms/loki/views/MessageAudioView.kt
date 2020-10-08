@@ -192,8 +192,8 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
 //        val colorFilter = createBlendModeColorFilterCompat(foregroundTint, BlendModeCompat.SRC_IN)
 //        seekBar.progressDrawable.colorFilter = colorFilter
 //        seekBar.thumb.colorFilter = colorFilter
-        seekBar.waveProgressColor = foregroundTint
-        seekBar.waveBackgroundColor = ColorUtils.blendARGB(foregroundTint, backgroundTint, 0.75f)
+        seekBar.barProgressColor = foregroundTint
+        seekBar.barBackgroundColor = ColorUtils.blendARGB(foregroundTint, backgroundTint, 0.75f)
     }
 
     override fun onPlayerStart(player: AudioSlidePlayer) {
@@ -313,7 +313,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
             android.util.Log.d(TAG, "RMS: ${rmsValues.joinToString()}")
 
             post {
-                seekBar.sample = rmsValues
+                seekBar.sampleData = rmsValues
 
                 if (totalDurationMs > 0) {
                     totalDuration.visibility = View.VISIBLE
