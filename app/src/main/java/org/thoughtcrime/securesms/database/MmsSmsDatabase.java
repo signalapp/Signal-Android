@@ -314,7 +314,7 @@ public class MmsSmsDatabase extends Database {
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.REMOTE_DELETED + " = 0";
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.RECIPIENT_ID}, selection, order, null)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isLocalNumber();
@@ -333,7 +333,7 @@ public class MmsSmsDatabase extends Database {
 
   public int getMessagePositionInConversation(long threadId, long receivedTimestamp, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.REMOTE_DELETED + " = 0";
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.RECIPIENT_ID}, selection, order, null)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isLocalNumber();
@@ -364,7 +364,9 @@ public class MmsSmsDatabase extends Database {
    */
   public int getMessagePositionInConversation(long threadId, long receivedTimestamp) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + receivedTimestamp;
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " +
+                       MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + receivedTimestamp + " AND " +
+                       MmsSmsColumns.REMOTE_DELETED + " = 0";
 
     try (Cursor cursor = queryTables(new String[]{ "COUNT(*)" }, selection, order, null)) {
       if (cursor != null && cursor.moveToFirst()) {
