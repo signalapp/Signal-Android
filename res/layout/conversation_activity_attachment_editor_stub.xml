@@ -32,7 +32,7 @@
                 app:minHeight="100dp"
                 app:maxHeight="300dp"/>
 
-        <org.thoughtcrime.securesms.components.AudioView
+        <org.thoughtcrime.securesms.loki.views.MessageAudioView
                 android:id="@+id/attachment_audio"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"

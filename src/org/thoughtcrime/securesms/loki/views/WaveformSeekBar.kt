@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components
+package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
 import android.graphics.*
@@ -81,20 +81,20 @@ class WaveformSeekBar : View {
         }
 
     var waveGap: Float =
-        dp(
-            context,
-            2f
-        )
+            dp(
+                    context,
+                    2f
+            )
         set(value) {
             field = value
             invalidate()
         }
 
     var waveWidth: Float =
-        dp(
-            context,
-            5f
-        )
+            dp(
+                    context,
+                    5f
+            )
         set(value) {
             field = value
             invalidate()
@@ -107,17 +107,17 @@ class WaveformSeekBar : View {
         }
 
     var waveCornerRadius: Float =
-        dp(
-            context,
-            2.5f
-        )
+            dp(
+                    context,
+                    2.5f
+            )
         set(value) {
             field = value
             invalidate()
         }
 
     var waveGravity: WaveGravity =
-        WaveGravity.CENTER
+            WaveGravity.CENTER
         set(value) {
             field = value
             invalidate()
@@ -137,10 +137,10 @@ class WaveformSeekBar : View {
     private var canvasWidth = 0
     private var canvasHeight = 0
     private var maxValue =
-        dp(
-            context,
-            2f
-        )
+            dp(
+                    context,
+                    2f
+            )
     private var touchDownX = 0f
     private var scaledTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
 
@@ -171,9 +171,9 @@ class WaveformSeekBar : View {
             typedAttrs.getColor(R.styleable.WaveformSeekBar_wave_progress_color, waveProgressColor)
         progress = typedAttrs.getFloat(R.styleable.WaveformSeekBar_wave_progress, progress)
         waveGravity =
-            WaveGravity.fromString(
-                typedAttrs.getString(R.styleable.WaveformSeekBar_wave_gravity)
-            )
+                WaveGravity.fromString(
+                        typedAttrs.getString(R.styleable.WaveformSeekBar_wave_gravity)
+                )
 
         typedAttrs.recycle()
     }

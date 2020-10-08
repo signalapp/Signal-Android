@@ -1,10 +1,11 @@
-package org.thoughtcrime.securesms.components
+package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.AnimatedVectorDrawable
+import android.media.MediaDataSource
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
@@ -12,29 +13,32 @@ import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.BlendModeColorFilterCompat.createBlendModeColorFilterCompat
-import androidx.core.graphics.BlendModeCompat
 import com.pnikosis.materialishprogress.ProgressWheel
+import kotlinx.coroutines.*
 import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer
+import org.thoughtcrime.securesms.components.AnimatingToggle
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.logging.Log
+import org.thoughtcrime.securesms.loki.utilities.audio.DecodedAudio
+import org.thoughtcrime.securesms.loki.utilities.audio.calculateRms
 import org.thoughtcrime.securesms.mms.AudioSlide
+import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import java.io.IOException
+import java.io.InputStream
+import java.lang.Exception
 import java.util.*
-import java.util.concurrent.TimeUnit
-import kotlin.math.floor
 
-class AudioView: FrameLayout, AudioSlidePlayer.Listener {
+class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
 
     companion object {
         private const val TAG = "AudioViewKt"
@@ -51,14 +55,17 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
 
     private var downloadListener: SlideClickListener? = null
     private var audioSlidePlayer: AudioSlidePlayer? = null
-    private var backwardsCounter = 0
+//    private var backwardsCounter = 0
+
+    /** Background coroutine scope that is available when the view is attached to a window. */
+    private var asyncCoroutineScope: CoroutineScope? = null
 
     constructor(context: Context): this(context, null)
 
     constructor(context: Context, attrs: AttributeSet?): this(context, attrs, 0)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int): super(context, attrs, defStyleAttr) {
-        View.inflate(context, R.layout.audio_view, this)
+        View.inflate(context, R.layout.message_audio_view, this)
         container = findViewById(R.id.audio_widget_container)
         controlToggle = findViewById(R.id.control_toggle)
         playButton = findViewById(R.id.play)
@@ -74,7 +81,7 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
                 if (audioSlidePlayer != null) {
                     togglePlayToPause()
 
-                    // Restart the playback if progress bar is near at the end.
+                    // Restart the playback if progress bar is nearly at the end.
                     val progress = if (seekBar.progress < 0.99f) seekBar.progress.toDouble() else 0.0
 
                     audioSlidePlayer!!.play(progress)
@@ -99,8 +106,6 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
                 }
             }
         }
-        //TODO Remove this.
-        seekBar.sample = Random().let { (0 until 64).map { i -> it.nextFloat() }.toFloatArray() }
 
         playButton.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.play_icon))
         pauseButton.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.pause_icon))
@@ -108,10 +113,10 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
         pauseButton.background = ContextCompat.getDrawable(context, R.drawable.ic_circle_fill_white_48dp)
 
         if (attrs != null) {
-            val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.AudioView, 0, 0)
-            setTint(typedArray.getColor(R.styleable.AudioView_foregroundTintColor, Color.WHITE),
-                    typedArray.getColor(R.styleable.AudioView_backgroundTintColor, Color.WHITE))
-            container.setBackgroundColor(typedArray.getColor(R.styleable.AudioView_widgetBackground, Color.TRANSPARENT))
+            val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.MessageAudioView, 0, 0)
+            setTint(typedArray.getColor(R.styleable.MessageAudioView_foregroundTintColor, Color.WHITE),
+                    typedArray.getColor(R.styleable.MessageAudioView_backgroundTintColor, Color.WHITE))
+            container.setBackgroundColor(typedArray.getColor(R.styleable.MessageAudioView_widgetBackground, Color.TRANSPARENT))
             typedArray.recycle()
         }
     }
@@ -119,30 +124,42 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
+
+        asyncCoroutineScope = CoroutineScope(Job() + Dispatchers.IO)
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         EventBus.getDefault().unregister(this)
+
+        // Cancel all the background operations.
+        asyncCoroutineScope!!.cancel()
+        asyncCoroutineScope = null
     }
 
     fun setAudio(audio: AudioSlide, showControls: Boolean) {
-        if (showControls && audio.isPendingDownload) {
-            controlToggle.displayQuick(downloadButton)
-            seekBar.isEnabled = false
-            downloadButton.setOnClickListener { v -> downloadListener?.onClick(v, audio) }
-            if (downloadProgress.isSpinning) {
-                downloadProgress.stopSpinning()
+        when {
+            showControls && audio.isPendingDownload -> {
+                controlToggle.displayQuick(downloadButton)
+                seekBar.isEnabled = false
+                downloadButton.setOnClickListener { v -> downloadListener?.onClick(v, audio) }
+                if (downloadProgress.isSpinning) {
+                    downloadProgress.stopSpinning()
+                }
             }
-        } else if (showControls && audio.transferState == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
-            controlToggle.displayQuick(downloadProgress)
-            seekBar.isEnabled = false
-            downloadProgress.spin()
-        } else {
-            controlToggle.displayQuick(playButton)
-            seekBar.isEnabled = true
-            if (downloadProgress.isSpinning) {
-                downloadProgress.stopSpinning()
+            (showControls && audio.transferState == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) -> {
+                controlToggle.displayQuick(downloadProgress)
+                seekBar.isEnabled = false
+                downloadProgress.spin()
+            }
+            else -> {
+                controlToggle.displayQuick(playButton)
+                seekBar.isEnabled = true
+                if (downloadProgress.isSpinning) {
+                    downloadProgress.stopSpinning()
+                }
+                // Post to make sure it executes only when the view is attached to a window.
+                post(::updateSeekBarFromAudio)
             }
         }
         audioSlidePlayer = AudioSlidePlayer.createFor(context, audio, this)
@@ -246,32 +263,83 @@ class AudioView: FrameLayout, AudioSlidePlayer.Listener {
         pauseToPlayDrawable.start()
     }
 
-//    private inner class SeekBarModifiedListener : OnSeekBarChangeListener {
-//        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {}
-//
-//        @Synchronized
-//        override fun onStartTrackingTouch(seekBar: SeekBar) {
-//            if (audioSlidePlayer != null && pauseButton.visibility == View.VISIBLE) {
-//                audioSlidePlayer!!.stop()
-//            }
-//        }
-//
-//        @Synchronized
-//        override fun onStopTrackingTouch(seekBar: SeekBar) {
-//            try {
-//                if (audioSlidePlayer != null && pauseButton.visibility == View.VISIBLE) {
-//                    audioSlidePlayer!!.play(getProgress())
-//                }
-//            } catch (e: IOException) {
-//                Log.w(TAG, e)
-//            }
-//        }
-//    }
+    private fun updateSeekBarFromAudio() {
+        if (audioSlidePlayer == null) return
+
+        val attachment = audioSlidePlayer!!.audioSlide.asAttachment()
+
+        // Parse audio and compute RMS values for the WaveformSeekBar in the background.
+        asyncCoroutineScope!!.launch {
+            val rmsFrames = 32  // The amount of values to be computed to supply for the visualization.
+
+            fun extractAttachmentRandomSeed(attachment: Attachment): Int {
+                return when {
+                    attachment.digest != null -> attachment.digest!!.sum()
+                    attachment.fileName != null -> attachment.fileName.hashCode()
+                    else -> attachment.hashCode()
+                }
+            }
+
+            fun generateFakeRms(seed: Int, frames: Int = rmsFrames): FloatArray {
+                return Random(seed.toLong()).let { (0 until frames).map { i -> it.nextFloat() }.toFloatArray() }
+            }
+
+            val rmsValues: FloatArray
+
+            rmsValues = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                // Due to API version incompatibility, we just display some random waveform for older API.
+                generateFakeRms(extractAttachmentRandomSeed(attachment))
+            } else {
+                try {
+                    @Suppress("BlockingMethodInNonBlockingContext")
+                    PartAuthority.getAttachmentStream(context, attachment.dataUri!!).use {
+                        DecodedAudio(InputStreamMediaDataSource(it)).calculateRms(rmsFrames)
+                    }
+                } catch (e: Exception) {
+                    android.util.Log.w(TAG, "Failed to decode sample values for the audio attachment \"${attachment.fileName}\".", e)
+                    generateFakeRms(extractAttachmentRandomSeed(attachment))
+                }
+            }
+
+            post { seekBar.sample = rmsValues }
+        }
+    }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     fun onEventAsync(event: PartProgressEvent) {
         if (audioSlidePlayer != null && event.attachment == audioSlidePlayer!!.audioSlide.asAttachment()) {
             downloadProgress.setInstantProgress(event.progress.toFloat() / event.total)
         }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.M)
+private class InputStreamMediaDataSource: MediaDataSource {
+
+    private val data: ByteArray
+
+    constructor(inputStream: InputStream): super() {
+        this.data = inputStream.readBytes()
+    }
+
+    override fun readAt(position: Long, buffer: ByteArray, offset: Int, size: Int): Int {
+        val length: Int = data.size
+        if (position >= length) {
+            return -1 // -1 indicates EOF
+        }
+        var actualSize = size
+        if (position + size > length) {
+            actualSize -= (position + size - length).toInt()
+        }
+        System.arraycopy(data, position.toInt(), buffer, offset, actualSize)
+        return actualSize
+    }
+
+    override fun getSize(): Long {
+        return data.size.toLong()
+    }
+
+    override fun close() {
+        // We don't need to close the wrapped stream.
     }
 }

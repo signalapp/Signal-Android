@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools"
        xmlns:app="http://schemas.android.com/apk/res-auto"
-       tools:context="org.thoughtcrime.securesms.components.AudioView">
+       tools:context="org.thoughtcrime.securesms.loki.views.MessageAudioView">
 
     <LinearLayout android:id="@+id/audio_widget_container"
                   android:orientation="vertical"
@@ -71,10 +71,10 @@
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 
             <!-- TODO: Extract styling attributes into a theme. -->
-            <org.thoughtcrime.securesms.components.WaveformSeekBar
+            <org.thoughtcrime.securesms.loki.views.WaveformSeekBar
                      android:id="@+id/seek"
                      android:layout_width="fill_parent"
-                     android:layout_height="30dp"
+                     android:layout_height="40dp"
                      android:layout_gravity="center_vertical"
                      app:wave_background_color="#bbb"
                      app:wave_progress_color="?colorPrimary"
