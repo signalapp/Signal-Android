@@ -17,13 +17,13 @@ import kotlin.math.sqrt
  * If number of samples per channel is less than "maxFrames",
  * the result array will match the source sample size instead.
  *
- * @return Normalized RMS values float array.
+ * @return RMS values float array where is each value is within [0..1] range.
  */
 fun DecodedAudio.calculateRms(maxFrames: Int): FloatArray {
     return calculateRms(this.samples, this.numSamples, this.channels, maxFrames)
 }
 
-private fun calculateRms(samples: ShortBuffer, numSamples: Int, channels: Int, maxFrames: Int): FloatArray {
+fun calculateRms(samples: ShortBuffer, numSamples: Int, channels: Int, maxFrames: Int): FloatArray {
     val numFrames: Int
     val frameStep: Float
 
@@ -65,6 +65,7 @@ private fun calculateRms(samples: ShortBuffer, numSamples: Int, channels: Int, m
     calculateFrameRms(-1)
 
     normalizeArray(rmsValues)
+//    smoothArray(rmsValues, 1.0f)
 
     return rmsValues
 }
@@ -72,7 +73,7 @@ private fun calculateRms(samples: ShortBuffer, numSamples: Int, channels: Int, m
 /**
  * Normalizes the array's values to [0..1] range.
  */
-private fun normalizeArray(values: FloatArray) {
+fun normalizeArray(values: FloatArray) {
     var maxValue = -Float.MAX_VALUE
     var minValue = +Float.MAX_VALUE
     values.forEach { value ->
@@ -87,4 +88,17 @@ private fun normalizeArray(values: FloatArray) {
     }
 
     values.indices.forEach { i -> values[i] = (values[i] - minValue) / span }
+}
+
+fun smoothArray(values: FloatArray, neighborWeight: Float = 1f): FloatArray {
+    if (values.size < 3) return values
+
+    val result = FloatArray(values.size)
+    result[0] = values[0]
+    result[values.size - 1] == values[values.size - 1]
+    for (i in 1 until values.size - 1) {
+        result[i] = (values[i] + values[i - 1] * neighborWeight +
+                values[i + 1] * neighborWeight) / (1f + neighborWeight * 2f)
+    }
+    return result
 }

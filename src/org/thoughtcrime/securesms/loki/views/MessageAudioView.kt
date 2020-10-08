@@ -276,7 +276,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
 
         // Parse audio and compute RMS values for the WaveformSeekBar in the background.
         asyncCoroutineScope!!.launch {
-            val rmsFrames = 32  // The amount of values to be computed to supply for the visualization.
+            val rmsFrames = 32  // The amount of values to be computed for the visualization.
 
             fun extractAttachmentRandomSeed(attachment: Attachment): Int {
                 return when {
@@ -309,6 +309,8 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
                     rmsValues = generateFakeRms(extractAttachmentRandomSeed(attachment))
                 }
             }
+
+            android.util.Log.d(TAG, "RMS: ${rmsValues.joinToString()}")
 
             post {
                 seekBar.sample = rmsValues

@@ -24,31 +24,14 @@ class WaveformSeekBar : View {
                 context.resources.displayMetrics
             )
         }
-
-        @JvmStatic
-        inline fun smooth(values: FloatArray, neighborWeight: Float = 1f): FloatArray {
-            if (values.size < 3) return values
-
-            val result = FloatArray(values.size)
-            result[0] = values[0]
-            result[values.size - 1] == values[values.size - 1]
-            for (i in 1 until values.size - 1) {
-                result[i] =
-                    (values[i] + values[i - 1] * neighborWeight + values[i + 1] * neighborWeight) / (1f + neighborWeight * 2f)
-            }
-            return result
-        }
     }
 
     var sample: FloatArray = floatArrayOf(0f)
         set(value) {
             if (value.isEmpty()) throw IllegalArgumentException("Sample array cannot be empty")
-
-//            field = smooth(value, 0.25f)
             field = value
             invalidate()
         }
-
 
     /** Indicates whether the user is currently interacting with the view and performing a seeking gesture. */
     private var userSeeking = false
@@ -124,11 +107,6 @@ class WaveformSeekBar : View {
 
     private var canvasWidth = 0
     private var canvasHeight = 0
-    private var maxValue =
-            dp(
-                    context,
-                    2f
-            )
     private var touchDownX = 0f
     private var scaledTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
 
@@ -177,7 +155,6 @@ class WaveformSeekBar : View {
 
         val totalWidth = getAvailableWith()
 
-        maxValue = sample.max()!!
         val step = (totalWidth / (waveGap + waveWidth)) / sample.size
 
         var lastWaveRight = paddingLeft.toFloat()
@@ -185,11 +162,7 @@ class WaveformSeekBar : View {
         var i = 0f
         while (i < sample.size) {
 
-            var waveHeight = if (maxValue != 0f) {
-                getAvailableHeight() * (sample[i.toInt()] / maxValue)
-            } else {
-                waveMinHeight
-            }
+            var waveHeight = getAvailableHeight() * sample[i.toInt()]
 
             if (waveHeight < waveMinHeight) {
                 waveHeight = waveMinHeight
