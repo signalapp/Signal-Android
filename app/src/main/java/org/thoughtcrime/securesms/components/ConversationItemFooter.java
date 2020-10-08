@@ -35,6 +35,7 @@ public class ConversationItemFooter extends LinearLayout {
   private ExpirationTimerView timerView;
   private ImageView           insecureIndicatorView;
   private DeliveryStatusView  deliveryStatusView;
+  private boolean             onlyShowSendingStatus;
 
   public ConversationItemFooter(Context context) {
     super(context);
@@ -91,6 +92,11 @@ public class ConversationItemFooter extends LinearLayout {
     timerView.setColorFilter(color, PorterDuff.Mode.SRC_IN);
     insecureIndicatorView.setColorFilter(color);
     deliveryStatusView.setTint(color);
+  }
+
+  public void setOnlyShowSendingStatus(boolean onlyShowSending, MessageRecord messageRecord) {
+    this.onlyShowSendingStatus = onlyShowSending;
+    presentDeliveryStatus(messageRecord);
   }
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {
@@ -173,14 +179,29 @@ public class ConversationItemFooter extends LinearLayout {
   }
 
   private void presentDeliveryStatus(@NonNull MessageRecord messageRecord) {
-    if (!messageRecord.isFailed() && !messageRecord.isPendingInsecureSmsFallback()) {
-      if      (!messageRecord.isOutgoing())  deliveryStatusView.setNone();
-      else if (messageRecord.isPending())    deliveryStatusView.setPending();
-      else if (messageRecord.isRemoteRead()) deliveryStatusView.setRead();
-      else if (messageRecord.isDelivered())  deliveryStatusView.setDelivered();
-      else                                   deliveryStatusView.setSent();
-    } else {
+    if (messageRecord.isFailed() || messageRecord.isPendingInsecureSmsFallback()) {
       deliveryStatusView.setNone();
+      return;
+    }
+
+    if (onlyShowSendingStatus) {
+      if (messageRecord.isOutgoing() && messageRecord.isPending()) {
+        deliveryStatusView.setPending();
+      } else {
+        deliveryStatusView.setNone();
+      }
+    } else {
+      if (!messageRecord.isOutgoing())  {
+        deliveryStatusView.setNone();
+      } else if (messageRecord.isPending()) {
+        deliveryStatusView.setPending();
+      } else if (messageRecord.isRemoteRead()) {
+        deliveryStatusView.setRead();
+      } else if (messageRecord.isDelivered()) {
+        deliveryStatusView.setDelivered();
+      } else {
+        deliveryStatusView.setSent();
+      }
     }
   }
 }

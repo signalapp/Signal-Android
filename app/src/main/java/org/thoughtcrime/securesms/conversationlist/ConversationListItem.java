@@ -377,10 +377,23 @@ public final class ConversationListItem extends RelativeLayout
     } else {
       alertView.setNone();
 
-      if      (thread.isPending())    deliveryStatusIndicator.setPending();
-      else if (thread.isRemoteRead()) deliveryStatusIndicator.setRead();
-      else if (thread.isDelivered())  deliveryStatusIndicator.setDelivered();
-      else                            deliveryStatusIndicator.setSent();
+      if (thread.getExtra() != null && thread.getExtra().isRemoteDelete()) {
+        if (thread.isPending()) {
+          deliveryStatusIndicator.setPending();
+        } else {
+          deliveryStatusIndicator.setNone();
+        }
+      } else {
+        if (thread.isPending()) {
+          deliveryStatusIndicator.setPending();
+        } else if (thread.isRemoteRead()) {
+          deliveryStatusIndicator.setRead();
+        } else if (thread.isDelivered()) {
+          deliveryStatusIndicator.setDelivered();
+        } else {
+          deliveryStatusIndicator.setSent();
+        }
+      }
     }
   }
 
