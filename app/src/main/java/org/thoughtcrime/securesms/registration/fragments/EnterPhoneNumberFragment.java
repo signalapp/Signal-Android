@@ -404,7 +404,7 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
       s.replace(0, s.length(), formattedNumber);
     }
 
-    if (justDigits.length() == 0) {
+    if (justDigits.length() >= 20 || justDigits.length() == 0) {
       return null;
     }
 
