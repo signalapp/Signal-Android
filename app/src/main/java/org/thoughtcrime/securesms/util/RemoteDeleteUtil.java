@@ -37,7 +37,6 @@ public final class RemoteDeleteUtil {
            (!message.getRecipient().isGroup() || message.getRecipient().isActiveGroup()) &&
            !message.getRecipient().isLocalNumber()                                       &&
            !message.isRemoteDelete()                                                     &&
-           !message.isPending()                                                          &&
            (currentTime - message.getDateSent()) < SEND_THRESHOLD;
   }
 }
