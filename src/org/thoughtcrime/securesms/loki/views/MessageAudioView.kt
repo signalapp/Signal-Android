@@ -14,8 +14,10 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import com.pnikosis.materialishprogress.ProgressWheel
 import kotlinx.coroutines.*
 import network.loki.messenger.R
@@ -37,6 +39,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.lang.Exception
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
 
@@ -51,7 +54,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
     private val downloadButton: ImageView
     private val downloadProgress: ProgressWheel
     private val seekBar: WaveformSeekBar
-    private val timestamp: TextView
+    private val totalDuration: TextView
 
     private var downloadListener: SlideClickListener? = null
     private var audioSlidePlayer: AudioSlidePlayer? = null
@@ -73,7 +76,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         downloadButton = findViewById(R.id.download)
         downloadProgress = findViewById(R.id.download_progress)
         seekBar = findViewById(R.id.seek)
-        timestamp = findViewById(R.id.timestamp)
+        totalDuration = findViewById(R.id.total_duration)
 
         playButton.setOnClickListener {
             try {
@@ -158,6 +161,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
                 if (downloadProgress.isSpinning) {
                     downloadProgress.stopSpinning()
                 }
+
                 // Post to make sure it executes only when the view is attached to a window.
                 post(::updateSeekBarFromAudio)
             }
@@ -175,7 +179,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         downloadListener = listener
     }
 
-    fun setTint(foregroundTint: Int, backgroundTint: Int) {
+    fun setTint(@ColorInt foregroundTint: Int, @ColorInt backgroundTint: Int) {
         playButton.backgroundTintList = ColorStateList.valueOf(foregroundTint)
         playButton.imageTintList = ColorStateList.valueOf(backgroundTint)
         pauseButton.backgroundTintList = ColorStateList.valueOf(foregroundTint)
@@ -183,11 +187,13 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
 
         downloadButton.setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN)
         downloadProgress.barColor = foregroundTint
-        timestamp.setTextColor(foregroundTint)
+        totalDuration.setTextColor(foregroundTint)
 
 //        val colorFilter = createBlendModeColorFilterCompat(foregroundTint, BlendModeCompat.SRC_IN)
 //        seekBar.progressDrawable.colorFilter = colorFilter
 //        seekBar.thumb.colorFilter = colorFilter
+        seekBar.waveProgressColor = foregroundTint
+        seekBar.waveBackgroundColor = ColorUtils.blendARGB(foregroundTint, backgroundTint, 0.75f)
     }
 
     override fun onPlayerStart(player: AudioSlidePlayer) {
@@ -284,24 +290,36 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
                 return Random(seed.toLong()).let { (0 until frames).map { i -> it.nextFloat() }.toFloatArray() }
             }
 
-            val rmsValues: FloatArray
+            var rmsValues: FloatArray = floatArrayOf()
+            var totalDurationMs: Long = -1
 
-            rmsValues = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 // Due to API version incompatibility, we just display some random waveform for older API.
-                generateFakeRms(extractAttachmentRandomSeed(attachment))
+                rmsValues = generateFakeRms(extractAttachmentRandomSeed(attachment))
             } else {
                 try {
                     @Suppress("BlockingMethodInNonBlockingContext")
-                    PartAuthority.getAttachmentStream(context, attachment.dataUri!!).use {
-                        DecodedAudio(InputStreamMediaDataSource(it)).calculateRms(rmsFrames)
+                    val decodedAudio = PartAuthority.getAttachmentStream(context, attachment.dataUri!!).use {
+                        DecodedAudio(InputStreamMediaDataSource(it))
                     }
+                    rmsValues = decodedAudio.calculateRms(rmsFrames)
+                    totalDurationMs = (decodedAudio.duration / 1000.0).toLong()
                 } catch (e: Exception) {
                     android.util.Log.w(TAG, "Failed to decode sample values for the audio attachment \"${attachment.fileName}\".", e)
-                    generateFakeRms(extractAttachmentRandomSeed(attachment))
+                    rmsValues = generateFakeRms(extractAttachmentRandomSeed(attachment))
                 }
             }
 
-            post { seekBar.sample = rmsValues }
+            post {
+                seekBar.sample = rmsValues
+
+                if (totalDurationMs > 0) {
+                    totalDuration.visibility = View.VISIBLE
+                    totalDuration.text = String.format("%02d:%02d",
+                            TimeUnit.MILLISECONDS.toMinutes(totalDurationMs),
+                            TimeUnit.MILLISECONDS.toSeconds(totalDurationMs))
+                }
+            }
         }
     }
 

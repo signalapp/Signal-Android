@@ -80,21 +80,13 @@ class WaveformSeekBar : View {
             invalidate()
         }
 
-    var waveGap: Float =
-            dp(
-                    context,
-                    2f
-            )
+    var waveGap: Float = dp(context, 2f)
         set(value) {
             field = value
             invalidate()
         }
 
-    var waveWidth: Float =
-            dp(
-                    context,
-                    5f
-            )
+    var waveWidth: Float = dp(context, 5f)
         set(value) {
             field = value
             invalidate()
@@ -106,11 +98,7 @@ class WaveformSeekBar : View {
             invalidate()
         }
 
-    var waveCornerRadius: Float =
-            dp(
-                    context,
-                    2.5f
-            )
+    var waveCornerRadius: Float = dp(context, 2.5f)
         set(value) {
             field = value
             invalidate()
@@ -235,24 +223,26 @@ class WaveformSeekBar : View {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 userSeeking = true
+//                preUserSeekingProgress = _progress
                 if (isParentScrolling()) {
                     touchDownX = event.x
                 } else {
-                    updateProgress(event, true)
+                    updateProgress(event, false)
                 }
             }
             MotionEvent.ACTION_MOVE -> {
-                updateProgress(event, true)
+                updateProgress(event, false)
             }
             MotionEvent.ACTION_UP -> {
                 userSeeking = false
                 if (abs(event.x - touchDownX) > scaledTouchSlop) {
-                    updateProgress(event, false)
+                    updateProgress(event, true)
                 }
                 performClick()
             }
             MotionEvent.ACTION_CANCEL -> {
                 userSeeking = false
+//                updateProgress(preUserSeekingProgress, false)
             }
         }
         return true
@@ -276,18 +266,31 @@ class WaveformSeekBar : View {
         }
     }
 
-    private fun updateProgress(event: MotionEvent, delayNotification: Boolean) {
-        _progress = event.x / getAvailableWith()
+    private fun updateProgress(event: MotionEvent, notify: Boolean) {
+        updateProgress(event.x / getAvailableWith(), notify)
+    }
+
+    private fun updateProgress(progress: Float, notify: Boolean) {
+        _progress = progress
         invalidate()
 
-        postponedProgressUpdateHandler.removeCallbacks(postponedProgressUpdateRunnable)
-        if (delayNotification) {
-            // Re-post delayed user update notification to throttle a bit.
-            postponedProgressUpdateHandler.postDelayed(postponedProgressUpdateRunnable, 150)
-        } else {
+        if (notify) {
             postponedProgressUpdateRunnable.run()
         }
     }
+
+//    private fun updateProgress(event: MotionEvent, delayNotification: Boolean) {
+//        _progress = event.x / getAvailableWith()
+//        invalidate()
+//
+//        postponedProgressUpdateHandler.removeCallbacks(postponedProgressUpdateRunnable)
+//        if (delayNotification) {
+//            // Re-post delayed user update notification to throttle a bit.
+//            postponedProgressUpdateHandler.postDelayed(postponedProgressUpdateRunnable, 150)
+//        } else {
+//            postponedProgressUpdateRunnable.run()
+//        }
+//    }
 
     override fun performClick(): Boolean {
         super.performClick()

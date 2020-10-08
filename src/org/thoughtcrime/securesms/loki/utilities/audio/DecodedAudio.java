@@ -46,6 +46,7 @@ public class DecodedAudio {
     private final long mFileSize;
     private final int mAvgBitRate;  // Average bit rate in kbps.
     private final int mSampleRate;
+    private final long mDuration; // In microseconds.
     private final int mChannels;
     private final int mNumSamples;  // total number of samples per channel in audio file
     private final ShortBuffer mDecodedSamples;  // shared buffer with mDecodedBytes.
@@ -81,29 +82,31 @@ public class DecodedAudio {
     public DecodedAudio(MediaExtractor extractor, long size) throws IOException {
         mFileSize = size;
 
+        MediaFormat mediaFormat = null;
         int numTracks = extractor.getTrackCount();
         // find and select the first audio track present in the file.
-        MediaFormat format = null;
         int trackIndex;
         for (trackIndex = 0; trackIndex < numTracks; trackIndex++) {
-            format = extractor.getTrackFormat(trackIndex);
+            MediaFormat format = extractor.getTrackFormat(trackIndex);
             if (format.getString(MediaFormat.KEY_MIME).startsWith("audio/")) {
                 extractor.selectTrack(trackIndex);
+                mediaFormat = format;
                 break;
             }
         }
-        if (trackIndex == numTracks) {
+        if (mediaFormat == null) {
             throw new IOException("No audio track found in the data source.");
         }
 
-        mChannels = format.getInteger(MediaFormat.KEY_CHANNEL_COUNT);
-        mSampleRate = format.getInteger(MediaFormat.KEY_SAMPLE_RATE);
+        mChannels = mediaFormat.getInteger(MediaFormat.KEY_CHANNEL_COUNT);
+        mSampleRate = mediaFormat.getInteger(MediaFormat.KEY_SAMPLE_RATE);
+        mDuration = mediaFormat.getLong(MediaFormat.KEY_DURATION);
         // Expected total number of samples per channel.
         int expectedNumSamples =
-                (int) ((format.getLong(MediaFormat.KEY_DURATION) / 1000000.f) * mSampleRate + 0.5f);
+                (int) ((mDuration / 1000000.f) * mSampleRate + 0.5f);
 
-        MediaCodec codec = MediaCodec.createDecoderByType(format.getString(MediaFormat.KEY_MIME));
-        codec.configure(format, null, null, 0);
+        MediaCodec codec = MediaCodec.createDecoderByType(mediaFormat.getString(MediaFormat.KEY_MIME));
+        codec.configure(mediaFormat, null, null, 0);
         codec.start();
 
         try {
@@ -135,7 +138,7 @@ public class DecodedAudio {
             if (!doneReading && inputBufferIndex >= 0) {
                 sampleSize = extractor.readSampleData(codec.getInputBuffer(inputBufferIndex), 0);
                 if (firstSampleData
-                        && format.getString(MediaFormat.KEY_MIME).equals("audio/mp4a-latm")
+                        && mediaFormat.getString(MediaFormat.KEY_MIME).equals("audio/mp4a-latm")
                         && sampleSize == 2) {
                     // For some reasons on some devices (e.g. the Samsung S3) you should not
                     // provide the first two bytes of an AAC stream, otherwise the MediaCodec will
@@ -283,6 +286,11 @@ public class DecodedAudio {
 
     public int getChannels() {
         return mChannels;
+    }
+
+    /** @return Total duration in milliseconds. */
+    public long getDuration() {
+        return mDuration;
     }
 
     public int getNumSamples() {
