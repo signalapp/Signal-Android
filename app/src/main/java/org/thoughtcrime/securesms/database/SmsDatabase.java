@@ -373,6 +373,7 @@ public class SmsDatabase extends MessageDatabase {
     ContentValues values = new ContentValues();
     values.put(REMOTE_DELETED, 1);
     values.putNull(BODY);
+    values.putNull(REACTIONS);
     db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(id) });
 
     long threadId = getThreadIdForMessage(id);
