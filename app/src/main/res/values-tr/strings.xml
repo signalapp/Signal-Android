@@ -430,8 +430,16 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Devre dışı bırak</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Tüm bağlantıları önizle</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Şimdi, gönderdiğiniz iletiler için doğrudan web sitelerinden bağlantı önizlemelerini alabilirsiniz.</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_no_link_preview_available">Bağlantı ön izlemesi mevcut değil</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
+  <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d üye</item>
+    <item quantity="other">%1$d üye</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Beklemedeki grup davetleri</string>
   <string name="PendingMembersActivity_requests">İstekler</string>
@@ -453,6 +461,8 @@
   </plurals>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Beklemedeki üyelik istekleri</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Gösterilecek üyelik isteği yok</string>
+  <string name="RequestingMembersFragment_explanation">Bu listedeki kişiler grup bağlantısı aracılığıyla gruba katılmaya çalışıyor.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" eklendi</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" reddedildi</string>
   <!--AddMembersActivity-->
@@ -477,7 +487,12 @@
   <string name="AddGroupDetailsFragment__remove">Kaldır</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kişisi</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s bu gruptan çıkartılsın mı?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d üye Yeni Grupları desteklemiyor, bu yüzden bu grup Eski Grup olacaktır.</item>
+    <item quantity="other">%d üye Yeni Grupları desteklemiyor, bu yüzden bu grup Eski Grup olacaktır.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\" eski bir Signal sürümü kullandığı için bir Eski Grup oluşturulacaktır. Bu kişilerle Yeni Grup Türünü Signal sürümlerini güncelleyince veya grubu oluşturmadan önce kişiyi silerek oluşturabilirsiniz.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">%1$d üye Signal\'ın eski bir sürümünü kullandığı için eski bir grup oluşturulacaktır. Signal\'i güncelledikten sonra üyeler ile yeni bir grup oluşturabilir veya grubu oluşturmadan önce üyeleri kaldırabilirsiniz.</item>
     <item quantity="other">%1$d üye Signal\'ın eski bir sürümünü kullandığı için eski bir grup oluşturulacaktır. Signal\'i güncelledikten sonra üyeler ile yeni bir grup oluşturabilir veya grubu oluşturmadan önce üyeleri kaldırabilirsiniz.</item>
@@ -487,6 +502,10 @@
   <string name="ManageGroupActivity_pending_group_invites">Beklemedeki grup davetleri</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Üyelik istekleri &amp; davetleri</string>
   <string name="ManageGroupActivity_add_members">Üye ekle</string>
+  <string name="ManageGroupActivity_edit_group_info">Grup bilgisini düzenle</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Kimler yeni üye ekleyebilir?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kimler bu grubun bilgisini düzenleyebilir?</string>
+  <string name="ManageGroupActivity_group_link">Grup bağlantısı</string>
   <string name="ManageGroupActivity_block_group">Grubu engelle</string>
   <string name="ManageGroupActivity_unblock_group">Grubun engelini kaldır</string>
   <string name="ManageGroupActivity_leave_group">Gruptan ayrıl</string>
@@ -511,12 +530,23 @@
   <string name="ManageGroupActivity_not_capable">Eklediğiniz biri yeni grupları desteklemiyor ve Signal\'i güncellemesi gerekiyor</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Grubu güncelleme başarısız oldu</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Grubun üyesi değilsiniz</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Grubun güncellenmesi başarısız oldu, lütfen daha sonra tekrar deneyin</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Bağlantı hatası nedeniyle grubun güncellenmesi başarısız oldu, lütfen daha sonra tekrar deneyin</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Adı ve resmi düzenleyin</string>
   <string name="ManageGroupActivity_legacy_group">Eski Grup</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Bu bir Eski Gruptur. Grup yöneticisi gibi özellikler sadece Yeni Gruplarda mevcuttur.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Bu şifresiz MMS Grubudur. Özel olarak sohbet etmek ve grup adları gibi özelliklere erişmek için kişilerinizi Signal\'e davet edin.</string>
+  <string name="ManageGroupActivity_invite_now">Şimdi davet et</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Değinileri bana bildir</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Sessize alınan konuşmalarda sizden bahsedildiğinde bildirim gönderilsin mi?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Varsayılan (bana bildir)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Varsayılan (bana bildirme)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Her zaman bana bildir</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Bana bildirme</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Sistem kişilerine ekle</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Bu kişi, kişileriniz arasında</string>
   <string name="ManageRecipientActivity_disappearing_messages">Kaybolan iletiler</string>
   <string name="ManageRecipientActivity_chat_color">Konuşma rengi</string>
   <string name="ManageRecipientActivity_block">Engelle</string>
@@ -556,23 +586,56 @@
   <string name="CustomNotificationsDialogFragment__disabled">Devre dışı</string>
   <string name="CustomNotificationsDialogFragment__default">Varsayılan</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Paylaşılabilir grup bağlantısı</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Yönet ve paylaş</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Grup bağlantısı</string>
   <string name="ShareableGroupLinkDialogFragment__share">Paylaş</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Bağlantıyı sıfırla</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Üyelik istekleri</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Yeni üyeleri onayla</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Etkin</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Devre dışı</string>
   <string name="ShareableGroupLinkDialogFragment__default">Varsayılan</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Grup bağlantısı sıfırlama</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Grup bağlantısı üzerinden katılan yeni üyelerin yönetici tarafından onaylanması gereksin.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Grup bağlantısını sıfırlamak istediğinizden emin misiniz? İnsanlar artık geçerli bağlantıyı kullanarak gruba katılamazlar.</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">Karekod</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Bu kodu tarayan kişiler grubunuza katılabilir. Ayarı açıksa, yöneticilerin yeni üyeleri onaylaması gerekecektir.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">Kodu paylaş</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s kişisine gönderdiğiniz davet geri alınsın mı?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">%1$s tarafından gönderilen davet geri alınsın mı?</item>
+    <item quantity="other">%1$s tarafından gönderilen %2$d davet geri alınsın mı?</item>
+  </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Zaten üyesiniz</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Katıl</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Katılma isteği gönder</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Gruba katılma başarısız oldu, lütfen daha sonra tekrar deneyin</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Bir ağ hatası ile karşılaşıldı.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Grup bilgisi alınamadı, lütfen daha sonra tekrar deneyin</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bu gruba katılmak ve adınızı ve fotoğrafınızı üyeleriyle paylaşmak ister misiniz?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Gruba katılmadan önce bu grubun bir yöneticisinin isteğinizi onaylaması gerekiyor. Katılma isteğinde bulunduğunuzda, isminiz ve fotoğrafınız üyeleriyle paylaşılacaktır.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Grup · %1$d üye</item>
+    <item quantity="other">Group · %1$d üye</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grup bağlantıları çok yakında</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Grup bağlantılarını kullanabilmek için Signal\'i güncelleyin</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Bir bağlantı aracılığıyla grupa katılmak henüz Signal tarafından desteklenmiyor. Bu özellik gelecek bir sürümde yayınlanacaktır.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Kullandığınız bu Signal sürümü grup bağlantılarını desteklemiyor. Bu gruba bağlantı aracılığıyla katılmak için son sürüme güncelleyin.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal\'i Güncelle</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Bağlı aygıtlarınızdan bir veya daha fazla grup bağlantılarını desteklemeyen Signal sürümü kullanıyor. Bu gruba katılabilmek için bağlı aygıtlarınızdaki Signal\'i güncelleyin.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grup bağlantısı geçersiz</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" gruba ekle?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" kişisinin isteğini reddet?</string>
   <string name="RequestConfirmationDialog_add">Ekle</string>
+  <string name="RequestConfirmationDialog_deny">Reddet</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
   <string name="CropImageActivity_profile_avatar">Resim</string>
@@ -704,6 +767,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artık desteklenmeyen eski bir Signal sürümü kullanılarak şifrelenmiş bir ileti alındı. Gönderen kişiden Signal\'i en son sürüme güncellemesini ve iletiyi yeniden göndermesini isteyin.</string>
   <string name="MessageRecord_left_group">Gruptan ayrıldınız.</string>
   <string name="MessageRecord_you_updated_group">Grubu güncellediniz.</string>
+  <string name="MessageRecord_the_group_was_updated">Grup güncellendi</string>
   <string name="MessageRecord_you_called">Aradınız</string>
   <string name="MessageRecord_called_you">Kişi arandı</string>
   <string name="MessageRecord_missed_call">Cevapsız arama</string>
@@ -716,7 +780,11 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s kaybolan iletileri devre dışı bıraktı.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Kaybolan ileti zamanlayıcısını %1$s olarak ayarladınız.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s kaybolan ileti zamanlayıcısını %2$s olarak ayarladı.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Kaybolan ileti süresi %1$s olarak ayarlandı.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s profil adını %2$s olarak değiştirdi.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s profile ismini %2$s yerine %3$s olarak değiştirdi.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s profilini değiştirdi.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Grubu oluşturdunuz.</string>
   <string name="MessageRecord_group_updated">Grup güncellendi.</string>
@@ -732,6 +800,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s sizi gruptan çıkarttı.</string>
   <string name="MessageRecord_you_left_the_group">Gruptan ayrıldınız.</string>
   <string name="MessageRecord_s_left_the_group">%1$s gruptan ayrıldı.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Artık grupta değilsiniz.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s artık grupta değil.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">%1$s kişisini yönetici yaptınız.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s, %2$s kişisini yönetici yaptı.</string>
@@ -739,7 +809,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s kişisinin yönetici yetkilerini iptal ettiniz.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s yönetici yetkilerinizi iptal etti.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s, %2$s kişisinin yönetici yetkilerini iptal etti.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s artık bir yönetici.</string>
   <string name="MessageRecord_you_are_now_an_admin">Artık yöneticisiniz.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s artık bir yönetici değil.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Artık bir yönetici değilsiniz.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">%1$s kişisini gruba davet ettiniz.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s kişisi sizi gruba davet etti.</string>
@@ -748,6 +821,10 @@
     <item quantity="other">%1$s, %2$d kişiyi gruba davet etti.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Gruba davet edildiniz.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">Gruba 1 kişi davet edildi.</item>
+    <item quantity="other">Gruba %1$d kişi davet edildi.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Bir grup davetiyesini iptal ettiniz.</item>
@@ -759,6 +836,12 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Biri grup davetiyesini reddetti.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Grup davetiyesini reddettiniz.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s gruba davetinizi geri aldı.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Bir yönetici gruba davetinizi geri aldı.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Bir grup daveti geri alındı.</item>
+    <item quantity="other">%1$d grup daveti geri alındı.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Grup davetiyesini kabul ettiniz.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s grup davetiyesini kabul etti.</string>
@@ -767,28 +850,51 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Grup adını \"%1$s\" olarak değiştirdiniz.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s grup adını \"%2$s\" olarak değiştirdi.</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Grubun adı \"%1$s\" olarak değiştirildi.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Grup resmini değiştirdiniz.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s grup resmini değiştirdi.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Grup resmi değiştirildi.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Grup bilgisini kimlerin düzenleyebileceğini \"%1$s\" olarak değiştirdiniz.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s grup bilgisini kimlerin düzenleyebileceğini \"%2$s\" olarak değiştirdi.</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Grup bilgisini kimlerin düzenleyebileceği \"%1$s\" olarak değiştirildi.</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Grup üyeliğini kimlerin düzenleyebileceğini \"%1$s\" olarak değiştirdiniz.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s grup üyeliğini kimlerin düzenleyebileceğini \"%2$s\" olarak değiştirdi.</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Grup üyelerini kimlerin düzenleyebileceği \"%1$s\" olarak değiştirildi.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Grup bağlantısını, yönetici onayı kapalı şekilde etkinleştirdiniz.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Grup bağlantısını, yönetici onayı ile birlikte etkinleştirdiniz.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Grup bağlantısını devre dışı bıraktınız.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s grup bağlantısını yönetici onayı kapalı şekilde etkinleştirdi.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s grup bağlantısını yönetici onayı ile birlikte etkinleştirdi.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s grup bağlantısını devre dışı bıraktı.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Grup bağlantısı, yönetici onayı kapalı şekilde etkinleştirildi.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Grup bağlantısı, yönetici onayı ile birlikte etkinleştirildi.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Grup bağlantısı devre dışı bırakıldı.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Grup bağlantısını sıfırladınız.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s grup bağlantısını sıfırladı.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Grup bağlantısı sıfırlandı.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">Grup bağlantısı üzerinden gruba katıldınız.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s grup bağlantısı aracılığıyla gruba katıldı.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Gruba katılmak için bir istek gönderdiniz.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s grup bağlantısı aracılığıyla gruba katılma isteği gönderdi.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s gruba katılma isteğini onayladı.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s, %2$s kişisinin gruba katılma isteğini onayladı.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">%1$s kişisinin gruba katılma isteğini onayladınız.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Gruba katılma isteğiniz onaylandı.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s kişisinin gruba katılma isteği onaylandı.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Gruba katılma isteğiniz bir yönetici tarafından reddedildi.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s, %2$s kişisinin gruba katılma isteğini reddetti.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s kişisinin gruba katılma isteği reddedildi.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Gruba katılma isteğinizi iptal ettiniz</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s gruba katılma isteğini iptal etti.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s ile olan güvenlik numaranızı doğrulanmış olarak işaretlediniz.</string>
@@ -814,6 +920,10 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d üye (+%2$d davetli)</item>
     <item quantity="other">%1$d üye (+%2$d davetli)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d ek grup</item>
+    <item quantity="other">%d ek grup</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolalar uyuşmuyor!</string>
@@ -845,6 +955,11 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bu konuşmada gönderilen ve alınan iletiler görüldükten %s sonra yok olur.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Şimdi güncelle</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal\'in bu sürümü bugün kullanım dışı kalacak. En yeni sürüme güncelleyin.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Signal\'in bu sürümü 1 gün içinde kullanım dışı kalacak. En yeni sürüme güncelleyin.</item>
+    <item quantity="other">Signal\'in bu sürümü %d gün içinde kullanım dışı kalacak. En yeni sürüme güncelleyin.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Parola girin</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal simgesi</string>
@@ -862,19 +977,26 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Yanlış PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">PIN girişini atla?</string>
   <string name="PinRestoreEntryFragment_need_help">Yardıma mı ihtiyacınız var?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN\'iniz sayısal veya alfanumerik olabilen %1$d+ haneli bir koddur.\n\nPIN\'inizi hatırlayamıyorsanız, yeni bir tane oluşturabilirsiniz. Hesabınızı kaydedebilir ve kullanabilirsiniz, ancak profil bilgileriniz gibi kaydedilmiş bazı ayarları kaybedersiniz.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">PIN\'inizi hatırlayamıyorsanız, yeni bir tane oluşturabilirsiniz. Hesabınızı kaydedebilir ve kullanabilirsiniz, ancak profil bilgileriniz gibi kaydedilmiş bazı ayarları kaybedersiniz.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Yeni PIN Oluştur</string>
   <string name="PinRestoreEntryFragment_contact_support">Destekle İletişime Geçin</string>
   <string name="PinRestoreEntryFragment_cancel">İptal</string>
   <string name="PinRestoreEntryFragment_skip">Atla</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">%1$d deneme hakkınız kaldı. Eğer hakkınız biterse, yeni bir tane oluşturabilirsiniz. Hesabınızı kaydedebilir ve kullanabilirsiniz, ancak profil bilgileriniz gibi kaydedilmiş bazı ayarları kaybedersiniz.</item>
+    <item quantity="other">%1$d deneme hakkınız kaldı. Eğer hakkınız biterse, yeni bir tane oluşturabilirsiniz. Hesabınızı kaydedebilir ve kullanabilirsiniz, ancak profil bilgileriniz gibi kaydedilmiş bazı ayarları kaybedersiniz.</item>
+  </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Kaydı - Android için PIN ile ilgili Yardıma İhtiyacınız Var mı</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Alfanumerik PIN\'i Girin</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Sayısal PIN\'i Girin</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">PIN\'inizi oluşturun</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">PIN tahminleriniz bitti, fakat yeni bir PIN oluşturarak Signal hesabınıza erişebilirsiniz. Gizliliğiniz ve güvenliğiniz için hesabınız kaydedilmiş Profil bilgileri ve ayarları olmadan geri yüklenecektir.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Yeni PIN oluştur</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Uyarı</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">PIN\'i devre dışı bırakırsanız, elle yedekleyip geri yüklemediğiniz sürece Signal\'i yeniden kaydettiğinizde tüm verilerinizi kaybedersiniz. PIN devre dışı iken Kayıt Kilidini açamazsınız.</string>
   <string name="PinOptOutDialog_disable_pin">PIN\'i devre dışı bırak</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bu uygulamaya puan verin</string>
@@ -899,6 +1021,9 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Adsız grup</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">Yanıtlanıyor…</string>
+  <string name="RedPhone_ending_call">Arama sonlandırılıyor…</string>
+  <string name="RedPhone_dialing">Aranıyor…</string>
   <string name="RedPhone_ringing">Çalıyor…</string>
   <string name="RedPhone_busy">Meşgul</string>
   <string name="RedPhone_connected">Bağlanıldı</string>
@@ -912,10 +1037,19 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ile arama yapmanız için, Signal\'in kameranıza erişime ihtiyacı var</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Aranıyor…</string>
+  <string name="WebRtcCallActivity__group_call">Grup Araması</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal sesli arama…</string>
   <string name="WebRtcCallView__signal_video_call">Signal görüntülü arama…</string>
+  <string name="WebRtcCallView__start_call">Arama Başlat</string>
+  <string name="WebRtcCallView__group_call">Grup Araması</string>
+  <string name="WebRtcCallView__view_participants_list">Katılımcıları Görüntüle</string>
+  <string name="WebRtcCallView__your_video_is_off">Videonuz Kapalı</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Bu aramada · %1$d kişi</item>
+    <item quantity="other">Bu aramada · %1$d kişi</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu
@@ -991,6 +1125,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Size birkaç gün içinde hatırlatacağız.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Size bir hafta içinde hatırlatacağız</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Size birkaç hafta içinde hatırlatacağız.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Bir ay sonra size yine hatırlatacağız.</string>
   <!--Slide-->
   <string name="Slide_image">Görüntü</string>
   <string name="Slide_sticker">Çıkartma</string>
@@ -1103,6 +1238,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kullanıcı adları rakam ile başlayamaz.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kullanıcı adı geçersiz.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kullanıcı adları %1$d ve %2$d karakter aralığında olmalıdır.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal\'de kullanıcı adları tamamen isteğe bağlıdır. Eğer kullanıcı adı oluşturursanız diğer Signal kullanıcıları bu kullanıcı adı ile sizi bulup telefon numaranızı bilmeden size ulaşabileceklerdir.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişiniz Signal\'in eski bir sürümünü kullanmakta. Güvenlik numaranızı doğrulamadan önce uygulamayı güncellemelerini rica edin.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kişiniz Signal\'in uyumsuz karekod formatına sahip yeni bir sürümünü kullanıyor. Karşılaştırmak için lütfen güncelleyin.</string>
@@ -1142,6 +1278,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">İletiyi sil?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu eylem bu iletiyi kalıcı olarak silecektir.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s --&gt; %2$s</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Ortam artık mevcut değil.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d konuşmadan %1$d yeni ileti</string>
   <string name="MessageNotifier_most_recent_from_s">En yeni ileti: %1$s</string>
@@ -1152,6 +1289,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_error_delivering_message">İleti tesliminde hata.</string>
   <string name="MessageNotifier_mark_all_as_read">Tümünü okundu işaretle</string>
   <string name="MessageNotifier_mark_read">Okundu işaretle</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Bu bildirimleri kapatın</string>
   <string name="MessageNotifier_media_message">İçerik iletisi</string>
   <string name="MessageNotifier_sticker">Çıkartma</string>
   <string name="MessageNotifier_view_once_photo">Tek görümlük görüntü</string>
@@ -1172,6 +1310,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Tek görümlük videonuza karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Çıkartmanıza karşılık verdi: %1$s</string>
   <string name="MessageNotifier_this_message_was_deleted">Bu ileti silindi.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kişi katıldı Signal bildirimlerini kapatmak mı istiyorsunuz? Signal &gt; Ayarlar &gt; Bildirimler kısmında tekrar açabilirsiniz.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Varsayılan</string>
   <string name="NotificationChannel_calls">Aramalar</string>
@@ -1284,6 +1423,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" bir Signal kullanıcısı değil. Lütfen kullanıcı adını kontrol edin ve tekrar deneyin.</string>
   <string name="ContactSelectionListFragment_okay">Tamam</string>
   <string name="ContactSelectionListFragment_the_group_is_full">Grup doludur</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Kendinizi gruba eklemenize gerek yok</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Hiç engellenmiş kişi yok</string>
   <!--contact_selection_list_fragment-->
@@ -1341,6 +1481,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Güvenlik Numarası Değişiklikleri</string>
   <string name="safety_number_change_dialog__send_anyway">Yine de gönder</string>
+  <string name="safety_number_change_dialog__call_anyway">Yine de ara</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Aşağıdaki kişiler cihazd değiştirmiş veya yeniden yükleme yapmış olabilir. Gizliliğinizden emin olmak için güvenlik numaranızı doğrulayın.</string>
   <string name="safety_number_change_dialog__view">Görüntüle</string>
   <string name="safety_number_change_dialog__previous_verified">Daha önce doğrulandı</string>
@@ -1543,6 +1684,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
   <string name="HelpFragment__no_email_app_found">Eposta uygulaması bulunamadı.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu İleti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yakınlarda Kullanılmış</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Gülenyüz &amp; Kişiler</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Doğa</string>
@@ -1592,6 +1734,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm içerik iletileri için Signal kullanın</string>
   <string name="preferences__pref_enter_sends_title">Enter tuşu ile gönder</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşuna basmak metin iletilerini gönderecektir</string>
+  <string name="preferences__generate_link_previews">Bağlantı ön izlemelerini oluştur</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Gönderdiğiniz iletiler için doğrudan web sitelerinden bağlantı önizlemelerini al.</string>
   <string name="preferences__choose_identity">Kimlik seçin</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>
@@ -1646,6 +1789,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__chats">Konuşmalar ve içerik</string>
   <string name="preferences__storage">Depolama</string>
   <string name="preferences__conversation_length_limit">Konuşma uzunluk sınırı</string>
+  <string name="preferences__keep_messages">İletileri sakla</string>
+  <string name="preferences__clear_message_history">İleti geçmişini temizle</string>
   <string name="preferences__linked_devices">Bağlı cihazlar</string>
   <string name="preferences__light_theme">Aydınlık</string>
   <string name="preferences__dark_theme">Karanlık</string>
@@ -1653,11 +1798,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">PIN\'i devre dışı bırak</string>
   <string name="preferences__enable_pin">PIN\'i etkinleştir</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN\'i devre dışı bırakırsanız, elle yedekleyip geri yüklemediğiniz sürece Signal\'i yeniden kaydettiğinizde tüm verilerinizi kaybedersiniz. PIN devre dışı iken Kayıt Kilidini açamazsınız.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir. Uygulamayı açmak için PIN\'inize ihtiyacınız yoktur.</string>
   <string name="preferences__system_default">System varsayılanı</string>
   <string name="preferences__default">Varsayılan</string>
   <string name="preferences__language">Dil</string>
   <string name="preferences__signal_messages_and_calls">Signal iletileri ve aramaları</string>
+  <string name="preferences__advanced_pin_settings">Gelişmiş PIN ayarları</string>
   <string name="preferences__free_private_messages_and_calls">Signal kullanıcılarına ücretsiz özel iletiler ve aramalar</string>
   <string name="preferences__submit_debug_log">Hata ayıklama günlüğünü gönder</string>
   <string name="preferences__support_wifi_calling">\'Kablosuz Ağ Üzerinden Arama\' uyumluluk kipi</string>
@@ -1673,18 +1820,33 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_chats__when_using_wifi">Kablosuz ağ kullanırken</string>
   <string name="preferences_chats__when_roaming">Dolaşımdayken</string>
   <string name="preferences_chats__media_auto_download">Otomatik içerik indirme</string>
+  <string name="preferences_chats__message_history">İleti geçmişi</string>
   <string name="preferences_storage__storage_usage">Depolama kullanımı</string>
   <string name="preferences_storage__photos">Fotoğraflar</string>
   <string name="preferences_storage__videos">Videolar</string>
   <string name="preferences_storage__files">Dosyalar</string>
   <string name="preferences_storage__audio">Ses</string>
   <string name="preferences_storage__review_storage">Depolamayı incele</string>
+  <string name="preferences_storage__delete_older_messages">Daha eski iletiler silinsin mi?</string>
+  <string name="preferences_storage__clear_message_history">İleti geçmişi temizlensin mi?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Bu işlem %1$s tarihinden daha eski tüm geçmişi ve ortamı aygıtınızdan kalıcı olarak silecektir.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Bu işlem tüm konuşmaları en yeni %1$s iletiye kadar kırpacaktır.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Bu işlem tüm ileti geçmişini ve ortamı aygıtınızdan kalıcı olarak silecektir.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tüm ileti geçmişini silmek istediğinizden emin misiniz?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tüm ileti geçmişi kalıcı olarak kaldırılacaktır. Bu işlem geri alınamaz.</string>
+  <string name="preferences_storage__delete_all_now">Tümünü hemen sil</string>
+  <string name="preferences_storage__forever">Daima</string>
   <string name="preferences_storage__one_year">1 yıl</string>
+  <string name="preferences_storage__six_months">6 ay</string>
+  <string name="preferences_storage__thirty_days">30 gün</string>
   <string name="preferences_storage__none">Hiçbiri</string>
+  <string name="preferences_storage__s_messages">%1$s ileti</string>
+  <string name="preferences_storage__custom">Özel</string>
   <string name="preferences_advanced__use_system_emoji">Sistem emojilerini kullan</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal\'in dahili emoji desteğini devre dışı bırak</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP adresinizi kişinize göstermekten kaçınmak için tüm aramaları Signal sunucusundan aktarın. Etkinleştirildiğinde arama kalitesi düşecektir.</string>
   <string name="preferences_advanced__always_relay_calls">Aramaları her zaman aktar</string>
+  <string name="preferences_app_protection__who_can">Kim…</string>
   <string name="preferences_app_protection__app_access">Uygulama erişimi</string>
   <string name="preferences_app_protection__communication">İletişim</string>
   <string name="preferences_chats__chats">Konuşmalar</string>
@@ -1706,7 +1868,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Kişileriniz arasında bulunmayan ve profilinizi paylaşmadığınız kişilerden göndereninin gizli olduğu iletilerin alınmasını etkinleştir.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dahasını öğrenin</string>
   <string name="preferences_notifications__mentions">Bahsedilmeler</string>
+  <string name="preferences_notifications__notify_me">Bana bildir</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Sessize alınan konuşmalarda sizden bahsedildiğinde bildirim gönderilsin</string>
+  <string name="preferences_setup_a_username">Bir kullanıcı adı oluştur</string>
+  <string name="configurable_single_select__customize_option">Seçeneği düzenle</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -1738,6 +1903,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_insecure__invite">Davet et</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Seçilenleri sil</string>
+  <string name="conversation_list_batch__menu_pin_selected">Seçili olanı tuttur</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Seçili olanı serbet bırak</string>
   <string name="conversation_list_batch__menu_select_all">Hepsini seç</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Seçilenleri arşivle</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilenleri arşivden çıkar</string>
@@ -1860,6 +2027,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Yeni PIN oluştur</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bu cihaz kayıtlı olduğu sürece PIN\'inizi değiştirebilirsiniz.</string>
   <string name="CreateKbsPinFragment__create_your_pin">PIN\'inizi oluşturun</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de saklanan bilgiyi şifreler, böylece sadece siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz yeniden yüklediğinizde geri yüklenecektir. Uygulamayı açmak için PIN\'e ihtiyaç yoktur.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Daha güçlü bir PIN seçin</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN\'ler eşleşmiyor. Tekrar deneyin.</string>
@@ -1871,6 +2039,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Karşınızda PIN\'ler</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de saklanan bilgiyi şifreler, böylece sadece siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz yeniden yüklediğinizde geri yüklenecektir. Uygulamayı açmak için PIN\'e ihtiyaç yoktur.</string>
   <string name="KbsSplashFragment__learn_more">Dahasını Öğrenin</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kayıt Kilidi = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor. Şimdi güncelleyin.</string>
@@ -1935,6 +2104,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN\'inizi onaylamanız zorunlu olacaktır.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Signal\'e ne düşündüğünüzü söyleyin</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal\'i gezegendeki en iyi ileti uygulaması yapmak için geri bildiriminizi duymaktan memnuniyet duyarız.</string>
   <string name="ResearchMegaphone_learn_more">Dahasını öğrenin</string>
   <string name="ResearchMegaphone_dismiss">Kapat</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal Araştırması</string>
@@ -1999,7 +2169,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationActivity_code_support_subject">Signal Kaydı - Android için Doğrulama Kodu</string>
   <string name="BackupUtil_never">Asla</string>
   <string name="BackupUtil_unknown">Bilinmiyor</string>
+  <string name="preferences_app_protection__see_my_phone_number">Telefon numaramı görebilir</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Telefon numaramla beni bulabilir</string>
+  <string name="PhoneNumberPrivacy_everyone">Herkes</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Kişilerim</string>
   <string name="PhoneNumberPrivacy_nobody">Hiçkimse</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Telefon numaranız ileti gönderdiğiniz tüm kişilere ve gruplara görünür olacaktır.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Kişileri içerisinde telefon numaranıza sahip olan herkes sizi Signal\'de bir kişi olarak görecektir. Diğerleri sizi arama kısmında bulabilecektir.</string>
   <string name="PhoneNumberPrivacy_my_contacts_see_description">Yalnızca kişileriniz telefon numaranızı Signal\'de görebilecek.</string>
   <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal erişimini Android kilit ekranı ile veya parmak izi ile kilitleyin</string>
@@ -2009,9 +2185,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__change_your_pin">PIN\'inizi değiştirin</string>
   <string name="preferences_app_protection__pin_reminders">PIN hatırlatıcıları</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Daha fazla güvenlik için, Signal\'i telefon numaranızla tekrar kaydetmek için Signal PIN\'i zorunlu kılın.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Hatırlatıcılar PIN\'iniz kurtarılamaz olduğu için onu ezberlemenize yardımcı olur. Zaman geçtikçe daha az sorulacaktır.</string>
   <string name="preferences_app_protection__turn_off">Kapat</string>
   <string name="preferences_app_protection__confirm_pin">PIN\'i onaylayınız</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN\'inizi onaylayın</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN\'iniz kurtarılamayacağı için ezberlediğinizden veya güvenli bir şekilde sakladığınızdan emin olun. Eğer PIN\'inizi unutursanız, Signal hesabınızı tekrar kaydederken veri kaybı yaşayabilirsiniz.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Kayıt kilidi etkinleştirme başarısız oldu</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Kayıt kilidi devredışı bırakma başarısız oldu</string>
@@ -2072,19 +2251,26 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Şifresiz sesli arama</string>
   <string name="RecipientBottomSheet_video_call_description">Görüntülü arama</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s grup yöneticiliğinden çıkartılsın mı?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" bu grubu ve üyelerini düzenleyebilecektir.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s gruptan çıkarılsın mı?</string>
   <string name="RecipientBottomSheet_remove">Kaldır</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Panoya kopyalandı</string>
   <string name="GroupRecipientListItem_admin">Yönetici</string>
+  <string name="GroupRecipientListItem_approve_description">Onayla</string>
+  <string name="GroupRecipientListItem_deny_description">Reddet</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Eski ve Yeni Grup karşılaştırması</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Eski Gruplar nelerdir?</string>
   <string name="GroupsLearnMore_paragraph_1">Eski gruplar, yöneticiler ve daha açıklayıcı grup güncellemeleri gibi yeni grup özellikleriyle uyumlu olmayan gruplardır.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Eski bir Grubu yükseltebilir miyim?</string>
+  <string name="GroupsLearnMore_paragraph_2">Eski Gruplar henüz Yeni Gruplara yükseltilemez, ancak eğer hepsi Signal\'in son sürümünü kullanıyorsa aynı üyelerle bir Yeni Grup oluşturabilirsiniz.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal gelecekte Eski Grupları yükseltmek için bir yöntem sunacaktır.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Signal ile Paylaş</string>
   <string name="GroupLinkBottomSheet_copy">Kopyala</string>
   <string name="GroupLinkBottomSheet_qr_code">Karekod</string>
   <string name="GroupLinkBottomSheet_share">Paylaş</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Panoya kopyalandı</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Bu bağlantı şu an etkin değil</string>
   <!--EOF-->
 </resources>
