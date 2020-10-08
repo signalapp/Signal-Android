@@ -134,7 +134,7 @@ public class MentionDatabase extends Database {
 
   void deleteAbandonedMentions() {
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
-    String         where = MESSAGE_ID + " NOT IN (SELECT _id FROM " + MmsDatabase.TABLE_NAME + ") OR " + THREAD_ID + " NOT IN (SELECT _id FROM " + ThreadDatabase.TABLE_NAME + ")";
+    String         where = MESSAGE_ID + " NOT IN (SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME + ") OR " + THREAD_ID + " NOT IN (SELECT " + ThreadDatabase.ID + " FROM " + ThreadDatabase.TABLE_NAME + ")";
 
     db.delete(TABLE_NAME, where, null);
   }

@@ -935,6 +935,8 @@ public class MmsDatabase extends MessageDatabase {
       }
     }
 
+    DatabaseFactory.getMentionDatabase(context).deleteAbandonedMentions();
+
     try (Cursor cursor = database.query(ThreadDatabase.TABLE_NAME, new String[] { ThreadDatabase.ID }, ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false);
