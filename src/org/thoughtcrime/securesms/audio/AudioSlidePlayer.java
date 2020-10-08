@@ -246,12 +246,10 @@ public class AudioSlidePlayer implements SensorEventListener {
   }
 
   public synchronized void seekTo(double progress) throws IOException {
-    if (mediaPlayer == null) return;
-
-    if (isReady()) {
-      mediaPlayer.seekTo((long) (mediaPlayer.getDuration() * progress));
-    } else {
+    if (mediaPlayer == null || !isReady()) {
       play(progress);
+    } else {
+      mediaPlayer.seekTo((long) (mediaPlayer.getDuration() * progress));
     }
   }
 

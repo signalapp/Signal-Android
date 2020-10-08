@@ -249,8 +249,10 @@ class WaveformSeekBar : View {
                 if (abs(event.x - touchDownX) > scaledTouchSlop) {
                     updateProgress(event, false)
                 }
-
                 performClick()
+            }
+            MotionEvent.ACTION_CANCEL -> {
+                userSeeking = false
             }
         }
         return true
