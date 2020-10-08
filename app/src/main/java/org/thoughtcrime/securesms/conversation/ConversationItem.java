@@ -652,7 +652,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   {
     boolean showControls = !messageRecord.isFailed();
 
-    if (isViewOnceMessage(messageRecord)) {
+    if (isViewOnceMessage(messageRecord) && !messageRecord.isRemoteDelete()) {
       revealableStub.get().setVisibility(VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);

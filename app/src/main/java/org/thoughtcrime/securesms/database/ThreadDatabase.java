@@ -1220,10 +1220,10 @@ public class ThreadDatabase extends Database {
       return Extra.forMessageRequest();
     }
 
-    if (record.isViewOnce()) {
-      return Extra.forViewOnce();
-    } else if (record.isRemoteDelete()) {
+    if (record.isRemoteDelete()) {
       return Extra.forRemoteDelete();
+    } else if (record.isViewOnce()) {
+      return Extra.forViewOnce();
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
       StickerSlide slide = Objects.requireNonNull(((MmsMessageRecord) record).getSlideDeck().getStickerSlide());
       return Extra.forSticker(slide.getEmoji());
