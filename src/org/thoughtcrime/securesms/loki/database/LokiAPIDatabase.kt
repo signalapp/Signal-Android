@@ -127,6 +127,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             database.insertOrUpdate(onionRequestPathTable, row, "${Companion.indexPath} = ?", wrap(indexPath))
         }
         Log.d("Loki", "Persisting onion request paths to database.")
+        clearOnionRequestPaths()
         if (newValue.count() < 1) { return }
         val path0 = newValue[0]
         if (path0.count() != 3) { return }
