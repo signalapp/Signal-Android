@@ -372,6 +372,7 @@ public final class GroupsV2StateProcessor {
           Log.d(TAG, "Skipping profile key changes only update message");
         } else {
           storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, new GroupMutation(previousGroupState, entry.getChange(), entry.getGroup()), null), timestamp);
+          timestamp++;
         }
         previousGroupState = entry.getGroup();
       }
@@ -476,7 +477,9 @@ public final class GroupsV2StateProcessor {
         IncomingTextMessage        incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, "", Optional.of(groupId), 0, false);
         IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
 
-        smsDatabase.insertMessageInbox(groupMessage);
+        if (!smsDatabase.insertMessageInbox(groupMessage).isPresent()) {
+          Log.w(TAG, "Could not insert update message");
+        }
       }
     }
 

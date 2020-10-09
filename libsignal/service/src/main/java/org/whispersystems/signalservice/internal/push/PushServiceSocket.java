@@ -1586,6 +1586,12 @@ public class PushServiceSocket {
   private ResponseBody makeStorageRequest(String authorization, String path, String method, RequestBody body, ResponseCodeHandler responseCodeHandler)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
+    return makeStorageRequestResponse(authorization, path, method, body, responseCodeHandler).body();
+  }
+
+  private Response makeStorageRequestResponse(String authorization, String path, String method, RequestBody body, ResponseCodeHandler responseCodeHandler)
+      throws PushNetworkException, NonSuccessfulResponseCodeException
+  {
     ConnectionHolder connectionHolder = getRandom(storageClients, random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
@@ -1618,7 +1624,7 @@ public class PushServiceSocket {
       response = call.execute();
 
       if (response.isSuccessful() && response.code() != 204) {
-        return response.body();
+        return response;
       }
     } catch (IOException e) {
       throw new PushNetworkException(e);
@@ -1745,6 +1751,9 @@ public class PushServiceSocket {
    * Converts {@link IOException} on body byte reading to {@link PushNetworkException}.
    */
   private static byte[] readBodyBytes(ResponseBody response) throws PushNetworkException {
+    if (response == null) {
+      throw new PushNetworkException("No body!");
+    }
     try {
       return response.bytes();
     } catch (IOException e) {
@@ -1977,16 +1986,31 @@ public class PushServiceSocket {
     return GroupChange.parseFrom(readBodyBytes(response));
   }
 
-  public GroupChanges getGroupsV2GroupHistory(int fromVersion, GroupsV2AuthorizationString authorization)
+  public GroupHistory getGroupsV2GroupHistory(int fromVersion, GroupsV2AuthorizationString authorization)
     throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
-    ResponseBody response = makeStorageRequest(authorization.toString(),
-                                               String.format(Locale.US, GROUPSV2_GROUP_CHANGES, fromVersion),
-                                               "GET",
-                                               null,
-                                               GROUPS_V2_GET_LOGS_HANDLER);
+    Response response = makeStorageRequestResponse(authorization.toString(),
+                                                   String.format(Locale.US, GROUPSV2_GROUP_CHANGES, fromVersion),
+                                                   "GET",
+                                                   null,
+                                                   GROUPS_V2_GET_LOGS_HANDLER);
 
-    return GroupChanges.parseFrom(readBodyBytes(response));
+    GroupChanges groupChanges = GroupChanges.parseFrom(readBodyBytes(response.body()));
+
+    if (response.code() == 206) {
+      String                 contentRangeHeader = response.header("Content-Range");
+      Optional<ContentRange> contentRange       = ContentRange.parse(contentRangeHeader);
+
+      if (contentRange.isPresent()) {
+        Log.i(TAG, "Additional logs for group: " + contentRangeHeader);
+        return new GroupHistory(groupChanges, contentRange);
+      } else {
+        Log.w(TAG, "Unable to parse Content-Range header: " + contentRangeHeader);
+        throw new NonSuccessfulResponseCodeException("Unable to parse content range header on 206");
+      }
+    }
+
+    return new GroupHistory(groupChanges, Optional.absent());
   }
 
   public GroupJoinInfo getGroupJoinInfo(Optional<byte[]> groupLinkPassword, GroupsV2AuthorizationString authorization)
@@ -2000,6 +2024,31 @@ public class PushServiceSocket {
                                                     GROUPS_V2_GET_JOIN_INFO_HANDLER);
 
     return GroupJoinInfo.parseFrom(readBodyBytes(response));
+  }
+
+  public static final class GroupHistory {
+    private final GroupChanges           groupChanges;
+    private final Optional<ContentRange> contentRange;
+
+    public GroupHistory(GroupChanges groupChanges, Optional<ContentRange> contentRange) {
+      this.groupChanges = groupChanges;
+      this.contentRange = contentRange;
+    }
+
+    public GroupChanges getGroupChanges() {
+      return groupChanges;
+    }
+
+    public boolean hasMore() {
+      return contentRange.isPresent();
+    }
+
+    /**
+     * Valid iff {@link #hasMore()}.
+     */
+    public int getNextPageStartGroupRevision() {
+      return contentRange.get().getRangeEnd() + 1;
+    }
   }
 
   private final class ResumeInfo {

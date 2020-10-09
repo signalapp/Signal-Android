@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -97,9 +98,19 @@ public final class GroupsV2Api {
                                                           GroupsV2AuthorizationString authorization)
       throws IOException, InvalidGroupStateException, VerificationFailedException
   {
-    GroupChanges group = socket.getGroupsV2GroupHistory(fromRevision, authorization);
+    List<GroupChanges.GroupChangeState> changesList = new LinkedList<>();
+    PushServiceSocket.GroupHistory      group;
 
-    List<GroupChanges.GroupChangeState>   changesList     = group.getGroupChangesList();
+    do {
+      group = socket.getGroupsV2GroupHistory(fromRevision, authorization);
+
+      changesList.addAll(group.getGroupChanges().getGroupChangesList());
+
+      if (group.hasMore()) {
+        fromRevision = group.getNextPageStartGroupRevision();
+      }
+    } while (group.hasMore());
+
     ArrayList<DecryptedGroupHistoryEntry> result          = new ArrayList<>(changesList.size());
     GroupsV2Operations.GroupOperations    groupOperations = groupsOperations.forGroup(groupSecretParams);
 
