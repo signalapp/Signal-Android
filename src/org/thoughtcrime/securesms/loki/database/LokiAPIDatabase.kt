@@ -114,6 +114,29 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(snodePoolTable, row, "${Companion.dummyKey} = ?", wrap("dummy_key"))
     }
 
+    override fun setOnionRequestPaths(newValue: List<List<Snode>>) {
+        // FIXME: This approach assumes either 1 or 2 paths of length 3 each. We should do better than this.
+        val database = databaseHelper.writableDatabase
+        fun set(indexPath: String, snode: Snode) {
+            var snodeAsString = "${snode.address}-${snode.port}"
+            val keySet = snode.publicKeySet
+            if (keySet != null) {
+                snodeAsString += "-${keySet.ed25519Key}-${keySet.x25519Key}"
+            }
+            val row = wrap(mapOf( Companion.indexPath to indexPath, Companion.snode to snodeAsString ))
+            database.insertOrUpdate(onionRequestPathTable, row, "${Companion.indexPath} = ?", wrap(indexPath))
+        }
+        Log.d("Loki", "Persisting onion request paths to database.")
+        if (newValue.count() < 1) { return }
+        val path0 = newValue[0]
+        if (path0.count() != 3) { return }
+        set("0-0", path0[0]); set("0-1", path0[1]); set("0-2", path0[2])
+        if (newValue.count() < 2) { return }
+        val path1 = newValue[1]
+        if (path1.count() != 3) { return }
+        set("1-0", path1[0]); set("1-1", path1[1]); set("1-2", path1[2])
+    }
+
     override fun getOnionRequestPaths(): List<List<Snode>> {
         val database = databaseHelper.readableDatabase
         fun get(indexPath: String): Snode? {
@@ -131,10 +154,16 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
                 }
             }
         }
-        val path0Snode0 = get("0-0") ?: return listOf(); val path0Snode1 = get("0-1") ?: return listOf()
-        val path0Snode2 = get("0-2") ?: return listOf(); val path1Snode0 = get("1-0") ?: return listOf()
-        val path1Snode1 = get("1-1") ?: return listOf(); val path1Snode2 = get("1-2") ?: return listOf()
-        return listOf( listOf( path0Snode0, path0Snode1, path0Snode2 ), listOf( path1Snode0, path1Snode1, path1Snode2 ) )
+        val result = mutableListOf<List<Snode>>()
+        val path0Snode0 = get("0-0"); val path0Snode1 = get("0-1"); val path0Snode2 = get("0-2")
+        if (path0Snode0 != null && path0Snode1 != null && path0Snode2 != null) {
+            result.add(listOf( path0Snode0, path0Snode1, path0Snode2 ))
+        }
+        val path1Snode0 = get("1-0"); val path1Snode1 = get("1-1"); val path1Snode2 = get("1-2")
+        if (path1Snode0 != null && path1Snode1 != null && path1Snode2 != null) {
+            result.add(listOf( path1Snode0, path1Snode1, path1Snode2 ))
+        }
+        return result
     }
 
     override fun clearOnionRequestPaths() {
@@ -145,28 +174,6 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         delete("0-0"); delete("0-1")
         delete("0-2"); delete("1-0")
         delete("1-1"); delete("1-2")
-    }
-
-    override fun setOnionRequestPaths(newValue: List<List<Snode>>) {
-        // TODO: Make this work with arbitrary paths
-        if (newValue.count() != 2) { return }
-        val path0 = newValue[0]
-        val path1 = newValue[1]
-        if (path0.count() != 3 || path1.count() != 3) { return }
-        Log.d("Loki", "Persisting onion request paths to database.")
-        val database = databaseHelper.writableDatabase
-        fun set(indexPath: String, snode: Snode) {
-            var snodeAsString = "${snode.address}-${snode.port}"
-            val keySet = snode.publicKeySet
-            if (keySet != null) {
-                snodeAsString += "-${keySet.ed25519Key}-${keySet.x25519Key}"
-            }
-            val row = wrap(mapOf( Companion.indexPath to indexPath, Companion.snode to snodeAsString ))
-            database.insertOrUpdate(onionRequestPathTable, row, "${Companion.indexPath} = ?", wrap(indexPath))
-        }
-        set("0-0", path0[0]); set("0-1", path0[1])
-        set("0-2", path0[2]); set("1-0", path1[0])
-        set("1-1", path1[1]); set("1-2", path1[2])
     }
 
     override fun getSwarm(publicKey: String): Set<Snode>? {
