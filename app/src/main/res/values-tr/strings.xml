@@ -432,7 +432,7 @@
   <string name="LinkPreviewsMegaphone_preview_any_link">Tüm bağlantıları önizle</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Şimdi, gönderdiğiniz iletiler için doğrudan web sitelerinden bağlantı önizlemelerini alabilirsiniz.</string>
   <!--LinkPreviewView-->
-  <string name="LinkPreviewView_no_link_preview_available">Bağlantı ön izlemesi mevcut değil</string>
+  <string name="LinkPreviewView_no_link_preview_available">Bağlantı önizlemesi mevcut değil</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
@@ -621,7 +621,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Gruba katılmadan önce bu grubun bir yöneticisinin isteğinizi onaylaması gerekiyor. Katılma isteğinde bulunduğunuzda, isminiz ve fotoğrafınız üyeleriyle paylaşılacaktır.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grup · %1$d üye</item>
-    <item quantity="other">Group · %1$d üye</item>
+    <item quantity="other">Grup · %1$d üye</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grup bağlantıları çok yakında</string>
@@ -632,8 +632,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Bağlı aygıtlarınızdan bir veya daha fazla grup bağlantılarını desteklemeyen Signal sürümü kullanıyor. Bu gruba katılabilmek için bağlı aygıtlarınızdaki Signal\'i güncelleyin.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grup bağlantısı geçersiz</string>
   <!--GV2 Request confirmation dialog-->
-  <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" gruba ekle?</string>
-  <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" kişisinin isteğini reddet?</string>
+  <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" gruba eklensin mi?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" kişisinin isteği reddedilsin mi?</string>
   <string name="RequestConfirmationDialog_add">Ekle</string>
   <string name="RequestConfirmationDialog_deny">Reddet</string>
   <!--CropImageActivity-->
@@ -922,8 +922,8 @@
     <item quantity="other">%1$d üye (+%2$d davetli)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-    <item quantity="one">%d ek grup</item>
-    <item quantity="other">%d ek grup</item>
+    <item quantity="one">%d diğer grup</item>
+    <item quantity="other">%d diğer grup</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolalar uyuşmuyor!</string>
@@ -1044,7 +1044,7 @@
   <string name="WebRtcCallView__start_call">Arama Başlat</string>
   <string name="WebRtcCallView__group_call">Grup Araması</string>
   <string name="WebRtcCallView__view_participants_list">Katılımcıları Görüntüle</string>
-  <string name="WebRtcCallView__your_video_is_off">Videonuz Kapalı</string>
+  <string name="WebRtcCallView__your_video_is_off">Görüntünüz kapalı</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Bu aramada · %1$d kişi</item>
@@ -1278,7 +1278,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">İletiyi sil?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu eylem bu iletiyi kalıcı olarak silecektir.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s --&gt; %2$s</string>
-  <string name="MediaPreviewActivity_media_no_longer_available">Ortam artık mevcut değil.</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">İçerik artık mevcut değil.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d konuşmadan %1$d yeni ileti</string>
   <string name="MessageNotifier_most_recent_from_s">En yeni ileti: %1$s</string>
@@ -1289,7 +1289,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_error_delivering_message">İleti tesliminde hata.</string>
   <string name="MessageNotifier_mark_all_as_read">Tümünü okundu işaretle</string>
   <string name="MessageNotifier_mark_read">Okundu işaretle</string>
-  <string name="MessageNotifier_turn_off_these_notifications">Bu bildirimleri kapatın</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Bu bildirimleri kapat</string>
   <string name="MessageNotifier_media_message">İçerik iletisi</string>
   <string name="MessageNotifier_sticker">Çıkartma</string>
   <string name="MessageNotifier_view_once_photo">Tek görümlük görüntü</string>
@@ -1734,7 +1734,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm içerik iletileri için Signal kullanın</string>
   <string name="preferences__pref_enter_sends_title">Enter tuşu ile gönder</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşuna basmak metin iletilerini gönderecektir</string>
-  <string name="preferences__generate_link_previews">Bağlantı ön izlemelerini oluştur</string>
+  <string name="preferences__generate_link_previews">Bağlantı önizlemelerini oluştur</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Gönderdiğiniz iletiler için doğrudan web sitelerinden bağlantı önizlemelerini al.</string>
   <string name="preferences__choose_identity">Kimlik seçin</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kişi girdinizi kişi listesinden seçin.</string>

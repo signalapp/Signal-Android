@@ -533,10 +533,15 @@
   <string name="ShareableGroupLinkDialogFragment__enabled">Aktivert</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Deaktivert</string>
   <string name="ShareableGroupLinkDialogFragment__default">Forvalgt</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Krev administratorgodkjenning for nye medlemmer som blir med via gruppelinken.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på at du vil tilbakestille gruppelenken? Folk vil ikke lenger kunne bli med i gruppen ved hjelp av den nåværende lenken.</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Folk som skanner denne koden vil være i stand til å bli med i gruppen din. Administratorer vil fremdeles trenge å godkjenne nye medlemmer om denne opsjonen er påslått.</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
+  <string name="GroupJoinBottomSheetDialogFragment_join">Bli med</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Det oppstod en nettverksfeil.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ønsker du å bli medlem i denne gruppen samt dele navnet og bildet ditt med medlemmene?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <!--GV2 Request confirmation dialog-->
@@ -773,9 +778,12 @@
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du resatte gruppelenken.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du ble medlem i gruppen via gruppelinken.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du sendte en forespørsel om å bli med i gruppen.</string>
   <!--GV2 group link approvals-->
   <!--GV2 group link deny-->
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du kansellerte forespørselen din om å bli med i gruppen.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt for %s er endret.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerte sikkerhetsnummeret for %s som bekreftet</string>
@@ -2069,7 +2077,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hva er \"legacy\" grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Legacy grupper er grupper som ikke er kompatible med nye gruppefunksjoner som administrator og mer beskrivende gruppeoppdateringer.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Del via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopier</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR-kode</string>
   <string name="GroupLinkBottomSheet_share">Del</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiert til utklippstavle</string>
   <!--EOF-->

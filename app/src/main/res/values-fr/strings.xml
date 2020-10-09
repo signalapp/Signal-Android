@@ -283,7 +283,7 @@
   <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
   <string name="ConversationFragment_delete_for_me">Supprimer pour moi</string>
   <string name="ConversationFragment_delete_for_everyone">Supprimer pour tous</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ce message sera irrémédiablement supprimé pour tous les membres de la conversation. Les membres pourront voir que vous avez supprimé un message.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ce message sera irrémédiablement supprimé pour tout le monde dans la conversation. Les membres pourront voir que vous avez supprimé un message.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Échec d’ouverture du message</string>

@@ -285,7 +285,7 @@
   <string name="ConversationFragment_deleting">Eliminar</string>
   <string name="ConversationFragment_deleting_messages">Eliminando mensajes …</string>
   <string name="ConversationFragment_delete_for_me">Eliminar para mi</string>
-  <string name="ConversationFragment_delete_for_everyone">Eliminar para tod@s</string>
+  <string name="ConversationFragment_delete_for_everyone">Eliminar del chat</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Este mensaje se eliminará para tod@s sus participantes. En el chat se mostrará que lo has eliminado. </string> -->
   <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original </string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
@@ -2265,7 +2265,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupsLearnMore_legacy_vs_new_groups">Grupos nuevos y antiguos</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">¿Qué son los grupos antiguos?</string>
   <string name="GroupsLearnMore_paragraph_1">Los grupos antiguos no son compatibles con las características de los grupos nuevos como admins o actualizaciones más descriptivas.</string>
-  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">¿Puedo actualizar un grupo antiguo?</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">¿Cómo actualizo un grupo antiguo?</string>
   <string name="GroupsLearnMore_paragraph_2">Los grupos antiguos todavía no pueden convertirse en grupos nuevos, pero puedes crear un grupo nuevo con la misma gente, si tod@s usan la versión más reciente de Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal ofrecerá la manera de actualizar un grupo antiguo en el futuro.</string>
   <!--GroupLinkBottomSheetDialogFragment-->

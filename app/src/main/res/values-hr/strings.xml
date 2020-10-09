@@ -1723,7 +1723,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Sada možete odabrati želite li prihvatiti novi razgovor. Vidjet ćete opcije \"Prihvati\", \"Izbriši\" ili \"Blokiraj\".</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Pomoć</string>
-  <string name="HelpFragment__have_you_read_our_faq_yet">Jeste li već pročitali naša ČČP?</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Jeste li već pročitali naša ČPP?</string>
   <string name="HelpFragment__next">Sljedeće</string>
   <string name="HelpFragment__contact_us">Kontaktirajte nas</string>
   <string name="HelpFragment__tell_us_whats_going_on">Recite nam što se događa</string>
