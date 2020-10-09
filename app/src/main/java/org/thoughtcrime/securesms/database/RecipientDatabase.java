@@ -1079,7 +1079,7 @@ public class RecipientDatabase extends Database {
                              .flatMap(Stream::of)
                              .toArray(String[]::new);
 
-    try (Cursor cursor = db.query(table, columns, query, args, null, null, null)) {
+    try (Cursor cursor = db.query(table, columns, query, args, TABLE_NAME + "." + ID, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         out.add(getRecipientSettings(context, cursor));
       }
