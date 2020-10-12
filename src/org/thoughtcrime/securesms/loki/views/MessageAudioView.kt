@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.audio.DecodedAudio
-import org.thoughtcrime.securesms.loki.utilities.audio.calculateRms
 import org.thoughtcrime.securesms.mms.AudioSlide
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.SlideClickListener
@@ -300,10 +299,10 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
                 try {
                     @Suppress("BlockingMethodInNonBlockingContext")
                     val decodedAudio = PartAuthority.getAttachmentStream(context, attachment.dataUri!!).use {
-                        DecodedAudio(InputStreamMediaDataSource(it))
+                        DecodedAudio.create(InputStreamMediaDataSource(it))
                     }
                     rmsValues = decodedAudio.calculateRms(rmsFrames)
-                    totalDurationMs = (decodedAudio.duration / 1000.0).toLong()
+                    totalDurationMs = (decodedAudio.totalDuration / 1000.0).toLong()
                 } catch (e: Exception) {
                     android.util.Log.w(TAG, "Failed to decode sample values for the audio attachment \"${attachment.fileName}\".", e)
                     rmsValues = generateFakeRms(extractAttachmentRandomSeed(attachment))

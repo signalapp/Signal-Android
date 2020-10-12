@@ -23,7 +23,7 @@ class WaveformSeekBar : View {
 
     companion object {
         @JvmStatic
-        inline fun dp(context: Context, dp: Float): Float {
+        fun dp(context: Context, dp: Float): Float {
             return TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP,
                     dp,
@@ -104,14 +104,8 @@ class WaveformSeekBar : View {
 
     var progressChangeListener: ProgressChangeListener? = null
 
-    private val postponedProgressUpdateHandler = Handler(Looper.getMainLooper())
-    private val postponedProgressUpdateRunnable = Runnable {
-        progressChangeListener?.onProgressChanged(this, progress, true)
-    }
-
     private val barPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val barRect = RectF()
-    private val progressCanvas = Canvas()
 
     private var canvasWidth = 0
     private var canvasHeight = 0
@@ -245,22 +239,9 @@ class WaveformSeekBar : View {
         invalidate()
 
         if (notify) {
-            postponedProgressUpdateRunnable.run()
+            progressChangeListener?.onProgressChanged(this, progress, true)
         }
     }
-
-//    private fun updateProgress(event: MotionEvent, delayNotification: Boolean) {
-//        _progress = event.x / getAvailableWith()
-//        invalidate()
-//
-//        postponedProgressUpdateHandler.removeCallbacks(postponedProgressUpdateRunnable)
-//        if (delayNotification) {
-//            // Re-post delayed user update notification to throttle a bit.
-//            postponedProgressUpdateHandler.postDelayed(postponedProgressUpdateRunnable, 150)
-//        } else {
-//            postponedProgressUpdateRunnable.run()
-//        }
-//    }
 
     override fun performClick(): Boolean {
         super.performClick()
@@ -299,7 +280,6 @@ class WaveformSeekBar : View {
         }
 
         fun setSamples(sampleData: FloatArray?) {
-            //TODO Animate from the current value.
             sampleDataFrom = sampleDataTo
             sampleDataTo = sampleData
 
