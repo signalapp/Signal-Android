@@ -3272,7 +3272,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void presentMessageRequestDisplayState(@NonNull MessageRequestViewModel.DisplayState displayState) {
-    if (getIntent().hasExtra(TEXT_EXTRA) || getIntent().hasExtra(MEDIA_EXTRA) || getIntent().hasExtra(STICKER_EXTRA)) {
+    if ((getIntent().hasExtra(TEXT_EXTRA) && !Util.isEmpty(getIntent().getStringExtra(TEXT_EXTRA))) ||
+         getIntent().hasExtra(MEDIA_EXTRA)                                                          ||
+         getIntent().hasExtra(STICKER_EXTRA))
+    {
       Log.d(TAG, "[presentMessageRequestDisplayState] Have extra, so ignoring provided state.");
       messageRequestBottomView.setVisibility(View.GONE);
     } else if (isPushGroupV1Conversation() && !isActiveGroup()) {
