@@ -140,7 +140,7 @@ final class GroupStateMapper {
         }
       },
       (groupB, groupA) -> GroupChangeReconstruct.reconstructGroupChange(groupA, groupB),
-      (groupA, groupB) -> DecryptedGroupUtil.changeIsEmpty(GroupChangeReconstruct.reconstructGroupChange(groupA, groupB))
+      (groupA, groupB) -> groupA.getRevision() == groupB.getRevision() && DecryptedGroupUtil.changeIsEmpty(GroupChangeReconstruct.reconstructGroupChange(groupA, groupB))
     );
   }
 }

@@ -439,6 +439,30 @@ public final class GroupStateMapperTest {
     assertEquals(log8.getGroup(), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
   }
 
+  @Test
+  public void no_actual_change() {
+    DecryptedGroup      currentState = state(0);
+    ServerGroupLogEntry log1         = serverLogEntry(1);
+    ServerGroupLogEntry log2         = new ServerGroupLogEntry(DecryptedGroup.newBuilder(log1.getGroup())
+                                                                             .setRevision(2)
+                                                                             .build(),
+                                                               DecryptedGroupChange.newBuilder()
+                                                                                   .setRevision(2)
+                                                                                   .setEditor(UuidUtil.toByteString(KNOWN_EDITOR))
+                                                                                   .setNewTitle(DecryptedString.newBuilder().setValue(log1.getGroup().getTitle()))
+                                                                                   .build());
+
+    AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(new GlobalGroupState(currentState, asList(log1, log2)), 2);
+
+    assertThat(advanceGroupStateResult.getProcessedLogEntries(), is(asList(asLocal(log1),
+                                                                           new LocalGroupLogEntry(log2.getGroup(), DecryptedGroupChange.newBuilder()
+                                                                                                                                       .setRevision(2)
+                                                                                                                                       .setEditor(UuidUtil.toByteString(KNOWN_EDITOR))
+                                                                                                                                       .build()))));
+    assertTrue(advanceGroupStateResult.getNewGlobalGroupState().getServerHistory().isEmpty());
+    assertEquals(log2.getGroup(), advanceGroupStateResult.getNewGlobalGroupState().getLocalState());
+  }
+
   private static void assertNewState(GlobalGroupState expected, GlobalGroupState actual) {
     assertEquals(expected.getLocalState(), actual.getLocalState());
     assertThat(actual.getServerHistory(), is(expected.getServerHistory()));
