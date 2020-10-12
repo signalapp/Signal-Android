@@ -12,11 +12,15 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.livedata.LiveDataTriple;
@@ -168,16 +172,20 @@ public class MessageRequestViewModel extends ViewModel {
       } else {
         return new MessageData(recipient, MessageClass.BLOCKED_INDIVIDUAL);
       }
-    } else if (recipient.isGroup()) {
-      if (recipient.isPushV2Group()) {
-        if (repository.isPendingMember(recipient.requireGroupId().requireV2())) {
-          return new MessageData(recipient, MessageClass.GROUP_V2_INVITE);
-        } else {
-          return new MessageData(recipient, MessageClass.GROUP_V2_ADD);
-        }
+    } else if (recipient.isPushV2Group()) {
+      if (repository.isPendingMember(recipient.requireGroupId().requireV2())) {
+        return new MessageData(recipient, MessageClass.GROUP_V2_INVITE);
       } else {
-        return new MessageData(recipient, MessageClass.GROUP_V1);
+        return new MessageData(recipient, MessageClass.GROUP_V2_ADD);
       }
+    } else if (isLegacyThread(recipient)) {
+      if (recipient.isGroup()) {
+        return new MessageData(recipient, MessageClass.LEGACY_GROUP_V1);
+      } else {
+        return new MessageData(recipient, MessageClass.LEGACY_INDIVIDUAL);
+      }
+    } else if (recipient.isGroup()) {
+      return new MessageData(recipient, MessageClass.GROUP_V1);
     } else {
       return new MessageData(recipient, MessageClass.INDIVIDUAL);
     }
@@ -198,11 +206,21 @@ public class MessageRequestViewModel extends ViewModel {
         case REQUIRED:
           displayState.postValue(DisplayState.DISPLAY_MESSAGE_REQUEST);
           break;
-        case LEGACY:
-          displayState.postValue(DisplayState.DISPLAY_LEGACY);
+        case PRE_MESSAGE_REQUEST:
+          displayState.postValue(DisplayState.DISPLAY_PRE_MESSAGE_REQUEST);
           break;
       }
     });
+  }
+
+  @WorkerThread
+  private boolean isLegacyThread(@NonNull Recipient recipient) {
+    Context context  = ApplicationDependencies.getApplication();
+    Long    threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient.getId());
+
+    return FeatureFlags.modernProfileSharing() &&
+           threadId != null                    &&
+           (RecipientUtil.hasSentMessageInThread(context, threadId) || RecipientUtil.isPreMessageRequestThread(context, threadId));
   }
 
   public static class RecipientInfo {
@@ -246,12 +264,16 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   public enum DisplayState {
-    DISPLAY_MESSAGE_REQUEST, DISPLAY_LEGACY, DISPLAY_NONE
+    DISPLAY_MESSAGE_REQUEST, DISPLAY_PRE_MESSAGE_REQUEST, DISPLAY_NONE
   }
 
   public enum MessageClass {
     BLOCKED_INDIVIDUAL,
     BLOCKED_GROUP,
+    /** An individual conversation that existed pre-message-requests but doesn't have profile sharing enabled */
+    LEGACY_INDIVIDUAL,
+    /** A V1 group conversation that existed pre-message-requests but doesn't have profile sharing enabled */
+    LEGACY_GROUP_V1,
     GROUP_V1,
     GROUP_V2_INVITE,
     GROUP_V2_ADD,

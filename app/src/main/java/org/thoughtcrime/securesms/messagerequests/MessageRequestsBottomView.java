@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.messagerequests;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,20 +13,22 @@ import androidx.core.text.HtmlCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.HtmlUtil;
+import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
 public class MessageRequestsBottomView extends ConstraintLayout {
 
   private final Debouncer showProgressDebouncer = new Debouncer(250);
 
-  private TextView question;
-  private View     accept;
-  private View     block;
-  private View     delete;
-  private View     bigDelete;
-  private View     bigUnblock;
-  private View     busyIndicator;
+  private LearnMoreTextView question;
+  private Button            accept;
+  private View              block;
+  private View              delete;
+  private View              bigDelete;
+  private View              bigUnblock;
+  private View              busyIndicator;
 
   private Group normalButtons;
   private Group blockedButtons;
@@ -63,6 +66,9 @@ public class MessageRequestsBottomView extends ConstraintLayout {
   public void setMessageData(@NonNull MessageRequestViewModel.MessageData messageData) {
     Recipient recipient = messageData.getRecipient();
 
+    question.setLearnMoreVisible(false);
+    question.setOnLinkClickListener(null);
+
     switch (messageData.getMessageClass()) {
       case BLOCKED_INDIVIDUAL:
         question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them,
@@ -73,19 +79,36 @@ public class MessageRequestsBottomView extends ConstraintLayout {
         question.setText(R.string.MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members);
         setActiveInactiveGroups(blockedButtons, normalButtons);
         break;
+      case LEGACY_INDIVIDUAL:
+        question.setText(getContext().getString(R.string.MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo, recipient.getShortDisplayName(getContext())));
+        question.setLearnMoreVisible(true);
+        question.setOnLinkClickListener(v -> CommunicationActions.openBrowserLink(getContext(), getContext().getString(R.string.MessageRequestBottomView_legacy_learn_more_url)));
+        setActiveInactiveGroups(normalButtons, blockedButtons);
+        accept.setText(R.string.MessageRequestBottomView_continue);
+        break;
+      case LEGACY_GROUP_V1:
+        question.setText(R.string.MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo);
+        question.setLearnMoreVisible(true);
+        question.setOnLinkClickListener(v -> CommunicationActions.openBrowserLink(getContext(), getContext().getString(R.string.MessageRequestBottomView_legacy_learn_more_url)));
+        setActiveInactiveGroups(normalButtons, blockedButtons);
+        accept.setText(R.string.MessageRequestBottomView_continue);
+        break;
       case GROUP_V1:
       case GROUP_V2_INVITE:
         question.setText(R.string.MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept);
         setActiveInactiveGroups(normalButtons, blockedButtons);
+        accept.setText(R.string.MessageRequestBottomView_accept);
         break;
       case GROUP_V2_ADD:
         question.setText(R.string.MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept);
         setActiveInactiveGroups(normalButtons, blockedButtons);
+        accept.setText(R.string.MessageRequestBottomView_accept);
         break;
       case INDIVIDUAL:
         question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept,
                                                                     HtmlUtil.bold(recipient.getShortDisplayName(getContext()))), 0));
         setActiveInactiveGroups(normalButtons, blockedButtons);
+        accept.setText(R.string.MessageRequestBottomView_accept);
         break;
     }
   }

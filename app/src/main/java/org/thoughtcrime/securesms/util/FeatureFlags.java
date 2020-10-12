@@ -58,6 +58,7 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION            = "android.clientExpiration";
   public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
+  public  static final String MODERN_PROFILE_SHARING       = "android.modernProfileSharing";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -74,7 +75,8 @@ public final class FeatureFlags {
       MENTIONS,
       VERIFY_V2,
       CLIENT_EXPIRATION,
-      RESEARCH_MEGAPHONE_1
+      RESEARCH_MEGAPHONE_1,
+      MODERN_PROFILE_SHARING
   );
 
   /**
@@ -246,6 +248,11 @@ public final class FeatureFlags {
    */
   public static boolean phoneNumberPrivacy() {
     return getVersionFlag(PHONE_NUMBER_PRIVACY_VERSION) == VersionFlag.ON;
+  }
+
+  /** Whether or not to show the new profile sharing prompt for legacy conversations. */
+  public static boolean modernProfileSharing() {
+    return getBoolean(MODERN_PROFILE_SHARING, false);
   }
 
   /** Only for rendering debug info. */

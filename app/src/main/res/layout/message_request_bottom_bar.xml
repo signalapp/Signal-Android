@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <TextView
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/message_request_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

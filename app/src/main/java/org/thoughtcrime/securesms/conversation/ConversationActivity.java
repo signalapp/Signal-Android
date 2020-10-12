@@ -3295,7 +3295,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
             groupShareProfileView.get().setVisibility(View.GONE);
           }
           break;
-        case DISPLAY_LEGACY:
+        case DISPLAY_PRE_MESSAGE_REQUEST:
           if (recipient.get().isGroup()) {
             groupShareProfileView.get().setRecipient(recipient.get());
             groupShareProfileView.get().setVisibility(View.VISIBLE);

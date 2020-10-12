@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -87,8 +88,10 @@ final class MessageRequestRepository {
       }
 
       return MessageRequestState.REQUIRED;
+    } else if (FeatureFlags.modernProfileSharing() && !recipient.isPushV2Group() && !recipient.isProfileSharing()) {
+      return MessageRequestState.REQUIRED;
     } else if (RecipientUtil.isPreMessageRequestThread(context, threadId) && !RecipientUtil.isLegacyProfileSharingAccepted(recipient)) {
-      return MessageRequestState.LEGACY;
+      return MessageRequestState.PRE_MESSAGE_REQUEST;
     } else {
       return MessageRequestState.NOT_REQUIRED;
     }
@@ -230,6 +233,7 @@ final class MessageRequestRepository {
     });
   }
 
+  @WorkerThread
   boolean isPendingMember(@NonNull GroupId.V2 groupId) {
     return DatabaseFactory.getGroupDatabase(context).isPendingMember(groupId, Recipient.self());
   }
@@ -248,6 +252,7 @@ final class MessageRequestRepository {
     /** Explicit message request permission is required. */
     REQUIRED,
 
-    LEGACY
+    /** This conversation existed before message requests and needs the old UI */
+    PRE_MESSAGE_REQUEST
   }
 }
