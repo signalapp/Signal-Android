@@ -7,7 +7,6 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.media.MediaDataSource
 import android.os.Build
-import android.os.Handler
 import android.util.AttributeSet
 import android.view.View
 import android.view.View.OnTouchListener
@@ -37,7 +36,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import java.io.IOException
 import java.io.InputStream
-import java.lang.Exception
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -193,10 +191,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         downloadProgress.barColor = foregroundTint
         totalDuration.setTextColor(foregroundTint)
 
-//        val colorFilter = createBlendModeColorFilterCompat(foregroundTint, BlendModeCompat.SRC_IN)
-//        seekBar.progressDrawable.colorFilter = colorFilter
-//        seekBar.thumb.colorFilter = colorFilter
-        seekBar.barProgressColor = foregroundTint
+        // Seek bar's progress color is set from the XML template. Whereas the background is computed.
         seekBar.barBackgroundColor = ColorUtils.blendARGB(foregroundTint, backgroundTint, 0.75f)
     }
 
@@ -210,26 +205,10 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         if (playButton.visibility != View.VISIBLE) {
             togglePauseToPlay()
         }
-
-//        if (seekBar.progress + 5 >= seekBar.max) {
-//            backwardsCounter = 4
-//            onProgress(0.0, 0)
-//        }
     }
 
     override fun onPlayerProgress(player: AudioSlidePlayer, progress: Double, millis: Long) {
-//        val seekProgress = floor(progress * seekBar.max).toInt()
-        //TODO Update text.
         seekBar.progress = progress.toFloat()
-//        if (/*seekProgress > 1f || */backwardsCounter > 3) {
-//            backwardsCounter = 0
-//            seekBar.progress = 1f
-//            timestamp.text = String.format("%02d:%02d",
-//                    TimeUnit.MILLISECONDS.toMinutes(millis),
-//                    TimeUnit.MILLISECONDS.toSeconds(millis))
-//        } else {
-//            backwardsCounter++
-//        }
     }
 
     override fun setFocusable(focusable: Boolean) {
@@ -294,7 +273,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
                 return Random(seed.toLong()).let { (0 until frames).map { i -> it.nextFloat() }.toFloatArray() }
             }
 
-            var rmsValues: FloatArray = floatArrayOf()
+            var rmsValues: FloatArray
             var totalDurationMs: Long = -1
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {

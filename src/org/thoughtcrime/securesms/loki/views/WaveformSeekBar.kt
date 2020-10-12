@@ -6,8 +6,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
-import android.os.Handler
-import android.os.Looper
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -125,28 +123,23 @@ class WaveformSeekBar : View {
         barGap = typedAttrs.getDimension(R.styleable.WaveformSeekBar_bar_gap, barGap)
         barCornerRadius = typedAttrs.getDimension(
                 R.styleable.WaveformSeekBar_bar_corner_radius,
-                barCornerRadius
-        )
+                barCornerRadius)
         barMinHeight =
                 typedAttrs.getDimension(R.styleable.WaveformSeekBar_bar_min_height, barMinHeight)
         barBackgroundColor = typedAttrs.getColor(
                 R.styleable.WaveformSeekBar_bar_background_color,
-                barBackgroundColor
-        )
+                barBackgroundColor)
         barProgressColor =
                 typedAttrs.getColor(R.styleable.WaveformSeekBar_bar_progress_color, barProgressColor)
         progress = typedAttrs.getFloat(R.styleable.WaveformSeekBar_progress, progress)
-        barGravity =
-                WaveGravity.fromString(
-                        typedAttrs.getString(R.styleable.WaveformSeekBar_bar_gravity)
-                )
+        barGravity = WaveGravity.fromString(
+                typedAttrs.getString(R.styleable.WaveformSeekBar_bar_gravity))
 
         typedAttrs.recycle()
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-
         canvasWidth = w
         canvasHeight = h
         invalidate()
@@ -188,7 +181,6 @@ class WaveformSeekBar : View {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 userSeeking = true
-//                preUserSeekingProgress = _progress
                 if (isParentScrolling()) {
                     touchDownX = event.x
                 } else {
@@ -207,7 +199,6 @@ class WaveformSeekBar : View {
             }
             MotionEvent.ACTION_CANCEL -> {
                 userSeeking = false
-//                updateProgress(preUserSeekingProgress, false)
             }
         }
         return true
