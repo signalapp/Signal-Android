@@ -7,6 +7,7 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.media.MediaDataSource
 import android.os.Build
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.View
 import android.view.View.OnTouchListener
@@ -57,10 +58,11 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
 
     private var downloadListener: SlideClickListener? = null
     private var audioSlidePlayer: AudioSlidePlayer? = null
-//    private var backwardsCounter = 0
 
     /** Background coroutine scope that is available when the view is attached to a window. */
     private var asyncCoroutineScope: CoroutineScope? = null
+
+    private val loadingAnimation: SeekBarLoadingAnimation
 
     constructor(context: Context): this(context, null)
 
@@ -121,6 +123,9 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
             container.setBackgroundColor(typedArray.getColor(R.styleable.MessageAudioView_widgetBackground, Color.TRANSPARENT))
             typedArray.recycle()
         }
+
+        loadingAnimation = SeekBarLoadingAnimation(this, seekBar)
+        loadingAnimation.start()
     }
 
     override fun onAttachedToWindow() {
@@ -312,6 +317,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
             android.util.Log.d(TAG, "RMS: ${rmsValues.joinToString()}")
 
             post {
+                loadingAnimation.stop()
                 seekBar.sampleData = rmsValues
 
                 if (totalDurationMs > 0) {
@@ -329,6 +335,30 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         if (audioSlidePlayer != null && event.attachment == audioSlidePlayer!!.audioSlide.asAttachment()) {
             downloadProgress.setInstantProgress(event.progress.toFloat() / event.total)
         }
+    }
+}
+
+private class SeekBarLoadingAnimation(
+        private val hostView: View,
+        private val seekBar: WaveformSeekBar): Runnable {
+
+    companion object {
+        private const val UPDATE_PERIOD = 500L // In milliseconds.
+        private val random = Random()
+    }
+
+    fun start() {
+        stop()
+        run()
+    }
+
+    fun stop() {
+        hostView.removeCallbacks(this)
+    }
+
+    override fun run() {
+        seekBar.sampleData = (0 until 64).map { random.nextFloat() * 0.5f }.toFloatArray()
+        hostView.postDelayed(this, UPDATE_PERIOD)
     }
 }
 

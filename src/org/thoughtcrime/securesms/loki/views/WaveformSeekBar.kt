@@ -33,6 +33,7 @@ class WaveformSeekBar : View {
     }
 
     private val sampleDataHolder = SampleDataHolder(::invalidate)
+    /** An array if normalized to [0..1] values representing the audio signal. */
     var sampleData: FloatArray?
         get() {
             return sampleDataHolder.getSamples()
@@ -282,6 +283,7 @@ class WaveformSeekBar : View {
         fun setSamples(sampleData: FloatArray?) {
             sampleDataFrom = sampleDataTo
             sampleDataTo = sampleData
+            progress = 0f
 
             animation?.cancel()
             animation = ValueAnimator.ofFloat(0f, 1f).apply {
