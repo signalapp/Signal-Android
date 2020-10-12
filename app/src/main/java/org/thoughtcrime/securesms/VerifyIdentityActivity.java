@@ -22,6 +22,7 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -56,6 +57,7 @@ import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -90,11 +92,13 @@ import org.whispersystems.libsignal.fingerprint.Fingerprint;
 import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
 import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.Locale;
+import java.util.UUID;
 
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
@@ -307,16 +311,26 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       byte[] localId;
       byte[] remoteId;
 
-      if (FeatureFlags.verifyV2() && recipient.resolve().getUuid().isPresent()) {
+      Recipient resolved = recipient.resolve();
+
+      if (FeatureFlags.verifyV2() && resolved.getUuid().isPresent()) {
         Log.i(TAG, "Using UUID (version 2).");
         version  = 2;
         localId  = UuidUtil.toByteArray(TextSecurePreferences.getLocalUuid(requireContext()));
-        remoteId = UuidUtil.toByteArray(recipient.resolve().getUuid().get());
-      } else {
+        remoteId = UuidUtil.toByteArray(resolved.getUuid().get());
+      } else if (!FeatureFlags.verifyV2() && resolved.getE164().isPresent()) {
         Log.i(TAG, "Using E164 (version 1).");
         version  = 1;
         localId  = TextSecurePreferences.getLocalNumber(requireContext()).getBytes();
-        remoteId = recipient.resolve().requireE164().getBytes();
+        remoteId = resolved.requireE164().getBytes();
+      } else {
+        Log.w(TAG, String.format(Locale.ENGLISH, "Could not show proper verification! verifyV2: %s, hasUuid: %s, hasE164: %s", FeatureFlags.verifyV2(), resolved.getUuid().isPresent(), resolved.getE164().isPresent()));
+        new AlertDialog.Builder(requireContext())
+                       .setMessage(getString(R.string.VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view, resolved.getDisplayName(requireContext())))
+                       .setPositiveButton(android.R.string.ok, (dialog, which) -> requireActivity().finish())
+                       .setOnDismissListener(dialog -> requireActivity().finish())
+                       .show();
+        return;
       }
 
       this.recipient.observe(this, this::setRecipientText);
