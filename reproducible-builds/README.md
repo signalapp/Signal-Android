@@ -3,30 +3,33 @@
 
 ## TL;DR
 
-You can just use these [instructions](https://signal.org/blog/reproducible-android/) from the official announcement at Open Whisper Systems's blog:
-```
+```bash
 # Clone the Signal Android source repository
-$ git clone https://github.com/signalapp/Signal-Android.git && cd Signal-Android
+git clone https://github.com/signalapp/Signal-Android.git && cd Signal-Android
 
 # Check out the release tag for the version you'd like to compare
-$ git checkout v[the version number]
+git checkout v[the version number]
+
+# Build the Docker image
+cd reproducible-builds
+docker build -t signal-android .
+
+# Go back up to the root of the project
+cd ..
 
 # Build using the Docker environment
-$ docker run --rm -v $(pwd):/project -w /project whispersystems/signal-android:1.3 ./gradlew clean assembleRelease
+docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assembleRelease
 
 # Verify the APKs
-$ python3 apkdiff/apkdiff.py build/outputs/apks/project-release-unsigned.apk path/to/SignalFromPlay.apk
+python3 apkdiff/apkdiff.py build/outputs/apks/project-release-unsigned.apk path/to/SignalFromPlay.apk
 ```
-
-Note that the instructions above use a pre-built Signal Docker image from [Docker Hub](https://hub.docker.com/u/whispersystems/). If you wish to compile the image yourself, continue reading the longer version below.
-
 
 ***
 
 
 ## Introduction
 
-Since version 3.15.0 Signal for Android has supported reproducible builds. This is achieved by replicating the build environment as a Docker image. You'll need to build the image, run a container instance of it, compile Signal inside the container and finally compare the resulted APK to the APK that is distributed in the Google Play Store.
+Since version 3.15.0 Signal for Android has supported reproducible builds. The instructions were then updated for version 5.0.0. This is achieved by replicating the build environment as a Docker image. You'll need to build the image, run a container instance of it, compile Signal inside the container and finally compare the resulted APK to the APK that is distributed in the Google Play Store.
 
 The command line parts in this guide are written for Linux but with some little modifications you can adapt them to macOS (OS X) and Windows. In the following sections we will use `3.15.2` as an example Signal version. You'll just need to replace all occurrences of `3.15.2` with the version number you are about to verify.
 
@@ -34,23 +37,18 @@ The command line parts in this guide are written for Linux but with some little 
 ## Setting up directories
 
 First let's create a new directory for this whole reproducible builds project. In your home folder (`~`), create a new directory called `reproducible-signal`.
-```
-user@host:$ mkdir ~/reproducible-signal
+
+```bash
+mkdir ~/reproducible-signal
 ```
 
 Next create another directory inside `reproducible-signal` called `apk-from-google-play-store`.
-```
-user@host:$ mkdir ~/reproducible-signal/apk-from-google-play-store
+
+```bash
+mkdir ~/reproducible-signal/apk-from-google-play-store
 ```
 
 We will use this directory to share APKs between the host OS and the Docker container.
-
-Finally create one more directory inside `reproducible-signal` called `image-build-context`.
-```
-user@host:$ mkdir ~/reproducible-signal/image-build-context
-```
-
-This directory will be used later to build our Docker image.
 
 
 ## Getting the Google Play Store version of Signal APK
@@ -61,41 +59,44 @@ First make sure that the Signal version you want to verify is installed on your 
 
 Plug your device to your computer and run this command to pull the APK from the device:
 
-```
-user@host:$ adb pull $(adb shell pm path org.thoughtcrime.securesms | grep /base.apk | awk -F':' '{print $2}') ~/reproducible-signal/apk-from-google-play-store/Signal-$(adb shell dumpsys package org.thoughtcrime.securesms | grep versionName | awk -F'=' '{print $2}').apk
+```bash
+adb pull $(adb shell pm path org.thoughtcrime.securesms | grep /base.apk | awk -F':' '{print $2}') ~/reproducible-signal/apk-from-google-play-store/Signal-$(adb shell dumpsys package org.thoughtcrime.securesms | grep versionName | awk -F'=' '{print $2}').apk
 ```
 
 This will pull a file into `~/reproducible-signal/apk-from-google-play-store/` with the name `Signal-<version>.apk`
 
 Alternatively, you can do this step-by-step:
 
+```bash
+adb shell pm path org.thoughtcrime.securesms
 ```
-user@host:$ adb shell pm path org.thoughtcrime.securesms
-```
+
 This will output something like:
-```
+
+```bash
 package:/data/app/org.thoughtcrime.securesms-aWRzcGlzcG9wZA==/base.apk
 ```
 
 The output will tell you where the Signal APK is located in your device. (In this example the path is `/data/app/org.thoughtcrime.securesms-aWRzcGlzcG9wZA==/base.apk`)
 
 Now using this information, pull the APK from your device to the `reproducible-signal/apk-from-google-play-store` directory you created before:
-```
-user@host:$ adb pull \
-              /data/app/org.thoughtcrime.securesms-aWRzcGlzcG9wZA==/base.apk \
-              ~/reproducible-signal/apk-from-google-play-store/Signal-3.15.2.apk
+
+```bash
+adb pull \
+  /data/app/org.thoughtcrime.securesms-aWRzcGlzcG9wZA==/base.apk \
+  ~/reproducible-signal/apk-from-google-play-store/Signal-3.15.2.apk
 ```
 
 We will use this APK in the final part when we compare it with the self-built APK from GitHub.
 
 ## Identifying the ABI
 
-Since v4.37.0, the APKs have been split by ABI, the CPU architecture of the target device. Google play will serve the correct one to you for your device.
+Since v4.37.0, the APKs have been split by ABI, the CPU architecture of the target device. Google Play will serve the correct one to you for your device.
 
 To identify which ABIs the google play APK supports, we can look inside the APK, which is just a zip file:
 
-```
-user@host:$ unzip -l ~/reproducible-signal/apk-from-google-play-store/Signal-*.apk | grep lib/
+```bash
+unzip -l ~/reproducible-signal/apk-from-google-play-store/Signal-*.apk | grep lib/
 ```
 
 Example:
@@ -135,41 +136,28 @@ In the following sections we will assume that your Docker installation works wit
 
 
 ## Building a Docker image for Signal
-
-#### Grabbing the `Dockerfile`
-
-First you will need the `Dockerfile` for Signal Android. It comes bundled with Signal's source code. The `Dockerfile` contains instructions on how to automatically build a Docker image for Signal. You just need to run it and it builds itself.
-
-Download the `Dockerfile` to the `image-build-context` directory.
+First, you need to pull down the source for Signal-Android, which contains everything you need to build the project, including the `Dockerfile`. The `Dockerfile` contains instructions on how to automatically build a Docker image for Signal. It's located in the `reproducible-builds` directory of the repository. To get it, clone the project:
 
 ```
-user@host:$ wget -O ~/reproducible-signal/image-build-context/Dockerfile_v3.15.2 \
-                    https://raw.githubusercontent.com/signalapp/Signal-Android/v3.15.2/Dockerfile
+git clone https://github.com/signalapp/Signal-Android.git signal-source
 ```
 
-Note that the `Dockerfile` is specific to the Signal version you want to compare to. Again you have to adjust the URL above to match the right version. (Though sometimes the file might not be up to date, see the [Troubleshooting section](#troubleshooting))
-
-
-#### Building the image
-
-Now we have everything we need to build the Docker image for Signal. Go to the `image-build-context` directory:
+Then, checkout the specific version you're trying to build:
 
 ```
-user@host:$ cd ~/reproducible-signal/image-build-context
+git checkout --quiet v5.0.0
 ```
 
-And list the contents.
+Then, to build it, go into the `reproducible-builds` directory:
+
 ```
-user@host:$ ls
-```
-The output should look like this:
-```
-Dockerfile_v3.15.2
+cd ~/reproducible-signal/signal-source/reproducible-builds
 ```
 
-Now in this directory build the image using `Dockerfile_v3.15.2`:
+...and run the docker build command:
+
 ```
-user@host:$ docker build --file Dockerfile_v3.15.2 --tag signal-android .
+docker build -t signal-android .
 ```
 
 (Note that there is a dot at the end of that command!)
@@ -181,61 +169,39 @@ Wait a few years for the build to finish... :construction_worker:
 :calendar: :sleeping:
 
 After the build has finished, you may wish to list all your Docker images to see that it's really there:
+
 ```
-user@host:$ docker images
+docker images
 ```
+
 Output should look something like this:
+
 ```
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 signal-android      latest              c6b84450b896        46 seconds ago      2.94 GB
-ubuntu              14.04.3             8693db7e8a00        9 weeks ago         187.9 MB
 ```
 
 
 ## Compiling Signal inside a container
 
-Next we will run a container of the image we just built, grab Signal's source code and compile Signal.
+Next we compile Signal.
 
-First go to the `reproducible-signal` directory:
+First go to the directory where the source code is: `reproducible-signal/signal-source`:
 
 ```
-user@host:$ cd ~/reproducible-signal/
-```
-
-To run a new ephemeral container with an interactive terminal session execute the following long command:
-```
-user@host:$ docker run \
-              --name signal \
-              --rm \
-              --interactive \
-              --tty \
-              --volume $(pwd)/apk-from-google-play-store:/signal-build/apk-from-google-play-store \
-              --workdir /signal-build \
-              signal-android
-```
-Now you are inside the container.
-
-Grab Signal's source code from GitHub and go to the repository directory:
-```
-root@container:# git clone https://github.com/signalapp/Signal-Android.git
-root@container:# cd Signal-Android
+cd ~/reproducible-signal/signal-source
 ```
 
-Before you can compile, you **must** ensure that you are at the right commit. In other words you **must** checkout the version you wish to verify (here we are verifying 3.15.2):
+To build with the docker image you just built (`signal-android`), run:
+
 ```
-root@container:# git checkout --quiet v3.15.2
+docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assemblePlayRelease
 ```
 
-Now you may compile the release APK by running:
-```
-root@container:# ./gradlew clean assemblePlayRelease --exclude-task signProductionPlayRelease
-```
 This will take a few minutes :sleeping:
 
 
-#### Checking if the APKs match
-
-After the build has completed successfully we can finally compare if the APKs match. For the comparison we need of course the Google Play Store version of Signal APK which you copied to the `apk-from-google-play-store` directory in the beginning of this guide. Because we used that directory as a `--volume` parameter for our container, we can see all the files in that directory within our container.
+### Checking if the APKs match
 
 So now we can compare the APKs using the `apkdiff.py` tool.
 
@@ -247,17 +213,20 @@ See [Identifying the ABI](#identifying-the-abi) above if you don't know the ABI 
 
 Once you have determined the ABI, add an `abi` environment variable. For example, suppose we determine that `armeabi-v7a` is the ABI google play has served:
 
-```
-root@container:# export abi=armeabi-v7a
+```bash
+export abi=armeabi-v7a
 ```
 
-And the diff script to compare:
+And run the diff script to compare (updating the filenames for your specific version):
+
+```bash
+python3 reproducible-builds/apkdiff/apkdiff.py \
+        build/outputs/apk/play/release/*play-$abi-release-unsigned*.apk \
+        ../apk-from-google-play-store/Signal-5.0.0.apk
 ```
-root@container:# python3 apkdiff/apkdiff.py \
-                   build/outputs/apk/play/release/*play-$abi-release-unsigned*.apk \
-                   ../apk-from-google-play-store/Signal-3.15.2.apk
-```
+
 Output:
+
 ```
 APKs match!
 ```
@@ -277,7 +246,6 @@ If the build environment (i.e. `Dockerfile`) has not changed, you don't need to 
 If you cannot get things to work, please do not open an issue or comment on an existing issue at GitHub. Instead, ask for help at https://community.signalusers.org/c/development
 
 Some common issues why things may not work:
-- some pinned packages in the `Dockerfile` are not available anymore and building of the Docker image fails
 - the Android packages in the Docker image are outdated and compiling Signal fails
 - you built the Docker image with a wrong version of the `Dockerfile`
 - you didn't checkout the correct Signal version tag with Git before compiling

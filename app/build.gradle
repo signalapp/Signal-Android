@@ -454,16 +454,6 @@ task signProductionWebsiteRelease {
     }
 }
 
-tasks.whenTaskAdded { task ->
-    if (task.name.equals("assemblePlayRelease")) {
-        task.finalizedBy signProductionPlayRelease
-    }
-
-    if (task.name.equals("assembleWebsiteRelease")) {
-        task.finalizedBy signProductionWebsiteRelease
-    }
-}
-
 def getLastCommitTimestamp() {
     new ByteArrayOutputStream().withStream { os ->
         def result = exec {

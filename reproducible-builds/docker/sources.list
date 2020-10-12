@@ -1,0 +1,3 @@
+deb http://httpredir.debian.org/debian/ stretch main
+deb http://security.debian.org/ stretch/updates main
+deb http://snapshot.debian.org/archive/debian/20200731T211026Z/ unstable main
