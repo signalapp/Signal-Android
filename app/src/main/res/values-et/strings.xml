@@ -280,7 +280,6 @@
   <string name="ConversationFragment_deleting_messages">Sõnumite kustutamine…</string>
   <string name="ConversationFragment_delete_for_me">Kustuta minu jaoks</string>
   <string name="ConversationFragment_delete_for_everyone">Kustuta kõigi jaoks</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">See sõnum kustutatakse jäädavalt kõigi vestluses osalejate jaoks. Liikmed näevad, et sa kustutasid sõnumi.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
   <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
@@ -822,6 +821,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Kas lubad kasutajal %1$s sulle sõnumeid saata ja jagad temaga enda nime ja fotot? Ta ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Kas lubad kasutajal %1$s sulle sõnumeid saata ja jagad temaga enda nime ja fotot? Ta ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas soovid selle grupiga liituda ja jagada enda nime ning pilti selle liikmetega? Nad ei tea, et oled seda sõnumit näinud enne kui oled sellega nõustunud.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Kas liitud grupiga? Nad ei tea, et oled nende sõnumeid näinud, kuni nõustud.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Kas eemaldada sellelt grupilt blokeering ja jagada enda nime ning fotot selle liikmetele? Sa ei saa enne ühtegi sõnumit kuni eemaldad blokeeringu.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ja %2$s liige </string>

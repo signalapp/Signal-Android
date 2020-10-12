@@ -306,7 +306,7 @@
   <string name="ConversationFragment_deleting_messages">Удаляем сообщения…</string>
   <string name="ConversationFragment_delete_for_me">Удалить для меня</string>
   <string name="ConversationFragment_delete_for_everyone">Удалить для всех</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Это сообщение будет навсегда удалено для всех в этом разговоре. Участники смогут увидеть, что вы удалили сообщение.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Это сообщение будет удалено для всех в этом разговоре, если у них установлена недавняя версия Signal. Они смогут увидеть, что вы удалили сообщение.</string>
   <string name="ConversationFragment_quoted_message_not_found">Исходное сообщение не найдено</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Исходное сообщение больше не доступно</string>
   <string name="ConversationFragment_failed_to_open_message">Не удалось открыть сообщение</string>
@@ -572,6 +572,9 @@
     <item quantity="many">%d участников добавлено.</item>
     <item quantity="other">%d участников добавлено.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Только администраторы могут включать или отключать ссылку на группу.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Только администраторы могут включать или отключать опцию одобрения новых участников.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Только администраторы могут сбрасывать ссылку на группу.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">У вас нет прав, чтобы сделать это</string>
   <string name="ManageGroupActivity_not_capable">Кто-то из тех, кого вы добавили, не поддерживает новые группы и должен(-на) обновить Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Не удалось обновить группу</string>
@@ -948,9 +951,15 @@
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s включил(-а) ссылку на группу с отключённым одобрением администратора.</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s включил(-а) ссылку на группу со включённым одобрением администратора.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s отключил(-а) ссылку на группу.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Была включена ссылка на группу с отключённым одобрением администратора.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Была включена ссылка на группу со включённым одобрением администратора.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Ссылка на группу была включена с отключённым одобрением администратора.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Ссылка на группу была включена со включённым одобрением администратора.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Ссылка на группу была отключена.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Вы отключили одобрение администратора для ссылки на группу.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s отключил(-а) одобрение администратора для ссылки на группу.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Одобрение администратора для ссылки на группу было отключено.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Вы включили одобрение администратора для ссылки на группу.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s включил(-а) одобрение администратора для ссылки на группу.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Одобрение администратора для ссылки на группу было включено.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Вы сбросили ссылку на группу.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s сбросил(-а) ссылку на группу.</string>
@@ -987,6 +996,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Он не узнает, что вы видели его сообщение, пока вы не примете.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Вы не получите никаких сообщений, пока не разблокируете его.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и поделиться своими именем и фото с её участниками? Они не узнают, что вы видели их сообщения, пока вы не примете.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и поделиться своими именем и фото с её участниками? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Состоит в %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Состоит в %1$s и %2$s</string>

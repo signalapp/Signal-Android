@@ -296,7 +296,7 @@
   <string name="ConversationFragment_deleting_messages">Se șterg mesajele…</string>
   <string name="ConversationFragment_delete_for_me">Șterge doar pentru mine</string>
   <string name="ConversationFragment_delete_for_everyone">Șterge pentru toată lumea</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Acest mesaj va fi șters definitiv pentru toți cei din conversație. Membrii vor putea vedea că ați șters un mesaj.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Acest mesaj va fi șters pentru toți participanții la conversație dacă aceștia folosesc o versiune recentă Signal. Toți participanții vor putea vedea că ai șters mesajul. </string>
   <string name="ConversationFragment_quoted_message_not_found">Mesajul original nu a fost găsit</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesajul original nu mai este disponibil</string>
   <string name="ConversationFragment_failed_to_open_message">Mesajul nu a putut fi deschis</string>
@@ -549,6 +549,9 @@
     <item quantity="few">%d membrii adăugaţi</item>
     <item quantity="other">%d membrii adăugaţi</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Numai administratorii pot activa sau dezactiva link-ul partajabil către grup.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Numai administratorii pot activa sau dezactiva opțiunea de aprobare a noilor membrii.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Numai administratorii pot reseta link-ul partajabil către grup.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nu aveți drepturile pentru a face acest lucru</string>
   <string name="ManageGroupActivity_not_capable">Cineva pe care l-ai adăugat nu acceptă noile grupuri și trebuie să-și actualizeze Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Actualizarea grupului a eșuat.</string>
@@ -912,6 +915,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Link-ul de grup a fost activat cu aprobarea administratorului dezactivată.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Link-ul de grup a fost activat cu aprobarea administratorului.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Link-ul grupului a fost dezactivat.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Ai dezactivat aprobarea de acces din partea unui administrator pentru adresa grupului. </string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s a dezactivat aprobarea de acces din partea unui administrator pentru link-ul grupului. </string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Aprobarea administratorului pentru link-ul grupului a fost dezactivată. </string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Ai activat aprobarea de acces din partea unui administrator pentru adresa grupului.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s a activat aprobarea de acces din partea unui administrator pentru link-ul grupului. </string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Aprobarea administratorului pentru link-ul grupului a fost activată. </string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Ați resetat link-ul grupului.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s a resetat link-ul de grup.</string>
@@ -948,6 +957,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permiteţi lui %1$s să vă trimită mesaje și să vă împărtășiți numele și fotografia cu ei? Nu vor ști că le-ai văzut mesajul până nu accepți.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permiteţi lui %1$s să vă trimită mesaje și să vă împărtășiți numele și fotografia cu ei? Nu veți primi niciun mesaj până când nu îi deblocați.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vă alăturaţi acestui grup și împărtășiți numele și fotografia cu membrii săi? Nu vor ști că le-ai văzut mesajele până nu accepți.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vă alăturați la grup? Nu vor ști că le-ați văzut mesajele până nu veți accepta.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Deblocați acest grup și împărtășiți numele și fotografia cu membrii săi? Nu veți primi niciun mesaj până când nu îi deblocați.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membru al %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membru al %1$s și %2$s</string>

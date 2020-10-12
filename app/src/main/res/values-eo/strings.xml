@@ -128,9 +128,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Ĉu forviŝi grupfoton?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Ĝisdatigi Signal-on</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Tiu versio de la aplikâjo ne plu estas subtenata. Por plu ricevi kaj sendi mesaĝojn, ĝisdatigu al la lasta versio.</string>
   <string name="ClientDeprecatedActivity_update">Ĝisdatigi</string>
   <string name="ClientDeprecatedActivity_dont_update">Ne ĝisdatigi</string>
   <string name="ClientDeprecatedActivity_warning">Averto</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Via versio de Signal senvalidiĝis. Vi povas vidi viajn antaŭajn mesaĝojn, sed vi ne plu povos sendi aŭ ricevi mesaĝojn, krom se vi ĝisdatigas vian version.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Neniu retumilo trovita.</string>
   <string name="CommunicationActions_no_email_app_found">Neniu retpoŝtilo trovita.</string>
@@ -284,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Forviŝado de mesaĝoj…</string>
   <string name="ConversationFragment_delete_for_me">Forviŝi nur por mi</string>
   <string name="ConversationFragment_delete_for_everyone">Forviŝi por ĉiuj</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Tiu ĉi mesaĝo estos porĉiame forviŝita por ĉiuj en la interparolo. Anoj vidos, ke vi forviŝis mesaĝon.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tiu ĉi mesaĝo estos porĉiame forviŝita por ĉiuj en la interparolo, se ili uzas freŝdatan version de Signal. Ili vidos, ke vi forviŝis mesaĝon.</string>
   <string name="ConversationFragment_quoted_message_not_found">Origina mesaĝo ne troveblas</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Origina mesaĝo ne plu disponeblas</string>
   <string name="ConversationFragment_failed_to_open_message">Malsukceso malfermi la mesaĝon</string>
@@ -372,6 +374,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumigi por mankantaj „Play Services“</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tiu aparato ne subtenas „Play Services“. Tuŝetu por malebligi baterian optimumigon, kiu alie malhelpus al Signal ricevi mesaĝojn dum neaktiva.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Tiu ĉi versio de Signal senvalidiĝis. Ĝisdatigu al la nuna versio por daŭrigi sendi kaj ricevi mesaĝojn.</string>
   <string name="ExpiredBuildReminder_update_now">Ĝisdatigi nun</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Kunhavigi kun</string>
@@ -419,6 +422,7 @@
   <string name="GroupManagement_invite_multiple_users">Vi ne povas aŭtomate aldoni tiujn uzantoj al tiu grupo.\n\nIli estis invititaj kaj ne vidos iujn grupmesaĝojn, antaŭ ol ili akceptas la inviton.</string>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Ĉu forlasi grupon?</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Vi ne plu povos ricevi aŭ sendi mesaĝojn en tiu grupo.</string>
   <string name="LeaveGroupDialog_leave">Forlasi</string>
   <string name="LeaveGroupDialog_choose_new_admin">Elekti novan administranton</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antaŭ ol foriri, vi devas elekti almenaŭ unu novan administraton por tiu ĉi grupo.</string>
@@ -499,6 +503,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Petoj kaj invitoj por aniĝi</string>
   <string name="ManageGroupActivity_add_members">Aldoni anojn</string>
   <string name="ManageGroupActivity_edit_group_info">Modifi grupinformon</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Kiu povas aldoni novajn anojn?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kiu povas modifi tiun grupinformon?</string>
   <string name="ManageGroupActivity_group_link">Grupligilo</string>
   <string name="ManageGroupActivity_block_group">Bloki la grupon</string>
   <string name="ManageGroupActivity_unblock_group">Malbloki la grupon</string>
@@ -520,6 +526,9 @@
     <item quantity="one">%d ano aldonita.</item>
     <item quantity="other">%d anoj aldonitaj.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Nur administrantoj povas ŝalti aŭ malŝalti kunhaveblan grupligilon.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Nur administrantoj povas ŝalti aŭ malŝalti aprobon de novaj anoj.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Nur administrantoj povas restarigi kunhaveblan grupligilon.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vi ne rajtas fari tion</string>
   <string name="ManageGroupActivity_not_capable">Iu, kiun vi aldonis ne subtenas novajn grupojn kaj bezonas ĝisdatigi sian Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Malsukceso ĝisdatigi la grupon</string>
@@ -528,6 +537,9 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Malsukceso ĝisdatigi la grupon pro reteraro. Reprovu poste.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Modifi nomon kaj bildon</string>
   <string name="ManageGroupActivity_legacy_group">Malnovtipaj grupoj</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Tiu estas malnovtipa grupo. Ebloj (kiel grupadministrantoj) nur disponeblas en novtipa grupo.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tio estas nesekura MMS-grupo. Por mesaĝi private kaj uzi eblojn kiel grupnomon, invitu viajn kontaktojn al uzo de Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Inviti nun</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Sciigi al mi pri mencioj</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Ĉu ricevi sciigoj, kiam oni mencias vin en silentigitaj interparoloj?</string>
@@ -620,6 +632,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Anigi grupon pere de ligilo ankoraŭ ne eblas en Signal. Tio alvenos per baldaŭa ĝisdatigo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versio de Signal, kiun vi uzas ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu al lasta versio por anigi tiun grupon per ligilo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ĝisdatigi Signal-on</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Unu aŭ pli el viaj ligitaj aparatoj uzas version de Signal, kiu ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu Signal-on ĉe viaj ligitaj aparatoj por anigi tiun grupon.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupligilo ne validas</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Ĉu aldoni „%1$s“ al la grupo?</string>
@@ -863,6 +876,7 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Oni ŝaltis grupligilon sen bezono de administranto-aprobo.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Oni malŝaltis grupligilon kun administranto-aprobo.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">La grupligilo malŝaltiĝis.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Vi malŝaltis la administranto-aprobon pri la grupligilo.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Vi restarigis la grupligilon.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s restarigis la grupligilon.</string>

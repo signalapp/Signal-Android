@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Slettar meldingar …</string>
   <string name="ConversationFragment_delete_for_me">Slett for meg</string>
   <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meldinga blir permanent sletta for alle i samtalen. Medlem vil sjå at du sletta ei melding.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne meldinga vil slettast for alle i samtalen viss dei har ei ny utgåve av Signal. Dei vil sjå at du har sletta ei melding.</string>
   <string name="ConversationFragment_quoted_message_not_found">Fann ikkje den opphavlege meldinga</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Den opphavlege meldinga er ikkje lenger tilgjengeleg</string>
   <string name="ConversationFragment_failed_to_open_message">Klarte ikkje opna meldinga</string>
@@ -531,6 +531,9 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="one">%d medlem lagt til.</item>
     <item quantity="other">%d medlem lagt til.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Berre administratorar kan skru av eller på den delbare gruppelenka.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Berre administratorar kan skru av eller på innstillinga om å godkjenna nye medlem.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Berre administratorar kan nullstilla den delbare gruppelenka.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har ikkje rettar til å gjera dette</string>
   <string name="ManageGroupActivity_not_capable">Nokon du la til må oppdatera Signal for å få støtte for nye grupper</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Klarte ikkje oppdatera gruppa</string>
@@ -878,6 +881,12 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Gruppelenka er aktivert utan admin-godkjenning.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Gruppelenka er aktivert med admin-godkjenning.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Gruppelenka er deaktivert.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du skrudde av administratorgodkjenning for gruppelenka.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s skrudde av administratorgodkjenning for gruppelenka.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Administratorgodkjenning for gruppelenka er skrudd av.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du skrudde på administratorgodkjenning for gruppelenka.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s skrudde på administratorgodkjenning for gruppelenka.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Administratorgodkjenning for gruppelenka er skrudd på.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du nullstilte gruppelenka.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s nullstilte gruppelenka.</string>
@@ -914,6 +923,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du la %1$s senda deg meldingar og dela namnet og bildet ditt med dei? Dei får ikkje vita at du har sett meldinga deira før du godkjenner.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vil du la %1$s senda deg meldingar og dela namnet og bildet ditt med dei? Du får inga meldingar før du avblokkerer dei.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du bli med i denne gruppa og dela namnet og bildet ditt med medlemmane? Dei får ikkje vita at du har sett meldingane deira før du godkjenner.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli med i gruppa? Dei vil ikkje vita at du har sett meldingane deira før du godtek.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vil du bli avblokkera denne gruppa og dela namnet og bildet ditt med medlemmane? Du får inga meldingar før du avblokkerer dei.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s og %2$s</string>

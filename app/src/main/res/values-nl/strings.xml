@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Berichten aan het wissen …</string>
   <string name="ConversationFragment_delete_for_me">Voor mij wissen</string>
   <string name="ConversationFragment_delete_for_everyone">Wissen voor iedereen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Dit bericht zal worden verwijderd voor alle deelnemers aan het gesprek. Gespreksdeelnemers zullen wel kunnen zien dat jij een bericht hebt verwijderd.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht wordt voor iedere deelnemer aan dit gesprek die een recente versie van Signal gebruikt gewist. Ze zullen wel een bericht zien waarin staat dat je een bericht hebt gewist.</string>
   <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Het oorspronkelijke bericht is niet langer beschikbaar</string>
   <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
@@ -527,6 +527,9 @@
     <item quantity="one">%d persoon toegevoegd.</item>
     <item quantity="other">%d personen toegevoegd.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing in- of uitschakelen.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Uitsluitend beheerders kunnen de vereiste voor beheerderstoestemming voor lid worden van de groep in- of uitschakelen.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing vernieuwen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
   <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
@@ -593,16 +596,16 @@
   <string name="ShareableGroupLinkDialogFragment__share">Doorsturen via andere app</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Verwijzing vernieuwen</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatschapsverzoeken</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Nieuwe groepsleden goedkeuren</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Nieuwe personen toelaten</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Ingeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Uitgeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__default">Systeemstandaard</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Groepsverwijzing vernieuwd</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis dat een beheerder nodig is om nieuwe leden goed te keuren.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis toestemming van een beheerder om lid te worden van de groep voor ieder persoon wie via de verwijzing de groep heeft gevonden.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepsverwijzing wilt vernieuwen? Men zal dan niet langer lid van de groep kunnen worden via de huidige verwijzing.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-code</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Beheerders moeten deze personen nog steeds goedkeuren als deze instelling aan staat.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Als de optie beheerderstoestemming is ingeschakeld moet een beheerder eerst nog toestemming geven om lid te worden.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Deel code</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Wil je de uitnodiging die je naar %1$s hebt gestuurd intrekken?</string>
@@ -619,7 +622,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je naam en foto gedeeld worden met de groepsleden.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek om lid te worden eerst goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je naam en foto gedeeld worden met de groepsleden.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Groep · %1$d lid</item>
     <item quantity="other">Groep · %1$d leden</item>
@@ -874,6 +877,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepsverwijzing is ingeschakeld. beheerderstoestemming  is uitgeschakeld.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepsverwijzing met beheerderstoestemming is ingeschakeld.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">De groepsverwijzing is uitgeschakeld.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming voor de groepsverwijzing uitgeschakeld.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft de vereiste beheerderstoestemming om via de groepsverwijzing lid te worden van de groep uitgeschakeld.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De vereiste beheerderstoestemming om via de groepsverwijzing lid te worden van de groep is uitgeschakeld.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming voor de groepsverwijzing ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de vereiste beheerderstoestemming om via de groepsverwijzing lid te worden van de groep ingeschakeld.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De vereiste beheerderstoestemming om via de groepsverwijzing lid te worden van de groep is ingeschakeld.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Je hebt de groepsverwijzing vernieuwd.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s heeft de groepsverwijzing vernieuwd.</string>
@@ -885,11 +894,11 @@
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Je hebt een verzoek verstuurd om lid te worden van de groep.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s heeft verzocht om via de groepsverwijzing lid te worden.</string>
   <!--GV2 group link approvals-->
-  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s heeft je verzoek om lid te worden van de groep toegestaan.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s heeft het verzoek van %2$s om lid te worden van de groep toegestaan.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Je hebt een verzoek van %1$s om lid te worden van de groep goedgekeurd.</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Je verzoek om lid te worden van de groep is door een beheerder goedgekeurd.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Een verzoek van %1$s om lid te worden van de groep is goedgekeurd.</string>
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s heeft je verzoek om lid te worden van de groep gehonoreerd.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s heeft het verzoek van %2$s om lid te worden van de groep gehonoreerd.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Je hebt een verzoek van %1$s om lid te worden van de groep gohonoreerd.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Je verzoek om lid te worden van de groep is door een beheerder gehonoreerd.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Een verzoek van %1$s om lid te worden van de groep is gohonoreerd.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Je verzoek om lid te worden van de groep is door een beheerder afgewezen.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s heeft een verzoek van %2$s om lid te worden van de groep afgewezen.</string>
@@ -910,6 +919,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Hij of zij zal totdat je de gespreksuitnodiging aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien?</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Deelnemen aan deze groep? Ze zullen niet kunnen zien dat je hun berichten hebt gelezen zolang je de uitnodiging nog niet hebt geaccepteerd.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Lid van %1$s en %2$s</string>
@@ -940,7 +950,7 @@
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Apparaat wordt gekoppeld</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Nieuw apparaat wordt gekoppeld …</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">Apparaat goedgekeurd!</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Succesvol toestemming verleend aan apparaat.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Geen apparaat gevonden.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Netwerkfout.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ongeldige QR-code.</string>

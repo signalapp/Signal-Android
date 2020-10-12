@@ -269,7 +269,6 @@
   <string name="ConversationFragment_deleting_messages">កំពុងលុបសារ…</string>
   <string name="ConversationFragment_delete_for_me">លុបសម្រាប់ខ្ញុំ</string>
   <string name="ConversationFragment_delete_for_everyone">លុបសម្រាប់ទាំងអស់គ្នា</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">សារនេះ នឹងត្រូវលុបចោលរហូតសម្រាប់អ្នកទាំងអស់គ្នាក្នុងការសន្ទនានេះ។ សមាជិក នឹងអាចមើលឃើញ អ្នកបានលុបសារនេះ។</string> -->
   <string name="ConversationFragment_quoted_message_not_found">រកមិនឃើញសារដើម</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">សារដើមលែងមានទៀតហើយ</string>
   <string name="ConversationFragment_failed_to_open_message">បរាជ័យក្នុងការបើកសារ</string>

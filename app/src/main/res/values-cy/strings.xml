@@ -308,7 +308,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_deleting_messages">Dileu negeseuon…</string>
   <string name="ConversationFragment_delete_for_me">Dileu i mi</string>
   <string name="ConversationFragment_delete_for_everyone">Dileu i bawb</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Bydd y neges hon yn cael ei dileu yn barhaol i bawb sydd yn y sgwrs. Bydd aelodau\'n gallu gweld eich bod wedi dileu y neges.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Bydd y neges hon yn cael ei dileu i bawb sydd yn y sgwrs os ydynt yn defnyddio fersiwn diweddar o Signal. Byddant yn gallu gweld eich bod wedi dileu neges.</string>
   <string name="ConversationFragment_quoted_message_not_found">Heb ganfod y neges wreiddiol</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Nid yw\'r neges wreiddiol bellach ar gael</string>
   <string name="ConversationFragment_failed_to_open_message">Methu agor neges</string>
@@ -574,6 +574,9 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Wedi ychwanegu %d grŵp</item>
     <item quantity="other">Wedi ychwanegu %d grŵp</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Dim ond gweinyddwyr sy\'n gallu galluogi neu analluogi dolen grŵp rhanadwy.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Dim ond gweinyddwyr sy\'n gallu galluogi neu analluogi\'r dewis i gymeradwyo aelodau newydd.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Dim ond gweinyddwyr sy\'n gallu ailosod y ddolen grŵp rhanadwy.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nid oes gennych yr hawl i wneud hyn</string>
   <string name="ManageGroupActivity_not_capable">Nid yw rhywun a ychwanegwyd gennych yn cefnogi grwpiau newydd ac mae angen iddo ddiweddaru Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Wedi methu diweddaru\'r grŵp</string>
@@ -953,6 +956,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Mae\'r ddolen grŵp wedi\'i droi ymlaen gyda chymeradwyaeth weinyddol i ffwrdd.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Mae\'r ddolen grŵp wedi\'i droi ymlaen gyda chymeradwyaeth weinyddol ymlaen.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Mae\'r ddolen grŵp wedi\'i ddiffodd.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Diffoddasoch caniatâd gwenyddwr ar gyfer y ddolen grŵp hon.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">Diffoddodd %1$s ganiatâd gweinyddwr ar gyfer y ddolen grŵp hon.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Mae cymeradwyaeth y gweinyddwr i\'r ddolen grŵp wedi\'i ddiffodd.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Galluogasoch caniatâd gwenyddwr ar gyfer y ddolen grŵp hon.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">Galluogodd %1$sganiatâd gweinyddwr ar gyfer y ddolen grŵp hon.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Mae cymeradwyaeth y gweinyddwr i\'r ddolen grŵp wedi\'i alluogi.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Galluogasoch y ddolen grŵp.</string>
   <string name="MessageRecord_s_reset_the_group_link">Ailosododd %1$s y ddolen grŵp.</string>
@@ -989,6 +998,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn gwybod eich bod wedi gweld eich neges nes i ch dderbyn.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau? Byddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes eich bod wedi derbyn.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn? Ni fyddant yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Dadrwystro\'r grŵp a rhannu eich enw a llun gyda\'i aelodau? Fyddwch chi ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Aelod o %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Aeolod o %1$s a %2$s</string>

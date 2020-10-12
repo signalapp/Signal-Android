@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Se suprimeixen missatges…</string>
   <string name="ConversationFragment_delete_for_me">Suprimeix per a mi</string>
   <string name="ConversationFragment_delete_for_everyone">Suprimeix per a tothom</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Aquest missatge se suprimirà permanentment per a tothom que sigui a la conversa. Els membres podran veure que heu suprimit un missatge.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Aquest missatge se suprimirà per a tothom que sigui a la conversa si tenen una versió recent del Signal. Podran veure que heu suprimit un missatge.</string>
   <string name="ConversationFragment_quoted_message_not_found">No s\'ha trobat el missatge original.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El missatge original ja no està disponible.</string>
   <string name="ConversationFragment_failed_to_open_message">Ha fallat obrir el missatge.</string>
@@ -526,6 +526,9 @@
     <item quantity="one">%d membre afegit</item>
     <item quantity="other">%d membres afegits</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Només els administradors poden activar o desactivar l\'enllaç de grup que es pot compartir.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Només els administradors poden activar o desactivar l\'opció per aprovar membres nous.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Només els administradors poden restablir l\'enllaç de grup que es pot compartir.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">No teniu permís per fer això.</string>
   <string name="ManageGroupActivity_not_capable">Algú que heu afegit no admet grups nous i cal que actualitzi el Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ha fallat actualitzar el grup.</string>
@@ -873,6 +876,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">S\'ha activat l\'enllaç de grup amb l\'aprovació de l\'administrador desactivada.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">S\'ha activat l\'enllaç de grup amb l\'aprovació de l\'administrador activada.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">S\'ha desactivat l\'enllaç de grup.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Heu desactivat l\'aprovació de l\'administrador per a l\'enllaç de grup.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ha desactivat l\'aprovació de l\'administrador per a l\'enllaç de grup.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">S\'ha desactivat l\'aprovació de l\'administrador per a l\'enllaç de grup.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Heu activat l\'aprovació de l\'administrador per a l\'enllaç de grup.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ha activat l\'aprovació de l\'administrador per a l\'enllaç de grup.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">S\'ha activat l\'aprovació de l\'administrador per a l\'enllaç de grup.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Heu restablert l\'enllaç de grup.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s ha restablert l\'enllaç de grup.</string>
@@ -909,6 +918,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No sabran que heu vist el missatge fins que no ho accepteu.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No rebreu cap missatge fins que no el desbloqueu.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup i compartir el nom i la fotografia amb els seus membres? No sabran que heu vist els seus missatges fins que no ho accepteu.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup? No sabran que n\'heu vist els missatges fins que no ho accepteu.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Voleu desblocar aquest grup i compartir el nom i la fotografia amb els seus membres? No rebreu cap missatge fins que no el desbloqueu.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s i %2$s</string>

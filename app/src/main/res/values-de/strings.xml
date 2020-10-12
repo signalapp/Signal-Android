@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
   <string name="ConversationFragment_delete_for_me">Für mich löschen</string>
   <string name="ConversationFragment_delete_for_everyone">Für jeden löschen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Diese Nachricht wird für jeden Teilnehmer der Unterhaltung unwiderruflich gelöscht. Gruppenmitglieder werden sehen können, dass du eine Nachricht gelöscht hast.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Diese Nachricht wird für alle Teilnehmer der Unterhaltung gelöscht, die eine aktuelle Version von Signal verwenden. Sie werden sehen können, dass du eine Nachricht gelöscht hast.</string>
   <string name="ConversationFragment_quoted_message_not_found">Originalnachricht nicht gefunden</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalnachricht nicht mehr verfügbar</string>
   <string name="ConversationFragment_failed_to_open_message">Nachricht konnte nicht geöffnet werden</string>
@@ -526,6 +526,9 @@
     <item quantity="one">%d Mitglied hinzugefügt.</item>
     <item quantity="other">%d Mitglieder hinzugefügt.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Nur Admins können den Gruppen-Link aktivieren oder deaktivieren.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Nur Admins können die Option zur Bestätigung neuer Mitglieder aktivieren oder deaktivieren.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Nur Admins können den Gruppen-Link zurücksetzen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Dir fehlen die hierfür erforderlichen Rechte</string>
   <string name="ManageGroupActivity_not_capable">Die Signal-App eines von dir hinzugefügten Mitglieds unterstützt nicht die neueste Version von Gruppenunterhaltungen und muss daher aktualisiert werden</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Gruppe konnte nicht aktualisiert werden</string>
@@ -873,6 +876,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Der Gruppen-Link wurde mit ausgeschalteter Admin-Bestätigung aktiviert.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Der Gruppen-Link wurde mit eingeschalteter Admin-Bestätigung aktiviert.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Der Gruppen-Link wurde deaktiviert.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du hast die für den Gruppen-Link die Admin-Bestätigung ausgeschaltet.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">»%1$s« hat die Admin-Bestätigung für den Gruppen-Link deaktiviert.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Die Admin-Bestätigung für den Gruppen-Link wurde deaktiviert.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du hast für den Gruppen-Link die Admin-Bestätigung eingeschaltet.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">»%1$s« hat die Admin-Bestätigung für den Gruppen-Link aktiviert.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Die Admin-Bestätigung für den Gruppen-Link wurde aktiviert.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du hast den Gruppen-Link zurückgesetzt.</string>
   <string name="MessageRecord_s_reset_the_group_link">»%1$s« hat den Gruppen-Link zurückgesetzt.</string>
@@ -909,6 +918,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Der Benutzer weiß nicht, dass du seine Nachricht gesehen hast, bis du die Anfrage annimmst.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Du wirst keine Nachrichten erhalten, bis du die Unterhaltung freigibst.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Sie wissen nicht, dass du ihre Nachrichten gesehen hast, bis du die Anfrage annimmst.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Dieser Gruppe beitreten? Solange du nicht beitrittst, werden die Gruppenmitglieder nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Möchtest du diese Gruppe freigeben und deinen Namen und dein Foto mit deren Mitgliedern teilen? Du wirst keine Nachrichten erhalten, bis du die Gruppe freigibst.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Mitglied von %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Mitglied von %1$s und %2$s</string>

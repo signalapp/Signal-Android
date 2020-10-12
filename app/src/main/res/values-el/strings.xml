@@ -286,7 +286,6 @@
   <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων…</string>
   <string name="ConversationFragment_delete_for_me">Διαγραφή για εμένα</string>
   <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Αυτό το μήνυμα θα διαγραφτεί μόνιμα για όλους στη συνομιλία. Τα μέλη θα μπορούν να δουν ότι διέγραψες ένα μήνυμα.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Το αρχικό μήνυμα δε βρέθηκε</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Το αρχικό μήνυμα δεν είναι πια διαθέσιμο</string>
   <string name="ConversationFragment_failed_to_open_message">Αποτυχία ανοίγματος μηνύματος</string>
@@ -909,6 +908,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα γνωρίζει ότι έχεις δει τα μηνύματα που έστειλε μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή του/της.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχτείς.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις σε αυτή την ομάδα; Δεν θα γνωρίζουν οτι έχεις δει τα μηνυματά τους μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Θέλεις να καταργηθεί η φραγή αυτής της ομάδας και να μοιραστεί το όνομα και η φωτογραφία σου με τα μέλη της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή της.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Μέλος του %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Μέλος των %1$s και %2$s</string>

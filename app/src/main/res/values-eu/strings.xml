@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Mezuak ezabatzen…</string>
   <string name="ConversationFragment_delete_for_me">Ezabatu niretzat</string>
   <string name="ConversationFragment_delete_for_everyone">Ezabatu guztientzat</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Mezu hau betiko ezabatuko da solasaldian dago edonorentzat. Kideek ikusi ahal izango dute mezu bat ezabatu duzula.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Mezu hau ezabatuko da solasaldian dagoen edonorentzat Signalen azkenengo bertsioetako bat erabiltzen badu. Mezua ezabatu duzula ikusteko gai izango dira.</string>
   <string name="ConversationFragment_quoted_message_not_found">Jatorrizko mezua ez da aurkitu</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Jatorrizko mezua ez dago eskuragarri jada</string>
   <string name="ConversationFragment_failed_to_open_message">Akatsa mezua irekitzean</string>
@@ -526,6 +526,9 @@
     <item quantity="one">%d kidea gehituta</item>
     <item quantity="other">%d kideak gehituta</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Bakarrik administratzaileek aktibatu edo desaktibatu dezakete parteka daitekeen talde esteka.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Bakarrik administratzaileek aktibatu edo desaktibatu dezakete kide berriak onartzeko aukera.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Bakarrik administratzaileek berrezarri dezakete parteka daitekeen talde esteka.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ez duzu hau egiteko baimenik</string>
   <string name="ManageGroupActivity_not_capable">Gehitu duzun partaide batek ez dauka taldeak erabiltzeko gaitasunik eta Signal eguneratu egin behar du</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Taldea eguneratzeak huts egin du</string>
@@ -873,6 +876,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Talde esteka aktibatu da administratzailearen baimena behar ez delarik.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Talde esteka aktibatu da administratzailearen baimena behar delarik.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Talde esteka desaktibatu egin da.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Administratzaile baimenaren beharra desaktibatu duzu talde estekarako.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s erabiltzaileak desaktibatu du talde estekarako administratzailearen onespera behar izatea.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Administratzailearen onespena behar izatea desaktibatu egin da talde estekarako.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Administratzaile baimenaren beharra aktibatu duzu talde estekarako.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s erabiltzaileak desaktibatu du talde estekarako administratzailearen onespera behar izatea.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Administratzailearen onespena behar izatea aktibatu egin da talde estekarako.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Talde esteka berrezarri duzu.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s erabiltzaileak talde esteka berrezarri du.</string>
@@ -909,6 +918,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partekatzeko. Zuk onartu arte ez dute jakingo beraien mezua ikusi duzunik.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partzekatzeko. Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetan sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetan sartu nahi duzu? Onartu arte ez dute jakingo beraien mezuak ikusi dituzunik.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desblokeatu talde hau eta zure izena eta argazkia beraiekin partekatu? Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s taldeko kidea</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s eta %2$s taldeetako kidea</string>
@@ -1496,7 +1506,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Lotu gailua</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Ez dago gailurik lotuta.</string>
+  <string name="device_list_fragment__no_devices_linked">Lotuta dagoen gailurik ez dago.</string>
   <string name="device_list_fragment__link_new_device">Lotu gailu berria</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">jarraitu</string>
@@ -1834,7 +1844,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_storage__clear_message_history">Ezabatu mezuen historia?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Honek %1$s baino zaharrago diren mezu eta media historia osoa betiko ezabatuko du zure gailutik.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Honek betiko garbituko ditu solasaldi guztiak, beraietako bakoizean azkenengo %1$s mezuak utziz bakarrik.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Honek betiko ezabatuko ditu zure mezu historia eta media guztiak zure gailutik.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Honek betiko ezabatuko du bai zure gailuan dagoen mezuen historiala eta baita berauekin lotutako multimedia artxibo guztiak ere.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ziur zaude mezuen historia osoa ezabatu nahi izateaz?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Mezuen historia osoa betiko ezabatuko da. Ekintza hau ezin da desegin.</string>
   <string name="preferences_storage__delete_all_now">Ezabatu dena orain</string>

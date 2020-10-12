@@ -213,6 +213,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Kan ikke ta opp lyd!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikke sende meldinger til denne gruppen fordi du ikke lenger er medlem av den.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
+  <string name="ConversationActivity_cancel_request">Kanseller forespørsel</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For å sende lydmeldinger, gi Signal tilgang til mikrofonen din.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal krever tillatelse fra systemet for å kunne bruke mikrofonen, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Mikrofon».</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal krever tillatelser fra systemet for å kunne ringe 1%s, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
@@ -280,7 +281,6 @@
   <string name="ConversationFragment_deleting_messages">Sletter meldinger…</string>
   <string name="ConversationFragment_delete_for_me">Slett for meg</string>
   <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meldingen vil bli slettet permanent for alle i samtalen. Medlemmer vil se at du slettet en melding.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Opprinnelig melding ikke funnet</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Opprinnelig melding er ikke lenger tilgjengelig</string>
   <string name="ConversationFragment_failed_to_open_message">Kunne ikke åpne meldingen</string>
@@ -775,6 +775,8 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du slo på gruppelenken med administrativ godkjenning avslått.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du slo på gruppelenken med administrativ godkjenning skrudd på.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Du slo av gruppelenken.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du skrudde av administrativ godkjenning for gruppelenken.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du skrudde på administrativ godkjenning for gruppelenken.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du resatte gruppelenken.</string>
   <!--GV2 group link joins-->
@@ -798,6 +800,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? De vil ikke vite at du har sett meldingen deres før du godtar.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? Du vil ikke motta noen meldinger fra dem før du fjerner blokkeringen av dem.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli medlem i denne gruppen samt dele navn og bilde med medlemmene? De vil ikke vite at du har sett meldingene før du godtar.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli med i denne gruppen? De vil ikke se om du har sett meldingene deres før du godtar.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjerne blokkering av denne gruppen samt dele navn og bilde med medlemmene? Du vil ikke motta noen meldinger før du fjerner blokkeringen av den.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s og %2$s</string>
@@ -1594,6 +1597,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle innkommende multimediemeldinger </string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk Enter-tasten for å sende tekstmeldinger</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger av lenker direkte fra nettsteder for meldinger du sender.</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
   <string name="preferences__change_passphrase">Endre passordfrase</string>
@@ -1633,6 +1637,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__slow">Langsomt</string>
   <string name="preferences__help">Hjelp</string>
   <string name="preferences__advanced">Avansert</string>
+  <string name="preferences__donate_to_signal">Doner til Signal</string>
   <string name="preferences__privacy">Personvern</string>
   <string name="preferences__mms_user_agent">MMS-brukeragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelt MMS-oppsett</string>
@@ -1748,6 +1753,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Innstillinger snarvei</string>
   <string name="conversation_list_search_description">Søk</string>
+  <string name="conversation_list__pinned">Festet</string>
   <string name="conversation_list__chats">Samtaler</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfotobilde</string>
@@ -1935,9 +1941,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi vil minne deg på det senere. Å lage en PIN-kode blir obligatorisk om %1$d dager.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi vil minne deg på det senere. Bekreftelse av PIN-koden blir obligatorisk om %1$d dager.</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Fortell Signal hva du synes</string>
   <string name="ResearchMegaphone_learn_more">Lær mer</string>
   <string name="ResearchMegaphone_dismiss">Avbryt</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Signal undersøkelse</string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">Gjennomfør brukerundersøkelsen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nei takk</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersøkelsen gjøres av Surveygizmo på det sikre domenet surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>
@@ -1995,6 +2005,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationActivity_code_support_subject">Signal Registrering - Verifikasjonskode for Android</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
+  <string name="PhoneNumberPrivacy_nobody">Ingen</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Bare kontaktene dine vil se telefonnummeret ditt på Signal.</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås Signal tilgang med Android-skjermlås eller fingeravtrykk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsavbrudd for skjermlås ved inaktivitet.</string>
@@ -2076,6 +2088,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupsLearnMore_legacy_vs_new_groups">Legacy vs nye grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hva er \"legacy\" grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">Legacy grupper er grupper som ikke er kompatible med nye gruppefunksjoner som administrator og mer beskrivende gruppeoppdateringer.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan jeg oppgradere en \"Legacy\" gruppe?</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Del via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopier</string>

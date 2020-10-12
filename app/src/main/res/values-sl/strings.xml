@@ -306,7 +306,7 @@
   <string name="ConversationFragment_deleting_messages">Izbris sporočil …</string>
   <string name="ConversationFragment_delete_for_me">Izbriši zame</string>
   <string name="ConversationFragment_delete_for_everyone">Izbriši za vse</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">To sporočilo bo za vedno izbrisano za vse udeležene v pogovoru. Člani/ce skupine bodo lahko videli/e, da ste izbrisali sporočilo.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">To sporočilo bo izbrisano za vse udeležene v pogovoru, če imajo nameščeno zadnjo različico aplikacije Signal. Člani/ce skupine bodo lahko videli/e, da ste izbrisali sporočilo.</string>
   <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
   <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
@@ -572,6 +572,9 @@
     <item quantity="few">Dodani/e so bili/e %d člani/ce.</item>
     <item quantity="other">Dodanih je bilo %d članov/ic.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Samo skrbniki skupine lahko vklopijo ali izklopijo deljenje povezav.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Samo skrbniki skupine lahko vklopijo ali izklopijo portrjevanje novih članov.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Samo skrbniki skupine lahko ponastavijo povezavo do skupine.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nimate pooblastil za to</string>
   <string name="ManageGroupActivity_not_capable">Nekdo, ki ste ga dodali, uporablja zastarelo različico aplikacije Signal, ki ne podpira novih skupin, in jo mora nadgraditi</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Posodobitev skupine ni uspela</string>
@@ -951,6 +954,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Vklopljena je bila povezava do skupine brez zahtevanega skrbniškega privoljenja.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Vklopljena je bila povezava do skupine z zahtevanim skrbniškim privoljenjem.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Povezava do skupine je bila izklopljena.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Izklopili ste potrjevanje povezave do skupine s strani skrbnika.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">Član/ica %1$s je izklopil/a potrjevanje povezave do skupine s strani skrbnika.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Potrjevanje povezave do skupine s strani skrbnika je bilo izklopljeno.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Vklopili ste potrjevanje povezave do skupine s strani skrbnika.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">Član/ica %1$s je vklopil/a potrjevanje povezave do skupine s strani skrbnika.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Potrjevanje povezave do skupine s strani skrbnika je bilo vklopljeno.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Ponastavili ste povezavo do skupine.</string>
   <string name="MessageRecord_s_reset_the_group_link">Uporabnik/ca %1$s je ponastavil/a povezavo do skupine.</string>
@@ -987,6 +996,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Želite omogočiti uporabniku/ci %1$s,  da vam pošilja sporočila in z njim/njo deliti svoje ime in fotografijo? Dokler ne sprejmete vabila, pošiljatelj/ica ne bo vedel/a, da ste prejeli njegovo/njeno sporočilo.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Želite omogočiti uporabniku/ci %1$s da vam pošilja sporočila in z njim/njo deliti svoje ime in fotografijo? Dokler ga/je ne odblokirate, od njega/nje ne boste prejemali sporočil.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Se želite pridružiti skupini in z njenimi člani/cami deliti svoje ime in fotografijo? Dokler se ne pridružite, ne bodo vedeli/e, da ste videli njihova sporočila.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Se želite pridružiti skupini? Dokler se ne pridružite, skupina ne bo vedela, da ste videli njena sporočila.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite omogočiti članom/icam skupine, da vam pošiljajo sporočila in z njimi deliti svoje ime in fotografijo? Dokler jih ne odblokirate, od njih ne boste prejemali sporočil.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Član/ica skupine %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Član/ica skupin %1$s in %2$s</string>

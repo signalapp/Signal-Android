@@ -276,7 +276,7 @@
   <string name="ConversationFragment_deleting_messages">刪除訊息中…</string>
   <string name="ConversationFragment_delete_for_me">為我刪除</string>
   <string name="ConversationFragment_delete_for_everyone">為大家刪除</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">該訊息將被永久刪除。 成員將能夠看到你刪除了一則訊息。</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">如果對話中的每個人都使用最新版本的Signal，則該訊息將被刪除。 他們將能夠看到你刪除了一則訊息。</string>
   <string name="ConversationFragment_quoted_message_not_found">無法找到原始訊息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原始訊息已不存在</string>
   <string name="ConversationFragment_failed_to_open_message">開啟訊息失敗</string>
@@ -503,6 +503,9 @@
   <plurals name="ManageGroupActivity_added">
     <item quantity="other">%d個成員被新增。</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">只有管理員可以啟用或停用可共享的群組連結。</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">只有管理員可以啟用或停用批准新成員的選項。</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">只有管理員可以重置可共享的群組連結。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">你沒有權限來做此事</string>
   <string name="ManageGroupActivity_not_capable">你新增的人不支援新群組，需要更新Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">更新群組失敗</string>
@@ -834,6 +837,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">群組連結已開啟，而管理員的批准已關閉。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">群組連結已在管理員批准下開啟。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">群組連結已關閉。</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">你關閉了管理員批准的群組連結。</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s 關閉了管理員批准的群組連結。</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">管理員批准的群組連結已關閉。</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">你開啟了管理員批准的群組連結。</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s 開啟了管理員批准的群組連結。</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">管理員批准的群組連結的已開啟。</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">你重置群組連結。</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s 重置了群組連結。</string>
@@ -870,6 +879,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 除非你解鎖他們，否則你將不會收到任何訊息。</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">加入該群組並與其成員分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入這個群組？ 在你接受之前，他們不會知道你已看過他們的訊息。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">取消封鎖此群組並與其成員分享你的名字和照片？ 除非你取消阻止它們，否則你將不會收到任何訊息。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s的成員</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s及%2$s的成員</string>

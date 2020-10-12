@@ -33,7 +33,7 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Déaktiver Signalbeskeder og -opkald fra serveren ved afmelding. Det er nødvendigt igen at registrere telefonnummeret, for at bruge det fremadrettet</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fejl ved oprettelse af forbindelse til serveren</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiveret</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap for at ændre standard SMS applikation</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap for at ændre din standard SMS applikation</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS déaktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap for at gøre Signal til din standard SMS app</string>
   <string name="ApplicationPreferencesActivity_on">aktivér</string>
@@ -287,7 +287,7 @@
   <string name="ConversationFragment_deleting_messages">Sletter beskeder…</string>
   <string name="ConversationFragment_delete_for_me">Slet for mig</string>
   <string name="ConversationFragment_delete_for_everyone">Slet for alle</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Denne meddelelse slettes permanent for alle i samtalen. Medlemmerne kan se at du har slettet en besked</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne meddelelse slettes for alle i samtalen, hvis de har den seneste version af Signal. De kan se at du har slettet en besked</string>
   <string name="ConversationFragment_quoted_message_not_found">Original besked blev ikke fundet</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Original besked er ikke længere tilgængelig</string>
   <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
@@ -527,6 +527,9 @@
     <item quantity="one">%d medlem er tilføjet.</item>
     <item quantity="other">%d medlemmer er tilføjet</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Kun administratorer kan aktivere eller déaktivere det delbare gruppelink</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Kun administratorer kan aktivere eller déaktivere muligheden for at godkende nye medlemmer</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Kun administratorer kan nulstille det delbare gruppelink</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har ikke rettigheder til at gøre dette</string>
   <string name="ManageGroupActivity_not_capable">En person som du tilføjede, understøtter ikke nye grupper og skal opdatere Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Det lykkedes ikke at opdatere gruppen</string>
@@ -874,6 +877,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Gruppelinket blev aktiveret med administratorgodkendelse slået fra</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Gruppelinket blev aktiveret med administratorgodkendelse slået til</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Gruppelinket blev déaktiveret</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du déaktiverede administratorgodkendelsen til gruppelinket</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s déaktiverede administratorgodkendelsen til gruppelinket</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Administratorgodkendelsen til gruppelinket er déaktiveret</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du aktiverede administratorgodkendelsen for gruppelinket</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s aktiverede administratorgodkendelsen til gruppelinket</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Administratorgodkendelsen til gruppelinket er aktiveret</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du nulstiller gruppelinket</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s nulstiller gruppelinket</string>
@@ -910,6 +919,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Lad %1$s sende dig beskeder og dele dit navn og foto med vedkommende? De ved ikke, at du har set deres besked, før du accepterer det</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Lad %1$s sende dig beskeder og dele dit navn og foto med vedkommende? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og foto med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bliv medlem af gruppen? De ved ikke at du har set deres beskeder, før du accepterer</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af gruppen og del dit navn og foto med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem af %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem af %1$s og %2$s</string>

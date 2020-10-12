@@ -285,8 +285,8 @@
   <string name="ConversationFragment_deleting">Eliminar</string>
   <string name="ConversationFragment_deleting_messages">Eliminando mensajes …</string>
   <string name="ConversationFragment_delete_for_me">Eliminar para mi</string>
-  <string name="ConversationFragment_delete_for_everyone">Eliminar del chat</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Este mensaje se eliminará para tod@s sus participantes. En el chat se mostrará que lo has eliminado. </string> -->
+  <string name="ConversationFragment_delete_for_everyone">Eliminar para tod@s</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Este mensaje se eliminará para tod@s en el chat, si usan una versión reciente de Signal. En el chat se mostrará que lo has eliminado. </string>
   <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original </string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Fallo al abrir mensaje</string>
@@ -526,6 +526,9 @@
     <item quantity="one">%d participante añadid@.</item>
     <item quantity="other">%d participantes añadid@s.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Sólo admins pueden activar o desactivar el enlace para compartir el grupo.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Sólo admins pueden activar o desactivar la opción de aprobar nuev@s participantes.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Sólo admins pueden restablecer el enlace para compartir el grupo.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">No dispones de permisos para hacerlo</string>
   <string name="ManageGroupActivity_not_capable">Alguien que has añadido no soporta el nuevo sistema de grupos ya que debe actualizar Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Fallo al actualizar el grupo</string>
@@ -793,7 +796,7 @@
   <string name="MessageRecord_s_added_s">%1$s ha añadido a %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s te ha añadido al grupo.</string>
   <string name="MessageRecord_you_joined_the_group">Te has incorporado al grupo.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s se han unido al grupo.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s se ha unido al grupo.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Has expulsado a «%1$s».</string>
   <string name="MessageRecord_s_removed_s">%1$s ha expulsado a «%2$s».</string>
@@ -873,6 +876,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Se ha activado el enlace para compartir el grupo sin necesitar confirmación de admin.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Se ha activado el enlace para compartir el grupo tras confirmación de admin.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Se ha desactivado el enlace para compartir el grupo.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Has desactivado la confirmación de admin para compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ha desactivado la confirmación de admin para compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Se ha desactivado la función de compartir el chat en grupo vía enlace.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Has activado la confirmación de admin para compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ha activado la confirmación de admin para compartir el grupo vía enlace.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Se ha activado la función de compartir el chat en grupo vía enlace.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Has restablecido el enlace para compartir el grupo.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s ha restablecido el enlace para compartir el grupo.</string>
@@ -909,6 +918,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto de perfil? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto de perfil? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Participa en %1$s y %2$s</string>
@@ -1587,7 +1597,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s se ha unido al grupo.</item>
-    <item quantity="other">%1$s se han unido al grupo.</item>
+    <item quantity="other">%1$s se ha unido al grupo.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Ahora el nombre del grupo es «%1$s».</string>
   <!--profile_group_share_view-->
@@ -1834,7 +1844,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo con más antigüedad de %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Esto recortará permanentemente todos los chat y mantendrá los %1$s mensajes más recientes.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo.</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Seguro que deseas eliminar todo tu historial de mensajes?</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Estás segur@ que deseas eliminar todo tu historial de mensajes?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">El historial completo de mensajes se eliminará permanentemente. Esta acción no se puede deshacer.</string>
   <string name="preferences_storage__delete_all_now">Borrar todos ahora</string>
   <string name="preferences_storage__forever">Siempre</string>

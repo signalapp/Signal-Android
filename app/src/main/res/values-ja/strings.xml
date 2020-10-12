@@ -276,7 +276,6 @@
   <string name="ConversationFragment_deleting_messages">メッセージを削除しています…</string>
   <string name="ConversationFragment_delete_for_me">自分の分だけ削除</string>
   <string name="ConversationFragment_delete_for_everyone">全員分を削除</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">このメッセージを参加者全員の会話から削除します。参加者からは、あなたがメッセージを削除したことがわかります。</string> -->
   <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
   <string name="ConversationFragment_failed_to_open_message">メッセージを開けませんでした</string>
@@ -503,6 +502,9 @@
   <plurals name="ManageGroupActivity_added">
     <item quantity="other">%d人のメンバーを追加しました。</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">管理者のみがグループリンクの有効、無効を切り替えられます。</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">管理者のみが新メンバーの承認制を切り替えできます。</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">管理者のみがグループリンクをリセットできます。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">これを実行する権限がありません</string>
   <string name="ManageGroupActivity_not_capable">あなたが追加した相手は新しいグループに対応していないので、Signalをアップデートする必要があります</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">グループの更新に失敗しました</string>
@@ -834,6 +836,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">管理者承認が不要なグループリンクが有効になりました。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">管理者承認制のグループリンクが有効になりました。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">グループリンクが無効になりました。</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">グループリンクの管理者承認を不要にしました。</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s がグループリンクの管理者承認を不要にしました。</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">グループリンクの管理者承認が不要になりました。</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">グループリンクを管理者承認制にしました。</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s がグループリンクを管理者承認制にしました。</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">グループリンクが管理者承認制になりました。</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">グループリンクをリセットしました。</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s がグループリンクをリセットしました。</string>
@@ -870,6 +878,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s からメッセージを受信し、あなたの名前と画像を共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s にあなたへのメッセージ送信や、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、あなたの名前と画像をメンバーと共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">グループに参加しますか? 招待を受け入れるまで、あなたがメッセージを見たことはグループの他のメンバーにはわかりません。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>

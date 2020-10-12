@@ -281,7 +281,6 @@
   <string name="ConversationFragment_deleting_messages">സന്ദേശങ്ങൾ ഇല്ലാതാക്കുന്നു…</string>
   <string name="ConversationFragment_delete_for_me">എനിക്കായി ഇല്ലാതാക്കുക</string>
   <string name="ConversationFragment_delete_for_everyone">എല്ലാവർക്കുമായി ഇല്ലാതാക്കുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">സംഭാഷണത്തിലെ എല്ലാവർക്കുമായി ഈ സന്ദേശം ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും. നിങ്ങൾ ഒരു സന്ദേശം ഇല്ലാതാക്കിയതായി അംഗങ്ങൾക്ക് കാണാൻ കഴിയും.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">യഥാർത്ഥ സന്ദേശം മേലിൽ ലഭ്യമല്ല</string>
   <string name="ConversationFragment_failed_to_open_message">സന്ദേശം തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>

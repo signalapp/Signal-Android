@@ -276,7 +276,7 @@
   <string name="ConversationFragment_deleting_messages">正在删除消息…</string>
   <string name="ConversationFragment_delete_for_me">只对我删除</string>
   <string name="ConversationFragment_delete_for_everyone">对所有人删除</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">将对此对话的所有人永久删除此消息，群成员将看到您删除了一条消息。</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">将对所有使用较新版本 Signal 的群组用户永久删除此消息，群成员将看到您删除了一条消息。</string>
   <string name="ConversationFragment_quoted_message_not_found">未找到原始消息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原始消息已不存在</string>
   <string name="ConversationFragment_failed_to_open_message">打开消息失败</string>
@@ -503,6 +503,9 @@
   <plurals name="ManageGroupActivity_added">
     <item quantity="other">已添加%d位成员。</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">只有管理员才能启用或禁用群组链接。</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">只有管理员才能启用或禁用新成员审核开关。</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">只有管理员才能重置群组链接。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">您没有此操作的权限</string>
   <string name="ManageGroupActivity_not_capable">您添加的部分用户无法使用新版群组，这些用户需要升级 Signal。</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">无法更新群组</string>
@@ -834,6 +837,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">无需管理员审核的群组链接已启用。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">需要管理员审核的群组链接已启用。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">群组链接已关闭。</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">您取消了群组链接的管理员审核要求。</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s 取消了群组链接的管理员审核要求。</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">群组链接的管理员审核要求已被取消。</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">您激活了群组链接的管理员审核要求。</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s 启用了群组链接的管理员审核要求。</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">群组链接的管理员审核要求已启用。</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">您重置了群组链接。</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s 重置了群组链接。</string>
@@ -870,6 +879,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">是否允许 %1$s 给您发消息并查看您的昵称头像？您同意前对方无法知晓您是否查看了其消息。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">是否允许 %1$s 给您发消息并查看您的昵称头像？取消屏蔽前您将不会收到其发来的消息。</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组并与之分享您的名字和头像？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">是否解除对该群组的屏蔽并与之分享您的名字和头像？解除屏蔽前您将不会收到其发来的消息。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 和 %2$s 的成员</string>

@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">حذف پیام‌‌ها…</string>
   <string name="ConversationFragment_delete_for_me">حذف برای من</string>
   <string name="ConversationFragment_delete_for_everyone">حذف برای همه</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">این پیام به طور دائم برای همه در این مکالمه حذف خواهد شد. اعضا قادر خواهند بود تا ببینند که شما پیامی را حذف کرده‌اید.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">این پیام برای همه در این مکالمه حذف خواهد شد اگر آن‌ها از نسخه‌های اخیر Signal استفاده کنند. آن‌ها قادر خواهند بود ببینند که شما پیامی را پاک کردید.</string>
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
   <string name="ConversationFragment_failed_to_open_message">عدم موفقیت در باز کردن پیام</string>
@@ -526,6 +526,9 @@
     <item quantity="one">%d اضافه شد.</item>
     <item quantity="other">%d عضو اضافه شدند.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">فقط مدیران می‌توانند پیوند قابل اشتراک گروه را فعال یا غیرفعال کنند.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">فقط مدیران می‌توانند امکان تأیید کاربران جدید را فعال یا غیرفعال کنند.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">فقط مدیران می‌توانند پیوند قابل اشتراک گروه را بازنشانی کنند.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">شما اجازهٔ انجام این کار را ندارید</string>
   <string name="ManageGroupActivity_not_capable">کسی که شما به گروه اضافه کردید از گروه‌های جدید پشتیبانی نمی‌کند و باید Signal را به‌روزرسانی کند</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">به‌روزرسانی گروه با اشکال مواجه شد</string>
@@ -864,15 +867,21 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s قابلیت ویرایش اعضای گروه را به «%2$s» انتقال داد.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">قابلیت ویرایش اعضای گروه به «%1$s» انتقال یافت.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">شما پیوند گروه را بدون نیاز به موافقت مدیر فعال کردید.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">شما پیوند گروه را با نیاز به موافقت مدیر فعال کردید.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">شما پیوند گروه را بدون موافقت مدیر فعال کردید.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">شما پیوند گروه را با موافقت مدیر فعال کردید.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">شما پیوند گروه را غیرفعال کردید.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s پیوند گروه را بدون نیاز به موافقت مدیر غیرفعال کرد.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s پیوند گروه را با نیاز به موافقت مدیر فعال کرد.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s پیوند گروه را بدون موافقت مدیر غیرفعال کرد.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s پیوند گروه را با موافقت مدیر فعال کرد.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s پیوند گروه را غیرفعال کرد.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">پیوند گروه بدون نیاز به موافقت مدیر فعال شد.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">پیوند گروه با نیاز به موافقت مدیر فعال شد.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">پیوند گروه بدون موافقت مدیر فعال شد.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">پیوند گروه با موافقت مدیر فعال شد.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">پیوند گروه غیرفعال شده است.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">شما موافقت مدیر را برای پیوند گروه غیرفعال کردید.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s موافقت مدیر را برای پیوند گروه غیرفعال کرد.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">موافقت مدیر برای پیوند گروه غیرفعال شد.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">شما موافقت مدیر را برای پیوند گروه فعال کردید.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s موافقت مدیر را برای پیوند گروه فعال کرد.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">موافقت مدیر برای پیوند گروه روشن شد.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">شما پیوند گروه را بازنشانی کردید.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s پیوند گروه را بازنشانی کرد.</string>
@@ -909,6 +918,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با آن‌ها به اشتراک می‌گذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با آن‌ها به اشتراک می‌گذارید؟ تا زمانی که مسدودیت ‌آن‌ها را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">به این گروه می‌پیوندید؟ تا زمانی که نپذیرید آن‌ها متوجه نخواهند شد که پیام‌شان را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">مسدودیت این گروه را رفع کرده و نام و عکس‌ خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که مسدودیت آن‌ها را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestProfileView_member_of_one_group">عضو %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">عضو %1$s و %2$s</string>

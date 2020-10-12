@@ -287,7 +287,7 @@
   <string name="ConversationFragment_deleting_messages">Üzenetek törlése…</string>
   <string name="ConversationFragment_delete_for_me">Törlés számomra</string>
   <string name="ConversationFragment_delete_for_everyone">Törlés mindenki számára</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Ez az üzenet a beszélgetés minden tagja számára véglegesen törlésre kerül. A tagok számára látható lesz, hogy törölted az üzenetet.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ez az üzenet a beszélgetés minden olyan résztvevőjénél törlésre kerül, aki a Signal friss verzióját használja. Számukra az is látható látható lesz, hogy töröltél egy üzenetet.</string>
   <string name="ConversationFragment_quoted_message_not_found">Az eredeti üzenet nem található</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Az eredeti üzenet már nem érhető el</string>
   <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>
@@ -527,6 +527,9 @@
     <item quantity="one">%d tag hozzáadva</item>
     <item quantity="other">%d tag hozzáadva</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">A megosztható csoporthivatkozást csak admin kapcsolhatja be vagy ki.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Az új tagok jóváhagyását csak admin kapcsolhatja be vagy ki.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">A megosztható csoporthivatkozást csak az adminok módosíthatják.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Ehhez nincs elegendő jogosultságod</string>
   <string name="ManageGroupActivity_not_capable">Egy általad hozzáadott csoporttag nem támogatja az új csoportokat, ezért frissítenie kell a Signalt</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nem sikerült a csoport frissítése</string>
@@ -874,6 +877,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Bekapcsolták a csoporthivatkozást (adminisztrátori jóváhagyás nélkül használható)</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Bekapcsolták a csoporthivatkozást (adminisztrátori jóváhagyással használható)</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">A csoporthivatkozás ki lett kapcsolva.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Kikapcsoltad az adminisztrátori jóváhagyás kérését a megosztható csoporthivatkozáshoz.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s kikapcsolta a csoporthivatkozás generálásához szükséges adminisztrátori jóváhagyást.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">A csoporthivatkozás generálásához szükséges adminisztrátori jóváhagyás ki lett kapcsolva.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Bekapcsoltad az adminisztrátori jóváhagyás kérését a megosztható csoporthivatkozáshoz.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s bekapcsolta a csoporthivatkozás generálásához szükséges adminisztrátori jóváhagyást.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">A csoporthivatkozás generálásához szükséges adminisztrátori jóváhagyás be lett kapcsolva.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Lecserélted a megosztható csoporthivatkozást.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s lecserélte a csoporthivatkozást.</string>
@@ -910,6 +919,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Amíg ebbe bele nem egyezel, addig nem értesül arról sem, hogy elolvastad-e az üzeneteit.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Nem fogsz üzenetet kapni tőle, amíg fel nem oldod a tiltást.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz a csoportba, és megosztod velük neved és profilképedet? Amíg ebbe bele nem egyezel, addig nem értesülnek arról sem, hogy elolvastad-e üzeneteiket.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz ebbe a csoportba? Amíg ezt meg nem erősíted, senki nem értesül róla, hogy láttad az eddigi üzeneteket.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Feloldod a csoport tiltását és megosztod profilodat a tagokkal? Amíg nem oldod fel a tiltást, nem kapsz üzeneteket a csoportból.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s tagja</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s és %2$s tagja</string>

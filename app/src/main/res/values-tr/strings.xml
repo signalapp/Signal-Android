@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">İletiler siliniyor…</string>
   <string name="ConversationFragment_delete_for_me">Benden sil</string>
   <string name="ConversationFragment_delete_for_everyone">Herkesten sil</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">İleti konuşmadaki herkesten kalıcı olarak silinecektir. Üyeler iletiyi sildiğinizi görebileceklerdir.</string> -->
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Bu ileti konuşmadaki güncel bir Signal sürümü kullanan herkesten silinecektir. Üyeler bir ileti sildiğinizi göreceklerdir.</string>
   <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
   <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
@@ -526,6 +526,9 @@
     <item quantity="one">%d üye eklendi.</item>
     <item quantity="other">%d üye eklendi.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Paylaşılabilir grup bağlantısını yalnızca grup yöneticileri etkinleştirebilir veya devre dışı bırakabilir.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Yeni üyeleri onaylama seçeneğini yalnızca yöneticiler etkinleştirebilir veya devre dışı bırakabilir.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Paylaşılabilir grup bağlantısını yalnızca yöneticiler sıfırlayabilir.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Bunu yapma için hakkınız yok</string>
   <string name="ManageGroupActivity_not_capable">Eklediğiniz biri yeni grupları desteklemiyor ve Signal\'i güncellemesi gerekiyor</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Grubu güncelleme başarısız oldu</string>
@@ -538,7 +541,7 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Bu şifresiz MMS Grubudur. Özel olarak sohbet etmek ve grup adları gibi özelliklere erişmek için kişilerinizi Signal\'e davet edin.</string>
   <string name="ManageGroupActivity_invite_now">Şimdi davet et</string>
   <!--GroupMentionSettingDialog-->
-  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Değinileri bana bildir</string>
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Bahsedilmeleri bana bildir</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Sessize alınan konuşmalarda sizden bahsedildiğinde bildirim gönderilsin mi?</string>
   <string name="GroupMentionSettingDialog_default_notify_me">Varsayılan (bana bildir)</string>
   <string name="GroupMentionSettingDialog_default_dont_notify_me">Varsayılan (bana bildirme)</string>
@@ -873,6 +876,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Grup bağlantısı, yönetici onayı kapalı şekilde etkinleştirildi.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Grup bağlantısı, yönetici onayı ile birlikte etkinleştirildi.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Grup bağlantısı devre dışı bırakıldı.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Grup bağlantısı için yönetici onayını devre dışı bıraktınız.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s grup bağlantısı için yönetici onayını devre dışı bıraktı.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Grup bağlantısı için yönetici onayı kapatıldı.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Grup bağlantısı için yönetici onayını etkinleştirdiniz.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s grup bağlantısı için yönetici onayını etkinleştirdi.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Grup bağlantısı için yönetici onayı açıldı.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Grup bağlantısını sıfırladınız.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s grup bağlantısını sıfırladı.</string>
@@ -909,6 +918,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s kişisinin sizinle yazışmasına ve adınızla fotoğrafınızı görmesine izin vermek istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s kişisinin sizinle yazışmasına ve adınızla fotoğrafınızı görmesine izin vermek istiyor musunuz? Engeli kaldırana kadar hiçbir ileti almayacaksınız.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu gruba katılmak ve adınızla fotonuzu üyeleri ile paylaşmak istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu gruba katılınsın mı? Kabul edene kadar mesajlarını gördüğünüzü bilmeyecekler.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Bu grubun engelini kaldırmak ve adınızla fotonuzu üyeleri ile paylaşmak istiyor musunuz? Engeli kaldırana kadar hiçbir ileti almayacaksınız.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grubuna üye</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ve %2$s gruplarına üye</string>
@@ -1431,8 +1441,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="contact_selection_list_fragment__show_contacts">Kişileri Görüntüle</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
-    <item quantity="one">%1$düye</item>
-    <item quantity="other">%1$düye</item>
+    <item quantity="one">%1$d üye</item>
+    <item quantity="other">%1$d üye</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal iletisi</string>

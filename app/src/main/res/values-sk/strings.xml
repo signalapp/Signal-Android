@@ -295,7 +295,6 @@
   <string name="ConversationFragment_deleting_messages">Mažú sa správy…</string>
   <string name="ConversationFragment_delete_for_me">Zmazať pre mňa</string>
   <string name="ConversationFragment_delete_for_everyone">Zmazať pre všetkých</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_this_message_will_be_permanently_deleted_for_everyone">Táto správa sa natrvalo vymaže pre všetkých v tejto konverzácii. Členovia budú vidieť, že ste vymazali správu.</string> -->
   <string name="ConversationFragment_quoted_message_not_found">Pôvodná správa sa nenašla</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pôvodná správa už nie je k dispozícii</string>
   <string name="ConversationFragment_failed_to_open_message">Nepodarilo sa otvoriť správu</string>
@@ -759,6 +758,8 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Zapli ste odkaz do skupiny so schválením administrátorom neaktívnym.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Zapli ste odkaz do skupiny so schválením administrátorom aktívnym.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Odkaz do skupiny ste vypli.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Vypli ste schválenie administrátorom pre odkaz do skupiny.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Zapli ste schválenie administrátorom pre odkaz do skupiny.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Zresetovali ste odkaz do skupiny.</string>
   <!--GV2 group link joins-->
@@ -779,6 +780,7 @@
   <string name="MessageRequestBottomView_delete">Vymazať</string>
   <string name="MessageRequestBottomView_block">Blokovať</string>
   <string name="MessageRequestBottomView_unblock">Odblokovať</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny? Kým pozvanie neprijmete, jej členovia sa nedozvú, že ste ich správy videli.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovať túto skupinu a zdieľať vaše meno a foto s jej členmi? Kým ju neodblokujete, nepríjmete z nej žiadne správy.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Člen skupiny %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Člen skupiny %1$s a %2$s</string>
