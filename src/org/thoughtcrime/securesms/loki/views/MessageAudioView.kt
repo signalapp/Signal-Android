@@ -117,7 +117,8 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         if (attrs != null) {
             val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.MessageAudioView, 0, 0)
             setTint(typedArray.getColor(R.styleable.MessageAudioView_foregroundTintColor, Color.WHITE),
-                    typedArray.getColor(R.styleable.MessageAudioView_backgroundTintColor, Color.WHITE))
+                    typedArray.getColor(R.styleable.MessageAudioView_backgroundTintColor, Color.WHITE),
+                    typedArray.getColor(R.styleable.MessageAudioView_waveformFillColor, Color.WHITE))
             container.setBackgroundColor(typedArray.getColor(R.styleable.MessageAudioView_widgetBackground, Color.TRANSPARENT))
             typedArray.recycle()
         }
@@ -181,7 +182,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         downloadListener = listener
     }
 
-    fun setTint(@ColorInt foregroundTint: Int, @ColorInt backgroundTint: Int) {
+    fun setTint(@ColorInt foregroundTint: Int, @ColorInt backgroundTint: Int, @ColorInt waveformFill: Int) {
         playButton.backgroundTintList = ColorStateList.valueOf(foregroundTint)
         playButton.imageTintList = ColorStateList.valueOf(backgroundTint)
         pauseButton.backgroundTintList = ColorStateList.valueOf(foregroundTint)
@@ -192,6 +193,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         totalDuration.setTextColor(foregroundTint)
 
         // Seek bar's progress color is set from the XML template. Whereas the background is computed.
+        seekBar.barProgressColor = waveformFill
         seekBar.barBackgroundColor = ColorUtils.blendARGB(foregroundTint, backgroundTint, 0.75f)
     }
 

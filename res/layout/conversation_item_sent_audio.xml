@@ -7,4 +7,5 @@
         android:layout_height="wrap_content"
         app:foregroundTintColor="?android:colorControlNormal"
         app:backgroundTintColor="?message_sent_background_color"
+        app:waveformFillColor="?conversation_item_audio_seek_bar_color"
         android:visibility="gone"/>

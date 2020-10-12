@@ -78,7 +78,6 @@
                      android:layout_gravity="center_vertical"
                      android:layout_marginStart="4dp"
                      android:layout_marginEnd="4dp"
-                     app:bar_progress_color="?conversation_item_audio_seek_bar_color"
                      app:bar_gravity="center"
                      app:bar_width="4dp"
                      app:bar_corner_radius="2dp"
