@@ -1,0 +1,18 @@
+name: Reproducible Build Check
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build image
+      run: cd reproducible-builds && docker build -t signal-android . && cd ..
+
+    - name: Test build
+      run: docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assembleRelease
