@@ -6,6 +6,7 @@ on:
     branches:
     - 'master'
     - '4.**'
+    - '5.**'
 
 jobs:
   build:
