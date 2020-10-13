@@ -18,12 +18,18 @@ public final class RemoteDeleteUtil {
   private RemoteDeleteUtil() {}
 
   public static boolean isValidReceive(@NonNull MessageRecord targetMessage, @NonNull Recipient deleteSender, long deleteServerTimestamp) {
-    boolean isValidSender = (deleteSender.isLocalNumber() && targetMessage.isOutgoing()) ||
-                            (!deleteSender.isLocalNumber() && !targetMessage.isOutgoing());
+    boolean isValidIncomingOutgoing = (deleteSender.isLocalNumber() && targetMessage.isOutgoing()) ||
+                                      (!deleteSender.isLocalNumber() && !targetMessage.isOutgoing());
 
-    return isValidSender &&
-           targetMessage.getIndividualRecipient().equals(deleteSender) &&
-           (deleteServerTimestamp - targetMessage.getServerTimestamp()) < RECEIVE_THRESHOLD;
+    boolean isValidSender = targetMessage.getIndividualRecipient().equals(deleteSender) ||
+                            deleteSender.isLocalNumber() && targetMessage.isOutgoing();
+
+    long messageTimestamp = deleteSender.isLocalNumber() && targetMessage.isOutgoing() ? targetMessage.getDateSent()
+                                                                                       : targetMessage.getServerTimestamp();
+
+    return isValidIncomingOutgoing &&
+           isValidSender           &&
+           (deleteServerTimestamp - messageTimestamp) < RECEIVE_THRESHOLD;
   }
 
   public static boolean isValidSend(@NonNull Collection<MessageRecord> targetMessages, long currentTime) {
