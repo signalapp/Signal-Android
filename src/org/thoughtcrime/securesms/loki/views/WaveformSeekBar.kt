@@ -13,6 +13,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.animation.DecelerateInterpolator
+import androidx.core.math.MathUtils
 import network.loki.messenger.R
 import java.lang.Math.abs
 import kotlin.math.max
@@ -227,11 +228,11 @@ class WaveformSeekBar : View {
     }
 
     private fun updateProgress(progress: Float, notify: Boolean) {
-        _progress = progress
+        _progress = MathUtils.clamp(progress, 0f, 1f)
         invalidate()
 
         if (notify) {
-            progressChangeListener?.onProgressChanged(this, progress, true)
+            progressChangeListener?.onProgressChanged(this, _progress, true)
         }
     }
 
