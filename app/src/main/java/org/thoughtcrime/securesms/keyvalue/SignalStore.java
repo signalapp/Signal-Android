@@ -29,7 +29,7 @@ public final class SignalStore {
   private final PhoneNumberPrivacyValues phoneNumberPrivacyValues;
 
   private SignalStore() {
-    this.store                    = ApplicationDependencies.getKeyValueStore();
+    this.store                    = new KeyValueStore(ApplicationDependencies.getApplication());
     this.kbsValues                = new KbsValues(store);
     this.registrationValues       = new RegistrationValues(store);
     this.pinValues                = new PinValues(store);

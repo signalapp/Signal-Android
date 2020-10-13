@@ -153,12 +153,6 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     return new FrameRateTracker(context);
   }
 
-  @Override
-  public @NonNull KeyValueStore provideKeyValueStore() {
-    return new KeyValueStore(context);
-  }
-
-  @Override
   public @NonNull MegaphoneRepository provideMegaphoneRepository() {
     return new MegaphoneRepository(context);
   }

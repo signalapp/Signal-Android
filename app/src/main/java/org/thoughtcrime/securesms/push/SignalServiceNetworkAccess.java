@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.CustomDns;
 import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor;
 import org.thoughtcrime.securesms.net.DeprecatedClientPreventionInterceptor;
@@ -238,6 +239,10 @@ public class SignalServiceNetworkAccess {
 
   public SignalServiceConfiguration getConfiguration(@Nullable String localNumber) {
     if (localNumber == null) return this.uncensoredConfiguration;
+
+    if (SignalStore.internalValues().forcedCensorship()) {
+      return this.censorshipConfiguration.get(COUNTRY_CODE_QATAR);
+    }
 
     for (String censoredRegion : this.censoredCountries) {
       if (localNumber.startsWith(censoredRegion)) {

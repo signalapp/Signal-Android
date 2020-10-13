@@ -216,16 +216,6 @@ public class ApplicationDependencies {
     return frameRateTracker;
   }
 
-  public static synchronized @NonNull KeyValueStore getKeyValueStore() {
-    assertInitialization();
-
-    if (keyValueStore == null) {
-      keyValueStore = provider.provideKeyValueStore();
-    }
-
-    return keyValueStore;
-  }
-
   public static synchronized @NonNull MegaphoneRepository getMegaphoneRepository() {
     assertInitialization();
 
@@ -283,7 +273,6 @@ public class ApplicationDependencies {
     @NonNull LiveRecipientCache provideRecipientCache();
     @NonNull JobManager provideJobManager();
     @NonNull FrameRateTracker provideFrameRateTracker();
-    @NonNull KeyValueStore provideKeyValueStore();
     @NonNull MegaphoneRepository provideMegaphoneRepository();
     @NonNull EarlyMessageCache provideEarlyMessageCache();
     @NonNull MessageNotifier provideMessageNotifier();

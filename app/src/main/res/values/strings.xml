@@ -2231,6 +2231,9 @@
     <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
     <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
     <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
+    <string name="preferences__internal_network" translatable="false">Network</string>
+    <string name="preferences__internal_force_censorship" translatable="false">Force censorship</string>
+    <string name="preferences__internal_force_censorship_description" translatable="false">Force the app to behave as if it is in a country where Signal is censored.</string>
 
     <!-- **************************************** -->
     <!-- menus -->

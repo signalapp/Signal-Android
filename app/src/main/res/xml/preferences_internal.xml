@@ -75,4 +75,15 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/preferences__internal_network">
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="internal.force_censorship"
+            android:summary="@string/preferences__internal_force_censorship_description"
+            android:title="@string/preferences__internal_force_censorship" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
