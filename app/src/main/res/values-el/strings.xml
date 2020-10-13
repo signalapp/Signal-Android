@@ -286,6 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων…</string>
   <string name="ConversationFragment_delete_for_me">Διαγραφή για εμένα</string>
   <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Αυτό το μήνυμα θα διαγραφεί για όλους/ες σε αυτή  τη συνομιλία, αν έχουν μια πρόσφατη έκδοση του Signal. Θα μπορούν να δούν ότι διέγραψες ένα μήνυμα.</string>
   <string name="ConversationFragment_quoted_message_not_found">Το αρχικό μήνυμα δε βρέθηκε</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Το αρχικό μήνυμα δεν είναι πια διαθέσιμο</string>
   <string name="ConversationFragment_failed_to_open_message">Αποτυχία ανοίγματος μηνύματος</string>
@@ -432,7 +433,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Μπορείς πλέον να λάβεις προεπισκόπεις συνδέσμων απ\' ευθείας από οποιαδήποτε σελίδα για τα μηνύματα που στέλνεις.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Δεν υπάρχει διαθέσιμη προεπισκόπιση συνδέσμου</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">Ο σύνδεσμος στην ομάδα δεν είναι ενεργός</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Ο σύνδεσμος της ομάδας δεν είναι ενεργός</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -525,6 +526,9 @@
     <item quantity="one">Προστέθηκε %d μέλος.</item>
     <item quantity="other">Προστέθηκαν %d μέλη.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να ενεργοποιούν και να απενεργοποιούν τον σύνδεσμο της ομάδας.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Μόνο οι διαχειριστές μπορούν να ενεργοποιούν και να απενεργοποιούν την επιλογή της έγκρισης νέων μελών.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να επαναφέρουν σον σύνδεσμο της ομάδας.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
   <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
@@ -614,7 +618,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Αίτηση εισόδου</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Αδυναμία εγγραφής στην ομάδα. Προσπαθήστε ξανά αργότερα</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Εμφανίστηκε σφάλμα δικτύου.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ο σύνδεσμος στην ομάδα δεν είναι ενεργός</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ο σύνδεσμος της ομάδας δεν είναι ενεργός</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Δεν μπορέσαμε να λάβουμε τις πληροφορίες της ομάδας, προσπάθησε ξανά αργότερα</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Θέλεις να μπεις σε αυτή την ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Κάποιος διαχειριστής/τρια αυτής της ομάδας θα πρέπει να εγκρίνει το αίτημά σου για να μπορέσεις να μπεις στην ομάδα. Όταν ζητήσεις να μπεις, το όνομα και η φωτογραφία σου θα μοιραστούν με τα μέλη της.</string>
@@ -624,7 +628,7 @@
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Οι σύνδεσμοι ομάδων έρχονται σύντομα</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Αναβάθμσε το Signal για να χρησιμοποιήσεις συνδέσμους σε ομάδες.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Αναβάθμσε το Signal για να χρησιμοποιήσεις συνδέσμους ομαδών.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Η εγγραφή σε ομάδα μέσω συνδέσμου δεν υποστηρίζεται ακόμα από το Signal. Η δυνατότητα αυτή θα είναι διαθέσιμη σε επόμενη ενημέρωση.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Η έκδοση Signal που χρησιμοποιείς δεν υποστηρίζει συνδέσμους ομαδών. Αναβάθμισε στη τελευταία έκδοση για να μπεις στην ομάδα μέσω του συνδέσμου.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Αναβάθμιση του Signal</string>
@@ -872,6 +876,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Ενεργοποιήθηκε ο σύνδεσμος της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Ενεργοποιήθηκε ο σύνδεσμος της ομάδας με ενεργοποιημένη την έγκριση διαχειριστή.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Ο σύνδεσμος της ομάδας απενεργοποιήθηκε.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Απενεργοποίησες την έγκριση από διαχειριστή για το σύνδεσμο της ομάδας.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">Ο/Η %1$s απενεργοποίησε την έγκριση από διαχειριστή για το σύνδεσμο της ομάδας.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Η έγκριση από διαχειριστή για το σύνδεσμο της ομάδας απενεργοποιήθηκε.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Ενεργοποίησες την έγκριση από διαχειριστή για το σύνδεσμο της ομάδας.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">Ο/Η %1$s ενεργοποίησε την έγκριση από διαχειριστή για το σύνδεσμο της ομάδας.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Η έγκριση από διαχειριστή για το σύνδεσμο της ομάδας ενεργοποιήθηκε.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Επανέφερες το σύνδεσμο της ομάδας.</string>
   <string name="MessageRecord_s_reset_the_group_link">Ο/Η %1$s επανέφερε το σύνδεσμο της ομάδας.</string>

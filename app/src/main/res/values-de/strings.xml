@@ -876,12 +876,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Der Gruppen-Link wurde mit ausgeschalteter Admin-Bestätigung aktiviert.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Der Gruppen-Link wurde mit eingeschalteter Admin-Bestätigung aktiviert.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Der Gruppen-Link wurde deaktiviert.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du hast die für den Gruppen-Link die Admin-Bestätigung ausgeschaltet.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">»%1$s« hat die Admin-Bestätigung für den Gruppen-Link deaktiviert.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Die Admin-Bestätigung für den Gruppen-Link wurde deaktiviert.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du hast für den Gruppen-Link die Admin-Bestätigung eingeschaltet.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">»%1$s« hat die Admin-Bestätigung für den Gruppen-Link aktiviert.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Die Admin-Bestätigung für den Gruppen-Link wurde aktiviert.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du hast die Admin-Bestätigung für den Gruppen-Link ausgeschaltet.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">»%1$s« hat die Admin-Bestätigung für den Gruppen-Link ausgeschaltet.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Die Admin-Bestätigung für den Gruppen-Link wurde ausgeschaltet.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du hast die Admin-Bestätigung für den Gruppen-Link eingeschaltet.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">»%1$s« hat die Admin-Bestätigung für den Gruppen-Link eingeschaltet.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Die Admin-Bestätigung für den Gruppen-Link wurde eingeschaltet.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du hast den Gruppen-Link zurückgesetzt.</string>
   <string name="MessageRecord_s_reset_the_group_link">»%1$s« hat den Gruppen-Link zurückgesetzt.</string>

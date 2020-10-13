@@ -234,6 +234,7 @@
   <string name="ConversationActivity_delete_and_leave">삭제 후 나가기</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s에게 통화하려면, 시그널에서 마이크 권한이 필요합니다.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s에게 통화하려면, 시그널에서 마이크와 카메라 권한이 필요합니다.</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">더 많은 옵션은 \'그룹 설정\'에서 가능합니다.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">읽지 않은 메시지 %d개</item>
@@ -347,6 +348,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">누락된 Play Services에 최적화</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">기기에서는 Play Services를 지원하지 않습니다. 탭하여 시스템 배터리 최적화 기능을 사용하지 않을 수 있습니다. 해당 기능은 Signal이 비활성화된 동안에 메시지를 검색하지 못하게 합니다.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_update_now">지금 업데이트하세요.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유자</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">이미지와 동영상만 여러 개 첨부할 수 있습니다.</string>
@@ -364,6 +366,7 @@
   <string name="AddToGroupActivity_add_member">멤버를 추가하시겠습니까?</string>
   <string name="AddToGroupActivity_add_s_to_s">%1$s을 %2$s에 추가하시겠습니까?</string>
   <string name="AddToGroupActivity_add_to_group">그룹에 추가하기</string>
+  <string name="AddToGroupActivity_add_to_groups">그룹에 추가하기</string>
   <string name="AddToGroupActivity_add">추가</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">새 관리자 선택</string>
@@ -376,6 +379,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">나</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">누구나</string>
   <string name="GroupManagement_access_level_all_members">모든 멤버</string>
   <string name="GroupManagement_access_level_only_admins">관리자만</string>
   <!--GV2 invites sent-->
@@ -750,6 +754,7 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">내 메시지들은 만료되지 않습니다.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">대화에서 주고 받은 메시지들은 보고나서 %s 후에 사라집니다.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">지금 업데이트하세요.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
@@ -820,6 +825,8 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">시그널 음성 통화…</string>
   <string name="WebRtcCallView__signal_video_call">시그널 영상 통화…</string>
+  <string name="WebRtcCallView__start_call">전화 시작하기</string>
+  <string name="WebRtcCallView__your_video_is_off">영상이 꺼졌습니다.</string>
   <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">국가 선택</string>

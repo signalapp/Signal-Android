@@ -296,6 +296,7 @@
   <string name="ConversationFragment_deleting_messages">Brisanje poruka…</string>
   <string name="ConversationFragment_delete_for_me">Izbriši za mene</string>
   <string name="ConversationFragment_delete_for_everyone">Izbriši za sve</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ova poruka će biti trajno izbrisana za sve osobe u razgovoru ako su na najnovijoj verziji Signala. Moći će vidjeti da ste izbrisali poruku.</string>
   <string name="ConversationFragment_quoted_message_not_found">Originalna poruka nije pronađena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalna poruka više nije dostupna</string>
   <string name="ConversationFragment_failed_to_open_message">Otvaranje poruke nije uspjelo</string>
@@ -548,6 +549,9 @@
     <item quantity="few">%d člana dodana.</item>
     <item quantity="other">%d članova dodano.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Samo administratori mogu omogućiti ili onemogućiti grupnu poveznicu za dijeljenje.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Samo administratori mogu omogućiti ili onemogućiti opciju odobravanja novih članova.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Samo administratori mogu poništiti grupnu poveznicu koja se može dijeliti.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemate prava na ovo</string>
   <string name="ManageGroupActivity_not_capable">Netko koga ste dodali ne podržava nove grupe i mora ažurirati Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ažuriranje grupe nije uspjelo</string>
@@ -912,7 +916,11 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Uključena je grupna poveznica s uključenim administratorskim odobrenjem.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Grupna poveznica je isključena.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Isključili ste odobrenje administratora za grupnu poveznicu.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s je isključio/la odobrenje administratora za grupnu poveznicu.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Odobrenje administratora za grupne poveznice je isključeno.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Uključili ste odobrenje administratora za grupnu poveznicu.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s je uključio/la odobrenje administratora za grupnu poveznicu.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Odobrenje administratora za grupne poveznice je uključeno.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Poništili ste grupnu poveznicu.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s je poništio/la grupnu poveznicu.</string>

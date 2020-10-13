@@ -1927,7 +1927,7 @@
   <string name="conversation_list_settings_shortcut">Scorciatoia impostazioni</string>
   <string name="conversation_list_search_description">Cerca</string>
   <string name="conversation_list__pinned">Fissate</string>
-  <string name="conversation_list__chats">Conversazioni</string>
+  <string name="conversation_list__chats">Chat</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Puoi fissare solo fino a %1$d chat</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contatto</string>

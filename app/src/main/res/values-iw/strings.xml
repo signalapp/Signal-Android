@@ -306,6 +306,7 @@
   <string name="ConversationFragment_deleting_messages">מוחק הודעות…</string>
   <string name="ConversationFragment_delete_for_me">מחק עבורי</string>
   <string name="ConversationFragment_delete_for_everyone">מחק עבור כולם</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">הודעה זו תימחק עבור כל אחד שנמצא בשיחה אם הוא משתמש בגרסה מאוחרת של Signal. חברי קבוצה יוכלו לראות שמחקת הודעה.</string>
   <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">ההודעה המקורית אינה זמינה יותר</string>
   <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>
@@ -571,6 +572,9 @@
     <item quantity="many">%d חברי קבוצה התווספו.</item>
     <item quantity="other">%d חברי קבוצה התווספו.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">רק מנהלנים יכולים לאפשר או להשבית את קישור הקבוצה בר־השיתוף.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">רק מנהלנים יכולים לאפשר או להשבית את האפשרות לאשר חברי קבוצה חדשים.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">רק מנהלנים יכולים לאפס את קישור הקבוצה בר־השיתוף.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">אין לך את הזכויות לעשות זאת</string>
   <string name="ManageGroupActivity_not_capable">למישהו שהוספת אין תמיכה בקבוצות חדשות והוא צריך לעדכן את Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">כישלון בעדכון הקבוצה</string>
@@ -951,7 +955,11 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">קישור הקבוצה הופעל עם אישור מנהלן מופעל.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">קישור הקבוצה כובה.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">כיבית אישור מנהלן עבור קישור הקבוצה.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s כיבה/כיבתה אישור מנהלן עבור קישור הקבוצה.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">אישור מנהלן עבור קישור הקבוצה כובה.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">הפעלת אישור מנהלן עבור קישור הקבוצה.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s הפעיל/ה אישור מנהלן עבור קישור הקבוצה.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">אישור מנהלן עבור קישור הקבוצה הופעל.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">איפסת את קישור הקבוצה.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s איפס/ה את קישור הקבוצה.</string>
