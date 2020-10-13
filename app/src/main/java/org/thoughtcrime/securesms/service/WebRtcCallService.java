@@ -506,7 +506,10 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
   private void handleCancelPreJoinCall() {
     cleanupVideo();
-    preJoinPeer = null;
+    enableVideoOnCreate = false;
+    preJoinPeer         = null;
+
+    EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
   }
 
   private void handleOutgoingCall(Intent intent) {

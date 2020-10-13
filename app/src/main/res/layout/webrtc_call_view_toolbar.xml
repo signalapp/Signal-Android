@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:contentInsetStart="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
@@ -19,8 +20,9 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/call_screen_recipient_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
             android:textColor="@color/core_white"
             app:layout_constraintBottom_toTopOf="@id/action_bar_guideline"
@@ -31,8 +33,9 @@
 
         <TextView
             android:id="@+id/call_screen_status"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.Signal.Subtitle"
             android:textColor="@color/core_white"
             app:layout_constraintBottom_toBottomOf="parent"
