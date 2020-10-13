@@ -6,11 +6,13 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
+import org.whispersystems.signalservice.api.storage.SignalAccountRecord.PinnedConversation;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -66,9 +68,10 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
     boolean                              sealedSenderIndicators = remote.isSealedSenderIndicatorsEnabled();
     boolean                              linkPreviews           = remote.isLinkPreviewsEnabled();
     boolean                              unlisted               = remote.isPhoneNumberUnlisted();
+    List<PinnedConversation>             pinnedConversations    = remote.getPinnedConversations();
     AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode = remote.getPhoneNumberSharingMode();
-    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted);
-    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted );
+    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations);
+    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations);
 
     if (matchesRemote) {
       return remote;
@@ -90,6 +93,7 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
                                     .setUnlistedPhoneNumber(unlisted)
                                     .setPhoneNumberSharingMode(phoneNumberSharingMode)
                                     .setUnlistedPhoneNumber(unlisted)
+                                    .setPinnedConversations(pinnedConversations)
                                     .build();
     }
   }
@@ -107,7 +111,8 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
                                        boolean sealedSenderIndicators,
                                        boolean linkPreviewsEnabled,
                                        AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode,
-                                       boolean unlistedPhoneNumber)
+                                       boolean unlistedPhoneNumber,
+                                       @NonNull List<PinnedConversation> pinnedConversations)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)      &&
            Objects.equals(contact.getGivenName().or(""), givenName)            &&
@@ -121,6 +126,7 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
            contact.isSealedSenderIndicatorsEnabled() == sealedSenderIndicators &&
            contact.isLinkPreviewsEnabled() == linkPreviewsEnabled              &&
            contact.getPhoneNumberSharingMode() == phoneNumberSharingMode       &&
-           contact.isPhoneNumberUnlisted() == unlistedPhoneNumber;
+           contact.isPhoneNumberUnlisted() == unlistedPhoneNumber              &&
+           Objects.equals(contact.getPinnedConversations(), pinnedConversations);
   }
 }

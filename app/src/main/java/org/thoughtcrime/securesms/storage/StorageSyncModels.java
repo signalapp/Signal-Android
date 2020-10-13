@@ -2,18 +2,26 @@ package org.thoughtcrime.securesms.storage;
 
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Stream;
+
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
+import java.util.List;
 import java.util.Set;
 
 public final class StorageSyncModels {
@@ -34,6 +42,42 @@ public final class StorageSyncModels {
       case SIGNAL_V1: return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
       case SIGNAL_V2: return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId));
       default:        throw new AssertionError("Unsupported type!");
+    }
+  }
+
+  public static AccountRecord.PhoneNumberSharingMode localToRemotePhoneNumberSharingMode(PhoneNumberPrivacyValues.PhoneNumberSharingMode phoneNumberPhoneNumberSharingMode) {
+    switch (phoneNumberPhoneNumberSharingMode) {
+      case EVERYONE: return AccountRecord.PhoneNumberSharingMode.EVERYBODY;
+      case CONTACTS: return AccountRecord.PhoneNumberSharingMode.CONTACTS_ONLY;
+      case NOBODY  : return AccountRecord.PhoneNumberSharingMode.NOBODY;
+      default      : throw new AssertionError();
+    }
+  }
+
+  public static PhoneNumberPrivacyValues.PhoneNumberSharingMode remoteToLocalPhoneNumberSharingMode(AccountRecord.PhoneNumberSharingMode phoneNumberPhoneNumberSharingMode) {
+    switch (phoneNumberPhoneNumberSharingMode) {
+      case EVERYBODY    : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.EVERYONE;
+      case CONTACTS_ONLY: return PhoneNumberPrivacyValues.PhoneNumberSharingMode.CONTACTS;
+      case NOBODY       : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.NOBODY;
+      default           : return PhoneNumberPrivacyValues.PhoneNumberSharingMode.CONTACTS;
+    }
+  }
+
+  public static List<SignalAccountRecord.PinnedConversation> localToRemotePinnedConversations(@NonNull List<RecipientSettings> settings) {
+    return Stream.of(settings)
+                 .filter(s -> s.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V1 ||
+                              s.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 ||
+                              s.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED)
+                 .map(StorageSyncModels::localToRemotePinnedConversation)
+                 .toList();
+  }
+
+  private static @NonNull SignalAccountRecord.PinnedConversation localToRemotePinnedConversation(@NonNull RecipientSettings settings) {
+    switch (settings.getGroupType()) {
+      case NONE     : return SignalAccountRecord.PinnedConversation.forContact(new SignalServiceAddress(settings.getUuid(), settings.getE164()));
+      case SIGNAL_V1: return SignalAccountRecord.PinnedConversation.forGroupV1(settings.getGroupId().requireV1().getDecodedId());
+      case SIGNAL_V2: return SignalAccountRecord.PinnedConversation.forGroupV2(settings.getSyncExtras().getGroupMasterKey().serialize());
+      default       : throw new AssertionError("Unexpected group type!");
     }
   }
 

@@ -107,17 +107,31 @@ message AccountRecord {
     NOBODY        = 2;
   }
 
-  bytes                  profileKey             = 1;
-  string                 givenName              = 2;
-  string                 familyName             = 3;
-  string                 avatarUrlPath          = 4;
-  bool                   noteToSelfArchived     = 5;
-  bool                   readReceipts           = 6;
-  bool                   sealedSenderIndicators = 7;
-  bool                   typingIndicators       = 8;
-  bool                   proxiedLinkPreviews    = 9;
-  bool                   noteToSelfMarkedUnread = 10;
-  bool                   linkPreviews           = 11;
-  PhoneNumberSharingMode phoneNumberSharingMode = 12;
-  bool                   unlistedPhoneNumber    = 13;
+  message PinnedConversation {
+    message Contact {
+      string uuid = 1;
+      string e164 = 2;
+    }
+
+    oneof identifier {
+      Contact contact        = 1;
+      bytes   legacyGroupId  = 3;
+      bytes   groupMasterKey = 4;
+    }
+  }
+
+           bytes                  profileKey             = 1;
+           string                 givenName              = 2;
+           string                 familyName             = 3;
+           string                 avatarUrlPath          = 4;
+           bool                   noteToSelfArchived     = 5;
+           bool                   readReceipts           = 6;
+           bool                   sealedSenderIndicators = 7;
+           bool                   typingIndicators       = 8;
+           bool                   proxiedLinkPreviews    = 9;
+           bool                   noteToSelfMarkedUnread = 10;
+           bool                   linkPreviews           = 11;
+           PhoneNumberSharingMode phoneNumberSharingMode = 12;
+           bool                   unlistedPhoneNumber    = 13;
+  repeated PinnedConversation     pinnedConversations    = 14;
 }

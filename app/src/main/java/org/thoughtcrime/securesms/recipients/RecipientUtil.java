@@ -256,7 +256,8 @@ public class RecipientUtil {
     return threadRecipient.isLocalNumber()    ||
            threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact()  ||
-           !threadRecipient.isRegistered();
+           !threadRecipient.isRegistered()    ||
+           threadRecipient.isForceSmsSelection();
   }
 
   @WorkerThread

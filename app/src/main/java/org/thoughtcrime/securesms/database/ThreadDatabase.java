@@ -32,6 +32,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.jsoup.helper.StringUtil;
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -39,6 +41,8 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.groups.BadGroupIdException;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -758,6 +762,25 @@ public class ThreadDatabase extends Database {
     return 0;
   }
 
+  /**
+   * @return Pinned recipients, in order from top to bottom.
+   */
+  public @NonNull List<RecipientId> getPinnedRecipientIds() {
+    SQLiteDatabase    db         = databaseHelper.getReadableDatabase();
+    String[]          projection = new String[]{RECIPIENT_ID};
+    String            query      = PINNED + " > ?";
+    String[]          args       = SqlUtil.buildArgs(0);
+    List<RecipientId> pinned     = new LinkedList<>();
+
+    try (Cursor cursor = db.query(TABLE_NAME, projection, query, args, null, null, PINNED + " ASC")) {
+      while (cursor.moveToNext()) {
+        pinned.add(RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID)));
+      }
+    }
+
+    return pinned;
+  }
+
   public void pinConversations(@NonNull Set<Long> threadIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
@@ -771,6 +794,7 @@ public class ThreadDatabase extends Database {
         contentValues.put(PINNED, ++pinnedCount);
 
         db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
+
       }
 
       db.setTransactionSuccessful();
@@ -780,6 +804,9 @@ public class ThreadDatabase extends Database {
     }
 
     notifyConversationListListeners();
+
+    DatabaseFactory.getRecipientDatabase(context).markNeedsSync(Recipient.self().getId());
+    StorageSyncHelper.scheduleSyncForDataChange();
   }
 
   public void unpinConversations(@NonNull Set<Long> threadIds) {
@@ -792,6 +819,9 @@ public class ThreadDatabase extends Database {
 
     db.update(TABLE_NAME, contentValues, selection, SqlUtil.buildArgs(Stream.of(threadIds).toArray()));
     notifyConversationListListeners();
+
+    DatabaseFactory.getRecipientDatabase(context).markNeedsSync(Recipient.self().getId());
+    StorageSyncHelper.scheduleSyncForDataChange();
   }
 
   public void archiveConversation(long threadId) {
@@ -1025,7 +1055,57 @@ public class ThreadDatabase extends Database {
   }
 
   public void applyStorageSyncUpdate(@NonNull RecipientId recipientId, @NonNull SignalAccountRecord record) {
-    applyStorageSyncUpdate(recipientId, record.isNoteToSelfArchived(), record.isNoteToSelfForcedUnread());
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      applyStorageSyncUpdate(recipientId, record.isNoteToSelfArchived(), record.isNoteToSelfForcedUnread());
+
+      ContentValues clearPinnedValues = new ContentValues();
+      clearPinnedValues.put(PINNED, 0);
+      db.update(TABLE_NAME, clearPinnedValues, null, null);
+
+      int pinnedPosition = 1;
+      for (SignalAccountRecord.PinnedConversation pinned : record.getPinnedConversations()) {
+        ContentValues pinnedValues = new ContentValues();
+        pinnedValues.put(PINNED, pinnedPosition);
+
+        Recipient pinnedRecipient;
+
+        if (pinned.getContact().isPresent()) {
+          pinnedRecipient = Recipient.externalPush(context, pinned.getContact().get());
+        } else if (pinned.getGroupV1Id().isPresent()) {
+          try {
+            pinnedRecipient = Recipient.externalGroup(context, GroupId.v1Exact(pinned.getGroupV1Id().get()));
+          } catch (BadGroupIdException e) {
+            Log.w(TAG, "Failed to parse pinned groupV1 ID!", e);
+            pinnedRecipient = null;
+          }
+        } else if (pinned.getGroupV2MasterKey().isPresent()) {
+          try {
+            pinnedRecipient = Recipient.externalGroup(context, GroupId.v2(new GroupMasterKey(pinned.getGroupV2MasterKey().get())));
+          } catch (InvalidInputException e) {
+            Log.w(TAG, "Failed to parse pinned groupV2 master key!", e);
+            pinnedRecipient = null;
+          }
+        } else {
+          Log.w(TAG, "Empty pinned conversation on the AccountRecord?");
+          pinnedRecipient = null;
+        }
+
+        if (pinnedRecipient != null) {
+          db.update(TABLE_NAME, pinnedValues, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(pinnedRecipient.getId()));
+        }
+
+        pinnedPosition++;
+      }
+      
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    notifyConversationListListeners();
   }
 
   private void applyStorageSyncUpdate(@NonNull RecipientId recipientId, boolean archived, boolean forcedUnread) {
