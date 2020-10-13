@@ -2691,6 +2691,7 @@
     <string name="GroupLinkBottomSheet_share">Share</string>
     <string name="GroupLinkBottomSheet_copied_to_clipboard">Copied to clipboard</string>
     <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">The link is not currently active</string>
+    <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Could not start playback.</string>
 
     <!-- EOF -->
 

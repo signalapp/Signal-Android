@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms;
 
+import android.net.Uri;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -51,6 +54,11 @@ public interface BindableConversationItem extends Unbindable {
     void onReactionClicked(@NonNull View reactionTarget, long messageId, boolean isMms);
     void onGroupMemberClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId);
     void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
+    void onRegisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
+    void onUnregisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
+    void onVoiceNotePause(@NonNull Uri uri);
+    void onVoiceNotePlay(@NonNull Uri uri, long messageId, long position);
+    void onVoiceNoteSeekTo(@NonNull Uri uri, long position);
 
     /** @return true if handled, false if you want to let the normal url handling continue */
     boolean onUrlClicked(@NonNull String url);

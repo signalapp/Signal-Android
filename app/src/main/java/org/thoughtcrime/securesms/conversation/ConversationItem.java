@@ -407,6 +407,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       conversationRecipient.removeForeverObserver(this);
     }
     cancelPulseOutlinerAnimation();
+    if (eventListener != null && audioViewStub.resolved()) {
+      eventListener.onUnregisterVoiceNoteCallbacks(audioViewStub.get().getPlaybackStateObserver());
+    }
   }
 
   public ConversationMessage getConversationMessage() {
@@ -655,6 +658,10 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   {
     boolean showControls = !messageRecord.isFailed();
 
+    if (eventListener != null && audioViewStub.resolved()) {
+      eventListener.onUnregisterVoiceNoteCallbacks(audioViewStub.get().getPlaybackStateObserver());
+    }
+
     if (isViewOnceMessage(messageRecord) && !messageRecord.isRemoteDelete()) {
       revealableStub.get().setVisibility(VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
@@ -738,9 +745,13 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
-      audioViewStub.get().setAudio(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), showControls);
+      audioViewStub.get().setAudio(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide(), new AudioViewCallbacks(), showControls);
       audioViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
+
+      if (eventListener != null) {
+        eventListener.onRegisterVoiceNoteCallbacks(audioViewStub.get().getPlaybackStateObserver());
+      }
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -1532,6 +1543,35 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
     @Override
     public void updateDrawState(@NonNull TextPaint ds) { }
+  }
+
+  private final class AudioViewCallbacks implements AudioView.Callbacks {
+
+    @Override
+    public void onPlay(@NonNull Uri audioUri, long position) {
+      if (eventListener == null) return;
+
+      eventListener.onVoiceNotePlay(audioUri, messageRecord.getId(), position);
+    }
+
+    @Override
+    public void onPause(@NonNull Uri audioUri) {
+      if (eventListener == null) return;
+
+      eventListener.onVoiceNotePause(audioUri);
+    }
+
+    @Override
+    public void onSeekTo(@NonNull Uri audioUri, long position) {
+      if (eventListener == null) return;
+
+      eventListener.onVoiceNoteSeekTo(audioUri, position);
+    }
+
+    @Override
+    public void onStopAndReset(@NonNull Uri audioUri) {
+      throw new UnsupportedOperationException();
+    }
   }
 
   private void handleMessageApproval() {

@@ -93,6 +93,15 @@ public final class AvatarUtil {
     }
   }
 
+  @WorkerThread
+  public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient) {
+    try {
+      return requestCircle(GlideApp.with(context).asBitmap(), context, recipient).submit().get();
+    } catch (ExecutionException | InterruptedException e) {
+      return null;
+    }
+  }
+
   public static GlideRequest<Drawable> getSelfAvatarOrFallbackIcon(@NonNull Context context, @DrawableRes int fallbackIcon) {
     return GlideApp.with(context)
                    .asDrawable()

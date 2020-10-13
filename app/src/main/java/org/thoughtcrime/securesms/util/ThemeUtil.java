@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import androidx.annotation.AttrRes;
@@ -20,6 +21,10 @@ import android.view.LayoutInflater;
 import org.thoughtcrime.securesms.R;
 
 public class ThemeUtil {
+
+  public static boolean isDarkNotificationTheme(@NonNull Context context) {
+    return (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+  }
 
   public static boolean isDarkTheme(@NonNull Context context) {
     return getAttribute(context, R.attr.theme_type, "light").equals("dark");

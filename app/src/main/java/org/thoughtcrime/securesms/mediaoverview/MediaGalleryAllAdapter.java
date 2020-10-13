@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.mediaoverview;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   private final GlideRequests                  glideRequests;
   private final ItemClickListener              itemClickListener;
   private final Map<AttachmentId, MediaRecord> selected          = new HashMap<>();
+  private final AudioView.Callbacks            audioViewCallbacks;
 
   private GroupedThreadMedia media;
   private boolean            showFileSizes;
@@ -72,12 +74,6 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   private static final int GALLERY         = 2;
   private static final int GALLERY_DETAIL  = 3;
   private static final int DOCUMENT_DETAIL = 4;
-
-  void pause(RecyclerView.ViewHolder holder) {
-    if (holder instanceof AudioDetailViewHolder) {
-      ((AudioDetailViewHolder) holder).pause();
-    }
-  }
 
   void detach(RecyclerView.ViewHolder holder) {
     if (holder instanceof SelectableViewHolder) {
@@ -98,15 +94,17 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
                          @NonNull GlideRequests glideRequests,
                          GroupedThreadMedia media,
                          ItemClickListener clickListener,
+                         @NonNull AudioView.Callbacks audioViewCallbacks,
                          boolean showFileSizes,
                          boolean showThread)
   {
-    this.context           = context;
-    this.glideRequests     = glideRequests;
-    this.media             = media;
-    this.itemClickListener = clickListener;
-    this.showFileSizes     = showFileSizes;
-    this.showThread        = showThread;
+    this.context            = context;
+    this.glideRequests      = glideRequests;
+    this.media              = media;
+    this.itemClickListener  = clickListener;
+    this.audioViewCallbacks = audioViewCallbacks;
+    this.showFileSizes      = showFileSizes;
+    this.showThread         = showThread;
   }
 
   public void setMedia(GroupedThreadMedia media) {
@@ -437,24 +435,14 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
         throw new AssertionError();
       }
 
-      audioView.setAudio((AudioSlide) slide, true);
+      audioView.setAudio((AudioSlide) slide, audioViewCallbacks, true);
       audioView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
       itemView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
     }
 
     @Override
-    void unbind() {
-      audioView.stopPlaybackAndReset();
-      super.unbind();
-    }
-
-    @Override
     protected String getFileTypeDescription(@NonNull Context context, @NonNull Slide slide) {
       return context.getString(R.string.MediaOverviewActivity_audio);
-    }
-
-    public void pause() {
-      audioView.stopPlaybackAndReset();
     }
   }
 

@@ -1,0 +1,153 @@
+package org.thoughtcrime.securesms.components.voice;
+
+import android.app.PendingIntent;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.RemoteException;
+import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v4.media.session.MediaSessionCompat;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.ui.PlayerNotificationManager;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+
+import java.util.Objects;
+
+class VoiceNoteNotificationManager {
+
+  private static final short NOW_PLAYING_NOTIFICATION_ID = 32221;
+
+  private final Context                   context;
+  private final MediaControllerCompat     controller;
+  private final PlayerNotificationManager notificationManager;
+
+  VoiceNoteNotificationManager(@NonNull Context context,
+                               @NonNull MediaSessionCompat.Token token,
+                               @NonNull PlayerNotificationManager.NotificationListener listener)
+  {
+    this.context  = context;
+
+    try {
+      controller = new MediaControllerCompat(context, token);
+    } catch (RemoteException e) {
+      throw new IllegalArgumentException("Could not create a controller with given token");
+    }
+
+    notificationManager = PlayerNotificationManager.createWithNotificationChannel(context,
+                                                                                  NotificationChannels.OTHER,
+                                                                                  R.string.NotificationChannel_other,
+                                                                                  NOW_PLAYING_NOTIFICATION_ID,
+                                                                                  new DescriptionAdapter());
+
+    notificationManager.setMediaSessionToken(token);
+    notificationManager.setSmallIcon(R.drawable.ic_signal_grey_24dp);
+    notificationManager.setRewindIncrementMs(0);
+    notificationManager.setFastForwardIncrementMs(0);
+    notificationManager.setNotificationListener(listener);
+    notificationManager.setColorized(true);
+  }
+
+  public void hideNotification() {
+    notificationManager.setPlayer(null);
+  }
+
+  public void showNotification(@NonNull Player player) {
+    notificationManager.setPlayer(player);
+  }
+
+  private final class DescriptionAdapter implements PlayerNotificationManager.MediaDescriptionAdapter {
+
+    private RecipientId cachedRecipientId;
+    private Bitmap      cachedBitmap;
+
+    @Override
+    public String getCurrentContentTitle(Player player) {
+      if (hasMetadata()) {
+        return Objects.requireNonNull(controller.getMetadata().getDescription().getTitle()).toString();
+      } else {
+        return null;
+      }
+    }
+
+    @Override
+    public @Nullable PendingIntent createCurrentContentIntent(Player player) {
+      if (!hasMetadata()) return null;
+
+      RecipientId   recipientId      = RecipientId.from(Objects.requireNonNull(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_RECIPIENT_ID)));
+      int           startingPosition = (int) controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_POSITION);
+      long          threadId         = controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_ID);
+
+      MaterialColor color;
+      try {
+        color = MaterialColor.fromSerialized(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_COLOR));
+      } catch (MaterialColor.UnknownColorException e) {
+        color = ContactColors.UNKNOWN_COLOR;
+      }
+
+      notificationManager.setColor(color.toNotificationColor(context));
+
+      return PendingIntent.getActivity(context,
+                                       0,
+                                       ConversationActivity.buildIntent(context,
+                                                                        recipientId,
+                                                                        threadId,
+                                                                        ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                        startingPosition),
+                                       0);
+    }
+
+    @Override
+    public String getCurrentContentText(Player player) {
+      if (hasMetadata()) {
+        return Objects.requireNonNull(controller.getMetadata().getDescription().getSubtitle()).toString();
+      } else {
+        return null;
+      }
+    }
+
+    @Override
+    public @Nullable Bitmap getCurrentLargeIcon(Player player, PlayerNotificationManager.BitmapCallback callback) {
+      if (!hasMetadata() || !TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact()) {
+        cachedBitmap      = null;
+        cachedRecipientId = null;
+        return null;
+      }
+
+      RecipientId currentRecipientId = RecipientId.from(Objects.requireNonNull(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_RECIPIENT_ID)));
+
+      if (Objects.equals(currentRecipientId, cachedRecipientId) && cachedBitmap != null) {
+        return cachedBitmap;
+      } else {
+        cachedRecipientId = currentRecipientId;
+        SignalExecutors.BOUNDED.execute(() -> {
+          try {
+            cachedBitmap = AvatarUtil.getBitmapForNotification(context, Recipient.resolved(cachedRecipientId));
+            callback.onBitmap(cachedBitmap);
+          } catch (Exception e) {
+            cachedBitmap = null;
+          }
+        });
+
+        return null;
+      }
+    }
+
+    private boolean hasMetadata() {
+      return controller.getMetadata() != null && controller.getMetadata().getDescription() != null;
+    }
+  }
+}

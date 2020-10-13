@@ -52,6 +52,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,6 +71,8 @@ import org.thoughtcrime.securesms.components.ConversationScrollToView;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
@@ -179,6 +182,7 @@ public class ConversationFragment extends LoggingFragment {
   private Animation                   mentionButtonOutAnimation;
   private OnScrollListener            conversationScrollListener;
   private int                         pulsePosition = -1;
+  private VoiceNoteMediaController    voiceNoteMediaController;
 
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
@@ -306,6 +310,7 @@ public class ConversationFragment extends LoggingFragment {
     initializeResources();
     initializeMessageRequestViewModel();
     initializeListAdapter();
+    voiceNoteMediaController = new VoiceNoteMediaController((AppCompatActivity) requireActivity());
   }
 
   @Override
@@ -1353,6 +1358,31 @@ public class ConversationFragment extends LoggingFragment {
     @Override
     public void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord) {
       listener.onMessageWithErrorClicked(messageRecord);
+    }
+
+    @Override
+    public void onVoiceNotePause(@NonNull Uri uri) {
+      voiceNoteMediaController.pausePlayback(uri);
+    }
+
+    @Override
+    public void onVoiceNotePlay(@NonNull Uri uri, long messageId, long position) {
+      voiceNoteMediaController.startPlayback(uri, messageId, position);
+    }
+
+    @Override
+    public void onVoiceNoteSeekTo(@NonNull Uri uri, long position) {
+      voiceNoteMediaController.seekToPosition(uri, position);
+    }
+
+    @Override
+    public void onRegisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver) {
+      voiceNoteMediaController.getVoiceNotePlaybackState().observe(getViewLifecycleOwner(), onPlaybackStartObserver);
+    }
+
+    @Override
+    public void onUnregisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver) {
+      voiceNoteMediaController.getVoiceNotePlaybackState().removeObserver(onPlaybackStartObserver);
     }
 
     @Override

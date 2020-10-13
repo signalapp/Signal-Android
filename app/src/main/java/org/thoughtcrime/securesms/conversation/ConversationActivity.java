@@ -98,7 +98,6 @@ import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
-import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
@@ -557,7 +556,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     fragment.setLastSeen(System.currentTimeMillis());
     markLastSeen();
-    AudioSlidePlayer.stopAll();
     EventBus.getDefault().unregister(this);
   }
 
