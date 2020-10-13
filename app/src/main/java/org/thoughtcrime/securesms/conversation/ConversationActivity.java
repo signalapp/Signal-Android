@@ -366,6 +366,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private ConversationViewModel        viewModel;
   private InviteReminderModel          inviteReminderModel;
   private ConversationGroupViewModel   groupViewModel;
+  private MentionsPickerViewModel      mentionsViewModel;
 
   private LiveRecipient recipient;
   private long          threadId;
@@ -1980,7 +1981,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void initializeMentionsViewModel() {
-    MentionsPickerViewModel mentionsViewModel = ViewModelProviders.of(this, new MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel.class);
+    mentionsViewModel = ViewModelProviders.of(this, new MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel.class);
 
     recipient.observe(this, r -> {
       if (r.isPushV2Group() && !mentionsSuggestions.resolved()) {
@@ -2121,6 +2122,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (groupViewModel != null) {
       groupViewModel.onRecipientChange(recipient);
+    }
+
+    if (mentionsViewModel != null) {
+      mentionsViewModel.onRecipientChange(recipient);
     }
   }
 
