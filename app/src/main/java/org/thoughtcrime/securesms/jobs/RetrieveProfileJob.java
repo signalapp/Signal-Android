@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.IdentityKey;
@@ -167,7 +168,10 @@ public class RetrieveProfileJob extends BaseJob {
    * certain time period.
    */
   public static void enqueueRoutineFetchIfNecessary(Application application) {
-    if (!SignalStore.registrationValues().isRegistrationComplete()) {
+    if (!SignalStore.registrationValues().isRegistrationComplete() ||
+        !TextSecurePreferences.isPushRegistered(application)       ||
+        TextSecurePreferences.getLocalUuid(application) == null)
+    {
       Log.i(TAG, "Registration not complete. Skipping.");
       return;
     }
