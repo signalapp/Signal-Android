@@ -1,0 +1,68 @@
+package org.thoughtcrime.securesms.migrations;
+
+import androidx.annotation.NonNull;
+
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import java.io.IOException;
+
+/**
+ * Does a full directory refresh.
+ */
+public final class DirectoryRefreshMigrationJob extends MigrationJob {
+
+  private static final String TAG = Log.tag(DirectoryRefreshMigrationJob.class);
+
+  public static final String KEY = "DirectoryRefreshMigrationJob";
+
+  DirectoryRefreshMigrationJob() {
+    this(new Parameters.Builder().build());
+  }
+
+  private DirectoryRefreshMigrationJob(@NonNull Parameters parameters) {
+    super(parameters);
+  }
+
+  @Override
+  public boolean isUiBlocking() {
+    return false;
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
+  }
+
+  @Override
+  public void performMigration() throws IOException {
+    if (!TextSecurePreferences.isPushRegistered(context)           ||
+        !SignalStore.registrationValues().isRegistrationComplete() ||
+        TextSecurePreferences.getLocalUuid(context) == null)
+    {
+      Log.w(TAG, "Not registered! Skipping.");
+      return;
+    }
+
+    DirectoryHelper.refreshDirectory(context, true);
+  }
+
+  @Override
+  boolean shouldRetry(@NonNull Exception e) {
+    return e instanceof IOException;
+  }
+
+  public static class Factory implements Job.Factory<DirectoryRefreshMigrationJob> {
+    @Override
+    public @NonNull DirectoryRefreshMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new DirectoryRefreshMigrationJob(parameters);
+    }
+  }
+}

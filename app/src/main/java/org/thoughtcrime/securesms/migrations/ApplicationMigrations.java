@@ -39,7 +39,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 21;
+  public static final int CURRENT_VERSION = 22;
 
   private static final class Version {
     static final int LEGACY             = 1;
@@ -63,6 +63,7 @@ public class ApplicationMigrations {
     static final int THUMBNAIL_CLEANUP  = 19;
     static final int GV2                = 20;
     static final int GV2_2              = 21;
+    static final int CDS                = 22;
   }
 
   /**
@@ -260,6 +261,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.GV2_2) {
       jobs.put(Version.GV2_2, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.CDS) {
+      jobs.put(Version.CDS, new DirectoryRefreshMigrationJob());
     }
 
     return jobs;
