@@ -92,8 +92,8 @@ def abiPostFix = ['universal'   : 0,
 
 android {
     flavorDimensions "none"
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.3'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
@@ -114,7 +114,7 @@ android {
         versionName canonicalVersionName
 
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
