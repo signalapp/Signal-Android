@@ -366,7 +366,7 @@ public class ManageGroupFragment extends LoggingFragment {
       });
     }
 
-    mentionsRow.setVisibility(FeatureFlags.mentions() && groupId.isV2() ? View.VISIBLE : View.GONE);
+    mentionsRow.setVisibility(groupId.isV2() ? View.VISIBLE : View.GONE);
     mentionsRow.setOnClickListener(v -> viewModel.handleMentionNotificationSelection());
     viewModel.getMentionSetting().observe(getViewLifecycleOwner(), value -> mentionsValue.setText(value));
 

@@ -265,8 +265,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
       return true;
     }
 
-    return FeatureFlags.mentions()                                                         &&
-           recipient.isPushV2Group()                                                       &&
+    return recipient.isPushV2Group()                                                       &&
            recipient.getMentionSetting() == RecipientDatabase.MentionSetting.ALWAYS_NOTIFY &&
            DatabaseFactory.getMmsDatabase(context).getUnreadMentionCount(threadId) > 0;
   }
@@ -556,7 +555,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
         if (threadRecipients != null && threadRecipients.isMuted()) {
           boolean mentionsOverrideMute = threadRecipients.getMentionSetting() == RecipientDatabase.MentionSetting.ALWAYS_NOTIFY;
 
-          includeMessage = FeatureFlags.mentions() && mentionsOverrideMute && record.hasSelfMention();
+          includeMessage = mentionsOverrideMute && record.hasSelfMention();
         }
 
         if (threadRecipients == null || includeMessage) {

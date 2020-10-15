@@ -52,7 +52,6 @@ public final class FeatureFlags {
   private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
   private static final String GROUPS_V2_CAPACITY           = "global.groupsv2.maxGroupSize";
   private static final String INTERNAL_USER                = "android.internalUser";
-  private static final String MENTIONS                     = "android.mentions";
   private static final String VERIFY_V2                    = "android.verifyV2";
   private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION            = "android.clientExpiration";
@@ -70,7 +69,6 @@ public final class FeatureFlags {
       GROUPS_V2_LINKS_VERSION,
       INTERNAL_USER,
       USERNAMES,
-      MENTIONS,
       VERIFY_V2,
       CLIENT_EXPIRATION,
       RESEARCH_MEGAPHONE_1,
@@ -211,11 +209,6 @@ public final class FeatureFlags {
   /** Internal testing extensions. */
   public static boolean internalUser() {
     return getBoolean(INTERNAL_USER, false);
-  }
-
-  /** Whether or not we allow mentions send support in groups. */
-  public static boolean mentions() {
-    return getBoolean(MENTIONS, false);
   }
 
   /** Whether or not to use the UUID in verification codes. */

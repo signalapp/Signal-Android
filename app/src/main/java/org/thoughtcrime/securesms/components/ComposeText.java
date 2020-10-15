@@ -100,7 +100,7 @@ public class ComposeText extends EmojiEditText {
   protected void onSelectionChanged(int selectionStart, int selectionEnd) {
     super.onSelectionChanged(selectionStart, selectionEnd);
 
-    if (FeatureFlags.mentions() && getText() != null) {
+    if (getText() != null) {
       boolean selectionChanged = changeSelectionForPartialMentions(getText(), selectionStart, selectionEnd);
       if (selectionChanged) {
         return;
@@ -192,9 +192,7 @@ public class ComposeText extends EmojiEditText {
   }
 
   public void setMentionValidator(@Nullable MentionValidatorWatcher.MentionValidator mentionValidator) {
-    if (FeatureFlags.mentions()) {
-      mentionValidatorWatcher.setMentionValidator(mentionValidator);
-    }
+    mentionValidatorWatcher.setMentionValidator(mentionValidator);
   }
 
   private boolean isLandscape() {
@@ -261,11 +259,9 @@ public class ComposeText extends EmojiEditText {
 
     mentionRendererDelegate = new MentionRendererDelegate(getContext(), ThemeUtil.getThemedColor(getContext(), R.attr.conversation_mention_background_color));
 
-    if (FeatureFlags.mentions()) {
-      addTextChangedListener(new MentionDeleter());
-      mentionValidatorWatcher = new MentionValidatorWatcher();
-      addTextChangedListener(mentionValidatorWatcher);
-    }
+    addTextChangedListener(new MentionDeleter());
+    mentionValidatorWatcher = new MentionValidatorWatcher();
+    addTextChangedListener(mentionValidatorWatcher);
   }
 
   private boolean changeSelectionForPartialMentions(@NonNull Spanned spanned, int selectionStart, int selectionEnd) {

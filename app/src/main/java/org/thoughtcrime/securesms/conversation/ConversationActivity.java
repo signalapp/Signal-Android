@@ -442,7 +442,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     initializeStickerObserver();
     initializeViewModel();
     initializeGroupViewModel();
-    if (FeatureFlags.mentions()) initializeMentionsViewModel();
+    initializeMentionsViewModel();
     initializeEnabledCheck();
     initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
