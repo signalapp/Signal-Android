@@ -448,7 +448,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sada možete preuzeti preglede poveznica izravno s bilo koje web stranice za poruke koje šaljete.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nema dostupnog pregleda poveznice</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">Grupna poveznica nije aktivna</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Poveznica grupe nije aktivna</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -457,7 +457,7 @@
     <item quantity="other">%1$d članova</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Grupne pozivnice na čekanju</string>
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Pozivnice grupe na čekanju</string>
   <string name="PendingMembersActivity_requests">Zahtjevi</string>
   <string name="PendingMembersActivity_invites">Pozivnice</string>
   <string name="PendingMembersActivity_people_you_invited">Osobe koje ste pozvali</string>
@@ -480,7 +480,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Zahtjevi za članove na čekanju</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Nema zahtjeva za članove</string>
-  <string name="RequestingMembersFragment_explanation">Osobe s ovog popisa pokušavaju se pridružiti ovoj grupi putem grupne poveznice.</string>
+  <string name="RequestingMembersFragment_explanation">Osobe s ovog popisa pokušavaju se pridružiti ovoj grupi putem poveznice grupe.</string>
   <string name="RequestingMembersFragment_added_s">Dodan/a je \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Odbijen/a je “%1$s“</string>
   <!--AddMembersActivity-->
@@ -520,13 +520,13 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Poruke koje nestaju</string>
-  <string name="ManageGroupActivity_pending_group_invites">Grupne pozivnice na čekanju</string>
+  <string name="ManageGroupActivity_pending_group_invites">Pozivnice grupe na čekanju</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Zahtjevi za članove i pozivnice</string>
   <string name="ManageGroupActivity_add_members">Dodaj članove</string>
   <string name="ManageGroupActivity_edit_group_info">Uredi detalje o grupi</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Tko može dodati nove članove?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Tko može urediti detalje o grupi?</string>
-  <string name="ManageGroupActivity_group_link">Grupna poveznica</string>
+  <string name="ManageGroupActivity_group_link">Poveznica grupe</string>
   <string name="ManageGroupActivity_block_group">Blokiraj grupu</string>
   <string name="ManageGroupActivity_unblock_group">Odblokiraj grupu</string>
   <string name="ManageGroupActivity_leave_group">Napusti grupu</string>
@@ -614,9 +614,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Onemogućeno</string>
   <string name="CustomNotificationsDialogFragment__default">Zadano</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Grupna poveznica koja se može dijeliti</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Poveznica grupe koja se može dijeliti</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Upravljanje i dijeljenje</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Grupna poveznica</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Poveznica grupe</string>
   <string name="ShareableGroupLinkDialogFragment__share">Podijeli</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Poništi poveznicu</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Zahtjevi za članove</string>
@@ -624,8 +624,8 @@
   <string name="ShareableGroupLinkDialogFragment__enabled">Omogućeno</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Onemogućeno</string>
   <string name="ShareableGroupLinkDialogFragment__default">Zadano</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Poništavanje grupne poveznice</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Zahtjeva da administrator odobri pridruživanje novih članova putem grupne poveznice.</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Poništavanje poveznice grupe</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Zahtjeva da administrator odobri pridruživanje novih članova putem poveznice grupe.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Jeste li sigurni da želite poništiti grupnu poveznicu? Osobe se više neće moći pridružiti grupi koristeći trenutnu poveznicu.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR kôd</string>
@@ -644,7 +644,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Zahtjev za pridruživanje</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nije moguće pridružiti se grupi. Molimo pokušajte ponovo kasnije</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Došlo je do mrežne pogreške.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Grupna poveznica nije aktivna</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Poveznica grupe nije aktivna</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nije moguće dohvatiti detalje o grupi. Molimo pokušajte ponovo kasnije</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Želite li se pridružiti ovoj grupi i podijeliti svoje ime i fotografiju s članovima?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Administrator ove grupe mora odobriti vaš zahtjev prije nego što se možete pridružiti ovoj grupi. Kada zatražite pridruživanje, vaše će ime i fotografija biti podijeljena sa članovima grupe.</string>
@@ -654,13 +654,13 @@
     <item quantity="other">Grupa · %1$d članova</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupne poveznice uskoro dolaze</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste koristili grupne poveznice</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Poveznice grupe uskoro dolaze</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste koristili poveznice grupe</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Pridruživanje grupi putem poveznice još nije podržano u Signalu. Ova će značajka biti objavljena u nadolazećem ažuriranju.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju upotrebljavate ne podržava grupne poveznice. Ažurirajte na najnoviju verziju da biste se pridružili ovoj grupi putem poveznice.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju upotrebljavate ne podržava poveznice grupe. Ažurirajte na najnoviju verziju da biste se pridružili ovoj grupi putem poveznice.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ažuriraj Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na jednom ili više povezanih uređaja pokrenuta je verzija Signala koja ne podržava grupne poveznice. Ažurirajte Signal na povezanim uređajima da biste se pridružili ovoj grupi.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupna poveznica je nevažeća</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na jednom ili više povezanih uređaja pokrenuta je verzija Signala koja ne podržava poveznice grupe. Ažurirajte Signal na povezanim uređajima da biste se pridružili ovoj grupi.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Poveznica grupe je nevažeća</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Dodaj \"%1$s\" u grupu?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Odbij zahtjev od “%1$s”?</string>
@@ -912,25 +912,25 @@
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s je uključio/la grupnu poveznicu s isključenim administratorskim odobrenjem.</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s je uključio/la grupnu poveznicu s uključenim administratorskim odobrenjem.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s je isključio/la grupnu poveznicu.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Uključena je grupna poveznica s isključenim administratorskim odobrenjem.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Uključena je grupna poveznica s uključenim administratorskim odobrenjem.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_off">Grupna poveznica je isključena.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Uključena je poveznica grupe s onemogućenim administratorskim odobrenjem.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Uključena je poveznica grupe s omogućenim administratorskim odobrenjem.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Poveznica grupe je isključena.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Isključili ste odobrenje administratora za grupnu poveznicu.</string>
   <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s je isključio/la odobrenje administratora za grupnu poveznicu.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Odobrenje administratora za grupne poveznice je isključeno.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Odobrenje administratora za poveznice grupe je isključeno.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Uključili ste odobrenje administratora za grupnu poveznicu.</string>
   <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s je uključio/la odobrenje administratora za grupnu poveznicu.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Odobrenje administratora za grupne poveznice je uključeno.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Odobrenje administratora za poveznice grupe je uključeno.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Poništili ste grupnu poveznicu.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s je poništio/la grupnu poveznicu.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">Grupna poveznica je poništena.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Poveznica grupe je poništena.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Pridružili ste se grupi putem grupne poveznice.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se pridružio/la grupi putem grupne poveznice.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Pridružili ste se grupi putem poveznice grupe.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se pridružio/la grupi putem poveznice grupe.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Poslali ste zahtjev za pridruživanje grupi.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s je zatražio/la pridruživanje grupi putem grupne poveznice.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s je zatražio/la pridruživanje grupi putem poveznice grupe.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s je prihvatio vaš zahtjev za pridruživanje ovoj grupi.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s je prihvatio/la zahtjev za pridruživanje u grupu od %2$s.</string>

@@ -782,7 +782,7 @@
   <string name="MessageRecord_you_disabled_disappearing_messages">Has desactivado la desaparición de mensajes.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha desactivado la desaparición de mensajes.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Has fijado la desaparición de mensajes a %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sha fijado la desaparición de mensajes a %2$s. </string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha fijado la desaparición de mensajes a %2$s. </string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">El tiempo de desaparición de mensajes se ha fijado en %1$s.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ha cambiado su nombre de perfil a %2$s.</string>

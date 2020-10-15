@@ -944,6 +944,8 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal-i häälkõne…</string>
   <string name="WebRtcCallView__signal_video_call">Signal-i videokõne…</string>
+  <string name="WebRtcCallView__start_call">Alusta kõnet</string>
+  <string name="WebRtcCallView__your_video_is_off">Sinu video on väljas</string>
   <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vali oma riik</string>

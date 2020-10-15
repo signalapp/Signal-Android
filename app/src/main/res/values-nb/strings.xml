@@ -48,6 +48,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">PIN laget.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kode deaktivert.</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Skjul påminnelse?</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -127,7 +128,9 @@
   <string name="ClearProfileActivity_remove_group_photo">Fjern gruppebilde?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Oppdater Signal</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Denne versjonen av appen støttes ikke lenger. For å fortsette å sende og motta meldinger, oppdater til den nyeste versjonen.</string>
   <string name="ClientDeprecatedActivity_update">Oppdater</string>
+  <string name="ClientDeprecatedActivity_dont_update">Ikke oppdater</string>
   <string name="ClientDeprecatedActivity_warning">Advarsel</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen nettleser funnet.</string>

@@ -286,6 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Viestejä poistetaan…</string>
   <string name="ConversationFragment_delete_for_me">Poista minulta</string>
   <string name="ConversationFragment_delete_for_everyone">Poista kaikilta</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tämä viesti poistetaan kaikilta keskustelussa olevilta, jos he käyttävät Signalin uusinta versiota. He näkevät, että poistit viestin.</string>
   <string name="ConversationFragment_quoted_message_not_found">Alkuperäistä viestiä ei löytynyt</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Alkuperäinen viesti ei ole enää saatavilla</string>
   <string name="ConversationFragment_failed_to_open_message">Viestin avaaminen epäonnistui</string>
@@ -373,6 +374,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimoi Play Servicesin puuttumista</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tämä laite ei tue Play Servicesiä. Napauta tästä ottaaksesi pois päältä virransäästöominaisuudet, jotka estävät Signalia hakemasta viestejä taustalla.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Tämä Signal-versio on vanhentunut. Päivitä nyt lähettääksesi ja vastaanottaaksesi viestejä.</string>
   <string name="ExpiredBuildReminder_update_now">Päivitä nyt</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
@@ -524,6 +526,9 @@
     <item quantity="one">%d jäsen lisätty.</item>
     <item quantity="other">%d jäsentä lisätty.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Vain ylläpitäjät voivat ottaa jaettavan ryhmälinkin käyttöön tai poistaa sen käytöstä.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Vain ylläpitäjät voivat ottaa ryhmäänliittymispyynnöt käyttöön tai poistaa ne käytöstä.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Vain ylläpitäjät voivat uudelleenasettaa ryhmälinkin.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Sinulla ei ole oikeuksia tähän</string>
   <string name="ManageGroupActivity_not_capable">Joku lisäämistäsi käyttäjistä ei tue uusia ryhmiä ja hänen on siis päivitettävä Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ryhmän päivitys epäonnistui</string>
@@ -532,6 +537,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ryhmän päivitys epäonnistui verkkovirheen vuoksi, yritä myöhemmin uudelleen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Muokkaa nimeä ja kuvaa</string>
   <string name="ManageGroupActivity_legacy_group">Vanhan tyylin ryhmä</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Tämä on vanhan tyylin ryhmä. Ylläpitäjän kaltaiset ominaisuudet ovat käytettävissä vain uusissa ryhmissä.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tämä on salaamaton MMS-ryhmä. Jos haluat keskustella yksityisesti ja käyttää ominaisuuksia, kuten ryhmien nimiä, kutsu yhteystietosi Signaliin.</string>
   <string name="ManageGroupActivity_invite_now">Kutsu nyt</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Ilmoita minulle maininnoista</string>
@@ -957,6 +964,11 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Lähetetyt ja vastaanotetut viestit katoavat tästä keskustelusta %s siitä, kun ne on nähty.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Päivitä nyt</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tämä Signal-versio vanhenee tänään. Päivitä viimeisimpään versioon.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Tämä Signal-versio vanhenee huomenna. Päivitä viimeisimpään versioon.</item>
+    <item quantity="other">Tämä Signal-versio vanhenee %d päivän kuluttua. Päivitä viimeisimpään versioon.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Syötä salalause</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-kuvake</string>
@@ -1040,7 +1052,13 @@
   <string name="WebRtcCallView__signal_video_call">Signal-videopuhelu…</string>
   <string name="WebRtcCallView__start_call">Aloita puhelu</string>
   <string name="WebRtcCallView__group_call">Ryhmäpuhelu</string>
+  <string name="WebRtcCallView__view_participants_list">Näytä osallistujat</string>
+  <string name="WebRtcCallView__your_video_is_off">Videosi on pois päältä</string>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Tässä puhelussa · %1$d henkilö</item>
+    <item quantity="other">Tässä puhelussa · %1$d henkilöä</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Suuntanumero täytyy
@@ -2091,8 +2109,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Muistutamme sinua myöhemmin. PIN-koodin luomisesta tulee pakollinen %1$d päivän kuluttua.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Muistutamme sinua myöhemmin. PIN-koodin vahvistamisesta tulee pakollinen %1$d päivän kuluttua.</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Kerro Signalille mitä mieltä olet</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Jotta Signalista tulisi planeetan paras viestintäsovellus, haluaisimme kuulla palautteesi.</string>
   <string name="ResearchMegaphone_learn_more">Lue lisää</string>
   <string name="ResearchMegaphone_dismiss">Selvä</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Signal-tutkimus</string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Vastaa kyselyyn</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ei kiitos</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Kyselyn isännöi Surveygizmo suojatussa verkkotunnuksessa surveys.signalusers.org</string>
@@ -2247,6 +2268,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="GroupsLearnMore_what_are_legacy_groups">Mitä ovat vanhan tyylin ryhmät?</string>
   <string name="GroupsLearnMore_paragraph_1">Vanhan tyylin ryhmät ovat ryhmiä, jotka eivät ole yhteensopivia uusien ryhmien ominaisuuksien kanssa, kuten ylläpitäjyyden ja kuvaavien ryhmäpäivityksien.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Voinko päivittää vanhan ryhmän?</string>
+  <string name="GroupsLearnMore_paragraph_2">Vanhoja ryhmiä ei voi vielä päivittää uusiksi ryhmiksi, mutta voit luoda uuden ryhmän samoilla jäsenillä, jos he käyttävät Signalin uusinta versiota.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal tulee tarjoamaan tavan päivittää vanhan tyylin ryhmiä tulevaisuudessa.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Jaa Signalin kautta</string>
   <string name="GroupLinkBottomSheet_copy">Kopioi</string>

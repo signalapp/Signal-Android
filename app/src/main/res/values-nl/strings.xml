@@ -1007,7 +1007,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Waarschuwing</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je alle gegevens kwijtraken wanneer je Signal opnieuw registreert, tenzij je  je handmatig herstelt met een backup-bestand. Zolang de pincode is uitgeschakeld kun je geen registratievergrendeling inschakelen.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je alle gegevens kwijtraken wanneer je Signal opnieuw registreert, tenzij je  je handmatig herstelt met een back-up-bestand. Zolang de pincode is uitgeschakeld kun je geen registratievergrendeling inschakelen.</string>
   <string name="PinOptOutDialog_disable_pin">Pincode uitschakelen</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
@@ -1494,7 +1494,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar bodem</string>
   <!--safety_number_change_dialog-->
-  <string name="safety_number_change_dialog__safety_number_changes">Veiligheidsnummer veranderingen</string>
+  <string name="safety_number_change_dialog__safety_number_changes">Veiligheidsnummer(s) veranderd</string>
   <string name="safety_number_change_dialog__send_anyway">Toch verzenden</string>
   <string name="safety_number_change_dialog__call_anyway">Toch bellen</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">De volgende personen hebben mogelijk de app opnieuw geïnstalleerd of hebben een ander apparaat in gebruik genomen. Verifieer jullie veiligheidsnummers om zeker te zijn dat je met de juiste personen communiceert.</string>
@@ -1815,7 +1815,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__theme">Thema</string>
   <string name="preferences__disable_pin">Pincode uitschakelen</string>
   <string name="preferences__enable_pin">Pincode inschakelen</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je alle gegevens kwijtraken wanneer je Signal opnieuw registreert, tenzij je  je handmatig herstelt met een backup-bestand. Zolang de pincode is uitgeschakeld kun je geen registratievergrendeling inschakelen.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je alle gegevens kwijtraken wanneer je Signal opnieuw registreert, tenzij je  je handmatig herstelt met een back-up-bestand. Zolang de pincode is uitgeschakeld kun je geen registratievergrendeling inschakelen.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="preferences__system_default">Systeemstandaard</string>
   <string name="preferences__default">Systeemstandaard</string>

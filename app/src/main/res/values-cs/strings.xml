@@ -306,6 +306,7 @@
   <string name="ConversationFragment_deleting_messages">Mažu zprávy…</string>
   <string name="ConversationFragment_delete_for_me">Smazat pro mne</string>
   <string name="ConversationFragment_delete_for_everyone">Smazat pro všechny</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tato zpráva bude smazána pro všechny účastníky konverzace, pokud používají poslední verzi Signalu. Budou vidět, že jste smazali zprávu.</string>
   <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
   <string name="ConversationFragment_failed_to_open_message">Zprávu se nepovedlo otevřít</string>
@@ -571,6 +572,9 @@
     <item quantity="many">%d členů přidáno.</item>
     <item quantity="other">%d členů přidáno.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Pouze správci mohou povolit nebo zakázat sdílený skupinový odkaz.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Pouze správci mohou povolit nebo zakázat možnost schvalovat nové členy.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Pouze správci mohou obnovit sdílený skupinový odkaz.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnění toto provést</string>
   <string name="ManageGroupActivity_not_capable">Přidali jste někoho, kdo nepodporuje nové skupiny a musí aktualizovat Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepodařilo se aktualizovat skupinu</string>
@@ -950,6 +954,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Skupinový odkaz bez schvalování správcem byl zapnut.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Skupinový odkaz se schvalováním správcem byl zapnut.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Skupinový odkaz byl vypnut.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Vypnuli jste schvalování skupinového odkazu správcem.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s vypnul schvalování skupinového odkazu správcem.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Schvalování skupinového odkazu správcem bylo vypnuto.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Zapnuli jste schvalování skupinového odkazu správcem.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s zapnul schvalování skupinového odkazu správcem.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Schvalování skupinového odkazu správcem bylo zapnuto.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Obnovili jste skupinový odkaz.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s obnovil skupinový odkaz.</string>
