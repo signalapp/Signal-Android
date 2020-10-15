@@ -39,6 +39,8 @@ public class InternalOptionsPreferenceFragment extends CorrectedPreferenceFragme
     initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_FORCE_INVITES, SignalStore.internalValues().gv2ForceInvites());
     initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_IGNORE_SERVER_CHANGES, SignalStore.internalValues().gv2IgnoreServerChanges());
     initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_IGNORE_P2P_CHANGES, SignalStore.internalValues().gv2IgnoreP2PChanges());
+    initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_DISABLE_AUTOMIGRATE_INITIATION, SignalStore.internalValues().disableGv1AutoMigrateInitiation());
+    initializeSwitchPreference(preferenceDataStore, InternalValues.GV2_DISABLE_AUTOMIGRATE_NOTIFICATION, SignalStore.internalValues().disableGv1AutoMigrateNotification());
     initializeSwitchPreference(preferenceDataStore, InternalValues.FORCE_CENSORSHIP, SignalStore.internalValues().forcedCensorship());
 
     findPreference("pref_refresh_attributes").setOnPreferenceClickListener(preference -> {

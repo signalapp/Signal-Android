@@ -94,7 +94,7 @@ class EditPushGroupProfileRepository implements EditProfileRepository {
 
   @WorkerThread
   private RecipientId getRecipientId() {
-    return DatabaseFactory.getRecipientDatabase(context).getByGroupId(groupId.toString())
+    return DatabaseFactory.getRecipientDatabase(context).getByGroupId(groupId)
                           .or(() -> {
                             throw new AssertionError("Recipient ID for Group ID does not exist.");
                           });

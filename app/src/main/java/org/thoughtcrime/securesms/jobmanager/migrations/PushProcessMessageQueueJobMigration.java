@@ -58,7 +58,7 @@ public class PushProcessMessageQueueJobMigration extends JobMigration {
         Log.i(TAG, "Migrating a group message.");
         try {
           GroupId   groupId   = GroupUtil.idFromGroupContext(content.getDataMessage().get().getGroupContext().get());
-          Recipient recipient = Recipient.externalGroup(context, groupId);
+          Recipient recipient = Recipient.externalGroupExact(context, groupId);
 
           suffix = recipient.getId().toQueueKey();
         } catch (BadGroupIdException e) {
@@ -75,7 +75,7 @@ public class PushProcessMessageQueueJobMigration extends JobMigration {
       GroupId exceptionGroup  =  GroupId.parseNullableOrThrow(data.getStringOrDefault("exception_groupId", null));
 
       if (exceptionGroup != null) {
-        suffix = Recipient.externalGroup(context, exceptionGroup).getId().toQueueKey();
+        suffix = Recipient.externalGroupExact(context, exceptionGroup).getId().toQueueKey();
       } else if (exceptionSender != null) {
         suffix = Recipient.external(context, exceptionSender).getId().toQueueKey();
       }

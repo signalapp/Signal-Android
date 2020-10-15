@@ -1,18 +1,15 @@
 package org.thoughtcrime.securesms.keyvalue;
 
-import android.net.Uri;
-import android.text.TextUtils;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public final class MiscellaneousValues extends SignalStoreValues {
 
-  private static final String LAST_PREKEY_REFRESH_TIME    = "last_prekey_refresh_time";
-  private static final String MESSAGE_REQUEST_ENABLE_TIME = "message_request_enable_time";
-  private static final String LAST_PROFILE_REFRESH_TIME   = "misc.last_profile_refresh_time";
-  private static final String USERNAME_SHOW_REMINDER      = "username.show.reminder";
-  private static final String CLIENT_DEPRECATED           = "misc.client_deprecated";
+  private static final String LAST_PREKEY_REFRESH_TIME        = "last_prekey_refresh_time";
+  private static final String MESSAGE_REQUEST_ENABLE_TIME     = "message_request_enable_time";
+  private static final String LAST_PROFILE_REFRESH_TIME       = "misc.last_profile_refresh_time";
+  private static final String LAST_GV1_ROUTINE_MIGRATION_TIME = "misc.last_gv1_routine_migration_time";
+  private static final String USERNAME_SHOW_REMINDER          = "username.show.reminder";
+  private static final String CLIENT_DEPRECATED               = "misc.client_deprecated";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -41,6 +38,14 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void setLastProfileRefreshTime(long time) {
     putLong(LAST_PROFILE_REFRESH_TIME, time);
+  }
+
+  public long getLastGv1RoutineMigrationTime() {
+    return getLong(LAST_GV1_ROUTINE_MIGRATION_TIME, 0);
+  }
+
+  public void setLastGv1RoutineMigrationTime(long time) {
+    putLong(LAST_GV1_ROUTINE_MIGRATION_TIME, time);
   }
 
   public void hideUsernameReminder() {

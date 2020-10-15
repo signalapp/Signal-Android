@@ -30,6 +30,7 @@ import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -147,7 +148,34 @@ final class GroupManagerV2 {
   }
 
   @WorkerThread
-  void migrateGroupOnToServer(@NonNull GroupId.V1 groupIdV1)
+  @NonNull DecryptedGroup addedGroupVersion(@NonNull GroupMasterKey groupMasterKey)
+      throws GroupNotAMemberException, IOException, GroupDoesNotExistException
+  {
+    GroupsV2StateProcessor.StateProcessorForGroup stateProcessorForGroup = new GroupsV2StateProcessor(context).forGroup(groupMasterKey);
+    DecryptedGroup                                latest                 = stateProcessorForGroup.getCurrentGroupStateFromServer();
+
+    if (latest.getRevision() == 0) {
+      return latest;
+    }
+
+    Optional<DecryptedMember> selfInFullMemberList = DecryptedGroupUtil.findMemberByUuid(latest.getMembersList(), Recipient.self().requireUuid());
+
+    if (!selfInFullMemberList.isPresent()) {
+      return latest;
+    }
+
+    DecryptedGroup joinedVersion = stateProcessorForGroup.getSpecificVersionFromServer(selfInFullMemberList.get().getJoinedAtRevision());
+
+    if (joinedVersion != null) {
+      return joinedVersion;
+    } else {
+      Log.w(TAG, "Unable to retreive exact version joined at, using latest");
+      return latest;
+    }
+  }
+
+  @WorkerThread
+  void migrateGroupOnToServer(@NonNull GroupId.V1 groupIdV1, @NonNull Collection<Recipient> members)
       throws IOException, MembershipNotSuitableForV2Exception, GroupAlreadyExistsException, GroupChangeFailedException
   {
       GroupMasterKey            groupMasterKey    = groupIdV1.deriveV2MigrationMasterKey();
@@ -156,12 +184,19 @@ final class GroupManagerV2 {
       String                    name              = groupRecord.getTitle();
       byte[]                    avatar            = groupRecord.hasAvatar() ? AvatarHelper.getAvatarBytes(context, groupRecord.getRecipientId()) : null;
       int                       messageTimer      = Recipient.resolved(groupRecord.getRecipientId()).getExpireMessages();
-      Set<RecipientId>          memberIds         = Stream.of(groupRecord.getMembers())
+      Set<RecipientId>          memberIds         = Stream.of(members)
+                                                          .map(Recipient::getId)
                                                           .filterNot(m -> m.equals(Recipient.self().getId()))
                                                           .collect(Collectors.toSet());
 
       createGroupOnServer(groupSecretParams, name, avatar, memberIds, Member.Role.ADMINISTRATOR, messageTimer);
   }
+
+  @WorkerThread
+  void sendNoopGroupUpdate(@NonNull GroupMasterKey masterKey, @NonNull DecryptedGroup currentState) {
+    sendGroupUpdate(masterKey, new GroupMutation(currentState, DecryptedGroupChange.newBuilder().build(), currentState), null);
+  }
+
 
   final class GroupCreator extends LockOwner {
 
@@ -290,7 +325,7 @@ final class GroupManagerV2 {
         GroupManager.GroupActionResult groupActionResult = commitChangeWithConflictResolution(change);
 
         if (avatarChanged) {
-          AvatarHelper.setAvatar(context, Recipient.externalGroup(context, groupId).getId(), avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
+          AvatarHelper.setAvatar(context, Recipient.externalGroupExact(context, groupId).getId(), avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
           groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
         }
 
@@ -479,7 +514,7 @@ final class GroupManagerV2 {
 
           if (GroupChangeUtil.changeIsEmpty(change.build())) {
             Log.i(TAG, "Change is empty after conflict resolution");
-            Recipient groupRecipient = Recipient.externalGroup(context, groupId);
+            Recipient groupRecipient = Recipient.externalGroupExact(context, groupId);
             long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
 
             return new GroupManager.GroupActionResult(groupRecipient, threadId, 0, Collections.emptyList());
@@ -1026,7 +1061,7 @@ final class GroupManagerV2 {
                                                       @Nullable GroupChange signedGroupChange)
   {
     GroupId.V2                groupId                 = GroupId.v2(masterKey);
-    Recipient                 groupRecipient          = Recipient.externalGroup(context, groupId);
+    Recipient                 groupRecipient          = Recipient.externalGroupExact(context, groupId);
     DecryptedGroupV2Context   decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, groupMutation, signedGroupChange);
     OutgoingGroupUpdateMessage outgoingMessage        = new OutgoingGroupUpdateMessage(groupRecipient,
                                                                                        decryptedGroupV2Context,

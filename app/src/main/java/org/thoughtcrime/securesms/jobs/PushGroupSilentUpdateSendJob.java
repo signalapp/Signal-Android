@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -85,7 +84,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
     MessageGroupContext.GroupV2Properties properties   = groupMessage.requireGroupV2Properties();
     SignalServiceProtos.GroupContextV2    groupContext = properties.getGroupContext();
 
-    String queue = Recipient.externalGroup(context, groupId).getId().toQueueKey();
+    String queue = Recipient.externalGroupExact(context, groupId).getId().toQueueKey();
 
     return new PushGroupSilentUpdateSendJob(new ArrayList<>(recipients),
                                             recipients.size(),

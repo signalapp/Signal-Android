@@ -167,6 +167,7 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
+import org.thoughtcrime.securesms.jobs.GroupV1MigrationJob;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
@@ -451,6 +452,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       @Override
       public void onSuccess(Boolean result) {
         initializeProfiles();
+        initializeGv1Migration();
         initializeDraft().addListener(new AssertedSuccessListener<Boolean>() {
           @Override
           public void onSuccess(Boolean loadedDraft) {
@@ -2121,6 +2123,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     RetrieveProfileJob.enqueueAsync(recipient.getId());
+  }
+
+  private void initializeGv1Migration() {
+    GroupV1MigrationJob.enqueuePossibleAutoMigrate(recipient.getId());
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {

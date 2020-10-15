@@ -40,6 +40,7 @@ public interface MmsSmsColumns {
     protected static final long INVALID_MESSAGE_TYPE               = 6;
     protected static final long PROFILE_CHANGE_TYPE                = 7;
     protected static final long MISSED_VIDEO_CALL_TYPE             = 8;
+    protected static final long GV1_MIGRATION_TYPE                 = 9;
 
     protected static final long BASE_INBOX_TYPE                    = 20;
     protected static final long BASE_OUTBOX_TYPE                   = 21;

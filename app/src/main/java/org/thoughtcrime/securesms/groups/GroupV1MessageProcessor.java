@@ -9,13 +9,10 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV1DownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
@@ -24,11 +21,9 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -114,7 +109,7 @@ public final class GroupV1MessageProcessor {
 
     if (sender.isSystemContact() || sender.isProfileSharing()) {
       Log.i(TAG, "Auto-enabling profile sharing because 'adder' is trusted. contact: " + sender.isSystemContact() + ", profileSharing: " + sender.isProfileSharing());
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.externalGroup(context, id).getId(), true);
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.externalGroupExact(context, id).getId(), true);
     }
 
     return storeMessage(context, content, group, builder.build(), outgoing);

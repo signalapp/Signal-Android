@@ -82,7 +82,7 @@ public final class LiveGroup {
       this.groupLink = new MutableLiveData<>(GroupLinkUrlAndStatus.NONE);
     }
 
-    SignalExecutors.BOUNDED.execute(() -> liveRecipient.postValue(Recipient.externalGroup(context, groupId).live()));
+    SignalExecutors.BOUNDED.execute(() -> liveRecipient.postValue(Recipient.externalGroupExact(context, groupId).live()));
   }
 
   protected static LiveData<List<GroupMemberEntry.FullMember>> mapToFullMembers(@NonNull LiveData<GroupDatabase.GroupRecord> groupRecord) {

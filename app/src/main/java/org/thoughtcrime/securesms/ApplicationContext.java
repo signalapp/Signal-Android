@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.GroupV1MigrationJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
@@ -155,6 +156,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     FeatureFlags.refreshIfNecessary();
     ApplicationDependencies.getRecipientCache().warmUp();
     RetrieveProfileJob.enqueueRoutineFetchIfNecessary(this);
+    GroupV1MigrationJob.enqueueRoutineMigrationsIfNecessary(this);
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     ApplicationDependencies.getFrameRateTracker().begin();

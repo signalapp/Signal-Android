@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
@@ -81,10 +82,11 @@ public final class GroupManager {
 
   @WorkerThread
   public static void migrateGroupToServer(@NonNull Context context,
-                                          @NonNull GroupId.V1 groupIdV1)
+                                          @NonNull GroupId.V1 groupIdV1,
+                                          @NonNull Collection<Recipient> members)
       throws IOException, GroupChangeFailedException, MembershipNotSuitableForV2Exception, GroupAlreadyExistsException
   {
-    new GroupManagerV2(context).migrateGroupOnToServer(groupIdV1);
+    new GroupManagerV2(context).migrateGroupOnToServer(groupIdV1, members);
   }
 
   private static Set<RecipientId> getMemberIds(Collection<Recipient> recipients) {
@@ -184,6 +186,19 @@ public final class GroupManager {
     } catch (GroupDoesNotExistException e) {
       return V2GroupServerStatus.DOES_NOT_EXIST;
     }
+  }
+
+  /**
+   * Tries to gets the exact version of the group at the time you joined.
+   * <p>
+   * If it fails to get the exact version, it will give the latest.
+   */
+  @WorkerThread
+  public static DecryptedGroup addedGroupVersion(@NonNull Context context,
+                                                 @NonNull GroupMasterKey groupMasterKey)
+    throws IOException, GroupDoesNotExistException, GroupNotAMemberException
+  {
+    return new GroupManagerV2(context).addedGroupVersion(groupMasterKey);
   }
 
   @WorkerThread
@@ -369,6 +384,10 @@ public final class GroupManager {
     try (GroupManagerV2.GroupJoiner editor = new GroupManagerV2(context).cancelRequest(groupId.requireV2())) {
       editor.cancelJoinRequest();
     }
+  }
+
+  public static void sendNoopUpdate(@NonNull Context context, @NonNull GroupMasterKey groupMasterKey, @NonNull DecryptedGroup currentState) {
+    new GroupManagerV2(context).sendNoopGroupUpdate(groupMasterKey, currentState);
   }
 
   public static class GroupActionResult {

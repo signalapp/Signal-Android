@@ -2258,6 +2258,7 @@
     <!-- Internal only preferences -->
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
     <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
+    <string name="preferences__internal_preferences_groups_v1_migration" translatable="false">Groups V1 Migration</string>
     <string name="preferences__internal_do_not_create_gv2" translatable="false">Do not create GV2 groups</string>
     <string name="preferences__internal_do_not_create_gv2_description" translatable="false">Do not attempt to create GV2 groups, i.e. will force creation of GV1 or MMS groups.</string>
     <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
@@ -2266,6 +2267,10 @@
     <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\'s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
     <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
     <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
+    <string name="preferences__internal_do_not_initiate_automigrate" translatable="false">Disable Auto-Migration Initiation</string>
+    <string name="preferences__internal_do_not_initiate_automigrate_description" translatable="false">Do not attempt to initiate an auto-migration. You will still recognize migrated groups.</string>
+    <string name="preferences__internal_do_not_notify_automigrate" translatable="false">Disable Auto-Migration Notification</string>
+    <string name="preferences__internal_do_not_notify_automigrate_description" translatable="false">Do not attempt to notify other users of an auto-migration. They will have to discover it on their own.</string>
     <string name="preferences__internal_account" translatable="false">Account</string>
     <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
     <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>

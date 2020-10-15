@@ -740,6 +740,24 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void insertGroupV1MigrationEvent(@NonNull RecipientId recipientId, long threadId, List<RecipientId> pendingRecipients) {
+    ContentValues values = new ContentValues();
+    values.put(RECIPIENT_ID, recipientId.serialize());
+    values.put(ADDRESS_DEVICE_ID, 1);
+    values.put(DATE_RECEIVED, System.currentTimeMillis());
+    values.put(DATE_SENT, System.currentTimeMillis());
+    values.put(READ, 1);
+    values.put(TYPE, Types.GV1_MIGRATION_TYPE);
+    values.put(THREAD_ID, threadId);
+    values.put(BODY, RecipientId.toSerializedList(pendingRecipients));
+
+    databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+
+    notifyConversationListeners(threadId);
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+  }
+
+  @Override
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type) {
     if (message.isJoined()) {
       type = (type & (Types.TOTAL_MASK - Types.BASE_TYPE_MASK)) | Types.JOINED_TYPE;
@@ -775,7 +793,7 @@ public class SmsDatabase extends MessageDatabase {
     if (message.getGroupId() == null) {
       groupRecipient = null;
     } else {
-      RecipientId id = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(message.getGroupId());
+      RecipientId id = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(message.getGroupId());
       groupRecipient = Recipient.resolved(id);
     }
 

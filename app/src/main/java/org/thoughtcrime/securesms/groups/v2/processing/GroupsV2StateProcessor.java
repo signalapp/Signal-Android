@@ -245,11 +245,29 @@ public final class GroupsV2StateProcessor {
     }
 
     @WorkerThread
-    public DecryptedGroup getCurrentGroupStateFromServer()
+    public @NonNull DecryptedGroup getCurrentGroupStateFromServer()
         throws IOException, GroupNotAMemberException, GroupDoesNotExistException
     {
       try {
         return groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams));
+      } catch (GroupNotFoundException e) {
+        throw new GroupDoesNotExistException(e);
+      } catch (NotInGroupException e) {
+        throw new GroupNotAMemberException(e);
+      } catch (VerificationFailedException | InvalidGroupStateException e) {
+        throw new IOException(e);
+      }
+    }
+
+    @WorkerThread
+    public @Nullable DecryptedGroup getSpecificVersionFromServer(int revision)
+        throws IOException, GroupNotAMemberException, GroupDoesNotExistException
+    {
+      try {
+        return groupsV2Api.getGroupHistory(groupSecretParams, revision, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams))
+                          .get(0)
+                          .getGroup()
+                          .orNull();
       } catch (GroupNotFoundException e) {
         throw new GroupDoesNotExistException(e);
       } catch (NotInGroupException e) {
@@ -265,7 +283,7 @@ public final class GroupsV2StateProcessor {
         return;
       }
 
-      Recipient      groupRecipient = Recipient.externalGroup(context, groupId);
+      Recipient      groupRecipient = Recipient.externalGroupExact(context, groupId);
       UUID           selfUuid       = Recipient.self().getUuid().get();
       DecryptedGroup decryptedGroup = groupDatabase.requireGroup(groupId)
                                                    .requireV2GroupProperties()
@@ -368,7 +386,7 @@ public final class GroupsV2StateProcessor {
           if (addedBy.isSystemContact() || addedBy.isProfileSharing()) {
             Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact() + ", profileSharing: " + addedBy.isProfileSharing());
             Log.i(TAG, "Added to a group and auto-enabling profile sharing");
-            recipientDatabase.setProfileSharing(Recipient.externalGroup(context, groupId).getId(), true);
+            recipientDatabase.setProfileSharing(Recipient.externalGroupExact(context, groupId).getId(), true);
           } else {
             Log.i(TAG, "Added to a group, but not enabling profile sharing, as 'adder' is not trusted");
           }

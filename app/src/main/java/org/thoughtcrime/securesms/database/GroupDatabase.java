@@ -468,6 +468,48 @@ public final class GroupDatabase extends Database {
     notifyConversationListListeners();
   }
 
+  /**
+   * Migrates a V1 group to a V2 group.
+   */
+  public @NonNull GroupId.V2 migrateToV2(@NonNull GroupId.V1 groupIdV1, @NonNull DecryptedGroup decryptedGroup) {
+    SQLiteDatabase db             = databaseHelper.getWritableDatabase();
+    GroupId.V2     groupIdV2      = groupIdV1.deriveV2MigrationGroupId();
+    GroupMasterKey groupMasterKey = groupIdV1.deriveV2MigrationMasterKey();
+
+    db.beginTransaction();
+    try {
+      GroupRecord record = getGroup(groupIdV1).get();
+
+      ContentValues contentValues = new ContentValues();
+      contentValues.put(GROUP_ID, groupIdV2.toString());
+      contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
+      contentValues.putNull(EXPECTED_V2_ID);
+
+      List<RecipientId> newMembers = Stream.of(DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList())).map(u -> RecipientId.from(u, null)).toList();
+      newMembers.addAll(Stream.of(DecryptedGroupUtil.pendingToUuidList(decryptedGroup.getPendingMembersList())).map(u -> RecipientId.from(u, null)).toList());
+
+      if (record.getMembers().size() > newMembers.size() || !newMembers.containsAll(record.getMembers())) {
+        contentValues.put(FORMER_V1_MEMBERS, RecipientId.toSerializedList(record.getMembers()));
+      }
+
+      int updated = db.update(TABLE_NAME, contentValues, GROUP_ID + " = ?", SqlUtil.buildArgs(groupIdV1.toString()));
+
+      if (updated != 1) {
+        throw new AssertionError();
+      }
+
+      DatabaseFactory.getRecipientDatabase(context).updateGroupId(groupIdV1, groupIdV2);
+
+      update(groupMasterKey, decryptedGroup);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    return groupIdV2;
+  }
+
   public void update(@NonNull GroupMasterKey groupMasterKey, @NonNull DecryptedGroup decryptedGroup) {
     update(GroupId.v2(groupMasterKey), decryptedGroup);
   }

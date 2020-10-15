@@ -415,6 +415,11 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void insertGroupV1MigrationEvent(@NonNull RecipientId recipientId, long threadId, List<RecipientId> pendingRecipients) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public void endTransaction(SQLiteDatabase database) {
     database.endTransaction();
   }
@@ -588,7 +593,7 @@ public class MmsDatabase extends MessageDatabase {
 
   private long getThreadIdFor(@NonNull IncomingMediaMessage retrieved) {
     if (retrieved.getGroupId() != null) {
-      RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(retrieved.getGroupId());
+      RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(retrieved.getGroupId());
       Recipient   groupRecipients  = Recipient.resolved(groupRecipientId);
       return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
     } else {

@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
@@ -377,8 +378,8 @@ public class RecipientDatabase extends Database {
     return getByColumn(EMAIL, email);
   }
 
-  public @NonNull Optional<RecipientId> getByGroupId(@NonNull String groupId) {
-    return getByColumn(GROUP_ID, groupId);
+  public @NonNull Optional<RecipientId> getByGroupId(@NonNull GroupId groupId) {
+    return getByColumn(GROUP_ID, groupId.toString());
 
   }
 
@@ -554,7 +555,7 @@ public class RecipientDatabase extends Database {
   }
 
   public @NonNull RecipientId getOrInsertFromGroupId(@NonNull GroupId groupId) {
-    Optional<RecipientId> existing = getByColumn(GROUP_ID, groupId.toString());
+    Optional<RecipientId> existing = getByGroupId(groupId);
 
     if (existing.isPresent()) {
       return existing.get();
@@ -601,6 +602,44 @@ public class RecipientDatabase extends Database {
 
         return recipientId;
       }
+    }
+  }
+
+  /**
+   * See {@link Recipient#externalPossiblyMigratedGroup(Context, GroupId)}.
+   */
+  public @NonNull RecipientId getOrInsertFromPossiblyMigratedGroupId(@NonNull GroupId groupId) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      Optional<RecipientId> existing = getByColumn(GROUP_ID, groupId.toString());
+
+      if (existing.isPresent()) {
+        return existing.get();
+      }
+
+      if (groupId.isV1()) {
+        Optional<RecipientId> v2 = getByGroupId(groupId.requireV1().deriveV2MigrationGroupId());
+        if (v2.isPresent()) {
+          return v2.get();
+        }
+      }
+
+      if (groupId.isV2()) {
+        Optional<GroupDatabase.GroupRecord> v1 = DatabaseFactory.getGroupDatabase(context).getGroupV1ByExpectedV2(groupId.requireV2());
+        if (v1.isPresent()) {
+          return v1.get().getRecipientId();
+        }
+      }
+
+      RecipientId id = getOrInsertFromGroupId(groupId);
+
+      db.setTransactionSuccessful();
+
+      return id;
+    } finally {
+      db.endTransaction();
     }
   }
 
@@ -877,7 +916,7 @@ public class RecipientDatabase extends Database {
       for (SignalGroupV1Record insert : groupV1Inserts) {
         db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert));
 
-        Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(insert.getGroupId()));
+        Recipient recipient = Recipient.externalGroupExact(context, GroupId.v1orThrow(insert.getGroupId()));
 
         threadDatabase.applyStorageSyncUpdate(recipient.getId(), insert);
         needsRefresh.add(recipient.getId());
@@ -891,7 +930,7 @@ public class RecipientDatabase extends Database {
           throw new AssertionError("Had an update, but it didn't match any rows!");
         }
 
-        Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(update.getOld().getGroupId()));
+        Recipient recipient = Recipient.externalGroupExact(context, GroupId.v1orThrow(update.getOld().getGroupId()));
 
         threadDatabase.applyStorageSyncUpdate(recipient.getId(), update.getNew());
         needsRefresh.add(recipient.getId());
@@ -902,7 +941,7 @@ public class RecipientDatabase extends Database {
         GroupId.V2     groupId   = GroupId.v2(masterKey);
         ContentValues  values    = getValuesForStorageGroupV2(insert);
         long           id        = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
-        Recipient      recipient = Recipient.externalGroup(context, groupId);
+        Recipient      recipient = Recipient.externalGroupExact(context, groupId);
 
         if (id < 0) {
           Log.w(TAG, String.format("Recipient %s is already linked to group %s", recipient.getId(), groupId));
@@ -934,7 +973,7 @@ public class RecipientDatabase extends Database {
         }
 
         GroupMasterKey masterKey = update.getOld().getMasterKeyOrThrow();
-        Recipient      recipient = Recipient.externalGroup(context, GroupId.v2(masterKey));
+        Recipient      recipient = Recipient.externalGroupExact(context, GroupId.v2(masterKey));
 
         threadDatabase.applyStorageSyncUpdate(recipient.getId(), update.getNew());
         needsRefresh.add(recipient.getId());
@@ -1155,7 +1194,7 @@ public class RecipientDatabase extends Database {
     }
 
     for (GroupId.V2 id : DatabaseFactory.getGroupDatabase(context).getAllGroupV2Ids()) {
-      Recipient         recipient                = Recipient.externalGroup(context, id);
+      Recipient         recipient                = Recipient.externalGroupExact(context, id);
       RecipientId       recipientId              = recipient.getId();
       RecipientSettings recipientSettingsForSync = getRecipientSettingsForSync(recipientId);
 
@@ -2298,6 +2337,24 @@ public class RecipientDatabase extends Database {
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, query, args);
+  }
+
+  /**
+   * Updates a group recipient with a new V2 group ID. Should only be done as a part of GV1->GV2
+   * migration.
+   */
+  void updateGroupId(@NonNull GroupId.V1 v1Id, @NonNull GroupId.V2 v2Id) {
+    ContentValues values = new ContentValues();
+    values.put(GROUP_ID, v2Id.toString());
+    values.put(GROUP_TYPE, GroupType.SIGNAL_V2.getId());
+
+    SqlUtil.Query query = SqlUtil.buildTrueUpdateQuery(GROUP_ID + " = ?", SqlUtil.buildArgs(v1Id), values);
+
+    if (update(query, values)) {
+      RecipientId id = getByGroupId(v2Id).get();
+      markDirty(id, DirtyState.UPDATE);
+      Recipient.live(id).refresh();
+    }
   }
 
   /**
