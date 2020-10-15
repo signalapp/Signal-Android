@@ -1,6 +1,10 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import android.net.Uri;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public final class MiscellaneousValues extends SignalStoreValues {
 

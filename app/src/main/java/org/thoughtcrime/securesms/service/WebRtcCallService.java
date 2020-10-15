@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
-import org.thoughtcrime.securesms.webrtc.IncomingPstnCallReceiver;
 import org.thoughtcrime.securesms.webrtc.UncaughtExceptionHandlerManager;
 import org.thoughtcrime.securesms.webrtc.audio.BluetoothStateManager;
 import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
@@ -193,7 +192,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   private WiredHeadsetStateReceiver       wiredHeadsetStateReceiver;
   private PowerButtonReceiver             powerButtonReceiver;
   private LockManager                     lockManager;
-  private IncomingPstnCallReceiver        callReceiver;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
 
   @Nullable private CallManager             callManager;
@@ -220,7 +218,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     initializeResources();
 
-    registerIncomingPstnCallReceiver();
     registerUncaughtExceptionHandler();
     registerWiredHeadsetStateReceiver();
 
@@ -298,10 +295,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       callManager = null;
     }
 
-    if (callReceiver != null) {
-      unregisterReceiver(callReceiver);
-    }
-
     if (uncaughtExceptionHandlerManager != null) {
       uncaughtExceptionHandlerManager.unregister();
     }
@@ -361,11 +354,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     } catch  (CallException e) {
       callFailure("Unable to create Call Manager: ", e);
     }
-  }
-
-  private void registerIncomingPstnCallReceiver() {
-    callReceiver = new IncomingPstnCallReceiver();
-    registerReceiver(callReceiver, new IntentFilter("android.intent.action.PHONE_STATE"));
   }
 
   private void registerUncaughtExceptionHandler() {

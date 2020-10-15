@@ -8,9 +8,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.ActivityNavigator;
 import androidx.navigation.Navigation;
@@ -23,6 +26,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -32,7 +36,21 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
 
   private static final String TAG = Log.tag(WelcomeFragment.class);
 
+  private static final            String[]       PERMISSIONS        = { Manifest.permission.WRITE_CONTACTS,
+                                                                        Manifest.permission.READ_CONTACTS,
+                                                                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                                                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                                                                        Manifest.permission.READ_PHONE_STATE };
+  private static final            String[]       PERMISSIONS_API_29 = { Manifest.permission.WRITE_CONTACTS,
+                                                                        Manifest.permission.READ_CONTACTS,
+                                                                        Manifest.permission.READ_PHONE_STATE };
+  private static final @StringRes int            RATIONALE          = R.string.RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends;
+  private static final @StringRes int            RATIONALE_API_29   = R.string.RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends;
+  private static final            int[]          HEADERS            = { R.drawable.ic_contacts_white_48dp, R.drawable.ic_folder_white_48dp };
+  private static final            int[]          HEADERS_API_29     = { R.drawable.ic_contacts_white_48dp };
+
   private CircularProgressButton continueButton;
+  private View                   restoreFromBackup;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +93,16 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
       continueButton = view.findViewById(R.id.welcome_continue_button);
       continueButton.setOnClickListener(this::continueClicked);
 
-      view.findViewById(R.id.welcome_terms_button).setOnClickListener(v -> onTermsClicked());
+      restoreFromBackup = view.findViewById(R.id.welcome_restore_backup);
+      restoreFromBackup.setOnClickListener(this::restoreFromBackupClicked);
+
+      TextView welcomeTermsButton = view.findViewById(R.id.welcome_terms_button);
+      welcomeTermsButton.setOnClickListener(v -> onTermsClicked());
+
+      if (canUserSelectBackup()) {
+        restoreFromBackup.setVisibility(View.VISIBLE);
+        welcomeTermsButton.setTextColor(ContextCompat.getColor(requireActivity(), R.color.core_grey_60));
+      }
     }
   }
 
@@ -85,18 +112,24 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
   }
 
   private void continueClicked(@NonNull View view) {
+    boolean isUserSelectionRequired = BackupUtil.isUserSelectionRequired(requireContext());
+
     Permissions.with(this)
-               .request(Manifest.permission.WRITE_CONTACTS,
-                        Manifest.permission.READ_CONTACTS,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_PHONE_STATE)
+               .request(getContinuePermissions(isUserSelectionRequired))
                .ifNecessary()
-               .withRationaleDialog(getString(R.string.RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends),
-                 R.drawable.ic_contacts_white_48dp, R.drawable.ic_folder_white_48dp)
-               .onAnyResult(() -> {
-                 gatherInformationAndContinue(continueButton);
-               })
+               .withRationaleDialog(getString(getContinueRationale(isUserSelectionRequired)), getContinueHeaders(isUserSelectionRequired))
+               .onAnyResult(() -> gatherInformationAndContinue(continueButton))
+               .execute();
+  }
+
+  private void restoreFromBackupClicked(@NonNull View view) {
+    boolean isUserSelectionRequired = BackupUtil.isUserSelectionRequired(requireContext());
+
+    Permissions.with(this)
+               .request(getContinuePermissions(isUserSelectionRequired))
+               .ifNecessary()
+               .withRationaleDialog(getString(getContinueRationale(isUserSelectionRequired)), getContinueHeaders(isUserSelectionRequired))
+               .onAnyResult(() -> gatherInformationAndChooseBackup(continueButton))
                .execute();
   }
 
@@ -127,6 +160,15 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
     });
   }
 
+  private void gatherInformationAndChooseBackup(@NonNull View view) {
+    TextSecurePreferences.setHasSeenWelcomeScreen(requireContext(), true);
+
+    initializeNumber();
+
+    Navigation.findNavController(view)
+              .navigate(WelcomeFragmentDirections.actionChooseBackup());
+  }
+
   @SuppressLint("MissingPermission")
   private void initializeNumber() {
     Optional<Phonenumber.PhoneNumber> localNumber = Optional.absent();
@@ -148,5 +190,23 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
 
   private void onTermsClicked() {
     CommunicationActions.openBrowserLink(requireContext(), RegistrationConstants.TERMS_AND_CONDITIONS_URL);
+  }
+
+  private boolean canUserSelectBackup() {
+    return BackupUtil.isUserSelectionRequired(requireContext()) &&
+           !isReregister()                                      &&
+           !TextSecurePreferences.isBackupEnabled(requireContext());
+  }
+
+  private static String[] getContinuePermissions(boolean isUserSelectionRequired) {
+    return isUserSelectionRequired ? PERMISSIONS_API_29 : PERMISSIONS;
+  }
+
+  private static @StringRes int getContinueRationale(boolean isUserSelectionRequired) {
+    return isUserSelectionRequired ? RATIONALE_API_29 : RATIONALE;
+  }
+
+  private static int[] getContinueHeaders(boolean isUserSelectionRequired) {
+    return isUserSelectionRequired ? HEADERS_API_29 : HEADERS;
   }
 }

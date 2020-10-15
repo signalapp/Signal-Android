@@ -1,11 +1,17 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import android.net.Uri;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public final class SettingsValues extends SignalStoreValues {
 
   public static final String LINK_PREVIEWS          = "settings.link_previews";
   public static final String KEEP_MESSAGES_DURATION = "settings.keep_messages_duration";
+
+  private static final String SIGNAL_BACKUP_DIRECTORY = "settings.signal.backup.directory";
 
   public static final String THREAD_TRIM_LENGTH     = "pref_trim_length";
   public static final String THREAD_TRIM_ENABLED    = "pref_trim_threads";
@@ -53,4 +59,22 @@ public final class SettingsValues extends SignalStoreValues {
     putInteger(THREAD_TRIM_LENGTH, length);
   }
 
+  public void setSignalBackupDirectory(@NonNull Uri uri) {
+    putString(SIGNAL_BACKUP_DIRECTORY, uri.toString());
+  }
+
+  public @Nullable
+  Uri getSignalBackupDirectory() {
+    String uri = getString(SIGNAL_BACKUP_DIRECTORY, "");
+
+    if (TextUtils.isEmpty(uri)) {
+      return null;
+    } else {
+      return Uri.parse(uri);
+    }
+  }
+
+  public void clearSignalBackupDirectory() {
+    putString(SIGNAL_BACKUP_DIRECTORY, null);
+  }
 }

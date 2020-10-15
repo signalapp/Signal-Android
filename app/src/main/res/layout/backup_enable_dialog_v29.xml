@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="23dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="23dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/backup_enable_dialog__folder"
+        android:textAppearance="@style/Signal.Text.Caption"
+        android:textColor="?attr/backup_enable_subhead_color"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/backup_enable_dialog_folder_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:textAppearance="@style/Signal.Text.Body"
+        tools:text="Documents" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="24dp"
+        android:background="?attr/backup_enable_dialog_divider_background" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/backup_enable_dialog__you_must_have_this_passphrase"
+        android:textAppearance="@style/Signal.Text.Body" />
+
+    <TableLayout
+        android:id="@+id/number_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TableRow
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/code_first"
+                style="@style/BackupPassphrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="22934" />
+
+            <TextView
+                android:id="@+id/code_second"
+                style="@style/BackupPassphrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="56944" />
+
+            <TextView
+                android:id="@+id/code_third"
+                style="@style/BackupPassphrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="42738" />
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/code_fourth"
+                style="@style/BackupPassphrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="34431" />
+
+            <TextView
+                android:id="@+id/code_fifth"
+                style="@style/BackupPassphrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="24922" />
+
+            <TextView
+                android:id="@+id/code_sixth"
+                style="@style/BackupPassphrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                tools:text="58594" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/confirmation_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/confirmation_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/backup_enable_dialog__i_have_written_down_this_passphrase"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

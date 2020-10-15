@@ -3,9 +3,12 @@ package org.thoughtcrime.securesms.backup;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.TextUtils;
+import androidx.annotation.RequiresApi;
+import androidx.documentfile.provider.DocumentFile;
 
 import com.annimon.stream.function.Consumer;
 import com.annimon.stream.function.Predicate;
@@ -50,6 +53,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.crypto.BadPaddingException;
@@ -84,7 +88,32 @@ public class FullBackupExporter extends FullBackupBase {
                             @NonNull String passphrase)
       throws IOException
   {
-    BackupFrameOutputStream outputStream = new BackupFrameOutputStream(output, passphrase);
+    try (OutputStream outputStream = new FileOutputStream(output)) {
+      internalExport(context, attachmentSecret, input, outputStream, passphrase);
+    }
+  }
+
+  @RequiresApi(29)
+  public static void export(@NonNull Context context,
+                            @NonNull AttachmentSecret attachmentSecret,
+                            @NonNull SQLiteDatabase input,
+                            @NonNull DocumentFile output,
+                            @NonNull String passphrase)
+      throws IOException
+  {
+    try (OutputStream outputStream = Objects.requireNonNull(context.getContentResolver().openOutputStream(output.getUri()))) {
+      internalExport(context, attachmentSecret, input, outputStream, passphrase);
+    }
+  }
+
+  private static void internalExport(@NonNull Context context,
+                                     @NonNull AttachmentSecret attachmentSecret,
+                                     @NonNull SQLiteDatabase input,
+                                     @NonNull OutputStream fileOutputStream,
+                                     @NonNull String passphrase)
+      throws IOException
+  {
+    BackupFrameOutputStream outputStream = new BackupFrameOutputStream(fileOutputStream, passphrase);
     int                     count        = 0;
 
     try {
@@ -322,7 +351,7 @@ public class FullBackupExporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupFrameOutputStream(@NonNull File output, @NonNull String passphrase) throws IOException {
+    private BackupFrameOutputStream(@NonNull OutputStream output, @NonNull String passphrase) throws IOException {
       try {
         byte[]   salt    = Util.getSecretBytes(32);
         byte[]   key     = getBackupKey(passphrase, salt);
@@ -334,7 +363,7 @@ public class FullBackupExporter extends FullBackupBase {
 
         this.cipher       = Cipher.getInstance("AES/CTR/NoPadding");
         this.mac          = Mac.getInstance("HmacSHA256");
-        this.outputStream = new FileOutputStream(output);
+        this.outputStream = output;
         this.iv           = Util.getSecretBytes(16);
         this.counter      = Conversions.byteArrayToInt(iv);
 

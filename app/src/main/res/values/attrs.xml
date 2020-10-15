@@ -11,6 +11,10 @@
     <attr name="title_text_color_secondary" format="color"/>
     <attr name="title_text_color_disabled" format="color"/>
 
+    <attr name="folder_icon" format="reference" />
+    <attr name="backup_enable_subhead_color" format="color" />
+    <attr name="backup_enable_dialog_divider_background" format="color" />
+
     <attr name="attachment_type_selector_background" format="color"/>
     <attr name="attachment_document_icon_small" format="reference" />
     <attr name="attachment_document_icon_large" format="reference" />

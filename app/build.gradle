@@ -386,10 +386,11 @@ dependencies {
     testImplementation 'org.powermock:powermock-classloading-xstream:1.7.4'
 
     testImplementation 'androidx.test:core:1.2.0'
-    testImplementation ('org.robolectric:robolectric:4.2') {
+    testImplementation ('org.robolectric:robolectric:4.4') {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
     }
-    testImplementation 'org.robolectric:shadows-multidex:4.2'
+    testImplementation 'org.robolectric:shadows-multidex:4.4'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

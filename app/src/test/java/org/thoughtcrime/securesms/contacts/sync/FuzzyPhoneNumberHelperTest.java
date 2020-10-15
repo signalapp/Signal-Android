@@ -6,14 +6,11 @@ import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputRes
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputResultV2;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-
-import edu.emory.mathcs.backport.java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

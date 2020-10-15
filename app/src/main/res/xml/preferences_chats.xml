@@ -62,26 +62,11 @@
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:key="backup_category" android:title="@string/preferences_chats__backups">
-        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-                android:defaultValue="false"
-                android:key="pref_backup_enabled"
-                android:title="@string/preferences_chats__chat_backups"
-                android:summary="@string/preferences_chats__backup_chats_to_external_storage" />
-
-        <org.thoughtcrime.securesms.preferences.widgets.ProgressPreference
-                android:key="pref_backup_create"
-                android:title="@string/preferences_chats__create_backup"
-                android:persistent="false"
-                android:dependency="pref_backup_enabled"
-                tools:summary="Last backup: 3 days ago"/>
-
         <androidx.preference.Preference
-                android:key="pref_backup_passphrase_verify"
-                android:title="@string/preferences_chats__verify_backup_passphrase"
+                android:key="pref_backup"
+                android:summary="@string/preferences_chats__backup_chats_to_external_storage"
                 android:persistent="false"
-                android:dependency="pref_backup_enabled"
-                android:summary="@string/preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches"/>
-
+                android:title="@string/preferences_chats__chat_backups" />
     </PreferenceCategory>
 
 </PreferenceScreen>

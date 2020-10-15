@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.Manifest;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 
@@ -53,7 +54,11 @@ public final class LocalBackupJob extends BaseJob {
       parameters.addConstraint(ChargingConstraint.KEY);
     }
 
-    jobManager.add(new LocalBackupJob(parameters.build()));
+    if (BackupUtil.isUserSelectionRequired(ApplicationDependencies.getApplication())) {
+      jobManager.add(new LocalBackupJobApi29(parameters.build()));
+    } else {
+      jobManager.add(new LocalBackupJob(parameters.build()));
+    }
   }
 
   private LocalBackupJob(@NonNull Job.Parameters parameters) {

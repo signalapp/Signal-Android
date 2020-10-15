@@ -71,6 +71,7 @@ public final class JobManagerFactories {
       put(KbsEnclaveMigrationWorkerJob.KEY,          new KbsEnclaveMigrationWorkerJob.Factory());
       put(LeaveGroupJob.KEY,                         new LeaveGroupJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
+      put(LocalBackupJobApi29.KEY,                   new LocalBackupJobApi29.Factory());
       put(MmsDownloadJob.KEY,                        new MmsDownloadJob.Factory());
       put(MmsReceiveJob.KEY,                         new MmsReceiveJob.Factory());
       put(MmsSendJob.KEY,                            new MmsSendJob.Factory());

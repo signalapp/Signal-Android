@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -47,10 +48,29 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="@dimen/registration_button_bottom_margin"
+        android:layout_marginBottom="17dp"
         app:cpb_textIdle="@string/RegistrationActivity_continue"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/welcome_restore_backup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_goneMarginBottom="@dimen/registration_button_bottom_margin" />
+
+    <TextView
+        android:id="@+id/welcome_restore_backup"
+        style="@style/Signal.Text.Body.Registration"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="@string/registration_activity__restore_backup"
+        android:textColor="?attr/colorAccent"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
+        app:layout_constraintStart_toStartOf="@+id/welcome_continue_button"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

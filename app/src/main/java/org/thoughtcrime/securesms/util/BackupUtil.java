@@ -1,14 +1,24 @@
 package org.thoughtcrime.securesms.util;
 
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.documentfile.provider.DocumentFile;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
@@ -18,6 +28,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class BackupUtil {
 
@@ -34,6 +45,24 @@ public class BackupUtil {
     } catch (NoExternalStorageException e) {
       Log.w(TAG, e);
       return context.getString(R.string.BackupUtil_unknown);
+    }
+  }
+
+  public static boolean isUserSelectionRequired(@NonNull Context context) {
+    return Build.VERSION.SDK_INT >= 29 && !Permissions.hasAll(context, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+  }
+
+  public static boolean canUserAccessBackupDirectory(@NonNull Context context) {
+    if (isUserSelectionRequired(context)) {
+      Uri backupDirectoryUri = SignalStore.settings().getSignalBackupDirectory();
+      if (backupDirectoryUri == null) {
+        return false;
+      }
+
+      DocumentFile backupDirectory = DocumentFile.fromTreeUri(context, backupDirectoryUri);
+      return backupDirectory != null && backupDirectory.exists() && backupDirectory.canRead() && backupDirectory.canWrite();
+    } else {
+      return Permissions.hasAll(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
   }
 
@@ -71,17 +100,96 @@ public class BackupUtil {
     }
   }
 
+  public static void disableBackups(@NonNull Context context) {
+    BackupPassphrase.set(context, null);
+    TextSecurePreferences.setBackupEnabled(context, false);
+    BackupUtil.deleteAllBackups();
+
+    if (BackupUtil.isUserSelectionRequired(context)) {
+      Uri backupLocationUri = SignalStore.settings().getSignalBackupDirectory();
+
+      if (backupLocationUri == null) {
+        return;
+      }
+
+      SignalStore.settings().clearSignalBackupDirectory();
+
+      try {
+        context.getContentResolver()
+            .releasePersistableUriPermission(Objects.requireNonNull(backupLocationUri),
+                                             Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                                             Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+      } catch (SecurityException e) {
+        Log.w(TAG, "Could not release permissions", e);
+      }
+    }
+  }
+
   private static List<BackupInfo> getAllBackupsNewestFirst() throws NoExternalStorageException {
+    if (isUserSelectionRequired(ApplicationDependencies.getApplication())) {
+      return getAllBackupsNewestFirstApi29();
+    } else {
+      return getAllBackupsNewestFirstLegacy();
+    }
+  }
+
+  @RequiresApi(29)
+  private static List<BackupInfo> getAllBackupsNewestFirstApi29() {
+    Uri backupDirectoryUri = SignalStore.settings().getSignalBackupDirectory();
+    if (backupDirectoryUri == null) {
+      Log.i(TAG, "Backup directory is not set. Returning an empty list.");
+      return Collections.emptyList();
+    }
+
+    DocumentFile backupDirectory = DocumentFile.fromTreeUri(ApplicationDependencies.getApplication(), backupDirectoryUri);
+    if (backupDirectory == null || !backupDirectory.exists() || !backupDirectory.canRead()) {
+      Log.w(TAG, "Backup directory is inaccessible. Returning an empty list.");
+      return Collections.emptyList();
+    }
+
+    DocumentFile[]   files   = backupDirectory.listFiles();
+    List<BackupInfo> backups = new ArrayList<>(files.length);
+
+    for (DocumentFile file : files) {
+      if (file.isFile() && file.getName() != null && file.getName().endsWith(".backup")) {
+        long backupTimestamp = getBackupTimestamp(file.getName());
+
+        if (backupTimestamp != -1) {
+          backups.add(new BackupInfo(backupTimestamp, file.length(), file.getUri()));
+        }
+      }
+    }
+
+    Collections.sort(backups, (a, b) -> Long.compare(b.timestamp, a.timestamp));
+
+    return backups;
+  }
+
+  @RequiresApi(29)
+  public static @Nullable BackupInfo getBackupInfoForUri(@NonNull Context context, @NonNull Uri uri) {
+    DocumentFile documentFile = DocumentFile.fromSingleUri(context, uri);
+
+    if (documentFile != null && documentFile.exists() && documentFile.canRead() && documentFile.canWrite() && documentFile.getName().endsWith(".backup")) {
+      long backupTimestamp = getBackupTimestamp(documentFile.getName());
+
+      return new BackupInfo(backupTimestamp, documentFile.length(), documentFile.getUri());
+    } else {
+      Log.w(TAG, "Could not load backup info.");
+      return null;
+    }
+  }
+
+  private static List<BackupInfo> getAllBackupsNewestFirstLegacy() throws NoExternalStorageException {
     File             backupDirectory = StorageUtil.getBackupDirectory();
     File[]           files           = backupDirectory.listFiles();
     List<BackupInfo> backups         = new ArrayList<>(files.length);
 
     for (File file : files) {
       if (file.isFile() && file.getAbsolutePath().endsWith(".backup")) {
-        long backupTimestamp = getBackupTimestamp(file);
+        long backupTimestamp = getBackupTimestamp(file.getName());
 
         if (backupTimestamp != -1) {
-          backups.add(new BackupInfo(backupTimestamp, file.length(), file));
+          backups.add(new BackupInfo(backupTimestamp, file.length(), Uri.fromFile(file)));
         }
       }
     }
@@ -104,9 +212,8 @@ public class BackupUtil {
     return result;
   }
 
-  private static long getBackupTimestamp(File backup) {
-    String   name  = backup.getName();
-    String[] prefixSuffix = name.split("[.]");
+  private static long getBackupTimestamp(@NonNull String backupName) {
+    String[] prefixSuffix = backupName.split("[.]");
 
     if (prefixSuffix.length == 2) {
       String[] parts = prefixSuffix[0].split("\\-");
@@ -136,12 +243,12 @@ public class BackupUtil {
 
     private final long timestamp;
     private final long size;
-    private final File file;
+    private final Uri uri;
 
-    BackupInfo(long timestamp, long size, File file) {
+    BackupInfo(long timestamp, long size, Uri uri) {
       this.timestamp = timestamp;
       this.size      = size;
-      this.file      = file;
+      this.uri       = uri;
     }
 
     public long getTimestamp() {
@@ -152,16 +259,27 @@ public class BackupUtil {
       return size;
     }
 
-    public File getFile() {
-      return file;
+    public Uri getUri() {
+      return uri;
     }
 
     private void delete() {
-      Log.i(TAG, "Deleting: " + file.getAbsolutePath());
+      DocumentFile document = DocumentFile.fromSingleUri(ApplicationDependencies.getApplication(), uri);
+      if (document != null && document.exists()) {
+          Log.i(TAG, "Deleting: " + uri);
 
-      if (!file.delete()) {
-        Log.w(TAG, "Delete failed: " + file.getAbsolutePath());
+          if (!document.delete()) {
+            Log.w(TAG, "Delete failed: " + uri);
+          }
+      } else {
+        File file = new File(uri.toString());
+        Log.i(TAG, "Deleting: " + file.getAbsolutePath());
+
+        if (!file.delete()) {
+          Log.w(TAG, "Delete failed: " + file.getAbsolutePath());
+        }
       }
+
     }
   }
 }

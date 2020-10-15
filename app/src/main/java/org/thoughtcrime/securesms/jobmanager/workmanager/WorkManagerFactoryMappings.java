@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.FailingJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
+import org.thoughtcrime.securesms.jobs.LocalBackupJobApi29;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsReceiveJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
@@ -60,6 +61,7 @@ public class WorkManagerFactoryMappings {
     put("DirectoryRefreshJob", DirectoryRefreshJob.KEY);
     put("FcmRefreshJob", FcmRefreshJob.KEY);
     put("LocalBackupJob", LocalBackupJob.KEY);
+    put("LocalBackupJobApi29", LocalBackupJobApi29.KEY);
     put("MmsDownloadJob", MmsDownloadJob.KEY);
     put("MmsReceiveJob", MmsReceiveJob.KEY);
     put("MmsSendJob", MmsSendJob.KEY);

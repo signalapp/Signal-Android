@@ -6,9 +6,8 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
 
+import java.util.Collections;
 import java.util.UUID;
-
-import edu.emory.mathcs.backport.java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

@@ -4,6 +4,8 @@ package org.thoughtcrime.securesms.backup;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +15,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.fragments.RestoreBackupFragment;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
@@ -24,28 +31,53 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
+import java.util.Objects;
+
 public class BackupDialog {
 
-  public static void showEnableBackupDialog(@NonNull Context context, @NonNull SwitchPreferenceCompat preference) {
+  private static final String TAG = Log.tag(BackupDialog.class);
+
+  public static void showEnableBackupDialog(@NonNull Context context,
+                                            @Nullable Intent backupDirectorySelectionIntent,
+                                            @Nullable String backupDirectoryDisplayName,
+                                            @NonNull Runnable onBackupsEnabled)
+  {
     String[]    password = BackupUtil.generateBackupPassphrase();
     AlertDialog dialog   = new AlertDialog.Builder(context)
                                           .setTitle(R.string.BackupDialog_enable_local_backups)
-                                          .setView(R.layout.backup_enable_dialog)
+                                          .setView(backupDirectorySelectionIntent != null ? R.layout.backup_enable_dialog_v29 : R.layout.backup_enable_dialog)
                                           .setPositiveButton(R.string.BackupDialog_enable_backups, null)
                                           .setNegativeButton(android.R.string.cancel, null)
                                           .create();
 
     dialog.setOnShowListener(created -> {
+      if (backupDirectoryDisplayName != null) {
+        TextView folderName = dialog.findViewById(R.id.backup_enable_dialog_folder_name);
+        if (folderName != null) {
+          folderName.setText(backupDirectoryDisplayName);
+        }
+      }
+
       Button button = ((AlertDialog) created).getButton(AlertDialog.BUTTON_POSITIVE);
       button.setOnClickListener(v -> {
         CheckBox confirmationCheckBox = dialog.findViewById(R.id.confirmation_check);
         if (confirmationCheckBox.isChecked()) {
+          if (backupDirectorySelectionIntent != null && backupDirectorySelectionIntent.getData() != null) {
+            Uri backupDirectoryUri = backupDirectorySelectionIntent.getData();
+            int takeFlags          = Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+
+            SignalStore.settings().setSignalBackupDirectory(backupDirectoryUri);
+            context.getContentResolver()
+                   .takePersistableUriPermission(backupDirectoryUri, takeFlags);
+          }
+
           BackupPassphrase.set(context, Util.join(password, " "));
           TextSecurePreferences.setNextBackupTime(context, 0);
           TextSecurePreferences.setBackupEnabled(context, true);
           LocalBackupListener.schedule(context);
 
-          preference.setChecked(true);
+          onBackupsEnabled.run();
           created.dismiss();
         } else {
           Toast.makeText(context, R.string.BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box, Toast.LENGTH_LONG).show();
@@ -76,16 +108,38 @@ public class BackupDialog {
 
   }
 
-  public static void showDisableBackupDialog(@NonNull Context context, @NonNull SwitchPreferenceCompat preference) {
+  @RequiresApi(29)
+  public static void showChooseBackupLocationDialog(@NonNull Fragment fragment, int requestCode) {
+    new AlertDialog.Builder(fragment.requireContext())
+                   .setView(R.layout.backup_choose_location_dialog)
+                   .setCancelable(true)
+                   .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+                     dialog.dismiss();
+                   })
+                   .setPositiveButton(R.string.BackupDialog_choose_folder, ((dialog, which) -> {
+                     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+
+                     intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION |
+                                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION       |
+                                     Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                     fragment.startActivityForResult(intent, requestCode);
+
+                     dialog.dismiss();
+                   }))
+                   .create()
+                   .show();
+  }
+
+  public static void showDisableBackupDialog(@NonNull Context context, @NonNull Runnable onBackupsDisabled) {
     new AlertDialog.Builder(context)
                    .setTitle(R.string.BackupDialog_delete_backups)
                    .setMessage(R.string.BackupDialog_disable_and_delete_all_local_backups)
                    .setNegativeButton(android.R.string.cancel, null)
                    .setPositiveButton(R.string.BackupDialog_delete_backups_statement, (dialog, which) -> {
-                     BackupPassphrase.set(context, null);
-                     TextSecurePreferences.setBackupEnabled(context, false);
-                     BackupUtil.deleteAllBackups();
-                     preference.setChecked(false);
+                     BackupUtil.disableBackups(context);
+
+                     onBackupsDisabled.run();
                    })
                    .create()
                    .show();

@@ -4,6 +4,7 @@
 
     <string name="install_url" translatable="false">https://signal.org/install</string>
     <string name="donate_url" translatable="false">https://signal.org/donate</string>
+    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -384,6 +385,36 @@
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts, when you initiate or accept new conversations, and when you join new groups.</string>
     <string name="CreateProfileActivity_set_avatar_description">Set avatar</string>
+
+    <!-- ChooseBackupFragment -->
+    <string name="ChooseBackupFragment__restore_from_backup">Restore from Backup?</string>
+    <string name="ChooseBackupFragment__restore_your_messages_and_media">Restore your messages and media from a local backup. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="ChooseBackupFragment__icon_content_description">Restore from backup icon</string>
+    <string name="ChooseBackupFragment__choose_backup">Choose backup</string>
+    <string name="ChooseBackupFragment__learn_more">Learn more</string>
+
+    <!-- RestoreBackupFragment -->
+    <string name="RestoreBackupFragment__re_enable_backups">Re-enable Backups?</string>
+    <string name="RestoreBackupFragment__to_continue_using">To continue using backups, please choose where they should be saved."</string>
+    <string name="RestoreBackupFragment__choose_folder">Choose folder</string>
+    <string name="RestoreBackupFragment__keep_disabled">Keep disabled</string>
+
+    <!-- BackupsPreferenceFragment -->
+    <string name="BackupsPreferenceFragment__chat_backups">Chat backups</string>
+    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backups are encrypted with a passphrase and stored on your device</string>
+    <string name="BackupsPreferenceFragment__create_backup">Create backup</string>
+    <string name="BackupsPreferenceFragment__last_backup">Last backup: %1$s</string>
+    <string name="BackupsPreferenceFragment__backup_folder">Backup folder</string>
+    <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verify backup passphrase</string>
+    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test your backup passphrase and verify that it matches</string>
+    <string name="BackupsPreferenceFragment__turn_on">Turn on</string>
+    <string name="BackupsPreferenceFragment__turn_off">Turn off</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">To restore a backup, install a new copy of Signal. Open the app and tap "Restore backup", then locate a backup folder. %1$s</string>
+    <string name="BackupsPreferenceFragment__learn_more">Learn more</string>
+    <string name="BackupsPreferenceFragment__in_progress">In progress…</string>
+    <string name="BackupsPreferenceFragment__d_so_far">%1$d so far…</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
+
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom: %s</string>
@@ -1267,6 +1298,7 @@
     <string name="RegistrationActivity_more_information">More information</string>
     <string name="RegistrationActivity_less_information">Less information</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal needs access to your contacts and media in order to connect with friends, exchange messages, and make secure calls</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal needs access to your contacts in order to connect with friends, exchange messages, and make secure calls</string>
     <string name="RegistrationActivity_rate_limited_to_service">You\'ve made too many attempts to register this number. Please try again later.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
     <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">To easily verify your phone number, Signal can automatically detect your verification code if you allow Signal to view SMS messages.</string>
@@ -2549,6 +2581,8 @@
     <string name="PushDecryptJob_unlock_to_view_pending_messages">Unlock to view pending messages</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup passphrase</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
+    <string name="backup_enable_dialog__you_must_have_this_passphrase">You must have this passphrase in order to restore a backup.</string>
+    <string name="backup_enable_dialog__folder">Folder</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
     <string name="registration_activity__restore_backup">Restore backup</string>
     <string name="registration_activity__skip">Skip</string>
@@ -2574,6 +2608,8 @@
     <string name="BackupDialog_delete_backups">Delete backups?</string>
     <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
     <string name="BackupDialog_delete_backups_statement">Delete backups</string>
+    <string name="BackupDialog_to_enable_backups_choose_a_folder">To enable backups, choose a folder. Backups will be saved to this location.</string>
+    <string name="BackupDialog_choose_folder">Choose folder</string>
     <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Enter your backup passphrase to verify</string>
     <string name="BackupDialog_verify">Verify</string>
@@ -2583,6 +2619,8 @@
     <string name="ChatsPreferenceFragment_last_backup_s">Last backup: %s</string>
     <string name="ChatsPreferenceFragment_in_progress">In progress</string>
     <string name="LocalBackupJob_creating_backup">Creating backup…</string>
+    <string name="LocalBackupJobApi29_backups_disabled">Backups disabled.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Your backup directory has been deleted or moved.</string>
     <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
     <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
     <string name="RegistrationActivity_wrong_number">Wrong number</string>

@@ -163,6 +163,10 @@
         <item name="icon_tint">@color/core_grey_75</item>
         <item name="icon_tint_dark">@color/core_grey_15</item>
 
+        <item name="folder_icon">@drawable/ic_folder_outline_24</item>
+        <item name="backup_enable_dialog_divider_background">@color/core_grey_20</item>
+        <item name="backup_enable_subhead_color">@color/core_grey_65</item>
+
         <item name="insight_modal_background">@drawable/insights_modal_background</item>
         <item name="insight_modal_button_background">@color/core_grey_10</item>
         <item name="insight_title">@color/core_grey_90</item>
@@ -493,6 +497,10 @@
         <item name="theme_type">dark</item>
         <item name="icon_tint">@color/core_grey_15</item>
         <item name="icon_tint_dark">?icon_tint</item>
+
+        <item name="folder_icon">@drawable/ic_folder_solid_24</item>
+        <item name="backup_enable_dialog_divider_background">@color/core_grey_60</item>
+        <item name="backup_enable_subhead_color">@color/core_grey_25</item>
 
         <item name="insight_modal_background">@drawable/insights_modal_background_dark</item>
         <item name="insight_modal_button_background">@color/core_grey_60</item>

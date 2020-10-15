@@ -27,6 +27,40 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/action_choose_backup"
+            app:destination="@id/chooseBackupFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseBackupFragment"
+        android:name="org.thoughtcrime.securesms.registration.fragments.ChooseBackupFragment"
+        android:label="fragment_choose_backup"
+        tools:layout="@layout/fragment_registration_choose_backup">
+
+        <action
+            android:id="@+id/action_restore"
+            app:destination="@id/restoreBackupFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/chooseBackupFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_skip"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
+
     </fragment>
 
     <fragment
@@ -219,6 +253,11 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/restoreBackupFragment"
             app:popUpToInclusive="true" />
+
+        <argument app:nullable="true"
+                  app:argType="android.net.Uri"
+                  android:defaultValue="@null"
+                  android:name="uri" />
 
     </fragment>
 
