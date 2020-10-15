@@ -7,4 +7,5 @@
     <item name="reminder_action_view_insights" type="id" />
     <item name="reminder_action_invite" type="id" />
     <item name="reminder_action_update_now" type="id" />
+    <item name="reminder_action_review_join_requests" type="id" />
 </resources>

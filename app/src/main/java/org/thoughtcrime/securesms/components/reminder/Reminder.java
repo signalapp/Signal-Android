@@ -74,7 +74,7 @@ public abstract class Reminder {
     NORMAL, ERROR, TERMINAL
   }
 
-  public final class Action {
+  public static final class Action {
     private final CharSequence title;
     private final int          actionId;
 

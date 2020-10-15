@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
@@ -30,18 +31,27 @@ final class ConversationGroupViewModel extends ViewModel {
   private final MutableLiveData<Recipient>          liveRecipient;
   private final LiveData<GroupActiveState>          groupActiveState;
   private final LiveData<GroupDatabase.MemberLevel> selfMembershipLevel;
+  private final LiveData<Integer>                   actionableRequestingMembers;
 
   private ConversationGroupViewModel() {
     this.liveRecipient = new MutableLiveData<>();
 
     LiveData<GroupRecord> groupRecord = LiveDataUtil.mapAsync(liveRecipient, ConversationGroupViewModel::getGroupRecordForRecipient);
 
-    this.groupActiveState    = Transformations.distinctUntilChanged(Transformations.map(groupRecord, ConversationGroupViewModel::mapToGroupActiveState));
-    this.selfMembershipLevel = Transformations.distinctUntilChanged(Transformations.map(groupRecord, ConversationGroupViewModel::mapToSelfMembershipLevel));
+    this.groupActiveState            = Transformations.distinctUntilChanged(Transformations.map(groupRecord, ConversationGroupViewModel::mapToGroupActiveState));
+    this.selfMembershipLevel         = Transformations.distinctUntilChanged(Transformations.map(groupRecord, ConversationGroupViewModel::mapToSelfMembershipLevel));
+    this.actionableRequestingMembers = Transformations.distinctUntilChanged(Transformations.map(groupRecord, ConversationGroupViewModel::mapToActionableRequestingMemberCount));
   }
 
   void onRecipientChange(Recipient recipient) {
     liveRecipient.setValue(recipient);
+  }
+
+  /**
+   * The number of pending group join requests that can be actioned by this client.
+   */
+  LiveData<Integer> getActionableRequestingMembers() {
+    return actionableRequestingMembers;
   }
 
   LiveData<GroupActiveState> getGroupActiveState() {
@@ -59,6 +69,20 @@ final class ConversationGroupViewModel extends ViewModel {
       return groupDatabase.getGroup(recipient.getId()).orNull();
     } else {
       return null;
+    }
+  }
+
+  private static int mapToActionableRequestingMemberCount(@Nullable GroupRecord record) {
+    if (record != null                          &&
+        FeatureFlags.groupsV2manageGroupLinks() &&
+        record.isV2Group()                      &&
+        record.memberLevel(Recipient.self()) == GroupDatabase.MemberLevel.ADMINISTRATOR)
+    {
+      return record.requireV2GroupProperties()
+                   .getDecryptedGroup()
+                   .getRequestingMembersCount();
+    } else {
+      return 0;
     }
   }
 

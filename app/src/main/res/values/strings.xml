@@ -435,6 +435,13 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">This version of Signal has expired. Update now to send and receive messages.</string>
     <string name="ExpiredBuildReminder_update_now">Update now</string>
 
+    <!-- PendingGroupJoinRequestsReminder -->
+    <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+        <item quantity="one">%d pending member request.</item>
+        <item quantity="many">%d pending member requests.</item>
+    </plurals>
+    <string name="PendingGroupJoinRequestsReminder_view">View</string>
+
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
     <string name="ShareActivity_multiple_attachments_are_only_supported">Multiple attachments are only supported for images and videos</string>
