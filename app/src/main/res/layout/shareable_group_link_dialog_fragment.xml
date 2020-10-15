@@ -85,7 +85,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
-            android:enabled="false"
             android:gravity="center_vertical|start"
             android:text="@string/ShareableGroupLinkDialogFragment__share"
             android:textAlignment="viewStart"
