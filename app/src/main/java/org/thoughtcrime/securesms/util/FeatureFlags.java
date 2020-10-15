@@ -48,7 +48,6 @@ public final class FeatureFlags {
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
   private static final String USERNAMES                    = "android.usernames";
-  private static final String GROUPS_V2_CREATE_VERSION     = "android.groupsv2.createVersion";
   private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
   private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
   private static final String GROUPS_V2_CAPACITY           = "global.groupsv2.maxGroupSize";
@@ -66,7 +65,6 @@ public final class FeatureFlags {
    */
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
-      GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_CAPACITY,
       GROUPS_V2_JOIN_VERSION,
       GROUPS_V2_LINKS_VERSION,
@@ -97,7 +95,6 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
-      GROUPS_V2_CREATE_VERSION,
       GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
       CLIENT_EXPIRATION
@@ -172,12 +169,6 @@ public final class FeatureFlags {
   /** Creating usernames, sending messages by username. */
   public static synchronized boolean usernames() {
     return getBoolean(USERNAMES, false);
-  }
-
-  /** Attempt groups v2 creation. */
-  public static boolean groupsV2create() {
-    return getVersionFlag(GROUPS_V2_CREATE_VERSION) == VersionFlag.ON &&
-           !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
   }
 
   /** Allow creation and managing of group links. */

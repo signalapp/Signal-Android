@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -101,7 +100,7 @@ public class ManageGroupViewModel extends ViewModel {
                                                                 ManageGroupViewModel::filterMemberList);
     this.pendingMemberCount        = liveGroup.getPendingMemberCount();
     this.pendingAndRequestingCount = liveGroup.getPendingAndRequestingMemberCount();
-    this.showLegacyIndicator       = new MutableLiveData<>(groupId.isV1() && FeatureFlags.groupsV2create());
+    this.showLegacyIndicator       = new MutableLiveData<>(groupId.isV1());
     this.memberCountSummary        = LiveDataUtil.combineLatest(liveGroup.getMembershipCountDescription(context.getResources()),
                                                                 this.showLegacyIndicator,
                                                                 (description, legacy) -> legacy ? String.format("%s · %s", description, context.getString(R.string.ManageGroupActivity_legacy_group))
