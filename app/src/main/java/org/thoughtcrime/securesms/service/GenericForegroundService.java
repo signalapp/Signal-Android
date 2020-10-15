@@ -46,7 +46,7 @@ public final class GenericForegroundService extends Service {
 
   private final LinkedHashMap<Integer, Entry> allActiveMessages = new LinkedHashMap<>();
 
-  private static final Entry DEFAULTS = new Entry("", NotificationChannels.OTHER, R.drawable.ic_signal_grey_24dp, -1, 0, 0, false);
+  private static final Entry DEFAULTS = new Entry("", NotificationChannels.OTHER, R.drawable.ic_notification, -1, 0, 0, false);
 
   private @Nullable Entry lastPosted;
 

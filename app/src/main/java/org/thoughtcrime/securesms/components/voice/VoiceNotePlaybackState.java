@@ -9,14 +9,16 @@ import androidx.annotation.NonNull;
  */
 public class VoiceNotePlaybackState {
 
-  public static final VoiceNotePlaybackState NONE = new VoiceNotePlaybackState(Uri.EMPTY, 0);
+  public static final VoiceNotePlaybackState NONE = new VoiceNotePlaybackState(Uri.EMPTY, 0, false);
 
-  private final Uri  uri;
-  private final long playheadPositionMillis;
+  private final Uri     uri;
+  private final long    playheadPositionMillis;
+  private final boolean autoReset;
 
-  public VoiceNotePlaybackState(@NonNull Uri uri, long playheadPositionMillis) {
+  public VoiceNotePlaybackState(@NonNull Uri uri, long playheadPositionMillis, boolean autoReset) {
     this.uri                    = uri;
     this.playheadPositionMillis = playheadPositionMillis;
+    this.autoReset              = autoReset;
   }
 
   /**
@@ -31,5 +33,12 @@ public class VoiceNotePlaybackState {
    */
   public long getPlayheadPositionMillis() {
     return playheadPositionMillis;
+  }
+
+  /**
+   * @return true if we should reset the currently playing clip.
+   */
+  public boolean isAutoReset() {
+    return autoReset;
   }
 }

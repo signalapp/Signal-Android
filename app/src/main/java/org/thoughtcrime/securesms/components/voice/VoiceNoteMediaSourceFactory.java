@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.components.voice;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v4.media.MediaDescriptionCompat;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueEditor;
@@ -10,6 +12,7 @@ import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.upstream.AssetDataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import org.thoughtcrime.securesms.video.exo.AttachmentDataSourceFactory;
@@ -17,7 +20,7 @@ import org.thoughtcrime.securesms.video.exo.AttachmentDataSourceFactory;
 /**
  * This class is responsible for creating a MediaSource object for a given MediaDescriptionCompat
  */
-final class VoiceNoteMediaSourceFactory implements TimelineQueueEditor.MediaSourceFactory {
+final class VoiceNoteMediaSourceFactory {
 
   private final Context context;
 
@@ -32,7 +35,6 @@ final class VoiceNoteMediaSourceFactory implements TimelineQueueEditor.MediaSour
    *
    * @return A preparable MediaSource
    */
-  @Override
   public @Nullable MediaSource createMediaSource(MediaDescriptionCompat description) {
     DefaultDataSourceFactory    defaultDataSourceFactory    = new DefaultDataSourceFactory(context, "GenericUserAgent", null);
     AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(context, defaultDataSourceFactory, null);

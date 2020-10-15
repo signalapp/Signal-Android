@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.voice;
 
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.RemoteException;
 import android.support.v4.media.session.MediaControllerCompat;
@@ -37,7 +38,8 @@ class VoiceNoteNotificationManager {
 
   VoiceNoteNotificationManager(@NonNull Context context,
                                @NonNull MediaSessionCompat.Token token,
-                               @NonNull PlayerNotificationManager.NotificationListener listener)
+                               @NonNull PlayerNotificationManager.NotificationListener listener,
+                               @NonNull VoiceNoteQueueDataAdapter dataAdapter)
   {
     this.context  = context;
 
@@ -54,11 +56,12 @@ class VoiceNoteNotificationManager {
                                                                                   new DescriptionAdapter());
 
     notificationManager.setMediaSessionToken(token);
-    notificationManager.setSmallIcon(R.drawable.ic_signal_grey_24dp);
+    notificationManager.setSmallIcon(R.drawable.ic_notification);
     notificationManager.setRewindIncrementMs(0);
     notificationManager.setFastForwardIncrementMs(0);
     notificationManager.setNotificationListener(listener);
     notificationManager.setColorized(true);
+    notificationManager.setControlDispatcher(new VoiceNoteNotificationControlDispatcher(dataAdapter));
   }
 
   public void hideNotification() {
@@ -87,7 +90,7 @@ class VoiceNoteNotificationManager {
     public @Nullable PendingIntent createCurrentContentIntent(Player player) {
       if (!hasMetadata()) return null;
 
-      RecipientId   recipientId      = RecipientId.from(Objects.requireNonNull(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_RECIPIENT_ID)));
+      RecipientId   recipientId      = RecipientId.from(Objects.requireNonNull(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_RECIPIENT_ID)));
       int           startingPosition = (int) controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_POSITION);
       long          threadId         = controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_ID);
 
@@ -100,20 +103,24 @@ class VoiceNoteNotificationManager {
 
       notificationManager.setColor(color.toNotificationColor(context));
 
+      Intent conversationActivity = ConversationActivity.buildIntent(context,
+                                                                     recipientId,
+                                                                     threadId,
+                                                                     ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                     startingPosition);
+
+      conversationActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
       return PendingIntent.getActivity(context,
                                        0,
-                                       ConversationActivity.buildIntent(context,
-                                                                        recipientId,
-                                                                        threadId,
-                                                                        ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                        startingPosition),
-                                       0);
+                                       conversationActivity,
+                                       PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     @Override
     public String getCurrentContentText(Player player) {
       if (hasMetadata()) {
-        return Objects.requireNonNull(controller.getMetadata().getDescription().getSubtitle()).toString();
+        return Objects.toString(controller.getMetadata().getDescription().getSubtitle(), null);
       } else {
         return null;
       }
@@ -127,7 +134,7 @@ class VoiceNoteNotificationManager {
         return null;
       }
 
-      RecipientId currentRecipientId = RecipientId.from(Objects.requireNonNull(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_RECIPIENT_ID)));
+      RecipientId currentRecipientId = RecipientId.from(Objects.requireNonNull(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_AVATAR_RECIPIENT_ID)));
 
       if (Objects.equals(currentRecipientId, cachedRecipientId) && cachedBitmap != null) {
         return cachedBitmap;

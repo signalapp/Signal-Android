@@ -82,6 +82,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -605,11 +606,25 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments) {
+    return rawQuery(where, arguments, false, 0);
+  }
+
+  private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments, boolean reverse, long limit) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    return database.rawQuery("SELECT " + Util.join(MMS_PROJECTION, ",") +
-                             " FROM " + MmsDatabase.TABLE_NAME +  " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME +
-                             " ON (" + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")" +
-                             " WHERE " + where + " GROUP BY " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, arguments);
+    String rawQueryString   = "SELECT " + Util.join(MMS_PROJECTION, ",") +
+                              " FROM " + MmsDatabase.TABLE_NAME +  " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME +
+                              " ON (" + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")" +
+                              " WHERE " + where + " GROUP BY " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID;
+
+    if (reverse) {
+      rawQueryString += " ORDER BY " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " DESC";
+    }
+
+    if (limit > 0) {
+      rawQueryString += " LIMIT " + limit;
+    }
+
+    return database.rawQuery(rawQueryString, arguments);
   }
 
   private Cursor internalGetMessage(long messageId) {
@@ -1601,6 +1616,40 @@ public class MmsDatabase extends MessageDatabase {
     String         where = THREAD_ID + " NOT IN (SELECT _id FROM " + ThreadDatabase.TABLE_NAME + ")";
 
     db.delete(TABLE_NAME, where, null);
+  }
+
+  @Override
+  public List<MessageRecord> getMessagesInThreadBeforeExclusive(long threadId, long timestamp, long limit) {
+    String   where = TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = ? AND " +
+                     TABLE_NAME + "." + getDateReceivedColumnName() + " < ?";
+    String[] args  = SqlUtil.buildArgs(threadId, timestamp);
+
+    try (Reader reader = readerFor(rawQuery(where, args, true, limit))) {
+      List<MessageRecord> results = new ArrayList<>(reader.cursor.getCount());
+
+      while (reader.getNext() != null) {
+        results.add(reader.getCurrent());
+      }
+
+      return results;
+    }
+  }
+
+  @Override
+  public List<MessageRecord> getMessagesInThreadAfterInclusive(long threadId, long timestamp, long limit) {
+    String   where = TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = ? AND " +
+                     TABLE_NAME + "." + getDateReceivedColumnName() + " >= ?";
+    String[] args  = SqlUtil.buildArgs(threadId, timestamp);
+
+    try (Reader reader = readerFor(rawQuery(where, args, false, limit))) {
+      List<MessageRecord> results = new ArrayList<>(reader.cursor.getCount());
+
+      while (reader.getNext() != null) {
+        results.add(reader.getCurrent());
+      }
+
+      return results;
+    }
   }
 
   @Override

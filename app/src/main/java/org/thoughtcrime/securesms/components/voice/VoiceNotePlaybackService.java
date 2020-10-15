@@ -55,13 +55,14 @@ import java.util.Objects;
  */
 public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
 
-  private static final String TAG             = Log.tag(VoiceNotePlaybackService.class);
-  private static final String EMPTY_ROOT_ID   = "empty-root-id";
+  private static final String TAG                 = Log.tag(VoiceNotePlaybackService.class);
+  private static final String EMPTY_ROOT_ID       = "empty-root-id";
+  private static final int    LOAD_MORE_THRESHOLD = 2;
 
-  private static final long SUPPORTED_ACTIONS = PlaybackStateCompat.ACTION_PLAY    |
-                                                PlaybackStateCompat.ACTION_PAUSE   |
-                                                PlaybackStateCompat.ACTION_SEEK_TO |
-                                                PlaybackStateCompat.ACTION_STOP    |
+  private static final long SUPPORTED_ACTIONS = PlaybackStateCompat.ACTION_PLAY             |
+                                                PlaybackStateCompat.ACTION_PAUSE            |
+                                                PlaybackStateCompat.ACTION_SEEK_TO          |
+                                                PlaybackStateCompat.ACTION_STOP             |
                                                 PlaybackStateCompat.ACTION_PLAY_PAUSE;
 
   private MediaSessionCompat           mediaSession;
@@ -71,6 +72,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
   private BecomingNoisyReceiver        becomingNoisyReceiver;
   private VoiceNoteNotificationManager voiceNoteNotificationManager;
   private VoiceNoteQueueDataAdapter    queueDataAdapter;
+  private VoiceNotePlaybackPreparer    voiceNotePlaybackPreparer;
   private boolean                      isForegroundService;
 
   private final LoadControl loadControl = new DefaultLoadControl.Builder()
@@ -93,9 +95,12 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     queueDataAdapter             = new VoiceNoteQueueDataAdapter();
     voiceNoteNotificationManager = new VoiceNoteNotificationManager(this,
                                                                     mediaSession.getSessionToken(),
-                                                                    new VoiceNoteNotificationManagerListener());
+                                                                    new VoiceNoteNotificationManagerListener(),
+                                                                    queueDataAdapter);
 
     VoiceNoteMediaSourceFactory mediaSourceFactory = new VoiceNoteMediaSourceFactory(this);
+
+    voiceNotePlaybackPreparer = new VoiceNotePlaybackPreparer(this, player, queueDataAdapter, mediaSourceFactory);
 
     mediaSession.setPlaybackState(stateBuilder.build());
 
@@ -103,9 +108,9 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     player.setAudioAttributes(new AudioAttributes.Builder()
                                                  .setContentType(C.CONTENT_TYPE_SPEECH)
                                                  .setUsage(C.USAGE_MEDIA)
-                                                 .build());
+                                                 .build(), true);
 
-    mediaSessionConnector.setPlayer(player, new VoiceNotePlaybackPreparer(this, player, queueDataAdapter, mediaSourceFactory));
+    mediaSessionConnector.setPlayer(player, voiceNotePlaybackPreparer);
     mediaSessionConnector.setQueueNavigator(new VoiceNoteQueueNavigator(mediaSession, queueDataAdapter));
 
     setSessionToken(mediaSession.getSessionToken());
@@ -161,6 +166,17 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
         default:
           becomingNoisyReceiver.unregister();
           voiceNoteNotificationManager.hideNotification();
+      }
+    }
+
+    @Override
+    public void onPositionDiscontinuity(int reason) {
+      int     currentWindowIndex = player.getCurrentWindowIndex();
+      boolean isWithinThreshold  = currentWindowIndex < LOAD_MORE_THRESHOLD ||
+                                   currentWindowIndex + LOAD_MORE_THRESHOLD >= queueDataAdapter.size();
+
+      if (isWithinThreshold && currentWindowIndex % 2 == 0) {
+        voiceNotePlaybackPreparer.loadMoreVoiceNotes();
       }
     }
   }

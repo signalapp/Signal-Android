@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.support.v4.media.MediaDescriptionCompat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueEditor;
 
@@ -39,8 +40,8 @@ final class VoiceNoteQueueDataAdapter implements TimelineQueueEditor.QueueDataAd
     descriptions.add(to, description);
   }
 
-  void add(MediaDescriptionCompat description) {
-    descriptions.add(description);
+  int size() {
+    return descriptions.size();
   }
 
   int indexOf(@NonNull Uri uri) {
@@ -51,6 +52,27 @@ final class VoiceNoteQueueDataAdapter implements TimelineQueueEditor.QueueDataAd
     }
 
     return -1;
+  }
+
+  int indexAfter(@NonNull MediaDescriptionCompat target) {
+    if (isEmpty()) {
+      return 0;
+    }
+
+    long targetMessageId = target.getExtras().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_ID);
+    for (int i = 0; i < descriptions.size(); i++) {
+      long descriptionMessageId = descriptions.get(i).getExtras().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_ID);
+
+      if (descriptionMessageId > targetMessageId) {
+        return i;
+      }
+    }
+
+    return descriptions.size();
+  }
+
+  boolean isEmpty() {
+    return descriptions.isEmpty();
   }
 
   void clear() {

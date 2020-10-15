@@ -2701,7 +2701,13 @@
     <string name="GroupLinkBottomSheet_share">Share</string>
     <string name="GroupLinkBottomSheet_copied_to_clipboard">Copied to clipboard</string>
     <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">The link is not currently active</string>
+
+    <!-- VoiceNotePlaybackPreparer -->
     <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Could not start playback.</string>
+
+    <!-- VoiceNoteMediaDescriptionCompatFactory -->
+    <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Voice message &#183; %1$s</string>
+    <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s to %2$s</string>
 
     <!-- EOF -->
 

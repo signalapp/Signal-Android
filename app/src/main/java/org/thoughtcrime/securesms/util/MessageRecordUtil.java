@@ -33,4 +33,8 @@ public final class MessageRecordUtil {
     return messageRecord.isMms() && Stream.of(((MmsMessageRecord) messageRecord).getSlideDeck().getSlides())
                                           .anyMatch(Slide::hasLocation);
   }
+
+  public static boolean hasAudio(MessageRecord messageRecord) {
+    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getAudioSlide() != null;
+  }
 }

@@ -22,6 +22,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Objects;
 
@@ -209,8 +210,13 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
           mediaMetadataCompat != null                        &&
           mediaMetadataCompat.getDescription() != null)
       {
-        voiceNotePlaybackState.postValue(new VoiceNotePlaybackState(Objects.requireNonNull(mediaMetadataCompat.getDescription().getMediaUri()),
-                                                                   mediaController.getPlaybackState().getPosition()));
+
+        Uri     mediaUri  = Objects.requireNonNull(mediaMetadataCompat.getDescription().getMediaUri());
+        boolean autoReset = Objects.equals(mediaUri, VoiceNotePlaybackPreparer.NEXT_URI) || Objects.equals(mediaUri, VoiceNotePlaybackPreparer.END_URI);
+
+        voiceNotePlaybackState.postValue(new VoiceNotePlaybackState(mediaUri,
+                                                                    mediaController.getPlaybackState().getPosition(),
+                                                                    autoReset));
 
         sendEmptyMessageDelayed(0, 50);
       } else {

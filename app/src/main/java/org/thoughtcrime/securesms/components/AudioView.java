@@ -190,16 +190,16 @@ public final class AudioView extends FrameLayout {
   }
 
   private void onPlaybackState(@NonNull VoiceNotePlaybackState voiceNotePlaybackState) {
-    onStart(voiceNotePlaybackState.getUri());
+    onStart(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.isAutoReset());
     onProgress(voiceNotePlaybackState.getUri(),
                (double) voiceNotePlaybackState.getPlayheadPositionMillis() / durationMillis,
                voiceNotePlaybackState.getPlayheadPositionMillis());
   }
 
-  private void onStart(@NonNull Uri uri) {
+  private void onStart(@NonNull Uri uri, boolean autoReset) {
     if (!Objects.equals(uri, audioSlide.getUri())) {
       if (audioSlide != null && audioSlide.getUri() != null) {
-        onStop(audioSlide.getUri());
+        onStop(audioSlide.getUri(), autoReset);
       }
 
       return;
@@ -213,7 +213,7 @@ public final class AudioView extends FrameLayout {
     togglePlayToPause();
   }
 
-  private void onStop(@NonNull Uri uri) {
+  private void onStop(@NonNull Uri uri, boolean autoReset) {
     if (!Objects.equals(uri, audioSlide.getUri())) {
       return;
     }
@@ -225,7 +225,7 @@ public final class AudioView extends FrameLayout {
     isPlaying = false;
     togglePauseToPlay();
 
-    if (autoRewind || seekBar.getProgress() + 5 >= seekBar.getMax()) {
+    if (autoReset || autoRewind || seekBar.getProgress() + 5 >= seekBar.getMax()) {
       backwardsCounter = 4;
       rewind();
     }
