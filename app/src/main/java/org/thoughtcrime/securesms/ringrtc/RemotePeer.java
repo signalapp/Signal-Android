@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.ringrtc;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.Remote;
@@ -84,7 +86,7 @@ public final class RemotePeer implements Remote, Parcelable
     return false;
   }
 
-  public boolean callIdEquals(RemotePeer remotePeer) {
+  public boolean callIdEquals(@Nullable RemotePeer remotePeer) {
     return remotePeer != null && this.callId.equals(remotePeer.callId);
   }
 

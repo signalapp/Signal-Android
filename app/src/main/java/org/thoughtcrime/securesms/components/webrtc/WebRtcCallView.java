@@ -22,7 +22,6 @@ import androidx.constraintlayout.widget.Guideline;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.AutoTransition;
-import androidx.transition.ChangeBounds;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
@@ -553,6 +552,7 @@ public class WebRtcCallView extends FrameLayout {
     Transition transition = new AutoTransition().setOrdering(TransitionSet.ORDERING_TOGETHER)
                                                 .setDuration(TRANSITION_DURATION_MILLIS);
 
+    TransitionManager.endTransitions(parent);
     TransitionManager.beginDelayedTransition(parent, transition);
 
     ConstraintSet constraintSet = new ConstraintSet();
@@ -570,6 +570,7 @@ public class WebRtcCallView extends FrameLayout {
   private void fadeInNewUiState(@NonNull Set<View> previouslyVisibleViewSet, boolean useSmallMargins) {
     Transition transition = new AutoTransition().setDuration(TRANSITION_DURATION_MILLIS);
 
+    TransitionManager.endTransitions(parent);
     TransitionManager.beginDelayedTransition(parent, transition);
 
     ConstraintSet constraintSet = new ConstraintSet();

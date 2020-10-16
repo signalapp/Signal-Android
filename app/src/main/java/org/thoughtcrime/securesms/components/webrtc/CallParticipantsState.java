@@ -198,7 +198,7 @@ public final class CallParticipantsState {
         } else {
           localRenderState = WebRtcLocalRenderState.SMALL_RECTANGLE;
         }
-      } else if (callState != WebRtcViewModel.State.CALL_DISCONNECTED) {
+      } else if (callState != WebRtcViewModel.State.CALL_INCOMING && callState != WebRtcViewModel.State.CALL_DISCONNECTED) {
         localRenderState = WebRtcLocalRenderState.LARGE;
       }
     } else if (callState == WebRtcViewModel.State.CALL_PRE_JOIN) {

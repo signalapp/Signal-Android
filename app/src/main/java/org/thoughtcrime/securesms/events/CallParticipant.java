@@ -116,4 +116,16 @@ public class CallParticipant {
   public int hashCode() {
     return Objects.hash(cameraState, recipient, identityKey, videoSink, videoEnabled, microphoneEnabled);
   }
+
+  @Override
+  public @NonNull String toString() {
+    return "CallParticipant{" +
+           "cameraState=" + cameraState +
+           ", recipient=" + recipient.getId() +
+           ", identityKey=" + (identityKey == null ? "absent" : "present") +
+           ", videoSink=" + (videoSink.getEglBase() == null ? "not initialized" : "initialized") +
+           ", videoEnabled=" + videoEnabled +
+           ", microphoneEnabled=" + microphoneEnabled +
+           '}';
+  }
 }

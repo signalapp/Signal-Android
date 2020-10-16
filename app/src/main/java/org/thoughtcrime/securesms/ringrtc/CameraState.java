@@ -1,8 +1,11 @@
 package org.thoughtcrime.securesms.ringrtc;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
-public class CameraState {
+public class CameraState implements Parcelable {
 
   public static final CameraState UNKNOWN = new CameraState(Direction.NONE, 0);
 
@@ -12,6 +15,10 @@ public class CameraState {
   public CameraState(@NonNull Direction activeDirection, int cameraCount) {
     this.activeDirection = activeDirection;
     this.cameraCount = cameraCount;
+  }
+
+  private CameraState(Parcel in) {
+    this(Direction.valueOf(in.readString()), in.readInt());
   }
 
   public int getCameraCount() {
@@ -29,6 +36,17 @@ public class CameraState {
   @Override
   public String toString() {
     return "count: " + cameraCount + ", activeDirection: " + activeDirection;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(activeDirection.name());
+    dest.writeInt(cameraCount);
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;
   }
 
   public enum Direction {
@@ -49,4 +67,16 @@ public class CameraState {
       }
     }
   }
+
+  public static final Creator<CameraState> CREATOR = new Creator<CameraState>() {
+    @Override
+    public CameraState createFromParcel(Parcel in) {
+      return new CameraState(in);
+    }
+
+    @Override
+    public CameraState[] newArray(int size) {
+      return new CameraState[size];
+    }
+  };
 }

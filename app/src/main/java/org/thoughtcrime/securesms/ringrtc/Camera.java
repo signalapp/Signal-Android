@@ -45,6 +45,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
             private final int                   cameraCount;
   @NonNull  private       CameraState.Direction activeDirection;
             private       boolean               enabled;
+            private       boolean               isInitialized;
 
   public Camera(@NonNull Context context,
                 @NonNull CameraEventListener cameraEventListener,
@@ -80,6 +81,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
       capturer.initialize(SurfaceTextureHelper.create("WebRTC-SurfaceTextureHelper", eglBase.getEglBaseContext()),
                           context,
                           observer);
+      isInitialized = true;
     }
   }
 
@@ -123,6 +125,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
   public void dispose() {
     if (capturer != null) {
       capturer.dispose();
+      isInitialized = false;
     }
   }
 
@@ -140,6 +143,10 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
   @Nullable CameraVideoCapturer getCapturer() {
     return capturer;
+  }
+
+  public boolean isInitialized() {
+    return isInitialized;
   }
 
   private @Nullable CameraVideoCapturer createVideoCapturer(@NonNull CameraEnumerator enumerator,
