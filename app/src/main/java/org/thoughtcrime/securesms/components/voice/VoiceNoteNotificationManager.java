@@ -50,8 +50,8 @@ class VoiceNoteNotificationManager {
     }
 
     notificationManager = PlayerNotificationManager.createWithNotificationChannel(context,
-                                                                                  NotificationChannels.OTHER,
-                                                                                  R.string.NotificationChannel_other,
+                                                                                  NotificationChannels.VOICE_NOTES,
+                                                                                  R.string.NotificationChannel_voice_notes,
                                                                                   NOW_PLAYING_NOTIFICATION_ID,
                                                                                   new DescriptionAdapter());
 

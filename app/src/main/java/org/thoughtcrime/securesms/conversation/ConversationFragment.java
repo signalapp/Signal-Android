@@ -118,7 +118,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -353,9 +352,17 @@ public class ConversationFragment extends LoggingFragment {
       actionMode.finish();
     }
 
+    long oldThreadId = threadId;
+
     initializeResources();
     messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
-    initializeListAdapter();
+
+    int startingPosition = getStartPosition();
+    if (startingPosition != -1 && oldThreadId == threadId) {
+      list.post(() -> moveToPosition(startingPosition, () -> Log.w(TAG, "Could not scroll to requested message.")));
+    } else {
+      initializeListAdapter();
+    }
   }
 
   public void moveToLastSeen() {
@@ -371,6 +378,10 @@ public class ConversationFragment extends LoggingFragment {
 
     int position = getListAdapter().getAdapterPositionForMessagePosition(conversationViewModel.getLastSeenPosition());
     snapToTopDataObserver.requestScrollPosition(position);
+  }
+
+  private int getStartPosition() {
+    return requireActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
   }
 
   private void initializeMessageRequestViewModel() {
@@ -460,7 +471,7 @@ public class ConversationFragment extends LoggingFragment {
   private void initializeResources() {
     long oldThreadId = threadId;
 
-    int startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
+    int startingPosition  = getStartPosition();
 
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
@@ -1367,7 +1378,7 @@ public class ConversationFragment extends LoggingFragment {
 
     @Override
     public void onVoiceNotePlay(@NonNull Uri uri, long messageId, long position) {
-      voiceNoteMediaController.startPlayback(uri, messageId, position);
+      voiceNoteMediaController.startConsecutivePlayback(uri, messageId, position);
     }
 
     @Override

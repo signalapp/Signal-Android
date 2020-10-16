@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader.GroupedThreadMedia;
@@ -56,6 +57,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
@@ -64,7 +66,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   private final GlideRequests                  glideRequests;
   private final ItemClickListener              itemClickListener;
   private final Map<AttachmentId, MediaRecord> selected          = new HashMap<>();
-  private final AudioView.Callbacks            audioViewCallbacks;
+  private final AudioItemListener              audioItemListener;
 
   private GroupedThreadMedia media;
   private boolean            showFileSizes;
@@ -94,7 +96,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
                          @NonNull GlideRequests glideRequests,
                          GroupedThreadMedia media,
                          ItemClickListener clickListener,
-                         @NonNull AudioView.Callbacks audioViewCallbacks,
+                         @NonNull AudioItemListener audioItemListener,
                          boolean showFileSizes,
                          boolean showThread)
   {
@@ -102,7 +104,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     this.glideRequests      = glideRequests;
     this.media              = media;
     this.itemClickListener  = clickListener;
-    this.audioViewCallbacks = audioViewCallbacks;
+    this.audioItemListener  = audioItemListener;
     this.showFileSizes      = showFileSizes;
     this.showThread         = showThread;
   }
@@ -435,9 +437,20 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
         throw new AssertionError();
       }
 
-      audioView.setAudio((AudioSlide) slide, audioViewCallbacks, true);
+      long mmsId = Objects.requireNonNull(mediaRecord.getAttachment()).getMmsId();
+
+      audioItemListener.unregisterPlaybackStateObserver(audioView.getPlaybackStateObserver());
+      audioView.setAudio((AudioSlide) slide, new AudioViewCallbacksAdapter(audioItemListener, mmsId), true);
+      audioItemListener.registerPlaybackStateObserver(audioView.getPlaybackStateObserver());
+
       audioView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
       itemView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
+    }
+
+    @Override
+    void unbind() {
+      super.unbind();
+      audioItemListener.unregisterPlaybackStateObserver(audioView.getPlaybackStateObserver());
     }
 
     @Override
@@ -478,8 +491,48 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
   }
 
+  private static final class AudioViewCallbacksAdapter implements AudioView.Callbacks {
+
+    private final AudioItemListener audioItemListener;
+    private final long              messageId;
+
+    private AudioViewCallbacksAdapter(@NonNull AudioItemListener audioItemListener, long messageId) {
+      this.audioItemListener = audioItemListener;
+      this.messageId         = messageId;
+    }
+
+    @Override
+    public void onPlay(@NonNull Uri audioUri, long position) {
+      audioItemListener.onPlay(audioUri, position, messageId);
+    }
+
+    @Override
+    public void onPause(@NonNull Uri audioUri) {
+      audioItemListener.onPause(audioUri);
+    }
+
+    @Override
+    public void onSeekTo(@NonNull Uri audioUri, long position) {
+      audioItemListener.onSeekTo(audioUri, position);
+    }
+
+    @Override
+    public void onStopAndReset(@NonNull Uri audioUri) {
+      audioItemListener.onStopAndReset(audioUri);
+    }
+  }
+
   interface ItemClickListener {
     void onMediaClicked(@NonNull MediaDatabase.MediaRecord mediaRecord);
     void onMediaLongClicked(MediaDatabase.MediaRecord mediaRecord);
+  }
+
+  interface AudioItemListener {
+    void onPlay(@NonNull Uri audioUri, long position, long messageId);
+    void onPause(@NonNull Uri audioUri);
+    void onSeekTo(@NonNull Uri audioUri, long position);
+    void onStopAndReset(@NonNull Uri audioUri);
+    void registerPlaybackStateObserver(@NonNull Observer<VoiceNotePlaybackState> observer);
+    void unregisterPlaybackStateObserver(@NonNull Observer<VoiceNotePlaybackState> observer);
   }
 }

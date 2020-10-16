@@ -1587,6 +1587,7 @@
     <string name="NotificationChannel_other">Other</string>
     <string name="NotificationChannel_group_messages">Messages</string>
     <string name="NotificationChannel_missing_display_name">Unknown</string>
+    <string name="NotificationChannel_voice_notes">Voice Notes</string>
 
     <!-- ProfileEditNameFragment -->
     <string name="ProfileEditNameFragment_successfully_set_profile_name">Successfully set profile name.</string>

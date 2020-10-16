@@ -28,6 +28,7 @@ import androidx.media.session.MediaButtonReceiver;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
+import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.Player;
@@ -178,6 +179,11 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
       if (isWithinThreshold && currentWindowIndex % 2 == 0) {
         voiceNotePlaybackPreparer.loadMoreVoiceNotes();
       }
+    }
+
+    @Override
+    public void onPlayerError(ExoPlaybackException error) {
+      Log.w(TAG, "ExoPlayer error occurred:", error);
     }
   }
 

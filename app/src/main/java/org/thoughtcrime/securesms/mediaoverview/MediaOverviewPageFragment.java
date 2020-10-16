@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,8 +32,8 @@ import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
@@ -44,7 +45,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 public final class MediaOverviewPageFragment extends Fragment
   implements MediaGalleryAllAdapter.ItemClickListener,
-             AudioView.Callbacks,
+             MediaGalleryAllAdapter.AudioItemListener,
              LoaderManager.LoaderCallbacks<GroupedThreadMediaLoader.GroupedThreadMedia>
 {
 
@@ -310,8 +311,8 @@ public final class MediaOverviewPageFragment extends Fragment
   }
 
   @Override
-  public void onPlay(@NonNull Uri audioUri, long position) {
-    voiceNoteMediaController.startPlayback(audioUri, -1, position);
+  public void onPlay(@NonNull Uri audioUri, long position, long messageId) {
+    voiceNoteMediaController.startSinglePlayback(audioUri, messageId, position);
   }
 
   @Override
@@ -327,6 +328,16 @@ public final class MediaOverviewPageFragment extends Fragment
   @Override
   public void onStopAndReset(@NonNull Uri audioUri) {
     voiceNoteMediaController.stopPlaybackAndReset(audioUri);
+  }
+
+  @Override
+  public void registerPlaybackStateObserver(@NonNull Observer<VoiceNotePlaybackState> observer) {
+    voiceNoteMediaController.getVoiceNotePlaybackState().observe(getViewLifecycleOwner(), observer);
+  }
+
+  @Override
+  public void unregisterPlaybackStateObserver(@NonNull Observer<VoiceNotePlaybackState> observer) {
+    voiceNoteMediaController.getVoiceNotePlaybackState().removeObserver(observer);
   }
 
   private class ActionModeCallback implements ActionMode.Callback {
