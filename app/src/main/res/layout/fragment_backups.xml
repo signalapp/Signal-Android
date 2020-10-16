@@ -153,7 +153,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/primary_action_button_background"
+            android:background="@drawable/primary_action_button_background_36dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/BackupsPreferenceFragment__turn_on"

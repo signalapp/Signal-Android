@@ -387,21 +387,21 @@
     <string name="CreateProfileActivity_set_avatar_description">Set avatar</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Restore from Backup?</string>
+    <string name="ChooseBackupFragment__restore_from_backup">Restore from backup?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Restore your messages and media from a local backup. If you don\'t restore now, you won\'t be able to restore later.</string>
     <string name="ChooseBackupFragment__icon_content_description">Restore from backup icon</string>
     <string name="ChooseBackupFragment__choose_backup">Choose backup</string>
     <string name="ChooseBackupFragment__learn_more">Learn more</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__re_enable_backups">Re-enable Backups?</string>
-    <string name="RestoreBackupFragment__to_continue_using">To continue using backups, please choose where they should be saved."</string>
+    <string name="RestoreBackupFragment__restore_complete">Restore complete</string>
+    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">To continue using backups, please choose a folder. New backups will be saved to this location.</string>
     <string name="RestoreBackupFragment__choose_folder">Choose folder</string>
-    <string name="RestoreBackupFragment__keep_disabled">Keep disabled</string>
+    <string name="RestoreBackupFragment__not_now">Not now</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Chat backups</string>
-    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backups are encrypted with a passphrase and stored on your device</string>
+    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backups are encrypted with a passphrase and stored on your device.</string>
     <string name="BackupsPreferenceFragment__create_backup">Create backup</string>
     <string name="BackupsPreferenceFragment__last_backup">Last backup: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Backup folder</string>
@@ -409,7 +409,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test your backup passphrase and verify that it matches</string>
     <string name="BackupsPreferenceFragment__turn_on">Turn on</string>
     <string name="BackupsPreferenceFragment__turn_off">Turn off</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">To restore a backup, install a new copy of Signal. Open the app and tap "Restore backup", then locate a backup folder. %1$s</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">To restore a backup, install a new copy of Signal. Open the app and tap "Restore backup", then locate a backup file. %1$s</string>
     <string name="BackupsPreferenceFragment__learn_more">Learn more</string>
     <string name="BackupsPreferenceFragment__in_progress">In progress…</string>
     <string name="BackupsPreferenceFragment__d_so_far">%1$d so far…</string>

@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spanned;
@@ -27,7 +26,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.lifecycle.Lifecycle;
 import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
@@ -57,7 +55,6 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Objects;
 
 public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
@@ -341,8 +338,8 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
   @RequiresApi(29)
   private void displayConfirmationDialog(@NonNull Context context) {
     new AlertDialog.Builder(context)
-                   .setTitle(R.string.RestoreBackupFragment__re_enable_backups)
-                   .setMessage(R.string.RestoreBackupFragment__to_continue_using)
+                   .setTitle(R.string.RestoreBackupFragment__restore_complete)
+                   .setMessage(R.string.RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder)
                    .setPositiveButton(R.string.RestoreBackupFragment__choose_folder, (dialog, which) -> {
                      Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
 
@@ -352,7 +349,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
                      startActivityForResult(intent, OPEN_DOCUMENT_TREE_RESULT_CODE);
                    })
-                   .setNegativeButton(R.string.RestoreBackupFragment__keep_disabled, (dialog, which) -> {
+                   .setNegativeButton(R.string.RestoreBackupFragment__not_now, (dialog, which) -> {
                      BackupPassphrase.set(context, null);
                      dialog.dismiss();
 
