@@ -2043,7 +2043,7 @@
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">あとで再度お知らせします。PINの確認は%1$d日後に必須になります。</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Signalへのご提案</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signalを地球上で最高のメッセージアプリにするため、皆様からのフィードバックをお待ちしています。</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signalを地上最高のメッセージアプリにするため、皆様からのフィードバックをお待ちしています。</string>
   <string name="ResearchMegaphone_learn_more">詳しく見る</string>
   <string name="ResearchMegaphone_dismiss">キャンセル</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signalリサーチ</string>

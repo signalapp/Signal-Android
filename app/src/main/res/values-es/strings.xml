@@ -28,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Esto desbloqueará permanentemente Signal y las notificaciones por mensajes.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Desregistrándose</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Dándose de baja en mensajes y llamadas de Signal … </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Dándose de baja en mensajes y llamadas de Signal …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">¿Desactivar mensajes y llamadas de Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Esto desactivará los mensajes de Signal eliminando tu número del servidor. Necesitarás volver a registrar tu número de teléfono para usar Signal de nuevo en el futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Fallo al conectarse al servidor!</string>
@@ -2083,7 +2083,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationLockFragment__forgot_pin">¿No recuerdas el PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecto</string>
   <string name="RegistrationLockFragment__forgot_your_pin">¿Has olvidado tu PIN?</string>
-  <string name="RegistrationLockFragment__not_many_tries_left">No te quedan muchos intentos …</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">¡No te quedan muchos intentos!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Para proteger tu privacidad y seguridad, no hay manera de recuperar tu PIN. Si no lo puedes recordar, podrás verificar tu cuenta por SMS tras %1$d día de inactividad. En este caso, tu cuenta se eliminará junto con tu perfil, alias, grupos y personas bloqueadas.</item>
     <item quantity="other">Para proteger tu privacidad y seguridad, no hay manera de recuperar tu PIN. Si no lo puedes recordar, podrás verificar tu cuenta por SMS tras %1$d días de inactividad. En este caso, tu cuenta se eliminará junto con tu perfil, alias, grupos y personas bloqueadas.</item>
@@ -2154,7 +2154,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationActivity_backup_failure_downgrade">No se pueden importar copias de seguridad de versiones más recientes de Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">La clave de la copia de seguridad es incorrecta</string>
   <string name="RegistrationActivity_checking">Comprobando …</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d mensajes hasta ahora …</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mensajes de momento …</string>
   <string name="RegistrationActivity_restore_from_backup">¿Restaurar desde copia de seguridad?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaura tus mensajes y archivos multimedia desde una copia de seguridad local. Si no lo haces ahora, no podrás restaurar más tarde.</string>
   <string name="RegistrationActivity_backup_size_s">Tamaño de la copia de seguridad: %s</string>

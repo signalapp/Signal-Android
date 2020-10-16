@@ -461,8 +461,8 @@
     <item quantity="other">Fout bij het intrekken van uitnodigingen</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">Groepsuitnodigingen in afwachting</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">Er zijn geen groepsuitnodigingen om weer te geven.</string>
+  <string name="RequestingMembersFragment_pending_member_requests">Lidmaatschapsverzoeken in afwachting</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Er zijn geen lidmaatschapsverzoeken om weer te geven.</string>
   <string name="RequestingMembersFragment_explanation">Personen in deze lijst proberen via de groepsverwijzing lid te worden van deze groep.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" toegevoegd</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" afgewezen</string>
@@ -501,7 +501,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zelfwissende berichten</string>
   <string name="ManageGroupActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
-  <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatschaps verzoeken &amp; uitnodigingen</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatschapsverzoeken &amp; uitnodigingen</string>
   <string name="ManageGroupActivity_add_members">Leden toevoegen</string>
   <string name="ManageGroupActivity_edit_group_info">Groepsinformatie aanpassen</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Wie mag nieuwe leden toevoegen?</string>
@@ -593,10 +593,10 @@
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepsverwijzing</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheer &amp; delen</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Groepsverwijzing</string>
-  <string name="ShareableGroupLinkDialogFragment__share">Doorsturen via andere app</string>
+  <string name="ShareableGroupLinkDialogFragment__share">Met anderen delen</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Verwijzing vernieuwen</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatschapsverzoeken</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Nieuwe personen toelaten</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Beheerderstoestemming vereisen</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Ingeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Uitgeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__default">Systeemstandaard</string>
@@ -606,7 +606,7 @@
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-code</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Als de optie beheerderstoestemming is ingeschakeld moet een beheerder eerst nog toestemming geven om lid te worden.</string>
-  <string name="GroupLinkShareQrDialogFragment__share_code">Deel code</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">QR-code delen</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Wil je de uitnodiging die je naar %1$s hebt gestuurd intrekken?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -622,7 +622,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek om lid te worden eerst goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je naam en foto gedeeld worden met de groepsleden.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek om lid te worden eerst goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je profielnaam en -foto gedeeld worden met de groepsleden.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Groep · %1$d lid</item>
     <item quantity="other">Groep · %1$d leden</item>
@@ -1957,7 +1957,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="conversation__menu_view_all_media">Alle media</string>
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
   <string name="conversation__menu_add_shortcut">Aan thuisscherm toevoegen</string>
-  <string name="conversation__menu_pending_members">Groepsuitnodigingen in afwachting</string>
+  <string name="conversation__menu_pending_members">Personen in afwachting</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Pop-up vergroten</string>
   <!--conversation_callable_insecure-->

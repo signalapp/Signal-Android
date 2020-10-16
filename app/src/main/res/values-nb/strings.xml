@@ -284,6 +284,7 @@
   <string name="ConversationFragment_deleting_messages">Sletter meldinger…</string>
   <string name="ConversationFragment_delete_for_me">Slett for meg</string>
   <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne meldingen vil bli slettet for alle i samtalen dersom de er på en nylig versjon av Signal. De vil kunne se at du har slettet en samtale.</string>
   <string name="ConversationFragment_quoted_message_not_found">Opprinnelig melding ikke funnet</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Opprinnelig melding er ikke lenger tilgjengelig</string>
   <string name="ConversationFragment_failed_to_open_message">Kunne ikke åpne meldingen</string>
@@ -922,6 +923,8 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal taleanrop…</string>
   <string name="WebRtcCallView__signal_video_call">Signal videosamtale…</string>
+  <string name="WebRtcCallView__start_call">Start samtale</string>
+  <string name="WebRtcCallView__your_video_is_off">Din video er skrudd av</string>
   <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Velg land</string>
