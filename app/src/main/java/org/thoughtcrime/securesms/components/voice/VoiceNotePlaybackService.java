@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.voice;
 
 import android.app.Notification;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +10,14 @@ import android.os.Bundle;
 import android.os.Process;
 import android.os.RemoteException;
 import android.support.v4.media.MediaBrowserCompat;
-import android.support.v4.media.MediaDescriptionCompat;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.media.MediaBrowserServiceCompat;
-import androidx.media.session.MediaButtonReceiver;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -38,18 +32,10 @@ import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Android Service responsible for playback of voice notes.
@@ -74,6 +60,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
   private VoiceNoteNotificationManager voiceNoteNotificationManager;
   private VoiceNoteQueueDataAdapter    queueDataAdapter;
   private VoiceNotePlaybackPreparer    voiceNotePlaybackPreparer;
+  private VoiceNoteProximityManager    voiceNoteProximityManager;
   private boolean                      isForegroundService;
 
   private final LoadControl loadControl = new DefaultLoadControl.Builder()
@@ -102,6 +89,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     VoiceNoteMediaSourceFactory mediaSourceFactory = new VoiceNoteMediaSourceFactory(this);
 
     voiceNotePlaybackPreparer = new VoiceNotePlaybackPreparer(this, player, queueDataAdapter, mediaSourceFactory);
+    voiceNoteProximityManager = new VoiceNoteProximityManager(this, player);
 
     mediaSession.setPlaybackState(stateBuilder.build());
 
@@ -155,6 +143,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
       switch (playbackState) {
         case Player.STATE_BUFFERING:
         case Player.STATE_READY:
+          voiceNoteProximityManager.onPlayerReady();
           voiceNoteNotificationManager.showNotification(player);
 
           if (!playWhenReady) {
@@ -165,6 +154,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
           }
           break;
         default:
+          voiceNoteProximityManager.onPlayerEnded();
           becomingNoisyReceiver.unregister();
           voiceNoteNotificationManager.hideNotification();
       }
@@ -184,6 +174,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     @Override
     public void onPlayerError(ExoPlaybackException error) {
       Log.w(TAG, "ExoPlayer error occurred:", error);
+      voiceNoteProximityManager.onPlayerError();
     }
   }
 

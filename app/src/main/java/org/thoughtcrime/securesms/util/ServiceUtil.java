@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.job.JobScheduler;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.hardware.SensorManager;
 import android.hardware.display.DisplayManager;
 import android.location.LocationManager;
 import android.media.AudioManager;
@@ -47,6 +48,10 @@ public class ServiceUtil {
 
   public static AudioManager getAudioManager(Context context) {
     return (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+  }
+
+  public static SensorManager getSensorManager(Context context) {
+    return (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
   }
 
   public static PowerManager getPowerManager(Context context) {
