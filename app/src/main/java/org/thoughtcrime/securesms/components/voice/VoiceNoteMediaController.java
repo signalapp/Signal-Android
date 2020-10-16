@@ -35,7 +35,7 @@ import java.util.Objects;
 public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
   public static final String EXTRA_MESSAGE_ID = "voice.note.message_id";
-  public static final String EXTRA_PLAYHEAD   = "voice.note.playhead";
+  public static final String EXTRA_PROGRESS = "voice.note.playhead";
   public static final String EXTRA_PLAY_SINGLE = "voice.note.play.single";
 
   private static final String TAG = Log.tag(VoiceNoteMediaController.class);
@@ -97,12 +97,12 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
 
-  public void startConsecutivePlayback(@NonNull Uri audioSlideUri, long messageId, long position) {
-    startPlayback(audioSlideUri, messageId, position, false);
+  public void startConsecutivePlayback(@NonNull Uri audioSlideUri, long messageId, double progress) {
+    startPlayback(audioSlideUri, messageId, progress, false);
   }
 
-  public void startSinglePlayback(@NonNull Uri audioSlideUri, long messageId, long position) {
-    startPlayback(audioSlideUri, messageId, position, true);
+  public void startSinglePlayback(@NonNull Uri audioSlideUri, long messageId, double progress) {
+    startPlayback(audioSlideUri, messageId, progress, true);
   }
 
   /**
@@ -111,17 +111,19 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
    *
    * @param audioSlideUri  The Uri of the desired audio slide
    * @param messageId      The Message id of the given audio slide
-   * @param position       The desired position in milliseconds at which to start playback.
+   * @param progress       The desired progress % to seek to.
    * @param singlePlayback The player will only play back the specified Uri, and not build a playlist.
    */
-  private void startPlayback(@NonNull Uri audioSlideUri, long messageId, long position, boolean singlePlayback) {
+  private void startPlayback(@NonNull Uri audioSlideUri, long messageId, double progress, boolean singlePlayback) {
     if (isCurrentTrack(audioSlideUri)) {
-      getMediaController().getTransportControls().seekTo(position);
+      long duration = getMediaController().getMetadata().getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+
+      getMediaController().getTransportControls().seekTo((long) (duration * progress));
       getMediaController().getTransportControls().play();
     } else {
       Bundle extras = new Bundle();
       extras.putLong(EXTRA_MESSAGE_ID, messageId);
-      extras.putLong(EXTRA_PLAYHEAD, position);
+      extras.putDouble(EXTRA_PROGRESS, progress);
       extras.putBoolean(EXTRA_PLAY_SINGLE, singlePlayback);
 
       getMediaController().getTransportControls().playFromUri(audioSlideUri, extras);
@@ -144,12 +146,14 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
    * is ignored if the given audio slide is not currently playing.
    *
    * @param audioSlideUri The Uri of the audio slide to seek.
-   * @param position      The position in milliseconds to seek to.
+   * @param progress      The progress percentage to seek to.
    */
-  public void seekToPosition(@NonNull Uri audioSlideUri, long position) {
+  public void seekToPosition(@NonNull Uri audioSlideUri, double progress) {
     if (isCurrentTrack(audioSlideUri)) {
+      long duration = getMediaController().getMetadata().getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+
       getMediaController().getTransportControls().pause();
-      getMediaController().getTransportControls().seekTo(position);
+      getMediaController().getTransportControls().seekTo((long) (duration * progress));
       getMediaController().getTransportControls().play();
     }
   }
@@ -226,6 +230,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
         voiceNotePlaybackState.postValue(new VoiceNotePlaybackState(mediaUri,
                                                                     mediaController.getPlaybackState().getPosition(),
+                                                                    mediaMetadataCompat.getLong(MediaMetadataCompat.METADATA_KEY_DURATION),
                                                                     autoReset));
 
         sendEmptyMessageDelayed(0, 50);

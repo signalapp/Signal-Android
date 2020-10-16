@@ -1377,13 +1377,13 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     @Override
-    public void onVoiceNotePlay(@NonNull Uri uri, long messageId, long position) {
-      voiceNoteMediaController.startConsecutivePlayback(uri, messageId, position);
+    public void onVoiceNotePlay(@NonNull Uri uri, long messageId, double progress) {
+      voiceNoteMediaController.startConsecutivePlayback(uri, messageId, progress);
     }
 
     @Override
-    public void onVoiceNoteSeekTo(@NonNull Uri uri, long position) {
-      voiceNoteMediaController.seekToPosition(uri, position);
+    public void onVoiceNoteSeekTo(@NonNull Uri uri, double progress) {
+      voiceNoteMediaController.seekToPosition(uri, progress);
     }
 
     @Override

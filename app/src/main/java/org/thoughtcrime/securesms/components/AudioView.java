@@ -192,7 +192,7 @@ public final class AudioView extends FrameLayout {
   private void onPlaybackState(@NonNull VoiceNotePlaybackState voiceNotePlaybackState) {
     onStart(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.isAutoReset());
     onProgress(voiceNotePlaybackState.getUri(),
-               (double) voiceNotePlaybackState.getPlayheadPositionMillis() / durationMillis,
+               (double) voiceNotePlaybackState.getPlayheadPositionMillis() / voiceNotePlaybackState.getTrackDuration(),
                voiceNotePlaybackState.getPlayheadPositionMillis());
   }
 
@@ -258,7 +258,7 @@ public final class AudioView extends FrameLayout {
   }
 
   private void onProgress(@NonNull Uri uri, double progress, long millis) {
-    if (!Objects.equals(uri, audioSlide.getUri())) {
+    if (audioSlide == null || !Objects.equals(uri, audioSlide.getUri())) {
       return;
     }
 
@@ -358,7 +358,7 @@ public final class AudioView extends FrameLayout {
 
       if (callbacks != null) {
         if (lottieDirection == REVERSE) {
-          callbacks.onPlay(audioSlide.getUri(), getPosition());
+          callbacks.onPlay(audioSlide.getUri(), getProgress());
         } else {
           callbacks.onPause(audioSlide.getUri());
         }
@@ -369,10 +369,6 @@ public final class AudioView extends FrameLayout {
   private void rewind() {
     seekBar.setProgress(0);
     updateProgress(0, 0);
-  }
-
-  private long getPosition() {
-    return (long) (getProgress() * durationMillis);
   }
 
   private class DownloadClickedListener implements View.OnClickListener {
@@ -394,10 +390,6 @@ public final class AudioView extends FrameLayout {
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-      if (fromUser && durationMillis > 0) {
-        float progressFloat = progress / (float) seekBar.getMax();
-        updateProgress(progressFloat, (long) (durationMillis * progressFloat));
-      }
     }
 
     @Override
@@ -418,7 +410,7 @@ public final class AudioView extends FrameLayout {
 
       if (callbacks != null) {
         if (wasPlaying) {
-          callbacks.onSeekTo(audioSlide.getUri(), getPosition());
+          callbacks.onSeekTo(audioSlide.getUri(), getProgress());
         }
       }
     }
@@ -439,9 +431,9 @@ public final class AudioView extends FrameLayout {
   }
 
   public interface Callbacks {
-    void onPlay(@NonNull Uri audioUri, long position);
+    void onPlay(@NonNull Uri audioUri, double progress);
     void onPause(@NonNull Uri audioUri);
-    void onSeekTo(@NonNull Uri audioUri, long position);
+    void onSeekTo(@NonNull Uri audioUri, double progress);
     void onStopAndReset(@NonNull Uri audioUri);
   }
 }

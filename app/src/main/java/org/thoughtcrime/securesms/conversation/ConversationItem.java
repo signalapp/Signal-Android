@@ -1548,10 +1548,10 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private final class AudioViewCallbacks implements AudioView.Callbacks {
 
     @Override
-    public void onPlay(@NonNull Uri audioUri, long position) {
+    public void onPlay(@NonNull Uri audioUri, double progress) {
       if (eventListener == null) return;
 
-      eventListener.onVoiceNotePlay(audioUri, messageRecord.getId(), position);
+      eventListener.onVoiceNotePlay(audioUri, messageRecord.getId(), progress);
     }
 
     @Override
@@ -1562,10 +1562,10 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     }
 
     @Override
-    public void onSeekTo(@NonNull Uri audioUri, long position) {
+    public void onSeekTo(@NonNull Uri audioUri, double progress) {
       if (eventListener == null) return;
 
-      eventListener.onVoiceNoteSeekTo(audioUri, position);
+      eventListener.onVoiceNoteSeekTo(audioUri, progress);
     }
 
     @Override

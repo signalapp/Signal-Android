@@ -57,8 +57,8 @@ public interface BindableConversationItem extends Unbindable {
     void onRegisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
     void onUnregisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
     void onVoiceNotePause(@NonNull Uri uri);
-    void onVoiceNotePlay(@NonNull Uri uri, long messageId, long position);
-    void onVoiceNoteSeekTo(@NonNull Uri uri, long position);
+    void onVoiceNotePlay(@NonNull Uri uri, long messageId, double position);
+    void onVoiceNoteSeekTo(@NonNull Uri uri, double position);
 
     /** @return true if handled, false if you want to let the normal url handling continue */
     boolean onUrlClicked(@NonNull String url);

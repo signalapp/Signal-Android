@@ -89,7 +89,7 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   @Override
   public void onPrepareFromUri(final Uri uri, Bundle extras) {
     long    messageId      = extras.getLong(VoiceNoteMediaController.EXTRA_MESSAGE_ID);
-    long    position       = extras.getLong(VoiceNoteMediaController.EXTRA_PLAYHEAD, 0);
+    double  progress       = extras.getDouble(VoiceNoteMediaController.EXTRA_PROGRESS, 0);
     boolean singlePlayback = extras.getBoolean(VoiceNoteMediaController.EXTRA_PLAY_SINGLE, false);
 
     canLoadMore = false;
@@ -116,7 +116,7 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
                          @Override
                          public void onTimelineChanged(Timeline timeline, @Nullable Object manifest, int reason) {
                            if (timeline.getWindowCount() >= window) {
-                             player.seekTo(window, position);
+                             player.seekTo(window, (long) (player.getDuration() * progress));
                              player.removeListener(this);
                            }
                          }

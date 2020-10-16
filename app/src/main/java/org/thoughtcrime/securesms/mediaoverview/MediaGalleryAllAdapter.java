@@ -502,8 +502,8 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     @Override
-    public void onPlay(@NonNull Uri audioUri, long position) {
-      audioItemListener.onPlay(audioUri, position, messageId);
+    public void onPlay(@NonNull Uri audioUri, double progress) {
+      audioItemListener.onPlay(audioUri, progress, messageId);
     }
 
     @Override
@@ -512,8 +512,8 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     @Override
-    public void onSeekTo(@NonNull Uri audioUri, long position) {
-      audioItemListener.onSeekTo(audioUri, position);
+    public void onSeekTo(@NonNull Uri audioUri, double progress) {
+      audioItemListener.onSeekTo(audioUri, progress);
     }
 
     @Override
@@ -528,9 +528,9 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   }
 
   interface AudioItemListener {
-    void onPlay(@NonNull Uri audioUri, long position, long messageId);
+    void onPlay(@NonNull Uri audioUri, double progress, long messageId);
     void onPause(@NonNull Uri audioUri);
-    void onSeekTo(@NonNull Uri audioUri, long position);
+    void onSeekTo(@NonNull Uri audioUri, double progress);
     void onStopAndReset(@NonNull Uri audioUri);
     void registerPlaybackStateObserver(@NonNull Observer<VoiceNotePlaybackState> observer);
     void unregisterPlaybackStateObserver(@NonNull Observer<VoiceNotePlaybackState> observer);

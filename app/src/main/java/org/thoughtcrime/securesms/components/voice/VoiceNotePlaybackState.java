@@ -9,15 +9,17 @@ import androidx.annotation.NonNull;
  */
 public class VoiceNotePlaybackState {
 
-  public static final VoiceNotePlaybackState NONE = new VoiceNotePlaybackState(Uri.EMPTY, 0, false);
+  public static final VoiceNotePlaybackState NONE = new VoiceNotePlaybackState(Uri.EMPTY, 0, 0, false);
 
   private final Uri     uri;
   private final long    playheadPositionMillis;
+  private final long    trackDuration;
   private final boolean autoReset;
 
-  public VoiceNotePlaybackState(@NonNull Uri uri, long playheadPositionMillis, boolean autoReset) {
+  public VoiceNotePlaybackState(@NonNull Uri uri, long playheadPositionMillis, long trackDuration, boolean autoReset) {
     this.uri                    = uri;
     this.playheadPositionMillis = playheadPositionMillis;
+    this.trackDuration          = trackDuration;
     this.autoReset              = autoReset;
   }
 
@@ -33,6 +35,13 @@ public class VoiceNotePlaybackState {
    */
   public long getPlayheadPositionMillis() {
     return playheadPositionMillis;
+  }
+
+  /**
+   * @return The track duration in ms
+   */
+  public long getTrackDuration() {
+    return trackDuration;
   }
 
   /**

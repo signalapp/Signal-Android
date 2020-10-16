@@ -311,8 +311,8 @@ public final class MediaOverviewPageFragment extends Fragment
   }
 
   @Override
-  public void onPlay(@NonNull Uri audioUri, long position, long messageId) {
-    voiceNoteMediaController.startSinglePlayback(audioUri, messageId, position);
+  public void onPlay(@NonNull Uri audioUri, double progress, long messageId) {
+    voiceNoteMediaController.startSinglePlayback(audioUri, messageId, progress);
   }
 
   @Override
@@ -321,8 +321,8 @@ public final class MediaOverviewPageFragment extends Fragment
   }
 
   @Override
-  public void onSeekTo(@NonNull Uri audioUri, long position) {
-    voiceNoteMediaController.seekToPosition(audioUri, position);
+  public void onSeekTo(@NonNull Uri audioUri, double progress) {
+    voiceNoteMediaController.seekToPosition(audioUri, progress);
   }
 
   @Override
