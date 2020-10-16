@@ -76,6 +76,8 @@ import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequ
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
@@ -1924,10 +1926,15 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, CredentialResponse.class);
   }
 
-  private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = NO_HANDLER;
+  private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = responseCode -> {
+    if (responseCode == 409) throw new GroupExistsException();
+  };;
   private static final ResponseCodeHandler GROUPS_V2_GET_LOGS_HANDLER       = NO_HANDLER;
   private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = responseCode -> {
-    if (responseCode == 403) throw new NotInGroupException();
+    switch (responseCode) {
+      case 403: throw new NotInGroupException();
+      case 404: throw new GroupNotFoundException();
+    }
   };
   private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = responseCode -> {
     if (responseCode == 400) throw new GroupPatchNotAcceptedException();

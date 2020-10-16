@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupDoesNotExistException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMutation;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
@@ -48,6 +49,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 
 import java.io.IOException;
@@ -242,6 +244,21 @@ public final class GroupsV2StateProcessor {
       return new GroupUpdateResult(GroupState.GROUP_UPDATED, newLocalState);
     }
 
+    @WorkerThread
+    public DecryptedGroup getCurrentGroupStateFromServer()
+        throws IOException, GroupNotAMemberException, GroupDoesNotExistException
+    {
+      try {
+        return groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams));
+      } catch (GroupNotFoundException e) {
+        throw new GroupDoesNotExistException(e);
+      } catch (NotInGroupException e) {
+        throw new GroupNotAMemberException(e);
+      } catch (VerificationFailedException | InvalidGroupStateException e) {
+        throw new IOException(e);
+      }
+    }
+
     private void insertGroupLeave() {
       if (!groupDatabase.isActive(groupId)) {
         Log.w(TAG, "Group has already been left.");
@@ -410,7 +427,7 @@ public final class GroupsV2StateProcessor {
 
       try {
         latestServerGroup = groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
-      } catch (NotInGroupException e) {
+      } catch (NotInGroupException | GroupNotFoundException e) {
         throw new GroupNotAMemberException(e);
       } catch (VerificationFailedException | InvalidGroupStateException e) {
         throw new IOException(e);

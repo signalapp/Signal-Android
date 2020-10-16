@@ -58,6 +58,7 @@ import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2Change
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 
@@ -199,7 +200,7 @@ final class GroupManagerV2 {
                                                   recipientAndThread.threadId,
                                                   decryptedGroup.getMembersCount() - 1,
                                                   getPendingMemberRecipientIds(decryptedGroup.getPendingMembersList()));
-      } catch (VerificationFailedException | InvalidGroupStateException e) {
+      } catch (VerificationFailedException | InvalidGroupStateException | GroupExistsException e) {
         throw new GroupChangeFailedException(e);
       }
     }
