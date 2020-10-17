@@ -42,6 +42,6 @@ public class EarlyReceiptCache {
 
   public synchronized Map<RecipientId, Long> remove(long timestamp) {
     Map<RecipientId, Long> receipts = cache.remove(timestamp);
-    return receipts != null ? receipts : Collections.emptyMap();
+    return receipts != null ? Collections.unmodifiableMap(receipts) : Collections.emptyMap();
   }
 }
