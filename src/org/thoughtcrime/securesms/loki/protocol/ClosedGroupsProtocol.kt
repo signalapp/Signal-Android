@@ -27,6 +27,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext
 import org.whispersystems.signalservice.loki.api.SnodeAPI
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchet
+import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupSenderKey
 import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderKeysImplementation
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
@@ -150,6 +151,13 @@ object ClosedGroupsProtocol {
                     val job = ClosedGroupUpdateMessageSendJob(member, closedGroupUpdateKind)
                     job.setContext(context)
                     job.onRun() // Run the job immediately
+                }
+                val allOldRatchets = sskDatabase.getAllClosedGroupRatchets(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
+                for (pair in allOldRatchets) {
+                    val senderPublicKey = pair.first
+                    val ratchet = pair.second
+                    val collection = ClosedGroupRatchetCollectionType.Old
+                    sskDatabase.setClosedGroupRatchet(groupPublicKey, senderPublicKey, ratchet, collection)
                 }
                 // Delete all ratchets (it's important that this happens * after * sending out the update)
                 sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
@@ -366,6 +374,13 @@ object ClosedGroupsProtocol {
         val wasAnyUserRemoved = members.toSet().intersect(oldMembers) != oldMembers.toSet()
         val wasSenderRemoved = !members.contains(senderPublicKey)
         if (wasAnyUserRemoved) {
+            val allOldRatchets = sskDatabase.getAllClosedGroupRatchets(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
+            for (pair in allOldRatchets) {
+                @Suppress("NAME_SHADOWING") val senderPublicKey = pair.first
+                val ratchet = pair.second
+                val collection = ClosedGroupRatchetCollectionType.Old
+                sskDatabase.setClosedGroupRatchet(groupPublicKey, senderPublicKey, ratchet, collection)
+            }
             sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
             if (wasCurrentUserRemoved) {
                 sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
