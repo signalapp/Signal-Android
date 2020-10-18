@@ -2593,6 +2593,9 @@
     <string name="preferences_chats__create_backup">Create backup</string>
     <string name="preferences_chats__verify_backup_passphrase">Verify backup passphrase</string>
     <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test your backup passphrase and verify that it matches</string>
+    <string name="preferences_chats__control_message_deletion">Control message deletion</string>
+    <string name="preferences_chats__delete_media_only">Delete media only</string>
+    <string name="preferences_chats__delete_media_only_summary">Delete only media, not the message itself, when media is deleted in the All media screen</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Signal</string>

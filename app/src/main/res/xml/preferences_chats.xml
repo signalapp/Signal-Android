@@ -69,4 +69,14 @@
                 android:title="@string/preferences_chats__chat_backups" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory android:title="@string/preferences_chats__control_message_deletion">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_delete_media_only"
+            android:title="@string/preferences_chats__delete_media_only"
+            android:summary="@string/preferences_chats__delete_media_only_summary" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

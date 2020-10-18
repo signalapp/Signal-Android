@@ -209,6 +209,16 @@ public class TextSecurePreferences {
 
   private static final String ARGON2_TESTED = "argon2_tested";
 
+  public static final String DELETE_MEDIA_ONLY = "pref_delete_media_only";
+
+  public static boolean isDeleteMediaOnly(@NonNull Context context) {
+    return getBooleanPreference(context, DELETE_MEDIA_ONLY, false);
+  }
+
+   public static void setDeleteMediaOnly(@NonNull Context context, boolean value) {
+    setBooleanPreference(context, DELETE_MEDIA_ONLY, value);
+  } 
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }

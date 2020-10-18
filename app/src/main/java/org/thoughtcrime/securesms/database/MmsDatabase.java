@@ -1497,6 +1497,14 @@ public class MmsDatabase extends MessageDatabase {
     return threadDeleted;
   }
 
+  public boolean deleteAttachmentsOnly(long messageId) {
+    long               threadId           = getThreadIdForMessage(messageId);
+    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    attachmentDatabase.deleteAttachmentsForMessage(messageId);
+    notifyConversationListeners(threadId);
+    return true;
+  }
+
   @Override
   public void deleteThread(long threadId) {
     Set<Long> singleThreadSet = new HashSet<>();
