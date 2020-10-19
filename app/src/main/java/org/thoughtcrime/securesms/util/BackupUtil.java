@@ -15,6 +15,7 @@ import androidx.documentfile.provider.DocumentFile;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
@@ -247,8 +248,8 @@ public class BackupUtil {
 
     BackupInfo(long timestamp, long size, Uri uri) {
       this.timestamp = timestamp;
-      this.size      = size;
-      this.uri       = uri;
+      this.size = size;
+      this.uri = uri;
     }
 
     public long getTimestamp() {
@@ -264,22 +265,24 @@ public class BackupUtil {
     }
 
     private void delete() {
-      DocumentFile document = DocumentFile.fromSingleUri(ApplicationDependencies.getApplication(), uri);
-      if (document != null && document.exists()) {
-          Log.i(TAG, "Deleting: " + uri);
+      File file = new File(Objects.requireNonNull(uri.getPath()));
 
-          if (!document.delete()) {
-            Log.w(TAG, "Delete failed: " + uri);
-          }
-      } else {
-        File file = new File(uri.toString());
-        Log.i(TAG, "Deleting: " + file.getAbsolutePath());
+      if (file.exists()) {
+        Log.i(TAG, "Deleting File: " + file.getAbsolutePath());
 
         if (!file.delete()) {
           Log.w(TAG, "Delete failed: " + file.getAbsolutePath());
         }
-      }
+      } else {
+        DocumentFile document = DocumentFile.fromSingleUri(ApplicationDependencies.getApplication(), uri);
+        if (document != null && document.exists()) {
+          Log.i(TAG, "Deleting DocumentFile: " + uri);
 
+          if (!document.delete()) {
+            Log.w(TAG, "Delete failed: " + uri);
+          }
+        }
+      }
     }
   }
 }
