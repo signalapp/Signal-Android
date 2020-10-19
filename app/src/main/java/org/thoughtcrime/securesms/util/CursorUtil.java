@@ -30,6 +30,14 @@ public final class CursorUtil {
     return cursor.getBlob(cursor.getColumnIndexOrThrow(column));
   }
 
+  public static boolean requireMaskedBoolean(@NonNull Cursor cursor, @NonNull String column, int position) {
+    return Bitmask.read(requireLong(cursor, column), position);
+  }
+
+  public static int requireMaskedInt(@NonNull Cursor cursor, @NonNull String column, int position, int flagBitSize) {
+    return Util.toIntExact(Bitmask.read(requireLong(cursor, column), position, flagBitSize));
+  }
+
   public static Optional<String> getString(@NonNull Cursor cursor, @NonNull String column) {
     if (cursor.getColumnIndex(column) < 0) {
       return Optional.absent();

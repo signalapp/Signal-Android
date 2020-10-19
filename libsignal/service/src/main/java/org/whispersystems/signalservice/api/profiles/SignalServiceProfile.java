@@ -92,9 +92,6 @@ public class SignalServiceProfile {
 
   public static class Capabilities {
     @JsonProperty
-    private boolean uuid;
-
-    @JsonProperty
     private boolean gv2;
 
     @JsonProperty
@@ -102,10 +99,6 @@ public class SignalServiceProfile {
 
     @JsonCreator
     public Capabilities() {}
-
-    public boolean isUuid() {
-      return uuid;
-    }
 
     public boolean isGv2() {
       return gv2;

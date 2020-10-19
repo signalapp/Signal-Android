@@ -97,7 +97,6 @@ public class Recipient {
   private final String                 notificationChannel;
   private final UnidentifiedAccessMode unidentifiedAccessMode;
   private final boolean                forceSmsSelection;
-  private final Capability             uuidCapability;
   private final Capability             groupsV2Capability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
@@ -311,7 +310,6 @@ public class Recipient {
     this.notificationChannel    = null;
     this.unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
     this.forceSmsSelection      = false;
-    this.uuidCapability         = Capability.UNKNOWN;
     this.groupsV2Capability     = Capability.UNKNOWN;
     this.storageId              = null;
     this.mentionSetting         = MentionSetting.ALWAYS_NOTIFY;
@@ -353,7 +351,6 @@ public class Recipient {
     this.notificationChannel    = details.notificationChannel;
     this.unidentifiedAccessMode = details.unidentifiedAccessMode;
     this.forceSmsSelection      = details.forceSmsSelection;
-    this.uuidCapability         = details.uuidCapability;
     this.groupsV2Capability     = details.groupsV2Capability;
     this.storageId              = details.storageId;
     this.mentionSetting         = details.mentionSetting;
@@ -740,23 +737,8 @@ public class Recipient {
     return forceSmsSelection;
   }
 
-  /**
-   * @return True if this recipient can support receiving UUID-only messages, otherwise false.
-   */
-  public boolean isUuidSupported() {
-    if (FeatureFlags.usernames()) {
-      return true;
-    } else {
-      return uuidCapability == Capability.SUPPORTED;
-    }
-  }
-
   public Capability getGroupsV2Capability() {
     return groupsV2Capability;
-  }
-
-  public Capability getUuidCapability() {
-    return uuidCapability;
   }
 
   public @Nullable byte[] getProfileKey() {
@@ -825,7 +807,7 @@ public class Recipient {
   public enum Capability {
     UNKNOWN(0),
     SUPPORTED(1),
-    NOT_SUPPORTED(-1);
+    NOT_SUPPORTED(2);
 
     private final int value;
 
@@ -839,9 +821,10 @@ public class Recipient {
 
     public static Capability deserialize(int value) {
       switch (value) {
-        case  1 : return SUPPORTED;
-        case -1 : return NOT_SUPPORTED;
-        default : return UNKNOWN;
+        case 0:  return UNKNOWN;
+        case 1:  return SUPPORTED;
+        case 2:  return NOT_SUPPORTED;
+        default: throw new IllegalArgumentException();
       }
     }
 

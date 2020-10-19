@@ -30,9 +30,7 @@ public final class LogSectionCapabilities implements LogSection {
 
     AccountAttributes.Capabilities capabilities = AppCapabilities.getCapabilities(false);
 
-    return new StringBuilder().append("Local device UUID : ").append(capabilities.isUuid()).append("\n")
-                              .append("Global UUID       : ").append(self.getUuidCapability()).append("\n")
-                              .append("Local device GV2  : ").append(capabilities.isGv2()).append("\n")
-                              .append("Global GV2        : ").append(self.getGroupsV2Capability()).append("\n");
+    return new StringBuilder().append("Local device GV2: ").append(capabilities.isGv2()).append("\n")
+                              .append("Global GV2      : ").append(self.getGroupsV2Capability()).append("\n");
   }
 }
