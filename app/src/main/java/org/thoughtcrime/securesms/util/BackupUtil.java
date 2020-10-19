@@ -244,12 +244,12 @@ public class BackupUtil {
 
     private final long timestamp;
     private final long size;
-    private final Uri uri;
+    private final Uri  uri;
 
     BackupInfo(long timestamp, long size, Uri uri) {
       this.timestamp = timestamp;
-      this.size = size;
-      this.uri = uri;
+      this.size      = size;
+      this.uri       = uri;
     }
 
     public long getTimestamp() {

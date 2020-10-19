@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
+import org.thoughtcrime.securesms.util.StorageUtil;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -384,19 +385,28 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
     if (mediaItem != null) {
       SaveAttachmentTask.showWarningDialog(this, (dialogInterface, i) -> {
+        if (StorageUtil.canWriteToMediaStore()) {
+          performSavetoDisk(mediaItem);
+          return;
+        }
+
         Permissions.with(this)
-                   .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                   .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                    .ifNecessary()
                    .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                    .onAnyDenied(() -> Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
                    .onAllGranted(() -> {
-                     SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this);
-                     long saveDate = (mediaItem.date > 0) ? mediaItem.date : System.currentTimeMillis();
-                     saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
+                     performSavetoDisk(mediaItem);
                    })
                    .execute();
       });
     }
+  }
+
+  private void performSavetoDisk(@NonNull MediaItem mediaItem) {
+    SaveAttachmentTask saveTask = new SaveAttachmentTask(MediaPreviewActivity.this);
+    long               saveDate = (mediaItem.date > 0) ? mediaItem.date : System.currentTimeMillis();
+    saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Attachment(mediaItem.uri, mediaItem.type, saveDate, null));
   }
 
   @SuppressLint("StaticFieldLeak")

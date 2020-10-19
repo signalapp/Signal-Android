@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
+import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -412,29 +413,17 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @Override
   public void onSave() {
     SaveAttachmentTask.showWarningDialog(requireContext(), (dialogInterface, i) -> {
+      if (StorageUtil.canWriteToMediaStore()) {
+        performSaveToDisk();
+        return;
+      }
+
       Permissions.with(this)
-                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                  .ifNecessary()
                  .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                  .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
-                 .onAllGranted(() -> {
-                   SimpleTask.run(() -> {
-                     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                     Bitmap                image        = imageEditorView.getModel().render(requireContext());
-
-                     image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
-
-                     return BlobProvider.getInstance()
-                                        .forData(outputStream.toByteArray())
-                                        .withMimeType(MediaUtil.IMAGE_JPEG)
-                                        .createForSingleUseInMemory();
-
-                   }, uri -> {
-                     SaveAttachmentTask saveTask = new SaveAttachmentTask(requireContext());
-                     SaveAttachmentTask.Attachment attachment = new SaveAttachmentTask.Attachment(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), null);
-                     saveTask.executeOnExecutor(SignalExecutors.BOUNDED, attachment);
-                   });
-                 })
+                 .onAllGranted(this::performSaveToDisk)
                  .execute();
     });
   }
@@ -467,6 +456,25 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @Override
   public void onDone() {
     controller.onDoneEditing();
+  }
+
+  private void performSaveToDisk() {
+    SimpleTask.run(() -> {
+      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+      Bitmap                image        = imageEditorView.getModel().render(requireContext());
+
+      image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+
+      return BlobProvider.getInstance()
+                         .forData(outputStream.toByteArray())
+                         .withMimeType(MediaUtil.IMAGE_JPEG)
+                         .createForSingleUseInMemory();
+
+    }, uri -> {
+      SaveAttachmentTask            saveTask   = new SaveAttachmentTask(requireContext());
+      SaveAttachmentTask.Attachment attachment = new SaveAttachmentTask.Attachment(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), null);
+      saveTask.executeOnExecutor(SignalExecutors.BOUNDED, attachment);
+    });
   }
 
   private void refreshUniqueColors() {

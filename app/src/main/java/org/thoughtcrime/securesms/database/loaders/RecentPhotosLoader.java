@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import androidx.loader.content.CursorLoader;
 
@@ -15,7 +16,7 @@ public class RecentPhotosLoader extends CursorLoader {
   public static Uri BASE_URL = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
   private static final String[] PROJECTION = new String[] {
-      MediaStore.Images.ImageColumns.DATA,
+      MediaStore.Images.ImageColumns._ID,
       MediaStore.Images.ImageColumns.DATE_TAKEN,
       MediaStore.Images.ImageColumns.DATE_MODIFIED,
       MediaStore.Images.ImageColumns.ORIENTATION,
@@ -26,7 +27,8 @@ public class RecentPhotosLoader extends CursorLoader {
       MediaStore.Images.ImageColumns.HEIGHT
   };
 
-  private static final String SELECTION  = MediaStore.Images.Media.DATA + " NOT NULL";
+  private static final String SELECTION  = Build.VERSION.SDK_INT > 28 ? MediaStore.Images.Media.IS_PENDING + " != 1"
+                                                                      : MediaStore.Images.Media.DATA + " IS NULL";
 
   private final Context context;
 

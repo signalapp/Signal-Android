@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,6 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.util.StorageUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -84,7 +82,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
   }
 
   public void onMediaChanged(@NonNull List<Media> media) {
-    if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+    if (StorageUtil.canReadFromMediaStore()) {
       mediaAdapter.setMedia(media);
       permissionButton.setVisibility(GONE);
       permissionText.setVisibility(GONE);

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 
 import android.annotation.TargetApi;
+import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -106,7 +107,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
     public void onBindItemViewHolder(RecentPhotoViewHolder viewHolder, @NonNull Cursor cursor) {
       viewHolder.imageView.setImageDrawable(null);
 
-      String path         = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATA));
+      long   rowId        = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns._ID));
       long   dateTaken    = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATE_TAKEN));
       long   dateModified = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATE_MODIFIED));
       String mimeType     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.MIME_TYPE));
@@ -116,7 +117,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
       int    width        = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
       int    height       = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
 
-      final Uri uri = Uri.fromFile(new File(path));
+      final Uri uri = ContentUris.withAppendedId(RecentPhotosLoader.BASE_URL, rowId);
 
       Key signature = new MediaStoreSignature(mimeType, dateModified, orientation);
 

@@ -1034,6 +1034,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     Permissions.with(this)
                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
                .onAllGranted(() -> viewModel.onAttachmentKeyboardOpen())
+               .withPermanentDenialDialog(getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
                .execute();
   }
 
