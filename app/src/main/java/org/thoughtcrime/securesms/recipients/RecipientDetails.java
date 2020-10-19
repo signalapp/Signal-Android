@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
@@ -17,7 +15,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -58,7 +55,7 @@ public class RecipientDetails {
   final boolean                profileSharing;
   final long                   lastProfileFetch;
   final boolean                systemContact;
-  final boolean                isLocalNumber;
+  final boolean                isSelf;
   final String                 notificationChannel;
   final UnidentifiedAccessMode unidentifiedAccessMode;
   final boolean                forceSmsSelection;
@@ -71,7 +68,7 @@ public class RecipientDetails {
   public RecipientDetails(@Nullable String name,
                           @NonNull Optional<Long> groupAvatarId,
                           boolean systemContact,
-                          boolean isLocalNumber,
+                          boolean isSelf,
                           @NonNull RecipientSettings settings,
                           @Nullable List<Recipient> participants)
   {
@@ -103,7 +100,7 @@ public class RecipientDetails {
     this.profileSharing                  = settings.isProfileSharing();
     this.lastProfileFetch                = settings.getLastProfileFetch();
     this.systemContact                   = systemContact;
-    this.isLocalNumber                   = isLocalNumber;
+    this.isSelf                          = isSelf;
     this.notificationChannel             = settings.getNotificationChannel();
     this.unidentifiedAccessMode          = settings.getUnidentifiedAccessMode();
     this.forceSmsSelection               = settings.isForceSmsSelection();
@@ -150,7 +147,7 @@ public class RecipientDetails {
     this.profileSharing         = false;
     this.lastProfileFetch       = 0;
     this.systemContact          = true;
-    this.isLocalNumber          = false;
+    this.isSelf                 = false;
     this.notificationChannel    = null;
     this.unidentifiedAccessMode = UnidentifiedAccessMode.UNKNOWN;
     this.forceSmsSelection      = false;
@@ -163,9 +160,9 @@ public class RecipientDetails {
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {
     boolean systemContact = !TextUtils.isEmpty(settings.getSystemDisplayName());
-    boolean isLocalNumber = (settings.getE164() != null && settings.getE164().equals(TextSecurePreferences.getLocalNumber(context))) ||
+    boolean isSelf        = (settings.getE164() != null && settings.getE164().equals(TextSecurePreferences.getLocalNumber(context))) ||
                             (settings.getUuid() != null && settings.getUuid().equals(TextSecurePreferences.getLocalUuid(context)));
 
-    return new RecipientDetails(null, Optional.absent(), systemContact, isLocalNumber, settings, null);
+    return new RecipientDetails(null, Optional.absent(), systemContact, isSelf, settings, null);
   }
 }

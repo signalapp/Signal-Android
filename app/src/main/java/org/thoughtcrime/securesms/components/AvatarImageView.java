@@ -117,7 +117,7 @@ public final class AvatarImageView extends AppCompatImageView {
    * Shows self as the actual profile picture.
    */
   public void setRecipient(@NonNull Recipient recipient) {
-    if (recipient.isLocalNumber()) {
+    if (recipient.isSelf()) {
       setAvatar(GlideApp.with(this), null, false);
       AvatarUtil.loadIconIntoImageView(recipient, this);
     } else {

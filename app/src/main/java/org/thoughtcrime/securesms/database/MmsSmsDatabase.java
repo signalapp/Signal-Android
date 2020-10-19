@@ -151,8 +151,8 @@ public class MmsSmsDatabase extends Database {
       MessageRecord messageRecord;
 
       while ((messageRecord = reader.getNext()) != null) {
-        if ((Recipient.resolved(author).isLocalNumber() && messageRecord.isOutgoing()) ||
-            (!Recipient.resolved(author).isLocalNumber() && messageRecord.getIndividualRecipient().getId().equals(author)))
+        if ((Recipient.resolved(author).isSelf() && messageRecord.isOutgoing()) ||
+            (!Recipient.resolved(author).isSelf() && messageRecord.getIndividualRecipient().getId().equals(author)))
         {
           return messageRecord;
         }
@@ -345,7 +345,7 @@ public class MmsSmsDatabase extends Database {
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.REMOTE_DELETED + " = 0";
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.RECIPIENT_ID}, selection, order, null)) {
-      boolean isOwnNumber = Recipient.resolved(recipientId).isLocalNumber();
+      boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
 
       while (cursor != null && cursor.moveToNext()) {
         boolean quoteIdMatches     = cursor.getLong(0) == quoteId;
@@ -364,7 +364,7 @@ public class MmsSmsDatabase extends Database {
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.REMOTE_DELETED + " = 0";
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.RECIPIENT_ID}, selection, order, null)) {
-      boolean isOwnNumber = Recipient.resolved(recipientId).isLocalNumber();
+      boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
 
       while (cursor != null && cursor.moveToNext()) {
         boolean timestampMatches   = cursor.getLong(0) == receivedTimestamp;

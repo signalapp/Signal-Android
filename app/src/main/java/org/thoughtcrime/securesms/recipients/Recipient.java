@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
@@ -73,7 +72,7 @@ public class Recipient {
   private final GroupId                groupId;
   private final List<Recipient>        participants;
   private final Optional<Long>         groupAvatarId;
-  private final boolean                localNumber;
+  private final boolean                isSelf;
   private final boolean                blocked;
   private final long                   muteUntil;
   private final VibrateState           messageVibrate;
@@ -286,7 +285,7 @@ public class Recipient {
     this.groupId                = null;
     this.participants           = Collections.emptyList();
     this.groupAvatarId          = Optional.absent();
-    this.localNumber            = false;
+    this.isSelf                 = false;
     this.blocked                = false;
     this.muteUntil              = 0;
     this.messageVibrate         = VibrateState.DEFAULT;
@@ -328,7 +327,7 @@ public class Recipient {
     this.groupId                = details.groupId;
     this.participants           = details.participants;
     this.groupAvatarId          = details.groupAvatarId;
-    this.localNumber            = details.isLocalNumber;
+    this.isSelf                 = details.isSelf;
     this.blocked                = details.blocked;
     this.muteUntil              = details.mutedUntil;
     this.messageVibrate         = details.messageVibrateState;
@@ -364,8 +363,8 @@ public class Recipient {
     return id;
   }
 
-  public boolean isLocalNumber() {
-    return localNumber;
+  public boolean isSelf() {
+    return isSelf;
   }
 
   public @Nullable Uri getContactUri() {
@@ -418,8 +417,8 @@ public class Recipient {
   }
 
   public @NonNull String getMentionDisplayName(@NonNull Context context) {
-    String name = Util.getFirstNonEmpty(localNumber ? getProfileName().toString() : getName(context),
-                                        localNumber ? getName(context) : getProfileName().toString(),
+    String name = Util.getFirstNonEmpty(isSelf ? getProfileName().toString() : getName(context),
+                                        isSelf ? getName(context) : getProfileName().toString(),
                                         e164,
                                         email,
                                         context.getString(R.string.Recipient_unknown));
@@ -630,7 +629,7 @@ public class Recipient {
   }
 
   public boolean isActiveGroup() {
-    return Stream.of(getParticipants()).anyMatch(Recipient::isLocalNumber);
+    return Stream.of(getParticipants()).anyMatch(Recipient::isSelf);
   }
 
   public @NonNull List<Recipient> getParticipants() {
@@ -658,7 +657,7 @@ public class Recipient {
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider) {
-    if      (localNumber)              return fallbackPhotoProvider.getPhotoForLocalNumber();
+    if      (isSelf)                   return fallbackPhotoProvider.getPhotoForLocalNumber();
     else if (isResolving())            return fallbackPhotoProvider.getPhotoForResolvingRecipient();
     else if (isGroupInternal())        return fallbackPhotoProvider.getPhotoForGroup();
     else if (isGroup())                return fallbackPhotoProvider.getPhotoForGroup();
@@ -667,7 +666,7 @@ public class Recipient {
   }
 
   public @Nullable ContactPhoto getContactPhoto() {
-    if      (localNumber)                                    return null;
+    if      (isSelf)                                         return null;
     else if (isGroupInternal() && groupAvatarId.isPresent()) return new GroupRecordContactPhoto(groupId, groupAvatarId.get());
     else if (systemContactPhoto != null)                     return new SystemContactPhoto(id, systemContactPhoto, 0);
     else if (profileAvatar != null && hasProfileImage)       return new ProfileContactPhoto(this, profileAvatar);

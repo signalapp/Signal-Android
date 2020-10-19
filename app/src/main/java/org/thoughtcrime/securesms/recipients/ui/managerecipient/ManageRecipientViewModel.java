@@ -109,13 +109,13 @@ public final class ManageRecipientViewModel extends ViewModel {
 
     this.canAddToAGroup = LiveDataUtil.combineLatest(recipient,
                                                      localGroupCount,
-                                                     (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isLocalNumber());
+                                                     (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isSelf());
 
     manageRecipientRepository.getActiveGroupCount(localGroupCount::postValue);
   }
 
   private static @NonNull String getDisplayTitle(@NonNull Recipient recipient, @NonNull Context context) {
-    if (recipient.isLocalNumber()) {
+    if (recipient.isSelf()) {
       return context.getString(R.string.note_to_self);
     } else {
       return recipient.getDisplayName(context);
@@ -123,7 +123,7 @@ public final class ManageRecipientViewModel extends ViewModel {
   }
 
   private static @NonNull String getDisplaySubtitle(@NonNull Recipient recipient, @NonNull Context context) {
-    if (!recipient.isLocalNumber() && recipient.hasAUserSetDisplayName(context)) {
+    if (!recipient.isSelf() && recipient.hasAUserSetDisplayName(context)) {
       return recipient.getSmsAddress().or("").trim();
     } else {
       return "";

@@ -81,7 +81,7 @@ public final class GroupsV2CapabilityChecker {
         Log.w(TAG, "At least one recipient does not support GV2, capability was " + gv2Capability);
 
         noGv2Count++;
-        if (member.isLocalNumber()) {
+        if (member.isSelf()) {
           noSelfGV2Support = true;
         }
       }

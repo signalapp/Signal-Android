@@ -128,6 +128,6 @@ public class AttachmentUtil {
     return recipient.isSystemContact()  ||
            recipient.isProfileSharing() ||
            message.isOutgoing()         ||
-           recipient.isLocalNumber();
+           recipient.isSelf();
     }
   }

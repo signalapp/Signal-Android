@@ -2123,7 +2123,7 @@ public class RecipientDatabase extends Database {
     }
 
     return Stream.of(recipientsWithinInteractionThreshold)
-                 .filterNot(Recipient::isLocalNumber)
+                 .filterNot(Recipient::isSelf)
                  .filter(r -> r.getLastProfileFetchTime() < lastProfileFetchThreshold)
                  .limit(limit)
                  .map(Recipient::getId)

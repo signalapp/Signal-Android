@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -97,7 +96,7 @@ public class ConversationTitleView extends RelativeLayout {
       startDrawable = R.drawable.ic_volume_off_white_18dp;
     }
 
-    if (recipient != null && recipient.isSystemContact() && !recipient.isLocalNumber()) {
+    if (recipient != null && recipient.isSystemContact() && !recipient.isSelf()) {
       endDrawable = R.drawable.ic_profile_circle_outline_16;
     }
 
@@ -125,7 +124,7 @@ public class ConversationTitleView extends RelativeLayout {
 
   private void setRecipientTitle(Recipient recipient) {
     if      (recipient.isGroup())       setGroupRecipientTitle(recipient);
-    else if (recipient.isLocalNumber()) setSelfTitle();
+    else if (recipient.isSelf()) setSelfTitle();
     else                                setIndividualRecipientTitle(recipient);
   }
 
@@ -145,8 +144,8 @@ public class ConversationTitleView extends RelativeLayout {
   private void setGroupRecipientTitle(Recipient recipient) {
     this.title.setText(recipient.getDisplayName(getContext()));
     this.subtitle.setText(Stream.of(recipient.getParticipants())
-                                .sorted((a, b) -> Boolean.compare(a.isLocalNumber(), b.isLocalNumber()))
-                                .map(r -> r.isLocalNumber() ? getResources().getString(R.string.ConversationTitleView_you)
+                                .sorted((a, b) -> Boolean.compare(a.isSelf(), b.isSelf()))
+                                .map(r -> r.isSelf() ? getResources().getString(R.string.ConversationTitleView_you)
                                                             : r.getDisplayName(getContext()))
                                 .collect(Collectors.joining(", ")));
 

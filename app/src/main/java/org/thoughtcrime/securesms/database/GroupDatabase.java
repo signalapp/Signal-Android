@@ -305,7 +305,7 @@ public final class GroupDatabase extends Database {
 
       for (RecipientId member : currentMembers) {
         Recipient resolved = Recipient.resolved(member);
-        if (memberSet.includeSelf || !resolved.isLocalNumber()) {
+        if (memberSet.includeSelf || !resolved.isSelf()) {
           recipients.add(resolved);
         }
       }

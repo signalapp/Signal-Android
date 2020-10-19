@@ -317,9 +317,9 @@ public class ManageRecipientFragment extends LoggingFragment {
     colorChip.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
     colorRow.setOnClickListener(v -> handleColorSelection(color));
 
-    secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
-    insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
-    secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isLocalNumber() ? View.VISIBLE : View.GONE);
+    secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+    insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+    secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
   }
 
   private void presentMediaCursor(ManageRecipientViewModel.MediaCursor mediaCursor) {

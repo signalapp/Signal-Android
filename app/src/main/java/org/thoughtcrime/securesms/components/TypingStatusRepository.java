@@ -42,7 +42,7 @@ public class TypingStatusRepository {
   }
 
   public synchronized void onTypingStarted(@NonNull Context context, long threadId, @NonNull Recipient author, int device) {
-    if (author.isLocalNumber()) {
+    if (author.isSelf()) {
       return;
     }
 
@@ -66,7 +66,7 @@ public class TypingStatusRepository {
   }
 
   public synchronized void onTypingStopped(@NonNull Context context, long threadId, @NonNull Recipient author, int device, boolean isReplacedByIncomingMessage) {
-    if (author.isLocalNumber()) {
+    if (author.isSelf()) {
       return;
     }
 

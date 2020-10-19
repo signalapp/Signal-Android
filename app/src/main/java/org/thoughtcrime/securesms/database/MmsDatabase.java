@@ -1414,7 +1414,7 @@ public class MmsDatabase extends MessageDatabase {
     AttachmentDatabase partsDatabase   = DatabaseFactory.getAttachmentDatabase(context);
     MentionDatabase    mentionDatabase = DatabaseFactory.getMentionDatabase(context);
 
-    boolean mentionsSelf = Stream.of(mentions).filter(m -> Recipient.resolved(m.getRecipientId()).isLocalNumber()).findFirst().isPresent();
+    boolean mentionsSelf = Stream.of(mentions).filter(m -> Recipient.resolved(m.getRecipientId()).isSelf()).findFirst().isPresent();
 
     List<Attachment> allAttachments     = new LinkedList<>();
     List<Attachment> contactAttachments = Stream.of(sharedContacts).map(Contact::getAvatarAttachment).filter(a -> a != null).toList();

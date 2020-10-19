@@ -1202,7 +1202,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                             message.getMessage().getExpiresInSeconds() * 1000L);
       }
 
-      if (recipients.isLocalNumber()) {
+      if (recipients.isSelf()) {
         SyncMessageId id = new SyncMessageId(recipients.getId(), message.getTimestamp());
         DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
         DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
@@ -1360,7 +1360,7 @@ public final class PushProcessMessageJob extends BaseJob {
                         .scheduleDeletion(messageId, isGroup, message.getExpirationStartTimestamp(), expiresInMillis);
     }
 
-    if (recipient.isLocalNumber()) {
+    if (recipient.isSelf()) {
       SyncMessageId id = new SyncMessageId(recipient.getId(), message.getTimestamp());
       DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
       DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());

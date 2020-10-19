@@ -601,7 +601,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   private boolean viewOnceSupported() {
-    return !isSms && (recipient == null || !recipient.isLocalNumber()) && mediaSupportsRevealableMessage(getSelectedMediaOrDefault());
+    return !isSms && (recipient == null || !recipient.isSelf()) && mediaSupportsRevealableMessage(getSelectedMediaOrDefault());
   }
 
   private boolean mediaSupportsRevealableMessage(@NonNull List<Media> media) {

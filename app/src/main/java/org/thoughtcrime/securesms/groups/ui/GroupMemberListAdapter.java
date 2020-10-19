@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.LifecycleRecyclerAdapter;
 import org.thoughtcrime.securesms.util.LifecycleViewHolder;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -200,8 +199,8 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
     }
 
     void bindRecipient(@NonNull Recipient recipient) {
-      String displayName = recipient.isLocalNumber() ? context.getString(R.string.GroupMembersDialog_you)
-                                                     : recipient.getDisplayName(itemView.getContext());
+      String displayName = recipient.isSelf() ? context.getString(R.string.GroupMembersDialog_you)
+                                              : recipient.getDisplayName(itemView.getContext());
       bindImageAndText(recipient, displayName);
     }
 
