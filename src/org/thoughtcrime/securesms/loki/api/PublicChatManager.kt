@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatInfo
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChatInfo
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 
 class PublicChatManager(private val context: Context) {
@@ -68,18 +68,18 @@ class PublicChatManager(private val context: Context) {
     }
   }
 
-  public fun addChat(server: String, channel: Long, info: LokiPublicChatInfo): PublicChat {
+  public fun addChat(server: String, channel: Long, info: PublicChatInfo): PublicChat {
     val chat = PublicChat(channel, server, info.displayName, true)
     var threadID =  GroupManager.getOpenGroupThreadID(chat.id, context)
-    var avatar: Bitmap? = null
+    var profilePicture: Bitmap? = null
     // Create the group if we don't have one
     if (threadID < 0) {
-      if (!info.profilePictureURL.isEmpty()) {
-        val avatarBytes = ApplicationContext.getInstance(context).publicChatAPI
-                ?.downloadOpenGroupAvatar(server, info.profilePictureURL)
-        avatar = BitmapUtil.fromByteArray(avatarBytes)
+      if (info.profilePictureURL.isNotEmpty()) {
+        val profilePictureAsByteArray = ApplicationContext.getInstance(context).publicChatAPI
+                ?.downloadOpenGroupProfilePicture(server, info.profilePictureURL)
+        profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
       }
-      val result = GroupManager.createOpenGroup(chat.id, context, avatar, chat.displayName)
+      val result = GroupManager.createOpenGroup(chat.id, context, profilePicture, chat.displayName)
       threadID = result.threadId
     }
     DatabaseFactory.getLokiThreadDatabase(context).setPublicChat(chat, threadID)

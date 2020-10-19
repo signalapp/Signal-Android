@@ -347,7 +347,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     val apiDB = DatabaseFactory.getLokiAPIDatabase(this@HomeActivity)
                     apiDB.removeLastMessageServerID(publicChat.channel, publicChat.server)
                     apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
-                    apiDB.clearOpenGroupAvatarURL(publicChat.channel, publicChat.server)
+                    apiDB.clearOpenGroupProfilePictureURL(publicChat.channel, publicChat.server)
                     ApplicationContext.getInstance(this@HomeActivity).publicChatAPI!!.leave(publicChat.channel, publicChat.server)
                 }
                 threadDB.deleteConversation(threadID)

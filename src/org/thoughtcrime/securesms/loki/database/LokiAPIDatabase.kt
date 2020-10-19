@@ -6,7 +6,6 @@ import android.util.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.Snode
 import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
@@ -71,10 +70,10 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         // Open group public keys
         private val openGroupPublicKeyTable = "open_group_public_keys"
         @JvmStatic val createOpenGroupPublicKeyTableCommand = "CREATE TABLE $openGroupPublicKeyTable ($server STRING PRIMARY KEY, $publicKey INTEGER DEFAULT 0);"
-        // Open group avatar cache
-        private val openGroupAvatarCacheTable = "open_group_avatar_cache"
-        private val openGroupAvatar = "open_group_avatar"
-        @JvmStatic val createOpenGroupAvatarCacheCommand = "CREATE TABLE $openGroupAvatarCacheTable ($publicChatID STRING PRIMARY KEY, $openGroupAvatar TEXT NULLABLE DEFAULT NULL);"
+        // Open group profile picture cache
+        private val openGroupProfilePictureTable = "open_group_avatar_cache"
+        private val openGroupProfilePicture = "open_group_avatar"
+        @JvmStatic val createOpenGroupProfilePictureTableCommand = "CREATE TABLE $openGroupProfilePictureTable ($publicChatID STRING PRIMARY KEY, $openGroupProfilePicture TEXT NULLABLE DEFAULT NULL);"
 
         // region Deprecated
         private val deviceLinkCache = "loki_pairing_authorisation_cache"
@@ -347,25 +346,25 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(openGroupPublicKeyTable, row, "${LokiAPIDatabase.server} = ?", wrap(server))
     }
 
-    override fun getOpenGroupAvatarURL(group: Long, server: String): String? {
+    override fun getOpenGroupProfilePictureURL(group: Long, server: String): String? {
         val database = databaseHelper.readableDatabase
         val index = "$server.$group"
-        return database.get(openGroupAvatarCacheTable, "$publicChatID = ?", wrap(index)) { cursor ->
-            cursor.getString(openGroupAvatar)
+        return database.get(openGroupProfilePictureTable, "$publicChatID = ?", wrap(index)) { cursor ->
+            cursor.getString(openGroupProfilePicture)
         }?.toString()
     }
 
-    override fun setOpenGroupAvatarURL(group: Long, server: String, url: String) {
+    override fun setOpenGroupProfilePictureURL(group: Long, server: String, newValue: String) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf(publicChatID to index, openGroupAvatar to url))
-        database.insertOrUpdate(openGroupAvatarCacheTable, row, "$publicChatID = ?", wrap(index))
+        val row = wrap(mapOf(publicChatID to index, openGroupProfilePicture to newValue))
+        database.insertOrUpdate(openGroupProfilePictureTable, row, "$publicChatID = ?", wrap(index))
     }
 
-    fun clearOpenGroupAvatarURL(group: Long, server: String): Boolean {
+    fun clearOpenGroupProfilePictureURL(group: Long, server: String): Boolean {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        return database.delete(openGroupAvatarCacheTable, "$publicChatID == ?", arrayOf(index)) > 0
+        return database.delete(openGroupProfilePictureTable, "$publicChatID = ?", arrayOf(index)) > 0
     }
 
     // region Deprecated
