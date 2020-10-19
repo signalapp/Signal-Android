@@ -1741,7 +1741,7 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Χρήση του Signal για όλα τα εισερχόμενα μηνύματα πολυμέσων</string>
   <string name="preferences__pref_enter_sends_title">Το Enter στέλνει</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Τα μηνύματα θα στέλνονται με το πάτημα του Enter</string>
-  <string name="preferences__generate_link_previews">Δημιουργία προεπισκόπησης συνδέσμου</string>
+  <string name="preferences__generate_link_previews">Προεπισκόπηση συνδέσμων</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Λάβε προεπισκόπεις συνδέσμων απ\' ευθείας από σελίδες για τα μηνύματα που στέλνεις.</string>
   <string name="preferences__choose_identity">Επέλεξε ταυτότητα</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Διάλεξε την επαφή σου από τη λίστα επαφών.</string>
@@ -1866,7 +1866,7 @@
   <string name="preferences_chats__show_invitation_prompts">Προβολή υπενθυμίσεων πρόσκλησης</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Εμφάνιση υπενθυμίσεων πρόσκλησης για επαφές που δεν έχουν Signal</string>
   <string name="preferences_chats__message_text_size">Μέγεθος γραμματοσειράς μηνύματος</string>
-  <string name="preferences_events__contact_joined_signal">Η επαφή εγκατέστησε το Signal</string>
+  <string name="preferences_events__contact_joined_signal">Επαφή που εγκατέστησε το Signal</string>
   <string name="preferences_notifications__priority">Προτεραιότητα</string>
   <string name="preferences_communication__category_sealed_sender">Προστατευμένος αποστολέας</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Προβολή δεικτών</string>

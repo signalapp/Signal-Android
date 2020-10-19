@@ -286,7 +286,7 @@
   <string name="ConversationFragment_deleting_messages">Berichten aan het wissen …</string>
   <string name="ConversationFragment_delete_for_me">Voor mij wissen</string>
   <string name="ConversationFragment_delete_for_everyone">Wissen voor iedereen</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht wordt voor iedere deelnemer aan dit gesprek die een recente versie van Signal gebruikt gewist. Ze zullen wel een bericht zien waarin staat dat je een bericht hebt gewist.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht zal voor iedere deelnemer aan dit gesprek die een recente versie van Signal gebruikt gewist worden. Ze zullen wel een berichtbubbel zien waarin staat dat je een bericht hebt gewist.</string>
   <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Het oorspronkelijke bericht is niet langer beschikbaar</string>
   <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
@@ -506,7 +506,7 @@
   <string name="ManageGroupActivity_edit_group_info">Groepsinformatie aanpassen</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Wie mag nieuwe leden toevoegen?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Wie mag de groepsinformatie aanpassen?</string>
-  <string name="ManageGroupActivity_group_link">Groepsverwijzing</string>
+  <string name="ManageGroupActivity_group_link">Groepsverwijzing voor deze groep</string>
   <string name="ManageGroupActivity_block_group">Groep blokkeren en verlaten</string>
   <string name="ManageGroupActivity_unblock_group">Groep deblokkeren</string>
   <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
@@ -528,7 +528,7 @@
     <item quantity="other">%d personen toegevoegd.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing in- of uitschakelen.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Uitsluitend beheerders kunnen de vereiste voor beheerderstoestemming voor lid worden van de groep in- of uitschakelen.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Uitsluitend beheerders kunnen de beheerderstoestemming vereiste om lid te mogen worden van de groep in- of uitschakelen.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing vernieuwen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
   <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
@@ -591,7 +591,7 @@
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepsverwijzing</string>
-  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheer &amp; delen</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheren &amp; delen</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Groepsverwijzing</string>
   <string name="ShareableGroupLinkDialogFragment__share">Met anderen delen</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Verwijzing vernieuwen</string>
@@ -601,11 +601,11 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Uitgeschakeld</string>
   <string name="ShareableGroupLinkDialogFragment__default">Systeemstandaard</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Groepsverwijzing vernieuwd</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis toestemming van een beheerder om lid te worden van de groep voor ieder persoon wie via de verwijzing de groep heeft gevonden.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis voor iedere persoon wie via de groepsverwijzing lid wil worden van de groep eerst toestemming van een beheerder.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepsverwijzing wilt vernieuwen? Men zal dan niet langer lid van de groep kunnen worden via de huidige verwijzing.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-code</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Als de optie beheerderstoestemming is ingeschakeld moet een beheerder eerst nog toestemming geven om lid te worden.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Als de optie ‘Beheerderstoestemming vereisen’ is ingeschakeld moet een beheerder eerst nog toestemming geven voor iemand lid mag worden van de groep.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">QR-code delen</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Wil je de uitnodiging die je naar %1$s hebt gestuurd intrekken?</string>
@@ -868,21 +868,21 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%2$s’ ingesteld.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepsverwijzingen ingeschakeld en beheerderstoestemming om lid te mogen worden is uitgeschakeld.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepsverwijzing ingeschakeld maar er is nog beheerderstoestemming vereist om lid te mogen worden.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepsverwijzingen ingeschakeld zonder beheerderstoestemming vereiste om lid te mogen worden.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepsverwijzing ingeschakeld met beheerderstoestemming om lid te mogen worden ook ingeschakeld.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Je hebt de groepsverwijzing uitgeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s heeft de groepsverwijzing met beheerderstoestemming uitgeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s heeft de groepsverwijzing met beheerderstoestemming ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s heeft de groepsverwijzing ingeschakeld met beheerderstoestemming vereiste om lid te mogen worden ook ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s heeft de groepsverwijzing ingeschakeld met beheerderstoestemming vereiste om lid te mogen worden ook ingeschakeld.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s heeft de groepsverwijzing uitgeschakeld.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepsverwijzing is ingeschakeld. beheerderstoestemming  is uitgeschakeld.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepsverwijzing met beheerderstoestemming is ingeschakeld.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepsverwijzing is ingeschakeld zonder beheerderstoestemming vereiste om lid te mogen worden.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepsverwijzing is ingeschakeld met beheerderstoestemming om lid te mogen worden ook ingeschakeld.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">De groepsverwijzing is uitgeschakeld.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming voor de groepsverwijzing uitgeschakeld.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft de vereiste beheerderstoestemming om via de groepsverwijzing lid te worden van de groep uitgeschakeld.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De vereiste beheerderstoestemming om via de groepsverwijzing lid te worden van de groep is uitgeschakeld.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming voor de groepsverwijzing ingeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de vereiste beheerderstoestemming om via de groepsverwijzing lid te worden van de groep ingeschakeld.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De vereiste beheerderstoestemming om via de groepsverwijzing lid te worden van de groep is ingeschakeld.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming vereiste om via de groepsverwijzing lid te mogen worden uitgeschakeld.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming vereiste om via de groepsverwijzing lid te mogen worden van de groep uitgeschakeld.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De beheerderstoestemming vereiste om via de groepsverwijzing lid te mogen worden van de groep is uitgeschakeld.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming vereiste om via de groepsverwijzing lid te mogen worden van de groep ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming vereiste voor personen wie lid willen worden via de groepsverwijzing ingeschakeld.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De beheerderstoestemming vereiste om via de groepsverwijzing lid te worden van de groep is ingeschakeld.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Je hebt de groepsverwijzing vernieuwd.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s heeft de groepsverwijzing vernieuwd.</string>
@@ -892,7 +892,7 @@
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s is lid geworden via de groepsverwijzing.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Je hebt een verzoek verstuurd om lid te worden van de groep.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s heeft verzocht om via de groepsverwijzing lid te worden.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s heeft via de groepsverwijzing verzocht om lid te worden.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s heeft je verzoek om lid te worden van de groep gehonoreerd.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s heeft het verzoek van %2$s om lid te worden van de groep gehonoreerd.</string>
@@ -916,10 +916,10 @@
   <string name="MessageRequestBottomView_delete">Wissen</string>
   <string name="MessageRequestBottomView_block">Blokkeren</string>
   <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Hij of zij zal totdat je de gespreksuitnodiging aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Hij of zij zal totdat je het gespreksverzoek aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien?</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Deelnemen aan deze groep? Ze zullen niet kunnen zien dat je hun berichten hebt gelezen zolang je de uitnodiging nog niet hebt geaccepteerd.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Lid worden van deze groep? De leden van de groep zullen niet kunnen zien dat je hun berichten hebt gelezen zolang je de uitnodiging nog niet hebt geaccepteerd.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Lid van %1$s en %2$s</string>
@@ -1807,7 +1807,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__conversation_length_limit">Gesprekslengtelimiet</string>
   <string name="preferences__keep_messages">Berichten bewaren</string>
-  <string name="preferences__clear_message_history">Berichtengeschiedenis wissen</string>
+  <string name="preferences__clear_message_history">Gespreksgeschiedenis wissen</string>
   <string name="preferences__linked_devices">Gekoppelde apparaten</string>
   <string name="preferences__light_theme">Licht</string>
   <string name="preferences__dark_theme">Donker</string>
@@ -1837,7 +1837,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
-  <string name="preferences_chats__message_history">Berichtengeschiedenis</string>
+  <string name="preferences_chats__message_history">Gespreksgeschiedenis</string>
   <string name="preferences_storage__storage_usage">Opslaggebruik</string>
   <string name="preferences_storage__photos">Afbeeldingen</string>
   <string name="preferences_storage__videos">Video\'s</string>
@@ -1847,11 +1847,11 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_storage__delete_older_messages">Oude berichten wissen?</string>
   <string name="preferences_storage__clear_message_history">Berichtengeschiedenis wissen?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal pertinent alle gespreksgeschiedenis en media ouder dan %1$s van dit apparaat wissen.</string>
-  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dit zal direct alle gesprekken inkorten tot de laatste %1$s berichten.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dit zal direct alle gesprekken inkorten tot de %1$s meest recente berichten.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal pertinent al je gespreksgeschiedenis en media van dit apparaat wissen.</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je de hele berichtengeschiedenis wilt wissen?</string>
-  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">De hele berichtengeschiedenis zal worden gewist. Dit kan niet ongedaan gemaakt worden.</string>
-  <string name="preferences_storage__delete_all_now">Nu alles verwijderen</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle gespreksgeschiedenis wilt wissen?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle gespreksgeschiedenis zal pertinent worden gewist. Dit kan niet ongedaan worden gemaakt.</string>
+  <string name="preferences_storage__delete_all_now">Nu alles wissen</string>
   <string name="preferences_storage__forever">Voor altijd</string>
   <string name="preferences_storage__one_year">1 jaar</string>
   <string name="preferences_storage__six_months">6 maanden</string>
@@ -1863,7 +1863,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Signal uit</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd omgeleid via de Signal-server. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
   <string name="preferences_advanced__always_relay_calls">Alle oproepen omleiden</string>
-  <string name="preferences_app_protection__who_can">Wie kan …</string>
+  <string name="preferences_app_protection__who_can">Wie mag …</string>
   <string name="preferences_app_protection__app_access">Toegang tot app</string>
   <string name="preferences_app_protection__communication">Communicatie</string>
   <string name="preferences_chats__chats">Gesprekken</string>
@@ -1888,7 +1888,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_notifications__notify_me">Geef me een melding</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Ontvang meldingen wanneer je gementioned wordt in een gedempt gesprek</string>
   <string name="preferences_setup_a_username">Gebruikersnaam configureren</string>
-  <string name="configurable_single_select__customize_option">Optie personaliseren</string>
+  <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2187,13 +2187,13 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="BackupUtil_never">Nooit</string>
   <string name="BackupUtil_unknown">Onbekend</string>
   <string name="preferences_app_protection__see_my_phone_number">Mijn telefoonnummer zien</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">Vind me via mijn telefoonnummer</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Me vinden via mijn telefoonnummer</string>
   <string name="PhoneNumberPrivacy_everyone">Iedereen</string>
   <string name="PhoneNumberPrivacy_my_contacts">Mijn contactpersonen</string>
   <string name="PhoneNumberPrivacy_nobody">Niemand</string>
-  <string name="PhoneNumberPrivacy_everyone_see_description">Je telefoonnummer zal zichtbaar zijn voor iedereen en elke groep waar je een bericht naar stuurt</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Iedereen die je telefoonnummer in zijn contactenlijst heeft zal je als een contact in Signal zien. Anderen zullen je kunnen vinden als ze zoeken.</string>
-  <string name="PhoneNumberPrivacy_my_contacts_see_description">Alleen jouw contacten zullen je telefoonnummer in Signal zien.</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Je telefoonnummer zal zichtbaar zijn voor iedere persoon en elke groep aan wie je een bericht verzend.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Iedereen die je telefoonnummer in zijn contactenlijst heeft opgeslagen zal je als een contactpersoon zien in de Signal app. Anderen zullen je kunnen vinden als ze zoeken.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Alleen contactpersonen van wie jij het telefoonnummer in jouw telefoon hebt opgelagen zullen je telefoonnummer in de Signal app kunnen zien.</string>
   <string name="preferences_app_protection__screen_lock">Schermvergrendeling</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Vergrendel Signal met de Android-schermvergrendeling of vingerafdruk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inactiviteitsduur voor schermvergrendeling</string>

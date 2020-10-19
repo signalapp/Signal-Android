@@ -99,9 +99,9 @@
   <string name="BucketedThreadMedia_Yesterday">Igår</string>
   <string name="BucketedThreadMedia_This_week">Denna vecka</string>
   <string name="BucketedThreadMedia_This_month">Denna månad</string>
-  <string name="BucketedThreadMedia_Large">Stor</string>
+  <string name="BucketedThreadMedia_Large">Stora</string>
   <string name="BucketedThreadMedia_Medium">Medel</string>
-  <string name="BucketedThreadMedia_Small">Liten</string>
+  <string name="BucketedThreadMedia_Small">Små</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inkommande samtal</string>
   <!--CameraActivity-->

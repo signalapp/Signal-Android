@@ -126,6 +126,8 @@
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signal আপডেট করুন</string>
   <string name="ClientDeprecatedActivity_update">আপডেট</string>
+  <string name="ClientDeprecatedActivity_dont_update">আপডেট করবেন না</string>
+  <string name="ClientDeprecatedActivity_warning">সতর্কতা</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">কোন ওয়েব ব্রাউজার পাওয়া যায়নি।</string>
   <string name="CommunicationActions_no_email_app_found">কোন ইমেইল এপ পাওয়া যায়নি</string>
@@ -177,6 +179,7 @@
   <string name="ConversationItem_download_more"> আরো ডাউনলোড করুন</string>
   <string name="ConversationItem_pending"> মুলতুবী</string>
   <string name="ConversationItem_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
+  <string name="ConversationItem_you_deleted_this_message">আপনি এই বার্তাটি মুছে দিয়েছিলেন। </string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">নিরাপদ সেশনটি পুনরায় সেট করবেন?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">আপনার এই কথোপকথনে এনক্রিপশন সংক্রান্ত সমস্যা থাকলে এটি সহায়তা করতে পারে। আপনার বার্তা সংরক্ষিত থাকবে।</string>
@@ -206,6 +209,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">ক্যামেরা পাওয়া যাচ্ছেনা</string>
   <string name="ConversationActivity_unable_to_record_audio">অডিও রেকর্ড করা যাচ্ছেনা!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">আপনার ডিভাইসে এই লিঙ্কটি পরিচালনা করার মত কোনও অ্যাপ পাওয়া যাচ্ছে না।</string>
+  <string name="ConversationActivity_cancel_request">অনুরোধ বাতিল করুন</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">অডিও বার্তা পাঠাতে Signal কে আপনার মাইক্রোফোন ব্যাবহারের অনুমতি দিন।</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">অডিও বার্তাগুলি প্রেরণের জন্য Signal এর মাইক্রোফোনের অনুমতি প্রয়োজন, কিন্তু এর উপর স্থায়ীভাবে নিষেধাজ্ঞা আরোপ করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" সক্ষম করুন|</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s  কে ফোন করতে Signal এর মাইক্রোফোন এবং ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন, কিন্তু এর উপর স্থায়ীভাবে নিষেধাজ্ঞা আরোপ করা হয়েছে। দয়া করে এপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" ও \"ক্যামেরা\" এর অনুমতি সক্ষম করুন।</string>
@@ -356,6 +360,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">অনুপস্থিত প্লে সার্ভিসের জন্য অনুকুল করা</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">এই ডিভাইস প্লে সার্ভিস সমর্থন করে না। সিস্টেম ব্যাটারি অপ্টিমাইজেশন অক্ষম করতে আলতো চাপুন, যা নিষ্ক্রিয় অবস্থায় বার্তা পুনরুদ্ধার থেকে Signal -কে বাধা দেয়।</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_update_now">আপডেট করুন</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">এর সাথে শেয়ার করুন</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">একাধিক সংযুক্তি সমূহ শুধু ছবি ও ভিডিওর ক্ষেত্রে সম্ভব</string>
@@ -754,6 +759,7 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">আপনার বার্তাগুলির মেয়াদ শেষ হবে না।</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">এই কথোপকথনে প্রেরিত এবং প্রাপ্ত কথোপকথন সমূহ তাদের দেখার %s পরে অদৃশ্য হয়ে যাবে।</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">আপডেট করুন</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">পাসফ্রেজ প্রবেশ করান</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal আইকন</string>
@@ -783,6 +789,7 @@
   <string name="PinRestoreLockedFragment_create_your_pin">আপনার পিন তৈরি করুন</string>
   <string name="PinRestoreLockedFragment_create_new_pin">PIN তৈরি করুন</string>
   <!--PinOptOutDialog-->
+  <string name="PinOptOutDialog_warning">সতর্কতা</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">এই এপটিকে রেটিং দিন</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">আপনি যদি এই অ্যাপ ব্যবহার করে উপভোগ করেন, তবে দয়া করে এটি রেটিং দিতে কিছুক্ষণ সময় দিয়ে আমাদের সহায়তা করুন।</string>
@@ -959,6 +966,7 @@
   <string name="ThreadRecord_view_once_video">একবার দেখার যোগ্য ভিডিও</string>
   <string name="ThreadRecord_view_once_media">একবার দেখা যাবে এমন মিডিয়া</string>
   <string name="ThreadRecord_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
+  <string name="ThreadRecord_you_deleted_this_message">আপনি এই বার্তাটি মুছে দিয়েছিলেন। </string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal এ যোগ দিয়েছেন!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">অদৃশ্য হওয়া বার্তাগুলি অক্ষম করা হয়েছে</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">অদৃশ্য হয়ে যাওয়া বার্তার সময়টি %s এ সেট করা হয়েছে</string>
