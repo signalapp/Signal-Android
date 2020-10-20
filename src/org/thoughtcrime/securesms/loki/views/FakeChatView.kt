@@ -18,8 +18,8 @@ class FakeChatView : ScrollView {
 
     // region Settings
     private val spacing = context.resources.getDimension(R.dimen.medium_spacing)
-    private val startDelay: Long = 2000
-    private val delayBetweenMessages: Long = 3000
+    private val startDelay: Long = 1000
+    private val delayBetweenMessages: Long = 1500
     private val animationDuration: Long = 400
     // endregion
 
