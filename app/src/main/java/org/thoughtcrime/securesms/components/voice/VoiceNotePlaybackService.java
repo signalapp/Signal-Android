@@ -89,7 +89,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     VoiceNoteMediaSourceFactory mediaSourceFactory = new VoiceNoteMediaSourceFactory(this);
 
     voiceNotePlaybackPreparer = new VoiceNotePlaybackPreparer(this, player, queueDataAdapter, mediaSourceFactory);
-    voiceNoteProximityManager = new VoiceNoteProximityManager(this, player);
+    voiceNoteProximityManager = new VoiceNoteProximityManager(this, player, queueDataAdapter);
 
     mediaSession.setPlaybackState(stateBuilder.build());
 

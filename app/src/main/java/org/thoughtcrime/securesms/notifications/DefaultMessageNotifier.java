@@ -110,6 +110,11 @@ public class DefaultMessageNotifier implements MessageNotifier {
   }
 
   @Override
+  public long getVisibleThread() {
+    return visibleThread;
+  }
+
+  @Override
   public void clearVisibleThread() {
     setVisibleThread(-1);
   }

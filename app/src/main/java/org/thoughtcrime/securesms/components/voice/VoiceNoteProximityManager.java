@@ -8,6 +8,7 @@ import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.PowerManager;
+import android.support.v4.media.MediaDescriptionCompat;
 
 import androidx.annotation.NonNull;
 
@@ -17,6 +18,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.audio.AudioAttributes;
 import com.google.android.exoplayer2.util.Util;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
@@ -28,19 +30,24 @@ class VoiceNoteProximityManager implements SensorEventListener {
 
   private static final float  PROXIMITY_THRESHOLD = 5f;
 
-  private final SimpleExoPlayer       player;
-  private final AudioManager          audioManager;
-  private final SensorManager         sensorManager;
-  private final Sensor                proximitySensor;
-  private final PowerManager.WakeLock wakeLock;
+  private final SimpleExoPlayer           player;
+  private final AudioManager              audioManager;
+  private final SensorManager             sensorManager;
+  private final Sensor                    proximitySensor;
+  private final PowerManager.WakeLock     wakeLock;
+  private final VoiceNoteQueueDataAdapter queueDataAdapter;
 
   private long startTime;
 
-  VoiceNoteProximityManager(@NonNull Context context, @NonNull SimpleExoPlayer player) {
-    this.player          = player;
-    this.audioManager    = ServiceUtil.getAudioManager(context);
-    this.sensorManager   = ServiceUtil.getSensorManager(context);
-    this.proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+  VoiceNoteProximityManager(@NonNull Context context,
+                            @NonNull SimpleExoPlayer player,
+                            @NonNull VoiceNoteQueueDataAdapter queueDataAdapter)
+  {
+    this.player           = player;
+    this.audioManager     = ServiceUtil.getAudioManager(context);
+    this.sensorManager    = ServiceUtil.getSensorManager(context);
+    this.proximitySensor  = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+    this.queueDataAdapter = queueDataAdapter;
 
     if (Build.VERSION.SDK_INT >= 21) {
       this.wakeLock = ServiceUtil.getPowerManager(context).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG);
@@ -81,11 +88,24 @@ class VoiceNoteProximityManager implements SensorEventListener {
 
     final int currentStreamType = Util.getStreamTypeForAudioUsage(player.getAudioAttributes().usage);
 
+    final long threadId;
+    final int  windowIndex = player.getCurrentWindowIndex();
+
+    if (queueDataAdapter.isEmpty() || windowIndex == C.INDEX_UNSET) {
+      threadId = -1;
+    } else {
+      MediaDescriptionCompat mediaDescriptionCompat = queueDataAdapter.getMediaDescription(windowIndex);
+
+      threadId = mediaDescriptionCompat.getExtras().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_ID, -1);
+    }
+
     if (desiredStreamType == AudioManager.STREAM_VOICE_CALL &&
         desiredStreamType != currentStreamType              &&
-        !audioManager.isWiredHeadsetOn())
+        !audioManager.isWiredHeadsetOn()                    &&
+        threadId != -1                                      &&
+        ApplicationDependencies.getMessageNotifier().getVisibleThread() == threadId)
     {
-      if (wakeLock != null) {
+      if (wakeLock != null && !wakeLock.isHeld()) {
         wakeLock.acquire(TimeUnit.MINUTES.toMillis(30));
       }
 
@@ -102,7 +122,10 @@ class VoiceNoteProximityManager implements SensorEventListener {
                System.currentTimeMillis() - startTime > 500)
     {
       if (wakeLock != null) {
-        wakeLock.release();
+        if (wakeLock.isHeld()) {
+          wakeLock.release();
+        }
+
         player.setPlayWhenReady(false);
         player.setAudioAttributes(new AudioAttributes.Builder()
                                                      .setContentType(C.CONTENT_TYPE_MUSIC)

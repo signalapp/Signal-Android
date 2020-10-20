@@ -31,6 +31,11 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   @Override
+  public long getVisibleThread() {
+    return wrapped.getVisibleThread();
+  }
+
+  @Override
   public void clearVisibleThread() {
     wrapped.clearVisibleThread();
   }

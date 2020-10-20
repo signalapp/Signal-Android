@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 public interface MessageNotifier {
   void setVisibleThread(long threadId);
+  long getVisibleThread();
   void clearVisibleThread();
   void setLastDesktopActivityTimestamp(long timestamp);
   void notifyMessageDeliveryFailed(Context context, Recipient recipient, long threadId);
