@@ -38,7 +38,8 @@ public final class RemoteDeleteUtil {
   }
 
   private static boolean isValidSend(MessageRecord message, long currentTime) {
-    return message.isOutgoing()                                                          &&
+    return !message.isUpdate()                                                           &&
+           message.isOutgoing()                                                          &&
            message.isPush()                                                              &&
            (!message.getRecipient().isGroup() || message.getRecipient().isActiveGroup()) &&
            !message.getRecipient().isSelf()                                              &&
