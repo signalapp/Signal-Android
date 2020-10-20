@@ -554,27 +554,54 @@ public class RecipientDatabase extends Database {
   }
 
   public @NonNull RecipientId getOrInsertFromGroupId(@NonNull GroupId groupId) {
-    GetOrInsertResult result = getOrInsertByColumn(GROUP_ID, groupId.toString());
+    Optional<RecipientId> existing = getByColumn(GROUP_ID, groupId.toString());
 
-    if (result.neededInsert) {
+    if (existing.isPresent()) {
+      return existing.get();
+    } else if (groupId.isV1() && DatabaseFactory.getGroupDatabase(context).groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
+      throw new GroupDatabase.LegacyGroupInsertException(groupId);
+    } else if (groupId.isV2() && DatabaseFactory.getGroupDatabase(context).getGroupV1ByExpectedV2(groupId.requireV2()).isPresent()) {
+      throw new GroupDatabase.MissedGroupMigrationInsertException(groupId);
+    } else {
       ContentValues values = new ContentValues();
+      values.put(GROUP_ID, groupId.toString());
 
-      if (groupId.isMms()) {
-        values.put(GROUP_TYPE, GroupType.MMS.getId());
-      } else {
-        if (groupId.isV2()) {
-          values.put(GROUP_TYPE, GroupType.SIGNAL_V2.getId());
+      long id = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+
+      if (id < 0) {
+        existing = getByColumn(GROUP_ID, groupId.toString());
+
+        if (existing.isPresent()) {
+          return existing.get();
+        } else if (groupId.isV1() && DatabaseFactory.getGroupDatabase(context).groupExists(groupId.requireV1().deriveV2MigrationGroupId())) {
+          throw new GroupDatabase.LegacyGroupInsertException(groupId);
+        } else if (groupId.isV2() && DatabaseFactory.getGroupDatabase(context).getGroupV1ByExpectedV2(groupId.requireV2()).isPresent()) {
+          throw new GroupDatabase.MissedGroupMigrationInsertException(groupId);
         } else {
-          values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
+          throw new AssertionError("Failed to insert recipient!");
         }
-        values.put(DIRTY, DirtyState.INSERT.getId());
-        values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+      } else {
+        ContentValues groupUpdates = new ContentValues();
+
+        if (groupId.isMms()) {
+          groupUpdates.put(GROUP_TYPE, GroupType.MMS.getId());
+        } else {
+          if (groupId.isV2()) {
+            groupUpdates.put(GROUP_TYPE, GroupType.SIGNAL_V2.getId());
+          } else {
+            groupUpdates.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
+          }
+          groupUpdates.put(DIRTY, DirtyState.INSERT.getId());
+          groupUpdates.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+        }
+
+        RecipientId recipientId = RecipientId.from(id);
+
+        update(recipientId, groupUpdates);
+
+        return recipientId;
       }
-
-      update(result.recipientId, values);
     }
-
-    return result.recipientId;
   }
 
   public Cursor getBlocked() {

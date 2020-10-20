@@ -202,7 +202,7 @@ public final class GroupManager {
   public static void updateSelfProfileKeyInGroup(@NonNull Context context, @NonNull GroupId.V2 groupId)
       throws IOException, GroupChangeBusyException, GroupInsufficientRightsException, GroupNotAMemberException, GroupChangeFailedException
   {
-    if (!DatabaseFactory.getGroupDatabase(context).findGroup(groupId)) {
+    if (!DatabaseFactory.getGroupDatabase(context).groupExists(groupId)) {
       Log.i(TAG, "Group is not available locally " + groupId);
       return;
     }
