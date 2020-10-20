@@ -125,13 +125,17 @@ public class AccountAttributes {
     @JsonProperty
     private boolean storage;
 
+    @JsonProperty("gv1-migration")
+    private boolean gv1Migration;
+
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean uuid, boolean gv2, boolean storage) {
-      this.uuid    = uuid;
-      this.gv2     = gv2;
-      this.storage = storage;
+    public Capabilities(boolean uuid, boolean gv2, boolean storage, boolean gv1Migration) {
+      this.uuid         = uuid;
+      this.gv2          = gv2;
+      this.storage      = storage;
+      this.gv1Migration = gv1Migration;
     }
 
     public boolean isUuid() {
@@ -144,6 +148,10 @@ public class AccountAttributes {
 
     public boolean isStorage() {
       return storage;
+    }
+
+    public boolean isGv1Migration() {
+      return gv1Migration;
     }
   }
 }

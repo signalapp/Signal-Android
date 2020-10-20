@@ -97,6 +97,9 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean storage;
 
+    @JsonProperty("gv1-migration")
+    private boolean gv1Migration;
+
     @JsonCreator
     public Capabilities() {}
 
@@ -106,6 +109,10 @@ public class SignalServiceProfile {
 
     public boolean isStorage() {
       return storage;
+    }
+
+    public boolean isGv1Migration() {
+      return gv1Migration;
     }
   }
 

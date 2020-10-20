@@ -132,7 +132,9 @@ public class RecipientDatabase extends Database {
 
   private static final class Capabilities {
     static final int BIT_LENGTH = 2;
-    static final int GROUPS_V2  = 0;
+
+    static final int GROUPS_V2           = 0;
+    static final int GROUPS_V1_MIGRATION = 1;
   }
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
@@ -1410,7 +1412,8 @@ public class RecipientDatabase extends Database {
   public void setCapabilities(@NonNull RecipientId id, @NonNull SignalServiceProfile.Capabilities capabilities) {
     long value = 0;
 
-    value = Bitmask.update(value, Capabilities.GROUPS_V2, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv2()).serialize());
+    value = Bitmask.update(value, Capabilities.GROUPS_V2,           Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv2()).serialize());
+    value = Bitmask.update(value, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv1Migration()).serialize());
 
     ContentValues values = new ContentValues(1);
     values.put(CAPABILITIES, value);
@@ -2599,6 +2602,7 @@ public class RecipientDatabase extends Database {
     private final boolean                         forceSmsSelection;
     private final long                            capabilities;
     private final Recipient.Capability            groupsV2Capability;
+    private final Recipient.Capability            groupsV1MigrationCapability;
     private final InsightsBannerTier              insightsBannerTier;
     private final byte[]                          storageId;
     private final MentionSetting                  mentionSetting;
@@ -2641,43 +2645,44 @@ public class RecipientDatabase extends Database {
                       @NonNull MentionSetting mentionSetting,
                       @NonNull SyncExtras syncExtras)
     {
-      this.id                     = id;
-      this.uuid                   = uuid;
-      this.username               = username;
-      this.e164                   = e164;
-      this.email                  = email;
-      this.groupId                = groupId;
-      this.groupType              = groupType;
-      this.blocked                = blocked;
-      this.muteUntil              = muteUntil;
-      this.messageVibrateState    = messageVibrateState;
-      this.callVibrateState       = callVibrateState;
-      this.messageRingtone        = messageRingtone;
-      this.callRingtone           = callRingtone;
-      this.color                  = color;
-      this.defaultSubscriptionId  = defaultSubscriptionId;
-      this.expireMessages         = expireMessages;
-      this.registered             = registered;
-      this.profileKey             = profileKey;
-      this.profileKeyCredential   = profileKeyCredential;
-      this.systemDisplayName      = systemDisplayName;
-      this.systemContactPhoto     = systemContactPhoto;
-      this.systemPhoneLabel       = systemPhoneLabel;
-      this.systemContactUri       = systemContactUri;
-      this.signalProfileName      = signalProfileName;
-      this.signalProfileAvatar    = signalProfileAvatar;
-      this.hasProfileImage        = hasProfileImage;
-      this.profileSharing         = profileSharing;
-      this.lastProfileFetch       = lastProfileFetch;
-      this.notificationChannel    = notificationChannel;
-      this.unidentifiedAccessMode = unidentifiedAccessMode;
-      this.forceSmsSelection      = forceSmsSelection;
-      this.capabilities           = capabilities;
-      this.groupsV2Capability     = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V2, Capabilities.BIT_LENGTH));
-      this.insightsBannerTier     = insightsBannerTier;
-      this.storageId              = storageId;
-      this.mentionSetting         = mentionSetting;
-      this.syncExtras             = syncExtras;
+      this.id                          = id;
+      this.uuid                        = uuid;
+      this.username                    = username;
+      this.e164                        = e164;
+      this.email                       = email;
+      this.groupId                     = groupId;
+      this.groupType                   = groupType;
+      this.blocked                     = blocked;
+      this.muteUntil                   = muteUntil;
+      this.messageVibrateState         = messageVibrateState;
+      this.callVibrateState            = callVibrateState;
+      this.messageRingtone             = messageRingtone;
+      this.callRingtone                = callRingtone;
+      this.color                       = color;
+      this.defaultSubscriptionId       = defaultSubscriptionId;
+      this.expireMessages              = expireMessages;
+      this.registered                  = registered;
+      this.profileKey                  = profileKey;
+      this.profileKeyCredential        = profileKeyCredential;
+      this.systemDisplayName           = systemDisplayName;
+      this.systemContactPhoto          = systemContactPhoto;
+      this.systemPhoneLabel            = systemPhoneLabel;
+      this.systemContactUri            = systemContactUri;
+      this.signalProfileName           = signalProfileName;
+      this.signalProfileAvatar         = signalProfileAvatar;
+      this.hasProfileImage             = hasProfileImage;
+      this.profileSharing              = profileSharing;
+      this.lastProfileFetch            = lastProfileFetch;
+      this.notificationChannel         = notificationChannel;
+      this.unidentifiedAccessMode      = unidentifiedAccessMode;
+      this.forceSmsSelection           = forceSmsSelection;
+      this.capabilities                = capabilities;
+      this.groupsV2Capability          = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V2, Capabilities.BIT_LENGTH));
+      this.groupsV1MigrationCapability = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH));
+      this.insightsBannerTier          = insightsBannerTier;
+      this.storageId                   = storageId;
+      this.mentionSetting              = mentionSetting;
+      this.syncExtras                  = syncExtras;
     }
 
     public RecipientId getId() {
@@ -2808,8 +2813,12 @@ public class RecipientDatabase extends Database {
       return forceSmsSelection;
     }
 
-    public Recipient.Capability getGroupsV2Capability() {
+    public @NonNull Recipient.Capability getGroupsV2Capability() {
       return groupsV2Capability;
+    }
+
+    public @NonNull Recipient.Capability getGroupsV1MigrationCapability() {
+      return groupsV1MigrationCapability;
     }
 
     public @Nullable byte[] getStorageId() {

@@ -98,6 +98,7 @@ public class Recipient {
   private final UnidentifiedAccessMode unidentifiedAccessMode;
   private final boolean                forceSmsSelection;
   private final Capability             groupsV2Capability;
+  private final Capability             groupsV1MigrationCapability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
@@ -275,85 +276,87 @@ public class Recipient {
   }
 
   Recipient(@NonNull RecipientId id) {
-    this.id                     = id;
-    this.resolving              = true;
-    this.uuid                   = null;
-    this.username               = null;
-    this.e164                   = null;
-    this.email                  = null;
-    this.groupId                = null;
-    this.participants           = Collections.emptyList();
-    this.groupAvatarId          = Optional.absent();
-    this.isSelf                 = false;
-    this.blocked                = false;
-    this.muteUntil              = 0;
-    this.messageVibrate         = VibrateState.DEFAULT;
-    this.callVibrate            = VibrateState.DEFAULT;
-    this.messageRingtone        = null;
-    this.callRingtone           = null;
-    this.color                  = null;
-    this.insightsBannerTier     = InsightsBannerTier.TIER_TWO;
-    this.defaultSubscriptionId  = Optional.absent();
-    this.expireMessages         = 0;
-    this.registered             = RegisteredState.UNKNOWN;
-    this.profileKey             = null;
-    this.profileKeyCredential   = null;
-    this.name                   = null;
-    this.systemContactPhoto     = null;
-    this.customLabel            = null;
-    this.contactUri             = null;
-    this.profileName            = ProfileName.EMPTY;
-    this.profileAvatar          = null;
-    this.hasProfileImage        = false;
-    this.profileSharing         = false;
-    this.lastProfileFetch       = 0;
-    this.notificationChannel    = null;
-    this.unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
-    this.forceSmsSelection      = false;
-    this.groupsV2Capability     = Capability.UNKNOWN;
-    this.storageId              = null;
-    this.mentionSetting         = MentionSetting.ALWAYS_NOTIFY;
+    this.id                          = id;
+    this.resolving                   = true;
+    this.uuid                        = null;
+    this.username                    = null;
+    this.e164                        = null;
+    this.email                       = null;
+    this.groupId                     = null;
+    this.participants                = Collections.emptyList();
+    this.groupAvatarId               = Optional.absent();
+    this.isSelf                      = false;
+    this.blocked                     = false;
+    this.muteUntil                   = 0;
+    this.messageVibrate              = VibrateState.DEFAULT;
+    this.callVibrate                 = VibrateState.DEFAULT;
+    this.messageRingtone             = null;
+    this.callRingtone                = null;
+    this.color                       = null;
+    this.insightsBannerTier          = InsightsBannerTier.TIER_TWO;
+    this.defaultSubscriptionId       = Optional.absent();
+    this.expireMessages              = 0;
+    this.registered                  = RegisteredState.UNKNOWN;
+    this.profileKey                  = null;
+    this.profileKeyCredential        = null;
+    this.name                        = null;
+    this.systemContactPhoto          = null;
+    this.customLabel                 = null;
+    this.contactUri                  = null;
+    this.profileName                 = ProfileName.EMPTY;
+    this.profileAvatar               = null;
+    this.hasProfileImage             = false;
+    this.profileSharing              = false;
+    this.lastProfileFetch            = 0;
+    this.notificationChannel         = null;
+    this.unidentifiedAccessMode      = UnidentifiedAccessMode.DISABLED;
+    this.forceSmsSelection           = false;
+    this.groupsV2Capability          = Capability.UNKNOWN;
+    this.groupsV1MigrationCapability = Capability.UNKNOWN;
+    this.storageId                   = null;
+    this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
-    this.id                     = id;
-    this.resolving              = !resolved;
-    this.uuid                   = details.uuid;
-    this.username               = details.username;
-    this.e164                   = details.e164;
-    this.email                  = details.email;
-    this.groupId                = details.groupId;
-    this.participants           = details.participants;
-    this.groupAvatarId          = details.groupAvatarId;
-    this.isSelf                 = details.isSelf;
-    this.blocked                = details.blocked;
-    this.muteUntil              = details.mutedUntil;
-    this.messageVibrate         = details.messageVibrateState;
-    this.callVibrate            = details.callVibrateState;
-    this.messageRingtone        = details.messageRingtone;
-    this.callRingtone           = details.callRingtone;
-    this.color                  = details.color;
-    this.insightsBannerTier     = details.insightsBannerTier;
-    this.defaultSubscriptionId  = details.defaultSubscriptionId;
-    this.expireMessages         = details.expireMessages;
-    this.registered             = details.registered;
-    this.profileKey             = details.profileKey;
-    this.profileKeyCredential   = details.profileKeyCredential;
-    this.name                   = details.name;
-    this.systemContactPhoto     = details.systemContactPhoto;
-    this.customLabel            = details.customLabel;
-    this.contactUri             = details.contactUri;
-    this.profileName            = details.profileName;
-    this.profileAvatar          = details.profileAvatar;
-    this.hasProfileImage        = details.hasProfileImage;
-    this.profileSharing         = details.profileSharing;
-    this.lastProfileFetch       = details.lastProfileFetch;
-    this.notificationChannel    = details.notificationChannel;
-    this.unidentifiedAccessMode = details.unidentifiedAccessMode;
-    this.forceSmsSelection      = details.forceSmsSelection;
-    this.groupsV2Capability     = details.groupsV2Capability;
-    this.storageId              = details.storageId;
-    this.mentionSetting         = details.mentionSetting;
+    this.id                          = id;
+    this.resolving                   = !resolved;
+    this.uuid                        = details.uuid;
+    this.username                    = details.username;
+    this.e164                        = details.e164;
+    this.email                       = details.email;
+    this.groupId                     = details.groupId;
+    this.participants                = details.participants;
+    this.groupAvatarId               = details.groupAvatarId;
+    this.isSelf                      = details.isSelf;
+    this.blocked                     = details.blocked;
+    this.muteUntil                   = details.mutedUntil;
+    this.messageVibrate              = details.messageVibrateState;
+    this.callVibrate                 = details.callVibrateState;
+    this.messageRingtone             = details.messageRingtone;
+    this.callRingtone                = details.callRingtone;
+    this.color                       = details.color;
+    this.insightsBannerTier          = details.insightsBannerTier;
+    this.defaultSubscriptionId       = details.defaultSubscriptionId;
+    this.expireMessages              = details.expireMessages;
+    this.registered                  = details.registered;
+    this.profileKey                  = details.profileKey;
+    this.profileKeyCredential        = details.profileKeyCredential;
+    this.name                        = details.name;
+    this.systemContactPhoto          = details.systemContactPhoto;
+    this.customLabel                 = details.customLabel;
+    this.contactUri                  = details.contactUri;
+    this.profileName                 = details.profileName;
+    this.profileAvatar               = details.profileAvatar;
+    this.hasProfileImage             = details.hasProfileImage;
+    this.profileSharing              = details.profileSharing;
+    this.lastProfileFetch            = details.lastProfileFetch;
+    this.notificationChannel         = details.notificationChannel;
+    this.unidentifiedAccessMode      = details.unidentifiedAccessMode;
+    this.forceSmsSelection           = details.forceSmsSelection;
+    this.groupsV2Capability          = details.groupsV2Capability;
+    this.groupsV1MigrationCapability = details.groupsV1MigrationCapability;
+    this.storageId                   = details.storageId;
+    this.mentionSetting              = details.mentionSetting;
   }
 
   public @NonNull RecipientId getId() {
@@ -737,8 +740,12 @@ public class Recipient {
     return forceSmsSelection;
   }
 
-  public Capability getGroupsV2Capability() {
+  public @NonNull Capability getGroupsV2Capability() {
     return groupsV2Capability;
+  }
+
+  public @NonNull Capability getGroupsV1MigrationCapability() {
+    return groupsV1MigrationCapability;
   }
 
   public @Nullable byte[] getProfileKey() {

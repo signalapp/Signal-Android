@@ -79,6 +79,7 @@ public class RefreshAttributesJob extends BaseJob {
                "\n  Capabilities:" +
                "\n    Storage? " + capabilities.isStorage() +
                "\n    GV2? " + capabilities.isGv2() +
+               "\n    GV1 Migration? " + capabilities.isGv1Migration() +
                "\n    UUID? " + capabilities.isUuid());
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
