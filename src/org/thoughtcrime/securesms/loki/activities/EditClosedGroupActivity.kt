@@ -13,17 +13,23 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
 import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
 import kotlinx.android.synthetic.main.activity_edit_closed_group.*
+import kotlinx.android.synthetic.main.activity_edit_closed_group.loader
 import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
 import network.loki.messenger.R
+import nl.komponents.kovenant.ui.failUi
+import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
+import org.thoughtcrime.securesms.loki.utilities.fadeIn
+import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.GroupUtil
@@ -36,6 +42,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private val originalMembers = HashSet<String>()
     private val members = HashSet<String>()
     private var hasNameChanged = false
+    private var isLoading = false
+        set(newValue) { field = newValue; invalidateOptionsMenu() }
 
     private lateinit var groupID: String
     private lateinit var originalName: String
@@ -115,7 +123,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_edit_closed_group, menu)
-        return members.isNotEmpty()
+        return members.isNotEmpty() && !isLoading
     }
     // endregion
 
@@ -165,8 +173,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.action_apply -> commitChanges()
+        when (item.itemId) {
+            R.id.action_apply -> if (!isLoading) { commitChanges() }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -184,6 +192,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     private fun onAddMembersClick() {
         val intent = Intent(this@EditClosedGroupActivity, SelectContactsActivity::class.java)
         intent.putExtra(SelectContactsActivity.usersToExcludeKey, members.toTypedArray())
+        intent.putExtra(SelectContactsActivity.emptyStateTextKey, "No contacts to add")
         startActivityForResult(intent, addUsersRequestCode)
     }
 
@@ -237,10 +246,19 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         }
 
         if (isSSKBasedClosedGroup) {
-            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name)
+            isLoading = true
+            loader.fadeIn()
+            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name).successUi {
+                loader.fadeOut()
+                isLoading = false
+                finish()
+            }.failUi { exception ->
+                val message = if (exception is ClosedGroupsProtocol.Error) exception.description else "An error occurred"
+                Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
+                isLoading = false
+            }
         } else {
             GroupManager.updateGroup(this, groupID, members, null, name, admins)
         }
-        finish()
     }
 }

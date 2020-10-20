@@ -140,7 +140,12 @@ class SaveAttachmentTask : ProgressDialogAsyncTask<SaveAttachmentTask.Attachment
             }
         }
 
-        val mediaFileUri = resolver.insert(collectionUri, mediaRecord)
+        var mediaFileUri: Uri?
+        try {
+            mediaFileUri = resolver.insert(collectionUri, mediaRecord)
+        } catch (exception: Exception) {
+            return null
+        }
         if (mediaFileUri == null) return null
 
         val inputStream = PartAuthority.getAttachmentStream(context, attachment.uri)

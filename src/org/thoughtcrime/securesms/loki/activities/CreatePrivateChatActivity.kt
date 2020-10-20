@@ -8,9 +8,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import android.text.InputType
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -43,9 +41,21 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_done, menu)
+        return true
+    }
     // endregion
 
     // region Interaction
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.doneButton -> adapter.enterPublicKeyFragment.createPrivateChatIfPossible()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun handleQRCodeScanned(hexEncodedPublicKey: String) {
         createPrivateChatIfPossible(hexEncodedPublicKey)
     }
@@ -71,6 +81,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
 
 // region Adapter
 private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatActivity) : FragmentPagerAdapter(activity.supportFragmentManager) {
+    val enterPublicKeyFragment = EnterPublicKeyFragment()
 
     override fun getCount(): Int {
         return 2
@@ -78,7 +89,7 @@ private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatAc
 
     override fun getItem(index: Int): Fragment {
         return when (index) {
-            0 -> EnterPublicKeyFragment()
+            0 -> enterPublicKeyFragment
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
@@ -104,8 +115,8 @@ class EnterPublicKeyFragment : Fragment() {
 
     private val hexEncodedPublicKey: String
         get() {
-            val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context!!)
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context!!)
+            val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(requireContext())
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext())
             return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
         }
 
@@ -148,7 +159,7 @@ class EnterPublicKeyFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun createPrivateChatIfPossible() {
+    fun createPrivateChatIfPossible() {
         val hexEncodedPublicKey = publicKeyEditText.text?.trim().toString() ?: ""
         (requireActivity() as CreatePrivateChatActivity).createPrivateChatIfPossible(hexEncodedPublicKey)
     }

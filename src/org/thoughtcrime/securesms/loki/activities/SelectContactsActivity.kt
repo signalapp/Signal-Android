@@ -10,7 +10,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_create_closed_group.*
+import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
+import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
 import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
+import kotlinx.android.synthetic.main.activity_select_contacts.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -26,6 +29,7 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderMana
 
     companion object {
         val usersToExcludeKey = "usersToExcludeKey"
+        val emptyStateTextKey = "emptyStateTextKey"
         val selectedContactsKey = "selectedContactsKey"
     }
 
@@ -37,6 +41,10 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderMana
         supportActionBar!!.title = resources.getString(R.string.activity_select_contacts_title)
 
         usersToExclude = intent.getStringArrayExtra(Companion.usersToExcludeKey)?.toSet() ?: setOf()
+        val emptyStateText = intent.getStringExtra(Companion.emptyStateTextKey)
+        if (emptyStateText != null) {
+            emptyStateMessageTextView.text = emptyStateText
+        }
 
         recyclerView.adapter = selectContactsAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)

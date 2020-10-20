@@ -3102,8 +3102,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateProfilePicture() {
-    profilePictureView.glide = GlideApp.with(this);
-    profilePictureView.update(recipient, threadId);
+    try {
+      profilePictureView.glide = GlideApp.with(this);
+      profilePictureView.update(recipient, threadId);
+    } catch (Exception exception) {
+      // Do nothing
+    }
   }
 
   private void updateSubtitleTextView() {
