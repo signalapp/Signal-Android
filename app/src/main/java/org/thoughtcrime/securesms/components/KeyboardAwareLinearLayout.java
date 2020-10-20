@@ -130,10 +130,8 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
         Rect insets = (Rect)stableInsetsField.get(attachInfo);
         return insets.bottom;
       }
-    } catch (NoSuchFieldException nsfe) {
-      Log.w(TAG, "field reflection error when measuring view inset", nsfe);
-    } catch (IllegalAccessException iae) {
-      Log.w(TAG, "access reflection error when measuring view inset", iae);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      // Do nothing
     }
     return 0;
   }
