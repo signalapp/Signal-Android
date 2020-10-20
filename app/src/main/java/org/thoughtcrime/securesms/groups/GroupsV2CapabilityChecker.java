@@ -52,18 +52,18 @@ public final class GroupsV2CapabilityChecker {
   }
 
   @WorkerThread
-  static boolean allAndSelfSupportGroupsV2AndUuid(@NonNull Collection<RecipientId> recipientIds)
+  static boolean allAndSelfHaveUuidAndSupportGroupsV2(@NonNull Collection<RecipientId> recipientIds)
       throws IOException
   {
     HashSet<RecipientId> recipientIdsSet = new HashSet<>(recipientIds);
 
     recipientIdsSet.add(Recipient.self().getId());
 
-    return allSupportGroupsV2AndUuid(recipientIdsSet);
+    return allHaveUuidAndSupportGroupsV2(recipientIdsSet);
   }
 
   @WorkerThread
-  static boolean allSupportGroupsV2AndUuid(@NonNull Collection<RecipientId> recipientIds)
+  static boolean allHaveUuidAndSupportGroupsV2(@NonNull Collection<RecipientId> recipientIds)
       throws IOException
   {
     Set<RecipientId> recipientIdsSet = new HashSet<>(recipientIds);

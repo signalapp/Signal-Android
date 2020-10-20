@@ -79,23 +79,26 @@ public final class GroupsV2Operations {
    * @param self    You will be member 0 and the only admin.
    * @param members Members must not contain self. Members will be non-admin members of the group.
    */
-  public NewGroup createNewGroup(final String title,
+  public NewGroup createNewGroup(final GroupSecretParams groupSecretParams,
+                                 final String title,
                                  final Optional<byte[]> avatar,
                                  final GroupCandidate self,
-                                 final Set<GroupCandidate> members) {
+                                 final Set<GroupCandidate> members,
+                                 final Member.Role memberRole,
+                                 final int disappearingMessageTimerSeconds)
+  {
 
     if (members.contains(self)) {
       throw new IllegalArgumentException("Members must not contain self");
     }
 
-    final GroupSecretParams groupSecretParams = GroupSecretParams.generate(random);
-    final GroupOperations   groupOperations   = forGroup(groupSecretParams);
+    final GroupOperations groupOperations = forGroup(groupSecretParams);
 
     Group.Builder group = Group.newBuilder()
                                .setRevision(0)
                                .setPublicKey(ByteString.copyFrom(groupSecretParams.getPublicParams().serialize()))
                                .setTitle(groupOperations.encryptTitle(title))
-                               .setDisappearingMessagesTimer(groupOperations.encryptTimer(0))
+                               .setDisappearingMessagesTimer(groupOperations.encryptTimer(disappearingMessageTimerSeconds))
                                .setAccessControl(AccessControl.newBuilder()
                                                               .setAttributes(AccessControl.AccessRequired.MEMBER)
                                                               .setMembers(AccessControl.AccessRequired.MEMBER));
@@ -103,13 +106,12 @@ public final class GroupsV2Operations {
     group.addMembers(groupOperations.member(self.getProfileKeyCredential().get(), Member.Role.ADMINISTRATOR));
 
     for (GroupCandidate credential : members) {
-      Member.Role          newMemberRole        = Member.Role.DEFAULT;
       ProfileKeyCredential profileKeyCredential = credential.getProfileKeyCredential().orNull();
 
       if (profileKeyCredential != null) {
-        group.addMembers(groupOperations.member(profileKeyCredential, newMemberRole));
+        group.addMembers(groupOperations.member(profileKeyCredential, memberRole));
       } else {
-        group.addPendingMembers(groupOperations.invitee(credential.getUuid(), newMemberRole));
+        group.addPendingMembers(groupOperations.invitee(credential.getUuid(), memberRole));
       }
     }
 

@@ -138,6 +138,31 @@ final class GroupManagerV2 {
     return new GroupUpdater(groupId, GroupsV2ProcessingLock.acquireGroupProcessingLock());
   }
 
+  @WorkerThread
+  void groupServerQuery(@NonNull GroupMasterKey groupMasterKey)
+      throws GroupNotAMemberException, IOException, GroupDoesNotExistException
+  {
+    new GroupsV2StateProcessor(context).forGroup(groupMasterKey)
+                                       .getCurrentGroupStateFromServer();
+  }
+
+  @WorkerThread
+  void migrateGroupOnToServer(@NonNull GroupId.V1 groupIdV1)
+      throws IOException, MembershipNotSuitableForV2Exception, GroupAlreadyExistsException, GroupChangeFailedException
+  {
+      GroupMasterKey            groupMasterKey    = groupIdV1.deriveV2MigrationMasterKey();
+      GroupSecretParams         groupSecretParams = GroupSecretParams.deriveFromMasterKey(groupMasterKey);
+      GroupDatabase.GroupRecord groupRecord       = groupDatabase.requireGroup(groupIdV1);
+      String                    name              = groupRecord.getTitle();
+      byte[]                    avatar            = groupRecord.hasAvatar() ? AvatarHelper.getAvatarBytes(context, groupRecord.getRecipientId()) : null;
+      int                       messageTimer      = Recipient.resolved(groupRecord.getRecipientId()).getExpireMessages();
+      Set<RecipientId>          memberIds         = Stream.of(groupRecord.getMembers())
+                                                          .filterNot(m -> m.equals(Recipient.self().getId()))
+                                                          .collect(Collectors.toSet());
+
+      createGroupOnServer(groupSecretParams, name, avatar, memberIds, Member.Role.ADMINISTRATOR, messageTimer);
+  }
+
   final class GroupCreator extends LockOwner {
 
     GroupCreator(@NonNull Closeable lock) {
@@ -150,59 +175,43 @@ final class GroupManagerV2 {
                                                         @Nullable byte[] avatar)
         throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception
     {
-      if (!GroupsV2CapabilityChecker.allAndSelfSupportGroupsV2AndUuid(members)) {
-        throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 or UUID capabilities");
-      }
+      return createGroup(name, avatar, members);
+    }
 
-      GroupCandidate      self       = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
-      Set<GroupCandidate> candidates = new HashSet<>(groupCandidateHelper.recipientIdsToCandidates(members));
-
-      if (SignalStore.internalValues().gv2ForceInvites()) {
-        candidates = GroupCandidate.withoutProfileKeyCredentials(candidates);
-      }
-
-      if (!self.hasProfileKeyCredential()) {
-        Log.w(TAG, "Cannot create a V2 group as self does not have a versioned profile");
-        throw new MembershipNotSuitableForV2Exception("Cannot create a V2 group as self does not have a versioned profile");
-      }
-
-      GroupsV2Operations.NewGroup newGroup = groupsV2Operations.createNewGroup(name,
-                                                                               Optional.fromNullable(avatar),
-                                                                               self,
-                                                                               candidates);
-
-      GroupSecretParams groupSecretParams = newGroup.getGroupSecretParams();
-      GroupMasterKey    masterKey         = groupSecretParams.getMasterKey();
+    @WorkerThread
+    private @NonNull GroupManager.GroupActionResult createGroup(@Nullable String name,
+                                                                @Nullable byte[] avatar,
+                                                                @NonNull Collection<RecipientId> members)
+        throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception
+    {
+      GroupSecretParams groupSecretParams = GroupSecretParams.generate();
+      DecryptedGroup    decryptedGroup;
 
       try {
-        groupsV2Api.putNewGroup(newGroup, authorization.getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams));
-
-        DecryptedGroup decryptedGroup = groupsV2Api.getGroup(groupSecretParams, ApplicationDependencies.getGroupsV2Authorization().getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams));
-        if (decryptedGroup == null) {
-          throw new GroupChangeFailedException();
-        }
-
-        GroupId.V2  groupId          = groupDatabase.create(masterKey, decryptedGroup);
-        RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
-        Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
-
-        AvatarHelper.setAvatar(context, groupRecipientId, avatar != null ? new ByteArrayInputStream(avatar) : null);
-        groupDatabase.onAvatarUpdated(groupId, avatar != null);
-        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
-
-        DecryptedGroupChange groupChange = DecryptedGroupChange.newBuilder(GroupChangeReconstruct.reconstructGroupChange(DecryptedGroup.newBuilder().build(), decryptedGroup))
-                                                               .setEditor(UuidUtil.toByteString(selfUuid))
-                                                               .build();
-
-        RecipientAndThread recipientAndThread = sendGroupUpdate(masterKey, new GroupMutation(null, groupChange, decryptedGroup), null);
-
-        return new GroupManager.GroupActionResult(recipientAndThread.groupRecipient,
-                                                  recipientAndThread.threadId,
-                                                  decryptedGroup.getMembersCount() - 1,
-                                                  getPendingMemberRecipientIds(decryptedGroup.getPendingMembersList()));
-      } catch (VerificationFailedException | InvalidGroupStateException | GroupExistsException e) {
+        decryptedGroup = createGroupOnServer(groupSecretParams, name, avatar, members, Member.Role.DEFAULT, 0);
+      } catch (GroupAlreadyExistsException e) {
         throw new GroupChangeFailedException(e);
       }
+
+      GroupMasterKey masterKey        = groupSecretParams.getMasterKey();
+      GroupId.V2     groupId          = groupDatabase.create(masterKey, decryptedGroup);
+      RecipientId    groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+      Recipient      groupRecipient   = Recipient.resolved(groupRecipientId);
+
+      AvatarHelper.setAvatar(context, groupRecipientId, avatar != null ? new ByteArrayInputStream(avatar) : null);
+      groupDatabase.onAvatarUpdated(groupId, avatar != null);
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
+
+      DecryptedGroupChange groupChange = DecryptedGroupChange.newBuilder(GroupChangeReconstruct.reconstructGroupChange(DecryptedGroup.newBuilder().build(), decryptedGroup))
+                                                             .setEditor(UuidUtil.toByteString(selfUuid))
+                                                             .build();
+
+      RecipientAndThread recipientAndThread = sendGroupUpdate(masterKey, new GroupMutation(null, groupChange, decryptedGroup), null);
+
+      return new GroupManager.GroupActionResult(recipientAndThread.groupRecipient,
+                                                recipientAndThread.threadId,
+                                                decryptedGroup.getMembersCount() - 1,
+                                                getPendingMemberRecipientIds(decryptedGroup.getPendingMembersList()));
     }
   }
 
@@ -229,7 +238,7 @@ final class GroupManagerV2 {
     @NonNull GroupManager.GroupActionResult addMembers(@NonNull Collection<RecipientId> newMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, MembershipNotSuitableForV2Exception
     {
-      if (!GroupsV2CapabilityChecker.allSupportGroupsV2AndUuid(newMembers)) {
+      if (!GroupsV2CapabilityChecker.allHaveUuidAndSupportGroupsV2(newMembers)) {
         throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 or UUID capabilities");
       }
 
@@ -586,6 +595,56 @@ final class GroupManagerV2 {
     }
   }
 
+  @WorkerThread
+  private @NonNull DecryptedGroup createGroupOnServer(@NonNull GroupSecretParams groupSecretParams,
+                                                      @Nullable String name,
+                                                      @Nullable byte[] avatar,
+                                                      @NonNull Collection<RecipientId> members,
+                                                      @NonNull Member.Role memberRole,
+                                                      int disappearingMessageTimerSeconds)
+      throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception, GroupAlreadyExistsException
+  {
+    if (!GroupsV2CapabilityChecker.allAndSelfHaveUuidAndSupportGroupsV2(members)) {
+      throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 capability or we don't have their UUID");
+    }
+
+    GroupCandidate      self       = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
+    Set<GroupCandidate> candidates = new HashSet<>(groupCandidateHelper.recipientIdsToCandidates(members));
+
+    if (SignalStore.internalValues().gv2ForceInvites()) {
+      Log.w(TAG, "Forcing GV2 invites due to internal setting");
+      candidates = GroupCandidate.withoutProfileKeyCredentials(candidates);
+    }
+
+    if (!self.hasProfileKeyCredential()) {
+      Log.w(TAG, "Cannot create a V2 group as self does not have a versioned profile");
+      throw new MembershipNotSuitableForV2Exception("Cannot create a V2 group as self does not have a versioned profile");
+    }
+
+    GroupsV2Operations.NewGroup newGroup = groupsV2Operations.createNewGroup(groupSecretParams,
+                                                                             name,
+                                                                             Optional.fromNullable(avatar),
+                                                                             self,
+                                                                             candidates,
+                                                                             memberRole,
+                                                                             disappearingMessageTimerSeconds);
+
+    try {
+      groupsV2Api.putNewGroup(newGroup, authorization.getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams));
+
+      DecryptedGroup decryptedGroup = groupsV2Api.getGroup(groupSecretParams, ApplicationDependencies.getGroupsV2Authorization().getAuthorizationForToday(Recipient.self().requireUuid(), groupSecretParams));
+      if (decryptedGroup == null) {
+        throw new GroupChangeFailedException();
+      }
+
+      return decryptedGroup;
+    } catch (VerificationFailedException | InvalidGroupStateException e) {
+      throw new GroupChangeFailedException(e);
+    } catch (GroupExistsException e) {
+      throw new GroupAlreadyExistsException(e);
+    }
+  }
+
   final class GroupJoiner extends LockOwner {
     private final GroupId.V2                         groupId;
     private final GroupLinkPassword                  password;
@@ -777,7 +836,7 @@ final class GroupManagerV2 {
     private @NonNull GroupChange joinGroupOnServer(boolean requestToJoin, int currentRevision)
         throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception, GroupLinkNotActiveException, GroupJoinAlreadyAMemberException
     {
-      if (!GroupsV2CapabilityChecker.allAndSelfSupportGroupsV2AndUuid(Collections.singleton(Recipient.self().getId()))) {
+      if (!GroupsV2CapabilityChecker.allAndSelfHaveUuidAndSupportGroupsV2(Collections.singleton(Recipient.self().getId()))) {
         throw new MembershipNotSuitableForV2Exception("Self does not support GV2 or UUID capabilities");
       }
 

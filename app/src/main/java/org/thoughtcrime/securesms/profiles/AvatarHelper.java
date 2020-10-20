@@ -96,6 +96,11 @@ public class AvatarHelper {
     return ModernDecryptingPartInputStream.createFor(attachmentSecret, avatarFile, 0);
   }
 
+  public static byte[] getAvatarBytes(@NonNull Context context, @NonNull RecipientId recipientId) throws IOException {
+    return hasAvatar(context, recipientId) ? Util.readFully(getAvatar(context, recipientId))
+                                           : null;
+  }
+
   /**
    * Returns the size of the avatar on disk.
    */

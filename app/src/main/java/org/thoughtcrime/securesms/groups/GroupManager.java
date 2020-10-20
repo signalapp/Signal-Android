@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
 
 import java.io.IOException;
@@ -78,6 +77,14 @@ public final class GroupManager {
 
       return GroupManagerV1.updateGroup(context, groupId.requireV1(), recipientIds, avatar, name, 0);
     }
+  }
+
+  @WorkerThread
+  public static void migrateGroupToServer(@NonNull Context context,
+                                          @NonNull GroupId.V1 groupIdV1)
+      throws IOException, GroupChangeFailedException, MembershipNotSuitableForV2Exception, GroupAlreadyExistsException
+  {
+    new GroupManagerV2(context).migrateGroupOnToServer(groupIdV1);
   }
 
   private static Set<RecipientId> getMemberIds(Collection<Recipient> recipients) {
@@ -161,6 +168,21 @@ public final class GroupManager {
   {
     try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
       updater.updateLocalToServerRevision(revision, timestamp, signedGroupChange);
+    }
+  }
+
+  @WorkerThread
+  public static V2GroupServerStatus v2GroupStatus(@NonNull Context context,
+                                                  @NonNull GroupMasterKey groupMasterKey)
+      throws IOException
+  {
+    try {
+      new GroupManagerV2(context).groupServerQuery(groupMasterKey);
+      return V2GroupServerStatus.FULL_OR_PENDING_MEMBER;
+    } catch (GroupNotAMemberException e) {
+      return V2GroupServerStatus.NOT_A_MEMBER;
+    } catch (GroupDoesNotExistException e) {
+      return V2GroupServerStatus.DOES_NOT_EXIST;
     }
   }
 
@@ -303,7 +325,7 @@ public final class GroupManager {
     } else {
       GroupDatabase.GroupRecord groupRecord  = DatabaseFactory.getGroupDatabase(context).requireGroup(groupId);
       List<RecipientId>         members      = groupRecord.getMembers();
-      byte[]                    avatar       = groupRecord.hasAvatar() ? Util.readFully(AvatarHelper.getAvatar(context, groupRecord.getRecipientId())) : null;
+      byte[]                    avatar       = groupRecord.hasAvatar() ? AvatarHelper.getAvatarBytes(context, groupRecord.getRecipientId()) : null;
       Set<RecipientId>          recipientIds = new HashSet<>(members);
       int                       originalSize = recipientIds.size();
 
@@ -387,5 +409,14 @@ public final class GroupManager {
     DISABLED,
     ENABLED,
     ENABLED_WITH_APPROVAL
+  }
+
+  public enum V2GroupServerStatus {
+    /** The group does not exist. The expected pre-migration state for V1 groups. */
+    DOES_NOT_EXIST,
+    /** Group exists but self is not in the group. */
+    NOT_A_MEMBER,
+    /** Self is a full or pending member of the group. */
+    FULL_OR_PENDING_MEMBER
   }
 }
