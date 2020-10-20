@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
+
+import android.net.Uri;
 import android.util.Pair;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -36,6 +38,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
 import org.whispersystems.libsignal.util.ByteUtil;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -63,13 +66,18 @@ public class FullBackupImporter extends FullBackupBase {
   private static final String TAG = FullBackupImporter.class.getSimpleName();
 
   public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
-                                @NonNull SQLiteDatabase db, @NonNull File file, @NonNull String passphrase)
+                                @NonNull SQLiteDatabase db, @NonNull Uri fileUri, @NonNull String passphrase)
       throws IOException
   {
-    BackupRecordInputStream inputStream = new BackupRecordInputStream(file, passphrase);
-    int                     count       = 0;
+    InputStream baseInputStream = context.getContentResolver().openInputStream(fileUri);
+    if (baseInputStream == null) {
+      throw new IOException("Cannot open an input stream for the file URI: " + fileUri.toString());
+    }
 
-    try {
+    int count = 0;
+
+    try (BackupRecordInputStream inputStream = new BackupRecordInputStream(baseInputStream, passphrase)) {
+
       db.beginTransaction();
 
       dropAllTables(db);
@@ -91,7 +99,9 @@ public class FullBackupImporter extends FullBackupBase {
 
       db.setTransactionSuccessful();
     } finally {
-      db.endTransaction();
+      if (db.inTransaction()) {
+        db.endTransaction();
+      }
     }
 
     EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count));
@@ -213,7 +223,7 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
 
-  private static class BackupRecordInputStream extends BackupStream {
+  private static class BackupRecordInputStream extends BackupStream implements Closeable {
 
     private final InputStream in;
     private final Cipher      cipher;
@@ -225,9 +235,9 @@ public class FullBackupImporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupRecordInputStream(@NonNull File file, @NonNull String passphrase) throws IOException {
+    private BackupRecordInputStream(@NonNull InputStream inputStream, @NonNull String passphrase) throws IOException {
       try {
-        this.in     = new FileInputStream(file);
+        this.in = inputStream;
 
         byte[] headerLengthBytes = new byte[4];
         Util.readFully(in, headerLengthBytes);
@@ -348,6 +358,11 @@ public class FullBackupImporter extends FullBackupBase {
       } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
         throw new AssertionError(e);
       }
+    }
+
+    @Override
+    public void close() throws IOException {
+      in.close();
     }
   }
 

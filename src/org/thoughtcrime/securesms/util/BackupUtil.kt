@@ -28,6 +28,7 @@ import kotlin.jvm.Throws
 
 object BackupUtil {
     private const val TAG = "BackupUtil"
+    const val BACKUP_FILE_MIME_TYPE = "application/x-binary"
 
     /**
      * Set app-wide configuration to enable the backups and schedule them.
@@ -151,7 +152,7 @@ object BackupUtil {
         val fileUri = DocumentsContract.createDocument(
                 context.contentResolver,
                 DocumentFile.fromTreeUri(context, dirUri)!!.uri,
-                "application/x-binary",
+                BACKUP_FILE_MIME_TYPE,
                 fileName)
 
         if (fileUri == null) {
@@ -160,7 +161,7 @@ object BackupUtil {
         }
 
         FullBackupExporter.export(context,
-                AttachmentSecretProvider.getInstance(context).orCreateAttachmentSecret,
+                AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
                 DatabaseFactory.getBackupDatabase(context),
                 fileUri,
                 backupPassword)

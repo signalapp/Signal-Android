@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="org.thoughtcrime.securesms.loki.activities.RestoreBackupViewModel"/>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="org.thoughtcrime.securesms.loki.activities.RestoreBackupViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/very_large_spacing"
+            android:layout_marginRight="@dimen/very_large_spacing"
+            android:text="Restore from backup"
+            android:textColor="@color/text"
+            android:textSize="@dimen/large_font_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/very_large_spacing"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="@dimen/very_large_spacing"
+            android:text="Go on and pick the backup file to restore from."
+            android:textColor="@color/text"
+            android:textSize="@dimen/small_font_size" />
+
+        <Button
+            android:id="@+id/buttonSelectFile"
+            style="@style/Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/very_large_spacing"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="@dimen/very_large_spacing"
+            android:text="@{RestoreBackupViewModel.uriToFileName(buttonSelectFile, viewModel.backupFile), default=`Select a file`}"/>
+
+        <EditText
+            android:id="@+id/backupCode"
+            style="@style/SmallSessionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/very_large_spacing"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/very_large_spacing"
+            android:hint="Backup code"
+            android:inputType="numberDecimal"
+            android:text="@={viewModel.backupPassphrase}" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/restoreButton"
+            style="@style/Widget.Session.Button.Common.ProminentFilled"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/medium_button_height"
+            android:layout_marginLeft="@dimen/massive_spacing"
+            android:layout_marginRight="@dimen/massive_spacing"
+            android:text="@string/continue_2"
+            android:visibility="@{RestoreBackupViewModel.validateData(viewModel.backupFile, viewModel.backupPassphrase) ? View.VISIBLE : View.INVISIBLE}"/>
+
+        <TextView
+            android:id="@+id/termsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/onboarding_button_bottom_offset"
+            android:layout_marginLeft="@dimen/massive_spacing"
+            android:layout_marginRight="@dimen/massive_spacing"
+            android:gravity="center"
+            android:text="By using this service, you agree to our Terms of Service and Privacy Policy"
+            android:textColor="@color/text"
+            android:textColorLink="@color/text"
+            android:textSize="@dimen/very_small_font_size" /> <!-- Intentionally not yet translated -->
+
+    </LinearLayout>
+
+</layout>

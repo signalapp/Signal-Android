@@ -5,6 +5,7 @@ import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -328,7 +329,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
                 FullBackupImporter.importFile(context,
                                               AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                                              database, backup.getFile(), passphrase);
+                                              database, Uri.fromFile(backup.getFile()), passphrase);
 
                 DatabaseFactory.upgradeRestored(context, database);
                 NotificationChannels.restoreContactNotificationChannels(context);
