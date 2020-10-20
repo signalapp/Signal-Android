@@ -99,7 +99,6 @@ final class ShareableGroupLinkRepository {
 
     if (toggleEnabled) {
       enabled = !enabled;
-      if (enabled) approvalNeeded = true;
     }
 
     if (approvalNeeded && enabled) {
