@@ -61,7 +61,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:gravity="center"
-            android:text="@string/ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain" />
+            android:text="@string/ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain" />
 
     </LinearLayout>
 </ScrollView>
