@@ -1824,7 +1824,7 @@
   <string name="ResearchMegaphoneDialog_signal_research">Signal 검색</string>
   <string name="ResearchMegaphoneDialog_take_the_survey">설문조사하기</string>
   <string name="ResearchMegaphoneDialog_no_thanks">아니요</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">설문은 Surveygizmo에서 주최하며 surveys.signalusers.org 보안 도메인으로 접속하실 수 있습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">설문은 Surveygizmo에서 주최하며 surveys.signalusers.org 보안 도메인으로 접속하실 수 있습니다.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">아이콘 전송</string>
   <string name="ConversationListFragment_loading">로드 중…</string>

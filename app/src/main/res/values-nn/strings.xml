@@ -2130,7 +2130,7 @@ Du er à jour!</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Me trur på personvern.</b></p><p>Signal sporer deg ikkje og hentar ikkje data om deg. For å gjera Signal betre for alle, er me avhengig av at brukarar vel å fortelja kva dei synst, <b>og me vil gjerne høyra kva nettopp du synst.</b></p><p>Me har ei spørreundersøking på gang for å forstå korleis du bruker Signal. Undersøkinga hentar ikkje data som vil identifisera deg. Viss du vil gi tilleggsinformasjon, så har du moglegheita til å oppgi kontaktinfo.</p><p>Om du har eit par minutt til overs og litt tilbakemelding å gi, så vil me gjerne høyra frå deg.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Ta undersøkinga</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nei takk</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Denne undersøkinga er administrert av Surveygizmo på det trygge domenet surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Denne undersøkinga er administrert av Surveygizmo på det trygge domenet surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>

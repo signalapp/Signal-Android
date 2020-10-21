@@ -2186,7 +2186,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Mi vjerujemo u privatnost.</b></p><p>Signal Vas ne prati, niti prikuplja Vaše podatke. Da bismo unaprijedili Signal, oslanjamo se na utiske i sugestije korisnika, <b>i voljeli bismo čuti Vaše.</b></p><p>Pokrenuli smo anketu s ciljem da razumijemo kako Vi koristite Signal. Naša anketa ne pohranjuje bilo kakve podatke na temelju kojih biste bili identifikovani. Ako želite s nama podijeliti dodatna zapažanja, imat ćete mogućnost da ostavite kontakt-informacije.</p><p>Ako možete izdvojiti nekoliko minuta i kazati nam svoje utiske, bit ćemo sretni da ih saslušamo.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Započni anketu</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketa se sprovodi putem Surveygizma na sigurnoj domeni surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketa se sprovodi putem Surveygizma na sigurnoj domeni surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Sličica transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>

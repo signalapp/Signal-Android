@@ -2184,7 +2184,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vjerujemo u privatnost.</b></p><p>Signal vas ne prati niti prikuplja vaše podatke. Da bismo poboljšali Signal za sve, oslanjamo se na povratne informacije korisnika i <b>voljeli bismo vaše.</b></p><p>Provodimo anketu kako bismo shvatili kako koristite Signal. Naša anketa ne prikuplja podatke koji će vas identificirati. Ako ste zainteresirani za dijeljenje dodatnih povratnih informacija, imat ćete mogućnost pružanja podataka za kontakt.</p><p>Ako imate nekoliko minuta i želite poslati povratne informacije, voljeli bismo čuti vaše mišljenje.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Ispunite anketu</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketu održava Surveygizmo na sigurnoj domeni o surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketu održava Surveygizmo na sigurnoj domeni o surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>

@@ -2128,7 +2128,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We geloven in privacy.</b></p><p>Signal volgt je gedrag niet en verzamelt je gegevens niet. Om Signal zonder die gegevens toch voor iedereen beter te maken zijn we afhankelijk van terugkoppeling van gebruikers, <b>en we zouden ook graag van je horen wat je van Signal vindt</b>.</p><p>We organiseren een enquête om te begrijpen op welke manier en waarvoor jij Signal gebruikt. Onze enquête verzamelt geen gegevens waarmee jij geïdentificeerd kan worden. Als je graag meer terugkoppeling geeft, dan kun je gebruik maken van de vrijblijvende optie om je contactgegevens in te vullen.</p><p>Als je een aantal minuten tijd vrij hebt, en als je iets hebt om terug te koppelen, dan horen we graag van je.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">De enquête invullen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nee bedankt</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">De enquête wordt beschikbaar gesteld door Surveygizmo via het beveiligde domein surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">De enquête wordt beschikbaar gesteld door Surveygizmo via het beveiligde domein surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden …</string>

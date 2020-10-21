@@ -1953,7 +1953,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal undersøkelse</string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Gjennomfør brukerundersøkelsen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nei takk</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersøkelsen gjøres av Surveygizmo på det sikre domenet surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersøkelsen gjøres av Surveygizmo på det sikre domenet surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>

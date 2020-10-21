@@ -2123,7 +2123,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Crediamo nella privacy.</b></p><p>Signal non ti traccia né raccoglie i tuoi dati. Per migliorare Signal per tutti, ci affidiamo al feedback degli utenti, <b>e ci piacerebbe molto il tuo.</b></p><p>Stiamo conducendo un sondaggio per capire come utilizzi Signal. Il nostro sondaggio non raccoglie dati che ti identificano. Se sei interessato a condividere feedback aggiuntivi, avrai la possibilità di fornire le informazioni di contatto.</p><p>Se hai qualche minuto e feedback da offrire, ci piacerebbe sentirti.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Partecipa al sondaggio</string>
   <string name="ResearchMegaphoneDialog_no_thanks">No grazie</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Il sondaggio è ospitato da Surveygizmo presso il dominio sicuro surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Il sondaggio è ospitato da Surveygizmo presso il dominio sicuro surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento…</string>

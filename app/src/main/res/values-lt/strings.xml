@@ -2249,7 +2249,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Mes tikime privatumu.</b></p><p>Signal neseka jūsų ir nerenka jokių jūsų duomenų. Norėdami visiems patobulinti Signal, remiamės naudotojų atsiliepimais, <b>ir norėtume išgirsti jūsų atsiliepimą.</b></p><p>Mes vykdome apklausą, kad suprastume kaip naudojatės Signal. Apklausoje mes nerenkame jokių duomenų, galinčių jus identifikuoti. Jei pageidaujate pateikti papildomą atsiliepimą, turėsite galimybę pateikti kontaktinę informaciją.</p><p>Jei turite kelias minutes ir norėtumėte pateikti atsiliepimą, mes su malonumu jus išklausysime.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Dalyvauti apklausoje</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, ačiū</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Apklausą talpina Surveygizmo, saugioje srityje surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Apklausą talpina Surveygizmo, saugioje srityje surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>

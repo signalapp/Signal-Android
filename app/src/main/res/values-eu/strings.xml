@@ -2124,7 +2124,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Pribatutasunean sinesten dugu</b></p><p>Signalek ez du jarraitzen egiten duzuna edo zure datuak bildu. Signal guztiontzat hobetzeko, erabiltzaileen iruzkinetan oinarritzen gara, <b>eta zurea edukitzea gustatuko litzaiguke. </b></p><p> Inkesta bat egiten ari gara Signal nola erabiltzen duzun ulertzeko. Gure inkestak identifika zaitzakeen daturik ez du biltzen. Informazio gehiago partekatu nahi baduzu, kontakturako informazioa emateko aukera izango duzu. </p><p> Minutu batzuk eta iruzkinak egiteko baduzu, gustatuko litzaiguke zure iritzia entzutea. </p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Inkesta egin</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ez, eskerrik asko</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Inkesta Surveygizmo zerbitzuan dago ostatuta, surveys.signalusers.org domeinuan</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Inkesta Surveygizmo zerbitzuan dago ostatuta, surveys.signalusers.org domeinuan</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>

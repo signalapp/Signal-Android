@@ -2117,7 +2117,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[ <p><b>Creiem en la privadesa.</b></p><p> El Signal no us fa un seguiment ni recopila les vostres dades. Per millorar el Signal per a tothom, confiem en els comentaris dels usuaris i <b>ens encantaria rebre el vostre.</b></p><p> Estem fent una enquesta per entendre com useu el Signal. La nostra enquesta no recull cap dada que us identifiqui. Si esteu interessats a compartir comentaris addicionals, podreu proporcionar la informació de contacte.</p><p> Si teniu uns quants minuts i comentaris a oferir, ens encantaria rebre notícies vostres.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Feu l\'enquesta</string>
   <string name="ResearchMegaphoneDialog_no_thanks">No, gràcies.</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Surveygizmo allotja l\'enquesta al domini segur surveys.signalusers.org.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Surveygizmo allotja l\'enquesta al domini segur surveys.signalusers.org.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">Es carrega…</string>

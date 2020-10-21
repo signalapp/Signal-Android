@@ -2057,7 +2057,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>我們相信隱私。</b></p><p>Signal無法追踪你或收集你的資料。 為了改善所有人的Signal，我們依靠使用者反應，<b>我們會愛上你的。</b></p><p>我們正在進行一項調查，以了解你如何使用Signal。 我們的調查不會收集任何可以識別你身份的資料。 如果你有興趣分享其他回應，則可以選擇提供聯絡訊息。</p><p>如果你有幾分鐘的時間要提供反應意見，我們很高興收到你的來信。</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">參加問卷</string>
   <string name="ResearchMegaphoneDialog_no_thanks">不，謝謝。</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">該問卷由Surveygizmo託管在安全域Surveys.signalusers.org中</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">該問卷由Surveygizmo託管在安全域Surveys.signalusers.org中</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
   <string name="ConversationListFragment_loading">讀取中…</string>

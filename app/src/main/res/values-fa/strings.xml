@@ -2121,7 +2121,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ما به حریم خصوصی باور داریم.</b></p><p>Signal شما را دنبال و اطلاعات شما را جمع‌آوری نمی‌کند. برای بهبود Signal برای همه، ما به بازخورد کاربران متکی هستیم، <b>و دوست داریم بازخورد شما را داشته باشیم.</b></p><p>ما در حال ترتیب یک نظرسنجی برای فهمیدن اینکه شما چگونه از Signal استفاده می‌کنید هستیم. نظرسنجی ما هیچ‌گونه اطلاعاتی را که موجب شناسایی شما بشود، جمع‌آوری نمی‌کند. اگر مایل به اشتراک بازخورد بیشتری هستید، گزینهٔ افزودن اطلاعات تماس خود را خواهید داشت.</p><p>اگر چند دقیقه فرصت و بازخوردی برای ارائه دارید، ما دوست داریم که از شما بشنویم.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">شرکت در نظرسنجی</string>
   <string name="ResearchMegaphoneDialog_no_thanks">نه ممنون</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">این نظرسنجی از سوی Surveygizmo در دامنهٔ امن surveys.signalusers.org میزبانی می‌شود.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">این نظرسنجی از سوی Surveygizmo در دامنهٔ امن surveys.signalusers.org میزبانی می‌شود.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>

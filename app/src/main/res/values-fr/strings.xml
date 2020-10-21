@@ -2077,7 +2077,7 @@
   <string name="ResearchMegaphoneDialog_signal_research">Recherche Signal</string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Répondre au sondage</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Non merci</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Le sondage est hébergé par Surveygizmo sur le domaine sécurisé surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Le sondage est hébergé par Surveygizmo sur le domaine sécurisé surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>

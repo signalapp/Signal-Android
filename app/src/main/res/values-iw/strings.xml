@@ -2249,7 +2249,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>אנחנו מאמינים בפרטיות.</b></p><p>Signal אינו עוקב אחריך או אוסף את הנתונים שלך. כדי לשפר את Signal עבור כולם, אנחנו מסתמכים על משוב משתמשים, <b>ונשמח לקבל את שלך.</b></p><p>אנחנו מפעילים סקר כדי להבין כיצד אתה משתמש ב־Signal. הסקר שלנו אינו אוסף נתונים כלשהם שיזהו אותך. אם אתה מעוניין בשיתוף של משוב נוסף, תהיה לך אפשרות לספק מידע ליצירת קשר.</p><p>אם יש לך כמה דקות ומשוב להציע, נשמח לשמוע ממך.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">ענה על הסקר</string>
   <string name="ResearchMegaphoneDialog_no_thanks">לא תודה</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">הסקר מאורח על ידי Surveygizmo בתחום המאובטח surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">הסקר מאורח על ידי Surveygizmo בתחום המאובטח surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>

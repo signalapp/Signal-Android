@@ -2240,7 +2240,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Verjamemo v zasebno komunikacijo.</b></p><p>Signal vam ne sledi in ne zbira vaših podatkov. Za izboljšave aplikacije se zanašamo na vaše povratne informacije, <b>ki jih zelo cenimo.</b></p><p>Zato delamo raziskavo, da bi ugotovili, kako uporabljate aplikacijo Signal. Raziskava ne zahteva od vas nobenih podatkov, po katerih bi vas lahko prepoznali. Če pa bi radi z nami delili dodatne informacije, nam lahko tudi posredujete svoj kontakt.</p><p>Če imate nekaj minut časa in izdelano mnenje o nas, vam bomo z veseljem prisluhnili.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Izpolnite anketo</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala!</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketa gostuje pri Surveygizmo na domain surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketa gostuje pri Surveygizmo na domain surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalaganje …</string>

@@ -2248,7 +2248,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Věříme v soukromí.</b></p><p>Signal vás nesleduje ani nesbírá vaše data. Abychom Signal vylepšili pro všechny, spoléháme na zpětnou vazbu uživatelů, <b>a rádi bychom ji od vás získali.</b></p><p>Pořádáme anketu, abychom porozuměli, jak Signal používáte. Naše anketa neshromažďuje žádná data, která by vás identifikovala. Pokud byste měli zájem sdílet další zpětnou vazbu, budete mít možnost poskytnout kontaktní informace.</p><p>Jestli máte pár minut a zpětnou vazbu, kterou můžete nabídnout, rádi ji od vás získáme.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Zúčastnit se ankety</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne díky</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketu pořádá Surveygizmo na zabezpečené doméně surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketu pořádá Surveygizmo na zabezpečené doméně surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <string name="ConversationListFragment_loading">Načítání…</string>

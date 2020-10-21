@@ -2050,7 +2050,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法について調査しています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有することに興味がある場合は、連絡先情報を提供するオプションがあります。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">調査に参加する</string>
   <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">この調査は、Surveygizmoが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">この調査は、Surveygizmoが安全なドメイン (surveys.signalusers.org) でホストしています。</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>

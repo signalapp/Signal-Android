@@ -2126,7 +2126,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Besojmë në privatësinë.</b></p><p>Signal-i nuk ju ndjek, as grumbullon të dhëna tuajat. Që Signal-i të përmirësohet për këdo, bazohemi në mendimet e përdoruesve, <b>dhe do ta donim edhe tuajin.</b></p><p>Po kryejmë një pyetësor për të kuptuar se si e përdorni Signal-in. Pyetësori ynë s’grumbullon ndonjë të dhënë që lejon identifikimin tuaj. Nëse ju intereson të jepni përshtypje shtesë, keni mundësinë të jepni të dhëna kontakti.</p><p>Nëse keni ndoca minuta dhe përshtypje për të dhënë, do të donim fort t’i dëgjonim.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Plotësoni pyetësorin</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Jo, faleminderit</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Pyetësori strehohet nga Syrveygizmo te përkatësia e sigurt surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Pyetësori strehohet nga Syrveygizmo te përkatësia e sigurt surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>

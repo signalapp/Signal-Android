@@ -2117,7 +2117,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi tror på integritet.</b></p><p>Signal spårar inte dig och samlar inte in dina uppgifter. För att förbättra Signal för alla förlitar vi oss på användarrespons, <b>och vi skulle vilja få din.</b></p><p>Vi genomför en undersökning för att förstå hur du använder Signal. Vår undersökning samlar inte in några uppgifter som kommer att identifiera dig. Om du är intresserad av att dela ytterligare åsikter har du möjlighet att ge kontaktinformation.</p><p>Om du har några minuter och respons att erbjuda skulle vi gärna höra från dig.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Ta undersökningen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nej tack</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersökningen anordnas av Surveygizmo på den säkra domänen surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersökningen anordnas av Surveygizmo på den säkra domänen surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>

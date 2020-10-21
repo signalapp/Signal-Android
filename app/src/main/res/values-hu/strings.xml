@@ -2126,7 +2126,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Hiszünk a személyes adatok védelmében.</b></p><p>A Signal nem gyűjt senkiről felhasználói viselkedést érintő adatokat, ezért felhasználói visszajelzésekre támaszkodunk - <b>például a tiédre.</b></p><p>Elindítottunk egy kérdőíves felmérést, hogy megértsük a felhasználói szokásokat. A kitöltés során semmilyen téged beazonosító adat nem kerül birtokunkba. Viszont ha a jövőben is szeretnél további visszajelzéssel a segítségünkre lenni, akkor megadhatsz magadról kapcsolattartáshoz szükséges információkat is.</p><p>Ha van pár perced, örömmel vennénk, ha segítenél a kérdőív kitöltésével.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Kérdőív kitöltése</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nem, köszönöm</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">A kérdőív a Surveygizmo jóvoltából érhető el a surveys.signalusers.org biztonságos domain alatt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">A kérdőív a Surveygizmo jóvoltából érhető el a surveys.signalusers.org biztonságos domain alatt.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <string name="ConversationListFragment_loading">Betöltés…</string>

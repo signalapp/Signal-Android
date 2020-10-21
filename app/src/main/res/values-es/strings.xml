@@ -595,12 +595,12 @@
   <string name="ShareableGroupLinkDialogFragment__share">Compartir</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Restablecer enlace</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Solicitudes de participantes</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprobar participantes nuev@s</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprobar solicitudes</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Activada</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Desactivada</string>
   <string name="ShareableGroupLinkDialogFragment__default">Por defecto</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Restablecer enlace del grupo</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Un(a) admin debe aprobar a nuev@s participantes que se unan vía enlace.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Al seguir el enlace se genera una solicitud de acceso que debe ser aprobada.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para compartir el grupo? Si lo restableces, nadie podrá unirse al chat usando el enlace actual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
@@ -621,7 +621,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este enlace al grupo no está disponible</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del grupo, por favor inténtalo más tarde</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un(a) admin del grupo debe aprobar tu solicitud antes de poder unirte. Al solicitar unirte al grupo, tu nombre y foto de perfil se compartirán con sus participantes.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Al seguir el enlace se genera una solicitud de acceso que debe ser aprobada antes de unirte. Al unirte al grupo, tu nombre y foto de perfil se compartirán con sus participantes.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grupo · %1$d participante</item>
     <item quantity="other">Grupo · %1$d participantes</item>
@@ -2124,7 +2124,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Creemos en la privacidad.</b></p><p>Signal no analiza el uso que le das, ni recopila tus datos. Para mejorar Signal para tod@s, necesitamos la opinión de l@s usuari@s <b>y especialmente la tuya.</b></p><p>Hemos preparado una encuesta en inglés para entender mejor cómo usas Signal. Nuestra encuenta no recopila ningún detalle que te pueda identificar. Si te interesa incluir información adicional (en inglés), tienes la opción de dejar tus datos de contacto.</p><p>Si tienes unos pocos minutos para ofrecernos tu opinión (en inglés), nos encantaría escucharla.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Hacer la encuesta</string>
   <string name="ResearchMegaphoneDialog_no_thanks">No gracias</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">La encuenta en inglés está alojada en Surveygizmo en el dominio seguro surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">La encuenta en inglés está alojada en Surveygizmo en el dominio seguro surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando …</string>

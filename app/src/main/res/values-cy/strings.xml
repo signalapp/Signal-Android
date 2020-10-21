@@ -2251,7 +2251,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Rydym yn credu mewn preifatrwydd.</b></p><p>Nid yw Signal yn eich tracio nac yn casglu\'ch data. Er mwyn gwella Signal i bawb, rydym yn dibynnu ar adborth defnyddwyr, <b>a byddem wrth ein bodd â\'ch adborth chi.</b></p><p> Rydyn ni\'n cynnal arolwg i ddeall sut rydych chi\'n defnyddio Signal. Nid yw ein harolwg yn casglu unrhyw ddata a fydd yn eich adnabod chi. Os oes gennych ddiddordeb mewn rhannu adborth ychwanegol, bydd gennych yr opsiwn i ddarparu gwybodaeth gyswllt.</p><p>Os oes gennych ychydig funudau ac adborth i\'w gynnig, byddem wrth ein bodd yn clywed gennych.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Cymryd yr Arolwg</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Dim diolch</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Surveygizmo sydd yn cynnal yr arolwg yn y parth diogel surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Surveygizmo sydd yn cynnal yr arolwg yn y parth diogel surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>

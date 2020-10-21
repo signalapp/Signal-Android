@@ -2122,7 +2122,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Ni kredas je privateco.</b></p><p>Signal ne spuras vin aŭ ne kolektas viajn datumojn. Por plibonigi Signal-on por ĉiuj, ni uzas la komentojn de la uzantoj, <b>kaj ni ŝatus havi viajn.</b></p><p>Ni faras enketon por kompreni, kiel vi uzas Signal-on. Nia enketo ne kolektas iujn datumojn, kiuj povos identigi vin. Se vi interesiĝas pri dono de pliaj komentoj, vi povos enmeti kontaktinformon.</p><p>Se vi havas kelkajn minutojn kaj komentojn farotajn, ni ŝatus aŭskulti vin.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Partorpeni la enketon</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, dankon</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">La enketon gastigas „Surveygizmo“ ĉe la sekura domajno surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">La enketon gastigas „Surveygizmo“ ĉe la sekura domajno surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>
