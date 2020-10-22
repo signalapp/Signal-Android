@@ -161,7 +161,7 @@ class StoryViewerPageRepository(context: Context) {
             SendViewedReceiptJob(
               markedMessageInfo.threadId,
               storyPost.sender.id,
-              markedMessageInfo.syncMessageId.timetamp,
+              markedMessageInfo.syncMessageId.timestamp,
               MessageId(storyPost.id, true)
             )
           )

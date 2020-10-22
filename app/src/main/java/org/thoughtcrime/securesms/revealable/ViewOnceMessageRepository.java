@@ -36,7 +36,7 @@ class ViewOnceMessageRepository {
         if (info != null) {
           ApplicationDependencies.getJobManager().add(new SendViewedReceiptJob(record.getThreadId(),
                                                                                info.getSyncMessageId().getRecipientId(),
-                                                                               info.getSyncMessageId().getTimetamp(),
+                                                                               info.getSyncMessageId().getTimestamp(),
                                                                                info.getMessageId()));
           MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(info.getSyncMessageId()));
         }

@@ -897,7 +897,7 @@ public class MmsDatabase extends MessageDatabase {
     Set<MessageUpdate> messageUpdates = new HashSet<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName(), RECEIPT_TIMESTAMP},
-                                        DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
+                                        DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimestamp())},
                                         null, null, null, null))
     {
       while (cursor.moveToNext()) {
@@ -928,7 +928,7 @@ public class MmsDatabase extends MessageDatabase {
       }
 
       if (messageUpdates.size() > 0 && receiptType == ReceiptType.DELIVERY) {
-        earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId(), timestamp);
+        earlyDeliveryReceiptCache.increment(messageId.getTimestamp(), messageId.getRecipientId(), timestamp);
       }
 
       return messageUpdates;
@@ -1295,7 +1295,7 @@ public class MmsDatabase extends MessageDatabase {
     List<Pair<Long, Long>> expiring   = new LinkedList<>();
     String[]               projection = new String[] { ID, THREAD_ID, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, RECIPIENT_ID };
     String                 query      = DATE_SENT + " = ?";
-    String[]               args       = SqlUtil.buildArgs(messageId.getTimetamp());
+    String[]               args       = SqlUtil.buildArgs(messageId.getTimestamp());
     List<Long>             threads    = new LinkedList<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, projection, query, args, null, null, null)) {
@@ -1326,7 +1326,7 @@ public class MmsDatabase extends MessageDatabase {
           threads.add(threadId);
 
           Long latest = threadToLatestRead.get(threadId);
-          threadToLatestRead.put(threadId, (latest != null) ? Math.max(latest, messageId.getTimetamp()) : messageId.getTimetamp());
+          threadToLatestRead.put(threadId, (latest != null) ? Math.max(latest, messageId.getTimestamp()) : messageId.getTimestamp());
         }
       }
     }

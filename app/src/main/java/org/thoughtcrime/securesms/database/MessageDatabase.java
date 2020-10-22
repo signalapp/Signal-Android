@@ -539,19 +539,19 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public static class SyncMessageId {
 
     private final RecipientId recipientId;
-    private final long        timetamp;
+    private final long        timestamp;
 
-    public SyncMessageId(@NonNull RecipientId recipientId, long timetamp) {
+    public SyncMessageId(@NonNull RecipientId recipientId, long timestamp) {
       this.recipientId = recipientId;
-      this.timetamp    = timetamp;
+      this.timestamp   = timestamp;
     }
 
     public RecipientId getRecipientId() {
       return recipientId;
     }
 
-    public long getTimetamp() {
-      return timetamp;
+    public long getTimestamp() {
+      return timestamp;
     }
   }
 

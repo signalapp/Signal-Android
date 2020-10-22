@@ -103,7 +103,7 @@ public class SendViewedReceiptJob extends BaseJob {
     }
 
     for (List<MarkedMessageInfo> chunk : messageIdChunks) {
-      List<Long>      sentTimestamps = chunk.stream().map(info -> info.getSyncMessageId().getTimetamp()).collect(Collectors.toList());
+      List<Long>      sentTimestamps = chunk.stream().map(info -> info.getSyncMessageId().getTimestamp()).collect(Collectors.toList());
       List<MessageId> messageIds     = chunk.stream().map(MarkedMessageInfo::getMessageId).collect(Collectors.toList());
 
       jobManager.add(new SendViewedReceiptJob(threadId, recipientId, sentTimestamps, messageIds));

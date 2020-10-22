@@ -2130,8 +2130,8 @@ public final class MessageContentProcessor {
                                                          .incrementViewedReceiptCounts(ids, content.getTimestamp());
 
     for (SyncMessageId id : unhandled) {
-      warn(String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
-      ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+      warn(String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimestamp() + "  author: " + senderRecipient.getId());
+      ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimestamp(), content);
     }
   }
 
@@ -2149,7 +2149,7 @@ public final class MessageContentProcessor {
     Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().incrementDeliveryReceiptCounts(ids, System.currentTimeMillis());
 
     for (SyncMessageId id : unhandled) {
-      warn(String.valueOf(content.getTimestamp()), "[handleDeliveryReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
+      warn(String.valueOf(content.getTimestamp()), "[handleDeliveryReceipt] Could not find matching message! timestamp: " + id.getTimestamp() + "  author: " + senderRecipient.getId());
       // Early delivery receipts are special-cased in the database methods
     }
 
@@ -2175,8 +2175,8 @@ public final class MessageContentProcessor {
     Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().incrementReadReceiptCounts(ids, content.getTimestamp());
 
     for (SyncMessageId id : unhandled) {
-      warn(String.valueOf(content.getTimestamp()), "[handleReadReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + senderRecipient.getId());
-      ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimetamp(), content);
+      warn(String.valueOf(content.getTimestamp()), "[handleReadReceipt] Could not find matching message! timestamp: " + id.getTimestamp() + "  author: " + senderRecipient.getId());
+      ApplicationDependencies.getEarlyMessageCache().store(senderRecipient.getId(), id.getTimestamp(), content);
     }
   }
 
