@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
@@ -50,7 +51,8 @@ public final class FeatureFlags {
   private static final String USERNAMES                    = "android.usernames";
   private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
   private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
-  private static final String GROUPS_V2_CAPACITY           = "global.groupsv2.maxGroupSize";
+  private static final String GROUPS_V2_RECOMMENDED_LIMIT  = "global.groupsv2.maxGroupSize";
+  private static final String GROUPS_V2_HARD_LIMIT         = "global.groupsv2.groupSizeHardLimit";
   private static final String INTERNAL_USER                = "android.internalUser";
   private static final String VERIFY_V2                    = "android.verifyV2";
   private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
@@ -64,7 +66,8 @@ public final class FeatureFlags {
    */
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
-      GROUPS_V2_CAPACITY,
+      GROUPS_V2_RECOMMENDED_LIMIT,
+      GROUPS_V2_HARD_LIMIT,
       GROUPS_V2_JOIN_VERSION,
       GROUPS_V2_LINKS_VERSION,
       INTERNAL_USER,
@@ -177,8 +180,9 @@ public final class FeatureFlags {
   /**
    * Maximum number of members allowed in a group.
    */
-  public static int gv2GroupCapacity() {
-    return getInteger(GROUPS_V2_CAPACITY, 151);
+  public static SelectionLimits groupLimits() {
+    return new SelectionLimits(getInteger(GROUPS_V2_RECOMMENDED_LIMIT, 151),
+                           getInteger(GROUPS_V2_HARD_LIMIT, 1001));
   }
 
   /**

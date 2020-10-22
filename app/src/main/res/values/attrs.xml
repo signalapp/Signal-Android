@@ -588,4 +588,8 @@
     <declare-styleable name="ConversationScrollToView">
         <attr name="cstv_scroll_button_src" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="WarningTextView">
+        <attr name="warning_text_color" format="color|reference" />
+    </declare-styleable>
 </resources>

@@ -110,14 +110,15 @@
 
     </LinearLayout>
 
-    <TextView
+    <org.thoughtcrime.securesms.components.emoji.WarningTextView
         android:id="@+id/group_limit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/chipGroupScrollContainer"
+        app:layout_constraintStart_toStartOf="@+id/chipGroupScrollContainer"
         app:layout_constraintTop_toTopOf="parent"
+        app:warning_text_color="@color/core_red"
         tools:text="999/999"
         tools:visibility="visible" />
 
