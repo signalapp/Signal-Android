@@ -441,7 +441,7 @@ public class TextSecurePreferences {
   }
 
   public static void setUnauthorizedReceived(Context context, boolean value) {
-    boolean previous = isUnauthorizedRecieved(context);
+    boolean previous = isUnauthorizedReceived(context);
     setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value);
 
     if (previous != value) {
@@ -453,7 +453,7 @@ public class TextSecurePreferences {
     }
   }
 
-  public static boolean isUnauthorizedRecieved(Context context) {
+  public static boolean isUnauthorizedReceived(Context context) {
     return getBooleanPreference(context, UNAUTHORIZED_RECEIVED, false);
   }
 

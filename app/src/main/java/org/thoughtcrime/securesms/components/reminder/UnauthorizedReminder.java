@@ -23,6 +23,6 @@ public class UnauthorizedReminder extends Reminder {
   }
 
   public static boolean isEligible(Context context) {
-    return TextSecurePreferences.isUnauthorizedRecieved(context);
+    return TextSecurePreferences.isUnauthorizedReceived(context);
   }
 }
