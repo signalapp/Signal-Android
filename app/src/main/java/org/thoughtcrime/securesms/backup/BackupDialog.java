@@ -6,6 +6,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.DocumentsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +23,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.fragments.RestoreBackupFragment;
@@ -30,8 +31,6 @@ import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
-
-import java.util.Objects;
 
 public class BackupDialog {
 
@@ -118,6 +117,10 @@ public class BackupDialog {
                    })
                    .setPositiveButton(R.string.BackupDialog_choose_folder, ((dialog, which) -> {
                      Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+
+                     if (Build.VERSION.SDK_INT >= 26) {
+                       intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings().getLatestSignalBackupDirectory());
+                     }
 
                      intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION |
                                      Intent.FLAG_GRANT_WRITE_URI_PERMISSION       |

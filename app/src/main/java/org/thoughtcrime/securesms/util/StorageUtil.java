@@ -5,17 +5,24 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.provider.MediaStore;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 
 import java.io.File;
+import java.util.List;
+import java.util.Objects;
 
 public class StorageUtil {
 
@@ -43,6 +50,30 @@ public class StorageUtil {
     }
 
     return backups;
+  }
+
+  @RequiresApi(24)
+  public static @NonNull String getDisplayPath(@NonNull Context context, @NonNull Uri uri) {
+    String lastPathSegment = Objects.requireNonNull(uri.getLastPathSegment());
+    String backupVolume    = lastPathSegment.replaceFirst(":.*", "");
+    String backupName      = lastPathSegment.replaceFirst(".*:", "");
+
+    StorageManager      storageManager = ServiceUtil.getStorageManager(context);
+    List<StorageVolume> storageVolumes = storageManager.getStorageVolumes();
+    StorageVolume       storageVolume  = null;
+
+    for (StorageVolume volume : storageVolumes) {
+      if (Objects.equals(volume.getUuid(), backupVolume)) {
+        storageVolume = volume;
+        break;
+      }
+    }
+
+    if (storageVolume == null) {
+      return backupName;
+    } else {
+      return context.getString(R.string.StorageUtil__s_s, storageVolume.getDescription(context), backupName);
+    }
   }
 
   public static File getBackupCacheDirectory(Context context) {

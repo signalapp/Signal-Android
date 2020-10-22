@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.registration.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.DocumentsContract;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +21,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.BackupUtil;
-
-import java.util.Objects;
 
 public class ChooseBackupFragment extends BaseRegistrationFragment {
 
@@ -70,6 +70,10 @@ public class ChooseBackupFragment extends BaseRegistrationFragment {
     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 
     intent.setType("application/octet-stream");
+
+    if (Build.VERSION.SDK_INT >= 26) {
+      intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings().getLatestSignalBackupDirectory());
+    }
 
     startActivityForResult(intent, OPEN_FILE_REQUEST_CODE);
   }

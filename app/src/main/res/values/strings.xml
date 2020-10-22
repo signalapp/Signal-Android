@@ -2750,6 +2750,9 @@
     <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Voice message &#183; %1$s</string>
     <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s to %2$s</string>
 
+    <!-- StorageUtil -->
+    <string name="StorageUtil__s_s">%1$s/%2$s</string>
+
     <!-- EOF -->
 
 </resources>

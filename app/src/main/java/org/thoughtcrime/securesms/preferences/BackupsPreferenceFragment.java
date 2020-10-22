@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -102,17 +103,15 @@ public class BackupsPreferenceFragment extends Fragment {
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == CHOOSE_BACKUPS_LOCATION_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-
-      DocumentFile backupDirectory = DocumentFile.fromTreeUri(requireContext(), data.getData());
-      if (backupDirectory == null || !backupDirectory.isDirectory()) {
-        Log.w(TAG, "Could not open backup directory.");
-        return;
-      }
-
+    if (Build.VERSION.SDK_INT >= 29                         &&
+        requestCode == CHOOSE_BACKUPS_LOCATION_REQUEST_CODE &&
+        resultCode == Activity.RESULT_OK                    &&
+        data != null                                        &&
+        data.getData() != null)
+    {
       BackupDialog.showEnableBackupDialog(requireContext(),
                                           data,
-                                          backupDirectory.getName(),
+                                          StorageUtil.getDisplayPath(requireContext(), data.getData()),
                                           this::setBackupsEnabled);
     }
   }
@@ -159,13 +158,10 @@ public class BackupsPreferenceFragment extends Fragment {
       if (BackupUtil.isUserSelectionRequired(requireContext()) &&
           BackupUtil.canUserAccessBackupDirectory(requireContext()))
       {
-        Uri          backupUri  = Objects.requireNonNull(SignalStore.settings().getSignalBackupDirectory());
-        DocumentFile backupFile = Objects.requireNonNull(DocumentFile.fromTreeUri(requireContext(), backupUri));
+        Uri backupUri = Objects.requireNonNull(SignalStore.settings().getSignalBackupDirectory());
 
-        if (backupFile.getName() != null) {
-          folder.setVisibility(View.VISIBLE);
-          folderName.setText(backupFile.getName());
-        }
+        folder.setVisibility(View.VISIBLE);
+        folderName.setText(StorageUtil.getDisplayPath(requireContext(), backupUri));
       } else if (StorageUtil.canWriteInSignalStorageDir()) {
         try {
           folder.setVisibility(View.VISIBLE);
