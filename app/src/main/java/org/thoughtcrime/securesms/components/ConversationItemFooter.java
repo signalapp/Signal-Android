@@ -150,8 +150,8 @@ public class ConversationItemFooter extends ConstraintLayout {
     presentAudioDuration(messageRecord);
   }
 
-  public void setAudioDuration(long totalDurationMillis, long currentPostionMillis) {
-    long remainingSecs = Math.max(0, TimeUnit.MILLISECONDS.toSeconds(totalDurationMillis - currentPostionMillis));
+  public void setAudioDuration(long totalDurationMillis, long currentPositionMillis) {
+    long remainingSecs = Math.max(0, TimeUnit.MILLISECONDS.toSeconds(totalDurationMillis - currentPositionMillis));
     audioDuration.setText(getResources().getString(R.string.AudioView_duration, remainingSecs / 60, remainingSecs % 60));
   }
 
