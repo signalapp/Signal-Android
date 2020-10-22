@@ -88,6 +88,8 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
 
   @Override
   public void onPrepareFromUri(final Uri uri, Bundle extras) {
+    Log.d(TAG, "onPrepareFromUri: " + uri);
+
     long    messageId      = extras.getLong(VoiceNoteMediaController.EXTRA_MESSAGE_ID);
     double  progress       = extras.getDouble(VoiceNoteMediaController.EXTRA_PROGRESS, 0);
     boolean singlePlayback = extras.getBoolean(VoiceNoteMediaController.EXTRA_PLAY_SINGLE, false);

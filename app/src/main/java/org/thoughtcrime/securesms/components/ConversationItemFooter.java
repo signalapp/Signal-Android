@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.View;
@@ -15,18 +16,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieProperty;
+import com.airbnb.lottie.model.KeyPath;
+
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class ConversationItemFooter extends LinearLayout {
 
@@ -36,6 +45,9 @@ public class ConversationItemFooter extends LinearLayout {
   private ImageView           insecureIndicatorView;
   private DeliveryStatusView  deliveryStatusView;
   private boolean             onlyShowSendingStatus;
+  private View                audioSpace;
+  private TextView            audioDuration;
+  private LottieAnimationView revealDot;
 
   public ConversationItemFooter(Context context) {
     super(context);
@@ -60,11 +72,15 @@ public class ConversationItemFooter extends LinearLayout {
     timerView             = findViewById(R.id.footer_expiration_timer);
     insecureIndicatorView = findViewById(R.id.footer_insecure_indicator);
     deliveryStatusView    = findViewById(R.id.footer_delivery_status);
+    audioDuration         = findViewById(R.id.footer_audio_duration);
+    audioSpace            = findViewById(R.id.footer_audio_duration_space);
+    revealDot             = findViewById(R.id.footer_revealed_dot);
 
     if (attrs != null) {
       TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ConversationItemFooter, 0, 0);
       setTextColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_text_color, getResources().getColor(R.color.core_white)));
       setIconColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_icon_color, getResources().getColor(R.color.core_white)));
+      setRevealDotColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_reveal_dot_color, getResources().getColor(R.color.core_white)));
       typedArray.recycle();
     }
   }
@@ -81,17 +97,32 @@ public class ConversationItemFooter extends LinearLayout {
     presentTimer(messageRecord);
     presentInsecureIndicator(messageRecord);
     presentDeliveryStatus(messageRecord);
+    hideAudioDurationViews();
+  }
+
+  public void setAudioDuration(long totalDurationMillis, long currentPostionMillis) {
+    long remainingSecs = TimeUnit.MILLISECONDS.toSeconds(totalDurationMillis - currentPostionMillis);
+    audioDuration.setText(getResources().getString(R.string.AudioView_duration, remainingSecs / 60, remainingSecs % 60));
   }
 
   public void setTextColor(int color) {
     dateView.setTextColor(color);
     simView.setTextColor(color);
+    audioDuration.setTextColor(color);
   }
 
   public void setIconColor(int color) {
     timerView.setColorFilter(color, PorterDuff.Mode.SRC_IN);
     insecureIndicatorView.setColorFilter(color);
     deliveryStatusView.setTint(color);
+  }
+
+  public void setRevealDotColor(int color) {
+    revealDot.addValueCallback(
+        new KeyPath("**"),
+        LottieProperty.COLOR_FILTER,
+        frameInfo -> new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+    );
   }
 
   public void setOnlyShowSendingStatus(boolean onlyShowSending, MessageRecord messageRecord) {
@@ -203,5 +234,65 @@ public class ConversationItemFooter extends LinearLayout {
         deliveryStatusView.setSent();
       }
     }
+  }
+
+  private void presentAudioDuration(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.isMms()) {
+      MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
+
+      if (mmsMessageRecord.getSlideDeck().getAudioSlide() != null) {
+        if (messageRecord.isOutgoing()) {
+          moveAudioViewsForOutgoing();
+        } else {
+          moveAudioViewsForIncoming();
+        }
+        showAudioDurationViews();
+      } else {
+        hideAudioDurationViews();
+      }
+    } else {
+      hideAudioDurationViews();
+    }
+  }
+
+  private void moveAudioViewsForOutgoing() {
+    removeView(audioSpace);
+    removeView(audioDuration);
+    removeView(revealDot);
+    addView(audioSpace, 0);
+    addView(revealDot, 0);
+    addView(audioDuration, 0);
+
+    int padStart = ViewUtil.dpToPx(60);
+    int padLeft  = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? padStart : 0;
+    int padRight = getLayoutDirection() == LAYOUT_DIRECTION_RTL ? padStart : 0;
+
+    audioDuration.setPadding(padLeft, 0, padRight, 0);
+  }
+
+  private void moveAudioViewsForIncoming() {
+    removeView(audioSpace);
+    removeView(audioDuration);
+    removeView(revealDot);
+    addView(audioSpace);
+    addView(revealDot);
+    addView(audioDuration);
+
+    audioDuration.setPadding(0, 0, 0, 0);
+  }
+
+  private void showAudioDurationViews() {
+    audioSpace.setVisibility(View.VISIBLE);
+    audioDuration.setVisibility(View.VISIBLE);
+
+    if (FeatureFlags.viewedReceipts()) {
+      revealDot.setVisibility(View.VISIBLE);
+    }
+  }
+
+  private void hideAudioDurationViews() {
+    audioSpace.setVisibility(View.GONE);
+    audioDuration.setVisibility(View.GONE);
+    revealDot.setVisibility(View.GONE);
   }
 }

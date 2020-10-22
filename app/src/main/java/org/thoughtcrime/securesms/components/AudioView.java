@@ -61,6 +61,7 @@ public final class AudioView extends FrameLayout {
 
   @ColorInt private final int waveFormPlayedBarsColor;
   @ColorInt private final int waveFormUnplayedBarsColor;
+  @ColorInt private final int waveFormThumbTint;
 
   @Nullable private SlideClickListener downloadListener;
             private int                backwardsCounter;
@@ -107,6 +108,9 @@ public final class AudioView extends FrameLayout {
 
       this.waveFormPlayedBarsColor   = typedArray.getColor(R.styleable.AudioView_waveformPlayedBarsColor, Color.WHITE);
       this.waveFormUnplayedBarsColor = typedArray.getColor(R.styleable.AudioView_waveformUnplayedBarsColor, Color.WHITE);
+      this.waveFormThumbTint         = typedArray.getColor(R.styleable.AudioView_waveformThumbTint, Color.WHITE);
+
+      progressAndPlay.getBackground().setColorFilter(typedArray.getColor(R.styleable.AudioView_progressAndPlayTint, Color.BLACK), PorterDuff.Mode.SRC_IN);
     } finally {
       if (typedArray != null) {
         typedArray.recycle();
@@ -132,9 +136,14 @@ public final class AudioView extends FrameLayout {
 
   public void setAudio(final @NonNull AudioSlide audio,
                        final @Nullable Callbacks callbacks,
-                       final boolean showControls)
+                       final boolean showControls,
+                       final boolean forceHideDuration)
   {
     this.callbacks = callbacks;
+
+    if (duration != null) {
+      duration.setVisibility(View.VISIBLE);
+    }
 
     if (seekBar instanceof WaveFormSeekBarView) {
       if (audioSlide != null && !Objects.equals(audioSlide.getUri(), audio.getUri())) {
@@ -150,9 +159,11 @@ public final class AudioView extends FrameLayout {
       seekBar.setEnabled(false);
       downloadButton.setOnClickListener(new DownloadClickedListener(audio));
       if (circleProgress.isSpinning()) circleProgress.stopSpinning();
+      circleProgress.setVisibility(View.GONE);
     } else if (showControls && audio.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
       controlToggle.displayQuick(progressAndPlay);
       seekBar.setEnabled(false);
+      circleProgress.setVisibility(View.VISIBLE);
       circleProgress.spin();
     } else {
       seekBar.setEnabled(true);
@@ -164,13 +175,13 @@ public final class AudioView extends FrameLayout {
 
     if (seekBar instanceof WaveFormSeekBarView) {
       WaveFormSeekBarView waveFormView = (WaveFormSeekBarView) seekBar;
-      waveFormView.setColors(waveFormPlayedBarsColor, waveFormUnplayedBarsColor);
+      waveFormView.setColors(waveFormPlayedBarsColor, waveFormUnplayedBarsColor, waveFormThumbTint);
       if (android.os.Build.VERSION.SDK_INT >= 23) {
         new AudioWaveForm(getContext(), audio).getWaveForm(
           data -> {
-            if (duration != null) {
-              durationMillis = data.getDuration(TimeUnit.MILLISECONDS);
-              updateProgress(0, 0);
+            durationMillis = data.getDuration(TimeUnit.MILLISECONDS);
+            updateProgress(0, 0);
+            if (!forceHideDuration && duration != null) {
               duration.setVisibility(VISIBLE);
             }
             waveFormView.setWaveData(data.getWaveForm());
@@ -183,10 +194,19 @@ public final class AudioView extends FrameLayout {
         }
       }
     }
+
+    if (forceHideDuration && duration != null) {
+      duration.setVisibility(View.GONE);
+    }
   }
 
   public void setDownloadClickListener(@Nullable SlideClickListener listener) {
     this.downloadListener = listener;
+  }
+
+  public @Nullable Uri getAudioSlideUri() {
+    if (audioSlide != null) return audioSlide.getUri();
+    else                    return null;
   }
 
   private void onPlaybackState(@NonNull VoiceNotePlaybackState voiceNotePlaybackState) {
@@ -274,6 +294,10 @@ public final class AudioView extends FrameLayout {
   }
 
   private void updateProgress(float progress, long millis) {
+    if (callbacks != null) {
+      callbacks.onProgressUpdated(durationMillis, millis);
+    }
+
     if (duration != null && durationMillis > 0) {
       long remainingSecs = TimeUnit.MILLISECONDS.toSeconds(durationMillis - millis);
       duration.setText(getResources().getString(R.string.AudioView_duration, remainingSecs / 60, remainingSecs % 60));
@@ -336,7 +360,7 @@ public final class AudioView extends FrameLayout {
     if (!smallView || seekBar.getProgress() == 0) {
       circleProgress.setInstantProgress(1);
     }
-    circleProgress.setVisibility(VISIBLE);
+    circleProgress.setVisibility(GONE);
     playPauseButton.setVisibility(VISIBLE);
     controlToggle.displayQuick(progressAndPlay);
   }
@@ -435,5 +459,6 @@ public final class AudioView extends FrameLayout {
     void onPause(@NonNull Uri audioUri);
     void onSeekTo(@NonNull Uri audioUri, double progress);
     void onStopAndReset(@NonNull Uri audioUri);
+    void onProgressUpdated(long durationMillis, long playheadMillis);
   }
 }

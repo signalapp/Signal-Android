@@ -18,9 +18,10 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:paddingStart="12dp"
-            android:paddingTop="10dp"
+            android:paddingTop="8dp"
             android:paddingEnd="8dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="8dp"
+            android:thumb="@drawable/audio_wave_thumb"
             tools:progress="50" />
 
         <TextView

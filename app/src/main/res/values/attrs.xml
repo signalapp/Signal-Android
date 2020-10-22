@@ -94,6 +94,7 @@
     <attr name="conversation_number_picker_text_color_selected" format="reference|color"/>
     <attr name="conversation_sticker_footer_text_color" format="reference|color"/>
     <attr name="conversation_sticker_footer_icon_color" format="reference|color"/>
+    <attr name="conversation_footer_sent_reveal_dot_color" format="color" />
     <attr name="conversation_sticker_author_color" format="reference|color"/>
     <attr name="conversation_popup_theme" format="reference"/>
     <attr name="conversation_title_color" format="reference" />
@@ -140,6 +141,10 @@
     <attr name="quick_mic_icon" format="reference"/>
 
     <attr name="compose_icon_tint" />
+
+    <attr name="audio_seek_bar_sent_played_color" format="color" />
+    <attr name="audio_seek_bar_sent_unplayed_color" format="color" />
+    <attr name="audio_play_pause_sent_background_tint" format="color" />
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_bubble_background" format="reference|color"/>
@@ -387,8 +392,10 @@
     <declare-styleable name="AudioView">
         <attr name="foregroundTintColor" format="color" />
         <attr name="backgroundTintColor" format="color" />
+        <attr name="waveformThumbTint" format="color" />
         <attr name="waveformPlayedBarsColor" format="color" />
         <attr name="waveformUnplayedBarsColor" format="color" />
+        <attr name="progressAndPlayTint" format="color" />
         <attr name="small" format="boolean" />
         <attr name="autoRewind" format="boolean" />
     </declare-styleable>
@@ -486,6 +493,7 @@
     <declare-styleable name="ConversationItemFooter">
         <attr name="footer_text_color" format="color" />
         <attr name="footer_icon_color" format="color" />
+        <attr name="footer_reveal_dot_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="ConversationItemThumbnail">

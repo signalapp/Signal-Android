@@ -59,6 +59,7 @@ public final class FeatureFlags {
   private static final String CLIENT_EXPIRATION            = "android.clientExpiration";
   public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
   public  static final String MODERN_PROFILE_SHARING       = "android.modernProfileSharing";
+  private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -75,7 +76,8 @@ public final class FeatureFlags {
       VERIFY_V2,
       CLIENT_EXPIRATION,
       RESEARCH_MEGAPHONE_1,
-      MODERN_PROFILE_SHARING
+      MODERN_PROFILE_SHARING,
+      VIEWED_RECEIPTS
   );
 
   /**
@@ -241,6 +243,13 @@ public final class FeatureFlags {
   /** Whether or not to show the new profile sharing prompt for legacy conversations. */
   public static boolean modernProfileSharing() {
     return getBoolean(MODERN_PROFILE_SHARING, false);
+  }
+
+  /**
+   * Whether the user should display the content revealed dot in voice notes.
+   */
+  public static boolean viewedReceipts() {
+    return getBoolean(VIEWED_RECEIPTS, false);
   }
 
   /** Only for rendering debug info. */

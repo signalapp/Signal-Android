@@ -440,7 +440,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       long mmsId = Objects.requireNonNull(mediaRecord.getAttachment()).getMmsId();
 
       audioItemListener.unregisterPlaybackStateObserver(audioView.getPlaybackStateObserver());
-      audioView.setAudio((AudioSlide) slide, new AudioViewCallbacksAdapter(audioItemListener, mmsId), true);
+      audioView.setAudio((AudioSlide) slide, new AudioViewCallbacksAdapter(audioItemListener, mmsId), true, true);
       audioItemListener.registerPlaybackStateObserver(audioView.getPlaybackStateObserver());
 
       audioView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
@@ -519,6 +519,10 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     @Override
     public void onStopAndReset(@NonNull Uri audioUri) {
       audioItemListener.onStopAndReset(audioUri);
+    }
+
+    @Override
+    public void onProgressUpdated(long durationMillis, long playheadMillis) {
     }
   }
 

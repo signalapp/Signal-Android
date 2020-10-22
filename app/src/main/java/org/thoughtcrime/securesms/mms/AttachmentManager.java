@@ -277,7 +277,7 @@ public class AttachmentManager {
           attachmentViewStub.get().setVisibility(View.VISIBLE);
 
           if (slide.hasAudio()) {
-            audioView.setAudio((AudioSlide) slide, null, false);
+            audioView.setAudio((AudioSlide) slide, null, false, false);
             removableMediaView.display(audioView, false);
             result.set(true);
           } else if (slide.hasDocument()) {

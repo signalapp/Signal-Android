@@ -140,6 +140,7 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:gravity="end"
+                app:footer_reveal_dot_color="?attr/conversation_footer_sent_reveal_dot_color"
                 app:footer_icon_color="?attr/conversation_item_sent_icon_color"
                 app:footer_text_color="?attr/conversation_item_sent_text_secondary_color" />
 

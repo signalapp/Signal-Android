@@ -6,10 +6,12 @@
     android:layout_width="48dp"
     android:layout_height="48dp"
     android:layout_gravity="center"
+    android:padding="2dp"
     android:gravity="center"
     tools:showIn="@layout/audio_view">
 
     <FrameLayout
+        android:background="@drawable/circle_tintable"
         android:id="@+id/progress_and_play"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,8 +27,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/play"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@drawable/circle_touch_highlight_background"
             android:contentDescription="@string/audio_view__play_pause_accessibility_description"

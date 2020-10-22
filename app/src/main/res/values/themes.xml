@@ -167,6 +167,10 @@
         <item name="backup_enable_dialog_divider_background">@color/core_grey_20</item>
         <item name="backup_enable_subhead_color">@color/core_grey_65</item>
 
+        <item name="audio_seek_bar_sent_played_color">@color/core_grey_60</item>
+        <item name="audio_seek_bar_sent_unplayed_color">@color/core_grey_25</item>
+        <item name="audio_play_pause_sent_background_tint">@color/core_white</item>
+
         <item name="insight_modal_background">@drawable/insights_modal_background</item>
         <item name="insight_modal_button_background">@color/core_grey_10</item>
         <item name="insight_title">@color/core_grey_90</item>
@@ -272,6 +276,7 @@
         <item name="conversation_number_picker_text_color_selected">@color/black</item>
         <item name="conversation_sticker_footer_text_color">@color/core_grey_60</item>
         <item name="conversation_sticker_footer_icon_color">@color/core_grey_60</item>
+        <item name="conversation_footer_sent_reveal_dot_color">@color/core_grey_60</item>
         <item name="conversation_sticker_author_color">@color/core_grey_95</item>
         <item name="conversation_popup_theme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="conversation_title_color">@color/white</item>
@@ -502,6 +507,10 @@
         <item name="backup_enable_dialog_divider_background">@color/core_grey_60</item>
         <item name="backup_enable_subhead_color">@color/core_grey_25</item>
 
+        <item name="audio_seek_bar_sent_played_color">@color/core_grey_15</item>
+        <item name="audio_seek_bar_sent_unplayed_color">@color/core_grey_60</item>
+        <item name="audio_play_pause_sent_background_tint">@color/core_grey_60</item>
+
         <item name="insight_modal_background">@drawable/insights_modal_background_dark</item>
         <item name="insight_modal_button_background">@color/core_grey_60</item>
         <item name="insight_title">@color/core_grey_25</item>
@@ -661,6 +670,7 @@
         <item name="conversation_number_picker_text_color_selected">@color/white</item>
         <item name="conversation_sticker_footer_text_color">@color/core_grey_25</item>
         <item name="conversation_sticker_footer_icon_color">@color/core_grey_25</item>
+        <item name="conversation_footer_sent_reveal_dot_color">@color/core_grey_25</item>
         <item name="conversation_sticker_author_color">@color/core_grey_05</item>
         <item name="conversation_popup_theme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="conversation_title_color">@color/transparent_white_90</item>
