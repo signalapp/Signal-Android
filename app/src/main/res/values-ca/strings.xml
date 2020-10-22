@@ -771,13 +771,13 @@
   <string name="MessageRecord_left_group">Heu abandonat el grup.</string>
   <string name="MessageRecord_you_updated_group">Heu actualitzat el grup.</string>
   <string name="MessageRecord_the_group_was_updated">S\'ha actualitzat el grup.</string>
-  <string name="MessageRecord_you_called">Heu trucat</string>
-  <string name="MessageRecord_called_you">Trucada del contacte</string>
-  <string name="MessageRecord_missed_call">Trucada perduda</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Heu trucat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Trucada del contacte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Trucada perduda</string> -->
   <string name="MessageRecord_s_updated_group">%s ha actualitzat el grup.</string>
-  <string name="MessageRecord_s_called_you">%s us ha trucat</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s us ha trucat</string> -->
   <string name="MessageRecord_called_s">Heu trucat a %s</string>
-  <string name="MessageRecord_missed_call_from">Trucada perduda de %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Trucada perduda de %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s és al Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Heu desactivat els missatges efímers.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha desactivat els missatges efímers.</string>
@@ -1427,8 +1427,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error en recuperar els contactes. Comproveu la connexió de xarxa.</string>
   <string name="ContactSelectionListFragment_username_not_found">No s\'ha trobat el nom d\'usuari.</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$s no és un usuari del Signal. Si us plau, comproveu-ne el nom i torneu-ho a provar.</string>
-  <string name="ContactSelectionListFragment_okay">D\'acord</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">El grup és ple.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">D\'acord</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">El grup és ple.</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No cal que us afegiu al grup.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hi ha cap contacte blocat</string>

@@ -248,11 +248,11 @@ a</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ofuny obubaka obubuabuzidwa nga bakozesa vazoni ya signal etakyaakola. wattu saba asindise okuza obujja  signal ye  era addemu asindike obubaka</string>
   <string name="MessageRecord_left_group">Ovudemu mu kibinja.</string>
-  <string name="MessageRecord_you_called">wakubye</string>
-  <string name="MessageRecord_missed_call">missed call</string>
-  <string name="MessageRecord_s_called_you">%s yakkubiddeko</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">wakubye</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">missed call</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s yakkubiddeko</string> -->
   <string name="MessageRecord_called_s">Wakubidde %s</string>
-  <string name="MessageRecord_missed_call_from">Wasubiddwa essimu okuva %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Wasubiddwa essimu okuva %s</string> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passiwaddi nga yabigaambo ne namba tefanana</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Passiwaddi y\'ebigaambo ne namba sintufu</string>

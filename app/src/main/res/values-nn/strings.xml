@@ -776,13 +776,13 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_left_group">Du har forlate gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du oppdaterte gruppa.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppa vart oppdatert.</string>
-  <string name="MessageRecord_you_called">Du ringte</string>
-  <string name="MessageRecord_called_you">Kontakt ringte</string>
-  <string name="MessageRecord_missed_call">Usvart anrop</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Du ringte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt ringte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Usvart anrop</string> -->
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
-  <string name="MessageRecord_s_called_you">%s ringte deg</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ringte deg</string> -->
   <string name="MessageRecord_called_s">Ringte %s</string>
-  <string name="MessageRecord_missed_call_from">Tapt anrop frå %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Tapt anrop frå %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du skrudde av forsvinnande meldingar.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sskrudde av forsvinnande meldingar.</string>
@@ -1437,8 +1437,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikkje henta kontaktane, sjekk nettverkstilkoplinga di</string>
   <string name="ContactSelectionListFragment_username_not_found">Fann ikkje brukarnamnet</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">«%1$s» er ikkje ein brukar på Signal. Sjekk brukarnamnet og prøv igjen.</string>
-  <string name="ContactSelectionListFragment_okay">Greitt</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Gruppa er full</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Greitt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Gruppa er full</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du treng ikkje legga deg sjølv til i gruppa.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontaktar</string>

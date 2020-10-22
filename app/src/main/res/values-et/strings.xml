@@ -706,13 +706,13 @@
   <string name="MessageRecord_left_group">Sa lahkusid grupist.</string>
   <string name="MessageRecord_you_updated_group">Sa uuendasid gruppi.</string>
   <string name="MessageRecord_the_group_was_updated">Grupp on uuendatud.</string>
-  <string name="MessageRecord_you_called">Sa helistasid</string>
-  <string name="MessageRecord_called_you">Kontakt helistas</string>
-  <string name="MessageRecord_missed_call">Vastamata kõne</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Sa helistasid</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt helistas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Vastamata kõne</string> -->
   <string name="MessageRecord_s_updated_group">%s uuendas gruppi.</string>
-  <string name="MessageRecord_s_called_you">%s helistas sulle</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s helistas sulle</string> -->
   <string name="MessageRecord_called_s">Helistasid kontaktile %s</string>
-  <string name="MessageRecord_missed_call_from">Vastamata kõne kontaktilt %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Vastamata kõne kontaktilt %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s on Signalis!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Sa keelasid kaduvad sõnumid.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s keelas kaduvad sõnumid.</string>
@@ -1319,8 +1319,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontaktide laadimisel tekkis tõrge. Kontrolli võrguühendust.</string>
   <string name="ContactSelectionListFragment_username_not_found">Kasutajanime ei leitud</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti.</string>
-  <string name="ContactSelectionListFragment_okay">Sobib</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Grupp on täis</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Sobib</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupp on täis</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sa ei pea ennast gruppi lisama</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeeritud kontakte pole</string>

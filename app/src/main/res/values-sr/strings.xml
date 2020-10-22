@@ -489,13 +489,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Примљена је порука шифрована старим издањем Signal-a које више није подржано. Замолите пошиљаоца да надогради на најновије издање и поново пошаље поруку.</string>
   <string name="MessageRecord_left_group">Напустили сте групу.</string>
   <string name="MessageRecord_you_updated_group">Ви сте ажурирали групу.</string>
-  <string name="MessageRecord_you_called">Позвали сте</string>
-  <string name="MessageRecord_called_you">Контакт је звао</string>
-  <string name="MessageRecord_missed_call">Пропуштен позив</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Позвали сте</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Контакт је звао</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Пропуштен позив</string> -->
   <string name="MessageRecord_s_updated_group">%s ажурира групу.</string>
-  <string name="MessageRecord_s_called_you">%s вас је позвао/ла</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s вас је позвао/ла</string> -->
   <string name="MessageRecord_called_s">Позвали сте %s</string>
-  <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Пропуштен позив од %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s је на Signalу!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Искључили сте нестајуће поруке.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s је онемогућио/ла нестајуће поруке.</string>
@@ -884,7 +884,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Фотографија контакта</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_okay">У реду</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">У реду</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Нема блокираних контаката</string>
   <!--contact_selection_list_fragment-->

@@ -737,13 +737,13 @@
   <string name="MessageRecord_left_group">您已經離開了此群組。</string>
   <string name="MessageRecord_you_updated_group">你已更新群組。</string>
   <string name="MessageRecord_the_group_was_updated">該群組已更新。</string>
-  <string name="MessageRecord_you_called">向外撥號</string>
-  <string name="MessageRecord_called_you">聯絡人來電</string>
-  <string name="MessageRecord_missed_call">未接來電</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">向外撥號</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">聯絡人來電</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">未接來電</string> -->
   <string name="MessageRecord_s_updated_group">%s 更新了群組。</string>
-  <string name="MessageRecord_s_called_you">%s來電</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s來電</string> -->
   <string name="MessageRecord_called_s">撥打給%s</string>
-  <string name="MessageRecord_missed_call_from">錯過來自%s的來電</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">錯過來自%s的來電</string> -->
   <string name="MessageRecord_s_joined_signal">%s 在 Signal 了！</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">你關閉了自動銷毀訊息的功能。</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 關閉了自動銷毀訊息的功能。</string>
@@ -1383,8 +1383,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">取回聯絡人名單錯誤，請檢查網路連線</string>
   <string name="ContactSelectionListFragment_username_not_found">找不到使用者名稱</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\"不是 Signal 使用者。請檢查使用者名稱並再試一次。</string>
-  <string name="ContactSelectionListFragment_okay">Okay</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">群組人數已經滿了</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okay</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">群組人數已經滿了</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">你無需將自己新增到群組中</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">無已封鎖的聯絡人</string>

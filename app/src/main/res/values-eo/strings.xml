@@ -771,13 +771,13 @@
   <string name="MessageRecord_left_group">Vi forlasis la grupon.</string>
   <string name="MessageRecord_you_updated_group">Vi ĝisdatigis la grupon.</string>
   <string name="MessageRecord_the_group_was_updated">La grupo estis ĝisdatigita.</string>
-  <string name="MessageRecord_you_called">Vi telefonis</string>
-  <string name="MessageRecord_called_you">Kontakto alvokita</string>
-  <string name="MessageRecord_missed_call">Maltrafita alvoko</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Vi telefonis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakto alvokita</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Maltrafita alvoko</string> -->
   <string name="MessageRecord_s_updated_group">%s ĝisdatigis la grupon.</string>
-  <string name="MessageRecord_s_called_you">%s telefonis vin</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s telefonis vin</string> -->
   <string name="MessageRecord_called_s">Vi alvokis %s</string>
-  <string name="MessageRecord_missed_call_from">Maltrafita alvoko el %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Maltrafita alvoko el %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s estas ĉe Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Vi malŝaltis memviŝontajn mesaĝojn.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s malŝaltis memviŝontajn mesaĝojn.</string>
@@ -1432,8 +1432,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Eraro dum ricevo de kontaktoj; bv. kontroli vian retkonekton</string>
   <string name="ContactSelectionListFragment_username_not_found">Uzantnomo ne trovita</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">„%1$s“ ne estas Signal-uzanto. Kontrolu la uzantnomon kaj reprovu.</string>
-  <string name="ContactSelectionListFragment_okay">Bone</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">La grupo plenas</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Bone</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">La grupo plenas</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vi ne bezonas aldoni vin mem al la grupo</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Neniu blokata kontakto</string>

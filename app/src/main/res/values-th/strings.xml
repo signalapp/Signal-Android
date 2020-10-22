@@ -591,13 +591,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ได้รับข้อความที่เข้ารหัสลับด้วย Signal รุ่นเก่าที่ไม่รองรับอีกต่อไปแล้ว โปรดขอให้ผู้ส่งปรับปรุงแอปเป็นรุ่นล่าสุดและส่งข้อความอีกครั้ง</string>
   <string name="MessageRecord_left_group">คุณได้ออกจากกลุ่ม</string>
   <string name="MessageRecord_you_updated_group">คุณได้อัปเดตกลุ่ม</string>
-  <string name="MessageRecord_you_called">คุณได้โทรหา</string>
-  <string name="MessageRecord_called_you">ผู้ติดต่อได้โทรหา</string>
-  <string name="MessageRecord_missed_call">สายที่ไม่ได้รับ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">คุณได้โทรหา</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">ผู้ติดต่อได้โทรหา</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">สายที่ไม่ได้รับ</string> -->
   <string name="MessageRecord_s_updated_group">%s ได้อัปเดตกลุ่ม</string>
-  <string name="MessageRecord_s_called_you">%s ได้โทรหาคุณ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ได้โทรหาคุณ</string> -->
   <string name="MessageRecord_called_s">ได้โทรหา %s</string>
-  <string name="MessageRecord_missed_call_from">สายที่ไม่ได้รับจาก %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">สายที่ไม่ได้รับจาก %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s ใช้งาน Signal</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">คุณได้ปิดใช้งานข้อความที่ลบตัวเองแล้ว</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ได้ปิดใช้งานข้อความที่ลบตัวเองแล้ว</string>
@@ -1130,8 +1130,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">เกิดข้อผิดพลาดระหว่างดึงผู้ติดต่อ ตรวจสอบการเชื่อมต่อเครือข่ายของคุณ</string>
   <string name="ContactSelectionListFragment_username_not_found">ไม่พบชื่อผู้ใช้</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$sไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง</string>
-  <string name="ContactSelectionListFragment_okay">โอเค</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">กลุ่มเต็ม</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">โอเค</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">กลุ่มเต็ม</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ไม่มีผู้ติดต่อที่ถูกปิดกั้น</string>
   <!--contact_selection_list_fragment-->

@@ -771,13 +771,13 @@
   <string name="MessageRecord_left_group">شما گروه را ترک کردید.</string>
   <string name="MessageRecord_you_updated_group">شما گروه را به‌روزرسانی کردید.</string>
   <string name="MessageRecord_the_group_was_updated">گروه به‌روزرسانی شد.</string>
-  <string name="MessageRecord_you_called">شما تماس گرفتید</string>
-  <string name="MessageRecord_called_you">مخاطب تماس گرفت</string>
-  <string name="MessageRecord_missed_call">تماس از دست رفته</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">شما تماس گرفتید</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">مخاطب تماس گرفت</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">تماس از دست رفته</string> -->
   <string name="MessageRecord_s_updated_group">%s گروه را به‌روزرسانی کرد.</string>
-  <string name="MessageRecord_s_called_you">%s با شما تماس گرفت</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s با شما تماس گرفت</string> -->
   <string name="MessageRecord_called_s">با %s تماس گرفته شد</string>
-  <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s در Signal است!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام‌های ناپدید شونده را غیر فعال کردید.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام‌های ناپدید شونده را غیرفعال کرد.</string>
@@ -1431,8 +1431,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبین، اتصال اینترنت خود را بررسی کنید</string>
   <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
-  <string name="ContactSelectionListFragment_okay">خوب</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">گروه پر است</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">خوب</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">گروه پر است</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">نیازی نیست که خود را به گروه اضافه کنید</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">هیچ مخاطب مسدود شده‌ای وجود ندارد</string>

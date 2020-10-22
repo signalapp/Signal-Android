@@ -676,13 +676,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prijatá správa je šifrovaná starou verziou Signalu, ktorá už nie je podporovaná. Prosím požiadajte odosielateľa o aktualizáciu na najnovšiu verziu a opätovné odoslanie správy.</string>
   <string name="MessageRecord_left_group">Opustili ste skupinu.</string>
   <string name="MessageRecord_you_updated_group">Aktualizovali ste skupinu.</string>
-  <string name="MessageRecord_you_called">Odchádzajúci hovor</string>
-  <string name="MessageRecord_called_you">Prichádzajúci hovor</string>
-  <string name="MessageRecord_missed_call">Zmeškaný hovor</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Odchádzajúci hovor</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Prichádzajúci hovor</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Zmeškaný hovor</string> -->
   <string name="MessageRecord_s_updated_group">%s aktualizoval/a skupinu.</string>
-  <string name="MessageRecord_s_called_you">%s vám volal/a</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s vám volal/a</string> -->
   <string name="MessageRecord_called_s">Volali ste %s</string>
-  <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s je na Signale!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Vypli ste miznúce správy.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s vypol/la miznúce správy.</string>
@@ -897,6 +897,7 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ťuknite sem pre spustenie videa</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__start_call">Začať hovor</string>
   <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vyberte svoju krajinu</string>
@@ -1260,7 +1261,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Nepodarilo sa načítať kontakty. Skontrolujte svoje sieťové pripojenie</string>
   <string name="ContactSelectionListFragment_username_not_found">Používateľské meno sa nenašlo</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">„%1$s“ nie je používateľ Signalu. Skontrolujte používateľské meno a skúste znova.</string>
-  <string name="ContactSelectionListFragment_okay">OK</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">OK</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Žiadne blokované kontakty</string>
   <!--contact_selection_list_fragment-->

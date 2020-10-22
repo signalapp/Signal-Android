@@ -771,13 +771,13 @@
   <string name="MessageRecord_left_group">Has abandonado el grupo.</string>
   <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
   <string name="MessageRecord_the_group_was_updated">Se actualizó el grupo.</string>
-  <string name="MessageRecord_you_called">Has llamado</string>
-  <string name="MessageRecord_called_you">Llamada recibida</string>
-  <string name="MessageRecord_missed_call">Llamada perdida</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Has llamado</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Llamada recibida</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Llamada perdida</string> -->
   <string name="MessageRecord_s_updated_group">%s ha actualizado el grupo.</string>
-  <string name="MessageRecord_s_called_you">%s ha llamado</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ha llamado</string> -->
   <string name="MessageRecord_called_s">Has llamado a %s</string>
-  <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string> -->
   <string name="MessageRecord_s_joined_signal">¡%s usa Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Has desactivado la desaparición de mensajes.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha desactivado la desaparición de mensajes.</string>
@@ -1433,8 +1433,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fallo al comprobar contactos, comprueba la conexión a la red.</string>
   <string name="ContactSelectionListFragment_username_not_found">Alias no encontrado</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$s no usa Signal. Asegúrate de introducir el alias correcto.</string>
-  <string name="ContactSelectionListFragment_okay">De acuerdo</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Este grupo está completo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">De acuerdo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Este grupo está completo</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas añadirte a ti mism@ al grupo</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hay personas bloqueadas</string>

@@ -771,13 +771,13 @@
   <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
   <string name="MessageRecord_you_updated_group">Hai aggiornato il gruppo.</string>
   <string name="MessageRecord_the_group_was_updated">Il gruppo è stato aggiornato.</string>
-  <string name="MessageRecord_you_called">Hai chiamato</string>
-  <string name="MessageRecord_called_you">Contatto chiamato</string>
-  <string name="MessageRecord_missed_call">Chiamata persa</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Hai chiamato</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Contatto chiamato</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Chiamata persa</string> -->
   <string name="MessageRecord_s_updated_group">%s ha aggiornato il gruppo.</string>
-  <string name="MessageRecord_s_called_you">%s ti ha chiamato</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ti ha chiamato</string> -->
   <string name="MessageRecord_called_s">Hai chiamato %s</string>
-  <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Chiamata persa da %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s è su Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Hai disabilitato i messaggi a scomparsa.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha disabilitato i messaggi a scomparsa.</string>
@@ -1433,8 +1433,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Errore di rilevamento dei contatti, controlla la connessione di rete</string>
   <string name="ContactSelectionListFragment_username_not_found">Nome utente non trovato</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" non è un utente Signal. Controlla il nome utente e riprova.</string>
-  <string name="ContactSelectionListFragment_okay">Ok</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Il gruppo è pieno</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Ok</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Il gruppo è pieno</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Non è necessario aggiungere te stesso al gruppo</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nessun contatto bloccato</string>

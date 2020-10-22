@@ -546,13 +546,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Nakatanggap ng mensaheng na-encrypt gamit ang isang lumang bersyon ng Signal na hindi na suportado. Pakisabi sa nagpadala na mag-update sa pinakabagong bersyon at muling ipadala ang mensahe.</string>
   <string name="MessageRecord_left_group">Nakaalis ka na sa grupo.</string>
   <string name="MessageRecord_you_updated_group">In-update mo ang grupo.</string>
-  <string name="MessageRecord_you_called">Tumawag ka</string>
-  <string name="MessageRecord_called_you">Tumawag ang kontak</string>
-  <string name="MessageRecord_missed_call">Hindi nasagot na tawag</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Tumawag ka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Tumawag ang kontak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Hindi nasagot na tawag</string> -->
   <string name="MessageRecord_s_updated_group">In-update ni %s ang grupo.</string>
-  <string name="MessageRecord_s_called_you">Tinawagan ka ni %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">Tinawagan ka ni %s</string> -->
   <string name="MessageRecord_called_s">Tinawagan si %s</string>
-  <string name="MessageRecord_missed_call_from">Hindi ang tawag ni %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Hindi ang tawag ni %s</string> -->
   <string name="MessageRecord_s_joined_signal">Nasa Signal si %s!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Dinisable mo ang mga naglalahong mensahe.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">Dinisable ni %1$s ang mga naglalahong mensahe.</string>
@@ -1044,7 +1044,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Nagka-error sa pakuha ng mga kontak, suriin ang koneksyon ng iyong network.</string>
   <string name="ContactSelectionListFragment_username_not_found">Hindi nahanap ang username</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">Hindi gumagamit ng Signal si \"%1$s\" . Pakisuri ang username at subukang muli.</string>
-  <string name="ContactSelectionListFragment_okay">Okay</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okay</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Walang naka-block na kontak</string>
   <!--contact_selection_list_fragment-->

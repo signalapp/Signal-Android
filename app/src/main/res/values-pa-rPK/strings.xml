@@ -525,13 +525,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal دا پرانا ورژن جیہڑا ہن ہور تعاون یافتہ نئیں اے اوہدا استعمال کر دے ہوئیاں خفیہ کاری کیتا ہویا اک سنیہا وصول ہویا اے۔ مہربانی کر کے گھلن آلے نوں حالیہ ورژن تے اپ ڈیٹ کرن د آکھوا تے سنیہے نوں فیر گھلو۔</string>
   <string name="MessageRecord_left_group">تسیں گروپ چھڈ دتا اے۔</string>
   <string name="MessageRecord_you_updated_group">تسیں گروپ اپ ڈیٹ کیتا۔</string>
-  <string name="MessageRecord_you_called">تسیں کال کیتی</string>
-  <string name="MessageRecord_called_you"> رابطے نے کال کیتی</string>
-  <string name="MessageRecord_missed_call">مسڈ کال</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">تسیں کال کیتی</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you"> رابطے نے کال کیتی</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">مسڈ کال</string> -->
   <string name="MessageRecord_s_updated_group">%s نے گروپ اپ ڈیٹ کیتا۔</string>
-  <string name="MessageRecord_s_called_you">%s نے تہانوں کال کیتی</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s نے تہانوں کال کیتی</string> -->
   <string name="MessageRecord_called_s">%s کال کیتی</string>
-  <string name="MessageRecord_missed_call_from">%s دی طرفوں مسڈ کال</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s دی طرفوں مسڈ کال</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal تے اے!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">تسیں غائب ہون آلے سنیہیاں نوں غیر فعال کیتا اے۔</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s نے غائب ہون آلے سنیہے غیر فعال کر دتے نیں۔</string>
@@ -993,7 +993,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">رابطے بازیافت کرن اچ نقص، اپنے نیٹ ورک کنکشن دی جانچ کرو</string>
   <string name="ContactSelectionListFragment_username_not_found">صارف ناں نئیں لبھیا</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" اکSignal صارف نئیں اے۔ مہربانی کر کے صارف ناں دی پڑتال کرو تے فیر کوشش کرو۔</string>
-  <string name="ContactSelectionListFragment_okay">ٹھیک اے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">ٹھیک اے</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">کوئی مسدود کیتے رابطے نئیں</string>
   <!--contact_selection_list_fragment-->

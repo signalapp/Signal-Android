@@ -850,13 +850,13 @@
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
   <string name="MessageRecord_you_updated_group">قمت بتحديث المجموعة.</string>
   <string name="MessageRecord_the_group_was_updated">تم تحديث المجموعة بنجاح.</string>
-  <string name="MessageRecord_you_called">مكالمات صادرة</string>
-  <string name="MessageRecord_called_you">المكالمة واردة </string>
-  <string name="MessageRecord_missed_call">المكالمة فائتة</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">مكالمات صادرة</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">المكالمة واردة </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">المكالمة فائتة</string> -->
   <string name="MessageRecord_s_updated_group">%s قام بتحديث المجموعة.</string>
-  <string name="MessageRecord_s_called_you">%s قام بالاتصال</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s قام بالاتصال</string> -->
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
-  <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string> -->
   <string name="MessageRecord_s_joined_signal">%sمتواجد على Signal !</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">قمت بتعطيل الرسائل المختفية.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">قام %1$s بتعطيل الرسائل المختفية.</string>
@@ -1512,8 +1512,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في جلب جهات الاتصال، يُرجى التحقق مِن اتصالك بالشبكة</string>
   <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المستخدم</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ليس مستخدم ل Signal. يرجى التحقق من اسم المستخدم والمحاولة ثانية.</string>
-  <string name="ContactSelectionListFragment_okay">حسنًا</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">المجموعة ممتلئة</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">حسنًا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">المجموعة ممتلئة</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ليس عليك إضافة نفسك للمجموعة</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string>

@@ -723,13 +723,13 @@
   <string name="MessageRecord_left_group">நீங்கள் குழுவை விட்டு விலகினீர்கள்.</string>
   <string name="MessageRecord_you_updated_group">நீங்கள் குழுவைப் புதுப்பித்தீர்கள்.</string>
   <string name="MessageRecord_the_group_was_updated">குழு புதுப்பிக்கப்பட்டது.</string>
-  <string name="MessageRecord_you_called">நீங்கள் அழைத்தீர்கள்</string>
-  <string name="MessageRecord_called_you">தொடர்பு அழைத்தது</string>
-  <string name="MessageRecord_missed_call">தவறிய அழைப்பு</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">நீங்கள் அழைத்தீர்கள்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">தொடர்பு அழைத்தது</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">தவறிய அழைப்பு</string> -->
   <string name="MessageRecord_s_updated_group">%s குழு புதுப்பிக்கப்பட்டது .</string>
-  <string name="MessageRecord_s_called_you">%s உங்களை அழைத்தார்</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s உங்களை அழைத்தார்</string> -->
   <string name="MessageRecord_called_s">%sயை அழைத்தீர்கள்</string>
-  <string name="MessageRecord_missed_call_from"> %s இடமிருந்து தவறிய அழைப்பு</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from"> %s இடமிருந்து தவறிய அழைப்பு</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal லில் உள்ளது!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">காணாமல் போகும் செய்திகளை முடக்கியுள்ளீர்கள்.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ஆல் காணாமல் போகும் செய்திகள் முடக்கப்பட்டது .</string>
@@ -1335,8 +1335,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">தொடர்புகளை மீட்டெடுப்பதில் பிழை, உங்கள் பிணைய இணைப்பைச் சரிபார்க்கவும்</string>
   <string name="ContactSelectionListFragment_username_not_found">பயனர்பெயர் கிடைக்கவில்லை</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal பயனர் அல்ல. தயவுசெய்து பயனர்பெயரை சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
-  <string name="ContactSelectionListFragment_okay">சரி</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">குழு நிரம்பியுள்ளது</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">சரி</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">குழு நிரம்பியுள்ளது</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">உங்களை நீங்களே குழுவில் சேர்க்க தேவையில்லை</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">தடுக்கப்பட்ட தொடர்புகள் இல்லை</string>

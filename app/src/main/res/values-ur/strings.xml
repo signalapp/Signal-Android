@@ -521,13 +521,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal کے پرانے ورژن کا استعمال کرتے ہوئے خفیہ کردہ ایک پیغام موصول ہوا جو اب تعاون یافتہ نہیں ہے۔ براہ کرم بھیجنے والے کو حالیہ ورژن میں اپ گریڈ کرنے کو کہے اور پیغام کو دوبارہ بھیجیں۔</string>
   <string name="MessageRecord_left_group">آپ نے گروپ چھوڑدیا ہے۔</string>
   <string name="MessageRecord_you_updated_group">آپ نے گروپ کی تجدید کی۔</string>
-  <string name="MessageRecord_you_called">آپ نے کال کی</string>
-  <string name="MessageRecord_called_you">رابطہ نے کال کی</string>
-  <string name="MessageRecord_missed_call">کال مس ہو گئی</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">آپ نے کال کی</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">رابطہ نے کال کی</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">کال مس ہو گئی</string> -->
   <string name="MessageRecord_s_updated_group">%sگروپ کی تجدید کی۔</string>
-  <string name="MessageRecord_s_called_you">%sنے آپ کو کال کی ہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%sنے آپ کو کال کی ہے</string> -->
   <string name="MessageRecord_called_s">کال کی%s</string>
-  <string name="MessageRecord_missed_call_from">%sکی طرف سے کال مس ہو گئی</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%sکی طرف سے کال مس ہو گئی</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal پر ہے! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">آپ نے غائب پیغامات غیر فعال کیے ہیں۔</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sپیغامات غیر فعال ہو رہے ہیں۔</string>
@@ -988,7 +988,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">رابطے دوبارہ حاصل کرنے میں خرابی،اپنا نیٹ ورک کنکشن چیک کریں</string>
   <string name="ContactSelectionListFragment_username_not_found">صارف نام نہیں ملا</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal صارف نہیں ہے۔ براہ کرم صارف کا نام چیک کریں اور دوبارہ کوشش کریں۔</string>
-  <string name="ContactSelectionListFragment_okay">ٹھیک ہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">ٹھیک ہے</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts"> رابطے بلاک نہیں ہیں</string>
   <!--contact_selection_list_fragment-->

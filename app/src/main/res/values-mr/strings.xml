@@ -593,13 +593,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal ची जुनी आवृत्ती वापरून एन्क्रिप्टेड संदेश प्राप्त झाला आहे जो आता समर्थित नाही. कृपया प्रेषकाला सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यास आणि संदेश पुन्हा पाठविण्यास विचारा.</string>
   <string name="MessageRecord_left_group">आपण गट सोडला आहे.</string>
   <string name="MessageRecord_you_updated_group">आपण गट अद्ययावत केले.</string>
-  <string name="MessageRecord_you_called">आपण कॉल केलेला</string>
-  <string name="MessageRecord_called_you">संपर्काने कॉल केलेला</string>
-  <string name="MessageRecord_missed_call">सुटलेला कॉल</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">आपण कॉल केलेला</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">संपर्काने कॉल केलेला</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">सुटलेला कॉल</string> -->
   <string name="MessageRecord_s_updated_group">%s ने गट अद्ययावत केले.</string>
-  <string name="MessageRecord_s_called_you">%s ने आपल्याला कॉल केले.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ने आपल्याला कॉल केले.</string> -->
   <string name="MessageRecord_called_s">%s ला कॉल केलेला</string>
-  <string name="MessageRecord_missed_call_from">%s कडून सुटलेला कॉल</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s कडून सुटलेला कॉल</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal वर आहे!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">आपण नाहीसे होणारे संदेश अक्षम केले.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ने हरवणारे संदेश अक्षम केले.</string>
@@ -1064,7 +1064,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">संपर्क पुनर्प्राप्त करण्यात त्रुटी, आपले  नेटवर्क कनेक्शन तपासा</string>
   <string name="ContactSelectionListFragment_username_not_found">वापरकर्तानाव आढळले नाही</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal वापरकर्ता नाही. कृपया वापरकर्तानाव तपासा आणि पुन्हा प्रयत्न करा.</string>
-  <string name="ContactSelectionListFragment_okay">ठीक आहे</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">ठीक आहे</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">कुठेलही अवरोधित संपर्क नाहीत</string>
   <!--contact_selection_list_fragment-->

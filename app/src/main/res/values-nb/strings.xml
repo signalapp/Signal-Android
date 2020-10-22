@@ -682,13 +682,13 @@
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du har oppdatert gruppa.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen ble oppdatert.</string>
-  <string name="MessageRecord_you_called">Du ringte</string>
-  <string name="MessageRecord_called_you">Kontakt ringte</string>
-  <string name="MessageRecord_missed_call">Ubesvart anrop</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Du ringte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt ringte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Ubesvart anrop</string> -->
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
-  <string name="MessageRecord_s_called_you">%s ringte deg</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ringte deg</string> -->
   <string name="MessageRecord_called_s">Ringte %s</string>
-  <string name="MessageRecord_missed_call_from">Tapt anrop fra %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Tapt anrop fra %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du deaktiverte forsvinnende meldinger.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s deaktiverte forsvinnende meldinger.</string>
@@ -1291,8 +1291,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikke å hente kontakter. Kontroller nettforbindelse</string>
   <string name="ContactSelectionListFragment_username_not_found">Brukernavn ikke funnet</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" er ikke en Signal-bruker. Kontroller brukernavnet og prøv igjen.</string>
-  <string name="ContactSelectionListFragment_okay">Greit</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Gruppen er full</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Greit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Gruppen er full</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Det er ikke nødvendig å legge deg selv til gruppen</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>

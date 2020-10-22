@@ -771,13 +771,13 @@
   <string name="MessageRecord_left_group">Du har lämnat gruppen.</string>
   <string name="MessageRecord_you_updated_group">Du uppdaterade gruppen.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen uppdaterades.</string>
-  <string name="MessageRecord_you_called">Du ringde</string>
-  <string name="MessageRecord_called_you">Kontakt ringde</string>
-  <string name="MessageRecord_missed_call">Missat samtal</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Du ringde</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt ringde</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Missat samtal</string> -->
   <string name="MessageRecord_s_updated_group">%s uppdaterade gruppen.</string>
-  <string name="MessageRecord_s_called_you">%s ringde dig</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ringde dig</string> -->
   <string name="MessageRecord_called_s">Ringde %s</string>
-  <string name="MessageRecord_missed_call_from">Missat samtal från %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Missat samtal från %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s finns på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du inaktiverade försvinnande meddelanden.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s inaktiverade försvinnande meddelanden.</string>
@@ -1427,8 +1427,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ett fel inträffade med att hämta kontakter, kontrollera din nätverksanslutning</string>
   <string name="ContactSelectionListFragment_username_not_found">Användarnamn hittades inte</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" är inte en Signal-användare. Vänligen kontrollera användarnamnet och försök igen.</string>
-  <string name="ContactSelectionListFragment_okay">Okej</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Gruppen är full</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okej</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Gruppen är full</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du behöver inte lägga till dig själv i gruppen</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Inga blockerade kontakter</string>

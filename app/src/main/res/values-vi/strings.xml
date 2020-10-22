@@ -722,13 +722,13 @@
   <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
   <string name="MessageRecord_you_updated_group">Bạn đã cập nhật nhóm.</string>
   <string name="MessageRecord_the_group_was_updated">Nhóm đã được cập nhật.</string>
-  <string name="MessageRecord_you_called">Bạn đã gọi</string>
-  <string name="MessageRecord_called_you">Liên hệ đã gọi bạn</string>
-  <string name="MessageRecord_missed_call">Cuộc gọi nhỡ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Bạn đã gọi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Liên hệ đã gọi bạn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Cuộc gọi nhỡ</string> -->
   <string name="MessageRecord_s_updated_group">%s đã cập nhật nhóm.</string>
-  <string name="MessageRecord_s_called_you">%s đã gọi bạn</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s đã gọi bạn</string> -->
   <string name="MessageRecord_called_s">Đã gọi %s</string>
-  <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s đang sử dụng Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Bạn đã tắt tính năng tự hủy tin nhắn.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s đã tắt tính năng tự hủy tin nhắn.</string>
@@ -1339,8 +1339,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Lỗi nhận liên hệ, vui lòng kiểm tra kết nối mạng</string>
   <string name="ContactSelectionListFragment_username_not_found">Không tìm thấy tên người dùng</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" không phải người dùng Signal. Hãy kiểm tra tên người dùng và thử lại.</string>
-  <string name="ContactSelectionListFragment_okay">OK</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Nhóm đã đầy</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">OK</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Nhóm đã đầy</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Bạn không cần tự thêm mình vào nhóm</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Không có liên hệ bị chặn</string>

@@ -737,13 +737,13 @@
   <string name="MessageRecord_left_group">您已经退出该群组。</string>
   <string name="MessageRecord_you_updated_group">您已更新该群组</string>
   <string name="MessageRecord_the_group_was_updated">群组已更新。</string>
-  <string name="MessageRecord_you_called">您曾呼叫</string>
-  <string name="MessageRecord_called_you">联系人曾呼叫</string>
-  <string name="MessageRecord_missed_call">未接来电</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">您曾呼叫</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">联系人曾呼叫</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">未接来电</string> -->
   <string name="MessageRecord_s_updated_group">%s 已更新该群组。</string>
-  <string name="MessageRecord_s_called_you">%s 曾呼叫</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s 曾呼叫</string> -->
   <string name="MessageRecord_called_s">曾呼叫 %s</string>
-  <string name="MessageRecord_missed_call_from">%s 的未接来电</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s 的未接来电</string> -->
   <string name="MessageRecord_s_joined_signal">%s 加入 Signal！</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">您已禁用阅后即焚。</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 已禁用阅后即焚。</string>
@@ -1387,8 +1387,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">获取联系人出错，请检查您的网络连接</string>
   <string name="ContactSelectionListFragment_username_not_found">未找到该用户名</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s”不是 Signal 用户，请检查用户名并重试。</string>
-  <string name="ContactSelectionListFragment_okay">好的</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">此群已满</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">好的</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">此群已满</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">您不需要将自己添加到群组中</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">没有已屏蔽联系人</string>

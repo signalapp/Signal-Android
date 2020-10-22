@@ -805,13 +805,13 @@
   <string name="MessageRecord_left_group">Ați părăsit grupul.</string>
   <string name="MessageRecord_you_updated_group">Ați actualizat grupul.</string>
   <string name="MessageRecord_the_group_was_updated">Grupul a fost actualizat.</string>
-  <string name="MessageRecord_you_called">Ați apelat</string>
-  <string name="MessageRecord_called_you">Contactul te-a sunat</string>
-  <string name="MessageRecord_missed_call">Apel nepreluat</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Ați apelat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Contactul te-a sunat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Apel nepreluat</string> -->
   <string name="MessageRecord_s_updated_group">%s a actualizat grupul.</string>
-  <string name="MessageRecord_s_called_you">%s te-a sunat</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s te-a sunat</string> -->
   <string name="MessageRecord_called_s">Apel %s</string>
-  <string name="MessageRecord_missed_call_from">Apel nepreluat de la %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Apel nepreluat de la %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s folosește Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Ați dezactivat dispariția mesajelor.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a dezactivat dispariția mesajelor.</string>
@@ -1476,8 +1476,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Eroare la obținerea contactelor, verifică conexiune la rețea.</string>
   <string name="ContactSelectionListFragment_username_not_found">Numele de utilizator nu a fost găsit</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nu este un utilizator de Signal. Verificați numele de utilizator și încercați din nou.</string>
-  <string name="ContactSelectionListFragment_okay">Okay</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Grupul este plin</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okay</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupul este plin</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nu trebuie să vă adăugați pe sine la grup</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nu aveți contacte blocate</string>

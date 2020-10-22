@@ -772,13 +772,13 @@
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_you_updated_group">Je hebt de groep aangepast.</string>
   <string name="MessageRecord_the_group_was_updated">De groep is aangepast.</string>
-  <string name="MessageRecord_you_called">Jij hebt gebeld</string>
-  <string name="MessageRecord_called_you">Contactpersoon heeft gebeld</string>
-  <string name="MessageRecord_missed_call">Gemiste oproep</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Jij hebt gebeld</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Contactpersoon heeft gebeld</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Gemiste oproep</string> -->
   <string name="MessageRecord_s_updated_group">%s heeft de groep aangepast.</string>
-  <string name="MessageRecord_s_called_you">%s heeft je gebeld</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s heeft je gebeld</string> -->
   <string name="MessageRecord_called_s">Je hebt %s gebeld</string>
-  <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s is vanaf nu bereikbaar via Signal.</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt zelfwissende berichten uitgeschakeld.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft zelfwissende berichten uitgeschakeld.</string>
@@ -1003,7 +1003,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Voer numerieke pincode in.</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Signal door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen en profielnaam en -foto dan verloren gaan.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Signal door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen, profielnaam en profielfoto niet worden herstelt.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Waarschuwing</string>
@@ -1436,8 +1436,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij ophalen van contactpersonen, controleer je netwerkverbinding</string>
   <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam niet gevonden</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s” is geen Signal-gebruiker. Kijk de gebruikersnaam na en probeer het opnieuw.</string>
-  <string name="ContactSelectionListFragment_okay">Oké</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">De groep is vol</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Oké</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">De groep is vol</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Het is niet nodig om jezelf toe te voegen aan de groep</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contactpersonen</string>

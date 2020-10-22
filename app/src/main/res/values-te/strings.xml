@@ -569,13 +569,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ఇకపై మద్దతు అని Signal యొక్క పాత సంస్కరణను ఉపయోగించి ఎన్క్రిప్ట్ ఒక సందేశాన్ని పొందింది. దయచేసి ఇటీవల సంస్కరణకు అప్డేట్ మరియు సందేశాన్ని మళ్లీ పంపినవారు అడగండి</string>
   <string name="MessageRecord_left_group">మీరు సమూహం నుండి వైదొలిగారు</string>
   <string name="MessageRecord_you_updated_group">మీరు ఈ సమూహాన్ని నవీకరించారు.</string>
-  <string name="MessageRecord_you_called">మీరు కాల్ చెసారు</string>
-  <string name="MessageRecord_called_you">సంప్రదించండి అని</string>
-  <string name="MessageRecord_missed_call">తప్పిన కాల్</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">మీరు కాల్ చెసారు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">సంప్రదించండి అని</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">తప్పిన కాల్</string> -->
   <string name="MessageRecord_s_updated_group">%s  సమూహాన్ని నవీకరించారు.</string>
-  <string name="MessageRecord_s_called_you">%s మీకు కాల్ చెసారు</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s మీకు కాల్ చెసారు</string> -->
   <string name="MessageRecord_called_s">కాల్డ్ %s</string>
-  <string name="MessageRecord_missed_call_from">%s నుండి తప్పిన కాల్</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s నుండి తప్పిన కాల్</string> -->
   <string name="MessageRecord_s_joined_signal">1%s Signal ఉంది!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">మీరు అదృశ్య సందేశాలను డిసేబుల్ చేసారు.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s డిసేబుల్ కనుమరుగవుతున్న సందేశాలు.</string>
@@ -1096,7 +1096,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">పరిచయాలను తిరిగి పొందడంలో లోపం, మీ నెట్వర్క్ కనెక్షన్ను తనిఖీ చేయండి</string>
   <string name="ContactSelectionListFragment_username_not_found">వినియోగదారు పేరు కనుగొనబడలేదు</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal యూజర్ కాదు. దయచేసి వినియోగదారు పేరును తనిఖీ చేసి, మళ్లీ ప్రయత్నించండి.</string>
-  <string name="ContactSelectionListFragment_okay">సరే</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">సరే</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">నిరోధించిన పరిచయాలు లేవు</string>
   <!--contact_selection_list_fragment-->

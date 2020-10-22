@@ -771,13 +771,13 @@
   <string name="MessageRecord_left_group">Gruptan ayrıldınız.</string>
   <string name="MessageRecord_you_updated_group">Grubu güncellediniz.</string>
   <string name="MessageRecord_the_group_was_updated">Grup güncellendi</string>
-  <string name="MessageRecord_you_called">Aradınız</string>
-  <string name="MessageRecord_called_you">Kişi arandı</string>
-  <string name="MessageRecord_missed_call">Cevapsız arama</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Aradınız</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kişi arandı</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Cevapsız arama</string> -->
   <string name="MessageRecord_s_updated_group">%s grubu güncelledi.</string>
-  <string name="MessageRecord_s_called_you">%s sizi aradı</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s sizi aradı</string> -->
   <string name="MessageRecord_called_s">%s arandı</string>
-  <string name="MessageRecord_missed_call_from">%s tarafından cevapsız arama</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s tarafından cevapsız arama</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal\'e katıldı!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Kaybolan iletileri devre dışı bıraktınız.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s kaybolan iletileri devre dışı bıraktı.</string>
@@ -1431,8 +1431,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kişiler alınırken hata oluştu, ağ bağlantınızı kontrol edin</string>
   <string name="ContactSelectionListFragment_username_not_found">Kullanıcı adı bulunamadı</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" bir Signal kullanıcısı değil. Lütfen kullanıcı adını kontrol edin ve tekrar deneyin.</string>
-  <string name="ContactSelectionListFragment_okay">Tamam</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Grup doludur</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Tamam</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grup doludur</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Kendinizi gruba eklemenize gerek yok</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Hiç engellenmiş kişi yok</string>

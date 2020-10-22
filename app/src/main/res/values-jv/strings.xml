@@ -503,13 +503,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Nampi pesen ingkang dipunenkripsi ngginakaken versi dangunipun Signal ingkang mboten dipundukung malih. Cobi tedhakaken pangirim supados ngenggalaken Signal dados versi paling enggal, lajeng kirimaken malih pesen kasebut.</string>
   <string name="MessageRecord_left_group">Sampeyan sampun medal saking grup.</string>
   <string name="MessageRecord_you_updated_group">Sampeyan nembe ngenggalaken grup.</string>
-  <string name="MessageRecord_you_called">Sampeyan nembe nelepon</string>
-  <string name="MessageRecord_called_you">Kontak nembe nelepon</string>
-  <string name="MessageRecord_missed_call">Telepon ingkang mboten dipunangkat</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Sampeyan nembe nelepon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontak nembe nelepon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Telepon ingkang mboten dipunangkat</string> -->
   <string name="MessageRecord_s_updated_group">%s nembe ngenggalaken grup.</string>
-  <string name="MessageRecord_s_called_you">%s nembe nelepon sampeyan</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s nembe nelepon sampeyan</string> -->
   <string name="MessageRecord_called_s">Nembe nelepon %s</string>
-  <string name="MessageRecord_missed_call_from">Telepon ingkang mboten dipunangkat saking %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Telepon ingkang mboten dipunangkat saking %s</string> -->
   <string name="MessageRecord_s_joined_signal">Enten %s ing Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Sampeyan ngenonaktifaken pesen ngical.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ngenonaktifaken pesen ngical.</string>
@@ -977,7 +977,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Enten masalah kala nampi kontak, priksa sambetan jaringan</string>
   <string name="ContactSelectionListFragment_username_not_found">Nami panggina mboten saged kepanggih</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" sanes panggina Signal. Priksa nami panggina lan cobi malih.</string>
-  <string name="ContactSelectionListFragment_okay">Oke</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Oke</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Mboten enten kontak ingkang dipunblokir</string>
   <!--contact_selection_list_fragment-->

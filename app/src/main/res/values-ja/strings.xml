@@ -737,13 +737,13 @@
   <string name="MessageRecord_left_group">グループを抜けました。</string>
   <string name="MessageRecord_you_updated_group">グループを更新しました。</string>
   <string name="MessageRecord_the_group_was_updated">グループが更新されました。</string>
-  <string name="MessageRecord_you_called">発信</string>
-  <string name="MessageRecord_called_you">着信</string>
-  <string name="MessageRecord_missed_call">不在着信</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">発信</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">着信</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">不在着信</string> -->
   <string name="MessageRecord_s_updated_group">%s がグループを更新しました。</string>
-  <string name="MessageRecord_s_called_you">%s から着信</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s から着信</string> -->
   <string name="MessageRecord_called_s">%s に発信</string>
-  <string name="MessageRecord_missed_call_from">%s から不在着信</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s から不在着信</string> -->
   <string name="MessageRecord_s_joined_signal">%s がSignalに登録しました！</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">消えるメッセージを無効にしました。</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s が消えるメッセージを無効にしました。</string>
@@ -1376,8 +1376,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">連絡先の取得中にエラーが発生しました。ネットワーク接続を確認してください。</string>
   <string name="ContactSelectionListFragment_username_not_found">ユーザ名が見つかりませんでした</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」はSignalユーザではありません。ユーザ名を確認してもう一度試してください。</string>
-  <string name="ContactSelectionListFragment_okay">OK</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">このグループはいっぱいです</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">OK</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">このグループはいっぱいです</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">自分自身をグループに追加する必要はありません</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ブロック中の連絡先はありません</string>

@@ -442,13 +442,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal versi lama sudah tidak menyokong penerimaan mesej yang disulitkan. Sila minta penghantar untuk mengemas kini kepada versi yang terbaru dan hantar semula mesej. </string>
   <string name="MessageRecord_left_group">Anda telah meninggalkan kumpulan.</string>
   <string name="MessageRecord_you_updated_group">Anda telah mengemas kini kumpulan.</string>
-  <string name="MessageRecord_you_called">Anda memanggil</string>
-  <string name="MessageRecord_called_you">Kenalan dipanggil</string>
-  <string name="MessageRecord_missed_call">Panggilan tidak dijawab</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Anda memanggil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kenalan dipanggil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Panggilan tidak dijawab</string> -->
   <string name="MessageRecord_s_updated_group">%s telah mengemas kini kumpulan.</string>
-  <string name="MessageRecord_s_called_you">%s memanggil anda</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s memanggil anda</string> -->
   <string name="MessageRecord_called_s">Memanggil %s</string>
-  <string name="MessageRecord_missed_call_from">Panggilan tidak dijawab daripada %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Panggilan tidak dijawab daripada %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s ada di Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Anda telah menyahdayakan mesej hilang.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s telah menyahdayakan mesej hilang.</string>
@@ -849,7 +849,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal memerlukan kebenaran Kenalan untuk memaparkan kenalan anda, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Kenalan\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ralat mengambil kenalan, semak sambungan rangkaian anda</string>
-  <string name="ContactSelectionListFragment_okay">Okay</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okay</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Tiada kenalan disekat</string>
   <!--contact_selection_list_fragment-->

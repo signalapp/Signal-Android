@@ -442,12 +442,12 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Отримано повідомлення, яке зашифроване старою версією Signal, яка вже не підтримується. Попросіть друга оновитися до останньої версії та надіслати повідомлення знову.</string>
   <string name="MessageRecord_left_group">Ви покинули групу.</string>
   <string name="MessageRecord_you_updated_group">Ви оновили групу.</string>
-  <string name="MessageRecord_you_called">Ви телефонували</string>
-  <string name="MessageRecord_missed_call">Пропущений виклик</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Ви телефонували</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Пропущений виклик</string> -->
   <string name="MessageRecord_s_updated_group">%s оновив групу.</string>
-  <string name="MessageRecord_s_called_you">%s вам телефонував/-ла</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s вам телефонував/-ла</string> -->
   <string name="MessageRecord_called_s">Телефонували %s</string>
-  <string name="MessageRecord_missed_call_from">Пропущено виклик від %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Пропущено виклик від %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s приєднався до Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Ви заборонили зникаючі повідомлення</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ви встановлюєте час зникнення повідомлення на %1$s.</string>

@@ -635,13 +635,13 @@
   <string name="MessageRecord_left_group">그룹에서 탈퇴했습니다.</string>
   <string name="MessageRecord_you_updated_group">그룹을 업데이트했습니다.</string>
   <string name="MessageRecord_the_group_was_updated">그룹이 업데이트 되었습니다.</string>
-  <string name="MessageRecord_you_called">발신 전화</string>
-  <string name="MessageRecord_called_you">연락처 전화</string>
-  <string name="MessageRecord_missed_call">부재중 전화</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">발신 전화</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">연락처 전화</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">부재중 전화</string> -->
   <string name="MessageRecord_s_updated_group">%s 님이 그룹을 업데이트했습니다.</string>
-  <string name="MessageRecord_s_called_you">%s의 전화</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s의 전화</string> -->
   <string name="MessageRecord_called_s">%s에게 전화</string>
-  <string name="MessageRecord_missed_call_from">%s 님의 부재중 전화</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s 님의 부재중 전화</string> -->
   <string name="MessageRecord_s_joined_signal">%s 님이 온라인입니다!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">사라지는 메시지 기능을 비활성화했습니다.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 님이 사라지는 메시지 기능을 비활성화했습니다.</string>
@@ -1184,8 +1184,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">연락처를 가져오는 중 오류 발생, 네트워크 연결 확인</string>
   <string name="ContactSelectionListFragment_username_not_found">사용자 이름을 찾을 수 없음</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\'%1$s\' 님은 Signal 사용자가 아닙니다. 사용자 이름 확인 후 다시 시도해 주세요.</string>
-  <string name="ContactSelectionListFragment_okay">확인</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">그룹의 정원이 찼습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">확인</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">그룹의 정원이 찼습니다.</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">차단된 연락처 없음</string>
   <!--contact_selection_list_fragment-->

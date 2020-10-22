@@ -772,13 +772,13 @@
   <string name="MessageRecord_left_group">Kiléptél a csoportból.</string>
   <string name="MessageRecord_you_updated_group">Frissítetted a csoportot.</string>
   <string name="MessageRecord_the_group_was_updated">A csoport frissítve lett.</string>
-  <string name="MessageRecord_you_called">Te hívtad</string>
-  <string name="MessageRecord_called_you">A partner hívott</string>
-  <string name="MessageRecord_missed_call">Nem fogadott hívás</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Te hívtad</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">A partner hívott</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Nem fogadott hívás</string> -->
   <string name="MessageRecord_s_updated_group">%s frissítette a csoportot.</string>
-  <string name="MessageRecord_s_called_you">%s hívott téged</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s hívott téged</string> -->
   <string name="MessageRecord_called_s">Kimenő hívás: %s</string>
-  <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s a Signal-on van!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Letiltottad az eltűnő üzeneteket.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s letiltotta az eltűnő üzeneteket.</string>
@@ -1436,8 +1436,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Hiba történt a névjegyek betöltése során, ellenőrizd a hálózati kapcsolatod</string>
   <string name="ContactSelectionListFragment_username_not_found">A felhasználónév nem található</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nem Signal felhasználó. Kérlek ellenőrizd a felhasználónevet, majd próbáld újra.</string>
-  <string name="ContactSelectionListFragment_okay">Oké</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">A csoport megtelt</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Oké</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">A csoport megtelt</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nem szükséges saját magadat a csoporthoz adnod</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nincsenek blokkolt kontaktok</string>

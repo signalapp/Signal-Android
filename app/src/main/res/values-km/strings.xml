@@ -666,13 +666,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ទទួលបានសារដែលមានកាណាល់កូដសម្ងាត់ តែជាជំនាន់ចាស់របស់Signal ដែលគេលែងប្រើហើយ។ សូមប្រាប់អ្នកផ្ញើ ឲ្យធ្វើបច្ចុប្បន្នភាពទៅជំនាន់ចុងក្រោយបង្អស់ និងផ្ញើសារម្តងទៀត។</string>
   <string name="MessageRecord_left_group">អ្នកបានចាកចេញពីក្រុម។</string>
   <string name="MessageRecord_you_updated_group">អ្នកបានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
-  <string name="MessageRecord_you_called">អ្នកបានហៅ</string>
-  <string name="MessageRecord_called_you">លេខទំនាក់ទំនងបានហៅ</string>
-  <string name="MessageRecord_missed_call">ការហៅមិនបានទទួល</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">អ្នកបានហៅ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">លេខទំនាក់ទំនងបានហៅ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">ការហៅមិនបានទទួល</string> -->
   <string name="MessageRecord_s_updated_group">%s បានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
-  <string name="MessageRecord_s_called_you">%s បានហៅមកអ្នក</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s បានហៅមកអ្នក</string> -->
   <string name="MessageRecord_called_s">ហៅទៅកាន់ %s</string>
-  <string name="MessageRecord_missed_call_from">ការហៅមិនបានទទួលពី %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">ការហៅមិនបានទទួលពី %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s ប្រើSignal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">អ្នកបានបិទសារបាត់ទៅវិញ។</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s បានបិទសារបាត់ទៅវិញ។</string>
@@ -1227,8 +1227,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">មានបញ្ហាក្នុងការទាញយកបញ្ជីទំនាក់ទំនង, សូមពិនិត្យការតភ្ជាប់បណ្តាញរបស់អ្នក</string>
   <string name="ContactSelectionListFragment_username_not_found">រកមិនឃើញឈ្មោះអ្នកប្រើប្រាស់</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" មិនមែនជាអ្នកប្រើប្រាស់ Signal ទេ។ សូមពិនិត្យឈ្មោះអ្នកប្រើប្រាស់ និងសាកល្បងម្តងទៀត។ </string>
-  <string name="ContactSelectionListFragment_okay">យល់ព្រម</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">ក្រុមនេះពេញហើយ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">យល់ព្រម</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">ក្រុមនេះពេញហើយ</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ពុំមានលេខដែលបានបិទ</string>
   <!--contact_selection_list_fragment-->

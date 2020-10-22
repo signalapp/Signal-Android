@@ -612,13 +612,13 @@
   <string name="MessageRecord_left_group">ਤੁਸੀਂ ਗਰੁੱਪ ਨੂੰ ਛੱਡ ਦਿੱਤਾ ਹੈ</string>
   <string name="MessageRecord_you_updated_group">ਤੁਸੀਂ ਗਰੁੱਪ ਨੂੰ ਅਪਡੇਟ ਕੀਤਾ.</string>
   <string name="MessageRecord_the_group_was_updated">ਸਮੂਹ ਨੂੰ ਅਪਡੇਟ ਕੀਤਾ ਗਿਆ ਸੀ</string>
-  <string name="MessageRecord_you_called">ਤੁਸੀਂ ਕਾਲ ਕੀਤੀ </string>
-  <string name="MessageRecord_called_you">ਸੰਪਰਕ ਨੂੰ ਕਾਲ ਕੀਤੀ </string>
-  <string name="MessageRecord_missed_call">ਮਿਸਡ ਕਾਲ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">ਤੁਸੀਂ ਕਾਲ ਕੀਤੀ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">ਸੰਪਰਕ ਨੂੰ ਕਾਲ ਕੀਤੀ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">ਮਿਸਡ ਕਾਲ</string> -->
   <string name="MessageRecord_s_updated_group">%s ਨੇ ਗਰੁੱਪ ਅਪਡੇਟ ਕੀਤਾ.</string>
-  <string name="MessageRecord_s_called_you">%s ਨੇ ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤੀ ਸੀ  </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ਨੇ ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤੀ ਸੀ  </string> -->
   <string name="MessageRecord_called_s">%s ਨੂੰ ਕਾਲ ਕੀਤੀ  </string>
-  <string name="MessageRecord_missed_call_from">%s ਵਲੋਂ  ਮਿਸਡ ਕਾਲ </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s ਵਲੋਂ  ਮਿਸਡ ਕਾਲ </string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal ਤੇ ਹੈ! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">ਤੁਸੀਂ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sਨੇ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ</string>
@@ -1100,7 +1100,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal ਨੂੰ ਸੰਪਰਕ ਜਾਣਕਾਰੀ  ਦਿਖਾਉਣ ਲਈ ਸੰਪਰਕਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗ ਮੇਨੂ  ਤੇ ਜਾਓ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਸੰਪਰਕ\" ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ਸੰਪਰਕਾਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ, ਆਪਣੇ ਨੈਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ</string>
-  <string name="ContactSelectionListFragment_okay">ਠੀਕ ਹੈ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">ਠੀਕ ਹੈ</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ਕੋਈ ਬਲੌਕ ਕੀਤੇ ਸੰਪਰਕ ਨਹੀਂ</string>
   <!--contact_selection_list_fragment-->

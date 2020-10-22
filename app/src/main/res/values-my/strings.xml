@@ -384,12 +384,12 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ထပ်မံပံ့ပိုးမှုမရှိတော့သော Signal ဗားရှင်းအဟောင်းဖြင့် encrypt လုပ်ထားသော စာကိုလက်ခံရရှိသည်။ စာပို့သူအား signal နောက်ဆုံးဗားရှင်းကိုမြှင့်ပြီး စာအားပြန်ပို့ခုိင်းပါ။</string>
   <string name="MessageRecord_left_group">အဖွဲ့မှ သင်ထွက်လိုက်သည်။</string>
   <string name="MessageRecord_you_updated_group">အဖွဲ့အား သင်ပြောင်းလဲမှုပြုလိုက်သည်။</string>
-  <string name="MessageRecord_you_called">သင်မှခေါ်သည်</string>
-  <string name="MessageRecord_missed_call">လွတ်သွားသော ဖုန်းခေါ်ဆိုမှု</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">သင်မှခေါ်သည်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">လွတ်သွားသော ဖုန်းခေါ်ဆိုမှု</string> -->
   <string name="MessageRecord_s_updated_group">%s မှအဖွဲ့အား ပြောင်းလဲမှု လုပ်လိုက်သည်။</string>
-  <string name="MessageRecord_s_called_you">%s မှဖုန်းခေါ်သည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s မှဖုန်းခေါ်သည်</string> -->
   <string name="MessageRecord_called_s">%s အားဖုန်းခေါ်သည်</string>
-  <string name="MessageRecord_missed_call_from">%s ထံမှ ခေါ်ဆိုမှုအားလွတ်သွားခဲ့သည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s ထံမှ ခေါ်ဆိုမှုအားလွတ်သွားခဲ့သည်</string> -->
   <string name="MessageRecord_s_joined_signal">%s က Signal အသုံးပြုသည်!</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">သင်နှင့် %s ၏ လုံခြုံရေးနံပါတ် ပြောင်းလဲသွားသည်။</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်များအား အတည်ပြုပြီးဖြစ်သည်။</string>

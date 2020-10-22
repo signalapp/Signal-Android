@@ -542,13 +542,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ಈಗ ಬೆಂಬಲವಿಲ್ಲದ Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸಿಕೊಂಡು ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಮತ್ತು ಸಂದೇಶವನ್ನು ಮತ್ತೆ ಕಳುಹಿಸಲು ಕಳುಹಿಸುವವರಿಗೆ ಹೇಳಿ.</string>
   <string name="MessageRecord_left_group">ನೀವು ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_you_updated_group">ನೀವು ಗುಂಪನ್ನು ನವೀಕರಿಸಿದ್ದೀರಿ.</string>
-  <string name="MessageRecord_you_called">ನೀವು ಕರೆ ಮಾಡಿದಿರಿ</string>
-  <string name="MessageRecord_called_you">ಸಂಪರ್ಕ ಕರೆ ಮಾಡಿದ್ದಾರೆ</string>
-  <string name="MessageRecord_missed_call">ತಪ್ಪಿದ ಕರೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">ನೀವು ಕರೆ ಮಾಡಿದಿರಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">ಸಂಪರ್ಕ ಕರೆ ಮಾಡಿದ್ದಾರೆ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">ತಪ್ಪಿದ ಕರೆ</string> -->
   <string name="MessageRecord_s_updated_group">%s ಗುಂಪನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ.</string>
-  <string name="MessageRecord_s_called_you">%s ರವರು ನಿಮಗೆ ಕರೆ ಮಾಡಿದ್ದಾರೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ರವರು ನಿಮಗೆ ಕರೆ ಮಾಡಿದ್ದಾರೆ</string> -->
   <string name="MessageRecord_called_s">%sಅವರನ್ನು ಕರೆ ಮಾಡಿದ್ದೀರಿ</string>
-  <string name="MessageRecord_missed_call_from">%s ನಿಂದ ತಪ್ಪಿದ ಕರೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s ನಿಂದ ತಪ್ಪಿದ ಕರೆ</string> -->
   <string name="MessageRecord_s_joined_signal">%sರವರು Signal ಸೇರಿದ್ದಾರೆ!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">ನೀವು ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ಅವರು ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದಾರೆ</string>
@@ -1021,7 +1021,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ಸಂಪರ್ಕಗಳನ್ನು ಹಿಂಪಡೆಯುವಲ್ಲಿ ದೋಷ, ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ</string>
   <string name="ContactSelectionListFragment_username_not_found">ಬಳಕೆದಾರ ಹೆಸರು ಕಂಡುಬಂದಿಲ್ಲ</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\"  Signal ಬಳಕೆದಾರರಲ್ಲ. ದಯವಿಟ್ಟು ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
-  <string name="ContactSelectionListFragment_okay">ಸರಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">ಸರಿ</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ನಿರ್ಬಂಧಿಸಲಾದ ಸಂಪರ್ಕಗಳಿಲ್ಲ</string>
   <!--contact_selection_list_fragment-->

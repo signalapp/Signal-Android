@@ -839,13 +839,13 @@
   <string name="MessageRecord_left_group">עזבת את הקבוצה.</string>
   <string name="MessageRecord_you_updated_group">עדכנת את הקבוצה.</string>
   <string name="MessageRecord_the_group_was_updated">הקבוצה עודכנה.</string>
-  <string name="MessageRecord_you_called">התקשרת</string>
-  <string name="MessageRecord_called_you">איש קשר התקשר</string>
-  <string name="MessageRecord_missed_call">שיחה שלא נענתה</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">התקשרת</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">איש קשר התקשר</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">שיחה שלא נענתה</string> -->
   <string name="MessageRecord_s_updated_group">%s עדכן את הקבוצה.</string>
-  <string name="MessageRecord_s_called_you">%s התקשר אליך</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s התקשר אליך</string> -->
   <string name="MessageRecord_called_s">התקשרת אל %s</string>
-  <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s נמצא ב־Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">הִשְׁבַּתָּ הודעות נעלמות.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s השבית הודעות נעלמות.</string>
@@ -1527,8 +1527,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">שגיאה באחזור אנשי קשר, בדוק את חיבור הרשת שלך</string>
   <string name="ContactSelectionListFragment_username_not_found">שם משתמש לא נמצא</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" הוא לא משתמש Signal. אנא בדוק את שם המשתמש ונסה שוב.</string>
-  <string name="ContactSelectionListFragment_okay">בסדר</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">הקבוצה מלאה</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">בסדר</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">הקבוצה מלאה</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">אתה לא צריך להוסיף את עצמך אל הקבוצה</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשי קשר חסומים</string>

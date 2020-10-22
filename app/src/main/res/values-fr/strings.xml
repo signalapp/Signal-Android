@@ -756,13 +756,13 @@
   <string name="MessageRecord_left_group">Vous avez quitté le groupe</string>
   <string name="MessageRecord_you_updated_group">Vous avez mis le groupe à jour.</string>
   <string name="MessageRecord_the_group_was_updated">Le groupe a été mis à jour.</string>
-  <string name="MessageRecord_you_called">Vous avez appelé</string>
-  <string name="MessageRecord_called_you">Un contact a appelé</string>
-  <string name="MessageRecord_missed_call">Appel manqué</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Vous avez appelé</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Un contact a appelé</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Appel manqué</string> -->
   <string name="MessageRecord_s_updated_group">%s a mis le groupe à jour.</string>
-  <string name="MessageRecord_s_called_you">%s vous a appelé</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s vous a appelé</string> -->
   <string name="MessageRecord_called_s">Vous avez appelé %s</string>
-  <string name="MessageRecord_missed_call_from">Appel manqué de %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Appel manqué de %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s est sur Signal.</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Vous avez désactivé les messages éphémères.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a désactivé les messages éphémères.</string>
@@ -1390,8 +1390,8 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Erreur de récupération des contacts, veuillez vérifier votre connexion réseau</string>
   <string name="ContactSelectionListFragment_username_not_found">Le nom d’utilisateur est introuvable</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">« %1$s » n’est pas un utilisateur de Signal. Veuillez confirmer le nom d’utilisateur et réessayer.</string>
-  <string name="ContactSelectionListFragment_okay">Valider</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Le groupe est plein</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Valider</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Le groupe est plein</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vous n’avez pas besoin de vous ajouter au groupe</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Aucun contact n’est bloqué</string>

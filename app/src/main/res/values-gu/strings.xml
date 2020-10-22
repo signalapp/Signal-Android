@@ -513,13 +513,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal ના જૂના વર્ઝન નો ઉપયોગ કરીને એન્ક્રિપ્ટ થયેલ મેસેજ મળ્યો જે હવે સપોર્ટેડ નથી. કૃપા કરીને મોકલનારને સૌથી તાજેતરનાં વર્ઝન પર અપડેટ કરવા અને મેસેજ ને ફરીથી મોકલવા માટે કહો.</string>
   <string name="MessageRecord_left_group">તમે ગ્રુપ છોડી દીધું છે.</string>
   <string name="MessageRecord_you_updated_group">તમે ગ્રુપ ને અપડેટ કર્યું.</string>
-  <string name="MessageRecord_you_called">તમે કૉલ કરેલો</string>
-  <string name="MessageRecord_called_you">સંપર્કને કૉલ કરેલો</string>
-  <string name="MessageRecord_missed_call">મિસ કૉલ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">તમે કૉલ કરેલો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">સંપર્કને કૉલ કરેલો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">મિસ કૉલ</string> -->
   <string name="MessageRecord_s_updated_group">%s ગ્રુપ અપડેટ કર્યુ.</string>
-  <string name="MessageRecord_s_called_you">%sએ કૉલ કરેલો</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%sએ કૉલ કરેલો</string> -->
   <string name="MessageRecord_called_s">%s ને કૉલ કરેલો</string>
-  <string name="MessageRecord_missed_call_from">%s દ્વારા મિસ કૉલ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s દ્વારા મિસ કૉલ</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal પર છે!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">તમે અદૃશ્ય થઈ રહેલા મેસેજ ને અક્ષમ કર્યા.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s અદૃશ્ય થઈ રહેલા મેસેજ અક્ષમ કરો.</string>
@@ -983,7 +983,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">કૃપા કરીને એપ્લિકેશન સેટિંગ્સ મેનૂ પર ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"સંપર્કો\" ને સક્ષમ કરો.</string>
   <string name="ContactSelectionListFragment_username_not_found">વપરાશકર્તા નામ મળ્યું નથી</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal વપરાશકર્તા નથી. કૃપા કરીને વપરાશકર્તા નામ તપાસો અને ફરીથી પ્રયાસ કરો.</string>
-  <string name="ContactSelectionListFragment_okay">બરાબર</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">બરાબર</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">કોઈ અવરોધિત સંપર્કો નથી</string>
   <!--contact_selection_list_fragment-->

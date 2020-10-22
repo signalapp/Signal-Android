@@ -774,13 +774,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_left_group">E keni lënë grupin.</string>
   <string name="MessageRecord_you_updated_group">E përditësuat grupin.</string>
   <string name="MessageRecord_the_group_was_updated">Grupi u përditësua.</string>
-  <string name="MessageRecord_you_called">Ju thirrët</string>
-  <string name="MessageRecord_called_you">Kontakti thirri</string>
-  <string name="MessageRecord_missed_call">Thirrje e humbur</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Ju thirrët</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakti thirri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Thirrje e humbur</string> -->
   <string name="MessageRecord_s_updated_group">%s përditësoi grupin.</string>
-  <string name="MessageRecord_s_called_you">ju thirri %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">ju thirri %s</string> -->
   <string name="MessageRecord_called_s">Thirrët %s</string>
-  <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s është në Signal! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Çaktivizuat zhdukje mesazhesh.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s çaktivizoi zhdukje mesazhesh.</string>
@@ -1432,8 +1432,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Gabim në marrje kontaktesh, kontrolloni lidhjen tuaj në rrjet</string>
   <string name="ContactSelectionListFragment_username_not_found">Emri i përdoruesit s’u gjet</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" s’është përdorues Signal-i. Ju lutemi, kontrolloni emrin e përdoruesit dhe riprovoni.</string>
-  <string name="ContactSelectionListFragment_okay">OK</string>
-  <string name="ContactSelectionListFragment_the_group_is_full">Grupi është plot</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">OK</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupi është plot</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">S’ju duhet të shtoni veten te grupi</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">S\’ka kontakte të bllokuara</string>

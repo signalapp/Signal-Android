@@ -619,13 +619,13 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Saņemta ziņa, kas šifrēta, izmantojot vecāku Signal versiju, kura vairs netiek atbalstīta. Palūdziet sūtītājam aktualizēt Signal uz jaunāko versiju un nosūtīt ziņu vēlreiz.</string>
   <string name="MessageRecord_left_group">Jūs pametāt grupu.</string>
   <string name="MessageRecord_you_updated_group">Jūs aktualizējāt grupu.</string>
-  <string name="MessageRecord_you_called">Jūs zvanījāt</string>
-  <string name="MessageRecord_called_you">Kontakts zvanīja</string>
-  <string name="MessageRecord_missed_call">Neatbildēts zvans</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Jūs zvanījāt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakts zvanīja</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Neatbildēts zvans</string> -->
   <string name="MessageRecord_s_updated_group">%s aktualizēja grupu.</string>
-  <string name="MessageRecord_s_called_you">Jums zvanīja %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">Jums zvanīja %s</string> -->
   <string name="MessageRecord_called_s">Zvanīja %s</string>
-  <string name="MessageRecord_missed_call_from">Neatbildēts zvans no %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Neatbildēts zvans no %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s lieto Signālu</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Jūs atspējojāt gaistošās ziņas.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s atspējoja gaistošās ziņas.</string>
@@ -1170,7 +1170,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kļūda, ielādējot kontaktus, pārbaudiet ierīces interneta savienojumu.</string>
   <string name="ContactSelectionListFragment_username_not_found">Lietotājvārds netika atrasts</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nav Signāla lietotājs. Lūdzu, pārbaudiet, vai lietotājvārds uzrakstīts pareizi.</string>
-  <string name="ContactSelectionListFragment_okay">Labi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Labi</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nav bloķētu kontaktu</string>
   <!--contact_selection_list_fragment-->
