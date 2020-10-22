@@ -1,13 +1,20 @@
 package org.thoughtcrime.securesms.jobmanager;
 
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.util.ParcelableUtil;
+
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO AC: For now parcelable objects utilize byteArrays field to store their data into.
+// Introduce a dedicated Map<String, byte[]> field specifically for parcelable needs.
 public class Data {
 
   public static final Data EMPTY = new Data.Builder().build();
@@ -213,6 +220,16 @@ public class Data {
     return byteArrays.get(key);
   }
 
+  public boolean hasParcelable(@NonNull String key) {
+    return byteArrays.containsKey(key);
+  }
+
+  public <T extends Parcelable> T getParcelable(@NonNull String key, @NonNull Parcelable.Creator<T> creator) {
+    throwIfAbsent(byteArrays, key);
+    byte[] bytes = byteArrays.get(key);
+    return ParcelableUtil.unmarshall(bytes, creator);
+  }
+
   private void throwIfAbsent(@NonNull Map map, @NonNull String key) {
     if (!map.containsKey(key)) {
       throw new IllegalStateException("Tried to retrieve a value with key '" + key + "', but it wasn't present.");
@@ -298,6 +315,12 @@ public class Data {
 
     public Builder putByteArray(@NonNull String key, @NonNull byte[] value) {
       byteArrays.put(key, value);
+      return this;
+    }
+
+    public Builder putParcelable(@NonNull String key, @NonNull Parcelable value) {
+      byte[] bytes = ParcelableUtil.marshall(value);
+      byteArrays.put(key, bytes);
       return this;
     }
 

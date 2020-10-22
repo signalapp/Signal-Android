@@ -103,9 +103,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
   private static final int GROUP_RECEIPT_TRACKING                          = 45;
   private static final int UNREAD_COUNT_VERSION                            = 46;
   private static final int MORE_RECIPIENT_FIELDS                           = 47;
-  private static final int AUDIO_ATTACHMENT_EXTRAS                         = 48;
-
-  private static final int DATABASE_VERSION                                = 48;
+  private static final int DATABASE_VERSION                                = 47;
 
   private static final String TAG = ClassicOpenHelper.class.getSimpleName();
 
@@ -1289,11 +1287,6 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
         }
       }
        */
-    }
-
-    if (oldVersion < AUDIO_ATTACHMENT_EXTRAS) {
-      db.execSQL("ALTER TABLE part ADD COLUMN audio_visual_samples BLOB");
-      db.execSQL("ALTER TABLE part ADD COLUMN audio_duration INTEGER");
     }
 
     db.setTransactionSuccessful();

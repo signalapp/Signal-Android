@@ -16,6 +16,7 @@ import java.nio.ByteOrder
 import java.nio.ShortBuffer
 import kotlin.jvm.Throws
 import kotlin.math.ceil
+import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 /**
@@ -246,7 +247,7 @@ class DecodedAudio {
         codec.release()
     }
 
-    fun calculateRms(maxFrames: Int): FloatArray {
+    fun calculateRms(maxFrames: Int): ByteArray {
         return calculateRms(this.samples, this.numSamples, this.channels, maxFrames)
     }
 }
@@ -264,9 +265,9 @@ class DecodedAudio {
  * If number of samples per channel is less than "maxFrames",
  * the result array will match the source sample size instead.
  *
- * @return RMS values float array where is each value is within [0..1] range.
+ * @return normalized RMS values as a signed byte array.
  */
-private fun calculateRms(samples: ShortBuffer, numSamples: Int, channels: Int, maxFrames: Int): FloatArray {
+private fun calculateRms(samples: ShortBuffer, numSamples: Int, channels: Int, maxFrames: Int): ByteArray {
     val numFrames: Int
     val frameStep: Float
 
@@ -310,7 +311,8 @@ private fun calculateRms(samples: ShortBuffer, numSamples: Int, channels: Int, m
 //    smoothArray(rmsValues, 1.0f)
     normalizeArray(rmsValues)
 
-    return rmsValues
+    // Convert normalized result to a signed byte array.
+    return rmsValues.map { value -> normalizedFloatToByte(value) }.toByteArray()
 }
 
 /**
@@ -344,4 +346,14 @@ private fun smoothArray(values: FloatArray, neighborWeight: Float = 1f): FloatAr
                 values[i + 1] * neighborWeight) / (1f + neighborWeight * 2f)
     }
     return result
+}
+
+/** Turns a signed byte into a [0..1] float. */
+inline fun byteToNormalizedFloat(value: Byte): Float {
+    return (value + 128f) / 255f
+}
+
+/** Turns a [0..1] float into a signed byte. */
+inline fun normalizedFloatToByte(value: Float): Byte {
+    return (255f * value - 128f).roundToInt().toByte()
 }

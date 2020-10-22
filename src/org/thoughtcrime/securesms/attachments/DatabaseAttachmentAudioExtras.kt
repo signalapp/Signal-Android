@@ -1,6 +1,15 @@
 package org.thoughtcrime.securesms.attachments
 
-data class DatabaseAttachmentAudioExtras(val attachmentId: AttachmentId, val visualSamples: ByteArray, val durationMs: Long) {
+data class DatabaseAttachmentAudioExtras(
+        val attachmentId: AttachmentId,
+        /** Small amount of normalized audio byte samples to visualise the content (e.g. draw waveform). */
+        val visualSamples: ByteArray,
+        /** Duration of the audio track in milliseconds. May be [DURATION_UNDEFINED] when is not known. */
+        val durationMs: Long = DURATION_UNDEFINED) {
+
+    companion object {
+        const val DURATION_UNDEFINED = -1L
+    }
 
     override fun equals(other: Any?): Boolean {
         return other != null &&

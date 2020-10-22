@@ -92,8 +92,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV13                          = 34;
   private static final int lokiV14_BACKUP_FILES             = 35;
   private static final int lokiV15                          = 36;
+  private static final int lokiV16_AUDIO_ATTACHMENT_EXTRAS  = 37;
 
-  private static final int    DATABASE_VERSION = lokiV15;
+  private static final int    DATABASE_VERSION = lokiV16_AUDIO_ATTACHMENT_EXTRAS;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -630,6 +631,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV15) {
         db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
+      }
+
+      if (oldVersion < lokiV16_AUDIO_ATTACHMENT_EXTRAS) {
+          db.execSQL("ALTER TABLE part ADD COLUMN audio_visual_samples BLOB");
+          db.execSQL("ALTER TABLE part ADD COLUMN audio_duration INTEGER");
       }
 
       db.setTransactionSuccessful();

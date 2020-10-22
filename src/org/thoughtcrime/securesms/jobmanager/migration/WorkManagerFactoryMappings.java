@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.jobs.UpdateApkJob;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollJob;
+import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
@@ -102,6 +103,7 @@ public class WorkManagerFactoryMappings {
     put(TrimThreadJob.class.getName(), TrimThreadJob.KEY);
     put(TypingSendJob.class.getName(), TypingSendJob.KEY);
     put(UpdateApkJob.class.getName(), UpdateApkJob.KEY);
+    put(PrepareAttachmentAudioExtrasJob.class.getName(), PrepareAttachmentAudioExtrasJob.KEY);
   }};
 
   public static @Nullable String getFactoryKey(@NonNull String workManagerClass) {

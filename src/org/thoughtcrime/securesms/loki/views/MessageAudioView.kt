@@ -5,8 +5,6 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.AnimatedVectorDrawable
-import android.media.MediaDataSource
-import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.view.View.OnTouchListener
@@ -15,7 +13,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import com.pnikosis.materialishprogress.ProgressWheel
@@ -24,18 +21,18 @@ import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer
 import org.thoughtcrime.securesms.components.AnimatingToggle
 import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.logging.Log
-import org.thoughtcrime.securesms.loki.utilities.audio.DecodedAudio
+import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob
 import org.thoughtcrime.securesms.mms.AudioSlide
-import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import java.io.IOException
-import java.io.InputStream
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -166,7 +163,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
                 }
 
                 // Post to make sure it executes only when the view is attached to a window.
-                post(::updateSeekBarFromAudio)
+                post(::updateFromAttachmentAudioExtras)
             }
         }
         audioSlidePlayer = AudioSlidePlayer.createFor(context, audio, this)
@@ -254,122 +251,73 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         pauseToPlayDrawable.start()
     }
 
-    private fun updateSeekBarFromAudio() {
-        if (audioSlidePlayer == null) return
-
+    private fun obtainDatabaseAttachment(): DatabaseAttachment? {
+        audioSlidePlayer ?: return null
         val attachment = audioSlidePlayer!!.audioSlide.asAttachment()
+        return if (attachment is DatabaseAttachment) attachment else null
+    }
 
-        // Parse audio and compute RMS values for the WaveformSeekBar in the background.
-        asyncCoroutineScope!!.launch {
-            val rmsFrames = 32  // The amount of values to be computed for the visualization.
+    private fun updateFromAttachmentAudioExtras() {
+        val attachment = obtainDatabaseAttachment() ?: return
 
-            fun extractAttachmentRandomSeed(attachment: Attachment): Int {
-                return when {
-                    attachment.digest != null -> attachment.digest!!.sum()
-                    attachment.fileName != null -> attachment.fileName.hashCode()
-                    else -> attachment.hashCode()
-                }
-            }
+        val audioExtras = DatabaseFactory.getAttachmentDatabase(context)
+                .getAttachmentAudioExtras(attachment.attachmentId)
 
-            fun generateFakeRms(seed: Int, frames: Int = rmsFrames): FloatArray {
-                return Random(seed.toLong()).let { (0 until frames).map { i -> it.nextFloat() }.toFloatArray() }
-            }
+        // Schedule a job request if no audio extras were generated yet.
+        if (audioExtras == null) {
+            ApplicationContext.getInstance(context).jobManager
+                    .add(PrepareAttachmentAudioExtrasJob(attachment.attachmentId))
+            return
+        }
 
-            var rmsValues: FloatArray
-            var totalDurationMs: Long = -1
+        loadingAnimation.stop()
+        seekBar.sampleData = audioExtras.visualSamples
 
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-                // Due to API version incompatibility, we just display some random waveform for older API.
-                rmsValues = generateFakeRms(extractAttachmentRandomSeed(attachment))
-            } else {
-                try {
-                    @Suppress("BlockingMethodInNonBlockingContext")
-                    val decodedAudio = PartAuthority.getAttachmentStream(context, attachment.dataUri!!).use {
-                        DecodedAudio.create(InputStreamMediaDataSource(it))
-                    }
-                    rmsValues = decodedAudio.calculateRms(rmsFrames)
-                    totalDurationMs = (decodedAudio.totalDuration / 1000.0).toLong()
-                } catch (e: Exception) {
-                    android.util.Log.w(TAG, "Failed to decode sample values for the audio attachment \"${attachment.fileName}\".", e)
-                    rmsValues = generateFakeRms(extractAttachmentRandomSeed(attachment))
-                }
-            }
-
-            android.util.Log.d(TAG, "RMS: ${rmsValues.joinToString()}")
-
-            post {
-                loadingAnimation.stop()
-                seekBar.sampleData = rmsValues
-
-                if (totalDurationMs > 0) {
-                    totalDuration.visibility = View.VISIBLE
-                    totalDuration.text = String.format("%02d:%02d",
-                            TimeUnit.MILLISECONDS.toMinutes(totalDurationMs),
-                            TimeUnit.MILLISECONDS.toSeconds(totalDurationMs))
-                }
-            }
+        if (audioExtras.durationMs > 0) {
+            totalDuration.visibility = View.VISIBLE
+            totalDuration.text = String.format("%02d:%02d",
+                    TimeUnit.MILLISECONDS.toMinutes(audioExtras.durationMs),
+                    TimeUnit.MILLISECONDS.toSeconds(audioExtras.durationMs))
         }
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    fun onEventAsync(event: PartProgressEvent) {
+    fun onEvent(event: PartProgressEvent) {
         if (audioSlidePlayer != null && event.attachment == audioSlidePlayer!!.audioSlide.asAttachment()) {
             downloadProgress.setInstantProgress(event.progress.toFloat() / event.total)
         }
     }
-}
 
-private class SeekBarLoadingAnimation(
-        private val hostView: View,
-        private val seekBar: WaveformSeekBar): Runnable {
-
-    companion object {
-        private const val UPDATE_PERIOD = 500L // In milliseconds.
-        private val random = Random()
-    }
-
-    fun start() {
-        stop()
-        run()
-    }
-
-    fun stop() {
-        hostView.removeCallbacks(this)
-    }
-
-    override fun run() {
-        seekBar.sampleData = (0 until 64).map { random.nextFloat() * 0.5f }.toFloatArray()
-        hostView.postDelayed(this, UPDATE_PERIOD)
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.M)
-private class InputStreamMediaDataSource: MediaDataSource {
-
-    private val data: ByteArray
-
-    constructor(inputStream: InputStream): super() {
-        this.data = inputStream.readBytes()
-    }
-
-    override fun readAt(position: Long, buffer: ByteArray, offset: Int, size: Int): Int {
-        val length: Int = data.size
-        if (position >= length) {
-            return -1 // -1 indicates EOF
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: PrepareAttachmentAudioExtrasJob.AudioExtrasUpdatedEvent) {
+        if (event.audioExtras.attachmentId == obtainDatabaseAttachment()?.attachmentId) {
+            updateFromAttachmentAudioExtras()
         }
-        var actualSize = size
-        if (position + size > length) {
-            actualSize -= (position + size - length).toInt()
+    }
+
+    private class SeekBarLoadingAnimation(
+            private val hostView: View,
+            private val seekBar: WaveformSeekBar): Runnable {
+
+        companion object {
+            private const val UPDATE_PERIOD = 350L // In milliseconds.
+            private val random = Random()
         }
-        System.arraycopy(data, position.toInt(), buffer, offset, actualSize)
-        return actualSize
-    }
 
-    override fun getSize(): Long {
-        return data.size.toLong()
-    }
+        fun start() {
+            stop()
+            hostView.postDelayed(this, UPDATE_PERIOD)
+        }
 
-    override fun close() {
-        // We don't need to close the wrapped stream.
+        fun stop() {
+            hostView.removeCallbacks(this)
+        }
+
+        override fun run() {
+            // Generate a random samples with values up to the 50% of the maximum value.
+            seekBar.sampleData = ByteArray(PrepareAttachmentAudioExtrasJob.VISUAL_RMS_FRAMES)
+                { (random.nextInt(127) - 64).toByte() }
+            hostView.postDelayed(this, UPDATE_PERIOD)
+        }
     }
 }

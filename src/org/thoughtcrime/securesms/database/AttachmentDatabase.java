@@ -73,6 +73,8 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
+import kotlin.jvm.Synchronized;
+
 public class AttachmentDatabase extends Database {
   
   private static final String TAG = AttachmentDatabase.class.getSimpleName();
@@ -106,8 +108,8 @@ public class AttachmentDatabase extends Database {
           static final String CAPTION                = "caption";
   public  static final String URL                    = "url";
   public  static final String DIRECTORY              = "parts";
-  // audio/* mime type only related columns.
-          static final String AUDIO_VISUAL_SAMPLES   = "audio_visual_samples";  // Small amount of audio byte samples to visualise the content (e.g. draw waveform)
+  // "audio/*" mime type only related columns.
+          static final String AUDIO_VISUAL_SAMPLES   = "audio_visual_samples";  // Small amount of audio byte samples to visualise the content (e.g. draw waveform).
           static final String AUDIO_DURATION         = "audio_duration";        // Duration of the audio track in milliseconds.
 
   public static final int TRANSFER_PROGRESS_DONE    = 0;
@@ -116,7 +118,7 @@ public class AttachmentDatabase extends Database {
   public static final int TRANSFER_PROGRESS_FAILED  = 3;
 
   private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
-  private static final String PART_AUDIO_ONLY_WHERE = CONTENT_TYPE + " LIKE audio/%";
+  private static final String PART_AUDIO_ONLY_WHERE = CONTENT_TYPE + " LIKE \"audio/%\"";
 
   private static final String[] PROJECTION = new String[] {ROW_ID,
                                                            MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
@@ -834,6 +836,7 @@ public class AttachmentDatabase extends Database {
    * Retrieves the audio extra values associated with the attachment. Only "audio/*" mime type attachments are accepted.
    * @return the related audio extras or null in case any of the audio extra columns are empty or the attachment is not an audio.
    */
+  @Synchronized
   public @Nullable DatabaseAttachmentAudioExtras getAttachmentAudioExtras(@NonNull AttachmentId attachmentId) {
     try (Cursor cursor = databaseHelper.getReadableDatabase()
             // We expect all the audio extra values to be present (not null) or reject the whole record.
@@ -859,6 +862,7 @@ public class AttachmentDatabase extends Database {
    * Updates audio extra columns for the "audio/*" mime type attachments only.
    * @return true if the update operation was successful.
    */
+  @Synchronized
   public boolean setAttachmentAudioExtras(@NonNull DatabaseAttachmentAudioExtras extras) {
     ContentValues values = new ContentValues();
     values.put(AUDIO_VISUAL_SAMPLES, extras.getVisualSamples());

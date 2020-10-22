@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
@@ -15,8 +14,11 @@ import android.view.ViewConfiguration
 import android.view.animation.DecelerateInterpolator
 import androidx.core.math.MathUtils
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.loki.utilities.audio.byteToNormalizedFloat
 import java.lang.Math.abs
 import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 class WaveformSeekBar : View {
 
@@ -32,8 +34,8 @@ class WaveformSeekBar : View {
     }
 
     private val sampleDataHolder = SampleDataHolder(::invalidate)
-    /** An array if normalized to [0..1] values representing the audio signal. */
-    var sampleData: FloatArray?
+    /** An array of signed byte values representing the audio signal. */
+    var sampleData: ByteArray?
         get() {
             return sampleDataHolder.getSamples()
         }
@@ -155,7 +157,8 @@ class WaveformSeekBar : View {
         var lastBarRight = paddingLeft.toFloat()
 
         (0 until barAmount).forEach { barIdx ->
-            val barValue = sampleDataHolder.computeBarValue(barIdx, barAmount)
+            // Convert a signed byte to a [0..1] float.
+            val barValue = byteToNormalizedFloat(sampleDataHolder.computeBarValue(barIdx, barAmount))
 
             val barHeight = max(barMinHeight, getAvailableHeight() * barValue)
 
@@ -246,16 +249,17 @@ class WaveformSeekBar : View {
 
     private class SampleDataHolder(private val invalidateDelegate: () -> Any) {
 
-        private var sampleDataFrom: FloatArray? = null
-        private var sampleDataTo: FloatArray? = null
+        private var sampleDataFrom: ByteArray? = null
+        private var sampleDataTo: ByteArray? = null
         private var progress = 1f // Mix between from and to values.
 
         private var animation: ValueAnimator? = null
 
-        fun computeBarValue(barIdx: Int, barAmount: Int): Float {
-            fun getSampleValue(sampleData: FloatArray?): Float {
+        fun computeBarValue(barIdx: Int, barAmount: Int): Byte {
+            /** @return The array's value at the interpolated index. */
+            fun getSampleValue(sampleData: ByteArray?): Byte {
                 if (sampleData == null || sampleData.isEmpty())
-                    return 0f
+                    return Byte.MIN_VALUE
                 else {
                     val sampleIdx = (barIdx * (sampleData.size / barAmount.toFloat())).toInt()
                     return sampleData[sampleIdx]
@@ -268,12 +272,21 @@ class WaveformSeekBar : View {
 
             val fromValue = getSampleValue(sampleDataFrom)
             val toValue = getSampleValue(sampleDataTo)
-
-            return fromValue * (1f - progress) + toValue * progress
+            val rawResultValue = fromValue * (1f - progress) + toValue * progress
+            return rawResultValue.roundToInt().toByte()
         }
 
-        fun setSamples(sampleData: FloatArray?) {
-            sampleDataFrom = sampleDataTo
+        fun setSamples(sampleData: ByteArray?) {
+            /** @return a mix between [sampleDataFrom] and [sampleDataTo] arrays according to the current [progress] value. */
+            fun computeNewDataFromArray(): ByteArray? {
+                if (sampleDataTo == null) return null
+                if (sampleDataFrom == null) return sampleDataTo
+
+                val sampleSize = min(sampleDataFrom!!.size, sampleDataTo!!.size)
+                return ByteArray(sampleSize) { i -> computeBarValue(i, sampleSize) }
+            }
+
+            sampleDataFrom = computeNewDataFromArray()
             sampleDataTo = sampleData
             progress = 0f
 
@@ -281,7 +294,6 @@ class WaveformSeekBar : View {
             animation = ValueAnimator.ofFloat(0f, 1f).apply {
                 addUpdateListener { animation ->
                     progress = animation.animatedValue as Float
-                    Log.d("MTPHR", "Progress: $progress")
                     invalidateDelegate()
                 }
                 interpolator = DecelerateInterpolator(3f)
@@ -290,7 +302,7 @@ class WaveformSeekBar : View {
             }
         }
 
-        fun getSamples(): FloatArray? {
+        fun getSamples(): ByteArray? {
             return sampleDataTo
         }
     }
