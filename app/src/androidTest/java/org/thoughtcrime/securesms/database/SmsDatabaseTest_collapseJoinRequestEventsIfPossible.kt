@@ -78,7 +78,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
    * Do nothing if previous message is text.
    */
   @Test
-  fun previousTextMesssage() {
+  fun previousTextMessage() {
     val threadId = sms.insertMessageInbox(smsMessage(sender = alice, body = "What up")).get().threadId
 
     val result = sms.collapseJoinRequestEventsIfPossible(
