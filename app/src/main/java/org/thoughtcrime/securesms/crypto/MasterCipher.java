@@ -170,7 +170,7 @@ public class MasterCipher {
     byte[] localMac  = hmac.doFinal(encrypted);
 		
     if (!Arrays.equals(remoteMac, localMac))
-      throw new InvalidMessageException("MAC doesen't match.");
+      throw new InvalidMessageException("MAC doesn't match.");
 		
     return encrypted;
   }
