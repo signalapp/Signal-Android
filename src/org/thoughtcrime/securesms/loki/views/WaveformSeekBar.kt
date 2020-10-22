@@ -15,7 +15,7 @@ import android.view.animation.DecelerateInterpolator
 import androidx.core.math.MathUtils
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.audio.byteToNormalizedFloat
-import java.lang.Math.abs
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -111,7 +111,9 @@ class WaveformSeekBar : View {
 
     private var canvasWidth = 0
     private var canvasHeight = 0
+
     private var touchDownX = 0f
+    private var touchDownProgress: Float = 0f
     private var scaledTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
 
     constructor(context: Context) : this(context, null)
@@ -185,45 +187,29 @@ class WaveformSeekBar : View {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 userSeeking = true
-                if (isParentScrolling()) {
-                    touchDownX = event.x
-                } else {
-                    updateProgress(event, false)
-                }
+                touchDownX = event.x
+                touchDownProgress = progress
+                updateProgress(event, false)
             }
             MotionEvent.ACTION_MOVE -> {
+                // Prevent any parent scrolling if the user scrolled more
+                // than scaledTouchSlop on horizontal axis.
+                if (abs(event.x - touchDownX) > scaledTouchSlop) {
+                    parent.requestDisallowInterceptTouchEvent(true)
+                }
                 updateProgress(event, false)
             }
             MotionEvent.ACTION_UP -> {
                 userSeeking = false
-                if (abs(event.x - touchDownX) > scaledTouchSlop) {
-                    updateProgress(event, true)
-                }
+                updateProgress(event, true)
                 performClick()
             }
             MotionEvent.ACTION_CANCEL -> {
+                updateProgress(touchDownProgress, false)
                 userSeeking = false
             }
         }
         return true
-    }
-
-    private fun isParentScrolling(): Boolean {
-        var parent = parent as View
-        val root = rootView
-
-        while (true) {
-            when {
-                parent.canScrollHorizontally(+1) -> return true
-                parent.canScrollHorizontally(-1) -> return true
-                parent.canScrollVertically(+1) -> return true
-                parent.canScrollVertically(-1) -> return true
-            }
-
-            if (parent == root) return false
-
-            parent = parent.parent as View
-        }
     }
 
     private fun updateProgress(event: MotionEvent, notify: Boolean) {
