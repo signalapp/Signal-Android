@@ -96,6 +96,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
                 audioSlidePlayer!!.stop()
             }
         }
+        seekBar.isEnabled = false
         seekBar.progressChangeListener = object : WaveformSeekBar.ProgressChangeListener {
             override fun onProgressChanged(waveformSeekBar: WaveformSeekBar, progress: Float, fromUser: Boolean) {
                 if (fromUser && audioSlidePlayer != null) {
@@ -233,7 +234,6 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         super.setEnabled(enabled)
         playButton.isEnabled = enabled
         pauseButton.isEnabled = enabled
-        seekBar.isEnabled = enabled
         downloadButton.isEnabled = enabled
     }
 
@@ -299,6 +299,8 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
             private val hostView: View,
             private val seekBar: WaveformSeekBar): Runnable {
 
+        private var active = false
+
         companion object {
             private const val UPDATE_PERIOD = 350L // In milliseconds.
             private val random = Random()
@@ -306,14 +308,18 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
 
         fun start() {
             stop()
+            active = true
             hostView.postDelayed(this, UPDATE_PERIOD)
         }
 
         fun stop() {
+            active = false
             hostView.removeCallbacks(this)
         }
 
         override fun run() {
+            if (!active) return
+
             // Generate a random samples with values up to the 50% of the maximum value.
             seekBar.sampleData = ByteArray(PrepareAttachmentAudioExtrasJob.VISUAL_RMS_FRAMES)
                 { (random.nextInt(127) - 64).toByte() }
