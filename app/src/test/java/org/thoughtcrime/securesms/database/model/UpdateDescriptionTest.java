@@ -29,28 +29,28 @@ public final class UpdateDescriptionTest {
 
   @Test
   public void staticDescription_byGetStaticString() {
-    UpdateDescription description = UpdateDescription.staticDescription("update");
+    UpdateDescription description = UpdateDescription.staticDescription("update", 0, 0);
 
     assertEquals("update", description.getStaticString());
   }
 
   @Test
   public void staticDescription_has_empty_mentions() {
-    UpdateDescription description = UpdateDescription.staticDescription("update");
+    UpdateDescription description = UpdateDescription.staticDescription("update", 0, 0);
 
     assertTrue(description.getMentioned().isEmpty());
   }
 
   @Test
   public void staticDescription_byString() {
-    UpdateDescription description = UpdateDescription.staticDescription("update");
+    UpdateDescription description = UpdateDescription.staticDescription("update", 0, 0);
 
     assertEquals("update", description.getString());
   }
 
   @Test(expected = AssertionError.class)
   public void stringFactory_cannot_run_on_main_thread() {
-    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), () -> "update");
+    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), () -> "update", 0, 0);
 
     setMainThread(true);
 
@@ -59,7 +59,7 @@ public final class UpdateDescriptionTest {
 
   @Test(expected = UnsupportedOperationException.class)
   public void stringFactory_cannot_call_static_string() {
-    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), () -> "update");
+    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), () -> "update", 0, 0);
 
     description.getStaticString();
   }
@@ -73,7 +73,7 @@ public final class UpdateDescriptionTest {
       return "update";
     };
 
-    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory);
+    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory, 0 , 0);
 
     assertEquals(0, factoryCalls.get());
 
@@ -89,7 +89,7 @@ public final class UpdateDescriptionTest {
   public void stringFactory_reevaluated_on_every_call() {
     AtomicInteger                   factoryCalls  = new AtomicInteger();
     UpdateDescription.StringFactory stringFactory = () -> "call" + factoryCalls.incrementAndGet();
-    UpdateDescription               description   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory);
+    UpdateDescription               description   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory, 0, 0);
 
     setMainThread(false);
 
@@ -100,8 +100,8 @@ public final class UpdateDescriptionTest {
 
   @Test
   public void concat_static_lines() {
-    UpdateDescription description1 = UpdateDescription.staticDescription("update1");
-    UpdateDescription description2 = UpdateDescription.staticDescription("update2");
+    UpdateDescription description1 = UpdateDescription.staticDescription("update1", 0, 0);
+    UpdateDescription description2 = UpdateDescription.staticDescription("update2", 0 , 0);
 
     UpdateDescription description = UpdateDescription.concatWithNewLines(Arrays.asList(description1, description2));
 
@@ -112,7 +112,7 @@ public final class UpdateDescriptionTest {
 
   @Test
   public void concat_single_does_not_make_new_object() {
-    UpdateDescription description = UpdateDescription.staticDescription("update1");
+    UpdateDescription description = UpdateDescription.staticDescription("update1", 0 , 0);
 
     UpdateDescription concat = UpdateDescription.concatWithNewLines(Collections.singletonList(description));
 
@@ -125,8 +125,8 @@ public final class UpdateDescriptionTest {
     AtomicInteger                   factoryCalls2  = new AtomicInteger();
     UpdateDescription.StringFactory stringFactory1 = () -> "update." + factoryCalls1.incrementAndGet();
     UpdateDescription.StringFactory stringFactory2 = () -> "update." + factoryCalls2.incrementAndGet();
-    UpdateDescription               description1   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory1);
-    UpdateDescription               description2   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory2);
+    UpdateDescription               description1   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory1, 0, 0);
+    UpdateDescription               description2   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory2, 0, 0);
 
     factoryCalls1.set(10);
     factoryCalls2.set(20);
@@ -148,9 +148,9 @@ public final class UpdateDescriptionTest {
     AtomicInteger                   factoryCalls2  = new AtomicInteger();
     UpdateDescription.StringFactory stringFactory1 = () -> "update." + factoryCalls1.incrementAndGet();
     UpdateDescription.StringFactory stringFactory2 = () -> "update." + factoryCalls2.incrementAndGet();
-    UpdateDescription               description1   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory1);
-    UpdateDescription               description2   = UpdateDescription.staticDescription("static");
-    UpdateDescription               description3   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory2);
+    UpdateDescription               description1   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory1, 0, 0);
+    UpdateDescription               description2   = UpdateDescription.staticDescription("static", 0, 0);
+    UpdateDescription               description3   = UpdateDescription.mentioning(Collections.singletonList(UUID.randomUUID()), stringFactory2, 0, 0);
 
     factoryCalls1.set(100);
     factoryCalls2.set(200);

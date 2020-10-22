@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,8 +41,9 @@ import java.util.concurrent.TimeUnit;
 public class DateUtils extends android.text.format.DateUtils {
 
   @SuppressWarnings("unused")
-  private static final String           TAG         = DateUtils.class.getSimpleName();
-  private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
+  private static final String           TAG                = DateUtils.class.getSimpleName();
+  private static final SimpleDateFormat DATE_FORMAT        = new SimpleDateFormat("yyyyMMdd");
+  private static final SimpleDateFormat BRIEF_EXACT_FORMAT = new SimpleDateFormat();
 
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);
@@ -170,6 +172,16 @@ public class DateUtils extends android.text.format.DateUtils {
 
   public static boolean isSameExtendedRelativeTimestamp(@NonNull Context context, @NonNull Locale locale, long t1, long t2) {
     return getExtendedRelativeTimeSpanString(context, locale, t1).equals(getExtendedRelativeTimeSpanString(context, locale, t2));
+  }
+
+  public static String getBriefExactTimeString(@NonNull Locale locale, long timestamp) {
+    SimpleDateFormat  format  = new SimpleDateFormat(getLocalizedPattern("MMM dd, hh:mm a", locale), locale);
+    DateFormatSymbols symbols = new DateFormatSymbols(locale);
+
+    symbols.setAmPmStrings(new String[] { "am", "pm"});
+    format.setDateFormatSymbols(symbols);
+
+    return format.format(timestamp);
   }
 
   private static String getLocalizedPattern(String template, Locale locale) {

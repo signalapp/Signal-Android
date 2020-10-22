@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.conversation.ConversationUpdateItem xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.conversation.ConversationUpdateItem
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/conversation_update_item"
@@ -14,62 +15,13 @@
     android:paddingEnd="28dp"
     android:paddingTop="8dp">
 
-    <LinearLayout
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/conversation_update_body"
+        style="@style/Signal.Text.Preview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:layout_marginTop="12dp"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/conversation_update_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="6dp"
-            app:srcCompat="@drawable/ic_timer_24" />
-
-        <TextView
-            android:id="@+id/conversation_update_title"
-            style="@style/Signal.Text.Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="?conversation_item_update_text_color"
-            tools:text="1 hour" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
         android:gravity="center"
-        android:orientation="vertical">
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/conversation_update_body"
-            style="@style/Signal.Text.Preview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="?attr/conversation_item_update_text_color"
-            tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
-
-        <TextView
-            android:id="@+id/conversation_update_date"
-            style="@style/Signal.Text.Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="6dp"
-            android:autoLink="none"
-            android:gravity="center"
-            android:linksClickable="false"
-            android:minWidth="15sp"
-            android:textColor="?conversation_item_update_text_color"
-            tools:text="30 min ago" />
-
-    </LinearLayout>
+        android:textColor="?attr/conversation_item_update_text_color"
+        tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
 
 </org.thoughtcrime.securesms.conversation.ConversationUpdateItem>

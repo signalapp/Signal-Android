@@ -22,6 +22,7 @@ import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
@@ -48,6 +50,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -127,43 +130,43 @@ public abstract class MessageRecord extends DisplayRecord {
     if (isGroupUpdate() && isGroupV2()) {
       return getGv2ChangeDescription(context, getBody());
     } else if (isGroupUpdate() && isOutgoing()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_updated_group));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_updated_group), R.drawable.ic_update_group_light_16, R.drawable.ic_update_group_dark_16);
     } else if (isGroupUpdate()) {
-      return fromRecipient(getIndividualRecipient(), r -> GroupUtil.getNonV2GroupDescription(context, getBody()).toString(r));
+      return fromRecipient(getIndividualRecipient(), r -> GroupUtil.getNonV2GroupDescription(context, getBody()).toString(r), R.drawable.ic_update_group_light_16, R.drawable.ic_update_group_dark_16);
     } else if (isGroupQuit() && isOutgoing()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_left_group));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_left_group), R.drawable.ic_update_group_leave_light_16, R.drawable.ic_update_group_leave_dark_16);
     } else if (isGroupQuit()) {
-      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.ConversationItem_group_action_left, r.getDisplayName(context)));
+      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.ConversationItem_group_action_left, r.getDisplayName(context)), R.drawable.ic_update_group_leave_light_16, R.drawable.ic_update_group_leave_dark_16);
     } else if (isIncomingCall()) {
-      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_called_you, r.getDisplayName(context)));
+      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_called_you_date, r.getDisplayName(context), getCallDateString()), R.drawable.ic_update_audio_call_incoming_light_16, R.drawable.ic_update_audio_call_incoming_dark_16);
     } else if (isOutgoingCall()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_called));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_called_date, getCallDateString()), R.drawable.ic_update_audio_call_outgoing_light_16, R.drawable.ic_update_audio_call_outgoing_dark_16);
     } else if (isMissedCall()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_call));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_call_date, getCallDateString()), R.drawable.ic_update_audio_call_missed_light_16, R.drawable.ic_update_audio_call_missed_dark_16);
     } else if (isJoined()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().getDisplayName(context)));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().getDisplayName(context)), R.drawable.ic_update_group_add_light_16, R.drawable.ic_update_group_add_dark_16);
     } else if (isExpirationTimerUpdate()) {
       int seconds = (int)(getExpiresIn() / 1000);
       if (seconds <= 0) {
-        return isOutgoing() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages))
-                            : fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_disabled_disappearing_messages, r.getDisplayName(context)));
+        return isOutgoing() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages), R.drawable.ic_update_timer_disabled_light_16, R.drawable.ic_update_timer_disabled_dark_16)
+                            : fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_disabled_disappearing_messages, r.getDisplayName(context)), R.drawable.ic_update_timer_disabled_light_16, R.drawable.ic_update_timer_disabled_dark_16);
       }
       String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
-      return isOutgoing() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time))
-                          : fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_set_disappearing_message_time_to_s, r.getDisplayName(context), time));
+      return isOutgoing() ? staticUpdateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_light_16, R.drawable.ic_update_timer_dark_16)
+                          : fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_set_disappearing_message_time_to_s, r.getDisplayName(context), time), R.drawable.ic_update_timer_light_16, R.drawable.ic_update_timer_dark_16);
     } else if (isIdentityUpdate()) {
-      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context)));
+      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context)), R.drawable.ic_update_safety_number_light_16, R.drawable.ic_update_safety_number_dark_16);
     } else if (isIdentityVerified()) {
-      if (isOutgoing()) return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified, r.getDisplayName(context)));
-      else              return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device, r.getDisplayName(context)));
+      if (isOutgoing()) return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified, r.getDisplayName(context)), R.drawable.ic_update_verified_light_16, R.drawable.ic_update_verified_dark_16);
+      else              return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device, r.getDisplayName(context)), R.drawable.ic_update_verified_light_16, R.drawable.ic_update_verified_dark_16);
     } else if (isIdentityDefault()) {
-      if (isOutgoing()) return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, r.getDisplayName(context)));
-      else              return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, r.getDisplayName(context)));
+      if (isOutgoing()) return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, r.getDisplayName(context)), R.drawable.ic_update_info_light_16, R.drawable.ic_update_info_dark_16);
+      else              return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, r.getDisplayName(context)), R.drawable.ic_update_info_light_16, R.drawable.ic_update_info_dark_16);
     } else if (isProfileChange()) {
-      return staticUpdateDescription(getProfileChangeDescription(context));
+      return staticUpdateDescription(getProfileChangeDescription(context), R.drawable.ic_update_profile_light_16, R.drawable.ic_update_profile_dark_16);
     } else if (isEndSession()) {
-      if (isOutgoing()) return staticUpdateDescription(context.getString(R.string.SmsMessageRecord_secure_session_reset));
-      else              return fromRecipient(getIndividualRecipient(), r-> context.getString(R.string.SmsMessageRecord_secure_session_reset_s, r.getDisplayName(context)));
+      if (isOutgoing()) return staticUpdateDescription(context.getString(R.string.SmsMessageRecord_secure_session_reset), R.drawable.ic_update_info_light_16, R.drawable.ic_update_info_dark_16);
+      else              return fromRecipient(getIndividualRecipient(), r-> context.getString(R.string.SmsMessageRecord_secure_session_reset_s, r.getDisplayName(context)), R.drawable.ic_update_info_light_16, R.drawable.ic_update_info_dark_16);
     }
 
     return null;
@@ -183,7 +186,7 @@ public abstract class MessageRecord extends DisplayRecord {
       }
     } catch (IOException e) {
       Log.w(TAG, "GV2 Message update detail could not be read", e);
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_group_updated));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_light_16, R.drawable.ic_update_group_dark_16);
     }
   }
 
@@ -210,12 +213,26 @@ public abstract class MessageRecord extends DisplayRecord {
     }
   }
 
-  private static @NonNull UpdateDescription fromRecipient(@NonNull Recipient recipient, @NonNull Function<Recipient, String> stringFunction) {
-    return UpdateDescription.mentioning(Collections.singletonList(recipient.getUuid().or(UuidUtil.UNKNOWN_UUID)), () -> stringFunction.apply(recipient.resolve()));
+  private @NonNull String getCallDateString() {
+    return DateUtils.getBriefExactTimeString(Locale.getDefault(), getDateSent());
   }
 
-  private static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string) {
-    return UpdateDescription.staticDescription(string);
+  private static @NonNull UpdateDescription fromRecipient(@NonNull Recipient recipient,
+                                                          @NonNull Function<Recipient, String> stringGenerator,
+                                                          @DrawableRes int lightIconResource,
+                                                          @DrawableRes int darkIconResource)
+  {
+    return UpdateDescription.mentioning(Collections.singletonList(recipient.getUuid().or(UuidUtil.UNKNOWN_UUID)),
+                                        () -> stringGenerator.apply(recipient.resolve()),
+                                        lightIconResource,
+                                        darkIconResource);
+  }
+
+  private static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,
+                                                                    @DrawableRes int lightIconResource,
+                                                                    @DrawableRes int darkIconResource)
+  {
+    return UpdateDescription.staticDescription(string, lightIconResource, darkIconResource);
   }
 
   private @NonNull String getProfileChangeDescription(@NonNull Context context) {
