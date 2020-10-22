@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
+import static org.thoughtcrime.securesms.groups.ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS;
 
 @RunWith(Parameterized.class)
 public final class GroupId_v1_v2_migration_derivation_Test {
@@ -43,6 +44,8 @@ public final class GroupId_v1_v2_migration_derivation_Test {
 
   @Test
   public void deriveMigrationV2GroupId() {
+    assumeZkGroupSupportedOnOS();
+
     GroupId.V1 groupV1Id         = GroupId.v1orThrow(Hex.fromStringOrThrow(inputV1GroupId));
     GroupId.V2 migratedV2GroupId = groupV1Id.deriveV2MigrationGroupId();
 

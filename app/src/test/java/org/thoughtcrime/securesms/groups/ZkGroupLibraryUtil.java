@@ -20,7 +20,7 @@ class ZkGroupLibraryUtil {
       Class.forName(Native.class.getName());
     } catch (ClassNotFoundException e) {
       fail();
-    } catch (UnsatisfiedLinkError e) {
+    } catch (NoClassDefFoundError | UnsatisfiedLinkError e) {
       String osName = System.getProperty("os.name");
 
       if (isUnix(osName)) {
