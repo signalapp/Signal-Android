@@ -20,7 +20,7 @@ public class GroupsV1MigrationSuggestionsReminder extends Reminder {
   }
 
   @Override
-  public boolean isDismissable() {
+  public boolean isDismissible() {
     return false;
   }
 }

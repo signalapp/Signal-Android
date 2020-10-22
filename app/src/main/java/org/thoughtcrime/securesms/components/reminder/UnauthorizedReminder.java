@@ -18,7 +18,7 @@ public class UnauthorizedReminder extends Reminder {
   }
 
   @Override
-  public boolean isDismissable() {
+  public boolean isDismissible() {
     return false;
   }
 

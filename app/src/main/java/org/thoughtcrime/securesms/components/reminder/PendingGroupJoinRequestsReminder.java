@@ -28,7 +28,7 @@ public final class PendingGroupJoinRequestsReminder extends Reminder {
   }
 
   @Override
-  public boolean isDismissable() {
+  public boolean isDismissible() {
     return true;
   }
 

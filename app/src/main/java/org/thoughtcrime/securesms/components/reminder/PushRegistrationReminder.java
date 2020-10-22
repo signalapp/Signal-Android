@@ -16,7 +16,7 @@ public class PushRegistrationReminder extends Reminder {
   }
 
   @Override
-  public boolean isDismissable() {
+  public boolean isDismissible() {
     return false;
   }
 

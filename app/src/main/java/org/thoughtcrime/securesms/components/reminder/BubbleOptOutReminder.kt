@@ -10,7 +10,7 @@ class BubbleOptOutReminder(context: Context) : Reminder(null, context.getString(
     addAction(Action(context.getString(R.string.BubbleOptOutTooltip__not_now), R.id.reminder_action_not_now))
   }
 
-  override fun isDismissable(): Boolean {
+  override fun isDismissible(): Boolean {
     return false
   }
 }

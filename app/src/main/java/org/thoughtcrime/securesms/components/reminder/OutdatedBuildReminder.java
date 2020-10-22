@@ -32,7 +32,7 @@ public class OutdatedBuildReminder extends Reminder {
   }
 
   @Override
-  public boolean isDismissable() {
+  public boolean isDismissible() {
     return false;
   }
 
