@@ -95,14 +95,14 @@ public class Util {
     return result.toString();
   }
 
-  public static String join(long[] list, String delimeter) {
+  public static String join(long[] list, String delimiter) {
     List<Long> boxed = new ArrayList<>(list.length);
 
     for (int i = 0; i < list.length; i++) {
       boxed.add(list[i]);
     }
 
-    return join(boxed, delimeter);
+    return join(boxed, delimiter);
   }
 
   @SafeVarargs
@@ -117,11 +117,11 @@ public class Util {
     return joined;
   }
 
-  public static String join(List<Long> list, String delimeter) {
+  public static String join(List<Long> list, String delimiter) {
     StringBuilder sb = new StringBuilder();
 
     for (int j = 0; j < list.size(); j++) {
-      if (j != 0) sb.append(delimeter);
+      if (j != 0) sb.append(delimiter);
       sb.append(list.get(j));
     }
 
