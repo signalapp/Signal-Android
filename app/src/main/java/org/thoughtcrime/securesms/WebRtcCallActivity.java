@@ -69,7 +69,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
+import org.thoughtcrime.securesms.util.ElapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -356,13 +356,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void handleCallTime(long callTime) {
-    EllapsedTimeFormatter ellapsedTimeFormatter = EllapsedTimeFormatter.fromDurationMillis(callTime);
+    ElapsedTimeFormatter elapsedTimeFormatter = ElapsedTimeFormatter.fromDurationMillis(callTime);
 
-    if (ellapsedTimeFormatter == null) {
+    if (elapsedTimeFormatter == null) {
       return;
     }
 
-    callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, ellapsedTimeFormatter.toString()));
+    callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, elapsedTimeFormatter.toString()));
   }
 
   private void handleSetAudioHandset() {

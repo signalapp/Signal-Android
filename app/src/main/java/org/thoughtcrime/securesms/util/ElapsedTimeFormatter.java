@@ -5,12 +5,12 @@ import androidx.annotation.Nullable;
 
 import java.util.Locale;
 
-public class EllapsedTimeFormatter {
+public class ElapsedTimeFormatter {
   private final long hours;
   private final long minutes;
   private final long seconds;
 
-  private EllapsedTimeFormatter(long durationMillis) {
+  private ElapsedTimeFormatter(long durationMillis) {
     hours   = durationMillis / 3600;
     minutes = durationMillis % 3600 / 60;
     seconds = durationMillis % 3600 % 60;
@@ -25,11 +25,11 @@ public class EllapsedTimeFormatter {
     }
   }
 
-  public static @Nullable EllapsedTimeFormatter fromDurationMillis(long durationMillis) {
+  public static @Nullable ElapsedTimeFormatter fromDurationMillis(long durationMillis) {
     if (durationMillis == -1) {
       return null;
     }
 
-    return new EllapsedTimeFormatter(durationMillis);
+    return new ElapsedTimeFormatter(durationMillis);
   }
 }
