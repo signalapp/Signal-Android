@@ -1420,6 +1420,14 @@ public class ConversationActivity extends PassphraseRequiredActivity
   ///// Initializers
 
   private ListenableFuture<Boolean> initializeDraft() {
+    // Do not read the intent and just fall back to database when the activity was launched
+    // from the list of recent apps. The intent does not clear itself even after
+    // we have sent a message, so that the data from the intent appears over and over again
+    // when the activity was opened from the list of recent apps.
+    if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
+      return initializeDraftFromDatabase();
+    }
+
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
     final CharSequence   draftText        = getIntent().getCharSequenceExtra(TEXT_EXTRA);
