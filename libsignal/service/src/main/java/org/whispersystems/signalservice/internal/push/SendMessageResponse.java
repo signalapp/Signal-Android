@@ -7,13 +7,13 @@ public class SendMessageResponse {
   @JsonProperty
   private boolean needsSync;
 
-  private boolean sentUnidentfied;
+  private boolean sentUnidentified;
 
   public SendMessageResponse() {}
 
   public SendMessageResponse(boolean needsSync, boolean sentUnidentified) {
     this.needsSync       = needsSync;
-    this.sentUnidentfied = sentUnidentified;
+    this.sentUnidentified = sentUnidentified;
   }
 
   public boolean getNeedsSync() {
@@ -21,10 +21,10 @@ public class SendMessageResponse {
   }
 
   public boolean sentUnidentified() {
-    return sentUnidentfied;
+    return sentUnidentified;
   }
 
-  public void setSentUnidentfied(boolean value) {
-    this.sentUnidentfied = value;
+  public void setSentUnidentified(boolean value) {
+    this.sentUnidentified = value;
   }
 }

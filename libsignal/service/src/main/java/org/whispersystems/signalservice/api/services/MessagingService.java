@@ -60,7 +60,7 @@ public class MessagingService {
                                                                               .withResponseMapper((status, body, getHeader, unidentified) -> {
                                                                                 SendMessageResponse sendMessageResponse = Util.isEmpty(body) ? new SendMessageResponse(false, unidentified)
                                                                                                                                              : JsonUtil.fromJsonResponse(body, SendMessageResponse.class);
-                                                                                sendMessageResponse.setSentUnidentfied(unidentified);
+                                                                                sendMessageResponse.setSentUnidentified(unidentified);
 
                                                                                 return ServiceResponse.forResult(sendMessageResponse, status, body);
                                                                               })

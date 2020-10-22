@@ -519,7 +519,7 @@ public class PushServiceSocket {
       String              responseText = makeServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
       SendMessageResponse response     = JsonUtil.fromJson(responseText, SendMessageResponse.class);
 
-      response.setSentUnidentfied(unidentifiedAccess.isPresent());
+      response.setSentUnidentified(unidentifiedAccess.isPresent());
 
       return response;
     } catch (NotFoundException nfe) {
