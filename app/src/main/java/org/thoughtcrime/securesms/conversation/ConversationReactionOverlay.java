@@ -161,7 +161,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     this.conversationRecipient         = conversationRecipient;
     this.selectedConversationModel     = selectedConversationModel;
     this.isNonAdminInAnnouncementGroup = isNonAdminInAnnouncementGroup;
-    overlayState                       = OverlayState.UNINITAILIZED;
+    overlayState                       = OverlayState.UNINITIALIZED;
     selected                           = -1;
 
     setupSelectedEmoji();
@@ -544,7 +544,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
       return true;
     }
 
-    if (overlayState == OverlayState.UNINITAILIZED) {
+    if (overlayState == OverlayState.UNINITIALIZED) {
       downIsOurs = false;
 
       deadzoneTouchPoint.set(motionEvent.getX(), motionEvent.getY());
@@ -967,7 +967,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
   private enum OverlayState {
     HIDDEN,
-    UNINITAILIZED,
+    UNINITIALIZED,
     DEADZONE,
     SCRUB,
     TAP
