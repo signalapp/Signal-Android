@@ -1042,8 +1042,8 @@ public class TextSecurePreferences {
     setIntegerPrefrence(context, JOB_MANAGER_VERSION, version);
   }
 
-  public static int getJobManagerVersion(Context contex) {
-    return getIntegerPreference(contex, JOB_MANAGER_VERSION, 1);
+  public static int getJobManagerVersion(Context context) {
+    return getIntegerPreference(context, JOB_MANAGER_VERSION, 1);
   }
 
   public static void setAppMigrationVersion(Context context, int version) {
