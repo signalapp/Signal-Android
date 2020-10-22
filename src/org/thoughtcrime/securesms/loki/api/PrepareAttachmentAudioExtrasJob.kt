@@ -122,7 +122,7 @@ class PrepareAttachmentAudioExtrasJob : BaseJob {
                 totalDurationMs
         ))
 
-        EventBus.getDefault().post(AudioExtrasUpdatedEvent(attachmentIdattachmentId))
+        EventBus.getDefault().post(AudioExtrasUpdatedEvent(attachmentId))
     }
 
     class Factory : Job.Factory<PrepareAttachmentAudioExtrasJob> {
