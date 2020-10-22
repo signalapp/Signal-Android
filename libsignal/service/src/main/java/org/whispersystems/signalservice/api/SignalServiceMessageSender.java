@@ -126,6 +126,7 @@ public class SignalServiceMessageSender {
   private final AtomicBoolean                                       isMultiDevice;
 
   private final ExecutorService                                     executor;
+  private final int                                                 maxEnvelopeSize;
 
   /**
    * Construct a SignalServiceMessageSender.
@@ -149,7 +150,7 @@ public class SignalServiceMessageSender {
                                     ClientZkProfileOperations clientZkProfileOperations,
                                     ExecutorService executor)
   {
-    this(urls, new StaticCredentialsProvider(uuid, e164, password, null), store, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations, executor);
+    this(urls, new StaticCredentialsProvider(uuid, e164, password, null), store, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations, executor, 0);
   }
 
   public SignalServiceMessageSender(SignalServiceConfiguration urls,
@@ -161,7 +162,8 @@ public class SignalServiceMessageSender {
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     Optional<EventListener> eventListener,
                                     ClientZkProfileOperations clientZkProfileOperations,
-                                    ExecutorService executor)
+                                    ExecutorService executor,
+                                    int maxEnvelopeSize)
   {
     this.socket           = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations);
     this.store            = store;
@@ -171,6 +173,7 @@ public class SignalServiceMessageSender {
     this.isMultiDevice    = new AtomicBoolean(isMultiDevice);
     this.eventListener    = eventListener;
     this.executor         = executor != null ? executor : Executors.newSingleThreadExecutor();
+    this.maxEnvelopeSize  = maxEnvelopeSize;
   }
 
   /**
@@ -698,7 +701,13 @@ public class SignalServiceMessageSender {
 
     builder.setTimestamp(message.getTimestamp());
 
-    return container.setDataMessage(builder).build().toByteArray();
+    byte[] content = container.setDataMessage(builder).build().toByteArray();
+
+    if (maxEnvelopeSize > 0 && content.length > maxEnvelopeSize) {
+      throw new ContentTooLargeException(content.length);
+    }
+
+    return content;
   }
 
   private byte[] createCallContent(SignalServiceCallMessage callMessage) {

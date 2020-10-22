@@ -99,7 +99,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                             Optional.of(new SecurityEventListener(context)),
                                             provideClientZkOperations().getProfileOperations(),
-                                            SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16));
+                                            SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16),
+                                            FeatureFlags.maxEnvelopeSize());
   }
 
   @Override
