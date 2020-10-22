@@ -514,7 +514,7 @@ public class TextSecurePreferences {
   }
 
   public static void setDirectCaptureCameraId(Context context, int value) {
-    setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value);
+    setIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, value);
   }
 
   @SuppressWarnings("deprecation")
@@ -765,7 +765,7 @@ public class TextSecurePreferences {
   }
 
   public static void setLastVersionCode(Context context, int versionCode) {
-    if (!setIntegerPrefrenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
+    if (!setIntegerPreferenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
       throw new AssertionError("couldn't write version code to sharedpreferences");
     }
   }
@@ -790,7 +790,7 @@ public class TextSecurePreferences {
   }
 
   public static void setPassphraseTimeoutInterval(Context context, int interval) {
-    setIntegerPrefrence(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval);
+    setIntegerPreference(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval);
   }
 
   /**
@@ -986,7 +986,7 @@ public class TextSecurePreferences {
   }
 
   public static void setNotificationChannelVersion(Context context, int version) {
-    setIntegerPrefrence(context, NOTIFICATION_CHANNEL_VERSION, version);
+    setIntegerPreference(context, NOTIFICATION_CHANNEL_VERSION, version);
   }
 
   public static int getNotificationMessagesChannelVersion(Context context) {
@@ -994,7 +994,7 @@ public class TextSecurePreferences {
   }
 
   public static void setNotificationMessagesChannelVersion(Context context, int version) {
-    setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version);
+    setIntegerPreference(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version);
   }
 
   public static boolean getNeedsMessagePull(Context context) {
@@ -1039,7 +1039,7 @@ public class TextSecurePreferences {
   }
 
   public static void setJobManagerVersion(Context context, int version) {
-    setIntegerPrefrence(context, JOB_MANAGER_VERSION, version);
+    setIntegerPreference(context, JOB_MANAGER_VERSION, version);
   }
 
   public static int getJobManagerVersion(Context context) {
@@ -1047,7 +1047,7 @@ public class TextSecurePreferences {
   }
 
   public static void setAppMigrationVersion(Context context, int version) {
-    setIntegerPrefrence(context, APP_MIGRATION_VERSION, version);
+    setIntegerPreference(context, APP_MIGRATION_VERSION, version);
   }
 
   public static int getAppMigrationVersion(Context context) {
@@ -1055,7 +1055,7 @@ public class TextSecurePreferences {
   }
 
   public static void setFirstInstallVersion(Context context, int version) {
-    setIntegerPrefrence(context, FIRST_INSTALL_VERSION, version);
+    setIntegerPreference(context, FIRST_INSTALL_VERSION, version);
   }
 
   public static int getFirstInstallVersion(Context context) {
@@ -1110,11 +1110,11 @@ public class TextSecurePreferences {
     return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, defaultValue);
   }
 
-  private static void setIntegerPrefrence(Context context, String key, int value) {
+  private static void setIntegerPreference(Context context, String key, int value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).apply();
   }
 
-  private static boolean setIntegerPrefrenceBlocking(Context context, String key, int value) {
+  private static boolean setIntegerPreferenceBlocking(Context context, String key, int value) {
     return PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
   }
 
