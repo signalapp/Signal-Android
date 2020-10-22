@@ -116,15 +116,13 @@ class PrepareAttachmentAudioExtrasJob : BaseJob {
             }
         }
 
-        val audioExtras = DatabaseAttachmentAudioExtras(
+        attachDb.setAttachmentAudioExtras(DatabaseAttachmentAudioExtras(
                 attachmentId,
                 rmsValues,
                 totalDurationMs
-        )
+        ))
 
-        attachDb.setAttachmentAudioExtras(audioExtras)
-
-        EventBus.getDefault().post(AudioExtrasUpdatedEvent(audioExtras))
+        EventBus.getDefault().post(AudioExtrasUpdatedEvent(attachmentIdattachmentId))
     }
 
     class Factory : Job.Factory<PrepareAttachmentAudioExtrasJob> {
@@ -133,8 +131,8 @@ class PrepareAttachmentAudioExtrasJob : BaseJob {
         }
     }
 
-    /** Dispatched once the audio extras have been updated. */
-    data class AudioExtrasUpdatedEvent(val audioExtras: DatabaseAttachmentAudioExtras)
+    /** Gets dispatched once the audio extras have been updated. */
+    data class AudioExtrasUpdatedEvent(val attachmentId: AttachmentId)
 
     @RequiresApi(Build.VERSION_CODES.M)
     private class InputStreamMediaDataSource: MediaDataSource {

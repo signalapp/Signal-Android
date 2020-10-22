@@ -290,7 +290,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: PrepareAttachmentAudioExtrasJob.AudioExtrasUpdatedEvent) {
-        if (event.audioExtras.attachmentId == obtainDatabaseAttachment()?.attachmentId) {
+        if (event.attachmentId == obtainDatabaseAttachment()?.attachmentId) {
             updateFromAttachmentAudioExtras()
         }
     }
