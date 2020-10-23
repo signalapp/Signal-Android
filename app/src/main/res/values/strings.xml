@@ -469,7 +469,7 @@
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
         <item quantity="one">%d pending member request.</item>
-        <item quantity="many">%d pending member requests.</item>
+        <item quantity="other">%d pending member requests.</item>
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">View</string>
 
