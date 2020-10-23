@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="emoji_drawer_size">32sp</dimen>
-    <dimen name="min_keyboard_size">50dp</dimen>
+    <dimen name="min_keyboard_size">60dp</dimen>
     <dimen name="default_custom_keyboard_size">220dp</dimen>
     <dimen name="min_custom_keyboard_size">110dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
