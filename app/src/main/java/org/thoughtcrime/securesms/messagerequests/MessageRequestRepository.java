@@ -75,6 +75,17 @@ final class MessageRequestRepository {
 
   @WorkerThread
   private MessageRequestState findMessageRequestState(@NonNull Recipient recipient, long threadId) {
+    if (recipient.isGroup() && recipient.isPushV2Group()) {
+      GroupDatabase.MemberLevel memberLevel = DatabaseFactory.getGroupDatabase(context)
+                                                             .getGroup(recipient.getId())
+                                                             .transform(g -> g.memberLevel(Recipient.self()))
+                                                             .or(GroupDatabase.MemberLevel.NOT_A_MEMBER);
+
+      if (memberLevel == GroupDatabase.MemberLevel.PENDING_MEMBER) {
+        return MessageRequestState.REQUIRED;
+      }
+    }
+
     if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
       if (recipient.isGroup()) {
         GroupDatabase.MemberLevel memberLevel = DatabaseFactory.getGroupDatabase(context)
