@@ -109,10 +109,10 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
           Util.copy(inputStream, outputStream);
           MediaScannerConnection.scanFile(context, new String[]{mediaUri.getPath()}, new String[]{contentType}, null);
         }
-      }
-
-      try (OutputStream outputStream = context.getContentResolver().openOutputStream(mediaUri)) {
-        Util.copy(inputStream, outputStream);
+      } else {
+        try (OutputStream outputStream = context.getContentResolver().openOutputStream(mediaUri)) {
+          Util.copy(inputStream, outputStream);
+        }
       }
     }
 
