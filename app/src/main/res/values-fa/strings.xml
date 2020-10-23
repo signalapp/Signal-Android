@@ -779,7 +779,7 @@
   <string name="MessageRecord_called_s">با %s تماس گرفته شد</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s در Signal است!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام‌های ناپدید شونده را غیر فعال کردید.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام‌های ناپدید شونده را غیرفعال کردید.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام‌های ناپدید شونده را غیرفعال کرد.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">شما زمان‌سنج پیام‌ ناپدید شونده را روی %1$s تنظیم کردید.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان‌سنج پیام ناپدید شونده را روی %2$s تنظیم کرد.</string>

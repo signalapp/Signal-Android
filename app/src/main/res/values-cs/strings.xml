@@ -305,7 +305,7 @@
   <string name="ConversationFragment_deleting">Mažu</string>
   <string name="ConversationFragment_deleting_messages">Mažu zprávy…</string>
   <string name="ConversationFragment_delete_for_me">Smazat u mne</string>
-  <string name="ConversationFragment_delete_for_everyone">Pro každého smazat</string>
+  <string name="ConversationFragment_delete_for_everyone">Smazat u každého</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tato zpráva bude smazána pro všechny účastníky konverzace, pokud používají poslední verzi Signalu. Budou vidět, že jste smazali zprávu.</string>
   <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
