@@ -5,19 +5,17 @@ import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.documentfile.provider.DocumentFile;
-
 import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -153,17 +151,20 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   }
 
   private Uri createOutputUri(@NonNull Uri outputUri, @NonNull String fileName) throws IOException {
+    String[] fileParts = getFileNameParts(fileName);
+    String   base      = fileParts[0];
+    String   extension = fileParts[1];
+    String   mimeType  = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+    contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
 
     if (Build.VERSION.SDK_INT > 28) {
       contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1);
     }
 
     if (Build.VERSION.SDK_INT <= 28 && outputUri.equals(StorageUtil.getLegacyDownloadUri())) {
-      String[] fileParts       = getFileNameParts(fileName);
-      String   base            = fileParts[0];
-      String   extension       = fileParts[1];
       File     outputDirectory = new File(outputUri.getPath());
       File     outputFile      = new File(outputDirectory, base + "." + extension);
 
