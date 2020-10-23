@@ -63,7 +63,7 @@ public class DateUtils extends android.text.format.DateUtils {
 
   private static String getFormattedDateTime(long time, String template, Locale locale) {
     final String localizedPattern = getLocalizedPattern(template, locale);
-    return new SimpleDateFormat(localizedPattern, locale).format(new Date(time));
+    return setLowercaseAmPmStrings(new SimpleDateFormat(localizedPattern, locale), locale).format(new Date(time));
   }
 
   public static String getBriefRelativeTimeSpanString(final Context c, final Locale locale, final long timestamp) {
@@ -174,18 +174,17 @@ public class DateUtils extends android.text.format.DateUtils {
     return getExtendedRelativeTimeSpanString(context, locale, t1).equals(getExtendedRelativeTimeSpanString(context, locale, t2));
   }
 
-  public static String getBriefExactTimeString(@NonNull Locale locale, long timestamp) {
-    SimpleDateFormat  format  = new SimpleDateFormat(getLocalizedPattern("MMM dd, hh:mm a", locale), locale);
+  private static String getLocalizedPattern(String template, Locale locale) {
+    return DateFormat.getBestDateTimePattern(locale, template);
+  }
+
+  private static @NonNull SimpleDateFormat setLowercaseAmPmStrings(@NonNull SimpleDateFormat format, @NonNull Locale locale) {
     DateFormatSymbols symbols = new DateFormatSymbols(locale);
 
     symbols.setAmPmStrings(new String[] { "am", "pm"});
     format.setDateFormatSymbols(symbols);
 
-    return format.format(timestamp);
-  }
-
-  private static String getLocalizedPattern(String template, Locale locale) {
-    return DateFormat.getBestDateTimePattern(locale, template);
+    return format;
   }
 
   /**

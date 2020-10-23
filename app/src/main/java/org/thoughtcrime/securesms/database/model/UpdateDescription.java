@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database.model;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,12 +32,16 @@ public final class UpdateDescription {
   private final String           staticString;
   private final int              lightIconResource;
   private final int              darkIconResource;
+  private final int              lightTint;
+  private final int              darkTint;
 
   private UpdateDescription(@NonNull Collection<UUID> mentioned,
                             @Nullable StringFactory stringFactory,
                             @Nullable String staticString,
                             @DrawableRes int lightIconResource,
-                            @DrawableRes int darkIconResource)
+                            @DrawableRes int darkIconResource,
+                            @ColorInt int lightTint,
+                            @ColorInt int darkTint)
   {
     if (staticString == null && stringFactory == null) {
       throw new AssertionError();
@@ -46,6 +51,8 @@ public final class UpdateDescription {
     this.staticString      = staticString;
     this.lightIconResource = lightIconResource;
     this.darkIconResource  = darkIconResource;
+    this.lightTint         = lightTint;
+    this.darkTint          = darkTint;
   }
 
   /**
@@ -64,7 +71,9 @@ public final class UpdateDescription {
                                  stringFactory,
                                  null,
                                  lightIconResource,
-                                 darkIconResource);
+                                 darkIconResource,
+                                 0,
+                                 0);
   }
 
   /**
@@ -74,7 +83,19 @@ public final class UpdateDescription {
                                                     @DrawableRes int lightIconResource,
                                                     @DrawableRes int darkIconResource)
   {
-    return new UpdateDescription(Collections.emptyList(), null, staticString, lightIconResource, darkIconResource);
+    return new UpdateDescription(Collections.emptyList(), null, staticString, lightIconResource, darkIconResource, 0, 0);
+  }
+
+  /**
+   * Create an update description that's string value is fixed with a specific tint color.
+   */
+  public static UpdateDescription staticDescription(@NonNull String staticString,
+                                                    @DrawableRes int lightIconResource,
+                                                    @DrawableRes int darkIconResource,
+                                                    @ColorInt int lightTint,
+                                                    @ColorInt int darkTint)
+  {
+    return new UpdateDescription(Collections.emptyList(), null, staticString, lightIconResource, darkIconResource, lightTint, darkTint);
   }
 
   public boolean isStringStatic() {
@@ -113,6 +134,14 @@ public final class UpdateDescription {
 
   public @DrawableRes int getDarkIconResource() {
     return darkIconResource;
+  }
+
+  public @ColorInt int getLightTint() {
+    return lightTint;
+  }
+
+  public @ColorInt int getDarkTint() {
+    return darkTint;
   }
 
   public static UpdateDescription concatWithNewLines(@NonNull List<UpdateDescription> updateDescriptions) {

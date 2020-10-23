@@ -58,15 +58,22 @@ public final class LiveUpdateMessage {
   private static @NonNull Spannable toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string) {
     boolean  isDarkTheme      = ThemeUtil.isDarkTheme(context);
     int      drawableResource = isDarkTheme ? updateDescription.getDarkIconResource() : updateDescription.getLightIconResource();
+    int      tint             = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
+
+    if (tint == 0) {
+      tint = ThemeUtil.getThemedColor(context, R.attr.conversation_item_update_text_color);
+    }
 
     if (drawableResource == 0) {
       return new SpannableString(string);
     } else {
       Drawable drawable = ContextCompat.getDrawable(context, drawableResource);
       drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-      drawable.setColorFilter(ThemeUtil.getThemedColor(context, R.attr.conversation_item_update_text_color), PorterDuff.Mode.SRC_ATOP);
+      drawable.setColorFilter(tint, PorterDuff.Mode.SRC_ATOP);
 
-      return new SpannableStringBuilder().append(SpanUtil.buildImageSpan(drawable)).append(" ").append(string);
+      Spannable stringWithImage = new SpannableStringBuilder().append(SpanUtil.buildImageSpan(drawable)).append("  ").append(string);
+
+      return new SpannableString(SpanUtil.color(tint, stringWithImage));
     }
   }
 }

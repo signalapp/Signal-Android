@@ -17,14 +17,17 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.R;
@@ -138,11 +141,11 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isGroupQuit()) {
       return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.ConversationItem_group_action_left, r.getDisplayName(context)), R.drawable.ic_update_group_leave_light_16, R.drawable.ic_update_group_leave_dark_16);
     } else if (isIncomingCall()) {
-      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_called_you_date, r.getDisplayName(context), getCallDateString()), R.drawable.ic_update_audio_call_incoming_light_16, R.drawable.ic_update_audio_call_incoming_dark_16);
+      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_called_you_date, r.getDisplayName(context), getCallDateString(context)), R.drawable.ic_update_audio_call_incoming_light_16, R.drawable.ic_update_audio_call_incoming_dark_16);
     } else if (isOutgoingCall()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_called_date, getCallDateString()), R.drawable.ic_update_audio_call_outgoing_light_16, R.drawable.ic_update_audio_call_outgoing_dark_16);
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_called_date, getCallDateString(context)), R.drawable.ic_update_audio_call_outgoing_light_16, R.drawable.ic_update_audio_call_outgoing_dark_16);
     } else if (isMissedCall()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_call_date, getCallDateString()), R.drawable.ic_update_audio_call_missed_light_16, R.drawable.ic_update_audio_call_missed_dark_16);
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_call_date, getCallDateString(context)), R.drawable.ic_update_audio_call_missed_light_16, R.drawable.ic_update_audio_call_missed_dark_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
     } else if (isJoined()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().getDisplayName(context)), R.drawable.ic_update_group_add_light_16, R.drawable.ic_update_group_add_dark_16);
     } else if (isExpirationTimerUpdate()) {
@@ -213,8 +216,8 @@ public abstract class MessageRecord extends DisplayRecord {
     }
   }
 
-  private @NonNull String getCallDateString() {
-    return DateUtils.getBriefExactTimeString(Locale.getDefault(), getDateSent());
+  private @NonNull String getCallDateString(@NonNull Context context) {
+    return DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), getDateSent());
   }
 
   private static @NonNull UpdateDescription fromRecipient(@NonNull Recipient recipient,
@@ -233,6 +236,15 @@ public abstract class MessageRecord extends DisplayRecord {
                                                                     @DrawableRes int darkIconResource)
   {
     return UpdateDescription.staticDescription(string, lightIconResource, darkIconResource);
+  }
+
+  private static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,
+                                                                    @DrawableRes int lightIconResource,
+                                                                    @DrawableRes int darkIconResource,
+                                                                    @ColorInt int lightTint,
+                                                                    @ColorInt int darkTint)
+  {
+    return UpdateDescription.staticDescription(string, lightIconResource, darkIconResource, lightTint, darkTint);
   }
 
   private @NonNull String getProfileChangeDescription(@NonNull Context context) {

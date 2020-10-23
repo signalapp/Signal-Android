@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        style="@style/Signal.Text.Caption"
+        style="@style/Signal.Text.Preview"
         android:textColor="?conversation_item_update_text_color"
         tools:text="March 1, 2015" />
 

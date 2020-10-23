@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
@@ -60,7 +61,9 @@ public class SpanUtil {
   public static CharSequence buildImageSpan(@NonNull Drawable drawable) {
     SpannableString imageSpan = new SpannableString(" ");
 
-    imageSpan.setSpan(new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_CENTER), 0, imageSpan.length(), 0);
+    int flag = Build.VERSION.SDK_INT >= 29 ? DynamicDrawableSpan.ALIGN_CENTER : DynamicDrawableSpan.ALIGN_BASELINE;
+
+    imageSpan.setSpan(new ImageSpan(drawable, flag), 0, imageSpan.length(), 0);
 
     return imageSpan;
   }
