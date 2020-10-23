@@ -410,10 +410,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       conversationRecipient.removeForeverObserver(this);
     }
     cancelPulseOutlinerAnimation();
-    if (eventListener != null && audioViewStub.resolved()) {
-      Log.d(TAG, "unbind: unregistering voice note callbacks for audio slide " + audioViewStub.get().getAudioSlideUri());
-      eventListener.onUnregisterVoiceNoteCallbacks(audioViewStub.get().getPlaybackStateObserver());
-    }
   }
 
   public ConversationMessage getConversationMessage() {

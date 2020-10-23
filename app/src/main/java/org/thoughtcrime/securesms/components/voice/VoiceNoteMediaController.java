@@ -225,13 +225,25 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
           mediaMetadataCompat.getDescription() != null)
       {
 
-        Uri     mediaUri  = Objects.requireNonNull(mediaMetadataCompat.getDescription().getMediaUri());
-        boolean autoReset = Objects.equals(mediaUri, VoiceNotePlaybackPreparer.NEXT_URI) || Objects.equals(mediaUri, VoiceNotePlaybackPreparer.END_URI);
+        Uri                    mediaUri      = Objects.requireNonNull(mediaMetadataCompat.getDescription().getMediaUri());
+        boolean                autoReset     = Objects.equals(mediaUri, VoiceNotePlaybackPreparer.NEXT_URI) || Objects.equals(mediaUri, VoiceNotePlaybackPreparer.END_URI);
+        VoiceNotePlaybackState previousState = voiceNotePlaybackState.getValue();
+        long                   position      = mediaController.getPlaybackState().getPosition();
+        long                   duration      = mediaMetadataCompat.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
 
-        voiceNotePlaybackState.postValue(new VoiceNotePlaybackState(mediaUri,
-                                                                    mediaController.getPlaybackState().getPosition(),
-                                                                    mediaMetadataCompat.getLong(MediaMetadataCompat.METADATA_KEY_DURATION),
-                                                                    autoReset));
+        if (previousState != null && Objects.equals(mediaUri, previousState.getUri())) {
+          if (position < 0 && previousState.getPlayheadPositionMillis() >= 0) {
+            position = previousState.getPlayheadPositionMillis();
+          }
+
+          if (duration <= 0 && previousState.getTrackDuration() > 0) {
+            duration = previousState.getTrackDuration();
+          }
+        }
+
+        if (duration > 0 && position >= 0 && position <= duration) {
+          voiceNotePlaybackState.postValue(new VoiceNotePlaybackState(mediaUri, position, duration, autoReset));
+        }
 
         sendEmptyMessageDelayed(0, 50);
       } else {

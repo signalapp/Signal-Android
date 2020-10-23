@@ -17,7 +17,6 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.util.Consumer;
 import androidx.lifecycle.Observer;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -210,15 +209,22 @@ public final class AudioView extends FrameLayout {
   }
 
   private void onPlaybackState(@NonNull VoiceNotePlaybackState voiceNotePlaybackState) {
+    onDuration(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.getTrackDuration());
     onStart(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.isAutoReset());
     onProgress(voiceNotePlaybackState.getUri(),
                (double) voiceNotePlaybackState.getPlayheadPositionMillis() / voiceNotePlaybackState.getTrackDuration(),
                voiceNotePlaybackState.getPlayheadPositionMillis());
   }
 
+  private void onDuration(@NonNull Uri uri, long durationMillis) {
+    if (isTarget(uri)) {
+      this.durationMillis = durationMillis;
+    }
+  }
+
   private void onStart(@NonNull Uri uri, boolean autoReset) {
-    if (!Objects.equals(uri, audioSlide.getUri())) {
-      if (audioSlide != null && audioSlide.getUri() != null) {
+    if (!isTarget(uri)) {
+      if (hasAudioUri()) {
         onStop(audioSlide.getUri(), autoReset);
       }
 
@@ -234,7 +240,7 @@ public final class AudioView extends FrameLayout {
   }
 
   private void onStop(@NonNull Uri uri, boolean autoReset) {
-    if (!Objects.equals(uri, audioSlide.getUri())) {
+    if (!isTarget(uri)) {
       return;
     }
 
@@ -249,6 +255,30 @@ public final class AudioView extends FrameLayout {
       backwardsCounter = 4;
       rewind();
     }
+  }
+
+  private void onProgress(@NonNull Uri uri, double progress, long millis) {
+    if (!isTarget(uri)) {
+      return;
+    }
+
+    int seekProgress = (int) Math.floor(progress * seekBar.getMax());
+
+    if (seekProgress > seekBar.getProgress() || backwardsCounter > 3) {
+      backwardsCounter = 0;
+      seekBar.setProgress(seekProgress);
+      updateProgress((float) progress, millis);
+    } else {
+      backwardsCounter++;
+    }
+  }
+
+  private boolean isTarget(@NonNull Uri uri) {
+    return hasAudioUri() && Objects.equals(uri, audioSlide.getUri());
+  }
+
+  private boolean hasAudioUri() {
+    return audioSlide != null && audioSlide.getUri() != null;
   }
 
   @Override
@@ -275,22 +305,6 @@ public final class AudioView extends FrameLayout {
     this.playPauseButton.setEnabled(enabled);
     this.seekBar.setEnabled(enabled);
     this.downloadButton.setEnabled(enabled);
-  }
-
-  private void onProgress(@NonNull Uri uri, double progress, long millis) {
-    if (audioSlide == null || !Objects.equals(uri, audioSlide.getUri())) {
-      return;
-    }
-
-    int seekProgress = (int) Math.floor(progress * seekBar.getMax());
-
-    if (seekProgress > seekBar.getProgress() || backwardsCounter > 3) {
-      backwardsCounter = 0;
-      seekBar.setProgress(seekProgress);
-      updateProgress((float) progress, millis);
-    } else {
-      backwardsCounter++;
-    }
   }
 
   private void updateProgress(float progress, long millis) {
@@ -386,7 +400,7 @@ public final class AudioView extends FrameLayout {
         } else {
           callbacks.onPause(audioSlide.getUri());
         }
-      };
+      }
     }
   }
 
