@@ -48,7 +48,6 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   public static Intent newIntent(@NonNull Context context) {
     Intent intent = new Intent(context, CreateGroupActivity.class);
 
-    intent.putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
     intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     intent.putExtra(ContactSelectionActivity.EXTRA_LAYOUT_RES_ID, R.layout.create_group_activity);
 

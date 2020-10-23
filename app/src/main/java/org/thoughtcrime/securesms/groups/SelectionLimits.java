@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public final class SelectionLimits implements Parcelable {
-  public static final int NO_LIMIT = Integer.MAX_VALUE;
+  private static final int NO_LIMIT = Integer.MAX_VALUE;
 
   public static final SelectionLimits NO_LIMITS = new SelectionLimits(NO_LIMIT, NO_LIMIT);
 

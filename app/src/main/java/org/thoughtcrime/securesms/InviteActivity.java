@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChange
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -62,7 +63,8 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_SMS);
-    getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
+    getIntent().putExtra(ContactSelectionListFragment.SELECTION_LIMITS, SelectionLimits.NO_LIMITS);
+    getIntent().putExtra(ContactSelectionListFragment.HIDE_COUNT, true);
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
 
     setContentView(R.layout.invite_activity);

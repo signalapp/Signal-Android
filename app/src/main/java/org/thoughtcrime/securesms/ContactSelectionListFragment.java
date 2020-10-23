@@ -105,11 +105,11 @@ public final class ContactSelectionListFragment extends LoggingFragment
   public static final int NO_LIMIT = Integer.MAX_VALUE;
 
   public static final String DISPLAY_MODE      = "display_mode";
-  public static final String MULTI_SELECT      = "multi_select";
   public static final String REFRESHABLE       = "refreshable";
   public static final String RECENTS           = "recents";
   public static final String SELECTION_LIMITS  = "selection_limits";
   public static final String CURRENT_SELECTION = "current_selection";
+  public static final String HIDE_COUNT        = "hide_count";
 
   private ConstraintLayout            constraintLayout;
   private TextView                    emptyText;
@@ -135,6 +135,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
             private SelectionLimits   selectionLimit   = SelectionLimits.NO_LIMITS;
             private Set<RecipientId>  currentSelection;
             private boolean           isMulti;
+            private boolean           hideCount;
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -213,19 +214,12 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
     swipeRefresh.setEnabled(intent.getBooleanExtra(REFRESHABLE, true));
 
+    hideCount      = intent.getBooleanExtra(HIDE_COUNT, false);
     selectionLimit = intent.getParcelableExtra(SELECTION_LIMITS);
-    isMulti        = intent.getBooleanExtra(MULTI_SELECT, false);
+    isMulti        = selectionLimit != null;
 
-    if (isMulti) {
-      if (selectionLimit == null) {
-        throw new AssertionError("Selection limits not supplied in args for multi-select");
-      }
-    } else {
-      if (selectionLimit != null) {
-        throw new AssertionError("Selection limits supplied in args for a non-multi selection use");
-      } else {
-        selectionLimit = SelectionLimits.NO_LIMITS;
-      }
+    if (!isMulti) {
+      selectionLimit = SelectionLimits.NO_LIMITS;
     }
 
     currentSelection = getCurrentSelection();
@@ -238,7 +232,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   private void updateGroupLimit(int chipCount) {
     int members = currentSelection.size() + chipCount;
     groupLimit.setText(getResources().getQuantityString(R.plurals.ContactSelectionListFragment_d_members, members, members));
-    groupLimit.setVisibility(isMulti ? View.VISIBLE : View.GONE);
+    groupLimit.setVisibility(isMulti && !hideCount ? View.VISIBLE : View.GONE);
     groupLimit.setWarning(selectionWarningLimitExceeded());
   }
 
