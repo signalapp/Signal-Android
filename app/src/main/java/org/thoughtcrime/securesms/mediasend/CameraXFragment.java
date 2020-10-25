@@ -122,8 +122,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     onOrientationChanged(getResources().getConfiguration().orientation);
 
-    viewModel.getMostRecentMediaItem().observe(this, this::presentRecentItemThumbnail);
-    viewModel.getHudState().observe(this, this::presentHud);
+    viewModel.getMostRecentMediaItem().observe(getViewLifecycleOwner(), this::presentRecentItemThumbnail);
+    viewModel.getHudState().observe(getViewLifecycleOwner(), this::presentHud);
   }
 
   @Override

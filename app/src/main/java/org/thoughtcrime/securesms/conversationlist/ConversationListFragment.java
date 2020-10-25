@@ -532,7 +532,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeTypingObserver() {
-    ApplicationDependencies.getTypingStatusRepository().getTypingThreads().observe(this, threadIds -> {
+    ApplicationDependencies.getTypingStatusRepository().getTypingThreads().observe(getViewLifecycleOwner(), threadIds -> {
       if (threadIds == null) {
         threadIds = Collections.emptySet();
       }

@@ -110,8 +110,8 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
     initToolbar(view.findViewById(R.id.mediapicker_toolbar));
     onScreenWidthChanged(getScreenWidth());
 
-    viewModel.getSelectedMedia().observe(this, adapter::setSelected);
-    viewModel.getMediaInBucket(requireContext(), bucketId).observe(this, adapter::setMedia);
+    viewModel.getSelectedMedia().observe(getViewLifecycleOwner(), adapter::setSelected);
+    viewModel.getMediaInBucket(requireContext(), bucketId).observe(getViewLifecycleOwner(), adapter::setMedia);
   }
 
   @Override

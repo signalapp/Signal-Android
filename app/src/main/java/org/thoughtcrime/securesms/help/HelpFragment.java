@@ -127,7 +127,7 @@ public class HelpFragment extends LoggingFragment {
     setSpinning(next);
     problem.setEnabled(false);
 
-    helpViewModel.onSubmitClicked(includeDebugLogs.isChecked()).observe(this, result -> {
+    helpViewModel.onSubmitClicked(includeDebugLogs.isChecked()).observe(getViewLifecycleOwner(), result -> {
       if (result.getDebugLogUrl().isPresent()) {
         submitFormWithDebugLog(result.getDebugLogUrl().get());
       } else if (result.isError()) {

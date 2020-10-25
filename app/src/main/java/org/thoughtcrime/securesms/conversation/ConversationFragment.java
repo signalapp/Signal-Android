@@ -260,16 +260,16 @@ public class ConversationFragment extends LoggingFragment {
     this.messageCountsViewModel = ViewModelProviders.of(requireActivity()).get(MessageCountsViewModel.class);
     this.conversationViewModel  = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
-    conversationViewModel.getMessages().observe(this, messages -> {
+    conversationViewModel.getMessages().observe(getViewLifecycleOwner(), messages -> {
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
         getListAdapter().submitList(messages);
       }
     });
 
-    conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
+    conversationViewModel.getConversationMetadata().observe(getViewLifecycleOwner(), this::presentConversationMetadata);
 
-    conversationViewModel.getShowMentionsButton().observe(this, shouldShow -> {
+    conversationViewModel.getShowMentionsButton().observe(getViewLifecycleOwner(), shouldShow -> {
       if (shouldShow) {
         ViewUtil.animateIn(scrollToMentionButton, mentionButtonInAnimation);
       } else {
@@ -277,7 +277,7 @@ public class ConversationFragment extends LoggingFragment {
       }
     });
 
-    conversationViewModel.getShowScrollToBottom().observe(this, shouldShow -> {
+    conversationViewModel.getShowScrollToBottom().observe(getViewLifecycleOwner(), shouldShow -> {
       if (shouldShow) {
         ViewUtil.animateIn(scrollToBottomButton, scrollButtonInAnimation);
       } else {
@@ -367,7 +367,7 @@ public class ConversationFragment extends LoggingFragment {
   @Override
   public void onStop() {
     super.onStop();
-    ApplicationDependencies.getTypingStatusRepository().getTypists(threadId).removeObservers(this);
+    ApplicationDependencies.getTypingStatusRepository().getTypists(threadId).removeObservers(getViewLifecycleOwner());
   }
 
   @Override
@@ -542,7 +542,7 @@ public class ConversationFragment extends LoggingFragment {
     list.addOnScrollListener(new ShadowScrollListener());
 
     if (oldThreadId != threadId) {
-      ApplicationDependencies.getTypingStatusRepository().getTypists(oldThreadId).removeObservers(this);
+      ApplicationDependencies.getTypingStatusRepository().getTypists(oldThreadId).removeObservers(getViewLifecycleOwner());
     }
   }
 
@@ -580,8 +580,8 @@ public class ConversationFragment extends LoggingFragment {
 
     LiveData<TypingStatusRepository.TypingState> typists = ApplicationDependencies.getTypingStatusRepository().getTypists(threadId);
 
-    typists.removeObservers(this);
-    typists.observe(this, typingState ->  {
+    typists.removeObservers(getViewLifecycleOwner());
+    typists.observe(getViewLifecycleOwner(), typingState ->  {
       List<Recipient> recipients;
       boolean         replacedByIncomingMessage;
 

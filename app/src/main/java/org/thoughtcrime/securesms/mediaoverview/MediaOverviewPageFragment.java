@@ -128,7 +128,7 @@ public final class MediaOverviewPageFragment extends Fragment
     MediaOverviewViewModel viewModel = MediaOverviewViewModel.getMediaOverviewViewModel(requireActivity());
 
     viewModel.getSortOrder()
-      .observe(this, sorting -> {
+      .observe(getViewLifecycleOwner(), sorting -> {
         if (sorting != null) {
           this.sorting = sorting;
           adapter.setShowFileSizes(sorting.isRelatedToFileSize());
@@ -139,7 +139,7 @@ public final class MediaOverviewPageFragment extends Fragment
 
     if (gridMode == GridMode.FOLLOW_MODEL) {
       viewModel.getDetailLayout()
-               .observe(this, this::setDetailView);
+               .observe(getViewLifecycleOwner(), this::setDetailView);
     } else {
       setDetailView(gridMode == GridMode.FIXED_DETAIL);
     }

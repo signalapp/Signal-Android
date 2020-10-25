@@ -115,7 +115,7 @@ public class MediaSendFragment extends Fragment {
   private void initViewModel() {
     viewModel = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
 
-    viewModel.getSelectedMedia().observe(this, media -> {
+    viewModel.getSelectedMedia().observe(getViewLifecycleOwner(), media -> {
       if (Util.isEmpty(media)) {
         return;
       }
@@ -123,7 +123,7 @@ public class MediaSendFragment extends Fragment {
       fragmentPagerAdapter.setMedia(media);
     });
 
-    viewModel.getPosition().observe(this, position -> {
+    viewModel.getPosition().observe(getViewLifecycleOwner(), position -> {
       if (position == null || position < 0) return;
 
       fragmentPager.setCurrentItem(position, true);

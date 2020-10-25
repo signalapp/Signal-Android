@@ -301,6 +301,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       byte[] localId;
       byte[] remoteId;
 
+      //noinspection WrongThread
       Recipient resolved = recipient.resolve();
 
       if (FeatureFlags.verifyV2() && resolved.getUuid().isPresent()) {

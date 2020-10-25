@@ -127,7 +127,7 @@ public final class InsightsDashboardDialogFragment extends DialogFragment {
 
     viewModel  = ViewModelProviders.of(this, factory).get(InsightsDashboardViewModel.class);
 
-    viewModel.getState().observe(this, state -> {
+    viewModel.getState().observe(getViewLifecycleOwner(), state -> {
       updateInsecurePercent(state.getData());
       updateInsecureRecipients(state.getInsecureRecipients());
       updateUserAvatar(state.getUserAvatar());

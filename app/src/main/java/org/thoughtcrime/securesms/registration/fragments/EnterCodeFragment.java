@@ -97,7 +97,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
     noCodeReceivedHelp.setOnClickListener(v -> sendEmailToSupport());
 
     RegistrationViewModel model = getModel();
-    model.getSuccessfulCodeRequestAttempts().observe(this, (attempts) -> {
+    model.getSuccessfulCodeRequestAttempts().observe(getViewLifecycleOwner(), (attempts) -> {
       if (attempts >= 3) {
         noCodeReceivedHelp.setVisibility(View.VISIBLE);
         scrollView.postDelayed(() -> scrollView.smoothScrollTo(0, noCodeReceivedHelp.getBottom()), 15000);
@@ -328,9 +328,9 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
     super.onResume();
 
     RegistrationViewModel model = getModel();
-    model.getLiveNumber().observe(this, (s) -> header.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, s.getFullFormattedNumber())));
+    model.getLiveNumber().observe(getViewLifecycleOwner(), (s) -> header.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, s.getFullFormattedNumber())));
 
-    model.getCanCallAtTime().observe(this, callAtTime -> callMeCountDown.startCountDownTo(callAtTime));
+    model.getCanCallAtTime().observe(getViewLifecycleOwner(), callAtTime -> callMeCountDown.startCountDownTo(callAtTime));
   }
 
   private void sendEmailToSupport() {

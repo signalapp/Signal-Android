@@ -79,7 +79,7 @@ public final class InsightsModalDialogFragment extends DialogFragment {
     final InsightsModalViewModel.Factory    factory    = new InsightsModalViewModel.Factory(repository);
     final InsightsModalViewModel            viewModel  = ViewModelProviders.of(this, factory).get(InsightsModalViewModel.class);
 
-    viewModel.getState().observe(this, state -> {
+    viewModel.getState().observe(getViewLifecycleOwner(), state -> {
       updateInsecurePercent(state.getData());
       updateUserAvatar(state.getUserAvatar());
     });

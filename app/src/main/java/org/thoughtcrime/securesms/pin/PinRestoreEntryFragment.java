@@ -110,8 +110,8 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private void initViewModel() {
     viewModel = ViewModelProviders.of(this).get(PinRestoreViewModel.class);
 
-    viewModel.getTriesRemaining().observe(this, this::presentTriesRemaining);
-    viewModel.getEvent().observe(this, this::presentEvent);
+    viewModel.getTriesRemaining().observe(getViewLifecycleOwner(), this::presentTriesRemaining);
+    viewModel.getEvent().observe(getViewLifecycleOwner(), this::presentEvent);
   }
 
   private void presentTriesRemaining(PinRestoreViewModel.TriesRemaining triesRemaining) {

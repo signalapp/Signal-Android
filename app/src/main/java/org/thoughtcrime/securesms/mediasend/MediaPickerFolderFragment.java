@@ -104,7 +104,7 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
     list.setLayoutManager(layoutManager);
     list.setAdapter(adapter);
 
-    viewModel.getFolders(requireContext()).observe(this, adapter::setFolders);
+    viewModel.getFolders(requireContext()).observe(getViewLifecycleOwner(), adapter::setFolders);
 
     initToolbar(view.findViewById(R.id.mediapicker_toolbar));
   }

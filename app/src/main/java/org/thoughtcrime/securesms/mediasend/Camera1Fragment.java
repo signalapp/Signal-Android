@@ -111,8 +111,8 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     GestureDetector gestureDetector = new GestureDetector(flipGestureListener);
     cameraPreview.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
 
-    viewModel.getMostRecentMediaItem().observe(this, this::presentRecentItemThumbnail);
-    viewModel.getHudState().observe(this, this::presentHud);
+    viewModel.getMostRecentMediaItem().observe(getViewLifecycleOwner(), this::presentRecentItemThumbnail);
+    viewModel.getHudState().observe(getViewLifecycleOwner(), this::presentHud);
   }
 
   @Override
