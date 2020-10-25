@@ -17,23 +17,18 @@
 package org.thoughtcrime.securesms;
 
 import android.animation.Animator;
-import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
-import androidx.core.os.CancellationSignal;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.TypefaceSpan;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,11 +45,18 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricManager.Authenticators;
+import androidx.biometric.BiometricPrompt;
+
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.thoughtcrime.securesms.util.DynamicIntroTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -67,7 +69,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
  */
 public class PassphrasePromptActivity extends PassphraseActivity {
 
-  private static final String TAG = PassphrasePromptActivity.class.getSimpleName();
+  private static final String TAG              = PassphrasePromptActivity.class.getSimpleName();
+  private static final int    BIOMETRIC_AUTHNS = Authenticators.BIOMETRIC_STRONG | Authenticators.BIOMETRIC_WEAK;
+  private static final int    ALLOWED_AUTHNS   = BIOMETRIC_AUTHNS | Authenticators.DEVICE_CREDENTIAL;
 
   private DynamicIntroTheme dynamicTheme    = new DynamicIntroTheme();
   private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
@@ -81,9 +85,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private ImageButton     hideButton;
   private AnimatingToggle visibilityToggle;
 
-  private FingerprintManagerCompat fingerprintManager;
-  private CancellationSignal       fingerprintCancellationSignal;
-  private FingerprintListener      fingerprintListener;
+  private BiometricManager           biometricManager;
+  private BiometricPrompt            biometricPrompt;
+  private BiometricPrompt.PromptInfo biometricPromptInfo;
 
   private boolean authenticated;
   private boolean failure;
@@ -117,15 +121,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   @Override
-  public void onPause() {
-    super.onPause();
-
-    if (TextSecurePreferences.isScreenLockEnabled(this)) {
-      pauseScreenLock();
-    }
-  }
-
-  @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     setIntent(intent);
@@ -153,11 +148,19 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   @Override
-  @SuppressLint("MissingSuperCall") // no fragments to dispatch to
-  public void onActivityResult(int requestCode, int resultcode, Intent data) {
-    if (requestCode != 1) return;
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
 
-    if (resultcode == RESULT_OK) {
+    // ActivityResult is returned from a fragment (androidx.biometric.BiometricFragment)
+    // so we need to disregard the upper bits in the request code.
+    // Request code of `1` was observed in testing androidx.biometric and API 28 and below
+    // although it is not documented in anywhere. API 29 and API 30 does not call back
+    // onActivityResult.
+    // It also happens to be the same request code as we use in `resumeScreenLock` for api
+    // versions less than 21. It seems to be a coincidence.
+    if ((requestCode & 0xFFFF) != 1) return;
+
+    if (resultCode == RESULT_OK) {
       handleAuthenticated();
     } else {
       Log.w(TAG, "Authentication failed");
@@ -212,16 +215,20 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     ImageButton okButton = findViewById(R.id.ok_button);
     Toolbar     toolbar  = findViewById(R.id.toolbar);
 
-    showButton                    = findViewById(R.id.passphrase_visibility);
-    hideButton                    = findViewById(R.id.passphrase_visibility_off);
-    visibilityToggle              = findViewById(R.id.button_toggle);
-    passphraseText                = findViewById(R.id.passphrase_edit);
-    passphraseAuthContainer       = findViewById(R.id.password_auth_container);
-    fingerprintPrompt             = findViewById(R.id.fingerprint_auth_container);
-    lockScreenButton              = findViewById(R.id.lock_screen_auth_container);
-    fingerprintManager            = FingerprintManagerCompat.from(this);
-    fingerprintCancellationSignal = new CancellationSignal();
-    fingerprintListener           = new FingerprintListener();
+    showButton              = findViewById(R.id.passphrase_visibility);
+    hideButton              = findViewById(R.id.passphrase_visibility_off);
+    visibilityToggle        = findViewById(R.id.button_toggle);
+    passphraseText          = findViewById(R.id.passphrase_edit);
+    passphraseAuthContainer = findViewById(R.id.password_auth_container);
+    fingerprintPrompt       = findViewById(R.id.fingerprint_auth_container);
+    lockScreenButton        = findViewById(R.id.lock_screen_auth_container);
+    biometricManager        = BiometricManager.from(this);
+    biometricPrompt         = new BiometricPrompt(this, new BiometricAuthListener());
+    biometricPromptInfo     = new BiometricPrompt.PromptInfo
+                                                 .Builder()
+                                                 .setAllowedAuthenticators(ALLOWED_AUTHNS)
+                                                 .setTitle(getString(R.string.PassphrasePromptActivity_unlock_signal))
+                                                 .build();
 
     setSupportActionBar(toolbar);
     getSupportActionBar().setTitle("");
@@ -247,14 +254,11 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private void setLockTypeVisibility() {
     if (TextSecurePreferences.isScreenLockEnabled(this)) {
       passphraseAuthContainer.setVisibility(View.GONE);
-
-      if (fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
-        fingerprintPrompt.setVisibility(View.VISIBLE);
-        lockScreenButton.setVisibility(View.GONE);
-      } else {
-        fingerprintPrompt.setVisibility(View.GONE);
-        lockScreenButton.setVisibility(View.VISIBLE);
-      }
+      fingerprintPrompt.setVisibility(
+          biometricManager.canAuthenticate(BIOMETRIC_AUTHNS) == BiometricManager.BIOMETRIC_SUCCESS
+          ? View.VISIBLE
+          : View.GONE);
+      lockScreenButton.setVisibility(View.VISIBLE);
     } else {
       passphraseAuthContainer.setVisibility(View.VISIBLE);
       fingerprintPrompt.setVisibility(View.GONE);
@@ -273,10 +277,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       return;
     }
 
-    if (fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
-      Log.i(TAG, "Listening for fingerprints...");
-      fingerprintCancellationSignal = new CancellationSignal();
-      fingerprintManager.authenticate(null, 0, fingerprintCancellationSignal, fingerprintListener, null);
+    if (biometricManager.canAuthenticate(ALLOWED_AUTHNS) == BiometricManager.BIOMETRIC_SUCCESS) {
+      Log.i(TAG, "Listening for biometric authentication...");
+      biometricPrompt.authenticate(biometricPromptInfo);
     } else if (Build.VERSION.SDK_INT >= 21){
       Log.i(TAG, "firing intent...");
       Intent intent = keyguardManager.createConfirmDeviceCredentialIntent(getString(R.string.PassphrasePromptActivity_unlock_signal), "");
@@ -284,12 +287,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     } else {
       Log.w(TAG, "Not compatible...");
       handleAuthenticated();
-    }
-  }
-
-  private void pauseScreenLock() {
-    if (fingerprintCancellationSignal != null) {
-      fingerprintCancellationSignal.cancel();
     }
   }
 
@@ -341,15 +338,21 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     System.gc();
   }
 
-  private class FingerprintListener extends FingerprintManagerCompat.AuthenticationCallback {
+  private class BiometricAuthListener extends BiometricPrompt.AuthenticationCallback {
     @Override
-    public void onAuthenticationError(int errMsgId, CharSequence errString) {
+    public void onAuthenticationError(int errMsgId, @NonNull CharSequence errString) {
       Log.w(TAG, "Authentication error: " + errMsgId + " " + errString);
+      failure = true;
+
+      // It is too much to show the failure animation when it was that the user canceled
+      // the fallback authentication such as pins or patterns to come back to the biometric again.
+      if (errMsgId == BiometricPrompt.ERROR_CANCELED || errMsgId == BiometricPrompt.ERROR_USER_CANCELED) return;
+
       onAuthenticationFailed();
     }
 
     @Override
-    public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
+    public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
       Log.i(TAG, "onAuthenticationSucceeded");
       fingerprintPrompt.setImageResource(R.drawable.ic_check_white_48dp);
       fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
@@ -367,7 +370,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     @Override
     public void onAuthenticationFailed() {
       Log.w(TAG, "onAuthenticatoinFailed()");
-      FingerprintManagerCompat.AuthenticationCallback callback = this;
 
       fingerprintPrompt.setImageResource(R.drawable.ic_close_white_48dp);
       fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.red_500), PorterDuff.Mode.SRC_IN);
@@ -391,6 +393,5 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
       fingerprintPrompt.startAnimation(shake);
     }
-
   }
 }
