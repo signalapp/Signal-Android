@@ -1,17 +1,22 @@
 package org.thoughtcrime.securesms.util;
 
+import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.text.BidiFormatter;
 
 import com.google.android.collect.Sets;
 
+import org.thoughtcrime.securesms.logging.Log;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.Set;
 
 public final class StringUtil {
-
+  private static final String         TAG        = StringUtil.class.getSimpleName();
   private static final Set<Character> WHITESPACE = Sets.newHashSet('\u200E',  // left-to-right mark
                                                                    '\u200F',  // right-to-left mark
                                                                    '\u2007'); // figure space
@@ -40,10 +45,52 @@ public final class StringUtil {
   private StringUtil() {
   }
 
+  private static BreakIteratorCompat getBreakIteratorInstance() {
+    if (Build.VERSION.SDK_INT < 24) {
+      return new FallbackBreakIterator();
+    }
+    return new AndroidIcuBreakIterator();
+  }
+
   /**
    * Trims a name string to fit into the byte length requirement.
+   *
+   * This method treats a surrogate pair and a grapheme cluster a single character
+   * See examples in tests defined in `StringUtilText_trimToFit`.
    */
-  public static @NonNull String trimToFit(@Nullable String name, int maxLength) {
+  public static @NonNull String trimToFit(@Nullable String name, int maxByteLength) {
+    if (name == null) return "";
+    if (name.length() == 0) return "";
+    if (name.getBytes(StandardCharsets.UTF_8).length <= maxByteLength) return name;
+
+    BreakIteratorCompat breakIterator = getBreakIteratorInstance();
+    breakIterator.setText(name);
+
+    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    try {
+      int endIndex = breakIterator.first();
+      while (!breakIterator.wasDone(endIndex)) {
+        int startIndex = endIndex;
+        endIndex = breakIterator.next();
+        if (breakIterator.wasDone(endIndex)) break;
+
+        String chr = name.substring(startIndex, endIndex);
+        byte[] bytes = chr.getBytes(StandardCharsets.UTF_8);
+        if (stream.size() + bytes.length > maxByteLength) break;
+
+        stream.write(bytes);
+      }
+      String trimmed = stream.toString();
+      stream.close();
+      return trimmed;
+    } catch (IOException ioe) {
+      Log.w(TAG, ioe);
+      // Fall back to legacy code for now
+      return legacyTrimToFit(name, maxByteLength);
+    }
+  }
+
+  private static @NonNull String legacyTrimToFit(@Nullable String name, int maxLength) {
     if (name == null) return "";
 
     // At least one byte per char, so shorten string to reduce loop
@@ -202,5 +249,80 @@ public final class StringUtil {
       length--;
     }
     return (startIndex > 0 || length < text.length()) ? text.subSequence(startIndex, length) : text;
+  }
+
+  /**
+   * An interface to abstract away two different BreakIterator implementations.
+   */
+  private interface BreakIteratorCompat {
+    int first();
+    int next();
+    void setText(String text);
+    boolean wasDone(int index);
+  }
+
+  /**
+   * An BreakIteratorCompat implementation that delegates calls to `android.icu.text.BreakIterator`.
+   * This class handles grapheme clusters fine but requires Android API >= 24.
+   */
+  @RequiresApi(24)
+  private static class AndroidIcuBreakIterator implements BreakIteratorCompat {
+    private android.icu.text.BreakIterator breakIterator = android.icu.text.BreakIterator.getCharacterInstance();
+
+    @Override
+    public int first() {
+      return breakIterator.first();
+    }
+
+    @Override
+    public int next() {
+      return breakIterator.next();
+    }
+
+    @Override
+    public void setText(String text) {
+      breakIterator.setText(text);
+    }
+
+    @Override
+    public boolean wasDone(int index) {
+      return index == android.icu.text.BreakIterator.DONE;
+    }
+  }
+
+  /**
+   * An BreakIteratorCompat implementation that delegates calls to `java.text.BreakIterator`.
+   * This class may or may not handle grapheme clusters well depending on the underlying implementation.
+   * In the emulator, API 23 implements ICU version of the BreakIterator so that it handles grapheme
+   * clusters fine. But API 21 implements RuleBasedIterator which does not handle grapheme clusters.
+   *
+   * If it doesn't handle grapheme clusters correctly, in most cases the combined characters are
+   * broken up into pieces when the code tries to trim a string. For example, an emoji that is
+   * a combination of a person, gender and skin tone, trimming the character using this class may result
+   * in trimming the parts of the character, e.g. a dark skin frowning woman emoji may result in
+   * a neutral skin frowning woman emoji.
+   */
+  private static class FallbackBreakIterator implements BreakIteratorCompat {
+    private java.text.BreakIterator breakIterator = java.text.BreakIterator.getCharacterInstance();
+
+    @Override
+    public int first() {
+      return breakIterator.first();
+    }
+
+    @Override
+    public int next() {
+      return breakIterator.next();
+    }
+
+    @Override
+    public void setText(String text) {
+      breakIterator.setText(text);
+    }
+
+    @Override
+    public boolean wasDone(int index) {
+      return index == java.text.BreakIterator.DONE;
+    }
   }
 }
