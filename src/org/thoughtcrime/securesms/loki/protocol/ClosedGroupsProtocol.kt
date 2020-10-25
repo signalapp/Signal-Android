@@ -27,6 +27,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext
 import org.whispersystems.signalservice.loki.api.SnodeAPI
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchet
+import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupSenderKey
 import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderKeysImplementation
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
@@ -151,8 +152,15 @@ object ClosedGroupsProtocol {
                     job.setContext(context)
                     job.onRun() // Run the job immediately
                 }
+                val allOldRatchets = sskDatabase.getAllClosedGroupRatchets(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
+                for (pair in allOldRatchets) {
+                    val senderPublicKey = pair.first
+                    val ratchet = pair.second
+                    val collection = ClosedGroupRatchetCollectionType.Old
+                    sskDatabase.setClosedGroupRatchet(groupPublicKey, senderPublicKey, ratchet, collection)
+                }
                 // Delete all ratchets (it's important that this happens * after * sending out the update)
-                sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
+                sskDatabase.removeAllClosedGroupRatchets(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
                 // Remove the group from the user's set of public keys to poll for if the user is leaving. Otherwise generate a new ratchet and
                 // send it out to all members (minus the removed ones) using established channels.
                 if (isUserLeaving) {
@@ -197,7 +205,7 @@ object ClosedGroupsProtocol {
                 // Establish sessions if needed
                 establishSessionsWithMembersIfNeeded(context, newMembers)
                 // Send closed group update messages to the new members using established channels
-                var allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey);
+                var allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
                 allSenderKeys = allSenderKeys.union(newSenderKeys)
                 for (member in newMembers) {
                     @Suppress("NAME_SHADOWING")
@@ -208,7 +216,7 @@ object ClosedGroupsProtocol {
                     ApplicationContext.getInstance(context).jobManager.add(job)
                 }
             } else {
-                val allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey);
+                val allSenderKeys = sskDatabase.getAllClosedGroupSenderKeys(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
                 val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.Info(Hex.fromStringCondensed(groupPublicKey), name,
                     allSenderKeys, membersAsData, adminsAsData)
                 val job = ClosedGroupUpdateMessageSendJob(groupPublicKey, closedGroupUpdateKind)
@@ -287,7 +295,7 @@ object ClosedGroupsProtocol {
         senderKeys.forEach { senderKey ->
             if (!members.contains(senderKey.publicKey.toHexString())) { return@forEach }
             val ratchet = ClosedGroupRatchet(senderKey.chainKey.toHexString(), senderKey.keyIndex, listOf())
-            sskDatabase.setClosedGroupRatchet(groupPublicKey, senderKey.publicKey.toHexString(), ratchet)
+            sskDatabase.setClosedGroupRatchet(groupPublicKey, senderKey.publicKey.toHexString(), ratchet, ClosedGroupRatchetCollectionType.Current)
         }
         // Sort out any discrepancies between the provided sender keys and what's required
         val missingSenderKeys = members.toSet().subtract(senderKeys.map { Hex.toStringCondensed(it.publicKey) })
@@ -357,7 +365,7 @@ object ClosedGroupsProtocol {
         // Store the ratchets for any new members (it's important that this happens before the code below)
         senderKeys.forEach { senderKey ->
             val ratchet = ClosedGroupRatchet(senderKey.chainKey.toHexString(), senderKey.keyIndex, listOf())
-            sskDatabase.setClosedGroupRatchet(groupPublicKey, senderKey.publicKey.toHexString(), ratchet)
+            sskDatabase.setClosedGroupRatchet(groupPublicKey, senderKey.publicKey.toHexString(), ratchet, ClosedGroupRatchetCollectionType.Current)
         }
         // Delete all ratchets and either:
         // • Send out the user's new ratchet using established channels if other members of the group left or were removed
@@ -366,7 +374,14 @@ object ClosedGroupsProtocol {
         val wasAnyUserRemoved = members.toSet().intersect(oldMembers) != oldMembers.toSet()
         val wasSenderRemoved = !members.contains(senderPublicKey)
         if (wasAnyUserRemoved) {
-            sskDatabase.removeAllClosedGroupRatchets(groupPublicKey)
+            val allOldRatchets = sskDatabase.getAllClosedGroupRatchets(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
+            for (pair in allOldRatchets) {
+                @Suppress("NAME_SHADOWING") val senderPublicKey = pair.first
+                val ratchet = pair.second
+                val collection = ClosedGroupRatchetCollectionType.Old
+                sskDatabase.setClosedGroupRatchet(groupPublicKey, senderPublicKey, ratchet, collection)
+            }
+            sskDatabase.removeAllClosedGroupRatchets(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
             if (wasCurrentUserRemoved) {
                 sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
                 groupDB.setActive(groupID, false)
@@ -416,7 +431,7 @@ object ClosedGroupsProtocol {
         // Respond to the request
         Log.d("Loki", "Responding to sender key request from: $senderPublicKey.")
         ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(senderPublicKey)
-        val userRatchet = DatabaseFactory.getSSKDatabase(context).getClosedGroupRatchet(groupPublicKey, userPublicKey)
+        val userRatchet = DatabaseFactory.getSSKDatabase(context).getClosedGroupRatchet(groupPublicKey, userPublicKey, ClosedGroupRatchetCollectionType.Current)
             ?: SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
         val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
         val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJob.Kind.SenderKey(Hex.fromStringCondensed(groupPublicKey), userSenderKey)
@@ -441,7 +456,7 @@ object ClosedGroupsProtocol {
         // Store the sender key
         Log.d("Loki", "Received a sender key from: $senderPublicKey.")
         val ratchet = ClosedGroupRatchet(senderKey.chainKey.toHexString(), senderKey.keyIndex, listOf())
-        sskDatabase.setClosedGroupRatchet(groupPublicKey, senderPublicKey, ratchet)
+        sskDatabase.setClosedGroupRatchet(groupPublicKey, senderPublicKey, ratchet, ClosedGroupRatchetCollectionType.Current)
     }
 
     @JvmStatic
