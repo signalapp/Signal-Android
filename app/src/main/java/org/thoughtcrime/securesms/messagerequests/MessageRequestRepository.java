@@ -99,7 +99,7 @@ final class MessageRequestRepository {
       }
 
       return MessageRequestState.REQUIRED;
-    } else if (FeatureFlags.modernProfileSharing() && !RecipientUtil.isLegacyProfileSharingAccepted(recipient)) {
+    } else if (FeatureFlags.modernProfileSharing() && !RecipientUtil.isLegacyProfileSharingAccepted(recipient) && threadId > 0) {
       return MessageRequestState.REQUIRED;
     } else if (RecipientUtil.isPreMessageRequestThread(context, threadId) && !RecipientUtil.isLegacyProfileSharingAccepted(recipient)) {
       return MessageRequestState.PRE_MESSAGE_REQUEST;
