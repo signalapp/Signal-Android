@@ -25,7 +25,7 @@ class PublicChatManager(private val context: Context) {
     refreshChatsAndPollers()
     for ((threadID, chat) in chats) {
       val poller = pollers[threadID]
-      areAllCaughtUp = if(poller != null) areAllCaughtUp && poller.isCaughtUp else false
+      areAllCaughtUp = if (poller != null) areAllCaughtUp && poller.isCaughtUp else true
     }
     return areAllCaughtUp
   }
