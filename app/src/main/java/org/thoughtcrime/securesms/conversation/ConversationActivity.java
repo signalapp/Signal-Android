@@ -243,6 +243,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TextSecurePreferences.MediaKeyboardMode;
 import org.thoughtcrime.securesms.util.Util;
@@ -1129,9 +1130,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @TargetApi(Build.VERSION_CODES.KITKAT)
   private void handleMakeDefaultSms() {
-    Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-    intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
-    startActivityForResult(intent, SMS_DEFAULT);
+    startActivityForResult(SmsUtil.getSmsRoleIntent(this), SMS_DEFAULT);
   }
 
   private void handleRegisterForSignal() {

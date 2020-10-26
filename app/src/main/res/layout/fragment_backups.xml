@@ -157,7 +157,8 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/BackupsPreferenceFragment__turn_on"
-            android:textColor="@color/core_white" />
+            android:textColor="@color/core_white"
+            app:backgroundTint="?colorAccent" />
 
         <View
             android:layout_width="match_parent"

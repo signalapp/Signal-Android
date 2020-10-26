@@ -159,6 +159,8 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     ContentValues contentValues = new ContentValues();
     contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
     contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
+    contentValues.put(MediaStore.MediaColumns.DATE_ADDED, System.currentTimeMillis());
+    contentValues.put(MediaStore.MediaColumns.DATE_MODIFIED, System.currentTimeMillis());
 
     if (Build.VERSION.SDK_INT > 28) {
       contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1);

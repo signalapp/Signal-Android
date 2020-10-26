@@ -6,7 +6,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.provider.Telephony;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,6 +16,7 @@ import androidx.preference.PreferenceScreen;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -78,9 +79,7 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
       defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
       defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
     } else {
-      Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-      intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getActivity().getPackageName());
-      defaultPreference.setIntent(intent);
+      defaultPreference.setIntent(SmsUtil.getSmsRoleIntent(requireContext()));
       defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
       defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app));
     }

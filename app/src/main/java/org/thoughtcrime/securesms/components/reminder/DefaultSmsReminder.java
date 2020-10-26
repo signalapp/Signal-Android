@@ -2,13 +2,12 @@ package org.thoughtcrime.securesms.components.reminder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build.VERSION_CODES;
-import android.provider.Telephony;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -23,9 +22,7 @@ public class DefaultSmsReminder extends Reminder {
       @Override
       public void onClick(View v) {
         TextSecurePreferences.setPromptedDefaultSmsProvider(context, true);
-        Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
-        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, context.getPackageName());
-        context.startActivity(intent);
+        context.startActivity(SmsUtil.getSmsRoleIntent(context));
       }
     };
     final OnClickListener dismissListener = new OnClickListener() {
