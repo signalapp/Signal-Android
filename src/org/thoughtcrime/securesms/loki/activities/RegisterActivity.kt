@@ -15,6 +15,9 @@ import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
+import com.goterl.lazycode.lazysodium.LazySodiumJava
+import com.goterl.lazycode.lazysodium.SodiumJava
+import com.goterl.lazycode.lazysodium.utils.KeyPair
 import kotlinx.android.synthetic.main.activity_register.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
@@ -28,16 +31,15 @@ import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.curve25519.Curve25519
-import org.whispersystems.libsignal.ecc.Curve
-import org.whispersystems.libsignal.ecc.ECKeyPair
+import org.whispersystems.libsignal.ecc.*
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
-import java.io.File
-import java.io.FileOutputStream
 
 class RegisterActivity : BaseActionBarActivity() {
+    private val sodium = LazySodiumJava(SodiumJava())
     private var seed: ByteArray? = null
-    private var keyPair: ECKeyPair? = null
+    private var ed25519KeyPair: KeyPair? = null
+    private var x25519KeyPair: ECKeyPair? = null
         set(value) { field = value; updatePublicKeyTextView() }
 
     // region Lifecycle
@@ -72,7 +74,10 @@ class RegisterActivity : BaseActionBarActivity() {
     private fun updateKeyPair() {
         val seedCandidate = Curve25519.getInstance(Curve25519.BEST).generateSeed(16)
         try {
-            this.keyPair = Curve.generateKeyPair(seedCandidate + seedCandidate) // Validate the seed
+            val padding = ByteArray(16) { 0 }
+            ed25519KeyPair = sodium.cryptoSignSeedKeypair(seedCandidate + padding)
+            val x25519KeyPair = sodium.convertKeyPairEd25519ToCurve25519(ed25519KeyPair)
+            this.x25519KeyPair = ECKeyPair(DjbECPublicKey(x25519KeyPair.publicKey.asBytes), DjbECPrivateKey(x25519KeyPair.secretKey.asBytes))
         } catch (exception: Exception) {
             return updateKeyPair()
         }
@@ -80,7 +85,7 @@ class RegisterActivity : BaseActionBarActivity() {
     }
 
     private fun updatePublicKeyTextView() {
-        val hexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
+        val hexEncodedPublicKey = x25519KeyPair!!.hexEncodedPublicKey
         val characterCount = hexEncodedPublicKey.count()
         var count = 0
         val limit = 32
@@ -112,9 +117,9 @@ class RegisterActivity : BaseActionBarActivity() {
     // region Interaction
     private fun register() {
         IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
-        IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(keyPair!!.publicKey.serialize()))
-        IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(keyPair!!.privateKey.serialize()))
-        val userHexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
+        IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(x25519KeyPair!!.publicKey.serialize()))
+        IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(x25519KeyPair!!.privateKey.serialize()))
+        val userHexEncodedPublicKey = x25519KeyPair!!.hexEncodedPublicKey
         val registrationID = KeyHelper.generateRegistrationId(false)
         TextSecurePreferences.setLocalRegistrationId(this, registrationID)
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(userHexEncodedPublicKey),
@@ -129,7 +134,7 @@ class RegisterActivity : BaseActionBarActivity() {
 
     private fun copyPublicKey() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("Session ID", keyPair!!.hexEncodedPublicKey)
+        val clip = ClipData.newPlainText("Session ID", x25519KeyPair!!.hexEncodedPublicKey)
         clipboard.setPrimaryClip(clip)
         Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }

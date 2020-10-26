@@ -145,6 +145,8 @@ dependencies {
     implementation "org.whispersystems:signal-service-android:2.13.2" // Run ./gradlew install from session-android-service to install
     implementation "org.whispersystems:curve25519-java:0.5.0"
     // Remote:
+    implementation "com.goterl.lazycode:lazysodium-java:4.3.0"
+    implementation "net.java.dev.jna:jna:5.6.0"
     implementation "com.google.protobuf:protobuf-java:2.5.0"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
     implementation "com.squareup.okhttp3:okhttp:3.12.1"
