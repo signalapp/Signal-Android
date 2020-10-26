@@ -51,7 +51,7 @@ class BackgroundPollJob private constructor(parameters: Parameters) : BaseJob(pa
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)
             val promises = mutableListOf<Promise<Unit, Exception>>()
             if (!TextSecurePreferences.isUsingFCM(context)) {
-                Log.d("Loki", "Not using FCM, poll for contacts and closed groups.")
+                Log.d("Loki", "Not using FCM; polling for contacts and closed groups.")
                 val promise = SnodeAPI.shared.getMessages(userPublicKey).map { envelopes ->
                     envelopes.forEach {
                         PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
