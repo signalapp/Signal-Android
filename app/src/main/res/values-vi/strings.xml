@@ -317,6 +317,22 @@
   <string name="CreateProfileActivity_set_up_your_profile">Thiết lập hồ sơ</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Hồ sơ của bạn được mã hóa đầu cuối. Hồ sơ và các thay đổi sẽ hiển thị với liên hệ trong danh bạ của bạn, khi bạn bắt đầu hoặc chấp nhận cuộc trò chuyện mới, hoặc khi bạn tham gia nhóm mới.</string>
   <string name="CreateProfileActivity_set_avatar_description">Đặt ảnh đại diện</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Khôi phục từ bản sao lưu?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Khôi phục tin nhắn và tệp từ bản sao lưu. Bạn chỉ có thể khôi phục vào lúc này.</string>
+  <string name="ChooseBackupFragment__learn_more">Tìm hiểu thêm</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">Chọn thư mục</string>
+  <string name="RestoreBackupFragment__not_now">Để sau</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Sao lưu tin nhắn</string>
+  <string name="BackupsPreferenceFragment__create_backup">Tạo bản sao lưu</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Xác minh mật khẩu sao lưu</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Kiểm tra mật khẩu sao lưu của bạn xem có khớp không</string>
+  <string name="BackupsPreferenceFragment__turn_on">Bật</string>
+  <string name="BackupsPreferenceFragment__turn_off">Tắt</string>
+  <string name="BackupsPreferenceFragment__learn_more">Tìm hiểu thêm</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal cần quyền truy cập bộ nhớ để tạo bản sao lưu, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Bộ nhớ\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
   <string name="CustomDefaultPreference_using_default">Dùng mặc định: %s</string>
@@ -356,6 +372,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Tối ưu hóa khi không có dịch vụ Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Thiết bị này không hỗ trợ dịch vụ Google Play. Nhấn để tắt tính năng tối ưu hóa pin khiến Signal không thể nhận tin nhắn duới nền.</string>
   <!--ExpiredBuildReminder-->
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">Xem</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Gửi nhiều tệp đính kèm chỉ áp dụng cho ảnh và video</string>
@@ -722,13 +740,8 @@
   <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
   <string name="MessageRecord_you_updated_group">Bạn đã cập nhật nhóm.</string>
   <string name="MessageRecord_the_group_was_updated">Nhóm đã được cập nhật.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Bạn đã gọi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Liên hệ đã gọi bạn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Cuộc gọi nhỡ</string> -->
   <string name="MessageRecord_s_updated_group">%s đã cập nhật nhóm.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s đã gọi bạn</string> -->
   <string name="MessageRecord_called_s">Đã gọi %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Cuộc gọi nhỡ từ %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s đang sử dụng Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Bạn đã tắt tính năng tự hủy tin nhắn.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s đã tắt tính năng tự hủy tin nhắn.</string>
@@ -846,6 +859,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bạn đã hủy xác minh mã số an toàn với %s từ thiết bị khác</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Chấp nhận</string>
+  <string name="MessageRequestBottomView_continue">Tiếp tục</string>
   <string name="MessageRequestBottomView_delete">Xóa</string>
   <string name="MessageRequestBottomView_block">Chặn</string>
   <string name="MessageRequestBottomView_unblock">Bỏ chặn</string>
@@ -1339,8 +1353,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Lỗi nhận liên hệ, vui lòng kiểm tra kết nối mạng</string>
   <string name="ContactSelectionListFragment_username_not_found">Không tìm thấy tên người dùng</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" không phải người dùng Signal. Hãy kiểm tra tên người dùng và thử lại.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">OK</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Nhóm đã đầy</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Bạn không cần tự thêm mình vào nhóm</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Không có liên hệ bị chặn</string>
@@ -2048,6 +2060,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="BackupDialog_delete_backups">Xoá bản sao lưu?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Tắt và xoá tất cả sao lưu trên thiết bị?</string>
   <string name="BackupDialog_delete_backups_statement">Xoá bản sao lưu</string>
+  <string name="BackupDialog_choose_folder">Chọn thư mục</string>
   <string name="BackupDialog_copied_to_clipboard">Đã chép vào bảng ghi tạm</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Điền mật khẩu sao lưu của bạn để xác minh</string>
   <string name="BackupDialog_verify">Kiểm chứng</string>
@@ -2163,5 +2176,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="GroupLinkBottomSheet_share">Chia sẻ</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Đã sao chép vào clipboard</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Đường dẫn không hoạt động</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s đến %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

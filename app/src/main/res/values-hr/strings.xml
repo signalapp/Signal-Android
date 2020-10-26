@@ -349,6 +349,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Postavite vaš profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Vaš profil je end-to-end šifriran. Vaš profil kao i promjene na njemu biti će vidljive vašim kontaktima kada započinjete ili prihvaćate nove razgovore i kada se pridružite novim grupama.</string>
   <string name="CreateProfileActivity_set_avatar_description">Postavi sliku profila</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Vrati iz sigurnosne kopije?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Vratite svoje poruke i medijske zapise iz lokalne sigurnosne kopije. Ako ne vratite sada, nećete kasnije moći vratiti.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Vrati iz ikone sigurnosne kopije</string>
+  <string name="ChooseBackupFragment__choose_backup">Odaberi sigurnosnu kopiju</string>
+  <string name="ChooseBackupFragment__learn_more">Saznaj više</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Dovršeno vraćanje sigurnosne kopije</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Da biste nastavili koristiti sigurnosne kopije, odaberite mapu. Nove sigurnosne kopije bit će spremljene u tu mapu.</string>
+  <string name="RestoreBackupFragment__choose_folder">Odaberi mapu</string>
+  <string name="RestoreBackupFragment__not_now">Ne sada</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Sigurnosne kopije razgovora</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Sigurnosne kopije šifriraju se lozinkom i pohranjuju na vaš uređaj.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Stvori sigurnosnu kopiju</string>
+  <string name="BackupsPreferenceFragment__last_backup">Zadnja sigurnosna kopija: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Mapa sigurnosne kopije</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Provjerite lozinku sigurnosne kopije</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testirajte vašu lozinku sigurnosne kopije i provjerite je li točna</string>
+  <string name="BackupsPreferenceFragment__turn_on">Uključi</string>
+  <string name="BackupsPreferenceFragment__turn_off">Isključi</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Da biste vratili sigurnosnu kopiju, instalirajte novu kopiju Signala. Otvorite aplikaciju i pritisnite \"Vrati sigurnosnu kopiju\", a zatim pronađite datoteku sigurnosne kopije. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Saznaj više</string>
+  <string name="BackupsPreferenceFragment__in_progress">U tijeku…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d za sada…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal zahtijeva dopuštenje za vanjski prostor za pohranu kako bi stvorio sigurnosne kopije, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Prostor za pohranu\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
   <string name="CustomDefaultPreference_using_default">Koristeći zadano: %s</string>
@@ -390,6 +416,13 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ova verzija Signala je istekla. Ažurirajte odmah da biste slali i primali poruke.</string>
   <string name="ExpiredBuildReminder_update_now">Ažuriraj sada</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d zahtjev za članove na čekanju.</item>
+    <item quantity="few">%d zahtjeva za članove na čekanju.</item>
+    <item quantity="other">%d zahtjeva za članove na čekanju.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Pregledaj</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podijeli s</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Višestruki privitci podržani su samo za slike i videozapise</string>
@@ -805,13 +838,11 @@
   <string name="MessageRecord_left_group">Napustili ste grupu.</string>
   <string name="MessageRecord_you_updated_group">Ažurirali ste grupu.</string>
   <string name="MessageRecord_the_group_was_updated">Grupa je ažurirana.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Vi ste zvali</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt vas je zvao</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Propušteni poziv</string> -->
+  <string name="MessageRecord_you_called_date">Vi ste zvali · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Propušteni poziv · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s je ažurirao grupu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s vas je nazvao</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s vas je zvao/la · %2$s</string>
   <string name="MessageRecord_called_s">Nazvali ste %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Propušteni poziv od %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s se pridružio/la Signalu!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Onemogućili ste poruke koje nestaju.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s je onemogućio poruke koje nestaju.</string>
@@ -951,11 +982,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste da vaš sigurnosni broj s %s nije provjeren na drugom uređaju</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Prihvati</string>
+  <string name="MessageRequestBottomView_continue">Nastavi</string>
   <string name="MessageRequestBottomView_delete">Izbriši</string>
   <string name="MessageRequestBottomView_block">Blokiraj</string>
   <string name="MessageRequestBottomView_unblock">Odblokiraj</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Želite li dopustiti %1$s da vam pošalje poruku i da dijelite svoje ime i fotografiju s njima? Neće znati da ste vidjeli njihovu poruku dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Želite li dopustiti %1$s da vam pošalje poruku i da dijelite svoje ime i fotografiju s njima? Nećete primati poruke dok ne odblokirate.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Želite li nastaviti razgovor s ovom grupom i podijeliti svoje ime i fotografiju s članovima?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Želite li nastaviti ovaj razgovor s %1$s i podijeliti svoje ime i fotografiju?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Želite li se pridružiti ovoj grupi i podijeliti svoje ime i fotografiju sa članovima? Neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridružiti se ovoj grupi? Neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite li odblokirati ovu grupu i podijeliti svoje ime i fotografiju sa članovima? Nećete primati poruke dok ih ne odblokirate.</string>
@@ -1124,6 +1158,7 @@ broj telefona</string>
   <string name="RegistrationActivity_more_information">Više informacija</string>
   <string name="RegistrationActivity_less_information">Manje informacija</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal zahtijeva pristup vašim kontaktima i medijskim zapisima za povezivanje s prijateljima, razmjenu poruka i upućivanje sigurnih poziva</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal zahtijeva pristup vašim kontaktima za povezivanje s prijateljima, razmjenu poruka i upućivanje sigurnih poziva</string>
   <string name="RegistrationActivity_rate_limited_to_service">Previše neuspjelih pokušaja registracije ovog broja telefona. Pokušajte ponovo kasnije.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezivanje s uslugom nije moguće. Provjerite mrežnu vezu i pokušajte ponovo.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Kako bismo lako potvrdili vaš broj telefona, Signal može automatski otkriti vaš potvrdni kôd ako dozvolite Signalu da provjeri vaše SMS poruke.</string>
@@ -1304,6 +1339,7 @@ broj telefona</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">U međuspremniku nije pronađen sigurnosni broj za usporedbu</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal zahtijeva dopuštenje za kameru kako bi mogao skenirati QR kôd, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nije moguće skenirati QR kôd bez dozvole pristupa kamere</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Prvo morate razmijeniti poruke da biste vidjeli sigurnosni broj od %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1376,6 +1412,7 @@ broj telefona</string>
   <string name="NotificationChannel_other">Ostalo</string>
   <string name="NotificationChannel_group_messages">Poruke</string>
   <string name="NotificationChannel_missing_display_name">Nepoznato</string>
+  <string name="NotificationChannel_voice_notes">Glasovne bilješke</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Uspješno postavljeno ime profila.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Došlo je do mrežne pogreške.</string>
@@ -1477,9 +1514,16 @@ broj telefona</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Pogreška pri dohvaćanju kontakata, provjerite mrežnu vezu</string>
   <string name="ContactSelectionListFragment_username_not_found">Korisničko ime nije pronađeno</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nije korisnik Signala. Provjerite korisničko ime i pokušajte ponovno.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">U redu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupa je puna</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Ne trebate dodavati sebe u grupu</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Dosegnuta je maksimalna veličina grupe</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal grupe mogu imati najviše %1$d članova.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Dosegnuto preporučeno ograničenje članova</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal grupe najbolje rade s %1$d članova ili manje. Dodavanje više članova uzrokovat će kašnjenja u slanju i primanju poruka.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d član</item>
+    <item quantity="few">%1$d člana</item>
+    <item quantity="other">%1$d članova</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nema blokiranih kontakata</string>
   <!--contact_selection_list_fragment-->
@@ -2184,7 +2228,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vjerujemo u privatnost.</b></p><p>Signal vas ne prati niti prikuplja vaše podatke. Da bismo poboljšali Signal za sve, oslanjamo se na povratne informacije korisnika i <b>voljeli bismo vaše.</b></p><p>Provodimo anketu kako bismo shvatili kako koristite Signal. Naša anketa ne prikuplja podatke koji će vas identificirati. Ako ste zainteresirani za dijeljenje dodatnih povratnih informacija, imat ćete mogućnost pružanja podataka za kontakt.</p><p>Ako imate nekoliko minuta i želite poslati povratne informacije, voljeli bismo čuti vaše mišljenje.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Ispunite anketu</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketu održava Surveygizmo na sigurnoj domeni o surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu održava Alchemer na sigurnoj domeni o surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>
@@ -2200,6 +2244,8 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Otključaj za prikaz poruka na čekanju</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Lozinka sigurnosne kopije</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Sigurnosne kopije bit će spremljene u vanjski prostor za pohranu i šifrirane lozinkom u nastavku. Morate imati ovu lozinku da biste mogli vratili sigurnosnu kopiju.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Morate imati ovu lozinku da biste vratili sigurnosnu kopiju.</string>
+  <string name="backup_enable_dialog__folder">Mapa</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Zapisao/la sam ovu lozinku. Bez toga neću moći vratiti sigurnosnu kopiju.</string>
   <string name="registration_activity__restore_backup">Vrati iz sigurnosne kopije</string>
   <string name="registration_activity__skip">Preskoči</string>
@@ -2225,6 +2271,8 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="BackupDialog_delete_backups">Izbrisati sigurnosne kopije?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Onemogući i izbriši sve lokalne sigurnosne kopije?</string>
   <string name="BackupDialog_delete_backups_statement">Izbriši sigurnosne kopije</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Da biste omogućili sigurnosne kopije, odaberite mapu. Sigurnosne kopije bit će spremljene na ovo mjesto.</string>
+  <string name="BackupDialog_choose_folder">Odaberi mapu</string>
   <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Unesi vašu lozinku sigurnosne kopije za provjeru</string>
   <string name="BackupDialog_verify">Potvrdi</string>
@@ -2234,6 +2282,12 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="ChatsPreferenceFragment_last_backup_s">Zadnja sigurnosna kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">U tijeku</string>
   <string name="LocalBackupJob_creating_backup">Stvaranje sigurnosne kopije…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Sigurnosne kopije su onemogućene.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Sigurnosno kopiranje nije uspjelo</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Vaša mapa sigurnosnih kopija je izbrisana ili premještena.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Datoteka vaše sigurnosne kopije prevelika je za pohranu na ovom volumenu.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Nema dovoljno prostora za pohranu sigurnosne kopije.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Izrada sigurnosne kopije nije uspjela iz nepoznatog razloga.</string>
   <string name="ProgressPreference_d_messages_so_far">%d poruke/a dosada</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Unesite potvrdni kôd koji je poslan na %s.</string>
   <string name="RegistrationActivity_wrong_number">Nevažeći broj</string>
@@ -2345,5 +2399,12 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="GroupLinkBottomSheet_share">Podijeli</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Poveznica trenutno nije aktivna</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Nije moguće započeti reprodukciju.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Glasovna poruka: %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s za %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

@@ -335,6 +335,22 @@
   <string name="CreateProfileActivity_set_up_your_profile">Ezarri zure profila</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Zure profila muturretik-muturrera enkriptatuta dago. Ikusgarri egongo da bakarrik zure kontaktuentzat, solasaldi berria sortu edo onartzen duzunean eta talde berrietan sartzen zarenean.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ezarri abatarra</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Babeskopia berreskuratu?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Berreskuratu babeskopia lokal bateko mezuak eta multimedia elementuak. Orain ez baduzu egiten, gero ezingo duzu.</string>
+  <string name="ChooseBackupFragment__learn_more">Gehiago jakin</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">Aukeratu karpeta</string>
+  <string name="RestoreBackupFragment__not_now">Orain ez</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Txaten babeskopiak</string>
+  <string name="BackupsPreferenceFragment__create_backup">Sortu babeskopia</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Egiaztatu babeskopiaren pasahitza</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Probatu zure babeskopiaren pasahitza eta egiaztatu bat datorrela</string>
+  <string name="BackupsPreferenceFragment__turn_on">Aktibatu</string>
+  <string name="BackupsPreferenceFragment__turn_off">Desaktibatu</string>
+  <string name="BackupsPreferenceFragment__learn_more">Gehiago jakin</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal-ek kanpoko memorian gordetzeko baimena behar du babeskopiak egin ahal izateko baina baimena ukatuta izan du beti. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta gaitu \"Biltegiratzea\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Pertsonalizatua: %s</string>
   <string name="CustomDefaultPreference_using_default">Lehenetsia: %s</string>
@@ -376,6 +392,8 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signalen bertsio hau iraungi da. Eguneratu orain mezuak bidali eta jaso ahal izateko.</string>
   <string name="ExpiredBuildReminder_update_now">Eguneratu orain</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">Ikusi</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Honekin partekatu:</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Eranskin anitzak bakarrik irudi eta bideoetan onartzen dira</string>
@@ -771,13 +789,8 @@
   <string name="MessageRecord_left_group">Taldea utzi duzu.</string>
   <string name="MessageRecord_you_updated_group">Taldea eguneratu duzu</string>
   <string name="MessageRecord_the_group_was_updated">Taldea eguneratu egin da.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Deitu duzu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontaktuak deitu du</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Erantzun gabeko deia</string> -->
   <string name="MessageRecord_s_updated_group">%s-ek taldea eguneratu du.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s-(e)k deitu dizu</string> -->
   <string name="MessageRecord_called_s">%s-(e)ri deitu duzu</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s-en erantzun gabeko deia</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal-en dago!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Mezuen desagerpena ezgaitu duzu.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s-k mezuen desagerpena ezgaitu du.</string>
@@ -912,6 +925,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s erabiltzailearekin duzun segurtasun zenbakia ez egiaztatutzat markatu duzu beste gailu batetik </string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Onartu</string>
+  <string name="MessageRequestBottomView_continue">Jarraitu</string>
   <string name="MessageRequestBottomView_delete">Ezabatu</string>
   <string name="MessageRequestBottomView_block">Blokeatu</string>
   <string name="MessageRequestBottomView_unblock">Desblokeatu</string>
@@ -1433,8 +1447,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Errorea kontaktuak jasotzean, egiaztatu zure konexioa.</string>
   <string name="ContactSelectionListFragment_username_not_found">Erabiltzaile izena ez da aurkitu</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile izena eta saia zaitez berriro.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Ados</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Taldea beteta dago</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Ez daukazu zertan zeure burua taldera gehitu</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeatutako kontaturik ez…</string>
@@ -2124,7 +2136,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Pribatutasunean sinesten dugu</b></p><p>Signalek ez du jarraitzen egiten duzuna edo zure datuak bildu. Signal guztiontzat hobetzeko, erabiltzaileen iruzkinetan oinarritzen gara, <b>eta zurea edukitzea gustatuko litzaiguke. </b></p><p> Inkesta bat egiten ari gara Signal nola erabiltzen duzun ulertzeko. Gure inkestak identifika zaitzakeen daturik ez du biltzen. Informazio gehiago partekatu nahi baduzu, kontakturako informazioa emateko aukera izango duzu. </p><p> Minutu batzuk eta iruzkinak egiteko baduzu, gustatuko litzaiguke zure iritzia entzutea. </p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Inkesta egin</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ez, eskerrik asko</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Inkesta Surveygizmo zerbitzuan dago ostatuta, surveys.signalusers.org domeinuan</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>
@@ -2165,6 +2176,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="BackupDialog_delete_backups">Babeskopiak ezabatu?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Babeskopia lokal guztiak desgaitu eta ezabatu?</string>
   <string name="BackupDialog_delete_backups_statement">Ezabatu babeskopiak</string>
+  <string name="BackupDialog_choose_folder">Aukeratu karpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Sartu zure babeskopiaren pasahitza egiaztatzeko</string>
   <string name="BackupDialog_verify">Baieztatu</string>
@@ -2285,5 +2297,9 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="GroupLinkBottomSheet_share">Elkarbanatu</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Esteka hau ez dago indarrean</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s tik %2$s ra</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

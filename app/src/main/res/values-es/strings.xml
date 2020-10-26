@@ -87,7 +87,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">No podrás enviar ni recibir más mensajes en este grupo y sus participantes no podrán añadirte de nuevo.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">L@s participantes del grupo no podrán añadirte de nuevo.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">L@s participantes del grupo podrán añadirte de nuevo.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podréis chatear y llamaros mutuamente. Tu nombre y foto de perfil se compartirá con esta persona.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Podréis chatear y llamaros mutuamente. Tu nombre y foto se compartirá con esta persona.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas bloqueadas no podrán llamarte o enviarte mensajes.</string>
   <string name="BlockUnblockDialog_unblock_s">¿Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
@@ -335,6 +335,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de punto a punto. Sólo es visible para tus contactos, para personas con las que inicies o aceptes un chat nuevo y cuando te unas a nuevos grupos. Nadie más tiene acceso, ni siquiera l@s creador@s de Signal.</string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">¿Restaurar desde copia de seguridad?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaura tus mensajes y adjuntos desde una copia de seguridad local. Si no lo haces ahora, no podrás restaurar más tarde.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Símbolo de restaurar desde copia de seguridad</string>
+  <string name="ChooseBackupFragment__choose_backup">Seleccionar copia</string>
+  <string name="ChooseBackupFragment__learn_more">Saber más</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Recuperación completada</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Selecciona una carpeta para continuar usando las copias de seguridad. Las nuevas copias se guardarán en esa carpeta.</string>
+  <string name="RestoreBackupFragment__choose_folder">Seleccionar carpeta</string>
+  <string name="RestoreBackupFragment__not_now">Ahora no</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Copias de seguridad de chats</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Las copias de seguridad se cifran con una clave (passphrase) y se guardan en este dispositivo.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Crear copia de seguridad</string>
+  <string name="BackupsPreferenceFragment__last_backup">Última copia: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Carpeta de copias</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar clave de copia de seguridad</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Verifica que la clave (passphrase) de tu copia de seguridad es correcta</string>
+  <string name="BackupsPreferenceFragment__turn_on">Activar</string>
+  <string name="BackupsPreferenceFragment__turn_off">Desactivar</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Para restaurar tus chat con una copia de seguridad, reinstala Signal. Abre Signal y toca en «Restaurar copia» y busca la copia de seguridad. %1$s </string>
+  <string name="BackupsPreferenceFragment__learn_more">Saber más</string>
+  <string name="BackupsPreferenceFragment__in_progress">En curso …</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d por el momento …</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesita acceso al almacenamiento para crear copias de seguridad. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Usar predeterminado: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Esta versión de Signal ha caducado. Actualízala ahora para seguir enviando y recibiendo mensajes.</string>
   <string name="ExpiredBuildReminder_update_now">Actualizar ahora</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d solicitud pendiente.</item>
+    <item quantity="other">%d solicitudes pendientes.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Ver</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Sólo fotos y vídeos se pueden enviar como múltiples adjuntos</string>
@@ -402,8 +434,8 @@
   <string name="ChooseNewAdminActivity_done">Hecho</string>
   <string name="ChooseNewAdminActivity_you_left">Has abandonado «%1$s».</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">¿Deseas compartir tu nombre y foto de perfil con este grupo?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">¿Deseas hacer visible tu nombre y foto de perfil a tod@s l@s participantes presentes y futur@s de este grupo?</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">¿Deseas compartir tu nombre y foto con este grupo?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">¿Deseas hacer visible tu nombre y foto a tod@s l@s participantes presentes y futur@s de este grupo?</string>
   <string name="GroupShareProfileView_make_visible">Hacer visible</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Tú</string>
@@ -620,8 +652,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este enlace al grupo no está disponible</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del grupo, por favor inténtalo más tarde</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Al seguir el enlace se genera una solicitud de acceso que debe ser aprobada antes de unirte. Al unirte al grupo, tu nombre y foto de perfil se compartirán con sus participantes.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y así compartir tu nombre y foto con sus participantes?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Al seguir el enlace se genera una solicitud de acceso que debe ser aprobada antes de unirte. Al unirte al grupo, tu nombre y foto se compartirán con sus participantes.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grupo · %1$d participante</item>
     <item quantity="other">Grupo · %1$d participantes</item>
@@ -771,13 +803,11 @@
   <string name="MessageRecord_left_group">Has abandonado el grupo.</string>
   <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
   <string name="MessageRecord_the_group_was_updated">Se actualizó el grupo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Has llamado</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Llamada recibida</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Llamada perdida</string> -->
+  <string name="MessageRecord_you_called_date">Has llamado · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Llamada perdida · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ha actualizado el grupo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ha llamado</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s ha llamado · %2$s</string>
   <string name="MessageRecord_called_s">Has llamado a %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Llamada perdida de %s</string> -->
   <string name="MessageRecord_s_joined_signal">¡%s usa Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Has desactivado la desaparición de mensajes.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha desactivado la desaparición de mensajes.</string>
@@ -785,9 +815,9 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha fijado la desaparición de mensajes a %2$s. </string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">El tiempo de desaparición de mensajes se ha fijado en %1$s.</string>
   <!--Profile change updates-->
-  <string name="MessageRecord_changed_their_profile_name_to">%1$s ha cambiado su nombre de perfil a %2$s.</string>
-  <string name="MessageRecord_changed_their_profile_name_from_to">%1$sha cambiado su nombre de perfil de %2$s a %3$s.</string>
-  <string name="MessageRecord_changed_their_profile">%1$s ha cambiado su nombre de perfil.</string>
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s ha cambiado su nombre a %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$sha cambiado su nombre de %2$s a %3$s.</string>
+  <string name="MessageRecord_changed_their_profile">%1$s ha cambiado su nombre.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Has creado el grupo.</string>
   <string name="MessageRecord_group_updated">Grupo actualizado.</string>
@@ -912,14 +942,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Has retirado la marca de verificación de tus cifras de seguridad con %s desde otro dispositivo</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Aceptar</string>
+  <string name="MessageRequestBottomView_continue">Adelante</string>
   <string name="MessageRequestBottomView_delete">Eliminar</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto de perfil? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto de perfil? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">¿Deseas chatear con este grupo y así compartir tu nombre y foto con sus participantes?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">¿Deseas chatear con %1$s y así compartir tu nombre y foto con esta persona?</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y así compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto de perfil con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Participa en %1$s y %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Participa en %1$s, %2$s y %3$s</string>
@@ -1082,6 +1115,7 @@ número de teléfono
   <string name="RegistrationActivity_more_information">Más detalles</string>
   <string name="RegistrationActivity_less_information">Menos detalles</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos y medios para conectar con tus amistades, chatear, y hacer llamadas seguras. Tu lista de contactos no se guarda en el servidor de Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos para conectar con tus amistades, chatear, y hacer llamadas seguras. Tu lista de contactos no se guarda en el servidor de Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo más tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar con el servidor. Por favor, comprueba la conexión de red e inténtalo de nuevo.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar cómodamente el número de teléfono, Signal puede detectar automáticamente el código de verificación si tiene acceso a tus SMS.</string>
@@ -1261,6 +1295,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se encontraron cifras de seguridad en el portapapeles para comparar</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para escanear el código QR. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Cámara».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No se puede escanear un código QR sin acceso a la cámara</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Tienes que intercambiar mensajes con %1$s para poder ver sus cifras de seguridad.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1333,6 +1368,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NotificationChannel_other">Otros</string>
   <string name="NotificationChannel_group_messages">Mensajes</string>
   <string name="NotificationChannel_missing_display_name">Desconocido</string>
+  <string name="NotificationChannel_voice_notes">Notas de voz</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Alias establecido con éxito.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
@@ -1433,9 +1469,15 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fallo al comprobar contactos, comprueba la conexión a la red.</string>
   <string name="ContactSelectionListFragment_username_not_found">Alias no encontrado</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$s no usa Signal. Asegúrate de introducir el alias correcto.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">De acuerdo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Este grupo está completo</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas añadirte a ti mism@ al grupo</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Se alcanzó el número máximo de participantes en el grupo.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Los grupos de Signal aceptan un máximo de %1$d participantes.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Se alcanzó el límite máximo recomendado</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Los grupos de Signal funcionan mejor con %1$d o menos participantes. Añadir más participantes causará retrasos al enviar y recibir mensajes.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d participante</item>
+    <item quantity="other">%1$d participantes</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hay personas bloqueadas</string>
   <!--contact_selection_list_fragment-->
@@ -1601,7 +1643,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   </plurals>
   <string name="GroupUtil_group_name_is_now">Ahora el nombre del grupo es «%1$s».</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">¿Hacer visibles para este grupo el nombre y la foto de perfil?</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">¿Hacer visibles para este grupo tu nombre y foto?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->
@@ -2121,10 +2163,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ResearchMegaphone_learn_more">Saber más</string>
   <string name="ResearchMegaphone_dismiss">Ignorar</string>
   <string name="ResearchMegaphoneDialog_signal_research">Encuesta de uso de Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Creemos en la privacidad.</b></p><p>Signal no analiza el uso que le das, ni recopila tus datos. Para mejorar Signal para tod@s, necesitamos la opinión de l@s usuari@s <b>y especialmente la tuya.</b></p><p>Hemos preparado una encuesta en inglés para entender mejor cómo usas Signal. Nuestra encuenta no recopila ningún detalle que te pueda identificar. Si te interesa incluir información adicional (en inglés), tienes la opción de dejar tus datos de contacto.</p><p>Si tienes unos pocos minutos para ofrecernos tu opinión (en inglés), nos encantaría escucharla.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Creemos en la privacidad.</b></p><p>Signal no analiza el uso que le das, ni recopila tus datos. Para mejorar Signal para tod@s, necesitamos la opinión de l@s usuari@s <b>y especialmente la tuya.</b></p><p>Hemos preparado una encuesta en inglés para entender mejor cómo usas Signal. Nuestra encuesta no recopila ningún detalle que te pueda identificar. Si te interesa incluir información adicional (en inglés), tienes la opción de dejar tus datos de contacto.</p><p>Si tienes unos pocos minutos para ofrecernos tu opinión (en inglés), nos encantaría escucharla.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Hacer la encuesta</string>
   <string name="ResearchMegaphoneDialog_no_thanks">No gracias</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">La encuenta en inglés está alojada en Surveygizmo en el dominio seguro surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">La encuesta en inglés está alojada en Alchemer en el dominio seguro surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando …</string>
@@ -2139,9 +2181,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PushDecryptJob_new_locked_message">Nuevo mensaje bloqueado</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloquear para ver mensajes pendientes</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Clave de la copia de seguridad</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Las copias de seguridad se guardarán en una unidad de almacenamiento externo y se cifrarán con la clave de debajo. Necesitas esta clave para poder restaurar una copia de seguridad.</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotado esta clave. Sé que sin ella, no podré restaurar la copia de seguridad.</string>
-  <string name="registration_activity__restore_backup">Restaurar copia de seguridad</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Las copias de seguridad se guardarán en una unidad de almacenamiento y se cifrarán con la clave que aparece debajo. Necesitas esta clave para poder restaurar la copia de seguridad.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Debes tener esta clave (passphrase) para poder restaurar la copia de seguridad.</string>
+  <string name="backup_enable_dialog__folder">Carpeta</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotado esta clave. Sé que sin ella no podré restaurar la copia de seguridad.</string>
+  <string name="registration_activity__restore_backup">Restaurar copia</string>
   <string name="registration_activity__skip">Omitir</string>
   <string name="registration_activity__register">Registro</string>
   <string name="preferences_chats__chat_backups">Copias de seguridad de los chats</string>
@@ -2165,6 +2209,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BackupDialog_delete_backups">¿Eliminar copias de seguridad?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">¿Desactivar y eliminar todas las copias de seguridad locales?</string>
   <string name="BackupDialog_delete_backups_statement">Eliminar copias de seguridad</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Selecciona una carpeta para activar las copias de seguridad. Las copias se guardarán en esta carpeta.</string>
+  <string name="BackupDialog_choose_folder">Seleccionar carpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado al portapapeles</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce la clave de la copia de seguridad para verificar</string>
   <string name="BackupDialog_verify">Verificar</string>
@@ -2174,6 +2220,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChatsPreferenceFragment_last_backup_s">Última copia de seguridad: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En curso</string>
   <string name="LocalBackupJob_creating_backup">Creando copia de seguridad …</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Copias de seguridad desactivadas.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Fallo al completar la copia.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Parece que tu carpeta de copias de seguridad se ha eliminado o movido.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">La copia de seguridad es demasiado grande para guardarla en este dispositivo.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">No hay suficiente espacio para guardar tu copia de seguridad.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Fallo desconocido al completar la copia.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensajes hasta ahora</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, introduce el código de verificación enviado a %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorrecto</string>
@@ -2285,5 +2337,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupLinkBottomSheet_share">Compartir</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiado al portapapeles</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Enlace (actualmente) inactivo</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Fallo al reproducir.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Nota de voz · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s de %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

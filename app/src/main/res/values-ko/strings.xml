@@ -309,6 +309,22 @@
   <string name="CreateProfileActivity_profile_photo">프로필 사진</string>
   <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요.</string>
   <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원하시겠습니까?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">로컬 백업에서 메시지와 미디어를 복원합니다. 지금 복원하지 않으면 이후에는 복원할 수 없습니다.</string>
+  <string name="ChooseBackupFragment__learn_more">더 알아보기</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">폴더 선택</string>
+  <string name="RestoreBackupFragment__not_now">나중에</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">대화 백업</string>
+  <string name="BackupsPreferenceFragment__create_backup">백업 생성</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">백업 암호 인증</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">백업 암호를 테스트하고 일치함을 인증</string>
+  <string name="BackupsPreferenceFragment__turn_on">켜기</string>
+  <string name="BackupsPreferenceFragment__turn_off">끄기</string>
+  <string name="BackupsPreferenceFragment__learn_more">더 알아보기</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">맞춤형 값 사용: %s</string>
   <string name="CustomDefaultPreference_using_default">기본값 사용: %s</string>
@@ -349,6 +365,8 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">기기에서는 Play Services를 지원하지 않습니다. 탭하여 시스템 배터리 최적화 기능을 사용하지 않을 수 있습니다. 해당 기능은 Signal이 비활성화된 동안에 메시지를 검색하지 못하게 합니다.</string>
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_update_now">지금 업데이트하세요.</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">보기</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유자</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">이미지와 동영상만 여러 개 첨부할 수 있습니다.</string>
@@ -635,13 +653,8 @@
   <string name="MessageRecord_left_group">그룹에서 탈퇴했습니다.</string>
   <string name="MessageRecord_you_updated_group">그룹을 업데이트했습니다.</string>
   <string name="MessageRecord_the_group_was_updated">그룹이 업데이트 되었습니다.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">발신 전화</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">연락처 전화</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">부재중 전화</string> -->
   <string name="MessageRecord_s_updated_group">%s 님이 그룹을 업데이트했습니다.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s의 전화</string> -->
   <string name="MessageRecord_called_s">%s에게 전화</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s 님의 부재중 전화</string> -->
   <string name="MessageRecord_s_joined_signal">%s 님이 온라인입니다!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">사라지는 메시지 기능을 비활성화했습니다.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 님이 사라지는 메시지 기능을 비활성화했습니다.</string>
@@ -711,6 +724,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s 님과의 안전 번호를 다른 기기에서 인증되지 않음 상태로 표시했습니다.</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">수락</string>
+  <string name="MessageRequestBottomView_continue">계속</string>
   <string name="MessageRequestBottomView_delete">삭제</string>
   <string name="MessageRequestBottomView_block">차단</string>
   <string name="MessageRequestBottomView_unblock">차단 해제</string>
@@ -1184,8 +1198,6 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">연락처를 가져오는 중 오류 발생, 네트워크 연결 확인</string>
   <string name="ContactSelectionListFragment_username_not_found">사용자 이름을 찾을 수 없음</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\'%1$s\' 님은 Signal 사용자가 아닙니다. 사용자 이름 확인 후 다시 시도해 주세요.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">확인</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">그룹의 정원이 찼습니다.</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">차단된 연락처 없음</string>
   <!--contact_selection_list_fragment-->
@@ -1824,7 +1836,6 @@
   <string name="ResearchMegaphoneDialog_signal_research">Signal 검색</string>
   <string name="ResearchMegaphoneDialog_take_the_survey">설문조사하기</string>
   <string name="ResearchMegaphoneDialog_no_thanks">아니요</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">설문은 Surveygizmo에서 주최하며 surveys.signalusers.org 보안 도메인으로 접속하실 수 있습니다.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">아이콘 전송</string>
   <string name="ConversationListFragment_loading">로드 중…</string>
@@ -1865,6 +1876,7 @@
   <string name="BackupDialog_delete_backups">백업을 삭제하시겠습니까?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">백업을 비활성화하고 로컬 백업을 삭제하시겠습니까?</string>
   <string name="BackupDialog_delete_backups_statement">백업 삭제</string>
+  <string name="BackupDialog_choose_folder">폴더 선택</string>
   <string name="BackupDialog_copied_to_clipboard">클립보드로 복사됨</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">백업 암호를 입력하여 인증</string>
   <string name="BackupDialog_verify">확인</string>
@@ -1967,5 +1979,9 @@
   <string name="GroupLinkBottomSheet_share">공유</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">클립보드로 복사됨</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">현재 링크가 활성화되지 않았습니다.</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s~%2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

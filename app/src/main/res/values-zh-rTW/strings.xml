@@ -321,6 +321,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">設定你的資訊</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">你的個人資料已點對點加密。 在你發起或接受新對話以及在加入新群組後，你的聯絡人可以看到你變更個人資料。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">從備份來還原？</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">從本機備份還原你的訊息及媒體，如果現在不還原，你將無法在之後進行還原。</string>
+  <string name="ChooseBackupFragment__icon_content_description">從備份還原圖示</string>
+  <string name="ChooseBackupFragment__choose_backup">選擇備份</string>
+  <string name="ChooseBackupFragment__learn_more">了解更多</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">回復完成</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">要繼續使用備份，請選擇一個資料夾。 新備份將保存到該位置。</string>
+  <string name="RestoreBackupFragment__choose_folder">選擇資料夾</string>
+  <string name="RestoreBackupFragment__not_now">稍後</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">聊天備份</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">備份使用密碼加密並儲存在你的裝置上。</string>
+  <string name="BackupsPreferenceFragment__create_backup">建立備份</string>
+  <string name="BackupsPreferenceFragment__last_backup">上次備份：%1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">備份資料夾</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">驗證備份碼</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">測試你的備份碼，並驗證其是否相符</string>
+  <string name="BackupsPreferenceFragment__turn_on">開啟</string>
+  <string name="BackupsPreferenceFragment__turn_off">關閉</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">要回復備份，請安裝新的Signal。 打開應用程式，然後點擊“還原備份”，然後找到一個備份檔案。%1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">了解更多</string>
+  <string name="BackupsPreferenceFragment__in_progress">正在進行中…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d到目前為止…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">為了要建立備份，Signal 需要外部空間的權限，但是已被永久拒絕。請到應用程式設定，選擇「權限」及開啟「儲存」。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用自訂：%s</string>
   <string name="CustomDefaultPreference_using_default">使用預設：%s</string>
@@ -362,6 +388,11 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">此版本的Signal已過期。 立即更新以傳送和接收訊息。</string>
   <string name="ExpiredBuildReminder_update_now">立即更新</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="other">%d待處理的成員要求。</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">檢視</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">僅圖片和影片支援多個附檔</string>
@@ -737,13 +768,11 @@
   <string name="MessageRecord_left_group">您已經離開了此群組。</string>
   <string name="MessageRecord_you_updated_group">你已更新群組。</string>
   <string name="MessageRecord_the_group_was_updated">該群組已更新。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">向外撥號</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">聯絡人來電</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">未接來電</string> -->
+  <string name="MessageRecord_you_called_date">你打過的電話 · %1$s</string>
+  <string name="MessageRecord_missed_call_date">未接來電 · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s 更新了群組。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s來電</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s 撥電話給你 · %2$s</string>
   <string name="MessageRecord_called_s">撥打給%s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">錯過來自%s的來電</string> -->
   <string name="MessageRecord_s_joined_signal">%s 在 Signal 了！</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">你關閉了自動銷毀訊息的功能。</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 關閉了自動銷毀訊息的功能。</string>
@@ -873,11 +902,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">接受</string>
+  <string name="MessageRequestBottomView_continue">繼續</string>
   <string name="MessageRequestBottomView_delete">刪除</string>
   <string name="MessageRequestBottomView_block">封鎖</string>
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 除非你解鎖他們，否則你將不會收到任何訊息。</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">繼續與該群組對話，並與該群組成員分享你的名字和照片嗎？</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">繼續與%1$s交談，並與他們分享你的名字和照片嗎？</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">加入該群組並與其成員分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入這個群組？ 在你接受之前，他們不會知道你已看過他們的訊息。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">取消封鎖此群組並與其成員分享你的名字和照片？ 除非你取消阻止它們，否則你將不會收到任何訊息。</string>
@@ -1034,6 +1066,7 @@
   <string name="RegistrationActivity_more_information">更多資訊</string>
   <string name="RegistrationActivity_less_information">較少資訊</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要存取的你的聯絡人及媒體，以聯絡你的朋友、交換訊息、及撥打私密電話。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal需要連結你的聯絡人才能與朋友聯繫，交換訊息並進行安全通話</string>
   <string name="RegistrationActivity_rate_limited_to_service">你已嘗試過多註冊此號碼。 請稍後再試。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連接服務。請檢查網路連線並再試一次。</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">如果你允許 Signal 讀取 SMS 訊息，你可以簡單的驗證電話號碼，Signal 會自動偵測你的驗證碼。</string>
@@ -1212,6 +1245,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">沒有在剪貼簿中發現安全碼，因此無法進行比較</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">因為沒有「相機」的權限，無法掃描 QR code</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">你必須先交換訊息才能查看%1$s的安全號碼。</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1284,6 +1318,7 @@
   <string name="NotificationChannel_other">其他</string>
   <string name="NotificationChannel_group_messages">訊息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
+  <string name="NotificationChannel_voice_notes">語音筆記</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">成功設定你的個人資料名稱。</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">網路連接錯誤</string>
@@ -1383,9 +1418,14 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">取回聯絡人名單錯誤，請檢查網路連線</string>
   <string name="ContactSelectionListFragment_username_not_found">找不到使用者名稱</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\"不是 Signal 使用者。請檢查使用者名稱並再試一次。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okay</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">群組人數已經滿了</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">你無需將自己新增到群組中</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">已達群組人數上限</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal 群組最多可以有%1$d個成員。</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">已達到推薦成員數上限</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal 群組在%1$d個成員數或更少的情況下表現最佳。 新增更多成員將導致傳送和接收訊息的延遲。</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="other">%1$d個成員</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">無已封鎖的聯絡人</string>
   <!--contact_selection_list_fragment-->
@@ -2057,7 +2097,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>我們相信隱私。</b></p><p>Signal無法追踪你或收集你的資料。 為了改善所有人的Signal，我們依靠使用者反應，<b>我們會愛上你的。</b></p><p>我們正在進行一項調查，以了解你如何使用Signal。 我們的調查不會收集任何可以識別你身份的資料。 如果你有興趣分享其他回應，則可以選擇提供聯絡訊息。</p><p>如果你有幾分鐘的時間要提供反應意見，我們很高興收到你的來信。</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">參加問卷</string>
   <string name="ResearchMegaphoneDialog_no_thanks">不，謝謝。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">該問卷由Surveygizmo託管在安全域Surveys.signalusers.org中</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">該j問卷由Alchemer託管在安全域Surveys.signalusers.org中</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
   <string name="ConversationListFragment_loading">讀取中…</string>
@@ -2073,6 +2113,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">解鎖以查看待處理的訊息</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">備份密碼</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">備份將會儲存到外部儲存空間，並以下方的密碼加密。你必須擁有這個密碼來還原此備份。</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">你必須具有此密碼才能還原備份。</string>
+  <string name="backup_enable_dialog__folder">資料夾</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已經寫下密碼。沒有密碼，我將無法還原此備份。</string>
   <string name="registration_activity__restore_backup">還原備份</string>
   <string name="registration_activity__skip">略過</string>
@@ -2098,6 +2140,8 @@
   <string name="BackupDialog_delete_backups">刪除備份？</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">關閉及刪除所有本機備份？</string>
   <string name="BackupDialog_delete_backups_statement">刪除備份</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">要啟用備份，請選擇一個資料夾。 備份將儲存到該位置。</string>
+  <string name="BackupDialog_choose_folder">選擇資料夾</string>
   <string name="BackupDialog_copied_to_clipboard">已複製到剪貼簿</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">輸入你的備份碼以確認</string>
   <string name="BackupDialog_verify">驗證</string>
@@ -2107,6 +2151,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">上一次備份︰%s</string>
   <string name="ChatsPreferenceFragment_in_progress">處理中</string>
   <string name="LocalBackupJob_creating_backup">建立備份中…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">備份已關閉。</string>
+  <string name="LocalBackupJobApi29_backup_failed">備份失敗。</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">你的備份目錄已被刪除或移動。</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">你的備份檔案太大，無法儲存在該空間上。</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">沒有足夠的空間來儲存備份。</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">備份因未知原因失敗。</string>
   <string name="ProgressPreference_d_messages_so_far">目前有 %d 則訊息</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_wrong_number">驗證碼錯誤</string>
@@ -2218,5 +2268,12 @@
   <string name="GroupLinkBottomSheet_share">分享</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">已複製到剪貼簿</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">連結目前無效</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">無法開始播放。</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">語音訊息 · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s到%2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

@@ -335,6 +335,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Δημιούργησε το προφίλ σου</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Το προφίλ σου είναι κρυπτογραφημένο από άκρο σε άκρο. Το προφίλ σου και οι αλλαγές του θα είναι ορατά στις επαφές σου, όταν ξεκινάς ή αποδέχεσαι νέες συνομιλίες, και όταν μπαίνεις σε νέες ομάδες.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ορισμός εικόνας προφίλ</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Επαναφορά από αντίγραφο ασφαλείας;</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Επανάφερε τα μηνύματα και τα πολυμέσα σου από ένα τοπικό αντίγραφο ασφαλείας. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Εικονίδιο ανάκτησης από αντίγραφο ασφαλείας</string>
+  <string name="ChooseBackupFragment__choose_backup">Επιλογή αντιγράφου ασφαλείας</string>
+  <string name="ChooseBackupFragment__learn_more">Μάθε περισσότερα</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Η ανάκτηση ολοκληρώθηκε</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Για να συνεχίσεις να χρησιμοποιείς τα αντίγραφα ασφαλείας, παρακαλώ επέλεξε ένα φάκελο. Τα νέα αντίγραφα θα αποθηκεύονται σε αυτή την τοποθεσία.</string>
+  <string name="RestoreBackupFragment__choose_folder">Επιλογή φακέλου</string>
+  <string name="RestoreBackupFragment__not_now">Όχι τώρα</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Αντίγραφα ασφαλείας συνομιλιών</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Τα αντίγραφα ασφαλείας κρυπτογραφούνται με ένα συνθηματικό και αποθηκεύονται στη συσκευή σου.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Δημιουργία αντίγραφου ασφαλείας</string>
+  <string name="BackupsPreferenceFragment__last_backup">Τελευταίο αντίγραφο ασφαλείας: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Φάκελος αντίγραφου ασφαλείας</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Επιβεβαίωση συνθηματικού αντιγράφου ασφαλείας</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Δοκίμασε το συνθηματικό του αντιγράφου ασφαλείας σου και επιβεβαίωσε ότι ταιριάζει.</string>
+  <string name="BackupsPreferenceFragment__turn_on">Ενεργοποίηση</string>
+  <string name="BackupsPreferenceFragment__turn_off">Απενεργοποίηση</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Για να ανακτήσεις ένα αντίγραφο ασφαλείας, εγκατέστησε από την αρχή το Signal. Άνοιξε την εφαρμογή, πάτα \"Επαναφορά αντίγραφου ασφαλείας\" και εντόπισε ένα αρχείο - αντίγραφο ασφαλείας. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Μάθε περισσότερα</string>
+  <string name="BackupsPreferenceFragment__in_progress">Σε εξέλιξη…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d μέχρι τώρα…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Το Signal χρειάζεται τα δικαιώματα πρόσβασης εξωτερικής μνήμης για τη δημιουργία αντιγράφων ασφαλείας, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Χρησιμοποιείται το προσαρμοσμένο: %s</string>
   <string name="CustomDefaultPreference_using_default">Χρησιμοποιείται το προκαθορισμένο: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Αυτή η έκδοση Signal έχει λήξει. Αναβάθμισε τώρα για να στείλεις και να λάβεις μηνύματα.</string>
   <string name="ExpiredBuildReminder_update_now">Αναβάθμιση τώρα</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d αίτημα μέλους σε εκκρεμότητα</item>
+    <item quantity="other">%d αιτήματα μελών σε εκκρεμότητα</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Εμφάνιση</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Μοιράσου με</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Τα πολλαπλά συνημμένα υποστηρίζονται μόνο για εικόνες και βίντεο</string>
@@ -771,13 +803,11 @@
   <string name="MessageRecord_left_group">Αποχώρησες απ\' την ομάδα.</string>
   <string name="MessageRecord_you_updated_group">Ενημέρωσες την ομάδα</string>
   <string name="MessageRecord_the_group_was_updated">Η ομάδα ανανεώθηκε.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Τον/την κάλεσες</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Η επαφή σε κάλεσε</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Αναπάντητη κλήση</string> -->
+  <string name="MessageRecord_you_called_date">Κάλεσες · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Αναπάντητη κλήση · %1$s</string>
   <string name="MessageRecord_s_updated_group">Ο/Η %s ενημέρωσε την ομάδα.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">O/H %s σε κάλεσε</string> -->
+  <string name="MessageRecord_s_called_you_date">Ο/Η %1$s σε κάλεσε · %2$s</string>
   <string name="MessageRecord_called_s">Κάλεσες τον/την %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Αναπάντητη κλήση από τον/την %s</string> -->
   <string name="MessageRecord_s_joined_signal">Ο/Η %s ήρθε στο Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Απενεργοποίησες τα μηνύματα που εξαφανίζονται.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">Ο/Η %1$s απενεργοποίησε τα μηνύματα που εξαφανίζονται.</string>
@@ -912,11 +942,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο από άλλη συσκευή</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Αποδοχή</string>
+  <string name="MessageRequestBottomView_continue">Συνέχεια</string>
   <string name="MessageRequestBottomView_delete">Διαγραφή</string>
   <string name="MessageRequestBottomView_block">Φραγή</string>
   <string name="MessageRequestBottomView_unblock">Κατάργηση φραγής</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα γνωρίζει ότι έχεις δει τα μηνύματα που έστειλε μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή του/της.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Να συνεχίσεις τη συνομιλία με αυτή την ομάδα, και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Να συνεχίσεις τη συνομιλία σου με τον/την %1$s και να μοιραστείς το όνομα και τη φωτογραφία σου μαζί του/της;</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις σε αυτή την ομάδα; Δεν θα γνωρίζουν οτι έχεις δει τα μηνυματά τους μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Θέλεις να καταργηθεί η φραγή αυτής της ομάδας και να μοιραστεί το όνομα και η φωτογραφία σου με τα μέλη της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή της.</string>
@@ -1078,6 +1111,7 @@
   <string name="RegistrationActivity_more_information">Περισσότερες πληροφορίες</string>
   <string name="RegistrationActivity_less_information">Λιγότερες πληροφορίες</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές και τα πολυμέσα σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να στείλεις και να λάβεις μηνύματα, και να κάνεις ασφαλείς κλήσεις.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να ανταλλάξεις μηνύματα και να κάνεις ασφαλείς κλήσεις</string>
   <string name="RegistrationActivity_rate_limited_to_service">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Παρακαλώ ξαναπροσπάθησε αργότερα.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Για να επιβεβαιώσεις τον αριθμό τηλεφώνου σου εύκολα, το Signal μπορεί να εντοπίσει αυτόματα τον κωδικό επιβεβαίωσης, αν του επιτρέψεις να διαβάσει τα μηνύματα SMS σου.</string>
@@ -1256,6 +1290,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Δε βρέθηκε αριθμός ασφαλείας στο πρόχειρο για να γίνει σύγκριση</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Κάμερας για το σκανάρισμα του κωδικού QR, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε την \"Κάμερα\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Δεν μπορούμε να σκανάρουμε τον QR κωδικό χωρίς τα δικαιώματα Κάμερας</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Θα πρέπει πρώτα να ανταλλάξετε μηνύματα για να δείς τον αριθμό ασφαλείας του/της %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1328,6 +1363,7 @@
   <string name="NotificationChannel_other">Άλλο</string>
   <string name="NotificationChannel_group_messages">Μηνύματα</string>
   <string name="NotificationChannel_missing_display_name">Άγνωστο</string>
+  <string name="NotificationChannel_voice_notes">Ηχητικές σημειώσεις</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Το όνομα προφίλ ορίστηκε με επιτυχία.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Εμφανίστηκε σφάλμα δικτύου.</string>
@@ -1428,9 +1464,15 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Σφάλμα κατά τη λήψη επαφών, έλεγξε τη σύνδεσή σου στο δίκτυο</string>
   <string name="ContactSelectionListFragment_username_not_found">Το όνομα χρήστη δε βρέθηκε</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">Ο/Η \"%1$s\" δεν είναι χρήστης του Signal. Παρακαλώ επιβεβαίωσε το όνομα χρήστη και ξαναδοκίμασε.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Εντάξει</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Η ομάδα είναι γεμάτη</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Δεν χρειάζεται να προσθέσεις τον εαυτό σου στην ομάδα</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Έφτασες το μέγιστο όριο μεγέθους ομάδας</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Οι ομάδες του Signal μπορούν να έχουν μέχρι %1$d μέλη.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Έφτασες το προτεινόμενο όριο μελών</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Οι ομάδες του Signal λειτουργούν καλύτερα με %1$d μέλη ή λιγότερα. Αν προσθέσεις παραπάνω μέλη, θα υπάρξουν καθυστερήσεις στην αποστολή και λήψη μηνυμάτων.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d μέλος</item>
+    <item quantity="other">%1$d μέλη</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Καμία φραγμένη επαφή</string>
   <!--contact_selection_list_fragment-->
@@ -2119,7 +2161,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Πιστεύουμε στην ιδιωτικότητα.</b></p><p>Το Signal δεν σε παρακολουθεί ούτε συλλέγει τα δεδομένα σου. Για να βελτιώσουμε το Signal για όλους, βασιζόμαστε στα σχόλια των χρηστών <b>και θα εκτιμούσαμε πολύ να ακούσουμε τα δικά σου.</b></p><p>Κάνουμε μαι έρευνα που θα μας βοηθήσει να καταλάβουμε πως χρησιμοποιείς το Signal. Η έρευνά μας δεν συλλέγει δεδομένα που θα μπορούσαν να αποκαλύψουν την ταυτότητά σου. Αν ενδιαφέρεσαι να μας βοηθήσεις με περαιτέρω πληροφορίες και σχόλια, μπορείς να μας δώσεις στοιχεία επικοινωνίας.</p><p>Αν έχεις μερικά λεπτά διαθέσιμα, και έχεις κάτι να σχολιάσεις, με χαρά θα θέλαμε να το ακούσουμε.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Πάρε μέρος στην έρευνα</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Όχι, ευχαριστώ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Αυτή η έρευνα φιλοξενείται από το Surveygizmo στον ασφαλή σύνδεσμο surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Αυτή η έρευνα φιλοξενείται από το Alchemer στον ασφαλή σύνδεσμο surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
   <string name="ConversationListFragment_loading">Φόρτωση…</string>
@@ -2135,6 +2177,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ξεκλείδωμα για να δεις τα εκκρεμή μηνύματα</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Συνθηματικό αντίγραφου ασφαλείας</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Τα αντίγραφα ασφαλείας αποθηκεύονται στην εξωτερική μνήμη και κρυπτογραφούνται με το παρακάτω συνθηματικό. Πρέπει να γνωρίζεις αυτό το συνθηματικό για να επανακτήσεις το αντίγραφο ασφαλείας.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Θα πρέπει να έχεις αυτο το συνθηματικό για να επανακτήσεις αντίγραφα ασφαλείας.</string>
+  <string name="backup_enable_dialog__folder">Φάκελος</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Σημείωσα σε χαρτί αυτό το συνθηματικό. Χωρίς αυτό, δε θα μπορέσω να επανακτήσω το αντίγραφο ασφαλείας.</string>
   <string name="registration_activity__restore_backup">Επαναφορά αντίγραφου ασφαλείας</string>
   <string name="registration_activity__skip">Παράλειψη</string>
@@ -2160,6 +2204,8 @@
   <string name="BackupDialog_delete_backups">Διαγραφή αντίγραφων ασφαλείας;</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Απενεργοποίηση και διαγραφή όλων των τοπικών αντίγραφων ασφαλείας;</string>
   <string name="BackupDialog_delete_backups_statement">Διαγραφή αντίγραφων ασφαλείας</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Για να ενεργοποιήσεις τα αντίγραφα ασφαλείας, επέλεξε ένα φάκελο. Τα αντίγραφα θα αποθηκεύονται σε αυτή την τοποθεσία.</string>
+  <string name="BackupDialog_choose_folder">Επιλογή φακέλου</string>
   <string name="BackupDialog_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Εισάγετε το συνθηματικό αντιγράφου ασφαλείας για επιβεβαίωση</string>
   <string name="BackupDialog_verify">Επιβεβαίωση</string>
@@ -2169,6 +2215,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Τελευταίο αντίγραφο ασφαλείας: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Σε εξέλιξη</string>
   <string name="LocalBackupJob_creating_backup">Το αντίγραφο ασφαλείας δημιουργείται…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Τα αντίγραφα ασφαλείας απενεργοποιήθηκαν.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Το αντίγραφο ασφαλείας απέτυχε.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ο φάκελος αντίγραφων ασφαλείας έχει διαγραφεί ή μετακινηθεί.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Το αρχείο - αντίγραφο ασφαλείας είναι πολύ μεγάλο για να αποθηκευτεί σε αυτή τη συσκευή.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Δεν υπάρχει αρκετός χώρος για την αποθήκευση του αντίγραφου ασφαλείας.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Το αντίγραφο ασφαλείας απέτυχε για άγνωστο λόγο.</string>
   <string name="ProgressPreference_d_messages_so_far">%d μηνύματα μέχρι τώρα</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Παρακαλώ γράψε τον κωδικό επιβεβαίωσης που στάλθηκε στο %s.</string>
   <string name="RegistrationActivity_wrong_number">Λάθος αριθμός</string>
@@ -2280,5 +2332,12 @@
   <string name="GroupLinkBottomSheet_share">Μοιράσου</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Ο σύνδεσμος δεν είναι ενεργός αυτή τη στιγμή</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Αδυναμία έναρξης αναπαραγωγής.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Μήνυμα φωνής · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s προς %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

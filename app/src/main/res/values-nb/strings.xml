@@ -333,6 +333,22 @@
   <string name="CreateProfileActivity_set_up_your_profile">Sett opp din profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilen din er ende-til-ende kryptert. Den, og endringene som gjøres, vil være søkbar for kontaktene dine, når du starter eller godtar nye samtaler, og når du blir medlem av nye grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Sett avatar</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Vil du gjenopprette fra sikkerhetskopi?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Gjenopprett meldinger og medier fra en lokal sikkerhetskopi. Du får ingen flere muligheter til å gjøre dette senere.</string>
+  <string name="ChooseBackupFragment__learn_more">Lær mer</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">Velg mappe</string>
+  <string name="RestoreBackupFragment__not_now">Ikke nå</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Sikkerhetskopi av samtaler</string>
+  <string name="BackupsPreferenceFragment__create_backup">Lag sikkerhetskopi</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Bekreft passordfrasen for sikkerhetskopi</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test passordfrasen din og bekreft at den stemmer overens</string>
+  <string name="BackupsPreferenceFragment__turn_on">Slå på</string>
+  <string name="BackupsPreferenceFragment__turn_off">Skru av</string>
+  <string name="BackupsPreferenceFragment__learn_more">Lær mer</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bruker selvvalgt: %s</string>
   <string name="CustomDefaultPreference_using_default">Bruker forvalgt: %s</string>
@@ -371,6 +387,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglende Play Tjenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enheten støtter ikke Play-tjenester. Trykk én gang for å slå av batterioptimalisering som kan hindre Signal i å motta meldinger når det kjører i bakgrunnen.</string>
   <!--ExpiredBuildReminder-->
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">Vis</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flere vedlegg støttes bare for bilder og videoer</string>
@@ -682,13 +700,8 @@
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du har oppdatert gruppa.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen ble oppdatert.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Du ringte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt ringte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Ubesvart anrop</string> -->
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ringte deg</string> -->
   <string name="MessageRecord_called_s">Ringte %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Tapt anrop fra %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du deaktiverte forsvinnende meldinger.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s deaktiverte forsvinnende meldinger.</string>
@@ -798,6 +811,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte sikkerhetsnummer for %s som ikke bekreftet fra en annen enhet</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Godta</string>
+  <string name="MessageRequestBottomView_continue">Fortsett</string>
   <string name="MessageRequestBottomView_delete">Slett</string>
   <string name="MessageRequestBottomView_block">Blokker</string>
   <string name="MessageRequestBottomView_unblock">Skru av blokkering</string>
@@ -1291,8 +1305,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikke å hente kontakter. Kontroller nettforbindelse</string>
   <string name="ContactSelectionListFragment_username_not_found">Brukernavn ikke funnet</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" er ikke en Signal-bruker. Kontroller brukernavnet og prøv igjen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Greit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Gruppen er full</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Det er ikke nødvendig å legge deg selv til gruppen</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
@@ -1953,7 +1965,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal undersøkelse</string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Gjennomfør brukerundersøkelsen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nei takk</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersøkelsen gjøres av Surveygizmo på det sikre domenet surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>
@@ -1994,6 +2005,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BackupDialog_delete_backups">Vil du slette disse sikkerhetskopiene?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Vil du slå av og slette alle lokale sikkerhetskopier?</string>
   <string name="BackupDialog_delete_backups_statement">Slett sikkerhetskopier</string>
+  <string name="BackupDialog_choose_folder">Velg mappe</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavle</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Bekreft ved å skrive inn passordfrasen for sikkerhetskopi</string>
   <string name="BackupDialog_verify">Bekreft</string>
@@ -2101,5 +2113,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-kode</string>
   <string name="GroupLinkBottomSheet_share">Del</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiert til utklippstavle</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

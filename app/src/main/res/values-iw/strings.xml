@@ -363,6 +363,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">הגדר את הפרופיל שלך</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">הפרופיל שלך מוצפן מקצה־אל־קצה. הפרופיל שלך ושינויים שלו יהיו גלויים אל אנשי הקשר שלך, כאשר תיזום או תקבל שיחות חדשות, וכאשר תצטרף אל קבוצות חדשות.</string>
   <string name="CreateProfileActivity_set_avatar_description">הגדר יצגן</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">לשחזר מגיבוי?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">שחזר את ההודעות והמדיה שלך מגיבוי מקומי. אם לא תשחזר עכשיו, לא תוכל לשחזר מאוחר יותר.</string>
+  <string name="ChooseBackupFragment__icon_content_description">שחזר מאיקון גיבוי</string>
+  <string name="ChooseBackupFragment__choose_backup">בחר גיבוי</string>
+  <string name="ChooseBackupFragment__learn_more">למד עוד</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">שחזור הושלם</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">כדי להמשיך להשתמש בגיבויים, אנא בחר תיקייה. גיבויים חדשים יישמרו במיקום זה.</string>
+  <string name="RestoreBackupFragment__choose_folder">בחר תיקייה</string>
+  <string name="RestoreBackupFragment__not_now">לא עכשיו</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">גיבויי התכתבויות</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">גיבויים מוצפנים עם משפט־סיסמה ומאוחסנים במכשיר שלך.</string>
+  <string name="BackupsPreferenceFragment__create_backup">צור גיבוי</string>
+  <string name="BackupsPreferenceFragment__last_backup">גיבוי אחרון: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">תיקיית גיבוי</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">וודא משפט־סיסמת גיבוי</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">בחן את משפט־סיסמת הגיבוי שלך ווודא שהוא תואם</string>
+  <string name="BackupsPreferenceFragment__turn_on">הפעל</string>
+  <string name="BackupsPreferenceFragment__turn_off">כבה</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">כדי לשחזר גיבוי, התקן עותק חדש של Signal. פתח את היישום והקש על \"שחזר גיבוי\", לאחר מכן אתר קובץ גיבוי. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">למד עוד</string>
+  <string name="BackupsPreferenceFragment__in_progress">בתהליך…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d עד כה…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal דורש הרשאת אחסון חיצוני על מנת ליצור גיבויים, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">משתמש בהתאמה אישית: %s</string>
   <string name="CustomDefaultPreference_using_default">משתמש בברירת מחדל: %s</string>
@@ -404,6 +430,14 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">גרסה זו של Signal פגה. עדכן עכשיו כדי לשלוח ולקבל הודעות.</string>
   <string name="ExpiredBuildReminder_update_now">עדכן עכשיו</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">בקשה ממתינה של חבר קבוצה %d.</item>
+    <item quantity="two">%d בקשות ממתינות של חברי קבוצה.</item>
+    <item quantity="many">%d בקשות ממתינות של חברי קבוצה.</item>
+    <item quantity="other">%d בקשות ממתינות של חברי קבוצה.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">הצג</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">שתף עם</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">צרופות מרובות נתמכות רק עבור תמונות וסרטונים</string>
@@ -600,7 +634,7 @@
   <string name="ManageRecipientActivity_chat_color">צבע התכתבות</string>
   <string name="ManageRecipientActivity_block">חסום</string>
   <string name="ManageRecipientActivity_unblock">בטל חסימה</string>
-  <string name="ManageRecipientActivity_view_safety_number">הצג מספר בטיחות</string>
+  <string name="ManageRecipientActivity_view_safety_number">הצג מספר ביטחון</string>
   <string name="ManageRecipientActivity_mute_notifications">השתק התראות</string>
   <string name="ManageRecipientActivity_custom_notifications">התראות מותאמות אישית</string>
   <string name="ManageRecipientActivity_until_s">עד %1$s</string>
@@ -839,13 +873,11 @@
   <string name="MessageRecord_left_group">עזבת את הקבוצה.</string>
   <string name="MessageRecord_you_updated_group">עדכנת את הקבוצה.</string>
   <string name="MessageRecord_the_group_was_updated">הקבוצה עודכנה.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">התקשרת</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">איש קשר התקשר</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">שיחה שלא נענתה</string> -->
+  <string name="MessageRecord_you_called_date">את/ה התקשרת · %1$s</string>
+  <string name="MessageRecord_missed_call_date">שיחה שלא נענתה · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s עדכן את הקבוצה.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s התקשר אליך</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s התקשר/ה אליך · %2$s</string>
   <string name="MessageRecord_called_s">התקשרת אל %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">שיחה שלא נענתה מאת %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s נמצא ב־Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">הִשְׁבַּתָּ הודעות נעלמות.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s השבית הודעות נעלמות.</string>
@@ -990,11 +1022,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא ממכשיר אחר</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">קבל</string>
+  <string name="MessageRequestBottomView_continue">המשך</string>
   <string name="MessageRequestBottomView_delete">מחק</string>
   <string name="MessageRequestBottomView_block">חסום</string>
   <string name="MessageRequestBottomView_unblock">בטל חסימה</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">לאפשר אל %1$s לשלוח אליך הודעות? הצד השני לא יידע שראית את ההודעות שלו עד שלא תסכים.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">לאפשר אל %1$s לשלוח אליך הודעות ולשתף את השם והתמונה שלך איתו/איתה? לא תקבל הודעות כלשהן עד שלא תבטל חסימה שלו/שלה.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">להמשיך את השיחה שלך עם קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">להמשיך את השיחה שלך עם %1$s ולשתף את השם והתמונה שלך איתו/איתה?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">להצטרף אל קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? חברי הקבוצה לא יידעו שראית את ההודעה שלהם עד שלא תאשר.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">להצטרף אל קבוצה זו? הקבוצה לא תידע שראית את ההודעות שלה עד שלא תסכים.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">לבטל חסימת קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? לא תקבל הודעות כלשהן עד שלא תבטל חסימה.</string>
@@ -1058,7 +1093,7 @@
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">הכנס משפט־סיסמה</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">צלמית Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">איקון Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">הגש משפט־סיסמה</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">משפט־סיסמה בלתי תקף!</string>
   <string name="PassphrasePromptActivity_unlock_signal">בטל נעילת Signal</string>
@@ -1172,6 +1207,7 @@
   <string name="RegistrationActivity_more_information">יותר מידע</string>
   <string name="RegistrationActivity_less_information">פחות מידע</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal צריך גישה אל אנשי הקשר והמדיה שלך על מנת לחבור אל חברים, להחליף הודעות ולקיים שיחות מאובטחות</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal צריך גישה אל אנשי הקשר שלך על מנת לחבור אל חברים, להחליף הודעות ולקיים שיחות מאובטחות</string>
   <string name="RegistrationActivity_rate_limited_to_service">עשית יותר מדי ניסיונות להירשם עם המספר הזה. אנא נסה שוב מאוחר יותר.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">לא היה ניתן להתחבר אל השירות. אנא בדוק את חיבור האינטרנט ונסה שוב.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">כדי לוודא בקלות את מספר הטלפון שלך, Signal יכול לזהות באופן אוטומטי את קוד הוידוא שלך אם תתיר אל Signal לראות הודעות מסרונים.</string>
@@ -1353,6 +1389,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">מספר ביטחון להשוואה לא נמצא בלוח העריכה</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal צריך את הרשאת המצלמה על מנת לסרוק קוד QR, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">לא היה ניתן לסרוק קוד QR ללא הרשאת מצלמה</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">אתה חייב תחילה להחליף הודעות על מנת להציג את מספר הביטחון של %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1425,6 +1462,7 @@
   <string name="NotificationChannel_other">אחר</string>
   <string name="NotificationChannel_group_messages">הודעות</string>
   <string name="NotificationChannel_missing_display_name">בלתי ידוע</string>
+  <string name="NotificationChannel_voice_notes">הערות קוליות</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">שם פרופיל נקבע בהצלחה.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
@@ -1527,9 +1565,17 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">שגיאה באחזור אנשי קשר, בדוק את חיבור הרשת שלך</string>
   <string name="ContactSelectionListFragment_username_not_found">שם משתמש לא נמצא</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" הוא לא משתמש Signal. אנא בדוק את שם המשתמש ונסה שוב.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">בסדר</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">הקבוצה מלאה</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">אתה לא צריך להוסיף את עצמך אל הקבוצה</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">גודל קבוצה מרבי הושג</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">קבוצות Signal יכולות להכיל מרב של %1$d חברי קבוצה.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">מגבלה מומלצת של חברי קבוצה הושגה</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">קבוצות Signal מתפקדות בצורה הטובה ביותר עם %1$d חברי קבוצה או פחות. הוספת חברי קבוצה נוספים תגרום לעיכובים בשליחה ובקבלה של הודעות.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">חבר קבוצה %1$d</item>
+    <item quantity="two">%1$d חברי קבוצה</item>
+    <item quantity="many">%1$d חברי קבוצה</item>
+    <item quantity="other">%1$d חברי קבוצה</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשי קשר חסומים</string>
   <!--contact_selection_list_fragment-->
@@ -1768,7 +1814,7 @@
   <string name="message_details_recipient_header__not_sent">לא נשלחה</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">נכשל בשליחה</string>
-  <string name="message_details_recipient__new_safety_number">מספר בטיחות חדש</string>
+  <string name="message_details_recipient__new_safety_number">מספר ביטחון חדש</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">צור משפט־סיסמה</string>
   <string name="AndroidManifest__select_contacts">בחר אנשי קשר</string>
@@ -1987,7 +2033,7 @@
   <string name="preferences_notifications__priority">עדיפות</string>
   <string name="preferences_communication__category_sealed_sender">שולח אטום</string>
   <string name="preferences_communication__sealed_sender_display_indicators">הצג מחוונים</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">הראה צלמית מעמד כאשר אתה בוחר \"פרטי הודעה\" בהודעות שנמסרו ע״י שימוש בשולח אטום.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">הראה איקון מעמד כאשר אתה בוחר \"פרטי הודעה\" בהודעות שנמסרו ע״י שימוש בשולח אטום.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">התר מכל אחד</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">אפשר שולח אטום עבור הודעות נכנסות מאת אי־אנשי קשר ומאת אנשים איתם לא שיתפת את הפרופיל שלך.</string>
   <string name="preferences_communication__sealed_sender_learn_more">למד עוד</string>
@@ -2249,9 +2295,9 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>אנחנו מאמינים בפרטיות.</b></p><p>Signal אינו עוקב אחריך או אוסף את הנתונים שלך. כדי לשפר את Signal עבור כולם, אנחנו מסתמכים על משוב משתמשים, <b>ונשמח לקבל את שלך.</b></p><p>אנחנו מפעילים סקר כדי להבין כיצד אתה משתמש ב־Signal. הסקר שלנו אינו אוסף נתונים כלשהם שיזהו אותך. אם אתה מעוניין בשיתוף של משוב נוסף, תהיה לך אפשרות לספק מידע ליצירת קשר.</p><p>אם יש לך כמה דקות ומשוב להציע, נשמח לשמוע ממך.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">ענה על הסקר</string>
   <string name="ResearchMegaphoneDialog_no_thanks">לא תודה</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">הסקר מאורח על ידי Surveygizmo בתחום המאובטח surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">הסקר מאורח על ידי Alchemer בתחום המאובטח surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
+  <string name="transport_selection_list_item__transport_icon">איקון תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>
   <string name="CallNotificationBuilder_connecting">מתחבר…</string>
   <string name="Permissions_permission_required">הרשאה דרושה</string>
@@ -2265,6 +2311,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">בטל נעילה כדי להציג הודעות ממתינות</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">גבה משפט־סיסמה</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">גיבויים יישמרו בהתקן חיצוני ויוצפנו עם משפט־הסיסמה למטה. חייב להיות לך משפט־סיסמה זה על מנת לשחזר גיבוי.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">אתה חייב את משפט־הסיסמה הזה על מנת לשחזר גיבוי.</string>
+  <string name="backup_enable_dialog__folder">תיקייה</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>
   <string name="registration_activity__restore_backup">שחזר גיבוי</string>
   <string name="registration_activity__skip">דלג</string>
@@ -2290,6 +2338,8 @@
   <string name="BackupDialog_delete_backups">למחוק גיבויים?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">להשבית ולמחוק את כל הגיבויים המקומיים?</string>
   <string name="BackupDialog_delete_backups_statement">מחק גיבויים</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">כדי לאפשר גיבויים, בחר תיקייה. גיבויים יישמרו במיקום זה.</string>
+  <string name="BackupDialog_choose_folder">בחר תיקייה</string>
   <string name="BackupDialog_copied_to_clipboard">הועתק ללוח</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">הכנס את משפט־סיסמת הגיבוי שלך כדי לוודא</string>
   <string name="BackupDialog_verify">וודא</string>
@@ -2299,6 +2349,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">גיבוי אחרון: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">בתהליך</string>
   <string name="LocalBackupJob_creating_backup">יוצר גיבוי…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">גיבויים הושבתו.</string>
+  <string name="LocalBackupJobApi29_backup_failed">גיבוי נכשל.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">תיקיית הגיבוי שלך נמחקה או הועברה.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">קובץ הגיבוי שלך גדול מדי לאחסון בכרך זה.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">אין מספיק שטח כדי לאחסן את הגיבוי שלך.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">גיבוי נכשל בגלל סיבה בלתי ידועה.</string>
   <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
   <string name="RegistrationActivity_wrong_number">מספר שגוי</string>
@@ -2380,7 +2436,7 @@
   <string name="RecipientBottomSheet_add_to_contacts">הוסף לאנשי הקשר</string>
   <string name="RecipientBottomSheet_add_to_a_group">הוסף אל קבוצה</string>
   <string name="RecipientBottomSheet_add_to_another_group">הוסף אל קבוצה אחרת</string>
-  <string name="RecipientBottomSheet_view_safety_number">הצג מספר בטיחות</string>
+  <string name="RecipientBottomSheet_view_safety_number">הצג מספר ביטחון</string>
   <string name="RecipientBottomSheet_make_group_admin">עשה מנהלן קבוצה</string>
   <string name="RecipientBottomSheet_remove_as_admin">הסר תפקיד מנהלן</string>
   <string name="RecipientBottomSheet_remove_from_group">הסר מהקבוצה</string>
@@ -2410,5 +2466,12 @@
   <string name="GroupLinkBottomSheet_share">שתף</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">הקישור אינו פעיל כרגע</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">לא היה ניתן להתחיל ניגון.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">הודעה קולית · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s אל %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

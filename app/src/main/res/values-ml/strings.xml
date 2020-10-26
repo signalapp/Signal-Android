@@ -327,6 +327,22 @@
   <string name="CreateProfileActivity_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">ഒരു ലോക്കൽ ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും റിസ്റ്റോർ ചെയ്യുക. നിങ്ങൾ ഇപ്പോൾ റിസ്റ്റോർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
+  <string name="ChooseBackupFragment__learn_more">കൂടുതൽ അറിയുക</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക </string>
+  <string name="RestoreBackupFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
+  <string name="BackupsPreferenceFragment__create_backup">ബാക്കപ്പ് സൃഷ്ടിക്കുക</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിക്കുക</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിച്ച് അത് പൊരുത്തപ്പെടുന്നുണ്ടോയെന്ന് പരിശോധിക്കുക</string>
+  <string name="BackupsPreferenceFragment__turn_on">ഓൺ ചെയ്യുക</string>
+  <string name="BackupsPreferenceFragment__turn_off">ഓഫ് ആക്കുക</string>
+  <string name="BackupsPreferenceFragment__learn_more">കൂടുതൽ അറിയുക</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ബാക്കപ്പുകൾ സൃഷ്ടിക്കുന്നതിന് Signal-ന് ബാഹ്യ സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ഉപയോഗിക്കുന്നു: %s</string>
   <string name="CustomDefaultPreference_using_default">Default ഉപയോഗിക്കുന്നു: %s</string>
@@ -366,6 +382,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Play Services ഇല്ലാത്തതിനാൽ ഡിവൈസ് ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ഈ ഉപകരണം Play Services പിന്തുണയ്ക്കുന്നില്ല. നിഷ്‌ക്രിയമായിരിക്കുമ്പോൾ സന്ദേശങ്ങൾ വീണ്ടെടുക്കുന്നതിൽ നിന്ന് Signal നെ തടയുന്ന സിസ്റ്റം ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കാൻ ടാപ്പുചെയ്യുക.</string>
   <!--ExpiredBuildReminder-->
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">കാണുക</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">പങ്കിടുക</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">ഒന്നിലധികം അറ്റാച്ചുമെന്റുകൾ ചിത്രങ്ങൾക്കും വീഡിയോകൾക്കും മാത്രമേ പിന്തുണയ്‌ക്കൂ</string>
@@ -675,13 +693,8 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ഇപ്പോൾ പിന്തുണയ്‌ക്കാത്ത Signal-ന്റെ പഴയ പതിപ്പ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റുചെയ്‌ത ഒരു സന്ദേശം ലഭിച്ചു. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്ത് സന്ദേശം വീണ്ടും അയയ്‌ക്കാൻ അയച്ചയാളോട് ആവശ്യപ്പെടുക.</string>
   <string name="MessageRecord_left_group">നിങ്ങൾ ഗ്രൂപ്പ് വിട്ടു.</string>
   <string name="MessageRecord_you_updated_group">നിങ്ങൾ ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">നിങ്ങൾ വിളിച്ചു</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">കോൺ‌ടാക്റ്റ് വിളിച്ചു</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">മിസ്ഡ് കോൾ</string> -->
   <string name="MessageRecord_s_updated_group">%s ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s നിങ്ങളെ വിളിച്ചു</string> -->
   <string name="MessageRecord_called_s">%s വിളിച്ചു</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s-നിൽ നിന്ന് മിസ്ഡ് കോൾ</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal-ലിൽ ഉണ്ട്!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">സന്ദേശങ്ങൾ അപ്രത്യക്ഷമാകുന്നത് നിങ്ങൾ സജീവമല്ലാതാക്കിയിട്ടുണ്ട്.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ അപ്രാപ്തമാക്കി.</string>
@@ -766,6 +779,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">സ്വീകരിക്കുക</string>
+  <string name="MessageRequestBottomView_continue">തുടരുക</string>
   <string name="MessageRequestBottomView_delete">ഇല്ലാതാക്കുക </string>
   <string name="MessageRequestBottomView_block">ബ്ലോക്ക്</string>
   <string name="MessageRequestBottomView_unblock">തടഞ്ഞത് മാറ്റുക</string>
@@ -1253,8 +1267,6 @@ grūpp ap‌ḍē</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">കോൺ‌ടാക്റ്റുകൾ വീണ്ടെടുക്കുന്നതിൽ പിശക്, നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിക്കുക</string>
   <string name="ContactSelectionListFragment_username_not_found">യൂസേർനേമ് കണ്ടെത്തിയില്ല</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ഒരു Signal ഉപയോക്താവല്ല. യൂസേർനേമ് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">ശരി</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">ഗ്രൂപ്പ് നിറഞ്ഞു</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">നിങ്ങൾ സ്വയം ഗ്രൂപ്പിലേക്ക് ചേർക്കേണ്ടതില്ല</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ബ്ലോക്ക് ചെയ്ത കോൺ‌ടാക്റ്റുകളൊന്നുമില്ല</string>
@@ -1942,6 +1954,7 @@ grūpp ap‌ḍē</string>
   <string name="BackupDialog_delete_backups">ബാക്കപ്പുകൾ ഇല്ലാതാക്കണോ?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">എല്ലാ പ്രാദേശിക ബാക്കപ്പുകളും അപ്രാപ്‌തമാക്കി ഇല്ലാതാക്കണോ?</string>
   <string name="BackupDialog_delete_backups_statement">ബാക്കപ്പുകൾ ഇല്ലാതാക്കുക</string>
+  <string name="BackupDialog_choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക </string>
   <string name="BackupDialog_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">സ്ഥിരീകരിക്കുന്നതിന് നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
   <string name="BackupDialog_verify">പരിശോധിക്കുക</string>
@@ -2044,5 +2057,9 @@ grūpp ap‌ḍē</string>
   <string name="GroupLinkBottomSheet_copy">കോപ്പി ചെയ്യുക</string>
   <string name="GroupLinkBottomSheet_share">പങ്കിടുക</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s-നോട്</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

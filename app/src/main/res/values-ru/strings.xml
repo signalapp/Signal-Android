@@ -363,6 +363,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Настройте свой профиль</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профиль защищён сквозным шифрованием. Ваш профиль и его изменения становятся видны вашим контактам, когда вы начинаете или принимаете новые разговоры и когда вы присоединяетесь к новым группам.</string>
   <string name="CreateProfileActivity_set_avatar_description">Установить аватар</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Восстановить из резервной копии?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Восстановите сообщения и медиа-файлы из локальной резервной копии. Если вы не сделаете это сейчас, вы не сможете восстановить их позже.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Значок восстановления из резервной копии</string>
+  <string name="ChooseBackupFragment__choose_backup">Выбрать резервную копию</string>
+  <string name="ChooseBackupFragment__learn_more">Узнать больше</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Восстановление завершено</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Чтобы продолжить резервное копирование, пожалуйста, выберите папку. Новые резервные копии будут сохраняться в этом месте.</string>
+  <string name="RestoreBackupFragment__choose_folder">Выбрать папку</string>
+  <string name="RestoreBackupFragment__not_now">Не сейчас</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Резервные копии чатов</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервные копии шифруются парольной фразой и хранятся на вашем устройстве.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Создать резервную копию</string>
+  <string name="BackupsPreferenceFragment__last_backup">Последняя резервная копия: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Папка резервных копий</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Проверить парольную фразу резервной копии</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Испытайте парольную фразу своей резервной копии и убедитесь, что она подходит</string>
+  <string name="BackupsPreferenceFragment__turn_on">Включить</string>
+  <string name="BackupsPreferenceFragment__turn_off">Отключить</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Чтобы восстановить из резервной копии, установите новую копию Signal. Откройте приложение и нажмите «Восстановить резервную копию», затем выберите файл резервной копии. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Узнать больше</string>
+  <string name="BackupsPreferenceFragment__in_progress">В процессе…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">Уже %1$d…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal требуется разрешение на доступ к хранилищу для создания резервных копий, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Хранилище».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
   <string name="CustomDefaultPreference_using_default">Используется по умолчанию: %s</string>
@@ -404,6 +430,14 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Эта версия Signal устарела. Обновитесь сейчас, чтобы отправлять и получать сообщения.</string>
   <string name="ExpiredBuildReminder_update_now">Обновить сейчас</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d ожидающий запрос на участие</item>
+    <item quantity="few">%d ожидающих запроса на участие.</item>
+    <item quantity="many">%d ожидающих запросов на участие.</item>
+    <item quantity="other">%d ожидающих запросов на участие.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Просмотреть</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Несколько вложений поддерживаются только для изображений и видео</string>
@@ -839,13 +873,11 @@
   <string name="MessageRecord_left_group">Вы покинули группу.</string>
   <string name="MessageRecord_you_updated_group">Вы обновили группу.</string>
   <string name="MessageRecord_the_group_was_updated">Группа была обновлена.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Вы звонили</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Контакт звонил</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Пропущенный звонок</string> -->
+  <string name="MessageRecord_you_called_date">Вы звонили · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Пропущенный звонок · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s обновил(-а) группу.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s звонил(-а) вам</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s звонил(-а) вам · %2$s</string>
   <string name="MessageRecord_called_s">Вы звонили %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Пропущенный звонок от %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s теперь в Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Вы отключили исчезающие сообщения.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s отключил(-а) исчезающие сообщения.</string>
@@ -990,11 +1022,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили код безопасности с %s как неподтверждённый с другого устройства</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Принять</string>
+  <string name="MessageRequestBottomView_continue">Продолжить</string>
   <string name="MessageRequestBottomView_delete">Удалить</string>
   <string name="MessageRequestBottomView_block">Заблокировать</string>
   <string name="MessageRequestBottomView_unblock">Разблокировать</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Он не узнает, что вы видели его сообщение, пока вы не примете.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Вы не получите никаких сообщений, пока не разблокируете его.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продолжить ваш разговор с этой группой и поделиться своими именем и фото с её участниками?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продолжить ваш разговор с %1$s и поделиться своими именем и фото с этим человеком?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и поделиться своими именем и фото с её участниками? Они не узнают, что вы видели их сообщения, пока вы не примете.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и поделиться своими именем и фото с её участниками? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
@@ -1165,6 +1200,7 @@
   <string name="RegistrationActivity_more_information">Больше информации</string>
   <string name="RegistrationActivity_less_information">Меньше информации</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам и медиа-файлам для того, чтобы связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам для того, чтобы связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
   <string name="RegistrationActivity_rate_limited_to_service">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз позже.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Чтобы упросить подтверждение вашего номера телефона, Signal может автоматически вставить код подтверждения, если вы разрешите Signal доступ к SMS.</string>
@@ -1346,6 +1382,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">В буфере обмена код безопасности не найден</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к камере для сканирования QR-кода, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Камера».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Не удалось просканировать QR-код из-за отсутствия разрешения на доступ к камере</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Чтобы просмотреть код безопасности %1$s, вам нужно сначала обменяться сообщениями.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1418,6 +1455,7 @@
   <string name="NotificationChannel_other">Другие</string>
   <string name="NotificationChannel_group_messages">Сообщения</string>
   <string name="NotificationChannel_missing_display_name">Неизвестный</string>
+  <string name="NotificationChannel_voice_notes">Голосовые заметки</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Имя профиля успешно установлено.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Обнаружена ошибка сети.</string>
@@ -1520,9 +1558,17 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ошибка при получении контактов, проверьте подключение к сети</string>
   <string name="ContactSelectionListFragment_username_not_found">Имя пользователя не найдено</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">«%1$s» — не пользователь Signal. Пожалуйста, проверьте имя пользователя и попробуйте ещё раз.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Хорошо</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Группа заполнена</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Вам не нужно добавлять самого себя в группу</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Достигнут максимальный размер группы</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">В группах Signal могут находиться максимум %1$d участников.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Достигнут рекомендуемый предел участников</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Группы Signal работают лучше всего с %1$d участниками или меньше. Добавление большего количества участников приведёт к задержкам при отправке и получении сообщений.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d участник</item>
+    <item quantity="few">%1$d участника</item>
+    <item quantity="many">%1$d участников</item>
+    <item quantity="other">%1$d участников</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Нет заблокированных контактов</string>
   <!--contact_selection_list_fragment-->
@@ -2242,7 +2288,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Мы верим в конфиденциальность.</b></p><p>Signal не следит за вами и не собирает ваши данные. Чтобы улучшать Signal для всех, мы полагаемся на обратную связь от пользователей, <b>и мы были бы рады услышать вашу.</b></p><p>Мы проводим опрос, чтобы понять, как вы используете Signal. Наш опрос не собирает никакой информации, которая идентифицирует вас. Если вам интересно поделиться дополнительной обратной связью, у вас будет опция предоставить контактную информацию.</p><p>Если у вас есть несколько минут и обратная связь, которой вы хотите поделиться, мы были бы рады услышать от вас.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Пройти опрос</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Нет, спасибо</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Опрос размещён Surveygizmo на безопасном домене surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Опрос размещён Alchemer на безопасном домене surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Значок транспорта</string>
   <string name="ConversationListFragment_loading">Загружаем…</string>
@@ -2258,6 +2304,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Разблокируйте для просмотра ожидающих сообщений</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Парольная фраза резервной копии</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервные копии будут сохранены во внешнем хранилище и зашифрованы с помощью приведённой ниже парольной фразы. У вас должна быть эта фраза, чтобы восстановить резервную копию.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">У вас должна быть эта парольная фраза, чтобы восстановить резервную копию.</string>
+  <string name="backup_enable_dialog__folder">Папка</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записал(-а) эту парольную фразу. Без неё я не смогу восстановить резервную копию.</string>
   <string name="registration_activity__restore_backup">Восстановить резервную копию</string>
   <string name="registration_activity__skip">Пропустить</string>
@@ -2283,6 +2331,8 @@
   <string name="BackupDialog_delete_backups">Удалить резервные копии?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Отключить и удалить все локальные резервные копии?</string>
   <string name="BackupDialog_delete_backups_statement">Удалить резервные копии</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Чтобы включить резервное копирование, выберите папку. Резервные копии будут сохраняться в этом месте.</string>
+  <string name="BackupDialog_choose_folder">Выбрать папку</string>
   <string name="BackupDialog_copied_to_clipboard">Скопировано в буфер обмена</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Введите парольную фразу своей резервной копии, чтобы проверить её</string>
   <string name="BackupDialog_verify">Подтверждение</string>
@@ -2292,6 +2342,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Последняя резервная копия: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">В процессе</string>
   <string name="LocalBackupJob_creating_backup">Создаём резервную копию…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Отключено резервное копирование.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Резервное копирование не удалось.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша папка для резервных копий была удалена или перемещена.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Ваш файл резервной копии слишком большой для хранения на этом носителе.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Недостаточно места, чтобы сохранить вашу резервную копию.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Резервное копирование не удалось по неизвестной причине.</string>
   <string name="ProgressPreference_d_messages_so_far">Уже %d сообщений</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Пожалуйста, введите код подтверждения, отправленный на %s.</string>
   <string name="RegistrationActivity_wrong_number">Неправильный номер</string>
@@ -2403,5 +2459,12 @@
   <string name="GroupLinkBottomSheet_share">Поделиться</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Скопировано в буфер обмена</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Эта ссылка в данный момент неактивна</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Не удалось начать воспроизведение.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Голосовое сообщение · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s в %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

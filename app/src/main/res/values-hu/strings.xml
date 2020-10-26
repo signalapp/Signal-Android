@@ -336,6 +336,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Profilod beállítása</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilod adatai végponttól végpontig titkosítva vannak. Profilod adatai, valamint az abban bekövetkező változások csak azután lesznek láthatóak partnereid számára, miután új beszélgetést kezdeményeztél vagy fogadtál el, illetve beléptél egy új csoportba.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profilkép beállítása</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Visszaállítás biztonsági mentésből?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Állítsd vissza elmentett üzeneteid és médiafájljaid egy helyi biztonsági mentésből. Ha most nem állítod vissza, később már nem lesz rá lehetőség.</string>
+  <string name="ChooseBackupFragment__icon_content_description">\"Visszaállítás biztonsági mentésből\" ikonja</string>
+  <string name="ChooseBackupFragment__choose_backup">Válassz biztonsági mentést!</string>
+  <string name="ChooseBackupFragment__learn_more">További információ</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Visszaállítás kész</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">A biztonsági mentések használatának folytatásához válassz egy mappát! Az újabb mentések már itt lesznek létrehozva.</string>
+  <string name="RestoreBackupFragment__choose_folder">Mappa kiválasztása</string>
+  <string name="RestoreBackupFragment__not_now">Most nem</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Csevegések biztonsági mentése</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">A biztonsági mentések egy jelszóval titkosítva vannak, és a saját eszközöd tárolja őket.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Biztonsági mentés létrehozása</string>
+  <string name="BackupsPreferenceFragment__last_backup">Utolsó biztonsági mentés: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Biztonsági mentés mappája</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Biztonsági mentés jelmondatának megerősítése</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Ellenőrzi, hogy a biztonsági mentés jelmondata megfelelő-e</string>
+  <string name="BackupsPreferenceFragment__turn_on">Bekapcsolás</string>
+  <string name="BackupsPreferenceFragment__turn_off">Kikapcsolás</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Egy biztonsági mentés visszaállításához először is telepítsd a Signalt! Nyisd meg az alkalmazást, koppints a \"Biztonsági mentés visszaállítása\" feliratra, majd keresd ki a biztonsági mentést tartalmazó fájlt! %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">További információ</string>
+  <string name="BackupsPreferenceFragment__in_progress">Folyamatban…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d eddig…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">A Signal-nak külső tárhely engedélyre van szüksége ahhoz, hogy biztonsági mentést hozzon létre, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazás-beállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Tárhely\"-t.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Egyéni használata: %s</string>
   <string name="CustomDefaultPreference_using_default">Alapértelmezett használata: %s</string>
@@ -377,6 +403,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Az általad használt Signal verziója elavult. Üzenetek küldéséhez és fogadásához frissíts most!</string>
   <string name="ExpiredBuildReminder_update_now">Frissítés most</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d függőben lévő tagsági kérés.</item>
+    <item quantity="other">%d függőben lévő tagsági kérés.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Megtekintés</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Megosztás…</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Több csatolmányt használata csak fényképek és videók esetén támogatott.</string>
@@ -772,13 +804,11 @@
   <string name="MessageRecord_left_group">Kiléptél a csoportból.</string>
   <string name="MessageRecord_you_updated_group">Frissítetted a csoportot.</string>
   <string name="MessageRecord_the_group_was_updated">A csoport frissítve lett.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Te hívtad</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">A partner hívott</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Nem fogadott hívás</string> -->
+  <string name="MessageRecord_you_called_date">Te hívtad · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Nem fogadott hívás · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s frissítette a csoportot.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s hívott téged</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s hívott téged · %2$s</string>
   <string name="MessageRecord_called_s">Kimenő hívás: %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Nem fogadott hívás tőle: %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s a Signal-on van!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Letiltottad az eltűnő üzeneteket.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s letiltotta az eltűnő üzeneteket.</string>
@@ -913,11 +943,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Biztonsági számodat egy másik készülékről megerősítetlennek jelölted %s nevű partnereddel</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Elfogadás</string>
+  <string name="MessageRequestBottomView_continue">Folytatás</string>
   <string name="MessageRequestBottomView_delete">Törlés</string>
   <string name="MessageRequestBottomView_block">Letiltás</string>
   <string name="MessageRequestBottomView_unblock">Tiltás feloldása</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Amíg ebbe bele nem egyezel, addig nem értesül arról sem, hogy elolvastad-e az üzeneteit.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Engedélyezed, hogy %1$s üzenetet küldjön számodra, és lássa nevedet, valamint profilképedet? Nem fogsz üzenetet kapni tőle, amíg fel nem oldod a tiltást.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Folytatod a csoporton belüli csevegést, és megosztod nevedet, valamint profilképed a tagokkal?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Folytatod a csevegést a %1$s csoporttal, és megosztod nevedet, valamint profilképed a tagokkal?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz a csoportba, és megosztod velük neved és profilképedet? Amíg ebbe bele nem egyezel, addig nem értesülnek arról sem, hogy elolvastad-e üzeneteiket.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Belépsz ebbe a csoportba? Amíg ezt meg nem erősíted, senki nem értesül róla, hogy láttad az eddigi üzeneteket.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Feloldod a csoport tiltását és megosztod profilodat a tagokkal? Amíg nem oldod fel a tiltást, nem kapsz üzeneteket a csoportból.</string>
@@ -1084,6 +1117,7 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_more_information">További információ</string>
   <string name="RegistrationActivity_less_information">Kevesebb információ</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">A Signal-nak szüksége van a kontaktjaidhoz és médiádhoz való hozzáférésre a barátokkal való kapcsolódáshoz, üzenetváltáshoz és biztonságos hívások bonyolításához.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">A Signalnak hozzá kell férnie a névjegyeidhez annak érdekében, hogy kapcsolatot teremthess barátaiddal, üzenetet cserélhess velük, és hogy biztonságos hívásokat tudj bonyolítani.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Túl sokszor próbálkoztál ennek a számnak a regisztrációjával. Kérlek próbáld újra később!</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nem lehet kapcsolódni szolgáltatáshoz. Kérlek ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Hogy könnyedén ellenőrizd a telefonszámod, a Signal automatikusan érzékeli az ellenőrző kódod, ha engedélyezed a Signal-nak, hogy megtekintse az SMS üzeneteket.</string>
@@ -1263,6 +1297,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">A vágólapon nem található biztonsági szám, amellyel össze lehetne hasonlítani</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">A Signal-nak szüksége van a Kamera engedélyre, hogy QR kódot szkennelhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nem lehet QR kódot szkennelni Kamera engedély nélkül</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Ahhoz, hogy megtekinthesd %1$s biztonsági számát, előbb üzenetet kell váltanotok.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1335,6 +1370,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NotificationChannel_other">Egyéb</string>
   <string name="NotificationChannel_group_messages">Üzenetek</string>
   <string name="NotificationChannel_missing_display_name">Ismeretlen</string>
+  <string name="NotificationChannel_voice_notes">Hangjegyzetek</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">A profilnév beállítása sikerült.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Hálózati hiba történt.</string>
@@ -1436,9 +1472,15 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Hiba történt a névjegyek betöltése során, ellenőrizd a hálózati kapcsolatod</string>
   <string name="ContactSelectionListFragment_username_not_found">A felhasználónév nem található</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nem Signal felhasználó. Kérlek ellenőrizd a felhasználónevet, majd próbáld újra.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Oké</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">A csoport megtelt</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nem szükséges saját magadat a csoporthoz adnod</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">A csoport elérte maximális taglétszámát</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">A Signal csoportok legfeljebb %1$d tagból állhatnak.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Elérted a javasolt limitet</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">A Signal csoportok akkor működnek a legjöbban, ha %1$d vagy kevesebb tagból állnak. Több tag hozzáadásával az üzenetek küldésének és fogadásának ideje megnőhet.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d tag</item>
+    <item quantity="other">%1$d tag</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nincsenek blokkolt kontaktok</string>
   <!--contact_selection_list_fragment-->
@@ -2126,7 +2168,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Hiszünk a személyes adatok védelmében.</b></p><p>A Signal nem gyűjt senkiről felhasználói viselkedést érintő adatokat, ezért felhasználói visszajelzésekre támaszkodunk - <b>például a tiédre.</b></p><p>Elindítottunk egy kérdőíves felmérést, hogy megértsük a felhasználói szokásokat. A kitöltés során semmilyen téged beazonosító adat nem kerül birtokunkba. Viszont ha a jövőben is szeretnél további visszajelzéssel a segítségünkre lenni, akkor megadhatsz magadról kapcsolattartáshoz szükséges információkat is.</p><p>Ha van pár perced, örömmel vennénk, ha segítenél a kérdőív kitöltésével.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Kérdőív kitöltése</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nem, köszönöm</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">A kérdőív a Surveygizmo jóvoltából érhető el a surveys.signalusers.org biztonságos domain alatt.</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">A kérdőív szolgáltatója az Alchemer, amely a surveys.signalusers.org biztonságos domain alatt érhető el.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <string name="ConversationListFragment_loading">Betöltés…</string>
@@ -2142,6 +2184,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Oldd fel a függő üzenetek megtekintéséhez</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Biztonsági mentés jelmondat</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">A biztonsági mentések külső tárolóra lesznek mentve, és az alábbi jelmondattal lesznek titkosítva. Ezt a jelmondatot kell megadnod a biztonsági mentés visszaállításához.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Erre a jelmondatra szükséged lesz ahhoz, hogy visszaállítsd a biztonsági mentést.</string>
+  <string name="backup_enable_dialog__folder">Mappa</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Feljegyeztem ezt a jelmondatot. Enélkül nem leszek képes visszaállítani biztonsági mentést.</string>
   <string name="registration_activity__restore_backup">Biztonsági mentés visszaállítása</string>
   <string name="registration_activity__skip">Kihagyás</string>
@@ -2167,6 +2211,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BackupDialog_delete_backups">Törlöd a biztonsági mentéseket?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Letiltod és törlöd az összes helyi biztonsági mentést?</string>
   <string name="BackupDialog_delete_backups_statement">Biztonsági mentések törlése</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">A biztonsági mentések engedélyezéséhez válassz egy mappát! A mentések itt lesznek létrehozva.</string>
+  <string name="BackupDialog_choose_folder">Mappa kiválasztása</string>
   <string name="BackupDialog_copied_to_clipboard">Vágólapra másolva</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Add meg megerősítés céljából a biztonsági mentés jelmondatát</string>
   <string name="BackupDialog_verify">Hitelesítés</string>
@@ -2176,6 +2222,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ChatsPreferenceFragment_last_backup_s">Utolsó biztonsági mentés: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Folyamatban</string>
   <string name="LocalBackupJob_creating_backup">Biztonsági mentés létrehozása…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Biztonsági mentés letiltva.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Sikertelen biztonsági mentés.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">A biztonsági mentéseket tartalmazó könyvtár törölve lett, vagy át lett helyezve.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">A biztonsági mentés mérete túl nagy ahhoz, hogy itt legyen létrehozva.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Nincs elég tárterület a biztonsági mentés létrehozásához.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">A biztonsági mentés ismeretlen okból nem sikerült.</string>
   <string name="ProgressPreference_d_messages_so_far">Eddig %d db üzenet</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Kérlek add meg az alábbi számra kiküldött ellenőrző kódot: %s.</string>
   <string name="RegistrationActivity_wrong_number">Hibás szám</string>
@@ -2287,5 +2339,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupLinkBottomSheet_share">Megosztás</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Vágólapra másolva</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">A hivatkozás jelenleg nem aktív</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Nem sikerült elindítani a lejátszást.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Hangüzenet · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s (címzett: %2$s)</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

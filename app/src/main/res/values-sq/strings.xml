@@ -335,6 +335,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Ujdisni profilin tuaj</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili juaj është i fshehtëzuar skaj-më-skaj. Profili juaj dhe ndryshime në të do të jenë të dukshme për kontaktet tuaj, kur nisni ose pranoni biseda të reja, dhe kur merrni pjesë në grupe të rinj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Caktoni avatar</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Të rikthehet prej kopjeruajtjeje?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Riktheni mesazhet dhe mediat tuaja që prej një kopjeruajtjeje vendore. Nëse s\’i riktheni tani, s\’do të jeni në gjendje t\’i riktheni më vonë.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Ikonë rikthe prej kopjeruajtjeje</string>
+  <string name="ChooseBackupFragment__choose_backup">Zgjidhni kopjeruajtje</string>
+  <string name="ChooseBackupFragment__learn_more">Mësoni më tepër</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Rikthim i plotësuar</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Që të vazhdoni të përdorni kopjeruajtje, ju lutemi, zgjidhni një dosje. Kopjeruajtjet e reja do të ruhen te kjo vendndodhje.</string>
+  <string name="RestoreBackupFragment__choose_folder">Zgjidhni dosje</string>
+  <string name="RestoreBackupFragment__not_now">Jo tani</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Kopjeruajtje fjalosjesh</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Kopjeruajtjet fshehtëzohen me një frazëkalim dhe depozitohe te pajisja juaj.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Krijo kopjeruajtje</string>
+  <string name="BackupsPreferenceFragment__last_backup">Kopjeruajtja e fundit: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Dosje kopjeruajtjesh</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifikoni frazëkalim kopjeruajtjeje</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testoni frazëkalimin tuaj për kopjeruajtjen dhe verifikoni që përputhet</string>
+  <string name="BackupsPreferenceFragment__turn_on">Aktivizoje</string>
+  <string name="BackupsPreferenceFragment__turn_off">Çaktivizoje</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Që të riktheni një kopjeruajtje, instaloni një kopje të re të Signal-it. Hapni aplikacionin dhe prekni “Riktheni kopjeruajtje”, mandej lokalizoni një kartelë kopjeruajtjeje. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Mësoni më tepër</string>
+  <string name="BackupsPreferenceFragment__in_progress">Në ecuri e sipër…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d deri këtu…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Që të mund të krijohen kopjeruajtje, Signal-i lyp leje mbi depozitë të jashtme, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"Depozitim\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Me përdorim të një të përshtaturi: %s</string>
   <string name="CustomDefaultPreference_using_default">Me përdorim parazgjedhjeje: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ky version i Signal-it ka skaduar. Që të dërgoni dhe merrni mesazhe, përditësojeni që tani.</string>
   <string name="ExpiredBuildReminder_update_now">Përditësoje tani</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d kërkesë anëtarësimi pezull.</item>
+    <item quantity="other">%d kërkesa anëtarësimi pezull.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Shihni</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Ndaje me</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Disa bashkëngjitje njëherësh mbulohen vetëm për figura dhe video</string>
@@ -774,13 +806,11 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_left_group">E keni lënë grupin.</string>
   <string name="MessageRecord_you_updated_group">E përditësuat grupin.</string>
   <string name="MessageRecord_the_group_was_updated">Grupi u përditësua.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Ju thirrët</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakti thirri</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Thirrje e humbur</string> -->
+  <string name="MessageRecord_you_called_date">Thirrët · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Thirrje e humbur · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s përditësoi grupin.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">ju thirri %s</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s ju thirri · %2$s</string>
   <string name="MessageRecord_called_s">Thirrët %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s është në Signal! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Çaktivizuat zhdukje mesazhesh.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s çaktivizoi zhdukje mesazhesh.</string>
@@ -915,11 +945,14 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar nga një tjetër pajisje</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Pranoje</string>
+  <string name="MessageRequestBottomView_continue">Vazhdo</string>
   <string name="MessageRequestBottomView_delete">Fshije</string>
   <string name="MessageRequestBottomView_block">Bllokoje</string>
   <string name="MessageRequestBottomView_unblock">Zhbllokoje</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Të lejohet %1$s t’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S’do ta dijë se e keni parë mesazhin e tij, para se të pranoni këtë.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Të lejohet %1$s t’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Të vazhdohet biseda juaj me këtë grup dhe t’u jepet emri dhe fotoja juaj anëtarëve të tij?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Të vazhdohet biseda juaj me %1$s dhe t’i jepet emri dhe fotoja juaj?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Të bëhet anëtarësim në këtë grup dhe të ndahet emri dhe fotoja juaj me anëtarët e tij? S’do ta dinë se i keni parë mesazhet e tyre, para se të pranoni këtë.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Doni të bëheni pjesë e këtij grupi? S’do ta dinë se i keni parë mesazhet e tyre, deri sa të pranoni.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Të zhbllokohet ky grup dhe të lejohet të ndajë emrin dhe foton tuaj me anëtarët e tij? S’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
@@ -1082,7 +1115,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RegistrationActivity_no_browser">S\’arrihet të hapet kjo lidhje. S\’u gjet shfletues.</string>
   <string name="RegistrationActivity_more_information">Më tepër të dhëna</string>
   <string name="RegistrationActivity_less_information">Më pak të dhëna</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Që të mund të lidheni me shokët, të shkëmbeni mesazhe dhe të bëni thirje të siguruara, Signal-i lyp hyrje te kontaktet dhe mediat tuaja</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Që të mund të lidheni me shokët, të shkëmbeni mesazhe dhe të bëni thirrje të siguruara, Signal-i lyp hyrje te kontaktet dhe mediat tuaja</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Që të mund të lidheni me shokët, të shkëmbeni mesazhe dhe të bëni thirrje të siguruara, Signal-i lyp hyrje te kontaktet tuaja</string>
   <string name="RegistrationActivity_rate_limited_to_service">Keni bërë shumë përpjekje për të regjistruar këtë numër. Ju lutemi, riprovoni më vonë.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">S\’arrihet të bëhet lidhja te shërbimi. Ju lutemi, kontrolloni lidhjen me rrjetin dhe riprovoni.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Që të verifikohet lehtësisht numri juaj i telefonit, Signal-i mund të zbulojë vetvetiu kodin tuaj të verifikimit, nëse e lejoni Signal-in të shohë mesazhe SMS.</string>
@@ -1260,6 +1294,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Në të papastër s\’u gjet numër sigurie për krahasim</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Që të mund të skanojë një kod QR, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">S\’arrihet të skanohet kodi QR pa lejim të kamerës</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">You must first exchange messages Që të mund të shihni numrin e sigurisë për %1$s, së pari duhet të shkëmbeni mesazhe.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1332,6 +1367,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="NotificationChannel_other">Tjetër</string>
   <string name="NotificationChannel_group_messages">Mesazhe</string>
   <string name="NotificationChannel_missing_display_name">I panjohur</string>
+  <string name="NotificationChannel_voice_notes">Shënime Zanore</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Emri i profilit u caktua me sukses.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">U has një gabim rrjeti.</string>
@@ -1432,9 +1468,15 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Gabim në marrje kontaktesh, kontrolloni lidhjen tuaj në rrjet</string>
   <string name="ContactSelectionListFragment_username_not_found">Emri i përdoruesit s’u gjet</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" s’është përdorues Signal-i. Ju lutemi, kontrolloni emrin e përdoruesit dhe riprovoni.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">OK</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupi është plot</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">S’ju duhet të shtoni veten te grupi</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">U mbërrit në kufi madhësie grupesh</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Grupet Signal mund të keni një maksimum prej %1$d anëtarësh.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">U mbërrit në kufi të rekomanduar anëtaarësh</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Grupet Signal punimin më të mirë e kanë me %1$d ose më pak anëtarë. Shtimi i më shumë anëtarëve do të shkaktojë vonesa në dërgim dhe shkëmbim mesazhesh.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d anëtar</item>
+    <item quantity="other">%1$d anëtarë</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">S\’ka kontakte të bllokuara</string>
   <!--contact_selection_list_fragment-->
@@ -1867,7 +1909,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_notifications__events">Veprimtari</string>
   <string name="preferences_notifications__in_chat_sounds">Tinguj në fjalosje</string>
   <string name="preferences_notifications__show">Shfaq</string>
-  <string name="preferences_notifications__calls">Thirje</string>
+  <string name="preferences_notifications__calls">Thirrje</string>
   <string name="preferences_notifications__ringtone">Zile</string>
   <string name="preferences_chats__show_invitation_prompts">Shfaq mekanizëm ftesash</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Shfaq mekanizëm ftesash për kontakte pa Signal</string>
@@ -2126,7 +2168,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Besojmë në privatësinë.</b></p><p>Signal-i nuk ju ndjek, as grumbullon të dhëna tuajat. Që Signal-i të përmirësohet për këdo, bazohemi në mendimet e përdoruesve, <b>dhe do ta donim edhe tuajin.</b></p><p>Po kryejmë një pyetësor për të kuptuar se si e përdorni Signal-in. Pyetësori ynë s’grumbullon ndonjë të dhënë që lejon identifikimin tuaj. Nëse ju intereson të jepni përshtypje shtesë, keni mundësinë të jepni të dhëna kontakti.</p><p>Nëse keni ndoca minuta dhe përshtypje për të dhënë, do të donim fort t’i dëgjonim.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Plotësoni pyetësorin</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Jo, faleminderit</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Pyetësori strehohet nga Syrveygizmo te përkatësia e sigurt surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Pyetësori strehohet nga Alchemer, në përkatësinë e sigurt surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>
@@ -2142,6 +2184,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Shkyçeni që të shihni mesazhet pezull</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frazëkalim kopjeruajtjesh</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Kopjeruajtjet do të ruhen te depozitë e jashtme dhe fshehtëzohen me frazëkalimin më poshtë. Duhet të keni këtë frazëkalim, pa të mundeni të riktheni një kopjeruajtje</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Që të mund të ktheni një kopjeruajtje, duhet të keni këtë frazëkalim.</string>
+  <string name="backup_enable_dialog__folder">Dosje</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">E kam shkruar diku këtë frazëkalim. Pa të, s\’do të jem në gjendje të rikthej një kopjeruajtje</string>
   <string name="registration_activity__restore_backup">Riktheje kopjeruajtjen</string>
   <string name="registration_activity__skip">Anashkaloje</string>
@@ -2167,6 +2211,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BackupDialog_delete_backups">Të fshihen kopjeruajtjet?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Të çaktivizohen dhe fshihen krejt kopjeruajtjet vendore?</string>
   <string name="BackupDialog_delete_backups_statement">Fshiji kopjeruajtjet</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Që të aktivizohen kopjeruajtje, zgjidhni një dosje. Kopjeruajtjet do të ruhen te kjo vendndodhje.</string>
+  <string name="BackupDialog_choose_folder">Zgjidhni dosje</string>
   <string name="BackupDialog_copied_to_clipboard">U kopjua në të papastër</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Jepni frazëkalimin tuaj të kopjeruajtjes që duhet verifikuar</string>
   <string name="BackupDialog_verify">Verifikoje</string>
@@ -2176,6 +2222,12 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ChatsPreferenceFragment_last_backup_s">Kopjeruajtja e fundit: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Në kryerje e sipër</string>
   <string name="LocalBackupJob_creating_backup">Po krijohet kopjeruajtje…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Kopjeruajtjet janë të çaktivizuara.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Kopjeruajtja dështoi.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Drejtoria juaj e kopjeruajtjeve është fshirë ose lëvizur.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Kartela e kopjeruajtjes tuaj është shumë e madhe për t’u depozituar në këtë vëllim.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">S’ka hapësirë të mjaftueshme për të depozituar kopjeruajtjen tuaj.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Kopjeruajtja dështoi për një arsye të panjohur.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesazhe deri këtu</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ju lutemi, jepni kodin e verifikimit dërguar te %s.</string>
   <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>
@@ -2287,5 +2339,12 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupLinkBottomSheet_share">Ndajeni Me të Tjerë</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">U kopjua në të papastër!</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Lidhja hëpërhë s’është aktive</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">S’u nis dot luajtja.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mesazh zanor · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s për %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

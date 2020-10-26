@@ -335,6 +335,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Configurar o seu perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O seu perfil é encriptado de topo a topo. O seu perfil bem como as suas alterações estarão visíveis para todos os seus contactos, quando inicia ou aceita novas conversas e quando se junta a novos grupos. </string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Restaurar a partir da cópia de segurança?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Restore as suas mensagens e multimédia a partir de uma cópia de segurança local. Se não as restaurar agora, não as poderá restaurar mais tarde.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Ícone restaurar a partir da cópia de segurança</string>
+  <string name="ChooseBackupFragment__choose_backup">Escolher cópia de segurança</string>
+  <string name="ChooseBackupFragment__learn_more">Saber mais</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Restauro completo</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Para continuar a utilizar cópias de segurança, escolha uma paste. As cópias de segurança novas serão guardadas nesta localização.</string>
+  <string name="RestoreBackupFragment__choose_folder">Escolher pasta</string>
+  <string name="RestoreBackupFragment__not_now">Agora não</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Cópias de segurança de conversas</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">As cópias de segurança são encriptadas com uma frase-passe e são guardadas no seu dispositivo.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Criar cópia de segurança</string>
+  <string name="BackupsPreferenceFragment__last_backup">Ultima cópia de segurança: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Pasta da cópia de segurança</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar a frase-passe de segurança</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste a sua frase-passe e confirme se coincide</string>
+  <string name="BackupsPreferenceFragment__turn_on">Ativar</string>
+  <string name="BackupsPreferenceFragment__turn_off">Desativar</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Para poder restaurar uma cópia de segurança, instale uma nova cópia do Signal. Abra a aplicação e toque em \"Restaurar cópia de segurança\", aqui localize o ficheiro com a cópia de segurança. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Saber mais</string>
+  <string name="BackupsPreferenceFragment__in_progress">Em progresso…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d até ao momento…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal requer permissão de acesso ao armazenamento externo para criar cópias de segurança, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, selecione a aplicação Signal e nas \"Permissões\" ative \"Armazenamento\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar a opção personalizada: %s</string>
   <string name="CustomDefaultPreference_using_default">A usar a opção predefinida: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Esta versão do Signal expirou. Faça agora a atualização par aenviar e receber mensagens.</string>
   <string name="ExpiredBuildReminder_update_now">Atualizar agora</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d pedido pendente de membro.</item>
+    <item quantity="other">%d pedidos pendentes de membros.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Ver</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partilhar com</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Apenas são suportados anexos múltiplos para imagens e vídeos.</string>
@@ -771,13 +803,11 @@
   <string name="MessageRecord_left_group">Você abandonou o grupo.</string>
   <string name="MessageRecord_you_updated_group">Você atualizou o grupo.</string>
   <string name="MessageRecord_the_group_was_updated">O grupo foi atualizado.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Você ligou</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Contacto ligado</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Chamada perdida</string> -->
+  <string name="MessageRecord_you_called_date">Telefonou · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Chamada perdida · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s atualizou o grupo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ligou-lhe</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s telefonou-lhe · %2$s</string>
   <string name="MessageRecord_called_s">Ligou para %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s está no Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Você desativou a destruição de mensagens.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desativou a destruição de mensagens.</string>
@@ -912,11 +942,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Marcou como não verificado o seu número de segurança com %s a partir de outro dispositivo</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Aceitar</string>
+  <string name="MessageRequestBottomView_continue">Continuar</string>
   <string name="MessageRequestBottomView_delete">Eliminar</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permite que %1$s lhe enviem mensagens e que seja partilhado o seu nome e fotografia com eles? Eles não saberão que viu a mensagem deles até que aceite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permite que %1$s lhe enviem mensagens e que seja partilhado o seu nome e fotografia com eles? Eles não irão receber nenhuma mensagem até que os desbloqueie.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar a sua conversa com este grupo e partilhe o seu nome e fotografia com os seus membros?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continuar a sua conversa com %1$s e partilhar o seu nome e fotografia com eles?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Juntar-se a este grupo e partilhar o seu nome e fotografia com os seus membros? Eles não sabem que viu as mensagens deles até que aceite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Juntar-se a este grupo? Eles não saberão que viu as mensagens deles até que aceite o convite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desbloquear este grupo e partilhar o seu nome e fotografia com os seus membros? Você não receberá nenhuma mensagem até as desbloquear.</string>
@@ -1005,7 +1038,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Criar novo PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Aviso</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, todos os dados serão perdidos ao registar-se novamente no Sinal, a menos que faça backup e o restaure manualmente. Você não pode ativar o \'Bloqueio de registo\' enquanto o PIN estiver desativado.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, todos os dados serão perdidos ao registar-se novamente no Sinal, a menos que faça uma cópia de segurança e o restaure manualmente. Você não pode ativar o \'Bloqueio de registo\' enquanto o PIN estiver desativado.</string>
   <string name="PinOptOutDialog_disable_pin">Desativar PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Avaliar esta aplicação</string>
@@ -1057,7 +1090,7 @@
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Nesta chamada · %1$d pessoa</item>
-    <item quantity="other">Nesta chamada · %1$d pessoas</item>
+    <item quantity="other">· %1$d pessoas nesta chamada</item>
   </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Escolha o seu país</string>
@@ -1078,6 +1111,7 @@ especificou (%s) é inválido.</string>
   <string name="RegistrationActivity_more_information">Mais informação</string>
   <string name="RegistrationActivity_less_information">Menos informação</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Signal necessita de acesso aos contactos e armazenamento de forma a poder ligar-se com os seus amigos, trocar mensagens e efetuar chamadas seguras.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal necessita de aceder aos seus contactos de forma a poder ligar-se a amigos, partilhar mensagens e fazer chamadas seguras</string>
   <string name="RegistrationActivity_rate_limited_to_service">Fez demasiadas tentativas para registar este número. Por favor, tente mais tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não foi possível ligar ao serviço. Por favor, verifique a sua ligação à rede e tente novamente.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar facilmente o seu número de telefone, o Signal pode detectar automaticamente o seu código de verificação, caso o permita ler mensagens SMS.</string>
@@ -1257,6 +1291,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Não foi encontrado na área de transferência nenhum número de segurança com o qual comparar </string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, seleccione a aplicação Signal e nas \"Permissões\" ative a \"Câmara\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível ler um código QR sem permissão de acesso à câmara.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Primeiro deverá partilhar mensagens de forma a poder ver o número de segurança de %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1329,6 +1364,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="NotificationChannel_other">Outro</string>
   <string name="NotificationChannel_group_messages">Mensagens</string>
   <string name="NotificationChannel_missing_display_name">Desconhecido</string>
+  <string name="NotificationChannel_voice_notes">Notas de voz</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Nome de perfil definido com sucesso.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Encontrado um erro de rede.</string>
@@ -1429,9 +1465,15 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Problema a obter os contactos, verifique a sua ligação à rede</string>
   <string name="ContactSelectionListFragment_username_not_found">Nome de utilizador não encontrado</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" não é um utilizador do Signal. Por favor, verifique o nome de utilizador e tente novamente.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Ok</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">O grupo está completo</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Não necessita de adicionar a si próprio ao grupo</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Atingiu o tamanho máximo do grupo</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Os grupos do Signal poderão ter o máximo de %1$d membros.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Atingido o limite de membros recomendado</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Os grupos do Signal funcionam melhor com %1$d ou menos membros. Adicionar mais membros irá causar atrasos no envio e na receção de mensagens.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membros</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Sem contactos bloqueados</string>
   <!--contact_selection_list_fragment-->
@@ -1806,7 +1848,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Desativar PIN</string>
   <string name="preferences__enable_pin">Ativar PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, todos os dados serão perdidos ao registar-se novamente no Sinal, a menos que faça backup e o restaure manualmente. Você não pode ativar o \'Bloqueio de registo\' enquanto o PIN estiver desativado.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, todos os dados serão perdidos ao registar-se novamente no Sinal, a menos que faça uma cópia de segurnaça e o restaure manualmente. Você não pode ativar o \'Bloqueio de registo\' enquanto o PIN estiver desativado.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Os PINs mantém encriptada a informação guardada no Signal de forma a que apenas você lhe possa aceder. O seu perfil, definições e contactos serão restaurados quando reinstalar o Signal. Não necessita do seu PIN para abrir a aplicação.</string>
   <string name="preferences__system_default">Configuração por omissão</string>
   <string name="preferences__default">Pré-definição</string>
@@ -2119,7 +2161,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Acreditamos na privacidade.</b></p><p>O Signal não rastreia ou recolhe os seus dados. Para melhorar o Signal para todos, dependemos do feedback dos seus utilizadores, <b>e nós adoramos os seus.</b></p></p>Estamos a lançar um questionário para perceber como é que utiliza o Signal. O nosso questionário não recolhe nenhuns dados que o possam identificar. Se está interessado em partilhar o seu feedback adicional tem a opção para fornecer a informação de contacto.</p><p>Se tiver alguns minutos e feedback para fornecer iríamos adorar ouvi-lo.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Preencher o questionário</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Não, obrigado</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">O questionário está alojado pela Surveygizmo no domínio seguro surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">O inquérito tem o host da Alchemer no domínio seguro surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
   <string name="ConversationListFragment_loading">A carregar…</string>
@@ -2135,6 +2177,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloqueie para ver mensagens pendentes</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-passe da cópia de segurança</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">As cópias de segurança vão ser gravadas na memória externa e cifradas com a frase-passe abaixo. Tem de ter esta frase-passe para poder restaurar as cópias de segurança.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Deverá ter esta frase-passe de forma a poder restaurar uma cópia de segurança.</string>
+  <string name="backup_enable_dialog__folder">Pasta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-passe. Sem ela, serei incapaz de restaurar uma cópia de segurança.</string>
   <string name="registration_activity__restore_backup">Restaurar cópia de segurança</string>
   <string name="registration_activity__skip">Saltar</string>
@@ -2160,6 +2204,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="BackupDialog_delete_backups">Eliminar cópias de segurança?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Desativar e eliminar todas as cópias de segurança locais?</string>
   <string name="BackupDialog_delete_backups_statement">Eliminar cópias de segurança</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Para ativar cópias de segurança, escolha uma pasta. As cópias de segurança serão guardadas nesta localização.</string>
+  <string name="BackupDialog_choose_folder">Escolher pasta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduza a sua frase-passe para verificar</string>
   <string name="BackupDialog_verify">Verificar</string>
@@ -2169,6 +2215,12 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ChatsPreferenceFragment_last_backup_s">Última cópia de segurança: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em progresso</string>
   <string name="LocalBackupJob_creating_backup">A criar cópia de segurança…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Cópias de segurança desativadas.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Falha ao fazer cópia de segurança.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">A sua diretoria da cópia de segurança foi eliminada ou movida.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">O seu ficheiro de cópia de segurança é demasiado grande para ser guardada neste volume.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Não existe espaço suficiente para guardar a sua cópia de segurança.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">A cópia de segurança falhou por um motivo desconhecido.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até à data</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insira o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número errado</string>
@@ -2280,5 +2332,12 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="GroupLinkBottomSheet_share">Partilhar</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">O link não se encontra atualmente ativo</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Não foi possível iniciar a reprodução.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mensagem de voz · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s para %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

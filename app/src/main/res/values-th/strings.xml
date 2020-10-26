@@ -300,6 +300,22 @@
   <string name="CreateProfileActivity_profile_photo">รูปโปรไฟล์</string>
   <string name="CreateProfileActivity_set_up_your_profile">สร้างโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_set_avatar_description">สร้างอวตาร</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">กู้คืนจากข้อมูลสำรองหรือไม่?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">กู้คืนข้อความและสื่อของคุณจากข้อมูลสำรองในเครื่อง หากคุณไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
+  <string name="ChooseBackupFragment__learn_more">เรียนรู้เพิ่มเติม</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">เลือกโฟลเดอร์</string>
+  <string name="RestoreBackupFragment__not_now">ไม่ใช่ตอนนี้</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">ข้อมูลสำรองของการสนทนา</string>
+  <string name="BackupsPreferenceFragment__create_backup">สร้างข้อมูลสำรอง</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">ตรวจยืนยันวลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">ทดสอบวลีรหัสผ่านสำหรับข้อมูลสำรองของคุณและตรวจยืนยันว่ามันตรงกัน</string>
+  <string name="BackupsPreferenceFragment__turn_on">เปิด</string>
+  <string name="BackupsPreferenceFragment__turn_off">ปิด</string>
+  <string name="BackupsPreferenceFragment__learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">เพื่อที่จะสำรองข้อมูล Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ใช้ค่าที่กำหนดเอง: %s</string>
   <string name="CustomDefaultPreference_using_default">ใช้ค่าเริ่มต้น: %s</string>
@@ -338,6 +354,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">ปรับปรุงการทำงานให้รับกับการไม่มี Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">อุปกรณ์นี้ไม่รองรับ Play Services แตะเพื่อปิดใช้งานการปรับประสิทธิภาพแบตเตอรีซึ่งจะทำให้ Signal ไม่สามารถรับข้อความได้ในขณะที่ไม่ได้เปิดแอปบนหน้าจอ</string>
   <!--ExpiredBuildReminder-->
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">ดู</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">แบ่งปันกับ</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">การแนบแฟ้มหลายชิ้นแนบได้เฉพาะรูปภาพและวิดีโอ</string>
@@ -591,13 +609,8 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ได้รับข้อความที่เข้ารหัสลับด้วย Signal รุ่นเก่าที่ไม่รองรับอีกต่อไปแล้ว โปรดขอให้ผู้ส่งปรับปรุงแอปเป็นรุ่นล่าสุดและส่งข้อความอีกครั้ง</string>
   <string name="MessageRecord_left_group">คุณได้ออกจากกลุ่ม</string>
   <string name="MessageRecord_you_updated_group">คุณได้อัปเดตกลุ่ม</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">คุณได้โทรหา</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">ผู้ติดต่อได้โทรหา</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">สายที่ไม่ได้รับ</string> -->
   <string name="MessageRecord_s_updated_group">%s ได้อัปเดตกลุ่ม</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ได้โทรหาคุณ</string> -->
   <string name="MessageRecord_called_s">ได้โทรหา %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">สายที่ไม่ได้รับจาก %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s ใช้งาน Signal</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">คุณได้ปิดใช้งานข้อความที่ลบตัวเองแล้ว</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ได้ปิดใช้งานข้อความที่ลบตัวเองแล้ว</string>
@@ -667,6 +680,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">ยอมรับ</string>
+  <string name="MessageRequestBottomView_continue">ทำต่อ</string>
   <string name="MessageRequestBottomView_delete">ลบ</string>
   <string name="MessageRequestBottomView_block">ปิดกั้น</string>
   <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
@@ -1130,8 +1144,6 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">เกิดข้อผิดพลาดระหว่างดึงผู้ติดต่อ ตรวจสอบการเชื่อมต่อเครือข่ายของคุณ</string>
   <string name="ContactSelectionListFragment_username_not_found">ไม่พบชื่อผู้ใช้</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$sไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">โอเค</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">กลุ่มเต็ม</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ไม่มีผู้ติดต่อที่ถูกปิดกั้น</string>
   <!--contact_selection_list_fragment-->
@@ -1782,6 +1794,7 @@
   <string name="BackupDialog_delete_backups">ลบข้อมูลสำรองหรือไม่?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">ปิดใช้งานและลบข้อมูลสำรองที่เก็บในอุปกรณ์นี้ทั้งหมดหรือไม่?</string>
   <string name="BackupDialog_delete_backups_statement">ลบข้อมูลสำรอง</string>
+  <string name="BackupDialog_choose_folder">เลือกโฟลเดอร์</string>
   <string name="BackupDialog_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">ป้อนวลีรหัสผ่านสำหรับข้อมูลสำรองของคุณเพื่อตรวจยืนยัน</string>
   <string name="BackupDialog_verify">ตรวจยืนยัน</string>
@@ -1868,5 +1881,9 @@
   <string name="GroupLinkBottomSheet_copy">คัดลอก</string>
   <string name="GroupLinkBottomSheet_share">แบ่งปัน</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ถึง %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

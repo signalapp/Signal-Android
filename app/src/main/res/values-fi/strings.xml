@@ -335,6 +335,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Aseta profiilisi</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiilisi on päästä päähän salattu. Profiilisi ja tekemäsi muutokset näkyvät yhteystiedoillesi, kun aloitat tai hyväksyt uusia keskusteluja ja kun liityt uusiin ryhmiin.</string>
   <string name="CreateProfileActivity_set_avatar_description">Aseta kuvake</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Palautetaanko varmuuskopiosta?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Palauta viestisi ja mediasi paikallisesta varmuuskopiostasi. Jos et palauta niitä nyt, et voi palauttaa niitä enää myöhemmin.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Palauta varmuuskopio-kuvake</string>
+  <string name="ChooseBackupFragment__choose_backup">Valitse varmuuskopio</string>
+  <string name="ChooseBackupFragment__learn_more">Lue lisää</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Palautus suoritettu</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Valitse kansio jatkaaksesi varmuuskopioiden käyttöä. Uudet varmuuskopiot tallennetaan tähän paikkaan.</string>
+  <string name="RestoreBackupFragment__choose_folder">Valitse kansio</string>
+  <string name="RestoreBackupFragment__not_now">Ei nyt</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Keskustelujen varmuuskopiot</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Varmuuskopiot salataan tunnuslauseella ja tallennetaan laitteellesi.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Luo varmuuskopio</string>
+  <string name="BackupsPreferenceFragment__last_backup">Viimeksi varmuuskopioitu: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Varmuuskopiokansio</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Varmista varmuuskopion salalause</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Tarkista varmuuskopiosi salalause ja varmista että se täsmää</string>
+  <string name="BackupsPreferenceFragment__turn_on">Ota käyttöön</string>
+  <string name="BackupsPreferenceFragment__turn_off">Poista käytöstä</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Palauttaaksesi varmuuskopion, asenna uusi kopio Signalista. Avaa sovellus, napauta \"Palauta varmuuskopio\" ja etsi sitten varmuuskopiotiedosto. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Lue lisää</string>
+  <string name="BackupsPreferenceFragment__in_progress">Meneillään…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d tähän mennessä…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa varmuuskopioiden luomista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
   <string name="CustomDefaultPreference_using_default">Käytä oletusta: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Tämä Signal-versio on vanhentunut. Päivitä nyt lähettääksesi ja vastaanottaaksesi viestejä.</string>
   <string name="ExpiredBuildReminder_update_now">Päivitä nyt</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d odottava ryhmäänliittymispyyntö.</item>
+    <item quantity="other">%d odottavaa ryhmäänliittymispyyntöä.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Näytä</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Useiden tiedostojen liittämistä tuetaan vain kuvilla ja videoilla</string>
@@ -460,8 +492,8 @@
     <item quantity="other">Virhe kutsujen peruuttamisessa</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">Odottavat jäsenpyynnöt</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">Ei odottavia jäsenpyyntöjä.</string>
+  <string name="RequestingMembersFragment_pending_member_requests">Odottavat ryhmäänliittymispyynnöt</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Ei odottavia ryhmäänliittymispyyntöjä.</string>
   <string name="RequestingMembersFragment_explanation">Tässä luettelossa olevat henkilöt yrittävät liittyä ryhmään ryhmälinkin kautta.</string>
   <string name="RequestingMembersFragment_added_s">Lisäsi \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Hylkäsi \"%1$s\"</string>
@@ -500,7 +532,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Katoavat viestit</string>
   <string name="ManageGroupActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
-  <string name="ManageGroupActivity_member_requests_and_invites">Jäsenpyynnöt &amp; kutsut</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Ryhmäänliittymispyynnöt &amp; kutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Ketkä voivat lisätä uusia jäseniä?</string>
@@ -594,7 +626,7 @@
   <string name="ShareableGroupLinkDialogFragment__group_link">Ryhmälinkki</string>
   <string name="ShareableGroupLinkDialogFragment__share">Jaa</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Uudelleenaseta linkki</string>
-  <string name="ShareableGroupLinkDialogFragment__member_requests">Jäsenpyynnöt</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Ryhmäänliittymispyynnöt</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Hyväksy uusia jäseniä</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Päällä</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Pois päältä</string>
@@ -771,13 +803,11 @@
   <string name="MessageRecord_left_group">Olet poistunut ryhmästä.</string>
   <string name="MessageRecord_you_updated_group">Sinä päivitit ryhmää.</string>
   <string name="MessageRecord_the_group_was_updated">Ryhmä päivitettiin.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Soitit puhelun</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Yhteystieto soitti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Vastaamatta jäänyt puhelu</string> -->
+  <string name="MessageRecord_you_called_date">Soitit puhelun · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Vastaamaton puhelu · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s päivitti ryhmää.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s soitti sinulle</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s soitti sinulle · %2$s</string>
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Vastaamatta jäänyt puhelu: %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s käyttää Signalia!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Sinä asetit katoavat viestit pois päältä.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s asetti katoavat viestit pois päältä.</string>
@@ -912,11 +942,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Merkitsit turvanumerosi yhteystiedon %s kanssa varmentamattomaksi toisesta laitteesta.</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Hyväksy</string>
+  <string name="MessageRequestBottomView_continue">Jatka</string>
   <string name="MessageRequestBottomView_delete">Poista</string>
   <string name="MessageRequestBottomView_block">Estä</string>
   <string name="MessageRequestBottomView_unblock">Poista esto</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Salli henkilön %1$s lähettää sinulle viestejä ja jaa nimesi ja profiilikuvasi hänelle? Hän ei tiedä että olet nähnyt hänen viestinsä ennen kuin hyväksyt.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Salli henkilön %1$s lähettää sinulle viestejä ja jaa nimesi ja profiilikuvasi hänelle? Et saa viestejä ennen kuin poistat niiden eston.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Jatka keskustelua tämän ryhmän kanssa ja jaa nimesi ja kuvasi sen jäsenille?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Jatka keskustelua käyttäjän %1$s kanssa ja jaa nimesi ja kuvasi hänelle?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Liity tähän ryhmään ja jaa nimesi ja profiilikuvasi sen jäsenille? He eivät tiedä että olet nähnyt heidän viestinsä ennen kuin hyväksyt.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko liittyä tähän ryhmään? He eivät tiedä, että olet nähnyt heidän viestinsä, ennen kuin hyväksyt.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Poista tämän ryhmän esto ja jaa nimesi ja profiilikuvasi sen jäsenille? Et saa viestejä ennen kuin poistat niiden eston.</string>
@@ -1327,6 +1360,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NotificationChannel_other">Muu</string>
   <string name="NotificationChannel_group_messages">Viestit</string>
   <string name="NotificationChannel_missing_display_name">Tuntematon</string>
+  <string name="NotificationChannel_voice_notes">Ääniviestit</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Profiilinimen asetus onnistui.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Verkkovirhe.</string>
@@ -1427,9 +1461,15 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Yhteystietojen haussa tapahtui virhe. Tarkista verkkoyhteytesi.</string>
   <string name="ContactSelectionListFragment_username_not_found">Käyttäjätunnusta ei löydy</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ei ole Signalin käyttäjä. Tarkista käyttäjätunnus ja yritä uudelleen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Selvä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Ryhmä on täynnä</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sinun ei tarvitse lisätä itseäsi ryhmään</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Ryhmän enimmäiskoko saavutettu</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-ryhmissä voi olla enintään %1$d jäsentä.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Suositeltu jäsenmäärä saavutettu</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-ryhmät toimivat parhaiten jos niissä on %1$d jäsentä tai vähemmän. Jäsenten lisääminen aiheuttaa viiveitä viestien lähettämisessä ja vastaanottamisessa.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d jäsen</item>
+    <item quantity="other">%1$d jäsentä</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ei estettyjä yhteystietoja</string>
   <!--contact_selection_list_fragment-->
@@ -2116,7 +2156,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ResearchMegaphoneDialog_signal_research">Signal-tutkimus</string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Vastaa kyselyyn</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ei kiitos</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Kyselyn isännöi Surveygizmo suojatussa verkkotunnuksessa surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Kyselyn isännöi Alchemer suojatussa verkkotunnuksessa surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
   <string name="ConversationListFragment_loading">Ladataan…</string>
@@ -2132,6 +2172,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Avaa nähdäksesi odottavat viestit</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Varmuuskopion salalause</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varmuuskopiot tallennetaan laitteesi tallennustilaan ja ne salataan allaolevalla salalauseella. Ilman tätä salalausetta et voi palauttaa varmuuskopiota.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Sinulla on oltava tämä tunnuslause varmuuskopion palauttamiseksi.</string>
+  <string name="backup_enable_dialog__folder">Kansio</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Olen kirjoittanut ylös tämän salalauseen. Ilman sitä, en pysty palauttamaan varmuuskopiota.</string>
   <string name="registration_activity__restore_backup">Palauta varmuuskopio</string>
   <string name="registration_activity__skip">Ohita</string>
@@ -2157,6 +2199,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="BackupDialog_delete_backups">Poistetaanko varmuuskopiot?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Otetaanko paikalliset varmuuskopiot pois käytöstä ja poistetaanko ne?</string>
   <string name="BackupDialog_delete_backups_statement">Poista varmuuskopiot</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Valitse kansio varmuuskopioiden käyttöön ottamiseksi. Varmuuskopiot tallennetaan tähän paikkaan.</string>
+  <string name="BackupDialog_choose_folder">Valitse kansio</string>
   <string name="BackupDialog_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Syötä varmuuskopion salalause varmistaaksesi</string>
   <string name="BackupDialog_verify">Vahvista</string>
@@ -2166,6 +2210,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ChatsPreferenceFragment_last_backup_s">Viimeksi varmuuskopioitu: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Meneillään</string>
   <string name="LocalBackupJob_creating_backup">Luodaan varmuuskopiota…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Varmuuskopiot poistettu käytöstä.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Varmuuskopio epäonnistui.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Varmuuskopiohakemisto on poistettu tai siirretty.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Varmuuskopiotiedosto on liian suuri tallennettavaksi tälle levylle.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Varmuuskopion tallentamiseen ei ole tarpeeksi tilaa.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Varmuuskopiointi epäonnistui tuntemattomasta syystä.</string>
   <string name="ProgressPreference_d_messages_so_far">%d viestiä tähän mennessä</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Syötä vahvistuskoodi, joka lähetettiin numeroon %s.</string>
   <string name="RegistrationActivity_wrong_number">Väärä numero</string>
@@ -2277,5 +2327,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="GroupLinkBottomSheet_share">Jaa</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Linkki ei ole tällä hetkellä aktiivinen</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Toistoa ei voitu aloittaa.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Ääniviesti · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s henkilölle %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

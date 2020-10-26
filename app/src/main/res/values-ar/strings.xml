@@ -385,6 +385,22 @@
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">صفحة حسابك الشخصي مشفرة بالتشفير التام. وأيّة تغيير سيكون ظاهراً لجهات اتصالك، بعد أن تقبل طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
   <string name="CreateProfileActivity_set_avatar_description">اختيار صورة ملفك الشخصي</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية؟</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">استعادة الرسائل والوسائط من نسخة احتياطية محليّة. إن استعادتها الآن، لن يمكنك الاستعادة لاحقا.</string>
+  <string name="ChooseBackupFragment__learn_more">لمعرفة المزيد</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">اختر مجلّدًا</string>
+  <string name="RestoreBackupFragment__not_now">ليس الآن</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">النُسخ الإحتياطية للدردشات</string>
+  <string name="BackupsPreferenceFragment__create_backup">إنشاء نسخة إحتياطية</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">التحقق من رمز امان النسخة اﻻحتياطية</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">جرب النسخة الاحتياطية لعبارة السر وتأكد من موافقتها</string>
+  <string name="BackupsPreferenceFragment__turn_on">شغل</string>
+  <string name="BackupsPreferenceFragment__turn_off">أطفىء</string>
+  <string name="BackupsPreferenceFragment__learn_more">لمعرفة المزيد</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج Signal إلى إذن سعة التخزين خارجيّة لإنشاء نسخ احتياطية، ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق ثم اختيار \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
@@ -423,6 +439,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">الإعداد الأمثل عند غياب خدمات Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">هذا الهاتف لا يدعم خدمات Play. أنقر لإلغاء تفعيل ميزة الأداء الأمثل للبطارية والتي تمنع Signal من استقبال الرسائل عند عدم النشاط.</string>
   <!--ExpiredBuildReminder-->
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">معاينة</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">المرفقات المتعددة مدعومة فقط مع الصور والفيديو</string>
@@ -850,13 +868,8 @@
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
   <string name="MessageRecord_you_updated_group">قمت بتحديث المجموعة.</string>
   <string name="MessageRecord_the_group_was_updated">تم تحديث المجموعة بنجاح.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">مكالمات صادرة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">المكالمة واردة </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">المكالمة فائتة</string> -->
   <string name="MessageRecord_s_updated_group">%s قام بتحديث المجموعة.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s قام بالاتصال</string> -->
   <string name="MessageRecord_called_s">%s قام بالاتصال</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">مكالمة فائتة من %s</string> -->
   <string name="MessageRecord_s_joined_signal">%sمتواجد على Signal !</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">قمت بتعطيل الرسائل المختفية.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">قام %1$s بتعطيل الرسائل المختفية.</string>
@@ -987,6 +1000,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">لقد قمت بالإشعار بأنّ رقم السلامة مع %s لم يتم التحقّق منه عن طريق جهاز آخر</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">موافقة</string>
+  <string name="MessageRequestBottomView_continue">استمرار</string>
   <string name="MessageRequestBottomView_delete">حذف  </string>
   <string name="MessageRequestBottomView_block">حظر</string>
   <string name="MessageRequestBottomView_unblock">رفع الحظر</string>
@@ -1512,8 +1526,6 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في جلب جهات الاتصال، يُرجى التحقق مِن اتصالك بالشبكة</string>
   <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المستخدم</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ليس مستخدم ل Signal. يرجى التحقق من اسم المستخدم والمحاولة ثانية.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">حسنًا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">المجموعة ممتلئة</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ليس عليك إضافة نفسك للمجموعة</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string>
@@ -2282,6 +2294,7 @@
   <string name="BackupDialog_delete_backups">حذف النسخ الإحتياطية؟</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">تعطيل وحذف كافّة النُّسخ الإحتياطية المحلية؟</string>
   <string name="BackupDialog_delete_backups_statement">حذف النسخ الإحتياطية</string>
+  <string name="BackupDialog_choose_folder">اختر مجلّدًا</string>
   <string name="BackupDialog_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">
 ادخل رمز أمان النسخة الاحتياطية للتحقق</string>
@@ -2387,5 +2400,9 @@
   <string name="GroupLinkBottomSheet_qr_code">كود QR</string>
   <string name="GroupLinkBottomSheet_share">شارك</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s إلى %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

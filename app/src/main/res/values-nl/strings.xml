@@ -335,6 +335,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen worden eind-tot-eind-versleuteld uitgewisseld. Deze gegevens zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert en alle leden van een groep waarvan jij een uitnodiging aanvaard.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar instellen</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Back-up-gegevens terugzetten?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Back-up-gegevens terugzetten pictogram</string>
+  <string name="ChooseBackupFragment__choose_backup">Back-up-bestand kiezen</string>
+  <string name="ChooseBackupFragment__learn_more">Meer leren hierover</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Gegevens herstellen vanuit een back-up-bestand is voltooid</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Om back-up-bestanden te blijven maken, kies een directory waar je back-up-bestanden vanaf nu in wilt opslaan.</string>
+  <string name="RestoreBackupFragment__choose_folder">Map kiezen</string>
+  <string name="RestoreBackupFragment__not_now">Niet nu</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Back-up-bestanden maken</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-up-bestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je Back-up-bestanden inschakelt maakt Signal automatisch elke dag een nieuw back-up-bestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-up-bestanden blijven bewaard, oudere back-up-bestanden worden overschreven.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Nu een back-up-bestand maken</string>
+  <string name="BackupsPreferenceFragment__last_backup">Meest recente back-up-bestand: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Back-up-directory</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Back-up-wachtwoord verifiëren</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-up-wachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>
+  <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
+  <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-up-bestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal app en tik op “Back-up-gegevens terugzetten”. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Meer leren hierover</string>
+  <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd …</string>
+  <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-up-bestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aanpassing in gebruik: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Deze versie van Signal is verlopen. Werk Signal bij om weer berichten te kunnen verzenden en ontvangen.</string>
   <string name="ExpiredBuildReminder_update_now">Nu bijwerken</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d openstaand lidmaatschapsverzoek.</item>
+    <item quantity="other">%d openstaande lidmaatschapsverzoeken.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Weergeven</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Doorsturen naar</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Het verzenden van meerdere bijlagen is alleen mogelijk voor afbeeldingen en video\'s</string>
@@ -490,7 +522,7 @@
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s van deze groep verwijderen?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d groepslid ondersteunt geen nieuwe groepen, dus deze groep wordt een oude groep.</item>
-    <item quantity="other">%dgroepsleden ondersteunen geen nieuwe groepen, dus deze groep wordt een oude groep.</item>
+    <item quantity="other">%d groepsleden ondersteunen geen nieuwe groepen, dus deze groep wordt een oude groep.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Er zal een oude groep aangemaakt worden omdat “%1$s”een oude versie van Signal gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Signal bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</string>
@@ -772,13 +804,11 @@
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_you_updated_group">Je hebt de groep aangepast.</string>
   <string name="MessageRecord_the_group_was_updated">De groep is aangepast.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Jij hebt gebeld</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Contactpersoon heeft gebeld</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Gemiste oproep</string> -->
+  <string name="MessageRecord_you_called_date">Je hebt gebeld · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Gemiste oproep · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s heeft de groep aangepast.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s heeft je gebeld</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s heeft je gebeld · %2$s</string>
   <string name="MessageRecord_called_s">Je hebt %s gebeld</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s is vanaf nu bereikbaar via Signal.</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt zelfwissende berichten uitgeschakeld.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft zelfwissende berichten uitgeschakeld.</string>
@@ -913,11 +943,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Je hebt je veiligheidsnummer met %s vanaf een ander apparaat gemarkeerd als ‘niet geverifieerd’</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Aanvaarden</string>
+  <string name="MessageRequestBottomView_continue">Gesprek voortzetten</string>
   <string name="MessageRequestBottomView_delete">Wissen</string>
   <string name="MessageRequestBottomView_block">Blokkeren</string>
   <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Hij of zij zal totdat je het gespreksverzoek aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam en -foto voor deze groep zichtbaar maken om je gesprek met de groep voort te kunnen zetten?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wil je je profielnaam en -foto voor %1$s zichtbaar maken om je gesprek voort te kunnen zetten?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien?</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Lid worden van deze groep? De leden van de groep zullen niet kunnen zien dat je hun berichten hebt gelezen zolang je de uitnodiging nog niet hebt geaccepteerd.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
@@ -1085,6 +1118,7 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal zal je om een aantal toestemmingen vragen: Signal moet je contactenlijst lezen om berichten te kunnen verzenden en om beveiligde oproepen tot stand te kunnen brengen naar je opgeslagen contacten.
 Signal moet ook bestanden kunnen lezen van en schrijven naar de externe opslag, om deze bij te kunnen voegen als bijlagen en om ontvangen bijlagen op te kunnen slaan.
 Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-oproepen je andere oproepen verstoren.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal heeft toegang nodig tot de contactenlijst van je telefoon om je contactpersonen te kunnen weergeven als opties om beveiligde gesprekken mee te beginnen en om beveiligd mee te bellen</string>
   <string name="RegistrationActivity_rate_limited_to_service">Je hebt te veel pogingen ondernomen om Signal voor dit telefoonnummer te registreren. Probeer het later opnieuw.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signal\'s servers. Controleer je netwerkverbinding en probeer het opnieuw.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Als je Signal toestaat sms-berichten te lezen, kan het je registratiecode automatisch detecteren om je telefoonnummer eenvoudig te verifiëren.</string>
@@ -1264,6 +1298,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-code niet scannen zonder toegang tot camera</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Om het veiligheidsnummer van %1$s te kunnen weergeven moet je eerst berichten met hem of haar uitwisselen.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1336,6 +1371,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NotificationChannel_other">Anders</string>
   <string name="NotificationChannel_group_messages">Berichten</string>
   <string name="NotificationChannel_missing_display_name">Onbekend</string>
+  <string name="NotificationChannel_voice_notes">Audioberichten</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Profielnaam succesvol ingesteld.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
@@ -1436,9 +1472,15 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij ophalen van contactpersonen, controleer je netwerkverbinding</string>
   <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam niet gevonden</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s” is geen Signal-gebruiker. Kijk de gebruikersnaam na en probeer het opnieuw.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Oké</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">De groep is vol</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Het is niet nodig om jezelf toe te voegen aan de groep</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">De maximale groepsgrootte is bereikt</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal groepen kunnen uit maximaal %1$d leden bestaan.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Het aanbevolen ledenlimiet is bereikt</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-groepen presteren het best met %1$d of minder leden. Het toevoegen van extra leden zal vertragingen veroorzaken in het verzenden en ontvangen van berichten.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d persoon</item>
+    <item quantity="other">%1$d personen</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contactpersonen</string>
   <!--contact_selection_list_fragment-->
@@ -1807,7 +1849,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__conversation_length_limit">Gesprekslengtelimiet</string>
   <string name="preferences__keep_messages">Berichten bewaren</string>
-  <string name="preferences__clear_message_history">Gespreksgeschiedenis wissen</string>
+  <string name="preferences__clear_message_history">Alle gespreksgeschiedenis wissen</string>
   <string name="preferences__linked_devices">Gekoppelde apparaten</string>
   <string name="preferences__light_theme">Licht</string>
   <string name="preferences__dark_theme">Donker</string>
@@ -2128,7 +2170,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We geloven in privacy.</b></p><p>Signal volgt je gedrag niet en verzamelt je gegevens niet. Om Signal zonder die gegevens toch voor iedereen beter te maken zijn we afhankelijk van terugkoppeling van gebruikers, <b>en we zouden ook graag van je horen wat je van Signal vindt</b>.</p><p>We organiseren een enquête om te begrijpen op welke manier en waarvoor jij Signal gebruikt. Onze enquête verzamelt geen gegevens waarmee jij geïdentificeerd kan worden. Als je graag meer terugkoppeling geeft, dan kun je gebruik maken van de vrijblijvende optie om je contactgegevens in te vullen.</p><p>Als je een aantal minuten tijd vrij hebt, en als je iets hebt om terug te koppelen, dan horen we graag van je.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">De enquête invullen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nee bedankt</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">De enquête wordt beschikbaar gesteld door Surveygizmo via het beveiligde domein surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">De enquête wordt georganiseerd door Alchemer op het beveiligde domein surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden …</string>
@@ -2144,12 +2186,14 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-up-wachtwoord</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-up-bestanden worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-up-gegevens terug te zetten.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Je hebt in de toekomst dit wachtwoord nodig om je gegevens vanuit een back-up-bestand te kunnen herstellen.</string>
+  <string name="backup_enable_dialog__folder">Opslaglocatie</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik deze back-up-bestanden niet gebruiken om gegevens terug te zetten.</string>
   <string name="registration_activity__restore_backup">Back-up-gegevens terugzetten</string>
   <string name="registration_activity__skip">Overslaan</string>
   <string name="registration_activity__register">Registreren</string>
   <string name="preferences_chats__chat_backups">Back-up-bestanden maken</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Sta Signal toe om versleutelde back-up-bestanden van gesprekken en media te maken naar /Signal/Backups op je interne opslag. Als dit is ingeschakeld maakt Signal automatisch elke dag een back-up-bestand. Alleen de twee meest recente geslaagde back-up-bestanden worden bewaard.</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Laat Signal versleutelde back-up-bestanden maken van gesprekken en media.</string>
   <string name="preferences_chats__create_backup">Nu een back-up-bestand maken</string>
   <string name="preferences_chats__verify_backup_passphrase">Back-up-wachtwoord verifiëren</string>
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test je back-up-wachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>
@@ -2169,6 +2213,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="BackupDialog_delete_backups">Alle back-up-bestanden wissen?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-up-bestanden wilt laten maken, dan zal Signal ook alle bestaande back-up-bestanden in /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
   <string name="BackupDialog_delete_backups_statement">Back-up-bestanden wissen</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-up-bestanden te kunnen inschakelen.</string>
+  <string name="BackupDialog_choose_folder">Kies een map</string>
   <string name="BackupDialog_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Voer je back-up-wachtwoord in om deze te verifiëren</string>
   <string name="BackupDialog_verify">Verifiëren</string>
@@ -2178,6 +2224,12 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ChatsPreferenceFragment_last_backup_s">Meest recente back-up-bestand: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Bezig</string>
   <string name="LocalBackupJob_creating_backup">Back-up-bestand aan het maken …</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Back-up-bestanden maken is uitgeschakeld.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Back-up-bestand maken is mislukt.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-up-bestand is te groot om op dit volume op te slaan.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte op je back-up-bestand op te slaan.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Wegens een onbekende reden is het maken van een back-up-bestand mislukt .</string>
   <string name="ProgressPreference_d_messages_so_far">%d berichten tot nu toe</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Voer de registratiecode in die naar %s verzonden is.</string>
   <string name="RegistrationActivity_wrong_number">Verkeerd nummer</string>
@@ -2289,5 +2341,12 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="GroupLinkBottomSheet_share">Verzenden via andere app</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De verwijzing is momenteel niet actief</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Het beginnen met afspelen is mislukt.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Audiobericht · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naar %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

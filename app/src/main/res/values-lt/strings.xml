@@ -363,6 +363,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Nusistatykite savo profilį</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jūsų profilis yra šifruotas ištisiniu būdu. Jūsų profilis ir jam atliekami pakeitimai bus matomi jūsų adresatams, kai inicijuosite ar priimsite naujus pokalbius, arba, kai prisijungsite prie naujų grupių.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nustatyti avatarą</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Atkurti iš atsarginės kopijos?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Atkurkite savo žinutes ir mediją iš vietinės atsarginės kopijos. Jeigu neatkursite dabar, vėliau to padaryti nebegalėsite.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Atkūrimo iš atsarginės kopijos piktograma</string>
+  <string name="ChooseBackupFragment__choose_backup">Pasirinkti atsarginę kopiją</string>
+  <string name="ChooseBackupFragment__learn_more">Sužinoti daugiau</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Atkūrimas užbaigtas</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Norėdami ir toliau naudoti atsargines kopijas, pasirinkite aplanką. Šioje vietoje bus įrašytos naujos atsarginės kopijos.</string>
+  <string name="RestoreBackupFragment__choose_folder">Pasirinkti aplanką</string>
+  <string name="RestoreBackupFragment__not_now">Ne dabar</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Pokalbių atsarginės kopijos</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Atsarginės kopijos yra šifruojamos naudojant slaptafrazę ir yra laikomos jūsų įrenginyje.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Daryti atsarginę kopiją</string>
+  <string name="BackupsPreferenceFragment__last_backup">Paskutinė atsarginė kopija: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Atsarginių kopijų aplankas</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Patikrinti atsarginės kopijos slaptafrazę</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Išbandyti savo atsarginės kopijos slaptafrazę ir patikrinti ar ji sutampa</string>
+  <string name="BackupsPreferenceFragment__turn_on">Įjungti</string>
+  <string name="BackupsPreferenceFragment__turn_off">Išjungti</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Norėdami atkurti atsarginę kopiją, įsidiekite naują Signal kopiją. Atverkite programėlę ir bakstelėkite ant „Atkurti atsarginę kopiją“, o tuomet nustatykite atsarginės kopijos failo vietą. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Sužinoti daugiau</string>
+  <string name="BackupsPreferenceFragment__in_progress">Vykdoma…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">Jau %1$d…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Norint daryti atsargines kopijas, Signal reikia išorinės saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Saugyklą“.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Naudojamas tinkintas: %s</string>
   <string name="CustomDefaultPreference_using_default">Naudojamas numatytasis: %s</string>
@@ -404,6 +430,14 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ši Signal versija nebegalioja. Norėdami siųsti ir gauti žinutes, atnaujinkite programėlę dabar.</string>
   <string name="ExpiredBuildReminder_update_now">Atnaujinti dabar</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d laukiantis narių prašymas.</item>
+    <item quantity="few">%d laukiantys narių prašymai.</item>
+    <item quantity="many">%d laukiančių narių prašymų.</item>
+    <item quantity="other">%d laukiantis narių prašymas.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Rodyti</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Bendrinti su</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Keli priedai yra palaikomi tik paveikslams ir vaizdo įrašams</string>
@@ -839,13 +873,11 @@
   <string name="MessageRecord_left_group">Jūs išėjote iš grupės.</string>
   <string name="MessageRecord_you_updated_group">Jūs atnaujinote grupę.</string>
   <string name="MessageRecord_the_group_was_updated">Grupė buvo atnaujinta.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Jūs skambinote</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Skambino adresatas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Praleistas skambutis</string> -->
+  <string name="MessageRecord_you_called_date">Jūs skambinote · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Praleistas skambutis · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s atnaujino grupę.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">Jums skambino %s</string> -->
+  <string name="MessageRecord_s_called_you_date">Jums skambino %1$s · %2$s</string>
   <string name="MessageRecord_called_s">Skambino %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Praleistas skambutis nuo %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s atėjo į Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Jūs išjungėte išnykstančias žinutes.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s išjungė išnykstančias žinutes.</string>
@@ -990,11 +1022,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Priimti</string>
+  <string name="MessageRequestBottomView_continue">Tęsti</string>
   <string name="MessageRequestBottomView_delete">Ištrinti</string>
   <string name="MessageRequestBottomView_block">Užblokuoti</string>
   <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Naudotojas nežinos, kad matėte jo žinutę tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Jūs negausite jokių žinučių tol, kol neatblokuosite šio naudotojo.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tęsti jūsų pokalbį su šia grupe ir bendrinti jūsų vardą ir nuotrauką su jos nariais?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Tęsti jūsų pokalbį su %1$s ir bendrinti jūsų vardą ir nuotrauką su šiuo žmogumi?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jie nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės? Kiti asmenys nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Atblokuoti šią grupę ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jūs negausite jokių žinučių tol, kol jų neatblokuosite.</string>
@@ -1172,6 +1207,7 @@
   <string name="RegistrationActivity_more_information">Daugiau informacijos</string>
   <string name="RegistrationActivity_less_information">Mažiau informacijos</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų adresatų ir medijos</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų adresatų</string>
   <string name="RegistrationActivity_rate_limited_to_service">Atlikote per daug bandymų užregistruoti šį numerį. Vėliau bandykite dar kartą.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepavyksta prisijungti prie paslaugos. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Norint lengvai patvirtinti jūsų telefono numerį, Signal gali automatiškai aptikti patvirtinimo kodą, jei leisite programai Signal peržiūrėti SMS žinutes.</string>
@@ -1353,6 +1389,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iškarpinėje palyginimui nebuvo rasta jokio saugumo numerio</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Norėdami matyti naudotojo %1$s saugumo numerį, iš pradžių, turite apsikeisti su juo žinutėmis.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1425,6 +1462,7 @@
   <string name="NotificationChannel_other">Kitas</string>
   <string name="NotificationChannel_group_messages">Žinutės</string>
   <string name="NotificationChannel_missing_display_name">Nežinoma</string>
+  <string name="NotificationChannel_voice_notes">Balso pastabos</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilio vardas sėkmingai nustatytas.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
@@ -1527,9 +1565,17 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klaida gaunant adresatus, patikrinkite tinklo ryšį</string>
   <string name="ContactSelectionListFragment_username_not_found">Naudotojo vardas nerastas</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">„%1$s“ nėra Signal naudotojas. Patikrinkite naudotojo vardą ir bandykite dar kartą.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Gerai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupė pilna</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jums nereikia pridėti save į grupę</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Pasiektas didžiausias grupės dydis</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal grupėse gali būti daugiausiai %1$d narių.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Pasiekta rekomenduojamo narių skaičiaus riba</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal grupės geriausiai veikia, kai jose yra %1$d ar mažiau narių. Pridėjus daugiau narių, žinučių išsiuntimas ir gavimas bus uždelsiamas.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d narys</item>
+    <item quantity="few">%1$d nariai</item>
+    <item quantity="many">%1$d narių</item>
+    <item quantity="other">%1$d narys</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nėra užblokuotų adresatų</string>
   <!--contact_selection_list_fragment-->
@@ -2249,7 +2295,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Mes tikime privatumu.</b></p><p>Signal neseka jūsų ir nerenka jokių jūsų duomenų. Norėdami visiems patobulinti Signal, remiamės naudotojų atsiliepimais, <b>ir norėtume išgirsti jūsų atsiliepimą.</b></p><p>Mes vykdome apklausą, kad suprastume kaip naudojatės Signal. Apklausoje mes nerenkame jokių duomenų, galinčių jus identifikuoti. Jei pageidaujate pateikti papildomą atsiliepimą, turėsite galimybę pateikti kontaktinę informaciją.</p><p>Jei turite kelias minutes ir norėtumėte pateikti atsiliepimą, mes su malonumu jus išklausysime.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Dalyvauti apklausoje</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, ačiū</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Apklausą talpina Surveygizmo, saugioje srityje surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Apklausą talpina Alchemer, saugioje srityje surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>
@@ -2265,6 +2311,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Atrakinkite, norėdami matyti laukiančias žinutes</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Atsarginės kopijos slaptafrazė</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Atsarginės kopijos bus įrašytos į išorinę saugyklą ir bus užšifruotos, naudojant žemiau esančią slaptafrazę. Norėdami atkurti atsarginę kopiją, privalėsite turėti šią slaptafrazę.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Norėdami atkurti atsarginę kopiją, privalote turėti šią slaptafrazę.</string>
+  <string name="backup_enable_dialog__folder">Aplankas</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Aš užsirašiau šią slaptafrazę. Be jos aš negalėsiu atkurti atsarginės kopijos.</string>
   <string name="registration_activity__restore_backup">Atkurti atsarginę kopiją</string>
   <string name="registration_activity__skip">Praleisti</string>
@@ -2290,6 +2338,8 @@
   <string name="BackupDialog_delete_backups">Ištrinti atsargines kopijas?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Išjungti ir ištrinti visas vietines atsargines kopijas?</string>
   <string name="BackupDialog_delete_backups_statement">Ištrinti atsargines kopijas</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Norėdami įjungti atsargines kopijas, pasirinkite aplanką. Atsarginės kopijos bus įrašomos šioje vietoje.</string>
+  <string name="BackupDialog_choose_folder">Pasirinkti aplanką</string>
   <string name="BackupDialog_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Norėdami patikrinti, įveskite atsarginės kopijos slaptafrazę</string>
   <string name="BackupDialog_verify">Patvirtinti</string>
@@ -2299,6 +2349,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Paskiausia atsarginė kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Eigoje</string>
   <string name="LocalBackupJob_creating_backup">Daroma atsarginė kopija…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Atsarginės kopijos išjungtos.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Atsarginė kopija nepavyko.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsų atsarginių kopijų katalogas buvo ištrintas ar perkeltas.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsų atsarginės kopijos failas yra per didelis, kad jį galima būtų laikyti šiame tome.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Nepakanka vietos, kad galima būtų laikyti jūsų atsarginę kopiją.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Dėl nežinomos priežasties atsarginė kopija patyrė nesėkmę.</string>
   <string name="ProgressPreference_d_messages_so_far">Jau %d žinučių</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Įveskite į %s išsiųstą patvirtinimo kodą.</string>
   <string name="RegistrationActivity_wrong_number">Neteisingas numeris</string>
@@ -2410,5 +2466,12 @@
   <string name="GroupLinkBottomSheet_share">Bendrinti</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Šiuo metu nuoroda nėra aktyvi</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Nepavyko pradėti atkūrimo.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Balso žinutė · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naudotojui %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

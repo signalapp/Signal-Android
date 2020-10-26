@@ -349,6 +349,22 @@
   <string name="CreateProfileActivity_set_up_your_profile">Podesite svoj profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Vaš profil šifriran je od pošiljaoca do primaoca. Bit će vidljiv Vašim kontaktima, kao i sve promjene na profilu, kada pokrenete ili prihvatite novu konverzaciju i kada se pridružite novim grupama.</string>
   <string name="CreateProfileActivity_set_avatar_description">Postavi sliku profila</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Vratiti podatke iz rezervne kopije?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Vratite svoje poruke i datoteke iz lokalne rezervne kopije. Ako to ne učinite sada, nećete biti u mogućnosti vratiti podatke kasnije.</string>
+  <string name="ChooseBackupFragment__learn_more">Saznajte više</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">Odaberi direktorij</string>
+  <string name="RestoreBackupFragment__not_now">Ne sada</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Rezervne kopije poruka</string>
+  <string name="BackupsPreferenceFragment__create_backup">Kreiraj rezervnu kopiju</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Potvrdite lozinku za rezervne kopije</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Provjerite svoju lozinku za rezervne kopije i potvrdite da je tačna</string>
+  <string name="BackupsPreferenceFragment__turn_on">Uključi</string>
+  <string name="BackupsPreferenceFragment__turn_off">Isključi</string>
+  <string name="BackupsPreferenceFragment__learn_more">Saznajte više</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signalu je potrebno dopuštenje da pristupi memoriji uređaja kako bi mogao kreirati rezervne kopije, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Prostor za pohranu\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći vlastitu: %s</string>
   <string name="CustomDefaultPreference_using_default">Koristeći ponuđenu: %s</string>
@@ -390,6 +406,8 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Ova verzija Signala je istekla. Ažurirajte aplikaciju sada da biste mogli slati i primati poruke.</string>
   <string name="ExpiredBuildReminder_update_now">Ažuriraj sada</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">Pregled</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dijeli sa</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Višestruki prilozi podržani su samo za slike i videozapise</string>
@@ -805,13 +823,8 @@
   <string name="MessageRecord_left_group">Napustili ste grupu.</string>
   <string name="MessageRecord_you_updated_group">Ažurirali ste grupu.</string>
   <string name="MessageRecord_the_group_was_updated">Grupa je ažurirana.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Vi ste zvali</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt nazvan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Propušten poziv</string> -->
   <string name="MessageRecord_s_updated_group">%s je ažurirao/la grupu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s Vas je zvao/la</string> -->
   <string name="MessageRecord_called_s">Zvao/la %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Propušten poziv od %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s je na Signalu!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Onemogućili ste nestajuće poruke.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s je onemogućio/la nestajuće poruke.</string>
@@ -951,6 +964,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen sa drugog uređaja</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Prihvati</string>
+  <string name="MessageRequestBottomView_continue">Nastavi</string>
   <string name="MessageRequestBottomView_delete">Izbriši</string>
   <string name="MessageRequestBottomView_block">Blokiraj</string>
   <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
@@ -1480,8 +1494,6 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Greška prilikom preuzimanja kontakta, provjerite internet-konekciju</string>
   <string name="ContactSelectionListFragment_username_not_found">Korisničko ime nije pronađeno</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ne koristi Signal. Provjerite korisničko ime i pokušajte ponovo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Uredu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupa je popunjena</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nema potrebe da sebe uvrštavate u grupu</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nema blokiranih lica</string>
@@ -2186,7 +2198,6 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Mi vjerujemo u privatnost.</b></p><p>Signal Vas ne prati, niti prikuplja Vaše podatke. Da bismo unaprijedili Signal, oslanjamo se na utiske i sugestije korisnika, <b>i voljeli bismo čuti Vaše.</b></p><p>Pokrenuli smo anketu s ciljem da razumijemo kako Vi koristite Signal. Naša anketa ne pohranjuje bilo kakve podatke na temelju kojih biste bili identifikovani. Ako želite s nama podijeliti dodatna zapažanja, imat ćete mogućnost da ostavite kontakt-informacije.</p><p>Ako možete izdvojiti nekoliko minuta i kazati nam svoje utiske, bit ćemo sretni da ih saslušamo.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Započni anketu</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Anketa se sprovodi putem Surveygizma na sigurnoj domeni surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Sličica transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>
@@ -2227,6 +2238,7 @@
   <string name="BackupDialog_delete_backups">Obrisati rezervne kopije?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Onemogućiti i obrisati sve lokalne rezervne kopije?</string>
   <string name="BackupDialog_delete_backups_statement">Obriši rezervne kopije</string>
+  <string name="BackupDialog_choose_folder">Odaberi direktorij</string>
   <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Unesite svoju lozinku za rezervne kopije da potvrdite</string>
   <string name="BackupDialog_verify">Verifikuj</string>
@@ -2347,5 +2359,9 @@
   <string name="GroupLinkBottomSheet_share">Dijeli</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Link trenutno nije aktivan</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

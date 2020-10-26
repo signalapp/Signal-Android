@@ -329,12 +329,38 @@
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعضی از مخاطبین نمی‌توانند در گروه‌های قدیمی باشند.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم عکس پروفایل</string>
-  <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم پروفایل</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">خطا در ثبت عکس پروفایل</string>
+  <string name="CreateProfileActivity_problem_setting_profile">مشکل در ثبت پروفایل</string>
   <string name="CreateProfileActivity_profile_photo">عکس پروفایل</string>
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل شما رمزگذاری سرتاسری شده است. پروفایل شما و تغییرات آن، هنگامی که شما مکالمه‌های جدیدی را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید، برای مخاطبین شما قابل مشاهده خواهد بود.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">بازگردانی از پشتیبان؟</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به انجام این کار نخواهید بود. </string>
+  <string name="ChooseBackupFragment__icon_content_description">بازگردانی از طریق نگارک پشتیبان</string>
+  <string name="ChooseBackupFragment__choose_backup">پشتیبان را انتخاب کنید</string>
+  <string name="ChooseBackupFragment__learn_more">بیشتر یاد بگیرید</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">بازگردانی کامل شد</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">برای ادامهٔ استفاده از پشتیبان‌ها، لطفاً یک پوشه انتخاب کنید. پشتیبان‌های جدید در این محل ذخیره خواهند شد.</string>
+  <string name="RestoreBackupFragment__choose_folder">انتخاب پوشه</string>
+  <string name="RestoreBackupFragment__not_now">حالا نه</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">پشتیبان‌های گفتگو</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">پشتیبان‌ها با یک گذرواژه رمزگذاری شده و روی دستگاه شما ذخیره می‌شوند.</string>
+  <string name="BackupsPreferenceFragment__create_backup">ایجاد پشتیبان</string>
+  <string name="BackupsPreferenceFragment__last_backup">آخرین پشتیبان‌گیری: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">پوشهٔ پشتیبان</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">گذرواژهٔ پشتیبان را تأیید کنید</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">گذرواژهٔ پشتیبان خود را امتحان کرده و از همخوانی داشتن آن اطمینان حاصل کنید.</string>
+  <string name="BackupsPreferenceFragment__turn_on">روشن</string>
+  <string name="BackupsPreferenceFragment__turn_off">خاموش</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">برای بازگردانی یک پشتیبان، یک نسخهٔ جدید Signal را نصب کنید. برنامه را باز کرده و روی «بازگردانی پشتیبان» ضربه بزنید، سپس فایل پشتیبان را مشخص کنید. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">بیشتر یاد بگیرید</string>
+  <string name="BackupsPreferenceFragment__in_progress">در حال پیشرفت…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d تا بحال…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal برای پشتیبان‌گیری نیاز به مجوز حافظه دارد، اما اجازه آن داده نشده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «ذخیره‌سازی» را فعال کنید.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
   <string name="CustomDefaultPreference_using_default">استفاده از پیش‌فرض: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">این نسخهٔ Signal منقضی شده است. برای ارسال و دریافت پیام‌ها همین حالا به‌روزرسانی کنید.</string>
   <string name="ExpiredBuildReminder_update_now">همین حالا به‌روزرسانی کن</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d درخواست عضویت در حال انتظار.</item>
+    <item quantity="other">%d درخواست عضویت در حال انتظار.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">نمایش</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">اشتراک‌گذاشتن با</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">انتخاب چندگانهٔ پیوست‌ها فقط برای عکس‌ها و ویدئوها پشتیبانی می‌شود.</string>
@@ -402,7 +434,7 @@
   <string name="ChooseNewAdminActivity_done">انجام شد</string>
   <string name="ChooseNewAdminActivity_you_left">شما «%1$s» را ترک کردید.</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">اشتراک‌گذاشتن نام و عکس پروفایل خود با این گروه؟</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">اشتراک‌گذاشتن نام و عکس خود با این گروه؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">آیا می‌خواهید نام و عکس پروفایل شما به همهٔ اعضای کنونی و آتی این گروه نشان داده شود؟</string>
   <string name="GroupShareProfileView_make_visible">آشکار کن</string>
   <!--GroupMembersDialog-->
@@ -771,13 +803,11 @@
   <string name="MessageRecord_left_group">شما گروه را ترک کردید.</string>
   <string name="MessageRecord_you_updated_group">شما گروه را به‌روزرسانی کردید.</string>
   <string name="MessageRecord_the_group_was_updated">گروه به‌روزرسانی شد.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">شما تماس گرفتید</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">مخاطب تماس گرفت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">تماس از دست رفته</string> -->
+  <string name="MessageRecord_you_called_date">شما تماس گرفتید · %1$s</string>
+  <string name="MessageRecord_missed_call_date">تماس از دست رفته · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s گروه را به‌روزرسانی کرد.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s با شما تماس گرفت</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s با شما تماس گرفت · %2$s</string>
   <string name="MessageRecord_called_s">با %s تماس گرفته شد</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s در Signal است!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام‌های ناپدید شونده را غیرفعال کردید.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام‌های ناپدید شونده را غیرفعال کرد.</string>
@@ -912,14 +942,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ امنیتی خود با %s را از دستگاه دیگری تأیید نشده علامت زدید</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">پذیرفتن</string>
+  <string name="MessageRequestBottomView_continue">ادامه دادن</string>
   <string name="MessageRequestBottomView_delete">حذف</string>
   <string name="MessageRequestBottomView_block">مسدود کردن</string>
   <string name="MessageRequestBottomView_unblock">رفع مسدودیت</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با آن‌ها به اشتراک می‌گذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با آن‌ها به اشتراک می‌گذارید؟ تا زمانی که مسدودیت ‌آن‌ها را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که مسدودیت او را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمه با این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">آیا به مکالمه با %1$s ادامه می‌دهید و نام و عکس خود را با او به اشتراک می‌گذارید؟</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">به این گروه می‌پیوندید؟ تا زمانی که نپذیرید آن‌ها متوجه نخواهند شد که پیام‌شان را خوانده‌اید.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">مسدودیت این گروه را رفع کرده و نام و عکس‌ خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که مسدودیت آن‌ها را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">مسدودیت این گروه را می‌کنید و نام و عکس‌ خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که مسدودیت آن‌ها را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestProfileView_member_of_one_group">عضو %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">عضو %1$s و %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">عضو %1$s، %2$s و %3$s </string>
@@ -987,7 +1020,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">پین نادرست</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">رد کردن ورود پین؟</string>
   <string name="PinRestoreEntryFragment_need_help">به راهنمایی نیاز دارید؟</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">پین شما یک کد %1$d+ رقمی است که می‌تواند شامل اعداد یا حروف باشد.\n\n اگر نمی‌توانید پین را به یاد بیاورید، می‌توانید یک پین جدید ایجاد کنید. می‌توانید دوباره ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره شده مانند اطلاعات پروفایل‌‌تان را از دست می‌دهید.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">پین شما یک کد %1$d+ رقمی است که می‌تواند شامل اعداد یا حروف باشد.\n\n اگر نمی‌توانید پین را به یاد بیاورید، می‌توانید یک پین جدید ایجاد کنید. می‌توانید دوباره ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره شده مانند اطلاعات پروفایل خود را از دست می‌دهید.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">اگر نمی‌توانید پین را به یاد بیاورید، یک پین جدید ایجاد کنید. شما می‌توانید ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره‌ شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">ایجاد پین جدید</string>
   <string name="PinRestoreEntryFragment_contact_support">تماس با پشتیبانی</string>
@@ -995,14 +1028,14 @@
   <string name="PinRestoreEntryFragment_skip">رد شدن</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">شما %1$d فرصت دیگر باقی دارید. اگر فرصت‌های شما تمام شوند، می‌توانید یک پین جدید بسازید. شما می‌توانید ثبت‌نام و از حساب خود استفاده کنید ولی برخی تنظیمات ذخیره‌شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</item>
-    <item quantity="other">شما %1$d فرصت دیگر باقی دارید. اگر فرصت‌های شما تمام شوند، می‌توانید یک پین جدید بسازید. شما می‌توانید ثبت‌نام و از حساب خود استفاده کنید ولی برخی تنظیمات ذخیره‌شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</item>
+    <item quantity="other">شما %1$d فرصت دیگر باقی دارید. اگر فرصت‌های شما تمام شوند، می‌توانید یک پین جدید بسازید. شما می‌توانید ثبت‌نام و از حساب خود استفاده کنید ولی برخی تنظیمات ذخیره‌شده مانند اطلاعات پروفایل خود را از دست می‌دهید.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">ثبت‌نام Signal - نیاز به راهنمایی در مورد پین اندروید</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">پین حرفی‌-عددی را وارد کنید</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">پین عددی را وارد کنید</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">پین خود را ایجاد کنید</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">فرصت‌های شما برای حدس پین تمام شد، اما شما هنوز می‌توانید با ایجاد یک پین جدید به حساب Signal تان دسترسی داشته باشید. به منظور حفظ امنیت و حریم خصوصی شما، حساب شما بدون هیچ اطلاعات و تنظیماتی ذخیره‌شده‌ای از پروفایل شما بازگردانی خواهد شد.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">فرصت‌های شما برای حدس پین تمام شد، اما شما هنوز می‌توانید با ایجاد یک پین جدید به حساب Signal خود دسترسی داشته باشید. به منظور حفظ امنیت و حریم خصوصی شما، حساب شما بدون هیچ اطلاعات و تنظیمات از پیش ذخیره‌شده‌ای بازگردانی خواهد شد.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">ایجاد پین جدید</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">اخطار</string>
@@ -1081,6 +1114,7 @@
   <string name="RegistrationActivity_more_information">اطلاعات بیشتر</string>
   <string name="RegistrationActivity_less_information">اطلاعات کمتر</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">برای ارتباط با دوستان، تبادل پیام و برقراری تماس امن Signal نیاز دارد تا به مخاطبین و رسانه‌های شما دسترسی داشته باشد</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal به دسترسی به مخاطبین شما برای برقراری ارتباط با دوستان، تبادل پیام و گرفتن تماس‌های امن نیاز دارد.</string>
   <string name="RegistrationActivity_rate_limited_to_service">شما تلاش‌های بسیاری برای ثبت‌نام این شماره انجام داده‌اید. لطفاً دوباره امتحان کنید.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">عدم توانایی در اتصال به سرویس. لطفاً اتصال شبکه را بررسی کرده و دوباره تلاش کنید.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">برای تأیید شماره‌ٔ همراه خود، Signal می‌تواند به صورت خودکار کد تأیید شما را شناسایی کند، در صورتی که به Signal اجازهٔ زؤیت پیامک‌ها را بدهید.</string>
@@ -1259,6 +1293,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">هیچ شمارهٔ امنیتی برای مقایسه در کلیپ‌بورد پیدا نشد</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید. </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">امکان اسکن کردن کد QR بدون مجوز دوربین وجود ندارد</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">شما باید ابتدا چند پیام مبادله کنید تا شمارهٔ امنیتی %1$s را مشاهده کنید.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1331,8 +1366,9 @@
   <string name="NotificationChannel_other">سایر</string>
   <string name="NotificationChannel_group_messages">پیام‌ها</string>
   <string name="NotificationChannel_missing_display_name">ناشناخته</string>
+  <string name="NotificationChannel_voice_notes">یادداشت‌های صوتی</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">نام پروفایل با موفقیت تنظیم شد.</string>
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">نام پروفایل با موفقیت ثبت شد.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخ سریع هنگام قفل بودن Signal در دسترس نیست!</string>
@@ -1431,9 +1467,15 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبین، اتصال اینترنت خود را بررسی کنید</string>
   <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">خوب</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">گروه پر است</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">نیازی نیست که خود را به گروه اضافه کنید</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">به حداکثر اندازهٔ گروه رسیدید</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">گروه‌های Signal می‌توانند حداکثر %1$d عضو داشته باشند.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">تعداد اعضا به انتها رسیده است</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">گروه‌های Signal با %1$d عضو یا کمتر به بهترین شکل عمل می‌کنند. افزودن اعضای بیشتر باعث بوجود آمدن تأخیر در ارسال و دریافت پیام‌ها خواهد شد.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d عضو</item>
+    <item quantity="other">%1$d عضو</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">هیچ مخاطب مسدود شده‌ای وجود ندارد</string>
   <!--contact_selection_list_fragment-->
@@ -2121,7 +2163,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ما به حریم خصوصی باور داریم.</b></p><p>Signal شما را دنبال و اطلاعات شما را جمع‌آوری نمی‌کند. برای بهبود Signal برای همه، ما به بازخورد کاربران متکی هستیم، <b>و دوست داریم بازخورد شما را داشته باشیم.</b></p><p>ما در حال ترتیب یک نظرسنجی برای فهمیدن اینکه شما چگونه از Signal استفاده می‌کنید هستیم. نظرسنجی ما هیچ‌گونه اطلاعاتی را که موجب شناسایی شما بشود، جمع‌آوری نمی‌کند. اگر مایل به اشتراک بازخورد بیشتری هستید، گزینهٔ افزودن اطلاعات تماس خود را خواهید داشت.</p><p>اگر چند دقیقه فرصت و بازخوردی برای ارائه دارید، ما دوست داریم که از شما بشنویم.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">شرکت در نظرسنجی</string>
   <string name="ResearchMegaphoneDialog_no_thanks">نه ممنون</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">این نظرسنجی از سوی Surveygizmo در دامنهٔ امن surveys.signalusers.org میزبانی می‌شود.</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">این نظرسنجی بوسیلهٔ Alchemer در دامنهٔ امن surveys.signalusers.org ‌میزبانی می‌شود.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
@@ -2137,6 +2179,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">جهت دیدن پیام‌های در حال انتظار قفل را باز کنید</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">گذرواژهٔ پشتیبان‌</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">پشتیبان‌ها روی یک حافظهٔ خارجی ذخیره و با گذرواژهٔ زیر رمزنگاری خواهند شد. شما برای بازگردانی پشتیبان خود باید گذرواژهٔ زیر را داشته باشید.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">شما باید این گذرواژه را برای بازگردانی یک پشتیبان داشته باشید.</string>
+  <string name="backup_enable_dialog__folder">پوشه</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر به بازگردانی پشتیبان خود نخواهم بود.</string>
   <string name="registration_activity__restore_backup">بازگردانی پشتیبان</string>
   <string name="registration_activity__skip">رد شدن</string>
@@ -2162,6 +2206,8 @@
   <string name="BackupDialog_delete_backups">حذف پشتیبان‌ها؟</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">غیرفعال کردن و حذف تمامی پشتیبان‌های محلی؟</string>
   <string name="BackupDialog_delete_backups_statement">حذف پشتیبان‌ها</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">برای فعال کردن پشتیبان‌ها، یک پوشه انتخاب کنید. پشتیبان‌ها در این محل ذخیره خواهند شد.</string>
+  <string name="BackupDialog_choose_folder">انتخاب پوشه</string>
   <string name="BackupDialog_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">گذرواژهٔ پشتیبان را برای تأیید وارد کنید</string>
   <string name="BackupDialog_verify">تآیید</string>
@@ -2171,6 +2217,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">آخرین پشتیبان: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">در حال انجام</string>
   <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">پشتیبان‌ها غیرفعال شدند.</string>
+  <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری موفق نبود.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس پشتیبان‌ شما حذف شده یا انتقال یافته است.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">حجم فایل پشتیبان شما برای نگهداری در این محل زیاد است.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">فضای کافی برای نگهداری پشتیبان شما وجود ندارد.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">پشتیبان‌گیری به علتی نامعلوم شکست خورد.</string>
   <string name="ProgressPreference_d_messages_so_far">%d پیام تا به الان</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">لطفاً کد تأیید ارسال شده به %s را وارد کنید.</string>
   <string name="RegistrationActivity_wrong_number">شمارهٔ اشتباه</string>
@@ -2282,5 +2334,12 @@
   <string name="GroupLinkBottomSheet_share">اشتراک‌گذاری</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">پیوند در حال حاضر فعال نیست</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">نمی‌تواند پخش شود.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">پیام صوتی · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s به %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

@@ -335,6 +335,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O seu perfil é criptografado de ponta-a-ponta. O seu perfil e as mudanças à ele serão visíveis aos seus contatos, quando você iniciar ou aceitar uma nova conversa, e quando você participar em grupos.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Restaurar do backup?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaurar suas mensagens e mídias de um backup local. Se você não restaurar agora, você não conseguirá restaurar depois.</string>
+  <string name="ChooseBackupFragment__icon_content_description">O ícone Restaurar do backup</string>
+  <string name="ChooseBackupFragment__choose_backup">Escolha o backup</string>
+  <string name="ChooseBackupFragment__learn_more">Saiba mais</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Restauração concluída</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Para continuar usando os backups, por favor, escolha uma pasta. Novos backups serão salvos neste local.</string>
+  <string name="RestoreBackupFragment__choose_folder">Escolher pasta</string>
+  <string name="RestoreBackupFragment__not_now">Agora não</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Backups de chat</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Os backups são criptografados com uma frase-personalizada e armazenados no seu dispositivo.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Criar backup</string>
+  <string name="BackupsPreferenceFragment__last_backup">Último backup: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Pasta de backup</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar senha de backup</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste sua senha de backup e verifique se elas correspondem.</string>
+  <string name="BackupsPreferenceFragment__turn_on">Ativar</string>
+  <string name="BackupsPreferenceFragment__turn_off">Desativar</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Para restaurar um backup, faça uma nova instalação do Signal. Abra o aplicativo e toque no \"Restaurar o backup\", depois localize um arquivo de backup. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Saiba mais</string>
+  <string name="BackupsPreferenceFragment__in_progress">Em andamento…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d até agora…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal precisa da permissão ao armazenamento externo para fazer backup, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando padrão: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Esta versão do Signal não é mais suportada. Atualize agora para poder enviar e receber as mensagens.</string>
   <string name="ExpiredBuildReminder_update_now">Atualize agora</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d pedido de membro pendente.</item>
+    <item quantity="other">%d pedidos de membros pendentes.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Exibir</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Encaminhar para</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Muitos anexos de uma só vez são suportados apenas para imagens e vídeos.</string>
@@ -771,13 +803,11 @@
   <string name="MessageRecord_left_group">Você saiu do grupo.</string>
   <string name="MessageRecord_you_updated_group">Você atualizou o grupo.</string>
   <string name="MessageRecord_the_group_was_updated">O grupo foi atualizado.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Chamada efetuada</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Chamada recebida</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Chamada perdida</string> -->
+  <string name="MessageRecord_you_called_date">Você chamou · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Chamada perdida · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s atualizou o grupo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ligou para você</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s chamou você · %2$s</string>
   <string name="MessageRecord_called_s">Chamou %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s está no Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Você desabilitou as mensagens efêmeras.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desabilitou as mensagens efêmeras.</string>
@@ -912,11 +942,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Você marcou o seu número de segurança com %s como não verificado através de outro dispositivo</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Aceitar</string>
+  <string name="MessageRequestBottomView_continue">Continuar</string>
   <string name="MessageRequestBottomView_delete">Excluir</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permita %1$s enviar uma mensagem para você e compartilhar seu nome e foto com outros? Eles não saberão que você viu a mensagem deles até que você aceite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permita %1$s enviar uma mensagem para você e compartilhar seu nome e foto com outros? Você não receberá nenhumas mensagens até que os desbloqueie.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar sua conversa com este grupo e compartilhar seu nome e foto com seus membros?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continuar sua conversa com %1$s e compartilhar seu nome e foto com eles?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Você quer entrar nesse grupo e compartilhar seu nome e foto com os membros dele? Eles não saberão que você visualizou as mensagens deles se você não aceitar.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Participar desse grupo? Eles não saberão que você leu suas mensagens até que você aceite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Você quer desbloquear esse grupo e compartilhar seu nome e foto com os membros dele? Você não receberá nenhuma mensagem deles até que desbloqueie o grupo.</string>
@@ -1082,6 +1115,7 @@
   <string name="RegistrationActivity_more_information">Mais informações</string>
   <string name="RegistrationActivity_less_information">Menos informações</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Signal precisa de acesso aos seus contatos e arquivos de mídia para poder se conectar a amigos, trocar mensagens, e fazer chamadas seguras</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal precisa acessar seus contatos para te conectar com seus amigos, trocar as mensagens, e fazer ligações seguras</string>
   <string name="RegistrationActivity_rate_limited_to_service">Para fazer chamada %1$s, Signal precisa ter acesso à sua câmera</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não é possível conectar ao serviço. Favor verificar a conexão à rede e tentar novamente.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar facilmente seu número de telefone, o Signal pode detectar automaticamente seu código de verificação desde que você permita ao Signal acessar suas mensagens SMS.</string>
@@ -1178,7 +1212,7 @@
   <string name="SubmitDebugLogActivity_submit">Enviar</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Falha ao enviar os relatórios</string>
   <string name="SubmitDebugLogActivity_success">Sucesso!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie essa URL e adicione seu relatório de problemas ou envie para o email: \n\n &lt;b&gt;%1$s</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie esse URL e adicione-o ao seu relatório de problemas ou e-mail de suporte: \n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="SubmitDebugLogActivity_share">Compartilhar</string>
   <!--SupportEmailUtil-->
@@ -1261,6 +1295,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Nenhum número de segurança a ser comparado foi encontrado na área de transferência</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal precisa da permissão Câmera para escanear um código QR, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível escanear código QR sem a permissão Câmera</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Primeiro é necessário trocar algumas mensagens para ver o número de segurança de %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1333,6 +1368,7 @@
   <string name="NotificationChannel_other">Outro</string>
   <string name="NotificationChannel_group_messages">Mensagens</string>
   <string name="NotificationChannel_missing_display_name">Desconhecida</string>
+  <string name="NotificationChannel_voice_notes">Notas de Voz</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Nome de perfil definido com sucesso.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Foi encontrado um erro de rede.</string>
@@ -1433,9 +1469,15 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Erro ao buscar os contatos, verifique sua conexão à rede</string>
   <string name="ContactSelectionListFragment_username_not_found">Usuário não encontrado</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" não é um usuário do Signal. Verifique o nome de usuário e tente novamente.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Ok</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">O grupo está cheio</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Você não precisa se adicionar ao grupo</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">O tamanho máximo do grupo alcançado</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Os grupos do Signal podem ter o máximo de %1$d membros.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">O limite recomendado de membros alcançado</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Os grupos do Signal têm melhor desempenho com %1$d membros ou menos. Adicionando mais membros causará atrasos no envio e recebimento de mensagens.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membros</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nenhum contato bloqueado</string>
   <!--contact_selection_list_fragment-->
@@ -1691,7 +1733,7 @@
   <string name="HelpFragment__signal_android_support_request">Solicitação de Suporte Signal Android</string>
   <string name="HelpFragment__debug_log">Relatório de Debug:</string>
   <string name="HelpFragment__na">N/A</string>
-  <string name="HelpFragment__could_not_upload_logs">Não foi possível subir os Logs</string>
+  <string name="HelpFragment__could_not_upload_logs">Não foi possível submeter o registro</string>
   <string name="HelpFragment__signal_support">Suporte Signal</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja o mais detalhista possível para nos ajudar a entender o problema.</string>
   <string name="HelpFragment__no_email_app_found">Nenhum email app encontrado</string>
@@ -1747,7 +1789,7 @@
   <string name="preferences__pref_enter_sends_title">Tecla Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter enviará mensagens de texto</string>
   <string name="preferences__generate_link_previews">Gerar pré-visualização de links</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Carregar pre-visualizações de links diretamente dos sites nas mensagens que você envia.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Carregar pre-visualizações de links diretamente dos sites em mensagens que você envia.</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha o seu próprio contato da lista de contatos.</string>
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
@@ -1801,8 +1843,8 @@
   <string name="preferences__chats">Chats e mídia</string>
   <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
-  <string name="preferences__keep_messages">Guardar mensagens</string>
-  <string name="preferences__clear_message_history">Excluir histórico de mensagens</string>
+  <string name="preferences__keep_messages">Guardar as mensagens</string>
+  <string name="preferences__clear_message_history">Excluir o histórico de mensagens</string>
   <string name="preferences__linked_devices">Dispositivos vinculados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
@@ -1832,7 +1874,7 @@
   <string name="preferences_chats__when_using_wifi">Quando usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Quando em roaming</string>
   <string name="preferences_chats__media_auto_download">Download automático de mídia</string>
-  <string name="preferences_chats__message_history">Histórico da mensagens</string>
+  <string name="preferences_chats__message_history">Histórico de mensagens</string>
   <string name="preferences_storage__storage_usage">Uso do armazenamento</string>
   <string name="preferences_storage__photos">Fotos</string>
   <string name="preferences_storage__videos">Vídeos</string>
@@ -1840,10 +1882,10 @@
   <string name="preferences_storage__audio">Áudio</string>
   <string name="preferences_storage__review_storage">Checar armazenamento</string>
   <string name="preferences_storage__delete_older_messages">Excluir as mensagens mais antigas?</string>
-  <string name="preferences_storage__clear_message_history">Excluir histórico de mensagens?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Isto excluirá para sempre do seu dispositivo todo o histórico de mensagens e mídias que são mais antigos que %1$s.</string>
+  <string name="preferences_storage__clear_message_history">Excluir o histórico de mensagens?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Isto excluirá permanentemente todo o histórico de mensagens e mídia do seu dispositivo que são mais antigos que %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Isto excluirá permanentemente todas as conversas menos as %1$s mensagens mais recentes.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Isto excluirá para sempre do seu dispositivo todo o histórico de mensagens e mídias.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Isto excluirá permanentemente todo o histórico de mensagens e mídia de seu dispositivo.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tem certeza que quer excluir todo o histórico de mensagens?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Todo o histórico de mensagens será excluído permanentemente. Esta ação não pode ser desfeita.</string>
   <string name="preferences_storage__delete_all_now">Excluir tudo agora</string>
@@ -2123,7 +2165,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Acreditamos na privacidade.</b></p><p>O Signal não o rastreia nem colecta seus dados. Para melhorar o Signal para todos, contamos com um feedback, <b>e nós adoraríamos o seu.</b></p><p>Estamos fazendo pesquisas para compreender como vocês utilizam o Signal. A nossa pesquisa não colecta nenhum dado que o pode identificar. Se estiver interessado em compartilhar um feedback adicional, terá a opção de fornecer informações de contacto.</p><p>Se tiver alguns minutos e um feedback para oferecer, gostaríamos de ouvir-lo.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Participar em pesquisa</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Não, obrigado</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">A pesquisa é hospedada pela Surveygizmo no domínio seguro surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">A pesquisa é hospedada pelo Alchemer no domínio seguro: surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
   <string name="ConversationListFragment_loading">Carregando…</string>
@@ -2139,6 +2181,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloqueie para ver as mensagens pendentes</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-chave de backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Os backups serão salvos no armazenamento externo e criptografados com a frase-chave abaixo. Você precisa desta frase-chave para restaurar um backup.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Você deve ter esta frase-senha para restaurar um backup.</string>
+  <string name="backup_enable_dialog__folder">Pasta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela eu não conseguirei restaurar um backup.</string>
   <string name="registration_activity__restore_backup">Restaurar backup</string>
   <string name="registration_activity__skip">Pular</string>
@@ -2164,6 +2208,8 @@
   <string name="BackupDialog_delete_backups">Excluir backups?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Desabilitar e excluir todos os backups locais?</string>
   <string name="BackupDialog_delete_backups_statement">Excluir backups</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Para ativar os backups, escolha uma pasta. Os backups serão salvas neste local.</string>
+  <string name="BackupDialog_choose_folder">Escolher pasta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Digite sua senha de backup para verificação</string>
   <string name="BackupDialog_verify">Verificar</string>
@@ -2173,6 +2219,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Último backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em andamento</string>
   <string name="LocalBackupJob_creating_backup">Criando backup…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Os backups estão desativados.</string>
+  <string name="LocalBackupJobApi29_backup_failed">O backup falhou.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sua pasta de backup foi excluída ou movida.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Seu arquivo de backup é muito grande para ser armazenado neste local.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Não há espaço suficiente para armazenar seu backup.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">O backup falhou por um motivo desconhecido.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até agora</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Favor digitar o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorreto</string>
@@ -2197,7 +2249,7 @@
   <string name="preferences_app_protection__change_your_pin">Troque o seu PIN</string>
   <string name="preferences_app_protection__pin_reminders">Lembretes do PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Os PINs mantêm as informações armazenadas no Signal criptografadas para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar o Signal.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione segurança extra exigindo seu PIN do Signal para registrar seu número de telefone com ele novamente.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione segurança extra exigindo o PIN do Signal para registrar seu número de telefone com o Signal outra vez.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Os lembretes ajudam você a memorizar seu PIN, já que não pode ser recuperado. Você será solicitado com menos frequência ao longo do tempo.</string>
   <string name="preferences_app_protection__turn_off">Desativar</string>
   <string name="preferences_app_protection__confirm_pin">Confirme o PIN</string>
@@ -2284,5 +2336,12 @@
   <string name="GroupLinkBottomSheet_share">Compartilhar</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">O link não está ativo no momento</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Não foi possível iniciar a reprodução.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mensagem de voz · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s para %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

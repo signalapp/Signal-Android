@@ -335,6 +335,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Agordi vian profilon</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Via profilo estas tutvoje ĉifrita. Via profilo kaj ties ŝanĝoj estos videblaj de viaj kontaktoj, kiam vi komencas aŭ akceptas novajn interparolojn, kaj kiam vi aliĝas al novaj grupoj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Difini la avataron</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Restaŭri el savkopio?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaŭri viajn mesaĝojn kaj aŭdvidaĵojn el loka savkopio. Se vi ne restaŭras nun, vi ne povos restaŭri poste.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Piktogramo pri restaŭro el savkopio</string>
+  <string name="ChooseBackupFragment__choose_backup">Elekti savkopion</string>
+  <string name="ChooseBackupFragment__learn_more">Scii pli</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Restaŭro plenumita</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Por plu fari savkopiojn, elektu dosierujon. Estontaj savkopioj konserviĝos en ĉi tiun ejon.</string>
+  <string name="RestoreBackupFragment__choose_folder">Elekti dosierujon</string>
+  <string name="RestoreBackupFragment__not_now">Ne nun</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Mesaĝaj savkopioj</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Savkopioj estas ĉifritaj per pasfrazo, kaj konserviĝas en via aparato.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Krei savkopion</string>
+  <string name="BackupsPreferenceFragment__last_backup">Lasta savkopio: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Savkopia dosierujo</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Kontrolu la savkopian pasfrazon</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Provu vian savkopian pasfrazon kaj kontrolu ties kongruon</string>
+  <string name="BackupsPreferenceFragment__turn_on">Aktivigi</string>
+  <string name="BackupsPreferenceFragment__turn_off">Malaktivigi</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Por restaŭri savkopion, instalu novan Signal-on. Malfermu la aplikaĵon kaj tuŝetu „Restaŭri savkopion“, poste elektu dosieron de savkopi. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Scii pli</string>
+  <string name="BackupsPreferenceFragment__in_progress">Savkopiado…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d ĝis nun…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal bezonas la permeson aliri al ekstera konservejo por krei sekurkopiojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uzante propran: %s</string>
   <string name="CustomDefaultPreference_using_default">Uzante defaŭltan: %s</string>
@@ -376,6 +402,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Tiu ĉi versio de Signal senvalidiĝis. Ĝisdatigu al la nuna versio por daŭrigi sendi kaj ricevi mesaĝojn.</string>
   <string name="ExpiredBuildReminder_update_now">Ĝisdatigi nun</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d pritraktota peto por aniĝi</item>
+    <item quantity="other">%d pritraktotaj petoj por aniĝi</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Montri pli</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Kunhavigi kun</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Pluraj kunsendaĵoj nur eblas kun bildoj kaj videaĵoj</string>
@@ -771,13 +803,11 @@
   <string name="MessageRecord_left_group">Vi forlasis la grupon.</string>
   <string name="MessageRecord_you_updated_group">Vi ĝisdatigis la grupon.</string>
   <string name="MessageRecord_the_group_was_updated">La grupo estis ĝisdatigita.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Vi telefonis</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakto alvokita</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Maltrafita alvoko</string> -->
+  <string name="MessageRecord_you_called_date">Vi alvokis · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Maltrafita alvoko · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ĝisdatigis la grupon.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s telefonis vin</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s alvokis vin · %2$s</string>
   <string name="MessageRecord_called_s">Vi alvokis %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Maltrafita alvoko el %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s estas ĉe Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Vi malŝaltis memviŝontajn mesaĝojn.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s malŝaltis memviŝontajn mesaĝojn.</string>
@@ -912,11 +942,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vi markis, el alia aparato, vian sekurigan numeron kun %s kiel nekonfirmita.</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Akcepti</string>
+  <string name="MessageRequestBottomView_continue">Daŭrigi</string>
   <string name="MessageRequestBottomView_delete">Forigi</string>
   <string name="MessageRequestBottomView_block">Bloki</string>
   <string name="MessageRequestBottomView_unblock">Malbloki</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Ŝi aŭ li ne scios, ke vi vidis ŝian aŭ lian mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ĉu plu interparoli al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Ĉu plu interparoli al %1$s kaj kunhavigi vian nomon kaj foton kun ili?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas aliĝi al tiu grupo kaj kunhavigi vian nomon kaj foton? La grupo ne scios, ke vi vidis ĝiajn mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas anigi al tiu ĉi grupo? Ili ne scios, ke vi vidis iliajn mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ĉu malbloki tiun grupon kaj kunhavigi vian nomon kaj foton kun la anoj? Vi ne ricevos mesaĝojn, se vi ne malblokas ĝin.</string>
@@ -1082,6 +1115,7 @@
   <string name="RegistrationActivity_more_information">Plia informo</string>
   <string name="RegistrationActivity_less_information">Malplia informo</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj kaj aŭdvidaĵoj por konekti kun amikoj, interŝanĝi mesaĝojn, kaj fari sekurajn alvokojn.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj kaj aŭdvidaĵoj por konekti kun amikoj, interŝanĝi mesaĝojn, kaj sekure alvoki.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vi tro faris neĝustajn provojn por registri tiun numeron. Reprovu poste.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Konekto al servo ne eblas. Bv. kontroli retkonekton, kaj provi denove.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Por facile kontroli vian telefonnumeron, Signal povas aŭtomate depreni la validigan kodon, se vi permesas al Signal aliri al viaj SMS-mesaĝoj.</string>
@@ -1260,6 +1294,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Neniu sekuriga numero komparota troveblis en la tondujo</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ne eblas skani rapidrespondan (QR) kodon sen Fotilo-permeso</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Vi devas unue interŝanĝi mesaĝojn por vidi la sekurigan numeron de %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1332,6 +1367,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NotificationChannel_other">Alia</string>
   <string name="NotificationChannel_group_messages">Mesaĝoj</string>
   <string name="NotificationChannel_missing_display_name">Nekonata</string>
+  <string name="NotificationChannel_voice_notes">Voĉaj notoj</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilnomo sukcese difinita.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Okazis reta eraro.</string>
@@ -1432,9 +1468,15 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Eraro dum ricevo de kontaktoj; bv. kontroli vian retkonekton</string>
   <string name="ContactSelectionListFragment_username_not_found">Uzantnomo ne trovita</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">„%1$s“ ne estas Signal-uzanto. Kontrolu la uzantnomon kaj reprovu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Bone</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">La grupo plenas</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vi ne bezonas aldoni vin mem al la grupo</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimuma grupgrando atingita</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-grupoj povas maksimume enteni %1$d  anojn.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Konsilita limo de anoj atingita</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-grupoj pli bone funkcias kun maksimume %1$d anoj. Aldono de pliaj anoj okazigos malfruon por sendi aŭ ricevi mesaĝojn.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d ano</item>
+    <item quantity="other">%1$d anoj</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Neniu blokata kontakto</string>
   <!--contact_selection_list_fragment-->
@@ -2122,7 +2164,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Ni kredas je privateco.</b></p><p>Signal ne spuras vin aŭ ne kolektas viajn datumojn. Por plibonigi Signal-on por ĉiuj, ni uzas la komentojn de la uzantoj, <b>kaj ni ŝatus havi viajn.</b></p><p>Ni faras enketon por kompreni, kiel vi uzas Signal-on. Nia enketo ne kolektas iujn datumojn, kiuj povos identigi vin. Se vi interesiĝas pri dono de pliaj komentoj, vi povos enmeti kontaktinformon.</p><p>Se vi havas kelkajn minutojn kaj komentojn farotajn, ni ŝatus aŭskulti vin.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Partorpeni la enketon</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne, dankon</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">La enketon gastigas „Surveygizmo“ ĉe la sekura domajno surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">La enketon gastigas „Alchemer“ ĉe la sekura domajno surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>
@@ -2138,6 +2180,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Malŝlosi por vidi pritraktotajn mesaĝojn</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Savkopii pasfrazon</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Savkopioj konserviĝos al ekstera konservejo kaj ĉifriĝos per la suba pasfrazo. Vi devos havi tiun ĉi pasfrazon por restaŭri savkopion.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Vi devas havi tiun ĉi pasfrazon por restaŭri savkopion.</string>
+  <string name="backup_enable_dialog__folder">Dosierujo</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Mi skribis tiun ĉi pasfrazon. Sen ĝi, mi ne povos restaŭri savkopion.</string>
   <string name="registration_activity__restore_backup">Restaŭri savkopion</string>
   <string name="registration_activity__skip">Preterpasi</string>
@@ -2163,15 +2207,23 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="BackupDialog_delete_backups">Ĉu forviŝi savkopiojn?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Ĉu malŝalti kaj forviŝi ĉiujn lokajn savkopiojn?</string>
   <string name="BackupDialog_delete_backups_statement">Forviŝi savkopiojn</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Por fari savkopiojn, elektu dosierujon. Savkopioj konserviĝos en ĉi tiun ejon.</string>
+  <string name="BackupDialog_choose_folder">Elekti dosierujon</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiita al tondujo</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Entajpu vian savkopian pasfrazon por kontroli</string>
   <string name="BackupDialog_verify">Kontroli</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Vi sukcese entajpis vian savkopian pasfrazon</string>
   <string name="BackupDialog_passphrase_was_not_correct">La pasfrazo malĝustas</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal bezonas la permeson aliri al ekstera konservejo por krei sekurkopiojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Lasta savkopiado: %s</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Lasta savkopio: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Farata</string>
   <string name="LocalBackupJob_creating_backup">Kreo de savkopio…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Savkopioj malŝaltitaj.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Savkopiado malsukcesis.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Via savkopia dosierujo foriĝis aŭ moviĝis.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Via savkopi-dosiero tro grandas por konserviĝi en tiun portilon.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Ne plu estas sufiĉa spaco por konservi vian savkopion.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Savkopiado malsukcesis por nekonata kialo.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesaĝoj ĝis nun</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bv. entajpi la kontrolkodon senditan al %s.</string>
   <string name="RegistrationActivity_wrong_number">Erara numero</string>
@@ -2283,5 +2335,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="GroupLinkBottomSheet_share">Kunhavigi</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiita al tondujo</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">La ligilo nun ne estas aktiva</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Ekludado ne eblis.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Voĉa mesaĝo · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s al %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

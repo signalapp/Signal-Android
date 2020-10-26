@@ -213,6 +213,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Ei saa heli salvestada!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Sa ei saa sellesse gruppi postitada, sest sa pole enam selle liige.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sinu seadmes pole rakendust, mis oleks võimeline seda linki käsitlema.</string>
+  <string name="ConversationActivity_cancel_request">Tühista soov</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Audiosõnumite saatmiseks luba Signalile juurdepääs seadme mikrofonile.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal vajab audiosõnumite saatmiseks ligipääsu seadme mikrofonile, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Mikrofon\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal vajab kasutajale %s helistamiseks ligipääsu kaamerale ja mikrofonile, kuid need on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Mikrofon\" ning \"Kaamera\".</string>
@@ -328,6 +329,22 @@
   <string name="CreateProfileActivity_set_up_your_profile">Seadista oma profiil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Sinu profiil on otspunktkrüptitud. Sinu profiil ja selle muudatused on nähtavad sinu kontaktidele, kui algatad või nõustud uute vestlustega ja liitud uute gruppidega.</string>
   <string name="CreateProfileActivity_set_avatar_description">Määra profiilipildiks</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Kas taastada varukoopiast?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Taasta oma sõnumid ja meedia kohalikust varukoopiast. Kui sa kohe ei taasta, ei saa seda teha ka hiljem.</string>
+  <string name="ChooseBackupFragment__learn_more">Rohkem infot</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">Vali kaust</string>
+  <string name="RestoreBackupFragment__not_now">Mitte praegu</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Vestluste varukoopiad</string>
+  <string name="BackupsPreferenceFragment__create_backup">Loo varukoopia</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Kinnita varukoopia salasõna</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testi varukoopia salaväljendit ja kontrolli, et see vastaks.</string>
+  <string name="BackupsPreferenceFragment__turn_on">Lülita sisse</string>
+  <string name="BackupsPreferenceFragment__turn_off">Lülita välja</string>
+  <string name="BackupsPreferenceFragment__learn_more">Rohkem infot</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal vajab varukoopiate loomiseks välismälu õigust, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ning luba \"Mäluruum\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kasutan kohandatud: %s</string>
   <string name="CustomDefaultPreference_using_default">Kasutan vaikimisi: %s</string>
@@ -366,6 +383,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
   <!--ExpiredBuildReminder-->
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">Näita</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaga inimesega</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Mitu manust on lubatud ainult piltide ja videote puhul</string>
@@ -559,7 +578,10 @@
   <string name="ShareableGroupLinkDialogFragment__enabled">Lubatud</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Keelatud</string>
   <string name="ShareableGroupLinkDialogFragment__default">Vaikimisi</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Nõua grupilingi kaudu liituvate uute liikmete administraatori poolt kinnitamist.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Kas sa tõesti soovid vestluse linki lähtestada? Inimesed ei saa siis varasema lingi kaudu enam vestlusega liituda.</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Seda koodi skaneerivad isikud saavad grupiga liituda. Administraatorid peavad uued liikmed ikkagi heaks kiitma, kui see säte on sisse lülitatud.</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Kas sa soovid tühistada kutse, mille saatsid kasutajale %1$s?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -568,7 +590,9 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sa oled juba liige</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Liitu</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Esines võrgu viga.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Kas sa soovid selle grupiga liituda ja jagada enda nime ning fotot grupi liikmetega?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uuenda Signal-it grupilinkide kasutamiseks</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uuenda Signal-it</string>
@@ -706,13 +730,8 @@
   <string name="MessageRecord_left_group">Sa lahkusid grupist.</string>
   <string name="MessageRecord_you_updated_group">Sa uuendasid gruppi.</string>
   <string name="MessageRecord_the_group_was_updated">Grupp on uuendatud.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Sa helistasid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt helistas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Vastamata kõne</string> -->
   <string name="MessageRecord_s_updated_group">%s uuendas gruppi.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s helistas sulle</string> -->
   <string name="MessageRecord_called_s">Helistasid kontaktile %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Vastamata kõne kontaktilt %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s on Signalis!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Sa keelasid kaduvad sõnumid.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s keelas kaduvad sõnumid.</string>
@@ -802,8 +821,10 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s muutis grupi liikmete muutmise tasemeks “%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Grupi liikmete muutjateks on nüüd \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_off_the_group_link">Sa lülitasid grupi lingi välja.</string>
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Sa ühinesid grupiga grupilingi kaudu.</string>
   <!--GV2 group link requests-->
   <!--GV2 group link approvals-->
   <!--GV2 group link deny-->
@@ -815,6 +836,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Sa märkisid teisest seadmest oma turvanumbri kontaktiga %s mittekinnitatuks</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Nõustun</string>
+  <string name="MessageRequestBottomView_continue">Jätka</string>
   <string name="MessageRequestBottomView_delete">Kustuta</string>
   <string name="MessageRequestBottomView_block">Blokeeri</string>
   <string name="MessageRequestBottomView_unblock">Eemalda blokeering</string>
@@ -1319,8 +1341,6 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontaktide laadimisel tekkis tõrge. Kontrolli võrguühendust.</string>
   <string name="ContactSelectionListFragment_username_not_found">Kasutajanime ei leitud</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Sobib</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupp on täis</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sa ei pea ennast gruppi lisama</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeeritud kontakte pole</string>
@@ -1981,8 +2001,10 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tuletame sulle hiljem meelde. PIN-koodi loomine muutub %1$d päeva pärast kohustuslikuks.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Tuletame sulle hiljem meelde. PIN-koodi kinnitamine muutub %1$d päeva pärast kohustuslikuks.</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Räägi Signal-ile, mida sa arvad</string>
   <string name="ResearchMegaphone_learn_more">Rohkem infot</string>
   <string name="ResearchMegaphone_dismiss">Tühista</string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">Osale küsitluses</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Tänan, ei</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
@@ -2024,6 +2046,7 @@
   <string name="BackupDialog_delete_backups">Kas kustutada varukoopiad?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Kas kustutada ja keelata kõik kohalikud varukoopiad?</string>
   <string name="BackupDialog_delete_backups_statement">Kustuta varukoopiad</string>
+  <string name="BackupDialog_choose_folder">Vali kaust</string>
   <string name="BackupDialog_copied_to_clipboard">Lõikelauale kopeeritud</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Kinnitamiseks sisesta varukoopia salasõna</string>
   <string name="BackupDialog_verify">Kinnita</string>
@@ -2041,6 +2064,8 @@
   <string name="RegistrationActivity_code_support_subject">Signali registreerimine - kinnituskood Androidile</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
+  <string name="PhoneNumberPrivacy_nobody">Mitte keegi</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Ainult sinu kontaktid näevad Signal-is sinu telefoninumbrit.</string>
   <string name="preferences_app_protection__screen_lock">Ekraanilukk</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukusta Signal-ile juurdepääs Androidi lukustuskuva või sõrmejäljega</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekraaniluku ebaaktiivsuse ajalõpp</string>
@@ -2122,10 +2147,16 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Vanad vs uued grupid</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Mis on vana tüüpi grupid?</string>
   <string name="GroupsLearnMore_paragraph_1">Vana tüüpi grupid on need grupid, mis pole ühilduvad uut tüüpi gruppide funktsionaalsustega nagu administraatorid ja rohkem kirjeldavad grupi muudatused.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kas saan vana tüüpi gruppi uuendada?</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Jaga Signal-i kaudu</string>
   <string name="GroupLinkBottomSheet_copy">Kopeeri</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-kood</string>
   <string name="GroupLinkBottomSheet_share">Jaga</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Lõikelauale kopeeritud</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s saajale %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

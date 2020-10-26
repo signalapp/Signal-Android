@@ -349,6 +349,29 @@
   <string name="CreateProfileActivity_set_up_your_profile">Configurează-ți profilul</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilul dvs. este criptat integral. Profilul dvs. și modificările sale vor fi vizibile pentru contactele dvs., atunci când inițiați sau acceptați conversații noi și când vă alăturați grupurilor noi.</string>
   <string name="CreateProfileActivity_set_avatar_description">Setează avatar</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Restaurez din backup?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaurați mesajele și media dintr-un backup local. Dacă nu restaurați acum, nu veți putea restaura mai târziu.</string>
+  <string name="ChooseBackupFragment__choose_backup">Selectați backup</string>
+  <string name="ChooseBackupFragment__learn_more">Aflați mai multe</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Restaurarea a fost finalizată</string>
+  <string name="RestoreBackupFragment__choose_folder">Alege directorul</string>
+  <string name="RestoreBackupFragment__not_now">Nu acum</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Backup-uri pt. conversații</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backup-urile sunt criptate cu o parolă și sunt stocate pe dispozitivul dvs.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Creează backup</string>
+  <string name="BackupsPreferenceFragment__last_backup">Ultimul backup: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Director backup</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificare parolă backup</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testați parola dvs. de backup și verificați că se potrivește</string>
+  <string name="BackupsPreferenceFragment__turn_on">Activare</string>
+  <string name="BackupsPreferenceFragment__turn_off">Dezactivare</string>
+  <string name="BackupsPreferenceFragment__learn_more">Aflați mai multe</string>
+  <string name="BackupsPreferenceFragment__in_progress">În curs de desfășurare…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d până acum…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Vă rog continuați la setări aplicație, selectați \"Permisiuni\" și activați \"Stocare\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
   <string name="CustomDefaultPreference_using_default">Implicit: %s</string>
@@ -390,6 +413,8 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Această versiune a Signal a expirat. Actualizați acum pentru a trimite și primi mesaje.</string>
   <string name="ExpiredBuildReminder_update_now">Actualizează acum</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">Vizualizare</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Distribuie cu</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Atașamentele multiple sunt suportate doar pentru imagini și videouri</string>
@@ -805,13 +830,11 @@
   <string name="MessageRecord_left_group">Ați părăsit grupul.</string>
   <string name="MessageRecord_you_updated_group">Ați actualizat grupul.</string>
   <string name="MessageRecord_the_group_was_updated">Grupul a fost actualizat.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Ați apelat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Contactul te-a sunat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Apel nepreluat</string> -->
+  <string name="MessageRecord_you_called_date">Ați apelat pe · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Apel nepreluat · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s a actualizat grupul.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s te-a sunat</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s va apelat · %2$s</string>
   <string name="MessageRecord_called_s">Apel %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Apel nepreluat de la %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s folosește Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Ați dezactivat dispariția mesajelor.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a dezactivat dispariția mesajelor.</string>
@@ -951,11 +974,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ați marcat numărul tău de siguranță cu %s ca și neverificat de pe alt dispozitiv</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Acceptați</string>
+  <string name="MessageRequestBottomView_continue">Continuă</string>
   <string name="MessageRequestBottomView_delete">Șterge</string>
   <string name="MessageRequestBottomView_block">Blochează</string>
   <string name="MessageRequestBottomView_unblock">Deblochează</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permiteţi lui %1$s să vă trimită mesaje și să vă împărtășiți numele și fotografia cu ei? Nu vor ști că le-ai văzut mesajul până nu accepți.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permiteţi lui %1$s să vă trimită mesaje și să vă împărtășiți numele și fotografia cu ei? Nu veți primi niciun mesaj până când nu îi deblocați.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuați conversația dvs. cu acest grup și vă împărtășiți numele și fotografia cu membrii săi?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continuați conversația dvs. cu %1$s și vă împărtășiți numele și fotografia cu el/ea?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vă alăturaţi acestui grup și împărtășiți numele și fotografia cu membrii săi? Nu vor ști că le-ai văzut mesajele până nu accepți.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vă alăturați la grup? Nu vor ști că le-ați văzut mesajele până nu veți accepta.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Deblocați acest grup și împărtășiți numele și fotografia cu membrii săi? Nu veți primi niciun mesaj până când nu îi deblocați.</string>
@@ -1124,6 +1150,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_more_information">Mai multe detalii</string>
   <string name="RegistrationActivity_less_information">Mai puține detalii</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal are nevoie de acces la contactele tale și media pentru a putea facilita comunicarea cu prietenii tăi, schimba mesaje și pentru a efectua apeluri securizate</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal are nevoie de acces la contactele tale pentru a putea facilita comunicarea cu prietenii tăi, schimba mesaje și pentru a efectua apeluri securizate</string>
   <string name="RegistrationActivity_rate_limited_to_service">Ați făcut prea multe încercări de înregistrare a acestui număr. Vă rugăm să încercați din nou mai târziu.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rog verifică conexiunea la rețea și încearcă din nou.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pentru a putea verifica cât mai ușor numărul tău de telefon, Signal poate detecta automat codul de verificare dacă îi permiți aplicației Signal să citească mesajele SMS.</string>
@@ -1303,6 +1330,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Nu s-a găsit nici un număr de siguranță în clipboard pentru a fi comparat.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Mai întâi trebuie să faceți schimb de mesaje pentru a vizualiza numărul de siguranță al lui %1$s</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1375,6 +1403,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NotificationChannel_other">Altul</string>
   <string name="NotificationChannel_group_messages">Mesaje</string>
   <string name="NotificationChannel_missing_display_name">Necunoscut</string>
+  <string name="NotificationChannel_voice_notes">Notițe vocale</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Numele de profil a fost setat cu succes.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">A apărut o eroare de rețea.</string>
@@ -1476,9 +1505,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Eroare la obținerea contactelor, verifică conexiune la rețea.</string>
   <string name="ContactSelectionListFragment_username_not_found">Numele de utilizator nu a fost găsit</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nu este un utilizator de Signal. Verificați numele de utilizator și încercați din nou.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okay</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Grupul este plin</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nu trebuie să vă adăugați pe sine la grup</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d membru</item>
+    <item quantity="few">%1$dmembrii</item>
+    <item quantity="other">%1$d membrii</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nu aveți contacte blocate</string>
   <!--contact_selection_list_fragment-->
@@ -2183,7 +2215,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Credem în confidențialitate.</b></p><p>Signal nu vă urmărește și nu vă colectează informațiile. Pentru a îmbunătăți aplicația pentru toată lumea, ne bazăm pe opiniile utilizatorilor noștri, <b>și ne-ar plăcea să o auzim pe a dvs.</b></p><p>Derulăm un sondaj pentru a înțelege mai bine cum folosiți Signal. Studiul nostru nu colectează informații care v-ar putea identifica. Dacă sunteți interesat în a împărtăși păreri suplimentare cu noi, veți avea opțiunea să ne furnizați informații de contact.</p><p>Dacă aveți câteva minute la dispoziție și păreri de oferit, ne-ar plăcea să aflăm de la dvs.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Completează studiul</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nu, mulţumesc</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Acest studiu este găzduit de Surveygizmo pe domeniul securizat surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -2199,6 +2230,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Deblocați pentru a vedea mesajele în curs</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie să aveți această parolă pentru a putea restaura un backup.</string>
+  <string name="backup_enable_dialog__folder">Dosar</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura un backup.</string>
   <string name="registration_activity__restore_backup">Restaurare backup</string>
   <string name="registration_activity__skip">Omiteți</string>
@@ -2224,6 +2256,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_delete_backups">Șterg backup-urile?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Dezactivez și șterg toate backup-urile locale?</string>
   <string name="BackupDialog_delete_backups_statement">Șterge backup-urile</string>
+  <string name="BackupDialog_choose_folder">Alege directorul</string>
   <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduceți parola dvs. de backup pentru a verifica</string>
   <string name="BackupDialog_verify">Verifică</string>
@@ -2344,5 +2377,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupLinkBottomSheet_share">Partajați</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Linkul nu este activ momentan</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Nu s-a putut începe redarea.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mesaj vocal · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s la %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

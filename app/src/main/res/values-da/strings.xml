@@ -336,6 +336,32 @@
   <string name="CreateProfileActivity_set_up_your_profile">Konfigurer din profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil er end-to-end krypteret. Din profil og dens ændringer vil være synlig for dine kontaktpersoner, når du indleder eller accepterer nye samtaler, og når du tilslutter dig nye grupper</string>
   <string name="CreateProfileActivity_set_avatar_description">Vælg avatar</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Gendan fra backup?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Gendan dine beskeder og mediefiler fra en lokal backup. Hvis du ikke gendanner nu kan det ikke gøres senere</string>
+  <string name="ChooseBackupFragment__icon_content_description">Gendan fra backup, ikon</string>
+  <string name="ChooseBackupFragment__choose_backup">Vælg backup</string>
+  <string name="ChooseBackupFragment__learn_more">Læs mere</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Gendannelse afsluttet</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">For at kunne bruge backup´s fortsat, vælg venligst en mappe. Nye backup´s vil blive gemt i denne mappe</string>
+  <string name="RestoreBackupFragment__choose_folder">Vælg mappe</string>
+  <string name="RestoreBackupFragment__not_now">Ikke nu</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Backup Chats</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backup´s er krypteret med et kodeord, og gemt på din enhed</string>
+  <string name="BackupsPreferenceFragment__create_backup">Opret backup</string>
+  <string name="BackupsPreferenceFragment__last_backup">Seneste backup: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Backup mappe</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificer kodeord for backup</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test dit kodeord for backup og verificer at det virker</string>
+  <string name="BackupsPreferenceFragment__turn_on">Aktivér</string>
+  <string name="BackupsPreferenceFragment__turn_off">Déaktiver</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">For at gendanne fra backup, skal du installere Signal igen. Åbn app´en og tab \"Gendan backup\", vælg derefter en backup fil %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Læs mere</string>
+  <string name="BackupsPreferenceFragment__in_progress">I gang…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d indtil videre…</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal kræver tilladelse til at tilgå ekstern placering for at oprette backups, hvilket det er blevet nægtet. Gå venligst via app´ens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
   <string name="CustomDefaultPreference_using_default">Anvender standard: %s</string>
@@ -377,6 +403,12 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denne version af Signal er udløbet. Opdatér nu for at sende og modtage beskeder</string>
   <string name="ExpiredBuildReminder_update_now">Opdatér nu</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d afventende forespørgsel fra medlem</item>
+    <item quantity="other">%d afventende forespørgsler fra medlemmer</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Vis</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Det er kun muligt at vedhæfte flere billeder og videoer</string>
@@ -772,13 +804,11 @@
   <string name="MessageRecord_left_group">Du har forladt gruppen</string>
   <string name="MessageRecord_you_updated_group">Du opdaterede gruppen</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen blev opdateret</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Du ringede</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Opkald fra kontakt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Mistede opkald</string> -->
+  <string name="MessageRecord_you_called_date">Du ringede til · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Mistede opkald fra · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s opdaterede gruppen</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ringede til mig</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s ringede til dig · %2$s</string>
   <string name="MessageRecord_called_s">Ringet til %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Mistet opkald fra %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s bruger Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Beskeder med tidsudløb déaktiveret</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s déaktiverede beskeder med tidsudløb</string>
@@ -913,11 +943,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som ubekræftet fra en anden enhed</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Godkend</string>
+  <string name="MessageRequestBottomView_continue">Fortsæt</string>
   <string name="MessageRequestBottomView_delete">Slet</string>
   <string name="MessageRequestBottomView_block">Blokér</string>
   <string name="MessageRequestBottomView_unblock">Ophæv blokering</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Lad %1$s sende dig beskeder og dele dit navn og foto med vedkommende? De ved ikke, at du har set deres besked, før du accepterer det</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Lad %1$s sende dig beskeder og dele dit navn og foto med vedkommende? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsæt din samtale med gruppen, og del dit navn og billede med dens medlemmer?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsæt din samtale med %1$s og del dit navn og billede med dem?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tilmeld dig gruppen og del dit navn og foto med dens medlemmer? De ved ikke, at du har set deres beskeder, før du accepterer</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bliv medlem af gruppen? De ved ikke at du har set deres beskeder, før du accepterer</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjern blokering af gruppen og del dit navn og foto med dens medlemmer? Du modtager ikke nogen beskeder, før du fjerner blokeringen</string>
@@ -1082,6 +1115,7 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_more_information">Mere information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal kræver tilladelse til at tilgå dine kontakter og medieindhold, for at oprette forbindelser til venner, udveksle beskeder og foretage sikre opkald</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal kræver adgang til dine kontakter, for at kunne forbinde med dine venner, udveksle beskeder, og foretage sikre opkald</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har foretaget for mange forsøg på at registrere dette nummer. Prøv igen senere</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">For nemt at godkende dit mobilnummer, kan Signal automatisk registrere din verifikationskode, hvis du tillader Signal adgang til at læse SMS beskeder</string>
@@ -1261,6 +1295,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sikkerhedsnummer til sammenligning findes ikke i udklipsholderen</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ikke muligt at skanne QR-koden. Tilladelse til at tilgå kameraet mangler</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du skal først sende nogle beskeder, før du kan se %1$s´s sikkerhedsnummer</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1333,6 +1368,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="NotificationChannel_other">Andet</string>
   <string name="NotificationChannel_group_messages">Beskeder</string>
   <string name="NotificationChannel_missing_display_name">Ukendt</string>
+  <string name="NotificationChannel_voice_notes">Stemme noter</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Oprettet profilnavn</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Registreret en netværksfejl</string>
@@ -1433,9 +1469,15 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fejl ved modtagelse af kontakter, tjek din netværksforbindelse</string>
   <string name="ContactSelectionListFragment_username_not_found">Brugernavn ikke fundet</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" er ikke en Signal bruger. Tjek venligst brugernavnet og prøv igen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okay</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Gruppen er fuld</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du behøver ikke tilføje dig selv til gruppen</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Maks. grænse for gruppe størrelse nået</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal grupper kan maksimalt have %1$d medlemmer</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Anbefalet antal medlemmer nået</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal grupper virker bedst med %1$d medlemmer, eller færre. Tilføjes flere medlemmer, vil det betyde forsinkelser for at sende og modtage beskeder</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmer</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokerede kontakter</string>
   <!--contact_selection_list_fragment-->
@@ -2123,7 +2165,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi tror på fortrolighed.</b></p><p>Signal sporer dig ikke eller indsamler dine data. For at forbedre Signal for alle er vi afhængige af feedback fra brugerne, <b>og vi vil meget gerne høre din.</b></p><p>Vi laver en undersøgelse for at forstå, hvordan du bruger Signal. Vores undersøgelse indsamler ingen data der identificerer dig. Hvis du er interesseret i at dele yderligere feedback, har du mulighed for at afgive dine kontaktoplysninger.</p><p>Hvis du har et par minutter og noget feedback at tilbyde, vil vi meget gerne høre fra dig.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Tag undersøgelsen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nej tak</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Undersøgelsen er startet af  Surveygizmo på det sikre domæne surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Undersøgelsen udbydes af Alchemer, via det sikre domæne surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport ikon</string>
   <string name="ConversationListFragment_loading">Henter…</string>
@@ -2139,6 +2181,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås op for at læse indkommende beskeder</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup kodeord</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup´s vil blive gemt til ekstern placering og krypteret med koden herunder. Du skal kende koden for at kunne gendanne fra backup</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Du skal have denne adgangskode, for at kunne gendanne fra backup</string>
+  <string name="backup_enable_dialog__folder">Mappe</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har nedskrevet koden. Uden den vil jeg ikke have mulighed for at gendanne fra backup</string>
   <string name="registration_activity__restore_backup">Gendan backup</string>
   <string name="registration_activity__skip">Spring over</string>
@@ -2164,6 +2208,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="BackupDialog_delete_backups">Slet backup\'s?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivér og slet alle lokale backup\'s?</string>
   <string name="BackupDialog_delete_backups_statement">Slet backup\'s</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">For at aktivere backup´s, vælg en mappe. Backup´s vil blive gemt i denne mappe</string>
+  <string name="BackupDialog_choose_folder">Vælg mappe</string>
   <string name="BackupDialog_copied_to_clipboard">Kopieret til udklipsholder</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Skriv dit kodeord for backup for verificering</string>
   <string name="BackupDialog_verify">Verificér</string>
@@ -2173,6 +2219,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ChatsPreferenceFragment_last_backup_s">Sidste backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Pågående</string>
   <string name="LocalBackupJob_creating_backup">Opretter backup…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Backup´s déaktiveret</string>
+  <string name="LocalBackupJobApi29_backup_failed">Backup fejlet</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mappe med backup´s er blevet slettet eller flyttet</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din backup fil er for stor til at kunne gemmes på enheden</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Der er ikke nok plads tilgængelig, til at gemme din backup</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Backup fejlede af ukendte årsager</string>
   <string name="ProgressPreference_d_messages_so_far">%d beskeder ind til videre</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv venligst verifikationskode sendt til %s</string>
   <string name="RegistrationActivity_wrong_number">Forkert nummer</string>
@@ -2285,5 +2337,12 @@ Der er %d dage tilbage</string>
   <string name="GroupLinkBottomSheet_share">Del</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopieret til udklipsholder</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Linket er ikke aktivt i øjeblikket</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Kunne ikke starte afspilning</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Stemme besked · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

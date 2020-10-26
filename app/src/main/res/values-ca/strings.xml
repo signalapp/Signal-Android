@@ -335,6 +335,22 @@
   <string name="CreateProfileActivity_set_up_your_profile">Establiu el perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">El perfil està encriptat d\'extrem a extrem. El perfil i els canvis seran visibles per als vostres contactes quan inicieu o accepteu converses noves i quan us afegiu a grups nous.</string>
   <string name="CreateProfileActivity_set_avatar_description">Estableix l\'avatar</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Voleu fer una restauració des d\'una còpia de seguretat?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaureu els missatges i els continguts multimèdia des d\'una còpia de seguretat local. Si no ho feu ara, no ho podreu fer més tard.</string>
+  <string name="ChooseBackupFragment__learn_more">Més informació</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">Trieu una carpeta</string>
+  <string name="RestoreBackupFragment__not_now">Ara no</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Còpies de seguretat de converses</string>
+  <string name="BackupsPreferenceFragment__create_backup">Crea una còpia de seguretat</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifiqueu la contrasenya de còpia de seguretat</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Proveu la contrasenya de còpia de seguretat i verifiqueu que coincideix.</string>
+  <string name="BackupsPreferenceFragment__turn_on">Activa</string>
+  <string name="BackupsPreferenceFragment__turn_off">Desactiva</string>
+  <string name="BackupsPreferenceFragment__learn_more">Més informació</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">El Signal necessita el permís de l\'emmagatzematge extern per tal de crear còpies de seguretat. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi l\'emmagatzematge.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Ús de la personalització: %s</string>
   <string name="CustomDefaultPreference_using_default">Per defecte: %s</string>
@@ -376,6 +392,8 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Aquesta versió del Signal ha vençut. Actualitzeu-la ara per enviar i rebre missatges.</string>
   <string name="ExpiredBuildReminder_update_now">Actualitza-la ara</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">Mostra</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comparteix amb</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Els adjunts múltiples només s\'admeten per a imatges i vídeos.</string>
@@ -771,13 +789,8 @@
   <string name="MessageRecord_left_group">Heu abandonat el grup.</string>
   <string name="MessageRecord_you_updated_group">Heu actualitzat el grup.</string>
   <string name="MessageRecord_the_group_was_updated">S\'ha actualitzat el grup.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Heu trucat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Trucada del contacte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Trucada perduda</string> -->
   <string name="MessageRecord_s_updated_group">%s ha actualitzat el grup.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s us ha trucat</string> -->
   <string name="MessageRecord_called_s">Heu trucat a %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Trucada perduda de %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s és al Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Heu desactivat els missatges efímers.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha desactivat els missatges efímers.</string>
@@ -912,6 +925,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Heu tret la verificació del número de seguretat amb %s des d\'un altre dispositiu</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Ho accepto</string>
+  <string name="MessageRequestBottomView_continue">Continua</string>
   <string name="MessageRequestBottomView_delete">Suprimeix</string>
   <string name="MessageRequestBottomView_block">Bloca</string>
   <string name="MessageRequestBottomView_unblock">Desbloca</string>
@@ -1427,8 +1441,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error en recuperar els contactes. Comproveu la connexió de xarxa.</string>
   <string name="ContactSelectionListFragment_username_not_found">No s\'ha trobat el nom d\'usuari.</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$s no és un usuari del Signal. Si us plau, comproveu-ne el nom i torneu-ho a provar.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">D\'acord</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">El grup és ple.</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No cal que us afegiu al grup.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hi ha cap contacte blocat</string>
@@ -2117,7 +2129,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[ <p><b>Creiem en la privadesa.</b></p><p> El Signal no us fa un seguiment ni recopila les vostres dades. Per millorar el Signal per a tothom, confiem en els comentaris dels usuaris i <b>ens encantaria rebre el vostre.</b></p><p> Estem fent una enquesta per entendre com useu el Signal. La nostra enquesta no recull cap dada que us identifiqui. Si esteu interessats a compartir comentaris addicionals, podreu proporcionar la informació de contacte.</p><p> Si teniu uns quants minuts i comentaris a oferir, ens encantaria rebre notícies vostres.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Feu l\'enquesta</string>
   <string name="ResearchMegaphoneDialog_no_thanks">No, gràcies.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Surveygizmo allotja l\'enquesta al domini segur surveys.signalusers.org.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">Es carrega…</string>
@@ -2158,6 +2169,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="BackupDialog_delete_backups">Voleu suprimir les còpies de seguretat?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Voleu desactivarr i suprimir totes les còpies de seguretat locals?</string>
   <string name="BackupDialog_delete_backups_statement">Suprimeix les còpies de seguretat</string>
+  <string name="BackupDialog_choose_folder">Trieu una carpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiat al porta-retalls</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Escriviu la contrasenya de còpia de seguretat per verificar-la.</string>
   <string name="BackupDialog_verify">Verificació</string>
@@ -2278,5 +2290,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="GroupLinkBottomSheet_share">Compartir-lo</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiat al porta-retalls</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Ara l\'enllaç no està actiu.</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s a %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

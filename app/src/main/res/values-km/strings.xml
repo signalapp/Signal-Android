@@ -311,6 +311,22 @@
   <string name="CreateProfileActivity_profile_photo">រូបថតប្រវត្តិរូប</string>
   <string name="CreateProfileActivity_set_up_your_profile">បង្កើតប្រវត្តិរូបរបស់អ្នក</string>
   <string name="CreateProfileActivity_set_avatar_description">កំណត់រូបតំណាង</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">ស្តារចេញពីការបម្រុងទុក?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">ស្តារឡើងវិញសាររបស់អ្នក និងមេឌាចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥលូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
+  <string name="ChooseBackupFragment__learn_more">សិក្សាបន្ថែម</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">ជ្រើសរើសទីតាំងផ្ទុក</string>
+  <string name="RestoreBackupFragment__not_now">ពេលក្រោយ</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">ការបម្រុងទុកការជជែក</string>
+  <string name="BackupsPreferenceFragment__create_backup">បង្កើតការបម្រុងទុក</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">ផ្ទៀងផ្ទាត់ឃ្លាសម្ងាត់បម្រុងទុក</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">សាកល្បងឃ្លាសម្ងាត់បម្រុងទុករបស់អ្នក និងផ្ទៀងផ្ទាត់ថាវាត្រូវគ្នា</string>
+  <string name="BackupsPreferenceFragment__turn_on">បើក</string>
+  <string name="BackupsPreferenceFragment__turn_off">បិទ</string>
+  <string name="BackupsPreferenceFragment__learn_more">សិក្សាបន្ថែម</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signalត្រូវការសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកខាងក្រៅដើម្បីបង្កើតការស្តារឡើងវិញ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\"។ </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ប្រើផ្សេងៗ៖ %s</string>
   <string name="CustomDefaultPreference_using_default">ប្រើលំនាំដើម៖ %s</string>
@@ -349,6 +365,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">បង្កើនប្រសិទ្ធភាពសម្រាប់ការបាត់ Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>
   <!--ExpiredBuildReminder-->
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">បង្ហាញ</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ចែកទៅកាន់</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">ពហុឯកសារភ្ជាប់ គាំទ្រសម្រាប់តែរូបភាព និងវីដេអូ</string>
@@ -666,13 +684,8 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ទទួលបានសារដែលមានកាណាល់កូដសម្ងាត់ តែជាជំនាន់ចាស់របស់Signal ដែលគេលែងប្រើហើយ។ សូមប្រាប់អ្នកផ្ញើ ឲ្យធ្វើបច្ចុប្បន្នភាពទៅជំនាន់ចុងក្រោយបង្អស់ និងផ្ញើសារម្តងទៀត។</string>
   <string name="MessageRecord_left_group">អ្នកបានចាកចេញពីក្រុម។</string>
   <string name="MessageRecord_you_updated_group">អ្នកបានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">អ្នកបានហៅ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">លេខទំនាក់ទំនងបានហៅ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">ការហៅមិនបានទទួល</string> -->
   <string name="MessageRecord_s_updated_group">%s បានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s បានហៅមកអ្នក</string> -->
   <string name="MessageRecord_called_s">ហៅទៅកាន់ %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">ការហៅមិនបានទទួលពី %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s ប្រើSignal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">អ្នកបានបិទសារបាត់ទៅវិញ។</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s បានបិទសារបាត់ទៅវិញ។</string>
@@ -749,6 +762,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">អ្នកមិនបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព %s ជាមួយឧបករណ៍ផ្សេងទៀត</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
+  <string name="MessageRequestBottomView_continue">បន្ត</string>
   <string name="MessageRequestBottomView_delete">លុប</string>
   <string name="MessageRequestBottomView_block">រារាំង</string>
   <string name="MessageRequestBottomView_unblock">បើកវិញ</string>
@@ -1227,8 +1241,6 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">មានបញ្ហាក្នុងការទាញយកបញ្ជីទំនាក់ទំនង, សូមពិនិត្យការតភ្ជាប់បណ្តាញរបស់អ្នក</string>
   <string name="ContactSelectionListFragment_username_not_found">រកមិនឃើញឈ្មោះអ្នកប្រើប្រាស់</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" មិនមែនជាអ្នកប្រើប្រាស់ Signal ទេ។ សូមពិនិត្យឈ្មោះអ្នកប្រើប្រាស់ និងសាកល្បងម្តងទៀត។ </string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">យល់ព្រម</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">ក្រុមនេះពេញហើយ</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ពុំមានលេខដែលបានបិទ</string>
   <!--contact_selection_list_fragment-->
@@ -1891,6 +1903,7 @@
   <string name="BackupDialog_delete_backups">លុបការបម្រុងទុក?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">បិទ និងលុបចោលការបម្រុងទុកខាងក្នុងទាំងអស់?</string>
   <string name="BackupDialog_delete_backups_statement">លុបការបម្រុងទុក</string>
+  <string name="BackupDialog_choose_folder">ជ្រើសរើសទីតាំងផ្ទុក</string>
   <string name="BackupDialog_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">បញ្ចូលឃ្លាសម្ងាត់បម្រុងទុករបស់អ្នកដើម្បីផ្ទៀងផ្ទាត់</string>
   <string name="BackupDialog_verify">ផ្ទៀងផ្ទាត់</string>
@@ -1990,5 +2003,9 @@
   <string name="GroupLinkBottomSheet_copy">ចម្លង</string>
   <string name="GroupLinkBottomSheet_share">ចែករំលែក</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ទៅ%2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

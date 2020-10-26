@@ -336,6 +336,32 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="CreateProfileActivity_set_up_your_profile">Lag profilen din</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilen din er ende-til-ende-kryptert. Profilen og endringar i han blir synleg for dine kontaktar, når du startar eller godkjenner nye samtalar, og når du blir med i nye grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Vel avatar</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Gjenopprett frå reservekopi?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Gjenopprett meldingar og media frå ein lokal reservekopi. Viss du ikkje gjenopprettar no, vil du ikkje få gjenoppretta seinare.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Gjenopprett frå tryggleikskopi-ikon</string>
+  <string name="ChooseBackupFragment__choose_backup">Vel tryggleikskopi</string>
+  <string name="ChooseBackupFragment__learn_more">Lær meir</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Gjenoppretting utført</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">For å fortsetja å ta tryggleikskopiar må du velja ei mappe. Nye kopiar blir lagra der.</string>
+  <string name="RestoreBackupFragment__choose_folder">Vel mappe</string>
+  <string name="RestoreBackupFragment__not_now">Ikkje no</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Reservekopiar av meldingar</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Tryggleikskopiar er kryptert med ein passordfrase og lagra på eininga di.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Lag reservekopi</string>
+  <string name="BackupsPreferenceFragment__last_backup">Siste tryggleikskopi: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Tryggleikskopi-mappe</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Stadfest passordfrase for reservekopiar</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test passordfrasen for reserverkopiane dine og stadfest at han er rett</string>
+  <string name="BackupsPreferenceFragment__turn_on">Skru på</string>
+  <string name="BackupsPreferenceFragment__turn_off">Skru av</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">For å gjenoppretta ein tryggleikskopi må du installera Signal på nytt eller på ei ny eining. Opna appen og trykk «Gjenopprett tryggleikskopi» og finn kopi-fila. %1$s</string>
+  <string name="BackupsPreferenceFragment__learn_more">Lær meir</string>
+  <string name="BackupsPreferenceFragment__in_progress">I gang …</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d så langt …</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal treng tilgang til ekstern lagring for å laga reservekopiar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bruker sjølvvald: %s</string>
   <string name="CustomDefaultPreference_using_default">Bruker standard: %s</string>
@@ -377,6 +403,12 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denne utgåva av Signal er utdatert. Oppdater no for å senda og motta meldingar.</string>
   <string name="ExpiredBuildReminder_update_now">Oppdater no</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d ventande medlemsførespurnad.</item>
+    <item quantity="other">%d ventande medlemsførespurnader.</item>
+  </plurals>
+  <string name="PendingGroupJoinRequestsReminder_view">Sjå</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Fleire vedlegg er berre støtta for bilde og film</string>
@@ -776,13 +808,11 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_left_group">Du har forlate gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du oppdaterte gruppa.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppa vart oppdatert.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Du ringte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakt ringte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Usvart anrop</string> -->
+  <string name="MessageRecord_you_called_date">Du ringte · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Tapt anrop · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ringte deg</string> -->
+  <string name="MessageRecord_s_called_you_date">%1$s ringte deg · %2$s</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Tapt anrop frå %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du skrudde av forsvinnande meldingar.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sskrudde av forsvinnande meldingar.</string>
@@ -917,11 +947,14 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta frå ei anna eining</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Godta</string>
+  <string name="MessageRequestBottomView_continue">Hald fram</string>
   <string name="MessageRequestBottomView_delete">Slett</string>
   <string name="MessageRequestBottomView_block">Blokker</string>
   <string name="MessageRequestBottomView_unblock">Fjern blokkering</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du la %1$s senda deg meldingar og dela namnet og bildet ditt med dei? Dei får ikkje vita at du har sett meldinga deira før du godkjenner.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vil du la %1$s senda deg meldingar og dela namnet og bildet ditt med dei? Du får inga meldingar før du avblokkerer dei.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortset samtalen din med denne gruppa og del namnet og bildet ditt med medlemmane?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortset samtalen din med %1$s og del namnet og bildet ditt med dei?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du bli med i denne gruppa og dela namnet og bildet ditt med medlemmane? Dei får ikkje vita at du har sett meldingane deira før du godkjenner.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli med i gruppa? Dei vil ikkje vita at du har sett meldingane deira før du godtek.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vil du bli avblokkera denne gruppa og dela namnet og bildet ditt med medlemmane? Du får inga meldingar før du avblokkerer dei.</string>
@@ -1087,6 +1120,7 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="RegistrationActivity_more_information">Meir informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine og media for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har prøvd for mange gongar å registrera dette nummeret. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Kan ikkje kopla til tenesta. Sjekk nettverkstilkoplinga og prøv igjen.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal kan automatisk oppdaga stadfestingskoden for å enkelt stadfesta telefonnummeret ditt, viss du gir Signal tilgang til å lesa SMS-meldingar.</string>
@@ -1265,6 +1299,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Inga tryggleiksnummer å samanlikna vart funne i utklippstavla</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal treng tilgang til kameraet for å skanna QR-kodar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan ikkje skanna QR-kodar utan kameratilgang</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du må først utveksla meldingar for å sjå tryggleiksnummeret til %1$s</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1337,6 +1372,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="NotificationChannel_other">Anna</string>
   <string name="NotificationChannel_group_messages">Meldingar</string>
   <string name="NotificationChannel_missing_display_name">Ukjend</string>
+  <string name="NotificationChannel_voice_notes">Talenotat</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Lagra profilnamnet.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Fekk ein nettverksfeil.</string>
@@ -1437,9 +1473,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikkje henta kontaktane, sjekk nettverkstilkoplinga di</string>
   <string name="ContactSelectionListFragment_username_not_found">Fann ikkje brukarnamnet</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">«%1$s» er ikkje ein brukar på Signal. Sjekk brukarnamnet og prøv igjen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Greitt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">Gruppa er full</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du treng ikkje legga deg sjølv til i gruppa.</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Maks gruppestorleik nådd</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-grupper kan maksimalt ha %1$d medlemmar.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Øvste tilrådde gruppestorleik nådd</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-grupper fungerer best med %1$d eller færre medlemmar. Ved fleire medlemmar kan mottak eller sending av meldingar bli forseinka.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmar</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontaktar</string>
   <!--contact_selection_list_fragment-->
@@ -2130,7 +2172,7 @@ Du er à jour!</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Me trur på personvern.</b></p><p>Signal sporer deg ikkje og hentar ikkje data om deg. For å gjera Signal betre for alle, er me avhengig av at brukarar vel å fortelja kva dei synst, <b>og me vil gjerne høyra kva nettopp du synst.</b></p><p>Me har ei spørreundersøking på gang for å forstå korleis du bruker Signal. Undersøkinga hentar ikkje data som vil identifisera deg. Viss du vil gi tilleggsinformasjon, så har du moglegheita til å oppgi kontaktinfo.</p><p>Om du har eit par minutt til overs og litt tilbakemelding å gi, så vil me gjerne høyra frå deg.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Ta undersøkinga</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nei takk</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">Denne undersøkinga er administrert av Surveygizmo på det trygge domenet surveys.signalusers.org</string> -->
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Denne undersøkinga er administrert av Alchemer på det trygge domenet surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>
@@ -2146,6 +2188,8 @@ Du er à jour!</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å sjå ulesne meldingar</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Passordfrase til reservekopi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Reservekopiar blir lagra til ekstern lagring og krypterte med passordfrasen nedanfor. Du må ha denne passordfrasen for å gjenoppretta frå kopien.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Du må ha denne passordfrasen for å gjenoppretta ein tryggleikskopi.</string>
+  <string name="backup_enable_dialog__folder">Mappe</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eg har skrive ned denne passordfrasen. Utan den vil eg ikkje få gjenoppretta frå reservekopien.</string>
   <string name="registration_activity__restore_backup">Gjenopprett frå reservekopi</string>
   <string name="registration_activity__skip">Hopp over</string>
@@ -2171,6 +2215,8 @@ Du er à jour!</string>
   <string name="BackupDialog_delete_backups">Slett reservekopiar?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Skru av og slett alle lokale reservekopiar?</string>
   <string name="BackupDialog_delete_backups_statement">Slett reservekopiar</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">For å skru på tryggleikskopiar må du velja ei mappe. Kopiar blir lagra der.</string>
+  <string name="BackupDialog_choose_folder">Vel mappe</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavla</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Skriv inn passordfrasen for reservekopiane dine for å stadfesta</string>
   <string name="BackupDialog_verify">Stadfest</string>
@@ -2180,6 +2226,12 @@ Du er à jour!</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Siste reservekopi: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">I gang</string>
   <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Tryggleikskopiar skrudd av.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Tryggleikskopiering feila.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mappa for tryggleikskopiar er sletta eller flytta.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Tryggleikskopi-fila er for stor til å lagra på denne plasseringa.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Du har ikkje nok lagringsplass til tryggleikskopien din.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Tryggleikskopiering feila og me veit ikkje kvifor.</string>
   <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn stadfestingskoden sendt til %s</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>
@@ -2292,5 +2344,12 @@ Du er à jour!</string>
   <string name="GroupLinkBottomSheet_share">Del</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiert til utklippstavla</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Denne lenka er ikkje aktiv no</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Klarte ikkje å starta avspeling.</string>
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Talemelding · %1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
+  <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

@@ -321,6 +321,22 @@
   <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィール情報はエンドツーエンドで暗号化され、あなたが新しい会話を開始したり受け入れた際や、新しいグループに参加した際に相手先で表示されます。</string>
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">バックアップから復元しますか？</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">ローカルバックアップからメディアやメッセージを復元してください。いま復元しなければ、あとでできなくなります。</string>
+  <string name="ChooseBackupFragment__learn_more">詳しく見る</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">フォルダを選択</string>
+  <string name="RestoreBackupFragment__not_now">今はしない</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">チャットのバックアップ</string>
+  <string name="BackupsPreferenceFragment__create_backup">バックアップを作成する</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">バックアップ用パスフレーズの確認</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">バックアップ用パスフレーズが合っているか確認します</string>
+  <string name="BackupsPreferenceFragment__turn_on">有効にする</string>
+  <string name="BackupsPreferenceFragment__turn_off">無効にする</string>
+  <string name="BackupsPreferenceFragment__learn_more">詳しく見る</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">バックアップを作成するには、Signalに外部ストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「ストレージ」を有効にしてください。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタマイズ: %s</string>
   <string name="CustomDefaultPreference_using_default">既定を使用: %s</string>
@@ -362,6 +378,8 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">このバージョンのSignalは期限が切れています。メッセージを送受信するには、アップデートしてください。</string>
   <string name="ExpiredBuildReminder_update_now">アップデートする</string>
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">表示する</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">画像と動画以外のファイルを複数添付することはできません。</string>
@@ -737,13 +755,8 @@
   <string name="MessageRecord_left_group">グループを抜けました。</string>
   <string name="MessageRecord_you_updated_group">グループを更新しました。</string>
   <string name="MessageRecord_the_group_was_updated">グループが更新されました。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">発信</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">着信</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">不在着信</string> -->
   <string name="MessageRecord_s_updated_group">%s がグループを更新しました。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s から着信</string> -->
   <string name="MessageRecord_called_s">%s に発信</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s から不在着信</string> -->
   <string name="MessageRecord_s_joined_signal">%s がSignalに登録しました！</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">消えるメッセージを無効にしました。</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s が消えるメッセージを無効にしました。</string>
@@ -873,6 +886,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s に対する安全番号を他の端末で未検証にしました</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">承認する</string>
+  <string name="MessageRequestBottomView_continue">続ける</string>
   <string name="MessageRequestBottomView_delete">削除する</string>
   <string name="MessageRequestBottomView_block">ブロック</string>
   <string name="MessageRequestBottomView_unblock">ブロック解除</string>
@@ -1376,8 +1390,6 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">連絡先の取得中にエラーが発生しました。ネットワーク接続を確認してください。</string>
   <string name="ContactSelectionListFragment_username_not_found">ユーザ名が見つかりませんでした</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」はSignalユーザではありません。ユーザ名を確認してもう一度試してください。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">OK</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_the_group_is_full">このグループはいっぱいです</string> -->
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">自分自身をグループに追加する必要はありません</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ブロック中の連絡先はありません</string>
@@ -2050,7 +2062,6 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法について調査しています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有することに興味がある場合は、連絡先情報を提供するオプションがあります。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">調査に参加する</string>
   <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string>
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_surveygizmo_at_the_secure_domain">この調査は、Surveygizmoが安全なドメイン (surveys.signalusers.org) でホストしています。</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>
@@ -2091,6 +2102,7 @@
   <string name="BackupDialog_delete_backups">バックアップを削除しますか？</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">すべてのローカルバックアップを削除して無効にしますか？</string>
   <string name="BackupDialog_delete_backups_statement">バックアップを削除する</string>
+  <string name="BackupDialog_choose_folder">フォルダを選択</string>
   <string name="BackupDialog_copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">確認したいバックアップ用パスフレーズを入力してください</string>
   <string name="BackupDialog_verify">確認する</string>
@@ -2211,5 +2223,9 @@
   <string name="GroupLinkBottomSheet_share">共有</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">このリンクは現在利用できません</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s から %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>

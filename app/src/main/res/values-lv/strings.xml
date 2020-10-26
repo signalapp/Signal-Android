@@ -329,6 +329,22 @@
   <string name="CreateProfileActivity_profile_photo">Profila attēls</string>
   <string name="CreateProfileActivity_set_up_your_profile">Iestatiet savu profilu</string>
   <string name="CreateProfileActivity_set_avatar_description">Iestatīt ikonu/avataru</string>
+  <!--ChooseBackupFragment-->
+  <string name="ChooseBackupFragment__restore_from_backup">Vai atjaunot no dublikāta (rezerves kopijas)?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Ielasiet ziņas un multimedijus no lokāli atrodošās dublikāta (rezerves kopijas). Ja datus neatgriezīsiet tagad, vēlāk tas nebūs izdarāms.</string>
+  <string name="ChooseBackupFragment__learn_more">Lasīt vairāk</string>
+  <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__choose_folder">Izvēlēties mapi</string>
+  <string name="RestoreBackupFragment__not_now">Ne tagad</string>
+  <!--BackupsPreferenceFragment-->
+  <string name="BackupsPreferenceFragment__chat_backups">Tērziņu dublēšana (rezerves kopēšana)</string>
+  <string name="BackupsPreferenceFragment__create_backup">Izveidot dublikātu (rezerves kopiju)</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Pārbaudiet dublikāta paroles frāzi</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Pārbaudiet dublikāta (rezerves kopijas) paroles frāzi, un pārliecinieties, ka tā sakrīt</string>
+  <string name="BackupsPreferenceFragment__turn_on">Ieslēgt</string>
+  <string name="BackupsPreferenceFragment__turn_off">Izslēgt</string>
+  <string name="BackupsPreferenceFragment__learn_more">Lasīt vairāk</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Lai izveidotu dublikātus (rezerves kopijas), Signālam nepieciešama pieeja ārējai datu noliktavai,  bet tā tiek pastāvīgi liegta. Lūdzu, dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Noiktava\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Lieto pielāgojamu: %s</string>
   <string name="CustomDefaultPreference_using_default">Lieto noklusējuma: %s</string>
@@ -367,6 +383,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizē iztrūkstošajiem proprietārajiem Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Par laimi šajā ierīcē nav Google Play Services. Pieskaries, lai atspējotu sistēmas baterijas optimizāciju, kas traucē Signal saņemt ziņas, kamēr tas ir neaktīvs (darbojas fonā).</string>
   <!--ExpiredBuildReminder-->
+  <!--PendingGroupJoinRequestsReminder-->
+  <string name="PendingGroupJoinRequestsReminder_view">Skatīt</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dalīties ar</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Vairāku pielikumu sūtīšana ir atbalstīta tikai attēliem un video</string>
@@ -619,13 +637,8 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Saņemta ziņa, kas šifrēta, izmantojot vecāku Signal versiju, kura vairs netiek atbalstīta. Palūdziet sūtītājam aktualizēt Signal uz jaunāko versiju un nosūtīt ziņu vēlreiz.</string>
   <string name="MessageRecord_left_group">Jūs pametāt grupu.</string>
   <string name="MessageRecord_you_updated_group">Jūs aktualizējāt grupu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_called">Jūs zvanījāt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_you">Kontakts zvanīja</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Neatbildēts zvans</string> -->
   <string name="MessageRecord_s_updated_group">%s aktualizēja grupu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">Jums zvanīja %s</string> -->
   <string name="MessageRecord_called_s">Zvanīja %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Neatbildēts zvans no %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s lieto Signālu</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Jūs atspējojāt gaistošās ziņas.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s atspējoja gaistošās ziņas.</string>
@@ -693,6 +706,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs atzīmējāt savu drošības kodu ar %s kā nepārbaudītu no citas ierīces</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Apstiprināt</string>
+  <string name="MessageRequestBottomView_continue">Turpināt</string>
   <string name="MessageRequestBottomView_delete">Dzēst</string>
   <string name="MessageRequestBottomView_block">Bloķēt</string>
   <string name="MessageRequestBottomView_unblock">Atbloķēt</string>
@@ -1170,7 +1184,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kļūda, ielādējot kontaktus, pārbaudiet ierīces interneta savienojumu.</string>
   <string name="ContactSelectionListFragment_username_not_found">Lietotājvārds netika atrasts</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nav Signāla lietotājs. Lūdzu, pārbaudiet, vai lietotājvārds uzrakstīts pareizi.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Labi</string> -->
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nav bloķētu kontaktu</string>
   <!--contact_selection_list_fragment-->
@@ -1843,6 +1856,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="BackupDialog_delete_backups">Dzēst dublikātus?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Atspējot un dzēst visus dublikātus?</string>
   <string name="BackupDialog_delete_backups_statement">Dzēst dublikātus (rezerves kopijas)</string>
+  <string name="BackupDialog_choose_folder">Izvēlēties mapi</string>
   <string name="BackupDialog_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Lai verificētu, ievadiet rezerves ieejas paroli</string>
   <string name="BackupDialog_verify">Verificēt</string>
@@ -1934,5 +1948,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="GroupLinkBottomSheet_copy">Kopēt</string>
   <string name="GroupLinkBottomSheet_share">Kopīgot</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
+  <!--VoiceNotePlaybackPreparer-->
+  <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s</string>
+  <!--StorageUtil-->
   <!--EOF-->
 </resources>
