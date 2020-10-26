@@ -15,25 +15,28 @@
 
             <org.thoughtcrime.securesms.components.AnimatingToggle
                     android:id="@+id/control_toggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:gravity="center">
 
-                <com.pnikosis.materialishprogress.ProgressWheel
+                <ProgressBar
                         android:id="@+id/download_progress"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:background="@drawable/circle_tintable_4dp_inset"
                         android:visibility="gone"
-                        android:layout_gravity="center"
-                        app:matProg_barColor="@color/white"
-                        app:matProg_linearProgress="true"
-                        app:matProg_spinSpeed="0.333"
-                        tools:visibility="gone"/>
+                        android:layout_gravity="center_vertical"
+                        android:min="0"
+                        android:max="100"
+                        tools:visibility="gone"
+                        tools:backgroundTint="@android:color/black"
+                        tools:indeterminateTint="@android:color/white"/>
 
                 <ImageView android:id="@+id/play"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
                            android:layout_gravity="center_vertical"
                            android:gravity="center_vertical"
                            android:clickable="true"
@@ -45,8 +48,8 @@
                            tools:visibility="visible"/>
 
                 <ImageView android:id="@+id/pause"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
                            android:layout_gravity="center_vertical"
                            android:gravity="center_vertical"
                            android:clickable="true"
@@ -58,8 +61,8 @@
                            tools:visibility="gone"/>
 
                 <ImageView android:id="@+id/download"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
                            android:layout_gravity="center_vertical"
                            android:clickable="true"
                            android:visibility="gone"

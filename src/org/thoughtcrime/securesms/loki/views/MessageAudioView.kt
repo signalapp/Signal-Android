@@ -11,11 +11,11 @@ import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import com.pnikosis.materialishprogress.ProgressWheel
 import kotlinx.coroutines.*
 import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
@@ -47,7 +47,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
     private val playButton: ImageView
     private val pauseButton: ImageView
     private val downloadButton: ImageView
-    private val downloadProgress: ProgressWheel
+    private val downloadProgress: ProgressBar
     private val seekBar: WaveformSeekBar
     private val totalDuration: TextView
 
@@ -147,20 +147,22 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
                 controlToggle.displayQuick(downloadButton)
                 seekBar.isEnabled = false
                 downloadButton.setOnClickListener { v -> downloadListener?.onClick(v, audio) }
-                if (downloadProgress.isSpinning) {
-                    downloadProgress.stopSpinning()
+                if (downloadProgress.isIndeterminate) {
+                    downloadProgress.isIndeterminate = false
+                    downloadProgress.progress = 0
                 }
             }
             (showControls && audio.transferState == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) -> {
                 controlToggle.displayQuick(downloadProgress)
                 seekBar.isEnabled = false
-                downloadProgress.spin()
+                downloadProgress.isIndeterminate = true
             }
             else -> {
                 controlToggle.displayQuick(playButton)
                 seekBar.isEnabled = true
-                if (downloadProgress.isSpinning) {
-                    downloadProgress.stopSpinning()
+                if (downloadProgress.isIndeterminate) {
+                    downloadProgress.isIndeterminate = false
+                    downloadProgress.progress = 100
                 }
 
                 // Post to make sure it executes only when the view is attached to a window.
@@ -187,7 +189,11 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         pauseButton.imageTintList = ColorStateList.valueOf(backgroundTint)
 
         downloadButton.setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN)
-        downloadProgress.barColor = foregroundTint
+
+        downloadProgress.backgroundTintList = ColorStateList.valueOf(foregroundTint)
+        downloadProgress.progressTintList = ColorStateList.valueOf(backgroundTint)
+        downloadProgress.indeterminateTintList = ColorStateList.valueOf(backgroundTint)
+
         totalDuration.setTextColor(foregroundTint)
 
         // Seek bar's progress color is set from the XML template. Whereas the background is computed.
@@ -284,7 +290,8 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     fun onEvent(event: PartProgressEvent) {
         if (audioSlidePlayer != null && event.attachment == audioSlidePlayer!!.audioSlide.asAttachment()) {
-            downloadProgress.setInstantProgress(event.progress.toFloat() / event.total)
+            val progress = ((event.progress.toFloat() / event.total) * 100f).toInt()
+            downloadProgress.progress = progress
         }
     }
 
