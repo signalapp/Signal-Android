@@ -34,12 +34,15 @@
         style="@style/SessionEditText"
         android:id="@+id/mnemonicEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="28dp"
-        android:paddingBottom="28dp"
+        android:layout_height="80dp"
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginTop="12dp"
         android:layout_marginRight="@dimen/very_large_spacing"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:gravity="center_vertical"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
         android:hint="@string/activity_restore_seed_edit_text_hint" />
 
     <View
