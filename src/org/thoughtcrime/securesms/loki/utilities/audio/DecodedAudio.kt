@@ -108,10 +108,19 @@ class DecodedAudio {
 
         channels = mediaFormat.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
         sampleRate = mediaFormat.getInteger(MediaFormat.KEY_SAMPLE_RATE)
-        totalDuration = mediaFormat.getLong(MediaFormat.KEY_DURATION)
+        // On some old APIs (23) this field might be missing.
+        totalDuration = if (mediaFormat.containsKey(MediaFormat.KEY_DURATION)) {
+            mediaFormat.getLong(MediaFormat.KEY_DURATION)
+        } else {
+            -1L
+        }
 
         // Expected total number of samples per channel.
-        val expectedNumSamples = ((totalDuration / 1000000f) * sampleRate + 0.5f).toInt()
+        val expectedNumSamples = if (totalDuration >= 0) {
+            ((totalDuration / 1000000f) * sampleRate + 0.5f).toInt()
+        } else {
+            Int.MAX_VALUE
+        }
 
         val codec = MediaCodec.createDecoderByType(mediaFormat.getString(MediaFormat.KEY_MIME)!!)
         codec.configure(mediaFormat, null, null, 0)
