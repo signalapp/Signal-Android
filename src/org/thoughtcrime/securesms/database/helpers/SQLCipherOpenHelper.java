@@ -91,8 +91,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV12                          = 33;
   private static final int lokiV13                          = 34;
   private static final int lokiV14_BACKUP_FILES             = 35;
+  private static final int lokiV15                          = 36;
 
-  private static final int    DATABASE_VERSION = lokiV14_BACKUP_FILES; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV15;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -164,7 +165,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
     db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
-    db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupRatchetTableCommand());
+    db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
+    db.execSQL(SharedSenderKeysDatabase.getCreateCurrentClosedGroupRatchetTableCommand());
     db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeyTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
@@ -614,7 +616,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV12) {
         db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTable2Command());
-        db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupRatchetTableCommand());
+        db.execSQL(SharedSenderKeysDatabase.getCreateCurrentClosedGroupRatchetTableCommand());
         db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeyTableCommand());
       }
 
@@ -624,6 +626,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV14_BACKUP_FILES) {
         db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
+      }
+
+      if (oldVersion < lokiV15) {
+        db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
       }
 
       db.setTransactionSuccessful();
