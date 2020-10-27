@@ -41,7 +41,8 @@ import java.util.Map;
  */
 public class MediaRepository {
 
-  private static final String TAG = Log.tag(MediaRepository.class);
+  private static final String TAG    = Log.tag(MediaRepository.class);
+  private static final String CAMERA = "Camera";
 
   /**
    * Retrieves a list of folders that contain media.
@@ -169,12 +170,12 @@ public class MediaRepository {
         String     bucketId  = cursor.getString(cursor.getColumnIndexOrThrow(projection[1]));
         String     title     = cursor.getString(cursor.getColumnIndexOrThrow(projection[2]));
         long       timestamp = cursor.getLong(cursor.getColumnIndexOrThrow(projection[3]));
-        FolderData folder    = Util.getOrDefault(folders, bucketId, new FolderData(thumbnail, title, bucketId));
+        FolderData folder    = Util.getOrDefault(folders, bucketId, new FolderData(thumbnail, localizeTitle(context, title), bucketId));
 
         folder.incrementCount();
         folders.put(bucketId, folder);
 
-        if (cameraBucketId == null && "Camera".equals(title)) {
+        if (cameraBucketId == null && CAMERA.equals(title)) {
           cameraBucketId = bucketId;
         }
 
@@ -186,6 +187,14 @@ public class MediaRepository {
     }
 
     return new FolderResult(cameraBucketId, globalThumbnail, thumbnailTimestamp, folders);
+  }
+
+  private @NonNull String localizeTitle(@NonNull Context context, @NonNull String title) {
+    if (CAMERA.equals(title)) {
+      return context.getString(R.string.MediaRepository__camera);
+    } else {
+      return title;
+    }
   }
 
   @WorkerThread

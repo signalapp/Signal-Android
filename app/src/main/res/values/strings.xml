@@ -930,6 +930,7 @@
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">All media</string>
+    <string name="MediaRepository__camera">Camera</string>
 
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">Unknown</string>
