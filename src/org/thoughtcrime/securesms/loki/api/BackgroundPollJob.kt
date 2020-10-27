@@ -50,13 +50,16 @@ class BackgroundPollJob private constructor(parameters: Parameters) : BaseJob(pa
             Log.d("Loki", "Performing background poll.")
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)
             val promises = mutableListOf<Promise<Unit, Exception>>()
-            val promise = SnodeAPI.shared.getMessages(userPublicKey).map { envelopes ->
-                envelopes.forEach {
-                    PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
+            if (!TextSecurePreferences.isUsingFCM(context)) {
+                Log.d("Loki", "Not using FCM; polling for contacts and closed groups.")
+                val promise = SnodeAPI.shared.getMessages(userPublicKey).map { envelopes ->
+                    envelopes.forEach {
+                        PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
+                    }
                 }
+                promises.add(promise)
+                promises.addAll(ClosedGroupPoller.shared.pollOnce())
             }
-            promises.add(promise)
-            promises.addAll(ClosedGroupPoller.shared.pollOnce())
             val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { it.value }
             for (openGroup in openGroups) {
                 val poller = PublicChatPoller(context, openGroup)
