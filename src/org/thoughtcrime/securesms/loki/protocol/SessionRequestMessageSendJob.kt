@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 class SessionRequestMessageSendJob private constructor(parameters: Parameters, private val publicKey: String, private val timestamp: Long) : BaseJob(parameters) {
 
     companion object {
-        const val KEY = "PushSessionRequestMessageSendJob"
+        const val KEY = "SessionRequestMessageSendJob"
     }
 
     constructor(publicKey: String, timestamp: Long) : this(Parameters.Builder()

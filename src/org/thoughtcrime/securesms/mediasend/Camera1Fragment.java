@@ -27,6 +27,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
@@ -51,6 +52,7 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
 
   private TextureView                  cameraPreview;
   private ViewGroup                    controlsContainer;
+  private View                         cameraCloseButton;
   private ImageButton                  flipButton;
   private Button                       captureButton;
   private Camera1Controller            camera;
@@ -95,6 +97,7 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
 
     cameraPreview     = view.findViewById(R.id.camera_preview);
     controlsContainer = view.findViewById(R.id.camera_controls_container);
+    cameraCloseButton = view.findViewById(R.id.camera_close_button);
 
     onOrientationChanged(getResources().getConfiguration().orientation);
 
@@ -102,6 +105,8 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
 
     GestureDetector gestureDetector = new GestureDetector(flipGestureListener);
     cameraPreview.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+
+    cameraCloseButton.setOnClickListener(v -> requireActivity().onBackPressed());
   }
 
   @Override

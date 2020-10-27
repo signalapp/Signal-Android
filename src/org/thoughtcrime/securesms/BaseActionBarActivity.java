@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -42,6 +43,13 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
     if (BaseActivity.isMenuWorkaroundRequired()) {
       forceOverflowMenu();
     }
+
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
+      actionBar.setHomeButtonEnabled(true);
+    }
+
     super.onCreate(savedInstanceState);
   }
 
@@ -67,6 +75,14 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
       }
     };
     LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("unexpectedDeviceLinkRequestReceived"));
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    if (super.onSupportNavigateUp()) return true;
+
+    onBackPressed();
+    return true;
   }
 
   @Override

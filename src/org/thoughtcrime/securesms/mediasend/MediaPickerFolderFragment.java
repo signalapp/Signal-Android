@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -53,7 +55,7 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     recipientName = getArguments().getString(KEY_RECIPIENT_NAME);
-    viewModel     = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
+    viewModel     = new ViewModelProvider(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
 
   @Override
@@ -85,7 +87,7 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
     list.setLayoutManager(layoutManager);
     list.setAdapter(adapter);
 
-    viewModel.getFolders(requireContext()).observe(this, adapter::setFolders);
+    viewModel.getFolders(requireContext()).observe(getViewLifecycleOwner(), adapter::setFolders);
 
     initToolbar(view.findViewById(R.id.mediapicker_toolbar));
   }
@@ -107,7 +109,10 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
 
   private void initToolbar(Toolbar toolbar) {
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getString(R.string.MediaPickerActivity_send_to, recipientName));
+    ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+    actionBar.setTitle(getString(R.string.MediaPickerActivity_send_to, recipientName));
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setHomeButtonEnabled(true);
 
     toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
   }

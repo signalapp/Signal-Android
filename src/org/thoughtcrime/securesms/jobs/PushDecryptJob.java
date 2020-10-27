@@ -564,9 +564,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                                                    Optional.absent(),
                                                                    Optional.absent());
 
-        database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
-        DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, message.getExpiresInSeconds());
+      DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, message.getExpiresInSeconds());
 
       if (smsMessageId.isPresent()) {
         DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());

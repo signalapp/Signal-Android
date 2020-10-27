@@ -26,6 +26,7 @@
         android:layout_centerInParent="true">
 
         <TextView
+            android:id="@+id/emptyStateMessageTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_font_size"

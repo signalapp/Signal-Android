@@ -123,7 +123,7 @@
 
             <Button
                 style="@style/Widget.Session.Button.Common.ProminentOutline"
-                android:id="@+id/btnCreateNewPrivateChat"
+                android:id="@+id/createNewPrivateChatButton"
                 android:layout_width="196dp"
                 android:layout_height="@dimen/medium_button_height"
                 android:layout_marginTop="@dimen/medium_spacing"
