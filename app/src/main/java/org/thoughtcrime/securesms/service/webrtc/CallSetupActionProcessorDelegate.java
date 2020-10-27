@@ -75,6 +75,8 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
+    Log.i(tag, "handleSetEnableVideo(): enable: " + enable);
+
     Camera camera = currentState.getVideoState().requireCamera();
 
     if (camera.isInitialized()) {

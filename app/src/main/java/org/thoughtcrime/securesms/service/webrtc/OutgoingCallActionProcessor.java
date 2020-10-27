@@ -66,6 +66,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
     androidAudioManager.setSpeakerphoneOn(false);
+    WebRtcUtil.enableSpeakerPhoneIfNeeded(context, currentState.getCallSetupState().isEnableVideoOnCreate());
 
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     webRtcInteractor.initializeAudioForCall();
