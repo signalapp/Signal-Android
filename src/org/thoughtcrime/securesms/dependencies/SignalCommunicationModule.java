@@ -159,6 +159,7 @@ public class SignalCommunicationModule {
                                                           DatabaseFactory.getLokiPreKeyBundleDatabase(context),
                                                           new SessionResetImplementation(context),
                                                           DatabaseFactory.getLokiUserDatabase(context),
+                                                          DatabaseFactory.getGroupDatabase(context),
                                                           ((ApplicationContext)context.getApplicationContext()).broadcaster);
     } else {
       this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());

@@ -92,8 +92,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV13                          = 34;
   private static final int lokiV14_BACKUP_FILES             = 35;
   private static final int lokiV15                          = 36;
+  private static final int lokiV16                          = 37;
 
-  private static final int    DATABASE_VERSION = lokiV15;
+  private static final int    DATABASE_VERSION = lokiV16;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -155,6 +156,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestSentTimestampTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestProcessedTimestampTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupPublicKeyTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageIDTableCommand());
@@ -630,6 +632,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV15) {
         db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
+      }
+
+      if (oldVersion < lokiV16) {
+        db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
       }
 
       db.setTransactionSuccessful();

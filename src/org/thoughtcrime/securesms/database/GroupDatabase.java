@@ -6,9 +6,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.loki.database.LokiOpenGroupDatabaseProtocol;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -29,7 +31,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GroupDatabase extends Database {
+public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProtocol {
 
   @SuppressWarnings("unused")
   private static final String TAG = GroupDatabase.class.getSimpleName();
@@ -240,35 +242,37 @@ public class GroupDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  public void updateTitle(String groupId, String title) {
+  @Override
+  public void updateTitle(String groupID, String newValue) {
     ContentValues contentValues = new ContentValues();
-    contentValues.put(TITLE, title);
+    contentValues.put(TITLE, newValue);
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
-                                                new String[] {groupId});
+                                                new String[] {groupID});
 
-    Recipient recipient = Recipient.from(context, Address.fromSerialized(groupId), false);
-    recipient.setName(title);
+    Recipient recipient = Recipient.from(context, Address.fromSerialized(groupID), false);
+    recipient.setName(newValue);
   }
 
-  public void updateAvatar(String groupId, Bitmap avatar) {
-    updateAvatar(groupId, BitmapUtil.toByteArray(avatar));
+  public void updateProfilePicture(String groupID, Bitmap newValue) {
+    updateProfilePicture(groupID, BitmapUtil.toByteArray(newValue));
   }
 
-  public void updateAvatar(String groupId, byte[] avatar) {
+  @Override
+  public void updateProfilePicture(String groupID, byte[] newValue) {
     long avatarId;
 
-    if (avatar != null) avatarId = Math.abs(new SecureRandom().nextLong());
+    if (newValue != null) avatarId = Math.abs(new SecureRandom().nextLong());
     else                avatarId = 0;
 
 
     ContentValues contentValues = new ContentValues(2);
-    contentValues.put(AVATAR, avatar);
+    contentValues.put(AVATAR, newValue);
     contentValues.put(AVATAR_ID, avatarId);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
-                                                new String[] {groupId});
+                                                new String[] {groupID});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
+    Recipient.applyCached(Address.fromSerialized(groupID), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
   }
 
   public void updateMembers(String groupId, List<Address> members) {
