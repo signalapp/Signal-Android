@@ -83,7 +83,7 @@ public class DirectoryHelper {
       return;
     }
 
-    if (!Permissions.hasAll(context, Manifest.permission.WRITE_CONTACTS)) {
+    if (!Permissions.hasAll(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
       Log.w(TAG, "No contact permissions. Skipping.");
       return;
     }
