@@ -15,8 +15,8 @@ import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
-import com.goterl.lazycode.lazysodium.LazySodiumJava
-import com.goterl.lazycode.lazysodium.SodiumJava
+import com.goterl.lazycode.lazysodium.LazySodiumAndroid
+import com.goterl.lazycode.lazysodium.SodiumAndroid
 import com.goterl.lazycode.lazysodium.utils.KeyPair
 import kotlinx.android.synthetic.main.activity_register.*
 import network.loki.messenger.R
@@ -36,7 +36,7 @@ import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 
 class RegisterActivity : BaseActionBarActivity() {
-    private val sodium = LazySodiumJava(SodiumJava())
+    private val sodium = LazySodiumAndroid(SodiumAndroid())
     private var seed: ByteArray? = null
     private var ed25519KeyPair: KeyPair? = null
     private var x25519KeyPair: ECKeyPair? = null

@@ -55,6 +55,12 @@ repositories {
             includeGroupByRegex "com\\.amulyakhare.*"
         }
     }
+    maven {
+        url  "https://dl.bintray.com/terl/lazysodium-maven"
+        content {
+            includeGroupByRegex "com\\.goterl\\.lazycode.*"
+        }
+    }
     google()
     jcenter()
     maven { url "https://jitpack.io" }
@@ -145,8 +151,8 @@ dependencies {
     implementation "org.whispersystems:signal-service-android:2.13.2" // Run ./gradlew install from session-android-service to install
     implementation "org.whispersystems:curve25519-java:0.5.0"
     // Remote:
-    implementation "com.goterl.lazycode:lazysodium-java:4.3.0"
-    implementation "net.java.dev.jna:jna:5.6.0"
+    implementation "com.goterl.lazycode:lazysodium-android:4.2.0@aar"
+    implementation "net.java.dev.jna:jna:5.5.0@aar"
     implementation "com.google.protobuf:protobuf-java:2.5.0"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
     implementation "com.squareup.okhttp3:okhttp:3.12.1"
@@ -266,6 +272,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                           'proguard-dagger.pro',
                           'proguard-jackson.pro',
+                          'proguard-jna.pro',
                           'proguard-sqlite.pro',
                           'proguard-appcompat-v7.pro',
                           'proguard-square-okhttp.pro',
