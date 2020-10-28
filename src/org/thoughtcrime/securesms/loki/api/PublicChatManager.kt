@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.api
 
 import android.content.Context
 import android.database.ContentObserver
+import android.graphics.Bitmap
 import android.text.TextUtils
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
@@ -10,8 +11,10 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChatInfo
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
 
 class PublicChatManager(private val context: Context) {
@@ -24,8 +27,8 @@ class PublicChatManager(private val context: Context) {
     var areAllCaughtUp = true
     refreshChatsAndPollers()
     for ((threadID, chat) in chats) {
-      val poller = pollers[threadID] ?: PublicChatPoller(context, chat)
-      areAllCaughtUp = areAllCaughtUp && poller.isCaughtUp
+      val poller = pollers[threadID]
+      areAllCaughtUp = if (poller != null) areAllCaughtUp && poller.isCaughtUp else true
     }
     return areAllCaughtUp
   }
@@ -56,7 +59,8 @@ class PublicChatManager(private val context: Context) {
   }
 
   public fun addChat(server: String, channel: Long): Promise<PublicChat, Exception> {
-    val groupChatAPI = ApplicationContext.getInstance(context).publicChatAPI ?: return Promise.ofFail(IllegalStateException("LokiPublicChatAPI is not set!"))
+    val groupChatAPI = ApplicationContext.getInstance(context).publicChatAPI
+            ?: return Promise.ofFail(IllegalStateException("LokiPublicChatAPI is not set!"))
     return groupChatAPI.getAuthToken(server).bind {
       groupChatAPI.getChannelInfo(channel, server)
     }.map {
@@ -64,12 +68,18 @@ class PublicChatManager(private val context: Context) {
     }
   }
 
-  public fun addChat(server: String, channel: Long, name: String): PublicChat {
-    val chat = PublicChat(channel, server, name, true)
+  public fun addChat(server: String, channel: Long, info: PublicChatInfo): PublicChat {
+    val chat = PublicChat(channel, server, info.displayName, true)
     var threadID =  GroupManager.getOpenGroupThreadID(chat.id, context)
+    var profilePicture: Bitmap? = null
     // Create the group if we don't have one
     if (threadID < 0) {
-      val result = GroupManager.createOpenGroup(chat.id, context, null, chat.displayName)
+      if (info.profilePictureURL.isNotEmpty()) {
+        val profilePictureAsByteArray = ApplicationContext.getInstance(context).publicChatAPI
+                ?.downloadOpenGroupProfilePicture(server, info.profilePictureURL)
+        profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
+      }
+      val result = GroupManager.createOpenGroup(chat.id, context, profilePicture, chat.displayName)
       threadID = result.threadId
     }
     DatabaseFactory.getLokiThreadDatabase(context).setPublicChat(chat, threadID)

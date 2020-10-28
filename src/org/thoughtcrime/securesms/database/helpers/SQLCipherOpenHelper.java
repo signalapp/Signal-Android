@@ -92,9 +92,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV13                          = 34;
   private static final int lokiV14_BACKUP_FILES             = 35;
   private static final int lokiV15                          = 36;
-  private static final int lokiV16_AUDIO_ATTACHMENT_EXTRAS  = 37;
+  private static final int lokiV16                          = 37;
 
-  private static final int    DATABASE_VERSION = lokiV16_AUDIO_ATTACHMENT_EXTRAS;
+  private static final int    DATABASE_VERSION = lokiV16;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -156,6 +156,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestSentTimestampTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestProcessedTimestampTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupPublicKeyTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageIDTableCommand());
@@ -633,9 +634,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
       }
 
-      if (oldVersion < lokiV16_AUDIO_ATTACHMENT_EXTRAS) {
-          db.execSQL("ALTER TABLE part ADD COLUMN audio_visual_samples BLOB");
-          db.execSQL("ALTER TABLE part ADD COLUMN audio_duration INTEGER");
+      if (oldVersion < lokiV16) {
+        db.execSQL("ALTER TABLE part ADD COLUMN audio_visual_samples BLOB");
+        db.execSQL("ALTER TABLE part ADD COLUMN audio_duration INTEGER");
+        db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
       }
 
       db.setTransactionSuccessful();

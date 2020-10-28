@@ -419,6 +419,10 @@ public class Recipient implements RecipientModifiedListener {
     return address.isGroup();
   }
 
+  public boolean isOpenGroupRecipient() {
+    return address.isOpenGroup();
+  }
+
   public boolean isMmsGroupRecipient() {
     return address.isMmsGroup();
   }
@@ -503,6 +507,11 @@ public class Recipient implements RecipientModifiedListener {
     }
 
     if (notify) notifyListeners();
+  }
+
+  @Nullable
+  public synchronized Long getGroupAvatarId() {
+    return groupAvatarId;
   }
 
   public synchronized @Nullable Uri getMessageRingtone() {

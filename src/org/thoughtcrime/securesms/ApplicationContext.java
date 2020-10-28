@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
@@ -305,7 +306,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
-    publicChatAPI = new PublicChatAPI(userPublicKey, userPrivateKey, apiDB, userDB);
+    GroupDatabase groupDB = DatabaseFactory.getGroupDatabase(this);
+    publicChatAPI = new PublicChatAPI(userPublicKey, userPrivateKey, apiDB, userDB, groupDB);
     return publicChatAPI;
   }
 

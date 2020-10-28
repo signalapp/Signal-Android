@@ -85,7 +85,7 @@ public class GroupManager {
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses));
 
     if (!mms) {
-      groupDatabase.updateAvatar(groupId, avatarBytes);
+      groupDatabase.updateProfilePicture(groupId, avatarBytes);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
     } else {
@@ -125,7 +125,7 @@ public class GroupManager {
     memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>());
 
-    groupDatabase.updateAvatar(groupId, avatarBytes);
+    groupDatabase.updateProfilePicture(groupId, avatarBytes);
 
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
     return new GroupActionResult(groupRecipient, threadID);
@@ -148,7 +148,7 @@ public class GroupManager {
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberAddresses));
     groupDatabase.updateAdmins(groupId, new LinkedList<>(adminAddresses));
     groupDatabase.updateTitle(groupId, name);
-    groupDatabase.updateAvatar(groupId, avatarBytes);
+    groupDatabase.updateProfilePicture(groupId, avatarBytes);
 
     if (!GroupUtil.isMmsGroup(groupId)) {
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
