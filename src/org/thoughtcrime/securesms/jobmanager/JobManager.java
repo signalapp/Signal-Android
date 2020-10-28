@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
-import org.thoughtcrime.securesms.jobmanager.migration.WorkManagerMigrator;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Debouncer;
@@ -52,11 +51,6 @@ public class JobManager implements ConstraintObserver.Notifier {
                                            this::onEmptyQueue);
 
     executor.execute(() -> {
-      if (WorkManagerMigrator.needsMigration(application)) {
-        Log.i(TAG, "Detected an old WorkManager database. Migrating.");
-        WorkManagerMigrator.migrate(application, configuration.getJobStorage(), configuration.getDataSerializer());
-      }
-
       jobController.init();
 
       for (int i = 0; i < jobRunners.length; i++) {
