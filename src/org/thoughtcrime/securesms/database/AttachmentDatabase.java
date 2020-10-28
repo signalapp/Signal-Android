@@ -24,11 +24,12 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
-import android.text.TextUtils;
-import android.util.Pair;
 
 import com.bumptech.glide.Glide;
 
@@ -52,10 +53,10 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
-import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
@@ -839,15 +840,15 @@ public class AttachmentDatabase extends Database {
   @Synchronized
   public @Nullable DatabaseAttachmentAudioExtras getAttachmentAudioExtras(@NonNull AttachmentId attachmentId) {
     try (Cursor cursor = databaseHelper.getReadableDatabase()
-            // We expect all the audio extra values to be present (not null) or reject the whole record.
-            .query(TABLE_NAME,
-                    PROJECTION_AUDIO_EXTRAS,
-                    PART_ID_WHERE +
-                            " AND " + AUDIO_VISUAL_SAMPLES + " IS NOT NULL" +
-                            " AND " + AUDIO_DURATION + " IS NOT NULL" +
-                            " AND " + PART_AUDIO_ONLY_WHERE,
-                    attachmentId.toStrings(),
-                    null, null, null, "1")) {
+      // We expect all the audio extra values to be present (not null) or reject the whole record.
+      .query(TABLE_NAME,
+        PROJECTION_AUDIO_EXTRAS,
+        PART_ID_WHERE +
+        " AND " + AUDIO_VISUAL_SAMPLES + " IS NOT NULL" +
+        " AND " + AUDIO_DURATION + " IS NOT NULL" +
+        " AND " + PART_AUDIO_ONLY_WHERE,
+        attachmentId.toStrings(),
+        null, null, null, "1")) {
 
       if (cursor == null || !cursor.moveToFirst()) return null;
 
@@ -869,9 +870,9 @@ public class AttachmentDatabase extends Database {
     values.put(AUDIO_DURATION, extras.getDurationMs());
 
     int alteredRows = databaseHelper.getWritableDatabase().update(TABLE_NAME,
-            values,
-            PART_ID_WHERE + " AND " + PART_AUDIO_ONLY_WHERE,
-            extras.getAttachmentId().toStrings());
+      values,
+      PART_ID_WHERE + " AND " + PART_AUDIO_ONLY_WHERE,
+      extras.getAttachmentId().toStrings());
 
     return alteredRows > 0;
   }

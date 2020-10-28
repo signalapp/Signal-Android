@@ -7,13 +7,12 @@ import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.util.ParcelableUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
-//TODO AC: For now parcelable objects utilize byteArrays field to store their data into.
+// TODO AC: For now parcelable objects utilize byteArrays field to store their data into.
 // Introduce a dedicated Map<String, byte[]> field specifically for parcelable needs.
 public class Data {
 
