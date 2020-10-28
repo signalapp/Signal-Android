@@ -28,7 +28,8 @@
 
         <item name="menu_info_icon">@drawable/ic_outline_info_24</item>
 
-        <item name="conversation_item_audio_seek_bar_color">?colorControlNormal</item>
+        <item name="conversation_item_audio_seek_bar_color_incoming">@color/accent</item>
+        <item name="conversation_item_audio_seek_bar_color_outgoing">@color/white</item>
     </style>
 
     <style name="Theme.Session.DayNight" parent="Theme.Session.Light">

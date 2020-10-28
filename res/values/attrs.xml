@@ -84,7 +84,9 @@
     <attr name="conversation_item_sticky_date_background" format="reference" />
     <attr name="conversation_item_sticky_date_text_color" format="color" />
     <attr name="conversation_item_image_outline_color" format="color" />
-    <attr name="conversation_item_audio_seek_bar_color" format="reference|color" />
+    <attr name="conversation_item_audio_seek_bar_color_incoming" format="reference|color" />
+    <attr name="conversation_item_audio_seek_bar_color_outgoing" format="reference|color" />
+    <attr name="conversation_item_audio_seek_bar_background_color" format="reference|color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
@@ -173,8 +175,8 @@
     <declare-styleable name="MessageAudioView">
         <attr name="widgetBackground" format="color"/>
         <attr name="foregroundTintColor" format="color" />
-        <attr name="backgroundTintColor" format="color" />
         <attr name="waveformFillColor" format="reference|color" />
+        <attr name="waveformBackgroundColor" format="reference|color" />
     </declare-styleable>
 
     <declare-styleable name="CircleColorImageView">

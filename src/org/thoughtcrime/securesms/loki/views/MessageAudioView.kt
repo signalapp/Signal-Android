@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.mms.AudioSlide
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import java.io.IOException
@@ -115,8 +116,8 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         if (attrs != null) {
             val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.MessageAudioView, 0, 0)
             setTint(typedArray.getColor(R.styleable.MessageAudioView_foregroundTintColor, Color.WHITE),
-                    typedArray.getColor(R.styleable.MessageAudioView_backgroundTintColor, Color.WHITE),
-                    typedArray.getColor(R.styleable.MessageAudioView_waveformFillColor, Color.WHITE))
+                    typedArray.getColor(R.styleable.MessageAudioView_waveformFillColor, Color.WHITE),
+                    typedArray.getColor(R.styleable.MessageAudioView_waveformBackgroundColor, Color.WHITE))
             container.setBackgroundColor(typedArray.getColor(R.styleable.MessageAudioView_widgetBackground, Color.TRANSPARENT))
             typedArray.recycle()
         }
@@ -182,23 +183,22 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         downloadListener = listener
     }
 
-    fun setTint(@ColorInt foregroundTint: Int, @ColorInt backgroundTint: Int, @ColorInt waveformFill: Int) {
-        playButton.backgroundTintList = ColorStateList.valueOf(foregroundTint)
-        playButton.imageTintList = ColorStateList.valueOf(backgroundTint)
-        pauseButton.backgroundTintList = ColorStateList.valueOf(foregroundTint)
-        pauseButton.imageTintList = ColorStateList.valueOf(backgroundTint)
+    fun setTint(@ColorInt foregroundTint: Int, @ColorInt waveformFill: Int, @ColorInt waveformBackground: Int) {
+        playButton.backgroundTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.white, context.theme))
+        playButton.imageTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.black, context.theme))
+        pauseButton.backgroundTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.white, context.theme))
+        pauseButton.imageTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.black, context.theme))
 
         downloadButton.setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN)
 
-        downloadProgress.backgroundTintList = ColorStateList.valueOf(foregroundTint)
-        downloadProgress.progressTintList = ColorStateList.valueOf(backgroundTint)
-        downloadProgress.indeterminateTintList = ColorStateList.valueOf(backgroundTint)
+        downloadProgress.backgroundTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.white, context.theme))
+        downloadProgress.progressTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.black, context.theme))
+        downloadProgress.indeterminateTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.black, context.theme))
 
         totalDuration.setTextColor(foregroundTint)
 
-        // Seek bar's progress color is set from the XML template. Whereas the background is computed.
         seekBar.barProgressColor = waveformFill
-        seekBar.barBackgroundColor = ColorUtils.blendARGB(foregroundTint, backgroundTint, 0.75f)
+        seekBar.barBackgroundColor = waveformBackground
     }
 
     override fun onPlayerStart(player: AudioSlidePlayer) {
@@ -309,7 +309,7 @@ class MessageAudioView: FrameLayout, AudioSlidePlayer.Listener {
         private var active = false
 
         companion object {
-            private const val UPDATE_PERIOD = 350L // In milliseconds.
+            private const val UPDATE_PERIOD = 250L // In milliseconds.
             private val random = Random()
         }
 

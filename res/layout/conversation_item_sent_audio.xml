@@ -6,6 +6,6 @@
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         app:foregroundTintColor="?android:colorControlNormal"
-        app:backgroundTintColor="?message_sent_background_color"
-        app:waveformFillColor="?conversation_item_audio_seek_bar_color"
+        app:waveformFillColor="?conversation_item_audio_seek_bar_color_outgoing"
+        app:waveformBackgroundColor="?conversation_item_audio_seek_bar_background_color"
         android:visibility="gone"/>
