@@ -47,6 +47,12 @@ public class MediaRepository {
    * Retrieves a list of folders that contain media.
    */
   void getFolders(@NonNull Context context, @NonNull Callback<List<MediaFolder>> callback) {
+    if (!StorageUtil.canReadFromMediaStore()) {
+      Log.w(TAG, "No storage permissions!", new Throwable());
+      callback.onComplete(Collections.emptyList());
+      return;
+    }
+
     SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getFolders(context)));
   }
 
@@ -54,6 +60,12 @@ public class MediaRepository {
    * Retrieves a list of media items (images and videos) that are present int he specified bucket.
    */
   public void getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Callback<List<Media>> callback) {
+    if (!StorageUtil.canReadFromMediaStore()) {
+      Log.w(TAG, "No storage permissions!", new Throwable());
+      callback.onComplete(Collections.emptyList());
+      return;
+    }
+
     SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getMediaInBucket(context, bucketId)));
   }
 
@@ -67,10 +79,23 @@ public class MediaRepository {
       return;
     }
 
+    if (!StorageUtil.canReadFromMediaStore()) {
+      Log.w(TAG, "No storage permissions!", new Throwable());
+      callback.onComplete(media);
+      return;
+    }
+
+
     SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getPopulatedMedia(context, media)));
   }
 
   void getMostRecentItem(@NonNull Context context, @NonNull Callback<Optional<Media>> callback) {
+    if (!StorageUtil.canReadFromMediaStore()) {
+      Log.w(TAG, "No storage permissions!", new Throwable());
+      callback.onComplete(Optional.absent());
+      return;
+    }
+
     SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getMostRecentItem(context)));
   }
 
@@ -84,10 +109,6 @@ public class MediaRepository {
 
   @WorkerThread
   private @NonNull List<MediaFolder> getFolders(@NonNull Context context) {
-    if (!StorageUtil.canReadFromMediaStore()) {
-      return Collections.emptyList();
-    }
-
     FolderResult imageFolders       = getFolders(context, Images.Media.EXTERNAL_CONTENT_URI);
     FolderResult videoFolders       = getFolders(context, Video.Media.EXTERNAL_CONTENT_URI);
     Map<String, FolderData> folders = new HashMap<>(imageFolders.getFolderData());
@@ -169,10 +190,6 @@ public class MediaRepository {
 
   @WorkerThread
   private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId) {
-    if (!StorageUtil.canReadFromMediaStore()) {
-      return Collections.emptyList();
-    }
-
     List<Media> images = getMediaInBucket(context, bucketId, Images.Media.EXTERNAL_CONTENT_URI, true);
     List<Media> videos = getMediaInBucket(context, bucketId, Video.Media.EXTERNAL_CONTENT_URI, false);
     List<Media> media  = new ArrayList<>(images.size() + videos.size());
