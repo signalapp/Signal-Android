@@ -24,11 +24,12 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
-import android.text.TextUtils;
-import android.util.Pair;
 
 import com.bumptech.glide.Glide;
 
@@ -39,6 +40,7 @@ import org.json.JSONException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachmentAudioExtras;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
@@ -51,10 +53,10 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
-import org.thoughtcrime.securesms.util.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
@@ -71,6 +73,8 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+
+import kotlin.jvm.Synchronized;
 
 public class AttachmentDatabase extends Database {
   
@@ -105,6 +109,9 @@ public class AttachmentDatabase extends Database {
           static final String CAPTION                = "caption";
   public  static final String URL                    = "url";
   public  static final String DIRECTORY              = "parts";
+  // "audio/*" mime type only related columns.
+          static final String AUDIO_VISUAL_SAMPLES   = "audio_visual_samples";  // Small amount of audio byte samples to visualise the content (e.g. draw waveform).
+          static final String AUDIO_DURATION         = "audio_duration";        // Duration of the audio track in milliseconds.
 
   public static final int TRANSFER_PROGRESS_DONE    = 0;
   public static final int TRANSFER_PROGRESS_STARTED = 1;
@@ -112,6 +119,7 @@ public class AttachmentDatabase extends Database {
   public static final int TRANSFER_PROGRESS_FAILED  = 3;
 
   private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
+  private static final String PART_AUDIO_ONLY_WHERE = CONTENT_TYPE + " LIKE \"audio/%\"";
 
   private static final String[] PROJECTION = new String[] {ROW_ID,
                                                            MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
@@ -120,6 +128,8 @@ public class AttachmentDatabase extends Database {
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
                                                            QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT,
                                                            CAPTION, STICKER_PACK_ID, STICKER_PACK_KEY, STICKER_ID, URL};
+
+  private static final String[] PROJECTION_AUDIO_EXTRAS = new String[] {AUDIO_VISUAL_SAMPLES, AUDIO_DURATION};
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -133,7 +143,8 @@ public class AttachmentDatabase extends Database {
     VOICE_NOTE + " INTEGER DEFAULT 0, " + DATA_RANDOM + " BLOB, " + THUMBNAIL_RANDOM + " BLOB, " +
     QUOTE + " INTEGER DEFAULT 0, " + WIDTH + " INTEGER DEFAULT 0, " + HEIGHT + " INTEGER DEFAULT 0, " +
     CAPTION + " TEXT DEFAULT NULL, " + URL + " TEXT, " + STICKER_PACK_ID + " TEXT DEFAULT NULL, " +
-    STICKER_PACK_KEY + " DEFAULT NULL, " + STICKER_ID + " INTEGER DEFAULT -1);";
+    STICKER_PACK_KEY + " DEFAULT NULL, " + STICKER_ID + " INTEGER DEFAULT -1," +
+    AUDIO_VISUAL_SAMPLES + " BLOB, " + AUDIO_DURATION + " INTEGER);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -822,6 +833,49 @@ public class AttachmentDatabase extends Database {
     }
   }
 
+  /**
+   * Retrieves the audio extra values associated with the attachment. Only "audio/*" mime type attachments are accepted.
+   * @return the related audio extras or null in case any of the audio extra columns are empty or the attachment is not an audio.
+   */
+  @Synchronized
+  public @Nullable DatabaseAttachmentAudioExtras getAttachmentAudioExtras(@NonNull AttachmentId attachmentId) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase()
+      // We expect all the audio extra values to be present (not null) or reject the whole record.
+      .query(TABLE_NAME,
+        PROJECTION_AUDIO_EXTRAS,
+        PART_ID_WHERE +
+        " AND " + AUDIO_VISUAL_SAMPLES + " IS NOT NULL" +
+        " AND " + AUDIO_DURATION + " IS NOT NULL" +
+        " AND " + PART_AUDIO_ONLY_WHERE,
+        attachmentId.toStrings(),
+        null, null, null, "1")) {
+
+      if (cursor == null || !cursor.moveToFirst()) return null;
+
+      byte[] audioSamples = cursor.getBlob(cursor.getColumnIndexOrThrow(AUDIO_VISUAL_SAMPLES));
+      long   duration     = cursor.getLong(cursor.getColumnIndexOrThrow(AUDIO_DURATION));
+
+      return new DatabaseAttachmentAudioExtras(attachmentId, audioSamples, duration);
+    }
+  }
+
+  /**
+   * Updates audio extra columns for the "audio/*" mime type attachments only.
+   * @return true if the update operation was successful.
+   */
+  @Synchronized
+  public boolean setAttachmentAudioExtras(@NonNull DatabaseAttachmentAudioExtras extras) {
+    ContentValues values = new ContentValues();
+    values.put(AUDIO_VISUAL_SAMPLES, extras.getVisualSamples());
+    values.put(AUDIO_DURATION, extras.getDurationMs());
+
+    int alteredRows = databaseHelper.getWritableDatabase().update(TABLE_NAME,
+      values,
+      PART_ID_WHERE + " AND " + PART_AUDIO_ONLY_WHERE,
+      extras.getAttachmentId().toStrings());
+
+    return alteredRows > 0;
+  }
 
   @VisibleForTesting
   class ThumbnailFetchCallable implements Callable<InputStream> {

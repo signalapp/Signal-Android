@@ -93,8 +93,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV14_BACKUP_FILES             = 35;
   private static final int lokiV15                          = 36;
   private static final int lokiV16                          = 37;
+  private static final int lokiV17                          = 38;
 
-  private static final int    DATABASE_VERSION = lokiV16;
+  private static final int    DATABASE_VERSION = lokiV17;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -636,6 +637,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV16) {
         db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
+      }
+
+      if (oldVersion < lokiV17) {
+        db.execSQL("ALTER TABLE part ADD COLUMN audio_visual_samples BLOB");
+        db.execSQL("ALTER TABLE part ADD COLUMN audio_duration INTEGER");
       }
 
       db.setTransactionSuccessful();

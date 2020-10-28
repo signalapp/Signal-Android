@@ -60,7 +60,7 @@ import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
-import org.thoughtcrime.securesms.components.AudioView;
+import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
 import org.thoughtcrime.securesms.components.DocumentView;
@@ -161,7 +161,7 @@ public class ConversationItem extends TapJackingProofLinearLayout
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
   private           Recipient                       conversationRecipient;
   private           Stub<ConversationItemThumbnail> mediaThumbnailStub;
-  private           Stub<AudioView>                 audioViewStub;
+  private           Stub<MessageAudioView>                 audioViewStub;
   private           Stub<DocumentView>              documentViewStub;
   private           Stub<SharedContactView>         sharedContactStub;
   private           Stub<LinkPreviewView>           linkPreviewStub;

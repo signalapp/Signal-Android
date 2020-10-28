@@ -32,7 +32,7 @@
                 app:minHeight="100dp"
                 app:maxHeight="300dp"/>
 
-        <org.thoughtcrime.securesms.components.AudioView
+        <org.thoughtcrime.securesms.loki.views.MessageAudioView
                 android:id="@+id/attachment_audio"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
@@ -41,7 +41,8 @@
                 android:paddingBottom="15dp"
                 app:widgetBackground="?conversation_item_bubble_background"
                 app:foregroundTintColor="?android:colorControlNormal"
-                app:backgroundTintColor="?conversation_item_bubble_background"/>
+                app:backgroundTintColor="?conversation_item_bubble_background"
+                app:waveformFillColor="?conversation_item_audio_seek_bar_color"/>
 
         <org.thoughtcrime.securesms.components.DocumentView
             android:id="@+id/attachment_document"

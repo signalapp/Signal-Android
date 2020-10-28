@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.AudioView
+<org.thoughtcrime.securesms.loki.views.MessageAudioView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -9,4 +9,5 @@
         android:visibility="gone"
         app:foregroundTintColor="?android:colorControlNormal"
         app:backgroundTintColor="?message_received_background_color"
+        app:waveformFillColor="?conversation_item_audio_seek_bar_color"
         tools:visibility="visible"/>
