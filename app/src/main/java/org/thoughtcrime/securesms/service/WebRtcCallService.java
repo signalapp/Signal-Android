@@ -479,10 +479,12 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
 
     private void hangup() {
-      Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
-      intent.setAction(ACTION_LOCAL_HANGUP);
+      if (serviceState != null && serviceState.getCallInfoState().getActivePeer() != null) {
+        Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
+        intent.setAction(ACTION_LOCAL_HANGUP);
 
-      startService(intent);
+        startService(intent);
+      }
     }
   }
 
