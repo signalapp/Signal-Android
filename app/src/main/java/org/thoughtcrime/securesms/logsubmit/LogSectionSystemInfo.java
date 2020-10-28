@@ -14,7 +14,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.CensorshipUtil;
@@ -58,6 +57,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Censored     : ").append(CensorshipUtil.isCensored(context)).append("\n");
     builder.append("Play Services: ").append(getPlayServicesString(context)).append("\n");
     builder.append("FCM          : ").append(!TextSecurePreferences.isFcmDisabled(context)).append("\n");
+    builder.append("Locale       : ").append(Locale.getDefault().toString()).append("\n");
     builder.append("First Version: ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
     builder.append("App          : ");
     try {
