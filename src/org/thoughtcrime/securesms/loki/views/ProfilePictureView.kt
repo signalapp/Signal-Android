@@ -68,10 +68,10 @@ class ProfilePictureView : RelativeLayout {
                 return result ?: publicKey
             }
         }
-        fun isOpenGroupWithAvatar(recipient: Recipient): Boolean {
+        fun isOpenGroupWithProfilePicture(recipient: Recipient): Boolean {
             return recipient.isOpenGroupRecipient && recipient.groupAvatarId != null
         }
-        if (recipient.isGroupRecipient && !isOpenGroupWithAvatar(recipient)) {
+        if (recipient.isGroupRecipient && !isOpenGroupWithProfilePicture(recipient)) {
             val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
             users.remove(TextSecurePreferences.getLocalNumber(context))
             val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)

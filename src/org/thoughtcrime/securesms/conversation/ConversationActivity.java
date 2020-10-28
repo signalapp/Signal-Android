@@ -465,11 +465,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         String groupId = GroupUtil.getEncodedOpenGroupId(publicChat.getId().getBytes());
 
         publicChatAPI.updateProfileIfNeeded(
-                publicChat.getChannel(),
-                publicChat.getServer(),
-                groupId,
-                info,
-                false);
+            publicChat.getChannel(),
+            publicChat.getServer(),
+            groupId,
+            info,
+            false);
 
         runOnUiThread(ConversationActivity.this::updateSubtitleTextView);
         return Unit.INSTANCE;
