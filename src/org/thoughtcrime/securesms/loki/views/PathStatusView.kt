@@ -85,7 +85,7 @@ class PathStatusView : View {
     private fun handlePathsBuiltEvent() { update() }
 
     private fun update() {
-        if (OnionRequestAPI.paths.count() >= OnionRequestAPI.pathCount) {
+        if (OnionRequestAPI.paths.isNotEmpty()) {
             setBackgroundResource(R.drawable.accent_dot)
             mainColor = resources.getColorWithID(R.color.accent, context.theme)
             sessionShadowColor = resources.getColorWithID(R.color.accent, context.theme)

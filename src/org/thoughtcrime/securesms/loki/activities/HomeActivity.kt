@@ -26,11 +26,13 @@ import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
+import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
@@ -340,20 +342,18 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val threadID = thread.threadId
         val recipient = thread.recipient
         val threadDB = DatabaseFactory.getThreadDatabase(this)
-        val deleteThread = object : Runnable {
-
-            override fun run() {
-                AsyncTask.execute {
-                    val publicChat = DatabaseFactory.getLokiThreadDatabase(this@HomeActivity).getPublicChat(threadID)
-                    if (publicChat != null) {
-                        val apiDB = DatabaseFactory.getLokiAPIDatabase(this@HomeActivity)
-                        apiDB.removeLastMessageServerID(publicChat.channel, publicChat.server)
-                        apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
-                        ApplicationContext.getInstance(this@HomeActivity).publicChatAPI!!.leave(publicChat.channel, publicChat.server)
-                    }
-                    threadDB.deleteConversation(threadID)
-                    ApplicationContext.getInstance(this@HomeActivity).messageNotifier.updateNotification(this@HomeActivity)
+        val deleteThread = Runnable {
+            AsyncTask.execute {
+                val publicChat = DatabaseFactory.getLokiThreadDatabase(this@HomeActivity).getPublicChat(threadID)
+                if (publicChat != null) {
+                    val apiDB = DatabaseFactory.getLokiAPIDatabase(this@HomeActivity)
+                    apiDB.removeLastMessageServerID(publicChat.channel, publicChat.server)
+                    apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
+                    apiDB.clearOpenGroupProfilePictureURL(publicChat.channel, publicChat.server)
+                    ApplicationContext.getInstance(this@HomeActivity).publicChatAPI!!.leave(publicChat.channel, publicChat.server)
                 }
+                threadDB.deleteConversation(threadID)
+                ApplicationContext.getInstance(this@HomeActivity).messageNotifier.updateNotification(this@HomeActivity)
             }
         }
         val dialogMessage = if (recipient.isGroupRecipient) R.string.activity_home_leave_group_dialog_message else R.string.activity_home_delete_conversation_dialog_message

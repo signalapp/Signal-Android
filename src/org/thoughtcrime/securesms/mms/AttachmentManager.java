@@ -41,7 +41,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.components.AudioView;
+import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
@@ -91,7 +91,7 @@ public class AttachmentManager {
 
   private RemovableEditableMediaView removableMediaView;
   private ThumbnailView              thumbnail;
-  private AudioView                  audioView;
+  private MessageAudioView audioView;
   private DocumentView               documentView;
   private SignalMapView              mapView;
 

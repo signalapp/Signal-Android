@@ -84,13 +84,17 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       ContactPhoto contactPhoto = recipient.getContactPhoto();
       if (contactPhoto != null) {
         try {
-          setLargeIcon(GlideApp.with(context.getApplicationContext())
-                               .load(contactPhoto)
-                               .diskCacheStrategy(DiskCacheStrategy.ALL)
-                               .circleCrop()
-                               .submit(context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
-                                       context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
-                               .get());
+          // AC: For some reason, if not use ".asBitmap()" method, the returned BitmapDrawable
+          // wraps a recycled bitmap and leads to a crash.
+          Bitmap iconBitmap = GlideApp.with(context.getApplicationContext())
+                  .asBitmap()
+                  .load(contactPhoto)
+                  .diskCacheStrategy(DiskCacheStrategy.ALL)
+                  .circleCrop()
+                  .submit(context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
+                          context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
+                  .get();
+          setLargeIcon(iconBitmap);
         } catch (InterruptedException | ExecutionException e) {
           Log.w(TAG, e);
           setLargeIcon(getPlaceholderDrawable(context, recipient));
