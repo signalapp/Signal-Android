@@ -42,7 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">화면 잠금 %1$s, 등록 잠금 %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">화면 잠금 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
-  <string name="ApplicationPreferencesActivity_pin_created">번호가 생성되었습니다.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 꺼졌습니다.</string>
   <string name="ApplicationPreferencesActivity_hide">숨기기</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">리마인더를 숨기시겠습니까?</string>
@@ -83,6 +83,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">이제 이 그룹에서 메시지나 업데이트를 받을 수 없습니다. 그리고 멤버가 당신을 이 그룹에 추가할 수도 없습니다.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">그룹 멤버가 당신을 이 그룹에 추가할 수 없습니다,</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">그룹 멤버는 당신을 그룹에 다시 초대 가능합니다. </string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">차단당한 사람들은 당신에게 전화를 걸거나 메세지를 보낼 수 없습니다.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s를 차단 해제할까요?</string>
   <string name="BlockUnblockDialog_unblock">차단 해제</string>
   <string name="BlockUnblockDialog_block">차단</string>
@@ -122,8 +123,11 @@
   <string name="ClearProfileActivity_remove_group_photo">그룹 사진을 지우시겠습니까?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">시그널 업데이트하기</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">이 버전의 앱은 더 이상 지원되지 않습니다. 메시지를 주고받을려면, 가장 최근 버전으로 업데이트해주세요</string>
   <string name="ClientDeprecatedActivity_update">업데이트</string>
+  <string name="ClientDeprecatedActivity_dont_update">업데이트하지 않음</string>
   <string name="ClientDeprecatedActivity_warning">경고</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal 버전이 만료되었습니다. 지금까지의 메세지를 읽을 수는 있지만 업데이트 하기 전까지 메세지를 보내거나 받을 수 없습니다.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">웹 브라우저를 찾을 수 없습니다.</string>
   <string name="CommunicationActions_no_email_app_found">이메일 어플리케이션이 없습니다.</string>
@@ -132,7 +136,7 @@
   <string name="CommunicationActions_start_voice_call">음성 통화를 시작하시겠습니까?</string>
   <string name="CommunicationActions_cancel">취소</string>
   <string name="CommunicationActions_call">전화</string>
-  <string name="CommunicationActions_insecure_call">비보안 통화</string>
+  <string name="CommunicationActions_insecure_call">안전하지 않은 통화</string>
   <string name="CommunicationActions_carrier_charges_may_apply">통신사 요금이 부과될 수 있습니다. 당신이 전화하는 번호는 Signal에 등록되지 않았습니다. 이 전화는 인터넷이 아닌 당신의 모바일 통신사로 연결될 겁니다.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 님의 안전 번호가 변경되었습니다. 누군가가 연결을 가로채려고 하거나 단순히 %2$s 님이 Signal을 다시 설치한 것일 수도 있습니다.</string>
@@ -206,6 +210,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">첨부 파일이 전송 메시지의 사이즈 제한을 초과합니다.</string>
   <string name="ConversationActivity_quick_camera_unavailable">카메라를 사용할 수 없음</string>
   <string name="ConversationActivity_unable_to_record_audio">오디오를 녹음할 수 없습니다!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">더 이상 그룹 멤버가 아니기 때문에 보내실 수 없습니다.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">기기 링크를 처리할 수 있는 앱이 없습니다.</string>
   <string name="ConversationActivity_cancel_request">요청 취소하기</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">음성 메시지를 보내려면 Signal이 마이크를 사용할 수 있도록 허용해 주세요.</string>
@@ -312,18 +317,25 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">백업으로 복원하시겠습니까?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">로컬 백업에서 메시지와 미디어를 복원합니다. 지금 복원하지 않으면 이후에는 복원할 수 없습니다.</string>
+  <string name="ChooseBackupFragment__choose_backup">백업 선택하기</string>
   <string name="ChooseBackupFragment__learn_more">더 알아보기</string>
   <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">복구가 완료되었습니다.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">백업을 계속하려면, 폴더를 선택해 주세요. 새로운 백업들은 그 위치에 저장될 것 입니다.</string>
   <string name="RestoreBackupFragment__choose_folder">폴더 선택</string>
   <string name="RestoreBackupFragment__not_now">나중에</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">대화 백업</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">백업된 파일들은 암호화되어서 기기에 저장됩니다.</string>
   <string name="BackupsPreferenceFragment__create_backup">백업 생성</string>
+  <string name="BackupsPreferenceFragment__last_backup">마지막 백업: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">백업 폴더</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">백업 암호 인증</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">백업 암호를 테스트하고 일치함을 인증</string>
   <string name="BackupsPreferenceFragment__turn_on">켜기</string>
   <string name="BackupsPreferenceFragment__turn_off">끄기</string>
   <string name="BackupsPreferenceFragment__learn_more">더 알아보기</string>
+  <string name="BackupsPreferenceFragment__in_progress">진행 중…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">맞춤형 값 사용: %s</string>
@@ -364,8 +376,12 @@
   <string name="DozeReminder_optimize_for_missing_play_services">누락된 Play Services에 최적화</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">기기에서는 Play Services를 지원하지 않습니다. 탭하여 시스템 배터리 최적화 기능을 사용하지 않을 수 있습니다. 해당 기능은 Signal이 비활성화된 동안에 메시지를 검색하지 못하게 합니다.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal 버전이 만료되었습니다. 메시지를 주고 받기 위해서 지금 업데이트 하십시오.</string>
   <string name="ExpiredBuildReminder_update_now">지금 업데이트하세요.</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="other">%d개의 멤버 요청이 대기 중입니다.</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">보기</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유자</string>
@@ -400,7 +416,11 @@
   <string name="GroupManagement_access_level_anyone">누구나</string>
   <string name="GroupManagement_access_level_all_members">모든 멤버</string>
   <string name="GroupManagement_access_level_only_admins">관리자만</string>
+  <string name="GroupManagement_access_level_no_one">아무도 없음</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="other">%d에게 초대가 전송됨</item>
+  </plurals>
   <string name="GroupManagement_learn_more">더 알아보기</string>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">그룹을 탈퇴하시겠습니까?</string>
@@ -418,12 +438,21 @@
     <item quantity="other">%1$d명의 멤버</item>
   </plurals>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">대기 중인 그룹 초대</string>
   <string name="PendingMembersActivity_requests">요청</string>
   <string name="PendingMembersActivity_invites">초대</string>
   <string name="PendingMembersActivity_people_you_invited">초대한 사람들</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">대기 중인 초대가 없습니다.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">다른 그룹 멤버들의 초대</string>
   <string name="PendingMembersActivity_missing_detail_explanation">다른 그룹 멤버들이 초대한 사람들의 세부정보는 표시되지 않습니다. 초대된 사람이 참가하기로 했다면, 정보가 즉시 그룹에 공유됩니다. 참가할 때까지 그룹 내 메시지는 볼 수 없습니다. </string>
+  <string name="PendingMembersActivity_revoke_invite">초대 취소</string>
+  <string name="PendingMembersActivity_revoke_invites">초대 취소</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="other">%1$d 초대 취소</item>
+  </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">대기 중인 멤버 요청</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">보여줄 멤버 요청이 없습니다.</string>
   <string name="RequestingMembersFragment_added_s">추가됨 : \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">거절됨 : \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -436,6 +465,7 @@
   <string name="AddGroupDetailsFragment__members">멤버</string>
   <string name="AddGroupDetailsFragment__group_name_required">그룹 이름(필수)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">이 입력창은 필수입니다.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">그룹은 적어도 두 명 이상의 멤버가 필요합니다.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">그룹 생성 실패</string>
   <string name="AddGroupDetailsFragment__try_again_later">나중에 다시 시도하세요.</string>
   <string name="AddGroupDetailsFragment__remove">삭제</string>
@@ -444,8 +474,11 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">사라지는 메시지</string>
+  <string name="ManageGroupActivity_pending_group_invites">대기 중인 그룹 초대</string>
   <string name="ManageGroupActivity_add_members">멤버 추가</string>
   <string name="ManageGroupActivity_edit_group_info">그룹 정보 수정</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">누가 새로운 멤버들을 추가시킬 수 있습니까?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">누가 이 그룹의 정보를 수정할 수 있습니까?</string>
   <string name="ManageGroupActivity_group_link">그룹 링크</string>
   <string name="ManageGroupActivity_block_group">그룹 차단하기</string>
   <string name="ManageGroupActivity_unblock_group">그룹 차단 해제하기</string>
@@ -464,9 +497,11 @@
   <plurals name="ManageGroupActivity_added">
     <item quantity="other">%d 멤버가 추가됨</item>
   </plurals>
+  <string name="ManageGroupActivity_failed_to_update_the_group">그룹 갱신 실패</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">그룹의 멤버가 아닙니다.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">이름과 그림 수정하기</string>
   <string name="ManageGroupActivity_legacy_group">구형 그룹</string>
+  <string name="ManageGroupActivity_invite_now">지금 초대하기</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">알림을 끈 대화에서 언급되면 알림을 받으시겠습니까?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">항상 알림받기</string>
@@ -524,9 +559,11 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">그룹에 참가하고 그룹 멤버에게 내 이름과 사진을 공유하시겠습니까?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">그룹 링크를 사용하기 위해서 Signal을 업데이트하세요</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">시그널 업데이트하기</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">그룹 링크가 유효하지 않습니다.</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s”를 그룹에 추가하시겠습니까?</string>
   <string name="RequestConfirmationDialog_add">추가</string>
   <string name="RequestConfirmationDialog_deny">거부하기</string>
   <!--CropImageActivity-->
@@ -688,9 +725,12 @@
   <string name="MessageRecord_s_is_no_longer_an_admin">더 이상 %1$s는 관리자가 아닙니다.</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">당신은 더 이상 관리자가 아닙니다.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s가 당신을 그룹에 초대했습니다.</string>
   <string name="MessageRecord_you_were_invited_to_the_group">그룹에 초대되었습니다.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">그룹에 초대를 거부했습니다.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_added_invited_member_s">%1$s에 초대 멤버로 추가되었습니다.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">그룹 이름을 \"%1$s\"로 바꾸었습니다.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">그룹 이름이 \"%1$s\"로 바뀌었습니다.</string>
@@ -705,14 +745,18 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">내가 그룹 링크를 켰습니다. (관리자 참가 승인 필요)</string>
   <string name="MessageRecord_you_turned_off_the_group_link">그룹 링크를 껐습니다.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s가 그룹 링크를 껐습니다.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">그룹 링크가 해제되었습니다.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">내가 그룹 링크 관리자 참가 승인 기능을 껐습니다.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">내가 그룹 링크 관리자 참가 승인 기능을 켰습니다.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">그룹 링크를 재설정했습니다.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">그룹 링크가 초기화되었습니다.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">그룹 링크를 통해 그룹에 참가하였습니다.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s가 그룹 링크로 그룹에 참가했습니다.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">그룹 참가 요청을 보냈습니다.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s가 그룹 링크로 참가하기를 요청합니다.</string>
   <!--GV2 group link approvals-->
   <!--GV2 group link deny-->
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">내 그룹 참가 요청을 취소했습니다.</string>
@@ -1398,6 +1442,7 @@
   <string name="message_details_header__disappears">사라짐</string>
   <string name="message_details_header__via">형식</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">대기 중</string>
   <string name="message_details_recipient_header__sent_to">보냄</string>
   <string name="message_details_recipient_header__sent_from">받음</string>
   <string name="message_details_recipient_header__delivered_to">전달됨</string>
@@ -1679,6 +1724,7 @@
   <string name="conversation__menu_view_all_media">모든 미디어</string>
   <string name="conversation__menu_conversation_settings">대화 설정</string>
   <string name="conversation__menu_add_shortcut">홈 화면에 추가</string>
+  <string name="conversation__menu_pending_members">대기 중인 멤버들</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">팝업 확장</string>
   <!--conversation_callable_insecure-->

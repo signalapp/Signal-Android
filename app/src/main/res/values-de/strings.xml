@@ -2170,7 +2170,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Entsperren, um ausstehende Nachrichten anzuzeigen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Sicherungspassphrase</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Datensicherungen werden im Gerätespeicher gespeichert und mit der unten genannten Passphrase verschlüsselt. Die Passphrase ist notwendig, um die Sicherung später wiederherzustellen.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Du müsst über diese Passphrase verfügen, um eine Sicherung wiederherzustellen.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Du musst über diese Passphrase verfügen, um eine Sicherung wiederherzustellen.</string>
   <string name="backup_enable_dialog__folder">Ordner</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ich habe mir diese Passphrase notiert. Ohne sie können keine Sicherungen wiederhergestellt werden.</string>
   <string name="registration_activity__restore_backup">Sicherung wiederherstellen</string>

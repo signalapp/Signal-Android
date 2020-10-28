@@ -507,7 +507,7 @@
     <item quantity="other">%1$d članov</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Čakajoča vabila v skupine</string>
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Čakajoča vabila v skupino</string>
   <string name="PendingMembersActivity_requests">Prošnje</string>
   <string name="PendingMembersActivity_invites">Vabila</string>
   <string name="PendingMembersActivity_people_you_invited">Ljudje, ki ste jih povabili</string>
@@ -575,7 +575,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Izginjajoča sporočila</string>
-  <string name="ManageGroupActivity_pending_group_invites">Čakajoča vabila v skupino</string>
+  <string name="ManageGroupActivity_pending_group_invites">Čakajoča vabila v skupine</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Vabila in prošnje za članstvo</string>
   <string name="ManageGroupActivity_add_members">Dodaj člane/ice</string>
   <string name="ManageGroupActivity_edit_group_info">Uredi podatke o skupini</string>

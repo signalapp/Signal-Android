@@ -323,19 +323,25 @@
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">バックアップから復元しますか？</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">ローカルバックアップからメディアやメッセージを復元してください。いま復元しなければ、あとでできなくなります。</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">ローカルバックアップからメッセージやメディアを復元してください。いま復元しなければ、あとでできなくなります。</string>
   <string name="ChooseBackupFragment__learn_more">詳しく見る</string>
   <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">復元が完了しました</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">バックアップを続けるには、フォルダを選択してください。新しいバックアップはこの場所に保存されます。</string>
   <string name="RestoreBackupFragment__choose_folder">フォルダを選択</string>
   <string name="RestoreBackupFragment__not_now">今はしない</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">チャットのバックアップ</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">バックアップはパスフレーズを用いて暗号化され、この端末内に保存されます。</string>
   <string name="BackupsPreferenceFragment__create_backup">バックアップを作成する</string>
+  <string name="BackupsPreferenceFragment__last_backup">最終バックアップ: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">バックアップフォルダ</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">バックアップ用パスフレーズの確認</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">バックアップ用パスフレーズが合っているか確認します</string>
   <string name="BackupsPreferenceFragment__turn_on">有効にする</string>
   <string name="BackupsPreferenceFragment__turn_off">無効にする</string>
   <string name="BackupsPreferenceFragment__learn_more">詳しく見る</string>
+  <string name="BackupsPreferenceFragment__in_progress">実行しています…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">バックアップを作成するには、Signalに外部ストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「ストレージ」を有効にしてください。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタマイズ: %s</string>
@@ -379,6 +385,9 @@
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">このバージョンのSignalは期限が切れています。メッセージを送受信するには、アップデートしてください。</string>
   <string name="ExpiredBuildReminder_update_now">アップデートする</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="other">%d件のメンバー申請が保留中です。</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">表示する</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有</string>
@@ -755,7 +764,10 @@
   <string name="MessageRecord_left_group">グループを抜けました。</string>
   <string name="MessageRecord_you_updated_group">グループを更新しました。</string>
   <string name="MessageRecord_the_group_was_updated">グループが更新されました。</string>
+  <string name="MessageRecord_you_called_date">発信 · %1$s</string>
+  <string name="MessageRecord_missed_call_date">不在着信 · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s がグループを更新しました。</string>
+  <string name="MessageRecord_s_called_you_date">%1$s から着信 · %2$s</string>
   <string name="MessageRecord_called_s">%s に発信</string>
   <string name="MessageRecord_s_joined_signal">%s がSignalに登録しました！</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">消えるメッセージを無効にしました。</string>
@@ -892,6 +904,8 @@
   <string name="MessageRequestBottomView_unblock">ブロック解除</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s からメッセージを受信し、あなたの名前と画像を共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s にあなたへのメッセージ送信や、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">このグループとの会話を継続して、あなたの名前と画像をそのメンバーと共有しますか？</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s との会話を継続して、あなたの名前と画像を共有しますか？</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、あなたの名前と画像をメンバーと共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加しますか？招待を受け入れるまで、あなたがメッセージを見たことは他のメンバーにはわかりません。</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
@@ -936,9 +950,9 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">この会話内で送受信されるメッセージは、閲覧後%sで消えます。</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">アップデートする</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">このバージョンのSignalは本日、期限が切れます。最新バージョンにアップデートしてください。</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">このバージョンのSignalは、本日期限が切れます。最新バージョンにアップデートしてください。</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="other">このバージョンのSignalは%d日後に期限が切れます。最新バージョンにアップデートしてください。</item>
+    <item quantity="other">このバージョンのSignalは、%d日後に期限が切れます。最新バージョンにアップデートしてください。</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスフレーズを入力してください</string>
@@ -1044,6 +1058,7 @@
   <string name="RegistrationActivity_more_information">詳細</string>
   <string name="RegistrationActivity_less_information">詳細を隠す</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、安全な通話をするには、Signalに連絡先やメディアへのアクセス許可が必要です。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、安全な通話をするには、Signalに連絡先へのアクセス許可が必要です。</string>
   <string name="RegistrationActivity_rate_limited_to_service">この番号の登録試行回数が多すぎます。あとで再度試してください。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できませんでした。ネットワークの接続を確認してから、再度試してください。</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">SignalでSMSメッセージを表示できるようにすると、あなたの認証コードが自動的に検出され、電話場号を簡単に認証できます。</string>
@@ -1219,6 +1234,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">クリップボードで安全番号が見つかりませんでした</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「カメラ」を有効にしてください。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">カメラへのアクセス許可がないとQRコードをスキャンできません</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s の安全番号を表示するには、初めにメッセージの交換が必要です。</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1291,6 +1307,7 @@
   <string name="NotificationChannel_other">その他</string>
   <string name="NotificationChannel_group_messages">メッセージ</string>
   <string name="NotificationChannel_missing_display_name">不明</string>
+  <string name="NotificationChannel_voice_notes">音声メモ</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">プロフィール名を設定しました。</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
@@ -1391,6 +1408,13 @@
   <string name="ContactSelectionListFragment_username_not_found">ユーザ名が見つかりませんでした</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」はSignalユーザではありません。ユーザ名を確認してもう一度試してください。</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">自分自身をグループに追加する必要はありません</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">グループのサイズが最大値に達しました</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signalのグループメンバーは最大%1$d名まで可能です。</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">推奨されるメンバー数の上限に達しました</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signalグループは%1$d人以下が最適です。これよりメンバーを追加すると、メッセージの送受信で遅延が発生します。</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="other">メンバー %1$d人</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ブロック中の連絡先はありません</string>
   <!--contact_selection_list_fragment-->
@@ -2059,9 +2083,10 @@
   <string name="ResearchMegaphone_learn_more">詳しく見る</string>
   <string name="ResearchMegaphone_dismiss">キャンセル</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signalリサーチ</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法について調査しています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有することに興味がある場合は、連絡先情報を提供するオプションがあります。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法について調査しています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">調査に参加する</string>
   <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">この調査は、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>
@@ -2077,6 +2102,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ロックを解除してメッセージを見る</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">バックアップ用パスフレーズ </string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">バックアップは外部ストレージにパスフレーズで暗号化して保存されます。バックアップのリストアには、このパスフレーズが必要です。</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">バックアップを復元するには、このパスフレーズが必要です。</string>
+  <string name="backup_enable_dialog__folder">フォルダ</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">パスフレーズを書き留めました。パスフレーズがなければ、バックアップは復元できません。</string>
   <string name="registration_activity__restore_backup">バックアップを復元する</string>
   <string name="registration_activity__skip">スキップする</string>
@@ -2102,6 +2129,7 @@
   <string name="BackupDialog_delete_backups">バックアップを削除しますか？</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">すべてのローカルバックアップを削除して無効にしますか？</string>
   <string name="BackupDialog_delete_backups_statement">バックアップを削除する</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">バックアップを有効にするには、フォルダを選択してください。バックアップはこの場所に保存されます。</string>
   <string name="BackupDialog_choose_folder">フォルダを選択</string>
   <string name="BackupDialog_copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">確認したいバックアップ用パスフレーズを入力してください</string>
@@ -2112,6 +2140,11 @@
   <string name="ChatsPreferenceFragment_last_backup_s">最終バックアップ: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">実行中</string>
   <string name="LocalBackupJob_creating_backup">バックアップを作成しています…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">バックアップが無効になりました。</string>
+  <string name="LocalBackupJobApi29_backup_failed">バックアップに失敗しました。</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは削除または移動されています。</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">バックアップを保存できる十分なスペースがありません。</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">不明なエラーによりバックアップに失敗しました。</string>
   <string name="ProgressPreference_d_messages_so_far">これまで%d件のメッセージ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s に送信された検証コードを入力してください。</string>
   <string name="RegistrationActivity_wrong_number">番号が違います</string>
@@ -2224,8 +2257,11 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">このリンクは現在利用できません</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">再生できませんでした。</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">音声メッセージ · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s から %2$s</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

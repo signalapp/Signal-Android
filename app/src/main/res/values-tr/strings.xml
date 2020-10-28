@@ -338,18 +338,28 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Yedekten geri yüklensin mi?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">İleti ve ileti içeriklerinizi yerel bir yedekten geri yükleyin. Eğer şimdi yüklemezseniz, daha sonra yükleyemezsiniz.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Yedekten geri yükle simgesi</string>
+  <string name="ChooseBackupFragment__choose_backup">Yedeği seç</string>
   <string name="ChooseBackupFragment__learn_more">Dahasını öğrenin</string>
   <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Geri yükleme tamamlandı</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Yedekleri kullanmayı sürdürmek için, bir dizin seçin. Yeni yedekler bu seçilen konuma kaydedilecektir.</string>
   <string name="RestoreBackupFragment__choose_folder">Klasör seçin</string>
   <string name="RestoreBackupFragment__not_now">Şimdi değil</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Konuşma yedekleri</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Yedekler bir parolayla şifrelenip aygıtınızda saklanmaktadır.</string>
   <string name="BackupsPreferenceFragment__create_backup">Yedek oluştur</string>
+  <string name="BackupsPreferenceFragment__last_backup">Son yedek: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Yedekleme dizini</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Yedek parolasını doğrula</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Yedek parolanızı deneyin ve eşleştiğinden emin olun</string>
   <string name="BackupsPreferenceFragment__turn_on">Aç</string>
   <string name="BackupsPreferenceFragment__turn_off">Kapat</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Bir yedeği geri yüklemek için, yeni bir Signal kopyası kurun ve \"Yedeği geri yükle\" dokunun ve yedek dosyasını seçin. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Dahasını öğrenin</string>
+  <string name="BackupsPreferenceFragment__in_progress">Devam ediyor…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">Şu ana kadar %1$d…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal, yedek oluşturabilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Özelleştirilmiş \'%s\' kullanılıyor</string>
@@ -393,6 +403,10 @@
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal\'in bu sürümü kullanım dışı kaldı. İleti gönderip alabilmek için şimdi güncelleyin.</string>
   <string name="ExpiredBuildReminder_update_now">Şimdi güncelle</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d üye isteği beklemede.</item>
+    <item quantity="other">%d üye isteği beklemede.</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Görüntüle</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Paylaşılacak kişi</string>
@@ -789,7 +803,10 @@
   <string name="MessageRecord_left_group">Gruptan ayrıldınız.</string>
   <string name="MessageRecord_you_updated_group">Grubu güncellediniz.</string>
   <string name="MessageRecord_the_group_was_updated">Grup güncellendi</string>
+  <string name="MessageRecord_you_called_date">Aradınız · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Yanıtsız arama · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s grubu güncelledi.</string>
+  <string name="MessageRecord_s_called_you_date">%1$s sizi aradı · %2$s</string>
   <string name="MessageRecord_called_s">%s arandı</string>
   <string name="MessageRecord_s_joined_signal">%s Signal\'e katıldı!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Kaybolan iletileri devre dışı bıraktınız.</string>

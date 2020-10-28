@@ -13,7 +13,7 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal eguneratzen ari da…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Une honetan: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Oraindik ez duzu pasahitza ezarri!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Oraindik ez duzu pasaesaldia ezarri!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">mezu %d solasaldiko</item>
     <item quantity="other">%d mezu solasaldiko</item>
@@ -24,7 +24,7 @@
     <item quantity="other">Solasaldi hari guztiak azkenengo %d mezuetara murriztuko dira berehala.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Ezabatu</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Desgaitu pasahitza?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Desgaitu pasaesaldia?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal eta mezu jakinarazpenak iraunkorki desbloketuako dira.</string>
   <string name="ApplicationPreferencesActivity_disable">Desgaitu</string>
   <string name="ApplicationPreferencesActivity_unregistering">Deserregistratzen</string>
@@ -338,18 +338,29 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Babeskopia berreskuratu?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Berreskuratu babeskopia lokal bateko mezuak eta multimedia elementuak. Orain ez baduzu egiten, gero ezingo duzu.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Babeskopiaren ikonotik leheneratu</string>
+  <string name="ChooseBackupFragment__choose_backup">Aukeratu babeskopia</string>
   <string name="ChooseBackupFragment__learn_more">Gehiago jakin</string>
   <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Leheneratzea osatuta</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Babeskopiak erabiltzen jarraitzeko, mesedez karpeta bat hautatu. Babeskopia berriak kokapen honetan gordeko dira.</string>
   <string name="RestoreBackupFragment__choose_folder">Aukeratu karpeta</string>
   <string name="RestoreBackupFragment__not_now">Orain ez</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Txaten babeskopiak</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Babeskopiak pasaesaldi bat erabiliz enkriptatuta daude eta zure gailuan gordetzen dira.</string>
   <string name="BackupsPreferenceFragment__create_backup">Sortu babeskopia</string>
-  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Egiaztatu babeskopiaren pasahitza</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Probatu zure babeskopiaren pasahitza eta egiaztatu bat datorrela</string>
+  <string name="BackupsPreferenceFragment__last_backup">Azkenengo babeskopia: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Babeskopiak gordetzeko karpeta</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Egiaztatu babeskopiaren pasaesaldia</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Probatu zure babeskopiaren pasaesaldia eta egiaztatu bat datorrela</string>
   <string name="BackupsPreferenceFragment__turn_on">Aktibatu</string>
   <string name="BackupsPreferenceFragment__turn_off">Desaktibatu</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Babeskopia bat leheneratzeko, Signlen kopia berri bat instalatu. Aplikazioa ireki, \"Babeskopia leheneratu\" aukeran ukitu eta babeskopiaren fitxategia kokatu.
+%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Gehiago jakin</string>
+  <string name="BackupsPreferenceFragment__in_progress">Martxan…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d dagoeneko…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal-ek kanpoko memorian gordetzeko baimena behar du babeskopiak egin ahal izateko baina baimena ukatuta izan du beti. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta gaitu \"Biltegiratzea\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Pertsonalizatua: %s</string>
@@ -393,6 +404,10 @@
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signalen bertsio hau iraungi da. Eguneratu orain mezuak bidali eta jaso ahal izateko.</string>
   <string name="ExpiredBuildReminder_update_now">Eguneratu orain</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">Kide %den eskaera falta da. </item>
+    <item quantity="other">%d dira falta diren kideen eskaerak</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Ikusi</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Honekin partekatu:</string>
@@ -789,7 +804,10 @@
   <string name="MessageRecord_left_group">Taldea utzi duzu.</string>
   <string name="MessageRecord_you_updated_group">Taldea eguneratu duzu</string>
   <string name="MessageRecord_the_group_was_updated">Taldea eguneratu egin da.</string>
+  <string name="MessageRecord_you_called_date">Deitu zenuen · %1$s</string>
+  <string name="MessageRecord_missed_call_date">Dei galdua · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s-ek taldea eguneratu du.</string>
+  <string name="MessageRecord_s_called_you_date">%1$s erabiltzaileak deitu dizu · %2$s</string>
   <string name="MessageRecord_called_s">%s-(e)ri deitu duzu</string>
   <string name="MessageRecord_s_joined_signal">%s Signal-en dago!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Mezuen desagerpena ezgaitu duzu.</string>
@@ -931,6 +949,8 @@
   <string name="MessageRequestBottomView_unblock">Desblokeatu</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partekatzeko. Zuk onartu arte ez dute jakingo beraien mezua ikusi duzunik.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partzekatzeko. Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Jarraitu nahi duzu talde honekin duzun solasaldian eta zure izena eta argazkia bere kideekin partekatu?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Jarraitu nahi duzu %1$s erabiltzailearekin duzun solasaldian eta zure izena eta argazkia berarekin partekatu?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetan sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetan sartu nahi duzu? Onartu arte ez dute jakingo beraien mezuak ikusi dituzunik.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desblokeatu talde hau eta zure izena eta argazkia beraiekin partekatu? Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
@@ -950,9 +970,9 @@
     <item quantity="other">%d talde gehiago</item>
   </plurals>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasahitzak ez datoz bat!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Pasahitz zahar ez zuzena!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sartu pasahitz berria!</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasaesaldiak ez datoz bat!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Pasaesaldi zahar ez zuzena!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sartu pasaesaldi berria!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Lotu gailu hau?</string>
   <string name="DeviceProvisioningActivity_continue">JARRAITU</string>
@@ -985,10 +1005,10 @@
     <item quantity="other">Signalen bertsio hau %d egunetan iraungiko da. Eguneratu azken bertsiora.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Pasahitza sartu</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">Pasaesaldia sartu</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonoa</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">Bidali pasahitza</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasahitz baliogabea!</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Bidali pasaesaldia</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasaesaldi baliogabea!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Desblokeatu Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
@@ -1096,6 +1116,7 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_more_information">Informazio gehiago</string>
   <string name="RegistrationActivity_less_information">Informazio gutxiago</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signalek zure kontaktu eta mediara sartzeko baimena behar du zure lagunekin kontaktuan jarri, mezuak bidali eta dei seguruak egiteko</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signalek zure kontaktuetara sartzeko baimena behar du zure lagunekin konektatu, mezuak bidali eta dei seguruak egiteko</string>
   <string name="RegistrationActivity_rate_limited_to_service">Zenbakia erregistratzeko saiakera gehiegi egin dituzu. Mesedez, saia zaitez beranduago.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Ezin da zerbitzura konektatu. Egiaztatu sarearen ezarpenak eta saiatu berriz.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Zure telefono zenbakia erraz egiaztatzeko, Signalek automatikoki irakur dezake egiaztapen kodea SMS mezuak ikusteko baimena ematen badiozu.</string>
@@ -1275,6 +1296,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ez da aurkitu konparantzeko segurtasun zenbakirik arbelean</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signalek Kamera baimena behar du QR kodea eskaneatzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ezin da QR kodea eskaneatu Kamera baimen gabe</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Mezuak trukatu behar duzu %1$s erabiltzailearen segurtasun zenbakia ikusi ahal izateko.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1347,6 +1369,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="NotificationChannel_other">Besteak</string>
   <string name="NotificationChannel_group_messages">Mezuak</string>
   <string name="NotificationChannel_missing_display_name">Ezezaguna</string>
+  <string name="NotificationChannel_voice_notes">Ahots Oharrak</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Profil izen ondo ezarri da.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Sare errore bat izan da.</string>
@@ -1426,9 +1449,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="attachment_type_selector__file">Artxiboa</string>
   <string name="attachment_type_selector__drawer_description">Eranskinen tiradera gaitu/ezgaitu</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Aurreko pasahitza</string>
-  <string name="change_passphrase_activity__new_passphrase">Pasahitz berria</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Errepikatu pasahitz berria</string>
+  <string name="change_passphrase_activity__old_passphrase">Aurreko pasaesaldia</string>
+  <string name="change_passphrase_activity__new_passphrase">Pasaesaldi berria</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Errepikatu pasaesaldi berria</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Idatzi izena edo zenbakia</string>
   <string name="contact_selection_activity__invite_to_signal">Gonbidatu Signal erabiltzera</string>
@@ -1448,6 +1471,14 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ContactSelectionListFragment_username_not_found">Erabiltzaile izena ez da aurkitu</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile izena eta saia zaitez berriro.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Ez daukazu zertan zeure burua taldera gehitu</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Taldearen gehienezko tamainara iritsi da</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal taldeek izan dezaketen gehienezko kide kopurua %1$d da.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Gomendatutako kide kopuru mugara iritsi da</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal taldeen errendimendurik onena %1$d kide edo gutxiago dutenean lortzen da. Kide gehiago gehitzeak atzerapenak sortuko ditu mezuak bidaltzerakoan eta jasotzerakoan.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">Kide %1$d</item>
+    <item quantity="other">%1$d kide</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeatutako kontaturik ez…</string>
   <!--contact_selection_list_fragment-->
@@ -1763,14 +1794,14 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Eskaratu esteken aurrebistak zuzenean webguneetatik eta erabili bidaltzen dituzun mezuetan.</string>
   <string name="preferences__choose_identity">Aukeratu nortasuna</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
-  <string name="preferences__change_passphrase">Aldatu pasahitza</string>
-  <string name="preferences__change_your_passphrase">Aldatu zure pasahitza</string>
-  <string name="preferences__enable_passphrase">Gaitu pasahitza blokeo-pantailan</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blokeatu pantaila eta jakinarazpenak pasahitz batekin</string>
+  <string name="preferences__change_passphrase">Aldatu pasaesaldia</string>
+  <string name="preferences__change_your_passphrase">Aldatu zure pasaesaldia</string>
+  <string name="preferences__enable_passphrase">Gaitu pasaesaldia blokeo-pantailan</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blokeatu pantaila eta jakinarazpenak pasaesaldi batekin</string>
   <string name="preferences__screen_security">Pantailaren segurtasuna</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeatu pantaila-argazkiak arestikoen zerrendan eta aplikazioaren barruan</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blokeatu Signal automatikoki jarduerarik gabe denbora tarte bat pasa eta gero.</string>
-  <string name="preferences__inactivity_timeout_passphrase">Jarduerarik gabeko denbora tarte pasahitza</string>
+  <string name="preferences__inactivity_timeout_passphrase">Jarduerarik gabeko denbora muga osteko pasaesaldia</string>
   <string name="preferences__inactivity_timeout_interval">Jarduerarik gabeko denbora tartea</string>
   <string name="preferences__notifications">Jakinarazpenak</string>
   <string name="preferences__system_notification_settings">Sistemako jakinarazpenen ezarpenak</string>
@@ -1808,7 +1839,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences__mms_proxy_host">MMS Proxy Ostalaria</string>
   <string name="preferences__mms_proxy_port">MMS Proxy Ataka:</string>
   <string name="preferences__mmsc_username">MMSC Erabiltzailea</string>
-  <string name="preferences__mmsc_password">MMSC Pasahitza</string>
+  <string name="preferences__mmsc_password">MMSC Pasaesaldia</string>
   <string name="preferences__sms_delivery_reports">SMS banaketaren txostenak</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bidaltzen duzun SMS mezu bakoitzeko banaketa txosten bat eskatu</string>
   <string name="preferences__chats">Txatak eta multimedia</string>
@@ -2136,6 +2167,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Pribatutasunean sinesten dugu</b></p><p>Signalek ez du jarraitzen egiten duzuna edo zure datuak bildu. Signal guztiontzat hobetzeko, erabiltzaileen iruzkinetan oinarritzen gara, <b>eta zurea edukitzea gustatuko litzaiguke. </b></p><p> Inkesta bat egiten ari gara Signal nola erabiltzen duzun ulertzeko. Gure inkestak identifika zaitzakeen daturik ez du biltzen. Informazio gehiago partekatu nahi baduzu, kontakturako informazioa emateko aukera izango duzu. </p><p> Minutu batzuk eta iruzkinak egiteko baduzu, gustatuko litzaiguke zure iritzia entzutea. </p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Inkesta egin</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ez, eskerrik asko</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Inkesta Alchemer zerbitzuan dago ostatuta, surveys.signalusers.org domeinuan</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>
@@ -2151,6 +2183,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desblokeatu begiratu gabeko mezuak ikusteko</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Babeskopiaren pasaesaldia</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Babeskopiak kanpoko memoria batean gordeko dira beheko pasaesaldiarekin enkriptatuta. Pasaesaldi hau eduki behar duzu babeskopia bat berreskuratzeko.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Pasaesaldi hau eduki behar duzu babeskopia bat leheneratzeko.</string>
+  <string name="backup_enable_dialog__folder">Karpeta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Pasaesaldia gorde dut. Hori gabe, ezin izango dut babeskopia bat berreskuratu.</string>
   <string name="registration_activity__restore_backup">Berreskuratu babeskopia</string>
   <string name="registration_activity__skip">Saltatu</string>
@@ -2158,8 +2192,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_chats__chat_backups">Txaten babeskopiak</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Gorde txaten babeskopia bat kanpoko memoria batean</string>
   <string name="preferences_chats__create_backup">Sortu babeskopia</string>
-  <string name="preferences_chats__verify_backup_passphrase">Egiaztatu babeskopiaren pasahitza</string>
-  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Probatu zure babeskopiaren pasahitza eta egiaztatu bat datorrela</string>
+  <string name="preferences_chats__verify_backup_passphrase">Egiaztatu babeskopiaren pasaesaldia</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Probatu zure babeskopiaren pasaesaldia eta egiaztatu bat datorrela</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Sartu babeskopiaren pasaesaldia</string>
   <string name="RegistrationActivity_restore">Berreskuratu</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Ezin dira babeskopiak inportatu Signal-en bertsio berriagoetatik</string>
@@ -2176,16 +2210,23 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="BackupDialog_delete_backups">Babeskopiak ezabatu?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Babeskopia lokal guztiak desgaitu eta ezabatu?</string>
   <string name="BackupDialog_delete_backups_statement">Ezabatu babeskopiak</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Babeskopian gaitzeko, karpeta bat hautatu. Babeskopian kokapen honetan gordeko dira.</string>
   <string name="BackupDialog_choose_folder">Aukeratu karpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Arbelera kopiatuta</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">Sartu zure babeskopiaren pasahitza egiaztatzeko</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Sartu zure babeskopiaren pasaesaldia egiaztatzeko</string>
   <string name="BackupDialog_verify">Baieztatu</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ondo sartu duzu zure babeskopiaren pasahitza</string>
-  <string name="BackupDialog_passphrase_was_not_correct">Pasahitza ez da zuzena</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ondo sartu duzu zure babeskopiaren pasaesaldia</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Pasaesaldi ez da zuzena</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal-ek kanpoko memorian gordetzeko baimena behar du babeskopiak egin ahal izateko baina baimena ukatuta izan du beti. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta gaitu \"Biltegiratzea\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Azken babeskopia: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Martxan</string>
   <string name="LocalBackupJob_creating_backup">Babeskopia sortzen…</string>
+  <string name="LocalBackupJobApi29_backups_disabled">Babeskopiak desgaituta.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Babeskopiak huts egin du.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Babeskopiak gordetzeko karpeta ezabatu edo mugitu da.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Zure babeskopia duen fitxategia handiegia da bolumen honetan gordetzeko.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Ez dago leku nahikorik zure babeskopia gordetzeko.</string>
+  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Babeskopiak huts egin du ezezaguna den arrazoi batengatik.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mezu orain arte</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Sartu %s(e)ra bidalitako egiaztapen-kodea.</string>
   <string name="RegistrationActivity_wrong_number">Zenbaki okerra</string>
@@ -2298,8 +2339,11 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Esteka hau ez dago indarrean</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Ezin izan da erreprodukzioa hasi.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Ahots-mezua · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s tik %2$s ra</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>
