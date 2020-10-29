@@ -82,7 +82,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
 
     private fun update(isAnimated: Boolean) {
         pathRowsContainer.removeAllViews()
-        if (OnionRequestAPI.paths.count() >= OnionRequestAPI.pathCount) {
+        if (OnionRequestAPI.paths.isNotEmpty()) {
             val path = OnionRequestAPI.paths.firstOrNull() ?: return finish()
             val dotAnimationRepeatInterval = path.count().toLong() * 1000 + 1000
             val pathRows = path.mapIndexed { index, snode ->

@@ -213,6 +213,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -227,6 +228,7 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI;
 import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
@@ -458,7 +460,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null) {
-      ApplicationContext.getInstance(this).getPublicChatAPI().getChannelInfo(publicChat.getChannel(), publicChat.getServer()).success(displayName -> {
+      PublicChatAPI publicChatAPI = ApplicationContext.getInstance(this).getPublicChatAPI();
+      publicChatAPI.getChannelInfo(publicChat.getChannel(), publicChat.getServer()).success(info -> {
+        String groupId = GroupUtil.getEncodedOpenGroupId(publicChat.getId().getBytes());
+
+        publicChatAPI.updateProfileIfNeeded(
+            publicChat.getChannel(),
+            publicChat.getServer(),
+            groupId,
+            info,
+            false);
+
         runOnUiThread(ConversationActivity.this::updateSubtitleTextView);
         return Unit.INSTANCE;
       });

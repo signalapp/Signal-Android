@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.attachments;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.util.Util;
 
-public class AttachmentId {
+public class AttachmentId implements Parcelable {
 
   @JsonProperty
   private final long rowId;
@@ -54,4 +57,33 @@ public class AttachmentId {
   public int hashCode() {
     return Util.hashCode(rowId, uniqueId);
   }
+
+  //region Parcelable implementation.
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeLong(rowId);
+    dest.writeLong(uniqueId);
+  }
+
+  public static final Parcelable.Creator<AttachmentId> CREATOR =
+          new Parcelable.Creator<AttachmentId>() {
+
+    @Override
+    public AttachmentId createFromParcel(Parcel in) {
+      long rowId    = in.readLong();
+      long uniqueId = in.readLong();
+      return new AttachmentId(rowId, uniqueId);
+    }
+
+    @Override
+    public AttachmentId[] newArray(int size) {
+      return new AttachmentId[size];
+    }
+  };
+  //endregion
 }

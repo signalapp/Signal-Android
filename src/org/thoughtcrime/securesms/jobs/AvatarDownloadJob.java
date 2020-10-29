@@ -95,7 +95,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
         Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
 
-        database.updateAvatar(groupId, avatar);
+        database.updateProfilePicture(groupId, avatar);
         inputStream.close();
       }
     } catch (BitmapDecodingException | NonSuccessfulResponseCodeException | InvalidMessageException e) {

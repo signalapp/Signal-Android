@@ -87,6 +87,10 @@
 
         <item name="quick_camera_icon">@drawable/ic_baseline_photo_camera_24</item>
         <item name="quick_mic_icon">@drawable/ic_baseline_mic_24</item>
+
+        <item name="conversation_item_audio_seek_bar_color_incoming">@color/accent</item>
+        <item name="conversation_item_audio_seek_bar_color_outgoing">@color/accent</item>
+        <item name="conversation_item_audio_seek_bar_background_color">@color/text</item>
     </style>
 
     <!-- This should be the default theme for the application. -->
