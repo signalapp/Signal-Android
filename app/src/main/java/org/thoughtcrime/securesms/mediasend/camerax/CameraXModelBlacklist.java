@@ -36,6 +36,11 @@ public final class CameraXModelBlacklist {
     add("LYA-TL00");
     add("LYA-L0C");
 
+    // Huawei Mate 20 X
+    add("EVR-L29");
+    add("EVR-AL00");
+    add("EVR-TL00");
+
     // Huawei P20
     add("EML-L29C");
     add("EML-L09C");
@@ -76,11 +81,24 @@ public final class CameraXModelBlacklist {
     add("COL-L29");
     add("COL-L19");
 
+    // Huawei Honor 20
+    add("YAL-L21");
+    add("YAL-AL00");
+    add("YAL-TL00");
+
     // Samsung Galaxy S6
     add("SM-G920F");
 
     // Honor View 10
+    add("BKL-AL20");
+    add("BKL-L04");
     add("BLK-L09");
+    add("BKL-AL00");
+
+    // Honor View 20
+    add("PCT-AL10");
+    add("PCT-TL10");
+    add("PCT-L29");
   }};
 
   private CameraXModelBlacklist() {
