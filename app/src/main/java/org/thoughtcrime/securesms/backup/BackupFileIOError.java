@@ -18,10 +18,10 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import java.io.IOException;
 
 public enum BackupFileIOError {
-  ACCESS_ERROR(R.string.LocalBackupJobApi29_backups_disabled, R.string.LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved),
+  ACCESS_ERROR(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved),
   FILE_TOO_LARGE(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_file_is_too_large),
   NOT_ENOUGH_SPACE(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_there_is_not_enough_space),
-  UNKNOWN(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_backup_failed_for_an_unknown_reason);
+  UNKNOWN(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_tap_to_manage_backups);
 
   private static final short BACKUP_FAILED_ID = 31321;
 
@@ -42,8 +42,8 @@ public enum BackupFileIOError {
 
     intent.putExtra(ApplicationPreferencesActivity.LAUNCH_TO_BACKUPS_FRAGMENT, true);
 
-    PendingIntent pendingIntent            = PendingIntent.getActivity(context, -1, intent, 0);
-    Notification backupFailedNotification = new NotificationCompat.Builder(context, NotificationChannels.BACKUPS)
+    PendingIntent pendingIntent           = PendingIntent.getActivity(context, -1, intent, 0);
+    Notification backupFailedNotification = new NotificationCompat.Builder(context, NotificationChannels.FAILURES)
                                                                   .setSmallIcon(R.drawable.ic_signal_backup)
                                                                   .setContentTitle(context.getString(titleId))
                                                                   .setContentText(context.getString(messageId))

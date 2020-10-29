@@ -39,31 +39,32 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 22;
+  public static final int CURRENT_VERSION = 23;
 
   private static final class Version {
-    static final int LEGACY             = 1;
-    static final int RECIPIENT_ID       = 2;
-    static final int RECIPIENT_SEARCH   = 3;
-    static final int RECIPIENT_CLEANUP  = 4;
-    static final int AVATAR_MIGRATION   = 5;
-    static final int UUIDS              = 6;
-    static final int CACHED_ATTACHMENTS = 7;
-    static final int STICKERS_LAUNCH    = 8;
+    static final int LEGACY              = 1;
+    static final int RECIPIENT_ID        = 2;
+    static final int RECIPIENT_SEARCH    = 3;
+    static final int RECIPIENT_CLEANUP   = 4;
+    static final int AVATAR_MIGRATION    = 5;
+    static final int UUIDS               = 6;
+    static final int CACHED_ATTACHMENTS  = 7;
+    static final int STICKERS_LAUNCH     = 8;
     //static final int TEST_ARGON2        = 9;
-    static final int SWOON_STICKERS     = 10;
-    static final int STORAGE_SERVICE    = 11;
+    static final int SWOON_STICKERS      = 10;
+    static final int STORAGE_SERVICE     = 11;
     //static final int STORAGE_KEY_ROTATE = 12;
-    static final int REMOVE_AVATAR_ID   = 13;
-    static final int STORAGE_CAPABILITY = 14;
-    static final int PIN_REMINDER       = 15;
-    static final int VERSIONED_PROFILE  = 16;
-    static final int PIN_OPT_OUT        = 17;
-    static final int TRIM_SETTINGS      = 18;
-    static final int THUMBNAIL_CLEANUP  = 19;
-    static final int GV2                = 20;
-    static final int GV2_2              = 21;
-    static final int CDS                = 22;
+    static final int REMOVE_AVATAR_ID    = 13;
+    static final int STORAGE_CAPABILITY  = 14;
+    static final int PIN_REMINDER        = 15;
+    static final int VERSIONED_PROFILE   = 16;
+    static final int PIN_OPT_OUT         = 17;
+    static final int TRIM_SETTINGS       = 18;
+    static final int THUMBNAIL_CLEANUP   = 19;
+    static final int GV2                 = 20;
+    static final int GV2_2               = 21;
+    static final int CDS                 = 22;
+    static final int BACKUP_NOTIFICATION = 23;
   }
 
   /**
@@ -265,6 +266,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.CDS) {
       jobs.put(Version.CDS, new DirectoryRefreshMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.BACKUP_NOTIFICATION) {
+      jobs.put(Version.BACKUP_NOTIFICATION, new BackupNotificationMigrationJob());
     }
 
     return jobs;

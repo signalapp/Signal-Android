@@ -18,7 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
-import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -165,7 +164,7 @@ public class BackupsPreferenceFragment extends Fragment {
       } else if (StorageUtil.canWriteInSignalStorageDir()) {
         try {
           folder.setVisibility(View.VISIBLE);
-          folderName.setText(StorageUtil.getBackupDirectory().getPath());
+          folderName.setText(StorageUtil.getOrCreateBackupDirectory().getPath());
         } catch (NoExternalStorageException e) {
           Log.w(TAG, "Could not display folder name.", e);
         }

@@ -89,7 +89,6 @@ public final class LocalBackupJobApi29 extends BaseJob {
       String       fileName        = String.format("signal-%s.backup", timestamp);
 
       if (backupDirectory == null || !backupDirectory.canWrite()) {
-        BackupUtil.disableBackups(context);
         BackupFileIOError.ACCESS_ERROR.postNotification(context);
         throw new IOException("Cannot write to backup directory location.");
       }

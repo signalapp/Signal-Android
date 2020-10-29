@@ -15,7 +15,6 @@ import androidx.documentfile.provider.DocumentFile;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
@@ -181,7 +180,7 @@ public class BackupUtil {
   }
 
   private static List<BackupInfo> getAllBackupsNewestFirstLegacy() throws NoExternalStorageException {
-    File             backupDirectory = StorageUtil.getBackupDirectory();
+    File             backupDirectory = StorageUtil.getOrCreateBackupDirectory();
     File[]           files           = backupDirectory.listFiles();
     List<BackupInfo> backups         = new ArrayList<>(files.length);
 
@@ -211,6 +210,20 @@ public class BackupUtil {
     }
 
     return result;
+  }
+
+  public static boolean hasBackupFiles(@NonNull Context context) {
+    if (Permissions.hasAll(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+      try {
+        File directory = StorageUtil.getBackupDirectory();
+        return directory.exists() && directory.isDirectory() && directory.listFiles().length > 0;
+      } catch (NoExternalStorageException e) {
+        Log.w(TAG, "Failed to read storage!", e);
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
   private static long getBackupTimestamp(@NonNull String backupName) {

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.File;
 import java.util.List;
@@ -28,25 +29,32 @@ public class StorageUtil {
 
   private static final String PRODUCTION_PACKAGE_ID = "org.thoughtcrime.securesms";
 
-  public static File getBackupDirectory() throws NoExternalStorageException {
+  public static File getOrCreateBackupDirectory() throws NoExternalStorageException {
     File storage = Environment.getExternalStorageDirectory();
 
     if (!storage.canWrite()) {
       throw new NoExternalStorageException();
     }
 
-    File signal = new File(storage, "Signal");
-    File backups = new File(signal, "Backups");
-
-    //noinspection ConstantConditions
-    if (BuildConfig.APPLICATION_ID.startsWith(PRODUCTION_PACKAGE_ID + ".")) {
-      backups = new File(backups, BuildConfig.APPLICATION_ID.substring(PRODUCTION_PACKAGE_ID.length() + 1));
-    }
+    File backups = getBackupDirectory();
 
     if (!backups.exists()) {
       if (!backups.mkdirs()) {
         throw new NoExternalStorageException("Unable to create backup directory...");
       }
+    }
+
+    return backups;
+  }
+
+  public static File getBackupDirectory() throws NoExternalStorageException {
+    File storage = Environment.getExternalStorageDirectory();
+    File signal  = new File(storage, "Signal");
+    File backups = new File(signal, "Backups");
+
+    //noinspection ConstantConditions
+    if (BuildConfig.APPLICATION_ID.startsWith(PRODUCTION_PACKAGE_ID + ".")) {
+      backups = new File(backups, BuildConfig.APPLICATION_ID.substring(PRODUCTION_PACKAGE_ID.length() + 1));
     }
 
     return backups;
