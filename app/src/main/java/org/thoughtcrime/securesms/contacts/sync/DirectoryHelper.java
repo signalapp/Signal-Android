@@ -235,6 +235,7 @@ public class DirectoryHelper {
     Set<RecipientId>         inactiveIds   = Stream.of(allNumbers)
                                                    .filterNot(activeNumbers::contains)
                                                    .filterNot(n -> result.getNumberRewrites().containsKey(n))
+                                                   .filterNot(n -> result.getIgnoredNumbers().contains(n))
                                                    .map(recipientDatabase::getOrInsertFromE164)
                                                    .collect(Collectors.toSet());
 
@@ -468,12 +469,15 @@ public class DirectoryHelper {
   static class DirectoryResult {
     private final Map<String, UUID>   registeredNumbers;
     private final Map<String, String> numberRewrites;
+    private final Set<String>         ignoredNumbers;
 
     DirectoryResult(@NonNull Map<String, UUID> registeredNumbers,
-                    @NonNull Map<String, String> numberRewrites)
+                    @NonNull Map<String, String> numberRewrites,
+                    @NonNull Set<String> ignoredNumbers)
     {
       this.registeredNumbers = registeredNumbers;
       this.numberRewrites    = numberRewrites;
+      this.ignoredNumbers    = ignoredNumbers;
     }
 
 
@@ -483,6 +487,10 @@ public class DirectoryHelper {
 
     @NonNull Map<String, String> getNumberRewrites() {
       return numberRewrites;
+    }
+
+    @NonNull Set<String> getIgnoredNumbers() {
+      return ignoredNumbers;
     }
   }
 
