@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallException;
+import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.IceCandidate;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -245,5 +246,39 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     }
 
     return terminate(currentState, remotePeer);
+  }
+
+  @Override
+  protected  @NonNull WebRtcServiceState handleSetupFailure(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
+    Log.i(tag, "handleSetupFailure(): call_id: " + callId);
+
+    RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
+
+    if (activePeer != null && activePeer.getCallId().equals(callId)) {
+      try {
+        if (activePeer.getState() == CallState.DIALING || activePeer.getState() == CallState.REMOTE_RINGING) {
+          webRtcInteractor.getCallManager().hangup();
+        } else {
+          webRtcInteractor.getCallManager().drop(callId);
+        }
+      } catch (CallException e) {
+        return callFailure(currentState, "Unable to drop call due to setup failure", e);
+      }
+
+      currentState = currentState.builder()
+                                 .changeCallInfoState()
+                                 .callState(WebRtcViewModel.State.NETWORK_FAILURE)
+                                 .build();
+
+      webRtcInteractor.sendMessage(currentState);
+
+      if (activePeer.getState() == CallState.ANSWERING || activePeer.getState() == CallState.LOCAL_RINGING) {
+        webRtcInteractor.insertMissedCall(activePeer, true, activePeer.getCallStartTimestamp());
+      }
+
+      return terminate(currentState, activePeer);
+    }
+
+    return currentState;
   }
 }

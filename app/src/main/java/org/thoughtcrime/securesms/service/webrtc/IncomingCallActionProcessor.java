@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallException;
+import org.signal.ringrtc.CallId;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -202,6 +203,11 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
   @Override
   protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull String action, @NonNull RemotePeer remotePeer) {
     return activeCallDelegate.handleEnded(currentState, action, remotePeer);
+  }
+
+  @Override
+  protected  @NonNull WebRtcServiceState handleSetupFailure(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
+    return activeCallDelegate.handleSetupFailure(currentState, callId);
   }
 
   @Override

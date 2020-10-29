@@ -151,6 +151,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String ACTION_MESSAGE_SENT_ERROR                  = "MESSAGE_SENT_ERROR";
   public static final String ACTION_CAMERA_SWITCH_COMPLETED             = "CAMERA_FLIP_COMPLETE";
   public static final String ACTION_TURN_SERVER_UPDATE                  = "TURN_SERVER_UPDATE";
+  public static final String ACTION_SETUP_FAILURE                       = "SETUP_FAILURE";
 
   public static final int BUSY_TONE_LENGTH = 2000;
 
@@ -333,17 +334,28 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
-    retrieveTurnServers().addListener(new SuccessOnlyListener<TurnServerInfoParcel>(remotePeer.getState(), remotePeer.getCallId()) {
+    retrieveTurnServers().addListener(new FutureTaskListener<TurnServerInfoParcel>() {
       @Override
-      public void onSuccessContinue(@Nullable TurnServerInfoParcel turnServerInfoParcel) {
+      public void onSuccess(@Nullable TurnServerInfoParcel result) {
         boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
 
         Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
         intent.setAction(ACTION_TURN_SERVER_UPDATE)
               .putExtra(EXTRA_IS_ALWAYS_TURN, isAlwaysTurn)
-              .putExtra(EXTRA_TURN_SERVER_INFO, turnServerInfoParcel);
+              .putExtra(EXTRA_TURN_SERVER_INFO, result);
 
-        WebRtcCallService.this.startService(intent);
+        startService(intent);
+      }
+
+      @Override
+      public void onFailure(@NonNull ExecutionException exception) {
+        Log.w(TAG, "Unable to retrieve turn servers: ", exception);
+
+        Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
+        intent.setAction(ACTION_SETUP_FAILURE)
+              .putExtra(EXTRA_CALL_ID, remotePeer.getCallId().longValue());
+
+        startService(intent);
       }
     });
   }
@@ -541,18 +553,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     public abstract void onSuccessContinue(@Nullable V result);
     public abstract void onFailureContinue(@Nullable Throwable throwable);
-  }
-
-  private abstract class SuccessOnlyListener<V> extends StateAwareListener<V> {
-    SuccessOnlyListener(@NonNull CallState expectedState, @NonNull CallId expectedCallId) {
-      super(expectedState, expectedCallId);
-    }
-
-    @Override
-    public void onFailureContinue(@Nullable Throwable throwable) {
-      Log.w(TAG, throwable);
-      throw new AssertionError(throwable);
-    }
   }
 
   private class SendCallMessageListener<V> extends StateAwareListener<V> {

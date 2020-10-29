@@ -80,6 +80,7 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_B
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_HANGUP;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_ICE_CANDIDATES;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_OFFER;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SETUP_FAILURE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SET_AUDIO_BLUETOOTH;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SET_AUDIO_SPEAKER;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SET_ENABLE_VIDEO;
@@ -204,6 +205,9 @@ public abstract class WebRtcActionProcessor {
       case ACTION_ENDED_INTERNAL_FAILURE:
       case ACTION_ENDED_SIGNALING_FAILURE:
       case ACTION_ENDED_CONNECTION_FAILURE:            return handleEnded(currentState, action, getRemotePeerFromMap(intent, currentState));
+
+      // Local Call Failure Actions
+      case ACTION_SETUP_FAILURE:                       return handleSetupFailure(currentState, getCallId(intent));
     }
 
     return currentState;
@@ -569,6 +573,15 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull String action, @NonNull RemotePeer remotePeer) {
     Log.i(tag, "handleEnded not processed");
+    return currentState;
+  }
+
+  //endregion
+
+  //region Local call failure
+
+  protected  @NonNull WebRtcServiceState handleSetupFailure(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
+    Log.i(tag, "handleSetupFailure not processed");
     return currentState;
   }
 
