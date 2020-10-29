@@ -2208,12 +2208,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatsPreferenceFragment_last_backup_s">Letzte Sicherung: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">In Arbeit …</string>
   <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
-  <string name="LocalBackupJobApi29_backups_disabled">Datensicherung deaktiviert.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Datensicherung deaktiviert.</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sicherung gescheitert.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dein Verzeichnis für die Datensicherung wurde gelöscht oder verschoben.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Die Datei für die Datensicherung ist zu groß, um auf diesem Laufwerk gespeichert zu werden.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Es ist nicht genug Speicherplatz vorhanden, um deine Datensicherung zu speichern.</string>
-  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Datensicherung ist aufgrund einer unbekannten Ursache gescheitert.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Datensicherung ist aufgrund einer unbekannten Ursache gescheitert.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
   <string name="RegistrationActivity_wrong_number">Falsche Rufnummer</string>

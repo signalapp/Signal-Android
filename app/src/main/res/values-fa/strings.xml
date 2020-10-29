@@ -839,7 +839,7 @@
   <string name="MessageRecord_you_made_s_an_admin">شما %1$s را به مدیر تبدیل کردید.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s را به مدیر تبدیل کرد.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s شما را به مدیر تبدیل کرد.</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">شما امتیازات مدیریت %1$s را لغو کردید.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">شما امتیازات مدیریتی %1$s را لغو کردید.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s امتیازات مدیریتی شما را لغو کرد.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s امتیازات مدیریتی %2$s را لغو کرد.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s حالا یک مدیر است.</string>
@@ -2217,12 +2217,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">آخرین پشتیبان: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">در حال انجام</string>
   <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string>
-  <string name="LocalBackupJobApi29_backups_disabled">پشتیبان‌ها غیرفعال شدند.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">پشتیبان‌ها غیرفعال شدند.</string> -->
   <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری موفق نبود.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس پشتیبان‌ شما حذف شده یا انتقال یافته است.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">حجم فایل پشتیبان شما برای نگهداری در این محل زیاد است.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">فضای کافی برای نگهداری پشتیبان شما وجود ندارد.</string>
-  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">پشتیبان‌گیری به علتی نامعلوم شکست خورد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">پشتیبان‌گیری به علتی نامعلوم شکست خورد.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d پیام تا به الان</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">لطفاً کد تأیید ارسال شده به %s را وارد کنید.</string>
   <string name="RegistrationActivity_wrong_number">شمارهٔ اشتباه</string>

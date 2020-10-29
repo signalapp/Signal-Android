@@ -2222,12 +2222,12 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ChatsPreferenceFragment_last_backup_s">Kopjeruajtja e fundit: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Në kryerje e sipër</string>
   <string name="LocalBackupJob_creating_backup">Po krijohet kopjeruajtje…</string>
-  <string name="LocalBackupJobApi29_backups_disabled">Kopjeruajtjet janë të çaktivizuara.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Kopjeruajtjet janë të çaktivizuara.</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Kopjeruajtja dështoi.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Drejtoria juaj e kopjeruajtjeve është fshirë ose lëvizur.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Kartela e kopjeruajtjes tuaj është shumë e madhe për t’u depozituar në këtë vëllim.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">S’ka hapësirë të mjaftueshme për të depozituar kopjeruajtjen tuaj.</string>
-  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Kopjeruajtja dështoi për një arsye të panjohur.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Kopjeruajtja dështoi për një arsye të panjohur.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d mesazhe deri këtu</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ju lutemi, jepni kodin e verifikimit dërguar te %s.</string>
   <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>

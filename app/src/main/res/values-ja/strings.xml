@@ -2140,11 +2140,11 @@
   <string name="ChatsPreferenceFragment_last_backup_s">最終バックアップ: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">実行中</string>
   <string name="LocalBackupJob_creating_backup">バックアップを作成しています…</string>
-  <string name="LocalBackupJobApi29_backups_disabled">バックアップが無効になりました。</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">バックアップが無効になりました。</string> -->
   <string name="LocalBackupJobApi29_backup_failed">バックアップに失敗しました。</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは削除または移動されています。</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">バックアップを保存できる十分なスペースがありません。</string>
-  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">不明なエラーによりバックアップに失敗しました。</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">不明なエラーによりバックアップに失敗しました。</string> -->
   <string name="ProgressPreference_d_messages_so_far">これまで%d件のメッセージ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s に送信された検証コードを入力してください。</string>
   <string name="RegistrationActivity_wrong_number">番号が違います</string>

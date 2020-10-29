@@ -2221,12 +2221,12 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="ChatsPreferenceFragment_last_backup_s">Azken babeskopia: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Martxan</string>
   <string name="LocalBackupJob_creating_backup">Babeskopia sortzen…</string>
-  <string name="LocalBackupJobApi29_backups_disabled">Babeskopiak desgaituta.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Babeskopiak desgaituta.</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Babeskopiak huts egin du.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Babeskopiak gordetzeko karpeta ezabatu edo mugitu da.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Zure babeskopia duen fitxategia handiegia da bolumen honetan gordetzeko.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Ez dago leku nahikorik zure babeskopia gordetzeko.</string>
-  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Babeskopiak huts egin du ezezaguna den arrazoi batengatik.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Babeskopiak huts egin du ezezaguna den arrazoi batengatik.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d mezu orain arte</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Sartu %s(e)ra bidalitako egiaztapen-kodea.</string>
   <string name="RegistrationActivity_wrong_number">Zenbaki okerra</string>

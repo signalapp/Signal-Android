@@ -2220,12 +2220,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChatsPreferenceFragment_last_backup_s">Última copia de seguridad: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En curso</string>
   <string name="LocalBackupJob_creating_backup">Creando copia de seguridad …</string>
-  <string name="LocalBackupJobApi29_backups_disabled">Copias de seguridad desactivadas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Copias de seguridad desactivadas.</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Fallo al completar la copia.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Parece que tu carpeta de copias de seguridad se ha eliminado o movido.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">La copia de seguridad es demasiado grande para guardarla en este dispositivo.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">No hay suficiente espacio para guardar tu copia de seguridad.</string>
-  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Fallo desconocido al completar la copia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Fallo desconocido al completar la copia.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d mensajes hasta ahora</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, introduce el código de verificación enviado a %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorrecto</string>

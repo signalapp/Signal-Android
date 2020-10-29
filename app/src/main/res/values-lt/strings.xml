@@ -2349,12 +2349,12 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Paskiausia atsarginė kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Eigoje</string>
   <string name="LocalBackupJob_creating_backup">Daroma atsarginė kopija…</string>
-  <string name="LocalBackupJobApi29_backups_disabled">Atsarginės kopijos išjungtos.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Atsarginės kopijos išjungtos.</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Atsarginė kopija nepavyko.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsų atsarginių kopijų katalogas buvo ištrintas ar perkeltas.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsų atsarginės kopijos failas yra per didelis, kad jį galima būtų laikyti šiame tome.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Nepakanka vietos, kad galima būtų laikyti jūsų atsarginę kopiją.</string>
-  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Dėl nežinomos priežasties atsarginė kopija patyrė nesėkmę.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Dėl nežinomos priežasties atsarginė kopija patyrė nesėkmę.</string> -->
   <string name="ProgressPreference_d_messages_so_far">Jau %d žinučių</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Įveskite į %s išsiųstą patvirtinimo kodą.</string>
   <string name="RegistrationActivity_wrong_number">Neteisingas numeris</string>

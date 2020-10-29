@@ -2213,12 +2213,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Senaste säkerhetskopiering: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Pågår</string>
   <string name="LocalBackupJob_creating_backup">Skapar säkerhetskopia…</string>
-  <string name="LocalBackupJobApi29_backups_disabled">Säkerhetskopior inaktiverade.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Säkerhetskopior inaktiverade.</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Säkerhetskopieringen misslyckades.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din säkerhetskopieringsmapp har tagits bort eller flyttats.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din säkerhetskopieringsfil är för stor för att lagras på den här volymen.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Det finns inte tillräckligt med utrymme för att lagra din säkerhetskopia.</string>
-  <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Säkerhetskopieringen misslyckades av okänd anledning.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Säkerhetskopieringen misslyckades av okänd anledning.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d meddelanden än så länge</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Vänligen ange verifieringskoden som skickades till %s.</string>
   <string name="RegistrationActivity_wrong_number">Fel nummer</string>
