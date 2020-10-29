@@ -51,6 +51,8 @@ public class IdentityKeyUtil {
 
   public static final String IDENTITY_PUBLIC_KEY_PREF                    = "pref_identity_public_v3";
   public static final String IDENTITY_PRIVATE_KEY_PREF                   = "pref_identity_private_v3";
+  public static final String ED25519_PUBLIC_KEY                          = "pref_ed25519_public_key";
+  public static final String ED25519_SECRET_KEY                          = "pref_ed25519_secret_key";
 
   public static final String lokiSeedKey = "loki_seed";
 
