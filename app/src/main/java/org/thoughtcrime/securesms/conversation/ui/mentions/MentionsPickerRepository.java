@@ -40,7 +40,7 @@ final class MentionsPickerRepository {
 
   @WorkerThread
   @NonNull List<Recipient> search(@NonNull MentionQuery mentionQuery) {
-    if (mentionQuery.query == null) {
+    if (mentionQuery.query == null || mentionQuery.members.isEmpty()) {
       return Collections.emptyList();
     }
 
