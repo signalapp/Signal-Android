@@ -216,7 +216,13 @@ public class BackupUtil {
     if (Permissions.hasAll(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
       try {
         File directory = StorageUtil.getBackupDirectory();
-        return directory.exists() && directory.isDirectory() && directory.listFiles().length > 0;
+
+        if (directory.exists() && directory.isDirectory()) {
+          File[] files = directory.listFiles();
+          return files != null && files.length > 0;
+        } else {
+          return false;
+        }
       } catch (NoExternalStorageException e) {
         Log.w(TAG, "Failed to read storage!", e);
         return false;
