@@ -455,7 +455,7 @@ task signProductionPlayRelease {
     }
 }
 
-task signInternalPlayRelease {
+task signProductionInternalRelease {
     doLast {
         signProductionRelease(android.applicationVariants.find { (it.name == 'internalRelease') })
     }
