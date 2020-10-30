@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +32,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.List;
 
@@ -76,10 +80,28 @@ public class CameraContactSelectionFragment extends LoggingFragment implements C
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    int            theme          = DynamicTheme.isDarkTheme(inflater.getContext()) ? R.style.TextSecure_DarkTheme
-                                                                                    : R.style.TextSecure_LightTheme;
+    boolean isDarkTheme = DynamicTheme.isDarkTheme(inflater.getContext());
+    int     theme       = isDarkTheme ? R.style.TextSecure_DarkTheme
+                                      : R.style.TextSecure_LightTheme;
+    if (!isDarkTheme) {
+      // This fragment follows the light/dark theme settings but the underlying activity
+      // is forced to be in a dark theme. Therefore we need to adjust the color of the status bar
+      // and the navigation bar to be applied the light theme.
+      forceActivityThemeLight();
+    }
     return ThemeUtil.getThemedInflater(inflater.getContext(), inflater, theme)
                     .inflate(R.layout.camera_contact_selection_fragment, container, false);
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    boolean isDarkTheme = DynamicTheme.isDarkTheme(getLayoutInflater().getContext());
+    if (!isDarkTheme) {
+      // If we had changed the color of the status bar and the navigation bar in onCreateView,
+      // restore them to be dark.
+      resetForcedActivityTheme();
+    }
   }
 
   @Override
@@ -190,6 +212,40 @@ public class CameraContactSelectionFragment extends LoggingFragment implements C
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
       }
     });
+  }
+
+  /** Changes the color of the status bar and the navigation bar to that of the light theme */
+  private void forceActivityThemeLight() {
+    if (android.os.Build.VERSION.SDK_INT < 21) return;
+
+    Activity activity = getActivity();
+    if (activity == null) return;
+
+    Window window = activity.getWindow();
+    int    color  = ThemeUtil.getLightThemeNavigationBarColor(activity);
+
+    window.setStatusBarColor(color);
+    window.setNavigationBarColor(color);
+    window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    WindowUtil.setLightStatusBar(window);
+    WindowUtil.setLightNavigationBar(window);
+  }
+
+  /** Resets the color of the status bar and the navigation bar to that of the dark theme */
+  private void resetForcedActivityTheme() {
+    if (android.os.Build.VERSION.SDK_INT < 21) return;
+
+    Activity activity = getActivity();
+    if (activity == null) return;
+
+    int    color  = ThemeUtil.getThemedColor(activity, android.R.attr.navigationBarColor);
+    Window window = activity.getWindow();
+
+    window.setStatusBarColor(color);
+    window.setNavigationBarColor(color);
+    window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    WindowUtil.clearLightStatusBar(window);
+    WindowUtil.clearLightNavigationBar(window);
   }
 
   public interface Controller {
