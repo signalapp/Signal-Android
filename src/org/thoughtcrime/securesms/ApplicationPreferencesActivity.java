@@ -336,7 +336,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         case PREFERENCE_CATEGORY_LINKED_DEVICES: break;
         case PREFERENCE_CATEGORY_SEED:
           try {
-            String hexEncodedSeed = IdentityKeyUtil.retrieve(getContext(), IdentityKeyUtil.lokiSeedKey);
+            String hexEncodedSeed = IdentityKeyUtil.retrieve(getContext(), IdentityKeyUtil.LOKI_SEED);
             if (hexEncodedSeed == null) {
               hexEncodedSeed = HexEncodingKt.getHexEncodedPrivateKey(IdentityKeyUtil.getIdentityKeyPair(getContext())); // Legacy account
             }

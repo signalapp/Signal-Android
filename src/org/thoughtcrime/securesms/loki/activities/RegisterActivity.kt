@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.util.Base64
@@ -37,7 +38,6 @@ import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 
 class RegisterActivity : BaseActionBarActivity() {
-    private val sodium = LazySodiumAndroid(SodiumAndroid())
     private var seed: ByteArray? = null
     private var ed25519KeyPair: KeyPair? = null
     private var x25519KeyPair: ECKeyPair? = null
@@ -73,16 +73,10 @@ class RegisterActivity : BaseActionBarActivity() {
 
     // region Updating
     private fun updateKeyPair() {
-        val seedCandidate = Curve25519.getInstance(Curve25519.BEST).generateSeed(16)
-        try {
-            val padding = ByteArray(16) { 0 }
-            ed25519KeyPair = sodium.cryptoSignSeedKeypair(seedCandidate + padding)
-            val x25519KeyPair = sodium.convertKeyPairEd25519ToCurve25519(ed25519KeyPair)
-            this.x25519KeyPair = ECKeyPair(DjbECPublicKey(x25519KeyPair.publicKey.asBytes), DjbECPrivateKey(x25519KeyPair.secretKey.asBytes))
-        } catch (exception: Exception) {
-            return updateKeyPair()
-        }
-        seed = seedCandidate
+        val keyPairGenerationResult = KeyPairUtilities.generate()
+        seed = keyPairGenerationResult.seed
+        ed25519KeyPair = keyPairGenerationResult.ed25519KeyPair
+        x25519KeyPair = keyPairGenerationResult.x25519KeyPair
     }
 
     private fun updatePublicKeyTextView() {
@@ -117,11 +111,7 @@ class RegisterActivity : BaseActionBarActivity() {
 
     // region Interaction
     private fun register() {
-        IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
-        IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(x25519KeyPair!!.publicKey.serialize()))
-        IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(x25519KeyPair!!.privateKey.serialize()))
-        IdentityKeyUtil.save(this, IdentityKeyUtil.ED25519_PUBLIC_KEY, Base64.encodeBytes(ed25519KeyPair!!.publicKey.asBytes))
-        IdentityKeyUtil.save(this, IdentityKeyUtil.ED25519_SECRET_KEY, Base64.encodeBytes(ed25519KeyPair!!.secretKey.asBytes))
+        KeyPairUtilities.store(this, seed!!, ed25519KeyPair!!, x25519KeyPair!!)
         val userHexEncodedPublicKey = x25519KeyPair!!.hexEncodedPublicKey
         val registrationID = KeyHelper.generateRegistrationId(false)
         TextSecurePreferences.setLocalRegistrationId(this, registrationID)

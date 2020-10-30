@@ -18,18 +18,15 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
-import java.io.File
-import java.io.FileOutputStream
 
 class RestoreActivity : BaseActionBarActivity() {
 
@@ -68,13 +65,11 @@ class RestoreActivity : BaseActionBarActivity() {
                 MnemonicUtilities.loadFileContents(this, fileName)
             }
             val hexEncodedSeed = MnemonicCodec(loadFileContents).decode(mnemonic)
-            var seed = Hex.fromStringCondensed(hexEncodedSeed)
-            IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
-            if (seed.size == 16) { seed = seed + seed }
-            val keyPair = Curve.generateKeyPair(seed)
-            IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(keyPair.publicKey.serialize()))
-            IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(keyPair.privateKey.serialize()))
-            val userHexEncodedPublicKey = keyPair.hexEncodedPublicKey
+            val seed = Hex.fromStringCondensed(hexEncodedSeed)
+            val keyPairGenerationResult = KeyPairUtilities.generate(seed)
+            val x25519KeyPair = keyPairGenerationResult.x25519KeyPair
+            KeyPairUtilities.store(this, seed, keyPairGenerationResult.ed25519KeyPair, x25519KeyPair)
+            val userHexEncodedPublicKey = x25519KeyPair.hexEncodedPublicKey
             val registrationID = KeyHelper.generateRegistrationId(false)
             TextSecurePreferences.setLocalRegistrationId(this, registrationID)
             DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(userHexEncodedPublicKey),

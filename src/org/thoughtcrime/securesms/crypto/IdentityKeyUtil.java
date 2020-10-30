@@ -53,8 +53,7 @@ public class IdentityKeyUtil {
   public static final String IDENTITY_PRIVATE_KEY_PREF                   = "pref_identity_private_v3";
   public static final String ED25519_PUBLIC_KEY                          = "pref_ed25519_public_key";
   public static final String ED25519_SECRET_KEY                          = "pref_ed25519_secret_key";
-
-  public static final String lokiSeedKey = "loki_seed";
+  public static final String LOKI_SEED                                   = "loki_seed";
 
   public static boolean hasIdentityKey(Context context) {
     SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);

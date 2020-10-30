@@ -89,7 +89,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
             seed = seedCandidate
         }
         generateKeyPair()
-        IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
+        IdentityKeyUtil.save(this, IdentityKeyUtil.LOKI_SEED, Hex.toStringCondensed(seed))
         IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(keyPair!!.publicKey.serialize()))
         IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(keyPair!!.privateKey.serialize()))
         val userHexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
@@ -144,7 +144,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
     }
 
     private fun reset() {
-        IdentityKeyUtil.delete(this, IdentityKeyUtil.lokiSeedKey)
+        IdentityKeyUtil.delete(this, IdentityKeyUtil.LOKI_SEED)
         TextSecurePreferences.removeLocalNumber(this)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
         TextSecurePreferences.setPromptedPushRegistration(this, false)
