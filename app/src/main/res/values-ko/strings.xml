@@ -43,7 +43,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">화면 잠금 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 꺼졌습니다.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 중지되었습니다.</string>
   <string name="ApplicationPreferencesActivity_hide">숨기기</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">리마인더를 숨기시겠습니까?</string>
   <!--AppProtectionPreferenceFragment-->
@@ -684,6 +684,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">여기를 탭하여 메시지를 본 후 사라지게 하세요.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">모든 미디어</string>
+  <string name="MediaRepository__camera">카메라</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">알 수 없음</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 이전 Signal 버전으로부터 암호화 메시지를 받았습니다. 발신자에게 최신 버전으로 업데이트하고 다시 보내도록 요청하세요.</string>

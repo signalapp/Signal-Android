@@ -853,6 +853,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Tapiwch yma i wneud i\'r neges ddiflannu ar ôl iddi gael ei gweld.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Pob cyfrwng</string>
+  <string name="MediaRepository__camera">Camera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Anhysbys</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Wedi derbyn neges wedi\'i hamgryptio gan ddefnyddio hen fersiwn o Signal nad yw bellach yn cael ei gefnogi. Gofynnwch i\'r anfonwr ddiweddaru i\'r fersiwn ddiweddaraf ac ail-anfon y neges.</string>

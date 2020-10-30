@@ -339,7 +339,7 @@
   <string name="ChooseBackupFragment__restore_from_backup">¿Restaurar desde copia de seguridad?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaura tus mensajes y adjuntos desde una copia de seguridad local. Si no lo haces ahora, no podrás restaurar más tarde.</string>
   <string name="ChooseBackupFragment__icon_content_description">Símbolo de restaurar desde copia de seguridad</string>
-  <string name="ChooseBackupFragment__choose_backup">Seleccionar copia</string>
+  <string name="ChooseBackupFragment__choose_backup">Selecciona copia</string>
   <string name="ChooseBackupFragment__learn_more">Saber más</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Recuperación completada</string>
@@ -797,6 +797,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Toca aquí para hacer desaparecer este mensaje tras ser visto.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Archivos multimedia</string>
+  <string name="MediaRepository__camera">Cámara</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconocid@</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has recibido un mensaje cifrado con una versión de Signal antigua que ya no está disponible. Por favor, solicita a esta persona a actualizar a la versión más reciente y a reenviar el mensaje.</string>
@@ -1115,7 +1116,7 @@ número de teléfono
   <string name="RegistrationActivity_more_information">Más detalles</string>
   <string name="RegistrationActivity_less_information">Menos detalles</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos y medios para conectar con tus amistades, chatear, y hacer llamadas seguras. Tu lista de contactos no se guarda en el servidor de Signal.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos para conectar con tus amistades, chatear, y hacer llamadas seguras. Tu lista de contactos no se guarda en el servidor de Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos para conectar con tus amistades, chatear, y hacer llamadas seguras. Tu lista de contactos de este dispositivo no se guarda en el servidor de Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo más tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar con el servidor. Por favor, comprueba la conexión de red e inténtalo de nuevo.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar cómodamente el número de teléfono, Signal puede detectar automáticamente el código de verificación si tiene acceso a tus SMS.</string>
@@ -2182,7 +2183,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloquear para ver mensajes pendientes</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Clave de la copia de seguridad</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Las copias de seguridad se guardarán en una unidad de almacenamiento y se cifrarán con la clave que aparece debajo. Necesitas esta clave para poder restaurar la copia de seguridad.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Debes tener esta clave (passphrase) para poder restaurar la copia de seguridad.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Debes recordar esta clave (passphrase) para poder restaurar la copia de seguridad ¡Anótala!</string>
   <string name="backup_enable_dialog__folder">Carpeta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotado esta clave. Sé que sin ella no podré restaurar la copia de seguridad.</string>
   <string name="registration_activity__restore_backup">Restaurar copia</string>
@@ -2220,12 +2221,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChatsPreferenceFragment_last_backup_s">Última copia de seguridad: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En curso</string>
   <string name="LocalBackupJob_creating_backup">Creando copia de seguridad …</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Copias de seguridad desactivadas.</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">Fallo al completar la copia.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Fallo en la copia</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Parece que tu carpeta de copias de seguridad se ha eliminado o movido.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">La copia de seguridad es demasiado grande para guardarla en este dispositivo.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">No hay suficiente espacio para guardar tu copia de seguridad.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Fallo desconocido al completar la copia.</string> -->
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Toca para gestionar las copias.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensajes hasta ahora</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, introduce el código de verificación enviado a %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorrecto</string>

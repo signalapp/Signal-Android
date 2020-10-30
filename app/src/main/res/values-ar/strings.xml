@@ -862,6 +862,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">انقر هنا لجعل هذه الرسالة تختفي بعد أن تتم مشاهدتها.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">جميع الوسائط</string>
+  <string name="MediaRepository__camera">الكاميرا</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">مجهول</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مشفرة من نسخة Signal قديمة وتوقف دعمها. يرجى أن تطلب من المرسل تحديث نسخة التطبيق ومن ثمّ إعادة إرسال الرسالة.</string>

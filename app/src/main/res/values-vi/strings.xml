@@ -734,6 +734,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Nhấn vào đây để khiến tin nhắn tự hủy sau khi đã được xem.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tất cả tập tin đa phương tiện</string>
+  <string name="MediaRepository__camera">Máy ảnh</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Vô danh</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã hóa bởi phiên bản Signal cũ và không còn được hỗ trợ. Hãy nhắc người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>

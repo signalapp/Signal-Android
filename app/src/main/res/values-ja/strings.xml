@@ -758,6 +758,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">ここをタップして、このメッセージが閲覧後に消えるようにします。</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">すべてのメディア</string>
+  <string name="MediaRepository__camera">カメラ</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">不明</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージはサポート外の古いSignalで暗号化されています。送信者にSignalをアップデートして再送するよう依頼してください。</string>
@@ -2140,11 +2141,8 @@
   <string name="ChatsPreferenceFragment_last_backup_s">最終バックアップ: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">実行中</string>
   <string name="LocalBackupJob_creating_backup">バックアップを作成しています…</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">バックアップが無効になりました。</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">バックアップに失敗しました。</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは削除または移動されています。</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">バックアップを保存できる十分なスペースがありません。</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">不明なエラーによりバックアップに失敗しました。</string> -->
   <string name="ProgressPreference_d_messages_so_far">これまで%d件のメッセージ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s に送信された検証コードを入力してください。</string>
   <string name="RegistrationActivity_wrong_number">番号が違います</string>

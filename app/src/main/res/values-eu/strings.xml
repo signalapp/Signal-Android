@@ -24,9 +24,9 @@
     <item quantity="other">Solasaldi hari guztiak azkenengo %d mezuetara murriztuko dira berehala.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Ezabatu</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Desgaitu pasaesaldia?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Desaktibatu nahi duzu pasaesaldia?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal eta mezu jakinarazpenak iraunkorki desbloketuako dira.</string>
-  <string name="ApplicationPreferencesActivity_disable">Desgaitu</string>
+  <string name="ApplicationPreferencesActivity_disable">Desaktibatu</string>
   <string name="ApplicationPreferencesActivity_unregistering">Deserregistratzen</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Deserregistratzen Signal mezu eta deietatik…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desaktibatu Signal-en mezuak eta deiak?</string>
@@ -575,7 +575,7 @@
   <string name="ManageGroupActivity_invite_now">Gonbidatu orain</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nahi duzu jakinarazpenak jaso mutututako txatetan aipatzen zaituztenean?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nahi duzu jakinarazpenak jaso isildutako txatetan aipatzen zaituztenean?</string>
   <string name="GroupMentionSettingDialog_default_notify_me">Lehenetsia (Jakinarazi)</string>
   <string name="GroupMentionSettingDialog_default_dont_notify_me">Lehenetsia (Ez jakinarazi)</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Beti jakinarazi</string>
@@ -798,6 +798,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Ukitu hemen mezu hau desagertarazteko behin ikusita.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Euskarri guztiak</string>
+  <string name="MediaRepository__camera">Kamera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ezezaguna</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal bertsio zaharregitik jaso da mezu zifratua.  Eskatu igorleari birbidaltzeko mesedez bere Signal egiaztatu ondoren.</string>
@@ -1925,7 +1926,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_communication__sealed_sender_learn_more">Gehiago jakin</string>
   <string name="preferences_notifications__mentions">Aipamenak</string>
   <string name="preferences_notifications__notify_me">Jakinarazi iezadazu</string>
-  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Jaso jakinarazpenak mutututako txatetan aipatzen zaituztenean</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Jaso jakinarazpenak isildutako txatetan aipatzen zaituztenean</string>
   <string name="preferences_setup_a_username">Ezarri erabiltzaile izena</string>
   <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
   <!--Internal only preferences-->
@@ -2221,12 +2222,11 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="ChatsPreferenceFragment_last_backup_s">Azken babeskopia: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Martxan</string>
   <string name="LocalBackupJob_creating_backup">Babeskopia sortzen…</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Babeskopiak desgaituta.</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">Babeskopiak huts egin du.</string>
+  <string name="LocalBackupJobApi29_backup_failed">Babeskopiak huts egin du</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Babeskopiak gordetzeko karpeta ezabatu edo mugitu da.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Zure babeskopia duen fitxategia handiegia da bolumen honetan gordetzeko.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Ez dago leku nahikorik zure babeskopia gordetzeko.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Babeskopiak huts egin du ezezaguna den arrazoi batengatik.</string> -->
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Ukitu babeskopiak kudeatzeko.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mezu orain arte</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Sartu %s(e)ra bidalitako egiaztapen-kodea.</string>
   <string name="RegistrationActivity_wrong_number">Zenbaki okerra</string>

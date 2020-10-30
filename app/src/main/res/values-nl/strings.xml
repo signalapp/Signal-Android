@@ -798,6 +798,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Tik hier om er voor te zorgen dat dit bericht wordt gewist nadat het is gezien.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle media</string>
+  <string name="MediaRepository__camera">Camera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Gebruiker niet bekend</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
@@ -2224,12 +2225,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ChatsPreferenceFragment_last_backup_s">Meest recente back-up-bestand: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Bezig</string>
   <string name="LocalBackupJob_creating_backup">Back-up-bestand aan het maken …</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Back-up-bestanden maken is uitgeschakeld.</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">Back-up-bestand maken is mislukt.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-up-bestand is te groot om op dit volume op te slaan.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte op je back-up-bestand op te slaan.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Wegens een onbekende reden is het maken van een back-up-bestand mislukt .</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d berichten tot nu toe</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Voer de registratiecode in die naar %s verzonden is.</string>
   <string name="RegistrationActivity_wrong_number">Verkeerd nummer</string>

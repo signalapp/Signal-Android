@@ -679,6 +679,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">ចុចទីនេះ ដើម្បីកំណត់សារបាត់ទៅវិញ បន្ទាប់ពីបានបើកមើល។</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ព័ត៌មានទាំងអស់</string>
+  <string name="MediaRepository__camera">កាមេរ៉ា</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">មិនស្គាល់</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ទទួលបានសារដែលមានកាណាល់កូដសម្ងាត់ តែជាជំនាន់ចាស់របស់Signal ដែលគេលែងប្រើហើយ។ សូមប្រាប់អ្នកផ្ញើ ឲ្យធ្វើបច្ចុប្បន្នភាពទៅជំនាន់ចុងក្រោយបង្អស់ និងផ្ញើសារម្តងទៀត។</string>

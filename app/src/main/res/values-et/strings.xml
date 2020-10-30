@@ -724,6 +724,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Koputa siia, et panna see sõnum haihtuma pärast selle vaatamist.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kogu meedia</string>
+  <string name="MediaRepository__camera">Kaamera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Tundmatu</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastuvõetud sõnum, mis on krüptitud kasutades vana, mittetoetatud Signali versiooni. Palun palu saatjal uuendada uusimale versioonile ja siis sõnum uuesti saata.</string>

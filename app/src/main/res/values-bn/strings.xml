@@ -643,6 +643,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">এই বার্তাটি দেখার পরে অদৃশ্য হয়ে যাওয়ার জন্য এখানে আলতো চাপুন।</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">সমস্ত মিডিয়া</string>
+  <string name="MediaRepository__camera">ক্যামেরা</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">অজানা</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal এর একটি পুরানো সংস্করণ ব্যবহার করে এনক্রিপ্ট করা একটি বার্তা পেয়েছেন যা আর সমর্থিত নয়। দয়া করে প্রেরককে অতি সাম্প্রতিক সংস্করণে আপডেট করতে এবং বার্তাটি পুনরায় পাঠাতে বলুন।</string>

@@ -756,6 +756,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">查看之后消息即可消失，请点击此处。</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">全部媒体</string>
+  <string name="MediaRepository__camera">相机</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">未知</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到来自旧版本 Signal 的加密消息，该版本已不再支持。请提醒发送人升级至最新版本并重发该消息。</string>

@@ -867,6 +867,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">הקש כאן כדי להעלים הודעה זו לאחר שהיא תוצג.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">כל המדיה</string>
+  <string name="MediaRepository__camera">מצלמה</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">בלתי ידוע</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">הודעה מוצפנת התקבלה ע״י שימוש בגרסה ישנה של Signal שאינה נתמכת יותר. אנא בקש מהשולח לעדכן אל הגרסה העדכנית ביותר ולשלוח מחדש את ההודעה.</string>
@@ -2349,12 +2350,9 @@
   <string name="ChatsPreferenceFragment_last_backup_s">גיבוי אחרון: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">בתהליך</string>
   <string name="LocalBackupJob_creating_backup">יוצר גיבוי…</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">גיבויים הושבתו.</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">גיבוי נכשל.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">תיקיית הגיבוי שלך נמחקה או הועברה.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">קובץ הגיבוי שלך גדול מדי לאחסון בכרך זה.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">אין מספיק שטח כדי לאחסן את הגיבוי שלך.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">גיבוי נכשל בגלל סיבה בלתי ידועה.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
   <string name="RegistrationActivity_wrong_number">מספר שגוי</string>

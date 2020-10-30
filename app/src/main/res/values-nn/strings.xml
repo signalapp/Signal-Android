@@ -339,25 +339,25 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Gjenopprett frå reservekopi?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Gjenopprett meldingar og media frå ein lokal reservekopi. Viss du ikkje gjenopprettar no, vil du ikkje få gjenoppretta seinare.</string>
-  <string name="ChooseBackupFragment__icon_content_description">Gjenopprett frå tryggleikskopi-ikon</string>
-  <string name="ChooseBackupFragment__choose_backup">Vel tryggleikskopi</string>
+  <string name="ChooseBackupFragment__icon_content_description">Gjenopprett frå reservekopi-ikon</string>
+  <string name="ChooseBackupFragment__choose_backup">Vel reservekopi</string>
   <string name="ChooseBackupFragment__learn_more">Lær meir</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Gjenoppretting utført</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">For å fortsetja å ta tryggleikskopiar må du velja ei mappe. Nye kopiar blir lagra der.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">For å fortsetja å ta reservekopiar må du velja ei mappe. Nye kopiar blir lagra der.</string>
   <string name="RestoreBackupFragment__choose_folder">Vel mappe</string>
   <string name="RestoreBackupFragment__not_now">Ikkje no</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Reservekopiar av meldingar</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Tryggleikskopiar er kryptert med ein passordfrase og lagra på eininga di.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Reservekopiar er krypterte med ein passordfrase og lagra på eininga di.</string>
   <string name="BackupsPreferenceFragment__create_backup">Lag reservekopi</string>
-  <string name="BackupsPreferenceFragment__last_backup">Siste tryggleikskopi: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Tryggleikskopi-mappe</string>
+  <string name="BackupsPreferenceFragment__last_backup">Siste reservekopi: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Reservekopi-mappe</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Stadfest passordfrase for reservekopiar</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test passordfrasen for reserverkopiane dine og stadfest at han er rett</string>
   <string name="BackupsPreferenceFragment__turn_on">Skru på</string>
   <string name="BackupsPreferenceFragment__turn_off">Skru av</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">For å gjenoppretta ein tryggleikskopi må du installera Signal på nytt eller på ei ny eining. Opna appen og trykk «Gjenopprett tryggleikskopi» og finn kopi-fila. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">For å gjenoppretta ein reservekopi må du installera Signal på nytt eller på ei ny eining. Opna appen og trykk «Gjenopprett reservekopi» og finn kopi-fila. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Lær meir</string>
   <string name="BackupsPreferenceFragment__in_progress">I gang …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d så langt …</string>
@@ -802,6 +802,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Trykk her for å få denne meldinga til å forsvinna rett etter at ho er vist.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">All media</string>
+  <string name="MediaRepository__camera">Kamera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ukjend</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok ei melding som er kryptert med ein gammal versjon av Signal som ikkje lenger vert støtta. Be avsendaren om å oppdatera til nyaste versjon og senda meldinga på nytt.</string>
@@ -1045,7 +1046,7 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="PinRestoreLockedFragment_create_new_pin">Lag ny PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Åtvaring</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Viss du skrur av PIN, mistar du all data når du omregistrerer Signal (med mindre du manuelt tar tryggleikskopi og gjenopprettar). Du kan heller ikkje skru på registreringslås utan PIN.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Viss du skrur av PIN, mistar du all data når du omregistrerer Signal (med mindre du manuelt tar reservekopi og gjenopprettar). Du kan heller ikkje skru på registreringslås utan PIN.</string>
   <string name="PinOptOutDialog_disable_pin">Skru av PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
@@ -1629,8 +1630,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="database_migration_activity__importing">IMPORTERER</string>
   <string name="import_fragment__import_system_sms_database">Importer systemet sin SMS-database</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importer database frå standard meldingsprogram til systemet </string>
-  <string name="import_fragment__import_plaintext_backup">Importer klartekst-tryggleikskopi</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importer klartekst-tryggleikskopi. Dette kan brukast med «SMS Backup &amp; Restore.»</string>
+  <string name="import_fragment__import_plaintext_backup">Importer klartekst-reservekopi</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importer klartekst-reservekopi. Dette kan brukast med «SMS Backup &amp; Restore.»</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Vis heile samtalen</string>
   <string name="load_more_header__loading">Lastar</string>
@@ -1858,7 +1859,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Skru av PIN</string>
   <string name="preferences__enable_pin">Skru på PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Viss du skrur av PIN, mistar du all data når du omregistrerer Signal (med mindre du manuelt tar tryggleikskopi og gjenopprettar). Du kan heller ikkje skru på registreringslås utan PIN.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Viss du skrur av PIN, mistar du all data når du omregistrerer Signal (med mindre du manuelt tar reservekopi og gjenopprettar). Du kan heller ikkje skru på registreringslås utan PIN.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Ein PIN held informasjonen som Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt. Du treng ikkje PIN-en din for å opna appen.</string>
   <string name="preferences__system_default">Systemstandard</string>
   <string name="preferences__default">Standard</string>
@@ -2188,7 +2189,7 @@ Du er à jour!</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å sjå ulesne meldingar</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Passordfrase til reservekopi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Reservekopiar blir lagra til ekstern lagring og krypterte med passordfrasen nedanfor. Du må ha denne passordfrasen for å gjenoppretta frå kopien.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Du må ha denne passordfrasen for å gjenoppretta ein tryggleikskopi.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Du må ha denne passordfrasen for å gjenoppretta ein reservekopi.</string>
   <string name="backup_enable_dialog__folder">Mappe</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eg har skrive ned denne passordfrasen. Utan den vil eg ikkje få gjenoppretta frå reservekopien.</string>
   <string name="registration_activity__restore_backup">Gjenopprett frå reservekopi</string>
@@ -2215,7 +2216,7 @@ Du er à jour!</string>
   <string name="BackupDialog_delete_backups">Slett reservekopiar?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Skru av og slett alle lokale reservekopiar?</string>
   <string name="BackupDialog_delete_backups_statement">Slett reservekopiar</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">For å skru på tryggleikskopiar må du velja ei mappe. Kopiar blir lagra der.</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">For å skru på reservekopiar må du velja ei mappe. Kopiar blir lagra der.</string>
   <string name="BackupDialog_choose_folder">Vel mappe</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavla</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Skriv inn passordfrasen for reservekopiane dine for å stadfesta</string>
@@ -2226,12 +2227,11 @@ Du er à jour!</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Siste reservekopi: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">I gang</string>
   <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Tryggleikskopiar skrudd av.</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">Tryggleikskopiering feila.</string>
-  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mappa for tryggleikskopiar er sletta eller flytta.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Tryggleikskopi-fila er for stor til å lagra på denne plasseringa.</string>
-  <string name="LocalBackupJobApi29_there_is_not_enough_space">Du har ikkje nok lagringsplass til tryggleikskopien din.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Tryggleikskopiering feila og me veit ikkje kvifor.</string> -->
+  <string name="LocalBackupJobApi29_backup_failed">Reservekopiering feila</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mappa for reservekopiar er sletta eller flytta.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Reservekopi-fila er for stor til å lagra på denne plasseringa.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Du har ikkje nok lagringsplass til reservekopien din.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Trykk for å handtera reserverkopiar.</string>
   <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn stadfestingskoden sendt til %s</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>

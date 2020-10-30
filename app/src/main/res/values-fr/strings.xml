@@ -768,6 +768,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Touchez ici pour faire disparaître ce message après qu’il a été visualisé.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tous les médias</string>
+  <string name="MediaRepository__camera">Appareil photo</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Inconnu</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vous avez reçu un message chiffré avec une ancienne version de Signal qui n’est plus prise en charge. Veuillez demander à l’expéditeur de mettre Signal à jour vers la version la plus récente et de renvoyer le message.</string>

@@ -797,6 +797,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Clicca qui per far scomparire questo messaggio dopo che è stato visualizzato.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tutti i file multimediali</string>
+  <string name="MediaRepository__camera">Fotocamera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Sconosciuto</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio criptato usando una vecchia versione di Signal che non è più supportata. Per favore chiedi al mittente di aggiornare alla versione più recente e di inviare nuovamente il messaggio.</string>
@@ -2219,12 +2220,9 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Ultimo backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">In corso</string>
   <string name="LocalBackupJob_creating_backup">Creazione backup…</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Backup disattivati.</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">Backup fallito.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">La cartella di backup è stata eliminata o spostata.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Il tuo file di backup è troppo grande per essere memorizzato su questo volume.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Spazio insufficiente per memorizzare il backup.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Backup fallito per un motivo sconosciuto.</string> -->
   <string name="ProgressPreference_d_messages_so_far">Ancora %d messaggi</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Per favore inserire il codice di verifica inviato a %s.</string>
   <string name="RegistrationActivity_wrong_number">Numero errato</string>

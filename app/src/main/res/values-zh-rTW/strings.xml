@@ -762,6 +762,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">點擊此處使該訊息在查看後消失。</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有的媒體</string>
+  <string name="MediaRepository__camera">相機</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">未知</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到一則使用舊版本並已經不再支援的 Signal 加密訊息。請尋求傳送人將 Signal 升級到最新的版本並再次傳送該訊息。</string>
@@ -2151,12 +2152,11 @@
   <string name="ChatsPreferenceFragment_last_backup_s">上一次備份︰%s</string>
   <string name="ChatsPreferenceFragment_in_progress">處理中</string>
   <string name="LocalBackupJob_creating_backup">建立備份中…</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">備份已關閉。</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">備份失敗。</string>
+  <string name="LocalBackupJobApi29_backup_failed">備份失敗</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">你的備份目錄已被刪除或移動。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">你的備份檔案太大，無法儲存在該空間上。</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">沒有足夠的空間來儲存備份。</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">備份因未知原因失敗。</string> -->
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">點擊以管理備份。</string>
   <string name="ProgressPreference_d_messages_so_far">目前有 %d 則訊息</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_wrong_number">驗證碼錯誤</string>

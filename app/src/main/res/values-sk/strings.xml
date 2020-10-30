@@ -867,6 +867,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Ťuknite sem, aby táto správa po zobrazení zmizla.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všetky médiá</string>
+  <string name="MediaRepository__camera">Fotoaparát</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Neznámy</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prijatá správa je šifrovaná starou verziou Signalu, ktorá už nie je podporovaná. Prosím požiadajte odosielateľa o aktualizáciu na najnovšiu verziu a opätovné odoslanie správy.</string>
@@ -2242,7 +2243,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ChatsPreferenceFragment_last_backup_s">Posledná záloha: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Prebieha</string>
   <string name="LocalBackupJob_creating_backup">Vytváranie zálohy…</string>
-  <string name="LocalBackupJobApi29_backup_failed">Zálohovanie zlyhalo.</string>
   <string name="ProgressPreference_d_messages_so_far">Zatiaľ %d správ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím zadajte overovací kód odoslaný na %s.</string>
   <string name="RegistrationActivity_wrong_number">Nesprávne číslo</string>

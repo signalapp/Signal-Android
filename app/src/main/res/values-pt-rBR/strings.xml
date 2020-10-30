@@ -797,6 +797,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Toque aqui para que essa mensagem desapareça logo após ser visualizada.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Todas as mídias</string>
+  <string name="MediaRepository__camera">Câmera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconhecida/o</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Foi recebida uma mensagem criptografada usando uma versão antiga do Signal que não possui mais suporte. Favor pedir ao remetente que atualize para a versão mais recente e reenvie a mensagem.</string>
@@ -2219,12 +2220,9 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Último backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em andamento</string>
   <string name="LocalBackupJob_creating_backup">Criando backup…</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Os backups estão desativados.</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">O backup falhou.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sua pasta de backup foi excluída ou movida.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Seu arquivo de backup é muito grande para ser armazenado neste local.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Não há espaço suficiente para armazenar seu backup.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">O backup falhou por um motivo desconhecido.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até agora</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Favor digitar o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorreto</string>

@@ -832,6 +832,7 @@
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Pritisnite ovdje da bi poruka nestala nakon što je viđena.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Svi prilozi</string>
+  <string name="MediaRepository__camera">Kamera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Nepoznato</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka koja je šifrirana u starijoj verziji Signala koja više nije podržana. Molimo zatražite od pošiljaoca da instalira najnoviju verziju i ponovo pošalje poruku.</string>
@@ -2284,12 +2285,9 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Zadnja kreirana kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">U toku</string>
   <string name="LocalBackupJob_creating_backup">Kreiram rezervnu kopiju…</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backups_disabled">Rezervne kopije su isključene.</string> -->
-  <string name="LocalBackupJobApi29_backup_failed">Neuspjelo kreiranje rezervne kopije.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktorij sa rezervnim kopijama obrisan je ili premješten.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Vaša rezervna kopija prevelika je za pohranjivanje na ovoj lokaciji.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Nema dovoljno prostora za pohranjivanje rezervne kopije.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJobApi29_backup_failed_for_an_unknown_reason">Neuspjelo kreiranje rezervne kopije iz nepoznatih razloga.</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d poruka do sada</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Molimo unesite kōd za potvrdu koji je poslan na %s.</string>
   <string name="RegistrationActivity_wrong_number">Pogrešan broj</string>
