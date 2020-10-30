@@ -2283,9 +2283,11 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="ChatsPreferenceFragment_last_backup_s">Zadnja sigurnosna kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">U tijeku</string>
   <string name="LocalBackupJob_creating_backup">Stvaranje sigurnosne kopije…</string>
+  <string name="LocalBackupJobApi29_backup_failed">Sigurnosno kopiranje nije uspjelo</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Vaša mapa sigurnosnih kopija je izbrisana ili premještena.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Datoteka vaše sigurnosne kopije prevelika je za pohranu na ovom volumenu.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Nema dovoljno prostora za pohranu sigurnosne kopije.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Pritisnite za upravljanje sigurnosnim kopijama.</string>
   <string name="ProgressPreference_d_messages_so_far">%d poruke/a dosada</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Unesite potvrdni kôd koji je poslan na %s.</string>
   <string name="RegistrationActivity_wrong_number">Nevažeći broj</string>

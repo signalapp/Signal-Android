@@ -324,11 +324,13 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">バックアップから復元しますか？</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">ローカルバックアップからメッセージやメディアを復元してください。いま復元しなければ、あとでできなくなります。</string>
+  <string name="ChooseBackupFragment__icon_content_description">バックアップアイコンから復元</string>
+  <string name="ChooseBackupFragment__choose_backup">バックアップを選択してください</string>
   <string name="ChooseBackupFragment__learn_more">詳しく見る</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">復元が完了しました</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">バックアップを続けるには、フォルダを選択してください。新しいバックアップはこの場所に保存されます。</string>
-  <string name="RestoreBackupFragment__choose_folder">フォルダを選択</string>
+  <string name="RestoreBackupFragment__choose_folder">フォルダを選択する</string>
   <string name="RestoreBackupFragment__not_now">今はしない</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">チャットのバックアップ</string>
@@ -337,11 +339,13 @@
   <string name="BackupsPreferenceFragment__last_backup">最終バックアップ: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">バックアップフォルダ</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">バックアップ用パスフレーズの確認</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">バックアップ用パスフレーズが合っているか確認します</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">バックアップ用パスフレーズが合っているか確認してください</string>
   <string name="BackupsPreferenceFragment__turn_on">有効にする</string>
   <string name="BackupsPreferenceFragment__turn_off">無効にする</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">バックアップを復元するには、新しいSignalをインストールしてください。その後アプリを開き、「バックアップを復元する」をタップしてバックアップファイルの場所を指定します。 %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">詳しく見る</string>
   <string name="BackupsPreferenceFragment__in_progress">実行しています…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">これまで %1$d…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">バックアップを作成するには、Signalに外部ストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「ストレージ」を有効にしてください。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタマイズ: %s</string>
@@ -1410,7 +1414,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」はSignalユーザではありません。ユーザ名を確認してもう一度試してください。</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">自分自身をグループに追加する必要はありません</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">グループのサイズが最大値に達しました</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signalのグループメンバーは最大%1$d名まで可能です。</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signalグループは最大%1$d名まで参加できます。</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">推奨されるメンバー数の上限に達しました</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signalグループは%1$d人以下が最適です。これよりメンバーを追加すると、メッセージの送受信で遅延が発生します。</string>
   <plurals name="ContactSelectionListFragment_d_members">
@@ -2141,8 +2145,11 @@
   <string name="ChatsPreferenceFragment_last_backup_s">最終バックアップ: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">実行中</string>
   <string name="LocalBackupJob_creating_backup">バックアップを作成しています…</string>
+  <string name="LocalBackupJobApi29_backup_failed">バックアップに失敗しました</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは削除または移動されています。</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">あなたのバックアップファイルは、このボリュームに保存するには大きすぎます。</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">バックアップを保存できる十分なスペースがありません。</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">タップしてバックアップを管理</string>
   <string name="ProgressPreference_d_messages_so_far">これまで%d件のメッセージ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s に送信された検証コードを入力してください。</string>
   <string name="RegistrationActivity_wrong_number">番号が違います</string>
