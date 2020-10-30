@@ -112,6 +112,14 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
                  .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission, Toast.LENGTH_SHORT)
                                          .show())
                  .execute();
+    } else if (option == SelectionOption.GALLERY) {
+      Permissions.with(this)
+                 .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                 .ifNecessary()
+                 .onAllGranted(() -> launchOptionAndDismiss(option))
+                 .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission, Toast.LENGTH_SHORT)
+                                         .show())
+                 .execute();
     } else {
       launchOptionAndDismiss(option);
     }

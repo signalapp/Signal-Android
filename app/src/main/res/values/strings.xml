@@ -427,6 +427,7 @@
     <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Choose from gallery</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Remove photo</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Taking a photo requires the camera permission.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Viewing your gallery requires the storage permission.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Now</string>
