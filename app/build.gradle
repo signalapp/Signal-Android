@@ -455,6 +455,12 @@ task signProductionPlayRelease {
     }
 }
 
+task signInternalPlayRelease {
+    doLast {
+        signProductionRelease(android.applicationVariants.find { (it.name == 'internalRelease') })
+    }
+}
+
 task signProductionWebsiteRelease {
     doLast {
         def  variant       = android.applicationVariants.find { (it.name == 'websiteRelease') }
