@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
@@ -62,6 +63,8 @@ class UserView : LinearLayout {
                 return result ?: publicKey
             }
         }
+        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(user)
+        MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, context) // FIXME: This is a bad place to do this
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
             if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
