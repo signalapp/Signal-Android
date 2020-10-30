@@ -84,7 +84,7 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
       defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app));
 
       defaultPreference.setOnPreferenceClickListener(preference -> {
-        SmsUtil.startActivityToRequestSmsRole(this, SMS_ROLE_REQUEST_CODE);
+        startActivityForResult(SmsUtil.getSmsRoleIntent(requireContext()), SMS_ROLE_REQUEST_CODE);
         return true;
       });
     }

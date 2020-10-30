@@ -1129,7 +1129,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @TargetApi(Build.VERSION_CODES.KITKAT)
   private void handleMakeDefaultSms() {
-    SmsUtil.startActivityToRequestSmsRole(this, SMS_DEFAULT);
+    startActivityForResult(SmsUtil.getSmsRoleIntent(this), SMS_DEFAULT);
   }
 
   private void handleRegisterForSignal() {

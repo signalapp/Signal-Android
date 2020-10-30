@@ -22,7 +22,7 @@ public class DefaultSmsReminder extends Reminder {
       @Override
       public void onClick(View v) {
         TextSecurePreferences.setPromptedDefaultSmsProvider(fragment.requireContext(), true);
-        SmsUtil.startActivityToRequestSmsRole(fragment, requestCode);
+        fragment.startActivityForResult(SmsUtil.getSmsRoleIntent(fragment.requireContext()), requestCode);
       }
     };
     final OnClickListener dismissListener = new OnClickListener() {
