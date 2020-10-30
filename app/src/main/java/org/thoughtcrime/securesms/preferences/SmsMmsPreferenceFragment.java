@@ -21,8 +21,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
-  private static final String KITKAT_DEFAULT_PREF = "pref_set_default";
-  private static final String MMS_PREF            = "pref_mms_preferences";
+  private static final String KITKAT_DEFAULT_PREF   = "pref_set_default";
+  private static final String MMS_PREF              = "pref_mms_preferences";
+  private static final short  SMS_ROLE_REQUEST_CODE = 1234;
 
   @Override
   public void onCreate(Bundle paramBundle) {
@@ -68,10 +69,10 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
   }
 
   private void initializeDefaultPreference() {
-    if (VERSION.SDK_INT < VERSION_CODES.KITKAT) return;
-
     Preference defaultPreference = findPreference(KITKAT_DEFAULT_PREF);
     if (Util.isDefaultSmsProvider(getActivity())) {
+      defaultPreference.setOnPreferenceClickListener(null);
+
       if (VERSION.SDK_INT < VERSION_CODES.M) defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
       if (VERSION.SDK_INT < VERSION_CODES.N) defaultPreference.setIntent(new Intent(Settings.ACTION_SETTINGS));
       else                                   defaultPreference.setIntent(new Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS));
@@ -79,9 +80,13 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
       defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
       defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
     } else {
-      defaultPreference.setIntent(SmsUtil.getSmsRoleIntent(requireContext()));
       defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
       defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app));
+
+      defaultPreference.setOnPreferenceClickListener(preference -> {
+        SmsUtil.startActivityToRequestSmsRole(this, SMS_ROLE_REQUEST_CODE);
+        return true;
+      });
     }
   }
 

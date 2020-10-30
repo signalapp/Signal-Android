@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.components.reminder;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build.VERSION_CODES;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.SmsUtil;
@@ -13,22 +14,21 @@ import org.thoughtcrime.securesms.util.Util;
 
 public class DefaultSmsReminder extends Reminder {
 
-  @TargetApi(VERSION_CODES.KITKAT)
-  public DefaultSmsReminder(final Context context) {
-    super(context.getString(R.string.reminder_header_sms_default_title),
-          context.getString(R.string.reminder_header_sms_default_text));
+  public DefaultSmsReminder(@NonNull Fragment fragment, short requestCode) {
+    super(fragment.getString(R.string.reminder_header_sms_default_title),
+          fragment.getString(R.string.reminder_header_sms_default_text));
 
     final OnClickListener okListener = new OnClickListener() {
       @Override
       public void onClick(View v) {
-        TextSecurePreferences.setPromptedDefaultSmsProvider(context, true);
-        context.startActivity(SmsUtil.getSmsRoleIntent(context));
+        TextSecurePreferences.setPromptedDefaultSmsProvider(fragment.requireContext(), true);
+        SmsUtil.startActivityToRequestSmsRole(fragment, requestCode);
       }
     };
     final OnClickListener dismissListener = new OnClickListener() {
       @Override
       public void onClick(View v) {
-        TextSecurePreferences.setPromptedDefaultSmsProvider(context, true);
+        TextSecurePreferences.setPromptedDefaultSmsProvider(fragment.requireContext(), true);
       }
     };
     setOkListener(okListener);

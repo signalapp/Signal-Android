@@ -54,14 +54,12 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.paging.PagedList;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -149,6 +147,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                                       MegaphoneActionController
 {
   public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
+  public static final short SMS_ROLE_REQUEST_CODE                     = 32563;
 
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
@@ -590,7 +589,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       } else if (OutdatedBuildReminder.isEligible()) {
         return Optional.of(new OutdatedBuildReminder(context));
       } else if (DefaultSmsReminder.isEligible(context)) {
-        return Optional.of(new DefaultSmsReminder(context));
+        return Optional.of(new DefaultSmsReminder(this, SMS_ROLE_REQUEST_CODE));
       } else if (Util.isDefaultSmsProvider(context) && SystemSmsImportReminder.isEligible(context)) {
         return Optional.of((new SystemSmsImportReminder(context)));
       } else if (PushRegistrationReminder.isEligible(context)) {

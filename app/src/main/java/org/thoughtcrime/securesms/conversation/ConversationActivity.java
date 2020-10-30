@@ -39,7 +39,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
-import android.provider.Telephony;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -1130,7 +1129,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @TargetApi(Build.VERSION_CODES.KITKAT)
   private void handleMakeDefaultSms() {
-    startActivityForResult(SmsUtil.getSmsRoleIntent(this), SMS_DEFAULT);
+    SmsUtil.startActivityToRequestSmsRole(this, SMS_DEFAULT);
   }
 
   private void handleRegisterForSignal() {
