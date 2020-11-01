@@ -13,7 +13,7 @@
         android:background="?android:dividerHorizontal"
         android:elevation="1dp" />
 
-    <org.thoughtcrime.securesms.loki.views.TapJackingProofEditText
+    <EditText
         style="@style/SmallSessionEditText"
         android:id="@+id/publicKeyEditText"
         android:layout_width="match_parent"
