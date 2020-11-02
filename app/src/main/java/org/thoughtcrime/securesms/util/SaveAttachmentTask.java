@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
@@ -28,6 +29,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
   private static final String TAG = SaveAttachmentTask.class.getSimpleName();
@@ -87,7 +89,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
   private @Nullable String saveAttachment(Context context, Attachment attachment) throws IOException
   {
-    String      contentType = MediaUtil.getCorrectedMimeType(attachment.contentType);
+    String      contentType = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType));
     String         fileName = attachment.fileName;
 
     if (fileName == null) fileName = generateOutputFileName(contentType, attachment.date);
@@ -102,13 +104,13 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
         return null;
       }
 
-      if (outputUri.equals(StorageUtil.getLegacyDownloadUri())) {
+      if (Objects.equals(outputUri.getScheme(), ContentResolver.SCHEME_FILE)) {
         try (OutputStream outputStream = new FileOutputStream(mediaUri.getPath())) {
           Util.copy(inputStream, outputStream);
           MediaScannerConnection.scanFile(context, new String[]{mediaUri.getPath()}, new String[]{contentType}, null);
         }
       } else {
-        try (OutputStream outputStream = context.getContentResolver().openOutputStream(mediaUri)) {
+        try (OutputStream outputStream = context.getContentResolver().openOutputStream(mediaUri, "w")) {
           Util.copy(inputStream, outputStream);
         }
       }
@@ -166,7 +168,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1);
     }
 
-    if (Build.VERSION.SDK_INT <= 28 && outputUri.equals(StorageUtil.getLegacyDownloadUri())) {
+    if (Build.VERSION.SDK_INT <= 28 && Objects.equals(outputUri.getScheme(), ContentResolver.SCHEME_FILE)) {
       File     outputDirectory = new File(outputUri.getPath());
       File     outputFile      = new File(outputDirectory, base + "." + extension);
 
