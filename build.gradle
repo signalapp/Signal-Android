@@ -19,8 +19,8 @@ subprojects {
 task qa {
     group 'Verification'
     description 'Quality Assurance. Run before pushing.'
-    dependsOn ':Signal-Android:testPlayReleaseUnitTest',
-            ':Signal-Android:lintPlayRelease',
+    dependsOn ':Signal-Android:testPlayProdReleaseUnitTest',
+            ':Signal-Android:lintPlayProdRelease',
             ':libsignal-service:test',
-            ':Signal-Android:assemblePlayDebug'
+            ':Signal-Android:assemblePlayProdDebug'
 }
