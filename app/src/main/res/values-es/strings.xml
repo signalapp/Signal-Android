@@ -371,6 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Seleccionar desde galería</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminar foto</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Para tomar una foto, Signal necesita acceso a la cámara.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Signal necesita acceso a almacenamiento para mostrar la galería.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ahora</string>
   <string name="DateUtils_minutes_ago">%d m</string>

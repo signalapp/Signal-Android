@@ -371,6 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Kiezen vanuit galerij</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Foto verwijderen</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Het maken van een foto vereist toestemming om de camera te gebruiken.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Om je gallerij weer te kunnen geven is toestemming om de opslag te gebruiken nodig.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -2225,9 +2226,11 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ChatsPreferenceFragment_last_backup_s">Meest recente back-up-bestand: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Bezig</string>
   <string name="LocalBackupJob_creating_backup">Back-up-bestand aan het maken …</string>
+  <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-up-bestand is mislukt</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-up-bestand is te groot om op dit volume op te slaan.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte op je back-up-bestand op te slaan.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hier om het maken van back-up-bestanden in te stellen.</string>
   <string name="ProgressPreference_d_messages_so_far">%d berichten tot nu toe</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Voer de registratiecode in die naar %s verzonden is.</string>
   <string name="RegistrationActivity_wrong_number">Verkeerd nummer</string>

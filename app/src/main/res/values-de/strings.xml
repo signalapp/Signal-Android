@@ -371,6 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Aus Galerie auswählen</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Foto entfernen</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Für das Aufnehmen eines Fotos ist die Kamera-Berechtigung erforderlich.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Zum Ansehen der Galerie ist die Speicher-Berechtigung erforderlich.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Jetzt</string>
   <string name="DateUtils_minutes_ago">%dmin</string>

@@ -385,6 +385,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Odaberi iz galerije</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Ukloni sliku</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Za snimanje fotografija potrebno je dopuštenje kamere.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Za pregledavanje vaše galerije potrebno je dopuštenje prostora za pohranu.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sada</string>
   <string name="DateUtils_minutes_ago">%dm</string>

@@ -399,6 +399,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">בחר מהגלריה</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">הסר תמונה</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">צילום תצלום דורש את הרשאת המצלמה.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">הצגת הגלריה שלך דורשת את הרשאת האחסון.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">עכשיו</string>
   <string name="DateUtils_minutes_ago">%d ד\'</string>
@@ -2350,9 +2351,11 @@
   <string name="ChatsPreferenceFragment_last_backup_s">גיבוי אחרון: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">בתהליך</string>
   <string name="LocalBackupJob_creating_backup">יוצר גיבוי…</string>
+  <string name="LocalBackupJobApi29_backup_failed">גיבוי נכשל</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">תיקיית הגיבוי שלך נמחקה או הועברה.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">קובץ הגיבוי שלך גדול מדי לאחסון בכרך זה.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">אין מספיק שטח כדי לאחסן את הגיבוי שלך.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">הקש כדי לנהל גיבויים.</string>
   <string name="ProgressPreference_d_messages_so_far">%d הודעות עד כה</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
   <string name="RegistrationActivity_wrong_number">מספר שגוי</string>

@@ -371,6 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Zgjidhni prej galerie</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Hiqe foton</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Bërja e një fotografie lyp leje mbi kamerën.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Parja e galerisë suaj lyp lejen për depozitim.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Tani</string>
   <string name="DateUtils_minutes_ago">%dm</string>

@@ -371,6 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Escolher da galeria</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Remover fotografia</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Tirar uma fotografia necessita da permissão de câmara,</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Ver a sua galeria exige ter permissão de armazenamento.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -2216,9 +2217,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ChatsPreferenceFragment_last_backup_s">Última cópia de segurança: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em progresso</string>
   <string name="LocalBackupJob_creating_backup">A criar cópia de segurança…</string>
+  <string name="LocalBackupJobApi29_backup_failed">Falha ao fazer cópia de segurança</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">A sua diretoria da cópia de segurança foi eliminada ou movida.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">O seu ficheiro de cópia de segurança é demasiado grande para ser guardada neste volume.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Não existe espaço suficiente para guardar a sua cópia de segurança.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Toque para gerir as cópias de segurança.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até à data</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insira o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número errado</string>

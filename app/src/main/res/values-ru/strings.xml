@@ -399,6 +399,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Выбрать из галереи</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Удалить фото</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Для того, чтобы сделать фото, необходимо разрешение на доступ к камере.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Для просмотра вашей галереи требуется разрешение на доступ к хранилищу.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Только что</string>
   <string name="DateUtils_minutes_ago">%dм</string>

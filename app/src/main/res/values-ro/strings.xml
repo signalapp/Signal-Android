@@ -352,10 +352,12 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Restaurez din backup?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaurați mesajele și media dintr-un backup local. Dacă nu restaurați acum, nu veți putea restaura mai târziu.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Restabilire din backup</string>
   <string name="ChooseBackupFragment__choose_backup">Selectați backup</string>
   <string name="ChooseBackupFragment__learn_more">Aflați mai multe</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restaurarea a fost finalizată</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Pentru a continua să utilizați backup-uri, vă rugăm să alegeți un director. Noile backp-uri vor fi salvate în această locație.</string>
   <string name="RestoreBackupFragment__choose_folder">Alege directorul</string>
   <string name="RestoreBackupFragment__not_now">Nu acum</string>
   <!--BackupsPreferenceFragment-->
@@ -368,6 +370,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testați parola dvs. de backup și verificați că se potrivește</string>
   <string name="BackupsPreferenceFragment__turn_on">Activare</string>
   <string name="BackupsPreferenceFragment__turn_off">Dezactivare</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Pentru a restabili un backup, instalați o copie nouă Signal. Deschideți aplicația și atingeți \"Restabilire backup\", apoi localizați un fișier de backup. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Aflați mai multe</string>
   <string name="BackupsPreferenceFragment__in_progress">În curs de desfășurare…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d până acum…</string>
@@ -382,6 +385,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Alegeți din galerie</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminați poza</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Pentru a face o fotografie este nevoie de permisiunea camerei.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Vizualizarea galeriei dvs. necesită permisiunea de stocare.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Acum</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -414,6 +418,11 @@
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Această versiune a Signal a expirat. Actualizați acum pentru a trimite și primi mesaje.</string>
   <string name="ExpiredBuildReminder_update_now">Actualizează acum</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d solicitare de membru în așteptare.</item>
+    <item quantity="few">%d solicitări de membru în așteptare.</item>
+    <item quantity="other">%d solicitări de membru în așteptare.</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Vizualizare</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Distribuie cu</string>
@@ -1507,6 +1516,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactSelectionListFragment_username_not_found">Numele de utilizator nu a fost găsit</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nu este un utilizator de Signal. Verificați numele de utilizator și încercați din nou.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nu trebuie să vă adăugați pe sine la grup</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Mărimea maximă a grupului a fost atinsă</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Grupurile Signal pot avea un maximum de %1$d membrii.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">A fost atinsă limita de membri recomandată</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Grupurile Signal se comportă cel mai bine cu %1$d membrii sau mai puțini. Adăugarea mai multor membri va provoca întârzieri la trimiterea și primirea mesajelor.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d membru</item>
     <item quantity="few">%1$dmembrii</item>
@@ -2216,6 +2229,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Credem în confidențialitate.</b></p><p>Signal nu vă urmărește și nu vă colectează informațiile. Pentru a îmbunătăți aplicația pentru toată lumea, ne bazăm pe opiniile utilizatorilor noștri, <b>și ne-ar plăcea să o auzim pe a dvs.</b></p><p>Derulăm un sondaj pentru a înțelege mai bine cum folosiți Signal. Studiul nostru nu colectează informații care v-ar putea identifica. Dacă sunteți interesat în a împărtăși păreri suplimentare cu noi, veți avea opțiunea să ne furnizați informații de contact.</p><p>Dacă aveți câteva minute la dispoziție și păreri de oferit, ne-ar plăcea să aflăm de la dvs.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Completează studiul</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nu, mulţumesc</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Acest studiu este găzduit de Alchemer pe domeniul securizat surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -2231,6 +2245,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Deblocați pentru a vedea mesajele în curs</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie să aveți această parolă pentru a putea restaura un backup.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Trebuie să aveți parola pentru a restabili un backup.</string>
   <string name="backup_enable_dialog__folder">Dosar</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura un backup.</string>
   <string name="registration_activity__restore_backup">Restaurare backup</string>
@@ -2257,6 +2272,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_delete_backups">Șterg backup-urile?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Dezactivez și șterg toate backup-urile locale?</string>
   <string name="BackupDialog_delete_backups_statement">Șterge backup-urile</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Pentru a activa backup-urile, alegeți un folder. Backup-urile vor fi salvate în această locație.</string>
   <string name="BackupDialog_choose_folder">Alege directorul</string>
   <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduceți parola dvs. de backup pentru a verifica</string>
@@ -2267,6 +2283,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatsPreferenceFragment_last_backup_s">Ultimul backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">În curs</string>
   <string name="LocalBackupJob_creating_backup">Se creează backup-ul…</string>
+  <string name="LocalBackupJobApi29_backup_failed">Backup-ul a eșuat</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Directorul dvs. de backup a fost șters sau mutat.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fișierul dvs. de backup este prea mare pentru a fi stocat pe acest volum.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Nu există suficient spațiu pentru stocarea backup-ului dvs.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Apăsați pentru a gestiona backup-uri.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesaje până acum</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Vă rugăm să introduceți codul de verificare trimis la %s.</string>
   <string name="RegistrationActivity_wrong_number">Număr greșit</string>
