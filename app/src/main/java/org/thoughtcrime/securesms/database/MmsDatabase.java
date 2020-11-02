@@ -1619,23 +1619,6 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public List<MessageRecord> getMessagesInThreadBeforeExclusive(long threadId, long timestamp, long limit) {
-    String   where = TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = ? AND " +
-                     TABLE_NAME + "." + getDateReceivedColumnName() + " < ?";
-    String[] args  = SqlUtil.buildArgs(threadId, timestamp);
-
-    try (Reader reader = readerFor(rawQuery(where, args, true, limit))) {
-      List<MessageRecord> results = new ArrayList<>(reader.cursor.getCount());
-
-      while (reader.getNext() != null) {
-        results.add(reader.getCurrent());
-      }
-
-      return results;
-    }
-  }
-
-  @Override
   public List<MessageRecord> getMessagesInThreadAfterInclusive(long threadId, long timestamp, long limit) {
     String   where = TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = ? AND " +
                      TABLE_NAME + "." + getDateReceivedColumnName() + " >= ?";

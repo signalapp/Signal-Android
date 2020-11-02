@@ -145,7 +145,6 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   abstract void deleteAllThreads();
   abstract void deleteAbandonedMessages();
 
-  public abstract List<MessageRecord> getMessagesInThreadBeforeExclusive(long threadId, long timestamp, long limit);
   public abstract List<MessageRecord> getMessagesInThreadAfterInclusive(long threadId, long timestamp, long limit);
 
   public abstract SQLiteDatabase beginTransaction();

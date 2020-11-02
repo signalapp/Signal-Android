@@ -162,18 +162,6 @@ public class MmsSmsDatabase extends Database {
     return null;
   }
 
-
-  public @NonNull List<MessageRecord> getMessagesBeforeVoiceNoteExclusive(long messageId, long limit) throws NoSuchMessageException {
-    MessageRecord       origin = DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
-    List<MessageRecord> mms    = DatabaseFactory.getMmsDatabase(context).getMessagesInThreadBeforeExclusive(origin.getThreadId(), origin.getDateReceived(), limit);
-    List<MessageRecord> sms    = DatabaseFactory.getSmsDatabase(context).getMessagesInThreadBeforeExclusive(origin.getThreadId(), origin.getDateReceived(), limit);
-
-    mms.addAll(sms);
-    Collections.sort(mms, (a, b) -> Long.compare(a.getDateReceived(), b.getDateReceived()));
-
-    return Stream.of(mms).skip(Math.max(0, mms.size() - limit)).toList();
-  }
-
   public @NonNull List<MessageRecord> getMessagesAfterVoiceNoteInclusive(long messageId, long limit) throws NoSuchMessageException {
     MessageRecord       origin = DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
     List<MessageRecord> mms    = DatabaseFactory.getMmsDatabase(context).getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
