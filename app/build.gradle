@@ -90,6 +90,9 @@ def abiPostFix = ['universal'   : 0,
                   'x86'         : 3,
                   'x86_64'      : 4]
 
+def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties'),
+                  'staging': loadKeystoreProperties('keystore.staging.properties')]
+
 android {
     flavorDimensions "none"
     compileSdkVersion 29
@@ -101,11 +104,22 @@ android {
     }
 
     signingConfigs {
-        staging {
-            storeFile file("${project.rootDir}/dev.keystore")
-            storePassword 'android'
-            keyAlias 'staging'
-            keyPassword 'android'
+        if (keystores['debug'] != null) {
+            debug {
+                storeFile file("${project.rootDir}/${keystores['debug']['storeFile']}")
+                storePassword keystores['debug']['storePassword']
+                keyAlias keystores['debug']['keyAlias']
+                keyPassword keystores['debug']['keyPassword']
+            }
+        }
+
+        if (keystores['staging'] != null) {
+            staging {
+                storeFile file("${project.rootDir}/${keystores['staging']['storeFile']}")
+                storePassword keystores['staging']['storePassword']
+                keyAlias keystores['staging']['keyAlias']
+                keyPassword keystores['staging']['keyPassword']
+            }
         }
     }
 
@@ -180,6 +194,9 @@ android {
 
     buildTypes {
         debug {
+            if (keystores['debug'] != null) {
+                signingConfig signingConfigs.debug
+            }
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard/proguard-firebase-messaging.pro',
@@ -206,7 +223,9 @@ android {
         staging {
             initWith debug
             applicationIdSuffix ".staging"
-            signingConfig signingConfigs.staging
+            if (keystores['staging'] != null) {
+                signingConfig signingConfigs.staging
+            }
 
             buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service-staging.whispersystems.org\""
             buildConfigField "String", "STORAGE_URL", "\"https://storage-staging.signal.org\""
@@ -488,5 +507,16 @@ tasks.withType(Test) {
         showCauses true
         showExceptions true
         showStackTraces true
+    }
+}
+
+def loadKeystoreProperties(filename) {
+    def keystorePropertiesFile = file("${project.rootDir}/${filename}")
+    if (keystorePropertiesFile.exists()) {
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+        return keystoreProperties;
+    } else {
+        return null;
     }
 }
