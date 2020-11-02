@@ -96,6 +96,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         notificationsButton.setOnClickListener { showNotificationSettings() }
         chatsButton.setOnClickListener { showChatSettings() }
 //        linkedDevicesButton.setOnClickListener { showLinkedDevices() }
+        sendInvitationButton.setOnClickListener { sendInvitation() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
         versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
@@ -290,6 +291,15 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun showLinkedDevices() {
         val intent = Intent(this, LinkedDevicesActivity::class.java)
         push(intent)
+    }
+
+    private fun sendInvitation() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        val invitation = "Hey, I've been using Session to chat with complete privacy and security. Come join me! Download it at https://getsession.org/. My Session ID is $hexEncodedPublicKey!"
+        intent.putExtra(Intent.EXTRA_TEXT, invitation)
+        intent.type = "text/plain"
+        startActivity(intent)
     }
 
     private fun showSeed() {
