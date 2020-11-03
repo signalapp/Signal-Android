@@ -174,6 +174,7 @@ public class BackupUtil {
 
       return new BackupInfo(backupTimestamp, documentFile.length(), documentFile.getUri());
     } else {
+      logIssueWithDocumentFile(documentFile);
       Log.w(TAG, "Could not load backup info.");
       return null;
     }
@@ -257,6 +258,20 @@ public class BackupUtil {
     }
 
     return -1;
+  }
+
+  private static void logIssueWithDocumentFile(@Nullable DocumentFile documentFile) {
+    if (documentFile == null) {
+      throw new AssertionError("We do not support platforms prior to KitKat.");
+    } else if (!documentFile.exists()) {
+      Log.w(TAG, "The document at the specified Uri cannot be found.");
+    } else if (!documentFile.canRead()) {
+      Log.w(TAG, "The document at the specified Uri cannot be read.");
+    } else if (!documentFile.canWrite()) {
+      Log.w(TAG, "The document at the specified Uri cannot be written to.");
+    } else if (!documentFile.getName().endsWith(".backup")) {
+      Log.w(TAG, "The document at the specified Uri has an unsupported file extension.");
+    }
   }
 
   public static class BackupInfo {
