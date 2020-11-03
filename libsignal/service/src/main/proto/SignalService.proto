@@ -128,7 +128,7 @@ message DataMessage {
     }
 
     optional uint64           id          = 1;
-    optional string           authorE164  = 2;
+    // optional string           authorE164  = 2;
     optional string           authorUuid  = 5;
     optional string           text        = 3;
     repeated QuotedAttachment attachments = 4;

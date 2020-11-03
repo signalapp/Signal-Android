@@ -660,8 +660,8 @@ public final class SignalServiceContent {
                                                                           attachment.hasThumbnail() ? createAttachmentPointer(attachment.getThumbnail()) : null));
     }
 
-    if (SignalServiceAddress.isValidAddress(content.getQuote().getAuthorUuid(), content.getQuote().getAuthorE164())) {
-      SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(content.getQuote().getAuthorUuid()), content.getQuote().getAuthorE164());
+    if (SignalServiceAddress.isValidAddress(content.getQuote().getAuthorUuid(), null)) {
+      SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(content.getQuote().getAuthorUuid()), null);
 
       return new SignalServiceDataMessage.Quote(content.getQuote().getId(),
                                                 address,
@@ -669,7 +669,7 @@ public final class SignalServiceContent {
                                                 attachments,
                                                 createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText(), isGroupV2));
     } else {
-      Log.w(TAG, "Quote was missing an author! Returning null.");
+      Log.w(TAG, "Quote was missing author's UUID! Returning null.");
       return null;
     }
   }
