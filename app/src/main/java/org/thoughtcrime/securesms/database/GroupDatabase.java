@@ -771,6 +771,8 @@ public final class GroupDatabase extends Database {
     public MemberLevel memberLevel(@NonNull Recipient recipient) {
       if (isV2Group()) {
         return requireV2GroupProperties().memberLevel(recipient);
+      } else if (isMms() && recipient.isSelf()) {
+        return MemberLevel.FULL_MEMBER;
       } else {
         return members.contains(recipient.getId()) ? MemberLevel.FULL_MEMBER
                                                    : MemberLevel.NOT_A_MEMBER;
