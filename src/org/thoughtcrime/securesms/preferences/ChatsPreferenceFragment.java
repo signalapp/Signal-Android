@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -104,7 +105,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(BackupEvent event) {
-    ProgressPreference preference = (ProgressPreference)findPreference(TextSecurePreferences.BACKUP_NOW);
+    ProgressPreference preference = findPreference(TextSecurePreferences.BACKUP_NOW);
 
     if (event.getType() == BackupEvent.Type.PROGRESS) {
       preference.setEnabled(false);
@@ -114,6 +115,14 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
       preference.setEnabled(true);
       preference.setProgressVisible(false);
       setBackupSummary();
+
+      if (event.getException() != null) {
+        Toast.makeText(
+                getActivity(),
+                getString(R.string.preferences_chats__backup_export_error),
+                Toast.LENGTH_LONG)
+                .show();
+      }
     }
   }
 

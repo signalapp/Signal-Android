@@ -50,11 +50,14 @@ import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import nl.komponents.kovenant.combine.Tuple2;
 
 public class ThreadDatabase extends Database {
 
@@ -616,6 +619,34 @@ public class ThreadDatabase extends Database {
       if (reader != null)
         reader.close();
     }
+  }
+
+  /**
+   * A lightweight utility method to retrieve the complete list of non-archived threads coupled with their recipient address.
+   * @return a tuple with non-null values: thread id, recipient address.
+   */
+  public @NonNull List<Tuple2<Long, String>> getConversationListQuick() {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    ArrayList<Tuple2<Long, String>> result = new ArrayList<>();
+
+    try (Cursor cursor = db.query(
+            TABLE_NAME,
+            new String[]{ID, ADDRESS},
+            ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0 AND " + ADDRESS + " IS NOT NULL",
+            null,
+            null,
+            null,
+            null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        result.add(new Tuple2<>(
+                cursor.getLong(cursor.getColumnIndexOrThrow(ID)),
+                cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))
+        ));
+      }
+    }
+
+    return result;
   }
 
   private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {

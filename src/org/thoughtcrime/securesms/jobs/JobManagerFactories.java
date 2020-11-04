@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.loki.api.BackgroundPollJob;
 import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob;
+import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
@@ -81,6 +82,7 @@ public final class JobManagerFactories {
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
       put(PrepareAttachmentAudioExtrasJob.KEY,       new PrepareAttachmentAudioExtrasJob.Factory());
+      put(ResetThreadSessionJob.KEY,                 new ResetThreadSessionJob.Factory());
     }};
   }
 

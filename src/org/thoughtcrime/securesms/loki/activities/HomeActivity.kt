@@ -26,13 +26,13 @@ import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
-import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob
+import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
@@ -46,6 +46,8 @@ import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.TextSecurePreferences.getBooleanPreference
+import org.thoughtcrime.securesms.util.TextSecurePreferences.setBooleanPreference
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
@@ -57,6 +59,32 @@ import org.whispersystems.signalservice.loki.utilities.toHexString
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
+
+    companion object {
+        private const val PREF_RESET_ALL_SESSIONS_ON_START_UP = "pref_reset_all_sessions_on_start_up"
+
+        @JvmStatic
+        fun requestResetAllSessionsOnStartup(context: Context) {
+            setBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, true)
+        }
+
+        @JvmStatic
+        fun scheduleResetAllSessionsIfRequested(context: Context) {
+            if (!getBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, false)) return
+            setBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, false)
+
+            val jobManager = ApplicationContext.getInstance(context).jobManager
+
+            DatabaseFactory.getThreadDatabase(context).conversationListQuick.forEach { tuple ->
+                val threadId: Long = tuple.first
+                val recipientAddress: String = tuple.second
+                jobManager.add(ResetThreadSessionJob(
+                        Address.fromSerialized(recipientAddress),
+                        threadId))
+            }
+        }
+    }
+
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
@@ -196,6 +224,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             TextSecurePreferences.setWasUnlinked(this, true)
             ApplicationContext.getInstance(this).clearData()
         }
+
+        // Perform chat sessions reset if requested (usually happens after backup restoration).
+        scheduleResetAllSessionsIfRequested(this)
     }
 
     override fun onResume() {

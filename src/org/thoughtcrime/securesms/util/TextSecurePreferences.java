@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.backup.BackupProtos;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
@@ -24,9 +26,13 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import network.loki.messenger.R;
+
+import static org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_INT;
 
 public class TextSecurePreferences {
 
@@ -1332,6 +1338,40 @@ public class TextSecurePreferences {
 
   public static void setHasSeenLightThemeIntroSheet(Context context) {
     setBooleanPreference(context, "has_seen_light_theme_intro_sheet", true);
+  }
+  // endregion
+
+  // region Backup related
+  public static List<BackupProtos.SharedPreference> getBackupRecords(@NonNull Context context) {
+    final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    final String prefsFileName;
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+      prefsFileName = PreferenceManager.getDefaultSharedPreferencesName(context);
+    } else {
+      prefsFileName = context.getPackageName() + "_preferences";
+    }
+
+    final LinkedList<BackupProtos.SharedPreference> prefList = new LinkedList<>();
+
+    prefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(prefsFileName)
+            .setKey(PREF_PREFIX_TYPE_INT + LOCAL_REGISTRATION_ID_PREF)
+            .setValue(String.valueOf(preferences.getInt(LOCAL_REGISTRATION_ID_PREF, 0)))
+            .build());
+    prefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(prefsFileName)
+            .setKey(LOCAL_NUMBER_PREF)
+            .setValue(preferences.getString(LOCAL_NUMBER_PREF, null))
+            .build());
+
+    prefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(prefsFileName)
+            .setKey(PROFILE_NAME_PREF)
+            .setValue(preferences.getString(PROFILE_NAME_PREF, null))
+            .build());
+
+    return prefList;
   }
   // endregion
 }

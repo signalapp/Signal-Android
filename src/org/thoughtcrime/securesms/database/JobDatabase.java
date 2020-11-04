@@ -22,8 +22,8 @@ public class JobDatabase extends Database {
                                                              Constraints.CREATE_TABLE,
                                                              Dependencies.CREATE_TABLE };
 
-  private static final class Jobs {
-    private static final String TABLE_NAME            = "job_spec";
+  public static final class Jobs {
+    public  static final String TABLE_NAME            = "job_spec";
     private static final String ID                    = "_id";
     private static final String JOB_SPEC_ID           = "job_spec_id";
     private static final String FACTORY_KEY           = "factory_key";
@@ -53,8 +53,8 @@ public class JobDatabase extends Database {
                                                                                     IS_RUNNING            + " INTEGER)";
   }
 
-  private static final class Constraints {
-    private static final String TABLE_NAME  = "constraint_spec";
+  public static final class Constraints {
+    public  static final String TABLE_NAME  = "constraint_spec";
     private static final String ID          = "_id";
     private static final String JOB_SPEC_ID = "job_spec_id";
     private static final String FACTORY_KEY = "factory_key";
@@ -65,8 +65,8 @@ public class JobDatabase extends Database {
                                                                                     "UNIQUE(" + JOB_SPEC_ID + ", " + FACTORY_KEY + "))";
   }
 
-  private static final class Dependencies {
-    private static final String TABLE_NAME             = "dependency_spec";
+  public static final class Dependencies {
+    public  static final String TABLE_NAME             = "dependency_spec";
     private static final String ID                     = "_id";
     private static final String JOB_SPEC_ID            = "job_spec_id";
     private static final String DEPENDS_ON_JOB_SPEC_ID = "depends_on_job_spec_id";

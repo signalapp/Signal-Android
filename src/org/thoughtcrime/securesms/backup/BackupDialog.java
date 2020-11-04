@@ -29,7 +29,8 @@ public class BackupDialog {
           @NonNull SwitchPreferenceCompat preference,
           @NonNull BackupDirSelector backupDirSelector) {
 
-    String[] password   = BackupUtil.generateBackupPassphrase();
+//    String[] password   = BackupUtil.generateBackupPassphrase();
+    String[] password   = new String[]{"00000", "00000", "00000", "00000", "00000", "00000"};
     String   passwordSt = Util.join(password, " ");
 
     AlertDialog dialog = new AlertDialog.Builder(context)

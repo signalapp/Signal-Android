@@ -1,15 +1,14 @@
 package org.thoughtcrime.securesms.backup;
 
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import androidx.annotation.NonNull;
-
 import android.net.Uri;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -40,7 +39,6 @@ import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.Closeable;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,7 +60,12 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class FullBackupImporter extends FullBackupBase {
 
-  @SuppressWarnings("unused")
+  /**
+   * Because BackupProtos.SharedPreference was made only to serialize string values,
+   * we use these 3-char prefixes to explicitly cast the values before inserting to a preference file.
+   */
+  public static final String PREF_PREFIX_TYPE_INT = "i__";
+
   private static final String TAG = FullBackupImporter.class.getSimpleName();
 
   public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
@@ -85,7 +88,7 @@ public class FullBackupImporter extends FullBackupBase {
       BackupFrame frame;
 
       while (!(frame = inputStream.readFrame()).getEnd()) {
-        if (count++ % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
+        if (count++ % 100 == 0) EventBus.getDefault().post(BackupEvent.createProgress(count));
 
         if      (frame.hasVersion())    processVersion(db, frame.getVersion());
         else if (frame.hasStatement())  processStatement(db, frame.getStatement());
@@ -104,7 +107,7 @@ public class FullBackupImporter extends FullBackupBase {
       }
     }
 
-    EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count));
+    EventBus.getDefault().post(BackupEvent.createFinished());
   }
 
   private static void processVersion(@NonNull SQLiteDatabase db, DatabaseVersion version) throws IOException {
@@ -185,7 +188,18 @@ public class FullBackupImporter extends FullBackupBase {
   @SuppressLint("ApplySharedPref")
   private static void processPreference(@NonNull Context context, SharedPreference preference) {
     SharedPreferences preferences = context.getSharedPreferences(preference.getFile(), 0);
-    preferences.edit().putString(preference.getKey(), preference.getValue()).commit();
+    String key = preference.getKey();
+    String value = preference.getValue();
+
+    // See comments next to PREF_PREFIX_TYPE_* constants.
+    if (key.startsWith(PREF_PREFIX_TYPE_INT)) {
+      preferences.edit().putInt(
+              key.substring(3),
+              Integer.parseInt(value)
+      ).commit();
+    } else {
+      preferences.edit().putString(key, value).commit();
+    }
   }
 
   private static void dropAllTables(@NonNull SQLiteDatabase db) {

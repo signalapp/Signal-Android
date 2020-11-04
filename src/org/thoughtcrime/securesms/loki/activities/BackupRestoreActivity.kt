@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.loki.activities
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Context
@@ -23,17 +22,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.common.util.Strings
-import kotlinx.android.synthetic.main.activity_pn_mode.*
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ActivityBackupRestoreBinding
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.RegistrationActivity
 import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.backup.FullBackupImporter.DatabaseDowngradeException
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
+import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -115,21 +114,6 @@ class BackupRestoreActivity : BaseActionBarActivity() {
     private fun restore() {
         if (viewModel.backupFile.value == null && Strings.isEmptyOrWhitespace(viewModel.backupPassphrase.value)) return
 
-//        val backupFile = viewModel.backupFile.value!!
-//        val password = viewModel.backupPassphrase.value!!.trim()
-//
-//        try {
-//            FullBackupImporter.importFile(
-//                    this,
-//                    AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret(),
-//                    DatabaseFactory.getBackupDatabase(this),
-//                    backupFile,
-//                    password
-//            )
-//        } catch (e: IOException) {
-//            Log.e(TAG, "Failed to restore from the backup file \"$backupFile\"", e)
-//        }
-
         val backupFile = viewModel.backupFile.value!!
         val passphrase = viewModel.backupPassphrase.value!!.trim()
 
@@ -147,8 +131,10 @@ class BackupRestoreActivity : BaseActionBarActivity() {
                     )
                     DatabaseFactory.upgradeRestored(context, database)
                     NotificationChannels.restoreContactNotificationChannels(context)
-                    TextSecurePreferences.setBackupEnabled(context, true)
-                    TextSecurePreferences.setBackupPassphrase(context, passphrase)
+//                    TextSecurePreferences.setBackupEnabled(context, true)
+//                    TextSecurePreferences.setBackupPassphrase(context, passphrase)
+                    TextSecurePreferences.setRestorationTime(context, System.currentTimeMillis())
+
                     BackupImportResult.SUCCESS
                 } catch (e: DatabaseDowngradeException) {
                     Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e)
@@ -163,6 +149,7 @@ class BackupRestoreActivity : BaseActionBarActivity() {
                 val context = this@BackupRestoreActivity
                 when (result) {
                     BackupImportResult.SUCCESS -> {
+                        TextSecurePreferences.setHasViewedSeed(context, true)
                         TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
                         TextSecurePreferences.setPromptedPushRegistration(context, true)
                         TextSecurePreferences.setIsUsingFCM(context, true)
@@ -171,6 +158,8 @@ class BackupRestoreActivity : BaseActionBarActivity() {
                         val application = ApplicationContext.getInstance(context)
                         application.setUpStorageAPIIfNeeded()
                         application.setUpP2PAPIIfNeeded()
+
+                        HomeActivity.requestResetAllSessionsOnStartup(context)
 
                         val intent = Intent(context, HomeActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -222,7 +211,7 @@ class RestoreBackupViewModel(application: Application): AndroidViewModel(applica
     }
 
     val backupFile = MutableLiveData<Uri>()
-    val backupPassphrase = MutableLiveData<String>()
+    val backupPassphrase = MutableLiveData<String>("000000000000000000000000000000")
 
     fun onBackupFileSelected(backupFile: Uri) {
         //TODO Check if backup file is correct.

@@ -122,21 +122,38 @@ public class IdentityKeyUtil {
     }
   }
 
-  public static List<BackupProtos.SharedPreference> getBackupRecord(@NonNull Context context) {
+  public static List<BackupProtos.SharedPreference> getBackupRecords(@NonNull Context context) {
     SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
 
-    return new LinkedList<BackupProtos.SharedPreference>() {{
-      add(BackupProtos.SharedPreference.newBuilder()
+    LinkedList<BackupProtos.SharedPreference> prefList = new LinkedList<>();
+
+      prefList.add(BackupProtos.SharedPreference.newBuilder()
                                        .setFile(MasterSecretUtil.PREFERENCES_NAME)
                                        .setKey(IDENTITY_PUBLIC_KEY_PREF)
                                        .setValue(preferences.getString(IDENTITY_PUBLIC_KEY_PREF, null))
                                        .build());
-      add(BackupProtos.SharedPreference.newBuilder()
+      prefList.add(BackupProtos.SharedPreference.newBuilder()
                                        .setFile(MasterSecretUtil.PREFERENCES_NAME)
                                        .setKey(IDENTITY_PRIVATE_KEY_PREF)
                                        .setValue(preferences.getString(IDENTITY_PRIVATE_KEY_PREF, null))
                                        .build());
-    }};
+      prefList.add(BackupProtos.SharedPreference.newBuilder()
+                                       .setFile(MasterSecretUtil.PREFERENCES_NAME)
+                                       .setKey(ED25519_PUBLIC_KEY)
+                                       .setValue(preferences.getString(ED25519_PUBLIC_KEY, null))
+                                       .build());
+      prefList.add(BackupProtos.SharedPreference.newBuilder()
+                                       .setFile(MasterSecretUtil.PREFERENCES_NAME)
+                                       .setKey(ED25519_SECRET_KEY)
+                                       .setValue(preferences.getString(ED25519_SECRET_KEY, null))
+                                       .build());
+      prefList.add(BackupProtos.SharedPreference.newBuilder()
+                                       .setFile(MasterSecretUtil.PREFERENCES_NAME)
+                                       .setKey(LOKI_SEED)
+                                       .setValue(preferences.getString(LOKI_SEED, null))
+                                       .build());
+
+    return prefList;
   }
 
   private static boolean hasLegacyIdentityKeys(Context context) {
