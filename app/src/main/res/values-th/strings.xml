@@ -922,7 +922,7 @@
   <string name="ThreadRecord_draft">ร่าง:</string>
   <string name="ThreadRecord_called">คุณได้โทรหา</string>
   <string name="ThreadRecord_called_you">โทรหาคุณ</string>
-  <string name="ThreadRecord_missed_call">สายที่ไม่ได้รับ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">สายที่ไม่ได้รับ</string> -->
   <string name="ThreadRecord_media_message">ข้อความสื่อ</string>
   <string name="ThreadRecord_sticker">สติกเกอร์</string>
   <string name="ThreadRecord_view_once_photo">รูปภาพที่ดูได้ครั้งเดียว</string>

@@ -840,7 +840,7 @@
   <string name="ThreadRecord_draft">मसुदा:</string>
   <string name="ThreadRecord_called">आपण कॉल केलेला</string>
   <string name="ThreadRecord_called_you">आपल्याला कॉल केला होता</string>
-  <string name="ThreadRecord_missed_call">सुटलेला कॉल</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">सुटलेला कॉल</string> -->
   <string name="ThreadRecord_media_message">मिडिया संदेश</string>
   <string name="ThreadRecord_sticker">स्टिकर</string>
   <string name="ThreadRecord_view_once_photo">एकदा-बघा फोटो</string>

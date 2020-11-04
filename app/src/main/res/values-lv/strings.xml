@@ -955,7 +955,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ThreadRecord_draft">Melnraksts:</string>
   <string name="ThreadRecord_called">Jūs zvanijāt</string>
   <string name="ThreadRecord_called_you">Jums zvanīja</string>
-  <string name="ThreadRecord_missed_call">Neatbildēts zvans</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Neatbildēts zvans</string> -->
   <string name="ThreadRecord_media_message">Multivides ziņa</string>
   <string name="ThreadRecord_sticker">Uzlīme</string>
   <string name="ThreadRecord_view_once_photo">Vienreiz skatāms attēls</string>

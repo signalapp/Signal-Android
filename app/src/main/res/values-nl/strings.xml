@@ -807,7 +807,7 @@
   <string name="MessageRecord_you_updated_group">Je hebt de groep aangepast.</string>
   <string name="MessageRecord_the_group_was_updated">De groep is aangepast.</string>
   <string name="MessageRecord_you_called_date">Je hebt gebeld · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Gemiste oproep · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Gemiste oproep · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s heeft de groep aangepast.</string>
   <string name="MessageRecord_s_called_you_date">%1$s heeft je gebeld · %2$s</string>
   <string name="MessageRecord_called_s">Je hebt %s gebeld</string>
@@ -1236,7 +1236,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ThreadRecord_draft">Concept:</string>
   <string name="ThreadRecord_called">Jij hebt gebeld</string>
   <string name="ThreadRecord_called_you">Heeft je gebeld</string>
-  <string name="ThreadRecord_missed_call">Gemiste oproep</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Gemiste oproep</string> -->
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_sticker">Sticker</string>
   <string name="ThreadRecord_view_once_photo">Eenmaligeweergave-afbeelding</string>

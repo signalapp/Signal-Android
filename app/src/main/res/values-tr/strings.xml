@@ -805,7 +805,7 @@
   <string name="MessageRecord_you_updated_group">Grubu güncellediniz.</string>
   <string name="MessageRecord_the_group_was_updated">Grup güncellendi</string>
   <string name="MessageRecord_you_called_date">Aradınız · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Yanıtsız arama · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Yanıtsız arama · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s grubu güncelledi.</string>
   <string name="MessageRecord_s_called_you_date">%1$s sizi aradı · %2$s</string>
   <string name="MessageRecord_called_s">%s arandı</string>
@@ -1230,7 +1230,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_draft">Taslak:</string>
   <string name="ThreadRecord_called">Aradınız</string>
   <string name="ThreadRecord_called_you">Sizi aradı</string>
-  <string name="ThreadRecord_missed_call">Cevapsız arama</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Cevapsız arama</string> -->
   <string name="ThreadRecord_media_message">İçerik iletisi</string>
   <string name="ThreadRecord_sticker">Çıkartma</string>
   <string name="ThreadRecord_view_once_photo">Tek görümlük fotoğraf</string>

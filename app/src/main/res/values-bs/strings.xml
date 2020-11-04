@@ -840,7 +840,7 @@
   <string name="MessageRecord_you_updated_group">Ažurirali ste grupu.</string>
   <string name="MessageRecord_the_group_was_updated">Grupa je ažurirana.</string>
   <string name="MessageRecord_you_called_date">Vi ste zvali · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Propušten poziv · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Propušten poziv · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s je ažurirao/la grupu.</string>
   <string name="MessageRecord_s_called_you_date">%1$s Vas je zvao/la · %2$s</string>
   <string name="MessageRecord_called_s">Zvao/la %s</string>
@@ -1279,7 +1279,7 @@
   <string name="ThreadRecord_draft">U obradi:</string>
   <string name="ThreadRecord_called">Vi ste zvali</string>
   <string name="ThreadRecord_called_you">Vas je zvao/la</string>
-  <string name="ThreadRecord_missed_call">Propušten poziv</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Propušten poziv</string> -->
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
   <string name="ThreadRecord_sticker">Naljepnica</string>
   <string name="ThreadRecord_view_once_photo">Jednokratna fotografija</string>

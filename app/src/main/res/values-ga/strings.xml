@@ -549,7 +549,7 @@ a shonrú</string>
   <string name="ThreadRecord_draft">Dréacht:</string>
   <string name="ThreadRecord_called">Ghlaoigh tú air</string>
   <string name="ThreadRecord_called_you">Ghlaoigh siad ort</string>
-  <string name="ThreadRecord_missed_call">Glao caillte</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Glao caillte</string> -->
   <string name="ThreadRecord_media_message">Teachtaireacht mheán</string>
   <string name="ThreadRecord_sticker">Greamán</string>
   <string name="ThreadRecord_s_is_on_signal">Tá %s ar Signal! </string>

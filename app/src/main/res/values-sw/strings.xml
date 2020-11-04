@@ -768,7 +768,7 @@ nambari yako ya simu</string>
   <string name="ThreadRecord_draft">Rasimu</string>
   <string name="ThreadRecord_called">Ulipiga</string>
   <string name="ThreadRecord_called_you">Alikupigia</string>
-  <string name="ThreadRecord_missed_call">Simu uliyokosa</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Simu uliyokosa</string> -->
   <string name="ThreadRecord_media_message">Ujumbe wa Media</string>
   <string name="ThreadRecord_sticker">Kibandiko</string>
   <string name="ThreadRecord_view_once_photo">Picha ya mtazamo mmoja</string>

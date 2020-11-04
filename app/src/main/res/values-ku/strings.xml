@@ -559,7 +559,7 @@
   <string name="ThreadRecord_draft">Reşnivîs:</string>
   <string name="ThreadRecord_called">Te bang kir</string>
   <string name="ThreadRecord_called_you">Bang li te kir</string>
-  <string name="ThreadRecord_missed_call">Banga bêbersiv</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Banga bêbersiv</string> -->
   <string name="ThreadRecord_media_message">Peyama medyayê</string>
   <string name="ThreadRecord_s_is_on_signal">%s beşdarî Signalê bûye!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Peyamên wenda dibin ne çalak e</string>

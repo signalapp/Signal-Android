@@ -762,7 +762,7 @@
   <string name="ThreadRecord_draft">Daftarin sako</string>
   <string name="ThreadRecord_called">Kin/Ka Kira</string>
   <string name="ThreadRecord_called_you">Ya/ta Kiraka/ki</string>
-  <string name="ThreadRecord_missed_call">Kira da ba\'a daga ba.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Kira da ba\'a daga ba.</string> -->
   <string name="ThreadRecord_media_message">Sakon midiya</string>
   <string name="ThreadRecord_sticker">Sitika</string>
   <string name="ThreadRecord_view_once_photo">Photo mai kallo daya</string>

@@ -132,6 +132,7 @@
   <string name="ClientDeprecatedActivity_update">Oppdater</string>
   <string name="ClientDeprecatedActivity_dont_update">Ikke oppdater</string>
   <string name="ClientDeprecatedActivity_warning">Advarsel</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versjonen din av Signal er utløpt. Du kan se meldingsloggen din, men du kan ikke sende eller motta meldinger før du oppdaterer.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen nettleser funnet.</string>
   <string name="CommunicationActions_no_email_app_found">Ingen e-postapp funnet.</string>
@@ -181,7 +182,7 @@
   <string name="ConversationItem_copied_text">Kopiert %s</string>
   <string name="ConversationItem_from_s">fra %s</string>
   <string name="ConversationItem_to_s">til %s</string>
-  <string name="ConversationItem_read_more"> Les Mer</string>
+  <string name="ConversationItem_read_more">  Les Mer</string>
   <string name="ConversationItem_download_more">  Last ned mer</string>
   <string name="ConversationItem_pending">  Venter</string>
   <string name="ConversationItem_this_message_was_deleted">Denne meldingen ble slettet.</string>
@@ -216,10 +217,10 @@
   <string name="ConversationActivity_unable_to_record_audio">Kan ikke ta opp lyd!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikke sende meldinger til denne gruppen fordi du ikke lenger er medlem av den.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
-  <string name="ConversationActivity_cancel_request">Kanseller forespørsel</string>
+  <string name="ConversationActivity_cancel_request">Avbryt forespørsel</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For å sende lydmeldinger, gi Signal tilgang til mikrofonen din.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal krever tillatelse fra systemet for å kunne bruke mikrofonen, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Mikrofon».</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal krever tillatelser fra systemet for å kunne ringe 1%s, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal krever tillatelser fra systemet for å kunne ringe %s, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
@@ -369,7 +370,7 @@
   <string name="DeliveryStatus_delivered">Levert</string>
   <string name="DeliveryStatus_read">Les</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_unlink_s">Vil du koble fra «%s»?</string>
+  <string name="DeviceListActivity_unlink_s">Vil du koble fra \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Hvis du kobler denne enheten fra tjenesten, kan den ikke lenger sende eller motta meldinger.</string>
   <string name="DeviceListActivity_network_connection_failed">Nettverkstilkoblingen mislyktes</string>
   <string name="DeviceListActivity_try_again">Prøv igjen</string>
@@ -568,6 +569,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">Legg til</string>
+  <string name="RequestConfirmationDialog_deny">Avslå</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
   <string name="CropImageActivity_profile_avatar">Profilbilde</string>
@@ -596,7 +598,7 @@
     <item quantity="one">Vil du sende %d SMS-invitasjon?</item>
     <item quantity="other">Vil du sende %d SMS-invitasjoner?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">La oss bytte til Signal. %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">La oss bytte til Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner bør ikke prate ukryptert over nettet.</string>
   <!--Job-->
@@ -626,9 +628,9 @@
     <item quantity="other">Dette vil slette alt permanent %1$d valgte filer. All meldingstekst tilknyttet disse elementene vil også bli slettet.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger …</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger…</string>
   <string name="MediaOverviewActivity_Select_all">Velg alle</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Henter vedlegg …</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Henter vedlegg…</string>
   <string name="MediaOverviewActivity_Sort_by">Sorter etter</string>
   <string name="MediaOverviewActivity_Newest">Nyeste</string>
   <string name="MediaOverviewActivity_Oldest">Eldste</string>
@@ -701,6 +703,8 @@
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du har oppdatert gruppa.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen ble oppdatert.</string>
+  <string name="MessageRecord_you_called_date">Du ringte · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Ubesvart anrop · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
@@ -841,9 +845,8 @@
   <string name="DeviceProvisioningActivity_continue">FORTSETT</string>
   <string name="DeviceProvisioningActivity_content_intro">Den kan i så fall</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-• Les alle meldingene dine
-\n• Send meldinger i ditt navn
-</string>
+         • Les alle meldingene dine
+         \n• Send meldinger i ditt navn</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Kobler til enhet</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Kobler til ny enhet …</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Enhet godkjent.</string>
@@ -922,6 +925,8 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Gruppe uten navn</string>
   <!--RedPhone-->
+  <string name="RedPhone_ending_call">Avslutter samtalen…</string>
+  <string name="RedPhone_dialing">Ringer…</string>
   <string name="RedPhone_ringing">Ringer…</string>
   <string name="RedPhone_busy">Opptatt</string>
   <string name="RedPhone_connected">Tilkoblet</string>
@@ -944,7 +949,7 @@
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Velg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgi
-landskode</string>
+     landskode</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Du må oppgi
 telefonnummer</string>
   <string name="RegistrationActivity_invalid_number">Ugyldig nummer</string>
@@ -983,7 +988,7 @@ skrev inn (%s) er ugyldig.</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Deaktiver registreringslås?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din Signal PIN-kode når du registrerer deg igjen, blir du låst ute av kontoen din i 7 dager.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din Signal PIN-kode når du registrerer deg med Signal igjen, blir du låst ute av kontoen din i 7 dager.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Slå på</string>
   <string name="RegistrationLockV2Dialog_turn_off">Skru av</string>
   <!--RevealableMessageView-->
@@ -1073,7 +1078,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
   <string name="ThreadRecord_called">Du ringte</string>
   <string name="ThreadRecord_called_you">Ringte deg</string>
-  <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Ubesvart anrop</string> -->
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_sticker">Klistremerke</string>
   <string name="ThreadRecord_view_once_photo">Vis en gang bilde</string>
@@ -1368,7 +1373,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="safety_number_change_dialog__view">Vis</string>
   <string name="safety_number_change_dialog__previous_verified">Tidligere bekreftet</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Laster inn land …</string>
+  <string name="country_selection_fragment__loading_countries">Laster inn land…</string>
   <string name="country_selection_fragment__search">Søk</string>
   <string name="country_selection_fragment__no_matching_countries">Ingen matchende land</string>
   <!--device_add_fragment-->
@@ -1705,6 +1710,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_storage__files">Filer</string>
   <string name="preferences_storage__audio">Lyd</string>
   <string name="preferences_storage__review_storage">Gå gjennom lagring</string>
+  <string name="preferences_storage__one_year">1 år</string>
   <string name="preferences_storage__none">Ingen</string>
   <string name="preferences_storage__custom">Selvvalgt</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
@@ -2103,6 +2109,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavle</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
+  <string name="GroupRecipientListItem_deny_description">Avslå</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Legacy vs nye grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hva er \"legacy\" grupper?</string>

@@ -662,7 +662,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ThreadRecord_draft">Draf:</string>
   <string name="ThreadRecord_called">Anda memanggil</string>
   <string name="ThreadRecord_called_you">Memanggil anda</string>
-  <string name="ThreadRecord_missed_call">Panggilan tidak dijawab</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Panggilan tidak dijawab</string> -->
   <string name="ThreadRecord_media_message">Mesej media</string>
   <string name="ThreadRecord_sticker">Pelekat</string>
   <string name="ThreadRecord_view_once_photo">Foto lihat sekali</string>

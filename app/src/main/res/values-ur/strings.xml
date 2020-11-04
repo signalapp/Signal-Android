@@ -763,7 +763,7 @@
   <string name="ThreadRecord_draft">مسودہ تیار کیا:</string>
   <string name="ThreadRecord_called">آپ نے کال کی</string>
   <string name="ThreadRecord_called_you">آپ کو کال کی</string>
-  <string name="ThreadRecord_missed_call">کال مس ہو گئی</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">کال مس ہو گئی</string> -->
   <string name="ThreadRecord_media_message">میڈیا پیغام</string>
   <string name="ThreadRecord_sticker">اسٹیکر</string>
   <string name="ThreadRecord_view_once_photo">صرف ایک بار دیکھنے کے قابل تصویر</string>

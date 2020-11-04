@@ -646,7 +646,7 @@
   <string name="ThreadRecord_draft">Чернова:</string>
   <string name="ThreadRecord_called">Вие се обадихте</string>
   <string name="ThreadRecord_called_you">Ви се обади</string>
-  <string name="ThreadRecord_missed_call">Пропуснато обаждане</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Пропуснато обаждане</string> -->
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
   <string name="ThreadRecord_sticker">Стикер</string>
   <string name="ThreadRecord_s_is_on_signal">%s е в Signal!</string>

@@ -706,7 +706,7 @@
   <string name="ThreadRecord_draft">Нацрт:</string>
   <string name="ThreadRecord_called">Позвали сте</string>
   <string name="ThreadRecord_called_you">Позвали вас</string>
-  <string name="ThreadRecord_missed_call">Пропуштен позив</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Пропуштен позив</string> -->
   <string name="ThreadRecord_media_message">Мултимедијална порука</string>
   <string name="ThreadRecord_sticker">Налепница</string>
   <string name="ThreadRecord_view_once_photo">Једнократна фотографија</string>

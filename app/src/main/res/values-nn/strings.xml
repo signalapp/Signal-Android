@@ -811,7 +811,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_you_updated_group">Du oppdaterte gruppa.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppa vart oppdatert.</string>
   <string name="MessageRecord_you_called_date">Du ringte · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Tapt anrop · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Tapt anrop · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ringte deg · %2$s</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
@@ -1237,7 +1237,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
   <string name="ThreadRecord_called">Du ringte</string>
   <string name="ThreadRecord_called_you">Ringte deg</string>
-  <string name="ThreadRecord_missed_call">Usvart anrop</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Usvart anrop</string> -->
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_sticker">Klistremerke</string>
   <string name="ThreadRecord_view_once_photo">Éivisningsbilete</string>

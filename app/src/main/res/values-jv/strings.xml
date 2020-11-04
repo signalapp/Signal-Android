@@ -752,7 +752,7 @@
   <string name="ThreadRecord_draft">Draf:</string>
   <string name="ThreadRecord_called">Sampeyan nelepon</string>
   <string name="ThreadRecord_called_you">Nelepon sampeyan</string>
-  <string name="ThreadRecord_missed_call">Telepon ingkang mboten dipunangkat</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Telepon ingkang mboten dipunangkat</string> -->
   <string name="ThreadRecord_media_message">Pesen media</string>
   <string name="ThreadRecord_sticker">Stiker</string>
   <string name="ThreadRecord_view_once_photo">Foto ingkang saged ditingali pisan mawon</string>

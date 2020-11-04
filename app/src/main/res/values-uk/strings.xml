@@ -613,7 +613,7 @@
   <string name="ThreadRecord_draft">Чернетка:</string>
   <string name="ThreadRecord_called">Ви телефонували</string>
   <string name="ThreadRecord_called_you">Вам телефонували</string>
-  <string name="ThreadRecord_missed_call">Пропущений виклик</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Пропущений виклик</string> -->
   <string name="ThreadRecord_media_message">Медіа повідомлення</string>
   <string name="ThreadRecord_s_is_on_signal">%s приєднався до Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Зникаючі повідомлення заборонені</string>

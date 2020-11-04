@@ -771,7 +771,7 @@
   <string name="MessageRecord_you_updated_group">グループを更新しました。</string>
   <string name="MessageRecord_the_group_was_updated">グループが更新されました。</string>
   <string name="MessageRecord_you_called_date">発信 · %1$s</string>
-  <string name="MessageRecord_missed_call_date">不在着信 · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">不在着信 · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s がグループを更新しました。</string>
   <string name="MessageRecord_s_called_you_date">%1$s から着信 · %2$s</string>
   <string name="MessageRecord_called_s">%s に発信</string>
@@ -1176,7 +1176,7 @@
   <string name="ThreadRecord_draft">下書き:</string>
   <string name="ThreadRecord_called">発信</string>
   <string name="ThreadRecord_called_you">着信</string>
-  <string name="ThreadRecord_missed_call">不在着信</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">不在着信</string> -->
   <string name="ThreadRecord_media_message">メディアメッセージ</string>
   <string name="ThreadRecord_sticker">ステッカー</string>
   <string name="ThreadRecord_view_once_photo">使い捨て写真</string>

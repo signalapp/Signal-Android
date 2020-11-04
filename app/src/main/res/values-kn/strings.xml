@@ -797,7 +797,7 @@
   <string name="ThreadRecord_draft">ಡ್ರಾಫ್ಟ್</string>
   <string name="ThreadRecord_called">ನೀವು ಕರೆ ಮಾಡಿದ್ದೀರಿ</string>
   <string name="ThreadRecord_called_you">ನಿಮಗೆ ಕರೆ ಮಾಡಿದ್ದಾರೆ</string>
-  <string name="ThreadRecord_missed_call">ತಪ್ಪಿದ ಕರೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">ತಪ್ಪಿದ ಕರೆ</string> -->
   <string name="ThreadRecord_media_message">ಮೀಡಿಯಾ ಸಂದೇಶ</string>
   <string name="ThreadRecord_sticker">ಸ್ಟಿಕ್ಕರ್</string>
   <string name="ThreadRecord_view_once_photo">ವ್ಯೂ-ಒನ್ಸ್ ಫೋಟೋ</string>

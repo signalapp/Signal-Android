@@ -1017,7 +1017,7 @@
   <string name="ThreadRecord_draft">초안:</string>
   <string name="ThreadRecord_called">발신 전화</string>
   <string name="ThreadRecord_called_you">수신 전화</string>
-  <string name="ThreadRecord_missed_call">부재중 전화</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">부재중 전화</string> -->
   <string name="ThreadRecord_media_message">미디어 메시지</string>
   <string name="ThreadRecord_sticker">스티커</string>
   <string name="ThreadRecord_view_once_photo">한 번 볼 수 있는 이미지</string>

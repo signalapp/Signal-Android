@@ -873,7 +873,7 @@
   <string name="ThreadRecord_draft">చిత్తు పత్రం:</string>
   <string name="ThreadRecord_called">మీరు కాల్ చెసారు</string>
   <string name="ThreadRecord_called_you">మీకు కాల్ చెసారు</string>
-  <string name="ThreadRecord_missed_call">తప్పిన కాల్</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">తప్పిన కాల్</string> -->
   <string name="ThreadRecord_media_message">మీడియ సందేశం</string>
   <string name="ThreadRecord_sticker">స్టికర్</string>
   <string name="ThreadRecord_view_once_photo">ఒకసారి-దృశ్యం  ఫోటో</string>

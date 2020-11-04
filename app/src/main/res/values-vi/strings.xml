@@ -1119,7 +1119,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThreadRecord_draft">Nháp:</string>
   <string name="ThreadRecord_called">Bạn đã gọi</string>
   <string name="ThreadRecord_called_you">Đã gọi cho bạn</string>
-  <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string> -->
   <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
   <string name="ThreadRecord_sticker">Nhãn dán</string>
   <string name="ThreadRecord_view_once_photo">Ảnh xem một lần</string>

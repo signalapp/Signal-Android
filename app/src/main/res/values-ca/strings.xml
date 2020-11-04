@@ -371,6 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Trieu-ne una de la galeria</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Suprimeix la foto</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Fer una fotografia necessita permís de la càmera.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Veure la galeria necessita permís de l\'emmagatzematge.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ara</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -805,7 +806,7 @@
   <string name="MessageRecord_you_updated_group">Heu actualitzat el grup.</string>
   <string name="MessageRecord_the_group_was_updated">S\'ha actualitzat el grup.</string>
   <string name="MessageRecord_you_called_date">Heu trucat · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Trucada perduda · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Trucada perduda · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s ha actualitzat el grup.</string>
   <string name="MessageRecord_s_called_you_date">%1$s us ha trucat · %2$s</string>
   <string name="MessageRecord_called_s">Heu trucat a %s</string>
@@ -1226,7 +1227,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_draft">Esborrany:</string>
   <string name="ThreadRecord_called">Heu trucat</string>
   <string name="ThreadRecord_called_you">Us ha trucat</string>
-  <string name="ThreadRecord_missed_call">Trucada perduda</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Trucada perduda</string> -->
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
   <string name="ThreadRecord_sticker">Adhesiu</string>
   <string name="ThreadRecord_view_once_photo">Fotografia d\'una sola visualització</string>

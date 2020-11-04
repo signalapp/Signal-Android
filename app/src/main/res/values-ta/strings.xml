@@ -1114,7 +1114,7 @@
   <string name="ThreadRecord_draft">வரைவு:</string>
   <string name="ThreadRecord_called">நீங்கள் அழைத்தீர்கள்</string>
   <string name="ThreadRecord_called_you">உங்களை அழைத்தார்</string>
-  <string name="ThreadRecord_missed_call">தவறிய அழைப்பு</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">தவறிய அழைப்பு</string> -->
   <string name="ThreadRecord_media_message">பல்லூடகச் செய்தி</string>
   <string name="ThreadRecord_sticker">ஒட்டி</string>
   <string name="ThreadRecord_view_once_photo">காண்க-ஒருமுறை புகைப்படம் </string>

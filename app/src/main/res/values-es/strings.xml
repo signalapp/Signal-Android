@@ -371,7 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Seleccionar desde galería</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminar foto</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Para tomar una foto, Signal necesita acceso a la cámara.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Signal necesita acceso a almacenamiento para mostrar la galería.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Signal necesita acceso al almacenamiento para mostrar la galería.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ahora</string>
   <string name="DateUtils_minutes_ago">%d m</string>
@@ -806,7 +806,7 @@
   <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
   <string name="MessageRecord_the_group_was_updated">Se actualizó el grupo.</string>
   <string name="MessageRecord_you_called_date">Has llamado · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Llamada perdida · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Llamada perdida · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s ha actualizado el grupo.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ha llamado · %2$s</string>
   <string name="MessageRecord_called_s">Has llamado a %s</string>
@@ -1233,7 +1233,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_draft">Borrador:</string>
   <string name="ThreadRecord_called">Has llamado</string>
   <string name="ThreadRecord_called_you">Te ha llamado</string>
-  <string name="ThreadRecord_missed_call">Llamada perdida</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Llamada perdida</string> -->
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
   <string name="ThreadRecord_sticker">Cromo</string>
   <string name="ThreadRecord_view_once_photo">Foto para ver sólo una vez</string>

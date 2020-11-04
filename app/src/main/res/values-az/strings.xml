@@ -611,7 +611,7 @@
   <string name="ThreadRecord_draft">Qaralama:</string>
   <string name="ThreadRecord_called">Sən zəng etmisən</string>
   <string name="ThreadRecord_called_you">Zənə zəng edib</string>
-  <string name="ThreadRecord_missed_call">Cavab verilməmiş zəng</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Cavab verilməmiş zəng</string> -->
   <string name="ThreadRecord_media_message">Media mesajı</string>
   <string name="ThreadRecord_sticker">Sticker</string>
   <string name="ThreadRecord_s_is_on_signal">%s artıq Signal-dadır!</string>

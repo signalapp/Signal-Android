@@ -536,7 +536,7 @@
   <string name="ThreadRecord_draft">မူကြမ်း</string>
   <string name="ThreadRecord_called">သင်မှခေါ်သည်</string>
   <string name="ThreadRecord_called_you">သင့်ထံခေါ်သည်</string>
-  <string name="ThreadRecord_missed_call">လွတ်သွားသော ဖုန်းခေါ်ဆိုမှု</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">လွတ်သွားသော ဖုန်းခေါ်ဆိုမှု</string> -->
   <string name="ThreadRecord_media_message">ရုပ်/သံ/ပုံပါစာ</string>
   <string name="ThreadRecord_s_is_on_signal">%s က Signal တွင်ရှိသည်!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">စာများသည် %s အတွင်းပျောက်သွားရန် ချိန်ညှိထားသည်။</string>

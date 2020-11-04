@@ -372,7 +372,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vælg fra billeder</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fjern billede</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Det kræver kameratilladelse for at tage et foto</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Det kræves lagringstilladelse for at vise dit galleri.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Det kræves adgang til hukommelsen for at vise dine billeder</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -807,7 +807,7 @@
   <string name="MessageRecord_you_updated_group">Du opdaterede gruppen</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen blev opdateret</string>
   <string name="MessageRecord_you_called_date">Du ringede til · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Mistede opkald fra · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Mistede opkald fra · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s opdaterede gruppen</string>
   <string name="MessageRecord_s_called_you_date">%1$s ringede til dig · %2$s</string>
   <string name="MessageRecord_called_s">Ringet til %s</string>
@@ -1233,7 +1233,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ThreadRecord_draft">Kladde:</string>
   <string name="ThreadRecord_called">Du ringede</string>
   <string name="ThreadRecord_called_you">Ringede til mig</string>
-  <string name="ThreadRecord_missed_call">Mistet opkald</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Mistet opkald</string> -->
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_sticker">Klistermærke</string>
   <string name="ThreadRecord_view_once_photo">Se billed én gang</string>
@@ -2221,11 +2221,11 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ChatsPreferenceFragment_last_backup_s">Sidste backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Pågående</string>
   <string name="LocalBackupJob_creating_backup">Opretter backup…</string>
-  <string name="LocalBackupJobApi29_backup_failed">Sikkerhedskopieringen mislykkedes</string>
+  <string name="LocalBackupJobApi29_backup_failed">Sikkerhedskopiering mislykkedes</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mappe med backup´s er blevet slettet eller flyttet</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din backup fil er for stor til at kunne gemmes på enheden</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Der er ikke nok plads tilgængelig, til at gemme din backup</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">Tryk for at håndtere sikkerhedskopieringerne.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Tap for at håndtere backup´s</string>
   <string name="ProgressPreference_d_messages_so_far">%d beskeder ind til videre</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv venligst verifikationskode sendt til %s</string>
   <string name="RegistrationActivity_wrong_number">Forkert nummer</string>

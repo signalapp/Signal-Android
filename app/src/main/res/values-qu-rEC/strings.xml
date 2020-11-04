@@ -539,7 +539,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="ThreadRecord_draft">Hawalla rurashka</string>
   <string name="ThreadRecord_called">Kayarka</string>
   <string name="ThreadRecord_called_you">Kayachirka</string>
-  <string name="ThreadRecord_missed_call">Kayayta mana kutichishka</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Kayayta mana kutichishka</string> -->
   <string name="ThreadRecord_media_message">Willachik hillay chaski</string>
   <string name="ThreadRecord_s_is_on_signal">¡%s Signalpimi kan!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Chaski chinkachik wichashka</string>

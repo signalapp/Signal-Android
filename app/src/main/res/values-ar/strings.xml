@@ -1288,7 +1288,7 @@
   <string name="ThreadRecord_draft">مسودة:</string>
   <string name="ThreadRecord_called">مكالمات صادرة</string>
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
-  <string name="ThreadRecord_missed_call">مكالمة فائتة</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">مكالمة فائتة</string> -->
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
   <string name="ThreadRecord_sticker">ملصق</string>
   <string name="ThreadRecord_view_once_photo">صورة لمشاهدة لمرة واحدة</string>

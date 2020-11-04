@@ -371,6 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Elekti el la galerio</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Forviŝi profilfoton</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Foti bezonas Fotilo-permeson.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Vido de via galerio bezonas la permeson uzi la „Konservejon“.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nun</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -805,7 +806,7 @@
   <string name="MessageRecord_you_updated_group">Vi ĝisdatigis la grupon.</string>
   <string name="MessageRecord_the_group_was_updated">La grupo estis ĝisdatigita.</string>
   <string name="MessageRecord_you_called_date">Vi alvokis · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Maltrafita alvoko · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Maltrafita alvoko · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s ĝisdatigis la grupon.</string>
   <string name="MessageRecord_s_called_you_date">%1$s alvokis vin · %2$s</string>
   <string name="MessageRecord_called_s">Vi alvokis %s</string>
@@ -1231,7 +1232,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_draft">Malneto:</string>
   <string name="ThreadRecord_called">Vi telefonis</string>
   <string name="ThreadRecord_called_you">Telefonis vin</string>
-  <string name="ThreadRecord_missed_call">Maltrafita alvoko</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Maltrafita alvoko</string> -->
   <string name="ThreadRecord_media_message">Aŭdvida mesaĝo</string>
   <string name="ThreadRecord_sticker">Glumarko</string>
   <string name="ThreadRecord_view_once_photo">Nurunufoje videbla foto</string>

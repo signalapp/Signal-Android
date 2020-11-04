@@ -876,7 +876,7 @@
   <string name="MessageRecord_you_updated_group">Zaktualizowałeś(aś) grupę.</string>
   <string name="MessageRecord_the_group_was_updated">Grupa została zaktualizowana.</string>
   <string name="MessageRecord_you_called_date">Dzwoniłeś(aś) · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Nieodebrane połączenie · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Nieodebrane połączenie · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s zaktualizował(a) grupę.</string>
   <string name="MessageRecord_s_called_you_date">%1$s dzwonił(a) do Ciebie · %2$s</string>
   <string name="MessageRecord_called_s">Zadzwoniono do %s</string>
@@ -1319,7 +1319,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_draft">Szkic:</string>
   <string name="ThreadRecord_called">Dzwoniłeś(aś)</string>
   <string name="ThreadRecord_called_you">Dzwonił(a)</string>
-  <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string> -->
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
   <string name="ThreadRecord_sticker">Naklejka</string>
   <string name="ThreadRecord_view_once_photo">Zdjęcie jednorazowe</string>

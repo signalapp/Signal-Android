@@ -922,7 +922,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_draft">Draf:</string>
   <string name="ThreadRecord_called">Anda memanggil</string>
   <string name="ThreadRecord_called_you">Memanggil Anda</string>
-  <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string> -->
   <string name="ThreadRecord_media_message">Pesan media</string>
   <string name="ThreadRecord_sticker">Stiker</string>
   <string name="ThreadRecord_view_once_photo">Foto satu-tayangan</string>

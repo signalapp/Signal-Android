@@ -819,7 +819,7 @@
   <string name="ThreadRecord_draft">Draft:</string>
   <string name="ThreadRecord_called">Tumawag ka</string>
   <string name="ThreadRecord_called_you">Tinawagan ka</string>
-  <string name="ThreadRecord_missed_call">Tawag na hindi nasagot</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Tawag na hindi nasagot</string> -->
   <string name="ThreadRecord_media_message">Mensaheng media</string>
   <string name="ThreadRecord_sticker">Sticker</string>
   <string name="ThreadRecord_view_once_photo">View-once na larawan</string>

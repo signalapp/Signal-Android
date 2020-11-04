@@ -1035,7 +1035,7 @@ grūpp ap‌ḍē</string>
   <string name="ThreadRecord_draft">ഡ്രാഫ്റ്റ്:</string>
   <string name="ThreadRecord_called">നിങ്ങൾ വിളിച്ചു</string>
   <string name="ThreadRecord_called_you">നിങ്ങളെ വിളിച്ചു</string>
-  <string name="ThreadRecord_missed_call">മിസ്ഡ് കോൾ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">മിസ്ഡ് കോൾ</string> -->
   <string name="ThreadRecord_media_message">മീഡിയ സന്ദേശം</string>
   <string name="ThreadRecord_sticker">സ്റ്റിക്കർ</string>
   <string name="ThreadRecord_view_once_photo">ഒരു തവണ-ദൃശ്യമാകുന്ന ഫോട്ടോ</string>

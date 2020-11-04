@@ -768,7 +768,7 @@
   <string name="ThreadRecord_draft">مسودہ:</string>
   <string name="ThreadRecord_called">تسیں کال کیتی</string>
   <string name="ThreadRecord_called_you">تہانوں کال کیتی</string>
-  <string name="ThreadRecord_missed_call">مسڈ کال</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">مسڈ کال</string> -->
   <string name="ThreadRecord_media_message">میڈیا سنیہا</string>
   <string name="ThreadRecord_sticker">اسٹیکر</string>
   <string name="ThreadRecord_view_once_photo">اک واری نظر آن آلی فوٹو</string>

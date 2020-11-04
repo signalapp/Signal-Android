@@ -807,7 +807,7 @@
   <string name="MessageRecord_you_updated_group">Frissítetted a csoportot.</string>
   <string name="MessageRecord_the_group_was_updated">A csoport frissítve lett.</string>
   <string name="MessageRecord_you_called_date">Te hívtad · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Nem fogadott hívás · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Nem fogadott hívás · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s frissítette a csoportot.</string>
   <string name="MessageRecord_s_called_you_date">%1$s hívott téged · %2$s</string>
   <string name="MessageRecord_called_s">Kimenő hívás: %s</string>
@@ -1235,7 +1235,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_draft">Piszkozat:</string>
   <string name="ThreadRecord_called">Te hívtad</string>
   <string name="ThreadRecord_called_you">Hívott téged</string>
-  <string name="ThreadRecord_missed_call">Nem fogadott hívás</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Nem fogadott hívás</string> -->
   <string name="ThreadRecord_media_message">Média üzenet</string>
   <string name="ThreadRecord_sticker">Matrica</string>
   <string name="ThreadRecord_view_once_photo">Egyszer megjelenő fotó</string>

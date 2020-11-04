@@ -877,7 +877,7 @@
   <string name="ThreadRecord_draft">Borrador:</string>
   <string name="ThreadRecord_called">Chamaches a</string>
   <string name="ThreadRecord_called_you">Chamoute</string>
-  <string name="ThreadRecord_missed_call">Chamada perdida</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Chamada perdida</string> -->
   <string name="ThreadRecord_media_message">Mensaxe multimedia</string>
   <string name="ThreadRecord_sticker">Adhesivo</string>
   <string name="ThreadRecord_this_message_was_deleted">Eliminouse a mensaxe.</string>

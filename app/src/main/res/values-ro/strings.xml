@@ -841,7 +841,7 @@
   <string name="MessageRecord_you_updated_group">Ați actualizat grupul.</string>
   <string name="MessageRecord_the_group_was_updated">Grupul a fost actualizat.</string>
   <string name="MessageRecord_you_called_date">Ați apelat pe · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Apel nepreluat · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Apel nepreluat · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s a actualizat grupul.</string>
   <string name="MessageRecord_s_called_you_date">%1$s va apelat · %2$s</string>
   <string name="MessageRecord_called_s">Apel %s</string>
@@ -1276,7 +1276,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_draft">Ciornă:</string>
   <string name="ThreadRecord_called">Ați apelat</string>
   <string name="ThreadRecord_called_you">Te-a apelat</string>
-  <string name="ThreadRecord_missed_call">Apel nepreluat</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Apel nepreluat</string> -->
   <string name="ThreadRecord_media_message">Mesaj media</string>
   <string name="ThreadRecord_sticker">Autocolant</string>
   <string name="ThreadRecord_view_once_photo">Poză vizibilă o singură dată</string>

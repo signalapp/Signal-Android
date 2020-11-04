@@ -371,6 +371,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">انتخاب از گالری</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">حذف عکس</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">گرفتن عکس به مجوز دوربین نیاز دارد.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">دیدن گالری نیاز به مجوز ذخیره‌سازی دارد.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">حالا</string>
   <string name="DateUtils_minutes_ago">%d دقیقه</string>
@@ -805,7 +806,7 @@
   <string name="MessageRecord_you_updated_group">شما گروه را به‌روزرسانی کردید.</string>
   <string name="MessageRecord_the_group_was_updated">گروه به‌روزرسانی شد.</string>
   <string name="MessageRecord_you_called_date">شما تماس گرفتید · %1$s</string>
-  <string name="MessageRecord_missed_call_date">تماس از دست رفته · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">تماس از دست رفته · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s گروه را به‌روزرسانی کرد.</string>
   <string name="MessageRecord_s_called_you_date">%1$s با شما تماس گرفت · %2$s</string>
   <string name="MessageRecord_called_s">با %s تماس گرفته شد</string>
@@ -1230,7 +1231,7 @@
   <string name="ThreadRecord_draft">پیش‌نویس:</string>
   <string name="ThreadRecord_called">شما تماس گرفتید</string>
   <string name="ThreadRecord_called_you">با شما تماس گرفت</string>
-  <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">تماس از دست رفته</string> -->
   <string name="ThreadRecord_media_message">پیام رسانه‌ای</string>
   <string name="ThreadRecord_sticker">استیکر</string>
   <string name="ThreadRecord_view_once_photo">عکس یکبار مصرف</string>
@@ -2218,9 +2219,11 @@
   <string name="ChatsPreferenceFragment_last_backup_s">آخرین پشتیبان: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">در حال انجام</string>
   <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string>
+  <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری موفق نبود</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس پشتیبان‌ شما حذف شده یا انتقال یافته است.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">حجم فایل پشتیبان شما برای نگهداری در این محل زیاد است.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">فضای کافی برای نگهداری پشتیبان شما وجود ندارد.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">برای مدیریت پشتیبان‌ها ضربه بزنید.</string>
   <string name="ProgressPreference_d_messages_so_far">%d پیام تا به الان</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">لطفاً کد تأیید ارسال شده به %s را وارد کنید.</string>
   <string name="RegistrationActivity_wrong_number">شمارهٔ اشتباه</string>

@@ -1012,7 +1012,7 @@
   <string name="ThreadRecord_draft">ព្រាង៖</string>
   <string name="ThreadRecord_called">អ្នកបានហៅ</string>
   <string name="ThreadRecord_called_you">បានហៅមកអ្នក</string>
-  <string name="ThreadRecord_missed_call">ការហៅមិនបានទទួល</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">ការហៅមិនបានទទួល</string> -->
   <string name="ThreadRecord_media_message">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="ThreadRecord_sticker">ស្ទីកគ័រ</string>
   <string name="ThreadRecord_view_once_photo">បង្ហាញ-ម្តង រូបភាព</string>

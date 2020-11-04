@@ -973,7 +973,7 @@
   <string name="ThreadRecord_draft">ড্রাফ্ট:</string>
   <string name="ThreadRecord_called">আপনি কল করেছিলেন</string>
   <string name="ThreadRecord_called_you">অাপনাকে কল করেছিলো</string>
-  <string name="ThreadRecord_missed_call">ব্যর্থ কল</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">ব্যর্থ কল</string> -->
   <string name="ThreadRecord_media_message">মিডিয়া বার্তা</string>
   <string name="ThreadRecord_sticker">স্টিকার</string>
   <string name="ThreadRecord_view_once_photo">একবার দেখার যোগ্য ছবি</string>

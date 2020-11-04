@@ -766,7 +766,7 @@
   <string name="ThreadRecord_draft">ड्राफ्ट:</string>
   <string name="ThreadRecord_called">आपने बुलाया </string>
   <string name="ThreadRecord_called_you">आपको बुलाया </string>
-  <string name="ThreadRecord_missed_call">मिस कॉल</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">मिस कॉल</string> -->
   <string name="ThreadRecord_media_message">मीडिया मेसेज</string>
   <string name="ThreadRecord_sticker">स्टिकर</string>
   <string name="ThreadRecord_view_once_photo">देखें-एक बार फोटो</string>

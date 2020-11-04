@@ -876,7 +876,7 @@
   <string name="MessageRecord_you_updated_group">Вы обновили группу.</string>
   <string name="MessageRecord_the_group_was_updated">Группа была обновлена.</string>
   <string name="MessageRecord_you_called_date">Вы звонили · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Пропущенный звонок · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Пропущенный звонок · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s обновил(-а) группу.</string>
   <string name="MessageRecord_s_called_you_date">%1$s звонил(-а) вам · %2$s</string>
   <string name="MessageRecord_called_s">Вы звонили %s</string>
@@ -1320,7 +1320,7 @@
   <string name="ThreadRecord_draft">Черновик:</string>
   <string name="ThreadRecord_called">Вы звонили</string>
   <string name="ThreadRecord_called_you">Звонил(-а) вам</string>
-  <string name="ThreadRecord_missed_call">Пропущенный звонок</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Пропущенный звонок</string> -->
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
   <string name="ThreadRecord_sticker">Стикер</string>
   <string name="ThreadRecord_view_once_photo">Одноразовое фото</string>

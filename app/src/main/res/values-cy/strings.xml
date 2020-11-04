@@ -368,18 +368,28 @@ Send neges heb ei ddiogelu?</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Adfer o\'r wrth gefn?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Adfer eich negeseuon a\'ch cyfryngau o gefn wrth gefn lleol. Os na fyddwch yn adfer nawr, ni fyddwch yn gallu adfer yn ddiweddarach.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Adfer o\'r eicon wrth gefn</string>
+  <string name="ChooseBackupFragment__choose_backup">Dewiswch y copi wrth gefn</string>
   <string name="ChooseBackupFragment__learn_more">Dysgu rhagor</string>
   <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">Adfer wedi\'i gyflawni</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">I barhau i ddefnyddio copïau wrth gefn, dewiswch ffolder. Bydd copïau wrth gefn newydd yn cael eu cadw i\'r lleoliad hwn.</string>
   <string name="RestoreBackupFragment__choose_folder">Dewisa ffolder</string>
   <string name="RestoreBackupFragment__not_now">Nid nawr</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Copïau wrth gefn o sgyrsiau</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Mae copïau wrth gefn wedi\'u hamgryptio â chyfrinair a\'u storio ar eich dyfais.</string>
   <string name="BackupsPreferenceFragment__create_backup">Creu copi wrth gefn</string>
+  <string name="BackupsPreferenceFragment__last_backup">Copi wrth gefn diwethaf: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Ffolder wrth gefn</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Dilysu cyfrinymadrodd wrth gefn</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Profwch eich cyfrinymadrodd wrth gefn a dilysu ei fod yn cydweddu</string>
   <string name="BackupsPreferenceFragment__turn_on">Troi ymlaen</string>
   <string name="BackupsPreferenceFragment__turn_off">Diffodd</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">I adfer copi wrth gefn, gosodwch gopi newydd o Signal. Agorwch yr app a thapio \"Adfer copi wrth gefn\", yna canfod y ffeil wrth gefn. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Dysgu rhagor</string>
+  <string name="BackupsPreferenceFragment__in_progress">Cynnydd…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d hyd yn hyn…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Signal angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
@@ -391,6 +401,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Dewis o\'r oriel</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Tynnu llun</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Mae angen caniatâd y camera i dynnu llun.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Mae angen y caniatâd storio i edrych ar eich oriel.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nawr</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -423,6 +434,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Mae\'r fersiwn hon o Signal wedi dod i ben. Diweddarwch nawr i anfon a derbyn negeseuon.</string>
   <string name="ExpiredBuildReminder_update_now">Diweddaru nawr</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d yn aros am gais aelod.</item>
+    <item quantity="two">%d yn aros am geisiadau aelodaeth.</item>
+    <item quantity="many">%d yn aros am aelodaethaeth.</item>
+    <item quantity="other">%d yn aros am aelodaeth.</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Golwg</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Rhannu â</string>
@@ -860,7 +877,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_left_group">Rydych wedi gadael y grŵp.</string>
   <string name="MessageRecord_you_updated_group">Rydych chi wedi diweddaru\'r grŵp.</string>
   <string name="MessageRecord_the_group_was_updated">Diweddarwyd y grŵp.</string>
+  <string name="MessageRecord_you_called_date">Rydych wedi galw · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Galwad coll · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">Mae %s wedi diweddaru\'r grŵp.</string>
+  <string name="MessageRecord_s_called_you_date">Fe wnaeth %1$s eich galw chi · %2$s</string>
   <string name="MessageRecord_called_s">Wedi galw %s</string>
   <string name="MessageRecord_s_joined_signal">Mae %s ar Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Rydych chi\'n wedi analluogi negeseuon sy\'n diflannu .</string>
@@ -1012,6 +1032,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRequestBottomView_unblock">Dadrwystro</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn gwybod eich bod wedi gweld eich neges nes i ch dderbyn.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Parhau â\'ch sgwrs gyda\'r grŵp hwn a rhannu eich enw a\'ch llun gyda\'i aelodau?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Parhewch â\'ch sgwrs gyda %1$s a rhannwch eich enw a\'ch llun gyda nhw?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau? Byddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes eich bod wedi derbyn.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn? Ni fyddant yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Dadrwystro\'r grŵp a rhannu eich enw a llun gyda\'i aelodau? Fyddwch chi ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
@@ -1189,6 +1211,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_more_information">Rhagor o wybodaeth</string>
   <string name="RegistrationActivity_less_information">Llai o wybodaeth</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Mae ar Signal angen mynediad i\'ch cysylltiadau a\'ch cyfryngau er mwyn cysylltu â ffrindiau, cyfnewid negeseuon, a gwneud galwadau diogel</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Mae Signal angen mynediad i\'ch cysylltiadau er mwyn cysylltu â ffrindiau, cyfnewid negeseuon, a gwneud galwadau diogel</string>
   <string name="RegistrationActivity_rate_limited_to_service">Rydych wedi ceisio cofrestri\'r rhif hwn gormod o weithiau. Ceisiwch eto\'n hwyrach.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Methu cysylltu â\'r gwasanaeth. Gwiriwch y cysylltiad rhwydwaith a cheisio eto.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">I wirio eich rhif ffôn yn hawdd, gall Signal ganfod eich cod dilysu yn awtomatig os ydych yn caniatáu i Signal weld negeseuon SMS.</string>
@@ -1306,7 +1329,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_draft">Drafft:</string>
   <string name="ThreadRecord_called">Galwoch chi</string>
   <string name="ThreadRecord_called_you">Wedi\'ch galw chi</string>
-  <string name="ThreadRecord_missed_call">Galwad coll</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Galwad coll</string> -->
   <string name="ThreadRecord_media_message">Neges cyfryngau</string>
   <string name="ThreadRecord_sticker">Sticer</string>
   <string name="ThreadRecord_view_once_photo">Llun gweld unwaith</string>
@@ -1370,6 +1393,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Dim rhif diogelwch i\'w gymharu yn y clipfwrdd</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Mae ar Signal angen caniatâd Camera er mwyn sganio cod QR, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Methu sganio cod QR heb ganiatâd y Camera</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Yn gyntaf rhaid i chi gyfnewid negeseuon er mwyn gweld rhif diogelwch %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1442,6 +1466,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NotificationChannel_other">Arall</string>
   <string name="NotificationChannel_group_messages">Negeseuon</string>
   <string name="NotificationChannel_missing_display_name">Anhysbys</string>
+  <string name="NotificationChannel_voice_notes">Nodiadau Llais</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Gosodwyd enw proffil yn llwyddiannus.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Profwyd gwall rhwydwaith.</string>
@@ -1545,6 +1570,16 @@ Send neges heb ei ddiogelu?</string>
   <string name="ContactSelectionListFragment_username_not_found">Heb ganfod enw defnyddiwr</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">Nid yw \"%1$s\" yn ddefnyddiwr Signal. Gwiriwch yn enw defnyddiwr a cheisiwch eto.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nid oes angen i chi ychwanegu eich hun i\'r grŵp</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Uchafswm maint y grŵp wedi\'i gyrraedd</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Gall grwpiau Signal fod ag uchafswm o %1$d aelod.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Mae\'r terfyn aelodaeth a argymhellir wedi\'i gyrraedd</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Mae grwpiau Signal yn gweithio orau gydag %1$d aelod neu lai. Bydd ychwanegu mwy o aelodau yn achosi oedi wrth anfon a derbyn negeseuon.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d aelod</item>
+    <item quantity="two">%1$d aelod</item>
+    <item quantity="many">%1$d aelod</item>
+    <item quantity="other">%1$d aelod</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Dim cysylltiadau wedi\'u rhwystro</string>
   <!--contact_selection_list_fragment-->
@@ -2264,6 +2299,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Rydym yn credu mewn preifatrwydd.</b></p><p>Nid yw Signal yn eich tracio nac yn casglu\'ch data. Er mwyn gwella Signal i bawb, rydym yn dibynnu ar adborth defnyddwyr, <b>a byddem wrth ein bodd â\'ch adborth chi.</b></p><p> Rydyn ni\'n cynnal arolwg i ddeall sut rydych chi\'n defnyddio Signal. Nid yw ein harolwg yn casglu unrhyw ddata a fydd yn eich adnabod chi. Os oes gennych ddiddordeb mewn rhannu adborth ychwanegol, bydd gennych yr opsiwn i ddarparu gwybodaeth gyswllt.</p><p>Os oes gennych ychydig funudau ac adborth i\'w gynnig, byddem wrth ein bodd yn clywed gennych.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Cymryd yr Arolwg</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Dim diolch</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Mae Alchemer yn cynnal yr arolwg yn yr arolygon parth diogel.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>
@@ -2279,6 +2315,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Datgloi i weld negeseuon sy\'n aros</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Cyfrinymadrodd cadw wrth gefn</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Bydd copïau wrth gefn yn cael eu cadw i storfa allanol ac wedi\'u hamgryptio gyda\'r cyfrinymadrodd isod. Rhaid i chi fod â\'r cyfrinymadrodd hwn er mwyn adfer y copi wrth gefn.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Rhaid i chi gael y cyfrinymadrodd hwn er mwyn adfer copi wrth gefn.</string>
+  <string name="backup_enable_dialog__folder">Ffolder</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Rwy wedi ysgrifennu\'r cyfrinymadrodd hwn i lawr. Hebddo, fydda i ddim yn gallu adfer copi wrth gefn.</string>
   <string name="registration_activity__restore_backup">Adfer y copi wrth gefn</string>
   <string name="registration_activity__skip">Hepgor</string>
@@ -2304,6 +2342,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupDialog_delete_backups">Dileu copïau wrth gefn?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Analluogi a dileu\'r copïau wrth gefn lleol?</string>
   <string name="BackupDialog_delete_backups_statement">Dileu copïau wrth gefn</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">I alluogi copïau wrth gefn, dewiswch ffolder. Bydd copïau wrth gefn yn cael eu cadw i\'r lleoliad hwn.</string>
   <string name="BackupDialog_choose_folder">Dewisa ffolder</string>
   <string name="BackupDialog_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Rhowch eich cyfrinymadrodd wrth gefn i ddilysu</string>
@@ -2314,6 +2353,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Copi wrth gefn diwethaf %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Cynnydd</string>
   <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn…</string>
+  <string name="LocalBackupJobApi29_backup_failed">Methodd y copïo wrth gefn</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mae eich cyfeiriadur wrth gefn wedi\'i ddileu neu ei symud.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Mae\'ch ffeil wrth gefn yn rhy fawr i\'w storio ar y gyfrol hon.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Nid oes digon o le i storio\'ch copi wrth gefn.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Tapiwch i reoli copïau wrth gefn.</string>
   <string name="ProgressPreference_d_messages_so_far">%d neges hyd yn hyn</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
   <string name="RegistrationActivity_wrong_number">Rhif anghywir</string>
@@ -2426,8 +2470,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Nid yw\'r ddolen yn weithredol ar hyn o bryd</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Methu dechrau chwarae.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Neges llais · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s i %2$s</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--EOF-->
 </resources>

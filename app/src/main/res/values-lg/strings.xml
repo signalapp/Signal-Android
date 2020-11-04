@@ -346,7 +346,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="ThreadRecord_draft">Ekyakolabwako</string>
   <string name="ThreadRecord_called">wakubye</string>
   <string name="ThreadRecord_called_you">yakubidde</string>
-  <string name="ThreadRecord_missed_call">missed call</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">missed call</string> -->
   <string name="ThreadRecord_media_message">obubaka bwemikutu</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Message yakusanguka mu dakiika %s</string>
   <!--UpdateApkReadyListener-->

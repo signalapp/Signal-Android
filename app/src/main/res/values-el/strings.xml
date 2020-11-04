@@ -806,7 +806,7 @@
   <string name="MessageRecord_you_updated_group">Ενημέρωσες την ομάδα</string>
   <string name="MessageRecord_the_group_was_updated">Η ομάδα ανανεώθηκε.</string>
   <string name="MessageRecord_you_called_date">Κάλεσες · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Αναπάντητη κλήση · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Αναπάντητη κλήση · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">Ο/Η %s ενημέρωσε την ομάδα.</string>
   <string name="MessageRecord_s_called_you_date">Ο/Η %1$s σε κάλεσε · %2$s</string>
   <string name="MessageRecord_called_s">Κάλεσες τον/την %s</string>
@@ -1228,7 +1228,7 @@
   <string name="ThreadRecord_draft">Πρόχειρο:</string>
   <string name="ThreadRecord_called">Τον/την κάλεσες</string>
   <string name="ThreadRecord_called_you">Σε κάλεσε</string>
-  <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string> -->
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
   <string name="ThreadRecord_sticker">Αυτοκόλλητο</string>
   <string name="ThreadRecord_view_once_photo">Φωτογραφία μιας μόνο προβολής</string>

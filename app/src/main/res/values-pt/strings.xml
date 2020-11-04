@@ -806,7 +806,7 @@
   <string name="MessageRecord_you_updated_group">Você atualizou o grupo.</string>
   <string name="MessageRecord_the_group_was_updated">O grupo foi atualizado.</string>
   <string name="MessageRecord_you_called_date">Telefonou · %1$s</string>
-  <string name="MessageRecord_missed_call_date">Chamada perdida · %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Chamada perdida · %1$s</string> -->
   <string name="MessageRecord_s_updated_group">%s atualizou o grupo.</string>
   <string name="MessageRecord_s_called_you_date">%1$s telefonou-lhe · %2$s</string>
   <string name="MessageRecord_called_s">Ligou para %s</string>
@@ -1229,7 +1229,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadRecord_draft">Rascunho:</string>
   <string name="ThreadRecord_called">Você ligou</string>
   <string name="ThreadRecord_called_you">Ligou-lhe</string>
-  <string name="ThreadRecord_missed_call">Chamada perdida</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Chamada perdida</string> -->
   <string name="ThreadRecord_media_message">Mensagem multimédia</string>
   <string name="ThreadRecord_sticker">Autocolante</string>
   <string name="ThreadRecord_view_once_photo">Fotografia de visualização única</string>
