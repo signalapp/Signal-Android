@@ -285,7 +285,7 @@ public class GroupV1MigrationJob extends BaseJob {
 
     Log.i(TAG, "[Local] Migrating group over to the version we were added to: V" + decryptedGroup.getRevision());
     DatabaseFactory.getGroupDatabase(context).migrateToV2(gv1Id, decryptedGroup);
-    DatabaseFactory.getSmsDatabase(context).insertGroupV1MigrationEvent(groupRecipient.getId(), threadId, pendingRecipients);
+    DatabaseFactory.getSmsDatabase(context).insertGroupV1MigrationEvents(groupRecipient.getId(), threadId, pendingRecipients);
 
     Log.i(TAG, "[Local] Applying all changes since V" + decryptedGroup.getRevision());
     try {

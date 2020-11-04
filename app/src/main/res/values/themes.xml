@@ -424,6 +424,9 @@
         <item name="message_request_text_color_primary">@color/core_grey_90</item>
         <item name="message_request_text_color_secondary">@color/core_grey_60</item>
 
+        <item name="outlined_action_button">@style/Widget.Signal.Button.OutlinedAction.Light</item>
+        <item name="paragraph_marker">@drawable/paragraph_marker_light</item>
+
         <item name="avatar_selection_take_photo">@drawable/ic_camera_outline_24</item>
         <item name="avatar_selection_pick_photo">@drawable/ic_photo_outline_24</item>
         <item name="avatar_selection_remove_photo">@drawable/ic_trash_outline_24</item>
@@ -448,7 +451,6 @@
         <item name="tooltip_default_color">@color/core_white</item>
 
         <item name="dangerous_button_color">@color/core_red_highlight</item>
-
         <item name="pref_icon_tint">?attr/icon_tint</item>
 
         <item name="pref_divider">@drawable/preference_divider_light</item>
@@ -617,6 +619,8 @@
         <item name="conversation_item_reveal_viewed_background_color">?conversation_background</item>
         <item name="conversation_item_delete_for_everyone_text_color">@color/core_grey_15</item>
         <item name="conversation_item_mention_pulse_color">@color/transparent</item>
+        <item name="outlined_action_button">@style/Widget.Signal.Button.OutlinedAction.Dark</item>
+        <item name="paragraph_marker">@drawable/paragraph_marker_dark</item>
 
         <item name="safety_number_change_dialog_button_background">@color/core_grey_75</item>
         <item name="safety_number_change_dialog_button_text_color">@color/core_grey_05</item>

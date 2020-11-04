@@ -24,4 +24,12 @@
         android:textColor="?attr/conversation_item_update_text_color"
         tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/conversation_update_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        style="?attr/outlined_action_button"
+        tools:text="Learn more"/>
+
 </org.thoughtcrime.securesms.conversation.ConversationUpdateItem>

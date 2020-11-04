@@ -415,7 +415,7 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void insertGroupV1MigrationEvent(@NonNull RecipientId recipientId, long threadId, List<RecipientId> pendingRecipients) {
+  public void insertGroupV1MigrationEvents(@NonNull RecipientId recipientId, long threadId, List<RecipientId> pendingRecipients) {
     throw new UnsupportedOperationException();
   }
 

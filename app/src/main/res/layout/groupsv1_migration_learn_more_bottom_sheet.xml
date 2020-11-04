@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
+    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
+
+    <TextView
+        android:id="@+id/gv1_learn_more_title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/GroupsV1MigrationLearnMore_what_are_new_groups"
+        android:textAppearance="@style/TextAppearance.Signal.Title1"
+        android:textColor="?title_text_color_primary"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:src="?paragraph_marker" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="14dp"
+            android:text="@string/GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            android:textColor="?title_text_color_primary" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:src="?paragraph_marker" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="14dp"
+            android:text="@string/GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            android:textColor="?title_text_color_primary" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/gv1_learn_more_pending_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:src="?paragraph_marker" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/gv1_learn_more_pending_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                android:textColor="?title_text_color_primary"
+                tools:text="Plurized string for pending members." />
+
+            <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
+                android:id="@+id/gv1_learn_more_pending_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="-12dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

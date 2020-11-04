@@ -22,7 +22,6 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -90,6 +89,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -1416,6 +1416,11 @@ public class ConversationFragment extends LoggingFragment {
     @Override
     public boolean onUrlClicked(@NonNull String url) {
       return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url);
+    }
+
+    @Override
+    public void onGroupMigrationLearnMoreClicked(@NonNull List<RecipientId> pendingRecipients) {
+      GroupsV1MigrationBottomSheetDialogFragment.showForLearnMore(requireFragmentManager(), pendingRecipients);
     }
   }
 

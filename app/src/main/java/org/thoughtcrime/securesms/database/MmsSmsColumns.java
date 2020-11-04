@@ -266,6 +266,10 @@ public interface MmsSmsColumns {
       return type == PROFILE_CHANGE_TYPE;
     }
 
+    public static boolean isGroupV1MigrationEvent(long type) {
+      return type == GV1_MIGRATION_TYPE;
+    }
+
     public static long translateFromSystemBaseType(long theirType) {
 //    public static final int NONE_TYPE           = 0;
 //    public static final int INBOX_TYPE          = 1;

@@ -522,6 +522,30 @@
         <item name="colorControlNormal">@color/core_grey_50</item>
     </style>
 
+    <style name="Widget.Signal.Button.OutlinedAction.Light" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textColor">@color/core_ultramarine</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+        <item name="strokeColor">@color/core_grey_15</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cornerRadius">18dp</item>
+        <item name="rippleColor">@color/core_grey_05</item>
+    </style>
+
+    <style name="Widget.Signal.Button.OutlinedAction.Dark" parent="Widget.Signal.Button.OutlinedAction.Light">
+        <item name="android:textColor">@color/core_ultramarine_light</item>
+        <item name="strokeColor">@color/core_grey_85</item>
+        <item name="backgroundTint">@color/core_grey_95</item>
+        <item name="rippleColor">@color/core_grey_85</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.Button.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

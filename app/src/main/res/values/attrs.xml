@@ -297,6 +297,9 @@
     <attr name="media_overview_grid_view_icon" format="reference"/>
     <attr name="media_overview_list_view_icon" format="reference"/>
 
+    <attr name="outlined_action_button" format="reference" />
+    <attr name="paragraph_marker" format="reference" />
+
     <attr name="shared_contact_details_header_background" format="color"/>
     <attr name="shared_contact_details_titlebar" format="color"/>
     <attr name="shared_contact_item_button_color" format="color"/>

@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
@@ -46,6 +45,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -172,6 +172,13 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isEndSession()) {
       if (isOutgoing()) return staticUpdateDescription(context.getString(R.string.SmsMessageRecord_secure_session_reset), R.drawable.ic_update_info_light_16, R.drawable.ic_update_info_dark_16);
       else              return fromRecipient(getIndividualRecipient(), r-> context.getString(R.string.SmsMessageRecord_secure_session_reset_s, r.getDisplayName(context)), R.drawable.ic_update_info_light_16, R.drawable.ic_update_info_dark_16);
+    } else if (isGroupV1MigrationEvent()) {
+      if (Util.isEmpty(getBody())) {
+        return staticUpdateDescription(context.getString(R.string.MessageRecord_this_group_was_updated_to_a_new_group), R.drawable.ic_update_group_role_light_16, R.drawable.ic_update_group_role_dark_16);
+      } else {
+        int count = getGroupV1MigrationEventInvites().size();
+        return staticUpdateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited, count, count), R.drawable.ic_update_group_add_light_16, R.drawable.ic_update_group_add_dark_16);
+      }
     }
 
     return null;
@@ -347,9 +354,22 @@ public abstract class MessageRecord extends DisplayRecord {
     return SmsDatabase.Types.isInvalidVersionKeyExchange(type);
   }
 
+  public boolean isGroupV1MigrationEvent() {
+    return SmsDatabase.Types.isGroupV1MigrationEvent(type);
+  }
+
+  public @NonNull List<RecipientId> getGroupV1MigrationEventInvites() {
+    if (isGroupV1MigrationEvent()) {
+      return RecipientId.fromSerializedList(getBody());
+    } else {
+      return Collections.emptyList();
+    }
+  }
+
   public boolean isUpdate() {
     return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
-           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() || isProfileChange();
+           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
+           isProfileChange() || isGroupV1MigrationEvent();
   }
 
   public boolean isMediaPending() {

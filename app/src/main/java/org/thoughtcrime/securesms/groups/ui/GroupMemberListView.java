@@ -9,7 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.List;
 
@@ -72,6 +75,10 @@ public final class GroupMemberListView extends RecyclerView {
 
   public void setMembers(@NonNull List<? extends GroupMemberEntry> recipients) {
     membersAdapter.updateData(recipients);
+  }
+
+  public void setDisplayOnlyMembers(@NonNull List<Recipient> recipients) {
+    membersAdapter.updateData(Stream.of(recipients).map(r -> new GroupMemberEntry.FullMember(r, false)).toList());
   }
 
   @Override

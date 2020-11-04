@@ -740,7 +740,22 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void insertGroupV1MigrationEvent(@NonNull RecipientId recipientId, long threadId, List<RecipientId> pendingRecipients) {
+  public void insertGroupV1MigrationEvents(@NonNull RecipientId recipientId, long threadId, @NonNull List<RecipientId> pendingRecipients) {
+    insertGroupV1MigrationNotification(recipientId, threadId);
+
+    if (pendingRecipients.size() > 0) {
+      insertGroupV1MigrationEvent(recipientId, threadId, pendingRecipients);
+    }
+
+    notifyConversationListeners(threadId);
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+  }
+
+  private void insertGroupV1MigrationNotification(@NonNull RecipientId recipientId, long threadId) {
+    insertGroupV1MigrationEvent(recipientId, threadId, Collections.emptyList());
+  }
+
+  private void insertGroupV1MigrationEvent(@NonNull RecipientId recipientId, long threadId, @NonNull List<RecipientId> pendingRecipients) {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
     values.put(ADDRESS_DEVICE_ID, 1);
@@ -749,12 +764,12 @@ public class SmsDatabase extends MessageDatabase {
     values.put(READ, 1);
     values.put(TYPE, Types.GV1_MIGRATION_TYPE);
     values.put(THREAD_ID, threadId);
-    values.put(BODY, RecipientId.toSerializedList(pendingRecipients));
+
+    if (pendingRecipients.size() > 0) {
+      values.put(BODY, RecipientId.toSerializedList(pendingRecipients));
+    }
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
-
-    notifyConversationListeners(threadId);
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
   }
 
   @Override

@@ -539,6 +539,19 @@
     <string name="GroupManagement_learn_more">Learn more</string>
     <string name="GroupManagement_invite_multiple_users">These users can’t be automatically added to this group by you.\n\nThey’ve been invited to join the group, and won’t see any group messages until they accept.</string>
 
+    <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
+    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">What are New Groups?</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">New Groups have features like @mentions and group admins, and will support more features in the future.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All message history and media has been kept from before the upgrade.</string>
+    <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+        <item quantity="one">This member will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
+        <item quantity="other">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
+    </plurals>
+    <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+        <item quantity="one">This member is not capable of joining New Groups, and has been removed from the group:</item>
+        <item quantity="other">These members are not capable of joining New Groups, and have been removed from the group:</item>
+    </plurals>
+
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">Leave group?</string>
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">You will no longer be able to send or receive messages in this group.</string>
@@ -951,6 +964,11 @@
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set the disappearing message timer to %1$s.</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s.</string>
     <string name="MessageRecord_disappearing_message_time_set_to_s">The disappearing message timer has been set to %1$s.</string>
+    <string name="MessageRecord_this_group_was_updated_to_a_new_group">This group was updated to a New Group.</string>
+    <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+        <item quantity="one">%1$s member couldn\'t be added to the New Group and has been invited to join.</item>
+        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+    </plurals>
 
     <!-- Profile change updates -->
     <string name="MessageRecord_changed_their_profile_name_to">%1$s changed their profile name to %2$s.</string>
@@ -1773,6 +1791,7 @@
 
     <!-- ConversationUpdateItem -->
     <string name="ConversationUpdateItem_loading">Loading</string>
+    <string name="ConversationUpdateItem_learn_more">Learn more</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
