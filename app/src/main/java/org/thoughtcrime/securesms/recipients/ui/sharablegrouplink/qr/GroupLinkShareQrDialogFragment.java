@@ -1,5 +1,10 @@
 package org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.qr;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ShareCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
@@ -16,9 +22,13 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.qr.QrView;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.qr.QrCode;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Objects;
 
 public class GroupLinkShareQrDialogFragment extends DialogFragment {
@@ -64,9 +74,9 @@ public class GroupLinkShareQrDialogFragment extends DialogFragment {
   }
 
   private void initializeViewModel() {
-    Bundle                            arguments  = requireArguments();
-    GroupId.V2                        groupId    = GroupId.parseOrThrow(Objects.requireNonNull(arguments.getString(ARG_GROUP_ID))).requireV2();
-    GroupLinkShareQrViewModel.Factory factory    = new GroupLinkShareQrViewModel.Factory(groupId);
+    Bundle                            arguments = requireArguments();
+    GroupId.V2                        groupId   = GroupId.parseOrThrow(Objects.requireNonNull(arguments.getString(ARG_GROUP_ID))).requireV2();
+    GroupLinkShareQrViewModel.Factory factory   = new GroupLinkShareQrViewModel.Factory(groupId);
 
     viewModel = ViewModelProviders.of(this, factory).get(GroupLinkShareQrViewModel.class);
   }
@@ -85,8 +95,49 @@ public class GroupLinkShareQrDialogFragment extends DialogFragment {
   private void presentUrl(@Nullable String url) {
     qrImageView.setQrText(url);
 
-    shareCodeButton.setOnClickListener(v -> {
-      // TODO [Alan] GV2 Allow qr image share
-    });
+    // Restricted to API26 because of MemoryFileUtil not supporting lower API levels well
+    if (Build.VERSION.SDK_INT >= 26) {
+      shareCodeButton.setVisibility(View.VISIBLE);
+
+      shareCodeButton.setOnClickListener(v -> {
+        Uri shareUri;
+
+        try {
+          shareUri = createTemporaryPng(url);
+        } catch (IOException e) {
+          Log.w(TAG, e);
+          return;
+        }
+
+        Intent intent = ShareCompat.IntentBuilder.from(requireActivity())
+                                                 .setType("image/png")
+                                                 .setStream(shareUri)
+                                                 .createChooserIntent()
+                                                 .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        requireContext().startActivity(intent);
+      });
+    } else {
+      shareCodeButton.setVisibility(View.GONE);
+    }
+  }
+
+  private static Uri createTemporaryPng(@Nullable String url) throws IOException {
+    Bitmap qrBitmap = QrCode.create(url, Color.BLACK, Color.WHITE);
+
+    try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+      qrBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+      byteArrayOutputStream.flush();
+
+      byte[] bytes = byteArrayOutputStream.toByteArray();
+
+      return BlobProvider.getInstance()
+                         .forData(bytes)
+                         .withMimeType("image/png")
+                         .withFileName("SignalGroupQr.png")
+                         .createForSingleSessionInMemory();
+    } finally {
+      qrBitmap.recycle();
+    }
   }
 }

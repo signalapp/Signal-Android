@@ -673,6 +673,11 @@
               android:exported="false"
               android:authorities="${applicationId}.part" />
 
+    <provider android:name=".providers.BlobContentProvider"
+              android:authorities="${applicationId}.blob"
+              android:exported="false"
+              android:grantUriPermissions="true" />
+
     <provider android:name=".providers.MmsBodyProvider"
               android:grantUriPermissions="true"
               android:exported="false"

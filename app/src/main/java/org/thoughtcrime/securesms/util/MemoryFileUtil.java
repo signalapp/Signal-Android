@@ -1,9 +1,13 @@
 package org.thoughtcrime.securesms.util;
 
-
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
+
+import androidx.annotation.NonNull;
+
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -11,26 +15,36 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class MemoryFileUtil {
+public final class MemoryFileUtil {
 
-  public static ParcelFileDescriptor getParcelFileDescriptor(MemoryFile file) throws IOException {
+  private MemoryFileUtil() {}
+
+  public static ParcelFileDescriptor getParcelFileDescriptor(@NonNull MemoryFile file)
+      throws IOException
+  {
+    if (Build.VERSION.SDK_INT >= 26) {
+      return MemoryFileDescriptorProxy.create(ApplicationDependencies.getApplication(), file);
+    } else {
+      return getParcelFileDescriptorLegacy(file);
+    }
+  }
+
+  @SuppressWarnings("JavaReflectionMemberAccess")
+  @SuppressLint("PrivateApi")
+  public static ParcelFileDescriptor getParcelFileDescriptorLegacy(@NonNull MemoryFile file)
+      throws IOException
+  {
     try {
       Method         method         = MemoryFile.class.getDeclaredMethod("getFileDescriptor");
       FileDescriptor fileDescriptor = (FileDescriptor) method.invoke(file);
 
-      Field  field  = fileDescriptor.getClass().getDeclaredField("descriptor");
+      Field field = fileDescriptor.getClass().getDeclaredField("descriptor");
       field.setAccessible(true);
 
       int fd = field.getInt(fileDescriptor);
 
       return ParcelFileDescriptor.adoptFd(fd);
-    } catch (IllegalAccessException e) {
-      throw new IOException(e);
-    } catch (InvocationTargetException e) {
-      throw new IOException(e);
-    } catch (NoSuchMethodException e) {
-      throw new IOException(e);
-    } catch (NoSuchFieldException e) {
+    } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException e) {
       throw new IOException(e);
     }
   }

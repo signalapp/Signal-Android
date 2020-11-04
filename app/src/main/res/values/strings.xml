@@ -1562,6 +1562,7 @@
     <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media no longer available.</string>
+    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Can\'t find an app able to share this media.</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
@@ -2438,6 +2439,7 @@
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
     <string name="media_preview__forward_title">Forward</string>
+    <string name="media_preview__share_title">Share</string>
     <string name="media_preview__all_media_title">All media</string>
 
     <!-- media_preview_activity -->
