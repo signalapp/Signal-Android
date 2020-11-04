@@ -1583,6 +1583,11 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   void deleteThreads(@NonNull Set<Long> threadIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     String where      = "";

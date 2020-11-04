@@ -58,12 +58,20 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
       return new LayerDrawable(new Drawable[] { base, gradient });
     }
 
-    return new ResourceContactPhoto(fallbackResId).asDrawable(context, color, inverted);
+    return newFallbackDrawable(context, color, inverted);
   }
 
   @Override
   public Drawable asSmallDrawable(Context context, int color, boolean inverted) {
     return asDrawable(context, color, inverted);
+  }
+
+  protected @DrawableRes int getFallbackResId() {
+    return fallbackResId;
+  }
+
+  protected Drawable newFallbackDrawable(@NonNull Context context, int color, boolean inverted) {
+    return new ResourceContactPhoto(fallbackResId).asDrawable(context, color, inverted);
   }
 
   private @Nullable String getAbbreviation(String name) {

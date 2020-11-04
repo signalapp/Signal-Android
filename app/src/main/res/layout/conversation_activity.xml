@@ -43,6 +43,13 @@
             android:paddingTop="?attr/actionBarSize">
 
             <ViewStub
+                android:id="@+id/review_banner_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/review_banner"
+                android:layout="@layout/review_banner_view" />
+
+            <ViewStub
                 android:id="@+id/group_share_profile_view_stub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

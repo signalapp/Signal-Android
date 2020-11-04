@@ -1633,6 +1633,27 @@ public class RecipientDatabase extends Database {
     return updated;
   }
 
+  public @NonNull List<RecipientId> getSimilarRecipientIds(@NonNull Recipient recipient) {
+    SQLiteDatabase db   = databaseHelper.getReadableDatabase();
+    String[] projection = SqlUtil.buildArgs(ID, "COALESCE(" + nullIfEmpty(SYSTEM_DISPLAY_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ") AS checked_name");
+    String   where      =  "checked_name = ?";
+
+    String[] arguments = SqlUtil.buildArgs(recipient.getProfileName().toString());
+
+    try (Cursor cursor = db.query(TABLE_NAME, projection, where, arguments, null, null, null)) {
+      if (cursor == null || cursor.getCount() == 0) {
+        return Collections.emptyList();
+      }
+
+      List<RecipientId> results = new ArrayList<>(cursor.getCount());
+      while (cursor.moveToNext()) {
+        results.add(RecipientId.from(CursorUtil.requireLong(cursor, ID)));
+      }
+
+      return results;
+    }
+  }
+
   public void setProfileName(@NonNull RecipientId id, @NonNull ProfileName profileName) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(PROFILE_GIVEN_NAME, profileName.getGivenName());

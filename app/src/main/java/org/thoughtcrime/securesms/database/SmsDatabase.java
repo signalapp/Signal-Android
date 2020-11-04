@@ -689,6 +689,21 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp) {
+    String   where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " >= ? AND " + TYPE + " = ?";
+    String[] args  = SqlUtil.buildArgs(threadId, afterTimestamp, Types.PROFILE_CHANGE_TYPE);
+
+    try (Reader reader = readerFor(queryMessages(where, args, true, -1))) {
+      List<MessageRecord> results = new ArrayList<>(reader.getCount());
+      while (reader.getNext() != null) {
+        results.add(reader.getCurrent());
+      }
+
+      return results;
+    }
+  }
+
+  @Override
   public void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName) {
     ThreadDatabase                  threadDatabase    = DatabaseFactory.getThreadDatabase(context);
     List<GroupDatabase.GroupRecord> groupRecords      = DatabaseFactory.getGroupDatabase(context).getGroupsContainingMember(recipient.getId(), false);

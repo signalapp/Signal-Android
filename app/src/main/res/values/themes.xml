@@ -163,6 +163,8 @@
         <item name="icon_tint">@color/core_grey_75</item>
         <item name="icon_tint_dark">@color/core_grey_15</item>
 
+        <item name="review_card_bg">@drawable/review_card_outline_light</item>
+
         <item name="folder_icon">@drawable/ic_folder_outline_24</item>
         <item name="backup_enable_dialog_divider_background">@color/core_grey_20</item>
         <item name="backup_enable_subhead_color">@color/core_grey_65</item>
@@ -504,6 +506,8 @@
         <item name="theme_type">dark</item>
         <item name="icon_tint">@color/core_grey_15</item>
         <item name="icon_tint_dark">?icon_tint</item>
+
+        <item name="review_card_bg">@drawable/review_card_outline_dark</item>
 
         <item name="folder_icon">@drawable/ic_folder_solid_24</item>
         <item name="backup_enable_dialog_divider_background">@color/core_grey_60</item>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    android:background="?attr/review_card_bg"
+    android:minHeight="190dp">
+
+    <View
+        android:id="@+id/card_tap_target"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:minHeight="52dp"
+        app:layout_constraintBottom_toBottomOf="@id/card_subtext_line2"
+        app:layout_constraintEnd_toEndOf="@id/card_name"
+        app:layout_constraintStart_toStartOf="@id/card_avatar"
+        app:layout_constraintTop_toTopOf="@id/card_avatar" />
+
+    <TextView
+        android:id="@+id/card_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+        android:textColor="?attr/title_text_color_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Member" />
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/card_avatar"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_title"
+        tools:src="@drawable/ic_person_large" />
+
+    <TextView
+        android:id="@+id/card_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        app:layout_constraintBottom_toTopOf="@id/card_subtext_line1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_avatar"
+        app:layout_constraintTop_toTopOf="@id/card_avatar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Michelle Tyler" />
+
+    <TextView
+        android:id="@+id/card_subtext_line1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="?attr/title_text_color_secondary"
+        app:layout_constraintBottom_toTopOf="@id/card_subtext_line2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_avatar"
+        app:layout_constraintTop_toBottomOf="@id/card_name"
+        tools:text="Line 1 sample text." />
+
+    <TextView
+        android:id="@+id/card_subtext_line2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="?attr/title_text_color_secondary"
+        app:layout_constraintBottom_toBottomOf="@id/card_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_avatar"
+        app:layout_constraintTop_toBottomOf="@id/card_subtext_line1"
+        tools:text="Line 2 can be multiple lines and should gracefully handle being broken up." />
+
+    <Button
+        android:id="@+id/card_primary_action_button"
+        style="@style/Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="6dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_subtext_line2"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="@string/ReviewCard__block" />
+
+    <Button
+        android:id="@+id/card_secondary_action_button"
+        style="@style/Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card_primary_action_button"
+        app:layout_constraintTop_toBottomOf="@id/card_subtext_line2"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="@string/ReviewCard__delete" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

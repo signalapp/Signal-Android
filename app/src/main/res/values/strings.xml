@@ -337,6 +337,10 @@
     <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Outgoing view-once media files are automatically removed after they are sent</string>
     <string name="ConversationFragment_you_already_viewed_this_message">You already viewed this message</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">You can add notes for yourself in this conversation.\nIf your account has any linked devices, new notes will be synced.</string>
+    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d group members have the same name.</string>
+    <string name="ConversationFragment__tap_to_review">Tap to review</string>
+    <string name="ConversationFragment__review_requests_carefully">Review requests carefully</string>
+    <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal found another contact with the same name.</string>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
@@ -2787,6 +2791,35 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
+
+    <!-- ReviewCardDialogFragment -->
+    <string name="ReviewCardDialogFragment__review_members">Review Members</string>
+    <string name="ReviewCardDialogFragment__review_request">Review Request</string>
+    <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d group members have the same name, review the members below and choose to take action.</string>
+    <string name="ReviewCardDialogFragment__if_youre_not_sure">If you\'re not sure who the request is from, review the contacts below and take action.</string>
+    <string name="ReviewCardDialogFragment__no_other_groups_in_common">No other groups in common.</string>
+    <string name="ReviewCardDialogFragment__no_groups_in_common">No groups in common.</string>
+    <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+        <item quantity="one">%d group in common</item>
+        <item quantity="other">%d groups in common</item>
+    </plurals>
+    <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+        <item quantity="one">%d group in common</item>
+        <item quantity="other">%d groups in common</item>
+    </plurals>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Remove %1$s from group?</string>
+    <string name="ReviewCardDialogFragment__remove">Remove</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Failed to remove group member.</string>
+
+    <!-- ReviewCard -->
+    <string name="ReviewCard__member">Member</string>
+    <string name="ReviewCard__request">Request</string>
+    <string name="ReviewCard__your_contact">Your contact</string>
+    <string name="ReviewCard__remove_from_group">Remove from group</string>
+    <string name="ReviewCard__update_contact">Update contact</string>
+    <string name="ReviewCard__block">Block</string>
+    <string name="ReviewCard__delete">Delete</string>
+    <string name="ReviewCard__recently_changed">Recently changed their profile name from %1$s to %2$s</string>
 
     <!-- EOF -->
 

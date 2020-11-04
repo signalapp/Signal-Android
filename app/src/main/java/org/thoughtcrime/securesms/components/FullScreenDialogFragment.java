@@ -32,7 +32,7 @@ public abstract class FullScreenDialogFragment extends DialogFragment {
   }
 
   @Override
-  public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+  public final @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.full_screen_dialog_fragment, container, false);
     inflater.inflate(getDialogLayoutResource(), view.findViewById(R.id.full_screen_dialog_content), true);
     toolbar = view.findViewById(R.id.full_screen_dialog_toolbar);
