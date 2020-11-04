@@ -940,7 +940,8 @@
     <string name="MessageRecord_you_updated_group">You updated the group.</string>
     <string name="MessageRecord_the_group_was_updated">The group was updated.</string>
     <string name="MessageRecord_you_called_date">You called · %1$s</string>
-    <string name="MessageRecord_missed_call_date">Missed call · %1$s</string>
+    <string name="MessageRecord_missed_audio_call_date">Missed audio call · %1$s</string>
+    <string name="MessageRecord_missed_video_call_date">Missed video call · %1$s</string>
     <string name="MessageRecord_s_updated_group">%s updated the group.</string>
     <string name="MessageRecord_s_called_you_date">%1$s called you · %2$s</string>
     <string name="MessageRecord_called_s">Called %s</string>
@@ -1431,7 +1432,8 @@
     <string name="ThreadRecord_draft">Draft:</string>
     <string name="ThreadRecord_called">You called</string>
     <string name="ThreadRecord_called_you">Called you</string>
-    <string name="ThreadRecord_missed_call">Missed call</string>
+    <string name="ThreadRecord_missed_audio_call">Missed audio call</string>
+    <string name="ThreadRecord_missed_video_call">Missed video call</string>
     <string name="ThreadRecord_media_message">Media message</string>
     <string name="ThreadRecord_sticker">Sticker</string>
     <string name="ThreadRecord_view_once_photo">View-once photo</string>

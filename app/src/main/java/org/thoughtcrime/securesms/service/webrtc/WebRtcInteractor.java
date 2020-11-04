@@ -85,8 +85,8 @@ public class WebRtcInteractor {
     webRtcCallService.stopForeground(true);
   }
 
-  void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal, long timestamp) {
-    webRtcCallService.insertMissedCall(remotePeer, signal, timestamp);
+  void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal, long timestamp, boolean isVideoOffer) {
+    webRtcCallService.insertMissedCall(remotePeer, signal, timestamp, isVideoOffer);
   }
 
   void startWebRtcCallActivityIfPossible() {

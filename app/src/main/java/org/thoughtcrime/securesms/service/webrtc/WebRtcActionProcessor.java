@@ -284,14 +284,14 @@ public abstract class WebRtcActionProcessor {
     if (TelephonyUtil.isAnyPstnLineBusy(context)) {
       Log.i(tag, "PSTN line is busy.");
       currentState = currentState.getActionProcessor().handleSendBusy(currentState, callMetadata, true);
-      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp());
+      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
       return currentState;
     }
 
     if (!RecipientUtil.isCallRequestAccepted(context.getApplicationContext(), callMetadata.getRemotePeer().getRecipient())) {
       Log.w(tag, "Caller is untrusted.");
       currentState = currentState.getActionProcessor().handleSendHangup(currentState, callMetadata, WebRtcData.HangupMetadata.fromType(HangupMessage.Type.NEED_PERMISSION), true);
-      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp());
+      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
       return currentState;
     }
 
@@ -338,7 +338,7 @@ public abstract class WebRtcActionProcessor {
   {
     Log.i(tag, "handleReceivedOfferExpired(): call_id: " + remotePeer.getCallId());
 
-    webRtcInteractor.insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp());
+    webRtcInteractor.insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState().isRemoteVideoOffer());
 
     return terminate(currentState, remotePeer);
   }

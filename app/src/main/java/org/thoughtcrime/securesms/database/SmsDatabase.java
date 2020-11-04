@@ -364,8 +364,8 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void markAsMissedCall(long id) {
-    updateTypeBitmask(id, Types.TOTAL_MASK, Types.MISSED_CALL_TYPE);
+  public void markAsMissedCall(long id, boolean isVideoOffer) {
+    updateTypeBitmask(id, Types.TOTAL_MASK, isVideoOffer ? Types.MISSED_VIDEO_CALL_TYPE : Types.MISSED_AUDIO_CALL_TYPE);
   }
 
   @Override
@@ -633,12 +633,13 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
     SQLiteDatabase db            = databaseHelper.getReadableDatabase();
-    String[]       projection    = new String[]{SmsDatabase.TYPE};
-    String         selection     = THREAD_ID + " = ? AND " + DATE_RECEIVED  + " > ? AND (" + TYPE + " = ? OR " + TYPE + " = ?)";
-    String[]       selectionArgs = new String[]{String.valueOf(threadId),
-                                                String.valueOf(timestamp),
-                                                String.valueOf(Types.INCOMING_CALL_TYPE),
-                                                String.valueOf(Types.MISSED_CALL_TYPE)};
+    String[]       projection    = SqlUtil.buildArgs(SmsDatabase.TYPE);
+    String         selection     = THREAD_ID + " = ? AND " + DATE_RECEIVED  + " > ? AND (" + TYPE + " = ? OR " + TYPE + " = ? OR " + TYPE + " =?)";
+    String[]       selectionArgs = SqlUtil.buildArgs(threadId,
+                                                     timestamp,
+                                                     Types.INCOMING_CALL_TYPE,
+                                                     Types.MISSED_AUDIO_CALL_TYPE,
+                                                     Types.MISSED_VIDEO_CALL_TYPE);
 
     try (Cursor cursor = db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null)) {
       return cursor != null && cursor.moveToFirst();
@@ -656,8 +657,8 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp) {
-    return insertCallLog(address, Types.MISSED_CALL_TYPE, true, timestamp);
+  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp, boolean isVideoCall) {
+    return insertCallLog(address, isVideoCall ? Types.MISSED_VIDEO_CALL_TYPE : Types.MISSED_AUDIO_CALL_TYPE, true, timestamp);
   }
 
   private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread, long timestamp) {

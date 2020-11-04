@@ -328,8 +328,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
   }
 
-  public void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal, long timestamp) {
-    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(remotePeer.getId(), timestamp);
+  public void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal, long timestamp, boolean isVideoOffer) {
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(remotePeer.getId(), timestamp, isVideoOffer);
     ApplicationDependencies.getMessageNotifier().updateNotification(this, messageAndThreadId.second(), signal);
   }
 

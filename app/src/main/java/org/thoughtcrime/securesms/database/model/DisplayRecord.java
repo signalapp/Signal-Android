@@ -148,8 +148,12 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isOutgoingCall(type);
   }
 
-  public boolean isMissedCall() {
-    return SmsDatabase.Types.isMissedCall(type);
+  public final boolean isMissedAudioCall() {
+    return SmsDatabase.Types.isMissedAudioCall(type);
+  }
+
+  public final boolean isMissedVideoCall() {
+    return SmsDatabase.Types.isMissedVideoCall(type);
   }
 
   public boolean isVerificationStatusChange() {

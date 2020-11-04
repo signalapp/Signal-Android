@@ -108,7 +108,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markUnidentified(long messageId, boolean unidentified);
   public abstract void markAsSending(long messageId);
   public abstract void markAsRemoteDelete(long messageId);
-  public abstract void markAsMissedCall(long id);
+  public abstract void markAsMissedCall(long id, boolean isVideoOffer);
   public abstract void markAsNotified(long id);
   public abstract void markSmsStatus(long id, int status);
   public abstract void markDownloadState(long messageId, long state);
@@ -126,7 +126,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
   public abstract @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address);
   public abstract @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address);
-  public abstract @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp);
+  public abstract @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp, boolean isVideoOffer);
 
   public abstract Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type);
   public abstract Optional<InsertResult> insertMessageInbox(IncomingTextMessage message);

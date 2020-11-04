@@ -506,7 +506,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
     if (smsMessageId.isPresent()) {
       MessageDatabase database = DatabaseFactory.getSmsDatabase(context);
-      database.markAsMissedCall(smsMessageId.get());
+      database.markAsMissedCall(smsMessageId.get(), message.getType() == OfferMessage.Type.VIDEO_CALL);
     } else {
       Intent     intent            = new Intent(context, WebRtcCallService.class);
       Recipient  recipient         = Recipient.externalHighTrustPush(context, content.getSender());
@@ -581,7 +581,7 @@ public final class PushProcessMessageJob extends BaseJob {
   {
     log(TAG, String.valueOf(content), "handleCallHangupMessage");
     if (smsMessageId.isPresent()) {
-      DatabaseFactory.getSmsDatabase(context).markAsMissedCall(smsMessageId.get());
+      DatabaseFactory.getSmsDatabase(context).markAsMissedCall(smsMessageId.get(), false);
     } else {
       Intent     intent     = new Intent(context, WebRtcCallService.class);
       RemotePeer remotePeer = new RemotePeer(Recipient.externalHighTrustPush(context, content.getSender()).getId());

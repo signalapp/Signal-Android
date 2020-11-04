@@ -365,7 +365,7 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void markAsMissedCall(long id) {
+  public void markAsMissedCall(long id, boolean isVideoOffer) {
     throw new UnsupportedOperationException();
   }
 
@@ -390,7 +390,7 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp) {
+  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp, boolean isVideoOffer) {
     throw new UnsupportedOperationException();
   }
 
