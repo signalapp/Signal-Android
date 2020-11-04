@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -124,7 +125,7 @@ public final class ManageRecipientViewModel extends ViewModel {
 
   private static @NonNull String getDisplaySubtitle(@NonNull Recipient recipient, @NonNull Context context) {
     if (!recipient.isSelf() && recipient.hasAUserSetDisplayName(context)) {
-      return recipient.getSmsAddress().or("").trim();
+      return recipient.getSmsAddress().transform(PhoneNumberFormatter::prettyPrint).or("").trim();
     } else {
       return "";
     }

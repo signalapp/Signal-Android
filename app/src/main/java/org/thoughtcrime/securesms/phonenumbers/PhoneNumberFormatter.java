@@ -11,6 +11,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -46,7 +47,6 @@ public class PhoneNumberFormatter {
   private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
   private final Pattern         ALPHA_PATTERN   = Pattern.compile("[a-zA-Z]");
 
-
   public static @NonNull PhoneNumberFormatter get(Context context) {
     String localNumber = TextSecurePreferences.getLocalNumber(context);
 
@@ -79,6 +79,25 @@ public class PhoneNumberFormatter {
   PhoneNumberFormatter(@NonNull String localCountryCode, boolean countryCode) {
     this.localNumber      = Optional.absent();
     this.localCountryCode = localCountryCode;
+  }
+
+  public static @NonNull String prettyPrint(@NonNull String e164) {
+    return get(ApplicationDependencies.getApplication()).prettyPrintFormat(e164);
+  }
+
+  public @NonNull String prettyPrintFormat(@NonNull String e164) {
+    try {
+      Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(e164, localCountryCode);
+
+      if (localNumber.isPresent() && localNumber.get().countryCode == parsedNumber.getCountryCode()) {
+        return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
+      } else {
+        return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+      }
+    } catch (NumberParseException e) {
+      Log.w(TAG, "Failed to format number.");
+      return e164;
+    }
   }
 
   public String format(@Nullable String number) {

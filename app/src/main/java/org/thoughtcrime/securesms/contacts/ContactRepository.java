@@ -13,6 +13,7 @@ import androidx.annotation.WorkerThread;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
@@ -63,6 +64,10 @@ public class ContactRepository {
     add(new Pair<>(NUMBER_COLUMN, cursor -> {
       String phone = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.PHONE));
       String email = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.EMAIL));
+
+      if (phone != null) {
+        phone = PhoneNumberFormatter.prettyPrint(phone);
+      }
 
       return Util.getFirstNonEmpty(phone, email);
     }));
