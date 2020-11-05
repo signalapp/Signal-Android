@@ -451,7 +451,8 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   public void onSendAnywayAfterSafetyNumberChange() {
     Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
-          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(viewModel.getRecipient().getId()));
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(viewModel.getRecipient().getId()))
+          .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE, OfferMessage.Type.AUDIO_CALL.getCode());
 
     startService(intent);
   }

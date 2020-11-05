@@ -24,6 +24,7 @@ import org.signal.ringrtc.IceCandidate;
 import org.signal.ringrtc.Remote;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -52,9 +53,11 @@ import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
+import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +100,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String EXTRA_ENABLE                     = "enable_value";
   public static final String EXTRA_BROADCAST                  = "broadcast";
   public static final String EXTRA_ANSWER_WITH_VIDEO          = "enable_video";
-  public static final String EXTRA_ERROR                      = "error";
+  public static final String EXTRA_ERROR_CALL_STATE           = "error_call_state";
+  public static final String EXTRA_ERROR_IDENTITY_KEY         = "remote_identity_key";
   public static final String EXTRA_CAMERA_STATE               = "camera_state";
   public static final String EXTRA_IS_ALWAYS_TURN             = "is_always_turn";
   public static final String EXTRA_TURN_SERVER_INFO           = "turn_server_info";
@@ -580,10 +584,22 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     @Override
     public void onFailureContinue(@Nullable Throwable error) {
+      Log.i(TAG, "onFailureContinue: ", error);
+
       Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
       intent.setAction(ACTION_MESSAGE_SENT_ERROR)
-            .putExtra(EXTRA_CALL_ID, getCallId().longValue())
-            .putExtra(EXTRA_ERROR, error);
+            .putExtra(EXTRA_CALL_ID, getCallId().longValue());
+
+      WebRtcViewModel.State state = WebRtcViewModel.State.NETWORK_FAILURE;
+
+      if (error instanceof UntrustedIdentityException) {
+        intent.putExtra(EXTRA_ERROR_IDENTITY_KEY, new IdentityKeyParcelable(((UntrustedIdentityException) error).getIdentityKey()));
+        state = WebRtcViewModel.State.UNTRUSTED_IDENTITY;
+      } else if (error instanceof UnregisteredUserException) {
+        state = WebRtcViewModel.State.NO_SUCH_USER;
+      }
+
+      intent.putExtra(EXTRA_ERROR_CALL_STATE, state);
 
       startService(intent);
     }
@@ -603,7 +619,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       if (serviceState.getCallInfoState().getPeer(remotePeer.hashCode()) == null) {
         Log.w(TAG, "remotePeer not found in map with key: " + remotePeer.hashCode() + "! Dropping.");
         try {
-          //noinspection ConstantConditions
           callManager.drop(callId);
         } catch (CallException e) {
           serviceState = serviceState.getActionProcessor().callFailure(serviceState, "callManager.drop() failed: ", e);

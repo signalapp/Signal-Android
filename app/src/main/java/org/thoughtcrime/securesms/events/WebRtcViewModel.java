@@ -35,7 +35,14 @@ public class WebRtcViewModel {
     // Multiring Hangup States
     CALL_ACCEPTED_ELSEWHERE,
     CALL_DECLINED_ELSEWHERE,
-    CALL_ONGOING_ELSEWHERE
+    CALL_ONGOING_ELSEWHERE;
+
+    public boolean isErrorState() {
+      return this == NETWORK_FAILURE       ||
+             this == RECIPIENT_UNAVAILABLE ||
+             this == NO_SUCH_USER          ||
+             this == UNTRUSTED_IDENTITY;
+    }
   }
 
   private final @NonNull State     state;

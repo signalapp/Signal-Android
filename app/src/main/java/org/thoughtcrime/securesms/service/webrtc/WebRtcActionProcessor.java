@@ -26,15 +26,14 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
+import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
-import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -92,7 +91,6 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_WIRED_
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ANSWER_WITH_VIDEO;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_BLUETOOTH;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_CAMERA_STATE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ERROR;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_IS_ALWAYS_TURN;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_MUTE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_RESULT_RECEIVER;
@@ -104,6 +102,8 @@ import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getAv
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getBroadcastFlag;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getCallId;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getEnable;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getErrorCallState;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getErrorIdentityKey;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getIceCandidates;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getIceServers;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getOfferMessageType;
@@ -173,7 +173,7 @@ public abstract class WebRtcActionProcessor {
       case ACTION_LOCAL_HANGUP:                        return handleLocalHangup(currentState);
       case ACTION_SEND_HANGUP:                         return handleSendHangup(currentState, CallMetadata.fromIntent(intent), HangupMetadata.fromIntent(intent), getBroadcastFlag(intent));
       case ACTION_MESSAGE_SENT_SUCCESS:                return handleMessageSentSuccess(currentState, getCallId(intent));
-      case ACTION_MESSAGE_SENT_ERROR:                  return handleMessageSentError(currentState, getCallId(intent), (Throwable) intent.getSerializableExtra(EXTRA_ERROR));
+      case ACTION_MESSAGE_SENT_ERROR:                  return handleMessageSentError(currentState, getCallId(intent), getErrorCallState(intent), getErrorIdentityKey(intent));
 
       // Call Setup Actions
       case ACTION_RECEIVE_ICE_CANDIDATES:              return handleReceivedIceCandidates(currentState, CallMetadata.fromIntent(intent), getIceCandidates(intent));
@@ -453,8 +453,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleMessageSentError(@NonNull WebRtcServiceState currentState, @NonNull CallId callId, @Nullable Throwable error) {
-    Log.w(tag, error);
+  protected @NonNull WebRtcServiceState handleMessageSentError(@NonNull WebRtcServiceState currentState,
+                                                               @NonNull CallId callId,
+                                                               @NonNull WebRtcViewModel.State errorCallState,
+                                                               @NonNull Optional<IdentityKey> identityKey) {
+    Log.w(tag, "handleMessageSentError():");
 
     try {
       webRtcInteractor.getCallManager().messageSendFailure(callId);
@@ -469,21 +472,17 @@ public abstract class WebRtcActionProcessor {
 
     WebRtcServiceStateBuilder builder = currentState.builder();
 
-    if (error instanceof UntrustedIdentityException) {
+    if (errorCallState == WebRtcViewModel.State.UNTRUSTED_IDENTITY) {
       CallParticipant participant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteParticipant(activePeer.getRecipient()));
-      CallParticipant untrusted   = participant.withIdentityKey(((UntrustedIdentityException) error).getIdentityKey());
+      CallParticipant untrusted   = participant.withIdentityKey(identityKey.get());
 
       builder.changeCallInfoState()
              .callState(WebRtcViewModel.State.UNTRUSTED_IDENTITY)
              .putParticipant(activePeer.getRecipient(), untrusted)
              .commit();
-    } else if (error instanceof UnregisteredUserException) {
+    } else {
       builder.changeCallInfoState()
-             .callState(WebRtcViewModel.State.NO_SUCH_USER)
-             .commit();
-    } else if (error instanceof IOException) {
-      builder.changeCallInfoState()
-             .callState(WebRtcViewModel.State.NETWORK_FAILURE)
+             .callState(errorCallState)
              .commit();
     }
 

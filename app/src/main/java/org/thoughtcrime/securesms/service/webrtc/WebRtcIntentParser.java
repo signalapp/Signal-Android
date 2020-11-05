@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallId;
+import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
+import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -13,6 +15,8 @@ import org.thoughtcrime.securesms.ringrtc.TurnServerInfoParcel;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.webrtc.PeerConnection;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.ArrayList;
@@ -26,6 +30,8 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_AVAILAB
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_BROADCAST;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_CALL_ID;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ENABLE;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ERROR_CALL_STATE;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ERROR_IDENTITY_KEY;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ICE_CANDIDATES;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_MULTI_RING;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_OFFER_OPAQUE;
@@ -143,4 +149,15 @@ public final class WebRtcIntentParser {
     return intent.getBooleanExtra(EXTRA_ENABLE, false);
   }
 
+  public static @NonNull WebRtcViewModel.State getErrorCallState(@NonNull Intent intent) {
+    return (WebRtcViewModel.State) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_ERROR_CALL_STATE));
+  }
+  
+  public static @NonNull Optional<IdentityKey> getErrorIdentityKey(@NonNull Intent intent) {
+    IdentityKeyParcelable identityKeyParcelable = (IdentityKeyParcelable) intent.getParcelableExtra(EXTRA_ERROR_IDENTITY_KEY);
+    if (identityKeyParcelable != null) {
+      return Optional.fromNullable(identityKeyParcelable.get());
+    }
+    return Optional.absent();
+  }
 }
