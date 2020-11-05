@@ -409,6 +409,7 @@
   <string name="GroupManagement_access_level_only_admins">শুধুমাত্র এডমিন</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">আরও জানুন</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">গ্রুপ ত্যাগ করবেন?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">আপনি আর এই গ্রুপে বার্তা প্রেরণ বা গ্রহণ করতে সক্ষম হবেন না।</string>
@@ -973,7 +974,6 @@
   <string name="ThreadRecord_draft">ড্রাফ্ট:</string>
   <string name="ThreadRecord_called">আপনি কল করেছিলেন</string>
   <string name="ThreadRecord_called_you">অাপনাকে কল করেছিলো</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">ব্যর্থ কল</string> -->
   <string name="ThreadRecord_media_message">মিডিয়া বার্তা</string>
   <string name="ThreadRecord_sticker">স্টিকার</string>
   <string name="ThreadRecord_view_once_photo">একবার দেখার যোগ্য ছবি</string>
@@ -1238,6 +1238,7 @@
   <string name="conversation_item_received__contact_photo_description">পরিচিতির ছবি</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">লোড হচ্ছে</string>
+  <string name="ConversationUpdateItem_learn_more">আরও জানুন</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">চালু…. বিরতি</string>
   <string name="audio_view__download_accessibility_description">ডাউনলোড</string>
@@ -1699,6 +1700,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">সংরক্ষণ</string>
   <string name="media_preview__forward_title">ফরওয়ার্ড</string>
+  <string name="media_preview__share_title">শেয়ার করুন</string>
   <string name="media_preview__all_media_title">সমস্ত মিডিয়া</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">মিডিয়া প্রাকদর্শন</string>
@@ -1948,5 +1950,12 @@
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s থেকে %2$s</string>
   <!--StorageUtil-->
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__remove">সরান</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">সদস্য</string>
+  <string name="ReviewCard__remove_from_group">গ্রুপ থেকে সরান</string>
+  <string name="ReviewCard__block">অবরূদ্ধ</string>
+  <string name="ReviewCard__delete">মুছে দিন</string>
   <!--EOF-->
 </resources>

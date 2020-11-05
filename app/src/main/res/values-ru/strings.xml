@@ -315,6 +315,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Исходящие одноразовые медиа-файлы автоматически удаляются после того, как они были отправлены</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Вы уже просмотрели это сообщение</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Вы можете добавлять заметки для себя в этом разговоре.\nЕсли у вашей учётной записи есть привязанные устройства, то новые заметки будут синхронизированы.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d участников группы имеют одинаковое имя.</string>
+  <string name="ConversationFragment__tap_to_review">Нажмите, чтобы проверить</string>
+  <string name="ConversationFragment__review_requests_carefully">Внимательно проверьте запросы</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal нашёл другого контакта с тем же именем.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
   <!--ConversationListFragment-->
@@ -485,6 +489,22 @@
   <string name="GroupManagement_invite_single_user">«%1$s» не может быть автоматически добавлен(-а) вами в эту группу.\n\nОн(-а) был(-а) приглашен(-а) присоединиться и не увидит никакие сообщения группы до того, как примет приглашение.</string>
   <string name="GroupManagement_learn_more">Узнать больше</string>
   <string name="GroupManagement_invite_multiple_users">Эти пользователи не могут быть автоматически добавлены вами в эту группу.\n\nОни были приглашены присоединиться к группе и не увидят никакие сообщения группы до того, как примут приглашение.</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Что такое Новые группы?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">В Новых группах есть такие функции, как @упоминания и администраторы групп, и они будут поддерживать больше функций в будущем.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Вся история сообщений и все медиа были оставлены при обновлении.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Этому участнику будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и он не будут получать сообщения группы до того, как примет приглашение:</item>
+    <item quantity="few">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
+    <item quantity="many">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
+    <item quantity="other">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Этот участник не может присоединяться к Новым группам и был удалён из группы:</item>
+    <item quantity="few">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
+    <item quantity="many">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
+    <item quantity="other">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Покинуть группу?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Вы больше не сможете отправлять или получать сообщения в этой группе.</string>
@@ -876,7 +896,8 @@
   <string name="MessageRecord_you_updated_group">Вы обновили группу.</string>
   <string name="MessageRecord_the_group_was_updated">Группа была обновлена.</string>
   <string name="MessageRecord_you_called_date">Вы звонили · %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Пропущенный звонок · %1$s</string> -->
+  <string name="MessageRecord_missed_audio_call_date">Пропущенный аудиозвонок · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Пропущенный видеозвонок · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s обновил(-а) группу.</string>
   <string name="MessageRecord_s_called_you_date">%1$s звонил(-а) вам · %2$s</string>
   <string name="MessageRecord_called_s">Вы звонили %s</string>
@@ -886,6 +907,13 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили время исчезновения сообщений в %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(-а) время исчезновения сообщений в%2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Было установлено время исчезновения сообщений — %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Эта группа была обновлена до Новой группы.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s участник не мог быть добавлен в Новую группу и был приглашён присоединиться.</item>
+    <item quantity="few">%1$s участника не могли быть добавлены в Новую группу и были приглашены присоединиться.</item>
+    <item quantity="many">%1$s участников не могли быть добавлены в Новую группу и были приглашены присоединиться.</item>
+    <item quantity="other">%1$s участников не могли быть добавлены в Новую группу и были приглашены присоединиться.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s изменил(-а) своё имя профиля на %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s изменил(-а) своё имя профиля с %2$s на %3$s.</string>
@@ -1320,7 +1348,8 @@
   <string name="ThreadRecord_draft">Черновик:</string>
   <string name="ThreadRecord_called">Вы звонили</string>
   <string name="ThreadRecord_called_you">Звонил(-а) вам</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Пропущенный звонок</string> -->
+  <string name="ThreadRecord_missed_audio_call">Пропущенный аудиозвонок</string>
+  <string name="ThreadRecord_missed_video_call">Пропущенный видеозвонок</string>
   <string name="ThreadRecord_media_message">Медиа-сообщение</string>
   <string name="ThreadRecord_sticker">Стикер</string>
   <string name="ThreadRecord_view_once_photo">Одноразовое фото</string>
@@ -1415,6 +1444,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Это сообщение будет навсегда удалено.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s для %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Медиа больше не доступно.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не найдено приложение, которое может поделиться этим медиа-файлом.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от: %1$s</string>
@@ -1613,6 +1643,7 @@
   <string name="conversation_item_received__contact_photo_description">Фотография контакта</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Загрузка</string>
+  <string name="ConversationUpdateItem_learn_more">Узнать больше</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
@@ -2142,6 +2173,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Сохранить</string>
   <string name="media_preview__forward_title">Переслать</string>
+  <string name="media_preview__share_title">Поделиться</string>
   <string name="media_preview__all_media_title">Все медиа-файлы</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Предпросмотр медиа</string>
@@ -2467,5 +2499,36 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s в %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Проверьте участников</string>
+  <string name="ReviewCardDialogFragment__review_request">Проверьте запрос</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d участников группы имеют одинаковое имя. Просмотрите участников ниже и, если это необходимо, примите меры.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Если вы не уверены, от кого этот запрос, просмотрите участников ниже и примите меры.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Нет других общих групп.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Нет общих групп.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d общая группа</item>
+    <item quantity="few">%d общие группы</item>
+    <item quantity="many">%d общих групп</item>
+    <item quantity="other">%d общих групп</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d общая группа</item>
+    <item quantity="few">%d общие группы</item>
+    <item quantity="many">%d общих групп</item>
+    <item quantity="other">%d общих групп</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Удалить %1$s из группы?</string>
+  <string name="ReviewCardDialogFragment__remove">Удалить</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Не удалось удалить участника группы.</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">Участник</string>
+  <string name="ReviewCard__request">Запрос</string>
+  <string name="ReviewCard__your_contact">Ваш контакт</string>
+  <string name="ReviewCard__remove_from_group">Удалить из группы</string>
+  <string name="ReviewCard__update_contact">Обновить контакт</string>
+  <string name="ReviewCard__block">Заблокировать</string>
+  <string name="ReviewCard__delete">Удалить</string>
+  <string name="ReviewCard__recently_changed">Недавно изменил(-а) своё имя профиля с %1$s на %2$s</string>
   <!--EOF-->
 </resources>

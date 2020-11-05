@@ -75,7 +75,7 @@
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal potrzebuje pozwolenia, aby pokazać Twoje zdjęcia i filmy.</string>
   <string name="AttachmentKeyboard_give_access">Daj dostęp</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Nie można znaleźć aplikacji, aby otworzyć tę zawartość.</string>
+  <string name="AttachmentManager_cant_open_media_selection">Nie można znaleźć aplikacji, aby otworzyć te multimedia.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal wymaga pozwolenia na przechowywanie w celu dołączania zdjęć, filmów lub dźwięków, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Przechowywanie\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal wymaga pozwolenia na dostęp do kontaktów w celu dołączenia informacji o kontaktach, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Kontakty\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal wymaga pozwolenia na dostęp do lokalizacji w celu załączenia lokalizacji w wiadomościach, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Lokalizacja\".</string>
@@ -184,7 +184,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Powrócić do nieszyfrowanych wiadomości SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Powrócić do nieszyfrowanych wiadomości MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ta wiadomość <b>nie</b> będzie zaszyfrowana, ponieważ odbiorca nie jest już użytkownikiem Signal.\n\nWysłać wiadomość nieszyfrowaną?</string>
-  <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć tę zawartość.</string>
+  <string name="ConversationItem_unable_to_open_media">Nie można znaleźć aplikacji, aby otworzyć te multimedia.</string>
   <string name="ConversationItem_copied_text">Skopiowano %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">do %s</string>
@@ -315,6 +315,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Wychodzące wiadomości jednorazowe są automatycznie usuwane po wysłaniu</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Już widziałeś(aś) tę wiadomość</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">W tej konwersacji możesz dodawać swoje notatki.\nJeśli z Twoim kontem są połączone jakieś urządzenia, nowe notatki zostaną zsynchronizowane.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d członków grupy ma to samo imię.</string>
+  <string name="ConversationFragment__tap_to_review">Stuknij, aby przejrzeć</string>
+  <string name="ConversationFragment__review_requests_carefully">Przejrzyj uważnie wszystkie prośby</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal znalazł inny kontakt z tym samym imieniem.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>
   <!--ConversationListFragment-->
@@ -485,6 +489,22 @@
   <string name="GroupManagement_invite_single_user">Nie możesz automatycznie dodać \"%1$s\" do tej grupy.\n\nUżytkownik został zaproszony i nie zobaczy żadnych wiadomości grupowych, dopóki nie przyjmie zaproszenia.</string>
   <string name="GroupManagement_learn_more">Dowiedz się więcej</string>
   <string name="GroupManagement_invite_multiple_users">Nie możesz automatycznie dodać tych użytkowników do tej grupy.\n\nUżytkownicy zostali zaproszeni i nie zobaczą żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia.</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Czym są Nowe grupy?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nowe grupy posiadają takie funkcje jak @wzmianki i administratorzy, a w przyszłości będą obsługiwać więcej funkcji.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Cała historia wiadomości i multimedia zostały zachowane po aktualizacji.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Ten członek będzie musiał zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzyma żadnych wiadomości grupowych, dopóki nie przyjmie zaproszenia:</item>
+    <item quantity="few">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
+    <item quantity="many">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
+    <item quantity="other">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Ten członek nie może dołączyć do Nowej grupy i został z niej usunięty:</item>
+    <item quantity="few">Ci członkowie nie mogą dołączyć do Nowej grupy i zostali z niej usunięci:</item>
+    <item quantity="many">Ci członkowie nie mogą dołączyć do Nowej grupy i zostali z niej usunięci:</item>
+    <item quantity="other">Ci członkowie nie mogą dołączyć do Nowej grupy i zostali z niej usunięci:</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Opuścić grupę?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nie będziesz już móc odbierać lub wysyłać wiadomości w tej grupie.</string>
@@ -876,7 +896,8 @@
   <string name="MessageRecord_you_updated_group">Zaktualizowałeś(aś) grupę.</string>
   <string name="MessageRecord_the_group_was_updated">Grupa została zaktualizowana.</string>
   <string name="MessageRecord_you_called_date">Dzwoniłeś(aś) · %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Nieodebrane połączenie · %1$s</string> -->
+  <string name="MessageRecord_missed_audio_call_date">Nieodebrane połączenie audio · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Nieodebrane połączenie wideo · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s zaktualizował(a) grupę.</string>
   <string name="MessageRecord_s_called_you_date">%1$s dzwonił(a) do Ciebie · %2$s</string>
   <string name="MessageRecord_called_s">Zadzwoniono do %s</string>
@@ -886,6 +907,13 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ustawiłeś(aś) znikające wiadomości na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ustawił(a) znikające wiadomości na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Czas znikania wiadomości został ustawiony na %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ta grupa została zaktualizowana do Nowej grupy.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s członek nie mógł zostać dodany do Nowej grupy i został zaproszony do dołączenia.</item>
+    <item quantity="few">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało zaproszonych do dołączenia.</item>
+    <item quantity="many">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało zaproszonych do dołączenia.</item>
+    <item quantity="other">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało zaproszonych do dołączenia.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s zmienił(a) nazwę profilu na %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s zmienił(a) nazwę profilu z %2$s na %3$s.</string>
@@ -1319,7 +1347,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_draft">Szkic:</string>
   <string name="ThreadRecord_called">Dzwoniłeś(aś)</string>
   <string name="ThreadRecord_called_you">Dzwonił(a)</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string> -->
+  <string name="ThreadRecord_missed_audio_call">Nieodebrane połączenie audio</string>
+  <string name="ThreadRecord_missed_video_call">Nieodebrane połączenie wideo</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
   <string name="ThreadRecord_sticker">Naklejka</string>
   <string name="ThreadRecord_view_once_photo">Zdjęcie jednorazowe</string>
@@ -1414,6 +1443,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Spowoduje to trwałe usunięcie tej wiadomości.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s do %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Multimedia nie są już dostępne.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nie można znaleźć aplikacji, aby udostępnić te multimedia.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nowych wiadomości w %2$d rozmowach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
@@ -1612,6 +1642,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_item_received__contact_photo_description">Zdjęcie kontaktu</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Ładowanie</string>
+  <string name="ConversationUpdateItem_learn_more">Dowiedz się więcej</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
@@ -2141,6 +2172,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
   <string name="media_preview__forward_title">Przekaż dalej</string>
+  <string name="media_preview__share_title">Udostępnij</string>
   <string name="media_preview__all_media_title">Wszystkie multimedia</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Podgląd plików multimedialnych</string>
@@ -2466,5 +2498,36 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Przejrzyj członków</string>
+  <string name="ReviewCardDialogFragment__review_request">Przejrzyj prośby</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d członków grupy ma takie samo imię, przejrzyj poniższych członków i podejmij działania.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Jeśli nie masz pewności, od kogo pochodzi ta prośba, przejrzyj poniższe kontakty i podejmij działania.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Brak innych wspólnych grup.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Brak wspólnych grup.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d wspólna grupa</item>
+    <item quantity="few">%d wspólne grupy</item>
+    <item quantity="many">%d wspólnych grup</item>
+    <item quantity="other">%d wspólne grupy</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d wspólna grupa</item>
+    <item quantity="few">%d wspólne grupy</item>
+    <item quantity="many">%d wspólnych grup</item>
+    <item quantity="other">%d wspólne grupy</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Usunąć %1$s z grupy?</string>
+  <string name="ReviewCardDialogFragment__remove">Usuń</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Usuwanie członka grupy nie powiodło się.</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">Członek</string>
+  <string name="ReviewCard__request">Prośba</string>
+  <string name="ReviewCard__your_contact">Twój kontakt</string>
+  <string name="ReviewCard__remove_from_group">Usuń z grupy</string>
+  <string name="ReviewCard__update_contact">Uaktualnij kontakt</string>
+  <string name="ReviewCard__block">Zablokuj</string>
+  <string name="ReviewCard__delete">Usuń</string>
+  <string name="ReviewCard__recently_changed">Ostatnio zmienił(a) nazwę profilu z %1$s na %2$s</string>
   <!--EOF-->
 </resources>

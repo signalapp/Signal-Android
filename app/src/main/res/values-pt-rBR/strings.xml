@@ -295,6 +295,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os arquivos de mídia efêmeros são removidos automaticamente após serem enviados</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Você já visualizou esta mensagem</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Você pode adicionar anotações para si mesma/o nessa conversa. Se sua conta estiver vinculada à algum aparelho, as novas anotações serão sincronizadas. </string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membros do grupo têm o mesmo nome.</string>
+  <string name="ConversationFragment__tap_to_review">Toque para revisar</string>
+  <string name="ConversationFragment__review_requests_carefully">Analisar os pedidos com atenção</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">O Signal encontrou outro contato com o mesmo nome.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não há nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -453,6 +457,18 @@
   <string name="GroupManagement_invite_single_user">“%1$s” não pode ser automaticamente adicionado a este grupo por você.\n\nEles foram convidados a participar, e não verão nenhuma mensagem do grupo até que aceitem.</string>
   <string name="GroupManagement_learn_more">Saiba mais</string>
   <string name="GroupManagement_invite_multiple_users">Estes usuários não podem ser adicionados automaticamente a este grupo por você.\n\nEles foram convidados a participar no grupo, e não verão nenhuma mensagem do grupo até que aceitem.</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">O que são os Novos Grupos?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Os Novos Grupos têm recursos como @menções e administradores de grupos, entre outros que serão implementados no futuro.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Todo o histórico de mensagens e mídia de antes da atualização foram preservados.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Este membro precisará aceitar um convite para participar novamente neste grupo e não receberá as mensagens do grupo até que aceite:</item>
+    <item quantity="other">Estes membros precisarão aceitar um convite para participar novamente neste grupo e não receberão as mensagens do grupo até que aceitem:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Este membro não é capaz de participar em Novos Grupos, e foi removido do grupo:</item>
+    <item quantity="other">Estes membros não são capazes de participar em Novos Grupos, e foram removidos do grupo:</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Sair do grupo?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Você não poderá mais enviar nem receber mensagens neste grupo.</string>
@@ -806,7 +822,8 @@
   <string name="MessageRecord_you_updated_group">Você atualizou o grupo.</string>
   <string name="MessageRecord_the_group_was_updated">O grupo foi atualizado.</string>
   <string name="MessageRecord_you_called_date">Você ligou · %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Chamada perdida · %1$s</string> -->
+  <string name="MessageRecord_missed_audio_call_date">Chamada de áudio perdida · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Chamada de vídeo perdida · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s atualizou o grupo.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ligou para você · %2$s</string>
   <string name="MessageRecord_called_s">Chamou %s</string>
@@ -816,6 +833,11 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu o tempo de duração das mensagens efêmeras como %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de duração das mensagens efêmeras como %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">O temporizador de mensagem efémera foi definido para %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Este grupo foi atualizado para um Novo Grupo.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s membro não pôde ser adicionado ao Novo Grupo porém foi convidado a participar.</item>
+    <item quantity="other">%1$s membros não puderam ser adicionados ao Novo Grupo porém foram convidados a participar.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s alterou o nome de perfil para %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s alterou o nome de perfil de %2$s para %3$s.</string>
@@ -1233,7 +1255,8 @@
   <string name="ThreadRecord_draft">Rascunho:</string>
   <string name="ThreadRecord_called">Você ligou</string>
   <string name="ThreadRecord_called_you">Ligou para você</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Ligação perdida</string> -->
+  <string name="ThreadRecord_missed_audio_call">Chamada de voz perdida</string>
+  <string name="ThreadRecord_missed_video_call">Chamada de vídeo perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
   <string name="ThreadRecord_sticker">Figurinha</string>
   <string name="ThreadRecord_view_once_photo">Imagem efêmera</string>
@@ -1328,6 +1351,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Esta mensagem será excluída permanentemente.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s para %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">A mídia não está mais disponível.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Não foi possível encontrar um aplicativo apto de compartilhar esta mídia.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensagens novas em %2$d conversas</string>
   <string name="MessageNotifier_most_recent_from_s">Mais recente de: %1$s</string>
@@ -1520,6 +1544,7 @@
   <string name="conversation_item_received__contact_photo_description">Foto do contato</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Carregando</string>
+  <string name="ConversationUpdateItem_learn_more">Saiba mais</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Tocar … Pausar</string>
   <string name="audio_view__download_accessibility_description">Baixar</string>
@@ -2033,6 +2058,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Salvar</string>
   <string name="media_preview__forward_title">Avançar</string>
+  <string name="media_preview__share_title">Compartilhar</string>
   <string name="media_preview__all_media_title">Todas as mídias</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pré-visualização de mídia</string>
@@ -2344,5 +2370,32 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s para %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Revisar os Membros</string>
+  <string name="ReviewCardDialogFragment__review_request">Analisar o Pedido</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membros do grupo têm o mesmo nome, revise os membros abaixo e decida o que fazer.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Se você não tiver certeza de quem é o pedido, revise os contatos abaixo e tome as providências.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nenhum outro grupo em comum.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Não há grupos em comum.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d grupo em comum</item>
+    <item quantity="other">%d grupos em comum</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d grupo em comum</item>
+    <item quantity="other">%d grupos em comum</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Excluir %1$s de grupo?</string>
+  <string name="ReviewCardDialogFragment__remove">Remover</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Falha ao excluir o membro do grupo.</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">Membro</string>
+  <string name="ReviewCard__request">Pedido</string>
+  <string name="ReviewCard__your_contact">Seu contato</string>
+  <string name="ReviewCard__remove_from_group">Excluir do grupo</string>
+  <string name="ReviewCard__update_contact">Atualizar o contato</string>
+  <string name="ReviewCard__block">Bloquear</string>
+  <string name="ReviewCard__delete">Excluir</string>
+  <string name="ReviewCard__recently_changed">Mudou recentemente o nome do seu perfil de %1$s a %2$s</string>
   <!--EOF-->
 </resources>

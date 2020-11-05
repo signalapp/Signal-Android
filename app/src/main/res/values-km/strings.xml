@@ -408,6 +408,7 @@
     <item quantity="other">ការអញ្ជើញ%d បានផ្ញើ</item>
   </plurals>
   <string name="GroupManagement_learn_more">សិក្សាបន្ថែម</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ចាកចេញពីក្រុម?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">អ្នកនឹងមិនអាចផ្ញើ ឬទទួលសារក្នុងក្រុមនេះទៀតទេ។</string>
@@ -1012,7 +1013,6 @@
   <string name="ThreadRecord_draft">ព្រាង៖</string>
   <string name="ThreadRecord_called">អ្នកបានហៅ</string>
   <string name="ThreadRecord_called_you">បានហៅមកអ្នក</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">ការហៅមិនបានទទួល</string> -->
   <string name="ThreadRecord_media_message">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="ThreadRecord_sticker">ស្ទីកគ័រ</string>
   <string name="ThreadRecord_view_once_photo">បង្ហាញ-ម្តង រូបភាព</string>
@@ -1280,6 +1280,7 @@
   <string name="conversation_item_received__contact_photo_description">រូបភាពទំនាក់ទំនង</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">កំពុងផ្ទុក</string>
+  <string name="ConversationUpdateItem_learn_more">សិក្សាបន្ថែម</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">លេង … ផ្អាក</string>
   <string name="audio_view__download_accessibility_description">ទាញយក</string>
@@ -1745,6 +1746,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">រក្សាទុក</string>
   <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
+  <string name="media_preview__share_title">ចែករំលែក</string>
   <string name="media_preview__all_media_title">ព័ត៌មានទាំងអស់</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">មើលព័ត៌មានជាមុន</string>
@@ -2008,5 +2010,12 @@
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ទៅ%2$s</string>
   <!--StorageUtil-->
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__remove">លុបចេញ</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">សមាជិក</string>
+  <string name="ReviewCard__remove_from_group">លុបចេញពីក្រុម</string>
+  <string name="ReviewCard__block">រារាំង</string>
+  <string name="ReviewCard__delete">លុប</string>
   <!--EOF-->
 </resources>

@@ -315,6 +315,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Išsiunčiami vienkartinės peržiūros medijos failai, juos išsiuntus, yra automatiškai pašalinami</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Jūs jau žiūrėjote šią žinutę</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje galite rašyti sau pastabas.\nJeigu yra su paskyra susietų įrenginių, naujos pastabos bus sinchronizuotos.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą.</string>
+  <string name="ConversationFragment__tap_to_review">Bakstelėkite, norėdami peržiūrėti</string>
+  <string name="ConversationFragment__review_requests_carefully">Atidžiai peržiūrėkite prašymus</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal rado kitą adresatą tokiu pačiu vardu.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -485,6 +489,22 @@
   <string name="GroupManagement_invite_single_user">Jūs negalite automatiškai pridėti naudotojo „%1$s“ į šią grupę.\n\nJis yra pakviestas prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
   <string name="GroupManagement_learn_more">Sužinoti daugiau</string>
   <string name="GroupManagement_invite_multiple_users">Jūs negalite automatiškai pridėti šių naudotojų į šią grupę.\n\nJie yra pakviesti prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Kas yra naujosios grupės?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Naujosiose grupėse yra tokios ypatybės kaip @paminėjimai, grupių administratoriai, o ateityje ypatybių bus dar daugiau.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Visa prieš naujinimą buvusi žinučių istorija ir medija buvo išsaugota.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Šis narys, norėdamas vėl prisijungti prie grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
+    <item quantity="few">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
+    <item quantity="many">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
+    <item quantity="other">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Šis narys negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalintas:</item>
+    <item quantity="few">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
+    <item quantity="many">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
+    <item quantity="other">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Išeiti iš grupės?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Jūs daugiau šioje grupėje nebegalėsite siųsti ar gauti žinutes.</string>
@@ -876,7 +896,8 @@
   <string name="MessageRecord_you_updated_group">Jūs atnaujinote grupę.</string>
   <string name="MessageRecord_the_group_was_updated">Grupė buvo atnaujinta.</string>
   <string name="MessageRecord_you_called_date">Jūs skambinote · %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Praleistas skambutis · %1$s</string> -->
+  <string name="MessageRecord_missed_audio_call_date">Praleistas garso skambutis · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Praleistas vaizdo skambutis · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s atnaujino grupę.</string>
   <string name="MessageRecord_s_called_you_date">Jums skambino %1$s · %2$s</string>
   <string name="MessageRecord_called_s">Skambino %s</string>
@@ -886,6 +907,13 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laikmatį į %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laikmatį į %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Išnykstančių žinučių laikmatis nustatytas į %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ši grupė buvo atnaujinta į naująją grupę.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s nario nepavyko pridėti į naująją grupę ir todėl, jis buvo pakviestas prie jos prisijungti.</item>
+    <item quantity="few">%1$s narių nepavyko pridėti į naująją grupę ir todėl, jie buvo pakviesti prie jos prisijungti.</item>
+    <item quantity="many">%1$s narių nepavyko pridėti į naująją grupę ir todėl, jie buvo pakviesti prie jos prisijungti.</item>
+    <item quantity="other">%1$s nario nepavyko pridėti į naująją grupę ir todėl, jie buvo pakviesti prie jos prisijungti.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s pasikeitė profilio vardą į %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s pasikeitė profilio vardą iš %2$s į %3$s.</string>
@@ -1327,7 +1355,8 @@
   <string name="ThreadRecord_draft">Juodraštis:</string>
   <string name="ThreadRecord_called">Jūs skambinote</string>
   <string name="ThreadRecord_called_you">Jums skambino</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Praleistas skambutis</string> -->
+  <string name="ThreadRecord_missed_audio_call">Praleistas garso skambutis</string>
+  <string name="ThreadRecord_missed_video_call">Praleistas vaizdo skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
   <string name="ThreadRecord_sticker">Lipdukas</string>
   <string name="ThreadRecord_view_once_photo">Vienkartinės peržiūros nuotrauka</string>
@@ -1422,6 +1451,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naudotojui %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Medija daugiau nebeprieinama.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepavyksta rasti programėlės, galinčios bendrinti šią mediją.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d naujų(-os) žinutės(-ių) %2$d pokalbyje(-iuose)</string>
   <string name="MessageNotifier_most_recent_from_s">Paskiausia nuo: %1$s</string>
@@ -1620,6 +1650,7 @@
   <string name="conversation_item_received__contact_photo_description">Adresato nuotrauka</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Įkeliama</string>
+  <string name="ConversationUpdateItem_learn_more">Sužinoti daugiau</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
@@ -2149,6 +2180,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Įrašyti</string>
   <string name="media_preview__forward_title">Persiųsti</string>
+  <string name="media_preview__share_title">Bendrinti</string>
   <string name="media_preview__all_media_title">Visa medija</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Medijos peržiūra</string>
@@ -2474,5 +2506,36 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naudotojui %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Peržiūrėti narius</string>
+  <string name="ReviewCardDialogFragment__review_request">Peržiūrėti prašymą</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupės nariai(-ių) turi tokį patį vardą, peržiūrėkite žemiau esančius narius ir pasirinkite norėdami imtis veiksmų.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Jei nesate tikri, nuo ko yra gautas prašymas, peržiūrėkite žemiau esančius adresatus ir imkitės veiksmų.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nėra kitų bendrų grupių.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Nėra bendrų grupių.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d bendra grupė</item>
+    <item quantity="few">%d bendros grupės</item>
+    <item quantity="many">%d bendrų grupių</item>
+    <item quantity="other">%d bendra grupė</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d bendra grupė</item>
+    <item quantity="few">%d bendros grupės</item>
+    <item quantity="many">%d bendrų grupių</item>
+    <item quantity="other">%d bendra grupė</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Pašalinti %1$s iš grupės?</string>
+  <string name="ReviewCardDialogFragment__remove">Šalinti</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Nepavyko pašalinti grupės nario.</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">Narys</string>
+  <string name="ReviewCard__request">Prašyti</string>
+  <string name="ReviewCard__your_contact">Jūsų adresatas</string>
+  <string name="ReviewCard__remove_from_group">Šalinti iš grupės</string>
+  <string name="ReviewCard__update_contact">Atnaujinti adresatą</string>
+  <string name="ReviewCard__block">Užblokuoti</string>
+  <string name="ReviewCard__delete">Ištrinti</string>
+  <string name="ReviewCard__recently_changed">Neseniai pasikeitė profilio vardą iš %1$s į %2$s</string>
   <!--EOF-->
 </resources>

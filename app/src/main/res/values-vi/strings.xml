@@ -417,6 +417,7 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" không thể được tự động thêm vào nhóm bởi bạn.\n\nHọ đã được mời tham gia và sẽ không thấy tin nhắn trong nhóm cho đến khi họ chấp nhận.</string>
   <string name="GroupManagement_learn_more">Tìm hiểu thêm</string>
   <string name="GroupManagement_invite_multiple_users">Những người dùng này không thể được tự động thêm vào nhóm bởi bạn.\n\nHọ đã được mời tham gia và sẽ không thấy tin nhắn trong nhóm cho đến khi họ chấp nhận.</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Rời nhóm?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Bạn sẽ không thể gửi hoặc nhận tin nhắn trong nhóm này nữa.</string>
@@ -1119,7 +1120,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThreadRecord_draft">Nháp:</string>
   <string name="ThreadRecord_called">Bạn đã gọi</string>
   <string name="ThreadRecord_called_you">Đã gọi cho bạn</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string> -->
   <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
   <string name="ThreadRecord_sticker">Nhãn dán</string>
   <string name="ThreadRecord_view_once_photo">Ảnh xem một lần</string>
@@ -1394,6 +1394,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="conversation_item_received__contact_photo_description">Ảnh liên hệ</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Đang tải…</string>
+  <string name="ConversationUpdateItem_learn_more">Tìm hiểu thêm</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Phát … Tạm dừng</string>
   <string name="audio_view__download_accessibility_description">Tải xuống</string>
@@ -1899,6 +1900,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--media_preview-->
   <string name="media_preview__save_title">Lưu</string>
   <string name="media_preview__forward_title">Chuyển tiếp</string>
+  <string name="media_preview__share_title">Chia sẻ</string>
   <string name="media_preview__all_media_title">Tất cả tập tin đa phương tiện</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Xem trước tệp đa phương tiện</string>
@@ -2181,5 +2183,12 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s đến %2$s</string>
   <!--StorageUtil-->
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__remove">Loại bỏ</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">Thành viên</string>
+  <string name="ReviewCard__remove_from_group">Loại bỏ khỏi nhóm</string>
+  <string name="ReviewCard__block">Chặn</string>
+  <string name="ReviewCard__delete">Xóa</string>
   <!--EOF-->
 </resources>

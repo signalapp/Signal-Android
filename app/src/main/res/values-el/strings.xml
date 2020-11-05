@@ -295,6 +295,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Τα εξερχόμενα πολυμέσα μιας μόνο προβολής αφαιρούνται αυτόματα αφού αποσταλθούν</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Έχεις ήδη δει αυτό το μήνυμα</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Σε αυτή τη συνομιλία, μπορείς να γράψεις προσωπικές σημειώσεις. \nΑν έχεις συνδεμένες συσκευές στο λογαριασμό σου, οι νέες σημειώσεις θα συγχρονίζονται. </string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d μέλη της ομάδας έχουν το ίδιο όνομα.</string>
+  <string name="ConversationFragment__tap_to_review">Πάτα για ανασκόπηση</string>
+  <string name="ConversationFragment__review_requests_carefully">Έλεγξε τα αιτήματα προσεκτικά</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Το Signal βρήκε και άλλη επαφή με το ίδιο όνομα.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένο πρόγραμμα περιήγησης στη συσκευή σου.</string>
   <!--ConversationListFragment-->
@@ -453,6 +457,18 @@
   <string name="GroupManagement_invite_single_user">Δεν μπορείς να προσθέσεις τον/την \"%1$s\"  αυτόματα στην ομάδα.\n\nΈχει λάβει πρόσκληση, και δεν θα βλέπει τα μηνύματα της ομάδας μέχρι να την αποδεχτεί.</string>
   <string name="GroupManagement_learn_more">Μάθε περισσότερα</string>
   <string name="GroupManagement_invite_multiple_users">Δεν μπορείς να προσθέσεις αυτόματα αυτούς τους χρήστες στην ομάδα.\n\nΈχουν λάβει πρ΄σκληση, και δεν θα βλέπουν τα μηνύματα της ομάδας μέχρι να την αποδεχτούν.</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Τι είναι οι Ομάδες νέου τύπου;</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Οι ομάδες νέου τύπου έχουν χαρακτηριστικά όπως τις @αναφορές και τους διαχειριστές ομάδας, και θα αποκτήσουν παραπάνω χαρακτηριστικά στο μέλλον.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Όλο το ιστορικό της συζήτησης και τα πολυμέσα διατηρήθηκαν ως είχαν πριν την αναβάθμιση.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Αυτό το μέλος θα πρέπει να αποδεχτεί την πρόσκληση να ξαναμπεί στην ομάδα, και δεν θα λαμβάνει τα μηνύματα της ομάδας μέχρι να αποδεχτεί:</item>
+    <item quantity="other">Αυτά τα μέλη θα πρέπει να αποδεχτούν την πρόσκληση να ξαναμπούν στην ομάδα, και δεν θα λαμβάνουν τα μηνύματα της ομάδας μέχρι να αποδεχτούν:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Αυτό το μέλος δεν μπορεί να μπει σε Ομάδες νέου τύπου, και αφαιρέθηκε από την ομάδα.</item>
+    <item quantity="other">Αυτά τα μέλη δεν μπορούν να μπουν σε Ομάδες νέου τύπου, και αφαιρέθηκαν από την ομάδα.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Αποχώρηση απ\' την ομάδα;</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Δε θα μπορείς πια να στείλεις ή να λάεις μηνύματα σε αυτήν την ομάδα.</string>
@@ -806,7 +822,8 @@
   <string name="MessageRecord_you_updated_group">Ενημέρωσες την ομάδα</string>
   <string name="MessageRecord_the_group_was_updated">Η ομάδα ανανεώθηκε.</string>
   <string name="MessageRecord_you_called_date">Κάλεσες · %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Αναπάντητη κλήση · %1$s</string> -->
+  <string name="MessageRecord_missed_audio_call_date">Αναπάντητη κλήση · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Αναπάντητη βιντεοκλήση · %1$s</string>
   <string name="MessageRecord_s_updated_group">Ο/Η %s ενημέρωσε την ομάδα.</string>
   <string name="MessageRecord_s_called_you_date">Ο/Η %1$s σε κάλεσε · %2$s</string>
   <string name="MessageRecord_called_s">Κάλεσες τον/την %s</string>
@@ -816,6 +833,11 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Ο/Η %1$s όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ορίστηκε σε %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Αυτή η ομάδα αναβαθμίστηκε σε Ομάδα νέου τύπου.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s μέλος δεν μπόρεσε να προστεθεί στην Ομάδα νέου τύπου, και προσκλήθηκε να μπει.</item>
+    <item quantity="other">%1$s μέλη δεν μπόρεσαν να προστεθούν στην Ομάδα νέου τύπου, και προσκλήθηκαν να μπουν.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">Ο/Η %1$s άλλαξε το όνομα προφίλ του/της σε %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">Ο/Η %1$s άλλαξε το όνομα προφίλ του/της από %2$s σε %3$s.</string>
@@ -1228,7 +1250,8 @@
   <string name="ThreadRecord_draft">Πρόχειρο:</string>
   <string name="ThreadRecord_called">Τον/την κάλεσες</string>
   <string name="ThreadRecord_called_you">Σε κάλεσε</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string> -->
+  <string name="ThreadRecord_missed_audio_call">Αναπάντητη κλήση φωνής</string>
+  <string name="ThreadRecord_missed_video_call">Αναπάντητη βιντεοκλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
   <string name="ThreadRecord_sticker">Αυτοκόλλητο</string>
   <string name="ThreadRecord_view_once_photo">Φωτογραφία μιας μόνο προβολής</string>
@@ -1323,6 +1346,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Αυτή η επιλογή θα διαγράψει οριστικά αυτό το μήνυμα.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s προς %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Το πολυμέσο δεν είναι πια διαθέσιμο.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Δεν βρέθηκε εφαρμογή που να μπορεί να διαμοιραστεί αυτό το πολυμέσο.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d νέα μηνύματα σε %2$d συνομιλίες</string>
   <string name="MessageNotifier_most_recent_from_s">Τελευταίο μήνυμα από: %1$s</string>
@@ -1515,6 +1539,7 @@
   <string name="conversation_item_received__contact_photo_description">Φωτογραφία επαφής</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Φορτώνει</string>
+  <string name="ConversationUpdateItem_learn_more">Μάθε περισσότερα</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Αναπαραγωγή … Παύση</string>
   <string name="audio_view__download_accessibility_description">Λήψη</string>
@@ -2029,6 +2054,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">Αποθήκευση</string>
   <string name="media_preview__forward_title">Προώθηση</string>
+  <string name="media_preview__share_title">Μοιράσου</string>
   <string name="media_preview__all_media_title">Όλα τα πολυμέσα</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Προεπισκόπιση</string>
@@ -2340,5 +2366,32 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s προς %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Ανασκόπηση μελών</string>
+  <string name="ReviewCardDialogFragment__review_request">Ανασκόπηση αιτήματος</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d μέλη της ομάδας έχουν το ίδιο όνομα, ανασκόπησε τα μέλη παρακάτω, και διάλεξε τί ενέργεια να κάνεις.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Αν δεν είσαι σίγουρος/η από ποιόν είναι το αίτημα, ανασκόπησε τις παρακάτω επαφές, και κάνε κάποια ενέργεια.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Καμμία άλλη κοινή ομάδα</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Καμμία κοινή ομάδα.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d κοινή ομάδα</item>
+    <item quantity="other">%d κοινές ομάδες</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d κοινή ομάδα</item>
+    <item quantity="other">%d κοινές ομάδες</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Αφαίρεση του/της %1$s από την ομάδα;</string>
+  <string name="ReviewCardDialogFragment__remove">Αφαίρεση</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Αποτυχία αφαίρεσης μέλους της ομάδας.</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">Μέλος</string>
+  <string name="ReviewCard__request">Αίτημα</string>
+  <string name="ReviewCard__your_contact">Επαφή σου</string>
+  <string name="ReviewCard__remove_from_group">Αφαίρεση απ\' την ομάδα</string>
+  <string name="ReviewCard__update_contact">Ανανέωση επαφής</string>
+  <string name="ReviewCard__block">Φραγή</string>
+  <string name="ReviewCard__delete">Διαγραφή</string>
+  <string name="ReviewCard__recently_changed">Άλλαξε πρόσφατα το όνομα προφίλ του/της από %1$s σε %2$s</string>
   <!--EOF-->
 </resources>

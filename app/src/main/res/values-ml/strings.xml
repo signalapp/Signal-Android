@@ -420,6 +420,7 @@
   <string name="GroupManagement_access_level_no_one">ആരുമില്ല</string>
   <!--GV2 invites sent-->
   <string name="GroupManagement_learn_more">കൂടുതൽ അറിയുക</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയണോ?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ മെസേജുകൾ അയയ്ക്കാനോ സ്വീകരിക്കാനോ കഴിയില്ല.</string>
@@ -1035,7 +1036,6 @@ grūpp ap‌ḍē</string>
   <string name="ThreadRecord_draft">ഡ്രാഫ്റ്റ്:</string>
   <string name="ThreadRecord_called">നിങ്ങൾ വിളിച്ചു</string>
   <string name="ThreadRecord_called_you">നിങ്ങളെ വിളിച്ചു</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">മിസ്ഡ് കോൾ</string> -->
   <string name="ThreadRecord_media_message">മീഡിയ സന്ദേശം</string>
   <string name="ThreadRecord_sticker">സ്റ്റിക്കർ</string>
   <string name="ThreadRecord_view_once_photo">ഒരു തവണ-ദൃശ്യമാകുന്ന ഫോട്ടോ</string>
@@ -1308,6 +1308,7 @@ grūpp ap‌ḍē</string>
   <string name="conversation_item_received__contact_photo_description">കോൺ‌ടാക്റ്റിന്റെ ഫോട്ടോ</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">ലോഡിംഗ്</string>
+  <string name="ConversationUpdateItem_learn_more">കൂടുതൽ അറിയുക</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
   <string name="audio_view__download_accessibility_description">ഡൌൺലോഡ്</string>
@@ -1787,6 +1788,7 @@ grūpp ap‌ḍē</string>
   <!--media_preview-->
   <string name="media_preview__save_title">സേവ് ചെയ്യുക</string>
   <string name="media_preview__forward_title">ഫോർവേഡ് ചെയ്യുക</string>
+  <string name="media_preview__share_title">പങ്കിടുക</string>
   <string name="media_preview__all_media_title">എല്ലാ മീഡിയകൾ</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">മീഡിയ പ്രിവ്യൂ</string>
@@ -2062,5 +2064,12 @@ grūpp ap‌ḍē</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s-നോട്</string>
   <!--StorageUtil-->
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__remove">ഒഴിവാക്കുക</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">അംഗം</string>
+  <string name="ReviewCard__remove_from_group">ഗ്രൂപ്പിൽ നിന്ന് നീക്കംചെയ്യുക</string>
+  <string name="ReviewCard__block">ബ്ലോക്ക്</string>
+  <string name="ReviewCard__delete">ഇല്ലാതാക്കുക </string>
   <!--EOF-->
 </resources>

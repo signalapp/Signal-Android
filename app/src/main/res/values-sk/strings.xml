@@ -315,6 +315,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchádzajúce mediálne súbory na jedno zobrazenie sa po odoslaní automaticky odstránia</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Túto správu ste si už zobrazili</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">V tejto konverzácii si môžete pridávať poznámky.\nAk máte vo vašom účte nejaké pripojené zariadenia, nové poznámky sa budú synchronizovať.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d členovia skupiny majú rovnaké meno.</string>
+  <string name="ConversationFragment__tap_to_review">Ťuknite pre kontrolu</string>
+  <string name="ConversationFragment__review_requests_carefully">Požiadavky pozorne overte</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal našiel ďalší kontakt s rovnakým menom.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte nainštalovaný žiadny prehliadač.</string>
   <!--ConversationListFragment-->
@@ -485,6 +489,22 @@
   <string name="GroupManagement_invite_single_user">“%1$s” nemôžete automaticky pridať do tejto skupiny.\n\nTomuto používateľovi bola odoslaná pozvánka, aby sa pridal, a kým pozvanie nepríjme, neuvidí žiadne správy zo skupiny.</string>
   <string name="GroupManagement_learn_more">Dozvedieť sa viac</string>
   <string name="GroupManagement_invite_multiple_users">Týchto používateľov nemôžete automaticky pridať do tejto skupiny.\n\nBoli im odoslané pozvánky, aby sa pridali, a kým pozvanie nepríjmu, neuvidia žiadne správy zo skupiny. </string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Čo sú Nové skupiny?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nové skupiny majú funkcie ako @spomenutia, administrátorov skupín a v budúcnosti budú podporovať ďalšie nové funkcie.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Celá história správ a médií ostala zachovaná tak ako pred modernizáciou.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Tento člen musí znova prijať pozvánku do skupiny a kým ju neprijme, nebude dostávať skupinové správy:</item>
+    <item quantity="few">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
+    <item quantity="many">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
+    <item quantity="other">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Tento člen nedokáže vstupovať do Nových skupín a bol zo skupiny odstránený:</item>
+    <item quantity="few">Títo členovia nedokážu vstupovať do Nových skupín a boli zo skupiny odstránení:</item>
+    <item quantity="many">Títo členovia nedokážu vstupovať do Nových skupín a boli zo skupiny odstránení:</item>
+    <item quantity="other">Títo členovia nedokážu vstupovať do Nových skupín a boli zo skupiny odstránení:</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Opustiť skupinu?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nebudete môcť poslať ani prijať správy z tejto skupiny.</string>
@@ -876,7 +896,8 @@
   <string name="MessageRecord_you_updated_group">Aktualizovali ste skupinu.</string>
   <string name="MessageRecord_the_group_was_updated">Skupina bola aktualizovaná</string>
   <string name="MessageRecord_you_called_date">Zavolali ste · %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Zmeškaný hovor · %1$s</string> -->
+  <string name="MessageRecord_missed_audio_call_date">Zmeškaný hlasový hovor · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Zmeškaný videohovor · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s aktualizoval/a skupinu.</string>
   <string name="MessageRecord_s_called_you_date">%1$s vám zavolal/a · %2$s</string>
   <string name="MessageRecord_called_s">Volali ste %s</string>
@@ -886,6 +907,13 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili ste časovač miznúcich správ na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil/a časovač miznúcich správ na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač miznúcich správ bol nastavený na %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Táto skupina bola modernizovaná na Novú skupinu.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s člen nemohol byť pridaný do Novej skupiny a bol do nej pozvaný.</item>
+    <item quantity="few">%1$s členovia nemohli byť pridaní do Novej skupiny a boli do nej pozvaní.</item>
+    <item quantity="many">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
+    <item quantity="other">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s zmenil/a svoj názov profilu na %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s zmenil/a svoj názov profilu z %2$s na %3$s.</string>
@@ -1326,7 +1354,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_draft">Koncept:</string>
   <string name="ThreadRecord_called">Volali ste</string>
   <string name="ThreadRecord_called_you">Volal Vám</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Zmeškaný hovor</string> -->
+  <string name="ThreadRecord_missed_audio_call">Prichádzajúci hlasový hovor</string>
+  <string name="ThreadRecord_missed_video_call">Prichádzajúci videohovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
   <string name="ThreadRecord_sticker">Nálepka</string>
   <string name="ThreadRecord_view_once_photo">Fotka na jedno zobrazenie</string>
@@ -1421,6 +1450,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Týmto natrvalo odstánite túto správu.</string>
   <string name="MediaPreviewActivity_s_to_s">od %1$s do %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Médiá už nie sú dostupné.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepodarilo sa nájsť aplikáciu schopnú zdieľať tento typ súboru.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nové správy v %2$d konverzáciách</string>
   <string name="MessageNotifier_most_recent_from_s">Najnovšie od: %1$s</string>
@@ -1619,6 +1649,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_item_received__contact_photo_description">Fotka kontaktu</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Načítava sa</string>
+  <string name="ConversationUpdateItem_learn_more">Dozvedieť sa viac</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Prehrať … Pozastaviť</string>
   <string name="audio_view__download_accessibility_description">Stiahnuť</string>
@@ -2148,6 +2179,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--media_preview-->
   <string name="media_preview__save_title">Uložiť</string>
   <string name="media_preview__forward_title">Preposlať</string>
+  <string name="media_preview__share_title">Zdieľať</string>
   <string name="media_preview__all_media_title">Všetky médiá</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Náhľad média</string>
@@ -2473,5 +2505,36 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">od %1$s do %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Overiť členov</string>
+  <string name="ReviewCardDialogFragment__review_request">Overiť žiadosť</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d členovia skupiny majú rovnaké meno. Overte nižšie zobrazených členov a zvoľte ďalší krok.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Ak si nie ste istý/á, od koho je táto žiadosť, overte nižšie zobrazené kontakty a zvoľte úkon.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Žiadne ďalšie spoločné skupiny.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Žiadne spoločné skupiny.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d spoločná skupina</item>
+    <item quantity="few">%d spoločné skupiny</item>
+    <item quantity="many">%d spoločných skupín</item>
+    <item quantity="other">%d spoločných skupín</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d spoločná skupina</item>
+    <item quantity="few">%d spoločné skupiny</item>
+    <item quantity="many">%d spoločných skupín</item>
+    <item quantity="other">%d spoločných skupín</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Odstrániť %1$s zo skupiny?</string>
+  <string name="ReviewCardDialogFragment__remove">Odstrániť</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Nepodarilo sa odstrániť člena skupiny.</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">Člen</string>
+  <string name="ReviewCard__request">Žiadosť</string>
+  <string name="ReviewCard__your_contact">Váš kontakt</string>
+  <string name="ReviewCard__remove_from_group">Odstrániť zo skupiny</string>
+  <string name="ReviewCard__update_contact">Aktualizovať kontakt</string>
+  <string name="ReviewCard__block">Blokovať</string>
+  <string name="ReviewCard__delete">Vymazať</string>
+  <string name="ReviewCard__recently_changed">Nedávno zmenil/a názov svojho profilu z %1$s na %2$s</string>
   <!--EOF-->
 </resources>

@@ -295,6 +295,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Kartela media për parje vetëm një herë, që duhen dërguar, hiqen automatikisht pasi të jenë dërguar.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">E patë tashmë këtë mesazh</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Në këtë bisedë mund të shtoni shënime për veten.\nNëse llogaria juaj ka ndonjë pajisje të lidhur, shënimet e reja do të njëkohësohen.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d anëtarë grupi kanë të njëjtin emër.</string>
+  <string name="ConversationFragment__tap_to_review">Prekeni që ta shqyrtoni</string>
+  <string name="ConversationFragment__review_requests_carefully">Shqyrtojini me kujdes kërkesat</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal-i gjeti një tjetër kontakt me të njëjtin emër.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Në pajisjen tuaj s\’ka shfletues të instaluar.</string>
   <!--ConversationListFragment-->
@@ -453,6 +457,19 @@
   <string name="GroupManagement_invite_single_user">“%1$s” s’mund të shtohet automatikisht te ky grup nga ju.\n\nËshtë ftuar të marrë pjesë, dhe s’do të shohë ndonjë mesazh grupi, para se të pranojnë ftesën.</string>
   <string name="GroupManagement_learn_more">Mësoni më tepër</string>
   <string name="GroupManagement_invite_multiple_users">Këta përdorues s’mund të shtohen automatikisht te ky grup nga ju.\n\n Janë ftuar të marrin pjesë te grupi, dhe s’do të shohin ndonjë mesazh grupi, përpara se të pranojnë ftesat.</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Ç’janë Grupet e Reja?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Grupet e Reja kanë veçori të tilla si @përmendje dhe përgjegjës grupi, dhe në të ardhmen do të mbulojnë më tepër veçori.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Krejt historiku i mesazhe dhe mediat janë mbajtur prej kohës para përmirësimit.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Ky anëtar do të duhet të pranojë një ftesë për t’u bërë pjesë e 
+grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
+    <item quantity="other">Këta anëtarë do të duhet të pranojnë një ftesë për t’u bërë pjesë e grupit dhe s’do të marrin mesazhe grupi përpara se ta pranojnë:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Ky anëtar s’është i aftë të bëhet pjesë Grupesh të Rinj, dhe është hequr prej grupit:</item>
+    <item quantity="other">Këta anëtarë s’janë të aftë të bëhen pjesë Grupesh të Rinj, dhe janë hequr prej grupit:</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Të braktiset grupi?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">S’do të jeni më në gjendje të dërgoni ose merrni mesazhe në këtë grup.</string>
@@ -809,7 +826,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_updated_group">E përditësuat grupin.</string>
   <string name="MessageRecord_the_group_was_updated">Grupi u përditësua.</string>
   <string name="MessageRecord_you_called_date">Thirrët · %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_date">Thirrje e humbur · %1$s</string> -->
+  <string name="MessageRecord_missed_audio_call_date">Thirrje audio e humbur · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Thirrje video e humbur · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s përditësoi grupin.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ju thirri · %2$s</string>
   <string name="MessageRecord_called_s">Thirrët %s</string>
@@ -819,6 +837,11 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutë kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s e vuri kohëmatësin e tretjes së mesazheve në %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Koha për zhdukje mesazhesh është vënë 1%1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ky grup u përditësua si një Grup i Ri.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s anëtar s’u shtua dot te Grupi i Ri dhe u ftua të bëhet pjesë e tij.</item>
+    <item quantity="other">%1$s anëtarë s’u shtuan dot te Grupi i Ri dhe janë ftuar të bëhen pjesë e tij.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ndryshoi emrin e tij te profili si %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ndryshoi emrin e tij të profilit nga %2$s në %3$s.</string>
@@ -1232,7 +1255,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ThreadRecord_draft">Skicë:</string>
   <string name="ThreadRecord_called">Ju thirrët</string>
   <string name="ThreadRecord_called_you">Ju thirri</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">Thirrje e humbur</string> -->
+  <string name="ThreadRecord_missed_audio_call">Humbët thirrje audio</string>
+  <string name="ThreadRecord_missed_video_call">Humbët thirrje video</string>
   <string name="ThreadRecord_media_message">Mesazh media</string>
   <string name="ThreadRecord_sticker">Ngjitës</string>
   <string name="ThreadRecord_view_once_photo">Foto për t’u parë vetëm një herë</string>
@@ -1327,6 +1351,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Kjo do ta fshijë përgjithmonë këtë mesazh.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s për %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media s’është më e passhme.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">S’gjendet dot një aplikacion për të ndarë me të tjerët këtë media.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesazhe të reja në %2$d biseda</string>
   <string name="MessageNotifier_most_recent_from_s">Më të rejat nga: %1$s</string>
@@ -1519,6 +1544,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="conversation_item_received__contact_photo_description">Foto kontakti</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Po ngarkohet</string>
+  <string name="ConversationUpdateItem_learn_more">Mësoni më tepër</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -2034,6 +2060,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Ruaje</string>
   <string name="media_preview__forward_title">Përcilleni</string>
+  <string name="media_preview__share_title">Ndajeni Me të Tjerë</string>
   <string name="media_preview__all_media_title">Krejt mediat</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Paraparje medie</string>
@@ -2347,5 +2374,32 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s për %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Shqyrtoni Anëtarë</string>
+  <string name="ReviewCardDialogFragment__review_request">Shqyrtoni Kërkesë</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d anëtarë grupi kanë të njëjtin emër, shqyrtoni anëtarët më poshtë dhe zgjidhni kryerjen e një veprimi.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Nëse s’jeni i sigurt se prej kujt është kërkesa, shqyrtoni kontaktet më poshtë dhe kryeni një veprim.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">S’ka grupe të tjerë të përbashkët.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">S’ka grupe të përbashkët.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d grup i përbashkët</item>
+    <item quantity="other">%d grupe të përbashkët</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d grup i përbashkët</item>
+    <item quantity="other">%d grupe të përbashkët</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Të hiqet %1$s prej grupit?</string>
+  <string name="ReviewCardDialogFragment__remove">Hiqe</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">S’u arrit të hiqet anëtar grupi.</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">Anëtar</string>
+  <string name="ReviewCard__request">Kërkesë</string>
+  <string name="ReviewCard__your_contact">Kontakti juaj</string>
+  <string name="ReviewCard__remove_from_group">Hiqe nga grup</string>
+  <string name="ReviewCard__update_contact">Përditësoni kontaktin</string>
+  <string name="ReviewCard__block">Bllokoje</string>
+  <string name="ReviewCard__delete">Fshije</string>
+  <string name="ReviewCard__recently_changed">Ndryshoi së fundi emrin e vet të profilit nga %1$s në %2$s</string>
   <!--EOF-->
 </resources>

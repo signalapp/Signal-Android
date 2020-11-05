@@ -488,6 +488,7 @@
   <string name="GroupManagement_invite_single_user">لا يمكن إضافة \"%1$s\" تلقائياً إلى هذه المجموعة من قبلك. \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
   <string name="GroupManagement_learn_more">لمعرفة المزيد</string>
   <string name="GroupManagement_invite_multiple_users">لا يمكن إضافة هؤلاء المستخدمين تلقائياً إلى هذه المجموعة من قبلك. \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
+  <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ترك المجموعة؟</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">لن تتمكن من إرسال أو استقبال رسائل في هذه المجموعة بعد اﻵن.</string>
@@ -1288,7 +1289,8 @@
   <string name="ThreadRecord_draft">مسودة:</string>
   <string name="ThreadRecord_called">مكالمات صادرة</string>
   <string name="ThreadRecord_called_you">مكالمات واردة</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_missed_call">مكالمة فائتة</string> -->
+  <string name="ThreadRecord_missed_audio_call">مكالمة صوتية فائتة</string>
+  <string name="ThreadRecord_missed_video_call">مكالمة فيديو فائتة</string>
   <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
   <string name="ThreadRecord_sticker">ملصق</string>
   <string name="ThreadRecord_view_once_photo">صورة لمشاهدة لمرة واحدة</string>
@@ -1572,6 +1574,7 @@
   <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">جارٍ التحميل</string>
+  <string name="ConversationUpdateItem_learn_more">لمعرفة المزيد</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">شغّل … توقف</string>
   <string name="audio_view__download_accessibility_description">تنزيل</string>
@@ -2098,6 +2101,7 @@
   <!--media_preview-->
   <string name="media_preview__save_title">أحفظ</string>
   <string name="media_preview__forward_title">إعادة توجيه</string>
+  <string name="media_preview__share_title">شارك</string>
   <string name="media_preview__all_media_title">جميع الوسائط</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">لمحة عن الوسائط</string>
@@ -2405,5 +2409,12 @@
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s إلى %2$s</string>
   <!--StorageUtil-->
+  <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__remove">إزالة</string>
+  <!--ReviewCard-->
+  <string name="ReviewCard__member">عضو</string>
+  <string name="ReviewCard__remove_from_group">أزل من المجموعة</string>
+  <string name="ReviewCard__block">حظر</string>
+  <string name="ReviewCard__delete">حذف</string>
   <!--EOF-->
 </resources>
