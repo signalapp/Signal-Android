@@ -584,6 +584,11 @@ public class SignalServiceMessageSender {
         quoteBuilder.setAuthorUuid(message.getQuote().get().getAuthor().getUuid().get().toString());
       }
 
+      // TODO [Alan] PhoneNumberPrivacy: Do not set this number
+      if (message.getQuote().get().getAuthor().getNumber().isPresent()) {
+        quoteBuilder.setAuthorE164(message.getQuote().get().getAuthor().getNumber().get());
+      }
+
       if (!message.getQuote().get().getMentions().isEmpty()) {
         for (SignalServiceDataMessage.Mention mention : message.getQuote().get().getMentions()) {
           quoteBuilder.addBodyRanges(DataMessage.BodyRange.newBuilder()
