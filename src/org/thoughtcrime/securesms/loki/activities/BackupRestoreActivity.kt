@@ -29,10 +29,8 @@ import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.backup.FullBackupImporter.DatabaseDowngradeException
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
-import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
-import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -122,7 +120,7 @@ class BackupRestoreActivity : BaseActionBarActivity() {
                 return try {
                     val context: Context = this@BackupRestoreActivity
                     val database = DatabaseFactory.getBackupDatabase(context)
-                    FullBackupImporter.importFile(
+                    FullBackupImporter.importFromUri(
                             context,
                             AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
                             DatabaseFactory.getBackupDatabase(context),

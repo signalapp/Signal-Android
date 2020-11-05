@@ -13,6 +13,8 @@ import androidx.annotation.WorkerThread
 import androidx.documentfile.provider.DocumentFile
 import androidx.fragment.app.Fragment
 import network.loki.messenger.R
+import org.greenrobot.eventbus.EventBus
+import org.thoughtcrime.securesms.backup.BackupEvent
 import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.backup.FullBackupExporter
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
@@ -21,6 +23,8 @@ import org.thoughtcrime.securesms.loki.database.BackupFileRecord
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import org.whispersystems.libsignal.util.ByteUtil
 import java.io.IOException
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
 import java.text.SimpleDateFormat
 import java.util.*
@@ -160,11 +164,17 @@ object BackupUtil {
             throw IOException("Cannot create writable file in the dir $dirUri")
         }
 
-        FullBackupExporter.export(context,
-                AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                DatabaseFactory.getBackupDatabase(context),
-                fileUri,
-                backupPassword)
+        try {
+            FullBackupExporter.export(context,
+                    AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                    DatabaseFactory.getBackupDatabase(context),
+                    fileUri,
+                    backupPassword)
+        } catch (e: Exception) {
+            // Delete the backup file on any error.
+            DocumentsContract.deleteDocument(context.contentResolver, fileUri)
+            throw e
+        }
 
         //TODO Use real file size.
         val record = DatabaseFactory.getLokiBackupFilesDatabase(context)
@@ -196,6 +206,25 @@ object BackupUtil {
             db.deleteBackupFile(record)
 
             Log.v(TAG, "Backup file was deleted: ${record.uri}")
+        }
+    }
+
+    @JvmStatic
+    fun computeBackupKey(passphrase: String, salt: ByteArray?): ByteArray {
+        return try {
+            EventBus.getDefault().post(BackupEvent.createProgress(0))
+            val digest = MessageDigest.getInstance("SHA-512")
+            val input = passphrase.replace(" ", "").toByteArray()
+            var hash: ByteArray = input
+            if (salt != null) digest.update(salt)
+            for (i in 0..249999) {
+                if (i % 1000 == 0) EventBus.getDefault().post(BackupEvent.createProgress(0))
+                digest.update(hash)
+                hash = digest.digest(input)
+            }
+            ByteUtil.trim(hash, 32)
+        } catch (e: NoSuchAlgorithmException) {
+            throw AssertionError(e)
         }
     }
 }

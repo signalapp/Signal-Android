@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase
 import org.thoughtcrime.securesms.profiles.AvatarHelper
+import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.Conversions
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
@@ -35,7 +36,7 @@ import javax.crypto.*
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-object FullBackupExporter : FullBackupBase() {
+object FullBackupExporter {
     private val TAG = FullBackupExporter::class.java.simpleName
 
     @JvmStatic
@@ -120,7 +121,6 @@ object FullBackupExporter : FullBackupBase() {
                 table != OneTimePreKeyDatabase.TABLE_NAME &&
                 table != SessionDatabase.TABLE_NAME &&
                 table != PushDatabase.TABLE_NAME &&
-//                table != DraftDatabase.TABLE_NAME &&
 
                 table != LokiBackupFilesDatabase.TABLE_NAME &&
                 table != LokiAPIDatabase.openGroupProfilePictureTable &&
@@ -278,7 +278,7 @@ object FullBackupExporter : FullBackupBase() {
         return false
     }
 
-    private class BackupFrameOutputStream : BackupStream, Closeable, Flushable {
+    private class BackupFrameOutputStream : Closeable, Flushable {
 
         private val outputStream: OutputStream
         private var cipher: Cipher
@@ -292,7 +292,7 @@ object FullBackupExporter : FullBackupBase() {
         constructor(outputStream: OutputStream, passphrase: String) : super() {
             try {
                 val salt = Util.getSecretBytes(32)
-                val key = getBackupKey(passphrase, salt)
+                val key = BackupUtil.computeBackupKey(passphrase, salt)
                 val derived = HKDFv3().deriveSecrets(key, "Backup Export".toByteArray(), 64)
                 val split = ByteUtil.split(derived, 32, 32)
                 cipherKey = split[0]
@@ -309,12 +309,15 @@ object FullBackupExporter : FullBackupBase() {
                         .build().toByteArray()
                 outputStream.write(Conversions.intToByteArray(header.size))
                 outputStream.write(header)
-            } catch (e: NoSuchAlgorithmException) {
-                throw AssertionError(e)
-            } catch (e: NoSuchPaddingException) {
-                throw AssertionError(e)
-            } catch (e: InvalidKeyException) {
-                throw AssertionError(e)
+            } catch (e: Exception) {
+                when (e) {
+                    is NoSuchAlgorithmException,
+                    is NoSuchPaddingException,
+                    is InvalidKeyException -> {
+                        throw AssertionError(e)
+                    }
+                    else -> throw e
+                }
             }
         }
 
@@ -394,14 +397,16 @@ object FullBackupExporter : FullBackupBase() {
                 mac.update(remainder)
                 val attachmentDigest = mac.doFinal()
                 outputStream.write(attachmentDigest, 0, 10)
-            } catch (e: InvalidKeyException) {
-                throw AssertionError(e)
-            } catch (e: InvalidAlgorithmParameterException) {
-                throw AssertionError(e)
-            } catch (e: IllegalBlockSizeException) {
-                throw AssertionError(e)
-            } catch (e: BadPaddingException) {
-                throw AssertionError(e)
+            } catch (e: Exception) {
+                when (e) {
+                    is InvalidKeyException,
+                    is InvalidAlgorithmParameterException,
+                    is IllegalBlockSizeException,
+                    is BadPaddingException -> {
+                        throw AssertionError(e)
+                    }
+                    else -> throw e
+                }
             }
         }
 
@@ -416,14 +421,16 @@ object FullBackupExporter : FullBackupBase() {
                 out.write(length)
                 out.write(frameCiphertext)
                 out.write(frameMac, 0, 10)
-            } catch (e: InvalidKeyException) {
-                throw AssertionError(e)
-            } catch (e: InvalidAlgorithmParameterException) {
-                throw AssertionError(e)
-            } catch (e: IllegalBlockSizeException) {
-                throw AssertionError(e)
-            } catch (e: BadPaddingException) {
-                throw AssertionError(e)
+            } catch (e: Exception) {
+                when (e) {
+                    is InvalidKeyException,
+                    is InvalidAlgorithmParameterException,
+                    is IllegalBlockSizeException,
+                    is BadPaddingException -> {
+                        throw AssertionError(e)
+                    }
+                    else -> throw e
+                }
             }
         }
 

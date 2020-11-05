@@ -35,7 +35,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
-import org.thoughtcrime.securesms.backup.FullBackupBase;
+import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.components.registration.CallMeCountDownView;
@@ -327,9 +327,9 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
                 Context        context  = RegistrationActivity.this;
                 SQLiteDatabase database = DatabaseFactory.getBackupDatabase(context);
 
-                FullBackupImporter.importFile(context,
-                                              AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                                              database, Uri.fromFile(backup.getFile()), passphrase);
+                FullBackupImporter.importFromUri(context,
+                        AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                        database, Uri.fromFile(backup.getFile()), passphrase);
 
                 DatabaseFactory.upgradeRestored(context, database);
                 NotificationChannels.restoreContactNotificationChannels(context);
@@ -872,7 +872,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
-  public void onEvent(FullBackupBase.BackupEvent event) {
+  public void onEvent(BackupEvent event) {
     if (event.getCount() == 0) restoreBackupProgress.setText(R.string.RegistrationActivity_checking);
     else                       restoreBackupProgress.setText(getString(R.string.RegistrationActivity_d_messages_so_far, event.getCount()));
   }
