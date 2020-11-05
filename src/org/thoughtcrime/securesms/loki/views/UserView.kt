@@ -66,33 +66,9 @@ class UserView : LinearLayout {
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(user)
         MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, context) // FIXME: This is a bad place to do this
         val address = user.address.serialize()
-        if (user.isGroupRecipient) {
-            if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
-                profilePictureView.publicKey = ""
-                profilePictureView.displayName = null
-                profilePictureView.additionalPublicKey = null
-                profilePictureView.isRSSFeed = true
-            } else {
-                val threadID = GroupManager.getThreadIDFromGroupID(address, context)
-                val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toList() ?: listOf()
-                val randomUsers = users.sorted() // Sort to provide a level of stability
-                val pk = randomUsers.getOrNull(0) ?: ""
-                profilePictureView.publicKey = pk
-                profilePictureView.displayName = getUserDisplayName(pk)
-                val apk = randomUsers.getOrNull(1) ?: ""
-                profilePictureView.additionalPublicKey = apk
-                profilePictureView.additionalDisplayName = getUserDisplayName(apk)
-                profilePictureView.isRSSFeed = false
-            }
-        } else {
-            profilePictureView.publicKey = address
-            profilePictureView.displayName = getUserDisplayName(address)
-            profilePictureView.additionalPublicKey = null
-            profilePictureView.isRSSFeed = false
-        }
-        actionIndicatorImageView.setImageResource(R.drawable.ic_baseline_edit_24)
         profilePictureView.glide = glide
-        profilePictureView.update()
+        profilePictureView.update(user, threadID)
+        actionIndicatorImageView.setImageResource(R.drawable.ic_baseline_edit_24)
         nameTextView.text = if (user.isGroupRecipient) user.name else getUserDisplayName(address)
         when (actionIndicator) {
             ActionIndicator.None -> {

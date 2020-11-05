@@ -330,6 +330,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
   private   AudioRecorder          audioRecorder;
+  private   Handler                audioHandler;
+  private   Runnable               stopRecordingTask;
   private   BroadcastReceiver      securityUpdateReceiver;
   private   Stub<MediaKeyboard>    emojiDrawerStub;
   protected HidingLinearLayout     quickAttachmentToggle;
@@ -2579,6 +2581,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     audioRecorder.startRecording();
+
+    audioHandler = new Handler();
+    stopRecordingTask = () -> inputPanel.onRecordReleased();
+    audioHandler.postDelayed(stopRecordingTask, 60000);
   }
 
   @Override
@@ -2588,6 +2594,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRecorderFinished() {
+    if (audioHandler != null && stopRecordingTask != null) {
+      audioHandler.removeCallbacks(stopRecordingTask);
+    }
     updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(20);
@@ -2629,6 +2638,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRecorderCanceled() {
+    if (audioHandler != null && stopRecordingTask != null) {
+      audioHandler.removeCallbacks(stopRecordingTask);
+    }
     updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(50);
