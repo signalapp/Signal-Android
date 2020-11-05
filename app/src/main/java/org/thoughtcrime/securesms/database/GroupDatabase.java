@@ -409,9 +409,11 @@ public final class GroupDatabase extends Database {
 
     if (groupId.isV2()) {
       contentValues.put(ACTIVE, groupState != null && gv2GroupActive(groupState) ? 1 : 0);
-    } else {
+    } else if (groupId.isV1()) {
       contentValues.put(ACTIVE, 1);
       contentValues.put(EXPECTED_V2_ID, groupId.requireV1().deriveV2MigrationGroupId().toString());
+    } else {
+      contentValues.put(ACTIVE, 1);
     }
 
     contentValues.put(MMS, groupId.isMms());
