@@ -140,10 +140,14 @@ public abstract class MessageRecord extends DisplayRecord {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_left_group), R.drawable.ic_update_group_leave_light_16, R.drawable.ic_update_group_leave_dark_16);
     } else if (isGroupQuit()) {
       return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.ConversationItem_group_action_left, r.getDisplayName(context)), R.drawable.ic_update_group_leave_light_16, R.drawable.ic_update_group_leave_dark_16);
-    } else if (isIncomingCall()) {
+    } else if (isIncomingAudioCall()) {
       return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_called_you_date, r.getDisplayName(context), getCallDateString(context)), R.drawable.ic_update_audio_call_incoming_light_16, R.drawable.ic_update_audio_call_incoming_dark_16);
-    } else if (isOutgoingCall()) {
+    } else if (isIncomingVideoCall()) {
+      return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_called_you_date, r.getDisplayName(context), getCallDateString(context)), R.drawable.ic_update_video_call_incomg_light_16, R.drawable.ic_update_video_call_incoming_dark_16);
+    } else if (isOutgoingAudioCall()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_you_called_date, getCallDateString(context)), R.drawable.ic_update_audio_call_outgoing_light_16, R.drawable.ic_update_audio_call_outgoing_dark_16);
+    } else if (isOutgoingVideoCall()) {
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_you_called_date, getCallDateString(context)), R.drawable.ic_update_video_call_outgoing_light_16, R.drawable.ic_update_video_call_outgoing_dark_16);
     } else if (isMissedAudioCall()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_audio_call_date, getCallDateString(context)), R.drawable.ic_update_audio_call_missed_light_16, R.drawable.ic_update_audio_call_missed_dark_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
     } else if (isMissedVideoCall()) {

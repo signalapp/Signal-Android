@@ -147,8 +147,12 @@ public final class ThreadRecord {
     return MmsSmsColumns.Types.isOutgoingMessageType(type);
   }
 
-  public boolean isOutgoingCall() {
-    return SmsDatabase.Types.isOutgoingCall(type);
+  public boolean isOutgoingAudioCall() {
+    return SmsDatabase.Types.isOutgoingAudioCall(type);
+  }
+
+  public boolean isOutgoingVideoCall() {
+    return SmsDatabase.Types.isOutgoingVideoCall(type);
   }
 
   public boolean isVerificationStatusChange() {

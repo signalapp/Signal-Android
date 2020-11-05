@@ -380,12 +380,12 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address) {
+  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address, boolean isVideoOffer) {
     throw new UnsupportedOperationException();
   }
 
   @Override
-  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address) {
+  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address, boolean isVideoOffer) {
     throw new UnsupportedOperationException();
   }
 

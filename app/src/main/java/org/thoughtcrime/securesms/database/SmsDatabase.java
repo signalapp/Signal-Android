@@ -634,10 +634,11 @@ public class SmsDatabase extends MessageDatabase {
   public boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
     SQLiteDatabase db            = databaseHelper.getReadableDatabase();
     String[]       projection    = SqlUtil.buildArgs(SmsDatabase.TYPE);
-    String         selection     = THREAD_ID + " = ? AND " + DATE_RECEIVED  + " > ? AND (" + TYPE + " = ? OR " + TYPE + " = ? OR " + TYPE + " =?)";
+    String         selection     = THREAD_ID + " = ? AND " + DATE_RECEIVED  + " > ? AND (" + TYPE + " = ? OR " + TYPE + " = ? OR " + TYPE + " = ? OR " + TYPE + " =?)";
     String[]       selectionArgs = SqlUtil.buildArgs(threadId,
                                                      timestamp,
-                                                     Types.INCOMING_CALL_TYPE,
+                                                     Types.INCOMING_AUDIO_CALL_TYPE,
+                                                     Types.INCOMING_VIDEO_CALL_TYPE,
                                                      Types.MISSED_AUDIO_CALL_TYPE,
                                                      Types.MISSED_VIDEO_CALL_TYPE);
 
@@ -647,18 +648,18 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address) {
-    return insertCallLog(address, Types.INCOMING_CALL_TYPE, false, System.currentTimeMillis());
+  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address, boolean isVideoOffer) {
+    return insertCallLog(address, isVideoOffer ? Types.INCOMING_VIDEO_CALL_TYPE : Types.INCOMING_AUDIO_CALL_TYPE, false, System.currentTimeMillis());
   }
 
   @Override
-  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address) {
-    return insertCallLog(address, Types.OUTGOING_CALL_TYPE, false, System.currentTimeMillis());
+  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address, boolean isVideoOffer) {
+    return insertCallLog(address, isVideoOffer ? Types.OUTGOING_VIDEO_CALL_TYPE : Types.OUTGOING_AUDIO_CALL_TYPE, false, System.currentTimeMillis());
   }
 
   @Override
-  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp, boolean isVideoCall) {
-    return insertCallLog(address, isVideoCall ? Types.MISSED_VIDEO_CALL_TYPE : Types.MISSED_AUDIO_CALL_TYPE, true, timestamp);
+  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp, boolean isVideoOffer) {
+    return insertCallLog(address, isVideoOffer ? Types.MISSED_VIDEO_CALL_TYPE : Types.MISSED_AUDIO_CALL_TYPE, true, timestamp);
   }
 
   private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread, long timestamp) {

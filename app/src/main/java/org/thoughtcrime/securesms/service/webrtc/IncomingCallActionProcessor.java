@@ -108,7 +108,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
     Log.i(TAG, "handleAcceptCall(): call_id: " + activePeer.getCallId());
 
-    DatabaseFactory.getSmsDatabase(context).insertReceivedCall(activePeer.getId());
+    DatabaseFactory.getSmsDatabase(context).insertReceivedCall(activePeer.getId(), currentState.getCallSetupState().isRemoteVideoOffer());
 
     currentState = currentState.builder()
                                .changeCallSetupState()

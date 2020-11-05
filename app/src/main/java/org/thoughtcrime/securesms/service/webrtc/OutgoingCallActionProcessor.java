@@ -76,7 +76,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer);
 
-    DatabaseFactory.getSmsDatabase(context).insertOutgoingCall(remotePeer.getId());
+    DatabaseFactory.getSmsDatabase(context).insertOutgoingCall(remotePeer.getId(), currentState.getCallSetupState().isEnableVideoOnCreate());
 
     webRtcInteractor.retrieveTurnServers(remotePeer);
 
