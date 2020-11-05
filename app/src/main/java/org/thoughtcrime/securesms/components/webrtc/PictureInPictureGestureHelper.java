@@ -58,6 +58,13 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
     GestureDetectorCompat         gestureDetector = new GestureDetectorCompat(child.getContext(), helper);
 
     parent.setOnInterceptTouchEventListener((event) -> {
+      final int action       = event.getAction();
+      final int pointerIndex = (action & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
+
+      if (pointerIndex > 0) {
+        return false;
+      }
+
       if (helper.velocityTracker == null) {
         helper.velocityTracker = VelocityTracker.obtain();
       }
@@ -163,8 +170,8 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   @Override
   public boolean onDown(MotionEvent e) {
     activePointerId = e.getPointerId(0);
-    lastTouchX      = e.getX(activePointerId) + child.getX();
-    lastTouchY      = e.getY(activePointerId) + child.getY();
+    lastTouchX      = e.getX(0) + child.getX();
+    lastTouchY      = e.getY(0) + child.getY();
     isDragging      = true;
     pipWidth        = child.getMeasuredWidth();
     pipHeight       = child.getMeasuredHeight();
@@ -175,7 +182,13 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
   @Override
   public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-    int   pointerIndex = e2.findPointerIndex(activePointerId);
+    int pointerIndex = e2.findPointerIndex(activePointerId);
+
+    if (pointerIndex == -1) {
+      fling();
+      return false;
+    }
+
     float x            = e2.getX(pointerIndex) + child.getX();
     float y            = e2.getY(pointerIndex) + child.getY();
     float dx           = x - lastTouchX;
