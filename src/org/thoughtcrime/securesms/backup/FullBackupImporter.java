@@ -65,6 +65,7 @@ public class FullBackupImporter extends FullBackupBase {
    * we use these 3-char prefixes to explicitly cast the values before inserting to a preference file.
    */
   public static final String PREF_PREFIX_TYPE_INT = "i__";
+  public static final String PREF_PREFIX_TYPE_BOOLEAN = "b__";
 
   private static final String TAG = FullBackupImporter.class.getSimpleName();
 
@@ -196,6 +197,11 @@ public class FullBackupImporter extends FullBackupBase {
       preferences.edit().putInt(
               key.substring(3),
               Integer.parseInt(value)
+      ).commit();
+    } else if (key.startsWith(PREF_PREFIX_TYPE_BOOLEAN)) {
+      preferences.edit().putBoolean(
+              key.substring(3),
+              Boolean.parseBoolean(value)
       ).commit();
     } else {
       preferences.edit().putString(key, value).commit();

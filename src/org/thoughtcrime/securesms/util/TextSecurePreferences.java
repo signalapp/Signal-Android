@@ -32,6 +32,7 @@ import java.util.Set;
 
 import network.loki.messenger.R;
 
+import static org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_BOOLEAN;
 import static org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_INT;
 
 public class TextSecurePreferences {
@@ -1353,25 +1354,80 @@ public class TextSecurePreferences {
     }
 
     final LinkedList<BackupProtos.SharedPreference> prefList = new LinkedList<>();
-
-    prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(prefsFileName)
-            .setKey(PREF_PREFIX_TYPE_INT + LOCAL_REGISTRATION_ID_PREF)
-            .setValue(String.valueOf(preferences.getInt(LOCAL_REGISTRATION_ID_PREF, 0)))
-            .build());
-    prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(prefsFileName)
-            .setKey(LOCAL_NUMBER_PREF)
-            .setValue(preferences.getString(LOCAL_NUMBER_PREF, null))
-            .build());
-
-    prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(prefsFileName)
-            .setKey(PROFILE_NAME_PREF)
-            .setValue(preferences.getString(PROFILE_NAME_PREF, null))
-            .build());
+    addBackupEntryInt   (prefList, preferences, prefsFileName, LOCAL_REGISTRATION_ID_PREF);
+    addBackupEntryString(prefList, preferences, prefsFileName, LOCAL_NUMBER_PREF);
+    addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_NAME_PREF);
+    addBackupEntryString(prefList, preferences, prefsFileName, ATTACHMENT_ENCRYPTED_SECRET);
+    addBackupEntryString(prefList, preferences, prefsFileName, ATTACHMENT_UNENCRYPTED_SECRET);
+    addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_AVATAR_URL_PREF);
+    addBackupEntryInt   (prefList, preferences, prefsFileName, PROFILE_AVATAR_ID_PREF);
+    addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_KEY_PREF);
 
     return prefList;
+  }
+
+  private static void addBackupEntryString(
+          List<BackupProtos.SharedPreference> outPrefList,
+          SharedPreferences prefs,
+          String prefFileName,
+          String prefKey) {
+    String value = prefs.getString(prefKey, null);
+    if (value == null) {
+      backupEntryLog(prefKey, false);
+      return;
+    }
+    outPrefList.add(BackupProtos.SharedPreference.newBuilder()
+              .setFile(prefFileName)
+              .setKey(prefKey)
+              .setValue(value)
+              .build());
+    backupEntryLog(prefKey, true);
+  }
+
+  private static void addBackupEntryInt(
+          List<BackupProtos.SharedPreference> outPrefList,
+          SharedPreferences prefs,
+          String prefFileName,
+          String prefKey) {
+    int value = prefs.getInt(prefKey, -1);
+    if (value == -1) {
+      backupEntryLog(prefKey, false);
+      return;
+    }
+    outPrefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(prefFileName)
+            .setKey(PREF_PREFIX_TYPE_INT + prefKey) // The prefix denotes the type of the preference.
+            .setValue(String.valueOf(value))
+            .build());
+    backupEntryLog(prefKey, true);
+  }
+
+  private static void addBackupEntryBoolean(
+          List<BackupProtos.SharedPreference> outPrefList,
+          SharedPreferences prefs,
+          String prefFileName,
+          String prefKey) {
+    if (!prefs.contains(prefKey)) {
+      backupEntryLog(prefKey, false);
+      return;
+    }
+    outPrefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(prefFileName)
+            .setKey(PREF_PREFIX_TYPE_BOOLEAN + prefKey) // The prefix denotes the type of the preference.
+            .setValue(String.valueOf(prefs.getBoolean(prefKey, false)))
+            .build());
+    backupEntryLog(prefKey, true);
+  }
+
+  private static void backupEntryLog(String prefName, boolean wasIncluded) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Backup preference ");
+    sb.append(wasIncluded ? "+ " : "- ");
+    sb.append('\"').append(prefName).append("\" ");
+    if (!wasIncluded) {
+      sb.append("(is empty and not included)");
+    }
+    Log.d(TAG, sb.toString());
   }
   // endregion
 }
