@@ -616,12 +616,14 @@ public class RecipientDatabase extends Database {
       Optional<RecipientId> existing = getByColumn(GROUP_ID, groupId.toString());
 
       if (existing.isPresent()) {
+        db.setTransactionSuccessful();
         return existing.get();
       }
 
       if (groupId.isV1()) {
         Optional<RecipientId> v2 = getByGroupId(groupId.requireV1().deriveV2MigrationGroupId());
         if (v2.isPresent()) {
+          db.setTransactionSuccessful();
           return v2.get();
         }
       }
@@ -629,6 +631,7 @@ public class RecipientDatabase extends Database {
       if (groupId.isV2()) {
         Optional<GroupDatabase.GroupRecord> v1 = DatabaseFactory.getGroupDatabase(context).getGroupV1ByExpectedV2(groupId.requireV2());
         if (v1.isPresent()) {
+          db.setTransactionSuccessful();
           return v1.get().getRecipientId();
         }
       }
@@ -636,7 +639,6 @@ public class RecipientDatabase extends Database {
       RecipientId id = getOrInsertFromGroupId(groupId);
 
       db.setTransactionSuccessful();
-
       return id;
     } finally {
       db.endTransaction();
