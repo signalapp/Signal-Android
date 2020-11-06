@@ -480,7 +480,7 @@ task signProductionInternalRelease {
 
 task signProductionWebsiteRelease {
     doLast {
-        def  variant       = android.applicationVariants.find { (it.name == 'websiteRelease') }
+        def  variant       = android.applicationVariants.find { (it.name == 'websiteProdRelease') }
         File signedRelease = signProductionRelease(variant).find { it.name.contains('universal') }
         assembleWebsiteDescriptor(variant, signedRelease)
     }
