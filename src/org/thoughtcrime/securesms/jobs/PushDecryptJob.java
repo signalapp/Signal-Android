@@ -1368,7 +1368,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Optional<String>     title         = Optional.fromNullable(preview.getTitle());
       boolean              hasContent    = !TextUtils.isEmpty(title.or("")) || thumbnail.isPresent();
       boolean              presentInBody = url.isPresent() && Stream.of(LinkPreviewUtil.findWhitelistedUrls(message)).map(Link::getUrl).collect(Collectors.toSet()).contains(url.get());
-      boolean              validDomain   = url.isPresent() && LinkPreviewUtil.isWhitelistedLinkUrl(url.get());
+      boolean              validDomain   = url.isPresent() && LinkPreviewUtil.isValidLinkUrl(url.get());
 
       if (hasContent && presentInBody && validDomain) {
         LinkPreview linkPreview = new LinkPreview(url.get(), title.or(""), thumbnail);

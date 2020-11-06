@@ -53,6 +53,6 @@ public class ContentProxySafetyInterceptor implements Interceptor {
   }
 
   private static boolean isWhitelisted(@Nullable String url) {
-    return LinkPreviewUtil.isWhitelistedLinkUrl(url) || LinkPreviewUtil.isWhitelistedMediaUrl(url);
+    return LinkPreviewUtil.isValidLinkUrl(url) || LinkPreviewUtil.isValidMediaUrl(url);
   }
 }
