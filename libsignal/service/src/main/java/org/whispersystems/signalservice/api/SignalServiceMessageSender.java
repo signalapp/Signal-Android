@@ -701,13 +701,7 @@ public class SignalServiceMessageSender {
 
     builder.setTimestamp(message.getTimestamp());
 
-    byte[] content = container.setDataMessage(builder).build().toByteArray();
-
-    if (maxEnvelopeSize > 0 && content.length > maxEnvelopeSize) {
-      throw new ContentTooLargeException(content.length);
-    }
-
-    return content;
+    return enforceMaxContentSize(container.setDataMessage(builder).build().toByteArray());
   }
 
   private byte[] createCallContent(SignalServiceCallMessage callMessage) {
@@ -1261,6 +1255,8 @@ public class SignalServiceMessageSender {
                                               CancelationSignal                  cancelationSignal)
       throws IOException
   {
+    enforceMaxContentSize(content);
+
     long                                   startTime                  = System.currentTimeMillis();
     List<Future<SendMessageResult>>        futureResults              = new LinkedList<>();
     Iterator<SignalServiceAddress>         recipientIterator          = recipients.iterator();
@@ -1325,6 +1321,8 @@ public class SignalServiceMessageSender {
                                         CancelationSignal            cancelationSignal)
       throws UntrustedIdentityException, IOException
   {
+    enforceMaxContentSize(content);
+
     long startTime = System.currentTimeMillis();
 
     for (int i = 0; i < RETRY_COUNT; i++) {
@@ -1589,6 +1587,13 @@ public class SignalServiceMessageSender {
     }
 
     return results;
+  }
+
+  private byte[] enforceMaxContentSize(byte[] content) {
+    if (maxEnvelopeSize > 0 && content.length > maxEnvelopeSize) {
+      throw new ContentTooLargeException(content.length);
+    }
+    return content;
   }
 
   public static interface EventListener {

@@ -107,7 +107,8 @@ public final class FeatureFlags {
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
       GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
-      CLIENT_EXPIRATION
+      CLIENT_EXPIRATION,
+      MAX_ENVELOPE_SIZE
   );
 
   /**
