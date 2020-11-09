@@ -18,7 +18,6 @@
 package org.thoughtcrime.securesms;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -29,7 +28,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.Preference;
 
 import org.thoughtcrime.securesms.help.HelpFragment;
@@ -139,6 +137,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   @Override
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     if (key.equals(TextSecurePreferences.THEME_PREF)) {
+      DynamicTheme.setDefaultDayNightMode(this);
       recreate();
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
       recreate();

@@ -163,7 +163,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="?attr/icon_tint_dark" />
+            android:background="@color/signal_divider_major" />
 
         <TextView
             android:id="@+id/fragment_backup_info"

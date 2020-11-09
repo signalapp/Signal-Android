@@ -5,11 +5,13 @@
 
     <color name="transparent_black_05">#0D000000</color>
     <color name="transparent_black_10">#18000000</color>
+    <color name="transparent_black_15">#26000000</color>
     <color name="transparent_black_20">#33000000</color>
     <color name="transparent_black_40">#66000000</color>
     <color name="transparent_black_60">#99000000</color>
     <color name="transparent_black_80">#CC000000</color>
 
+    <color name="transparent_white_15">#26ffffff</color>
     <color name="transparent_white_20">#33ffffff</color>
     <color name="transparent_white_30">#4Dffffff</color>
     <color name="transparent_white_40">#66ffffff</color>
@@ -24,13 +26,6 @@
 
     <color name="device_link_item_background_light">#ffffffff</color>
     <color name="device_link_item_background_dark">#ff333333</color>
-
-    <color name="import_export_item_background_light">#ffeeeeee</color>
-    <color name="import_export_item_background_dark">#ff333333</color>
-    <color name="import_export_item_background_shadow_light">#ffd5d5d5</color>
-    <color name="import_export_item_background_shadow_dark">#ff222222</color>
-    <color name="import_export_touch_highlight_light">#400099cc</color>
-    <color name="import_export_touch_highlight_dark">#40ffffff</color>
 
     <color name="StickerPreviewActivity_remove_button_color">@color/conversation_crimson</color>
     <color name="StickerPreviewActivity_install_button_color">@color/core_ultramarine</color>

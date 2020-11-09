@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.Collections;
@@ -51,7 +50,7 @@ public class CachedInflater {
   @MainThread
   @SuppressWarnings("unchecked")
   public <V extends View> V inflate(@LayoutRes int layoutRes, @Nullable ViewGroup parent, boolean attachToRoot) {
-    View cached = ViewCache.getInstance().pull(layoutRes);
+    View cached = ViewCache.getInstance().pull(layoutRes, ContextUtil.getNightModeConfiguration(context));
     if (cached != null) {
       if (parent != null && attachToRoot) {
         parent.addView(cached);
@@ -87,12 +86,20 @@ public class CachedInflater {
 
     private long lastClearTime;
 
+    private int nightModeConfiguration;
+
     static ViewCache getInstance() {
       return INSTANCE;
     }
 
     @MainThread
-    void cacheUntilLimit(Context context, @LayoutRes int layoutRes, @Nullable ViewGroup parent, int limit) {
+    void cacheUntilLimit(@NonNull Context context, @LayoutRes int layoutRes, @Nullable ViewGroup parent, int limit) {
+      int currentNightModeConfiguration = ContextUtil.getNightModeConfiguration(context);
+      if (nightModeConfiguration != currentNightModeConfiguration) {
+        clear();
+        nightModeConfiguration = currentNightModeConfiguration;
+      }
+
       AsyncLayoutInflater inflater = new AsyncLayoutInflater(context);
 
       int existingCount = Util.getOrDefault(cache, layoutRes, Collections.emptyList()).size();
@@ -118,7 +125,12 @@ public class CachedInflater {
     }
 
     @MainThread
-    @Nullable View pull(@LayoutRes int layoutRes) {
+    @Nullable View pull(@LayoutRes int layoutRes, int nightModeConfiguration) {
+      if (this.nightModeConfiguration != nightModeConfiguration) {
+        clear();
+        return null;
+      }
+
       List<View> views = cache.get(layoutRes);
       return  views != null && !views.isEmpty() ? views.remove(0)
                                                 : null;

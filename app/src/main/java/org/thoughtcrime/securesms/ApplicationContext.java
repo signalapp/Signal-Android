@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -146,6 +147,9 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     }
 
     ApplicationDependencies.getJobManager().beginJobLoop();
+
+    DynamicTheme.setDefaultDayNightMode(this);
+
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
   }
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="signal_accent_primary">@color/core_ultramarine</color>
+    <color name="signal_accent_stroke_primary">@color/core_white</color>
+
+    <color name="signal_inverse_primary">@color/core_black</color>
+
+    <color name="signal_background_primary">@color/core_white</color>
+    <color name="signal_background_secondary">@color/core_grey_05</color>
+    <color name="signal_background_tertiary">@color/core_grey_02</color>
+    <color name="signal_background_dialog">@color/core_white</color>
+
+    <color name="signal_text_primary">@color/core_grey_90</color>
+    <color name="signal_text_primary_disabled">@color/core_grey_25</color>
+    <color name="signal_text_primary_dialog">@color/core_grey_65</color>
+
+    <color name="signal_text_secondary">@color/core_grey_60</color>
+    <color name="signal_text_selected">@color/core_black</color>
+
+    <color name="signal_text_toolbar_title">@color/core_white</color>
+    <color name="signal_text_toolbar_subtitle">@color/transparent_white_90</color>
+
+    <color name="signal_icon_tint_primary">@color/core_grey_75</color>
+    <color name="signal_icon_tint_secondary">@color/core_grey_60</color>
+
+    <color name="signal_button_primary">@color/core_ultramarine</color>
+    <color name="signal_button_primary_text">@color/core_white</color>
+    <color name="signal_button_primary_disabled">@color/core_grey_25</color>
+
+    <color name="signal_button_secondary">@color/core_grey_05</color>
+    <color name="signal_button_secondary_text">@color/core_ultramarine</color>
+
+    <color name="signal_divider_minor">@color/core_grey_15</color>
+    <color name="signal_divider_major">@color/core_grey_25</color>
+
+    <color name="signal_transparent">@color/transparent</color>
+    <color name="signal_transparent_20">@color/transparent_white_20</color>
+    <color name="signal_transparent_40">@color/transparent_white_40</color>
+    <color name="signal_transparent_60">@color/transparent_white_60</color>
+    <color name="signal_transparent_80">@color/transparent_white_80</color>
+
+    <color name="signal_inverse_transparent">@color/transparent_black</color>
+    <color name="signal_inverse_transparent_15">@color/transparent_black_15</color>
+    <color name="signal_inverse_transparent_20">@color/transparent_black_20</color>
+    <color name="signal_inverse_transparent_40">@color/transparent_black_40</color>
+    <color name="signal_inverse_transparent_60">@color/transparent_black_60</color>
+    <color name="signal_inverse_transparent_80">@color/transparent_black_80</color>
+</resources>

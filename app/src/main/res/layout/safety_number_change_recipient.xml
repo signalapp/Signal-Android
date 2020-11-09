@@ -51,18 +51,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/safety_number_change_recipient_view"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="?attr/safety_number_change_dialog_button_background"
-        android:elevation="0dp"
         android:minWidth="0dp"
         android:text="@string/safety_number_change_dialog__view"
-        android:textColor="?safety_number_change_dialog_button_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/safety_number_change_recipient_name"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:targetApi="lollipop" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

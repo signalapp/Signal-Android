@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.DarkNoActionBar" />
+
+    <style name="Signal.DayNight" parent="TextSecure.DarkTheme" />
+
+    <style name="Signal.DayNight.NoActionBar" parent="TextSecure.DarkNoActionBar" />
+
+    <style name="Signal.DayNight.Invite" parent="Signal.NoActionBar.Invite" />
+
+    <style name="Signal.DayNight.IntroTheme" parent="TextSecure.DarkIntroTheme" />
+
+    <style name="Signal.DayNight.DarkActionBar" parent="TextSecure.DarkTheme.Conversation" />
+
+    <style name="Signal.DayNight.DarkNoActionBar" parent="TextSecure.DarkNoActionBar.DarkToolbar" />
+
+    <style name="Signal.DayNight.Registration" parent="TextSecure.DarkRegistrationTheme" />
+</resources>

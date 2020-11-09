@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?insight_modal_background"
+    android:background="@drawable/insight_modal_background"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView

@@ -28,30 +28,24 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/research_megaphone_dialog_take_the_survey"
-            style="@style/Widget.Signal.Button.Flat"
+            style="@style/Signal.Widget.Button.Large.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
             android:text="@string/ResearchMegaphoneDialog_take_the_survey"
-            android:textColor="@color/core_white"
-            app:backgroundTint="?attr/colorAccent"
-            app:icon="@drawable/ic_open_20"
-            app:iconGravity="textEnd"
-            app:iconTint="@color/core_white" />
+            app:icon="@drawable/ic_open_20" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/research_megaphone_dialog_no_thanks"
-            style="@style/Widget.Signal.Button.Flat"
+            style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="12dp"
-            android:text="@string/ResearchMegaphoneDialog_no_thanks"
-            android:textColor="?safety_number_change_dialog_button_text_color"
-            app:backgroundTint="?safety_number_change_dialog_button_background" />
+            android:text="@string/ResearchMegaphoneDialog_no_thanks" />
 
         <TextView
             style="@style/TextAppearance.Signal.Caption"
