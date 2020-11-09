@@ -51,7 +51,7 @@ public abstract class BaseJob extends Job {
   }
 
   protected void log(@NonNull String tag, @NonNull String message) {
-    log(tag, "", JobLogger.format(this, message));
+    Log.i(tag, JobLogger.format(this, message));
   }
 
   protected void log(@NonNull String tag, @NonNull String extra, @NonNull String message) {
