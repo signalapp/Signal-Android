@@ -626,6 +626,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
       bodyText.setText(italics);
       bodyText.setVisibility(View.VISIBLE);
+      bodyText.setOverflowText(null);
     } else if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
