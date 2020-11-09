@@ -347,7 +347,7 @@
   <string name="ChooseBackupFragment__learn_more">Mehr erfahren</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Wiederherstellung abgeschlossen</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Um weiterhin Datensicherungen zu verwenden, wähle bitte einen Ordner. Neue Sicherungen werden in diesem gespeichert.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Um weiterhin Datensicherungen zu verwenden, wähle bitte einen Ordner. Neue Sicherungen werden dort gespeichert.</string>
   <string name="RestoreBackupFragment__choose_folder">Ordner wählen</string>
   <string name="RestoreBackupFragment__not_now">Jetzt nicht</string>
   <!--BackupsPreferenceFragment-->
@@ -360,7 +360,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste die Passphrase deiner Datensicherung, um dich zu vergewissern, dass du sie öffnen kannst</string>
   <string name="BackupsPreferenceFragment__turn_on">Einschalten</string>
   <string name="BackupsPreferenceFragment__turn_off">Ausschalten</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Um eine Datensicherung wiederherzustellen, installiere Signal neu. Öffne die App und tippe auf »Aus Sicherung wiederherstellen?« und wähle die Sicherungsdatei. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Um eine Datensicherung wiederherzustellen, installiere Signal neu. Öffne die App, tippe auf »Sicherung wiederherstellen« und wähle dann eine Sicherungsdatei. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Mehr erfahren</string>
   <string name="BackupsPreferenceFragment__in_progress">In Arbeit …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d bisher …</string>
@@ -375,7 +375,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Aus Galerie auswählen</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Foto entfernen</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Für das Aufnehmen eines Fotos ist die Kamera-Berechtigung erforderlich.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Zum Ansehen der Galerie ist die Speicher-Berechtigung erforderlich.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Zum Anzeigen der Galerie ist die Berechtigung »Speicher« erforderlich.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Jetzt</string>
   <string name="DateUtils_minutes_ago">%dmin</string>
@@ -835,8 +835,8 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Die Ablaufzeit für verschwindende Nachrichten wurde auf %1$s festgelegt.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Diese Gruppe wurde auf eine Gruppe neuen Typs aktualisiert.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s Mitglied konnte der Gruppe neuen Typs nicht hinzugefügt werden und wurde daher eingeladen beizutreten.</item>
-    <item quantity="other">%1$s Mitglieder konnten der Gruppe neuen Typs nicht hinzugefügt werden und wurden daher eingeladen beizutreten.</item>
+    <item quantity="one">%1$s Mitglied konnte der Gruppe neuen Typs nicht hinzugefügt werden und wurde daher eingeladen, beizutreten.</item>
+    <item quantity="other">%1$s Mitglieder konnten der Gruppe neuen Typs nicht hinzugefügt werden und wurden daher eingeladen, beizutreten.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s hat den Profilnamen zu %2$s geändert.</string>
@@ -1131,7 +1131,7 @@
   <string name="RegistrationActivity_more_information">Mehr Informationen</string>
   <string name="RegistrationActivity_less_information">Weniger Informationen</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte und Medien, damit du Nachrichten an Freunde senden und sichere Anrufe tätigen kannst.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte, damit du Nachrichten an Freunde senden und sichere Anrufe tätigen kannst.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte, damit du Freunde kontaktieren und sichere Anrufe tätigen kannst.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du hast zu oft versucht, diese Rufnummer zu registrieren. Bitte versuche es später erneut.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Keine Verbindung zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Zum einfachen Verifizieren deiner Rufnummer kann Signal deinen Verifikationscode ermitteln, falls du Signal Zugriff auf deine SMS-Nachrichten gewährst.</string>
@@ -1309,7 +1309,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Keine zu vergleichende Sicherheitsnummer in der Zwischenablage gefunden</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kamera« für das Einscannen von QR-Codes, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-Codes können ohne die Berechtigung »Kamera« nicht eingescannt werden.</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du musst erst Nachrichten austauschen, um die Sicherheitsnummer von %1$s zu sehen.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Um die Sicherheitsnummer von %1$s sehen zu können, müssen zuerst Nachrichten ausgetauscht werden.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1488,7 +1488,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Maximale Gruppengröße erreicht</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-Gruppen können maximal %1$d Mitglieder besitzen.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Empfohlene Mitgliederanzahl erreicht</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-Gruppen funktionieren am besten mit %1$d Mitgliedern oder weniger. Das Hinzufügen weiterer Mitglieder führt zu Verzögerungen beim Senden und Empfangen von Nachrichten.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-Gruppen funktionieren am besten mit %1$d oder weniger Mitgliedern. Das Hinzufügen weiterer Mitglieder führt zu Verzögerungen beim Senden und Empfangen von Nachrichten.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d Mitglied</item>
     <item quantity="other">%1$d Mitglieder</item>
@@ -2225,7 +2225,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupDialog_delete_backups">Sicherungen löschen?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivieren und alle lokalen Sicherungen löschen?</string>
   <string name="BackupDialog_delete_backups_statement">Sicherungen löschen</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">Um die Datensicherung zu aktivieren, wähle einen Ordner. Datensicherungen werden an diesem Ort gespeichert.</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Um Datensicherungen zu aktivieren, wähle einen Ordner. Sicherungen werden dort gespeichert.</string>
   <string name="BackupDialog_choose_folder">Ordner wählen</string>
   <string name="BackupDialog_copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Gib deine Sicherungspassphrase ein</string>
@@ -2239,8 +2239,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="LocalBackupJobApi29_backup_failed">Sicherung gescheitert</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dein Verzeichnis für die Datensicherung wurde gelöscht oder verschoben.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Die Datei für die Datensicherung ist zu groß, um auf diesem Laufwerk gespeichert zu werden.</string>
-  <string name="LocalBackupJobApi29_there_is_not_enough_space">Es ist nicht genug Speicherplatz vorhanden, um deine Datensicherung zu speichern.</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">Hier antippen, um die Datensicherungen zu verwalten.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Es ist nicht genug Speicherplatz verfügbar, um deine Datensicherung zu speichern.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Antippen zum Verwalten von Datensicherungen.</string>
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
   <string name="RegistrationActivity_wrong_number">Falsche Rufnummer</string>
@@ -2385,6 +2385,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ReviewCard__update_contact">Kontakt aktualisieren</string>
   <string name="ReviewCard__block">Blockieren</string>
   <string name="ReviewCard__delete">Löschen</string>
-  <string name="ReviewCard__recently_changed">Kürzlich geänderter Profilname von %1$s zu %2$s</string>
+  <string name="ReviewCard__recently_changed">Profilname wurde kürzlich von %1$s zu %2$s geändert</string>
   <!--EOF-->
 </resources>

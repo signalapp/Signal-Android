@@ -110,7 +110,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Eroare la salvarea imaginii.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Apăsați pentru foto, țineți apăsat pentru video</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Atingeți pentru foto, țineți apăsat pentru video</string>
   <string name="CameraXFragment_capture_description">Capturați</string>
   <string name="CameraXFragment_change_camera_description">Schimbați camera</string>
   <string name="CameraXFragment_open_gallery_description">Deschideți galeria</string>
@@ -175,9 +175,9 @@
   <string name="ConversationItem_error_not_sent_tap_for_details">Nu a fost trimis, atingeţi pentru detalii</string>
   <string name="ConversationItem_error_partially_not_delivered">Trimis parţial, atingeți pentru detalii</string>
   <string name="ConversationItem_error_network_not_delivered">Trimitere eșuată</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, apăsați pentru a-l procesa.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, atingeți pentru a-l procesa.</string>
   <string name="ConversationItem_group_action_left">%1$s a părăsit grupul.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, apăsați pentru varianta nesecurizată</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, atingeți pentru varianta nesecurizată</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Revii la SMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Revii la MMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Signal.\n\nTrimit mesaj nesecurizat?</string>
@@ -305,6 +305,7 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fișierele trimise de tip media vizibile o singură dată sunt eliminate automat după ce sunt trimise</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ați văzut deja acest mesaj</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puteți adăuga notiţe pentru dvs. în această conversație.\nDacă contul dvs. are dispozitive asociate, notiţele noi vor fi sincronizate.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membrii ai grupului au același nume.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
@@ -470,6 +471,8 @@
   <string name="GroupManagement_learn_more">Aflați mai multe</string>
   <string name="GroupManagement_invite_multiple_users">Acești utilizatori nu pot fi adăugați automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Ce sunt Noile Grupuri?</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tot istoricul mesajelor și conținutul media a fost păstrat înainte de actualizare.</string>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Părăsiți grupul?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nu vei mai putea trimite sau primi mesaje in acest grup.</string>
@@ -815,7 +818,7 @@
   <string name="MediaPickerActivity_send_to">Trimiteți la %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Deschideți camera</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">Apăsați pentru a selecta</string>
+  <string name="MediaPickerItemFragment_tap_to_select">Atingeți pentru a selecta</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Adaugă un titlu…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un element a fost eliminat pentru că depășește limita de mărime</string>
@@ -831,7 +834,7 @@
     <item quantity="other">Nu puteți partaja mai mult de %d elemente.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Selectați destinatarii</string>
-  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Apăsați aici pentru a face acest mesaj să dispară după ce este vizualizat.</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Atingeți aici pentru a face acest mesaj să dispară după ce este vizualizat.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Toate fișierele media</string>
   <string name="MediaRepository__camera">Cameră foto</string>
@@ -842,6 +845,8 @@
   <string name="MessageRecord_you_updated_group">Ați actualizat grupul.</string>
   <string name="MessageRecord_the_group_was_updated">Grupul a fost actualizat.</string>
   <string name="MessageRecord_you_called_date">Ați apelat pe · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Apel audio nepreluat · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Apel video nepreluat · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s a actualizat grupul.</string>
   <string name="MessageRecord_s_called_you_date">%1$s va apelat · %2$s</string>
   <string name="MessageRecord_called_s">Apel %s</string>
@@ -851,6 +856,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ați setat timpul pentru dispariția mesajelor la %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Timpul setat pentru dispariția mesajele a fost setat la %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Acest grup a fost actualizat la Noul Grup.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s și-a schimbat numele profilului în %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s și-a schimbat numele profilul din %2$s în %3$s.</string>
@@ -1123,7 +1129,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numărul format nu suportă apeluri securizate!</string>
   <string name="RedPhone_got_it">Am înțeles</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Apăsați aici pentru a porni video-ul tău</string>
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Atingeți aici pentru a porni video-ul tău</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pentru a apela pe %1$s, Signal are nevoie de acces la camera dvs.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Apel în curs…</string>
@@ -1253,7 +1259,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Editează</string>
   <string name="SubmitDebugLogActivity_done">Gata</string>
-  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Apăsați pe o linie pentru a o șterge</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Atingeți o linie pentru a o șterge</string>
   <string name="SubmitDebugLogActivity_submit">Trimiteți</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Eroare la trimiterea jurnalului de depanare.</string>
   <string name="SubmitDebugLogActivity_success">Succes!</string>
@@ -1372,6 +1378,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s la %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media nu mai este disponibilă.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nu a fost găsită nicio aplicație pentru a partaja acest tip media.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversaţii</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
@@ -1734,7 +1741,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NU ADĂUGA, DAR FĂ-MI PROFILUL MEU VIZIBIL</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă doriți să verificați securitatea criptării cu %s, comparați numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, puteți scana codul de pe telefonul lor sau îi puteți ruga să scaneze codul dvs. <a href="https://signal.org/redirect/safety-numbers">Aflați mai multe.</a>]]></string>
-  <string name="verify_display_fragment__tap_to_scan">Apăsați pentru a scana</string>
+  <string name="verify_display_fragment__tap_to_scan">Atingeți pentru a scana</string>
   <string name="verify_display_fragment__loading">Se încarcă…</string>
   <string name="verify_display_fragment__verified">Verificat</string>
   <!--verify_identity-->
@@ -2290,7 +2297,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Directorul dvs. de backup a fost șters sau mutat.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fișierul dvs. de backup este prea mare pentru a fi stocat pe acest volum.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Nu există suficient spațiu pentru stocarea backup-ului dvs.</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">Apăsați pentru a gestiona backup-uri.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Atingeți pentru a gestiona backup-uri.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesaje până acum</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Vă rugăm să introduceți codul de verificare trimis la %s.</string>
   <string name="RegistrationActivity_wrong_number">Număr greșit</string>
@@ -2362,7 +2369,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_you_have_d_tries_remaining">Mai aveți %d încercări rămase</string>
   <string name="preferences_chats__backups">Backup-uri</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal este blocat</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">APĂSAȚI PENTRU DEBLOCARE</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">ATINGEȚI PENTRU DEBLOCARE</string>
   <string name="RegistrationLockDialog_reminder">Memento:</string>
   <string name="recipient_preferences__about">Despre</string>
   <string name="Recipient_unknown">Necunoscut</string>
@@ -2410,11 +2417,30 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Revizuire membrii</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nu există alte grupuri în comun.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Niciun grup în comun.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d grup în comun</item>
+    <item quantity="few">%d grupuri în comun</item>
+    <item quantity="other">%d grupuri în comun</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d grup în comun</item>
+    <item quantity="few">%d grupuri în comun</item>
+    <item quantity="other">%d grupuri în comun</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Eliminați pe %1$s din grup?</string>
   <string name="ReviewCardDialogFragment__remove">Eliminați</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Eliminarea membrului grupului nu a reușit.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Membru</string>
+  <string name="ReviewCard__request">Cerere</string>
+  <string name="ReviewCard__your_contact">Contactul tău</string>
   <string name="ReviewCard__remove_from_group">Eliminați din grup</string>
+  <string name="ReviewCard__update_contact">Actualizați contactul</string>
   <string name="ReviewCard__block">Blochează</string>
   <string name="ReviewCard__delete">Șterge</string>
+  <string name="ReviewCard__recently_changed">Recent și-au schimbat numele profilului din %1$s în %2$s</string>
   <!--EOF-->
 </resources>

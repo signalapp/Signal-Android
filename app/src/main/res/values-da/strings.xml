@@ -44,7 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Skærmlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Låseskærm %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Sprog %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN´s er påkrævet for registreringslås. For at deaktivere PIN´s skal registreringslås først déaktiveres</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN´s er påkrævet for registreringslås. For at déaktivere PIN´s skal registreringslås først déaktiveres</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN oprettet</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN  déaktiveret</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
@@ -296,10 +296,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Udgående mediebeskeder der kun vises én gang, bliver automatisk fjernet efter de er sendt</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Beskeden er allerede læst</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan tilføje egne notater i samtalen.\nHvis din konto har forbundne enheder, vil notaterne blive synkroniseret</string>
-  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har samme navn.</string>
-  <string name="ConversationFragment__tap_to_review">Tryk for at gennemgå</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har samme navn</string>
+  <string name="ConversationFragment__tap_to_review">Tap for at gennemgå</string>
   <string name="ConversationFragment__review_requests_carefully">Gennemgå anmodninger omhyggeligt</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal fandt en anden kontakt med samme navn.</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal fandt en anden kontakt med samme navn</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ingen browser installeret på enheden</string>
   <!--ConversationListFragment-->
@@ -459,8 +459,17 @@
   <string name="GroupManagement_learn_more">Læs mere</string>
   <string name="GroupManagement_invite_multiple_users">Disse brugere kan ikke automatisk tilføjes gruppen af dig. De er blevet inviteret til at deltage, og kan ikke se gruppebeskeder før de accepterer</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Hvad er Nye grupper?</string>
-  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nye grupper har funktioner som @omtaler og gruppeadministratorer og vil understøtte flere funktioner i fremtiden.</string>
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Hvad er nye grupper?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nye grupper har funktioner som @omtaler og gruppeadministratorer og vil understøtte flere funktioner i fremtiden</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Al beskedhistorik og medier er blevet bevaret fra før opgraderingen</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Dette medlem skal acceptere en invitation til at deltage i gruppen igen og vil ikke modtage gruppebeskeder, før de accepterer:</item>
+    <item quantity="other">Disse medlemmer skal acceptere en invitation til at deltage i gruppen igen, og vil ikke modtage gruppebeskeder før de accepterer:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Dette medlem er ikke i stand til at deltage i nye grupper og er blevet fjernet fra gruppen:</item>
+    <item quantity="other">Disse medlemmer er ikke i stand til at deltage i nye grupper, og er blevet fjernet fra gruppen:</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Forlad gruppe?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Du vil ikke længere kunne sende eller modtage beskeder i gruppen</string>
@@ -814,6 +823,8 @@
   <string name="MessageRecord_you_updated_group">Du opdaterede gruppen</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen blev opdateret</string>
   <string name="MessageRecord_you_called_date">Du ringede til · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Mistede lydopkald - %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Mistet videoopkald · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s opdaterede gruppen</string>
   <string name="MessageRecord_s_called_you_date">%1$s ringede til dig · %2$s</string>
   <string name="MessageRecord_called_s">Ringet til %s</string>
@@ -823,6 +834,11 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Beskeder med tidsudløb udløber efter %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s har sat beskeder med tidsudløb til at udløbe efter %2$s</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Beskeder med tidsudløb blev tidsindstilet til %1$s</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen blev opdateret til en ny gruppe</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s medlem kunne ikke føjes til den nye gruppe og er blevet inviteret til at deltage.</item>
+    <item quantity="other">%1$s medlemmer kunne ikke tilføjes den nye gruppe og er blevet inviteret til at deltage.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ændrede deres profilnavn til %2$s</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ændrede deres profilnavn fra %2$s til %3$s</string>
@@ -1335,6 +1351,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette sletter beskeden permanent</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Medie er ikke længere tilgængelig</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ingen app tilgængelig som kan dele mediet</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye beskeder i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Seneste fra: %1$s</string>
@@ -2355,11 +2372,31 @@ Der er %d dage tilbage</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Gennemgå medlemmer</string>
+  <string name="ReviewCardDialogFragment__review_request">Gennemgå forespørgsel</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d medlemmer af gruppen har det samme navn, gennemgå medlemmer herunder og vælg en handling</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Hvis du ikke er sikker på hvem forespørgslen er fra, gennemgå kontakterne herunder og vælg en handling </string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Ingen andre grupper til fælles</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Ingen grupper til fælles</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d gruppe til fælles</item>
+    <item quantity="other">%d grupper til fælles</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d gruppe til fælles</item>
+    <item quantity="other">%d grupper til fælles</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Fjern %1$s fra gruppen?</string>
   <string name="ReviewCardDialogFragment__remove">Fjern</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Fejl ved fjernelse af gruppemedlem</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Medlem</string>
+  <string name="ReviewCard__request">Forespørgsel</string>
+  <string name="ReviewCard__your_contact">Din kontakt</string>
   <string name="ReviewCard__remove_from_group">Fjern fra gruppe</string>
+  <string name="ReviewCard__update_contact">Opdatér kontakt</string>
   <string name="ReviewCard__block">Blokér</string>
   <string name="ReviewCard__delete">Slet</string>
+  <string name="ReviewCard__recently_changed">Ændrede for nyligt deres profilnavn fra %1$s til %2$s</string>
   <!--EOF-->
 </resources>

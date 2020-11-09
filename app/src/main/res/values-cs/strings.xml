@@ -315,6 +315,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchozí soubory médií pro jednorázové zobrazení jsou po odeslání automaticky odstraněny</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Tuto zprávu jste už zobrazili</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Do této konverzace si můžete přidat své poznámky.\nPokud má váš účet nějaká propojená zařízení, tak budou nové poznámky synchronizovány.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d členů skupiny má stejné jméno.</string>
+  <string name="ConversationFragment__tap_to_review">Klepněte pro prověření</string>
+  <string name="ConversationFragment__review_requests_carefully">Požadavky pečlivě prověřte</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal nalezl jiný kontakt se stejným jménem.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte na vašem zařízení nainstalován žádný prohlížeč.</string>
   <!--ConversationListFragment-->
@@ -486,6 +490,15 @@
   <string name="GroupManagement_learn_more">Zjistit více</string>
   <string name="GroupManagement_invite_multiple_users">Tyto uživatele nemůžete přidat do skupiny automaticky.\n\nByli pozváni, ale neuvidí žádné zprávy dokud pozvání nepřijmou.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Co jsou Nové skupiny?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nové skupiny mají funkce jako @zmínky a správce skupin, a v budoucnu budou podporovat další funkce.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Před aktualizací byla uchována veškerá historie zpráv a média.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Tento člen bude muset přijmout pozvánku, aby se znovu připojil k této skupině, a dokud ji nepřijme, nebude dostávat skupinové zprávy:</item>
+    <item quantity="few">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
+    <item quantity="many">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
+    <item quantity="other">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
+  </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Tento člen není způsobilý pro připojení k nové verzi skupin a byl odstraněn ze skupiny:</item>
     <item quantity="few">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a byli odstraněni ze skupiny:</item>
@@ -574,12 +587,12 @@
     <item quantity="other">%d členů nepodporuje nové skupiny, takže tato skupina bude ve starší verzi.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Bude vytvořena starší skupina, protože \"%1$s\" používá zastaralou verzi Signalu. Novou verzi skupiny můžete s ním vytvořit, až si zaktualizuje Signal, nebo jej před vytvořením skupiny odstraňte.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Bude vytvořena starší skupina, protože \"%1$s\" používá zastaralou verzi Signalu. Novou verzi skupiny s ním budete moci vytvořit, až si zaktualizuje Signal, nebo jej před vytvořením skupiny odeberte.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Bude vytvořena starší skupina, protože %1$d člen používá zastaralou verzi Signalu. Novou verzi skupiny můžete s ním vytvořit, až si zaktualizuje Signal, nebo jej před vytvořením skupiny odstraňte.</item>
-    <item quantity="few">Bude vytvořena starší skupina, protože %1$d členové používají zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny odstraňte.</item>
-    <item quantity="many">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny odstraňte.</item>
-    <item quantity="other">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny  odstraňte.</item>
+    <item quantity="one">Bude vytvořena starší skupina, protože %1$d člen používá zastaralou verzi Signalu. Novou verzi skupiny s ním budete moci vytvořit, až si zaktualizuje Signal, nebo jej před vytvořením skupiny odeberte.</item>
+    <item quantity="few">Bude vytvořena starší skupina, protože %1$d členové používají zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny odeberte.</item>
+    <item quantity="many">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny odeberte.</item>
+    <item quantity="other">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny  odeberte.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zmizení zpráv</string>
@@ -895,6 +908,12 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil(a) časovač pro zmizení zpráv na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač pro zmizení zprávy byl nastaven na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Tato skupina byla aktualizována na novou verzi.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s člen nemohl být přidán do nové verze skupiny a byl pozván, aby se připojil.</item>
+    <item quantity="few">%1$s členy nebylo možné přidat do nové verze skupiny a byli pozváni, aby se připojili.</item>
+    <item quantity="many">%1$s členů nebylo možné přidat do nové verze skupiny a byli pozváni, aby se připojili.</item>
+    <item quantity="other">%1$s členů nebylo možné přidat do nové verze skupiny a byli pozváni, aby se připojili.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s změnil jméno svého profilu na %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s změnil jméno svého profilu z %2$s na %3$s.</string>
@@ -1431,6 +1450,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tímto trvale smažete tuto zprávu.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s pro %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Média již nejsou k dispozici.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nebyla nalezena žádná aplikace pro sdílení tohoto média.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nových zpráv v %2$d konverzacích</string>
   <string name="MessageNotifier_most_recent_from_s">Poslední od: %1$s</string>
@@ -2486,7 +2506,24 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Prověřit členy</string>
+  <string name="ReviewCardDialogFragment__review_request">Prověřit požadavek</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d členů skupiny má stejné jméno, prověřte níže uvedené členy a zvolte akci.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Pokud si nejste jistí, od koho je požadavek, tak prověřte kontakty a proveďte akci.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Žádné další společné skupiny.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Žádné společné skupiny.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d společná skupina</item>
+    <item quantity="few">%d společné skupiny</item>
+    <item quantity="many">%d společných skupin</item>
+    <item quantity="other">%d společných skupin</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d společná skupina</item>
+    <item quantity="few">%d společné skupiny</item>
+    <item quantity="many">%d společných skupin</item>
+    <item quantity="other">%d společných skupin</item>
+  </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">Odebrat %1$s ze skupiny?</string>
   <string name="ReviewCardDialogFragment__remove">Odebrat</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Odebrání člena skupiny se nezdařilo.</string>

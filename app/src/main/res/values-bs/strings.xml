@@ -583,7 +583,7 @@
   <string name="ManageGroupActivity_unblock_group">Prestani s blokiranjem grupe</string>
   <string name="ManageGroupActivity_leave_group">Napusti grupu</string>
   <string name="ManageGroupActivity_mute_notifications">Stišaj obavještenja</string>
-  <string name="ManageGroupActivity_custom_notifications">Korisničke obavijesti</string>
+  <string name="ManageGroupActivity_custom_notifications">Podešavanje obavještenja</string>
   <string name="ManageGroupActivity_mentions">Spomen</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Isključeno</string>
@@ -623,7 +623,7 @@
   <string name="GroupMentionSettingDialog_always_notify_me">Uvijek me obavijesti</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Ne obavještavaj me</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Dodajte među kontakte u telefonski adresar</string>
+  <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj među kontakte u telefonski adresar</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ova osoba ne nalazi se među Vašim kontaktima</string>
   <string name="ManageRecipientActivity_disappearing_messages">Nestajuće poruke</string>
   <string name="ManageRecipientActivity_chat_color">Boja poruka</string>
@@ -631,7 +631,7 @@
   <string name="ManageRecipientActivity_unblock">Deblokiraj</string>
   <string name="ManageRecipientActivity_view_safety_number">Vidi sigurnosni broj</string>
   <string name="ManageRecipientActivity_mute_notifications">Stišaj obavještenja</string>
-  <string name="ManageRecipientActivity_custom_notifications">Korisničke obavijesti</string>
+  <string name="ManageRecipientActivity_custom_notifications">Podešavanje obavještenja</string>
   <string name="ManageRecipientActivity_until_s">Do %1$s</string>
   <string name="ManageRecipientActivity_off">Isključeno</string>
   <string name="ManageRecipientActivity_on">Uključeno</string>
@@ -655,12 +655,12 @@
     <item quantity="other">%1$s je pozvao/la %2$d osoba</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
-  <string name="CustomNotificationsDialogFragment__custom_notifications">Korisničke obavijesti</string>
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Podešavanje obavještenja</string>
   <string name="CustomNotificationsDialogFragment__messages">Poruke</string>
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Koristi ručno podešena obavještenja</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Zvuk obavještenja</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibracija</string>
-  <string name="CustomNotificationsDialogFragment__call_settings">Podešavanja poziva</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Pozivi</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Zvono</string>
   <string name="CustomNotificationsDialogFragment__enabled">Omogućeno</string>
   <string name="CustomNotificationsDialogFragment__disabled">Onemogućeno</string>
@@ -1229,12 +1229,12 @@
   <string name="SearchFragment_header_contacts">Kontakti</string>
   <string name="SearchFragment_header_messages">Poruke</string>
   <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_add_to_contacts">Dodajte među kontakte</string>
+  <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj među kontakte</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pozovite na Signal</string>
   <string name="SharedContactDetailsActivity_signal_message">Signal poruke</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal poziv</string>
   <!--SharedContactView-->
-  <string name="SharedContactView_add_to_contacts">Dodajte među kontakte</string>
+  <string name="SharedContactView_add_to_contacts">Dodaj među kontakte</string>
   <string name="SharedContactView_invite_to_signal">Pozovite na Signal</string>
   <string name="SharedContactView_message">Signal poruka</string>
   <!--SignalPinReminders-->
@@ -1760,7 +1760,7 @@
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Pošiljalac se ne nalazi među Vašim kontaktima</string>
   <string name="unknown_sender_view__block">BLOKIRAJ</string>
-  <string name="unknown_sender_view__add_to_contacts">DODAJTE MEĐU KONTAKTE</string>
+  <string name="unknown_sender_view__add_to_contacts">DODAJ MEĐU KONTAKTE</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEMOJ DODATI, ALI MOJ PROFIL UČINI VIDLJIVIM</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ako želite provjeriti sigurnost šifriranja sa %s, uporedite gore navedeni broj sa brojem na uređaju sagovornika. Alternativno, možete skenirati kōd sa njegovog telefona ili ga zamoliti da on skenira Vaš kōd. <a href="https://signal.org/redirect/safety-numbers">Saznajte više.</a>]]></string>
@@ -2086,7 +2086,7 @@
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Proširi iskočni prozor</string>
   <!--conversation_callable_insecure-->
-  <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodajte među kontakte</string>
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj među kontakte</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Popis primalaca</string>
   <string name="conversation_group_options__delivery">Isporuka</string>
@@ -2097,7 +2097,7 @@
   <string name="text_secure_normal__menu_settings">Podešavanja</string>
   <string name="text_secure_normal__menu_clear_passphrase">Zaključaj</string>
   <string name="text_secure_normal__mark_all_as_read">Sve označi kao pročitano</string>
-  <string name="text_secure_normal__invite_friends">Pozovite prijatelje</string>
+  <string name="text_secure_normal__invite_friends">Pozovi prijatelje</string>
   <string name="text_secure_normal__help">Pomoć</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
@@ -2398,7 +2398,7 @@
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Deblokiraj</string>
-  <string name="RecipientBottomSheet_add_to_contacts">Dodajte među kontakte</string>
+  <string name="RecipientBottomSheet_add_to_contacts">Dodaj među kontakte</string>
   <string name="RecipientBottomSheet_add_to_a_group">Uvrsti u grupu</string>
   <string name="RecipientBottomSheet_add_to_another_group">Uvrsti u drugu grupu</string>
   <string name="RecipientBottomSheet_view_safety_number">Vidi sigurnosni broj</string>

@@ -1089,6 +1089,7 @@
   <string name="RegistrationActivity_more_information">Plus de précisions</string>
   <string name="RegistrationActivity_less_information">Moins de précisions</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts et médias afin de se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin d\'accéder à vos contacts pour ce connecter avec vos amis, échanger des messages et passer des appels sécurisés.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour confirmer facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de confirmation si vous autorisez Signal à lire les textos.</string>
@@ -1266,6 +1267,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Aucun numéro de sécurité à comparer n’a été trouvé dans le presse-papiers</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Appareil photo afin de balayer un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossible de balayer le code QR sans l’autorisation Appareil photo</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Vous devez d\'abord échanger des messages pour afficher %1$s le numéro de sécurité.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1296,6 +1298,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ce message sera irrémédiablement supprimé.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s à %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Le média n’est plus disponible.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Impossible de trouver une application capable de partager ce média.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nouveaux messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Le plus récent de : %1$s</string>
@@ -1440,7 +1443,9 @@
   <string name="ContactSelectionListFragment_username_not_found">Le nom d’utilisateur est introuvable</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">« %1$s » n’est pas un utilisateur de Signal. Veuillez confirmer le nom d’utilisateur et réessayer.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vous n’avez pas besoin de vous ajouter au groupe</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Taille maximum du groupe atteinte</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal peuvent avoir %1$dmembres au maximum.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Limite de membres recommandée atteinte.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Aucun contact n’est bloqué</string>
   <!--contact_selection_list_fragment-->
@@ -2126,6 +2131,7 @@
   <string name="ResearchMegaphone_learn_more">En apprendre davantage</string>
   <string name="ResearchMegaphone_dismiss">Fermer</string>
   <string name="ResearchMegaphoneDialog_signal_research">Recherche Signal</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Nous croyons en la confidentialité.</b></p><p>Signal ne vous suit pas et ne collecte pas vos données. Afin d\'améliorer Signal pour tout le monde, nous nous appuyons sur les retours des utilisateurs <b>et nous aimerions le vôtre.</b></p><p>Nous menons actuellement une enquêtes pour comprendre comment vous utilisez Signal. Notre enquête ne collecte aucune aucune donnée permettant de vous identifier. Si vous souhaitez partager d\'avantages, il vous sera possible de nous indiquer vos coordonnées. </p><p>Si vous avez quelques minutes et des suggestions ou remarques à nous offrir, nous serions ravis de vous lire.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Répondre au sondage</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Non merci</string>
   <!--transport_selection_list_item-->
@@ -2143,6 +2149,7 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour visualiser les messages en attente</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Phrase de passe de la sauvegarde</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans la mémoire externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Vous devez obligatoirement avoir cette phrase secrète pour restaurer votre sauvegarde.</string>
   <string name="backup_enable_dialog__folder">Dossier</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai noté cette phrase de passe. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>
   <string name="registration_activity__restore_backup">Restaurer une sauvegarde</string>
@@ -2169,6 +2176,7 @@
   <string name="BackupDialog_delete_backups">Supprimer les sauvegardes ?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Désactiver et supprimer toutes les sauvegardes locales ?</string>
   <string name="BackupDialog_delete_backups_statement">Supprimer les sauvegardes</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Pour activer les sauvegardes, vous devez choisir un dossier. Les sauvegardes seront enregistrées dans ce dossier.</string>
   <string name="BackupDialog_choose_folder">Sélectionner un dossier</string>
   <string name="BackupDialog_copied_to_clipboard">A été copié dans le presse-papiers</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Saisissez la phrase de passe de la sauvegarde pour la confirmer</string>
@@ -2179,6 +2187,11 @@
   <string name="ChatsPreferenceFragment_last_backup_s">Dernière sauvegarde : %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En cours</string>
   <string name="LocalBackupJob_creating_backup">Création de la sauvegarde…</string>
+  <string name="LocalBackupJobApi29_backup_failed">La sauvegarde a échoué</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Votre dossier de sauvegarde a été supprimé ou déplacé.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Votre fichier de sauvegarde est trop volumineux pour être stocké dans cette emplacement.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Il n\'y a pas assez de place pour enregistrer votre sauvegarde dans cette emplacement.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Toucher pour gérer vos sauvegardes</string>
   <string name="ProgressPreference_d_messages_so_far">%d messages jusqu’à présent</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Veuillez saisir le code de confirmation envoyé à %s.</string>
   <string name="RegistrationActivity_wrong_number">Mauvais numéro</string>
@@ -2288,19 +2301,29 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Ce lien est actuellement inactif</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Impossible de démarrer la lecture.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Message vocal%1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s à %2$s</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Examiner les membres</string>
+  <string name="ReviewCardDialogFragment__review_request">Examiner les requêtes</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Si vous n\'êtes pas certain de la provenance de la demande, passez en revue les contacts ci-dessous et prenez une décision. </string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Aucun autre groupe en commun.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>
   <string name="ReviewCardDialogFragment__remove_s_from_group">Supprimer %1$s du groupe ?</string>
   <string name="ReviewCardDialogFragment__remove">Supprimer</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Impossible de supprimer ce membre du groupe.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Membre</string>
   <string name="ReviewCard__request">Demande</string>
+  <string name="ReviewCard__your_contact">Votre contact</string>
   <string name="ReviewCard__remove_from_group">Supprimer du groupe</string>
+  <string name="ReviewCard__update_contact">Mettre à jour le contact</string>
   <string name="ReviewCard__block">Bloquer</string>
   <string name="ReviewCard__delete">Supprimer</string>
+  <string name="ReviewCard__recently_changed">%1$s a récemment changé de nom de profil pour %2$s</string>
   <!--EOF-->
 </resources>

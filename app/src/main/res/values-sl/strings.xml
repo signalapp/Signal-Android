@@ -598,8 +598,8 @@
   <string name="ManageGroupActivity_disappearing_messages">Izginjajoča sporočila</string>
   <string name="ManageGroupActivity_pending_group_invites">Čakajoča vabila v skupine</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Vabila in prošnje za članstvo</string>
-  <string name="ManageGroupActivity_add_members">Dodaj člane/ice</string>
-  <string name="ManageGroupActivity_edit_group_info">Uredi podatke o skupini</string>
+  <string name="ManageGroupActivity_add_members">Dodajanje članov/ic</string>
+  <string name="ManageGroupActivity_edit_group_info">Urejanje podatkov o skupini</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Kdo lahko dodaja nove člane?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kdo lahko ureja informacije o skupini</string>
   <string name="ManageGroupActivity_group_link">Povezava do skupine</string>

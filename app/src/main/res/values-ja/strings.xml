@@ -285,6 +285,8 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">使い捨てメディアファイルは、送信後に自動で削除されます。</string>
   <string name="ConversationFragment_you_already_viewed_this_message">このメッセージは閲覧済みです</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">この会話に自分用のメモを追加できます。\n新しいメモはリンク済み端末にも同期されます。</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d人のグループメンバーが同じ名前です。</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signalは同じ名前で別の連絡先を見つけました。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->
@@ -2281,11 +2283,21 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">メンバーを確認してください</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d人のグループメンバーが同じ名前です。以下のメンバーを確認して、対応してください。</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">この申請者が誰であるか不確かな場合、以下の連絡先を確認して対応してください。</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">他の共通のグループはありません</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">共通のグループはありません</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="other">共通のグループは%d件あります</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="other">共通のグループは%d件あります</item>
+  </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s をグループから削除しますか？</string>
   <string name="ReviewCardDialogFragment__remove">消去</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">グループメンバーの削除に失敗しました。</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">メンバー</string>
+  <string name="ReviewCard__request">申請</string>
   <string name="ReviewCard__your_contact">あなたの連絡先</string>
   <string name="ReviewCard__remove_from_group">グループから削除</string>
   <string name="ReviewCard__block">ブロックする</string>
