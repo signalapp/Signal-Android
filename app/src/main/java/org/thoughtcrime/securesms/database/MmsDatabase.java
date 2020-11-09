@@ -1483,6 +1483,8 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public boolean deleteMessage(long messageId) {
+    Log.d(TAG, "deleteMessage(" + messageId + ")");
+
     long               threadId           = getThreadIdForMessage(messageId);
     AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
     attachmentDatabase.deleteAttachmentsForMessage(messageId);
@@ -1504,6 +1506,7 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public void deleteThread(long threadId) {
+    Log.d(TAG, "deleteThread(" + threadId + ")");
     Set<Long> singleThreadSet = new HashSet<>();
     singleThreadSet.add(threadId);
     deleteThreads(singleThreadSet);
@@ -1589,6 +1592,8 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   void deleteThreads(@NonNull Set<Long> threadIds) {
+    Log.d(TAG, "deleteThreads(count: " + threadIds.size() + ")");
+
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     String where      = "";
     Cursor cursor     = null;
@@ -1647,6 +1652,7 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public void deleteAllThreads() {
+    Log.d(TAG, "deleteAllThreads()");
     DatabaseFactory.getAttachmentDatabase(context).deleteAllAttachments();
     DatabaseFactory.getGroupReceiptDatabase(context).deleteAllRows();
     DatabaseFactory.getMentionDatabase(context).deleteAllMentions();

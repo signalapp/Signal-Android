@@ -30,6 +30,7 @@ import net.sqlcipher.database.SQLiteQueryBuilder;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.Pair;
@@ -406,11 +407,13 @@ public class MmsSmsDatabase extends Database {
   }
 
   public void deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
+    Log.d(TAG, "deleteMessagesInThreadBeforeData(" + threadId + ", " + trimBeforeDate + ")");
     DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
     DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
   }
 
   public void deleteAbandonedMessages() {
+    Log.d(TAG, "deleteAbandonedMessages()");
     DatabaseFactory.getSmsDatabase(context).deleteAbandonedMessages();
     DatabaseFactory.getMmsDatabase(context).deleteAbandonedMessages();
   }

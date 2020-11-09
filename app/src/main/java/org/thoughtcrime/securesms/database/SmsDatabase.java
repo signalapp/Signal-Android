@@ -979,6 +979,8 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public boolean deleteMessage(long messageId) {
+    Log.d(TAG, "deleteMessage(" + messageId + ")");
+
     SQLiteDatabase db       = databaseHelper.getWritableDatabase();
     long           threadId = getThreadIdForMessage(messageId);
 
@@ -1015,6 +1017,7 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   void deleteThread(long threadId) {
+    Log.d(TAG, "deleteThread(" + threadId + ")");
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
   }
@@ -1067,6 +1070,8 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   void deleteThreads(@NonNull Set<Long> threadIds) {
+    Log.d(TAG, "deleteThreads(count: " + threadIds.size() + ")");
+
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     String where      = "";
 
@@ -1081,6 +1086,7 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   void deleteAllThreads() {
+    Log.d(TAG, "deleteAllThreads()");
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, null, null);
   }
