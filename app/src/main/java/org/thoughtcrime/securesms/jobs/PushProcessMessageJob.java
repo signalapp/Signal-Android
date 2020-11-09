@@ -1038,12 +1038,16 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   private void handleSynchronizeViewOnceOpenMessage(@NonNull ViewOnceOpenMessage openMessage, long envelopeTimestamp) {
+    log(TAG, String.valueOf(envelopeTimestamp), "Handling a view-once open for message: " + openMessage.getTimestamp());
+
     RecipientId   author    = Recipient.externalPush(context, openMessage.getSender()).getId();
     long          timestamp = openMessage.getTimestamp();
     MessageRecord record    = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(timestamp, author);
 
     if (record != null && record.isMms()) {
       DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForViewOnceMessage(record.getId());
+    } else {
+      warn(TAG, String.valueOf(envelopeTimestamp), "Got a view-once open message for a message we don't have!");
     }
 
     MessageNotifier messageNotifier = ApplicationDependencies.getMessageNotifier();

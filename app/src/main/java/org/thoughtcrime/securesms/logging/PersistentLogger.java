@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
@@ -33,6 +34,8 @@ public final class PersistentLogger extends Log.Logger {
   private static final String LOG_W   = "W";
   private static final String LOG_E   = "E";
   private static final String LOG_WTF = "A";
+
+  private static final String VERSION_TAG = "[" + BuildConfig.VERSION_NAME + "]";
 
   private static final String           LOG_DIRECTORY   = "log";
   private static final String           FILENAME_PREFIX = "log-";
@@ -239,6 +242,6 @@ public final class PersistentLogger extends Log.Logger {
   }
 
   private String buildEntry(String level, String tag, String message, Date date) {
-    return DATE_FORMAT.format(date) + ' ' + level + ' ' + tag + ": " + message;
+    return VERSION_TAG + ' ' +DATE_FORMAT.format(date) + ' ' + level + ' ' + tag + ": " + message;
   }
 }
