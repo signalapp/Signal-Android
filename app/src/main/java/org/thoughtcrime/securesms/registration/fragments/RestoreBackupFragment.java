@@ -8,9 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.text.Editable;
 import android.text.Spanned;
 import android.text.TextWatcher;
@@ -28,7 +26,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.documentfile.provider.DocumentFile;
 import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
@@ -52,7 +49,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -206,7 +202,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
                          @NonNull Uri backupUri,
                          @NonNull OnBackupSearchResultListener listener)
   {
-    SimpleTask.run(() -> BackupUtil.getBackupInfoForUri(context, backupUri),
+    SimpleTask.run(() -> BackupUtil.getBackupInfoFromSingleUri(context, backupUri),
                    listener::run);
   }
 

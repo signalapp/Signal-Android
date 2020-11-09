@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -166,15 +167,13 @@ public class BackupUtil {
   }
 
   @RequiresApi(29)
-  public static @Nullable BackupInfo getBackupInfoForUri(@NonNull Context context, @NonNull Uri uri) {
-    DocumentFile documentFile = DocumentFile.fromSingleUri(context, uri);
+  public static @Nullable BackupInfo getBackupInfoFromSingleUri(@NonNull Context context, @NonNull Uri singleUri) {
+    DocumentFile documentFile = DocumentFile.fromSingleUri(context, singleUri);
 
-    if (documentFile != null && documentFile.exists() && documentFile.canRead() && documentFile.canWrite() && documentFile.getName().endsWith(".backup")) {
-      long backupTimestamp = getBackupTimestamp(documentFile.getName());
-
+    if (isBackupFileReadable(documentFile)) {
+      long backupTimestamp = getBackupTimestamp(Objects.requireNonNull(documentFile.getName()));
       return new BackupInfo(backupTimestamp, documentFile.length(), documentFile.getUri());
     } else {
-      logIssueWithDocumentFile(documentFile);
       Log.w(TAG, "Could not load backup info.");
       return null;
     }
@@ -260,17 +259,21 @@ public class BackupUtil {
     return -1;
   }
 
-  private static void logIssueWithDocumentFile(@Nullable DocumentFile documentFile) {
+  private static boolean isBackupFileReadable(@Nullable DocumentFile documentFile) {
     if (documentFile == null) {
       throw new AssertionError("We do not support platforms prior to KitKat.");
     } else if (!documentFile.exists()) {
-      Log.w(TAG, "The document at the specified Uri cannot be found.");
+      Log.w(TAG, "isBackupFileReadable: The document at the specified Uri cannot be found.");
+      return false;
     } else if (!documentFile.canRead()) {
-      Log.w(TAG, "The document at the specified Uri cannot be read.");
-    } else if (!documentFile.canWrite()) {
-      Log.w(TAG, "The document at the specified Uri cannot be written to.");
-    } else if (!documentFile.getName().endsWith(".backup")) {
-      Log.w(TAG, "The document at the specified Uri has an unsupported file extension.");
+      Log.w(TAG, "isBackupFileReadable: The document at the specified Uri cannot be read.");
+      return false;
+    } else if (TextUtils.isEmpty(documentFile.getName()) || !documentFile.getName().endsWith(".backup")) {
+      Log.w(TAG, "isBackupFileReadable: The document at the specified Uri has an unsupported file extension.");
+      return false;
+    } else {
+      Log.i(TAG, "isBackupFileReadable: The document at the specified Uri looks like a readable backup");
+      return true;
     }
   }
 
