@@ -30,14 +30,17 @@ dependencyVerification {
         ['androidx.autofill:autofill:1.0.0',
          'c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd'],
 
-        ['androidx.camera:camera-camera2:1.0.0-beta01',
-         '02e15ad76153d09adcd6631627960707a8786333a8276d05dcbefc2bfe4ef5a1'],
+        ['androidx.camera:camera-camera2:1.0.0-beta11',
+         '54d7c975ea7387f0d7c65faf531005fc543fe8e8d826eb696bb2c7f950041a9c'],
 
-        ['androidx.camera:camera-core:1.0.0-beta01',
-         'acba5f196b3bd3ecf756067c9f4fae4f15b81228c2bd6b52212d9454e27599f0'],
+        ['androidx.camera:camera-core:1.0.0-beta11',
+         '58ed18e385d3eea3e17568b5904629f5111de8af87035942f908d49815331645'],
 
-        ['androidx.camera:camera-lifecycle:1.0.0-beta01',
-         '25c761a863555d5e008e428cf271caca774c867bf269495dc32a0fdc65770fd5'],
+        ['androidx.camera:camera-lifecycle:1.0.0-beta11',
+         'f8617971cbfb2d249eea3558756bc466cb35a946a9269b966b24b6787f449631'],
+
+        ['androidx.camera:camera-view:1.0.0-alpha18',
+         '029652f71430e4acc97c41d40e509bf6774a86dd35a19cea5c856f0b96a6c70c'],
 
         ['androidx.cardview:cardview:1.0.0',
          '1193c04c22a3d6b5946dae9f4e8c59d6adde6a71b6bd5d87fb99d82dda1afec7'],

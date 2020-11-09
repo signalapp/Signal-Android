@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.Size;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.camera.core.VideoCapture;
+import androidx.camera.view.SignalCameraView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.util.Executors;
@@ -19,8 +22,6 @@ import com.nineoldandroids.animation.ValueAnimator;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mediasend.camerax.CameraXView;
-import org.thoughtcrime.securesms.mediasend.camerax.VideoCapture;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.VideoUtil;
@@ -36,7 +37,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   private static final long   VIDEO_SIZE        = 10 * 1024 * 1024;
 
   private final @NonNull Fragment             fragment;
-  private final @NonNull CameraXView          camera;
+  private final @NonNull SignalCameraView     camera;
   private final @NonNull Callback             callback;
   private final @NonNull MemoryFileDescriptor memoryFileDescriptor;
   private final @NonNull ValueAnimator        updateProgressAnimator;
@@ -46,12 +47,12 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
   private final VideoCapture.OnVideoSavedCallback videoSavedListener = new VideoCapture.OnVideoSavedCallback() {
     @Override
-    public void onVideoSaved(@NonNull FileDescriptor fileDescriptor) {
+    public void onVideoSaved(@NonNull VideoCapture.OutputFileResults outputFileResults) {
       try {
         isRecording = false;
         camera.setZoomRatio(camera.getMinZoomRatio());
         memoryFileDescriptor.seek(0);
-        callback.onVideoSaved(fileDescriptor);
+        callback.onVideoSaved(memoryFileDescriptor.getFileDescriptor());
       } catch (IOException e) {
         callback.onVideoError(e);
       }
@@ -66,7 +67,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
   CameraXVideoCaptureHelper(@NonNull Fragment fragment,
                             @NonNull CameraButtonView captureButton,
-                            @NonNull CameraXView camera,
+                            @NonNull SignalCameraView camera,
                             @NonNull MemoryFileDescriptor memoryFileDescriptor,
                             int      maxVideoDurationSec,
                             @NonNull Callback callback)
@@ -113,11 +114,15 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
                .execute();
   }
 
+  @SuppressLint("RestrictedApi")
   private void beginCameraRecording() {
     this.camera.setZoomRatio(this.camera.getMinZoomRatio());
     callback.onVideoRecordStarted();
     shrinkCaptureArea();
-    camera.startRecording(memoryFileDescriptor.getFileDescriptor(), Executors.mainThreadExecutor(), videoSavedListener);
+
+    VideoCapture.OutputFileOptions options = new VideoCapture.OutputFileOptions.Builder(memoryFileDescriptor.getFileDescriptor()).build();
+
+    camera.startRecording(options, Executors.mainThreadExecutor(), videoSavedListener);
     updateProgressAnimator.start();
   }
 

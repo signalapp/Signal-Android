@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.thoughtcrime.securesms.mediasend.camerax.CameraXView
+    <androidx.camera.view.SignalCameraView
         android:id="@+id/camerax_camera"
         android:layout_gravity="center"
         android:layout_width="match_parent"

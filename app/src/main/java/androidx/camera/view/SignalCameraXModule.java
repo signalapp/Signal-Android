@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.mediasend.camerax;
+package androidx.camera.view;
+
+import static androidx.camera.core.ImageCapture.FLASH_MODE_OFF;
 
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
@@ -27,17 +29,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
+import androidx.camera.core.AspectRatio;
 import androidx.camera.core.Camera;
+import androidx.camera.core.CameraInfoUnavailableException;
 import androidx.camera.core.CameraSelector;
-import androidx.camera.core.CameraX;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCapture.OnImageCapturedCallback;
+import androidx.camera.core.ImageCapture.OnImageSavedCallback;
+import androidx.camera.core.Logger;
 import androidx.camera.core.Preview;
 import androidx.camera.core.TorchState;
 import androidx.camera.core.UseCase;
+import androidx.camera.core.VideoCapture;
+import androidx.camera.core.VideoCapture.OnVideoSavedCallback;
 import androidx.camera.core.impl.CameraInternal;
 import androidx.camera.core.impl.LensFacingConverter;
-import androidx.camera.core.impl.VideoCaptureConfig;
 import androidx.camera.core.impl.utils.CameraOrientationUtil;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
@@ -51,11 +57,10 @@ import androidx.lifecycle.OnLifecycleEvent;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
-import java.io.FileDescriptor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -65,13 +70,10 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static androidx.camera.core.ImageCapture.FLASH_MODE_OFF;
-
 /** CameraX use case operation built on @{link androidx.camera.core}. */
-// Begin Signal Custom Code Block
 @RequiresApi(21)
-// End Signal Custom Code Block
-final class CameraXModule {
+@SuppressLint("RestrictedApi")
+final class SignalCameraXModule {
   public static final String TAG = "CameraXModule";
 
   private static final float UNITY_ZOOM_SCALE = 1f;
@@ -82,13 +84,13 @@ final class CameraXModule {
   private static final Rational ASPECT_RATIO_3_4 = new Rational(3, 4);
 
   private final Preview.Builder mPreviewBuilder;
-  private final VideoCaptureConfig.Builder mVideoCaptureConfigBuilder;
+  private final VideoCapture.Builder mVideoCaptureBuilder;
   private final ImageCapture.Builder mImageCaptureBuilder;
-  private final CameraXView mCameraXView;
+  private final SignalCameraView mCameraView;
   final AtomicBoolean mVideoIsRecording = new AtomicBoolean(false);
-  private CameraXView.CaptureMode mCaptureMode = CameraXView.CaptureMode.IMAGE;
-  private long mMaxVideoDuration = CameraXView.INDEFINITE_VIDEO_DURATION;
-  private long mMaxVideoSize = CameraXView.INDEFINITE_VIDEO_SIZE;
+  private SignalCameraView.CaptureMode mCaptureMode = SignalCameraView.CaptureMode.IMAGE;
+  private long mMaxVideoDuration = SignalCameraView.INDEFINITE_VIDEO_DURATION;
+  private long mMaxVideoSize = SignalCameraView.INDEFINITE_VIDEO_SIZE;
   @ImageCapture.FlashMode
   private int mFlash = FLASH_MODE_OFF;
   @Nullable
@@ -110,7 +112,6 @@ final class CameraXModule {
         public void onDestroy(LifecycleOwner owner) {
           if (owner == mCurrentLifecycle) {
             clearCurrentLifecycle();
-            mPreview.setSurfaceProvider(null);
           }
         }
       };
@@ -123,8 +124,8 @@ final class CameraXModule {
   @Nullable
   ProcessCameraProvider mCameraProvider;
 
-  CameraXModule(CameraXView view) {
-    mCameraXView = view;
+  SignalCameraXModule(SignalCameraView view) {
+    mCameraView = view;
 
     Futures.addCallback(ProcessCameraProvider.getInstance(view.getContext()),
         new FutureCallback<ProcessCameraProvider>() {
@@ -149,14 +150,12 @@ final class CameraXModule {
 
     mImageCaptureBuilder = new ImageCapture.Builder().setTargetName("ImageCapture");
 
-    // Begin Signal Custom Code Block
-    mVideoCaptureConfigBuilder =
-        new VideoCaptureConfig.Builder().setTargetName("VideoCapture")
-                                        .setAudioBitRate(VideoUtil.AUDIO_BIT_RATE)
-                                        .setVideoFrameRate(VideoUtil.VIDEO_FRAME_RATE)
-                                        .setBitRate(VideoUtil.VIDEO_BIT_RATE);
-    // End Signal Custom Code Block
+    mVideoCaptureBuilder = new VideoCapture.Builder().setTargetName("VideoCapture")
+                                                     .setAudioBitRate(VideoUtil.AUDIO_BIT_RATE)
+                                                     .setVideoFrameRate(VideoUtil.VIDEO_FRAME_RATE)
+                                                     .setBitRate(VideoUtil.VIDEO_BIT_RATE);
   }
+
   @RequiresPermission(permission.CAMERA)
   void bindToLifecycle(LifecycleOwner lifecycleOwner) {
     mNewLifecycle = lifecycleOwner;
@@ -173,12 +172,15 @@ final class CameraXModule {
     }
 
     clearCurrentLifecycle();
+    if (mNewLifecycle.getLifecycle().getCurrentState() == Lifecycle.State.DESTROYED) {
+      // Lifecycle is already in a destroyed state. Since it may have been a valid
+      // lifecycle when bound, but became destroyed while waiting for layout, treat this as
+      // a no-op now that we have cleared the previous lifecycle.
+      mNewLifecycle = null;
+      return;
+    }
     mCurrentLifecycle = mNewLifecycle;
     mNewLifecycle = null;
-    if (mCurrentLifecycle.getLifecycle().getCurrentState() == Lifecycle.State.DESTROYED) {
-      mCurrentLifecycle = null;
-      throw new IllegalArgumentException("Cannot bind to lifecycle in a destroyed state.");
-    }
 
     if (mCameraProvider == null) {
       // try again once the camera provider is no longer null
@@ -188,18 +190,18 @@ final class CameraXModule {
     Set<Integer> available = getAvailableCameraLensFacing();
 
     if (available.isEmpty()) {
-      Log.w(TAG, "Unable to bindToLifeCycle since no cameras available");
+      Logger.w(TAG, "Unable to bindToLifeCycle since no cameras available");
       mCameraLensFacing = null;
     }
 
     // Ensure the current camera exists, or default to another camera
     if (mCameraLensFacing != null && !available.contains(mCameraLensFacing)) {
-      Log.w(TAG, "Camera does not exist with direction " + mCameraLensFacing);
+      Logger.w(TAG, "Camera does not exist with direction " + mCameraLensFacing);
 
       // Default to the first available camera direction
       mCameraLensFacing = available.iterator().next();
 
-      Log.w(TAG, "Defaulting to primary camera with direction " + mCameraLensFacing);
+      Logger.w(TAG, "Defaulting to primary camera with direction " + mCameraLensFacing);
     }
 
     // Do not attempt to create use cases for a null cameraLensFacing. This could occur if
@@ -216,14 +218,12 @@ final class CameraXModule {
     boolean isDisplayPortrait = getDisplayRotationDegrees() == 0
         || getDisplayRotationDegrees() == 180;
 
-    Rational targetAspectRatio;
-
     // Begin Signal Custom Code Block
     int resolution = CameraXUtil.getIdealResolution(Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels);
     // End Signal Custom Code Block
 
-    if (getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
-//      mImageCaptureBuilder.setTargetAspectRatio(AspectRatio.RATIO_4_3);
+    Rational targetAspectRatio;
+    if (getCaptureMode() == SignalCameraView.CaptureMode.IMAGE) {
       // Begin Signal Custom Code Block
       mImageCaptureBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_4_3, isDisplayPortrait));
       // End Signal Custom Code Block
@@ -232,7 +232,6 @@ final class CameraXModule {
       // Begin Signal Custom Code Block
       mImageCaptureBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_16_9, isDisplayPortrait));
       // End Signal Custom Code Block
-//      mImageCaptureBuilder.setTargetAspectRatio(AspectRatio.RATIO_16_9);
       targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_9_16 : ASPECT_RATIO_16_9;
     }
 
@@ -245,15 +244,14 @@ final class CameraXModule {
 
     // Begin Signal Custom Code Block
     Size size = VideoUtil.getVideoRecordingSize();
-    mVideoCaptureConfigBuilder.setTargetResolution(size);
-    mVideoCaptureConfigBuilder.setMaxResolution(size);
+    mVideoCaptureBuilder.setTargetResolution(size);
+    mVideoCaptureBuilder.setMaxResolution(size);
     // End Signal Custom Code Block
 
-    mVideoCaptureConfigBuilder.setTargetRotation(getDisplaySurfaceRotation());
-
+    mVideoCaptureBuilder.setTargetRotation(getDisplaySurfaceRotation());
     // Begin Signal Custom Code Block
     if (MediaConstraints.isVideoTranscodeAvailable()) {
-      mVideoCapture = new VideoCapture(mVideoCaptureConfigBuilder.getUseCaseConfig());
+      mVideoCapture = mVideoCaptureBuilder.build();
     }
     // End Signal Custom Code Block
 
@@ -262,15 +260,15 @@ final class CameraXModule {
     mPreviewBuilder.setTargetResolution(new Size(getMeasuredWidth(), height));
 
     mPreview = mPreviewBuilder.build();
-    mPreview.setSurfaceProvider(mCameraXView.getPreviewView().getPreviewSurfaceProvider());
+    mPreview.setSurfaceProvider(mCameraView.getPreviewView().getSurfaceProvider());
 
     CameraSelector cameraSelector =
         new CameraSelector.Builder().requireLensFacing(mCameraLensFacing).build();
-    if (getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
+    if (getCaptureMode() == SignalCameraView.CaptureMode.IMAGE) {
       mCamera = mCameraProvider.bindToLifecycle(mCurrentLifecycle, cameraSelector,
           mImageCapture,
           mPreview);
-    } else if (getCaptureMode() == CameraXView.CaptureMode.VIDEO) {
+    } else if (getCaptureMode() == SignalCameraView.CaptureMode.VIDEO) {
       mCamera = mCameraProvider.bindToLifecycle(mCurrentLifecycle, cameraSelector,
           mVideoCapture,
           mPreview);
@@ -301,7 +299,7 @@ final class CameraXModule {
       return;
     }
 
-    if (getCaptureMode() == CameraXView.CaptureMode.VIDEO) {
+    if (getCaptureMode() == SignalCameraView.CaptureMode.VIDEO) {
       throw new IllegalStateException("Can not take picture under VIDEO capture mode.");
     }
 
@@ -312,17 +310,32 @@ final class CameraXModule {
     mImageCapture.takePicture(executor, callback);
   }
 
-  // Begin Signal Custom Code Block
-  @RequiresApi(26)
-  public void startRecording(FileDescriptor file,
-                             // End Signal Custom Code Block
-                             Executor executor,
-                             final VideoCapture.OnVideoSavedCallback callback) {
+  public void takePicture(@NonNull ImageCapture.OutputFileOptions outputFileOptions,
+                          @NonNull Executor executor, OnImageSavedCallback callback) {
+    if (mImageCapture == null) {
+      return;
+    }
+
+    if (getCaptureMode() == SignalCameraView.CaptureMode.VIDEO) {
+      throw new IllegalStateException("Can not take picture under VIDEO capture mode.");
+    }
+
+    if (callback == null) {
+      throw new IllegalArgumentException("OnImageSavedCallback should not be empty");
+    }
+
+    outputFileOptions.getMetadata().setReversedHorizontal(mCameraLensFacing != null
+        && mCameraLensFacing == CameraSelector.LENS_FACING_FRONT);
+    mImageCapture.takePicture(outputFileOptions, executor, callback);
+  }
+
+  public void startRecording(VideoCapture.OutputFileOptions outputFileOptions,
+                             Executor executor, final OnVideoSavedCallback callback) {
     if (mVideoCapture == null) {
       return;
     }
 
-    if (getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
+    if (getCaptureMode() == SignalCameraView.CaptureMode.IMAGE) {
       throw new IllegalStateException("Can not record video under IMAGE capture mode.");
     }
 
@@ -332,15 +345,14 @@ final class CameraXModule {
 
     mVideoIsRecording.set(true);
     mVideoCapture.startRecording(
-        file,
+        outputFileOptions,
         executor,
         new VideoCapture.OnVideoSavedCallback() {
           @Override
-          // Begin Signal Custom Code Block
-          public void onVideoSaved(@NonNull FileDescriptor savedFile) {
-          // End Signal Custom Code Block
+          public void onVideoSaved(
+              @NonNull VideoCapture.OutputFileResults outputFileResults) {
             mVideoIsRecording.set(false);
-            callback.onVideoSaved(savedFile);
+            callback.onVideoSaved(outputFileResults);
           }
 
           @Override
@@ -349,15 +361,12 @@ final class CameraXModule {
               @NonNull String message,
               @Nullable Throwable cause) {
             mVideoIsRecording.set(false);
-            Log.e(TAG, message, cause);
+            Logger.e(TAG, message, cause);
             callback.onError(videoCaptureError, message, cause);
           }
         });
   }
 
-  // Begin Signal Custom Code Block
-  @RequiresApi(26)
-  // End Signal Custom Code Block
   public void stopRecording() {
     if (mVideoCapture == null) {
       return;
@@ -388,14 +397,15 @@ final class CameraXModule {
 
   @RequiresPermission(permission.CAMERA)
   public boolean hasCameraWithLensFacing(@CameraSelector.LensFacing int lensFacing) {
-    String cameraId;
-    try {
-      cameraId = CameraX.getCameraWithLensFacing(lensFacing);
-    } catch (Exception e) {
-      throw new IllegalStateException("Unable to query lens facing.", e);
+    if (mCameraProvider == null) {
+      return false;
     }
-
-    return cameraId != null;
+    try {
+      return mCameraProvider.hasCamera(
+          new CameraSelector.Builder().requireLensFacing(lensFacing).build());
+    } catch (CameraInfoUnavailableException e) {
+      return false;
+    }
   }
 
   @Nullable
@@ -454,7 +464,7 @@ final class CameraXModule {
         }
       }, CameraXExecutors.directExecutor());
     } else {
-      Log.e(TAG, "Failed to set zoom ratio");
+      Logger.e(TAG, "Failed to set zoom ratio");
     }
   }
 
@@ -484,6 +494,10 @@ final class CameraXModule {
     if (mCurrentLifecycle != null) {
       bindToLifecycle(mCurrentLifecycle);
     }
+  }
+
+  boolean isBoundToLifecycle() {
+    return mCamera != null;
   }
 
   int getRelativeCameraOrientation(boolean compensateForMirroring) {
@@ -520,6 +534,11 @@ final class CameraXModule {
       if (!toUnbind.isEmpty()) {
         mCameraProvider.unbind(toUnbind.toArray((new UseCase[0])));
       }
+
+      // Remove surface provider once unbound.
+      if (mPreview != null) {
+        mPreview.setSurfaceProvider(null);
+      }
     }
     mCamera = null;
     mCurrentLifecycle = null;
@@ -532,7 +551,7 @@ final class CameraXModule {
       mImageCapture.setTargetRotation(getDisplaySurfaceRotation());
     }
 
-    if (mVideoCapture != null && MediaConstraints.isVideoTranscodeAvailable()) {
+    if (mVideoCapture != null) {
       mVideoCapture.setTargetRotation(getDisplaySurfaceRotation());
     }
   }
@@ -567,7 +586,7 @@ final class CameraXModule {
       return false;
     }
 
-    CameraInternal camera = mImageCapture.getBoundCamera();
+    CameraInternal camera = mImageCapture.getCamera();
 
     if (camera == null) {
       return false;
@@ -614,15 +633,15 @@ final class CameraXModule {
   }
 
   public Context getContext() {
-    return mCameraXView.getContext();
+    return mCameraView.getContext();
   }
 
   public int getWidth() {
-    return mCameraXView.getWidth();
+    return mCameraView.getWidth();
   }
 
   public int getHeight() {
-    return mCameraXView.getHeight();
+    return mCameraView.getHeight();
   }
 
   public int getDisplayRotationDegrees() {
@@ -630,15 +649,15 @@ final class CameraXModule {
   }
 
   protected int getDisplaySurfaceRotation() {
-    return mCameraXView.getDisplaySurfaceRotation();
+    return mCameraView.getDisplaySurfaceRotation();
   }
 
   private int getMeasuredWidth() {
-    return mCameraXView.getMeasuredWidth();
+    return mCameraView.getMeasuredWidth();
   }
 
   private int getMeasuredHeight() {
-    return mCameraXView.getMeasuredHeight();
+    return mCameraView.getMeasuredHeight();
   }
 
   @Nullable
@@ -647,11 +666,11 @@ final class CameraXModule {
   }
 
   @NonNull
-  public CameraXView.CaptureMode getCaptureMode() {
+  public SignalCameraView.CaptureMode getCaptureMode() {
     return mCaptureMode;
   }
 
-  public void setCaptureMode(@NonNull CameraXView.CaptureMode captureMode) {
+  public void setCaptureMode(@NonNull SignalCameraView.CaptureMode captureMode) {
     this.mCaptureMode = captureMode;
     rebindToLifecycle();
   }

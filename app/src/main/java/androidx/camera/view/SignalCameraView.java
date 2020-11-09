@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.thoughtcrime.securesms.mediasend.camerax;
+package androidx.camera.view;
 
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
@@ -45,43 +45,44 @@ import androidx.annotation.RestrictTo;
 import androidx.annotation.RestrictTo.Scope;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
-import androidx.camera.core.DisplayOrientedMeteringPointFactory;
 import androidx.camera.core.FocusMeteringAction;
 import androidx.camera.core.FocusMeteringResult;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCapture.OnImageCapturedCallback;
+import androidx.camera.core.ImageCapture.OnImageSavedCallback;
 import androidx.camera.core.ImageProxy;
+import androidx.camera.core.Logger;
 import androidx.camera.core.MeteringPoint;
+import androidx.camera.core.MeteringPointFactory;
+import androidx.camera.core.VideoCapture;
+import androidx.camera.core.VideoCapture.OnVideoSavedCallback;
 import androidx.camera.core.impl.LensFacingConverter;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.logging.Log;
-
-import java.io.FileDescriptor;
+import java.io.File;
 import java.util.concurrent.Executor;
 
 /**
  * A {@link View} that displays a preview of the camera with methods {@link
  * #takePicture(Executor, OnImageCapturedCallback)},
- * {@link #startRecording(FileDescriptor, Executor, VideoCapture.OnVideoSavedCallback)} and {@link #stopRecording()}.
+ * {@link #takePicture(ImageCapture.OutputFileOptions, Executor, OnImageSavedCallback)},
+ * {@link #startRecording(File , Executor , OnVideoSavedCallback callback)}
+ * and {@link #stopRecording()}.
  *
  * <p>Because the Camera is a limited resource and consumes a high amount of power, CameraView must
  * be opened/closed. CameraView will handle opening/closing automatically through use of a {@link
  * LifecycleOwner}. Use {@link #bindToLifecycle(LifecycleOwner)} to start the camera.
  */
-// Begin Signal Custom Code Block
 @RequiresApi(21)
 @SuppressLint("RestrictedApi")
-// End Signal Custom Code Block
-public final class CameraXView extends FrameLayout {
-  static final String TAG = CameraXView.class.getSimpleName();
-  static final boolean DEBUG = false;
+public final class SignalCameraView extends FrameLayout {
+  static final String TAG = SignalCameraView.class.getSimpleName();
 
   static final int INDEFINITE_VIDEO_DURATION = -1;
   static final int INDEFINITE_VIDEO_SIZE = -1;
@@ -107,7 +108,7 @@ public final class CameraXView extends FrameLayout {
   // For pinch-to-zoom
   private PinchToZoomGestureDetector mPinchToZoomGestureDetector;
   private boolean mIsPinchToZoomEnabled = true;
-  CameraXModule mCameraModule;
+  SignalCameraXModule mCameraModule;
   private final DisplayManager.DisplayListener mDisplayListener =
       new DisplayListener() {
         @Override
@@ -124,26 +125,25 @@ public final class CameraXView extends FrameLayout {
         }
       };
   private PreviewView mPreviewView;
-  private ScaleType mScaleType = ScaleType.CENTER_CROP;
   // For accessibility event
   private MotionEvent mUpEvent;
 
-  public CameraXView(@NonNull Context context) {
+  public SignalCameraView(@NonNull Context context) {
     this(context, null);
   }
 
-  public CameraXView(@NonNull Context context, @Nullable AttributeSet attrs) {
+  public SignalCameraView(@NonNull Context context, @Nullable AttributeSet attrs) {
     this(context, attrs, 0);
   }
 
-  public CameraXView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
+  public SignalCameraView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     init(context, attrs);
   }
 
   @RequiresApi(21)
-  public CameraXView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr,
-                    int defStyleRes) {
+  public SignalCameraView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr,
+                          int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     init(context, attrs);
   }
@@ -172,23 +172,23 @@ public final class CameraXView extends FrameLayout {
 
   private void init(Context context, @Nullable AttributeSet attrs) {
     addView(mPreviewView = new PreviewView(getContext()), 0 /* view position */);
-    mCameraModule = new CameraXModule(this);
+    mCameraModule = new SignalCameraXModule(this);
 
     if (attrs != null) {
-      TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraXView);
+      TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraView);
       setScaleType(
-          ScaleType.fromId(
-              a.getInteger(R.styleable.CameraXView_scaleType,
+          PreviewView.ScaleType.fromId(
+              a.getInteger(R.styleable.CameraView_scaleType,
                   getScaleType().getId())));
       setPinchToZoomEnabled(
           a.getBoolean(
-              R.styleable.CameraXView_pinchToZoomEnabled, isPinchToZoomEnabled()));
+              R.styleable.CameraView_pinchToZoomEnabled, isPinchToZoomEnabled()));
       setCaptureMode(
           CaptureMode.fromId(
-              a.getInteger(R.styleable.CameraXView_captureMode,
+              a.getInteger(R.styleable.CameraView_captureMode,
                   getCaptureMode().getId())));
 
-      int lensFacing = a.getInt(R.styleable.CameraXView_lensFacing, LENS_FACING_BACK);
+      int lensFacing = a.getInt(R.styleable.CameraView_lensFacing, LENS_FACING_BACK);
       switch (lensFacing) {
         case LENS_FACING_NONE:
           setCameraLensFacing(null);
@@ -203,7 +203,7 @@ public final class CameraXView extends FrameLayout {
           // Unhandled event.
       }
 
-      int flashMode = a.getInt(R.styleable.CameraXView_flash, 0);
+      int flashMode = a.getInt(R.styleable.CameraView_flash, 0);
       switch (flashMode) {
         case FLASH_MODE_AUTO:
           setFlash(ImageCapture.FLASH_MODE_AUTO);
@@ -265,7 +265,7 @@ public final class CameraXView extends FrameLayout {
     if (savedState instanceof Bundle) {
       Bundle state = (Bundle) savedState;
       super.onRestoreInstanceState(state.getParcelable(EXTRA_SUPER));
-      setScaleType(ScaleType.fromId(state.getInt(EXTRA_SCALE_TYPE)));
+      setScaleType(PreviewView.ScaleType.fromId(state.getInt(EXTRA_SCALE_TYPE)));
       setZoomRatio(state.getFloat(EXTRA_ZOOM_RATIO));
       setPinchToZoomEnabled(state.getBoolean(EXTRA_PINCH_TO_ZOOM_ENABLED));
       setFlash(FlashModeConverter.valueOf(state.getString(EXTRA_FLASH)));
@@ -298,6 +298,21 @@ public final class CameraXView extends FrameLayout {
     dpyMgr.unregisterDisplayListener(mDisplayListener);
   }
 
+  /**
+   * Gets the {@link LiveData} of the underlying {@link PreviewView}'s
+   * {@link PreviewView.StreamState}.
+   *
+   * @return A {@link LiveData} containing the {@link PreviewView.StreamState}. Apps can either
+   * get current value by {@link LiveData#getValue()} or register a observer by
+   * {@link LiveData#observe}.
+   * @see PreviewView#getPreviewStreamState()
+   */
+  @NonNull
+  public LiveData<PreviewView.StreamState> getPreviewStreamState() {
+    return mPreviewView.getPreviewStreamState();
+  }
+
+  @NonNull
   PreviewView getPreviewView() {
     return mPreviewView;
   }
@@ -347,11 +362,11 @@ public final class CameraXView extends FrameLayout {
   /**
    * Returns the scale type used to scale the preview.
    *
-   * @return The current {@link ScaleType}.
+   * @return The current {@link PreviewView.ScaleType}.
    */
   @NonNull
-  public ScaleType getScaleType() {
-    return mScaleType;
+  public PreviewView.ScaleType getScaleType() {
+    return mPreviewView.getScaleType();
   }
 
   /**
@@ -359,13 +374,10 @@ public final class CameraXView extends FrameLayout {
    *
    * <p>This controls how the view finder should be scaled and positioned within the view.
    *
-   * @param scaleType The desired {@link ScaleType}.
+   * @param scaleType The desired {@link PreviewView.ScaleType}.
    */
-  public void setScaleType(@NonNull ScaleType scaleType) {
-    if (scaleType != mScaleType) {
-      mScaleType = scaleType;
-      requestLayout();
-    }
+  public void setScaleType(@NonNull PreviewView.ScaleType scaleType) {
+    mPreviewView.setScaleType(scaleType);
   }
 
   /**
@@ -401,8 +413,10 @@ public final class CameraXView extends FrameLayout {
   }
 
   /**
-   * Sets the maximum video duration before {@link VideoCapture.OnVideoSavedCallback#onVideoSaved(FileDescriptor)} is
-   * called automatically. Use {@link #INDEFINITE_VIDEO_DURATION} to disable the timeout.
+   * Sets the maximum video duration before
+   * {@link OnVideoSavedCallback#onVideoSaved(VideoCapture.OutputFileResults)} is called
+   * automatically.
+   * Use {@link #INDEFINITE_VIDEO_DURATION} to disable the timeout.
    */
   private void setMaxVideoDuration(long duration) {
     mCameraModule.setMaxVideoDuration(duration);
@@ -417,7 +431,8 @@ public final class CameraXView extends FrameLayout {
   }
 
   /**
-   * Sets the maximum video size in bytes before {@link VideoCapture.OnVideoSavedCallback#onVideoSaved(FileDescriptor)}
+   * Sets the maximum video size in bytes before
+   * {@link OnVideoSavedCallback#onVideoSaved(VideoCapture.OutputFileResults)}
    * is called automatically. Use {@link #INDEFINITE_VIDEO_SIZE} to disable the size restriction.
    */
   private void setMaxVideoSize(long size) {
@@ -436,27 +451,37 @@ public final class CameraXView extends FrameLayout {
   }
 
   /**
+   * Takes a picture and calls
+   * {@link OnImageSavedCallback#onImageSaved(ImageCapture.OutputFileResults)} when done.
+   *
+   * <p> The value of {@link ImageCapture.Metadata#isReversedHorizontal()} in the
+   * {@link ImageCapture.OutputFileOptions} will be overwritten based on camera direction. For
+   * front camera, it will be set to true; for back camera, it will be set to false.
+   *
+   * @param outputFileOptions Options to store the newly captured image.
+   * @param executor          The executor in which the callback methods will be run.
+   * @param callback          Callback which will receive success or failure.
+   */
+  public void takePicture(@NonNull ImageCapture.OutputFileOptions outputFileOptions,
+                          @NonNull Executor executor,
+                          @NonNull OnImageSavedCallback callback) {
+    mCameraModule.takePicture(outputFileOptions, executor, callback);
+  }
+
+  /**
    * Takes a video and calls the OnVideoSavedCallback when done.
    *
-   * @param file     The destination.
-   * @param executor The executor in which the callback methods will be run.
-   * @param callback Callback which will receive success or failure.
+   * @param outputFileOptions     Options to store the newly captured video.
+   * @param executor              The executor in which the callback methods will be run.
+   * @param callback              Callback which will receive success or failure.
    */
-  // Begin Signal Custom Code Block
-  @RequiresApi(26)
-  // End Signal Custom Code Block
-  public void startRecording(// Begin Signal Custom Code Block
-                             @NonNull FileDescriptor file,
-                             // End Signal Custom Code Block
+  public void startRecording(@NonNull VideoCapture.OutputFileOptions outputFileOptions,
                              @NonNull Executor executor,
-                             @NonNull VideoCapture.OnVideoSavedCallback callback) {
-    mCameraModule.startRecording(file, executor, callback);
+                             @NonNull OnVideoSavedCallback callback) {
+    mCameraModule.startRecording(outputFileOptions, executor, callback);
   }
 
   /** Stops an in progress video. */
-  // Begin Signal Custom Code Block
-  @RequiresApi(26)
-  // End Signal Custom Code Block
   public void stopRecording() {
     mCameraModule.stopRecording();
   }
@@ -554,7 +579,8 @@ public final class CameraXView extends FrameLayout {
         mDownEventTimestamp = System.currentTimeMillis();
         break;
       case MotionEvent.ACTION_UP:
-        if (delta() < ViewConfiguration.getLongPressTimeout()) {
+        if (delta() < ViewConfiguration.getLongPressTimeout()
+            && mCameraModule.isBoundToLifecycle()) {
           mUpEvent = event;
           performClick();
         }
@@ -578,19 +604,14 @@ public final class CameraXView extends FrameLayout {
     final float y = (mUpEvent != null) ? mUpEvent.getY() : getY() + getHeight() / 2f;
     mUpEvent = null;
 
-    CameraSelector cameraSelector =
-        new CameraSelector.Builder().requireLensFacing(
-            mCameraModule.getLensFacing()).build();
-
-    DisplayOrientedMeteringPointFactory pointFactory = new DisplayOrientedMeteringPointFactory(
-        getDisplay(), cameraSelector, mPreviewView.getWidth(), mPreviewView.getHeight());
-    float afPointWidth = 1.0f / 6.0f;  // 1/6 total area
-    float aePointWidth = afPointWidth * 1.5f;
-    MeteringPoint afPoint = pointFactory.createPoint(x, y, afPointWidth);
-    MeteringPoint aePoint = pointFactory.createPoint(x, y, aePointWidth);
-
     Camera camera = mCameraModule.getCamera();
     if (camera != null) {
+      MeteringPointFactory pointFactory = mPreviewView.getMeteringPointFactory();
+      float afPointWidth = 1.0f / 6.0f;  // 1/6 total area
+      float aePointWidth = afPointWidth * 1.5f;
+      MeteringPoint afPoint = pointFactory.createPoint(x, y, afPointWidth);
+      MeteringPoint aePoint = pointFactory.createPoint(x, y, aePointWidth);
+
       ListenableFuture<FocusMeteringResult> future =
           camera.getCameraControl().startFocusAndMetering(
               new FocusMeteringAction.Builder(afPoint,
@@ -609,7 +630,7 @@ public final class CameraXView extends FrameLayout {
       }, CameraXExecutors.directExecutor());
 
     } else {
-      Log.d(TAG, "cannot access camera");
+      Logger.d(TAG, "cannot access camera");
     }
 
     return true;
@@ -711,45 +732,11 @@ public final class CameraXView extends FrameLayout {
     return mCameraModule.isTorchOn();
   }
 
-  /** Options for scaling the bounds of the view finder to the bounds of this view. */
-  public enum ScaleType {
-    /**
-     * Scale the view finder, maintaining the source aspect ratio, so the view finder fills the
-     * entire view. This will cause the view finder to crop the source image if the camera
-     * aspect ratio does not match the view aspect ratio.
-     */
-    CENTER_CROP(0),
-    /**
-     * Scale the view finder, maintaining the source aspect ratio, so the view finder is
-     * entirely contained within the view.
-     */
-    CENTER_INSIDE(1);
-
-    private final int mId;
-
-    int getId() {
-      return mId;
-    }
-
-    ScaleType(int id) {
-      mId = id;
-    }
-
-    static ScaleType fromId(int id) {
-      for (ScaleType st : values()) {
-        if (st.mId == id) {
-          return st;
-        }
-      }
-      throw new IllegalArgumentException();
-    }
-  }
-
   /**
    * The capture mode used by CameraView.
    *
    * <p>This enum can be used to determine which capture mode will be enabled for {@link
-   * CameraXView}.
+   * SignalCameraView}.
    */
   public enum CaptureMode {
     /** A mode where image capture is enabled. */
