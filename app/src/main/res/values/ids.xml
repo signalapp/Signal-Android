@@ -8,4 +8,7 @@
     <item name="reminder_action_invite" type="id" />
     <item name="reminder_action_update_now" type="id" />
     <item name="reminder_action_review_join_requests" type="id" />
+
+    <item name="reminder_action_gv1_suggestion_not_now" type="id" />
+    <item name="reminder_action_gv1_suggestion_add_members" type="id" />
 </resources>

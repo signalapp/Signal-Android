@@ -69,7 +69,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -117,6 +116,7 @@ import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
+import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder;
 import org.thoughtcrime.securesms.components.reminder.PendingGroupJoinRequestsReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
@@ -167,6 +167,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity;
 import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
+import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
@@ -212,7 +213,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment;
-import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
@@ -457,6 +457,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     initializeMentionsViewModel();
     initializeEnabledCheck();
     initializePendingRequestsBanner();
+    initializeGroupV1MigrationSuggestionsBanner();
     initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
@@ -1547,6 +1548,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
                   .observe(this, actionablePendingGroupRequests -> updateReminders());
   }
 
+  private void initializeGroupV1MigrationSuggestionsBanner() {
+    groupViewModel.getGroupV1MigrationSuggestions()
+                  .observe(this, s -> updateReminders());
+  }
+
   private ListenableFuture<Boolean> initializeDraftFromDatabase() {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
@@ -1702,6 +1708,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   protected void updateReminders() {
     Optional<Reminder> inviteReminder              = inviteReminderModel.getReminder();
     Integer            actionableRequestingMembers = groupViewModel.getActionableRequestingMembers().getValue();
+    List<RecipientId>  gv1MigrationSuggestions     = groupViewModel.getGroupV1MigrationSuggestions().getValue();
 
     if (UnauthorizedReminder.isEligible(this)) {
       reminderView.get().showReminder(new UnauthorizedReminder(this));
@@ -1726,25 +1733,32 @@ public class ConversationActivity extends PassphraseRequiredActivity
           startActivity(ManagePendingAndRequestingMembersActivity.newIntent(this, getRecipient().getGroupId().get().requireV2()));
         }
       });
+    } else if (gv1MigrationSuggestions != null && gv1MigrationSuggestions.size() > 0 && recipient.get().isPushV2Group()) {
+      reminderView.get().showReminder(new GroupsV1MigrationSuggestionsReminder(this, gv1MigrationSuggestions));
+      reminderView.get().setOnActionClickListener(actionId -> {
+        if (actionId == R.id.reminder_action_gv1_suggestion_add_members) {
+          GroupsV1MigrationSuggestionsDialog.show(this, recipient.get().requireGroupId().requireV2(), gv1MigrationSuggestions);
+        } else if (actionId == R.id.reminder_action_gv1_suggestion_not_now) {
+          groupViewModel.onSuggestedMembersBannerDismissed(recipient.get().requireGroupId());
+        }
+      });
+      reminderView.get().setOnDismissListener(() -> {
+      });
     } else if (reminderView.resolved()) {
       reminderView.get().hide();
     }
   }
 
   private void handleReminderAction(@IdRes int reminderActionId) {
-    switch (reminderActionId) {
-      case R.id.reminder_action_invite:
-        handleInviteLink();
-        reminderView.get().requestDismiss();
-        break;
-      case R.id.reminder_action_view_insights:
-        InsightsLauncher.showInsightsDashboard(getSupportFragmentManager());
-        break;
-      case R.id.reminder_action_update_now:
-        PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(this);
-        break;
-      default:
-        throw new IllegalArgumentException("Unknown ID: " + reminderActionId);
+    if (reminderActionId == R.id.reminder_action_invite) {
+      handleInviteLink();
+      reminderView.get().requestDismiss();
+    } else if (reminderActionId == R.id.reminder_action_view_insights) {
+      InsightsLauncher.showInsightsDashboard(getSupportFragmentManager());
+    } else if (reminderActionId == R.id.reminder_action_update_now) {
+      PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(this);
+    } else {
+      throw new IllegalArgumentException("Unknown ID: " + reminderActionId);
     }
   }
 

@@ -556,6 +556,39 @@
         <item quantity="other">These members are not capable of joining New Groups, and have been removed from the group:</item>
     </plurals>
 
+    <!-- GroupsV1MigrationSuggestionsReminder -->
+    <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+        <item quantity="one">%1$d member couldn\'t be re-added to the New Group. Do you want to add them now?</item>
+        <item quantity="other">%1$d members couldn\'t be re-added to the New Group. Do you want to add them now?</item>
+    </plurals>
+    <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+        <item quantity="one">Add member</item>
+        <item quantity="other">Add members</item>
+    </plurals>
+    <string name="GroupsV1MigrationSuggestionsReminder_not_now">Not now</string>
+
+    <!-- GroupsV1MigrationSuggestionsDialog -->
+    <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+        <item quantity="one">Add member?</item>
+        <item quantity="other">Add members?</item>
+    </plurals>
+    <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+        <item quantity="one">This member couldn\'t be automatically added to the New Group when it was upgraded:</item>
+        <item quantity="other">These members couldn\'t be automatically added to the New Group when it was upgraded:</item>
+    </plurals>
+    <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+        <item quantity="one">Add member</item>
+        <item quantity="other">Add members</item>
+    </plurals>
+    <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+        <item quantity="one">Failed to add member. Try again later.</item>
+        <item quantity="other">Failed to add members. Try again later.</item>
+    </plurals>
+    <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+        <item quantity="one">Cannot add member.</item>
+        <item quantity="other">Cannot add members.</item>
+    </plurals>
+
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">Leave group?</string>
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">You will no longer be able to send or receive messages in this group.</string>

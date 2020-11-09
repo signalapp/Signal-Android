@@ -18,11 +18,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class SignalExecutors {
+public final class SignalExecutors {
 
   public static final ExecutorService UNBOUNDED = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded"));
   public static final ExecutorService BOUNDED   = Executors.newFixedThreadPool(getIdealThreadCount(), new NumberedThreadFactory("signal-bounded"));
   public static final ExecutorService SERIAL    = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial"));
+
+  private SignalExecutors() {}
 
   public static ExecutorService newCachedSingleThreadExecutor(final String name) {
     ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 15, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), r -> new Thread(r, name));

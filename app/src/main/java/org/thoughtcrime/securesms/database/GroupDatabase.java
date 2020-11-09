@@ -37,6 +37,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.io.Closeable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -162,6 +163,8 @@ public final class GroupDatabase extends Database {
     values.putNull(FORMER_V1_MEMBERS);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, values, GROUP_ID + " = ?", SqlUtil.buildArgs(id));
+
+    Recipient.live(Recipient.externalGroupExact(context, id).getId()).refresh();
   }
 
   Optional<GroupRecord> getGroup(Cursor cursor) {
