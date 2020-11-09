@@ -97,8 +97,18 @@
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
 
-    <!-- BlockedContactsActivity -->
-    <string name="BlockedContactsActivity_blocked_contacts">Blocked contacts</string>
+    <!-- BlockedUsersActivity -->
+    <string name="BlockedUsersActivity__blocked_users">Blocked users</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Add blocked user</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Blocked users will not be able to call you or send you messages.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">No blocked users</string>
+    <string name="BlockedUsersActivity__block_user">Block user?</string>
+    <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" will not be able to call you or send you messages.</string>
+    <string name="BlockedUsersActivity__block">Block</string>
+    <string name="BlockedUsersActivity__unblock_user">Unblock user?</string>
+    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Do you want to unblock \"%1$s\"?</string>
+    <string name="BlockedUsersActivity__unblock">Unblock</string>
+
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Block and leave %1$s?</string>
@@ -2253,7 +2263,7 @@
     <string name="preferences__typing_indicators">Typing indicators</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning</string>
-    <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
+    <string name="preferences_app_protection__blocked_users">Blocked users</string>
     <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
     <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
     <string name="preferences_chats__when_roaming">When roaming</string>
@@ -2351,6 +2361,7 @@
 
     <!-- contact_selection_list -->
     <string name="contact_selection_list__unknown_contact">New message to…</string>
+    <string name="contact_selection_list__unknown_contact_block">Block user</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Add to group</string>
 
     <!-- conversation_callable_insecure -->
@@ -2824,6 +2835,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" has been blocked.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Failed to block \"%1$s\"</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" has been unblocked.</string>
 
     <!-- ReviewCardDialogFragment -->
     <string name="ReviewCardDialogFragment__review_members">Review Members</string>

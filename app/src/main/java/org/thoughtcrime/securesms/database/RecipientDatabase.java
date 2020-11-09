@@ -3018,6 +3018,11 @@ public class RecipientDatabase extends Database {
       return getCurrent();
     }
 
+    public int getCount() {
+      if (cursor != null) return cursor.getCount();
+      else                return 0;
+    }
+
     public void close() {
       cursor.close();
     }

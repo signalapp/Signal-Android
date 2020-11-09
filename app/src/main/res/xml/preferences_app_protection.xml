@@ -95,7 +95,7 @@
 
     <Preference
         android:key="preference_category_blocked"
-        android:title="@string/preferences_app_protection__blocked_contacts" />
+        android:title="@string/preferences_app_protection__blocked_users" />
   </PreferenceCategory>
 
   <PreferenceCategory android:layout="@layout/preference_divider" />
