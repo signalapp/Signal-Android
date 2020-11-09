@@ -51,7 +51,7 @@
           app:layout_constraintStart_toEndOf="@id/toolbar_icon"
           app:layout_constraintTop_toTopOf="parent" />
 
-      <ImageView
+      <androidx.appcompat.widget.AppCompatImageView
           android:id="@+id/search_action"
           android:layout_width="48dp"
           android:layout_height="48dp"

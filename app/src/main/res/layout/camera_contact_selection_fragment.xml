@@ -104,7 +104,7 @@
         app:layout_constraintEnd_toStartOf="@id/camera_contacts_send_button"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/camera_contacts_send_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

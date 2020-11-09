@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="37 of 73" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/conversation_search_up"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toStartOf="@+id/conversation_search_down"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/conversation_search_down"
         android:layout_width="40dp"
         android:layout_height="40dp"

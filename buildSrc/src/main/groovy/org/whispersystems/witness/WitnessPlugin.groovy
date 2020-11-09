@@ -36,20 +36,16 @@ class WitnessPlugin implements Plugin<Project> {
                         return it.name.equals(name) && it.moduleVersion.id.group.equals(group)
                     }
 
-                    if (artifacts.size() > 1) {
-                        throw new InvalidUserDataException("Multiple artifacts found for $group:$name, ${artifacts.size()} found")
-                    }
+                    artifacts.forEach { dependency ->
+                        println "Verifying " + group + ":" + name
 
-                    ResolvedArtifact dependency = artifacts.find()
+                        if (dependency == null) {
+                            throw new InvalidUserDataException("No dependency for integrity assertion found: " + group + ":" + name)
+                        }
 
-                    println "Verifying " + group + ":" + name
-
-                    if (dependency == null) {
-                        throw new InvalidUserDataException("No dependency for integrity assertion found: " + group + ":" + name)
-                    }
-
-                    if (!hash.equals(calculateSha256(dependency.file))) {
-                        throw new InvalidUserDataException("Checksum failed for " + assertion)
+                        if (!hash.equals(calculateSha256(dependency.file))) {
+                            throw new InvalidUserDataException("Checksum failed for " + assertion)
+                        }
                     }
             }
         }
@@ -66,6 +62,7 @@ class WitnessPlugin implements Plugin<Project> {
                     .findAll { dep -> !dep.id.componentIdentifier.displayName.startsWith('project :') }
                     .collect { dep -> "['$dep.moduleVersion.id.group:$dep.name:$dep.moduleVersion.id.version',\n         '${calculateSha256(dep.file)}']" }
                     .sort()
+                    .unique()
                     .each {
                         dep -> stringBuilder.append "\n        $dep,\n"
                     }

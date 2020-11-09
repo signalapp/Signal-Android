@@ -65,7 +65,7 @@
         app:layout_constraintBottom_toBottomOf="@id/sticker_install_title"
         tools:visibility="visible"/>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/sticker_install_share_button_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

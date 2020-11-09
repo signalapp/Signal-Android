@@ -27,7 +27,7 @@
         android:paddingStart="6dp"
         android:visibility="gone"/>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/emoji_variation_hint"
         android:layout_width="7dp"
         android:layout_height="7dp"

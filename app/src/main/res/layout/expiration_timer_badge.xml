@@ -10,7 +10,7 @@
     android:visibility="gone"
     android:orientation="horizontal">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/menu_badge_icon"
         android:layout_width="14dp"
         android:layout_height="14dp"

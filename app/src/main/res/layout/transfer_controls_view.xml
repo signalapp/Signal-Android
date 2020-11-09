@@ -32,7 +32,7 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:tint="@color/core_grey_60"

@@ -8,7 +8,7 @@
     android:layout_marginStart="@dimen/sticker_management_horizontal_margin"
     android:layout_marginEnd="@dimen/sticker_management_horizontal_margin">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@drawable/sticker_management_empty_background"

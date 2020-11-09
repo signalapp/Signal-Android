@@ -126,7 +126,7 @@
                     android:visibility="gone"
                     tools:visibility="visible">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="13dp"
                         android:layout_height="16dp"
                         android:layout_marginStart="11dp"
@@ -150,7 +150,7 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -170,7 +170,7 @@
 
     </LinearLayout>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/quote_dismiss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

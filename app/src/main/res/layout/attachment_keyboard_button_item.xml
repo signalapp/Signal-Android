@@ -10,7 +10,7 @@
     android:padding="8dp"
     android:background="?attachment_keyboard_button_background">
 
-  <ImageView
+  <androidx.appcompat.widget.AppCompatImageView
       android:id="@+id/attachment_button_image"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

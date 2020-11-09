@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:background="?emoji_drawer_background">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/media_keyboard_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
             app:layout_constraintBottom_toBottomOf="@id/media_keyboard_tabs"
             tools:visibility="visible"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/media_keyboard_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -33,30 +33,32 @@
                 android:paddingEnd="10dp"
                 android:gravity="center">
 
-                <ImageView android:id="@+id/search_dialpad"
-                           android:contentDescription="@string/contact_filter_toolbar__show_dial_pad_description"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:gravity="center_vertical"
-                           android:clickable="true"
-                           android:focusable="true"
-                           android:tint="?contact_filter_toolbar_icon_tint"
-                           android:background="?actionBarItemBackground"
-                           app:srcCompat="@drawable/ic_number_pad_conversation_filter_24" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/search_dialpad"
+                    android:contentDescription="@string/contact_filter_toolbar__show_dial_pad_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:tint="?contact_filter_toolbar_icon_tint"
+                    android:background="?actionBarItemBackground"
+                    app:srcCompat="@drawable/ic_number_pad_conversation_filter_24" />
 
-                <ImageView android:id="@+id/search_keyboard"
-                           android:contentDescription="@string/contact_filter_toolbar__show_keyboard_description"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_gravity="center_vertical"
-                           android:gravity="center_vertical"
-                           android:clickable="true"
-                           android:visibility="gone"
-                           android:focusable="true"
-                           android:tint="?contact_filter_toolbar_icon_tint"
-                           android:background="?actionBarItemBackground"
-                           app:srcCompat="?conversation_keyboard_toggle" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/search_keyboard"
+                    android:contentDescription="@string/contact_filter_toolbar__show_keyboard_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    android:focusable="true"
+                    android:tint="?contact_filter_toolbar_icon_tint"
+                    android:background="?actionBarItemBackground"
+                    app:srcCompat="?conversation_keyboard_toggle" />
 
                 <ImageView android:id="@+id/search_clear"
                            android:contentDescription="@string/contact_filter_toolbar__clear_entered_text_description"

@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         tools:text="@string/MediaOverviewActivity_Storage_used" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/sort_order_arrow"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -77,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="@+id/sorting"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/view_grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:visibility="visible"
             app:srcCompat="?attr/media_overview_grid_view_icon" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/view_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -28,13 +28,14 @@
                       android:layout_centerVertical="true"
                       android:layout_toStartOf="@+id/search_action"/>
 
-            <ImageView android:id="@+id/search_action"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       wheel:srcCompat="@drawable/ic_search_24"
-                       android:tint="?icon_tint"
-                       android:layout_alignParentEnd="true"
-                       android:layout_centerVertical="true"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/search_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                wheel:srcCompat="@drawable/ic_search_24"
+                android:tint="?icon_tint"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
 
         </RelativeLayout>
 

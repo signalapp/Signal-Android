@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:gravity="center">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_devices_white"
@@ -62,13 +62,14 @@
                           android:gravity="center_vertical"
                           android:clickable="true">
 
-                <ImageView android:id="@+id/check"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginEnd="16dp"
-                           android:src="@drawable/ic_check_white_24dp"
-                           android:tint="@color/blue_400"
-                           android:clickable="false"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_check_white_24dp"
+                    android:tint="@color/blue_400"
+                    android:clickable="false"/>
 
                 <TextView
                         android:layout_width="wrap_content"

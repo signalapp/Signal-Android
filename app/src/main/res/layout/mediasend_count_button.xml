@@ -26,7 +26,7 @@
         tools:text="3" />
 
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_marginStart="2dp"

@@ -27,7 +27,7 @@
         android:visibility="gone"
         tools:visibility="gone">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="15dp"
             android:layout_height="18dp"
             android:layout_gravity="center"

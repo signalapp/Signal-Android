@@ -6,17 +6,17 @@ dependencyVerification {
         ['androidx.activity:activity:1.0.0',
          'd1bc9842455c2e534415d88c44df4d52413b478db9093a1ba36324f705f44c3d'],
 
-        ['androidx.annotation:annotation-experimental:1.0.0-rc01',
-         '2f113195f61ecd08ea46cef545f0ea338898391d95425cf4c8836ba2b701f5d6'],
+        ['androidx.annotation:annotation-experimental:1.0.0',
+         'b219d2b568e7e4ba534e09f8c2fd242343df6ccbdfbbe938846f5d740e6b0b11'],
 
         ['androidx.annotation:annotation:1.1.0',
          'd38d63edb30f1467818d50aaf05f8a692dea8b31392a049bfa991b159ad5b692'],
 
-        ['androidx.appcompat:appcompat-resources:1.1.0-beta01',
-         '53c0a33d07c4bab48d4c8169bf30053aa14965af4a775b56092a9fc7079802b1'],
+        ['androidx.appcompat:appcompat-resources:1.2.0',
+         'c470297c03ff3de1c3d15dacf0be0cae63abc10b52f021dd07ae28daa3100fe5'],
 
-        ['androidx.appcompat:appcompat:1.1.0-beta01',
-         '49ad229add44f822fcb3c8405c3fddbd72660da6a839ce29e13158f5980514fd'],
+        ['androidx.appcompat:appcompat:1.2.0',
+         '3d2131a55a61a777322e2126e0018011efa6339e53b44153eb651b16020cca70'],
 
         ['androidx.arch.core:core-common:2.1.0',
          'fe1237bf029d063e7f29fe39aeaf73ef74c8b0a3658486fc29d3c54326653889'],
@@ -51,17 +51,17 @@ dependencyVerification {
         ['androidx.concurrent:concurrent-futures:1.0.0',
          '5595a40e278a7b39fa78a09490e3d7f3faa95c7b01447148bd38b5ade0605c35'],
 
-        ['androidx.constraintlayout:constraintlayout-solver:1.1.3',
-         '965c177e64fbd81bd1d27b402b66ef9d7bc7b5cb5f718044bf7a453abc542045'],
+        ['androidx.constraintlayout:constraintlayout-solver:2.0.4',
+         '9ca19f5448709301c7563488ef941be9dfa55c83538ca7a059b2113e83527b46'],
 
-        ['androidx.constraintlayout:constraintlayout:1.1.3',
-         '5ff864def9d41cd04e08348d69591143bae3ceff4284cf8608bceb98c36ac830'],
+        ['androidx.constraintlayout:constraintlayout:2.0.4',
+         '307a79a4a1ccff44249c72a2bf7f47da09fa1b6b1fab2a25808ca889382b738e'],
 
         ['androidx.coordinatorlayout:coordinatorlayout:1.1.0',
          '44a9e30abf56af1025c52a0af506fee9c4131aa55efda52f9fd9451211c5e8cb'],
 
-        ['androidx.core:core:1.1.0',
-         '76c7cfbe596fe3c09a6983bf1c89e889299c08ac9a3b52ce5182a088d056647e'],
+        ['androidx.core:core:1.3.1',
+         'e92ea65a37d589943d405a6a54d1be9d12a225948f26c4e41e511dd55e81efb6'],
 
         ['androidx.cursoradapter:cursoradapter:1.0.0',
          'a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564'],
@@ -183,8 +183,8 @@ dependencyVerification {
         ['androidx.transition:transition:1.2.0',
          'a1e059b3bc0b43a58dec0efecdcaa89c82d2bca552ea5bacf6656c46e853157e'],
 
-        ['androidx.vectordrawable:vectordrawable-animated:1.1.0-beta02',
-         'f1613c47f1e6d2cd02ec9a42925f1a964fa63d1d028d34d884364cc3b9ffcb8f'],
+        ['androidx.vectordrawable:vectordrawable-animated:1.1.0',
+         '76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8'],
 
         ['androidx.vectordrawable:vectordrawable:1.1.0',
          '46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26'],
@@ -306,8 +306,8 @@ dependencyVerification {
         ['com.google.android.gms:play-services-vision:20.0.0',
          '0386c1c32b06c3c771dd518220d47bb5828fa3d415863ecd6859909b52cc4f6f'],
 
-        ['com.google.android.material:material:1.1.0',
-         '58f4fb6e5986ec8e01a733ea85e9df83cf79060e0329fe18abc192d9eda97b26'],
+        ['com.google.android.material:material:1.2.1',
+         'd3d0cc776f2341da8e572586c7d390a5b356ce39a0deb2768071dc40b364ac80'],
 
         ['com.google.android:flexbox:0.3.0',
          'a9989fd13ae2ee42765dfc515fe362edf4f326e74925d02a10369df8092a4935'],

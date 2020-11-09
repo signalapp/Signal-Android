@@ -29,7 +29,7 @@
         tools:translationY="@dimen/recording_voice_lock_target"
         tools:visibility="visible">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center_horizontal"
@@ -38,7 +38,7 @@
             android:tint="?attr/conversation_input_inline_attach_icon_tint"
             app:srcCompat="@drawable/ic_lock" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_gravity="center_horizontal"
@@ -48,7 +48,7 @@
             app:srcCompat="@drawable/ic_chevron_up" />
     </LinearLayout>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/quick_audio_fab"
         android:layout_width="74dp"
         android:layout_height="74dp"

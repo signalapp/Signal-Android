@@ -10,7 +10,7 @@
     android:paddingStart="11dp"
     android:paddingEnd="11dp">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"

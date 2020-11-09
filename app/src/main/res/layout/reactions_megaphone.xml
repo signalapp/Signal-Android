@@ -44,7 +44,7 @@
           tools:layout_width="200dp"
           tools:layout_height="50dp"/>
 
-      <ImageView
+      <androidx.appcompat.widget.AppCompatImageView
           android:id="@+id/reactions_megaphone_x"
           android:layout_width="46dp"
           android:layout_height="46dp"
