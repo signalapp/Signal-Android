@@ -650,6 +650,10 @@ public class DefaultMessageNotifier implements MessageNotifier {
   private static String getMessageContentType(@NonNull MmsMessageRecord messageRecord) {
     Slide thumbnailSlide = messageRecord.getSlideDeck().getThumbnailSlide();
     if (thumbnailSlide == null) {
+      String slideContentType = messageRecord.getSlideDeck().getFirstSlideContentType();
+      if (slideContentType != null) {
+        return slideContentType;
+      }
       Log.w(TAG, "Could not distinguish view-once content type from message record, defaulting to JPEG");
       return MediaUtil.IMAGE_JPEG;
     }

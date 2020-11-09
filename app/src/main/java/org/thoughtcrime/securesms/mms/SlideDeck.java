@@ -24,6 +24,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
@@ -144,6 +145,14 @@ public class SlideDeck {
       if (slide.hasSticker()) {
         return (StickerSlide)slide;
       }
+    }
+
+    return null;
+  }
+
+  public @Nullable String getFirstSlideContentType() {
+    if (Util.hasItems(slides)) {
+      return slides.get(0).getContentType();
     }
 
     return null;
