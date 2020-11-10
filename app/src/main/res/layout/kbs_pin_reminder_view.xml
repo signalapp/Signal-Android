@@ -28,7 +28,7 @@
         android:minWidth="105sp"
         android:paddingTop="40dp"
         android:gravity="center"
-        android:textColor="?attr/registration_lock_reminder_view_pin_text_color"
+        android:textColor="@color/signal_inverse_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pin_reminder_title"

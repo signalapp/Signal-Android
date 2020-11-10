@@ -394,11 +394,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   }
 
   private void initializeAttributes() {
-    final int[]      attributes = new int[] {R.attr.conversation_item_bubble_background};
-    final TypedArray attrs      = context.obtainStyledAttributes(attributes);
-
-    defaultBubbleColor = attrs.getColor(0, Color.WHITE);
-    attrs.recycle();
+    defaultBubbleColor = ContextCompat.getColor(context, R.color.signal_background_secondary);
   }
 
   @Override
@@ -421,24 +417,24 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private void setBubbleState(MessageRecord messageRecord) {
     if (messageRecord.isOutgoing() && !messageRecord.isRemoteDelete()) {
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
-      footer.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_text_secondary_color));
-      footer.setIconColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_icon_color));
+      footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
+      footer.setIconColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
       footer.setOnlyShowSendingStatus(false, messageRecord);
     } else if (messageRecord.isRemoteDelete() || (isViewOnceMessage(messageRecord) && ViewOnceUtil.isViewed((MmsMessageRecord) messageRecord))) {
-      bodyBubble.getBackground().setColorFilter(ThemeUtil.getThemedColor(context, R.attr.conversation_item_reveal_viewed_background_color), PorterDuff.Mode.MULTIPLY);
-      footer.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_text_secondary_color));
-      footer.setIconColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_icon_color));
+      bodyBubble.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.signal_background_primary), PorterDuff.Mode.MULTIPLY);
+      footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
+      footer.setIconColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
       footer.setOnlyShowSendingStatus(messageRecord.isRemoteDelete(), messageRecord);
     } else {
       bodyBubble.getBackground().setColorFilter(messageRecord.getRecipient().getColor().toConversationColor(context), PorterDuff.Mode.MULTIPLY);
-      footer.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_secondary_color));
-      footer.setIconColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_secondary_color));
+      footer.setTextColor(ContextCompat.getColor(context, R.color.conversation_item_received_text_secondary_color));
+      footer.setIconColor(ContextCompat.getColor(context, R.color.conversation_item_received_text_secondary_color));
       footer.setOnlyShowSendingStatus(false, messageRecord);
     }
 
-    outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_sent_text_secondary_color));
+    outliner.setColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
 
-    pulseOutliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_mention_pulse_color));
+    pulseOutliner.setColor(ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent));
     pulseOutliner.setStrokeWidth(ViewUtil.dpToPx(4));
 
     outliners.clear();
@@ -619,7 +615,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       String deletedMessage = context.getString(messageRecord.isOutgoing() ? R.string.ConversationItem_you_deleted_this_message : R.string.ConversationItem_this_message_was_deleted);
       SpannableString italics = new SpannableString(deletedMessage);
       italics.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC), 0, deletedMessage.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-      italics.setSpan(new ForegroundColorSpan(ThemeUtil.getThemedColor(context, R.attr.conversation_item_delete_for_everyone_text_color)),
+      italics.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.signal_text_primary)),
                                               0,
                                               deletedMessage.length(),
                                               Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -1135,7 +1131,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
   private void setGroupAuthorColor(@NonNull MessageRecord messageRecord) {
     if (groupSender != null && groupSenderProfileName != null) {
-      int stickerAuthorColor = ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color);
+      int stickerAuthorColor = ContextCompat.getColor(context, R.color.signal_text_primary);
       if (shouldDrawBodyBubbleOutline(messageRecord)) {
         groupSender.setTextColor(stickerAuthorColor);
         groupSenderProfileName.setTextColor(stickerAuthorColor);
@@ -1143,8 +1139,8 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         groupSender.setTextColor(stickerAuthorColor);
         groupSenderProfileName.setTextColor(stickerAuthorColor);
       } else {
-        groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
-        groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
+        groupSender.setTextColor(ContextCompat.getColor(context, R.color.conversation_item_received_text_primary_color));
+        groupSenderProfileName.setTextColor(ContextCompat.getColor(context, R.color.conversation_item_received_text_primary_color));
       }
     }
   }

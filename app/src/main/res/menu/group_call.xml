@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/menu_group_call_participants_list"
-        android:icon="@drawable/ic_group_solid_24"
+        android:icon="@drawable/ic_group_24"
         android:title="@string/WebRtcCallView__view_participants_list"
         app:iconTint="@color/white"
         app:showAsAction="always"

@@ -49,7 +49,7 @@ public final class FallbackPhoto20dp implements FallbackContactPhoto {
   private @NonNull Drawable buildDrawable(@NonNull Context context, int color) {
     Drawable      background      = DrawableCompat.wrap(Objects.requireNonNull(AppCompatResources.getDrawable(context, R.drawable.circle_tintable))).mutate();
     Drawable      foreground      = AppCompatResources.getDrawable(context, drawable20dp);
-    Drawable      gradient        = ThemeUtil.getThemedDrawable(context, R.attr.resource_placeholder_gradient);
+    Drawable      gradient        = AppCompatResources.getDrawable(context, R.drawable.avatar_gradient);
     LayerDrawable drawable        = new LayerDrawable(new Drawable[]{background, foreground, gradient});
     int           foregroundInset = ViewUtil.dpToPx(2);
 

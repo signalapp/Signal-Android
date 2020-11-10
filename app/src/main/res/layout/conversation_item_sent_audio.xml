@@ -7,8 +7,8 @@
         android:layout_height="wrap_content"
         app:foregroundTintColor="@color/grey_500"
         app:backgroundTintColor="@color/white"
-        app:waveformThumbTint="?attr/audio_seek_bar_sent_played_color"
-        app:waveformPlayedBarsColor="?attr/audio_seek_bar_sent_played_color"
-        app:waveformUnplayedBarsColor="?attr/audio_seek_bar_sent_unplayed_color"
-        app:progressAndPlayTint="?attr/audio_play_pause_sent_background_tint"
+        app:waveformThumbTint="@color/audio_seek_bar_sent_played_color"
+        app:waveformPlayedBarsColor="@color/audio_seek_bar_sent_played_color"
+        app:waveformUnplayedBarsColor="@color/audio_seek_bar_sent_unplayed_color"
+        app:progressAndPlayTint="@color/audio_play_pause_sent_background_tint"
         android:visibility="gone"/>

@@ -290,7 +290,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       TooltipPopup.forTarget(captureButton)
                   .setOnDismissListener(this::neverDisplayVideoRecordingTooltipAgain)
                   .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.core_ultramarine))
-                  .setTextColor(ThemeUtil.getThemedColor(requireContext(), R.attr.conversation_title_color))
+                  .setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_text_toolbar_title))
                   .setText(R.string.CameraXFragment_tap_for_photo_hold_for_video)
                   .show(displayRotation == Surface.ROTATION_0 || displayRotation == Surface.ROTATION_180 ? TooltipPopup.POSITION_ABOVE : TooltipPopup.POSITION_START);
     }

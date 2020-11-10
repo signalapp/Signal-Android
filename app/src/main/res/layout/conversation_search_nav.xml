@@ -6,7 +6,7 @@
     android:id="@+id/conversation_search_nav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?conversation_background"
+    android:background="@color/signal_background_primary"
     android:visibility="gone"
     tools:visibility="visible"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
@@ -63,7 +63,7 @@
         android:layout_marginBottom="0dp"
         android:indeterminate="true"
         android:padding="8dp"
-        android:background="?conversation_background"
+        android:background="@color/signal_background_primary"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"

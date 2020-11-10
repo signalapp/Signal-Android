@@ -14,7 +14,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/shared_contact_details_header_background">
+            android:background="@color/signal_background_tertiary">
 
             <LinearLayout
                 android:layout_width="match_parent"

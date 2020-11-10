@@ -15,7 +15,7 @@
         android:paddingEnd="16dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        tools:drawableStart="@drawable/ic_photo_solid_24"
+        tools:drawableStart="@drawable/ic_photo_24"
         tools:text="@string/WebRtcAudioOutputToggle__phone" />
 
     <RadioButton

@@ -39,7 +39,7 @@
             android:gravity="center_horizontal"
             android:minHeight="66dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:textColor="?attr/title_text_color_secondary"
+            android:textColor="@color/signal_text_secondary"
             app:layout_constraintTop_toBottomOf="@id/edit_kbs_pin_title"
             tools:text="@string/CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted" />
 

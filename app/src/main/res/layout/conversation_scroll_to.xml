@@ -11,11 +11,11 @@
         android:layout_height="32dp"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="4dp"
-        android:background="?attr/conversation_scroll_to_bottom_background"
+        android:background="@drawable/scroll_to_bottom_background"
         android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
         android:elevation="1dp"
         android:scaleType="center"
-        android:tint="?attr/conversation_scroll_to_bottom_foreground_color"
+        android:tint="@color/conversation_scroll_to_bottom_foreground_color"
         tools:src="@drawable/ic_chevron_down_20" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_height="16dp"
         android:layout_gravity="top|center"
         android:layout_marginBottom="26dp"
-        android:background="?attr/conversation_list_item_unread_background"
+        android:background="@drawable/unread_count_background"
         android:elevation="1dp"
         android:gravity="center"
         android:paddingLeft="4dp"

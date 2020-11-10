@@ -14,5 +14,5 @@
     android:singleLine="true"
     android:text="@string/contact_selection_activity__invite_to_signal"
     android:textAlignment="viewStart"
-    app:drawableStartCompat="?attr/contact_selection_invite_icon"
+    app:drawableStartCompat="@drawable/ic_invite_circle"
     tools:ignore="RtlSymmetry" />

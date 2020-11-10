@@ -11,7 +11,7 @@
         android:id="@+id/media_keyboard_top_tab_indicator"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="?emoji_tab_indicator"
+        android:background="@color/signal_inverse_transparent_40"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/media_keyboard_bottom_tab_indicator"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="?emoji_tab_indicator"
+        android:background="@color/signal_inverse_transparent_40"
         android:visibility="gone"
         tools:visibility="visible" />
 

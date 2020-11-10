@@ -4,5 +4,5 @@
     android:id="@+id/message_details_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?pref_divider"
+    android:background="@drawable/preference_divider"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

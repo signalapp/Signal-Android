@@ -3,17 +3,13 @@ package org.thoughtcrime.securesms.pin;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
-import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
-
-import java.io.IOException;
 
 public final class PinOptOutDialog {
 
@@ -46,7 +42,7 @@ public final class PinOptOutDialog {
                                         .create();
 
     dialog.setOnShowListener(dialogInterface -> {
-      dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ThemeUtil.getThemedColor(context, R.attr.dangerous_button_color));
+      dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(context, R.color.signal_alert_primary));
     });
 
     dialog.show();

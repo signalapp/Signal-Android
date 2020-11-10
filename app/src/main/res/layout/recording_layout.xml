@@ -19,7 +19,7 @@
         android:importantForAccessibility="no"
         android:tint="@color/red_500"
         android:visibility="invisible"
-        app:srcCompat="@drawable/ic_mic_solid_24"
+        app:srcCompat="@drawable/ic_mic_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

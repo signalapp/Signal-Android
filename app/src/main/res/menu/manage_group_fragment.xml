@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_edit"
-        android:icon="?attr/menu_edit_icon"
+        android:icon="@drawable/ic_compose_tinted_24"
         android:title="@string/ManageGroupActivity_edit_name_and_picture"
         android:visible="false"
         app:showAsAction="always" />

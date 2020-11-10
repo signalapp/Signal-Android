@@ -243,7 +243,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
     public boolean onPreferenceChange(final Preference preference, Object newValue) {
       if (((CheckBoxPreference)preference).isChecked()) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setIconAttribute(R.attr.dialog_info_icon);
+        builder.setIcon(R.drawable.ic_info_outline);
         builder.setTitle(R.string.ApplicationPreferencesActivity_disable_signal_messages_and_calls);
         builder.setMessage(R.string.ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering);
         builder.setNegativeButton(android.R.string.cancel, null);

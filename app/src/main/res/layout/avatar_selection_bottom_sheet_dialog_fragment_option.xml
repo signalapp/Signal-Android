@@ -9,4 +9,4 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:textSize="16sp"
-    app:drawableTint="?icon_tint" />
+    app:drawableTint="@color/signal_icon_tint_primary" />

@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="?attr/title_text_color_primary"
+        android:textColor="@color/signal_text_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
         style="@style/Signal.Text.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="?attr/title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
         android:layout_marginEnd="16dp"
         android:text="@string/ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation"
         android:textAlignment="center"
-        android:textColor="?attr/title_text_color_primary"
+        android:textColor="@color/signal_text_primary"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -91,8 +91,8 @@
                 android:id="@+id/rbs_message_button"
                 style="@style/Widget.Signal.Button.Icon.Circular"
                 android:contentDescription="@string/RecipientBottomSheet_message_description"
-                app:backgroundTint="?recipient_contact_button_color"
-                app:icon="?recipient_message_circle_icon"
+                app:backgroundTint="@color/recipient_contact_button_color"
+                app:icon="@drawable/ic_message_primary_accent_24"
                 app:rippleColor="@color/core_ultramarine" />
 
             <com.google.android.material.button.MaterialButton
@@ -101,8 +101,8 @@
                 android:layout_marginStart="36dp"
                 android:contentDescription="@string/RecipientBottomSheet_video_call_description"
                 android:visibility="gone"
-                app:backgroundTint="?recipient_contact_button_color"
-                app:icon="?recipient_video_call_circle_icon"
+                app:backgroundTint="@color/recipient_contact_button_color"
+                app:icon="@drawable/ic_video_primary_accent_24"
                 tools:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
@@ -111,8 +111,8 @@
                 android:layout_marginStart="36dp"
                 android:contentDescription="@string/RecipientBottomSheet_voice_call_description"
                 android:visibility="gone"
-                app:backgroundTint="?recipient_contact_button_color"
-                app:icon="?recipient_call_circle_icon"
+                app:backgroundTint="@color/recipient_contact_button_color"
+                app:icon="@drawable/ic_phone_right_primary_accent_24"
                 tools:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
@@ -121,8 +121,8 @@
                 android:layout_marginStart="36dp"
                 android:contentDescription="@string/RecipientBottomSheet_insecure_voice_call_description"
                 android:visibility="gone"
-                app:backgroundTint="?recipient_contact_button_color"
-                app:icon="?recipient_insecure_call_circle_icon"
+                app:backgroundTint="@color/recipient_contact_button_color"
+                app:icon="@drawable/ic_phone_right_unlock_primary_accent_24"
                 tools:visibility="visible" />
 
         </LinearLayout>
@@ -136,7 +136,7 @@
             android:paddingEnd="20dp"
             android:text="@string/RecipientBottomSheet_block"
             android:visibility="gone"
-            app:drawableStartCompat="?attr/recipient_block_icon"
+            app:drawableStartCompat="@drawable/ic_block_tinted_24"
             tools:visibility="visible" />
 
         <Button
@@ -148,7 +148,7 @@
             android:paddingEnd="20dp"
             android:text="@string/RecipientBottomSheet_unblock"
             android:visibility="gone"
-            app:drawableStartCompat="?attr/recipient_block_icon"
+            app:drawableStartCompat="@drawable/ic_block_tinted_24"
             tools:visibility="visible" />
 
         <Button
@@ -160,7 +160,7 @@
             android:paddingEnd="20dp"
             android:text="@string/RecipientBottomSheet_add_to_contacts"
             android:visibility="gone"
-            app:drawableStartCompat="?attr/recipient_add_contact_icon"
+            app:drawableStartCompat="@drawable/ic_plus_24"
             tools:visibility="visible" />
 
         <Button
@@ -171,7 +171,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:visibility="gone"
-            app:drawableStartCompat="?attr/recipient_make_admin_icon"
+            app:drawableStartCompat="@drawable/ic_group_24"
             tools:text="@string/RecipientBottomSheet_add_to_a_group"
             tools:visibility="visible" />
 
@@ -184,7 +184,7 @@
             android:paddingEnd="20dp"
             android:text="@string/RecipientBottomSheet_view_safety_number"
             android:visibility="gone"
-            app:drawableStartCompat="?attr/recipient_view_safety_icon"
+            app:drawableStartCompat="@drawable/ic_info_tinted_24"
             tools:visibility="visible" />
 
         <Button
@@ -196,7 +196,7 @@
             android:paddingEnd="20dp"
             android:text="@string/RecipientBottomSheet_make_group_admin"
             android:visibility="gone"
-            app:drawableStartCompat="?attr/recipient_make_admin_icon"
+            app:drawableStartCompat="@drawable/ic_group_24"
             tools:visibility="visible" />
 
         <Button
@@ -208,7 +208,7 @@
             android:paddingEnd="20dp"
             android:text="@string/RecipientBottomSheet_remove_as_admin"
             android:visibility="gone"
-            app:drawableStartCompat="?attr/recipient_make_admin_icon"
+            app:drawableStartCompat="@drawable/ic_group_24"
             tools:visibility="visible" />
 
         <Button
@@ -220,7 +220,7 @@
             android:paddingEnd="20dp"
             android:text="@string/RecipientBottomSheet_remove_from_group"
             android:visibility="gone"
-            app:drawableStartCompat="?attr/recipient_remove_icon"
+            app:drawableStartCompat="@drawable/ic_leave_tinted_24"
             tools:visibility="visible" />
     </LinearLayout>
 

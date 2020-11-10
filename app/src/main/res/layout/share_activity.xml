@@ -22,7 +22,7 @@
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="@string/ShareActivity_share_with"
-                      android:textColor="?attr/title_text_color_primary"
+                      android:textColor="@color/signal_text_primary"
                       android:textSize="20sp"
                       android:layout_alignParentStart="true"
                       android:layout_centerVertical="true"
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 wheel:srcCompat="@drawable/ic_search_24"
-                android:tint="?icon_tint"
+                android:tint="@color/signal_icon_tint_primary"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"/>
 

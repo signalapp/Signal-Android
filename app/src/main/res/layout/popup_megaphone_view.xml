@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?megaphone_background"
+        android:background="@color/signal_background_secondary"
         android:clickable="true"
         android:paddingBottom="16dp">
 
@@ -20,7 +20,7 @@
             android:scaleType="centerInside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/profile_splash" />
+            tools:src="@tools:sample/avatars" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/popup_megaphone_title"
@@ -39,7 +39,7 @@
             style="@style/Signal.Text.Preview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="?megaphone_body_text_color"
+            android:textColor="@color/megaphone_body_text_color"
             app:layout_constraintEnd_toStartOf="@id/popup_x"
             app:layout_constraintStart_toStartOf="@id/popup_megaphone_title"
             app:layout_constraintTop_toBottomOf="@id/popup_megaphone_title"

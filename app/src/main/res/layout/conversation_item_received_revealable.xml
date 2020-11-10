@@ -7,6 +7,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:revealable_unopenedForegroundColor="?conversation_item_received_text_primary_color"
-        app:revealable_openedForegroundColor="?conversation_item_sent_text_primary_color"
+        app:revealable_unopenedForegroundColor="@color/conversation_item_received_text_primary_color"
+        app:revealable_openedForegroundColor="@color/signal_text_primary"
         tools:visibility="visible"/>

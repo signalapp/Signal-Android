@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:autoLink="none"
         android:linksClickable="false"
-        android:textColor="?conversation_item_sent_text_secondary_color"
+        android:textColor="@color/signal_text_secondary"
         tools:text="30m" />
 
     <org.thoughtcrime.securesms.components.ExpirationTimerView

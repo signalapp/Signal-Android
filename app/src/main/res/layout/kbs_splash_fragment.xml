@@ -16,7 +16,7 @@
         android:id="@+id/kbs_splash_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="?attr/kbs_splash_image"
+        app:srcCompat="@drawable/ic_kbs_splash"
         app:layout_constraintBottom_toTopOf="@id/kbs_splash_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

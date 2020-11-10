@@ -121,7 +121,7 @@
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
             android:textColor="@color/text_color_primary_enabled_selector"
-            app:drawableStartCompat="?share_icon" />
+            app:drawableStartCompat="@drawable/ic_share_24_tinted" />
 
     </LinearLayout>
 
@@ -152,7 +152,7 @@
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
             android:textColor="@color/text_color_primary_enabled_selector"
-            app:drawableStartCompat="?reset_link_icon" />
+            app:drawableStartCompat="@drawable/ic_reset_24_tinted" />
 
     </LinearLayout>
 

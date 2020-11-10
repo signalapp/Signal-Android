@@ -9,7 +9,7 @@
         android:id="@+id/album_cell_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?conversation_background"/>
+        android:background="@color/signal_background_primary"/>
 
     <ViewStub
         android:id="@+id/album_transfer_controls_stub"

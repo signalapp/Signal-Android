@@ -7,7 +7,7 @@
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="16dp"
-    android:background="?attr/review_card_bg"
+    android:background="@drawable/review_card_outline"
     android:minHeight="190dp">
 
     <View
@@ -29,7 +29,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
         android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
-        android:textColor="?attr/title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -66,7 +66,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="?attr/title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toTopOf="@id/card_subtext_line2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_avatar"
@@ -80,7 +80,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="?attr/title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toBottomOf="@id/card_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_avatar"

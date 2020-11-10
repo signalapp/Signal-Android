@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:minHeight="?attr/actionBarSize"
-        android:background="?attr/conversation_list_toolbar_background"
+        android:background="@null"
         android:theme="?attr/actionBarStyle"
         app:navigationIcon="@drawable/ic_arrow_left_24"/>
 

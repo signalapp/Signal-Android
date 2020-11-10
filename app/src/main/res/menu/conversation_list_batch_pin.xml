@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_pin_selected"
-        android:icon="?menu_pin_icon"
+        android:icon="@drawable/ic_pin_24"
         android:title="@string/conversation_list_batch__menu_pin_selected"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_unpin_selected"
-        android:icon="?menu_unpin_icon"
+        android:icon="@drawable/ic_unpin_24"
         android:title="@string/conversation_list_batch__menu_unpin_selected"
         app:showAsAction="always" />
 </menu>

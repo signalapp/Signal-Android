@@ -19,7 +19,7 @@
             android:layout_marginBottom="16dp"
             android:text="@string/BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase"
             android:textAppearance="@style/Signal.Text.Preview"
-            android:textColor="?attr/title_text_color_secondary" />
+            android:textColor="@color/signal_text_secondary" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragment_backup_create"
@@ -38,7 +38,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/BackupsPreferenceFragment__create_backup"
                 android:textAppearance="@style/Signal.Text.Body"
-                android:textColor="?attr/title_text_color_primary"
+                android:textColor="@color/signal_text_primary"
                 app:layout_constraintBottom_toTopOf="@id/fragment_backup_create_summary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +52,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/BackupsPreferenceFragment__last_backup"
                 android:textAppearance="@style/Signal.Text.Preview"
-                android:textColor="?attr/title_text_color_secondary"
+                android:textColor="@color/signal_text_secondary"
                 app:layout_constraintBottom_toTopOf="@id/fragment_backup_progress"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fragment_backup_create_title" />
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:textColor="?attr/title_text_color_secondary"
+                android:textColor="@color/signal_text_secondary"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +105,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/BackupsPreferenceFragment__backup_folder"
                 android:textAppearance="@style/Signal.Text.Body"
-                android:textColor="?attr/title_text_color_primary" />
+                android:textColor="@color/signal_text_primary" />
 
             <TextView
                 android:id="@+id/fragment_backup_folder_name"
@@ -114,7 +114,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:textAppearance="@style/Signal.Text.Preview"
-                android:textColor="?attr/title_text_color_secondary" />
+                android:textColor="@color/signal_text_secondary" />
         </LinearLayout>
 
         <LinearLayout
@@ -134,7 +134,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/BackupsPreferenceFragment__verify_backup_passphrase"
                 android:textAppearance="@style/Signal.Text.Body"
-                android:textColor="?attr/title_text_color_primary" />
+                android:textColor="@color/signal_text_primary" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -143,7 +143,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/BackupsPreferenceFragment__test_your_backup_passphrase"
                 android:textAppearance="@style/Signal.Text.Preview"
-                android:textColor="?attr/title_text_color_secondary" />
+                android:textColor="@color/signal_text_secondary" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -175,7 +175,7 @@
             android:layout_marginBottom="16dp"
             android:text="@string/BackupsPreferenceFragment__to_restore_a_backup"
             android:textAppearance="@style/Signal.Text.Preview"
-            android:textColor="?attr/title_text_color_secondary" />
+            android:textColor="@color/signal_text_secondary" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

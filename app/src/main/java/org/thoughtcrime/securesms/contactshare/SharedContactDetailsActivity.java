@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -118,14 +119,8 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActivity {
     getSupportActionBar().setTitle("");
     toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      int[]      attrs = {R.attr.shared_contact_details_titlebar};
-      TypedArray array = obtainStyledAttributes(attrs);
-      int        color = array.getResourceId(0, android.R.color.black);
-
-      array.recycle();
-
-      getWindow().setStatusBarColor(getResources().getColor(color));
+    if (Build.VERSION.SDK_INT >= 21) {
+      getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.shared_contact_details_titlebar));
     }
   }
 

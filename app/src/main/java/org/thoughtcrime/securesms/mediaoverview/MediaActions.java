@@ -60,7 +60,7 @@ final class MediaActions {
                                                      recordCount);
 
     AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                                                 .setIconAttribute(R.attr.dialog_alert_icon)
+                                                 .setIcon(R.drawable.ic_warning)
                                                  .setTitle(confirmTitle)
                                                  .setMessage(confirmMessage)
                                                  .setCancelable(true);

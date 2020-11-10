@@ -61,7 +61,7 @@
                 android:layout_width="12dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="3dp"
-                android:tint="?conversation_subtitle_color"
+                android:tint="@color/signal_text_toolbar_subtitle"
                 app:srcCompat="@drawable/ic_check_24"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -76,7 +76,7 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:textColor="?conversation_subtitle_color"
+                android:textColor="@color/signal_text_toolbar_subtitle"
                 android:text="@string/ConversationTitleView_verified"
                 android:textDirection="ltr" />
 
@@ -88,7 +88,7 @@
                 android:layout_gravity="center_vertical|start"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:textColor="?conversation_subtitle_color"
+                android:textColor="@color/signal_text_toolbar_subtitle"
                 android:maxLines="1"
                 android:textDirection="ltr"
                 tools:text="(123) 123-1234" />

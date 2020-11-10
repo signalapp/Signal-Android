@@ -20,7 +20,7 @@
         android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="?attr/tinted_circle_background"
+        android:background="@drawable/tinted_circle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
@@ -63,13 +63,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="?secondary_background"
+        android:background="@color/signal_background_tertiary"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
         android:paddingEnd="16dp"
         android:paddingBottom="8dp"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="?title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/member_list_header"
         app:layout_constraintTop_toBottomOf="@id/mms_warning"
@@ -85,7 +85,7 @@
         android:text="@string/AddGroupDetailsFragment__members"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
-        android:textColor="?attr/title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintTop_toBottomOf="@id/gv2_warning"
         app:layout_goneMarginTop="30dp" />
 
@@ -106,7 +106,7 @@
         app:cpb_colorIndicator="@color/white"
         app:cpb_colorProgress="?colorAccent"
         app:cpb_cornerRadius="28dp"
-        app:cpb_selectorIdle="?attr/circular_progress_button_state"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
         app:cpb_textIdle="@string/AddGroupDetailsFragment__create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

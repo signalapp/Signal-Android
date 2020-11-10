@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
@@ -62,14 +63,10 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private static final int VIEW_TYPE_CONTACT = 0;
   private static final int VIEW_TYPE_DIVIDER = 1;
 
-  private final static int STYLE_ATTRIBUTES[] = new int[]{R.attr.contact_selection_push_user,
-                                                          R.attr.contact_selection_lay_user};
-
   public static final int PAYLOAD_SELECTION_CHANGE = 1;
 
   private final boolean           multiSelect;
   private final LayoutInflater    layoutInflater;
-  private final TypedArray        drawables;
   private final ItemClickListener clickListener;
   private final GlideRequests     glideRequests;
   private final Set<RecipientId>  currentContacts;
@@ -181,7 +178,6 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     super(context, cursor);
     this.layoutInflater = LayoutInflater.from(context);
     this.glideRequests   = glideRequests;
-    this.drawables       = context.obtainStyledAttributes(STYLE_ATTRIBUTES);
     this.multiSelect     = multiSelect;
     this.clickListener   = clickListener;
     this.currentContacts = currentContacts;
@@ -219,8 +215,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     String      labelText   = ContactsContract.CommonDataKinds.Phone.getTypeLabel(getContext().getResources(),
                                                                                   numberType, label).toString();
 
-    int color = (contactType == ContactRepository.PUSH_TYPE) ? drawables.getColor(0, 0xa0000000) :
-                drawables.getColor(1, 0xff000000);
+    int color = (contactType == ContactRepository.PUSH_TYPE) ? ContextCompat.getColor(getContext(), R.color.signal_text_primary)
+                                                             : ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_60);
 
     boolean currentContact = currentContacts.contains(id);
 

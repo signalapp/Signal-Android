@@ -48,7 +48,7 @@
                         android:id="@+id/icon"
                         android:layout_width="38dp"
                         android:layout_height="50dp"
-                        android:src="?attachment_document_icon_large"/>
+                        android:src="@drawable/ic_document_large"/>
 
                     <TextView android:id="@+id/document"
                               android:layout_width="wrap_content"

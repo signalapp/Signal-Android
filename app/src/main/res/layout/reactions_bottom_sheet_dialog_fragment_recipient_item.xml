@@ -21,7 +21,7 @@
         android:layout_marginStart="8dp"
         android:gravity="center_vertical"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-        android:textColor="?title_text_color_primary"
+        android:textColor="@color/signal_text_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/reactions_bottom_view_recipient_emoji"
         app:layout_constraintHorizontal_bias="0.0"

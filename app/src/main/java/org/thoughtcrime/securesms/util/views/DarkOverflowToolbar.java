@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -33,7 +34,7 @@ public class DarkOverflowToolbar extends Toolbar {
 
   private void init() {
     if (getOverflowIcon() != null) {
-      getOverflowIcon().setColorFilter(ThemeUtil.getThemedColor(getContext(), R.attr.icon_tint), PorterDuff.Mode.SRC_ATOP);
+      getOverflowIcon().setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_icon_tint_primary), PorterDuff.Mode.SRC_ATOP);
     }
   }
 }

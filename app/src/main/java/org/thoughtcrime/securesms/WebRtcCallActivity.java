@@ -428,7 +428,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
     new AlertDialog.Builder(this)
                    .setTitle(R.string.RedPhone_number_not_registered)
-                   .setIconAttribute(R.attr.dialog_alert_icon)
+                   .setIcon(R.drawable.ic_warning)
                    .setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice)
                    .setCancelable(true)
                    .setPositiveButton(R.string.RedPhone_got_it, (d, w) -> handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL))

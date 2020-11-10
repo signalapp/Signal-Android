@@ -13,5 +13,5 @@
     android:paddingEnd="?attr/dialogPreferredPadding"
     android:textAppearance="?android:attr/textAppearanceListItem"
     android:textColor="?attr/textColorAlertDialogListItem"
-    android:theme="?radio_theme"
+    android:theme="@style/Signal.Widget.CompoundButton.RadioButton"
     tools:text="Pick me!" />

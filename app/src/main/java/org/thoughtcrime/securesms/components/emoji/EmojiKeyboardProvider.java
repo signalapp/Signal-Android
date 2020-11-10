@@ -81,9 +81,9 @@ public class EmojiKeyboardProvider implements MediaKeyboardProvider,
   @Override
   public int getProviderIconView(boolean selected) {
     if (selected) {
-      return ThemeUtil.isDarkTheme(context) ? R.layout.emoji_keyboard_icon_dark_selected : R.layout.emoji_keyboard_icon_light_selected;
+      return R.layout.emoji_keyboard_icon_selected;
     } else {
-      return ThemeUtil.isDarkTheme(context) ? R.layout.emoji_keyboard_icon_dark : R.layout.emoji_keyboard_icon_light;
+      return R.layout.emoji_keyboard_icon;
     }
   }
 

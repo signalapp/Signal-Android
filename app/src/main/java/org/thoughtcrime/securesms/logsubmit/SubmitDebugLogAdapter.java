@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
@@ -128,12 +129,12 @@ public class SubmitDebugLogAdapter extends RecyclerView.Adapter<SubmitDebugLogAd
       }
 
       switch (line.getStyle()) {
-        case NONE:    text.setTextColor(ThemeUtil.getThemedColor(context, R.attr.debuglog_color_none));    break;
-        case VERBOSE: text.setTextColor(ThemeUtil.getThemedColor(context, R.attr.debuglog_color_verbose)); break;
-        case DEBUG:   text.setTextColor(ThemeUtil.getThemedColor(context, R.attr.debuglog_color_debug));   break;
-        case INFO:    text.setTextColor(ThemeUtil.getThemedColor(context, R.attr.debuglog_color_info));    break;
-        case WARNING: text.setTextColor(ThemeUtil.getThemedColor(context, R.attr.debuglog_color_warn));    break;
-        case ERROR:   text.setTextColor(ThemeUtil.getThemedColor(context, R.attr.debuglog_color_error));   break;
+        case NONE:    text.setTextColor(ContextCompat.getColor(context, R.color.debuglog_color_none));    break;
+        case VERBOSE: text.setTextColor(ContextCompat.getColor(context, R.color.debuglog_color_verbose)); break;
+        case DEBUG:   text.setTextColor(ContextCompat.getColor(context, R.color.debuglog_color_debug));   break;
+        case INFO:    text.setTextColor(ContextCompat.getColor(context, R.color.debuglog_color_info));    break;
+        case WARNING: text.setTextColor(ContextCompat.getColor(context, R.color.debuglog_color_warn));    break;
+        case ERROR:   text.setTextColor(ContextCompat.getColor(context, R.color.debuglog_color_error));   break;
       }
 
       scrollView.setOnScrollListener((newLeft, oldLeft) -> {

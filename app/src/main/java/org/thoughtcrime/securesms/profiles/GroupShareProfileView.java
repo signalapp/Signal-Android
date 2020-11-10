@@ -51,7 +51,7 @@ public class GroupShareProfileView extends FrameLayout {
     this.container.setOnClickListener(view -> {
       if (this.recipient != null) {
         new AlertDialog.Builder(getContext())
-            .setIconAttribute(R.attr.dialog_info_icon)
+            .setIcon(R.drawable.ic_info_outline)
             .setTitle(R.string.GroupShareProfileView_share_your_profile_name_and_photo_with_this_group)
             .setMessage(R.string.GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group)
             .setPositiveButton(R.string.GroupShareProfileView_make_visible, (dialog, which) -> {

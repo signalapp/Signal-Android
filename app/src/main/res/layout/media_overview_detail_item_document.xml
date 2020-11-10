@@ -28,7 +28,7 @@
                 android:layout_width="38dp"
                 android:layout_height="50dp"
                 android:importantForAccessibility="no"
-                android:src="?attachment_document_icon_large" />
+                android:src="@drawable/ic_document_large" />
 
             <TextView
                 android:id="@+id/document_extension"

@@ -130,7 +130,7 @@
                         android:scaleType="fitCenter"
                         android:contentDescription="@string/conversation_activity__send"
                         android:tint="@color/core_white"
-                        app:srcCompat="?conversation_transport_sms_indicator"
+                        app:srcCompat="@drawable/ic_send_unlock_24"
                         android:background="@drawable/circle_touch_highlight_background" />
 
                 </FrameLayout>

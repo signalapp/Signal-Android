@@ -6,4 +6,4 @@
     android:layout_height="36dp"
     android:padding="8dp"
     android:scaleType="centerInside"
-    tools:src="?attr/emoji_category_recent" />
+    tools:src="@drawable/ic_recent_20" />

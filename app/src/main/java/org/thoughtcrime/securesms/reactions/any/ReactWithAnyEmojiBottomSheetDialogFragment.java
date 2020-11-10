@@ -15,6 +15,7 @@ import android.widget.TextSwitcher;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -99,7 +100,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
                                                                      .build();
     MaterialShapeDrawable dialogBackground     = new MaterialShapeDrawable(shapeAppearanceModel);
 
-    dialogBackground.setTint(ThemeUtil.getThemedColor(requireContext(), R.attr.dialog_background_color));
+    dialogBackground.setTint(ContextCompat.getColor(requireContext(), R.color.signal_background_dialog));
 
     dialog.getBehavior().addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
       @Override

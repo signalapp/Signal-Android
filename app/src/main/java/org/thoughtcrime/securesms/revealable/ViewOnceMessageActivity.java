@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -57,6 +58,12 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActivity implemen
     intent.putExtra(KEY_MESSAGE_ID, messageId);
     intent.putExtra(KEY_URI, uri);
     return intent;
+  }
+
+  @Override
+  protected void attachBaseContext(@NonNull Context newBase) {
+    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    super.attachBaseContext(newBase);
   }
 
   @Override

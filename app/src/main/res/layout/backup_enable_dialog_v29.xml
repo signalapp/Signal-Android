@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/backup_enable_dialog__folder"
         android:textAppearance="@style/Signal.Text.Caption"
-        android:textColor="?attr/backup_enable_subhead_color"
+        android:textColor="@color/signal_text_primary_dialog"
         android:textStyle="bold" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="24dp"
-        android:background="?attr/backup_enable_dialog_divider_background" />
+        android:background="@color/signal_divider_major" />
 
     <TextView
         android:layout_width="match_parent"

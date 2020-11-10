@@ -39,7 +39,7 @@
         app:cpb_colorIndicator="@color/white"
         app:cpb_colorProgress="?colorAccent"
         app:cpb_cornerRadius="28dp"
-        app:cpb_selectorIdle="?attr/circular_progress_button_state"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
         app:cpb_textIdle="@string/AddMembersActivity__done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

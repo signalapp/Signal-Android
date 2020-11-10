@@ -9,7 +9,7 @@
                   android:layout_height="wrap_content"
                   android:padding="20dp"
                   android:gravity="center_horizontal"
-                  android:background="?verification_background"
+                  android:background="@color/signal_background_secondary"
                   android:orientation="vertical">
 
         <FrameLayout android:layout_width="250dp"

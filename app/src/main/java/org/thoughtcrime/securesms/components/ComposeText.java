@@ -21,6 +21,7 @@ import android.view.inputmethod.InputConnection;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
@@ -257,7 +258,7 @@ public class ComposeText extends EmojiEditText {
       setImeOptions(getImeOptions() | 16777216);
     }
 
-    mentionRendererDelegate = new MentionRendererDelegate(getContext(), ThemeUtil.getThemedColor(getContext(), R.attr.conversation_mention_background_color));
+    mentionRendererDelegate = new MentionRendererDelegate(getContext(), ContextCompat.getColor(getContext(), R.color.conversation_mention_background_color));
 
     addTextChangedListener(new MentionDeleter());
     mentionValidatorWatcher = new MentionValidatorWatcher();

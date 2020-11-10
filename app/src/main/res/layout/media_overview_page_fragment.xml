@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/media_overview_toolbar_background">
+    android:background="@color/media_overview_toolbar_background">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/media_grid"

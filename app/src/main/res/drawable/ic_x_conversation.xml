@@ -4,6 +4,6 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
   <path
-      android:fillColor="?conversation_subtitle_color"
+      android:fillColor="@color/signal_text_toolbar_subtitle"
       android:pathData="M20.5,4.5l-1,-1l-7.5,7.4l-7.5,-7.4l-1,1l7.4,7.5l-7.4,7.5l1,1l7.5,-7.4l7.5,7.4l1,-1l-7.4,-7.5z"/>
 </vector>

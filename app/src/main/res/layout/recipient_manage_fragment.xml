@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:textAppearance="@style/Signal.Text.Body"
-                    android:textColor="?title_text_color_secondary"
+                    android:textColor="@color/signal_text_secondary"
                     tools:text="\@spidergwen  +1 555-654-6657" />
 
                 <TextView
@@ -62,7 +62,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="14dp"
                     android:textAppearance="@style/Signal.Text.Caption"
-                    android:textColor="?title_text_color_secondary"
+                    android:textColor="@color/signal_text_secondary"
                     android:gravity="center"
                     android:textIsSelectable="true"
                     android:visibility="gone" />
@@ -77,8 +77,8 @@
                         android:id="@+id/recipient_message"
                         style="@style/Widget.Signal.Button.Icon.Circular"
                         android:contentDescription="@string/ManageRecipientActivity_message_description"
-                        app:backgroundTint="?recipient_contact_button_color"
-                        app:icon="?recipient_message_circle_icon"
+                        app:backgroundTint="@color/recipient_contact_button_color"
+                        app:icon="@drawable/ic_message_primary_accent_24"
                         app:rippleColor="@color/core_ultramarine" />
 
                     <com.google.android.material.button.MaterialButton
@@ -87,8 +87,8 @@
                         android:layout_marginStart="36dp"
                         android:contentDescription="@string/ManageRecipientActivity_video_call_description"
                         android:visibility="gone"
-                        app:backgroundTint="?recipient_contact_button_color"
-                        app:icon="?recipient_video_call_circle_icon"
+                        app:backgroundTint="@color/recipient_contact_button_color"
+                        app:icon="@drawable/ic_video_primary_accent_24"
                         tools:visibility="visible" />
 
                     <com.google.android.material.button.MaterialButton
@@ -97,8 +97,8 @@
                         android:layout_marginStart="36dp"
                         android:contentDescription="@string/ManageRecipientActivity_voice_call_description"
                         android:visibility="gone"
-                        app:backgroundTint="?recipient_contact_button_color"
-                        app:icon="?recipient_call_circle_icon"
+                        app:backgroundTint="@color/recipient_contact_button_color"
+                        app:icon="@drawable/ic_phone_right_primary_accent_24"
                         tools:visibility="visible" />
 
                     <com.google.android.material.button.MaterialButton
@@ -107,8 +107,8 @@
                         android:layout_marginStart="36dp"
                         android:contentDescription="@string/ManageRecipientActivity_insecure_voice_call_description"
                         android:visibility="gone"
-                        app:backgroundTint="?recipient_contact_button_color"
-                        app:icon="?recipient_insecure_call_circle_icon"
+                        app:backgroundTint="@color/recipient_contact_button_color"
+                        app:icon="@drawable/ic_phone_right_unlock_primary_accent_24"
                         tools:visibility="visible" />
 
                 </LinearLayout>
@@ -171,7 +171,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?pref_divider"
+        android:background="@drawable/preference_divider"
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -510,7 +510,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="12dp"
-                        android:textColor="?title_text_color_secondary"
+                        android:textColor="@color/signal_text_secondary"
                         tools:text="8 groups in common" />
 
                     <TextView
@@ -520,7 +520,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginBottom="8dp"
                         android:background="?selectableItemBackground"
-                        android:drawableStart="?attr/manage_group_add_members_icon"
+                        android:drawableStart="@drawable/ic_add_members_circle"
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical|start"
                         android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
@@ -541,7 +541,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="64dp"
                         android:background="?selectableItemBackground"
-                        android:drawableStart="?attr/manage_group_view_all_icon"
+                        android:drawableStart="@drawable/ic_view_all_circle"
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical|start"
                         android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
@@ -549,7 +549,7 @@
                         android:text="@string/ManageRecipientActivity_view_all_groups"
                         android:textAlignment="viewStart"
                         android:textAppearance="@style/Signal.Text.Body"
-                        android:textColor="?title_text_color_secondary"
+                        android:textColor="@color/signal_text_secondary"
                         android:visibility="gone"
                         tools:visibility="visible" />
 

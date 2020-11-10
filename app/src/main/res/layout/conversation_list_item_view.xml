@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="?attr/conversation_list_item_background"
+        android:background="@drawable/conversation_list_item_background"
         android:layout_width="match_parent"
         android:focusable="true"
         android:nextFocusRight="@+id/fab"
@@ -37,7 +37,7 @@
             android:fontFamily="sans-serif-medium"
             android:minWidth="@dimen/unread_count_bubble_diameter"
             android:padding="5sp"
-            android:background="?conversation_list_item_unread_background"
+            android:background="@drawable/unread_count_background"
             android:textColor="@color/core_white"
             android:gravity="center"
             tools:text="1"/>
@@ -61,7 +61,7 @@
                   android:layout_toStartOf="@+id/thumbnail"
                   style="@style/Signal.Text.Body"
                   android:fontFamily="sans-serif-medium"
-                  android:textColor="?attr/conversation_list_item_contact_color"
+                  android:textColor="@color/signal_text_primary"
                   android:maxLines="1"
                   tools:text="Jules Bonnot"
                   android:ellipsize="end"
@@ -94,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Signal.Text.Preview"
-                    android:textColor="?attr/conversation_list_item_subject_color"
+                    android:textColor="@color/signal_text_secondary"
                     android:maxLines="1"
                     tools:text="Wheels arrive at 3pm flat. This is a somewhat longer message."
                     android:ellipsize="end" />
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:visibility="gone"
-                app:typingIndicator_tint="?conversation_list_typing_tint"/>
+                app:typingIndicator_tint="@color/signal_icon_tint_secondary"/>
 
         </FrameLayout>
 
@@ -131,7 +131,7 @@
                   android:layout_alignParentEnd="true"
                   android:layout_alignBaseline="@+id/from"
                   style="@style/Signal.Text.Caption"
-                  android:textColor="?attr/conversation_list_item_date_color"
+                  android:textColor="@color/signal_icon_tint_secondary"
                   tools:text="30 mins"
                   android:singleLine="true"/>
 
@@ -164,7 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    app:iconColor="?attr/conversation_list_item_delivery_icon_color"/>
+                    app:iconColor="@color/signal_icon_tint_secondary"/>
 
         </FrameLayout>
 

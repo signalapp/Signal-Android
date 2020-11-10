@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         style="@style/Signal.Text.Preview"
-        android:textColor="?conversation_item_update_text_color"
+        android:textColor="@color/conversation_item_update_text_color"
         tools:text="March 1, 2015" />
 
 </LinearLayout>

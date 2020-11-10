@@ -27,7 +27,7 @@
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/check_box"
-            android:background="?attr/contact_selection_checkbox_background"
+            android:background="@drawable/contact_selection_checkbox"
             android:button="@null"
             android:layout_width="22dp"
             android:layout_height="22dp"
@@ -66,7 +66,7 @@
                       android:singleLine="true"
                       android:ellipsize="marquee"
                       android:textAppearance="@style/TextAppearance.Signal.Body2"
-                      android:textColor="?attr/title_text_color_secondary"
+                      android:textColor="@color/signal_text_secondary"
                       android:textSize="14sp"
                       android:fontFamily="sans-serif-light"
                       tools:text="@sample/contacts.json/data/number" />
@@ -78,7 +78,7 @@
                       android:ellipsize="end"
                       android:singleLine="true"
                       android:textAppearance="@style/TextAppearance.Signal.Body2"
-                      android:textColor="?attr/title_text_color_secondary"
+                      android:textColor="@color/signal_text_secondary"
                       android:fontFamily="sans-serif-light"
                       tools:text="@sample/contacts.json/data/label"
                       tools:ignore="RtlSymmetry" />

@@ -24,7 +24,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/GroupLinkBottomSheet_share_via_signal"
-            app:drawableStartCompat="?message_icon" />
+            app:drawableStartCompat="@drawable/ic_message_tinted_bitmap_24" />
 
         <Button
             android:id="@+id/group_link_bottom_sheet_copy_button"
@@ -34,7 +34,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/GroupLinkBottomSheet_copy"
-            app:drawableStartCompat="?copy_icon" />
+            app:drawableStartCompat="@drawable/ic_copy_24_tinted" />
 
         <Button
             android:id="@+id/group_link_bottom_sheet_qr_code_button"
@@ -44,7 +44,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/GroupLinkBottomSheet_qr_code"
-            app:drawableStartCompat="?qr_icon" />
+            app:drawableStartCompat="@drawable/ic_qrcode_24_tinted" />
 
         <Button
             android:id="@+id/group_link_bottom_sheet_share_via_system_button"
@@ -54,7 +54,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/GroupLinkBottomSheet_share"
-            app:drawableStartCompat="?share_icon" />
+            app:drawableStartCompat="@drawable/ic_share_24_tinted" />
 
     </LinearLayout>
 

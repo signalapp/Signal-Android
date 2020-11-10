@@ -7,6 +7,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,8 +78,8 @@ public class TooltipPopup extends PopupWindow {
     View bubble = getContentView().findViewById(R.id.tooltip_bubble);
 
     if (backgroundTint == 0) {
-      bubble.getBackground().setColorFilter(ThemeUtil.getThemedColor(anchor.getContext(), R.attr.tooltip_default_color), PorterDuff.Mode.MULTIPLY);
-      arrow.setColorFilter(ThemeUtil.getThemedColor(anchor.getContext(), R.attr.tooltip_default_color), PorterDuff.Mode.MULTIPLY);
+      bubble.getBackground().setColorFilter(ContextCompat.getColor(anchor.getContext(), R.color.tooltip_default_color), PorterDuff.Mode.MULTIPLY);
+      arrow.setColorFilter(ContextCompat.getColor(anchor.getContext(), R.color.tooltip_default_color), PorterDuff.Mode.MULTIPLY);
     } else {
       bubble.getBackground().setColorFilter(backgroundTint, PorterDuff.Mode.MULTIPLY);
       arrow.setColorFilter(backgroundTint, PorterDuff.Mode.MULTIPLY);

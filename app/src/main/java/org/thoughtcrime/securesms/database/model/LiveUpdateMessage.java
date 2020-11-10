@@ -17,6 +17,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
@@ -57,17 +58,17 @@ public final class LiveUpdateMessage {
 
   private static @NonNull Spannable toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string) {
     boolean  isDarkTheme      = ThemeUtil.isDarkTheme(context);
-    int      drawableResource = isDarkTheme ? updateDescription.getDarkIconResource() : updateDescription.getLightIconResource();
+    int      drawableResource = updateDescription.getIconResource();
     int      tint             = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
 
     if (tint == 0) {
-      tint = ThemeUtil.getThemedColor(context, R.attr.conversation_item_update_text_color);
+      tint = ContextCompat.getColor(context, R.color.conversation_item_update_text_color);
     }
 
     if (drawableResource == 0) {
       return new SpannableString(string);
     } else {
-      Drawable drawable = ContextCompat.getDrawable(context, drawableResource);
+      Drawable drawable = ContextUtil.requireDrawable(context, drawableResource);
       drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
       drawable.setColorFilter(tint, PorterDuff.Mode.SRC_ATOP);
 

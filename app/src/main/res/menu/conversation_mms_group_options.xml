@@ -3,7 +3,7 @@
 
     <item android:title="@string/conversation_group_options__delivery"
           android:id="@+id/menu_group_delivery"
-          android:icon="?menu_split_icon"
+          android:icon="@drawable/ic_call_split_white_24dp"
           app:showAsAction="ifRoom" >
 
         <menu>

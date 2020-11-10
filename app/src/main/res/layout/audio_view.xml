@@ -31,7 +31,7 @@
             android:layout_gravity="center_vertical"
             android:fontFamily="sans-serif-light"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="?conversation_item_sent_text_secondary_color"
+            android:textColor="@color/signal_text_secondary"
             android:textSize="@dimen/conversation_item_date_text_size"
             android:visibility="gone"
             tools:text="00:30"

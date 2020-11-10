@@ -19,7 +19,7 @@
         android:layout_marginEnd="20dp"
         android:text="@string/GroupsV1MigrationLearnMore_what_are_new_groups"
         android:textAppearance="@style/TextAppearance.Signal.Title1"
-        android:textColor="?title_text_color_primary"
+        android:textColor="@color/signal_text_primary"
         android:gravity="center" />
 
     <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:src="?paragraph_marker" />
+            android:src="@drawable/paragraph_marker" />
 
         <TextView
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:layout_marginEnd="14dp"
             android:text="@string/GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions"
             android:textAppearance="@style/TextAppearance.Signal.Body1"
-            android:textColor="?title_text_color_primary" />
+            android:textColor="@color/signal_text_primary" />
 
     </LinearLayout>
 
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:src="?paragraph_marker" />
+            android:src="@drawable/paragraph_marker" />
 
         <TextView
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:layout_marginEnd="14dp"
             android:text="@string/GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept"
             android:textAppearance="@style/TextAppearance.Signal.Body1"
-            android:textColor="?title_text_color_primary" />
+            android:textColor="@color/signal_text_primary" />
 
     </LinearLayout>
 
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:src="?paragraph_marker" />
+            android:src="@drawable/paragraph_marker" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
-                android:textColor="?title_text_color_primary"
+                android:textColor="@color/signal_text_primary"
                 tools:text="Plurized string for pending members." />
 
             <org.thoughtcrime.securesms.groups.ui.GroupMemberListView

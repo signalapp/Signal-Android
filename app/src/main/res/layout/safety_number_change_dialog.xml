@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
-    tools:background="?dialog_background_color">
+    tools:background="@color/signal_background_dialog">
 
     <TextView
         android:layout_width="match_parent"

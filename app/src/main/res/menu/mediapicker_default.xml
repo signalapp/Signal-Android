@@ -7,7 +7,7 @@
         android:title="@string/MediaPickerActivity__menu_open_camera"
         android:id="@+id/mediapicker_menu_camera"
         android:visible="true"
-        android:icon="@drawable/ic_camera_solid_24"
+        android:icon="@drawable/ic_camera_24"
         app:showAsAction="always" />
 
 </menu>

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_unidentified_delivery"
-        android:tint="?conversation_item_sent_text_secondary_color"/>
+        android:tint="@color/signal_text_secondary"/>
 
     <TextView
         android:id="@+id/ud_learn_more"

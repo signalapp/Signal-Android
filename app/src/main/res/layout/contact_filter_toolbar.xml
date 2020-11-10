@@ -42,7 +42,7 @@
                     android:gravity="center_vertical"
                     android:clickable="true"
                     android:focusable="true"
-                    android:tint="?contact_filter_toolbar_icon_tint"
+                    android:tint="@color/signal_icon_tint_primary"
                     android:background="?actionBarItemBackground"
                     app:srcCompat="@drawable/ic_number_pad_conversation_filter_24" />
 
@@ -56,9 +56,9 @@
                     android:clickable="true"
                     android:visibility="gone"
                     android:focusable="true"
-                    android:tint="?contact_filter_toolbar_icon_tint"
+                    android:tint="@color/signal_icon_tint_primary"
                     android:background="?actionBarItemBackground"
-                    app:srcCompat="?conversation_keyboard_toggle" />
+                    app:srcCompat="@drawable/ic_keyboard_24" />
 
                 <ImageView android:id="@+id/search_clear"
                            android:contentDescription="@string/contact_filter_toolbar__clear_entered_text_description"

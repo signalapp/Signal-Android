@@ -5,7 +5,7 @@
     android:id="@+id/selected_indicator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/media_overview_toolbar_background"
+    android:background="@color/media_overview_toolbar_background"
     android:visibility="gone"
     tools:showIn="@layout/media_overview_detail_item_document"
     tools:visibility="visible">

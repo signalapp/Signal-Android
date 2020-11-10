@@ -27,7 +27,7 @@
             android:id="@+id/recipient_header_delivery_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:iconColor="?attr/conversation_item_sent_text_secondary_color"
+            app:iconColor="@color/signal_text_secondary"
             android:layout_gravity="end|center_vertical" />
 
     </FrameLayout>

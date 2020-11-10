@@ -8,13 +8,13 @@
     android:layout_marginEnd="6dp"
     android:minWidth="80dp"
     android:padding="8dp"
-    android:background="?attachment_keyboard_button_background">
+    android:background="@drawable/attachment_keyboard_button_background">
 
   <androidx.appcompat.widget.AppCompatImageView
       android:id="@+id/attachment_button_image"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:tint="?attachment_keyboard_button_foreground"
+      android:tint="@color/attachment_keyboard_button_foreground"
       app:layout_constraintBottom_toTopOf="@id/attachment_button_title"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
       style="@style/Signal.Text.Preview"
       android:fontFamily="sans-serif-medium"
       android:gravity="center"
-      android:textColor="?attachment_keyboard_button_foreground"
+      android:textColor="@color/attachment_keyboard_button_foreground"
       app:layout_constraintTop_toBottomOf="@id/attachment_button_image"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"

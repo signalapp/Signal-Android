@@ -77,7 +77,7 @@
         app:cpb_colorIndicator="?colorAccent"
         app:cpb_colorProgress="@color/transparent"
         app:cpb_cornerRadius="4dp"
-        app:cpb_selectorIdle="@drawable/progress_button_state_light"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
         app:cpb_textIdle="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -40,7 +40,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 app:foregroundTintColor="@color/grey_500"
-                app:backgroundTintColor="?conversation_item_bubble_background"/>
+                app:backgroundTintColor="@color/signal_background_secondary"/>
 
         <org.thoughtcrime.securesms.components.DocumentView
             android:id="@+id/attachment_document"
@@ -52,8 +52,8 @@
             android:paddingStart="@dimen/message_bubble_horizontal_padding"
             android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:background="@drawable/message_bubble_background_sent_alone"
-            app:doc_titleColor="?attr/conversation_item_sent_text_primary_color"
-            app:doc_captionColor="?attr/conversation_item_sent_text_secondary_color"/>
+            app:doc_titleColor="@color/signal_text_primary"
+            app:doc_captionColor="@color/signal_text_secondary"/>
 
     </org.thoughtcrime.securesms.components.RemovableEditableMediaView>
 

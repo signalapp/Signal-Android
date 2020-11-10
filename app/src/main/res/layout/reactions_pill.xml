@@ -37,7 +37,7 @@
       android:layout_height="wrap_content"
       android:textSize="12dp"
       android:fontFamily="sans-serif-medium"
-      android:textColor="?reactions_pill_text_color"
+      android:textColor="@color/reactions_pill_text_color"
       tools:text="23"
       tools:ignore="SpUsage" />
 

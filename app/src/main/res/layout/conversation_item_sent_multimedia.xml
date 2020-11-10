@@ -28,8 +28,8 @@
             android:layout_alignTop="@id/body_bubble"
             android:layout_alignBottom="@id/body_bubble"
             android:alpha="0"
-            app:srcCompat="?menu_reply_icon"
-            android:tint="?compose_icon_tint" />
+            app:srcCompat="@drawable/ic_reply_24"
+            android:tint="@color/signal_icon_tint_primary" />
 
         <org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble
             android:id="@+id/body_bubble"
@@ -53,8 +53,8 @@
                 android:layout_marginEnd="6dp"
                 android:visibility="gone"
                 app:message_type="outgoing"
-                app:quote_colorPrimary="?attr/conversation_item_quote_text_color"
-                app:quote_colorSecondary="?attr/conversation_item_quote_text_color"
+                app:quote_colorPrimary="@color/conversation_item_quote_text_color"
+                app:quote_colorSecondary="@color/conversation_item_quote_text_color"
                 tools:visibility="visible" />
 
             <ViewStub
@@ -123,8 +123,8 @@
                 android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
                 android:ellipsize="end"
-                android:textColor="?conversation_item_sent_text_primary_color"
-                android:textColorLink="?conversation_item_sent_text_primary_color"
+                android:textColor="@color/signal_text_primary"
+                android:textColorLink="@color/signal_text_primary"
                 app:emoji_maxLength="1000"
                 app:scaleEmojis="true"
                 tools:text="Mango pickle lorem ipsum" />
@@ -140,9 +140,9 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:gravity="end"
-                app:footer_reveal_dot_color="?attr/conversation_footer_sent_reveal_dot_color"
-                app:footer_icon_color="?attr/conversation_item_sent_icon_color"
-                app:footer_text_color="?attr/conversation_item_sent_text_secondary_color" />
+                app:footer_reveal_dot_color="@color/signal_icon_tint_secondary"
+                app:footer_icon_color="@color/signal_icon_tint_secondary"
+                app:footer_text_color="@color/signal_text_secondary" />
 
             <org.thoughtcrime.securesms.components.ConversationItemFooter
                 android:id="@+id/conversation_item_sticker_footer"
@@ -156,8 +156,8 @@
                 android:clipToPadding="false"
                 android:gravity="end"
                 android:visibility="gone"
-                app:footer_icon_color="?conversation_sticker_footer_icon_color"
-                app:footer_text_color="?conversation_sticker_footer_text_color" />
+                app:footer_icon_color="@color/signal_icon_tint_secondary"
+                app:footer_text_color="@color/signal_text_secondary" />
 
         </org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble>
 

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginBottom="3dp"
-        android:background="?attr/conversation_item_last_seen_line_color" />
+        android:background="@color/core_grey_45" />
 
     <TextView
         android:id="@+id/text"
@@ -21,7 +21,7 @@
         android:layout_gravity="center"
         style="@style/Signal.Text.Caption"
         android:fontFamily="sans-serif-medium"
-        android:textColor="?attr/conversation_item_last_seen_text_color"
+        android:textColor="@color/signal_text_primary"
         tools:text="3 unread messages" />
 
 </LinearLayout>

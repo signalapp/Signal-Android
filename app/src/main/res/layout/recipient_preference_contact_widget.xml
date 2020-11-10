@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        app:srcCompat="?attr/message_icon" />
+        app:srcCompat="@drawable/ic_message_tinted_bitmap_24" />
 
     <ImageView
         android:id="@+id/call"

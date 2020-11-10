@@ -26,6 +26,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
@@ -194,7 +195,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       if (Build.VERSION.SDK_INT >= 21) return;
 
       Preference preference = this.findPreference(PREFERENCE_CATEGORY_SMS_MMS);
-      preference.getIcon().setColorFilter(ThemeUtil.getThemedColor(requireContext(), R.attr.icon_tint), PorterDuff.Mode.SRC_IN);
+      preference.getIcon().setColorFilter(ContextCompat.getColor(requireContext(), R.color.signal_icon_tint_primary), PorterDuff.Mode.SRC_IN);
     }
 
     @Override

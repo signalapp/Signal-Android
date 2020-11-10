@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="0.35"
         app:layout_constraintWidth_percent="0.75"
         app:qr_background_color="?android:windowBackground"
-        app:qr_foreground_color="?title_text_color_primary" />
+        app:qr_foreground_color="@color/signal_text_primary" />
 
     <TextView
         android:id="@+id/group_link_share_explain"

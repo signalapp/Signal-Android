@@ -183,7 +183,7 @@
         android:id="@+id/insights_dashboard_this_stat_was_generated_locally"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?insight_dashboard_bottom_bar_background"
+        android:background="@color/signal_background_secondary"
         android:gravity="center"
         android:lineSpacingMultiplier="1.2"
         android:paddingStart="16dp"

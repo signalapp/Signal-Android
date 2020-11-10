@@ -17,7 +17,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="10dp"
             android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
-            android:textColor="?attr/title_text_color_secondary" />
+            android:textColor="@color/signal_text_secondary" />
 
     </LinearLayout>
 

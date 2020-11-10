@@ -3,7 +3,7 @@
 
     <item android:title="@string/conversation_popup__menu_expand_popup"
           android:id="@+id/menu_expand"
-          android:icon="?menu_popup_expand"
+          android:icon="@drawable/ic_launch_white_24dp"
           app:showAsAction="ifRoom" />
 
 </menu>

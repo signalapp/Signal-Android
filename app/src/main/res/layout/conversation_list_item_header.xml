@@ -8,5 +8,5 @@
     android:paddingEnd="16dp"
     android:textAppearance="@style/TextAppearance.Signal.Body2"
     android:fontFamily="sans-serif-medium"
-    android:textColor="?title_text_color_secondary"
+    android:textColor="@color/signal_text_secondary"
     tools:text="Chats" />

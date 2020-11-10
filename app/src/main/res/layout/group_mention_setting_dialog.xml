@@ -29,7 +29,7 @@
         android:text="@string/GroupMentionSettingDialog_always_notify_me"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?attr/textColorAlertDialogListItem"
-        android:theme="?radio_theme" />
+        android:theme="@style/Signal.Widget.CompoundButton.RadioButton" />
 
     <CheckedTextView
         android:id="@+id/group_mention_setting_dont_notify"
@@ -45,6 +45,6 @@
         android:text="@string/GroupMentionSettingDialog_dont_notify_me"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?attr/textColorAlertDialogListItem"
-        android:theme="?radio_theme" />
+        android:theme="@style/Signal.Widget.CompoundButton.RadioButton" />
 
 </LinearLayout>

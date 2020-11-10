@@ -43,7 +43,7 @@
         android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
         android:gravity="end"
-        app:footer_text_color="?attr/conversation_subtitle_color"
-        app:footer_icon_color="?attr/conversation_subtitle_color"/>
+        app:footer_text_color="@color/signal_text_toolbar_subtitle"
+        app:footer_icon_color="@color/signal_text_toolbar_subtitle"/>
 
 </merge>

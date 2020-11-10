@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height"
     android:layout_gravity="bottom"
-    android:background="?attr/emoji_tab_strip_background"
+    android:background="@color/signal_background_secondary"
     app:layout_constraintTop_toTopOf="parent"
     app:tabIndicatorColor="@color/core_ultramarine"
     app:tabPadding="0dp"

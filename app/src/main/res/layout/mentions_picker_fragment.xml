@@ -26,7 +26,7 @@
             android:id="@+id/mentions_picker_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?mention_picker_background_color" />
+            android:background="@color/signal_background_dialog" />
 
     </FrameLayout>
 

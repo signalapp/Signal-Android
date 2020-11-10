@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -153,15 +155,15 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   private enum SelectionOption {
-    CAPTURE("capture", R.string.AvatarSelectionBottomSheetDialogFragment__take_photo, R.attr.avatar_selection_take_photo),
-    GALLERY("gallery", R.string.AvatarSelectionBottomSheetDialogFragment__choose_from_gallery, R.attr.avatar_selection_pick_photo),
-    DELETE("delete", R.string.AvatarSelectionBottomSheetDialogFragment__remove_photo, R.attr.avatar_selection_remove_photo);
+    CAPTURE("capture", R.string.AvatarSelectionBottomSheetDialogFragment__take_photo, R.drawable.ic_camera_24),
+    GALLERY("gallery", R.string.AvatarSelectionBottomSheetDialogFragment__choose_from_gallery, R.drawable.ic_photo_24),
+    DELETE("delete", R.string.AvatarSelectionBottomSheetDialogFragment__remove_photo, R.drawable.ic_trash_24);
 
-    private final            String code;
-    private final @StringRes int    label;
-    private final @AttrRes   int    icon;
+    private final              String code;
+    private final @StringRes   int    label;
+    private final @DrawableRes int    icon;
 
-    SelectionOption(@NonNull String code, @StringRes int label, @AttrRes int icon) {
+    SelectionOption(@NonNull String code, @StringRes int label, @DrawableRes int icon) {
       this.code  = code;
       this.label = label;
       this.icon  = icon;
@@ -198,7 +200,7 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
     }
 
     void bind(@NonNull SelectionOption selectionOption) {
-      optionView.setCompoundDrawablesWithIntrinsicBounds(ThemeUtil.getThemedDrawable(optionView.getContext(), selectionOption.icon), null, null, null);
+      optionView.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(optionView.getContext(), selectionOption.icon), null, null, null);
       optionView.setText(selectionOption.label);
     }
   }

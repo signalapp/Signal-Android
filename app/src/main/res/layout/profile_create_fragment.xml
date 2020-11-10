@@ -106,10 +106,10 @@
                     android:cropToPadding="false"
                     android:elevation="4dp"
                     android:padding="14dp"
-                    app:backgroundTint="?attr/camera_icon_background_tint"
+                    app:backgroundTint="@color/camera_icon_background_tint"
                     app:layout_constraintStart_toStartOf="@+id/avatar_background"
                     app:layout_constraintTop_toTopOf="@+id/avatar_background"
-                    app:srcCompat="?conversation_attach_camera" />
+                    app:srcCompat="@drawable/ic_camera_24" />
 
                 <LinearLayout
                     android:id="@+id/name_container"
@@ -237,7 +237,7 @@
             app:cpb_colorIndicator="@color/white"
             app:cpb_colorProgress="@color/core_ultramarine"
             app:cpb_cornerRadius="4dp"
-            app:cpb_selectorIdle="@drawable/progress_button_state_light"
+            app:cpb_selectorIdle="@drawable/progress_button_state"
             app:cpb_textIdle="@string/CreateProfileActivity_next" />
 
     </LinearLayout>

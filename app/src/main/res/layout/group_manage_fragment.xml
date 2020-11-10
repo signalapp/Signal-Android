@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:textAppearance="@style/Signal.Text.Body"
-                    android:textColor="?title_text_color_secondary"
+                    android:textColor="@color/signal_text_secondary"
                     tools:text="12 members (4 invited)" />
 
                 <org.thoughtcrime.securesms.util.views.LearnMoreTextView
@@ -61,13 +61,13 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
-                    android:background="?secondary_background_bubble"
+                    android:background="@drawable/round_background"
                     android:paddingStart="12dp"
                     android:paddingTop="10dp"
                     android:paddingEnd="12dp"
                     android:paddingBottom="10dp"
                     android:textAppearance="@style/TextAppearance.Signal.Subtitle"
-                    android:textColor="?title_text_color_secondary"
+                    android:textColor="@color/signal_text_secondary"
                     android:visibility="gone"
                     tools:text="@string/ManageGroupActivity_legacy_group_learn_more"
                     tools:visibility="visible" />
@@ -130,7 +130,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?pref_divider"
+        android:background="@drawable/preference_divider"
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -594,7 +594,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="4dp"
-                        android:textColor="?title_text_color_secondary"
+                        android:textColor="@color/signal_text_secondary"
                         tools:text="12 members" />
 
                     <TextView
@@ -602,7 +602,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="64dp"
                         android:background="?selectableItemBackground"
-                        android:drawableStart="?attr/manage_group_add_members_icon"
+                        android:drawableStart="@drawable/ic_add_members_circle"
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical|start"
                         android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
@@ -625,7 +625,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="64dp"
                         android:background="?selectableItemBackground"
-                        android:drawableStart="?attr/manage_group_view_all_icon"
+                        android:drawableStart="@drawable/ic_view_all_circle"
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical|start"
                         android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
@@ -633,7 +633,7 @@
                         android:text="@string/ManageGroupActivity_view_all_members"
                         android:textAlignment="viewStart"
                         android:textAppearance="@style/Signal.Text.Body"
-                        android:textColor="?title_text_color_secondary"
+                        android:textColor="@color/signal_text_secondary"
                         android:visibility="gone"
                         tools:visibility="visible" />
 

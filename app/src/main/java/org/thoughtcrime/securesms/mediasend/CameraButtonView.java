@@ -67,7 +67,7 @@ public class CameraButtonView extends View {
   }
 
   public CameraButtonView(@NonNull Context context, @Nullable AttributeSet attrs) {
-    this(context, attrs, R.attr.camera_button_style);
+    this(context, attrs, 0);
   }
 
   public CameraButtonView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

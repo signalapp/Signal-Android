@@ -57,7 +57,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textColor="?conversation_item_sent_text_primary_color"
+                    android:textColor="@color/signal_text_primary"
                     tools:text="Short address" />
 
                 <TextView
@@ -70,7 +70,7 @@
                     style="@style/Signal.Text.Preview"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textColor="?conversation_item_sent_text_secondary_color"
+                    android:textColor="@color/signal_text_secondary"
                     tools:text="Precise address" />
             </LinearLayout>
 

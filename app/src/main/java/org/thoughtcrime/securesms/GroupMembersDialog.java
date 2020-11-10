@@ -28,7 +28,7 @@ public final class GroupMembersDialog {
   public void display() {
     AlertDialog dialog = new AlertDialog.Builder(fragmentActivity)
                                         .setTitle(R.string.ConversationActivity_group_members)
-                                        .setIconAttribute(R.attr.group_members_dialog_icon)
+                                        .setIcon(R.drawable.ic_group_24)
                                         .setCancelable(true)
                                         .setView(R.layout.dialog_group_members)
                                         .setPositiveButton(android.R.string.ok, null)

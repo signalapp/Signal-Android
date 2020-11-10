@@ -19,7 +19,7 @@
             android:layout_height="?actionBarSize"
             android:background="@android:color/transparent"
             app:title="@string/ChooseNewAdminActivity_choose_new_admin"
-            app:titleTextColor="?title_text_color_primary" />
+            app:titleTextColor="@color/signal_text_primary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -47,7 +47,7 @@
             app:cpb_colorIndicator="@color/white"
             app:cpb_colorProgress="?colorAccent"
             app:cpb_cornerRadius="28dp"
-            app:cpb_selectorIdle="?attr/circular_progress_button_state"
+            app:cpb_selectorIdle="@drawable/progress_button_state"
             app:cpb_textIdle="@string/ChooseNewAdminActivity_done"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

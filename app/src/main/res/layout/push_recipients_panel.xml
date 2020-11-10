@@ -13,12 +13,12 @@
             android:singleLine="true"
             android:hint="@string/recipients_panel__to"
             android:paddingEnd="45dp"
-            android:textColor="?conversation_editor_text_color"
+            android:textColor="@color/signal_text_primary"
             android:layout_width="fill_parent"/>
 
         <ImageButton android:id="@+id/contacts_button"
                      android:background="?actionBarItemBackground"
-                     android:tint="?icon_tint"
+                     android:tint="@color/signal_icon_tint_primary"
                      android:layout_width="40dp"
                      android:layout_height="35dp"
                      android:layout_marginEnd="5dp"

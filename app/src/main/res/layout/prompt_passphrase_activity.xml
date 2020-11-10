@@ -17,7 +17,7 @@
     <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?login_top_background"
+            android:background="@color/login_top_background"
             android:layout_above="@id/shim">
 
     </FrameLayout>
@@ -43,7 +43,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:orientation="vertical"
-            android:background="?login_floating_background"
+            android:background="@drawable/rounded_rectangle"
             android:layout_centerInParent="true"
             android:padding="20dp"
             android:elevation="10dp">
@@ -69,7 +69,7 @@
         <TextView android:id="@+id/lock_screen_auth_container"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:background="@drawable/rounded_rectangle_dark"
+                  android:background="@drawable/rounded_rectangle"
                   android:backgroundTint="@color/core_ultramarine"
                   android:textColor="@color/white"
                   android:gravity="center_horizontal"
@@ -104,7 +104,7 @@
                     android:gravity="center">
 
                 <ImageButton android:id="@+id/passphrase_visibility"
-                             android:src="?ic_visibility"
+                             android:src="@drawable/ic_visibility_24dp"
                              android:background="@drawable/touch_highlight_background"
                              android:layout_width="wrap_content"
                              android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                              android:layout_centerVertical="true" />
 
                 <ImageButton android:id="@+id/passphrase_visibility_off"
-                             android:src="?ic_visibility_off"
+                             android:src="@drawable/ic_visibility_off_24dp"
                              android:background="@drawable/touch_highlight_background"
                              android:layout_width="wrap_content"
                              android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 
             <ImageButton android:id="@+id/ok_button"
-                         android:src="?ic_arrow_forward"
+                         android:src="@drawable/ic_arrow_forward"
                          android:contentDescription="@string/PassphrasePromptActivity_ok_button_content_description"
                          android:background="@null"
                          android:text="@string/prompt_passphrase_activity__unlock"

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
-    tools:background="?dialog_background_color">
+    tools:background="@color/signal_background_dialog">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/safety_number_change_recipient_avatar"
@@ -28,7 +28,7 @@
         android:layout_marginEnd="8dp"
         android:ellipsize="marquee"
         android:singleLine="true"
-        android:textColor="?title_text_color_primary"
+        android:textColor="@color/signal_text_primary"
         app:layout_constraintBottom_toTopOf="@+id/safety_number_change_recipient_subtitle"
         app:layout_constraintEnd_toStartOf="@+id/safety_number_change_recipient_view"
         app:layout_constraintStart_toEndOf="@+id/safety_number_change_recipient_avatar"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:ellipsize="marquee"
-        android:textColor="?title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/safety_number_change_recipient_view"
         app:layout_constraintHorizontal_bias="0"

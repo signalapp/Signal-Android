@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="?attr/title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/display_name"
         app:layout_constraintTop_toBottomOf="@id/display_name"

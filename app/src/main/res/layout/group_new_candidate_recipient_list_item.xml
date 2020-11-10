@@ -42,7 +42,7 @@
         android:text="@string/AddGroupDetailsFragment__sms_contact"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="?attr/title_text_color_secondary"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintBottom_toBottomOf="@id/recipient_avatar"
         app:layout_constraintEnd_toEndOf="@+id/recipient_name"
         app:layout_constraintHorizontal_bias="0"

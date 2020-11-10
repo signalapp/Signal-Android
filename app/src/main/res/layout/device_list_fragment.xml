@@ -51,7 +51,7 @@
             android:src="@drawable/ic_add_white_original_24dp"
             android:focusable="true"
             android:contentDescription="@string/device_list_fragment__link_new_device"
-            fab:fab_colorNormal="?fab_color"
+            fab:fab_colorNormal="@color/signal_accent_primary"
             fab:fab_colorPressed="@color/core_ultramarine_dark"
             fab:fab_colorRipple="@color/core_ultramarine_dark" />
 

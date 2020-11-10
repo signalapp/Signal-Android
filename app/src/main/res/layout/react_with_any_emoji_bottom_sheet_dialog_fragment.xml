@@ -23,14 +23,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
-            android:textColor="?attr/title_text_color_secondary"
+            android:textColor="@color/signal_text_secondary"
             tools:text="Smileys &amp; People" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
-            android:textColor="?attr/title_text_color_secondary" />
+            android:textColor="@color/signal_text_secondary" />
     </TextSwitcher>
 
     <androidx.viewpager2.widget.ViewPager2

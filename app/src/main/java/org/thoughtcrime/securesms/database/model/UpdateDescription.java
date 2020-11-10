@@ -31,15 +31,13 @@ public final class UpdateDescription {
   private final StringFactory    stringFactory;
   private final String           staticString;
   private final int              lightIconResource;
-  private final int              darkIconResource;
   private final int              lightTint;
   private final int              darkTint;
 
   private UpdateDescription(@NonNull Collection<UUID> mentioned,
                             @Nullable StringFactory stringFactory,
                             @Nullable String staticString,
-                            @DrawableRes int lightIconResource,
-                            @DrawableRes int darkIconResource,
+                            @DrawableRes int iconResource,
                             @ColorInt int lightTint,
                             @ColorInt int darkTint)
   {
@@ -49,8 +47,7 @@ public final class UpdateDescription {
     this.mentioned         = mentioned;
     this.stringFactory     = stringFactory;
     this.staticString      = staticString;
-    this.lightIconResource = lightIconResource;
-    this.darkIconResource  = darkIconResource;
+    this.lightIconResource = iconResource;
     this.lightTint         = lightTint;
     this.darkTint          = darkTint;
   }
@@ -64,14 +61,12 @@ public final class UpdateDescription {
    */
   public static UpdateDescription mentioning(@NonNull Collection<UUID> mentioned,
                                              @NonNull StringFactory stringFactory,
-                                             @DrawableRes int lightIconResource,
-                                             @DrawableRes int darkIconResource)
+                                             @DrawableRes int iconResource)
   {
     return new UpdateDescription(UuidUtil.filterKnown(mentioned),
                                  stringFactory,
                                  null,
-                                 lightIconResource,
-                                 darkIconResource,
+                                 iconResource,
                                  0,
                                  0);
   }
@@ -80,22 +75,20 @@ public final class UpdateDescription {
    * Create an update description that's string value is fixed.
    */
   public static UpdateDescription staticDescription(@NonNull String staticString,
-                                                    @DrawableRes int lightIconResource,
-                                                    @DrawableRes int darkIconResource)
+                                                    @DrawableRes int iconResource)
   {
-    return new UpdateDescription(Collections.emptyList(), null, staticString, lightIconResource, darkIconResource, 0, 0);
+    return new UpdateDescription(Collections.emptyList(), null, staticString, iconResource, 0, 0);
   }
 
   /**
    * Create an update description that's string value is fixed with a specific tint color.
    */
   public static UpdateDescription staticDescription(@NonNull String staticString,
-                                                    @DrawableRes int lightIconResource,
-                                                    @DrawableRes int darkIconResource,
+                                                    @DrawableRes int iconResource,
                                                     @ColorInt int lightTint,
                                                     @ColorInt int darkTint)
   {
-    return new UpdateDescription(Collections.emptyList(), null, staticString, lightIconResource, darkIconResource, lightTint, darkTint);
+    return new UpdateDescription(Collections.emptyList(), null, staticString, iconResource, lightTint, darkTint);
   }
 
   public boolean isStringStatic() {
@@ -128,12 +121,8 @@ public final class UpdateDescription {
     return mentioned;
   }
 
-  public @DrawableRes int getLightIconResource() {
+  public @DrawableRes int getIconResource() {
     return lightIconResource;
-  }
-
-  public @DrawableRes int getDarkIconResource() {
-    return darkIconResource;
   }
 
   public @ColorInt int getLightTint() {
@@ -155,8 +144,8 @@ public final class UpdateDescription {
 
     if (allAreStatic(updateDescriptions)) {
       return UpdateDescription.staticDescription(concatStaticLines(updateDescriptions),
-                                                 updateDescriptions.get(0).getLightIconResource(),
-                                                 updateDescriptions.get(0).getDarkIconResource());
+                                                 updateDescriptions.get(0).getIconResource()
+      );
     }
 
     Set<UUID> allMentioned = new HashSet<>();
@@ -167,8 +156,7 @@ public final class UpdateDescription {
 
     return UpdateDescription.mentioning(allMentioned,
                                         () -> concatLines(updateDescriptions),
-                                        updateDescriptions.get(0).getLightIconResource(),
-                                        updateDescriptions.get(0).getDarkIconResource());
+                                        updateDescriptions.get(0).getIconResource());
   }
 
   private static boolean allAreStatic(@NonNull Collection<UpdateDescription> updateDescriptions) {

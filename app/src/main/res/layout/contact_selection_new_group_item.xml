@@ -14,5 +14,5 @@
     android:singleLine="true"
     android:text="@string/contact_selection_activity__new_group"
     android:textAlignment="viewStart"
-    app:drawableStartCompat="?attr/contact_selection_new_group_icon"
+    app:drawableStartCompat="@drawable/ic_new_group_circle"
     tools:ignore="RtlSymmetry" />

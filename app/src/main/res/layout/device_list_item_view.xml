@@ -8,7 +8,7 @@
 
     <TextView android:id="@+id/name"
               android:textAppearance="?android:attr/textAppearanceMedium"
-              android:textColor="?attr/conversation_list_item_contact_color"
+              android:textColor="@color/signal_text_primary"
               android:singleLine="true"
               android:ellipsize="marquee"
               android:layout_marginTop="8dp"
@@ -19,14 +19,14 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceSmall"
-              android:textColor="?attr/conversation_list_item_subject_color"
+              android:textColor="@color/signal_text_secondary"
               android:fontFamily="sans-serif-light"  />
 
     <TextView android:id="@+id/active"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceSmall"
-              android:textColor="?attr/conversation_list_item_subject_color"
+              android:textColor="@color/signal_text_secondary"
               android:fontFamily="sans-serif-light"
               android:layout_marginBottom="8dp" />
 

@@ -8,14 +8,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?secondary_background"
+        android:background="@color/signal_background_tertiary"
         android:gravity="center"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
         android:paddingEnd="16dp"
         android:paddingBottom="8dp"
         android:text="@string/ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin"
-        android:textColor="?title_text_color_secondary" />
+        android:textColor="@color/signal_text_secondary" />
 
     <Button
         android:id="@+id/conversation_cancel_request"

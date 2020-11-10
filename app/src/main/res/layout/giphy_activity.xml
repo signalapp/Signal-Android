@@ -26,9 +26,9 @@
 
             <com.google.android.material.tabs.TabLayout
                     app:tabBackground="@null"
-                    app:tabTextColor="?conversation_subtitle_color"
-                    app:tabSelectedTextColor="?conversation_title_color"
-                    app:tabIndicatorColor="?conversation_title_color"
+                    app:tabTextColor="@color/signal_text_toolbar_subtitle"
+                    app:tabSelectedTextColor="@color/signal_text_toolbar_title"
+                    app:tabIndicatorColor="@color/signal_text_toolbar_title"
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

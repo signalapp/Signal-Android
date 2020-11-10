@@ -10,7 +10,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/search_toolbar_background"/>
+            android:background="@color/signal_background_primary"/>
 
     <View android:layout_width="match_parent"
           android:layout_height="4dp"

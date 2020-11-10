@@ -13,15 +13,15 @@
         android:background="@null"
         android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description"
         android:scaleType="fitCenter"
-        android:tint="?compose_icon_tint"
-        app:srcCompat="?quick_mic_icon" />
+        android:tint="@color/signal_icon_tint_primary"
+        app:srcCompat="@drawable/ic_mic_24" />
 
     <LinearLayout
         android:id="@+id/lock_drop_target"
         android:layout_width="40dp"
         android:layout_height="64dp"
         android:layout_gravity="center"
-        android:background="?attr/conversation_input_background"
+        android:background="@drawable/compose_background"
         android:clipChildren="false"
         android:orientation="vertical"
         android:visibility="gone"
@@ -35,7 +35,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/conversation_activity__quick_attachment_drawer_lock_record_description"
-            android:tint="?attr/conversation_input_inline_attach_icon_tint"
+            android:tint="@color/signal_icon_tint_secondary"
             app:srcCompat="@drawable/ic_lock" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -44,7 +44,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="6dp"
             android:contentDescription="@string/conversation_activity__quick_attachment_drawer_lock_record_description"
-            android:tint="?attr/conversation_input_inline_attach_icon_tint"
+            android:tint="@color/signal_icon_tint_secondary"
             app:srcCompat="@drawable/ic_chevron_up" />
     </LinearLayout>
 
@@ -59,7 +59,7 @@
         android:clickable="false"
         android:visibility="gone"
         android:tint="@color/core_white"
-        app:srcCompat="?quick_mic_icon"
+        app:srcCompat="@drawable/ic_mic_24"
         tools:ignore="ContentDescription"
         tools:visibility="visible" />
 </merge>

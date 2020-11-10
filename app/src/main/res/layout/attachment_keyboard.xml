@@ -42,7 +42,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:text="@string/AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos"
-        android:textColor="?attachment_keyboard_button_foreground"
+        android:textColor="@color/attachment_keyboard_button_foreground"
         android:gravity="center"
         android:visibility="gone"
         style="@style/Signal.Text.Body"

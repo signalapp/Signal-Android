@@ -6,6 +6,6 @@
     android:insetBottom="16dp">
     <shape android:shape="rectangle">
         <corners android:radius="2dp" />
-        <solid android:color="?dialog_background_color" />
+        <solid android:color="@color/signal_background_dialog" />
     </shape>
 </inset>

@@ -30,7 +30,7 @@ public class UnverifiedSendDialog extends AlertDialog.Builder implements DialogI
     this.resendListener   = resendListener;
 
     setTitle(R.string.UnverifiedSendDialog_send_message);
-    setIconAttribute(R.attr.dialog_alert_icon);
+    setIcon(R.drawable.ic_warning);
     setMessage(message);
     setPositiveButton(R.string.UnverifiedSendDialog_send, this);
     setNegativeButton(android.R.string.cancel, null);

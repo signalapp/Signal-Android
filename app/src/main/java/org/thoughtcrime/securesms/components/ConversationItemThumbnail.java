@@ -7,6 +7,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
+import androidx.core.content.ContextCompat;
+
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -57,7 +59,7 @@ public class ConversationItemThumbnail extends FrameLayout {
     this.cornerMask = new CornerMask(this);
     this.outliner   = new Outliner();
 
-    outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_image_outline_color));
+    outliner.setColor(ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_20));
 
     if (attrs != null) {
       TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ConversationItemThumbnail, 0, 0);

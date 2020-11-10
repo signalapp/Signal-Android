@@ -11,7 +11,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="36dp"
         android:layout_marginBottom="36dp"
-        app:srcCompat="?attr/folder_icon" />
+        app:srcCompat="@drawable/ic_folder_24" />
 
     <TextView
         android:layout_width="match_parent"

@@ -9,7 +9,7 @@
         android:id="@+id/sticker_missing_shade"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?sticker_view_missing_background"
+        android:background="@drawable/sticker_missing_background"
         android:visibility="gone"
         tools:visibility="visible"/>
 
