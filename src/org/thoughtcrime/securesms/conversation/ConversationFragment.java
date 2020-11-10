@@ -548,12 +548,12 @@ public class ConversationFragment extends Fragment
                       }
                     } else if (!ignoredMessages.contains(serverID)) {
                       failedMessages.add(messageRecord.getId());
-                      Log.d("Loki", "Failed to delete message: " + messageRecord.getId() + ".");
+                      Log.w("Loki", "Failed to delete message: " + messageRecord.getId() + ".");
                     }
                   }
                   return null;
                 }). fail(e -> {
-                  Log.d("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
+                  Log.w("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
                   return null;
                 });
               }
