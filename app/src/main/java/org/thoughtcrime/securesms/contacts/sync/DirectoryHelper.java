@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -72,6 +73,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * Manages all the stuff around determining if a user is registered or not.
  */
+@Trace
 public class DirectoryHelper {
 
   private static final String TAG = Log.tag(DirectoryHelper.class);

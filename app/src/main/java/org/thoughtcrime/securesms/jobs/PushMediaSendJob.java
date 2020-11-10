@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -48,6 +49,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+@Trace
 public class PushMediaSendJob extends PushSendJob {
 
   public static final String KEY = "PushMediaSendJob";

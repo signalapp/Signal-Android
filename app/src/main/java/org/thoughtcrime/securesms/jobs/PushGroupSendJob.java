@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -69,6 +70,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+@Trace
 public final class PushGroupSendJob extends PushSendJob {
 
   public static final String KEY = "PushGroupSendJob";

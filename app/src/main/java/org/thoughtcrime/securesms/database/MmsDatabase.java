@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -94,6 +95,7 @@ import java.util.Set;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
+@Trace
 public class MmsDatabase extends MessageDatabase {
 
   private static final String TAG = MmsDatabase.class.getSimpleName();

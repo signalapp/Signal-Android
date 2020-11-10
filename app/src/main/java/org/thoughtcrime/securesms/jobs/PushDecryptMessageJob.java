@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -51,6 +52,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Trace
 public final class PushDecryptMessageJob extends BaseJob {
 
   public static final String KEY   = "PushDecryptJob";

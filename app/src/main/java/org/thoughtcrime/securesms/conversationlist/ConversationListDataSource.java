@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
@@ -30,6 +31,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
+@Trace
 abstract class ConversationListDataSource extends PositionalDataSource<Conversation> {
 
   public static final Executor EXECUTOR = SignalExecutors.newFixedLifoThreadExecutor("signal-conversation-list", 1, 1);

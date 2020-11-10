@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.thoughtcrime.securesms.util.paging.SizeFixResult;
@@ -32,6 +33,7 @@ import java.util.concurrent.Executor;
 /**
  * Core data source for loading an individual conversation.
  */
+@Trace
 class ConversationDataSource extends PositionalDataSource<ConversationMessage> {
 
   private static final String TAG = Log.tag(ConversationDataSource.class);

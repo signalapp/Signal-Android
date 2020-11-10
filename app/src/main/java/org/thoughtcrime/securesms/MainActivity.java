@@ -6,10 +6,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
+@Trace
 public class MainActivity extends PassphraseRequiredActivity {
 
   private final DynamicTheme  dynamicTheme = new DynamicNoActionBarTheme();

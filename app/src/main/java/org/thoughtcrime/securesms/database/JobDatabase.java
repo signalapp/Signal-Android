@@ -14,10 +14,12 @@ import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
+import org.thoughtcrime.securesms.tracing.Trace;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Trace
 public class JobDatabase extends Database {
 
   public static String JOBS_TABLE_NAME         = "job_spec";

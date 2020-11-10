@@ -11,6 +11,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+@Trace
 public class SignedPreKeyDatabase extends Database {
 
   private static final String TAG = SignedPreKeyDatabase.class.getSimpleName();

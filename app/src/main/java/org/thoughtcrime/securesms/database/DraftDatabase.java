@@ -12,11 +12,13 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.tracing.Trace;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+@Trace
 public class DraftDatabase extends Database {
 
           static final String TABLE_NAME  = "drafts";

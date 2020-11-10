@@ -37,11 +37,13 @@ import com.google.android.material.snackbar.Snackbar;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 
 import java.util.Set;
 
 
+@Trace
 public class ConversationListArchiveFragment extends ConversationListFragment implements ActionMode.Callback
 {
   private RecyclerView                list;

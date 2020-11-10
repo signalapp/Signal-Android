@@ -389,6 +389,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     }
   }
 
+  @SuppressLint({"MissingPermission"})
   private void initializeFlipButton(@NonNull View flipButton, @NonNull CameraXFlashToggleView flashButton) {
     if (camera.hasCameraWithLensFacing(CameraSelector.LENS_FACING_FRONT) && camera.hasCameraWithLensFacing(CameraSelector.LENS_FACING_BACK)) {
       flipButton.setVisibility(View.VISIBLE);

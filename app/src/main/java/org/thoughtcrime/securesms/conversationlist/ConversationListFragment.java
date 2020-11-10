@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -140,6 +141,7 @@ import java.util.Set;
 import static android.app.Activity.RESULT_OK;
 
 
+@Trace
 public class ConversationListFragment extends MainFragment implements ActionMode.Callback,
                                                                       ConversationListAdapter.OnConversationClickListener,
                                                                       ConversationListSearchAdapter.EventListener,

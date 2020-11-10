@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -33,6 +34,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 
 import java.io.IOException;
 
+@Trace
 public class PushTextSendJob extends PushSendJob {
 
   public static final String KEY = "PushTextSendJob";

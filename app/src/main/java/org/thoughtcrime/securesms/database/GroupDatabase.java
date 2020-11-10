@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -46,6 +47,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+@Trace
 public final class GroupDatabase extends Database {
 
   private static final String TAG = Log.tag(GroupDatabase.class);

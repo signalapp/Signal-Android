@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.whispersystems.libsignal.util.Pair;
 
 import java.io.Closeable;
@@ -41,6 +42,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Trace
 public class MmsSmsDatabase extends Database {
 
   @SuppressWarnings("unused")

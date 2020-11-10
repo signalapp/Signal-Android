@@ -119,6 +119,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
@@ -144,6 +145,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+@Trace
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends LoggingFragment {
   private static final String TAG = ConversationFragment.class.getSimpleName();

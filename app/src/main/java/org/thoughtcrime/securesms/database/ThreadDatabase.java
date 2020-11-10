@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.recipients.RecipientDetails;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -76,6 +77,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+@Trace
 public class ThreadDatabase extends Database {
 
   private static final String TAG = ThreadDatabase.class.getSimpleName();

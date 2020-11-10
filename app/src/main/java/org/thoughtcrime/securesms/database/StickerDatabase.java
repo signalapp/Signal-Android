@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -36,6 +37,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Trace
 public class StickerDatabase extends Database {
 
   private static final String TAG = Log.tag(StickerDatabase.class);

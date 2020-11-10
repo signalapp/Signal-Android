@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -74,6 +75,7 @@ import java.util.Set;
  *
  * @author Moxie Marlinspike
  */
+@Trace
 public class SmsDatabase extends MessageDatabase {
 
   private static final String TAG = SmsDatabase.class.getSimpleName();

@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper.MergeResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -56,6 +57,7 @@ import java.util.concurrent.TimeUnit;
  * This should be performed whenever a change is made locally, or whenever we want to retrieve
  * changes that have been made remotely.
  */
+@Trace
 public class StorageSyncJob extends BaseJob {
 
   public static final String KEY       = "StorageSyncJob";

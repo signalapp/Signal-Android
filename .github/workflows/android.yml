@@ -22,7 +22,7 @@ jobs:
         java-version: 1.8
 
     - name: Install NDK
-      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;20.0.5594570" --sdk_root=${ANDROID_SDK_ROOT}
+      run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;21.0.6113669" --sdk_root=${ANDROID_SDK_ROOT}
 
     - name: Validate Gradle Wrapper
       uses: gradle/wrapper-validation-action@v1

@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -66,6 +67,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * Retrieves a users profile and sets the appropriate local fields.
  */
+@Trace
 public class RetrieveProfileJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileJob";
