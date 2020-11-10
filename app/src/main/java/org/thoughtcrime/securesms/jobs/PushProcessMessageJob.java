@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -126,6 +127,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -1517,31 +1519,37 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleDeliveryReceipt(@NonNull SignalServiceContent content,
                                      @NonNull SignalServiceReceiptMessage message)
   {
-    for (long timestamp : message.getTimestamps()) {
-      log(TAG, String.format("Received encrypted delivery receipt: (XXXXX, %d)", timestamp));
-      DatabaseFactory.getMmsSmsDatabase(context)
-                     .incrementDeliveryReceiptCount(new SyncMessageId(RecipientId.fromHighTrust(content.getSender()), timestamp), System.currentTimeMillis());
-    }
+    log(TAG, "Processing delivery receipts for IDs: " + Util.join(message.getTimestamps(), ", "));
+
+    Recipient           sender  = Recipient.externalHighTrustPush(context, content.getSender());
+    List<SyncMessageId> ids     = Stream.of(message.getTimestamps())
+                                        .map(t -> new SyncMessageId(sender.getId(), t))
+                                        .toList();
+
+    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCounts(ids, System.currentTimeMillis());
   }
 
   @SuppressLint("DefaultLocale")
   private void handleReadReceipt(@NonNull SignalServiceContent content,
                                  @NonNull SignalServiceReceiptMessage message)
   {
-    if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
-      for (long timestamp : message.getTimestamps()) {
-        log(TAG, String.format("Received encrypted read receipt: (XXXXX, %d)", timestamp));
+    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
+      log(TAG, "Ignoring read receipts for IDs: " + Util.join(message.getTimestamps(), ", "));
+      return;
+    }
 
-        Recipient     sender  = Recipient.externalHighTrustPush(context, content.getSender());
-        SyncMessageId id      = new SyncMessageId(sender.getId(), timestamp);
-        boolean       handled = DatabaseFactory.getMmsSmsDatabase(context)
-                                               .incrementReadReceiptCount(id, content.getTimestamp());
+    log(TAG, "Processing read receipts for IDs: " + Util.join(message.getTimestamps(), ", "));
 
-        if (!handled) {
-          warn(TAG, String.valueOf(content.getTimestamp()), "[handleReadReceipt] Could not find matching message! timestamp: " + timestamp + "  author: " + sender.getId());
-          ApplicationDependencies.getEarlyMessageCache().store(sender.getId(), timestamp, content);
-        }
-      }
+    Recipient           sender  = Recipient.externalHighTrustPush(context, content.getSender());
+    List<SyncMessageId> ids     = Stream.of(message.getTimestamps())
+                                        .map(t -> new SyncMessageId(sender.getId(), t))
+                                        .toList();
+
+    Collection<SyncMessageId> unhandled = DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCounts(ids, content.getTimestamp());
+
+    for (SyncMessageId id : unhandled) {
+      warn(TAG, String.valueOf(content.getTimestamp()), "[handleReadReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + sender.getId());
+      ApplicationDependencies.getEarlyMessageCache().store(sender.getId(), id.getTimetamp(), content);
     }
   }
 
