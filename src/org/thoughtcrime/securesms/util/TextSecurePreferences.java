@@ -1356,8 +1356,6 @@ public class TextSecurePreferences {
     addBackupEntryInt   (prefList, preferences, prefsFileName, LOCAL_REGISTRATION_ID_PREF);
     addBackupEntryString(prefList, preferences, prefsFileName, LOCAL_NUMBER_PREF);
     addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_NAME_PREF);
-    addBackupEntryString(prefList, preferences, prefsFileName, ATTACHMENT_ENCRYPTED_SECRET);
-    addBackupEntryString(prefList, preferences, prefsFileName, ATTACHMENT_UNENCRYPTED_SECRET);
     addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_AVATAR_URL_PREF);
     addBackupEntryInt   (prefList, preferences, prefsFileName, PROFILE_AVATAR_ID_PREF);
     addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_KEY_PREF);

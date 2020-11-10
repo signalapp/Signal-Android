@@ -57,7 +57,14 @@ object FullBackupImporter {
                 var frame: BackupFrame
                 while (!inputStream.readFrame().also { frame = it }.end) {
                     if (count++ % 100 == 0) EventBus.getDefault().post(BackupEvent.createProgress(count))
-                    if (frame.hasVersion()) processVersion(db, frame.version) else if (frame.hasStatement()) processStatement(db, frame.statement) else if (frame.hasPreference()) processPreference(context, frame.preference) else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.attachment, inputStream) else if (frame.hasSticker()) processSticker(context, attachmentSecret, db, frame.sticker, inputStream) else if (frame.hasAvatar()) processAvatar(context, frame.avatar, inputStream)
+                    when {
+                        frame.hasVersion() -> processVersion(db, frame.version)
+                        frame.hasStatement() -> processStatement(db, frame.statement)
+                        frame.hasPreference() -> processPreference(context, frame.preference)
+                        frame.hasAttachment() -> processAttachment(context, attachmentSecret, db, frame.attachment, inputStream)
+                        frame.hasSticker() -> processSticker(context, attachmentSecret, db, frame.sticker, inputStream)
+                        frame.hasAvatar() -> processAvatar(context, frame.avatar, inputStream)
+                    }
                 }
                 trimEntriesForExpiredMessages(context, db)
                 db.setTransactionSuccessful()
@@ -88,13 +95,25 @@ object FullBackupImporter {
         }
         val parameters: MutableList<Any?> = LinkedList()
         for (parameter in statement.parametersList) {
-            if (parameter.hasStringParamter()) parameters.add(parameter.stringParamter) else if (parameter.hasDoubleParameter()) parameters.add(parameter.doubleParameter) else if (parameter.hasIntegerParameter()) parameters.add(parameter.integerParameter) else if (parameter.hasBlobParameter()) parameters.add(parameter.blobParameter.toByteArray()) else if (parameter.hasNullparameter()) parameters.add(null)
+            when {
+                parameter.hasStringParamter() -> parameters.add(parameter.stringParamter)
+                parameter.hasDoubleParameter() -> parameters.add(parameter.doubleParameter)
+                parameter.hasIntegerParameter() -> parameters.add(parameter.integerParameter)
+                parameter.hasBlobParameter() -> parameters.add(parameter.blobParameter.toByteArray())
+                parameter.hasNullparameter() -> parameters.add(null)
+            }
         }
-        if (parameters.size > 0) db.execSQL(statement.statement, parameters.toTypedArray()) else db.execSQL(statement.statement)
+        if (parameters.size > 0) {
+            db.execSQL(statement.statement, parameters.toTypedArray())
+        } else {
+            db.execSQL(statement.statement)
+        }
     }
 
     @Throws(IOException::class)
-    private fun processAttachment(context: Context, attachmentSecret: AttachmentSecret, db: SQLiteDatabase, attachment: Attachment, inputStream: BackupRecordInputStream) {
+    private fun processAttachment(context: Context, attachmentSecret: AttachmentSecret,
+                                  db: SQLiteDatabase, attachment: Attachment,
+                                  inputStream: BackupRecordInputStream) {
         val partsDirectory = context.getDir(AttachmentDatabase.DIRECTORY, Context.MODE_PRIVATE)
         val dataFile = File.createTempFile("part", ".mms", partsDirectory)
         val output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false)
@@ -104,11 +123,14 @@ object FullBackupImporter {
         contentValues.put(AttachmentDatabase.THUMBNAIL, null as String?)
         contentValues.put(AttachmentDatabase.DATA_RANDOM, output.first)
         db.update(AttachmentDatabase.TABLE_NAME, contentValues,
-                AttachmentDatabase.ROW_ID + " = ? AND " + AttachmentDatabase.UNIQUE_ID + " = ?", arrayOf(attachment.rowId.toString(), attachment.attachmentId.toString()))
+                "${AttachmentDatabase.ROW_ID} = ? AND ${AttachmentDatabase.UNIQUE_ID} = ?",
+                arrayOf(attachment.rowId.toString(), attachment.attachmentId.toString()))
     }
 
     @Throws(IOException::class)
-    private fun processSticker(context: Context, attachmentSecret: AttachmentSecret, db: SQLiteDatabase, sticker: Sticker, inputStream: BackupRecordInputStream) {
+    private fun processSticker(context: Context, attachmentSecret: AttachmentSecret,
+                               db: SQLiteDatabase, sticker: Sticker,
+                               inputStream: BackupRecordInputStream) {
         val stickerDirectory = context.getDir(AttachmentDatabase.DIRECTORY, Context.MODE_PRIVATE)
         val dataFile = File.createTempFile("sticker", ".mms", stickerDirectory)
         val output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false)
@@ -122,7 +144,8 @@ object FullBackupImporter {
 
     @Throws(IOException::class)
     private fun processAvatar(context: Context, avatar: Avatar, inputStream: BackupRecordInputStream) {
-        inputStream.readAttachmentTo(FileOutputStream(AvatarHelper.getAvatarFile(context, Address.fromExternal(context, avatar.name))), avatar.length)
+        inputStream.readAttachmentTo(FileOutputStream(
+                AvatarHelper.getAvatarFile(context, Address.fromExternal(context, avatar.name))), avatar.length)
     }
 
     @SuppressLint("ApplySharedPref")
@@ -167,10 +190,12 @@ object FullBackupImporter {
         val where = AttachmentDatabase.MMS_ID + trimmedCondition
         db.query(AttachmentDatabase.TABLE_NAME, columns, where, null, null, null, null).use { cursor ->
             while (cursor != null && cursor.moveToNext()) {
-                DatabaseFactory.getAttachmentDatabase(context).deleteAttachment(AttachmentId(cursor.getLong(0), cursor.getLong(1)))
+                DatabaseFactory.getAttachmentDatabase(context)
+                        .deleteAttachment(AttachmentId(cursor.getLong(0), cursor.getLong(1)))
             }
         }
-        db.query(ThreadDatabase.TABLE_NAME, arrayOf(ThreadDatabase.ID), ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null).use { cursor ->
+        db.query(ThreadDatabase.TABLE_NAME, arrayOf(ThreadDatabase.ID),
+                ThreadDatabase.EXPIRES_IN + " > 0", null, null, null, null).use { cursor ->
             while (cursor != null && cursor.moveToNext()) {
                 DatabaseFactory.getThreadDatabase(context).update(cursor.getLong(0), false)
             }
