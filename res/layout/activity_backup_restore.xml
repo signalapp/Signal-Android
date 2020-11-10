@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="org.thoughtcrime.securesms.loki.activities.RestoreBackupViewModel"/>
+        <import type="org.thoughtcrime.securesms.loki.activities.BackupRestoreViewModel"/>
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="org.thoughtcrime.securesms.loki.activities.RestoreBackupViewModel" />
+            type="org.thoughtcrime.securesms.loki.activities.BackupRestoreViewModel" />
     </data>
 
     <LinearLayout

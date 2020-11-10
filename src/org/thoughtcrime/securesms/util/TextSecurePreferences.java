@@ -1346,19 +1346,20 @@ public class TextSecurePreferences {
     final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
     final String prefsFileName;
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
       prefsFileName = PreferenceManager.getDefaultSharedPreferencesName(context);
     } else {
       prefsFileName = context.getPackageName() + "_preferences";
     }
 
     final LinkedList<BackupProtos.SharedPreference> prefList = new LinkedList<>();
-    addBackupEntryInt   (prefList, preferences, prefsFileName, LOCAL_REGISTRATION_ID_PREF);
-    addBackupEntryString(prefList, preferences, prefsFileName, LOCAL_NUMBER_PREF);
-    addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_NAME_PREF);
-    addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_AVATAR_URL_PREF);
-    addBackupEntryInt   (prefList, preferences, prefsFileName, PROFILE_AVATAR_ID_PREF);
-    addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_KEY_PREF);
+    addBackupEntryInt    (prefList, preferences, prefsFileName, LOCAL_REGISTRATION_ID_PREF);
+    addBackupEntryString (prefList, preferences, prefsFileName, LOCAL_NUMBER_PREF);
+    addBackupEntryString (prefList, preferences, prefsFileName, PROFILE_NAME_PREF);
+    addBackupEntryString (prefList, preferences, prefsFileName, PROFILE_AVATAR_URL_PREF);
+    addBackupEntryInt    (prefList, preferences, prefsFileName, PROFILE_AVATAR_ID_PREF);
+    addBackupEntryString (prefList, preferences, prefsFileName, PROFILE_KEY_PREF);
+    addBackupEntryBoolean(prefList, preferences, prefsFileName, IS_USING_FCM);
 
     return prefList;
   }

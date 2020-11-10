@@ -44,7 +44,7 @@ class BackupRestoreActivity : BaseActionBarActivity() {
         private const val REQUEST_CODE_BACKUP_FILE = 779955
     }
 
-    private val viewModel by viewModels<RestoreBackupViewModel>()
+    private val viewModel by viewModels<BackupRestoreViewModel>()
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,8 +129,6 @@ class BackupRestoreActivity : BaseActionBarActivity() {
                     )
                     DatabaseFactory.upgradeRestored(context, database)
                     NotificationChannels.restoreContactNotificationChannels(context)
-//                    TextSecurePreferences.setBackupEnabled(context, true)
-//                    TextSecurePreferences.setBackupPassphrase(context, passphrase)
                     TextSecurePreferences.setRestorationTime(context, System.currentTimeMillis())
 
                     BackupImportResult.SUCCESS
@@ -150,7 +148,6 @@ class BackupRestoreActivity : BaseActionBarActivity() {
                         TextSecurePreferences.setHasViewedSeed(context, true)
                         TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
                         TextSecurePreferences.setPromptedPushRegistration(context, true)
-                        TextSecurePreferences.setIsUsingFCM(context, true)
                         TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(context)
                         TextSecurePreferences.setHasSeenLightThemeIntroSheet(context)
                         val application = ApplicationContext.getInstance(context)
@@ -188,7 +185,7 @@ class BackupRestoreActivity : BaseActionBarActivity() {
     // endregion
 }
 
-class RestoreBackupViewModel(application: Application): AndroidViewModel(application) {
+class BackupRestoreViewModel(application: Application): AndroidViewModel(application) {
 
     companion object {
         @JvmStatic
