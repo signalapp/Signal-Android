@@ -204,8 +204,10 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/group_mute_notifications_row"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/group_manage_fragment_row_height"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/group_manage_fragment_row_height"
                         android:background="?selectableItemBackground"
+                        android:padding="16dp"
                         android:clickable="true"
                         android:focusable="true">
 
@@ -213,8 +215,6 @@
                             android:id="@+id/group_mute_notifications"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/group_manage_fragment_row_horizontal_padding"
-                            android:gravity="center_vertical|start"
                             android:text="@string/ManageGroupActivity_mute_notifications"
                             android:textAlignment="viewStart"
                             android:textAppearance="@style/Signal.Text.Body"
@@ -227,7 +227,6 @@
                             android:id="@+id/group_mute_notifications_until"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/group_manage_fragment_row_horizontal_padding"
                             android:textAppearance="@style/TextSecure.SubtitleTextStyle"
                             android:visibility="gone"
                             app:layout_constraintBottom_toBottomOf="parent"

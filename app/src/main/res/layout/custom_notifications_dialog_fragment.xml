@@ -18,9 +18,11 @@
     <TextView
         android:id="@+id/custom_notifications_message_section_header"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="52dp"
+        android:gravity="bottom"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
         android:text="@string/CustomNotificationsDialogFragment__messages"
         android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
         android:textColor="?attr/colorAccent"
@@ -31,13 +33,13 @@
     <LinearLayout
         android:id="@+id/custom_notifications_row"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_message_section_header">
 
@@ -50,7 +52,7 @@
             android:gravity="center_vertical|start"
             android:text="@string/CustomNotificationsDialogFragment__use_custom_notifications"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+            android:textAppearance="@style/Signal.Text.Body" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/custom_notifications_enable_switch"
@@ -68,13 +70,13 @@
     <LinearLayout
         android:id="@+id/custom_notifications_sound_row"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_row">
 
@@ -88,7 +90,7 @@
             android:gravity="center_vertical|start"
             android:text="@string/CustomNotificationsDialogFragment__notification_sound"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+            android:textAppearance="@style/Signal.Text.Body" />
 
         <TextView
             android:id="@+id/custom_notifications_sound_selection"
@@ -96,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="false"
+            android:textAppearance="@style/Signal.Text.Body"
             android:textColor="?attr/colorAccent"
             android:visibility="gone"
             tools:text="Default (Popcorn)"
@@ -106,13 +109,13 @@
     <LinearLayout
         android:id="@+id/custom_notifications_message_vibrate_row"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_sound_row">
 
@@ -126,7 +129,7 @@
             android:gravity="center_vertical|start"
             android:text="@string/CustomNotificationsDialogFragment__vibrate"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+            android:textAppearance="@style/Signal.Text.Body" />
 
         <TextView
             android:id="@+id/custom_notifications_message_vibrate_selector"
@@ -134,6 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="false"
+            android:textAppearance="@style/Signal.Text.Body"
             android:textColor="?attr/colorAccent"
             android:visibility="gone"
             tools:text="Default"
@@ -148,31 +152,42 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/custom_notifications_divider"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:background="@drawable/preference_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_message_vibrate_row" />
+
     <TextView
         android:id="@+id/custom_notifications_call_settings_section_header"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="36dp"
+        android:layout_height="52dp"
+        android:gravity="bottom"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
         android:text="@string/CustomNotificationsDialogFragment__call_settings"
         android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
         android:textColor="?attr/colorAccent"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/custom_notifications_message_vibrate_row"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_divider"
         tools:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/custom_notifications_ringtone_row"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_call_settings_section_header"
@@ -186,7 +201,7 @@
             android:gravity="center_vertical|start"
             android:text="@string/CustomNotificationsDialogFragment__ringtone"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+            android:textAppearance="@style/Signal.Text.Body" />
 
         <TextView
             android:id="@+id/custom_notifications_ringtone_selection"
@@ -194,6 +209,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="false"
+            android:textAppearance="@style/Signal.Text.Body"
             android:textColor="?attr/colorAccent"
             tools:text="Default" />
 
@@ -202,13 +218,13 @@
     <LinearLayout
         android:id="@+id/custom_notifications_call_vibrate_row"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_notifications_ringtone_row"
@@ -222,7 +238,7 @@
             android:gravity="center_vertical|start"
             android:text="@string/CustomNotificationsDialogFragment__vibrate"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.Signal.Body2" />
+            android:textAppearance="@style/Signal.Text.Body" />
 
         <TextView
             android:id="@+id/custom_notifications_call_vibrate_selectior"
@@ -230,6 +246,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="false"
+            android:textAppearance="@style/Signal.Text.Body"
             android:textColor="?attr/colorAccent"
             tools:text="Default" />
 

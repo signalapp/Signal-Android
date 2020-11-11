@@ -108,7 +108,7 @@
     </style>
 
     <style name="TextAppearance.Signal.Body2.Bold">
-        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="TextAppearance.Signal.Body1.Bold">
