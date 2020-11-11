@@ -11,6 +11,7 @@ import com.annimon.stream.Stream;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupAlreadyExistsException;
@@ -60,6 +61,8 @@ public class GroupV1MigrationJob extends BaseJob {
 
   private static final int  ROUTINE_LIMIT     = 50;
   private static final long REFRESH_INTERVAL = TimeUnit.HOURS.toMillis(3);
+
+  private static final Object MIGRATION_LOCK = new Object();
 
   private final RecipientId recipientId;
   private final boolean     forced;
@@ -159,8 +162,9 @@ public class GroupV1MigrationJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException {
-    Recipient groupRecipient = Recipient.resolved(recipientId);
-    Long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
+    Recipient     groupRecipient = Recipient.resolved(recipientId);
+    Long          threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
+    GroupDatabase groupDatabase  = DatabaseFactory.getGroupDatabase(context);
 
     if (threadId == null) {
       warn(TAG, "No thread found!");
@@ -181,6 +185,11 @@ public class GroupV1MigrationJob extends BaseJob {
     GroupId.V2     gv2Id        = gv1Id.deriveV2MigrationGroupId();
     GroupMasterKey gv2MasterKey = gv1Id.deriveV2MigrationMasterKey();
     boolean        newlyCreated = false;
+
+    if (groupDatabase.groupExists(gv2Id)) {
+      warn(TAG, "We already have a V2 group for this V1 group! Must have been added before we were migration-capable.");
+      return;
+    }
 
     switch (GroupManager.v2GroupStatus(context, gv2MasterKey)) {
       case DOES_NOT_EXIST:
@@ -259,42 +268,46 @@ public class GroupV1MigrationJob extends BaseJob {
   }
 
   public static void performLocalMigration(@NonNull Context context, @NonNull GroupId.V1 gv1Id) throws IOException {
-    Recipient recipient = Recipient.externalGroupExact(context, gv1Id);
-    long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    synchronized (MIGRATION_LOCK) {
+      Recipient recipient = Recipient.externalGroupExact(context, gv1Id);
+      long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
-    performLocalMigration(context, gv1Id, threadId, recipient);
+      performLocalMigration(context, gv1Id, threadId, recipient);
+    }
   }
 
   private static @Nullable DecryptedGroup performLocalMigration(@NonNull Context context, @NonNull GroupId.V1 gv1Id, long threadId, @NonNull Recipient groupRecipient) throws IOException {
-    DecryptedGroup decryptedGroup;
-    try {
-      decryptedGroup = GroupManager.addedGroupVersion(context, gv1Id.deriveV2MigrationMasterKey());
-    } catch (GroupDoesNotExistException e) {
-      throw new IOException("[Local] The group should exist already!");
-    } catch (GroupNotAMemberException e) {
-      Log.w(TAG, "[Local] We are not in the group. Doing a local leave.");
-      handleLeftBehind(context, gv1Id, groupRecipient, threadId);
-      return null;
+    synchronized (MIGRATION_LOCK) {
+      DecryptedGroup decryptedGroup;
+      try {
+        decryptedGroup = GroupManager.addedGroupVersion(context, gv1Id.deriveV2MigrationMasterKey());
+      } catch (GroupDoesNotExistException e) {
+        throw new IOException("[Local] The group should exist already!");
+      } catch (GroupNotAMemberException e) {
+        Log.w(TAG, "[Local] We are not in the group. Doing a local leave.");
+        handleLeftBehind(context, gv1Id, groupRecipient, threadId);
+        return null;
+      }
+
+      List<RecipientId> pendingRecipients = Stream.of(DecryptedGroupUtil.pendingToUuidList(decryptedGroup.getPendingMembersList()))
+                                                  .map(uuid -> Recipient.externalPush(context, uuid, null, false))
+                                                  .filterNot(Recipient::isSelf)
+                                                  .map(Recipient::getId)
+                                                  .toList();
+
+      Log.i(TAG, "[Local] Migrating group over to the version we were added to: V" + decryptedGroup.getRevision());
+      DatabaseFactory.getGroupDatabase(context).migrateToV2(gv1Id, decryptedGroup);
+      DatabaseFactory.getSmsDatabase(context).insertGroupV1MigrationEvents(groupRecipient.getId(), threadId, pendingRecipients);
+
+      Log.i(TAG, "[Local] Applying all changes since V" + decryptedGroup.getRevision());
+      try {
+        GroupManager.updateGroupFromServer(context, gv1Id.deriveV2MigrationMasterKey(), LATEST, System.currentTimeMillis(), null);
+      } catch (GroupChangeBusyException | GroupNotAMemberException e) {
+        Log.w(TAG, e);
+      }
+
+      return decryptedGroup;
     }
-
-    List<RecipientId> pendingRecipients = Stream.of(DecryptedGroupUtil.pendingToUuidList(decryptedGroup.getPendingMembersList()))
-                                                .map(uuid -> Recipient.externalPush(context, uuid, null, false))
-                                                .filterNot(Recipient::isSelf)
-                                                .map(Recipient::getId)
-                                                .toList();
-
-    Log.i(TAG, "[Local] Migrating group over to the version we were added to: V" + decryptedGroup.getRevision());
-    DatabaseFactory.getGroupDatabase(context).migrateToV2(gv1Id, decryptedGroup);
-    DatabaseFactory.getSmsDatabase(context).insertGroupV1MigrationEvents(groupRecipient.getId(), threadId, pendingRecipients);
-
-    Log.i(TAG, "[Local] Applying all changes since V" + decryptedGroup.getRevision());
-    try {
-      GroupManager.updateGroupFromServer(context, gv1Id.deriveV2MigrationMasterKey(), LATEST, System.currentTimeMillis(), null);
-    } catch (GroupChangeBusyException | GroupNotAMemberException e) {
-      Log.w(TAG, e);
-    }
-
-    return decryptedGroup;
   }
 
   private static void handleLeftBehind(@NonNull Context context, @NonNull GroupId.V1 gv1Id, @NonNull Recipient groupRecipient, long threadId) {

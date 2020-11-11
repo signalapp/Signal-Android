@@ -17,9 +17,12 @@ import java.util.Map;
 final class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGroupV1Record> {
 
   private final Map<GroupId, SignalGroupV1Record> localByGroupId;
+  private final GroupV2ExistenceChecker groupExistenceChecker;
 
-  GroupV1ConflictMerger(@NonNull Collection<SignalGroupV1Record> localOnly) {
+  GroupV1ConflictMerger(@NonNull Collection<SignalGroupV1Record> localOnly, @NonNull GroupV2ExistenceChecker groupExistenceChecker) {
     localByGroupId = Stream.of(localOnly).collect(Collectors.toMap(g -> GroupId.v1orThrow(g.getGroupId()), g -> g));
+
+    this.groupExistenceChecker = groupExistenceChecker;
   }
 
   @Override
@@ -30,8 +33,14 @@ final class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<Si
   @Override
   public @NonNull Collection<SignalGroupV1Record> getInvalidEntries(@NonNull Collection<SignalGroupV1Record> remoteRecords) {
     return Stream.of(remoteRecords)
-                 .filterNot(GroupV1ConflictMerger::isValidGroupId)
-                 .toList();
+                 .filter(record -> {
+                   try {
+                     GroupId.V1 id = GroupId.v1Exact(record.getGroupId());
+                     return groupExistenceChecker.exists(id.deriveV2MigrationGroupId());
+                   } catch (BadGroupIdException e) {
+                     return true;
+                   }
+                 }).toList();
   }
 
   @Override
@@ -56,15 +65,6 @@ final class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<Si
                                     .setProfileSharingEnabled(blocked)
                                     .setForcedUnread(forcedUnread)
                                     .build();
-    }
-  }
-
-  private static boolean isValidGroupId(@NonNull SignalGroupV1Record record) {
-    try {
-      GroupId.v1Exact(record.getGroupId());
-      return true;
-    } catch (BadGroupIdException e) {
-      return false;
     }
   }
 }
