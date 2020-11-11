@@ -64,7 +64,6 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Triple;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -159,8 +158,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int REACTION_CLEANUP                 = 78;
   private static final int CAPABILITIES_REFACTOR            = 79;
   private static final int GV1_MIGRATION                    = 80;
+  private static final int NOTIFIED_TIMESTAMP               = 81;
 
-  private static final int    DATABASE_VERSION = 80;
+  private static final int    DATABASE_VERSION = 81;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1158,6 +1158,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         }
 
         Log.i(TAG, "Updated " + count + " GV1 groups with expected GV2 IDs.");
+      }
+
+      if (oldVersion < NOTIFIED_TIMESTAMP) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN notified_timestamp INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN notified_timestamp INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

@@ -20,6 +20,7 @@ public interface MmsSmsColumns {
   public static final String EXPIRES_IN               = "expires_in";
   public static final String EXPIRE_STARTED           = "expire_started";
   public static final String NOTIFIED                 = "notified";
+  public static final String NOTIFIED_TIMESTAMP       = "notified_timestamp";
   public static final String UNIDENTIFIED             = "unidentified";
   public static final String REACTIONS                = "reactions";
   public static final String REACTIONS_UNREAD         = "reactions_unread";
