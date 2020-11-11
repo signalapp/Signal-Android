@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="org.thoughtcrime.securesms.components.webrtc.WebRtcCallView">
 
-    <View
-        android:id="@+id/call_screen_blur_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/transparent_black_40" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen_participants_parent"
         android:layout_width="match_parent"
@@ -316,7 +310,7 @@
                 android:layout_weight="1"
                 android:text="@string/WebRtcCallView__start_call"
                 android:textAllCaps="false"
-                android:textColor="@color/core_white"
+                android:textColor="@color/core_green_text_button"
                 app:backgroundTint="@color/core_green" />
 
         </LinearLayout>

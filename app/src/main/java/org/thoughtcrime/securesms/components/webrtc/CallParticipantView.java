@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.webrtc;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
 
@@ -31,6 +33,9 @@ import java.util.Objects;
 public class CallParticipantView extends ConstraintLayout {
 
   private static final FallbackPhotoProvider FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
+
+  private static final int SMALL_AVATAR = ViewUtil.dpToPx(96);
+  private static final int LARGE_AVATAR = ViewUtil.dpToPx(112);
 
   private RecipientId         recipientId;
   private AvatarImageView     avatar;
@@ -59,6 +64,7 @@ public class CallParticipantView extends ConstraintLayout {
     renderer  = findViewById(R.id.call_participant_renderer);
 
     avatar.setFallbackPhotoProvider(FALLBACK_PHOTO_PROVIDER);
+    useLargeAvatar();
   }
 
   void setCallParticipant(@NonNull CallParticipant participant) {
@@ -87,6 +93,23 @@ public class CallParticipantView extends ConstraintLayout {
   void setRenderInPip(boolean shouldRenderInPip) {
     avatar.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
     pipAvatar.setVisibility(shouldRenderInPip ? View.VISIBLE : View.GONE);
+  }
+
+  void useLargeAvatar() {
+    changeAvatarParams(LARGE_AVATAR);
+  }
+
+  void useSmallAvatar() {
+    changeAvatarParams(SMALL_AVATAR);
+  }
+
+  private void changeAvatarParams(int dimension) {
+    ViewGroup.LayoutParams params = avatar.getLayoutParams();
+    if (params.height != dimension) {
+      params.height = dimension;
+      params.width  = dimension;
+      avatar.setLayoutParams(params);
+    }
   }
 
   private void setPipAvatar(@NonNull Recipient recipient) {

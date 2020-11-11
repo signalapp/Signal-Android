@@ -7,6 +7,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexboxLayout;
@@ -14,6 +15,7 @@ import com.google.android.flexbox.FlexboxLayout;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +25,9 @@ import java.util.List;
  * sizing and layout depending on the total number of participants.
  */
 public class CallParticipantsLayout extends FlexboxLayout {
+
+  private static final int MULTIPLE_PARTICIPANT_SPACING = ViewUtil.dpToPx(3);
+  private static final int CORNER_RADIUS                = ViewUtil.dpToPx(10);
 
   private List<CallParticipant> callParticipants = Collections.emptyList();
   private boolean               shouldRenderInPip;
@@ -46,17 +51,33 @@ public class CallParticipantsLayout extends FlexboxLayout {
   }
 
   private void updateLayout() {
+    int previousChildCount = getChildCount();
+
     if (shouldRenderInPip && Util.hasItems(callParticipants)) {
       updateChildrenCount(1);
-      update(0, callParticipants.get(0));
+      update(0, 1, callParticipants.get(0));
     } else {
       int count = callParticipants.size();
       updateChildrenCount(count);
 
-      for (int i = 0; i < callParticipants.size(); i++) {
-        update(i, callParticipants.get(i));
+      for (int i = 0; i < count; i++) {
+        update(i, count, callParticipants.get(i));
       }
     }
+
+    if (previousChildCount != getChildCount()) {
+      updateMarginsForLayout();
+    }
+  }
+
+  private void updateMarginsForLayout() {
+    MarginLayoutParams layoutParams = (MarginLayoutParams) getLayoutParams();
+    if (callParticipants.size() > 1 && !shouldRenderInPip) {
+      layoutParams.setMargins(MULTIPLE_PARTICIPANT_SPACING, ViewUtil.getStatusBarHeight(this), MULTIPLE_PARTICIPANT_SPACING, 0);
+    } else {
+      layoutParams.setMargins(0, 0, 0, 0);
+    }
+    setLayoutParams(layoutParams);
   }
 
   private void updateChildrenCount(int count) {
@@ -72,15 +93,33 @@ public class CallParticipantsLayout extends FlexboxLayout {
     }
   }
 
-  private void update(int index, @NonNull CallParticipant participant) {
-    CallParticipantView callParticipantView = (CallParticipantView) getChildAt(index);
+  private void update(int index, int count, @NonNull CallParticipant participant) {
+    View                view                = getChildAt(index);
+    CardView            cardView            = view.findViewById(R.id.group_call_participant_card_wrapper);
+    CallParticipantView callParticipantView = view.findViewById(R.id.group_call_participant);
+
     callParticipantView.setCallParticipant(participant);
     callParticipantView.setRenderInPip(shouldRenderInPip);
-    setChildLayoutParams(callParticipantView, index, getChildCount());
+
+    if (count > 1) {
+      view.setPadding(MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING);
+      cardView.setRadius(CORNER_RADIUS);
+    } else {
+      view.setPadding(0, 0, 0, 0);
+      cardView.setRadius(0);
+    }
+
+    if (count > 2) {
+      callParticipantView.useSmallAvatar();
+    } else {
+      callParticipantView.useLargeAvatar();
+    }
+
+    setChildLayoutParams(view, index, getChildCount());
   }
 
   private void addCallParticipantView() {
-    View                       view   = LayoutInflater.from(getContext()).inflate(R.layout.call_participant_item, this, false);
+    View                       view   = LayoutInflater.from(getContext()).inflate(R.layout.group_call_participant_item, this, false);
     FlexboxLayout.LayoutParams params = (FlexboxLayout.LayoutParams) view.getLayoutParams();
 
     params.setAlignSelf(AlignItems.STRETCH);

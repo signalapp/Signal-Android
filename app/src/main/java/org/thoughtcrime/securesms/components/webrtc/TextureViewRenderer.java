@@ -10,8 +10,12 @@ import android.view.TextureView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.GlRectDrawer;
@@ -38,6 +42,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
   private int                           surfaceHeight;
   private boolean                       isInitialized;
   private BroadcastVideoSink            attachedVideoSink;
+  private Lifecycle                     lifecycle;
 
   public TextureViewRenderer(@NonNull Context context) {
     super(context);
@@ -59,7 +64,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     this.init(eglBase.getEglBaseContext(), null, EglBase.CONFIG_PLAIN, new GlRectDrawer());
   }
 
-  public void init(@NonNull EglBase.Context sharedContext, @NonNull RendererCommon.RendererEvents rendererEvents, @NonNull int[] configAttributes, @NonNull RendererCommon.GlDrawer drawer) {
+  public void init(@NonNull EglBase.Context sharedContext, @Nullable RendererCommon.RendererEvents rendererEvents, @NonNull int[] configAttributes, @NonNull RendererCommon.GlDrawer drawer) {
     ThreadUtils.checkIsOnMainThread();
 
     this.rendererEvents     = rendererEvents;
@@ -67,6 +72,16 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     this.rotatedFrameHeight = 0;
 
     this.eglRenderer.init(sharedContext, this, configAttributes, drawer);
+
+    this.lifecycle = ViewUtil.getActivityLifecycle(this);
+    if (lifecycle != null) {
+      lifecycle.addObserver(new DefaultLifecycleObserver() {
+        @Override
+        public void onDestroy(@NonNull LifecycleOwner owner) {
+          release();
+        }
+      });
+    }
   }
 
   public void attachBroadcastVideoSink(@Nullable BroadcastVideoSink videoSink) {
@@ -76,10 +91,12 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
     if (attachedVideoSink != null) {
       attachedVideoSink.removeSink(this);
+      attachedVideoSink.removeRequestingSize(this);
     }
 
     if (videoSink != null) {
       videoSink.addSink(this);
+      videoSink.putRequestingSize(this, new Point(getWidth(), getHeight()));
     } else {
       clearImage();
     }
@@ -90,11 +107,17 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
   @Override
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
-    release();
+    if (lifecycle == null || lifecycle.getCurrentState() == Lifecycle.State.DESTROYED) {
+      release();
+    }
   }
 
   public void release() {
     eglRenderer.release();
+    if (attachedVideoSink != null) {
+      attachedVideoSink.removeSink(this);
+      attachedVideoSink.removeRequestingSize(this);
+    }
   }
 
   public void addFrameListener(@NonNull EglRenderer.FrameListener listener, float scale, @NonNull RendererCommon.GlDrawer drawerParam) {
@@ -163,6 +186,10 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     setMeasuredDimension(size.x, size.y);
 
     Log.d(TAG, "onMeasure(). New size: " + size.x + "x" + size.y);
+
+    if (attachedVideoSink != null) {
+      attachedVideoSink.putRequestingSize(this, size);
+    }
   }
 
   @Override

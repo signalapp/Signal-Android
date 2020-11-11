@@ -1,22 +1,27 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+
+import org.thoughtcrime.securesms.R;
 
 public final class WebRtcControls {
 
   public static final WebRtcControls NONE = new WebRtcControls();
-  public static final WebRtcControls PIP  = new WebRtcControls(false, false, false, false, true, CallState.NONE, WebRtcAudioOutput.HANDSET);
+  public static final WebRtcControls PIP  = new WebRtcControls(false, false, false, false, true, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET);
 
   private final boolean           isRemoteVideoEnabled;
   private final boolean           isLocalVideoEnabled;
   private final boolean           isMoreThanOneCameraAvailable;
   private final boolean           isBluetoothAvailable;
   private final boolean           isInPipMode;
+  private final boolean           hasAtLeastOneRemote;
   private final CallState         callState;
+  private final GroupCallState    groupCallState;
   private final WebRtcAudioOutput audioOutput;
 
   private WebRtcControls() {
-    this(false, false, false, false, false, CallState.NONE, WebRtcAudioOutput.HANDSET);
+    this(false, false, false, false, false, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET);
   }
 
   WebRtcControls(boolean isLocalVideoEnabled,
@@ -24,7 +29,9 @@ public final class WebRtcControls {
                  boolean isMoreThanOneCameraAvailable,
                  boolean isBluetoothAvailable,
                  boolean isInPipMode,
+                 boolean hasAtLeastOneRemote,
                  @NonNull CallState callState,
+                 @NonNull GroupCallState groupCallState,
                  @NonNull WebRtcAudioOutput audioOutput)
   {
     this.isLocalVideoEnabled          = isLocalVideoEnabled;
@@ -32,12 +39,25 @@ public final class WebRtcControls {
     this.isBluetoothAvailable         = isBluetoothAvailable;
     this.isMoreThanOneCameraAvailable = isMoreThanOneCameraAvailable;
     this.isInPipMode                  = isInPipMode;
+    this.hasAtLeastOneRemote          = hasAtLeastOneRemote;
     this.callState                    = callState;
+    this.groupCallState               = groupCallState;
     this.audioOutput                  = audioOutput;
   }
 
   boolean displayStartCallControls() {
     return isPreJoin();
+  }
+
+  @StringRes int getStartCallButtonText() {
+    if (isGroupCall() && hasAtLeastOneRemote) {
+      return R.string.WebRtcCallView__join_call;
+    }
+    return R.string.WebRtcCallView__start_call;
+  }
+
+  boolean displayGroupMembersButton() {
+    return groupCallState == GroupCallState.CONNECTED;
   }
 
   boolean displayEndCall() {
@@ -116,6 +136,10 @@ public final class WebRtcControls {
     return callState.isAtLeast(CallState.OUTGOING);
   }
 
+  private boolean isGroupCall() {
+    return groupCallState != GroupCallState.NONE;
+  }
+
   public enum CallState {
     NONE,
     PRE_JOIN,
@@ -124,8 +148,16 @@ public final class WebRtcControls {
     ONGOING,
     ENDING;
 
-    boolean isAtLeast(@NonNull CallState other) {
+    boolean isAtLeast(@SuppressWarnings("SameParameterValue") @NonNull CallState other) {
       return compareTo(other) >= 0;
     }
+  }
+
+  public enum GroupCallState {
+    NONE,
+    DISCONNECTED,
+    CONNECTING,
+    CONNECTED,
+    RECONNECTING
   }
 }

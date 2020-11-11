@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 public class WebRtcCallViewModel extends ViewModel {
@@ -104,11 +105,13 @@ public class WebRtcCallViewModel extends ViewModel {
     participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), webRtcViewModel, enableVideo));
 
     updateWebRtcControls(webRtcViewModel.getState(),
+                         webRtcViewModel.getGroupState(),
                          localParticipant.getCameraState().isEnabled(),
                          webRtcViewModel.isRemoteVideoEnabled(),
                          webRtcViewModel.isRemoteVideoOffer(),
                          localParticipant.isMoreThanOneCameraAvailable(),
                          webRtcViewModel.isBluetoothAvailable(),
+                         Util.hasItems(webRtcViewModel.getRemoteParticipants()),
                          repository.getAudioOutput());
 
     if (webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED && callConnectedTime == -1) {
@@ -133,11 +136,13 @@ public class WebRtcCallViewModel extends ViewModel {
   }
 
   private void updateWebRtcControls(@NonNull WebRtcViewModel.State state,
+                                    @NonNull WebRtcViewModel.GroupCallState groupState,
                                     boolean isLocalVideoEnabled,
                                     boolean isRemoteVideoEnabled,
                                     boolean isRemoteVideoOffer,
                                     boolean isMoreThanOneCameraAvailable,
                                     boolean isBluetoothAvailable,
+                                    boolean hasAtLeastOneRemote,
                                     @NonNull WebRtcAudioOutput audioOutput)
   {
     final WebRtcControls.CallState callState;
@@ -166,12 +171,34 @@ public class WebRtcCallViewModel extends ViewModel {
         callState = WebRtcControls.CallState.ONGOING;
     }
 
+    final WebRtcControls.GroupCallState groupCallState;
+
+    switch (groupState) {
+      case DISCONNECTED:
+        groupCallState = WebRtcControls.GroupCallState.DISCONNECTED;
+        break;
+      case CONNECTING:
+      case RECONNECTING:
+        groupCallState = WebRtcControls.GroupCallState.CONNECTING;
+        break;
+      case CONNECTED:
+      case CONNECTED_AND_JOINING:
+      case CONNECTED_AND_JOINED:
+        groupCallState = WebRtcControls.GroupCallState.CONNECTED;
+        break;
+      default:
+        groupCallState = WebRtcControls.GroupCallState.NONE;
+        break;
+    }
+
     webRtcControls.setValue(new WebRtcControls(isLocalVideoEnabled,
                                                isRemoteVideoEnabled || isRemoteVideoOffer,
                                                isMoreThanOneCameraAvailable,
                                                isBluetoothAvailable,
                                                Boolean.TRUE.equals(isInPipMode.getValue()),
+                                               hasAtLeastOneRemote,
                                                callState,
+                                               groupCallState,
                                                audioOutput));
   }
 

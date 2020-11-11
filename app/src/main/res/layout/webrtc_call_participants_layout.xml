@@ -4,6 +4,9 @@
     android:id="@+id/call_screen_call_participants"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     app:alignContent="stretch"
+    app:alignItems="stretch"
     app:flexDirection="row"
-    app:flexWrap="wrap" />
+    app:flexWrap="wrap"
+    app:justifyContent="flex_start" />

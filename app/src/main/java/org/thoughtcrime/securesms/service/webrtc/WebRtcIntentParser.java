@@ -9,6 +9,7 @@ import org.signal.ringrtc.CallId;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.ringrtc.TurnServerInfoParcel;
@@ -18,29 +19,35 @@ import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ANSWER_OPAQUE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ANSWER_SDP;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_AVAILABLE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_BROADCAST;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_CALL_ID;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_CAMERA_STATE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ENABLE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ERROR_CALL_STATE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ERROR_IDENTITY_KEY;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_GROUP_EXTERNAL_TOKEN;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ICE_CANDIDATES;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_MULTI_RING;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_OFFER_OPAQUE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_OFFER_SDP;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_OFFER_TYPE;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_OPAQUE_MESSAGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_REMOTE_DEVICE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_REMOTE_IDENTITY_KEY;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_REMOTE_PEER_KEY;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_TURN_SERVER_INFO;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_UUID;
 
 /**
  * Helper to parse the various attributes out of intents passed to the service.
@@ -111,6 +118,14 @@ public final class WebRtcIntentParser {
     return intent.getByteArrayExtra(EXTRA_OFFER_OPAQUE);
   }
 
+  public static @NonNull byte[] getOpaque(@NonNull Intent intent) {
+    return Objects.requireNonNull(intent.getByteArrayExtra(EXTRA_OPAQUE_MESSAGE));
+  }
+
+  public static @NonNull UUID getUuid(@NonNull Intent intent) {
+    return UuidUtil.parseOrThrow(intent.getStringExtra(EXTRA_UUID));
+  }
+
   public static boolean getBroadcastFlag(@NonNull Intent intent) {
     return intent.getBooleanExtra(EXTRA_BROADCAST, false);
   }
@@ -149,10 +164,17 @@ public final class WebRtcIntentParser {
     return intent.getBooleanExtra(EXTRA_ENABLE, false);
   }
 
+  public static @NonNull byte[] getGroupMembershipToken(@NonNull Intent intent) {
+    return Objects.requireNonNull(intent.getByteArrayExtra(EXTRA_GROUP_EXTERNAL_TOKEN));
+  }
+
+  public static @NonNull CameraState getCameraState(@NonNull Intent intent) {
+    return Objects.requireNonNull(intent.getParcelableExtra(EXTRA_CAMERA_STATE));
+  }
   public static @NonNull WebRtcViewModel.State getErrorCallState(@NonNull Intent intent) {
     return (WebRtcViewModel.State) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_ERROR_CALL_STATE));
   }
-  
+
   public static @NonNull Optional<IdentityKey> getErrorIdentityKey(@NonNull Intent intent) {
     IdentityKeyParcelable identityKeyParcelable = (IdentityKeyParcelable) intent.getParcelableExtra(EXTRA_ERROR_IDENTITY_KEY);
     if (identityKeyParcelable != null) {

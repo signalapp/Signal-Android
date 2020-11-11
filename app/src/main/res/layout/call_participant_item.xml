@@ -9,14 +9,12 @@
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/call_participant_item_avatar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.5"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView

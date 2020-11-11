@@ -92,6 +92,9 @@ message CallMessage {
     optional uint32 deviceId = 3;
   }
 
+  message Opaque {
+    optional bytes data = 1;
+  }
 
   optional Offer     offer               = 1;
   optional Answer    answer              = 2;
@@ -102,6 +105,7 @@ message CallMessage {
   optional Hangup    hangup              = 7;
   optional bool      multiRing           = 8;
   optional uint32    destinationDeviceId = 9;
+  optional Opaque    opaque              = 10;
 }
 
 message DataMessage {

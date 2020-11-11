@@ -210,3 +210,7 @@ message GroupJoinInfo {
   uint32                       revision             = 6;
   bool                         pendingAdminApproval = 7;
 }
+
+message GroupExternalCredential {
+  string token = 1;
+}

@@ -12,8 +12,6 @@ import org.webrtc.CapturerObserver;
 import org.webrtc.VideoFrame;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
-import java.util.Objects;
-
 /**
  * Action handler for when the system is at rest. Mainly responsible
  * for starting pre-call state, starting an outgoing call, or receiving an
@@ -52,14 +50,21 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handlePreJoinCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(TAG, "handlePreJoinCall():");
 
-    WebRtcServiceState newState = initializeVanityCamera(WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState));
+    boolean               isGroupCall = remotePeer.getRecipient().isPushV2Group();
+    WebRtcActionProcessor processor   = isGroupCall ? new GroupPreJoinActionProcessor(webRtcInteractor)
+                                                    : new PreJoinActionProcessor(webRtcInteractor);
 
-    return newState.builder()
-                   .actionProcessor(new PreJoinActionProcessor(webRtcInteractor))
-                   .changeCallInfoState()
-                   .callState(WebRtcViewModel.State.CALL_PRE_JOIN)
-                   .callRecipient(remotePeer.getRecipient())
-                   .build();
+    currentState = initializeVanityCamera(WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState));
+
+    currentState = currentState.builder()
+                               .actionProcessor(processor)
+                               .changeCallInfoState()
+                               .callState(WebRtcViewModel.State.CALL_PRE_JOIN)
+                               .callRecipient(remotePeer.getRecipient())
+                               .build();
+
+    return isGroupCall ? currentState.getActionProcessor().handlePreJoinCall(currentState, remotePeer)
+                       : currentState;
   }
 
   private @NonNull WebRtcServiceState initializeVanityCamera(@NonNull WebRtcServiceState currentState) {

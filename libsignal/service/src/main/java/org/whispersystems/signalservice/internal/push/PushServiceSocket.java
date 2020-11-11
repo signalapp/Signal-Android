@@ -15,6 +15,7 @@ import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.protos.groups.Group;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.GroupChanges;
+import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
@@ -38,6 +39,7 @@ import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
+import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -204,6 +206,7 @@ public class PushServiceSocket {
   private static final String GROUPSV2_GROUP_CHANGES    = "/v1/groups/logs/%s";
   private static final String GROUPSV2_AVATAR_REQUEST   = "/v1/groups/avatar/form";
   private static final String GROUPSV2_GROUP_JOIN       = "/v1/groups/join/%s";
+  private static final String GROUPSV2_TOKEN            = "/v1/groups/token";
 
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
@@ -1665,6 +1668,42 @@ public class PushServiceSocket {
     throw new NonSuccessfulResponseCodeException("Response: " + response);
   }
 
+  public CallingResponse makeCallingRequest(long requestId, String url, String httpMethod, List<Pair<String, String>> headers, byte[] body) {
+    ConnectionHolder connectionHolder = getRandom(serviceClients, random);
+    OkHttpClient     okHttpClient     = connectionHolder.getClient()
+                                                        .newBuilder()
+                                                        .followRedirects(true)
+                                                        .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .build();
+
+    RequestBody     requestBody = body != null ? RequestBody.create(null, body) : null;
+    Request.Builder builder     = new Request.Builder()
+                                             .url(url)
+                                             .method(httpMethod, requestBody);
+
+    if (headers != null) {
+      for (Pair<String, String> header : headers) {
+        builder.addHeader(header.first(), header.second());
+      }
+    }
+
+    Call call = okHttpClient.newCall(builder.build());
+
+    try {
+      Response response       = call.execute();
+      int      responseStatus = response.code();
+      byte[]   responseBody   = response.body() != null ? response.body().bytes() : new byte[0];
+
+      return new CallingResponse.Success(requestId, responseStatus, responseBody);
+    } catch (IOException e) {
+      Log.w(TAG, "Exception during ringrtc http call.", e);
+      return new CallingResponse.Error(requestId, e);
+    }
+  }
+
+
+
   private ServiceConnectionHolder[] createServiceConnectionHolders(SignalUrl[] urls,
                                                                    List<Interceptor> interceptors,
                                                                    Optional<Dns> dns)
@@ -2035,6 +2074,18 @@ public class PushServiceSocket {
                                                     GROUPS_V2_GET_JOIN_INFO_HANDLER);
 
     return GroupJoinInfo.parseFrom(readBodyBytes(response));
+  }
+
+  public GroupExternalCredential getGroupExternalCredential(GroupsV2AuthorizationString authorization)
+    throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
+  {
+    ResponseBody response = makeStorageRequest(authorization.toString(),
+                                               GROUPSV2_TOKEN,
+                                               "GET",
+                                               null,
+                                               NO_HANDLER);
+
+    return GroupExternalCredential.parseFrom(readBodyBytes(response));
   }
 
   public static final class GroupHistory {

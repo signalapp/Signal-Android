@@ -1,8 +1,11 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -21,24 +24,27 @@ public final class CallParticipantsState {
   private static final int SMALL_GROUP_MAX = 6;
 
   public static final CallParticipantsState STARTING_STATE  = new CallParticipantsState(WebRtcViewModel.State.CALL_DISCONNECTED,
-                                                                                       Collections.emptyList(),
-                                                                                       CallParticipant.createLocal(CameraState.UNKNOWN, new BroadcastVideoSink(null), false),
-                                                                                       null,
-                                                                                       WebRtcLocalRenderState.GONE,
-                                                                                       false,
-                                                                                       false,
-                                                                                       false);
+                                                                                        WebRtcViewModel.GroupCallState.IDLE,
+                                                                                        Collections.emptyList(),
+                                                                                        CallParticipant.createLocal(CameraState.UNKNOWN, new BroadcastVideoSink(null), false),
+                                                                                        null,
+                                                                                        WebRtcLocalRenderState.GONE,
+                                                                                        false,
+                                                                                        false,
+                                                                                        false);
 
-  private final WebRtcViewModel.State  callState;
-  private final List<CallParticipant>  remoteParticipants;
-  private final CallParticipant        localParticipant;
-  private final CallParticipant        focusedParticipant;
-  private final WebRtcLocalRenderState localRenderState;
-  private final boolean                isInPipMode;
-  private final boolean                showVideoForOutgoing;
-  private final boolean                isViewingFocusedParticipant;
+  private final WebRtcViewModel.State          callState;
+  private final WebRtcViewModel.GroupCallState groupCallState;
+  private final List<CallParticipant>          remoteParticipants;
+  private final CallParticipant                localParticipant;
+  private final CallParticipant                focusedParticipant;
+  private final WebRtcLocalRenderState         localRenderState;
+  private final boolean                        isInPipMode;
+  private final boolean                        showVideoForOutgoing;
+  private final boolean                        isViewingFocusedParticipant;
 
   public CallParticipantsState(@NonNull WebRtcViewModel.State callState,
+                               @NonNull WebRtcViewModel.GroupCallState groupCallState,
                                @NonNull List<CallParticipant> remoteParticipants,
                                @NonNull CallParticipant localParticipant,
                                @Nullable CallParticipant focusedParticipant,
@@ -48,6 +54,7 @@ public final class CallParticipantsState {
                                boolean isViewingFocusedParticipant)
   {
     this.callState                   = callState;
+    this.groupCallState              = groupCallState;
     this.remoteParticipants          = remoteParticipants;
     this.localParticipant            = localParticipant;
     this.localRenderState            = localRenderState;
@@ -59,6 +66,10 @@ public final class CallParticipantsState {
 
   public @NonNull WebRtcViewModel.State getCallState() {
     return callState;
+  }
+
+  public @NonNull WebRtcViewModel.GroupCallState getGroupCallState() {
+    return groupCallState;
   }
 
   public @NonNull List<CallParticipant> getGridParticipants() {
@@ -85,6 +96,30 @@ public final class CallParticipantsState {
     Collections.reverse(listParticipants);
 
     return listParticipants;
+  }
+
+  public @NonNull String getRemoteParticipantsDescription(@NonNull Context context) {
+    switch (remoteParticipants.size()) {
+      case 0:
+        return context.getString(R.string.WebRtcCallView__no_one_else_is_here);
+      case 1:
+        if (callState == WebRtcViewModel.State.CALL_PRE_JOIN && groupCallState.isNotIdle()) {
+          return context.getString(R.string.WebRtcCallView__s_is_in_this_call, remoteParticipants.get(0).getRecipient().getShortDisplayName(context));
+        } else {
+          return remoteParticipants.get(0).getRecipient().getDisplayName(context);
+        }
+      case 2:
+        return context.getString(R.string.WebRtcCallView__s_and_s_are_in_this_call,
+                                 remoteParticipants.get(0).getRecipient().getShortDisplayName(context),
+                                 remoteParticipants.get(1).getRecipient().getShortDisplayName(context));
+      default:
+        int others = remoteParticipants.size() - 2;
+        return context.getResources().getQuantityString(R.plurals.WebRtcCallView__s_s_and_d_others_are_in_this_call,
+                                                        others,
+                                                        remoteParticipants.get(0).getRecipient().getShortDisplayName(context),
+                                                        remoteParticipants.get(1).getRecipient().getShortDisplayName(context),
+                                                        others);
+    }
   }
 
   public @NonNull List<CallParticipant> getAllRemoteParticipants() {
@@ -132,6 +167,7 @@ public final class CallParticipantsState {
     CallParticipant focused = oldState.remoteParticipants.isEmpty() ? null : oldState.remoteParticipants.get(0);
 
     return new CallParticipantsState(webRtcViewModel.getState(),
+                                     webRtcViewModel.getGroupState(),
                                      webRtcViewModel.getRemoteParticipants(),
                                      webRtcViewModel.getLocalParticipant(),
                                      focused,
@@ -152,6 +188,7 @@ public final class CallParticipantsState {
     CallParticipant focused = oldState.remoteParticipants.isEmpty() ? null : oldState.remoteParticipants.get(0);
 
     return new CallParticipantsState(oldState.callState,
+                                     oldState.groupCallState,
                                      oldState.remoteParticipants,
                                      oldState.localParticipant,
                                      focused,
@@ -172,6 +209,7 @@ public final class CallParticipantsState {
                                                                        selectedPage == SelectedPage.FOCUSED);
 
     return new CallParticipantsState(oldState.callState,
+                                     oldState.groupCallState,
                                      oldState.remoteParticipants,
                                      oldState.localParticipant,
                                      focused,
@@ -193,8 +231,8 @@ public final class CallParticipantsState {
 
     if (displayLocal || showVideoForOutgoing) {
       if (callState == WebRtcViewModel.State.CALL_CONNECTED) {
-        if (isViewingFocusedParticipant || numberOfRemoteParticipants > 3) {
-          localRenderState = WebRtcLocalRenderState.SMALL_SQUARE;
+        if (isViewingFocusedParticipant || numberOfRemoteParticipants > 1) {
+          localRenderState = WebRtcLocalRenderState.SMALLER_RECTANGLE;
         } else {
           localRenderState = WebRtcLocalRenderState.SMALL_RECTANGLE;
         }

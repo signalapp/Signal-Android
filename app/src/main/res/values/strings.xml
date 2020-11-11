@@ -1332,9 +1332,23 @@
     <string name="WebRtcCallView__signal_voice_call">Signal voice call…</string>
     <string name="WebRtcCallView__signal_video_call">Signal video call…</string>
     <string name="WebRtcCallView__start_call">Start Call</string>
-    <string name="WebRtcCallView__group_call">Group Call</string>
+    <string name="WebRtcCallView__join_call">Join Call</string>
+    <string name="WebRtcCallView__s_group_call">\"%1$s\" Group Call</string>
     <string name="WebRtcCallView__view_participants_list">View participants</string>
     <string name="WebRtcCallView__your_video_is_off">Your video is off</string>
+    <string name="WebRtcCallView__connecting">Connecting…</string>
+    <string name="WebRtcCallView__reconnecting">Reconnecting…</string>
+    <string name="WebRtcCallView__joining">Joining…</string>
+    <string name="WebRtcCallView__disconnected">Disconnected</string>
+
+    <string name="WebRtcCallView__no_one_else_is_here">No one else is here</string>
+    <string name="WebRtcCallView__s_is_in_this_call">%1$s is in this call</string>
+    <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s and %2$s are in this call</string>
+
+    <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in this call</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in this call</item>
+    </plurals>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">

@@ -207,6 +207,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   private void initializeResources() {
     callScreen = findViewById(R.id.callScreen);
     callScreen.setControlsListener(new ControlsListener());
+    callScreen.setEventListener(new EventListener());
   }
 
   private void initializeViewModel() {
@@ -381,8 +382,12 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     startService(intent);
   }
 
-  private void handleOutgoingCall() {
-    callScreen.setStatus(getString(R.string.WebRtcCallActivity__calling));
+  private void handleOutgoingCall(@NonNull WebRtcViewModel event) {
+    if (event.getGroupState().isNotIdle()) {
+      callScreen.setStatusFromGroupCallState(event.getGroupState());
+    } else {
+      callScreen.setStatus(getString(R.string.WebRtcCallActivity__calling));
+    }
   }
 
   private void handleTerminate(@NonNull Recipient recipient, @NonNull HangupMessage.Type hangupType) {
@@ -408,8 +413,11 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     delayedFinish(WebRtcCallService.BUSY_TONE_LENGTH);
   }
 
-  private void handleCallConnected() {
+  private void handleCallConnected(@NonNull WebRtcViewModel event) {
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES);
+    if (event.getGroupState().isNotIdleOrConnected()) {
+      callScreen.setStatusFromGroupCallState(event.getGroupState());
+    }
   }
 
   private void handleRecipientUnavailable() {
@@ -486,7 +494,8 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     callScreen.setRecipient(event.getRecipient());
 
     switch (event.getState()) {
-      case CALL_CONNECTED:          handleCallConnected();                                                     break;
+      case CALL_PRE_JOIN:           handleCallPreJoin(event);                                                  break;
+      case CALL_CONNECTED:          handleCallConnected(event);                                                break;
       case NETWORK_FAILURE:         handleServerFailure();                                                     break;
       case CALL_RINGING:            handleCallRinging();                                                       break;
       case CALL_DISCONNECTED:       handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);          break;
@@ -496,7 +505,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
       case CALL_NEEDS_PERMISSION:   handleTerminate(event.getRecipient(), HangupMessage.Type.NEED_PERMISSION); break;
       case NO_SUCH_USER:            handleNoSuchUser(event);                                                   break;
       case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable();                                              break;
-      case CALL_OUTGOING:           handleOutgoingCall();                                                      break;
+      case CALL_OUTGOING:           handleOutgoingCall(event);                                                 break;
       case CALL_BUSY:               handleCallBusy();                                                          break;
       case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);                                            break;
     }
@@ -508,6 +517,12 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     if (enableVideo) {
       enableVideoIfAvailable = false;
       handleSetMuteVideo(false);
+    }
+  }
+
+  private void handleCallPreJoin(@NonNull WebRtcViewModel event) {
+    if (event.getGroupState().isNotIdle()) {
+      callScreen.setStatusFromGroupCallState(event.getGroupState());
     }
   }
 
@@ -605,4 +620,12 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     }
   }
 
+  private class EventListener implements WebRtcCallView.EventListener {
+    @Override
+    public void onPotentialLayoutChange() {
+      Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
+      intent.setAction(WebRtcCallService.ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS);
+      startService(intent);
+    }
+  }
 }

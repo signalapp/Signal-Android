@@ -36,8 +36,11 @@ import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import androidx.lifecycle.Lifecycle;
 
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
@@ -275,5 +278,21 @@ public final class ViewUtil {
         setEnabledRecursive(viewGroup.getChildAt(i), enabled);
       }
     }
+  }
+
+  public static @Nullable Lifecycle getActivityLifecycle(@NonNull View view) {
+    return getActivityLifecycle(view.getContext());
+  }
+
+  private static @Nullable Lifecycle getActivityLifecycle(@Nullable Context context) {
+    if (context instanceof ContextThemeWrapper) {
+      return getActivityLifecycle(((ContextThemeWrapper) context).getBaseContext());
+    }
+
+    if (context instanceof AppCompatActivity) {
+      return ((AppCompatActivity) context).getLifecycle();
+    }
+
+    return null;
   }
 }

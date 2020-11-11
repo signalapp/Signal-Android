@@ -109,6 +109,7 @@ import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
@@ -423,6 +424,7 @@ public final class PushProcessMessageJob extends BaseJob {
         else if (message.getIceUpdateMessages().isPresent()) handleCallIceUpdateMessage(content, message.getIceUpdateMessages().get());
         else if (message.getHangupMessage().isPresent())     handleCallHangupMessage(content, message.getHangupMessage().get(), smsMessageId);
         else if (message.getBusyMessage().isPresent())       handleCallBusyMessage(content, message.getBusyMessage().get());
+        else if (message.getOpaqueMessage().isPresent())     handleCallOpaqueMessage(content, message.getOpaqueMessage().get());
       } else if (content.getReceiptMessage().isPresent()) {
         SignalServiceReceiptMessage message = content.getReceiptMessage().get();
 
@@ -621,6 +623,27 @@ public final class PushProcessMessageJob extends BaseJob {
           .putExtra(WebRtcCallService.EXTRA_CALL_ID,       message.getId())
           .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
           .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice());
+
+    context.startService(intent);
+  }
+
+  private void handleCallOpaqueMessage(@NonNull SignalServiceContent content,
+                                       @NonNull OpaqueMessage message)
+  {
+    log(TAG, String.valueOf(content.getTimestamp()), "handleCallOpaqueMessage");
+
+    Intent intent = new Intent(context, WebRtcCallService.class);
+
+    long messageAgeSeconds = 0;
+    if (content.getServerReceivedTimestamp() > 0 && content.getServerDeliveredTimestamp() >= content.getServerReceivedTimestamp()) {
+      messageAgeSeconds = (content.getServerDeliveredTimestamp() - content.getServerReceivedTimestamp()) / 1000;
+    }
+
+    intent.setAction(WebRtcCallService.ACTION_RECEIVE_OPAQUE_MESSAGE)
+          .putExtra(WebRtcCallService.EXTRA_OPAQUE_MESSAGE, message.getOpaque())
+          .putExtra(WebRtcCallService.EXTRA_UUID, Recipient.externalHighTrustPush(context, content.getSender()).requireUuid().toString())
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice())
+          .putExtra(WebRtcCallService.EXTRA_MESSAGE_AGE_SECONDS, messageAgeSeconds);
 
     context.startService(intent);
   }

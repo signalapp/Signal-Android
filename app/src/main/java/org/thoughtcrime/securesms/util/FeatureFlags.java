@@ -64,6 +64,7 @@ public final class FeatureFlags {
   private static final String MAX_ENVELOPE_SIZE            = "android.maxEnvelopeSize";
   private static final String GV1_AUTO_MIGRATE_VERSION     = "android.groupsv2.autoMigrateVersion";
   private static final String GV1_MANUAL_MIGRATE_VERSION   = "android.groupsv2.manualMigrateVersion";
+  private static final String GROUP_CALLING_VERSION        = "android.groupsv2.callingVersion";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -84,7 +85,8 @@ public final class FeatureFlags {
       VIEWED_RECEIPTS,
       MAX_ENVELOPE_SIZE,
       GV1_AUTO_MIGRATE_VERSION,
-      GV1_MANUAL_MIGRATE_VERSION
+      GV1_MANUAL_MIGRATE_VERSION,
+      GROUP_CALLING_VERSION
   );
 
   /**
@@ -272,6 +274,10 @@ public final class FeatureFlags {
   /** Whether or not manual migration from GV1->GV2 is enabled. */
   public static boolean groupsV1ManualMigration() {
     return groupsV1AutoMigration() && getVersionFlag(GV1_MANUAL_MIGRATE_VERSION) == VersionFlag.ON;
+  }
+
+  public static boolean groupCalling() {
+    return getVersionFlag(GROUP_CALLING_VERSION) == VersionFlag.ON;
   }
 
   /** Only for rendering debug info. */

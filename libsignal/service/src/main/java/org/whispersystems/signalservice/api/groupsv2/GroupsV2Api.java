@@ -7,6 +7,7 @@ import org.signal.storageservice.protos.groups.Group;
 import org.signal.storageservice.protos.groups.GroupAttributeBlob;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.GroupChanges;
+import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
@@ -164,6 +165,12 @@ public final class GroupsV2Api {
       throws IOException
   {
     return socket.patchGroupsV2Group(groupChange, authorization.toString(), groupLinkPassword);
+  }
+
+  public GroupExternalCredential getGroupExternalCredential(GroupsV2AuthorizationString authorization)
+      throws IOException
+  {
+    return socket.getGroupExternalCredential(authorization);
   }
 
   private static HashMap<Integer, AuthCredentialResponse> parseCredentialResponse(CredentialResponse credentialResponse)

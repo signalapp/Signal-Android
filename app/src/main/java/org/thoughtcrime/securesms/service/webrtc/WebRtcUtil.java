@@ -6,6 +6,8 @@ import android.media.AudioManager;
 import androidx.annotation.NonNull;
 
 import org.signal.ringrtc.CallManager;
+import org.signal.ringrtc.GroupCall;
+import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -54,6 +56,19 @@ public final class WebRtcUtil {
 
     if (shouldEnable) {
       androidAudioManager.setSpeakerphoneOn(true);
+    }
+  }
+
+  public static @NonNull WebRtcViewModel.GroupCallState groupCallStateForConnection(@NonNull GroupCall.ConnectionState connectionState) {
+    switch (connectionState) {
+      case CONNECTING:
+        return WebRtcViewModel.GroupCallState.CONNECTING;
+      case CONNECTED:
+        return WebRtcViewModel.GroupCallState.CONNECTED;
+      case RECONNECTING:
+        return WebRtcViewModel.GroupCallState.RECONNECTING;
+      default:
+        return WebRtcViewModel.GroupCallState.DISCONNECTED;
     }
   }
 }

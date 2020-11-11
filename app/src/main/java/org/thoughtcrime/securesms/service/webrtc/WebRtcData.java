@@ -11,11 +11,18 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
+import java.util.UUID;
+
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_DEVICE_ID;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_IS_LEGACY;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_TYPE;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HTTP_REQUEST_ID;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HTTP_RESPONSE_BODY;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HTTP_RESPONSE_STATUS;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_MESSAGE_AGE_SECONDS;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_SERVER_DELIVERED_TIMESTAMP;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_SERVER_RECEIVED_TIMESTAMP;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemoteDevice;
 
 /**
  * Collection of classes to ease parsing data from intents and passing said data
@@ -222,6 +229,79 @@ public class WebRtcData {
 
     int getDeviceId() {
       return deviceId;
+    }
+  }
+
+  /**
+   * Http response data.
+   */
+  static class HttpData {
+    private final long   requestId;
+    private final int    status;
+    private final byte[] body;
+
+    static @NonNull HttpData fromIntent(@NonNull Intent intent) {
+      return new HttpData(intent.getLongExtra(EXTRA_HTTP_REQUEST_ID, -1),
+                          intent.getIntExtra(EXTRA_HTTP_RESPONSE_STATUS, -1),
+                          intent.getByteArrayExtra(EXTRA_HTTP_RESPONSE_BODY));
+    }
+
+    HttpData(long requestId, int status, @Nullable byte[] body) {
+      this.requestId = requestId;
+      this.status    = status;
+      this.body      = body;
+    }
+
+    long getRequestId() {
+      return requestId;
+    }
+
+    int getStatus() {
+      return status;
+    }
+
+    @Nullable byte[] getBody() {
+      return body;
+    }
+  }
+
+  /**
+   * An opaque calling message.
+   */
+  static class OpaqueMessageMetadata {
+    private final UUID   uuid;
+    private final byte[] opaque;
+    private final int    remoteDeviceId;
+    private final long   messageAgeSeconds;
+
+    static @NonNull OpaqueMessageMetadata fromIntent(@NonNull Intent intent) {
+      return new OpaqueMessageMetadata(WebRtcIntentParser.getUuid(intent),
+                                       WebRtcIntentParser.getOpaque(intent),
+                                       getRemoteDevice(intent),
+                                       intent.getLongExtra(EXTRA_MESSAGE_AGE_SECONDS, 0));
+    }
+
+    OpaqueMessageMetadata(@NonNull UUID uuid, @NonNull byte[] opaque, int remoteDeviceId, long messageAgeSeconds) {
+      this.uuid              = uuid;
+      this.opaque            = opaque;
+      this.remoteDeviceId    = remoteDeviceId;
+      this.messageAgeSeconds = messageAgeSeconds;
+    }
+
+    @NonNull UUID getUuid() {
+      return uuid;
+    }
+
+    @NonNull byte[] getOpaque() {
+      return opaque;
+    }
+
+    int getRemoteDeviceId() {
+      return remoteDeviceId;
+    }
+
+    long getMessageAgeSeconds() {
+      return messageAgeSeconds;
     }
   }
 }

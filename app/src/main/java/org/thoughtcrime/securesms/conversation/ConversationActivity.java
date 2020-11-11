@@ -818,6 +818,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
       if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
       else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
     } else if (isGroupConversation()) {
+      if (isActiveV2Group && FeatureFlags.groupCalling()) {
+        inflater.inflate(R.menu.conversation_callable_groupv2, menu);
+      }
+
       inflater.inflate(R.menu.conversation_group_options, menu);
 
       if (!isPushGroupConversation()) {

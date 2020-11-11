@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
 import org.signal.zkgroup.VerificationFailedException;
@@ -25,7 +26,9 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 public final class GroupManager {
 
@@ -388,6 +391,19 @@ public final class GroupManager {
 
   public static void sendNoopUpdate(@NonNull Context context, @NonNull GroupMasterKey groupMasterKey, @NonNull DecryptedGroup currentState) {
     new GroupManagerV2(context).sendNoopGroupUpdate(groupMasterKey, currentState);
+  }
+
+  @WorkerThread
+  public static @NonNull GroupExternalCredential getGroupExternalCredential(@NonNull Context context,
+                                                                            @NonNull GroupId.V2 groupId)
+      throws IOException, VerificationFailedException
+  {
+    return new GroupManagerV2(context).getGroupExternalCredential(groupId);
+  }
+
+  @WorkerThread
+  public static @NonNull Map<UUID, UuidCiphertext> getUuidCipherTexts(@NonNull Context context, @NonNull GroupId.V2 groupId) {
+    return new GroupManagerV2(context).getUuidCipherTexts(groupId);
   }
 
   public static class GroupActionResult {

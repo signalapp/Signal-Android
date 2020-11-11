@@ -116,7 +116,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
 
     Log.i(tag, "handleRemoteVideoEnable(): call_id: " + activePeer.getCallId());
 
-    CallParticipant oldParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteParticipant(activePeer.getRecipient()));
+    CallParticipant oldParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
     CallParticipant newParticipant = oldParticipant.withVideoEnabled(enable);
 
     return currentState.builder()
