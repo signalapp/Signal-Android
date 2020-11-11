@@ -300,11 +300,7 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
     </style>
 
-    <style name="TextSecure.DarkTheme.AnimatedDialog">
-        <item name="android:windowAnimationStyle">@style/FadeScale</item>
-    </style>
-
-    <style name="TextSecure.LightTheme.AnimatedDialog">
+    <style name="Signal.DayNight.Dialog.Animated" parent="Signal.DayNight">
         <item name="android:windowAnimationStyle">@style/FadeScale</item>
     </style>
 

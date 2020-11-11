@@ -43,9 +43,7 @@ public final class ShareableGroupLinkDialogFragment extends DialogFragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    
-    setStyle(STYLE_NO_FRAME, ThemeUtil.isDarkTheme(requireActivity()) ? R.style.TextSecure_DarkTheme_AnimatedDialog
-                                                                      : R.style.TextSecure_LightTheme_AnimatedDialog);
+    setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_Animated);
   }
 
   @Override
