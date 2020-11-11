@@ -49,7 +49,7 @@
             android:layout_marginLeft="@dimen/very_large_spacing"
             android:layout_marginTop="4dp"
             android:layout_marginRight="@dimen/very_large_spacing"
-            android:text="@{RestoreBackupViewModel.uriToFileName(buttonSelectFile, viewModel.backupFile), default=`Select a file`}"/>
+            android:text="@{BackupRestoreViewModel.uriToFileName(buttonSelectFile, viewModel.backupFile), default=`Select a file`}"/>
 
         <EditText
             android:id="@+id/backupCode"
@@ -76,7 +76,7 @@
             android:layout_marginLeft="@dimen/massive_spacing"
             android:layout_marginRight="@dimen/massive_spacing"
             android:text="@string/continue_2"
-            android:visibility="@{RestoreBackupViewModel.validateData(viewModel.backupFile, viewModel.backupPassphrase) ? View.VISIBLE : View.INVISIBLE}"/>
+            android:visibility="@{BackupRestoreViewModel.validateData(viewModel.backupFile, viewModel.backupPassphrase) ? View.VISIBLE : View.INVISIBLE}"/>
 
         <TextView
             android:id="@+id/termsTextView"
