@@ -28,7 +28,6 @@ import androidx.preference.Preference;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
@@ -316,7 +315,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
                                                                                           SignalStore.settings().isLinkPreviewsEnabled()));
 
         if (!enabled) {
-          ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().clear();
+          ApplicationDependencies.getTypingStatusRepository().clear();
         }
       });
       return true;

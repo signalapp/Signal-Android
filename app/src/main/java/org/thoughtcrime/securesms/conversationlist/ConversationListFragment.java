@@ -70,7 +70,6 @@ import com.google.android.material.snackbar.Snackbar;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.NewConversationActivity;
@@ -511,7 +510,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeTypingObserver() {
-    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypingThreads().observe(this, threadIds -> {
+    ApplicationDependencies.getTypingStatusRepository().getTypingThreads().observe(this, threadIds -> {
       if (threadIds == null) {
         threadIds = Collections.emptySet();
       }

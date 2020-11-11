@@ -52,6 +52,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -70,6 +71,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationScrollToView;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.TooltipPopup;
+import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
@@ -350,7 +352,7 @@ public class ConversationFragment extends LoggingFragment {
   @Override
   public void onStop() {
     super.onStop();
-    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
+    ApplicationDependencies.getTypingStatusRepository().getTypists(threadId).removeObservers(this);
   }
 
   public void onNewIntent() {
@@ -497,7 +499,7 @@ public class ConversationFragment extends LoggingFragment {
     list.addOnScrollListener(conversationScrollListener);
 
     if (oldThreadId != threadId) {
-      ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(oldThreadId).removeObservers(this);
+      ApplicationDependencies.getTypingStatusRepository().getTypists(oldThreadId).removeObservers(this);
     }
   }
 
@@ -531,8 +533,10 @@ public class ConversationFragment extends LoggingFragment {
       return;
     }
 
-    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
-    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).observe(this, typingState ->  {
+    LiveData<TypingStatusRepository.TypingState> typists = ApplicationDependencies.getTypingStatusRepository().getTypists(threadId);
+
+    typists.removeObservers(this);
+    typists.observe(this, typingState ->  {
       List<Recipient> recipients;
       boolean         replacedByIncomingMessage;
 

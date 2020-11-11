@@ -1587,10 +1587,10 @@ public final class PushProcessMessageJob extends BaseJob {
 
     if (typingMessage.isTypingStarted()) {
       Log.d(TAG, "Typing started on thread " + threadId);
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStarted(context,threadId, author, content.getSenderDevice());
+      ApplicationDependencies.getTypingStatusRepository().onTypingStarted(context,threadId, author, content.getSenderDevice());
     } else {
       Log.d(TAG, "Typing stopped on thread " + threadId);
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(context, threadId, author, content.getSenderDevice(), false);
+      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(context, threadId, author, content.getSenderDevice(), false);
     }
   }
 
@@ -1811,7 +1811,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
     if (threadId > 0) {
       Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(context, threadId, author, device, true);
+      ApplicationDependencies.getTypingStatusRepository().onTypingStopped(context, threadId, author, device, true);
     }
   }
 

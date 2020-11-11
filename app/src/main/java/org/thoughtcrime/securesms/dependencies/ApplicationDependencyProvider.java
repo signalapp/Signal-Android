@@ -7,7 +7,17 @@ import androidx.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.components.TypingStatusRepository;
+import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.FactoryJobPredicate;
+import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
+import org.thoughtcrime.securesms.jobs.FastJobStorage;
+import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
@@ -16,26 +26,17 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
-import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
-import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobmanager.JobMigrator;
-import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
-import org.thoughtcrime.securesms.jobs.FastJobStorage;
-import org.thoughtcrime.securesms.jobs.JobManagerFactories;
-import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
+import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
+import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
-import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
@@ -176,6 +177,16 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull TrimThreadsByDateManager provideTrimThreadsByDateManager() {
     return new TrimThreadsByDateManager(context);
+  }
+
+  @Override
+  public @NonNull TypingStatusRepository provideTypingStatusRepository() {
+    return new TypingStatusRepository();
+  }
+
+  @Override
+  public @NonNull TypingStatusSender provideTypingStatusSender() {
+    return new TypingStatusSender(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

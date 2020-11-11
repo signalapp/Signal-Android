@@ -5,24 +5,24 @@ import android.app.Application;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.KbsEnclave;
-import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
-import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
+import org.thoughtcrime.securesms.components.TypingStatusRepository;
+import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.thoughtcrime.securesms.groups.GroupsV2AuthorizationMemoryValueCache;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
+import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
+import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.pin.KbsEnclaves;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
-import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IasKeyStore;
@@ -31,7 +31,6 @@ import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 
 /**
@@ -64,6 +63,8 @@ public class ApplicationDependencies {
   private static EarlyMessageCache            earlyMessageCache;
   private static MessageNotifier              messageNotifier;
   private static TrimThreadsByDateManager     trimThreadsByDateManager;
+  private static TypingStatusRepository       typingStatusRepository;
+  private static TypingStatusSender           typingStatusSender;
 
   @MainThread
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
@@ -256,6 +257,26 @@ public class ApplicationDependencies {
     return trimThreadsByDateManager;
   }
 
+  public static TypingStatusRepository getTypingStatusRepository() {
+    assertInitialization();
+
+    if (typingStatusRepository == null) {
+      typingStatusRepository = provider.provideTypingStatusRepository();
+    }
+
+    return typingStatusRepository;
+  }
+
+  public static TypingStatusSender getTypingStatusSender() {
+    assertInitialization();
+
+    if (typingStatusSender == null) {
+      typingStatusSender = provider.provideTypingStatusSender();
+    }
+
+    return typingStatusSender;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -278,6 +299,8 @@ public class ApplicationDependencies {
     @NonNull MessageNotifier provideMessageNotifier();
     @NonNull IncomingMessageObserver provideIncomingMessageObserver();
     @NonNull TrimThreadsByDateManager provideTrimThreadsByDateManager();
+    @NonNull TypingStatusRepository provideTypingStatusRepository();
+    @NonNull TypingStatusSender provideTypingStatusSender();
   }
 
   private static class UninitializedException extends IllegalStateException {

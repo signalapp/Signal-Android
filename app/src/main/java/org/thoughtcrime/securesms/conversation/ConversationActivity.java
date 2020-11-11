@@ -84,7 +84,6 @@ import com.bumptech.glide.request.transition.Transition;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.GroupMembersDialog;
@@ -109,6 +108,7 @@ import org.thoughtcrime.securesms.components.InputPanel;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.TooltipPopup;
+import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
@@ -2561,11 +2561,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
     long                 expiresIn     = recipient.get().getExpireMessages() * 1000L;
     QuoteModel           quote         = result.isViewOnce() ? null : inputPanel.getQuote().orNull();
     List<Mention>        mentions      = new ArrayList<>(result.getMentions());
-    boolean              initiating    = threadId == -1;
     OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, quote, Collections.emptyList(), Collections.emptyList(), mentions);
     OutgoingMediaMessage secureMessage = new OutgoingSecureMediaMessage(message);
 
-    ApplicationContext.getInstance(this).getTypingStatusSender().onTypingStopped(threadId);
+    ApplicationDependencies.getTypingStatusSender().onTypingStopped(threadId);
 
     inputPanel.clearQuote();
     attachmentManager.clear(glideRequests, false);
@@ -2637,7 +2636,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (isSecureText && !forceSms) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessageCandidate);
-      ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
+      ApplicationDependencies.getTypingStatusSender().onTypingStopped(threadId);
     } else {
       outgoingMessage = outgoingMessageCandidate;
     }
@@ -2683,7 +2682,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (isSecureText && !forceSms) {
       message = new OutgoingEncryptedMessage(recipient.get(), messageBody, expiresIn);
-      ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
+      ApplicationDependencies.getTypingStatusSender().onTypingStopped(threadId);
     } else {
       message = new OutgoingTextMessage(recipient.get(), messageBody, expiresIn, subscriptionId);
     }
@@ -3071,10 +3070,22 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     private boolean enabled = true;
 
+    private String previousText = "";
+
     @Override
     public void onTextChanged(String text) {
       if (enabled && threadId > 0 && isSecureText && !isSmsForced() && !recipient.get().isBlocked()) {
-        ApplicationContext.getInstance(ConversationActivity.this).getTypingStatusSender().onTypingStarted(threadId);
+        TypingStatusSender typingStatusSender = ApplicationDependencies.getTypingStatusSender();
+
+        if (text.length() == 0) {
+          typingStatusSender.onTypingStoppedWithNotify(threadId);
+        } else if (text.length() < previousText.length() && previousText.contains(text)) {
+          typingStatusSender.onTypingStopped(threadId);
+        } else {
+          typingStatusSender.onTypingStarted(threadId);
+        }
+
+        previousText = text;
       }
     }
 
