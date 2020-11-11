@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.conversation;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.text.TextUtils;
@@ -24,17 +23,10 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-
-import java.util.UUID;
 
 public class ConversationTitleView extends RelativeLayout {
 
-  @SuppressWarnings("unused")
-  private static final String TAG = ConversationTitleView.class.getSimpleName();
-
-  private View            content;
   private AvatarImageView avatar;
   private TextView        title;
   private TextView        subtitle;
@@ -56,7 +48,6 @@ public class ConversationTitleView extends RelativeLayout {
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.content                  = findViewById(R.id.content);
     this.title                    = findViewById(R.id.title);
     this.subtitle                 = findViewById(R.id.subtitle);
     this.verified                 = findViewById(R.id.verified_indicator);
@@ -84,8 +75,8 @@ public class ConversationTitleView extends RelativeLayout {
   public void setTitle(@NonNull GlideRequests glideRequests, @Nullable Recipient recipient) {
     this.subtitleContainer.setVisibility(View.VISIBLE);
 
-    if      (recipient == null) setComposeTitle();
-    else                        setRecipientTitle(recipient);
+    if   (recipient == null) setComposeTitle();
+    else                     setRecipientTitle(recipient);
 
     int startDrawable = 0;
     int endDrawable   = 0;
@@ -122,31 +113,18 @@ public class ConversationTitleView extends RelativeLayout {
     updateSubtitleVisibility();
   }
 
-  private void setRecipientTitle(Recipient recipient) {
-    if      (recipient.isGroup())       setGroupRecipientTitle(recipient);
-    else if (recipient.isSelf()) setSelfTitle();
-    else                                setIndividualRecipientTitle(recipient);
+  private void setRecipientTitle(@NonNull Recipient recipient) {
+    if      (recipient.isGroup()) setGroupRecipientTitle(recipient);
+    else if (recipient.isSelf())  setSelfTitle();
+    else                          setIndividualRecipientTitle(recipient);
   }
 
-  @SuppressLint("SetTextI18n")
-  private void setNonContactRecipientTitle(Recipient recipient) {
-    this.title.setText(Util.getFirstNonEmpty(recipient.getE164().orNull(), recipient.getUuid().transform(UUID::toString).orNull()));
-
-    if (recipient.getProfileName().isEmpty()) {
-      this.subtitle.setText(null);
-    } else {
-      this.subtitle.setText("~" + recipient.getProfileName().toString());
-    }
-
-    updateSubtitleVisibility();
-  }
-
-  private void setGroupRecipientTitle(Recipient recipient) {
+  private void setGroupRecipientTitle(@NonNull Recipient recipient) {
     this.title.setText(recipient.getDisplayName(getContext()));
     this.subtitle.setText(Stream.of(recipient.getParticipants())
                                 .sorted((a, b) -> Boolean.compare(a.isSelf(), b.isSelf()))
                                 .map(r -> r.isSelf() ? getResources().getString(R.string.ConversationTitleView_you)
-                                                            : r.getDisplayName(getContext()))
+                                                     : r.getDisplayName(getContext()))
                                 .collect(Collectors.joining(", ")));
 
     updateSubtitleVisibility();
@@ -157,10 +135,11 @@ public class ConversationTitleView extends RelativeLayout {
     this.subtitleContainer.setVisibility(View.GONE);
   }
 
-  private void setIndividualRecipientTitle(Recipient recipient) {
+  private void setIndividualRecipientTitle(@NonNull Recipient recipient) {
     final String displayName = recipient.getDisplayNameOrUsername(getContext());
     this.title.setText(displayName);
     this.subtitle.setText(null);
+    updateSubtitleVisibility();
     updateVerifiedSubtitleVisibility();
   }
 
