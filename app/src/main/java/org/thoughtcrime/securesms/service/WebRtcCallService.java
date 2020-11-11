@@ -20,6 +20,7 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.CallManager.CallEvent;
+import org.signal.ringrtc.HttpHeader;
 import org.signal.ringrtc.IceCandidate;
 import org.signal.ringrtc.Remote;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -62,6 +63,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -866,5 +868,15 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     } else {
       throw new AssertionError("Received remote is not instanceof RemotePeer");
     }
+  }
+
+  @Override
+  public void onSendCallMessage(@NonNull UUID uuid, @NonNull byte[] bytes) {
+    Log.i(TAG, "onSendCallMessage:");
+  }
+
+  @Override
+  public void onSendHttpRequest(long l, @NonNull String s, @NonNull CallManager.HttpMethod httpMethod, @Nullable List<HttpHeader> list, @Nullable byte[] bytes) {
+    Log.i(TAG, "onSendHttpRequest:");
   }
 }
