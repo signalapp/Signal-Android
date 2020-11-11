@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao reproduzir áudio!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Contactos bloqueados</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Contactos bloqueados</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e abandonar %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear %1$s?</string>
@@ -459,8 +459,8 @@
   <string name="GroupManagement_invite_multiple_users">Estes utilizadores não podem ser adicionados automaticamente a este grupo por si.\n\nEles foram convidados a juntarem-se, mas não irão ver nenhuma mensagem do grupo até que aceite</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">O que são os \'Novos grupos\'?</string>
-  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Novos grupos têm recursos como @menções e administradores de grupos e oferecerão futuramente suporte para mais recursos.</string>
-  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Todo o histórico de mensagem e média foi mantido para antes da atualização. </string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Os \'Novos grupos\' têm recursos como @menções e administradores de grupos e oferecerão futuramente suporte para mais recursos.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Todo o histórico de mensagens e média foi mantido para antes do upgrade. </string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Este membro necessitará de aceitar um convite para se juntar novamente a este grupo e não receberá mensagens do grupo até que eles aceitem:</item>
     <item quantity="other">Estes membros necessitarão de aceitar um convite para se juntarem novamente a este grupo e não receberão mensagens de grupo até que eles aceitem:</item>
@@ -586,7 +586,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo devido a um erro de rede. Por favor, tente novamente mais tarde</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e imagem</string>
   <string name="ManageGroupActivity_legacy_group">Grupo legado</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Este é um \'Grupo legado\'. Recursos como grupos de administradores apenas se encontram disponíveis para \'Grupos novos\'.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Este é um \'Grupo legado\'. Os recursos como administradores de grupo encontram-se apenas disponíveis para \'Grupos novos\'.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é um Grupo MMS inseguro. Para conversar de forma privada e aceder a recursos como nomes do grupo, convide os seus contactos para o Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convidar agora</string>
   <!--GroupMentionSettingDialog-->
@@ -1108,7 +1108,7 @@
   <string name="WebRtcCallView__signal_voice_call">Chamada de voz do Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Chamada de vídeo do Signal…</string>
   <string name="WebRtcCallView__start_call">Iniciar chamada</string>
-  <string name="WebRtcCallView__group_call">Chamada de grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Chamada de grupo</string> -->
   <string name="WebRtcCallView__view_participants_list">Ver participantes</string>
   <string name="WebRtcCallView__your_video_is_off">O seu vídeo encontra-se desligado</string>
   <!--CallParticipantsListDialog-->
@@ -1892,7 +1892,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__typing_indicators">Indicadores de escrita</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escrita estiverem desativados, não poderá ver os indicadores de escrita de outros utilizadores.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Pedir ao teclado para desligar a aprendizagem de palavras</string>
-  <string name="preferences_app_protection__blocked_contacts">Contactos bloqueados</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Contactos bloqueados</string> -->
   <string name="preferences_chats__when_using_mobile_data">Ao utilizar os dados móveis</string>
   <string name="preferences_chats__when_using_wifi">Ao utilizar o Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Ao utilizar o roaming</string>

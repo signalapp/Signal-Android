@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Σφάλμα κατά την αναπαραγωγή ήχου!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Φραγμένες επαφές</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Φραγμένες επαφές</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Φραγή και αποχώρηση από %1$s;</string>
   <string name="BlockUnblockDialog_block_s">Φραγή του/της %1$s;</string>
@@ -951,7 +951,7 @@
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">Ο/Η %1$s ενέκρινε το αίτημα του/της %2$s να μπει στην ομάδα.</string>
   <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Ενέκρινες το αίτημα του/της %1$s να μπει στην ομάδα.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Το αίτημά σου για να μπεις στην ομάδα εγκρίθηκε.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Το αίτημα του/της %1$s να μπει στην ομάδα εγκρίθηκε</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Το αίτημα του/της %1$s να μπει στην ομάδα εγκρίθηκε.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Το αίτημά σου να μπεις στην ομάδα απορρίφθηκε από κάποιον διαχειριστή/τρια.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">Ο/Η %1$s απέρριψε το αίτημα του/της %2$s να μπει στην ομάδα.</string>
@@ -1108,7 +1108,7 @@
   <string name="WebRtcCallView__signal_voice_call">Κλήση φωνής Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal…</string>
   <string name="WebRtcCallView__start_call">Έναρξη κλήσης</string>
-  <string name="WebRtcCallView__group_call">Ομαδική κλήση</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Ομαδική κλήση</string> -->
   <string name="WebRtcCallView__view_participants_list">Προβολή συμμετέχοντων</string>
   <string name="WebRtcCallView__your_video_is_off">Το βίντεό σου είναι απενεργοποιημένο</string>
   <!--CallParticipantsListDialog-->
@@ -1188,7 +1188,7 @@
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Θα σ\' το ξαναθυμήσουμε αύριο.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Θα σ\' το ξαναθυμήσουμε σε μερικές μέρες.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Θα σ\' το ξαναθυμήσουμε σε μια εβδομάδα.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Θα σ\' το ξαναθυμήσουμε σε μερικές εβδομάδες</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Θα σ\' το υπενθυμίσουμε ξανα σε μερικές εβδομάδες.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_month">Θα σ\' το ξαναθυμήσουμε σε ένα μήνα.</string>
   <!--Slide-->
   <string name="Slide_image">Εικόνα</string>
@@ -1744,7 +1744,7 @@
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Μπορείς πλέον να επιλέξεις να αποδεχθείς μια νέα συνομιλία. Θα δεις τις επιλογές \"Αποδοχή\", \"Διαγραφή\", ή \"Φραγή\".</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Βοήθεια</string>
-  <string name="HelpFragment__have_you_read_our_faq_yet">Έχεις διαβάσει το FAQ μας;</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Έχεις διαβάσει τις Συχνές ερωτήσεις μας;</string>
   <string name="HelpFragment__next">Επόμενο</string>
   <string name="HelpFragment__contact_us">Επικοινώνησε μαζί μας</string>
   <string name="HelpFragment__tell_us_whats_going_on">Πες μας τι συμβαίνει</string>
@@ -1891,7 +1891,7 @@
   <string name="preferences__typing_indicators">Δείκτες πληκτρολόγησης</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Αν οι δείκτες πληκτρολόγησης είναι απενεργοποιημένοι, δε θα μπορείς να δεις δείκτες πληκτρολόγησης από άλλους/ες.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Αίτηση πληκτρολογίου για να απενεργοποιηθεί η προσωποποιημένη εκμάθηση</string>
-  <string name="preferences_app_protection__blocked_contacts">Φραγμένες επαφές</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Φραγμένες επαφές</string> -->
   <string name="preferences_chats__when_using_mobile_data">Όταν χρησιμοποιούνται δεδομένα</string>
   <string name="preferences_chats__when_using_wifi">Όταν χρησιμοποιείται WiFi</string>
   <string name="preferences_chats__when_roaming">Κατά το roaming</string>
@@ -2257,7 +2257,7 @@
   <string name="BackupUtil_never">Ποτέ</string>
   <string name="BackupUtil_unknown">Άγνωστο</string>
   <string name="preferences_app_protection__see_my_phone_number">Να δουν τον αριθμό τηλεφώνου μου</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">Να με βρουν με τον αριθμό τηλεφώνου μου</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Να με βρίσκουν με τον αριθμό τηλεφώνου μου</string>
   <string name="PhoneNumberPrivacy_everyone">Όλοι</string>
   <string name="PhoneNumberPrivacy_my_contacts">Οι επαφές μου</string>
   <string name="PhoneNumberPrivacy_nobody">Κανένας</string>

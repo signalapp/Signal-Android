@@ -77,7 +77,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音訊時出現錯誤！</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">已封鎖的聯絡人</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">已封鎖的聯絡人</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">封鎖並離開%1$s嗎？</string>
   <string name="BlockUnblockDialog_block_s">要封鎖%1$s嗎？</string>
@@ -1060,7 +1060,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal 語音電話…</string>
   <string name="WebRtcCallView__signal_video_call">Signal 視訊電話…</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
-  <string name="WebRtcCallView__group_call">群組通話</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">群組通話</string> -->
   <string name="WebRtcCallView__view_participants_list">查看參與者</string>
   <string name="WebRtcCallView__your_video_is_off">你的視訊已關閉</string>
   <!--CallParticipantsListDialog-->
@@ -1832,7 +1832,7 @@
   <string name="preferences__typing_indicators">打字狀態</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果打字狀態被關閉，你將無法看見其他人的打字狀態。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">要求鍵盤關閉個人化學習</string>
-  <string name="preferences_app_protection__blocked_contacts">封鎖聯絡人</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">封鎖聯絡人</string> -->
   <string name="preferences_chats__when_using_mobile_data">當使用行動數據時</string>
   <string name="preferences_chats__when_using_wifi">當使用 Wi-Fi 時</string>
   <string name="preferences_chats__when_roaming">當漫遊時</string>

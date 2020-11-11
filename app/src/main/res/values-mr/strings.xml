@@ -78,7 +78,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ऑडिओ प्ले करण्यात त्रुटी!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">अवरोधित संपर्क</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">अवरोधित संपर्क</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$sअवरोधित करायचे आणि पडायचे?</string>
   <string name="BlockUnblockDialog_block_s">%1$s अवरोधित करायचे?</string>
@@ -1400,7 +1400,7 @@
   <string name="preferences__typing_indicators">टाईपिंग निर्देशक</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">जर टाईपिंग निर्देशक अक्षम केले आहेत, तर इतरांकडून आपल्याला टाईपिंग निर्देशक बघता येणार नाही.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">वैयक्तिकृत शिकणे अक्षम करण्यासाठी कीबोर्डला विनंती करा</string>
-  <string name="preferences_app_protection__blocked_contacts">अवरोधित संपर्क</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">अवरोधित संपर्क</string> -->
   <string name="preferences_chats__when_using_mobile_data">मोबाईल डेटा वापरताना</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi वापरताना</string>
   <string name="preferences_chats__when_roaming">रोमिंग असताना</string>

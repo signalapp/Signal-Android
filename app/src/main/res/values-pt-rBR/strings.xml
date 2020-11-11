@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Contatos bloqueados</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Contatos bloqueados</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e sair %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear %1$s ?</string>
@@ -1109,7 +1109,7 @@
   <string name="WebRtcCallView__signal_voice_call">Mensagem de voz Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Chamada de vídeo Signal…</string>
   <string name="WebRtcCallView__start_call">Começar a Chamada</string>
-  <string name="WebRtcCallView__group_call">Chamada em grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Chamada em grupo</string> -->
   <string name="WebRtcCallView__view_participants_list">Ver os participantes</string>
   <string name="WebRtcCallView__your_video_is_off">Seu vídeo está desligado</string>
   <!--CallParticipantsListDialog-->
@@ -1896,7 +1896,7 @@
   <string name="preferences__typing_indicators">Indicadores de digitação</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de digitação estiverem desabilitados, você não poderá ver os indicadores de digitação de outras pessoas.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar ao teclado que desabilite o aprendizado personalizado</string>
-  <string name="preferences_app_protection__blocked_contacts">Contatos bloqueados</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Contatos bloqueados</string> -->
   <string name="preferences_chats__when_using_mobile_data">Quando usar dados móveis</string>
   <string name="preferences_chats__when_using_wifi">Quando usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Quando em roaming</string>

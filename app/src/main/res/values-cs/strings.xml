@@ -86,7 +86,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Chyba při přehrávání audia!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Zablokovat a opustit %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Zablokovat %1$s?</string>
@@ -1204,7 +1204,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal hlasový hovor…</string>
   <string name="WebRtcCallView__signal_video_call">Signal videohovor…</string>
   <string name="WebRtcCallView__start_call">Zahájit hovor</string>
-  <string name="WebRtcCallView__group_call">Skupinový hovor</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Skupinový hovor</string> -->
   <string name="WebRtcCallView__view_participants_list">Zobrazit účastníky</string>
   <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
   <!--CallParticipantsListDialog-->
@@ -2017,7 +2017,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__typing_indicators">Indikátory psaní</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Pokud máte vypnuté indikátory psaní, nebudete je vidět ani od ostatních.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Vyžádat klávesnici s vypnutým učením</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string> -->
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
   <string name="preferences_chats__when_using_wifi">Při použití WiFi</string>
   <string name="preferences_chats__when_roaming">Při roamingu</string>

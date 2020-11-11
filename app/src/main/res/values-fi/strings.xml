@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Virhe toistettaessa äänitallennetta!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Estetyt yhteystiedot</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Estetyt yhteystiedot</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Estä ja poistu ryhmästä %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Estä %1$s?</string>
@@ -453,6 +453,7 @@
   <string name="GroupManagement_learn_more">Lue lisää</string>
   <string name="GroupManagement_invite_multiple_users">Et voi lisätä näitä käyttäjiä automaattisesti tähän ryhmään.\n\nHeidät on kutsuttu liittymään, eivätkä näe ryhmäviestejä ennen kuin he hyväksyvät kutsun.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Mitä ovat uudet ryhmät?</string>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Poistu ryhmästä?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Et voi enää lähettää tai vastaanottaa viestejä tässä ryhmässä.</string>
@@ -806,6 +807,8 @@
   <string name="MessageRecord_you_updated_group">Sinä päivitit ryhmää.</string>
   <string name="MessageRecord_the_group_was_updated">Ryhmä päivitettiin.</string>
   <string name="MessageRecord_you_called_date">Soitit puhelun · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Vastaamaton äänipuhelu · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Vastaamaton videopuhelu · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s päivitti ryhmää.</string>
   <string name="MessageRecord_s_called_you_date">%1$s soitti sinulle · %2$s</string>
   <string name="MessageRecord_called_s">Soitit puhelun: %s</string>
@@ -815,6 +818,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajaksi %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajaksi %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Katoavien viestien ajaksi asetettiin %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Tämä ryhmä päivitettiin uudeksi ryhmäksi.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s muutti profiilinimekseen %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s muutti profiilinimensä %2$s nimeksi %3$s.</string>
@@ -1085,7 +1089,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal-puhelu…</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videopuhelu…</string>
   <string name="WebRtcCallView__start_call">Aloita puhelu</string>
-  <string name="WebRtcCallView__group_call">Ryhmäpuhelu</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Ryhmäpuhelu</string> -->
   <string name="WebRtcCallView__view_participants_list">Näytä osallistujat</string>
   <string name="WebRtcCallView__your_video_is_off">Videosi on pois päältä</string>
   <!--CallParticipantsListDialog-->
@@ -1866,7 +1870,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__typing_indicators">Kirjoitustilaindikaattori</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jos et ole ottanut kirjoitustilaindikaattoria käyttöön, et tule näkemään kirjoitustilaindikaattoria muilta.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Pyydä näppäimistöä kytkemään sanakirjan automaattinen päivittäminen pois päältä</string>
-  <string name="preferences_app_protection__blocked_contacts">Estetyt yhteystiedot</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Estetyt yhteystiedot</string> -->
   <string name="preferences_chats__when_using_mobile_data">Mobiiliverkossa</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
   <string name="preferences_chats__when_roaming">Roaming-tilassa</string>

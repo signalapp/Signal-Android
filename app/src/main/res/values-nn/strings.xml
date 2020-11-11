@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Det oppstod ein feil under lydavspeling.</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokkerte kontaktar</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokkerte kontaktar</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokker og forlat %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokker %1$s?</string>
@@ -1115,7 +1115,7 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="WebRtcCallView__signal_voice_call">Signal-samtale …</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtale …</string>
   <string name="WebRtcCallView__start_call">Start samtale</string>
-  <string name="WebRtcCallView__group_call">Gruppesamtale</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Gruppesamtale</string> -->
   <string name="WebRtcCallView__view_participants_list">Vis medlem</string>
   <string name="WebRtcCallView__your_video_is_off">Du har skrudd av video</string>
   <!--CallParticipantsListDialog-->
@@ -1902,7 +1902,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__typing_indicators">Tastevisning</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Viss tastevisning er av, kan du heller ikkje sjå når andre tastar.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Spør om tastatur for å skru av persontilpassa læring</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokkerte kontaktar</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokkerte kontaktar</string> -->
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wifi</string>
   <string name="preferences_chats__when_roaming">I framandnett</string>

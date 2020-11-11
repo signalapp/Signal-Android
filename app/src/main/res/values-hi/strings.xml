@@ -74,7 +74,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ऑडियो बजाने में त्रुटि!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">ब्लॉक किये हुए संपर्क</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">ब्लॉक किये हुए संपर्क</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ग्रूप के सदस्य आपको इस ग्रूप में फ़िर शामिल कर पाएँगे।</string>
   <string name="BlockUnblockDialog_unblock">अनब्लॉक करें</string>
@@ -1328,7 +1328,7 @@
   <string name="preferences__typing_indicators">टाइपिंग सूचक</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">टाइपिंग सूचक बंद करने पर आप दूसरों के टाइपिंग सूचक भी नहीं देख पाएंगे|</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">व्यक्तिगत सीखने को अक्षम करने के लिए कीबोर्ड को अनुरोध करें</string>
-  <string name="preferences_app_protection__blocked_contacts">ब्लॉक किये हुए कॉन्टेक्ट्स</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">ब्लॉक किये हुए कॉन्टेक्ट्स</string> -->
   <string name="preferences_chats__when_using_mobile_data">मोबाइल डेटा का उपयोग करते समय</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi का उपयोग करते समय</string>
   <string name="preferences_chats__when_roaming">रोमिंग करते समय</string>

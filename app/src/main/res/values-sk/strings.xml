@@ -86,7 +86,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Chyba pri prehrávaní zvuku!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokované kontakty</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Zablokovať a opustiť %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Zablokovať %1$s?</string>
@@ -613,7 +613,7 @@
   <string name="ManageGroupActivity_off">Vypnuté</string>
   <string name="ManageGroupActivity_on">Zapnuté</string>
   <string name="ManageGroupActivity_view_all_members">Zobraziť všetkých členov</string>
-  <string name="ManageGroupActivity_see_all">Vidieť všetko</string>
+  <string name="ManageGroupActivity_see_all">Pozrieť všetky</string>
   <string name="ManageGroupActivity_none">Žiadny</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d pozvaný</item>
@@ -663,7 +663,7 @@
   <string name="ManageRecipientActivity_on">Zapnuté</string>
   <string name="ManageRecipientActivity_add_to_a_group">Pridať do skupiny</string>
   <string name="ManageRecipientActivity_view_all_groups">Zobraziť všetky skupiny</string>
-  <string name="ManageRecipientActivity_see_all">Vidieť všetko</string>
+  <string name="ManageRecipientActivity_see_all">Pozrieť všetky</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Žiadne spoločné skupiny</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d spoločná skupina</item>
@@ -1204,7 +1204,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal hlasový hovor…</string>
   <string name="WebRtcCallView__signal_video_call">Signal videohovor…</string>
   <string name="WebRtcCallView__start_call">Začať hovor</string>
-  <string name="WebRtcCallView__group_call">Skupinový hovor</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Skupinový hovor</string> -->
   <string name="WebRtcCallView__view_participants_list">Zobraziť účastníkov</string>
   <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
   <!--CallParticipantsListDialog-->
@@ -2017,7 +2017,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__typing_indicators">Indikátory písania</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Keď sú indikátory písania vypnuté, nezobrazia sa Vám ani indikátory iných.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Požiadať klávesnicu aby sa neučila</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokované kontakty</string> -->
   <string name="preferences_chats__when_using_mobile_data">Pri použití mobilných dát</string>
   <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Pri roamingu</string>

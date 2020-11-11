@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erreur de lecture du son.</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Contacts bloqués</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Contacts bloqués</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquer et quitter %1$s ?</string>
   <string name="BlockUnblockDialog_block_s">Bloquer %1$s ?</string>
@@ -128,11 +128,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Supprimer la photo du groupe ?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Mettre Signal à jour</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Cette version de l\'application n\'est plus prise en charge. Pour continuer d\'envoyer et de recevoir des messages, veuillez effectuer la mise à jour vers la dernière version de l\'application.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Cette version de l’appli n’est plus prise en charge. Pour continuer à échanger des messages, veuillez mettre Signal à jour vers la version la plus récente.</string>
   <string name="ClientDeprecatedActivity_update">Mise à jour</string>
   <string name="ClientDeprecatedActivity_dont_update">Ne pas mettre à jour</string>
   <string name="ClientDeprecatedActivity_warning">Avertissement</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Votre version de Signal est expirée. Vous pouvez afficher l\'historique de message mais vous ne pouvez pas envoyer ou recevoir de nouveaux messages tant que vous n\'avez pas procédé à la mise à jour.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Votre version de Signal est expirée. Vous pouvez afficher l’historique de vos messages, mais vous ne pourrez pas échanger de messages tant que vous n’aurez pas mis Signal à jour.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
   <string name="CommunicationActions_no_email_app_found">Aucune appli de courriel n’a été trouvée.</string>
@@ -295,8 +295,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Les fichiers multimédias éphémères sortants sont supprimés automatiquement après l’envoi</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Vous avez déjà visualisé ce message</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vous pouvez ajouter des notes à votre intention dans cette conversation. \nSi des appareils sont reliés à votre compte, les nouvelles notes seront synchronisées.</string>
-  <string name="ConversationFragment__tap_to_review">Appuyez pour voir</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal à trouvé un autre contact avec le même nom.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membres du groupe portent le même nom.</string>
+  <string name="ConversationFragment__tap_to_review">Toucher pour examiner</string>
+  <string name="ConversationFragment__review_requests_carefully">Examinez les demandes avec attention</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal a trouvé un autre contact avec le même nom.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Aucun navigateur n’est installé sur votre appareil.</string>
   <!--ConversationListFragment-->
@@ -340,18 +342,19 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Restaurer d’une sauvegarde ?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaurez vos messages et médias d’une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
-  <string name="ChooseBackupFragment__choose_backup">Choisir une sauvegarde </string>
+  <string name="ChooseBackupFragment__icon_content_description">Restaurez à partir de l’icône de sauvegarde</string>
+  <string name="ChooseBackupFragment__choose_backup">Choisir une sauvegarde</string>
   <string name="ChooseBackupFragment__learn_more">En apprendre davantage</string>
   <!--RestoreBackupFragment-->
-  <string name="RestoreBackupFragment__restore_complete">Restauration terminée.</string>
+  <string name="RestoreBackupFragment__restore_complete">La restauration est terminée.</string>
   <string name="RestoreBackupFragment__choose_folder">Sélectionner un dossier</string>
   <string name="RestoreBackupFragment__not_now">Pas maintenant</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Sauvegardes des conversations</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Vos sauvegardes sont chiffrées avec une phrase secrète et stockées sur votre appareil.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Les sauvegardes sont chiffrées avec une phrase de passe et stockées sur votre appareil.</string>
   <string name="BackupsPreferenceFragment__create_backup">Créer une sauvegarde</string>
-  <string name="BackupsPreferenceFragment__last_backup">Dernière sauvegarde : %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Répertoire de sauvegarde</string>
+  <string name="BackupsPreferenceFragment__last_backup">Dernière sauvegarde : %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Dossier de sauvegarde</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Confirmer la phrase de passe de la sauvegarde</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Essayez la phrase de passe de la sauvegarde et confirmez qu’elle correspond</string>
   <string name="BackupsPreferenceFragment__turn_on">Activer</string>
@@ -369,7 +372,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Choisir dans la galerie</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Supprimer la photo</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">L’autorisation d’accès à l’appareil photo est requis pour prendre une photo.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">L\'affichage de votre galerie photo nécessite l\'autorisation d\'accès au stockage de l\'appareil.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">L’autorisation d’accès à la mémoire de votre appareil est requise pour afficher votre galerie.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">À l’instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -399,8 +402,8 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiser pour palier l’absence des Services Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas les Services Google Play en charge. Touchez pour désactiver les optimisations système de la pile qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Votre version de Signal est expiré. Mettez à jour pour continuer à envoyer et recevoir des messages.</string>
-  <string name="ExpiredBuildReminder_update_now">Mettre à jour maintenant</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Votre version de Signal est expirée. Mettez-la à jour maintenant afin d’échanger des messages.</string>
+  <string name="ExpiredBuildReminder_update_now">Mettre Signal à jour maintenant</string>
   <!--PendingGroupJoinRequestsReminder-->
   <string name="PendingGroupJoinRequestsReminder_view">Afficher</string>
   <!--ShareActivity-->
@@ -417,7 +420,7 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Autocollants</string>
   <!--AddToGroupActivity-->
-  <string name="AddToGroupActivity_add_member">Ajouter un membre ?</string>
+  <string name="AddToGroupActivity_add_member">Ajouter un membre ?</string>
   <string name="AddToGroupActivity_add_s_to_s">Ajouter « %1$s » à « %2$s » ?</string>
   <string name="AddToGroupActivity_s_added_to_s">« %1$s » a été ajouté à « %2$s ».</string>
   <string name="AddToGroupActivity_add_to_group">Ajouter au groupe</string>
@@ -448,7 +451,7 @@
   <string name="GroupManagement_learn_more">En apprendre davantage</string>
   <string name="GroupManagement_invite_multiple_users">Ces utilisateurs ne peuvent pas être ajoutés automatiquement par vous à ce groupe.\n\nDes invitations ont été envoyées et ces utilisateurs ne verront aucun message du groupe tant que les invitations n’auront pas été acceptées.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Que sont les Nouveaux Groupes ?</string>
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Que sont les nouveaux groupes ?</string>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Quitter le groupe ?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Vous ne pourrez plus recevoir ni envoyer de messages dans ce groupe.</string>
@@ -532,8 +535,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Demandes et invitations de membres</string>
   <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
   <string name="ManageGroupActivity_edit_group_info">Modifier les renseignements du groupe</string>
-  <string name="ManageGroupActivity_who_can_add_new_members">Qui peut ajouter des nouveaux membres ?</string>
-  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Qui peut modifier les informations de ce groupe ?</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Qui peut modifier les renseignements de ce groupe ?</string>
   <string name="ManageGroupActivity_group_link">Lien de groupe</string>
   <string name="ManageGroupActivity_block_group">Bloquer le groupe</string>
   <string name="ManageGroupActivity_unblock_group">Débloquer le groupe</string>
@@ -555,8 +558,8 @@
     <item quantity="one">%d membre a été ajouté.</item>
     <item quantity="other">%d membres ont été ajoutés.</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Seuls les administrateurs peuvent activer ou désactiver le partage de l\'adresse du groupe.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Seuls les administrateurs peuvent réinitialiser l\'adresse de partage du groupe.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Seuls les administrateurs peuvent activer ou désactiver le lien de groupe partageable.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Seuls les administrateurs peuvent réinitialiser le lien de groupe partageable.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Échec de mise à jour du groupe</string>
@@ -565,7 +568,6 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Échec de mise à jour du groupe en raison d’une erreur réseau, veuillez réessayer plus tard</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Modifier le nom et l’image</string>
   <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
-  <string name="ManageGroupActivity_invite_now">Invitez maintenant !</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications si vous êtes mentionné dans des conversations en sourdine ?</string>
@@ -797,11 +799,11 @@
   <string name="MessageRecord_left_group">Vous avez quitté le groupe</string>
   <string name="MessageRecord_you_updated_group">Vous avez mis le groupe à jour.</string>
   <string name="MessageRecord_the_group_was_updated">Le groupe a été mis à jour.</string>
-  <string name="MessageRecord_you_called_date">Vous avez appelé · %1$s</string>
-  <string name="MessageRecord_missed_audio_call_date">Appel vocal manqué · %1$s</string>
-  <string name="MessageRecord_missed_video_call_date">Appel vidéo manqué · %1$s</string>
+  <string name="MessageRecord_you_called_date">Vous avez appelé – %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Appel vocal manqué –· %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Appel vidéo manqué – %1$s</string>
   <string name="MessageRecord_s_updated_group">%s a mis le groupe à jour.</string>
-  <string name="MessageRecord_s_called_you_date">%1$s vous a appelé · %2$s</string>
+  <string name="MessageRecord_s_called_you_date">%1$s vous a appelé – %2$s</string>
   <string name="MessageRecord_called_s">Vous avez appelé %s</string>
   <string name="MessageRecord_s_joined_signal">%s est sur Signal.</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Vous avez désactivé les messages éphémères.</string>
@@ -809,7 +811,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini l’expiration des messages éphémères à %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">L’expiration des messages éphémères a été définie à %1$s.</string>
-  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ce groupe a été mis à jour vers les Nouveaux Groupes.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ce groupe a été converti en nouveau groupe.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s a changé le nom de son profil en %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s a changé le nom de son profil de %2$s en %3$s.</string>
@@ -987,7 +989,7 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">Vos messages n’expireront pas.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus de cette conversation disparaîtront %s après avoir été lus.</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_update_now">Mettre à jour maintenant</string>
+  <string name="OutdatedBuildReminder_update_now">Mettre Signal à jour maintenant</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Saisissez la phrase de passe</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icône de Signal</string>
@@ -1070,8 +1072,8 @@
   <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
   <string name="WebRtcCallView__start_call">Démarrer un appel</string>
-  <string name="WebRtcCallView__group_call">Appel de groupe</string>
-  <string name="WebRtcCallView__view_participants_list">Voir les participants</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Appel de groupe</string> -->
+  <string name="WebRtcCallView__view_participants_list">Afficher les participants</string>
   <!--CallParticipantsListDialog-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
@@ -1089,7 +1091,7 @@
   <string name="RegistrationActivity_more_information">Plus de précisions</string>
   <string name="RegistrationActivity_less_information">Moins de précisions</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts et médias afin de se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin d\'accéder à vos contacts pour ce connecter avec vos amis, échanger des messages et passer des appels sécurisés.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts pour se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour confirmer facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de confirmation si vous autorisez Signal à lire les textos.</string>
@@ -1267,7 +1269,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Aucun numéro de sécurité à comparer n’a été trouvé dans le presse-papiers</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Appareil photo afin de balayer un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossible de balayer le code QR sans l’autorisation Appareil photo</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Vous devez d\'abord échanger des messages pour afficher %1$s le numéro de sécurité.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Vous devez d’abord échanger des messages afin d’afficher le numéro de sécurité de %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1298,7 +1300,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ce message sera irrémédiablement supprimé.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s à %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Le média n’est plus disponible.</string>
-  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Impossible de trouver une application capable de partager ce média.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Impossible de trouver une appli qui peut partager ce média.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nouveaux messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Le plus récent de : %1$s</string>
@@ -1341,7 +1343,7 @@
   <string name="NotificationChannel_other">Autre</string>
   <string name="NotificationChannel_group_messages">Messages</string>
   <string name="NotificationChannel_missing_display_name">Inconnu</string>
-  <string name="NotificationChannel_voice_notes">Notes Vocales</string>
+  <string name="NotificationChannel_voice_notes">Notes vocales</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Le nom de profil a été défini avec succès.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
@@ -1443,9 +1445,9 @@
   <string name="ContactSelectionListFragment_username_not_found">Le nom d’utilisateur est introuvable</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">« %1$s » n’est pas un utilisateur de Signal. Veuillez confirmer le nom d’utilisateur et réessayer.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Vous n’avez pas besoin de vous ajouter au groupe</string>
-  <string name="ContactSelectionListFragment_maximum_group_size_reached">Taille maximum du groupe atteinte</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal peuvent avoir %1$dmembres au maximum.</string>
-  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Limite de membres recommandée atteinte.</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">La taille maximale du groupe est atteinte</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal ne peuvent pas avoir plus de %1$dmembres.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">La limite de membres recommandée est atteinte</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Aucun contact n’est bloqué</string>
   <!--contact_selection_list_fragment-->
@@ -1837,7 +1839,7 @@
   <string name="preferences__typing_indicators">Indicateurs de saisie</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie d’autrui.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l’apprentissage personnalisé</string>
-  <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Contacts bloqués</string> -->
   <string name="preferences_chats__when_using_mobile_data">En utilisant les données mobiles</string>
   <string name="preferences_chats__when_using_wifi">En utilisant le WI-FI</string>
   <string name="preferences_chats__when_roaming">En itinérance</string>
@@ -2131,7 +2133,7 @@
   <string name="ResearchMegaphone_learn_more">En apprendre davantage</string>
   <string name="ResearchMegaphone_dismiss">Fermer</string>
   <string name="ResearchMegaphoneDialog_signal_research">Recherche Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Nous croyons en la confidentialité.</b></p><p>Signal ne vous suit pas et ne collecte pas vos données. Afin d\'améliorer Signal pour tout le monde, nous nous appuyons sur les retours des utilisateurs <b>et nous aimerions le vôtre.</b></p><p>Nous menons actuellement une enquêtes pour comprendre comment vous utilisez Signal. Notre enquête ne collecte aucune aucune donnée permettant de vous identifier. Si vous souhaitez partager d\'avantages, il vous sera possible de nous indiquer vos coordonnées. </p><p>Si vous avez quelques minutes et des suggestions ou remarques à nous offrir, nous serions ravis de vous lire.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Nous croyons en la protection des renseignements personnels.</b></p><p>Signal ne vous suit pas à la trace ni ne recueille vos données. Afin d’améliorer Signal pour tous, nous comptons sur la rétroaction des utilisateurs <b>et nous aimerions connaître la vôtre.</b></p><p> Nous effectuons un sondage afin de comprendre comment vous utilisez Signal. Notre sondage ne recueille aucune donnée qui permettrait de vous identifier. Si vous souhaitez nous faire part d’autres commentaires, la possibilité de nous indiquer vos coordonnées vous sera offerte.</p><p>Si vous avez quelques minutes à nous consacrer et une rétroaction à nous communiquer, nous serions ravis de vous lire.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Répondre au sondage</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Non merci</string>
   <!--transport_selection_list_item-->
@@ -2149,7 +2151,7 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour visualiser les messages en attente</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Phrase de passe de la sauvegarde</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans la mémoire externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Vous devez obligatoirement avoir cette phrase secrète pour restaurer votre sauvegarde.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Cette phrase de passe est requise afin de restaurer une sauvegarde.</string>
   <string name="backup_enable_dialog__folder">Dossier</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai noté cette phrase de passe. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>
   <string name="registration_activity__restore_backup">Restaurer une sauvegarde</string>
@@ -2176,7 +2178,7 @@
   <string name="BackupDialog_delete_backups">Supprimer les sauvegardes ?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Désactiver et supprimer toutes les sauvegardes locales ?</string>
   <string name="BackupDialog_delete_backups_statement">Supprimer les sauvegardes</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">Pour activer les sauvegardes, vous devez choisir un dossier. Les sauvegardes seront enregistrées dans ce dossier.</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Pour activer les sauvegardes, choisissez un dossier. Les sauvegardes seront enregistrées dans cet emplacement.</string>
   <string name="BackupDialog_choose_folder">Sélectionner un dossier</string>
   <string name="BackupDialog_copied_to_clipboard">A été copié dans le presse-papiers</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Saisissez la phrase de passe de la sauvegarde pour la confirmer</string>
@@ -2188,10 +2190,10 @@
   <string name="ChatsPreferenceFragment_in_progress">En cours</string>
   <string name="LocalBackupJob_creating_backup">Création de la sauvegarde…</string>
   <string name="LocalBackupJobApi29_backup_failed">La sauvegarde a échoué</string>
-  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Votre dossier de sauvegarde a été supprimé ou déplacé.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Votre fichier de sauvegarde est trop volumineux pour être stocké dans cette emplacement.</string>
-  <string name="LocalBackupJobApi29_there_is_not_enough_space">Il n\'y a pas assez de place pour enregistrer votre sauvegarde dans cette emplacement.</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">Toucher pour gérer vos sauvegardes</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Votre répertoire de sauvegarde a été supprimé ou déplacé.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Votre fichier de sauvegarde est trop gros pour être enregistré sur ce volume.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Il manque d’espace pour enregistrer votre sauvegarde.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Toucher pour gérer les sauvegardes</string>
   <string name="ProgressPreference_d_messages_so_far">%d messages jusqu’à présent</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Veuillez saisir le code de confirmation envoyé à %s.</string>
   <string name="RegistrationActivity_wrong_number">Mauvais numéro</string>
@@ -2282,7 +2284,7 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">Appel vocal non sécurisé</string>
   <string name="RecipientBottomSheet_video_call_description">Appel vidéo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Supprimer %1$s en tant qu’administrateur du groupe ?</string>
-  <string name="RecipientBottomSheet_remove_s_from_the_group">Supprimer %1$sdu groupe ? </string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Supprimer %1$s du groupe ? </string>
   <string name="RecipientBottomSheet_remove">Supprimer</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
   <string name="GroupRecipientListItem_admin">Administrateur</string>
@@ -2303,27 +2305,27 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Impossible de démarrer la lecture.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Message vocal%1$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Message vocal – %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s à %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Examiner les membres</string>
-  <string name="ReviewCardDialogFragment__review_request">Examiner les requêtes</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Si vous n\'êtes pas certain de la provenance de la demande, passez en revue les contacts ci-dessous et prenez une décision. </string>
+  <string name="ReviewCardDialogFragment__review_request">Examiner la requête</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Si vous n’êtes pas certain de qui la demande provient, examinez les contacts ci-dessous et agissez en conséquence.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Aucun autre groupe en commun.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>
-  <string name="ReviewCardDialogFragment__remove_s_from_group">Supprimer %1$s du groupe ?</string>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Supprimer %1$s du groupe ?</string>
   <string name="ReviewCardDialogFragment__remove">Supprimer</string>
-  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Impossible de supprimer ce membre du groupe.</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Échec de suppression du membre du groupe.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Membre</string>
   <string name="ReviewCard__request">Demande</string>
   <string name="ReviewCard__your_contact">Votre contact</string>
   <string name="ReviewCard__remove_from_group">Supprimer du groupe</string>
-  <string name="ReviewCard__update_contact">Mettre à jour le contact</string>
+  <string name="ReviewCard__update_contact">Mettre le contact à jour</string>
   <string name="ReviewCard__block">Bloquer</string>
   <string name="ReviewCard__delete">Supprimer</string>
-  <string name="ReviewCard__recently_changed">%1$s a récemment changé de nom de profil pour %2$s</string>
+  <string name="ReviewCard__recently_changed">%1$s a récemment changé le nom de son profil en %2$s</string>
   <!--EOF-->
 </resources>

@@ -86,7 +86,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gwall chwarae sain!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Cysylltiadau wedi\'u rhwystro</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Cysylltiadau wedi\'u rhwystro</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Rhwystro a gadael %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Rhwystro %1$s?</string>
@@ -488,6 +488,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupManagement_learn_more">Dysgu rhagor</string>
   <string name="GroupManagement_invite_multiple_users">Nid oes modd i chi ychwanegu\'r defnyddwyr hyn yn awtomatig at y grŵp hwn.\n\nRydych wedi eich gwahodd i ymuno, a fyddwch chi ddim yn gweld unrhyw negeseuon grŵp nes eich bod yn derbyn.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Beth yw Grwpiau Newydd?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Mae gan Grwpiau Newydd nodweddion fel @crybwyll a gewinyddwyr grwpiau, a byddant â nodweddion ychwanegol yn y dyfodol.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Mae holl hanes negeseuon a chyfryngau o cyn uwchraddio wedi\'u cadw.</string>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Gadael y grŵp?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Ni fyddwch yn gallu anfon na derbyn negeseuon yn y grŵp hwn mwyach.</string>
@@ -1179,7 +1182,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallView__signal_voice_call">Galwad llais Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Galwad fideo Signal</string>
   <string name="WebRtcCallView__start_call">Cychwyn Galwad</string>
-  <string name="WebRtcCallView__group_call">Galwad Grŵp</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Galwad Grŵp</string> -->
   <string name="WebRtcCallView__view_participants_list">Gweld cyfranogwyr</string>
   <string name="WebRtcCallView__your_video_is_off">Mae\'ch fideo i ffwrdd</string>
   <!--CallParticipantsListDialog-->
@@ -1991,7 +1994,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__typing_indicators">Dangosyddion Teipio</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Os yw dangosyddion teipio wedi eu hanalluogi, fyddwch chi ddim yn gweld dangosyddion teipio pobl eraill.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Gofyn i\'r bysellfwrdd analluogi dysgu personol</string>
-  <string name="preferences_app_protection__blocked_contacts">Cysylltiadau wedi\'u rhwystro</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Cysylltiadau wedi\'u rhwystro</string> -->
   <string name="preferences_chats__when_using_mobile_data">Wrth ddefnyddio data symudol</string>
   <string name="preferences_chats__when_using_wifi">Wrth ddefnyddio diwifr</string>
   <string name="preferences_chats__when_roaming">Wrth grwydro</string>

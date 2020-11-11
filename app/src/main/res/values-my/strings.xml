@@ -63,7 +63,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">အသံဖွင့် မရပါ!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">ပိတ်ထားသည့် သူများ </string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">ပိတ်ထားသည့် သူများ </string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ယနေ့ </string>
   <string name="BucketedThreadMedia_Yesterday">မနေ့က </string>
@@ -992,7 +992,7 @@
   <string name="preferences__read_receipts">ဖတ်ပြီးပြီ</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">စာဖတ်ပြီး​ကြောင်းပြသည်ကို ပိတ်ထားပါက တခြားသူများထံမှ ဖတ်ပြီး​ကြောင်းပြသည်ကိုလည်း မြင်ရမည်မဟုတ်ပါ။</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">မိမိ၏လုပ်ဆောင်ချက်ပေါ်မူတည်၍ မှတ်သားထားမှုကို မလုပ်ဆောင်ရန် ကီးဘုတ်ကို တောင်းဆိုပါ</string>
-  <string name="preferences_app_protection__blocked_contacts">ပိတ်ထားသည့်လူများ </string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">ပိတ်ထားသည့်လူများ </string> -->
   <string name="preferences_chats__when_using_mobile_data">မိုဘိုင်းအင်တာနက်ကို အသုံးပြုသည့်အခါ </string>
   <string name="preferences_chats__when_using_wifi">ဝိုင်ဖိုင်ကို အသုံးပြုသည့်အခါ </string>
   <string name="preferences_chats__when_roaming">Roaming လုပ်သည့်အခါ</string>

@@ -86,7 +86,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Błąd audio!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Zablokowane kontakty</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Zablokowane kontakty</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Zablokować i opuścić %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Zablokować %1$s?</string>
@@ -909,10 +909,10 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Czas znikania wiadomości został ustawiony na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ta grupa została zaktualizowana do Nowej grupy.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s członek nie mógł zostać dodany do Nowej grupy i został zaproszony do dołączenia.</item>
-    <item quantity="few">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało zaproszonych do dołączenia.</item>
-    <item quantity="many">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało zaproszonych do dołączenia.</item>
-    <item quantity="other">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało zaproszonych do dołączenia.</item>
+    <item quantity="one">%1$s członek nie mógł zostać dodany do Nowej grupy i został do niej zaproszony.</item>
+    <item quantity="few">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało do niej zaproszonych.</item>
+    <item quantity="many">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało do niej zaproszonych.</item>
+    <item quantity="other">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało do niej zaproszonych.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s zmienił(a) nazwę profilu na %2$s.</string>
@@ -1204,7 +1204,7 @@
   <string name="WebRtcCallView__signal_voice_call">Połączenie głosowe Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal…</string>
   <string name="WebRtcCallView__start_call">Rozpocznij połączenie</string>
-  <string name="WebRtcCallView__group_call">Połączenie grupowe</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Połączenie grupowe</string> -->
   <string name="WebRtcCallView__view_participants_list">Zobacz uczestników</string>
   <string name="WebRtcCallView__your_video_is_off">Twoje wideo jest wyłączone</string>
   <!--CallParticipantsListDialog-->
@@ -2010,7 +2010,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__typing_indicators">Wskaźniki pisania</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Gdy wskaźniki pisania są wyłączone, Ty również nie będziesz widzieć wskaźników pisania innych użytkowników.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Wymuś na klawiaturze blokadę uczenia się słów</string>
-  <string name="preferences_app_protection__blocked_contacts">Zablokowane kontakty</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Zablokowane kontakty</string> -->
   <string name="preferences_chats__when_using_mobile_data">Podczas używania Danych Mobilnych</string>
   <string name="preferences_chats__when_using_wifi">Podczas używania Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Podczas roamingu</string>

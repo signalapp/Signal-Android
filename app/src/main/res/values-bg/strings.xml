@@ -75,7 +75,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Грешка при възпроизвеждане на аудио!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Днес</string>
   <string name="BucketedThreadMedia_Yesterday">Вчера</string>
@@ -1146,7 +1146,7 @@
   <string name="preferences__typing_indicators">Индикатори за писане</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ако индикаторите за писане са декативирани, няма да можете да видите индикаторите на другите хора.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Поискване на клавиатурата да деактивира персонализрано научаване</string>
-  <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string> -->
   <string name="preferences_chats__when_using_mobile_data">Когато се използва мобилен интернет</string>
   <string name="preferences_chats__when_using_wifi">Когато се използва Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Когато се използва роуминг</string>

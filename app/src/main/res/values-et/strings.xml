@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Heli esitamisel tekkis viga!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokeeritud kontaktid</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokeeritud kontaktid</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Kas blokeerida ja lahkuda %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Kas blokeerida %1$s?</string>
@@ -1025,7 +1025,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal-i häälkõne…</string>
   <string name="WebRtcCallView__signal_video_call">Signal-i videokõne…</string>
   <string name="WebRtcCallView__start_call">Alusta kõnet</string>
-  <string name="WebRtcCallView__group_call">Grupikõne</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Grupikõne</string> -->
   <string name="WebRtcCallView__view_participants_list">Vaata osalejaid</string>
   <string name="WebRtcCallView__your_video_is_off">Sinu video on väljas</string>
   <!--CallParticipantsListDialog-->
@@ -1805,7 +1805,7 @@
   <string name="preferences__typing_indicators">Kirjutamisindikaatorid</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Kui kirjutamisindikaatorid on keelatud, ei näe sa neid ka teiste puhul.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Palu klaviatuuril keelata isikupärastatud õppimine</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokeeritud kontaktid</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokeeritud kontaktid</string> -->
   <string name="preferences_chats__when_using_mobile_data">Kui kasutad mobiilandmesidet</string>
   <string name="preferences_chats__when_using_wifi">Kui kasutad Wi-Fit</string>
   <string name="preferences_chats__when_roaming">Kui oled välismaal</string>

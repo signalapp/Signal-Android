@@ -83,7 +83,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Eroare la redarea audio!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Contacte blocate</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Contacte blocate</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blocați și părăsiți %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blochez %1$s?</string>
@@ -1138,7 +1138,7 @@
   <string name="WebRtcCallView__signal_voice_call">Apel vocal Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Apel video Signal…</string>
   <string name="WebRtcCallView__start_call">Începeți apelul</string>
-  <string name="WebRtcCallView__group_call">Apel de grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Apel de grup</string> -->
   <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
   <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
   <!--CallParticipantsListDialog-->
@@ -1935,7 +1935,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__typing_indicators">Indicatori tastare</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Dacă indicatorii de tastare sunt dezactivați, nu vei putea vedea indicatorii de tastare de la ceilalți.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitați tastaturii dezactivarea învățării personalizate</string>
-  <string name="preferences_app_protection__blocked_contacts">Contacte blocate</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Contacte blocate</string> -->
   <string name="preferences_chats__when_using_mobile_data">Când se utilizează datele mobile </string>
   <string name="preferences_chats__when_using_wifi">Când se utilizează Wi-Fi </string>
   <string name="preferences_chats__when_roaming">Când se utilizează roaming-ul </string>

@@ -76,7 +76,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">آڈیو چلان اچ نقص اے!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts"> بلاک کیتے گئے رابطے</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts"> بلاک کیتے گئے رابطے</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گروپ اراکین تساں نوں ایس گروپ اچ دوبارہ شامل کرن دے اہل ہون گے۔</string>
   <string name="BlockUnblockDialog_unblock">ان بلاک کرو</string>
@@ -1328,7 +1328,7 @@
   <string name="preferences__typing_indicators">ٹائپنگ اشارے</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">جے ٹائپنگ اشارے غیر فعال نیں، فیر تسیں دوجیاں دے ٹائپنگ اشارے نئیں ویکھ سکو گے۔</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">شخصی سیکھن نوں غیر فعال کرن لئی کی بورڈ دی درخواست کرو</string>
-  <string name="preferences_app_protection__blocked_contacts">بلاک کیتے گئے رابطے</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">بلاک کیتے گئے رابطے</string> -->
   <string name="preferences_chats__when_using_mobile_data">موبائل ڈیٹا استعمال کردے ویلے</string>
   <string name="preferences_chats__when_using_wifi">وائی فائی استعمال کردے ویلے</string>
   <string name="preferences_chats__when_roaming">رومنگ ویلے</string>

@@ -76,7 +76,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ఆడియో ప్రదర్శనా లోపం!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">నిరోధించిన పరిచయాలు</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">నిరోధించిన పరిచయాలు</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">అడ్డగించు మరియు వదిలివేయి 1%1$s</string>
   <string name="BlockUnblockDialog_block_s">అడ్డగించు 1%1$s</string>
@@ -1432,7 +1432,7 @@
   <string name="preferences__typing_indicators">టైపింగ్ సూచికలు</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">టైపింగ్ సూచికలు నిలిపివేయబడితే, మీరు ఇతరుల నుండి టైపింగ్ సూచికలను చూడలేరు.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">వ్యక్తిగతీకరించిన అభ్యాసను ఆపివేయడానికి కీబోర్డ్ని అభ్యర్థించండి</string>
-  <string name="preferences_app_protection__blocked_contacts">నిరోధించిన పరిచయాలు</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">నిరోధించిన పరిచయాలు</string> -->
   <string name="preferences_chats__when_using_mobile_data">మొబైల్ సమాచారం ఉపయోగిస్తున్నప్పుడు</string>
   <string name="preferences_chats__when_using_wifi">వైఫై ఉపయోగించి చేసినప్పుడు</string>
   <string name="preferences_chats__when_roaming">రోమింగ్లో ఉన్నప్పుడు</string>

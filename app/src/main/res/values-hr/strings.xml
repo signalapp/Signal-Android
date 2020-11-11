@@ -83,7 +83,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Pogreška prilikom reprodukcije zvuka!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokirani kontakti</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokirani kontakti</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokiraj i napusti %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokiraj %1$s?</string>
@@ -1157,7 +1157,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal glasovni poziv</string>
   <string name="WebRtcCallView__signal_video_call">Signal video poziv…</string>
   <string name="WebRtcCallView__start_call">Započni poziv</string>
-  <string name="WebRtcCallView__group_call">Grupni poziv</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Grupni poziv</string> -->
   <string name="WebRtcCallView__view_participants_list">Prikaži sudionike</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš video je isključen</string>
   <!--CallParticipantsListDialog-->
@@ -1955,7 +1955,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="preferences__typing_indicators">Prikaži tipkanje</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako su potvrde o tipkanju onemogućene, nećete moći vidjeti potvrde o tipkanju od drugih.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Zatražite od tipkovnice da onemogući personalizirano učenje</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokirani kontakti</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokirani kontakti</string> -->
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnih podataka</string>
   <string name="preferences_chats__when_using_wifi">Prilikom korištenja Wi-Fi-ja</string>
   <string name="preferences_chats__when_roaming">Prilikom roaminga</string>

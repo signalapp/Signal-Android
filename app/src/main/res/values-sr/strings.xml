@@ -79,7 +79,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Грешка пуштања звука!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Блокирати и напустити групу %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Блокирати групу %1$s?</string>
@@ -1225,7 +1225,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Уколико су извештаји читања онемогућени, нећете видети када неко прочита ваше поруке.</string>
   <string name="preferences__typing_indicators">Показатељи куцања</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Уколико су показатељи куцања онемогућени, нећете видети када вам неко пише поруку.</string>
-  <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string> -->
   <string name="preferences_chats__when_using_mobile_data">На мобилном интернету</string>
   <string name="preferences_chats__when_using_wifi">На бежичној</string>
   <string name="preferences_chats__when_roaming">У ромингу</string>

@@ -73,7 +73,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Kuskuren wasan bidiyo</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Tosheshen lambobin sadarwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Tosheshen lambobin sadarwa</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membobin rukuni suna da damar dawowa da kai/ke rukunin. </string>
   <string name="BlockUnblockDialog_unblock">Bude</string>
@@ -1321,7 +1321,7 @@
   <string name="preferences__typing_indicators">Manunin rubutu</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Idan aka kashe manunin rubutu, bazaka/ki samu damar ganin manunin rubutu daga wasu ba.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Sa allon harrufa nakashewar koyo da kai</string>
-  <string name="preferences_app_protection__blocked_contacts">Tosheshen lambobin sadarwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Tosheshen lambobin sadarwa</string> -->
   <string name="preferences_chats__when_using_mobile_data">Sanda ake amfani da datar waya</string>
   <string name="preferences_chats__when_using_wifi">Sanda ake amfani da WiFi</string>
   <string name="preferences_chats__when_roaming">Sanda ake zama cikin hanyar internet a bayan fage</string>

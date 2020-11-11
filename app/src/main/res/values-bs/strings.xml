@@ -83,7 +83,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Greška prilikom reprodukcije zvuka!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokirani kontakti</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokirani kontakti</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokirati i napustiti %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokirati %1$s?</string>
@@ -1157,7 +1157,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal glasovni poziv…</string>
   <string name="WebRtcCallView__signal_video_call">Signal videopoziv…</string>
   <string name="WebRtcCallView__start_call">Nazovi</string>
-  <string name="WebRtcCallView__group_call">Grupni poziv</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Grupni poziv</string> -->
   <string name="WebRtcCallView__view_participants_list">Vidi učesnike</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš videoprikaz je isključen</string>
   <!--CallParticipantsListDialog-->
@@ -1957,7 +1957,7 @@
   <string name="preferences__typing_indicators">Indikatori kucanja</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako je indikator kucanja onemogućen, nećete moći vidjeti indikator kucanja od drugih.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Zahtijevaj od tastature da onemogući personalizovano učenje</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokirani kontakti</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokirani kontakti</string> -->
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnog interneta</string>
   <string name="preferences_chats__when_using_wifi">Prilikom korištenja Wi-Fi konekcije</string>
   <string name="preferences_chats__when_roaming">Prilikom roaminga</string>

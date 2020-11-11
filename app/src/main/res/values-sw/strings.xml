@@ -76,7 +76,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Hitilafu ya kucheza sauti!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Anwani zilizozuiliwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Anwani zilizozuiliwa</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Washiriki wa kikundi wataweza kukuongeza kwenye kundi hili tena.</string>
   <string name="BlockUnblockDialog_unblock">Fungua</string>
@@ -1330,7 +1330,7 @@ nambari yako ya simu</string>
   <string name="preferences__typing_indicators">Viashiria vya kucharaza</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ikiwa viashiria vya kucharaza vimelemazwa, hutaweza kuona viashiria vya kucharaza kutoka kwa wengine.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Omba kibaobonye kulemaza kujifunza kwa kibinafsi</string>
-  <string name="preferences_app_protection__blocked_contacts">Wawasiliani waliozuiliwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Wawasiliani waliozuiliwa</string> -->
   <string name="preferences_chats__when_using_mobile_data">Wakati unatumia mtandao wa simu</string>
   <string name="preferences_chats__when_using_wifi">Wakati unatumia WiFi</string>
   <string name="preferences_chats__when_roaming">Wakati unarandaranda </string>

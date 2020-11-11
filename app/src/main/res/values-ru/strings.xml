@@ -86,7 +86,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ошибка при воспроизведении аудио!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Заблокированные контакты</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Заблокированные контакты</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Заблокировать и покинуть %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Заблокировать %1$s?</string>
@@ -1204,7 +1204,7 @@
   <string name="WebRtcCallView__signal_voice_call">Голосовой звонок Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal…</string>
   <string name="WebRtcCallView__start_call">Начать звонок</string>
-  <string name="WebRtcCallView__group_call">Групповой звонок</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Групповой звонок</string> -->
   <string name="WebRtcCallView__view_participants_list">Просмотреть участников</string>
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
   <!--CallParticipantsListDialog-->
@@ -2011,7 +2011,7 @@
   <string name="preferences__typing_indicators">Индикаторы набора текста</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Если индикаторы набора текста отключены, вы не сможете видеть индикаторы набора текста других пользователей.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Запросить отключение персонализированного обучения клавиатуры</string>
-  <string name="preferences_app_protection__blocked_contacts">Заблокированные контакты</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Заблокированные контакты</string> -->
   <string name="preferences_chats__when_using_mobile_data">Через мобильную сеть</string>
   <string name="preferences_chats__when_using_wifi">Через Wi-Fi</string>
   <string name="preferences_chats__when_roaming">В роуминге</string>

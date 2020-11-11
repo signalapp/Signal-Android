@@ -69,7 +69,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ralat memainkan audio!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Kenalan disekat</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Kenalan disekat</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ahli-ahli kumpulan akan dapat menambah anda kepada kumpulan ini lagi.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan dapat menghantar mesej dan membuat panggilan satu sama lain.</string>
@@ -1179,7 +1179,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__typing_indicators">Penunjuk menaip</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jika penunjuk menaip dinyahdayakan, anda tidak akan dapat melihat penunjuk menaip dari orang lain.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Meminta papan kekunci untuk menyahdayakan pembelajaran peribadi</string>
-  <string name="preferences_app_protection__blocked_contacts">Kenalan disekat</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kenalan disekat</string> -->
   <string name="preferences_chats__when_using_mobile_data">Semasa mengguna data mudah alih</string>
   <string name="preferences_chats__when_using_wifi">Semasa mengguna WI-Fi</string>
   <string name="preferences_chats__when_roaming">Semasa perayauan</string>

@@ -42,7 +42,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ensobi mukuzanya edoboozi</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">kuziyiza contacts</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">kuziyiza contacts</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Leero</string>
   <!--CallScreen-->
@@ -651,7 +651,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences__submit_debug_log">Waayo olukalala bili kibaddewo</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
-  <string name="preferences_app_protection__blocked_contacts">Kuziyiza contact</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kuziyiza contact</string> -->
   <string name="preferences_chats__when_using_mobile_data">Bwoba okozesa dat we ssimu</string>
   <string name="preferences_chats__when_using_wifi">Bwoba okozesa WI-Fi</string>
   <string name="preferences_chats__when_roaming">Bwoba ku roaming</string>

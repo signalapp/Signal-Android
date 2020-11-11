@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">¡Fallo al reproducir sonido!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Personas bloqueadas</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Personas bloqueadas</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">¿Bloquear y abandonar «%1$s»?</string>
   <string name="BlockUnblockDialog_block_s">¿Bloquear a %1$s?</string>
@@ -998,7 +998,7 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">¡Introduce una nueva clave de acceso!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">¿Enlazar este dispositivo?</string>
-  <string name="DeviceProvisioningActivity_continue">CONTINUAR</string>
+  <string name="DeviceProvisioningActivity_continue">ADELANTE</string>
   <string name="DeviceProvisioningActivity_content_intro">Podrá</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • Leer todos tus mensajes
@@ -1109,7 +1109,7 @@
   <string name="WebRtcCallView__signal_voice_call">Llamada de Signal …</string>
   <string name="WebRtcCallView__signal_video_call">Vídeollamada de Signal …</string>
   <string name="WebRtcCallView__start_call">Iniciar llamada</string>
-  <string name="WebRtcCallView__group_call">Llamada en grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Llamada en grupo</string> -->
   <string name="WebRtcCallView__view_participants_list">Ver participantes</string>
   <string name="WebRtcCallView__your_video_is_off">Tu vídeo está desactivado</string>
   <!--CallParticipantsListDialog-->
@@ -1150,7 +1150,7 @@ número de teléfono
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Necesitamos verificar que eres una persona.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Fallo al verificar el CAPTCHA</string>
   <string name="RegistrationActivity_next">Siguiente</string>
-  <string name="RegistrationActivity_continue">Continuar</string>
+  <string name="RegistrationActivity_continue">Adelante</string>
   <string name="RegistrationActivity_continue_d_attempts_left">Intentar de nuevo (%d intentos más)</string>
   <string name="RegistrationActivity_continue_last_attempt">Intentar de nuevo (último intento)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú mism@ en todos tus mensajes.</string>
@@ -1578,7 +1578,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="device_list_fragment__no_devices_linked">No hay dispositivos enlazados</string>
   <string name="device_list_fragment__link_new_device">Enlazar nuevo dispositivo</string>
   <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">continuar</string>
+  <string name="experience_upgrade_activity__continue">adelante</string>
   <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Las notificaciones de lectura han llegado</string>
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Puedes ver y dejar ver cuando los mensajes se hayan leído. Opcionalmente.</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Activar notificaciones de lectura</string>
@@ -1896,7 +1896,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__typing_indicators">Indicadores de tecleo</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otr@s participantes están tecleando. </string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar al teclado desactivar el aprendizaje personalizado</string>
-  <string name="preferences_app_protection__blocked_contacts">Personas bloqueadas</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Personas bloqueadas</string> -->
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
   <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">En itinerancia (roaming)</string>
@@ -2201,7 +2201,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CallNotificationBuilder_connecting">Conectando …</string>
   <string name="Permissions_permission_required">Permiso necesario</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necesita acceso a SMS para poder enviar SMS. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «SMS».</string>
-  <string name="Permissions_continue">Continuar</string>
+  <string name="Permissions_continue">Adelante</string>
   <string name="Permissions_not_now">Ahora no</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita acceso a tus contactos para encontrar quien usa Signal. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Contactos».</string>
   <string name="conversation_activity__enable_signal_messages">ACTIVAR MENSAJES DE SIGNAL</string>

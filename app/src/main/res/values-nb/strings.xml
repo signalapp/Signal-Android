@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Feil ved avspilling av lyd!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokkerte kontakter</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokkerte kontakter</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokker og forlat %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokker %1$s?</string>
@@ -1701,7 +1701,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__typing_indicators">Skriverindikatorer</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktivert, vil du ikke kunne se skriveindikatorer fra andre.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Be tastatur om å slå av lærefunksjon</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokkerte kontakter</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokkerte kontakter</string> -->
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
   <string name="preferences_chats__when_roaming">I fremmednett</string>

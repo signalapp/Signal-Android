@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ഓഡിയോ പ്ലേ ചെയ്യുന്നതിൽ പിശക്!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">ബ്ലോക്ക് ചെയ്ത കോൺടാക്റ്റുകൾ</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">ബ്ലോക്ക് ചെയ്ത കോൺടാക്റ്റുകൾ</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s-നെ ബ്ലോക്ക്യും ഉപേക്ഷിക്കുകയും ചെയ്യണോ?</string>
   <string name="BlockUnblockDialog_block_s">%1$s-നെ ബ്ലോക്ക് ചെയ്യണോ?</string>
@@ -1650,7 +1650,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്ന് ടൈപ്പിംഗ് സൂചകങ്ങൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">വ്യക്തിഗത പഠനം അപ്രാപ്‌തമാക്കുന്നതിന് കീബോർഡിനോട് അഭ്യർത്ഥിക്കുക</string>
-  <string name="preferences_app_protection__blocked_contacts">ബ്ലോക്ക് ചെയ്ത കോൺടാക്റ്റുകൾ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">ബ്ലോക്ക് ചെയ്ത കോൺടാക്റ്റുകൾ</string> -->
   <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_using_wifi">വൈഫൈ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_roaming">റോമിംഗ് ചെയ്യുമ്പോൾ</string>

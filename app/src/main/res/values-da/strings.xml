@@ -80,7 +80,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fejl ved afspilning af lyd!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Blokerede kontakter</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokerede kontakter</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokér og forlad %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokér %1$s?</string>
@@ -1110,7 +1110,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal taleopkald…</string>
   <string name="WebRtcCallView__signal_video_call">Signal videoopkald…</string>
   <string name="WebRtcCallView__start_call">Foretag opkald</string>
-  <string name="WebRtcCallView__group_call">Gruppeopkald</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Gruppeopkald</string> -->
   <string name="WebRtcCallView__view_participants_list">Vis deltagere</string>
   <string name="WebRtcCallView__your_video_is_off">Din video er slået fra</string>
   <!--CallParticipantsListDialog-->
@@ -1896,7 +1896,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__typing_indicators">Skrive indikator</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, er det ikke muligt at se når andre skriver</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Deaktivér personaliseret læring fra tastaturet</string>
-  <string name="preferences_app_protection__blocked_contacts">Blokerede kontakter</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokerede kontakter</string> -->
   <string name="preferences_chats__when_using_mobile_data">Ved anvendelse af mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved brug af WiFi</string>
   <string name="preferences_chats__when_roaming">Ved roaming</string>

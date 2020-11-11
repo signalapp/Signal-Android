@@ -69,7 +69,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Помилка відтворення аудіо!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Заблоковані контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Заблоковані контакти</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Сьогодні</string>
   <string name="BucketedThreadMedia_Yesterday">Вчора</string>
@@ -1107,7 +1107,7 @@
   <string name="preferences__read_receipts">Звіти про прочитання</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Якщо звіти про прочитання вимкнено, ви не зможете отримувати звіти від інших.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Запитати клавіатуру, щоб вимкнути персоналізоване навчання</string>
-  <string name="preferences_app_protection__blocked_contacts">Заблоковані контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Заблоковані контакти</string> -->
   <string name="preferences_chats__when_using_mobile_data">При використанні мобільних даних</string>
   <string name="preferences_chats__when_using_wifi">При використанні Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Під час роумінгу</string>

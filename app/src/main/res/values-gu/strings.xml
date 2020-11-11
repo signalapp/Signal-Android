@@ -73,7 +73,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ઓડિયો વગાડતા ભૂલ! </string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">અવરોધિત સંપર્કો</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">અવરોધિત સંપર્કો</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ગ્રુપના સભ્યો તમને આ ગ્રુપમાં ફરીથી ઉમેરવામાં સમર્થ હશે.</string>
   <string name="BlockUnblockDialog_unblock">અનાવરોધિત કરો</string>
@@ -1317,7 +1317,7 @@
   <string name="preferences__typing_indicators">ટાઇપિંગ સૂચકો</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">જો ટાઇપિંગ સૂચકો અક્ષમ છે, તો તમે અન્ય લોકો તરફથી ટાઇપિંગ સૂચકો જોશો નહીં.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">વ્યક્તિગત કરેલ શિક્ષણને અક્ષમ કરવા માટે કીબોર્ડની વિનંતી કરો</string>
-  <string name="preferences_app_protection__blocked_contacts">અવરોધિત સંપર્કો</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">અવરોધિત સંપર્કો</string> -->
   <string name="preferences_chats__when_using_mobile_data">મોબાઇલ ડેટાનો ઉપયોગ કરતી વખતે</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi નો ઉપયોગ કરતી વખતે</string>
   <string name="preferences_chats__when_roaming">રોમિંગ કરતી વખતે</string>

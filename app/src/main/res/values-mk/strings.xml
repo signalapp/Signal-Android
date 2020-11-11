@@ -59,7 +59,7 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">На Signal му е потребна дозвола до контактите за да можете да прикачете информации на контакти, но моментално пристапот е одбиен. Ве молиме продолжете до менито за подесување на апликациите, селектирајте \"Дозволи\", и дозволете \"Контакти\".</string>
   <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string> -->
   <!--BucketedThreadMedia-->
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Доаѓачки повик</string>
@@ -482,7 +482,7 @@
   <string name="preferences__submit_debug_log">Испратете протокол за дијагноза</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' мод за компатибилност</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку \'WiFi Calling\' е овозможен на уредот)</string>
-  <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Блокирани контакти</string> -->
   <string name="preferences_notifications__ringtone">Звук за звонење</string>
   <!--****************************************-->
   <!--menus-->

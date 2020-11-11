@@ -63,7 +63,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Di lêdana deng de çewtî rû da!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Berdengên astengkirî</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Berdengên astengkirî</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Îro</string>
   <string name="BucketedThreadMedia_Yesterday">Doh</string>
@@ -1047,7 +1047,7 @@
   <string name="preferences__typing_indicators">Nîşandêrên nivîsandinê</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Eger nîşanderên nivîsandinê girtî bin, tu yê nikaribî nîşanderên nivîsandinê bibînî ji ên din.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Textenivîsê bixwaze, da ku hînbûna kesanekirî neçalak bike</string>
-  <string name="preferences_app_protection__blocked_contacts">Kesên astengkirî</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kesên astengkirî</string> -->
   <string name="preferences_chats__when_using_mobile_data">Dema bikaranîna dataya mobîl</string>
   <string name="preferences_chats__when_using_wifi">Dema bikaranîna dataya Wi-Fiyê</string>
   <string name="preferences_chats__when_roaming">Dema gerrê</string>

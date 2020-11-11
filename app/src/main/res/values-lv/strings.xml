@@ -79,7 +79,7 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Kļūme, cenšoties atskaņot audio!</string>
   <!--BlockedContactsActivity-->
-  <string name="BlockedContactsActivity_blocked_contacts">Bloķētie kontakti</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Bloķētie kontakti</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloķēt un pamest %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloķēt %1$s?</string>
@@ -1561,7 +1561,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__typing_indicators">rakstīšanas indikatori</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ja rakstīšanas indikatori ir atspējoti, Jūs nevarēsiet redzēt rakstīšanas indikatorus no citiem.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Pieprasīt tastatūru, lai atspējotu personalizētu mācīšanos</string>
-  <string name="preferences_app_protection__blocked_contacts">Bloķētie kontakti</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Bloķētie kontakti</string> -->
   <string name="preferences_chats__when_using_mobile_data">Izmantojot mobilos datus</string>
   <string name="preferences_chats__when_using_wifi">Izmantojot WiFi</string>
   <string name="preferences_chats__when_roaming">Izmantojot viesabonēšanau</string>
