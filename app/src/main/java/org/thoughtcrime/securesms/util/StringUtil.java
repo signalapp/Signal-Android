@@ -60,6 +60,33 @@ public final class StringUtil {
   }
 
   /**
+   * @return A charsequence with no leading or trailing whitespace. Only creates a new charsequence
+   *         if it has to.
+   */
+  public static @NonNull CharSequence trim(@NonNull CharSequence charSequence) {
+    if (charSequence.length() == 0) {
+      return charSequence;
+    }
+
+    int start = 0;
+    int end   = charSequence.length() - 1;
+
+    while (start < charSequence.length() && Character.isWhitespace(charSequence.charAt(start))) {
+      start++;
+    }
+
+    while (end >= 0 && end > start && Character.isWhitespace(charSequence.charAt(end))) {
+      end--;
+    }
+
+    if (start > 0 || end < charSequence.length() - 1) {
+      return charSequence.subSequence(start, end + 1);
+    } else {
+      return charSequence;
+    }
+  }
+
+  /**
    * @return True if the string is empty, or if it contains nothing but whitespace characters.
    *         Accounts for various unicode whitespace characters.
    */

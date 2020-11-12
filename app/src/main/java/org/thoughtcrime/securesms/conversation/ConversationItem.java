@@ -115,6 +115,7 @@ import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.SearchUtil;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
@@ -642,7 +643,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_40));
       }
 
-      bodyText.setText(styledText);
+      bodyText.setText(StringUtil.trim(styledText));
       bodyText.setVisibility(View.VISIBLE);
     }
   }
