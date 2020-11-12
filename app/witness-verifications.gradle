@@ -441,9 +441,6 @@ dependencyVerification {
         ['org.signal:ringrtc-android:2.8.0',
          '49965467ed1e8634969af10f318bbaf1dd97b1d55bca05300802a5dcb6ed21a3'],
 
-        ['org.signal:signal-metadata-java:0.1.2',
-         '6aaeb6a33bf3161a3e6ac9db7678277f7a4cf5a2c96b84342e4007ee49bab1bd'],
-
         ['org.signal:zkgroup-android:0.7.0',
          '52b172565bd01526e93ebf1796b834bdc449d4fe3422c1b827e49cb8d4f13fbd'],
 
@@ -453,11 +450,11 @@ dependencyVerification {
         ['org.threeten:threetenbp:1.3.6',
          'f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7'],
 
-        ['org.whispersystems:curve25519-java:0.5.0',
-         '0aadd43cf01d11e9b58f867b3c4f25c3194e8b0623d1953d32dfbfbee009e38d'],
+        ['org.whispersystems:signal-client-android:0.1.3',
+         '5d85d61da77db7960f8f8fb48efaeb543716782d73fb01c6d33741baa1ed6cb4'],
 
-        ['org.whispersystems:signal-protocol-java:2.8.1',
-         'b19db36839ab008fdccefc7f8c005f2ea43dc7c7298a209bc424e6f9b6d5617b'],
+        ['org.whispersystems:signal-client-java:0.1.3',
+         '97679340b9f9a3e61c4ee3bd054abff3b8d0e8ddb95dbd917f4425849e9ff2d6'],
 
         ['pl.tajchert:waitingdots:0.1.0',
          '2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c'],
