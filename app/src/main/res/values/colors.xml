@@ -21,7 +21,7 @@
 
     <color name="conversation_compose_divider">#32000000</color>
 
-    <color name="action_mode_status_bar">@color/core_grey_50</color>
+    <color name="action_mode_status_bar">@color/grey_50</color>
     <color name="touch_highlight">#400099cc</color>
 
     <color name="device_link_item_background_light">#ffffffff</color>

@@ -96,9 +96,6 @@
     <color name="quote_missing_icon_color">@color/core_grey_05</color>
     <color name="quote_dismiss_button_tint">@color/core_white</color>
 
-    <color name="reactions_overlay_toolbar_icon_tint">@color/core_white</color>
-
-    <color name="reactions_overlay_toolbar_background_color">@color/action_mode_status_bar</color>
     <color name="reactions_pill_text_color">@color/core_grey_35</color>
     <color name="reactions_pill_selected_text_color">@color/core_grey_15</color>
     <color name="reactions_screen_shade_color">@color/transparent_black_60</color>

@@ -65,4 +65,8 @@
     </style>
 
     <style name="Signal.DayNight.Popup" parent="@style/ThemeOverlay.AppCompat.Light" />
+
+    <style name="Signal.DayNight.Toolbar.Overflow" parent="@style/Signal.Toolbar.Overflow.Light" />
+
+    <style name="Signal.DayNight.TitleTextStyle" parent="@style/TextSecure.TitleTextStyle" />
 </resources>

@@ -892,11 +892,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
     }
 
-    if (Build.VERSION.SDK_INT >= 23) {
-      int current = getActivity().getWindow().getDecorView().getSystemUiVisibility();
-      getActivity().getWindow().getDecorView().setSystemUiVisibility(current & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-    }
-
     return true;
   }
 

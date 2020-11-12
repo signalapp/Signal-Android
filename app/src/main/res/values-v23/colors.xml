@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="action_mode_status_bar">@color/signal_background_secondary</color>
+</resources>

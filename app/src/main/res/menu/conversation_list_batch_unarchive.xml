@@ -5,6 +5,7 @@
     <item android:title="@string/conversation_list_batch_unarchive__menu_unarchive_selected"
           android:id="@+id/menu_archive_selected"
           android:icon="@drawable/ic_unarchive_white_24dp"
+          app:iconTint="@color/signal_icon_tint_primary"
           app:showAsAction="always"/>
 
 </menu>

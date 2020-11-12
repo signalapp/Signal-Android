@@ -7,6 +7,7 @@
       android:id="@+id/menu_delete_selected"
       android:icon="@drawable/ic_trash_24"
       android:title="@string/conversation_list_batch__menu_delete_selected"
+      app:iconTint="@color/signal_icon_tint_primary"
       app:showAsAction="always" />
 
   <item

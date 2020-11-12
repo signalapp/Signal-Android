@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -200,10 +201,10 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     if (Build.VERSION.SDK_INT >= 21) {
       this.activity = activity;
       originalStatusBarColor = activity.getWindow().getStatusBarColor();
-      activity.getWindow().setStatusBarColor(ContextCompat.getColor(getContext(), R.color.reactions_overlay_toolbar_background_color));
+      activity.getWindow().setStatusBarColor(ContextCompat.getColor(getContext(), R.color.signal_background_secondary));
 
-      if (!ThemeUtil.isDarkTheme(getContext()) && Build.VERSION.SDK_INT >= 23) {
-        activity.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+      if (!ThemeUtil.isDarkTheme(getContext())) {
+        WindowUtil.setLightStatusBar(activity.getWindow());
       }
     }
   }
@@ -241,9 +242,9 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     revealAnimatorSet.end();
     hideAnimatorSet.start();
 
-    if (Build.VERSION.SDK_INT >= 23 && activity != null) {
+    if (Build.VERSION.SDK_INT >= 21 && activity != null) {
       activity.getWindow().setStatusBarColor(originalStatusBarColor);
-      activity.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+      WindowUtil.clearLightStatusBar(activity.getWindow());
       activity = null;
     }
 

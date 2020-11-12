@@ -129,8 +129,10 @@ import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -1524,6 +1526,10 @@ public class ConversationFragment extends LoggingFragment {
         window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
       }
 
+      if (!ThemeUtil.isDarkTheme(getContext())) {
+        WindowUtil.setLightStatusBar(getActivity().getWindow());
+      }
+
       setCorrectMenuVisibility(menu);
       AdaptiveActionsToolbar.adjustMenuActions(menu, 10, requireActivity().getWindow().getDecorView().getMeasuredWidth());
       listener.onMessageActionToolbarOpened();
@@ -1544,6 +1550,7 @@ public class ConversationFragment extends LoggingFragment {
         getActivity().getWindow().setStatusBarColor(statusBarColor);
       }
 
+      WindowUtil.clearLightStatusBar(getActivity().getWindow());
       actionMode = null;
     }
 
