@@ -420,6 +420,9 @@ dependencyVerification {
         ['org.apache.httpcomponents:httpclient-android:4.3.5',
          '6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1'],
 
+        ['org.aspectj:aspectjrt:1.9.4',
+         '4ff12340d4f1197b95fc9d53dd43b7ada6150426d685778979ceca4304361698'],
+
         ['org.conscrypt:conscrypt-android:2.0.0',
          '400ca559a49b860a82862b22cee0e3110764bdcf7ee7c79e7479895c25cdfc09'],
 
@@ -441,9 +444,6 @@ dependencyVerification {
         ['org.signal:ringrtc-android:2.8.3',
          '1cdc73ec34b11b9eeb0a650715e1095cade226736192c091991f31367245e37a'],
 
-        ['org.signal:signal-metadata-java:0.1.2',
-         '6aaeb6a33bf3161a3e6ac9db7678277f7a4cf5a2c96b84342e4007ee49bab1bd'],
-
         ['org.signal:zkgroup-android:0.7.0',
          '52b172565bd01526e93ebf1796b834bdc449d4fe3422c1b827e49cb8d4f13fbd'],
 
@@ -453,11 +453,11 @@ dependencyVerification {
         ['org.threeten:threetenbp:1.3.6',
          'f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7'],
 
-        ['org.whispersystems:curve25519-java:0.5.0',
-         '0aadd43cf01d11e9b58f867b3c4f25c3194e8b0623d1953d32dfbfbee009e38d'],
+        ['org.whispersystems:signal-client-android:0.1.4',
+         'a95f4d8125a22552da99b5db15589454789eee322e84d9ba613c258150366a64'],
 
-        ['org.whispersystems:signal-protocol-java:2.8.1',
-         'b19db36839ab008fdccefc7f8c005f2ea43dc7c7298a209bc424e6f9b6d5617b'],
+        ['org.whispersystems:signal-client-java:0.1.4',
+         '7d151220a203e43ecf419256eecb6309cc4c5644557beeb29f54ba34ee82645c'],
 
         ['pl.tajchert:waitingdots:0.1.0',
          '2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c'],

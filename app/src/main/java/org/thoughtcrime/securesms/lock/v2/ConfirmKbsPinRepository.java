@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ final class ConfirmKbsPinRepository {
         Log.i(TAG, "Pin set on KBS");
 
         return PinSetResult.SUCCESS;
-      } catch (IOException | UnauthenticatedResponseException e) {
+      } catch (IOException | UnauthenticatedResponseException | InvalidKeyException e) {
         Log.w(TAG, e);
         PinState.onPinCreateFailure();
         return PinSetResult.FAILURE;
