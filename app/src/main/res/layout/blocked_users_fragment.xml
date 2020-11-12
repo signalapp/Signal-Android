@@ -49,7 +49,7 @@
         android:layout_marginTop="29dp"
         android:layout_marginEnd="16dp"
         android:text="@string/BlockedUsersActivity__blocked_users"
-        android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
         android:textColor="?colorAccent"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

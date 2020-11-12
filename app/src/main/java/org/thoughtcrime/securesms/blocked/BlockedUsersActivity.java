@@ -65,6 +65,10 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
     //noinspection CodeBlock2Expr
     getSupportFragmentManager().addOnBackStackChangedListener(() -> {
       viewSwitcher.setDisplayedChild(getSupportFragmentManager().getBackStackEntryCount());
+
+      if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+        contactFilterToolbar.focusAndShowKeyboard();
+      }
     });
 
     getSupportFragmentManager().beginTransaction()

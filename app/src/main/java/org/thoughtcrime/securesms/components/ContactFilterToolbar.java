@@ -19,6 +19,7 @@ import androidx.core.widget.TextViewCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.DarkOverflowToolbar;
 
 public final class ContactFilterToolbar extends DarkOverflowToolbar {
@@ -123,6 +124,10 @@ public final class ContactFilterToolbar extends DarkOverflowToolbar {
       dialpadToggle.setVisibility(GONE);
     }
     attributes.recycle();
+  }
+
+  public void focusAndShowKeyboard() {
+    ViewUtil.focusAndShowKeyboard(searchText);
   }
 
   public void clear() {
