@@ -225,9 +225,6 @@ public class MessageRequestViewModel extends ViewModel {
         case REQUIRED:
           displayState.postValue(DisplayState.DISPLAY_MESSAGE_REQUEST);
           break;
-        case PRE_MESSAGE_REQUEST:
-          displayState.postValue(DisplayState.DISPLAY_PRE_MESSAGE_REQUEST);
-          break;
       }
     });
   }
@@ -237,8 +234,7 @@ public class MessageRequestViewModel extends ViewModel {
     Context context  = ApplicationDependencies.getApplication();
     Long    threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient.getId());
 
-    return FeatureFlags.modernProfileSharing() &&
-           threadId != null                    &&
+    return threadId != null &&
            (RecipientUtil.hasSentMessageInThread(context, threadId) || RecipientUtil.isPreMessageRequestThread(context, threadId));
   }
 
@@ -283,7 +279,7 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   public enum DisplayState {
-    DISPLAY_MESSAGE_REQUEST, DISPLAY_PRE_MESSAGE_REQUEST, DISPLAY_NONE
+    DISPLAY_MESSAGE_REQUEST, DISPLAY_NONE
   }
 
   public enum MessageClass {

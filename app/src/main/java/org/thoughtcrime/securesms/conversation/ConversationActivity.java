@@ -212,7 +212,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -353,7 +352,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   InputAwareLayout           container;
   protected Stub<ReminderView>         reminderView;
   private   Stub<UnverifiedBannerView> unverifiedBannerView;
-  private   Stub<GroupShareProfileView> groupShareProfileView;
   private   Stub<ReviewBannerView>      reviewBanner;
   private   TypingStatusTextWatcher     typingTextWatcher;
   private   ConversationSearchBottomBar searchNav;
@@ -1868,7 +1866,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     container                = ViewUtil.findById(this, R.id.layout_container);
     reminderView             = ViewUtil.findStubById(this, R.id.reminder_stub);
     unverifiedBannerView     = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
-    groupShareProfileView    = ViewUtil.findStubById(this, R.id.group_share_profile_view_stub);
     reviewBanner             = ViewUtil.findStubById(this, R.id.review_banner_stub);
     quickAttachmentToggle    = ViewUtil.findById(this, R.id.quick_attachment_toggle);
     inlineAttachmentToggle   = ViewUtil.findById(this, R.id.inline_attachment_container);
@@ -3422,22 +3419,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
       switch (displayState) {
         case DISPLAY_MESSAGE_REQUEST:
           messageRequestBottomView.setVisibility(View.VISIBLE);
-          if (groupShareProfileView.resolved()) {
-            groupShareProfileView.get().setVisibility(View.GONE);
-          }
-          break;
-        case DISPLAY_PRE_MESSAGE_REQUEST:
-          if (recipient.get().isGroup()) {
-            groupShareProfileView.get().setRecipient(recipient.get());
-            groupShareProfileView.get().setVisibility(View.VISIBLE);
-          }
-          messageRequestBottomView.setVisibility(View.GONE);
           break;
         case DISPLAY_NONE:
           messageRequestBottomView.setVisibility(View.GONE);
-          if (groupShareProfileView.resolved()) {
-            groupShareProfileView.get().setVisibility(View.GONE);
-          }
           break;
       }
     }

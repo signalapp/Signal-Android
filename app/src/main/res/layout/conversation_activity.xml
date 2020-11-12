@@ -50,13 +50,6 @@
                 android:layout="@layout/review_banner_view" />
 
             <ViewStub
-                android:id="@+id/group_share_profile_view_stub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inflatedId="@+id/group_share_profile_view"
-                android:layout="@layout/conversation_activity_group_share_profile_stub" />
-
-            <ViewStub
                 android:id="@+id/unverified_banner_stub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

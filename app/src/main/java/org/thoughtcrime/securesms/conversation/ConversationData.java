@@ -10,7 +10,6 @@ final class ConversationData {
   private final int     lastScrolledPosition;
   private final boolean hasSent;
   private final boolean isMessageRequestAccepted;
-  private final boolean hasPreMessageRequestMessages;
   private final int     jumpToPosition;
   private final int     threadSize;
 
@@ -20,7 +19,6 @@ final class ConversationData {
                    int lastScrolledPosition,
                    boolean hasSent,
                    boolean isMessageRequestAccepted,
-                   boolean hasPreMessageRequestMessages,
                    int jumpToPosition,
                    int threadSize)
   {
@@ -30,7 +28,6 @@ final class ConversationData {
     this.lastScrolledPosition         = lastScrolledPosition;
     this.hasSent                      = hasSent;
     this.isMessageRequestAccepted     = isMessageRequestAccepted;
-    this.hasPreMessageRequestMessages = hasPreMessageRequestMessages;
     this.jumpToPosition               = jumpToPosition;
     this.threadSize                   = threadSize;
   }
@@ -57,10 +54,6 @@ final class ConversationData {
 
   boolean isMessageRequestAccepted() {
     return isMessageRequestAccepted;
-  }
-
-  boolean hasPreMessageRequestMessages() {
-    return hasPreMessageRequestMessages;
   }
 
   boolean shouldJumpToMessage() {

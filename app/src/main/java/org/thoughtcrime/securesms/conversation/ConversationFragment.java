@@ -84,7 +84,6 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationM
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -107,7 +106,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
-import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -171,7 +169,6 @@ public class ConversationFragment extends LoggingFragment {
   private ViewSwitcher                topLoadMoreView;
   private ViewSwitcher                bottomLoadMoreView;
   private ConversationTypingView      typingView;
-  private UnknownSenderView           unknownSenderView;
   private View                        composeDivider;
   private ConversationScrollToView    scrollToBottomButton;
   private ConversationScrollToView    scrollToMentionButton;
@@ -483,7 +480,6 @@ public class ConversationFragment extends LoggingFragment {
 
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
-    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId, () -> clearHeaderIfNotTyping(getListAdapter()));
     this.markReadHelper    = new MarkReadHelper(threadId, requireContext());
 
     conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
@@ -951,15 +947,7 @@ public class ConversationFragment extends LoggingFragment {
 
       setLastSeen(conversation.getLastSeen());
 
-      if (!conversation.hasPreMessageRequestMessages()) {
-        clearHeaderIfNotTyping(adapter);
-      } else {
-        if (!conversation.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-          adapter.setHeaderView(unknownSenderView);
-        } else {
-          clearHeaderIfNotTyping(adapter);
-        }
-      }
+      clearHeaderIfNotTyping(adapter);
 
       listener.onCursorChanged();
 

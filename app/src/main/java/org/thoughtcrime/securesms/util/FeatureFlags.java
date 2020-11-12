@@ -59,7 +59,6 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION            = "android.clientExpiration";
   public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
-  public  static final String MODERN_PROFILE_SHARING       = "android.modernProfileSharing";
   private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
   private static final String MAX_ENVELOPE_SIZE            = "android.maxEnvelopeSize";
   private static final String GV1_AUTO_MIGRATE_VERSION     = "android.groupsv2.autoMigrateVersion";
@@ -82,7 +81,6 @@ public final class FeatureFlags {
       VERIFY_V2,
       CLIENT_EXPIRATION,
       RESEARCH_MEGAPHONE_1,
-      MODERN_PROFILE_SHARING,
       VIEWED_RECEIPTS,
       MAX_ENVELOPE_SIZE,
       GV1_AUTO_MIGRATE_VERSION,
@@ -250,11 +248,6 @@ public final class FeatureFlags {
    */
   public static boolean phoneNumberPrivacy() {
     return getVersionFlag(PHONE_NUMBER_PRIVACY_VERSION) == VersionFlag.ON;
-  }
-
-  /** Whether or not to show the new profile sharing prompt for legacy conversations. */
-  public static boolean modernProfileSharing() {
-    return getBoolean(MODERN_PROFILE_SHARING, false);
   }
 
   /** Whether the user should display the content revealed dot in voice notes. */
