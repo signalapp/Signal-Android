@@ -371,10 +371,11 @@ public final class AudioView extends FrameLayout {
   }
 
   private void showPlayButton() {
-    if (!smallView || seekBar.getProgress() == 0) {
+    if (!smallView) {
+      circleProgress.setVisibility(GONE);
+    } else if (seekBar.getProgress() == 0) {
       circleProgress.setInstantProgress(1);
     }
-    circleProgress.setVisibility(GONE);
     playPauseButton.setVisibility(VISIBLE);
     controlToggle.displayQuick(progressAndPlay);
   }
