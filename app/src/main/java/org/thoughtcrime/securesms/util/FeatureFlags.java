@@ -64,6 +64,7 @@ public final class FeatureFlags {
   private static final String MAX_ENVELOPE_SIZE            = "android.maxEnvelopeSize";
   private static final String GV1_AUTO_MIGRATE_VERSION     = "android.groupsv2.autoMigrateVersion";
   private static final String GV1_MANUAL_MIGRATE_VERSION   = "android.groupsv2.manualMigrateVersion";
+  private static final String GV1_FORCED_MIGRATE_VERSION   = "android.groupsv2.forcedMigrateVersion";
   private static final String GROUP_CALLING_VERSION        = "android.groupsv2.callingVersion";
 
   /**
@@ -195,7 +196,7 @@ public final class FeatureFlags {
    */
   public static SelectionLimits groupLimits() {
     return new SelectionLimits(getInteger(GROUPS_V2_RECOMMENDED_LIMIT, 151),
-                           getInteger(GROUPS_V2_HARD_LIMIT, 1001));
+                               getInteger(GROUPS_V2_HARD_LIMIT, 1001));
   }
 
   /**
@@ -276,8 +277,14 @@ public final class FeatureFlags {
     return groupsV1AutoMigration() && getVersionFlag(GV1_MANUAL_MIGRATE_VERSION) == VersionFlag.ON;
   }
 
+  /** Whether or not group calling is enabled. */
   public static boolean groupCalling() {
     return getVersionFlag(GROUP_CALLING_VERSION) == VersionFlag.ON;
+  }
+
+  /** Whether or not forced migration from GV1->GV2 is enabled. */
+  public static boolean groupsV1ForcedMigration() {
+    return groupsV1AutoMigration() && getVersionFlag(GV1_FORCED_MIGRATE_VERSION) == VersionFlag.ON;
   }
 
   /** Only for rendering debug info. */

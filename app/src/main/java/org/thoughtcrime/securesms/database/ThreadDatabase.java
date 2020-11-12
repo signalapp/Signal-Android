@@ -222,7 +222,7 @@ public class ThreadDatabase extends Database {
   }
 
   public void updateSnippet(long threadId, String snippet, @Nullable Uri attachment, long date, long type, boolean unarchive) {
-    if (MmsSmsColumns.Types.isProfileChange(type)) {
+    if (isSilentType(type)) {
       return;
     }
 
@@ -1368,6 +1368,11 @@ public class ThreadDatabase extends Database {
     }
 
     return query;
+  }
+
+  private boolean isSilentType(long type) {
+    return MmsSmsColumns.Types.isProfileChange(type) ||
+           MmsSmsColumns.Types.isGroupV1MigrationEvent(type);
   }
 
   public Reader readerFor(Cursor cursor) {

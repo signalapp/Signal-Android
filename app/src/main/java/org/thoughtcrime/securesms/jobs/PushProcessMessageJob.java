@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.GroupV1MessageProcessor;
+import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -357,7 +358,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
           Optional<GroupDatabase.GroupRecord> possibleGv1 = groupDatabase.getGroupV1ByExpectedV2(groupIdV2);
           if (possibleGv1.isPresent()) {
-            GroupV1MigrationJob.performLocalMigration(context, possibleGv1.get().getId().requireV1());
+            GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
           }
 
           if (!updateGv2GroupFromServerOrP2PChange(content, message.getGroupContext().get().getGroupV2().get())) {

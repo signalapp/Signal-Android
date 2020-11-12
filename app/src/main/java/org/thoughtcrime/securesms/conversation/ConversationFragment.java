@@ -91,7 +91,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -1427,7 +1427,7 @@ public class ConversationFragment extends LoggingFragment {
 
     @Override
     public void onGroupMigrationLearnMoreClicked(@NonNull List<RecipientId> pendingRecipients) {
-      GroupsV1MigrationBottomSheetDialogFragment.showForLearnMore(requireFragmentManager(), pendingRecipients);
+      GroupsV1MigrationInfoBottomSheetDialogFragment.showForLearnMore(requireFragmentManager(), pendingRecipients);
     }
   }
 

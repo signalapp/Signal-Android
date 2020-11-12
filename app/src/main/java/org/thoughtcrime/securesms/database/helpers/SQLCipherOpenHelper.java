@@ -159,8 +159,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int CAPABILITIES_REFACTOR            = 79;
   private static final int GV1_MIGRATION                    = 80;
   private static final int NOTIFIED_TIMESTAMP               = 81;
+  private static final int GV1_MIGRATION_LAST_SEEN          = 82;
 
-  private static final int    DATABASE_VERSION = 81;
+  private static final int    DATABASE_VERSION = 82;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1163,6 +1164,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < NOTIFIED_TIMESTAMP) {
         db.execSQL("ALTER TABLE sms ADD COLUMN notified_timestamp INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE mms ADD COLUMN notified_timestamp INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < GV1_MIGRATION_LAST_SEEN) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN last_gv1_migrate_reminder INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

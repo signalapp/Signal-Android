@@ -12,11 +12,11 @@ import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.List;
 
-class GroupsV1MigrationViewModel extends ViewModel {
+class GroupsV1MigrationInfoViewModel extends ViewModel {
 
   private final MutableLiveData<List<Recipient>> pendingMembers;
 
-  private GroupsV1MigrationViewModel(@NonNull List<RecipientId> pendingMembers) {
+  private GroupsV1MigrationInfoViewModel(@NonNull List<RecipientId> pendingMembers) {
     this.pendingMembers = new MutableLiveData<>();
 
     SignalExecutors.BOUNDED.execute(() -> {
@@ -38,7 +38,7 @@ class GroupsV1MigrationViewModel extends ViewModel {
 
     @Override
     public @NonNull<T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return modelClass.cast(new GroupsV1MigrationViewModel(pendingMembers));
+      return modelClass.cast(new GroupsV1MigrationInfoViewModel(pendingMembers));
     }
   }
 }

@@ -175,9 +175,8 @@ public abstract class GroupId {
     return encodedId.hashCode();
   }
 
-  @NonNull
   @Override
-  public String toString() {
+  public @NonNull String toString() {
     return encodedId;
   }
 

@@ -24,19 +24,24 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class GroupsV1MigrationBottomSheetDialogFragment extends BottomSheetDialogFragment {
+/**
+ * Shows more info about a GV1->GV2 migration event. Looks similar to
+ * {@link GroupsV1MigrationInitiationBottomSheetDialogFragment}, but only displays static data.
+ */
+public final class GroupsV1MigrationInfoBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
   private static final String KEY_PENDING = "pending";
 
-  private GroupsV1MigrationViewModel viewModel;
-  private GroupMemberListView        pendingList;
-  private TextView                   pendingTitle;
+  private GroupsV1MigrationInfoViewModel viewModel;
+  private GroupMemberListView            pendingList;
+  private TextView                       pendingTitle;
+  private View                           pendingContainer;
 
   public static void showForLearnMore(@NonNull FragmentManager manager, @NonNull List<RecipientId> pendingRecipients) {
     Bundle args = new Bundle();
     args.putParcelableArrayList(KEY_PENDING, new ArrayList<>(pendingRecipients));
 
-    GroupsV1MigrationBottomSheetDialogFragment fragment = new GroupsV1MigrationBottomSheetDialogFragment();
+    GroupsV1MigrationInfoBottomSheetDialogFragment fragment = new GroupsV1MigrationInfoBottomSheetDialogFragment();
     fragment.setArguments(args);
 
     fragment.show(manager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
@@ -58,13 +63,17 @@ public final class GroupsV1MigrationBottomSheetDialogFragment extends BottomShee
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    this.pendingTitle = view.findViewById(R.id.gv1_learn_more_pending_title);
-    this.pendingList  = view.findViewById(R.id.gv1_learn_more_pending_list);
+    this.pendingContainer = view.findViewById(R.id.gv1_learn_more_pending_container);
+    this.pendingTitle     = view.findViewById(R.id.gv1_learn_more_pending_title);
+    this.pendingList      = view.findViewById(R.id.gv1_learn_more_pending_list);
 
-    List<RecipientId> pending = getArguments().containsKey(KEY_PENDING) ? getArguments().getParcelableArrayList(KEY_PENDING) : null;
+    //noinspection ConstantConditions
+    List<RecipientId> pending = getArguments().getParcelableArrayList(KEY_PENDING);
 
-    this.viewModel = ViewModelProviders.of(this, new GroupsV1MigrationViewModel.Factory(pending)).get(GroupsV1MigrationViewModel.class);
+    this.viewModel = ViewModelProviders.of(this, new GroupsV1MigrationInfoViewModel.Factory(pending)).get(GroupsV1MigrationInfoViewModel.class);
     viewModel.getPendingMembers().observe(getViewLifecycleOwner(), this::onPendingMembersChanged);
+
+    view.findViewById(R.id.gv1_learn_more_ok_button).setOnClickListener(v -> dismiss());
   }
 
   @Override
@@ -73,7 +82,12 @@ public final class GroupsV1MigrationBottomSheetDialogFragment extends BottomShee
   }
 
   private void onPendingMembersChanged(@NonNull List<Recipient> pendingMembers) {
-    pendingTitle.setText(getResources().getQuantityText(R.plurals.GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite, pendingMembers.size()));
-    pendingList.setDisplayOnlyMembers(pendingMembers);
+    if (pendingMembers.size() > 0) {
+      pendingContainer.setVisibility(View.VISIBLE);
+      pendingTitle.setText(getResources().getQuantityText(R.plurals.GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite, pendingMembers.size()));
+      pendingList.setDisplayOnlyMembers(pendingMembers);
+    } else {
+      pendingContainer.setVisibility(View.GONE);
+    }
   }
 }

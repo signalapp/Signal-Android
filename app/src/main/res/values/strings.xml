@@ -561,10 +561,27 @@
         <item quantity="one">This member will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
         <item quantity="other">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
     </plurals>
-    <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">This member is not capable of joining New Groups, and has been removed from the group:</item>
-        <item quantity="other">These members are not capable of joining New Groups, and have been removed from the group:</item>
+
+    <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
+    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Upgrade to New Group</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_this_group">Upgrade this group</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">New Groups have features like @mentions and group admins, and will support more features in the future.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">All message history and media will be kept from before the upgrade.</string>
+    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Encountered a network error. Try again later.</string>
+    <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Failed to upgrade.</string>
+    <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+        <item quantity="one">This member will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
+        <item quantity="other">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
     </plurals>
+    <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+        <item quantity="one">This member is not capable of joining New Groups, and will be removed from the group:</item>
+        <item quantity="other">These members are not capable of joining New Groups, and will be removed from the group:</item>
+    </plurals>
+
+    <!-- GroupsV1MigrationInitiationReminder -->
+    <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">To access new features like @mentions and admins, upgrade this group.</string>
+    <string name="GroupsV1MigrationInitiationReminder_not_now">Not now</string>
+    <string name="GroupsV1MigrationInitiationReminder_update_group">Update group</string>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
@@ -731,6 +748,9 @@
     <string name="ManageGroupActivity_edit_name_and_picture">Edit name and picture</string>
     <string name="ManageGroupActivity_legacy_group">Legacy Group</string>
     <string name="ManageGroupActivity_legacy_group_learn_more">This is a Legacy Group. Features like group admins are only available for New Groups.</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">This is a Legacy Group. To access new features like @mentions and admins,</string>
+    <string name="ManageGroupActivity_legacy_group_too_large">This Legacy Group can’t be upgraded to a New Group because it is too large. The maximum group size is %1$d.</string>
+    <string name="ManageGroupActivity_upgrade_this_group">upgrade this group.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">This is an insecure MMS Group. To chat privately and access features like group names, invite your contacts to Signal.</string>
     <string name="ManageGroupActivity_invite_now">Invite now</string>
 

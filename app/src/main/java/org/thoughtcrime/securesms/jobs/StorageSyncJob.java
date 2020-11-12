@@ -6,13 +6,13 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.StorageKeyDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
 import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -56,7 +55,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -293,7 +291,7 @@ public class StorageSyncJob extends BaseJob {
 
       if (idMap.containsKey(id)) {
         Log.i(TAG, "Discovered a new GV2 ID that is actually a migrated V1 group! Migrating now.");
-        GroupV1MigrationJob.performLocalMigration(context, idMap.get(id));
+        GroupsV1MigrationUtil.performLocalMigration(context, idMap.get(id));
         recordIterator.remove();
       }
     }

@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -122,9 +123,15 @@ public class ManageGroupViewModel extends ViewModel {
     this.mentionSetting            = Transformations.distinctUntilChanged(Transformations.map(this.groupRecipient,
                                                                                               recipient -> MentionUtil.getMentionSettingDisplayValue(context, recipient.getMentionSetting())));
     this.groupLinkOn               = Transformations.map(liveGroup.getGroupLink(), GroupLinkUrlAndStatus::isEnabled);
-    this.groupInfoMessage          = Transformations.map(this.showLegacyIndicator,
-                                                         showLegacyInfo -> {
-                                                           if (showLegacyInfo) {
+    this.groupInfoMessage          = Transformations.map(this.groupRecipient,
+                                                         recipient -> {
+                                                           boolean showLegacyInfo = recipient.requireGroupId().isV1();
+
+                                                           if (showLegacyInfo && FeatureFlags.groupsV1ManualMigration() && recipient.getParticipants().size() > FeatureFlags.groupLimits().getHardLimit()) {
+                                                             return GroupInfoMessage.LEGACY_GROUP_TOO_LARGE;
+                                                           } else if (showLegacyInfo && FeatureFlags.groupsV1ManualMigration()) {
+                                                             return GroupInfoMessage.LEGACY_GROUP_UPGRADE;
+                                                           } else if (showLegacyInfo) {
                                                              return GroupInfoMessage.LEGACY_GROUP_LEARN_MORE;
                                                            } else if (groupId.isMms()) {
                                                              return GroupInfoMessage.MMS_WARNING;
@@ -393,6 +400,8 @@ public class ManageGroupViewModel extends ViewModel {
   enum GroupInfoMessage {
     NONE,
     LEGACY_GROUP_LEARN_MORE,
+    LEGACY_GROUP_UPGRADE,
+    LEGACY_GROUP_TOO_LARGE,
     MMS_WARNING
   }
 

@@ -11,4 +11,7 @@
 
     <item name="reminder_action_gv1_suggestion_not_now" type="id" />
     <item name="reminder_action_gv1_suggestion_add_members" type="id" />
+
+    <item name="reminder_action_gv1_initiation_not_now" type="id" />
+    <item name="reminder_action_gv1_initiation_update_group" type="id" />
 </resources>

@@ -86,47 +86,48 @@ public class RecipientDatabase extends Database {
 
   private static final String TAG = RecipientDatabase.class.getSimpleName();
 
-          static final String TABLE_NAME               = "recipient";
-  public  static final String ID                       = "_id";
-  private static final String UUID                     = "uuid";
-  private static final String USERNAME                 = "username";
-  public  static final String PHONE                    = "phone";
-  public  static final String EMAIL                    = "email";
-          static final String GROUP_ID                 = "group_id";
-  private static final String GROUP_TYPE               = "group_type";
-  private static final String BLOCKED                  = "blocked";
-  private static final String MESSAGE_RINGTONE         = "message_ringtone";
-  private static final String MESSAGE_VIBRATE          = "message_vibrate";
-  private static final String CALL_RINGTONE            = "call_ringtone";
-  private static final String CALL_VIBRATE             = "call_vibrate";
-  private static final String NOTIFICATION_CHANNEL     = "notification_channel";
-  private static final String MUTE_UNTIL               = "mute_until";
-  private static final String COLOR                    = "color";
-  private static final String SEEN_INVITE_REMINDER     = "seen_invite_reminder";
-  private static final String DEFAULT_SUBSCRIPTION_ID  = "default_subscription_id";
-  private static final String MESSAGE_EXPIRATION_TIME  = "message_expiration_time";
-  public  static final String REGISTERED               = "registered";
-  public  static final String SYSTEM_DISPLAY_NAME      = "system_display_name";
-  private static final String SYSTEM_PHOTO_URI         = "system_photo_uri";
-  public  static final String SYSTEM_PHONE_TYPE        = "system_phone_type";
-  public  static final String SYSTEM_PHONE_LABEL       = "system_phone_label";
-  private static final String SYSTEM_CONTACT_URI       = "system_contact_uri";
-  private static final String SYSTEM_INFO_PENDING      = "system_info_pending";
-  private static final String PROFILE_KEY              = "profile_key";
-  private static final String PROFILE_KEY_CREDENTIAL   = "profile_key_credential";
-  private static final String SIGNAL_PROFILE_AVATAR    = "signal_profile_avatar";
-  private static final String PROFILE_SHARING          = "profile_sharing";
-  private static final String LAST_PROFILE_FETCH       = "last_profile_fetch";
-  private static final String UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode";
-  private static final String FORCE_SMS_SELECTION      = "force_sms_selection";
-  private static final String CAPABILITIES             = "capabilities";
-  private static final String STORAGE_SERVICE_ID       = "storage_service_key";
-  private static final String DIRTY                    = "dirty";
-  private static final String PROFILE_GIVEN_NAME       = "signal_profile_name";
-  private static final String PROFILE_FAMILY_NAME      = "profile_family_name";
-  private static final String PROFILE_JOINED_NAME      = "profile_joined_name";
-  private static final String MENTION_SETTING          = "mention_setting";
-  private static final String STORAGE_PROTO            = "storage_proto";
+          static final String TABLE_NAME                = "recipient";
+  public  static final String ID                        = "_id";
+  private static final String UUID                      = "uuid";
+  private static final String USERNAME                  = "username";
+  public  static final String PHONE                     = "phone";
+  public  static final String EMAIL                     = "email";
+          static final String GROUP_ID                  = "group_id";
+  private static final String GROUP_TYPE                = "group_type";
+  private static final String BLOCKED                   = "blocked";
+  private static final String MESSAGE_RINGTONE          = "message_ringtone";
+  private static final String MESSAGE_VIBRATE           = "message_vibrate";
+  private static final String CALL_RINGTONE             = "call_ringtone";
+  private static final String CALL_VIBRATE              = "call_vibrate";
+  private static final String NOTIFICATION_CHANNEL      = "notification_channel";
+  private static final String MUTE_UNTIL                = "mute_until";
+  private static final String COLOR                     = "color";
+  private static final String SEEN_INVITE_REMINDER      = "seen_invite_reminder";
+  private static final String DEFAULT_SUBSCRIPTION_ID   = "default_subscription_id";
+  private static final String MESSAGE_EXPIRATION_TIME   = "message_expiration_time";
+  public  static final String REGISTERED                = "registered";
+  public  static final String SYSTEM_DISPLAY_NAME       = "system_display_name";
+  private static final String SYSTEM_PHOTO_URI          = "system_photo_uri";
+  public  static final String SYSTEM_PHONE_TYPE         = "system_phone_type";
+  public  static final String SYSTEM_PHONE_LABEL        = "system_phone_label";
+  private static final String SYSTEM_CONTACT_URI        = "system_contact_uri";
+  private static final String SYSTEM_INFO_PENDING       = "system_info_pending";
+  private static final String PROFILE_KEY               = "profile_key";
+  private static final String PROFILE_KEY_CREDENTIAL    = "profile_key_credential";
+  private static final String SIGNAL_PROFILE_AVATAR     = "signal_profile_avatar";
+  private static final String PROFILE_SHARING           = "profile_sharing";
+  private static final String LAST_PROFILE_FETCH        = "last_profile_fetch";
+  private static final String UNIDENTIFIED_ACCESS_MODE  = "unidentified_access_mode";
+  private static final String FORCE_SMS_SELECTION       = "force_sms_selection";
+  private static final String CAPABILITIES              = "capabilities";
+  private static final String STORAGE_SERVICE_ID        = "storage_service_key";
+  private static final String DIRTY                     = "dirty";
+  private static final String PROFILE_GIVEN_NAME        = "signal_profile_name";
+  private static final String PROFILE_FAMILY_NAME       = "profile_family_name";
+  private static final String PROFILE_JOINED_NAME       = "profile_joined_name";
+  private static final String MENTION_SETTING           = "mention_setting";
+  private static final String STORAGE_PROTO             = "storage_proto";
+  private static final String LAST_GV1_MIGRATE_REMINDER = "last_gv1_migrate_reminder";
 
   public  static final String SEARCH_PROFILE_NAME      = "search_signal_profile";
   private static final String SORT_NAME                = "sort_name";
@@ -305,46 +306,47 @@ public class RecipientDatabase extends Database {
   }
 
   public static final String CREATE_TABLE =
-      "CREATE TABLE " + TABLE_NAME + " (" + ID                       + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                            UUID                     + " TEXT UNIQUE DEFAULT NULL, " +
-                                            USERNAME                 + " TEXT UNIQUE DEFAULT NULL, " +
-                                            PHONE                    + " TEXT UNIQUE DEFAULT NULL, " +
-                                            EMAIL                    + " TEXT UNIQUE DEFAULT NULL, " +
-                                            GROUP_ID                 + " TEXT UNIQUE DEFAULT NULL, " +
-                                            GROUP_TYPE               + " INTEGER DEFAULT " + GroupType.NONE.getId() +  ", " +
-                                            BLOCKED                  + " INTEGER DEFAULT 0," +
-                                            MESSAGE_RINGTONE         + " TEXT DEFAULT NULL, " +
-                                            MESSAGE_VIBRATE          + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
-                                            CALL_RINGTONE            + " TEXT DEFAULT NULL, " +
-                                            CALL_VIBRATE             + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
-                                            NOTIFICATION_CHANNEL     + " TEXT DEFAULT NULL, " +
-                                            MUTE_UNTIL               + " INTEGER DEFAULT 0, " +
-                                            COLOR                    + " TEXT DEFAULT NULL, " +
-                                            SEEN_INVITE_REMINDER     + " INTEGER DEFAULT " + InsightsBannerTier.NO_TIER.getId() + ", " +
-                                            DEFAULT_SUBSCRIPTION_ID  + " INTEGER DEFAULT -1, " +
-                                            MESSAGE_EXPIRATION_TIME  + " INTEGER DEFAULT 0, " +
-                                            REGISTERED               + " INTEGER DEFAULT " + RegisteredState.UNKNOWN.getId() + ", " +
-                                            SYSTEM_DISPLAY_NAME      + " TEXT DEFAULT NULL, " +
-                                            SYSTEM_PHOTO_URI         + " TEXT DEFAULT NULL, " +
-                                            SYSTEM_PHONE_LABEL       + " TEXT DEFAULT NULL, " +
-                                            SYSTEM_PHONE_TYPE        + " INTEGER DEFAULT -1, " +
-                                            SYSTEM_CONTACT_URI       + " TEXT DEFAULT NULL, " +
-                                            SYSTEM_INFO_PENDING      + " INTEGER DEFAULT 0, " +
-                                            PROFILE_KEY              + " TEXT DEFAULT NULL, " +
-                                            PROFILE_KEY_CREDENTIAL   + " TEXT DEFAULT NULL, " +
-                                            PROFILE_GIVEN_NAME       + " TEXT DEFAULT NULL, " +
-                                            PROFILE_FAMILY_NAME      + " TEXT DEFAULT NULL, " +
-                                            PROFILE_JOINED_NAME      + " TEXT DEFAULT NULL, " +
-                                            SIGNAL_PROFILE_AVATAR    + " TEXT DEFAULT NULL, " +
-                                            PROFILE_SHARING          + " INTEGER DEFAULT 0, " +
-                                            LAST_PROFILE_FETCH       + " INTEGER DEFAULT 0, " +
-                                            UNIDENTIFIED_ACCESS_MODE + " INTEGER DEFAULT 0, " +
-                                            FORCE_SMS_SELECTION      + " INTEGER DEFAULT 0, " +
-                                            STORAGE_SERVICE_ID       + " TEXT UNIQUE DEFAULT NULL, " +
-                                            DIRTY                    + " INTEGER DEFAULT " + DirtyState.CLEAN.getId() + ", " +
-                                            MENTION_SETTING          + " INTEGER DEFAULT " + MentionSetting.ALWAYS_NOTIFY.getId() + ", " +
-                                            STORAGE_PROTO            + " TEXT DEFAULT NULL, " +
-                                            CAPABILITIES             + " INTEGER DEFAULT 0);";
+      "CREATE TABLE " + TABLE_NAME + " (" + ID                        + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                            UUID                      + " TEXT UNIQUE DEFAULT NULL, " +
+                                            USERNAME                  + " TEXT UNIQUE DEFAULT NULL, " +
+                                            PHONE                     + " TEXT UNIQUE DEFAULT NULL, " +
+                                            EMAIL                     + " TEXT UNIQUE DEFAULT NULL, " +
+                                            GROUP_ID                  + " TEXT UNIQUE DEFAULT NULL, " +
+                                            GROUP_TYPE                + " INTEGER DEFAULT " + GroupType.NONE.getId() +  ", " +
+                                            BLOCKED                   + " INTEGER DEFAULT 0," +
+                                            MESSAGE_RINGTONE          + " TEXT DEFAULT NULL, " +
+                                            MESSAGE_VIBRATE           + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
+                                            CALL_RINGTONE             + " TEXT DEFAULT NULL, " +
+                                            CALL_VIBRATE              + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
+                                            NOTIFICATION_CHANNEL      + " TEXT DEFAULT NULL, " +
+                                            MUTE_UNTIL                + " INTEGER DEFAULT 0, " +
+                                            COLOR                     + " TEXT DEFAULT NULL, " +
+                                            SEEN_INVITE_REMINDER      + " INTEGER DEFAULT " + InsightsBannerTier.NO_TIER.getId() + ", " +
+                                            DEFAULT_SUBSCRIPTION_ID   + " INTEGER DEFAULT -1, " +
+                                            MESSAGE_EXPIRATION_TIME   + " INTEGER DEFAULT 0, " +
+                                            REGISTERED                + " INTEGER DEFAULT " + RegisteredState.UNKNOWN.getId() + ", " +
+                                            SYSTEM_DISPLAY_NAME       + " TEXT DEFAULT NULL, " +
+                                            SYSTEM_PHOTO_URI          + " TEXT DEFAULT NULL, " +
+                                            SYSTEM_PHONE_LABEL        + " TEXT DEFAULT NULL, " +
+                                            SYSTEM_PHONE_TYPE         + " INTEGER DEFAULT -1, " +
+                                            SYSTEM_CONTACT_URI        + " TEXT DEFAULT NULL, " +
+                                            SYSTEM_INFO_PENDING       + " INTEGER DEFAULT 0, " +
+                                            PROFILE_KEY               + " TEXT DEFAULT NULL, " +
+                                            PROFILE_KEY_CREDENTIAL    + " TEXT DEFAULT NULL, " +
+                                            PROFILE_GIVEN_NAME        + " TEXT DEFAULT NULL, " +
+                                            PROFILE_FAMILY_NAME       + " TEXT DEFAULT NULL, " +
+                                            PROFILE_JOINED_NAME       + " TEXT DEFAULT NULL, " +
+                                            SIGNAL_PROFILE_AVATAR     + " TEXT DEFAULT NULL, " +
+                                            PROFILE_SHARING           + " INTEGER DEFAULT 0, " +
+                                            LAST_PROFILE_FETCH        + " INTEGER DEFAULT 0, " +
+                                            UNIDENTIFIED_ACCESS_MODE  + " INTEGER DEFAULT 0, " +
+                                            FORCE_SMS_SELECTION       + " INTEGER DEFAULT 0, " +
+                                            STORAGE_SERVICE_ID        + " TEXT UNIQUE DEFAULT NULL, " +
+                                            DIRTY                     + " INTEGER DEFAULT " + DirtyState.CLEAN.getId() + ", " +
+                                            MENTION_SETTING           + " INTEGER DEFAULT " + MentionSetting.ALWAYS_NOTIFY.getId() + ", " +
+                                            STORAGE_PROTO             + " TEXT DEFAULT NULL, " +
+                                            CAPABILITIES              + " INTEGER DEFAULT 0, " +
+                                            LAST_GV1_MIGRATE_REMINDER + " INTEGER DEFAULT 0);";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
       " FROM " + TABLE_NAME +
@@ -1477,6 +1479,26 @@ public class RecipientDatabase extends Database {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
     }
+  }
+
+  public void markGroupsV1MigrationReminderSeen(@NonNull RecipientId id, long time) {
+    ContentValues values = new ContentValues(1);
+    values.put(LAST_GV1_MIGRATE_REMINDER, time);
+    if (update(id, values)) {
+      Recipient.live(id).refresh();
+    }
+  }
+
+  public long getGroupsV1MigrationReminderLastSeen(@NonNull RecipientId id) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { LAST_GV1_MIGRATE_REMINDER }, ID_WHERE, SqlUtil.buildArgs(id), null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return CursorUtil.requireLong(cursor, LAST_GV1_MIGRATE_REMINDER);
+      }
+    }
+
+    return 0;
   }
 
   public void setCapabilities(@NonNull RecipientId id, @NonNull SignalServiceProfile.Capabilities capabilities) {

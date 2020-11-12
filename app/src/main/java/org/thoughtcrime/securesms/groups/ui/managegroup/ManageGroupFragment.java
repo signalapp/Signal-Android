@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndR
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupRightsDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
@@ -382,6 +383,17 @@ public class ManageGroupFragment extends LoggingFragment {
           groupInfoText.setText(R.string.ManageGroupActivity_legacy_group_learn_more);
           groupInfoText.setOnLinkClickListener(v -> GroupsLearnMoreBottomSheetDialogFragment.show(requireFragmentManager()));
           groupInfoText.setLearnMoreVisible(true);
+          groupInfoText.setVisibility(View.VISIBLE);
+          break;
+        case LEGACY_GROUP_UPGRADE:
+          groupInfoText.setText(R.string.ManageGroupActivity_legacy_group_upgrade);
+          groupInfoText.setOnLinkClickListener(v -> GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(requireFragmentManager(), Recipient.externalPossiblyMigratedGroup(requireContext(), groupId).getId()));
+          groupInfoText.setLearnMoreVisible(true, R.string.ManageGroupActivity_upgrade_this_group);
+          groupInfoText.setVisibility(View.VISIBLE);
+          break;
+        case LEGACY_GROUP_TOO_LARGE:
+          groupInfoText.setText(context.getString(R.string.ManageGroupActivity_legacy_group_too_large, FeatureFlags.groupLimits().getHardLimit() - 1));
+          groupInfoText.setLearnMoreVisible(false);
           groupInfoText.setVisibility(View.VISIBLE);
           break;
         case MMS_WARNING:
