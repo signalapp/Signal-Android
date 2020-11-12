@@ -18,7 +18,7 @@
         app:fallbackImageSize="small"
         tools:src="@tools:sample/avatars" />
 
-    <TextView
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_view_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

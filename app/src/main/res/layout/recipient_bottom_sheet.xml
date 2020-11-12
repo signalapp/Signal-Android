@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="@+id/rbs_recipient_avatar"
         tools:visibility="visible" />
 
-    <TextView
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/rbs_full_name"
         style="@style/TextAppearance.Signal.Body1.Bold"
         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/rbs_recipient_avatar"
         tools:text="Gwen Stacy" />
 
-    <TextView
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/rbs_username_number"
         style="@style/Signal.Text.Body"
         android:layout_width="wrap_content"
