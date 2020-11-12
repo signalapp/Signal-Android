@@ -2,11 +2,9 @@ package org.thoughtcrime.securesms.loki.activities
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.text.Spannable
@@ -15,13 +13,20 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.google.android.gms.common.util.Strings
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ActivityBackupRestoreBinding
 import org.thoughtcrime.securesms.ApplicationContext
@@ -31,142 +36,91 @@ import org.thoughtcrime.securesms.backup.FullBackupImporter.DatabaseDowngradeExc
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
+import org.thoughtcrime.securesms.loki.utilities.fadeIn
+import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import java.io.IOException
 
 class BackupRestoreActivity : BaseActionBarActivity() {
 
     companion object {
         private const val TAG = "BackupRestoreActivity"
-        private const val REQUEST_CODE_BACKUP_FILE = 779955
     }
 
     private val viewModel by viewModels<BackupRestoreViewModel>()
 
-    // region Lifecycle
+    private val fileSelectionResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()
+    ) { result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK && result.data != null && result.data!!.data != null) {
+            viewModel.backupFile.value = result.data!!.data!!
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
-        val dataBinding = DataBindingUtil.setContentView<ActivityBackupRestoreBinding>(this, R.layout.activity_backup_restore)
-        dataBinding.lifecycleOwner = this
-        dataBinding.viewModel = viewModel
-//        setContentView(R.layout.activity_backup_restore)
 
-        dataBinding.restoreButton.setOnClickListener { restore() }
+        val viewBinding = DataBindingUtil.setContentView<ActivityBackupRestoreBinding>(this, R.layout.activity_backup_restore)
+        viewBinding.lifecycleOwner = this
+        viewBinding.viewModel = viewModel
 
-        dataBinding.buttonSelectFile.setOnClickListener {
-            // Let user pick a file.
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+        viewBinding.restoreButton.setOnClickListener { viewModel.tryRestoreBackup() }
+
+        viewBinding.buttonSelectFile.setOnClickListener {
+            fileSelectionResultLauncher.launch(Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                //FIXME On some old APIs (tested on 21 & 23) the mime type doesn't filter properly
+                // and the backup files are unavailable for selection.
 //                type = BackupUtil.BACKUP_FILE_MIME_TYPE
                 type = "*/*"
-            }
-            startActivityForResult(intent, REQUEST_CODE_BACKUP_FILE)
+            })
         }
 
-        dataBinding.backupCode.addTextChangedListener { text -> viewModel.backupPassphrase.value = text.toString() }
+        viewBinding.backupCode.addTextChangedListener { text -> viewModel.backupPassphrase.value = text.toString() }
+
+        // Focus passphrase text edit when backup file is selected.
+        viewModel.backupFile.observe(this, { backupFile ->
+            if (backupFile != null) viewBinding.backupCode.post {
+                viewBinding.backupCode.requestFocus()
+                (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
+                        .showSoftInput(viewBinding.backupCode, InputMethodManager.SHOW_IMPLICIT)
+            }
+        })
+
+        // React to backup import result.
+        viewModel.backupImportResult.observe(this) { result ->
+            if (result != null) when (result) {
+                BackupRestoreViewModel.BackupImportResult.SUCCESS -> {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    this.show(intent)
+                }
+                BackupRestoreViewModel.BackupImportResult.FAILURE_VERSION_DOWNGRADE ->
+                    Toast.makeText(this, R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show()
+                BackupRestoreViewModel.BackupImportResult.FAILURE_UNKNOWN ->
+                    Toast.makeText(this, R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show()
+            }
+        }
 
         //region Legal info views
         val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms of Service and Privacy Policy")
         termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 40, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsExplanation.setSpan(object : ClickableSpan() {
-
             override fun onClick(widget: View) {
                 openURL("https://getsession.org/terms-of-service/")
             }
         }, 40, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsExplanation.setSpan(object : ClickableSpan() {
-
             override fun onClick(widget: View) {
                 openURL("https://getsession.org/privacy-policy/")
             }
         }, 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        dataBinding.termsTextView.movementMethod = LinkMovementMethod.getInstance()
-        dataBinding.termsTextView.text = termsExplanation
+        viewBinding.termsTextView.movementMethod = LinkMovementMethod.getInstance()
+        viewBinding.termsTextView.text = termsExplanation
         //endregion
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        when (requestCode) {
-            REQUEST_CODE_BACKUP_FILE -> {
-                if (resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-//                  // Acquire persistent access permissions for the file selected.
-//                  val persistentFlags: Int = data.flags and
-//                          (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-//                  context.contentResolver.takePersistableUriPermission(data.data!!, persistentFlags)
-
-                    viewModel.onBackupFileSelected(data.data!!)
-                }
-            }
-        }
-
-    }
-    // endregion
-
-    // region Interaction
-    private fun restore() {
-        if (viewModel.backupFile.value == null && Strings.isEmptyOrWhitespace(viewModel.backupPassphrase.value)) return
-
-        val backupFile = viewModel.backupFile.value!!
-        val passphrase = viewModel.backupPassphrase.value!!.trim()
-
-        object : AsyncTask<Void?, Void?, BackupImportResult>() {
-            override fun doInBackground(vararg params: Void?): BackupImportResult {
-                return try {
-                    val context: Context = this@BackupRestoreActivity
-                    val database = DatabaseFactory.getBackupDatabase(context)
-                    FullBackupImporter.importFromUri(
-                            context,
-                            AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                            DatabaseFactory.getBackupDatabase(context),
-                            backupFile,
-                            passphrase
-                    )
-                    DatabaseFactory.upgradeRestored(context, database)
-                    NotificationChannels.restoreContactNotificationChannels(context)
-                    TextSecurePreferences.setRestorationTime(context, System.currentTimeMillis())
-
-                    BackupImportResult.SUCCESS
-                } catch (e: DatabaseDowngradeException) {
-                    Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e)
-                    BackupImportResult.FAILURE_VERSION_DOWNGRADE
-                } catch (e: IOException) {
-                    Log.w(TAG, e)
-                    BackupImportResult.FAILURE_UNKNOWN
-                }
-            }
-
-            override fun onPostExecute(result: BackupImportResult) {
-                val context = this@BackupRestoreActivity
-                when (result) {
-                    BackupImportResult.SUCCESS -> {
-                        TextSecurePreferences.setHasViewedSeed(context, true)
-                        TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
-                        TextSecurePreferences.setPromptedPushRegistration(context, true)
-                        TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(context)
-                        TextSecurePreferences.setHasSeenLightThemeIntroSheet(context)
-                        val application = ApplicationContext.getInstance(context)
-                        application.setUpStorageAPIIfNeeded()
-                        application.setUpP2PAPIIfNeeded()
-
-                        HomeActivity.requestResetAllSessionsOnStartup(context)
-
-                        val intent = Intent(context, HomeActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        show(intent)
-                    }
-                    BackupImportResult.FAILURE_VERSION_DOWNGRADE ->
-                        Toast.makeText(context, R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show()
-                    BackupImportResult.FAILURE_UNKNOWN ->
-                        Toast.makeText(context, R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show()
-                }
-            }
-        }.execute()
     }
 
     private fun openURL(url: String) {
@@ -177,17 +131,13 @@ class BackupRestoreActivity : BaseActionBarActivity() {
             Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
         }
     }
-
-
-    enum class BackupImportResult {
-        SUCCESS, FAILURE_VERSION_DOWNGRADE, FAILURE_UNKNOWN
-    }
-    // endregion
 }
 
 class BackupRestoreViewModel(application: Application): AndroidViewModel(application) {
 
     companion object {
+        private const val TAG = "BackupRestoreViewModel"
+
         @JvmStatic
         fun uriToFileName(view: View, fileUri: Uri?): String? {
             fileUri ?: return null
@@ -201,15 +151,70 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
 
         @JvmStatic
         fun validateData(fileUri: Uri?, passphrase: String?): Boolean {
-            return fileUri != null && !Strings.isEmptyOrWhitespace(passphrase)
+            return fileUri != null &&
+                    !Strings.isEmptyOrWhitespace(passphrase) &&
+                    passphrase!!.length == BackupUtil.BACKUP_PASSPHRASE_LENGTH
         }
     }
 
-    val backupFile = MutableLiveData<Uri>()
-    val backupPassphrase = MutableLiveData<String>("000000000000000000000000000000")
+    val backupFile = MutableLiveData<Uri>(null)
+    val backupPassphrase = MutableLiveData<String>(null)
 
-    fun onBackupFileSelected(backupFile: Uri) {
-        //TODO Check if backup file is correct.
-        this.backupFile.value = backupFile
+    val processingBackupFile = MutableLiveData<Boolean>(false)
+    val backupImportResult = MutableLiveData<BackupImportResult>(null)
+
+    fun tryRestoreBackup() = viewModelScope.launch {
+        if (backupImportResult.value == BackupImportResult.SUCCESS) return@launch
+        if (!validateData(backupFile.value, backupPassphrase.value)) return@launch
+
+        val context = getApplication<Application>()
+        val backupFile = backupFile.value!!
+        val passphrase = backupPassphrase.value!!
+
+        val result: BackupImportResult
+
+        processingBackupFile.value = true
+
+        withContext(Dispatchers.IO) {
+            result = try {
+                val database = DatabaseFactory.getBackupDatabase(context)
+                FullBackupImporter.importFromUri(
+                        context,
+                        AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                        DatabaseFactory.getBackupDatabase(context),
+                        backupFile,
+                        passphrase
+                )
+                DatabaseFactory.upgradeRestored(context, database)
+                NotificationChannels.restoreContactNotificationChannels(context)
+                TextSecurePreferences.setRestorationTime(context, System.currentTimeMillis())
+                TextSecurePreferences.setHasViewedSeed(context, true)
+                TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
+                TextSecurePreferences.setPromptedPushRegistration(context, true)
+                TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(context)
+                TextSecurePreferences.setHasSeenLightThemeIntroSheet(context)
+                val application = ApplicationContext.getInstance(context)
+                application.setUpStorageAPIIfNeeded()
+                application.setUpP2PAPIIfNeeded()
+
+                HomeActivity.requestResetAllSessionsOnStartup(context)
+
+                BackupImportResult.SUCCESS
+            } catch (e: DatabaseDowngradeException) {
+                Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e)
+                BackupImportResult.FAILURE_VERSION_DOWNGRADE
+            } catch (e: Exception) {
+                Log.w(TAG, e)
+                BackupImportResult.FAILURE_UNKNOWN
+            }
+        }
+
+        processingBackupFile.value = false
+
+        backupImportResult.value = result
+    }
+
+    enum class BackupImportResult {
+        SUCCESS, FAILURE_VERSION_DOWNGRADE, FAILURE_UNKNOWN
     }
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.net.Uri
+import androidx.annotation.WorkerThread
 import net.sqlcipher.database.SQLiteDatabase
 import org.greenrobot.eventbus.EventBus
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -38,8 +39,9 @@ object FullBackupImporter {
 
     private val TAG = FullBackupImporter::class.java.simpleName
 
-    @Throws(IOException::class)
     @JvmStatic
+    @WorkerThread
+    @Throws(IOException::class)
     fun importFromUri(context: Context,
                       attachmentSecret: AttachmentSecret,
                       db: SQLiteDatabase,

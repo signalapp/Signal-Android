@@ -1,13 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
-
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.loki.database.BackupFileRecord;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.database.BackupFileRecord;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.BackupUtil;

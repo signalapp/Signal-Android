@@ -37,12 +37,13 @@ fun View.animateSizeChange(@DimenRes startSizeID: Int, @DimenRes endSizeID: Int,
 
 fun View.fadeIn(duration: Long = 150) {
     visibility = View.VISIBLE
+    animate().cancel()
     animate().setDuration(duration).alpha(1.0f).start()
 }
 
 fun View.fadeOut(duration: Long = 150) {
+    animate().cancel()
     animate().setDuration(duration).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
-
         override fun onAnimationEnd(animation: Animator?) {
             super.onAnimationEnd(animation)
             visibility = View.GONE

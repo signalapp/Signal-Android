@@ -75,10 +75,9 @@ class PublicChatManager(private val context: Context) {
     // Create the group if we don't have one
     if (threadID < 0) {
       if (info.profilePictureURL.isNotEmpty()) {
-        //TODO Use DownloadUtilities to pull the avatar from the server.
-//        val profilePictureAsByteArray = ApplicationContext.getInstance(context).publicChatAPI
-//                ?.downloadOpenGroupProfilePicture(server, info.profilePictureURL)
-//        profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
+        val profilePictureAsByteArray = ApplicationContext.getInstance(context).publicChatAPI
+                ?.downloadOpenGroupProfilePicture(server, info.profilePictureURL)
+        profilePicture = BitmapUtil.fromByteArray(profilePictureAsByteArray)
       }
       val result = GroupManager.createOpenGroup(chat.id, context, profilePicture, chat.displayName)
       threadID = result.threadId

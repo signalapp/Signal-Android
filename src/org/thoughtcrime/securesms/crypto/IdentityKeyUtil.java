@@ -127,31 +127,35 @@ public class IdentityKeyUtil {
 
     LinkedList<BackupProtos.SharedPreference> prefList = new LinkedList<>();
 
+    prefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(MasterSecretUtil.PREFERENCES_NAME)
+            .setKey(IDENTITY_PUBLIC_KEY_PREF)
+            .setValue(preferences.getString(IDENTITY_PUBLIC_KEY_PREF, null))
+            .build());
+    prefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(MasterSecretUtil.PREFERENCES_NAME)
+            .setKey(IDENTITY_PRIVATE_KEY_PREF)
+            .setValue(preferences.getString(IDENTITY_PRIVATE_KEY_PREF, null))
+            .build());
+    if (preferences.contains(ED25519_PUBLIC_KEY)) {
       prefList.add(BackupProtos.SharedPreference.newBuilder()
-                                       .setFile(MasterSecretUtil.PREFERENCES_NAME)
-                                       .setKey(IDENTITY_PUBLIC_KEY_PREF)
-                                       .setValue(preferences.getString(IDENTITY_PUBLIC_KEY_PREF, null))
-                                       .build());
+              .setFile(MasterSecretUtil.PREFERENCES_NAME)
+              .setKey(ED25519_PUBLIC_KEY)
+              .setValue(preferences.getString(ED25519_PUBLIC_KEY, null))
+              .build());
+    }
+    if (preferences.contains(ED25519_SECRET_KEY)) {
       prefList.add(BackupProtos.SharedPreference.newBuilder()
-                                       .setFile(MasterSecretUtil.PREFERENCES_NAME)
-                                       .setKey(IDENTITY_PRIVATE_KEY_PREF)
-                                       .setValue(preferences.getString(IDENTITY_PRIVATE_KEY_PREF, null))
-                                       .build());
-      prefList.add(BackupProtos.SharedPreference.newBuilder()
-                                       .setFile(MasterSecretUtil.PREFERENCES_NAME)
-                                       .setKey(ED25519_PUBLIC_KEY)
-                                       .setValue(preferences.getString(ED25519_PUBLIC_KEY, null))
-                                       .build());
-      prefList.add(BackupProtos.SharedPreference.newBuilder()
-                                       .setFile(MasterSecretUtil.PREFERENCES_NAME)
-                                       .setKey(ED25519_SECRET_KEY)
-                                       .setValue(preferences.getString(ED25519_SECRET_KEY, null))
-                                       .build());
-      prefList.add(BackupProtos.SharedPreference.newBuilder()
-                                       .setFile(MasterSecretUtil.PREFERENCES_NAME)
-                                       .setKey(LOKI_SEED)
-                                       .setValue(preferences.getString(LOKI_SEED, null))
-                                       .build());
+              .setFile(MasterSecretUtil.PREFERENCES_NAME)
+              .setKey(ED25519_SECRET_KEY)
+              .setValue(preferences.getString(ED25519_SECRET_KEY, null))
+              .build());
+    }
+    prefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(MasterSecretUtil.PREFERENCES_NAME)
+            .setKey(LOKI_SEED)
+            .setValue(preferences.getString(LOKI_SEED, null))
+            .build());
 
     return prefList;
   }

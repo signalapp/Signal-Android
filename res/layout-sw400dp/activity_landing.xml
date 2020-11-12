@@ -57,7 +57,7 @@
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginTop="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
-        android:text="Backup" />
+        android:text="@string/activity_landing_restore_backup_button_title" />
 
     <Button
         android:id="@+id/linkButton"

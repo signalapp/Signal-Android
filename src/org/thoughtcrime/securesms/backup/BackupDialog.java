@@ -29,9 +29,8 @@ public class BackupDialog {
           @NonNull SwitchPreferenceCompat preference,
           @NonNull BackupDirSelector backupDirSelector) {
 
-//    String[] password   = BackupUtil.generateBackupPassphrase();
-    String[] password   = new String[]{"00000", "00000", "00000", "00000", "00000", "00000"};
-    String   passwordSt = Util.join(password, " ");
+    String[] password   = BackupUtil.generateBackupPassphrase();
+    String   passwordSt = Util.join(password, "");
 
     AlertDialog dialog = new AlertDialog.Builder(context)
                                           .setTitle(R.string.BackupDialog_enable_local_backups)
@@ -83,7 +82,7 @@ public class BackupDialog {
 
     dialog.findViewById(R.id.number_table).setOnClickListener(v -> {
       ((ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", passwordSt));
-      Toast.makeText(context, R.string.BackupDialog_copied_to_clipboard, Toast.LENGTH_LONG).show();
+      Toast.makeText(context, R.string.BackupDialog_copied_to_clipboard, Toast.LENGTH_SHORT).show();
     });
 
 

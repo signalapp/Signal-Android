@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.text.TextUtils
+import androidx.annotation.WorkerThread
 import com.annimon.stream.function.Consumer
 import com.annimon.stream.function.Predicate
 import com.google.protobuf.ByteString
@@ -40,6 +41,7 @@ object FullBackupExporter {
     private val TAG = FullBackupExporter::class.java.simpleName
 
     @JvmStatic
+    @WorkerThread
     @Throws(IOException::class)
     fun export(context: Context,
                attachmentSecret: AttachmentSecret,

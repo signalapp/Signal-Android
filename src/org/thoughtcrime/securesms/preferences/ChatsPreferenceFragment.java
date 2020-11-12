@@ -128,7 +128,8 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
 
   private void setBackupSummary() {
     findPreference(TextSecurePreferences.BACKUP_NOW)
-            .setSummary(String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s), BackupUtil.getLastBackupTimeString(getContext(), Locale.getDefault())));
+            .setSummary(String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s),
+                    BackupUtil.getLastBackupTimeString(getContext(), Locale.getDefault())));
   }
 
   private void setMediaDownloadSummaries() {

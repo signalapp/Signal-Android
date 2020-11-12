@@ -32,7 +32,8 @@ import kotlin.jvm.Throws
 
 object BackupUtil {
     private const val TAG = "BackupUtil"
-    const val BACKUP_FILE_MIME_TYPE = "application/x-binary"
+    const val BACKUP_FILE_MIME_TYPE = "application/session-backup"
+    const val BACKUP_PASSPHRASE_LENGTH = 30
 
     /**
      * Set app-wide configuration to enable the backups and schedule them.
@@ -88,7 +89,7 @@ object BackupUtil {
 
     @JvmStatic
     fun generateBackupPassphrase(): Array<String> {
-        val random = ByteArray(30).also { SecureRandom().nextBytes(it) }
+        val random = ByteArray(BACKUP_PASSPHRASE_LENGTH).also { SecureRandom().nextBytes(it) }
         return Array(6) {i ->
             String.format("%05d", ByteUtil.byteArray5ToLong(random, i * 5) % 100000)
         }
@@ -180,7 +181,7 @@ object BackupUtil {
         val record = DatabaseFactory.getLokiBackupFilesDatabase(context)
                 .insertBackupFile(BackupFileRecord(fileUri, -1, date))
 
-        Log.v(TAG, "Backup file was created: $fileUri")
+        Log.v(TAG, "A backup file was created: $fileUri")
 
         return record
     }
