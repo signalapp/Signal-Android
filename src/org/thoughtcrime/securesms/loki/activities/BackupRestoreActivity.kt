@@ -36,8 +36,6 @@ import org.thoughtcrime.securesms.backup.FullBackupImporter.DatabaseDowngradeExc
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
-import org.thoughtcrime.securesms.loki.utilities.fadeIn
-import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -92,14 +90,14 @@ class BackupRestoreActivity : BaseActionBarActivity() {
         // React to backup import result.
         viewModel.backupImportResult.observe(this) { result ->
             if (result != null) when (result) {
-                BackupRestoreViewModel.BackupImportResult.SUCCESS -> {
+                BackupRestoreViewModel.BackupRestoreResult.SUCCESS -> {
                     val intent = Intent(this, HomeActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     this.show(intent)
                 }
-                BackupRestoreViewModel.BackupImportResult.FAILURE_VERSION_DOWNGRADE ->
+                BackupRestoreViewModel.BackupRestoreResult.FAILURE_VERSION_DOWNGRADE ->
                     Toast.makeText(this, R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show()
-                BackupRestoreViewModel.BackupImportResult.FAILURE_UNKNOWN ->
+                BackupRestoreViewModel.BackupRestoreResult.FAILURE_UNKNOWN ->
                     Toast.makeText(this, R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show()
             }
         }
@@ -161,17 +159,18 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
     val backupPassphrase = MutableLiveData<String>(null)
 
     val processingBackupFile = MutableLiveData<Boolean>(false)
-    val backupImportResult = MutableLiveData<BackupImportResult>(null)
+    val backupImportResult = MutableLiveData<BackupRestoreResult>(null)
 
     fun tryRestoreBackup() = viewModelScope.launch {
-        if (backupImportResult.value == BackupImportResult.SUCCESS) return@launch
+        if (processingBackupFile.value == true) return@launch
+        if (backupImportResult.value == BackupRestoreResult.SUCCESS) return@launch
         if (!validateData(backupFile.value, backupPassphrase.value)) return@launch
 
         val context = getApplication<Application>()
         val backupFile = backupFile.value!!
         val passphrase = backupPassphrase.value!!
 
-        val result: BackupImportResult
+        val result: BackupRestoreResult
 
         processingBackupFile.value = true
 
@@ -199,13 +198,13 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
 
                 HomeActivity.requestResetAllSessionsOnStartup(context)
 
-                BackupImportResult.SUCCESS
+                BackupRestoreResult.SUCCESS
             } catch (e: DatabaseDowngradeException) {
                 Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e)
-                BackupImportResult.FAILURE_VERSION_DOWNGRADE
+                BackupRestoreResult.FAILURE_VERSION_DOWNGRADE
             } catch (e: Exception) {
                 Log.w(TAG, e)
-                BackupImportResult.FAILURE_UNKNOWN
+                BackupRestoreResult.FAILURE_UNKNOWN
             }
         }
 
@@ -214,7 +213,7 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
         backupImportResult.value = result
     }
 
-    enum class BackupImportResult {
+    enum class BackupRestoreResult {
         SUCCESS, FAILURE_VERSION_DOWNGRADE, FAILURE_UNKNOWN
     }
 }

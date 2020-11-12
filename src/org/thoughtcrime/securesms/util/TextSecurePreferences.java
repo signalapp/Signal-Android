@@ -147,7 +147,7 @@ public class TextSecurePreferences {
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
   private static final String NEXT_SIGNED_PRE_KEY_ID   = "pref_next_signed_pre_key_id";
 
-  public  static final String BACKUP_ENABLED              = "pref_backup_enabled_v2";
+  public  static final String BACKUP_ENABLED              = "pref_backup_enabled_v3";
   private static final String BACKUP_PASSPHRASE           = "pref_backup_passphrase";
   private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
   private static final String BACKUP_TIME                 = "pref_backup_next_time";
@@ -1371,7 +1371,7 @@ public class TextSecurePreferences {
           String prefKey) {
     String value = prefs.getString(prefKey, null);
     if (value == null) {
-      backupEntryLog(prefKey, false);
+      logBackupEntry(prefKey, false);
       return;
     }
     outPrefList.add(BackupProtos.SharedPreference.newBuilder()
@@ -1379,7 +1379,7 @@ public class TextSecurePreferences {
               .setKey(prefKey)
               .setValue(value)
               .build());
-    backupEntryLog(prefKey, true);
+    logBackupEntry(prefKey, true);
   }
 
   private static void addBackupEntryInt(
@@ -1389,7 +1389,7 @@ public class TextSecurePreferences {
           String prefKey) {
     int value = prefs.getInt(prefKey, -1);
     if (value == -1) {
-      backupEntryLog(prefKey, false);
+      logBackupEntry(prefKey, false);
       return;
     }
     outPrefList.add(BackupProtos.SharedPreference.newBuilder()
@@ -1397,7 +1397,7 @@ public class TextSecurePreferences {
             .setKey(PREF_PREFIX_TYPE_INT + prefKey) // The prefix denotes the type of the preference.
             .setValue(String.valueOf(value))
             .build());
-    backupEntryLog(prefKey, true);
+    logBackupEntry(prefKey, true);
   }
 
   private static void addBackupEntryBoolean(
@@ -1406,7 +1406,7 @@ public class TextSecurePreferences {
           String prefFileName,
           String prefKey) {
     if (!prefs.contains(prefKey)) {
-      backupEntryLog(prefKey, false);
+      logBackupEntry(prefKey, false);
       return;
     }
     outPrefList.add(BackupProtos.SharedPreference.newBuilder()
@@ -1414,10 +1414,10 @@ public class TextSecurePreferences {
             .setKey(PREF_PREFIX_TYPE_BOOLEAN + prefKey) // The prefix denotes the type of the preference.
             .setValue(String.valueOf(prefs.getBoolean(prefKey, false)))
             .build());
-    backupEntryLog(prefKey, true);
+    logBackupEntry(prefKey, true);
   }
 
-  private static void backupEntryLog(String prefName, boolean wasIncluded) {
+  private static void logBackupEntry(String prefName, boolean wasIncluded) {
     StringBuilder sb = new StringBuilder();
     sb.append("Backup preference ");
     sb.append(wasIncluded ? "+ " : "- ");
