@@ -58,6 +58,19 @@
         app:layout_constraintStart_toEndOf="@+id/message_request_delete"
         app:layout_constraintTop_toTopOf="@id/message_request_block" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/message_request_gv1_migration"
+        style="@style/Signal.Widget.Button.Large.Primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/MessageRequestBottomView_continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/message_request_big_delete"
         style="@style/Signal.MessageRequest.Button.Deny"
@@ -88,14 +101,15 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="message_request_block,message_request_big_delete" />
+        app:constraint_referenced_ids="message_request_block,message_request_big_delete,message_request_gv1_migration" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/message_request_normal_buttons"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:constraint_referenced_ids="message_request_accept,message_request_delete,message_request_block" />
+        app:constraint_referenced_ids="message_request_accept,message_request_delete,message_request_block"
+        tools:visibility="gone"/>
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/message_request_blocked_buttons"
@@ -103,6 +117,14 @@
         android:layout_height="0dp"
         android:visibility="gone"
         app:constraint_referenced_ids="message_request_big_delete,message_request_big_unblock"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/message_request_gv1_migration_buttons"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="message_request_gv1_migration"
         tools:visibility="visible" />
 
     <ProgressBar
@@ -116,6 +138,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/message_request_question"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
 </merge>

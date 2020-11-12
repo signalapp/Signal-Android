@@ -199,7 +199,7 @@ public class ContactAccessor {
     GroupRecord record;
 
     try {
-      reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(constraint, true);
+      reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(constraint, true, false);
 
       while ((record = reader.getNext()) != null) {
         numberList.add(record.getId().toString());

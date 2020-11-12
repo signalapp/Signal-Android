@@ -86,6 +86,10 @@ final class MessageRequestRepository {
       }
     }
 
+    if (recipient.isPushV1Group() && FeatureFlags.groupsV1ForcedMigration()) {
+      return MessageRequestState.REQUIRED;
+    }
+
     if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
       if (recipient.isGroup()) {
         GroupDatabase.MemberLevel memberLevel = DatabaseFactory.getGroupDatabase(context)

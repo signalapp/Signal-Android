@@ -545,17 +545,21 @@ public class ThreadDatabase extends Database {
     return cursor;
   }
 
-  public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups) {
-    return getRecentConversationList(limit, includeInactiveGroups, false);
+  public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups, boolean hideV1Groups) {
+    return getRecentConversationList(limit, includeInactiveGroups, false, hideV1Groups);
   }
 
-  public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups, boolean groupsOnly) {
+  public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups, boolean groupsOnly, boolean hideV1Groups) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
     String         query = !includeInactiveGroups ? MESSAGE_COUNT + " != 0 AND (" + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " IS NULL OR " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1)"
                                                   : MESSAGE_COUNT + " != 0";
 
     if (groupsOnly) {
       query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.GROUP_ID + " NOT NULL";
+    }
+
+    if (hideV1Groups) {
+      query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.GROUP_TYPE + " != " + RecipientDatabase.GroupType.SIGNAL_V1.getId();
     }
 
     return db.rawQuery(createQuery(query, 0, limit, true), null);

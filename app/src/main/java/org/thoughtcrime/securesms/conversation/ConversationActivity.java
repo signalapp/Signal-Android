@@ -3116,6 +3116,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     messageRequestBottomView.setDeleteOnClickListener(v -> onMessageRequestDeleteClicked(viewModel));
     messageRequestBottomView.setBlockOnClickListener(v -> onMessageRequestBlockClicked(viewModel));
     messageRequestBottomView.setUnblockOnClickListener(v -> onMessageRequestUnblockClicked(viewModel));
+    messageRequestBottomView.setGroupV1MigrationContinueListener(v -> GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(getSupportFragmentManager(), recipient.getId()));
 
     viewModel.getRequestReviewDisplayState().observe(this, this::presentRequestReviewBanner);
     viewModel.getMessageData().observe(this, this::presentMessageRequestBottomViewTo);

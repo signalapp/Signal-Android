@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class DirectShareService extends ChooserTargetService {
     List<ChooserTarget> results        = new LinkedList<>();
     ComponentName       componentName  = new ComponentName(this, ShareActivity.class);
     ThreadDatabase      threadDatabase = DatabaseFactory.getThreadDatabase(this);
-    Cursor              cursor         = threadDatabase.getRecentConversationList(10, false);
+    Cursor              cursor         = threadDatabase.getRecentConversationList(10, false, FeatureFlags.groupsV1ForcedMigration());
 
     try {
       ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor);

@@ -93,7 +93,7 @@ public class RecipientDatabase extends Database {
   public  static final String PHONE                     = "phone";
   public  static final String EMAIL                     = "email";
           static final String GROUP_ID                  = "group_id";
-  private static final String GROUP_TYPE                = "group_type";
+          static final String GROUP_TYPE                = "group_type";
   private static final String BLOCKED                   = "blocked";
   private static final String MESSAGE_RINGTONE          = "message_ringtone";
   private static final String MESSAGE_VIBRATE           = "message_vibrate";
