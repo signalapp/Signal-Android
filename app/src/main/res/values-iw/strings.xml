@@ -85,8 +85,17 @@
   <string name="AttachmentUploadJob_compressing_video_start">דוחס סרטון…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">שגיאה בניגון שמע!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">אנשי קשר חסומים</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">משתמשים חסומים</string>
+  <string name="BlockedUsersActivity__add_blocked_user">הוסף משתמש חסום</string>
+  <string name="BlockedUsersActivity__blocked_users_will">משתמשים חסומים לא יוכלו להתקשר אליך או לשלוח לך הודעות.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">אין משתמשים חסומים</string>
+  <string name="BlockedUsersActivity__block_user">לחסום משתמש?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" לא יוכל/תוכל להתקשר אליך או לשלוח לך הודעות.</string>
+  <string name="BlockedUsersActivity__block">חסום</string>
+  <string name="BlockedUsersActivity__unblock_user">לבטל חסימת משתמש?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">האם אתה רוצה לבטל חסימה של \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__unblock">בטל חסימה</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">לחסום ולעזוב את %1$s?</string>
   <string name="BlockUnblockDialog_block_s">לחסום את %1$s?</string>
@@ -499,11 +508,56 @@
     <item quantity="many">חברי קבוצה אלו יצטרכו לאשר הזמנה כדי להצטרף אל קבוצה זו שוב והם לא יקבלו הודעות קבוצה עד שהם יאשרו:</item>
     <item quantity="other">חברי קבוצה אלו יצטרכו לאשר הזמנה כדי להצטרף אל קבוצה זו שוב והם לא יקבלו הודעות קבוצה עד שהם יאשרו:</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">חבר קבוצה זה אינו מסוגל להצטרף אל קבוצות חדשות, והוא הוסר מהקבוצה:</item>
     <item quantity="two">חברי קבוצה אלו אינם מסוגלים להצטרף אל קבוצות חדשות, והם הוסרו מהקבוצה:</item>
     <item quantity="many">חברי קבוצה אלו אינם מסוגלים להצטרף אל קבוצות חדשות, והם הוסרו מהקבוצה:</item>
     <item quantity="other">חברי קבוצה אלו אינם מסוגלים להצטרף אל קבוצות חדשות, והם הוסרו מהקבוצה:</item>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d חבר קבוצה לא היה יכול להתווסף מחדש אל הקבוצה החדשה. האם אתה רוצה להוסיף אותו עכשיו?</item>
+    <item quantity="two">%1$d חברי קבוצה לא יכלו להתווסף מחדש אל הקבוצה החדשה. האם אתה רוצה להוסיף אותם עכשיו?</item>
+    <item quantity="many">%1$d חברי קבוצה לא יכלו להתווסף מחדש אל הקבוצה החדשה. האם אתה רוצה להוסיף אותם עכשיו?</item>
+    <item quantity="other">%1$d חברי קבוצה לא יכלו להתווסף מחדש אל הקבוצה החדשה. האם אתה רוצה להוסיף אותם עכשיו?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">הוסף חבר קבוצה</item>
+    <item quantity="two">הוסף חברי קבוצה</item>
+    <item quantity="many">הוסף חברי קבוצה</item>
+    <item quantity="other">הוסף חברי קבוצה</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">לא עכשיו</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">להוסיף חבר קבוצה?</item>
+    <item quantity="two">להוסיף חברי קבוצה?</item>
+    <item quantity="many">להוסיף חברי קבוצה?</item>
+    <item quantity="other">להוסיף חברי קבוצה?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">חבר קבוצה זה לא היה יכול להתווסף באופן אוטומטי אל הקבוצה החדשה כאשר היא שודרגה:</item>
+    <item quantity="two">חברי קבוצה אלו לא יכלו להתווסף באופן אוטומטי אל הקבוצה החדשה כאשר היא שודרגה:</item>
+    <item quantity="many">חברי קבוצה אלו לא יכלו להתווסף באופן אוטומטי אל הקבוצה החדשה כאשר היא שודרגה:</item>
+    <item quantity="other">חברי קבוצה אלו לא יכלו להתווסף באופן אוטומטי אל הקבוצה החדשה כאשר היא שודרגה:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">הוסף חבר קבוצה</item>
+    <item quantity="two">הוסף חברי קבוצה</item>
+    <item quantity="many">הוסף חברי קבוצה</item>
+    <item quantity="other">הוסף חברי קבוצה</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">כישלון בהוספת חבר קבוצה. נסה שוב מאוחר יותר.</item>
+    <item quantity="two">כישלון בהוספת חברי קבוצה. נסה שוב מאוחר יותר.</item>
+    <item quantity="many">כישלון בהוספת חברי קבוצה. נסה שוב מאוחר יותר.</item>
+    <item quantity="other">כישלון בהוספת חברי קבוצה. נסה שוב מאוחר יותר.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">לא ניתן להוסיף חבר קבוצה.</item>
+    <item quantity="two">לא ניתן להוסיף חברי קבוצה.</item>
+    <item quantity="many">לא ניתן להוסיף חברי קבוצה.</item>
+    <item quantity="other">לא ניתן להוסיף חברי קבוצה.</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">לעזוב קבוצה?</string>
@@ -1205,9 +1259,23 @@
   <string name="WebRtcCallView__signal_voice_call">שיחה קולית של Signal…</string>
   <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal…</string>
   <string name="WebRtcCallView__start_call">התחל שיחה</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">שיחה קבוצתית</string> -->
+  <string name="WebRtcCallView__join_call">הצטרף לשיחה</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" שיחה קבוצתית</string>
   <string name="WebRtcCallView__view_participants_list">הצג משתתפים</string>
   <string name="WebRtcCallView__your_video_is_off">הוידאו שלך כבוי</string>
+  <string name="WebRtcCallView__connecting">מתחבר…</string>
+  <string name="WebRtcCallView__reconnecting">מתחבר מחדש…</string>
+  <string name="WebRtcCallView__joining">מצטרף…</string>
+  <string name="WebRtcCallView__disconnected">מנותק</string>
+  <string name="WebRtcCallView__no_one_else_is_here">אף אחד אחר לא כאן</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s נמצא/ת בשיחה זו</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s וגם %2$s נמצאים/נמצאות בשיחה זו</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s, ועוד %3$d אחר נמצאים בשיחה זו</item>
+    <item quantity="two">%1$s, %2$s, ועוד %3$d אחרים נמצאים בשיחה זו </item>
+    <item quantity="many">%1$s, %2$s, ועוד %3$d אחרים נמצאים בשיחה זו</item>
+    <item quantity="other">%1$s, %2$s, ועוד %3$d אחרים נמצאים בשיחה זו</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">בשיחה זו  · איש %1$d</item>
@@ -1385,12 +1453,12 @@
   <string name="UpdateApkReadyListener_Signal_update">עדכון Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">גרסה חדשה של Signal זמינה, הקש כדי לעדכן</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">לחסום את %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">אנשי קשר חסומים לא יוכלו יותר לשלוח לך הודעות או להתקשר אליך.</string>
-  <string name="UnknownSenderView_block">חסום</string>
-  <string name="UnknownSenderView_share_profile_with_s">לשתף פרופיל עם %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">הדרך הקלה ביותר לשתף את מידע הפרופיל שלך היא להוסיף את השולח אל אנשי הקשר שלך. אם אינך רוצה לעשות זאת, אתה עדין יכול לשתף את מידע הפרופיל שלך בדרך זו.</string>
-  <string name="UnknownSenderView_share_profile">שתף פרופיל</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">לחסום את %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">אנשי קשר חסומים לא יוכלו יותר לשלוח לך הודעות או להתקשר אליך.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">חסום</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">לשתף פרופיל עם %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">הדרך הקלה ביותר לשתף את מידע הפרופיל שלך היא להוסיף את השולח אל אנשי הקשר שלך. אם אינך רוצה לעשות זאת, אתה עדין יכול לשתף את מידע הפרופיל שלך בדרך זו.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">שתף פרופיל</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">לשלוח הודעה?</string>
   <string name="UntrustedSendDialog_send">שלח</string>
@@ -1790,7 +1858,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">שם הקבוצה עכשיו הוא \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">להפוך את השם והתמונה של הפרופיל שלך לנראים בפני קבוצה זו?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">להפוך את השם והתמונה של הפרופיל שלך לנראים בפני קבוצה זו?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">בטל נעילה</string>
   <!--prompt_mms_activity-->
@@ -2018,7 +2086,7 @@
   <string name="preferences__typing_indicators">מחווני הקלדה</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">בקש מהמקלדת להשבית למידה מותאמת אישית</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">אנשי קשר חסומים</string> -->
+  <string name="preferences_app_protection__blocked_users">משתמשים חסומים</string>
   <string name="preferences_chats__when_using_mobile_data">בעת שימוש בנתונים ניידים</string>
   <string name="preferences_chats__when_using_wifi">בעת שימוש ב־Wi-Fi</string>
   <string name="preferences_chats__when_roaming">בעת נדידה</string>
@@ -2081,6 +2149,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">הודעה חדשה אל…</string>
+  <string name="contact_selection_list__unknown_contact_block">חסום משתמש</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">הוסף לקבוצה</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">התקשר</string>
@@ -2506,6 +2575,9 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s אל %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" נחסם.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">כישלון בחסימה של \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">חסימה של \"%1$s\" בוטלה.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">סקור חברי קבוצה</string>
   <string name="ReviewCardDialogFragment__review_request">סקור בקשה</string>

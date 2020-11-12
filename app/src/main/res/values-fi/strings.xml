@@ -79,8 +79,10 @@
   <string name="AttachmentUploadJob_compressing_video_start">Pakkataan videota…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Virhe toistettaessa äänitallennetta!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Estetyt yhteystiedot</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users_will">Estetyt käyttäjät eivät pysty soittamaan sinulle tai lähettämään sinulle viestejä.</string>
+  <string name="BlockedUsersActivity__block">Estä</string>
+  <string name="BlockedUsersActivity__unblock">Poista esto</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Estä ja poistu ryhmästä %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Estä %1$s?</string>
@@ -454,6 +456,9 @@
   <string name="GroupManagement_invite_multiple_users">Et voi lisätä näitä käyttäjiä automaattisesti tähän ryhmään.\n\nHeidät on kutsuttu liittymään, eivätkä näe ryhmäviestejä ennen kuin he hyväksyvät kutsun.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Mitä ovat uudet ryhmät?</string>
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ei nyt</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Poistu ryhmästä?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Et voi enää lähettää tai vastaanottaa viestejä tässä ryhmässä.</string>
@@ -1089,9 +1094,13 @@
   <string name="WebRtcCallView__signal_voice_call">Signal-puhelu…</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videopuhelu…</string>
   <string name="WebRtcCallView__start_call">Aloita puhelu</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Ryhmäpuhelu</string> -->
+  <string name="WebRtcCallView__join_call">Liity puheluun</string>
   <string name="WebRtcCallView__view_participants_list">Näytä osallistujat</string>
   <string name="WebRtcCallView__your_video_is_off">Videosi on pois päältä</string>
+  <string name="WebRtcCallView__connecting">Yhdistetään…</string>
+  <string name="WebRtcCallView__reconnecting">Yhdistetään uudelleen…</string>
+  <string name="WebRtcCallView__disconnected">Ei yhteyttä</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Kukaan muu ei ole täällä</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Tässä puhelussa · %1$d henkilö</item>
@@ -1260,12 +1269,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napauttamalla.</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Estä %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Estetyt yhteystiedot eivät voi enää lähettää sinulle viestejä eivätkä soittaa sinulle.</string>
-  <string name="UnknownSenderView_block">Estä</string>
-  <string name="UnknownSenderView_share_profile_with_s">Jaa profiili yhteystiedon %s kanssa?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Helpoin tapa jakaa profiilitietosi on lisätä lähettäjä yhteystietoihisi. Jos ei halua tehdä sitä, voit silti jakaa profiilitietosi tällä tavalla.</string>
-  <string name="UnknownSenderView_share_profile">Jaa profiili</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Estä %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Estetyt yhteystiedot eivät voi enää lähettää sinulle viestejä eivätkä soittaa sinulle.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Estä</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Jaa profiili yhteystiedon %s kanssa?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Helpoin tapa jakaa profiilitietosi on lisätä lähettäjä yhteystietoihisi. Jos ei halua tehdä sitä, voit silti jakaa profiilitietosi tällä tavalla.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Jaa profiili</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Lähetä viesti?</string>
   <string name="UntrustedSendDialog_send">Lähetä</string>
@@ -1644,7 +1653,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   </plurals>
   <string name="GroupUtil_group_name_is_now">Ryhmän nimi on nyt \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tee profiilikuvasi ja -nimesi näkyväksi tälle ryhmälle?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tee profiilikuvasi ja -nimesi näkyväksi tälle ryhmälle?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Avaa</string>
   <!--prompt_mms_activity-->
@@ -1870,7 +1879,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__typing_indicators">Kirjoitustilaindikaattori</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jos et ole ottanut kirjoitustilaindikaattoria käyttöön, et tule näkemään kirjoitustilaindikaattoria muilta.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Pyydä näppäimistöä kytkemään sanakirjan automaattinen päivittäminen pois päältä</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Estetyt yhteystiedot</string> -->
   <string name="preferences_chats__when_using_mobile_data">Mobiiliverkossa</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
   <string name="preferences_chats__when_roaming">Roaming-tilassa</string>

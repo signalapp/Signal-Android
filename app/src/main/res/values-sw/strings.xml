@@ -794,12 +794,12 @@ nambari yako ya simu</string>
   <string name="UpdateApkReadyListener_Signal_update">Sasisho ya Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Toleo jipya la Signal linapatikana, bonyeza kusasisha</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Zuia 1%s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Nambari zilizozuiliwa hazitoweza kukutumia jumbe au kukupigia simu</string>
-  <string name="UnknownSenderView_block">Zuia</string>
-  <string name="UnknownSenderView_share_profile_with_s">Shiriki wasifu na 1%s</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Njia rahisi ya kushirikisha taarifa za wasifu wako ni kuongeza mtumaji kwenye anwani zako. Kama usingependa,  bado unaweza kushirikisha taarifa za wasifu wako kwa njia hii. </string>
-  <string name="UnknownSenderView_share_profile">Shiriki wasifu</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Zuia 1%s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Nambari zilizozuiliwa hazitoweza kukutumia jumbe au kukupigia simu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Zuia</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Shiriki wasifu na 1%s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Njia rahisi ya kushirikisha taarifa za wasifu wako ni kuongeza mtumaji kwenye anwani zako. Kama usingependa,  bado unaweza kushirikisha taarifa za wasifu wako kwa njia hii. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Shiriki wasifu</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Tuma ujumbe?</string>
   <string name="UntrustedSendDialog_send">Tuma</string>
@@ -1147,7 +1147,7 @@ nambari yako ya simu</string>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Jina la kundi sasa ni \'1%1$s\'</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Fanya jina la wasifa wako na picha vionekane kwa kundi hili</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Fanya jina la wasifa wako na picha vionekane kwa kundi hili</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Fungua</string>
   <!--prompt_mms_activity-->

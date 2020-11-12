@@ -67,7 +67,7 @@
   <string name="AttachmentKeyboard_contact">Kontaktua</string>
   <string name="AttachmentKeyboard_location">Kokalekua</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signalek baimena behar du zue argazkiak eta bideoak erakutsi ahal izateko.</string>
-  <string name="AttachmentKeyboard_give_access">Eman baimena</string>
+  <string name="AttachmentKeyboard_give_access">Eman Baimena</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ez da multimedia fitxategia aukeratzeko aplikaziorik aurkitu.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal aplikazioak Gordailurako baimena behar du argazkiak, bideoak edo audioak bidaltzeko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
@@ -79,12 +79,21 @@
   <string name="AttachmentUploadJob_compressing_video_start">Bideoa konprimatzen…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Errorea audioa erreproduzitzean!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokeatutako kontaktuak</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Blokeatutako erabiltzaileak</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Gehitu blokeatutako erabiltzailea</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Blokeatutako erabiltzaileek ezin izango dizute deitu; ezta mezuak bidali ere.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Blokeatutako erabiltzailerik ez</string>
+  <string name="BlockedUsersActivity__block_user">Blokeatu nahi duzu erabiltzailea?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" erabiltzaileak ezingo dizu deitu edo mezurik bidali</string>
+  <string name="BlockedUsersActivity__block">Blokeatu</string>
+  <string name="BlockedUsersActivity__unblock_user">Erabiltzailea desblokeatu?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">\"%1$s\" desblokeatu nahi duzu?</string>
+  <string name="BlockedUsersActivity__unblock">Desblokeatu</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s blokeatu eta irten?</string>
   <string name="BlockUnblockDialog_block_s">Blokeatu %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ez duzu talde honetatik mezu edo egunerapen gehiago jasoko, eta kideek ezingo zaituzte talde honetan berriro sartu.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ez duzu talde honetatik mezu edo egunerapen gehiagorik jasoko, eta kideek ezingo zaituzte talde honetara berriro gehitu.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Taldeko kideak ez dira gai izango zu talde honetan berriro sartzeko.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Taldeko kideak gai izango dira zu talde honetan berriro sartzeko.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Elkarri deitzeko eta mezuak bidaltzeko gai izango zarete; horrez gain, zure izena eta argazkia beraiekin partekatuko dira.</string>
@@ -128,7 +137,7 @@
   <string name="ClearProfileActivity_remove_group_photo">Taldeko argazkia ezabatu?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Eguneratu Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Aplikazioaren bertsio honek jadanikez dauka bermerik. Mezuak jasotzen eta bidaltzen jarraitzeko, eguneratu azken bertsiora.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Aplikazioaren bertsio honek jadanik ez dauka bermerik. Mezuak jasotzen eta bidaltzen jarraitzeko, eguneratu azken bertsiora.</string>
   <string name="ClientDeprecatedActivity_update">Eguneratu</string>
   <string name="ClientDeprecatedActivity_dont_update">Ez Eguneratu</string>
   <string name="ClientDeprecatedActivity_warning">Markatutako zenbakia ez dago Signalen erregistratuta. SMS bidez gonbidatu nahiko zenuke?</string>
@@ -455,9 +464,9 @@
     <item quantity="one">Gonbidapena bidalita</item>
     <item quantity="other">%d gonbidapen bidalita</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">\"%1$s\" erabiltzailea ezin duzu talde honetan modu automatikoan sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
+  <string name="GroupManagement_invite_single_user">\"%1$s\" erabiltzailea ezin duzu talde honetara modu automatikoan gehitu.\n\nGehitzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi gonbidapena onartu arte.</string>
   <string name="GroupManagement_learn_more">Gehiago jakin</string>
-  <string name="GroupManagement_invite_multiple_users">Ezin duzu modu automatikoan erabiltzaile hauek taldean sartu. Sartzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
+  <string name="GroupManagement_invite_multiple_users">Ezin duzu modu automatikoan erabiltzaile hauek taldera gehitu. Gehitzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Zer dira Talde Berriak?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Talde Berriek ezaugarri berriak dituzte, hala nola, @aipamenak eta talde administrazaileak; etorkizunean ezaugarri gahiago izango dituzte.</string>
@@ -466,9 +475,40 @@
     <item quantity="one">Talde honetan berriro sartzeko, kide honek gonbidapena onartu beharko du; ez du talde mezurik jasoko onartu arte:</item>
     <item quantity="other">Talde honetan berriro sartzeko, kide hauek gonbidapena onartu beharko dute; ez dute talde mezurik jasoko onartu arte:</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Kide hau ezin da Talde Berrietan sartu eta taldetik ezabatua izan da:</item>
-    <item quantity="other">Kide hauek ezin dira Talde Berrietan sartu eta taldetik ezabatuak izan dira:</item>
+    <item quantity="other">Kide hauek ezin dira Talde Berrietara gehitu eta taldetik ezabatuak izan dira:</item>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">Kide %1$d  kide ezin izan da Talde Berrira gehitu. Gehitu nahi duzu orain?</item>
+    <item quantity="other">%1$d kide ezin izan dira Talde Berrira gehitu. Gehitu nahi dituzu orain?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Gehitu kidea</item>
+    <item quantity="other">Gehitu kideak</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Orain ez</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Kidea gehitu?</item>
+    <item quantity="other">Kideak gehitu?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Kide hau ezin izan da Talde Berria eguneratu denean modu automatikoan bertara gehitu.</item>
+    <item quantity="other">Kide hauek ezin izan dira Talde Berria eguneratu denean modu automatikoan bertara gehitu.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Gehitu kidea</item>
+    <item quantity="other">Gehitu kideak</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Kidea gehitzeak huts egin du. Saia zaitez beranduago.</item>
+    <item quantity="other">Kideak gehitzeak huts egin du. Saia zaitez beranduago.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Ezin izan da kidea gehitu.</item>
+    <item quantity="other">Ezin izan dira kideak gehitu.</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Taldea utzi?</string>
@@ -498,7 +538,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">Ez duzu ikusi gabeko gonbidapenik.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenak</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Taldeko beste partaideek egindako gonbidapenik ez dago.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Taldeko beste kideek gonbidatutako pertsonen xehetasunak ez dira erakusten. Gonbidatuek taldean sartzea erabakitzen badute, beraien informazioa une horretan partekatuko da taldearekin. Taldean sartu arte ez dute mezurik ikusiko.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Taldeko beste kideek gonbidatutako pertsonen xehetasunak ez dira erakusten. Gonbidatuek taldera gehitzea erabakitzen badute, beraien informazioa une horretan partekatuko da taldearekin. Taldera gehitu arte ez dute mezurik ikusiko.</string>
   <string name="PendingMembersActivity_revoke_invite">Bertan behera utzi gonbidapena</string>
   <string name="PendingMembersActivity_revoke_invites">Bertan behera utzi gonbidapenak</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -651,10 +691,10 @@
   <string name="ShareableGroupLinkDialogFragment__default">Lehenetsia</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Berrezarri talde esteka</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Kideak talde esteka bidez sartzen badira taldean, derrigorrezkotzat jo administratzaile batek onartzea.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ziur zaude talde esteka berrezarri nahi izateaz? Eginez gero, jendea ezingo da sartu taldean oraingo esteka erabiliz.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ziur zaude talde esteka berrezarri nahi izateaz? Eginez gero, jendea ezingo da taldera gehitu oraingo esteka erabiliz.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR kodea</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Kodea hau eskaneatuz gero jendea zure taldean sartu ahal izango da. Hala era, administratzaileen baimena eskatzeko aukera aktibatuta baduzu, berauen onespena beharko da taldean sartzeko.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Kode hau eskaneatuz gero jendea zure taldera gehitu ahal izango da. Hala era, administratzaileen baimena eskatzeko aukera aktibatuta baduzu, berauen onespena beharko da taldera gehitzeko.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Partekatu kodea</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s erabiltzaileari bidalitako gonbidapena ezeztatu nahi duzu?</string>
@@ -666,12 +706,12 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Kidea zara dagoeneko</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Batu</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Eskatu batzea</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Ezin izan da taldean sartu. Mesedez, saia zaitez beranduago</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Ezin izan da taldera gehitu. Mesedez, saia zaitez beranduago</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Sare errore bat izan da.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Talde esteka hau ez dago indarrean</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Ez da posible izan taldeari buruzko informazioa eskuratzea; mesedez, saia zaitez berriro beranduago</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Talde honetan sartu eta zure izena eta argazkia kideekin partekatu nahi duzu?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Talde honetako administratzaile batek zure eskaera onartu behar du talde honetan sartu aurretik. Sartzea eskatzen duzunean zure izena eta argazkia partekatuko dira taldeko kideekin.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Talde honetara sartu eta zure izena eta argazkia kideekin partekatu nahi duzu?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Talde honetako administratzaile batek zure eskaera onartu behar du talde honetara sartu ahal izan aurretik. Sartzeko eskatzen duzunean, zure izena eta argazkia taldeko kideekin partekatuko dira.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Taldea · kide %1$d</item>
     <item quantity="other">Taldea · %1$d kide</item>
@@ -682,10 +722,10 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Talde batean sartzea link baten bidez oraindik ez dago onartuta Signal-en. Ezaugarri hau eskuragarri egongo da aurrerantzean egingo den egunerapen batean.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Erabiltzen ari zare Signalen bertsioak ez du talde estekak onartzen. Eguneratu azken bertsiora esteka bidez talde honetan sartzeko.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Eguneratu Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Gutxienez lotuta dituzun gailuetako batek Talde estekak onartzen ez dituen Signalen bertsio bat dauka instalatuta. Signal eguneratu lotutako gailuetan talde honetan sartu ahal izateko.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Gutxienez lotuta dituzun gailuetako batek Talde estekak onartzen ez dituen Signalen bertsio bat dauka instalatuta. Signal eguneratu lotutako gailuetan talde honetara gehitu ahal izateko.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Talde esteka hau ez da baliagarria</string>
   <!--GV2 Request confirmation dialog-->
-  <string name="RequestConfirmationDialog_add_s_to_the_group">Nahi duzu \"%1$s\" erabiltzailea taldean sartu?</string>
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Nahi duzu \"%1$s\" erabiltzailea taldera gehitu?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Ukatu \"%1$s\" erabiltzaileak egindako eskaera?</string>
   <string name="RequestConfirmationDialog_add">Gehitu</string>
   <string name="RequestConfirmationDialog_deny">Ukatu</string>
@@ -836,8 +876,8 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Desagertzen diren mezuen tenporizadorea honela ezarri da: %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Talde hau eguneratu da eta Talde Berria bilakatu da.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">Kide %1$s ezin izan da Talde Berrian sartu eta sartzeko gonbidapena bidali zaio.</item>
-    <item quantity="other">%1$s kide ezin izan dira Talde Berrian sartu eta sartzeko gonbidapena bidali zaie.</item>
+    <item quantity="one">Kide %1$s ezin izan da Talde Berrira gehitu eta sartzeko gonbidapena bidali zaio.</item>
+    <item quantity="other">%1$s kide ezin izan dira Talde Berrira gehitu eta sartzeko gonbidapena bidali zaie.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s erabiltzaileak bere profilaren izena aldatu du. Orain %2$s da.</string>
@@ -849,9 +889,9 @@
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">%1$s gehitu duzu.</string>
   <string name="MessageRecord_s_added_s">%1$s erabiltzaileak %2$s gehitu du.</string>
-  <string name="MessageRecord_s_added_you">%1$s erabiltzaileak taldean sartu zaitu.</string>
-  <string name="MessageRecord_you_joined_the_group">Taldean sartu zara.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s taldean sartu da.</string>
+  <string name="MessageRecord_s_added_you">%1$s erabiltzaileak taldera gehitu zaitu.</string>
+  <string name="MessageRecord_you_joined_the_group">Taldera sartu zara.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s taldera sartu da.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">%1$s ezabatu duzu.</string>
   <string name="MessageRecord_s_removed_s">%1$s erabiltzaileak %2$s ezabatu du.</string>
@@ -942,8 +982,8 @@
   <string name="MessageRecord_s_reset_the_group_link">%1$s erabiltzaileak talde esteka berrezarri du.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">Talde esteka berrezarria izan da.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Taldean sartu zara talde esteka baten bidez.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s erabiltzailea taldean sartu da talde esteka baten bidez.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Taldera sartu zara talde esteka baten bidez.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s erabiltzailea taldera sartu da talde esteka baten bidez.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Taldean sartzeko eskaera bat bidali duzu.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s erabiltzaileak taldean sartzeko eskatu du talde esteka baten bidez.</string>
@@ -975,8 +1015,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partzekatzeko. Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Jarraitu nahi duzu talde honekin duzun solasaldian eta zure izena eta argazkia bere kideekin partekatu?</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Jarraitu nahi duzu %1$s erabiltzailearekin duzun solasaldian eta zure izena eta argazkia berarekin partekatu?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetan sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetan sartu nahi duzu? Onartu arte ez dute jakingo beraien mezuak ikusi dituzunik.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu nahi duzu? Onartu arte ez dute jakingo beraien mezuak ikusi dituzunik.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Desblokeatu talde hau eta zure izena eta argazkia beraiekin partekatu? Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s taldeko kidea</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s eta %2$s taldeetako kidea</string>
@@ -996,7 +1036,7 @@
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasaesaldiak ez datoz bat!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Pasaesaldi zahar ez zuzena!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sartu pasaesaldi berria!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Idatzei pasaesaldi berria!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Lotu gailu hau?</string>
   <string name="DeviceProvisioningActivity_continue">JARRAITU</string>
@@ -1029,7 +1069,7 @@
     <item quantity="other">Signalen bertsio hau %d egunetan iraungiko da. Eguneratu azken bertsiora.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Pasaesaldia sartu</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">Pasaesaldia idatzi</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonoa</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Bidali pasaesaldia</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasaesaldi baliogabea!</string>
@@ -1110,9 +1150,21 @@
   <string name="WebRtcCallView__signal_voice_call">Signal ahots deia…</string>
   <string name="WebRtcCallView__signal_video_call">Signal bideo deia…</string>
   <string name="WebRtcCallView__start_call">Hasi Deia</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Talde Deia</string> -->
+  <string name="WebRtcCallView__join_call">Deira Sartu</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" Talde-Deia</string>
   <string name="WebRtcCallView__view_participants_list">Kideak ikusi</string>
   <string name="WebRtcCallView__your_video_is_off">Zure bideoa itzalita dago</string>
+  <string name="WebRtcCallView__connecting">Konektatzen…</string>
+  <string name="WebRtcCallView__reconnecting">Berriro konektatzen…</string>
+  <string name="WebRtcCallView__joining">Batzen…</string>
+  <string name="WebRtcCallView__disconnected">Deskonektatuta</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Beste inor ez dago hemen</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s dei honetan dago</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s eta %2$s dei honetan daude</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s, eta beste %3$d dei honetan daude</item>
+    <item quantity="other">%1$s, %2$s, eta  beste %3$d dei honetan daude.</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Dei honetan - pertsona %1$d</item>
@@ -1155,7 +1207,7 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_continue_d_attempts_left">Jarraitu (%d saio gelditzen dira)</string>
   <string name="RegistrationActivity_continue_last_attempt">Jarraitu (azkenengo saiakera)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pribatutasuna zurekin eraman.\nZu zeu izan mezu bakoitzean.</string>
-  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Zure telefono zenbakia sartu hasteko</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Hasteko, zure telefono zenbakia idatzi</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Berifikazio kode bat jasoko duzu. Operadoreak tarifa bat jarri dezake.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %s telefonora bidali dugun kodea.</string>
   <string name="RegistrationActivity_phone_number_description">Telefono zenbakia</string>
@@ -1274,7 +1326,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_you_marked_unverified">Ez egiaztatutzat markatu duzu</string>
   <string name="ThreadRecord_message_could_not_be_processed">Ezin izan da mezua prozesatu</string>
   <string name="ThreadRecord_message_request">Mezuaren Eskaera</string>
-  <string name="ThreadRecord_s_added_you_to_the_group">%1$s erabiltzaileak taldean sartu zaitu</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s erabiltzaileak taldera gehitu zaitu</string>
   <string name="ThreadRecord_s_invited_you_to_the_group">%1$s erabiltzaileak taldean sartzera gonbidatu zaitu</string>
   <string name="ThreadRecord_photo">Argazkia</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1286,12 +1338,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UpdateApkReadyListener_Signal_update">Signal eguneratu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalaren bertsio berria dago, sakatu eguneratzeko</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%s blokeatu?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokeatutako kontaktuek ezingo dizute mezurik bidali eta ezta deirik egin ere.</string>
-  <string name="UnknownSenderView_block">Blokeatu</string>
-  <string name="UnknownSenderView_share_profile_with_s">Profila %s-rekin partekatu?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Zure profileko informazioa partekatzeko modu errazena, bidaltzailea zure kontaktuetara gehitzea da. Ez baduzu hori egin nahi, modu honetan ere partekatu dezakezu zure informazioa.</string>
-  <string name="UnknownSenderView_share_profile">Profila partekatu</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s blokeatu?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokeatutako kontaktuek ezingo dizute mezurik bidali eta ezta deirik egin ere.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Blokeatu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Profila %s-rekin partekatu?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Zure profileko informazioa partekatzeko modu errazena, bidaltzailea zure kontaktuetara gehitzea da. Ez baduzu hori egin nahi, modu honetan ere partekatu dezakezu zure informazioa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Profila partekatu</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Mezua bidali?</string>
   <string name="UntrustedSendDialog_send">Bidali</string>
@@ -1667,12 +1719,12 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="message_recipients_list_item__resending">Birbidaltzen… </string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
-    <item quantity="one">%1$s taldean sartu da.</item>
-    <item quantity="other">%1$s taldean sartu dira.</item>
+    <item quantity="one">%1$s taldera sartu da.</item>
+    <item quantity="other">%1$s taldera sartu dira.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Taldeak \'%1$s\' izena du orain.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Zure profileko izena eta argazkia talde honetan erakutsi?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Zure profileko izena eta argazkia talde honetan erakutsi?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desblokeatu</string>
   <!--prompt_mms_activity-->
@@ -1697,7 +1749,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="registration_activity__verify_your_number">Zure zenbakia egiaztatzen</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Idatzi zure telefono zenbakia egiaztatze-kode bat lortzeko. Telefono-konpainiaren arabera kostua izan dezake mezu honek.</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to"><small>Izen edo zenbaki bat sartu</small></string>
+  <string name="recipients_panel__to"><small>Izen edo zenbaki bat idatzi</small></string>
   <string name="recipients_panel__add_members">Gehitu kideak</string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Bidaltzailea ez dago zure kontaktu-zerrendan</string>
@@ -1898,7 +1950,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences__typing_indicators">Idazketa jakinarazleak</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Idazketa jakinarazleak desaktibatuta badaude, ezin izango duzu besteak idazten ari diren ikusi</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Eskatu teklatuari pertsonalizatutako ikasketa desaktibatzeko</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokeatutako kontaktuak</string> -->
+  <string name="preferences_app_protection__blocked_users">Blokeatutako erabiltzaileak</string>
   <string name="preferences_chats__when_using_mobile_data">Datu mugikorrak erabiltzerakoan</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fia erabiltzerakoan</string>
   <string name="preferences_chats__when_roaming">Ibiltaritzako datuak erabiltzerakoan</string>
@@ -1961,6 +2013,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Mezu berria honi…</string>
+  <string name="contact_selection_list__unknown_contact_block">Blokeatu erabiltzailea</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Gehitu taldera</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Deitu</string>
@@ -2119,7 +2172,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN-a sortzeak huts egin du</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Zure PIN-a ez da gorde. Beranduago PIN bat sortzea eskatuko dizugu.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-a sortua.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Berriro sartu zure PIN-a</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Idatzi berriro zure PIN-a</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PINa sortzen…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN-ak sartzen</string>
@@ -2133,7 +2186,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="KbsSplashFragment__learn_more_about_pins">Gehiago ikasi PINei buruz</string>
   <string name="KbsSplashFragment__disable_pin">Desaktibatu PINa</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Sartu zure Signal PIN-a</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Idatzi zure Signal PIN-a</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Zure PINa gogoratzen laguntzeko, sartzeko eskatuko dizugu noizbehinka. Gero eta gutxiago eskatuko dizugu denbora igaro ahala.</string>
   <string name="KbsReminderDialog__skip">Saltatu</string>
   <string name="KbsReminderDialog__submit">Bidali</string>
@@ -2145,7 +2198,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="AccountLockedFragment__next">Hurrengoa</string>
   <string name="AccountLockedFragment__learn_more">Gehiago jakin</string>
   <!--KbsLockFragment-->
-  <string name="RegistrationLockFragment__enter_your_pin">Sartu zure PINa</string>
+  <string name="RegistrationLockFragment__enter_your_pin">Idatzi zure PINa</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Idatzi konturako sortu duzun PIN-a. PIN hau ez da zure SMS berifikazio gakoa.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Idatzi PIN alfanumerikoa</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Idatzi zenbakizko PINa</string>
@@ -2222,7 +2275,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_chats__create_backup">Sortu babeskopia</string>
   <string name="preferences_chats__verify_backup_passphrase">Egiaztatu babeskopiaren pasaesaldia</string>
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Probatu zure babeskopiaren pasaesaldia eta egiaztatu bat datorrela</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Sartu babeskopiaren pasaesaldia</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Idatzi babeskopiaren pasaesaldia</string>
   <string name="RegistrationActivity_restore">Berreskuratu</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Ezin dira babeskopiak inportatu Signal-en bertsio berriagoetatik</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Babeskopiaren pasaesaldia okerra da</string>
@@ -2241,7 +2294,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Babeskopian gaitzeko, karpeta bat hautatu. Babeskopian kokapen honetan gordeko dira.</string>
   <string name="BackupDialog_choose_folder">Aukeratu karpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Arbelera kopiatuta</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">Sartu zure babeskopiaren pasaesaldia egiaztatzeko</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Idatzi zure babeskopiaren pasaesaldia, egiaztatzeko</string>
   <string name="BackupDialog_verify">Baieztatu</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ondo sartu duzu zure babeskopiaren pasaesaldia</string>
   <string name="BackupDialog_passphrase_was_not_correct">Pasaesaldi ez da zuzena</string>
@@ -2288,18 +2341,18 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Erresgistratzea blokeatzea aktibatzeak huts egin du.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Erresgistratzea blokeatzea desaktibatzeak huts egin du.</string>
   <string name="AppProtectionPreferenceFragment_none">Bat ere ez</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Erregistratzea blokeatzeko PINa ez da jaso berri duzun SMS bidezko egiaztapen-kodearen berdina. Sartu aurrez aplikazioan konfiguratu duzun PINa.</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Erregistratzea blokeatzeko PINa ez dator bat jaso berri duzun SMS egiaztatzen-kodearekin. Mesedez, idatzi aplikazioan ezarri  zenuen PINa.</string>
   <string name="registration_activity__registration_lock_pin">Erregistratzea blokeatzeko PINa</string>
   <string name="registration_activity__forgot_pin">PINa ahaztu al duzu?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PINak lau digitu edo gehiago izan ditzake. PINa ahazten baduzu zure kontua 7 egunez erabili ezinik gera zaitezke.</string>
-  <string name="registration_lock_dialog_view__enter_pin">Sartu PINa</string>
+  <string name="registration_lock_dialog_view__enter_pin">Idatzi PINa</string>
   <string name="registration_lock_dialog_view__confirm_pin">Berretsi PINa</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Sartu erregistratzea blokeatzeko zure PINa</string>
-  <string name="registration_lock_reminder_view__enter_pin">Sartu PINa</string>
+  <string name="registration_lock_reminder_view__enter_pin">Idatzi PINa</string>
   <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Gaitu erregistratzea blokeatzeko PINa telefono-zenbaki hau Signal-en berriro erregistratu nahi denerako.</string>
   <string name="preferences_app_protection__registration_lock_pin">Erregistratzea blokeatzeko PINa</string>
   <string name="preferences_app_protection__registration_lock">Erregistratze-blokeoa</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Erregistratzea blokeatzeko zure PINa sartu behar duzu</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Erregistratzea blokeatzeko zure PINa idatzi behar duzu</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Zure PINak gutxienez %d zenbaki edo karaktere dauzka</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Erregistratzea blokeatzeko PINa okerra da</string>
   <string name="RegistrationActivity_too_many_attempts">Saikera gehiegi</string>
@@ -2309,7 +2362,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RegistrationActivity_oh_no">Ez ba!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Erregistratzea blokeatzeko PINik gabe telefono-zenbaki hau erregistratu ahal izango duzu betiere telefono-zenbaki hau Signal-en aktibo egon zen azken alditik 7 egun igaro ondoren. %d egun gelditzen zaizkizu.</string>
   <string name="RegistrationActivity_registration_lock_pin">Erregistratzea blokeatzeko PINa</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Telefono-zenbaki honek gaituta du erregistratzea blokeatzeko aukera. Sartu erregistratzea blokeatzeko PINa.</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Telefono-zenbaki honek gaituta du erregistratzea blokeatzeko aukera.  Mesedez, idatzi erregistratzea blokeatzeko PINa.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Erregistratzea blokeatzeko aukera gaituta dago zure telefono-zenbakiarentzat. Erregistratzea blokeatzeko PINa buruz ikasten laguntzeko, Signal-ek aldian-aldian berau baieztatzea eskatuko dizu.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Nire PINa ahaztu dut.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PINa ahaztu al duzu?</string>
@@ -2317,7 +2370,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RegistrationLockDialog_registration_lock">Erregistratea blokeatzea</string>
   <string name="RegistrationLockDialog_enable">Gaitu</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Errejistrate-blokeorako PINak gutxienez %d zenbaki izan behar ditu.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Sartu dituzun bi PINak ez datoz bat.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Idatzi dituzun bi PINak ez datoz bat.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Errorea zerbitzura konektatzean</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Erregistratzea blokeatzeko PINa desgaitu?</string>
   <string name="RegistrationLockDialog_disable">Desgaitu</string>
@@ -2372,6 +2425,9 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s tik %2$s ra</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" blokeatua izan da.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Ezin izan da \"%1$s\" blokeatu</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" desblokeatua izan da.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Berrikusi Kideak</string>
   <string name="ReviewCardDialogFragment__review_request">Berrikusi Eskaera</string>

@@ -548,12 +548,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Signal ဗားရှင်းအသစ်</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ဗားရှင်းအသစ်ရပါပြီ၊ အဆင့်မြှင့်ရန် နှိပ်လိုက်ပါ</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%s ကို ဘလော့လုပ်မလား?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ဘလော့လုပ်ထားသောလူများအနေဖြင့် သင့်အားစာပို့​ခြင်း၊ ဖုန်းခေါ်ခြင်းများ ​ပြုလုပ်၍မရပါ။</string>
-  <string name="UnknownSenderView_block">ဘလော့ လုပ်မည်</string>
-  <string name="UnknownSenderView_share_profile_with_s">%s ဖြင့်သင့်အချက်အလက်များကို မျှဝေမလား?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">သင့်အချက်အလက်များကိုမျှဝေရန် အလွယ်ဆုံးနည်းလမ်းမှာ စာပို့သောသူကို သင့်လိပ်စာစာရင်းထဲထည့်လိုက်ခြင်းဖြစ်သည်။ မထည့်လိုပါက ယခုကဲ့သို့လည်း မျှဝေနိုင်ပါသည်။</string>
-  <string name="UnknownSenderView_share_profile">အချက်အလက် မျှဝေ​ရန်</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s ကို ဘလော့လုပ်မလား?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ဘလော့လုပ်ထားသောလူများအနေဖြင့် သင့်အားစာပို့​ခြင်း၊ ဖုန်းခေါ်ခြင်းများ ​ပြုလုပ်၍မရပါ။</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">ဘလော့ လုပ်မည်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">%s ဖြင့်သင့်အချက်အလက်များကို မျှဝေမလား?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">သင့်အချက်အလက်များကိုမျှဝေရန် အလွယ်ဆုံးနည်းလမ်းမှာ စာပို့သောသူကို သင့်လိပ်စာစာရင်းထဲထည့်လိုက်ခြင်းဖြစ်သည်။ မထည့်လိုပါက ယခုကဲ့သို့လည်း မျှဝေနိုင်ပါသည်။</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">အချက်အလက် မျှဝေ​ရန်</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">စာပို့မလား?</string>
   <string name="UntrustedSendDialog_send">ပို့ပါ</string>
@@ -820,7 +820,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">အဖွဲ့နာမည်သည် %1$s</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">သင့်နာမည်နှင့် ဓာတ်ပုံကို ဤအုပ်စုက မြင်အောင်လုပ်သည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">သင့်နာမည်နှင့် ဓာတ်ပုံကို ဤအုပ်စုက မြင်အောင်လုပ်သည်။</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ဖွင့်ပါ။</string>
   <!--prompt_mms_activity-->

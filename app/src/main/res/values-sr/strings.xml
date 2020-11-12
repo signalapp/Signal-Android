@@ -726,11 +726,11 @@
   <string name="UpdateApkReadyListener_Signal_update">Надоградња Signal-a</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Ново издање Signal-a је доступно, тапните за надоградњу</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Блокирати %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Блокирани контакти вас убудуће не могу звати или вам слати поруке</string>
-  <string name="UnknownSenderView_block">Блокирај</string>
-  <string name="UnknownSenderView_share_profile_with_s">Делити профил са %s?</string>
-  <string name="UnknownSenderView_share_profile">Подели профил</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Блокирати %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Блокирани контакти вас убудуће не могу звати или вам слати поруке</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Блокирај</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Делити профил са %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Подели профил</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Да пошаљем поруку?</string>
   <string name="UntrustedSendDialog_send">Пошаљи</string>

@@ -626,12 +626,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Оновлення Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Нова версія Signal доступна, натисніть для оновлення</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Заблокувати %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Заблоковані контакти не зможуть надсилати повідомлення та дзвонити вам</string>
-  <string name="UnknownSenderView_block">Заблокувати</string>
-  <string name="UnknownSenderView_share_profile_with_s">Поділитися ваши профілем з %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Найпростіший шлях поділитися профілем - додати контакт до своєї телефонної книги. Якщо ви не хочете цього робити, ви можете обирати цей спосіб.</string>
-  <string name="UnknownSenderView_share_profile">Поділитися профілем</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Заблокувати %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Заблоковані контакти не зможуть надсилати повідомлення та дзвонити вам</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Заблокувати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Поділитися ваши профілем з %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Найпростіший шлях поділитися профілем - додати контакт до своєї телефонної книги. Якщо ви не хочете цього робити, ви можете обирати цей спосіб.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Поділитися профілем</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Надіслати повідомлення?</string>
   <string name="UntrustedSendDialog_send">Надіслати</string>
@@ -931,7 +931,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">Назва групи тепер \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Поділитися іменем профілю та світлиною з цією групою?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Поділитися іменем профілю та світлиною з цією групою?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Розблокувати</string>
   <!--prompt_mms_activity-->

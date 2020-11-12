@@ -79,8 +79,17 @@
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fejl ved afspilning af lyd!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Blokerede kontakter</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Blokerede brugere</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Tilføj blokeret bruger</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Blokerede brugere vil ikke kunne ringe eller sende beskeder til dig</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Ingen blokerede brugere</string>
+  <string name="BlockedUsersActivity__block_user">Blokér bruger?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vil ikke være i stand til at ringe eller skrive beskeder til dig</string>
+  <string name="BlockedUsersActivity__block">Blokér</string>
+  <string name="BlockedUsersActivity__unblock_user">Fjern blokering af bruger?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Ønsker du at fjerne blokering af \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__unblock">Fjern blokering</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokér og forlad %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokér %1$s?</string>
@@ -466,9 +475,40 @@
     <item quantity="one">Dette medlem skal acceptere en invitation til at deltage i gruppen igen og vil ikke modtage gruppebeskeder, før de accepterer:</item>
     <item quantity="other">Disse medlemmer skal acceptere en invitation til at deltage i gruppen igen, og vil ikke modtage gruppebeskeder før de accepterer:</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Dette medlem er ikke i stand til at deltage i nye grupper og er blevet fjernet fra gruppen:</item>
     <item quantity="other">Disse medlemmer er ikke i stand til at deltage i nye grupper, og er blevet fjernet fra gruppen:</item>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d medlem kunne ikke tilføjes igen til den nye gruppe. Ønsker du at tilføje dem nu?</item>
+    <item quantity="other">%1$d medlemmer kunne ikke tilføjes igen til den nye gruppe. Ønsker du at tilføje dem nu?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Tilføj medlem</item>
+    <item quantity="other">Tilføj medlemmer</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ikke nu</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Tilføj medlem?</item>
+    <item quantity="other">Tilføj medlemmer?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Dette medlem kunne ikke automatisk tilføjes til den nye gruppe, da den blev opgraderet:</item>
+    <item quantity="other">Disse medlemmer kunne ikke automatisk tilføjes til den nye gruppe, da den blev opgraderet:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Tilføj medlem</item>
+    <item quantity="other">Tilføj medlemmer</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Fejl. Kunne ikke tilføje medlem. Prøv igen senere</item>
+    <item quantity="other">Fejl. Kunne ikke tilføje medlemmer. Prøv igen senere</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Kan ikke tilføje medlem</item>
+    <item quantity="other">Kan ikke tilføje medlemmer</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Forlad gruppe?</string>
@@ -1110,9 +1150,21 @@
   <string name="WebRtcCallView__signal_voice_call">Signal taleopkald…</string>
   <string name="WebRtcCallView__signal_video_call">Signal videoopkald…</string>
   <string name="WebRtcCallView__start_call">Foretag opkald</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Gruppeopkald</string> -->
+  <string name="WebRtcCallView__join_call">Deltag i opkaldet</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" Gruppe opkald</string>
   <string name="WebRtcCallView__view_participants_list">Vis deltagere</string>
   <string name="WebRtcCallView__your_video_is_off">Din video er slået fra</string>
+  <string name="WebRtcCallView__connecting">Forbinder…</string>
+  <string name="WebRtcCallView__reconnecting">Genopretter forbindelse…</string>
+  <string name="WebRtcCallView__joining">Forbinder…</string>
+  <string name="WebRtcCallView__disconnected">Afbrudt</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Ingen andre deltager</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s deltager i samtalen</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s deltager i samtalen</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s, og %3$d andre deltager i samtalen</item>
+    <item quantity="other">%1$s, %2$s, og %3$d andre deltager i samtalen</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">I dette opkald · %1$d person</item>
@@ -1285,12 +1337,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="UpdateApkReadyListener_Signal_update">Opdater Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tap for at opdatere</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Blokér %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokerede kontakter kan hverken sende dig beskeder eller ringe</string>
-  <string name="UnknownSenderView_block">Blokér</string>
-  <string name="UnknownSenderView_share_profile_with_s">Del din profil med %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Den nemmeste måde at dele information om din profil på, er at tilføje modtageren til dine kontakter. Hvis du ikke ønsker at gøre dette, kan du alligevel stadig dele din information</string>
-  <string name="UnknownSenderView_share_profile">Del profil</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Blokér %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokerede kontakter kan hverken sende dig beskeder eller ringe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Blokér</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Del din profil med %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Den nemmeste måde at dele information om din profil på, er at tilføje modtageren til dine kontakter. Hvis du ikke ønsker at gøre dette, kan du alligevel stadig dele din information</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Del profil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Send besked?</string>
   <string name="UntrustedSendDialog_send">Send</string>
@@ -1670,7 +1722,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   </plurals>
   <string name="GroupUtil_group_name_is_now">Navnet på gruppen er nu \"%1$s\"</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Vil du vise dit profilnavn og -billed i gruppen?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Vil du vise dit profilnavn og -billed i gruppen?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås op</string>
   <!--prompt_mms_activity-->
@@ -1896,7 +1948,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__typing_indicators">Skrive indikator</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, er det ikke muligt at se når andre skriver</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Deaktivér personaliseret læring fra tastaturet</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Blokerede kontakter</string> -->
+  <string name="preferences_app_protection__blocked_users">Blokerede brugere</string>
   <string name="preferences_chats__when_using_mobile_data">Ved anvendelse af mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved brug af WiFi</string>
   <string name="preferences_chats__when_roaming">Ved roaming</string>
@@ -1959,6 +2011,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Ny besked til…</string>
+  <string name="contact_selection_list__unknown_contact_block">Blokér bruger</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Tilføj til gruppe</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Opkald</string>
@@ -2371,6 +2424,9 @@ Der er %d dage tilbage</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" er blevet blokeret</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Fejl ved blokering af \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" er ikke længere blokeret</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Gennemgå medlemmer</string>
   <string name="ReviewCardDialogFragment__review_request">Gennemgå forespørgsel</string>

@@ -792,12 +792,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Signal अपडेट</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal का एक नया वर्ज़न उपलब्ध है, अपडेट करने के लिए टैप करें</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%sको ब्लॉक करें?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ब्लॉक संपर्क अब आपको मेसेज भेजने या आपको कॉल करने में सक्षम नहीं होंगे।</string>
-  <string name="UnknownSenderView_block">ब्लॉक</string>
-  <string name="UnknownSenderView_share_profile_with_s">%s के साथ प्रोफाइल साझा करें?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">अपनी प्रोफाइल जानकारी साझा करने का सबसे आसान तरीका प्रेषक को आपके संपर्कों में जोड़ना है। यदि आप नहीं चाहते हैं, तो भी आप अपनी प्रोफ़ाइल जानकारी इस तरह से साझा कर सकते हैं।</string>
-  <string name="UnknownSenderView_share_profile">प्रोफाइल साझा करें</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%sको ब्लॉक करें?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ब्लॉक संपर्क अब आपको मेसेज भेजने या आपको कॉल करने में सक्षम नहीं होंगे।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">ब्लॉक</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">%s के साथ प्रोफाइल साझा करें?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">अपनी प्रोफाइल जानकारी साझा करने का सबसे आसान तरीका प्रेषक को आपके संपर्कों में जोड़ना है। यदि आप नहीं चाहते हैं, तो भी आप अपनी प्रोफ़ाइल जानकारी इस तरह से साझा कर सकते हैं।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">प्रोफाइल साझा करें</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">मेसेज भेजें?</string>
   <string name="UntrustedSendDialog_send">भेजें</string>
@@ -1144,7 +1144,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">समूह का नाम अब \'%1$s\' है</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">इस समूह में अपना प्रोफाइल नाम और फोटो दृश्यमान बनाएं?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">इस समूह में अपना प्रोफाइल नाम और फोटो दृश्यमान बनाएं?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">खोलो </string>
   <!--prompt_mms_activity-->

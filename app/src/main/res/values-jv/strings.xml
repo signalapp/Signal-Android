@@ -779,12 +779,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Pangenggalan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi Signal ingkang enggal sampun enten, tutul kangge ngenggalaken</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Blokir %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Kontak ingkang dipunblokir bakalan mboten saged nelepon utawi ngirimaken pesen kangge sampeyan.</string>
-  <string name="UnknownSenderView_block">Blokir</string>
-  <string name="UnknownSenderView_share_profile_with_s">Unjukaken profil kaliyan %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Cara paling gampil kangge ngunjukaken informasi profil sampeyan yaiku kangge minggahaken pangirim dhateng kontak. Menawi sampeyan mboten kersa, sampeyan taksih saged ngunjukaken informasi profil ngginakaken cara niki.</string>
-  <string name="UnknownSenderView_share_profile">Unjukaken profil</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Blokir %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Kontak ingkang dipunblokir bakalan mboten saged nelepon utawi ngirimaken pesen kangge sampeyan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Blokir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Unjukaken profil kaliyan %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Cara paling gampil kangge ngunjukaken informasi profil sampeyan yaiku kangge minggahaken pangirim dhateng kontak. Menawi sampeyan mboten kersa, sampeyan taksih saged ngunjukaken informasi profil ngginakaken cara niki.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Unjukaken profil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Kirimaken pesen?</string>
   <string name="UntrustedSendDialog_send">Kirimaken</string>
@@ -1122,7 +1122,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">Sakmenika nami grup dados \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Sagedaken supados foto lan nami profik ditingali grup niki?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Sagedaken supados foto lan nami profik ditingali grup niki?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Bikak kunci</string>
   <!--prompt_mms_activity-->

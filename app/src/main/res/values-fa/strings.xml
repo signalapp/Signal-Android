@@ -79,8 +79,17 @@
   <string name="AttachmentUploadJob_compressing_video_start">فشرده‌سازی ویدئو…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش صوت!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">مخاطبین مسدود شده</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">کاربران مسدود شده</string>
+  <string name="BlockedUsersActivity__add_blocked_user">افزودن کاربر مسدود شده</string>
+  <string name="BlockedUsersActivity__blocked_users_will">کاربری که مسدود شده است، امکان برقراری تماس یا ارسال پیام به شما را ندارد.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">هیچ کاربر مسدود شده‌ای وجود ندارد</string>
+  <string name="BlockedUsersActivity__block_user">مسدود کردن کاربر؟</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">«%1$s» امکان برقراری تماس یا ارسال پیام به شما را نخواهد داشت.</string>
+  <string name="BlockedUsersActivity__block">مسدود کردن</string>
+  <string name="BlockedUsersActivity__unblock_user">رفع مسدودیت کاربر؟</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">مسدودیت «%1$s» را رفع می‌کنید؟</string>
+  <string name="BlockedUsersActivity__unblock">رفع مسدودیت</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">مسدود کردن و ترک گروه %1$s؟</string>
   <string name="BlockUnblockDialog_block_s"> مسدود کردن %1$s؟</string>
@@ -465,9 +474,40 @@
     <item quantity="one">این عضو نیاز به پذیرفتن دعوت برای</item>
     <item quantity="other">این اعضا نیاز به پذیرفتن دعوت برای پیوستن به گروه خواهند داشت و پیام‌های گروه را تا زمانی که بپذیرند دریافت نخواهند کرد:</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">این عضو قابلیت پیوستن به گروه‌های جدید را ندارد، و از گروه حذف شده است.</item>
     <item quantity="other">این اعضا قابلیت پیوستن به گروه‌های جدید را ندارند و از گروه حذف شده‌اند.</item>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d کاربر نمی‌تواند به گروه جدید اضافه شود. می‌خواهید حالا او را اضافه کنید؟</item>
+    <item quantity="other">%1$d کاربر نمی‌توانند به گروه جدید اضافه شوند. می‌خواهید حالا آنان را اضافه کنید؟</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">افزودن عضو</item>
+    <item quantity="other">افزودن اعضا</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">حالا نه</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">افزودن عضو؟</item>
+    <item quantity="other">افزودن اعضا</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">این عضو نمی‌تواند به صورت خودکار به گروه جدید وقتی که ارتقا پیدا کرد اضافه شود:</item>
+    <item quantity="other">این اعضا نمی‌توانند به صورت خودکار به گروه جدید وقتی که ارتقا پیدا کرد اضافه شوند:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">افزودن عضو</item>
+    <item quantity="other">افزودن اعضا</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">افزودن اعضا موفق نبود. دوباره امتحان کنید.</item>
+    <item quantity="other">افزودن عضو موفق نبود. دوباره امتحان کنید.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">قابلیت افزودن عضو وجود ندارد.</item>
+    <item quantity="other">قابلیت افزودن اعضا وجود ندارد.</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ترک گروه؟</string>
@@ -510,7 +550,7 @@
   </plurals>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">درخواست‌‌های عضویت در حال انتظار</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">هیچ درخواست عضویت برای نمایش وجود ندارد</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">هیچ درخواست عضویتی برای نمایش وجود ندارد</string>
   <string name="RequestingMembersFragment_explanation">افراد در این فهرست در حال تلاش برای پیوستن به این گروه از طریق پیوند گروه هستند.</string>
   <string name="RequestingMembersFragment_added_s">«%1$s» اضافه شد</string>
   <string name="RequestingMembersFragment_denied_s">«%1$s» رد شد</string>
@@ -1109,9 +1149,21 @@
   <string name="WebRtcCallView__signal_voice_call">تماس صوتی Signal</string>
   <string name="WebRtcCallView__signal_video_call">تماس تصویری Signal</string>
   <string name="WebRtcCallView__start_call">شروع تماس</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">تماس گروهی</string> -->
+  <string name="WebRtcCallView__join_call">پیوستن به تماس</string>
+  <string name="WebRtcCallView__s_group_call">تماس گروهی «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">مشاهدهٔ شرکت کنندگان</string>
   <string name="WebRtcCallView__your_video_is_off">ویدئوی شما خاموش است</string>
+  <string name="WebRtcCallView__connecting">در حال اتصال…</string>
+  <string name="WebRtcCallView__reconnecting">در حال اتصال دوباره…</string>
+  <string name="WebRtcCallView__joining">در حال پیوستن…</string>
+  <string name="WebRtcCallView__disconnected">ارتباط قطع شد</string>
+  <string name="WebRtcCallView__no_one_else_is_here">هیچکس دیگری اینجا نیست</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s در این تماس حضور دارد</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s و %2$s در این تماس حضور دارند</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
+    <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">در این تماس · %1$d نفر</item>
@@ -1283,12 +1335,12 @@
   <string name="UpdateApkReadyListener_Signal_update">به‌روزرسانی Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">یک نسخهٔ جدید از Signal موجود است، برای به‌روزرسانی ضربه بزنید</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%s مسدود شود؟</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">مخاطبین مسدود شده دیگر قادر به ارسال پیام یا تماس با شما نخواهند بود.</string>
-  <string name="UnknownSenderView_block">مسدود کردن</string>
-  <string name="UnknownSenderView_share_profile_with_s">اشتراک‌گذاشتن پروفایل با %s؟</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">آسان‌ترین راه برای اشتراک‌گذاری اطلاعات پروفایل شما اضافه کردن فرستنده به مخاطبان است. اگر مایل به انجام این کار نیستید، همچنان می‌توانید اطلاعات پروفایل خود را به این شیوه به اشتراک بگذارید.</string>
-  <string name="UnknownSenderView_share_profile">اشتراک‌گذاری پروفایل</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s مسدود شود؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">مخاطبین مسدود شده دیگر قادر به ارسال پیام یا تماس با شما نخواهند بود.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">مسدود کردن</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">اشتراک‌گذاشتن پروفایل با %s؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">آسان‌ترین راه برای اشتراک‌گذاری اطلاعات پروفایل شما اضافه کردن فرستنده به مخاطبان است. اگر مایل به انجام این کار نیستید، همچنان می‌توانید اطلاعات پروفایل خود را به این شیوه به اشتراک بگذارید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">اشتراک‌گذاری پروفایل</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">ارسال پیام؟</string>
   <string name="UntrustedSendDialog_send">ارسال</string>
@@ -1668,7 +1720,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">نام گروه اکنون \'%1$s\' است.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">نام و عکس پروفایل شما به این این گروه نشان داده شود؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">نام و عکس پروفایل شما به این این گروه نشان داده شود؟</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">باز کردن قفل</string>
   <!--prompt_mms_activity-->
@@ -1894,7 +1946,7 @@
   <string name="preferences__typing_indicators">نشانگرهای نوشتن</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">مخاطبین مسدود شده</string> -->
+  <string name="preferences_app_protection__blocked_users">کاربران مسدود شده</string>
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده‌های موبایل</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
   <string name="preferences_chats__when_roaming">هنگام رومینگ</string>
@@ -1957,6 +2009,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">پیام جدید به …</string>
+  <string name="contact_selection_list__unknown_contact_block">مسدود کردن کاربر</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">افزودن به گروه</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">تماس</string>
@@ -2368,6 +2421,9 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s به %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» مسدود شد.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">مسدود کردن «%1$s» موفق نبود</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">مسدودیت «%1$s» رفع شد.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">بازبینی اعضا</string>
   <string name="ReviewCardDialogFragment__review_request">بازبینی درخواست</string>

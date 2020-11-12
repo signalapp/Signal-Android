@@ -572,12 +572,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Hildema Signalê</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Guhertoyeke nû ya Signalê amade ye, ji bo hildemandinê bitepîne. </string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%s asteng bike?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Kesên astengkirî dê nema karibin peyam bişînin te an bang bikin.</string>
-  <string name="UnknownSenderView_block">Asteng bike</string>
-  <string name="UnknownSenderView_share_profile_with_s">Bi %s re profîlê parve bike?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Hêsantirîn rêya parvekirina agahîyên profîla te, tevlêkirina şandiyarê li nav têkilîdêrên te ye. Ku naxwazî, tu dîsa jî dikarî bi vê awayî agahiyên profîla xwe parve bikî.</string>
-  <string name="UnknownSenderView_share_profile">Profîlê parve bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s asteng bike?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Kesên astengkirî dê nema karibin peyam bişînin te an bang bikin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Asteng bike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Bi %s re profîlê parve bike?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Hêsantirîn rêya parvekirina agahîyên profîla te, tevlêkirina şandiyarê li nav têkilîdêrên te ye. Ku naxwazî, tu dîsa jî dikarî bi vê awayî agahiyên profîla xwe parve bikî.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Profîlê parve bike</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Peyam bişîne?</string>
   <string name="UntrustedSendDialog_send">Bişîne</string>
@@ -870,7 +870,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">Niha navê komê \'%1$s\' e.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Nav û wêneya profîla te ji bo vê komê xuyabikin?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Nav û wêneya profîla te ji bo vê komê xuyabikin?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Rakirina qilfê</string>
   <!--prompt_mms_activity-->

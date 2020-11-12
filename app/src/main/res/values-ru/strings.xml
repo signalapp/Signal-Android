@@ -85,8 +85,17 @@
   <string name="AttachmentUploadJob_compressing_video_start">Сжимаем видео…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ошибка при воспроизведении аудио!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Заблокированные контакты</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Заблокированные пользователи</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Добавить заблокированного пользователя</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Заблокированные пользователи не смогут звонить вам или отправлять вам сообщения.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Нет заблокированных пользователей</string>
+  <string name="BlockedUsersActivity__block_user">Заблокировать пользователя?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">«%1$s» не сможет звонить вам или отправлять вам сообщения.</string>
+  <string name="BlockedUsersActivity__block">Заблокировать</string>
+  <string name="BlockedUsersActivity__unblock_user">Разблокировать пользователя?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Вы хотите разблокировать «%1$s»?</string>
+  <string name="BlockedUsersActivity__unblock">Разблокировать</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Заблокировать и покинуть %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Заблокировать %1$s?</string>
@@ -499,11 +508,56 @@
     <item quantity="many">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
     <item quantity="other">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Этот участник не может присоединяться к Новым группам и был удалён из группы:</item>
     <item quantity="few">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
     <item quantity="many">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
     <item quantity="other">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d участник не мог быть заново добавлен в Новую группу. Вы хотите добавить его сейчас?</item>
+    <item quantity="few">%1$d участника не могли быть заново добавлены в Новую группу. Вы хотите добавить их сейчас?</item>
+    <item quantity="many">%1$d участников не могли быть заново добавлены в Новую группу. Вы хотите добавить их сейчас?</item>
+    <item quantity="other">%1$d участников не могли быть заново добавлены в Новую группу. Вы хотите добавить их сейчас?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Добавить участника</item>
+    <item quantity="few">Добавить участников</item>
+    <item quantity="many">Добавить участников</item>
+    <item quantity="other">Добавить участников</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Не сейчас</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Добавить участника?</item>
+    <item quantity="few">Добавить участников?</item>
+    <item quantity="many">Добавить участников?</item>
+    <item quantity="other">Добавить участников?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Этот участник не мог быть автоматически добавлен в Новую группу, когда группа была обновлена:</item>
+    <item quantity="few">Эти участники не могли быть автоматически добавлены в Новую группу, когда группа была обновлена:</item>
+    <item quantity="many">Эти участники не могли быть автоматически добавлены в Новую группу, когда группа была обновлена:</item>
+    <item quantity="other">Эти участники не могли быть автоматически добавлены в Новую группу, когда группа была обновлена:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Добавить участника</item>
+    <item quantity="few">Добавить участников</item>
+    <item quantity="many">Добавить участников</item>
+    <item quantity="other">Добавить участников</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Не удалось добавить участника. Попробуйте ещё раз позже.</item>
+    <item quantity="few">Не удалось добавить участников. Попробуйте ещё раз позже.</item>
+    <item quantity="many">Не удалось добавить участников. Попробуйте ещё раз позже.</item>
+    <item quantity="other">Не удалось добавить участников. Попробуйте ещё раз позже.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Невозможно добавить участника.</item>
+    <item quantity="few">Невозможно добавить участников.</item>
+    <item quantity="many">Невозможно добавить участников.</item>
+    <item quantity="other">Невозможно добавить участников.</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Покинуть группу?</string>
@@ -1204,9 +1258,23 @@
   <string name="WebRtcCallView__signal_voice_call">Голосовой звонок Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal…</string>
   <string name="WebRtcCallView__start_call">Начать звонок</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Групповой звонок</string> -->
+  <string name="WebRtcCallView__join_call">Присоединиться к звонку</string>
+  <string name="WebRtcCallView__s_group_call">Групповой звонок «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">Просмотреть участников</string>
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
+  <string name="WebRtcCallView__connecting">Подключает…</string>
+  <string name="WebRtcCallView__reconnecting">Переподключает…</string>
+  <string name="WebRtcCallView__joining">Присоединяет…</string>
+  <string name="WebRtcCallView__disconnected">Отключён</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Здесь нет никого, кроме вас</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s в этом звонке</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s в этом звонке</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
+    <item quantity="few">%1$s, %2$s и ещё %3$d человека в этом звонке</item>
+    <item quantity="many">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
+    <item quantity="other">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">В этом звонке · %1$d человек</item>
@@ -1378,12 +1446,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Signal. Обновиться?</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Заблокировать %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Заблокированные контакты больше не смогут отправлять вам сообщения или звонить вам.</string>
-  <string name="UnknownSenderView_block">Заблокировать</string>
-  <string name="UnknownSenderView_share_profile_with_s">Открыть ваш профиль для %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Самый простой способ открыть свой профиль кому-то — добавить отправителя в контакты. Если вы не хотите этого делать, можете открыть профиль и так.</string>
-  <string name="UnknownSenderView_share_profile">Открыть профиль</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Заблокировать %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Заблокированные контакты больше не смогут отправлять вам сообщения или звонить вам.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Заблокировать</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Открыть ваш профиль для %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Самый простой способ открыть свой профиль кому-то — добавить отправителя в контакты. Если вы не хотите этого делать, можете открыть профиль и так.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Открыть профиль</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Отправить сообщение?</string>
   <string name="UntrustedSendDialog_send">Отправить</string>
@@ -1783,7 +1851,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">Группа теперь называется «%1$s».</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Сделать ваше имя и фотографию профиля видимыми для этой группы?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Сделать ваше имя и фотографию профиля видимыми для этой группы?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Открыть</string>
   <!--prompt_mms_activity-->
@@ -2011,7 +2079,7 @@
   <string name="preferences__typing_indicators">Индикаторы набора текста</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Если индикаторы набора текста отключены, вы не сможете видеть индикаторы набора текста других пользователей.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Запросить отключение персонализированного обучения клавиатуры</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Заблокированные контакты</string> -->
+  <string name="preferences_app_protection__blocked_users">Заблокированные пользователи</string>
   <string name="preferences_chats__when_using_mobile_data">Через мобильную сеть</string>
   <string name="preferences_chats__when_using_wifi">Через Wi-Fi</string>
   <string name="preferences_chats__when_roaming">В роуминге</string>
@@ -2074,6 +2142,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Новое сообщение для…</string>
+  <string name="contact_selection_list__unknown_contact_block">Заблокировать пользователя</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Добавить в группу</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Позвонить</string>
@@ -2499,6 +2568,9 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s в %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» заблокирован(-а).</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Не удалось заблокировать «%1$s»</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">«%1$s» разблокирован(-а).</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Проверьте участников</string>
   <string name="ReviewCardDialogFragment__review_request">Проверьте запрос</string>

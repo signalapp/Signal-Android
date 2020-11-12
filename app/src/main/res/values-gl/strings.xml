@@ -900,12 +900,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Actualizar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hai dispoñible unha nova versión de Signal; toca para actualizar</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Bloquear a %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Os contactos  bloqueados non poderán volver chamarte nin enviarche mensaxes.</string>
-  <string name="UnknownSenderView_block">Bloquear</string>
-  <string name="UnknownSenderView_share_profile_with_s">Compartir perfil con %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">O xeito máis fácil de compartir a túa información do perfil é engadindo o remitente aos contactos. Se non o queres facer, podes compartir a información deste modo.</string>
-  <string name="UnknownSenderView_share_profile">Compartir perfil</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Bloquear a %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Os contactos  bloqueados non poderán volver chamarte nin enviarche mensaxes.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bloquear</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Compartir perfil con %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">O xeito máis fácil de compartir a túa información do perfil é engadindo o remitente aos contactos. Se non o queres facer, podes compartir a información deste modo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Compartir perfil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Enviar mensaxe?</string>
   <string name="UntrustedSendDialog_send">Enviar</string>
@@ -1235,7 +1235,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">Agora o nome do grupo é \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Queres facer visible o nome e a fotografía do perfil neste grupo?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Queres facer visible o nome e a fotografía do perfil neste grupo?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->

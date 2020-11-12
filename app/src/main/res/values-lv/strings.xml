@@ -984,12 +984,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="UpdateApkReadyListener_Signal_update">Signal aktualizējums</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Ir pieejama jauna Signal versija, pieskarieties, lai atjauninātu</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Bloķēt %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Bloķētais kontakts vairs nevarēs Jums Signālā sūtīt ziņas vai zvanīt.</string>
-  <string name="UnknownSenderView_block">Bloķēt</string>
-  <string name="UnknownSenderView_share_profile_with_s">Dalīties ar profilu ar %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Vienkāršākais veids, kā dalīties ar savu informāciju, ir sūtītāja pievienošana saviem kontaktiem. Ja Jūs to nevēlieties, Jūs variet joprojām dalīties ar savu informāciju šadā veidā.</string>
-  <string name="UnknownSenderView_share_profile">Dalīties ar profilu</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Bloķēt %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Bloķētais kontakts vairs nevarēs Jums Signālā sūtīt ziņas vai zvanīt.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bloķēt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Dalīties ar profilu ar %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Vienkāršākais veids, kā dalīties ar savu informāciju, ir sūtītāja pievienošana saviem kontaktiem. Ja Jūs to nevēlieties, Jūs variet joprojām dalīties ar savu informāciju šadā veidā.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Dalīties ar profilu</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Sūtīt ziņu?</string>
   <string name="UntrustedSendDialog_send">Sūtīt</string>
@@ -1349,7 +1349,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   </plurals>
   <string name="GroupUtil_group_name_is_now">Grupa tagad ir \"%1$s\".</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Padarīt Jūsu profila nosaukumu un attēlu redzamu šai grupai?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Padarīt Jūsu profila nosaukumu un attēlu redzamu šai grupai?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Atbloķēt</string>
   <!--prompt_mms_activity-->

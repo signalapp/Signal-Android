@@ -79,8 +79,17 @@
   <string name="AttachmentUploadJob_compressing_video_start">Comprimindo vídeo…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Contatos bloqueados</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Pessoas bloqueadas</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Bloquear uma pessoa</string>
+  <string name="BlockedUsersActivity__blocked_users_will">As pessoas bloqueadas não poderão mais fazer chamadas ou enviar mensagens para você.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Nenhuma pessoa bloqueada</string>
+  <string name="BlockedUsersActivity__block_user">Bloquear esta pessoa?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" não poderá mais fazer chamadas ou enviar mensagens para você.</string>
+  <string name="BlockedUsersActivity__block">Bloquear</string>
+  <string name="BlockedUsersActivity__unblock_user">Desbloquear esta pessoa?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Tem certeza que deseja desbloquear \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__unblock">Desbloquear</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e sair %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear %1$s ?</string>
@@ -465,9 +474,40 @@
     <item quantity="one">Este membro precisará aceitar um convite para participar novamente neste grupo e não receberá as mensagens do grupo até que aceite:</item>
     <item quantity="other">Estes membros precisarão aceitar um convite para participar novamente neste grupo e não receberão as mensagens do grupo até que aceitem:</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Este membro não é capaz de participar em Novos Grupos, e foi removido do grupo:</item>
     <item quantity="other">Estes membros não são capazes de participar em Novos Grupos, e foram removidos do grupo:</item>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d membro não pôde ser adicionado ao Novo Grupo. Você deseja adicioná-lo agora?</item>
+    <item quantity="other">%1$d membros não puderam ser adicionados ao Novo Grupo. Você deseja adicioná-los agora?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Adicionar membro</item>
+    <item quantity="other">Adicionar membros</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Agora não</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Adicionar membro?</item>
+    <item quantity="other">Adicionar membros?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Esse membro não pôde ser adicionado automaticamente ao Novo Grupo quando ele foi atualizado:</item>
+    <item quantity="other">Esses membros não puderam ser adicionados automaticamente ao Novo Grupo quando ele foi atualizado:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Adicionar membro</item>
+    <item quantity="other">Adicionar membros</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Falha ao adicionar o membro. Tente mais tarde.</item>
+    <item quantity="other">Falha ao adicionar os membros. Tente mais tarde.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Não foi possível adicionar o membro.</item>
+    <item quantity="other">Não foi possível adicionar os membros.</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Sair do grupo?</string>
@@ -1109,9 +1149,21 @@
   <string name="WebRtcCallView__signal_voice_call">Mensagem de voz Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Chamada de vídeo Signal…</string>
   <string name="WebRtcCallView__start_call">Começar a Chamada</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Chamada em grupo</string> -->
+  <string name="WebRtcCallView__join_call">Participe da chamada</string>
+  <string name="WebRtcCallView__s_group_call">Chamada em grupo \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Ver os participantes</string>
   <string name="WebRtcCallView__your_video_is_off">Seu vídeo está desligado</string>
+  <string name="WebRtcCallView__connecting">Conectando…</string>
+  <string name="WebRtcCallView__reconnecting">Reconectando…</string>
+  <string name="WebRtcCallView__joining">Entrando…</string>
+  <string name="WebRtcCallView__disconnected">Desconectado</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Ninguém mais está aqui</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s está nesta chamada</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s e %2$s estão nesta chamada</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s e %3$d outro estão nesta chamada</item>
+    <item quantity="other">%1$s, %2$s e %3$d outros estão nesta chamada</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Nesta chamada · %1$d pessoa</item>
@@ -1285,12 +1337,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, toque para atualizar</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Bloquear %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Contatos bloqueados não irão mais conseguir enviar mensagens ou ligar para você.</string>
-  <string name="UnknownSenderView_block">Bloquear</string>
-  <string name="UnknownSenderView_share_profile_with_s">Compartilhar perfil com %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">O jeito mais fácil de compartilhar as informações do seu perfil é adicionar o remetente aos seus contatos. Caso não queira adicioná-lo, você ainda pode compartilhar as informações do seu perfil desta maneira.</string>
-  <string name="UnknownSenderView_share_profile">Compartilhar perfil</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Bloquear %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Contatos bloqueados não irão mais conseguir enviar mensagens ou ligar para você.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bloquear</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Compartilhar perfil com %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">O jeito mais fácil de compartilhar as informações do seu perfil é adicionar o remetente aos seus contatos. Caso não queira adicioná-lo, você ainda pode compartilhar as informações do seu perfil desta maneira.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Compartilhar perfil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Enviar mensagem?</string>
   <string name="UntrustedSendDialog_send">Enviar</string>
@@ -1670,7 +1722,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">O nome do grupo agora é \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tornar seu nome e foto do perfil visíveis para este grupo?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tornar seu nome e foto do perfil visíveis para este grupo?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Destrancar</string>
   <!--prompt_mms_activity-->
@@ -1896,7 +1948,7 @@
   <string name="preferences__typing_indicators">Indicadores de digitação</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de digitação estiverem desabilitados, você não poderá ver os indicadores de digitação de outras pessoas.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar ao teclado que desabilite o aprendizado personalizado</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Contatos bloqueados</string> -->
+  <string name="preferences_app_protection__blocked_users">Pessoas bloqueadas</string>
   <string name="preferences_chats__when_using_mobile_data">Quando usar dados móveis</string>
   <string name="preferences_chats__when_using_wifi">Quando usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Quando em roaming</string>
@@ -1959,6 +2011,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nova mensagem para…</string>
+  <string name="contact_selection_list__unknown_contact_block">Bloquear esta pessoa</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Adicional ao grupo</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chamar</string>
@@ -2370,6 +2423,9 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s para %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" foi bloqueado.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Falha ao bloquear \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" foi desbloqueado.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Revisar os Membros</string>
   <string name="ReviewCardDialogFragment__review_request">Analisar o Pedido</string>

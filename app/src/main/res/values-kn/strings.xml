@@ -824,12 +824,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Signal ನವೀಕರಿಸಿ</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">ಹೊಸ ಆವೃತ್ತಿ Signal ಲಭ್ಯವಿದೆ, ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%sನಿರ್ಬಂಧಿಸುವುದೇ?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ನಿರ್ಬಂಧಿಸಿದ ಸಂಪರ್ಕಗಳಿಂದ ಇನ್ನು ಮುಂದೆ ನಿಮಗೆ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. </string>
-  <string name="UnknownSenderView_block">ನಿರ್ಬಂಧಿಸಿ</string>
-  <string name="UnknownSenderView_share_profile_with_s">%sರವರೊಂದಿಗೆ ಪ್ರೊಫೈಲನ್ನು ಹಂಚಿಕೊಳ್ಳುವುದೇ?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅತ್ಯಂತ ಸುಲಭವಾದ ಮಾರ್ಗವೆಂದರೆ ಕಳುಹಿಸುವವರನ್ನು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸುವುದು. ನೀವು ಹಾಗೆ ಮಾಡಲು ಬಯಸದಿದ್ದರೆ, ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ನೀವು ಈ ರೀತಿ ಹಂಚಿಕೊಳ್ಳಬಹುದು.</string>
-  <string name="UnknownSenderView_share_profile">ಪ್ರೊಫೈಲ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%sನಿರ್ಬಂಧಿಸುವುದೇ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ನಿರ್ಬಂಧಿಸಿದ ಸಂಪರ್ಕಗಳಿಂದ ಇನ್ನು ಮುಂದೆ ನಿಮಗೆ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">ನಿರ್ಬಂಧಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">%sರವರೊಂದಿಗೆ ಪ್ರೊಫೈಲನ್ನು ಹಂಚಿಕೊಳ್ಳುವುದೇ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅತ್ಯಂತ ಸುಲಭವಾದ ಮಾರ್ಗವೆಂದರೆ ಕಳುಹಿಸುವವರನ್ನು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸುವುದು. ನೀವು ಹಾಗೆ ಮಾಡಲು ಬಯಸದಿದ್ದರೆ, ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ನೀವು ಈ ರೀತಿ ಹಂಚಿಕೊಳ್ಳಬಹುದು.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">ಪ್ರೊಫೈಲ್ ಹಂಚಿಕೊಳ್ಳಿ</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">ಸಂದೇಶ ಕಳುಹಿಸುವುದೇ?</string>
   <string name="UntrustedSendDialog_send">ಕಳುಹಿಸು</string>
@@ -1174,7 +1174,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">ಗುಂಪಿನ ಹೆಸರು ಈಗ \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿಗೆ ಕಾಣುವಂತೆ ಮಾಡುವುದೇ?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿಗೆ ಕಾಣುವಂತೆ ಮಾಡುವುದೇ?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ಅನ್‌‌ಲಾಕ್ ಮಾಡಿ</string>
   <!--prompt_mms_activity-->

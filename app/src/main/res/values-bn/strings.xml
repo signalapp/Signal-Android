@@ -1002,12 +1002,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Signal আপডেট</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal এর একটি নতুন ভার্সন পাওয়া যাচ্ছে, অাপডেট করতে ট্যাপ করুন</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%s কে ব্লক করবেন?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ব্লক করা পরিচিতিসমূহ আপনাকে আর বার্তা প্রেরণ বা কল করতে সক্ষম হবে না।</string>
-  <string name="UnknownSenderView_block">ব্লক করুন</string>
-  <string name="UnknownSenderView_share_profile_with_s">%s-এর সাথে প্রোফাইল শেয়ার করতে চান?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">আপনার প্রোফাইল তথ্য শেয়ার করার সবচেয়ে সহজ উপায় হ\'ল প্রেরককে আপনার পরিচিতিতে যুক্ত করা। আপনি যদি না চান, তবে আপনি নিজের প্রোফাইল তথ্যটি এভাবেও শেয়ার করতে পারেন।</string>
-  <string name="UnknownSenderView_share_profile">প্রোফাইল শেয়ার করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s কে ব্লক করবেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ব্লক করা পরিচিতিসমূহ আপনাকে আর বার্তা প্রেরণ বা কল করতে সক্ষম হবে না।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">ব্লক করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">%s-এর সাথে প্রোফাইল শেয়ার করতে চান?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">আপনার প্রোফাইল তথ্য শেয়ার করার সবচেয়ে সহজ উপায় হ\'ল প্রেরককে আপনার পরিচিতিতে যুক্ত করা। আপনি যদি না চান, তবে আপনি নিজের প্রোফাইল তথ্যটি এভাবেও শেয়ার করতে পারেন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">প্রোফাইল শেয়ার করুন</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">বার্তা পাঠান?</string>
   <string name="UntrustedSendDialog_send">পাঠান</string>
@@ -1358,7 +1358,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">গ্রুপের নাম এখন \'%1$s\'।</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">আপনার প্রোফাইল নাম এবং ফটো এই গ্রুপে দৃশ্যমান করবেন?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">আপনার প্রোফাইল নাম এবং ফটো এই গ্রুপে দৃশ্যমান করবেন?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">লক্ খুলুন</string>
   <!--prompt_mms_activity-->

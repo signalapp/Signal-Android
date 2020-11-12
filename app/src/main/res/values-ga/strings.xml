@@ -560,12 +560,12 @@ a shonrú</string>
   <string name="UpdateApkReadyListener_Signal_update">Nuashonrú Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Tá leagan nua de Signal ar fáil, cnag chun é a nuashonrú</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Cuir bac ar %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Ní féidir teagmháláithe bacáilte teachtaireachtaí a sheoladh chugat no tú a ghlaoigh.</string>
-  <string name="UnknownSenderView_block">Cuir bac air</string>
-  <string name="UnknownSenderView_share_profile_with_s">Comhroinn do phróifíl le %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">An slí is easca do eolas próifíle a chomhroinn ná an seoltóir a chuir le do theaghmháláithe. Mura miste leat, is féidir do eolas próifíle a chomhroinn trí an slí seo.</string>
-  <string name="UnknownSenderView_share_profile">Comhroinn do phróifíl?</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Cuir bac ar %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Ní féidir teagmháláithe bacáilte teachtaireachtaí a sheoladh chugat no tú a ghlaoigh.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Cuir bac air</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Comhroinn do phróifíl le %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">An slí is easca do eolas próifíle a chomhroinn ná an seoltóir a chuir le do theaghmháláithe. Mura miste leat, is féidir do eolas próifíle a chomhroinn trí an slí seo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Comhroinn do phróifíl?</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Seol an teachtaireacht?</string>
   <string name="UntrustedSendDialog_send">Seol</string>
@@ -820,7 +820,7 @@ a shonrú</string>
   <!--GroupUtil-->
   <string name="GroupUtil_group_name_is_now">Is é \'%1$s\' ainm na baicle anois.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Cuir do ainm agus do ghrianghraf próifíl le fáil don mbaicle seo?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Cuir do ainm agus do ghrianghraf próifíl le fáil don mbaicle seo?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Bain an glas de</string>
   <!--prompt_mms_activity-->

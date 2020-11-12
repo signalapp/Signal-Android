@@ -79,8 +79,17 @@
   <string name="AttachmentUploadJob_compressing_video_start">Po ngjeshet video…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gabim në luajtjen e audios!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Kontakte të bllokuara</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Përdorues të bllokuar</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Shtoni përdorues të bllokuar</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Përdoruesit e bllokuar s’do të jenë në gjendje t’ju thërrasin apo t’ju dërgojnë mesazhe.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">S’ka përdorues të bllokuar</string>
+  <string name="BlockedUsersActivity__block_user">Të bllokohet përdoruesi?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" s’do të jetë në gjendje t’ju telefonojë apo t’ju dërgojë mesazhe.</string>
+  <string name="BlockedUsersActivity__block">Bllokoje</string>
+  <string name="BlockedUsersActivity__unblock_user">Të zhbllokohet përdoruesi?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Doni të zhbllokohet \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__unblock">Zhbllokoje</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Të bllokohet dhe braktiset %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Të bllokohet %1$s?</string>
@@ -466,9 +475,40 @@
 grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="other">Këta anëtarë do të duhet të pranojnë një ftesë për t’u bërë pjesë e grupit dhe s’do të marrin mesazhe grupi përpara se ta pranojnë:</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Ky anëtar s’është i aftë të bëhet pjesë Grupesh të Rinj, dhe është hequr prej grupit:</item>
     <item quantity="other">Këta anëtarë s’janë të aftë të bëhen pjesë Grupesh të Rinj, dhe janë hequr prej grupit:</item>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d anëtar s’u rishtua dot te Grupi i Ri. Doni të shtohet tani?</item>
+    <item quantity="other"> %1$d anëtarë s’u rishtuan dot te Grupi i Ri. Doni të shtohen tani?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Shtoni anëtar</item>
+    <item quantity="other">Shtoni anëtarë</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Jo tani</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Të shtohet anëtari?</item>
+    <item quantity="other">Të shtohen anëtarët?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Ky anëtar s’u shtua dot automatikisht te Grupi i Ri, kur u përmirësua grupi:</item>
+    <item quantity="other">Këta anëtarë s’u shtuan dot automatikisht te Grupi i Ri, kur u përmirësua grupi:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Shtoni anëtar</item>
+    <item quantity="other">Shtoni anëtarë</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">S’u arrit të shtohet anëtar. Riprovoni më vonë.</item>
+    <item quantity="other">S’u arrit të shtohen anëtarë. Riprovoni më vonë.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">S’shtohet dot anëtar.</item>
+    <item quantity="other">S’shtohen dot anëtarë.</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Të braktiset grupi?</string>
@@ -1112,9 +1152,21 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallView__signal_voice_call">Thirrje Signal me zë…</string>
   <string name="WebRtcCallView__signal_video_call">Thirrje Signal me video…</string>
   <string name="WebRtcCallView__start_call">Nise Thirrjen</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Thirrje Grupi</string> -->
+  <string name="WebRtcCallView__join_call">Hyni në Thirrje</string>
+  <string name="WebRtcCallView__s_group_call">Thirrje Grupi me \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Shihni pjesëmarrësit</string>
   <string name="WebRtcCallView__your_video_is_off">Videoja juaj është e fikur</string>
+  <string name="WebRtcCallView__connecting">Po lidhet…</string>
+  <string name="WebRtcCallView__reconnecting">Po rilidhet…</string>
+  <string name="WebRtcCallView__joining">Po hyhet…</string>
+  <string name="WebRtcCallView__disconnected">I shkëputur</string>
+  <string name="WebRtcCallView__no_one_else_is_here">S’ka tjetër këtu</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s është në këtë thirrje</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s dhe %2$s janë në këtë thirrje</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s, dhe %3$d tjetër janë në në këtë thirrje</item>
+    <item quantity="other">%1$s, %2$s, dhe %3$d të tjerë janë në këtë thirrje</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Në këtë thirrje · %1$d person</item>
@@ -1285,12 +1337,12 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="UpdateApkReadyListener_Signal_update">Përditësim i Signal-it</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Signal-it, prekeni që të përditësohet</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Të bllokohet %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Kontaktet e bllokuara s\’do të jenë më në gjendje t\’ju dërgojnë mesazhe apo t\’ju telefonojnë.</string>
-  <string name="UnknownSenderView_block">Bllokoje</string>
-  <string name="UnknownSenderView_share_profile_with_s">Të ndahet profili me %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Rruga më e lehtë për të ndarë me të tjerët të dhëna të profilit tuaj është shtimi i dërguesit te kontaktet tuaja. Nëse s\’doni ta bëni këtë, prapë mundeni të ndani të dhëna të profilit tuaj me të tjerët sipas kësaj rruge.</string>
-  <string name="UnknownSenderView_share_profile">Ndaje profilin</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Të bllokohet %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Kontaktet e bllokuara s\’do të jenë më në gjendje t\’ju dërgojnë mesazhe apo t\’ju telefonojnë.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bllokoje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Të ndahet profili me %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Rruga më e lehtë për të ndarë me të tjerët të dhëna të profilit tuaj është shtimi i dërguesit te kontaktet tuaja. Nëse s\’doni ta bëni këtë, prapë mundeni të ndani të dhëna të profilit tuaj me të tjerët sipas kësaj rruge.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Ndaje profilin</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Të dërgohet mesazhi?</string>
   <string name="UntrustedSendDialog_send">Dërgoje</string>
@@ -1670,7 +1722,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Emri i grupit tani është \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Të bëhet emri dhe fotoja juaj e profilit të dukshëm për këtë grup?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Të bëhet emri dhe fotoja juaj e profilit të dukshëm për këtë grup?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Zhbllokoje</string>
   <!--prompt_mms_activity-->
@@ -1898,7 +1950,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__typing_indicators">Tregues shtypjeje</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nëse treguesit e shtypjeve janë të çaktivizuar, s\’do të jeni në gjendje të shihni tregues shtypjesh nga të tjerët.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Kërko për tastierët çaktivizim të të mësuarit të personalizuar</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kontakte të bllokuara</string> -->
+  <string name="preferences_app_protection__blocked_users">Përdorues të bllokuar</string>
   <string name="preferences_chats__when_using_mobile_data">Kur përdoret rrjet celular</string>
   <string name="preferences_chats__when_using_wifi">Kur përdoret Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Nën roaming</string>
@@ -1961,6 +2013,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Mesazh i ri për…</string>
+  <string name="contact_selection_list__unknown_contact_block">Bllokoje përdoruesin</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Shtoje te grupi</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Thirrje</string>
@@ -2374,6 +2427,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s për %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" u bllokua.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">S’u arrit të bllokohej \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" u zhbllokua.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Shqyrtoni Anëtarë</string>
   <string name="ReviewCardDialogFragment__review_request">Shqyrtoni Kërkesë</string>

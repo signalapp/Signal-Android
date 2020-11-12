@@ -625,12 +625,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Signal yenilənməsi</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ın yeni versiyası hazırdır, yeniləmək üçün kliklə</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%səlaqəsini kilidləyirsən?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you"> Kilidlənmiş əlaqələr daha sənə mesaj göndərə və ya zəng edə bilməyəcək.</string>
-  <string name="UnknownSenderView_block">Kilidlə</string>
-  <string name="UnknownSenderView_share_profile_with_s">Profili %s ilə bölüşürsən?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Profil məlumatlarının ən asan paylaşım üsulu o şəxsin əlaqələrinə əlavə edilməsidir. Bunu etmək istəmirsənsə, profil məlumatlarını bu üsulla da paylaşa bilərsən.</string>
-  <string name="UnknownSenderView_share_profile">Profilini paylaş</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%səlaqəsini kilidləyirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you"> Kilidlənmiş əlaqələr daha sənə mesaj göndərə və ya zəng edə bilməyəcək.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Kilidlə</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Profili %s ilə bölüşürsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Profil məlumatlarının ən asan paylaşım üsulu o şəxsin əlaqələrinə əlavə edilməsidir. Bunu etmək istəmirsənsə, profil məlumatlarını bu üsulla da paylaşa bilərsən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Profilini paylaş</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Mesaj göndərirsən?</string>
   <string name="UntrustedSendDialog_send">Göndər</string>
@@ -928,7 +928,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">Qrupun adı indi belədir: \'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Profil şəklin və adın bu qrupa nümayiş etdirilsin?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Profil şəklin və adın bu qrupa nümayiş etdirilsin?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>
   <!--prompt_mms_activity-->

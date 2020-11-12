@@ -85,8 +85,10 @@
   <string name="AttachmentUploadJob_compressing_video_start">Glaudinamas vaizdo įrašas…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Užblokuoti adresatai</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users_will">Užblokuoti naudotojai negalės jums skambinti ar siųsti žinutes.</string>
+  <string name="BlockedUsersActivity__block">Užblokuoti</string>
+  <string name="BlockedUsersActivity__unblock">Atblokuoti</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Užblokuoti ir išeiti iš %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Užblokuoti %1$s?</string>
@@ -499,12 +501,15 @@
     <item quantity="many">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
     <item quantity="other">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Šis narys negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalintas:</item>
     <item quantity="few">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
     <item quantity="many">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
     <item quantity="other">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
-  </plurals>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne dabar</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Išeiti iš grupės?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Jūs daugiau šioje grupėje nebegalėsite siųsti ar gauti žinutes.</string>
@@ -1205,9 +1210,13 @@
   <string name="WebRtcCallView__signal_voice_call">Signal balso skambutis…</string>
   <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis…</string>
   <string name="WebRtcCallView__start_call">Pradėti skambutį</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">Grupės skambutis</string> -->
+  <string name="WebRtcCallView__join_call">Prisijungti prie skambučio</string>
   <string name="WebRtcCallView__view_participants_list">Rodyti dalyvius</string>
   <string name="WebRtcCallView__your_video_is_off">Jūsų vaizdas yra išjungtas</string>
+  <string name="WebRtcCallView__connecting">Jungiamasi…</string>
+  <string name="WebRtcCallView__reconnecting">Jungiamasi iš naujo…</string>
+  <string name="WebRtcCallView__disconnected">Atsijungta</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Čia daugiau nieko nėra</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Šiame skambutyje · %1$d žmogus</item>
@@ -1385,12 +1394,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite, norėdami atnaujinti</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Užblokuoti %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Užblokuoti adresatai daugiau nebegalės jums siųsti žinučių ar skambinti.</string>
-  <string name="UnknownSenderView_block">Užblokuoti</string>
-  <string name="UnknownSenderView_share_profile_with_s">Bendrinti profilį su %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Lengviausias būdas bendrinti savo profilio informaciją, tai pridėti siuntėją į savo adresatus. Jeigu to daryti nenorite, jūs vis tiek galite bendrinti savo profilio informaciją tokiu būdu.</string>
-  <string name="UnknownSenderView_share_profile">Bendrinti profilį</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Užblokuoti %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Užblokuoti adresatai daugiau nebegalės jums siųsti žinučių ar skambinti.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Užblokuoti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Bendrinti profilį su %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Lengviausias būdas bendrinti savo profilio informaciją, tai pridėti siuntėją į savo adresatus. Jeigu to daryti nenorite, jūs vis tiek galite bendrinti savo profilio informaciją tokiu būdu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Bendrinti profilį</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Siųsti žinutę?</string>
   <string name="UntrustedSendDialog_send">Siųsti</string>
@@ -1790,7 +1799,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">Dabar, grupės pavadinimas yra „%1$s“.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Padaryti jūsų profilio vardą ir nuotrauką matomą šiai grupei?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Padaryti jūsų profilio vardą ir nuotrauką matomą šiai grupei?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Atrakinti</string>
   <!--prompt_mms_activity-->
@@ -2018,7 +2027,6 @@
   <string name="preferences__typing_indicators">Rašymo indikatoriai</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Išjungę rašymo indikatorius, nebegalėsite matyti kitų žmonių rašymo indikatorių.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Užklausti klaviatūrą, kad būtų išjungtas suasmenintas mokymasis</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Užblokuoti adresatai</string> -->
   <string name="preferences_chats__when_using_mobile_data">Naudojant mobiliuosius duomenis</string>
   <string name="preferences_chats__when_using_wifi">Naudojant belaidį ryšį (Wi-Fi)</string>
   <string name="preferences_chats__when_roaming">Naudojant tarptinklinį ryšį</string>

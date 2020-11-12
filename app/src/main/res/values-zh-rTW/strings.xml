@@ -76,8 +76,17 @@
   <string name="AttachmentUploadJob_compressing_video_start">壓縮影片中…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音訊時出現錯誤！</string>
-  <!--BlockedContactsActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">已封鎖的聯絡人</string> -->
+  <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">被封鎖的使用者</string>
+  <string name="BlockedUsersActivity__add_blocked_user">新增被封鎖的使用者</string>
+  <string name="BlockedUsersActivity__blocked_users_will">已封鎖的聯絡人將無法撥電話或傳訊息給你。</string>
+  <string name="BlockedUsersActivity__no_blocked_users">沒有被封鎖的使用者</string>
+  <string name="BlockedUsersActivity__block_user">要封鎖使用者嗎？</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" 將無法給你打電話或向你傳送訊息。</string>
+  <string name="BlockedUsersActivity__block">封鎖</string>
+  <string name="BlockedUsersActivity__unblock_user">解封鎖使用者嗎?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">你要解封鎖 \"%1$s\"嗎?</string>
+  <string name="BlockedUsersActivity__unblock">解除封鎖</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">封鎖並離開%1$s嗎？</string>
   <string name="BlockUnblockDialog_block_s">要封鎖%1$s嗎？</string>
@@ -448,8 +457,32 @@
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="other">這些成員將需要接受邀請才能再次加入該群組，並且在他們接受之前不會收到群組訊息：</item>
   </plurals>
-  <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="other">這些成員無法加入新群組，並且已從該群組中刪除：</item>
+  </plurals> -->
+  <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="other">%1$d 個成員無法將重新新增到新群組中。你要立即新增他們嗎？</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="other">新增成員</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">稍後</string>
+  <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="other">要新增成員嗎?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="other">這些成員在升級後無法自動新增到新版群組中：</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="other">新增成員</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="other">新增成員失敗。請稍後再試。</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="other">無法新增成員。</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">離開群組？</string>
@@ -1060,9 +1093,20 @@
   <string name="WebRtcCallView__signal_voice_call">Signal 語音電話…</string>
   <string name="WebRtcCallView__signal_video_call">Signal 視訊電話…</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__group_call">群組通話</string> -->
+  <string name="WebRtcCallView__join_call">加入通話</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" 群組通話</string>
   <string name="WebRtcCallView__view_participants_list">查看參與者</string>
   <string name="WebRtcCallView__your_video_is_off">你的視訊已關閉</string>
+  <string name="WebRtcCallView__connecting">連接中…</string>
+  <string name="WebRtcCallView__reconnecting">重新連接中…</string>
+  <string name="WebRtcCallView__joining">加入中…</string>
+  <string name="WebRtcCallView__disconnected">已斷線</string>
+  <string name="WebRtcCallView__no_one_else_is_here">沒有人在這裡</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s正在此通話中</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 及 %2$s 正在此通話中</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="other">%1$s, %2$s, 及 %3$d 其他人正在通話中</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">在此通話中·%1$d個人</item>
@@ -1231,12 +1275,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">封鎖 %s？</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">已封鎖的聯絡人將再也不能夠傳送訊息給你及與你通話。</string>
-  <string name="UnknownSenderView_block">封鎖</string>
-  <string name="UnknownSenderView_share_profile_with_s">與 %s 分享個人資訊？</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">最簡單分享個人資訊的方式是將傳送者加入你的聯絡人。如果你不希望這樣做，你仍然可以用這個方式來分享你的個人資訊。</string>
-  <string name="UnknownSenderView_share_profile">分享個人資訊</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">封鎖 %s？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">已封鎖的聯絡人將再也不能夠傳送訊息給你及與你通話。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">封鎖</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">與 %s 分享個人資訊？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">最簡單分享個人資訊的方式是將傳送者加入你的聯絡人。如果你不希望這樣做，你仍然可以用這個方式來分享你的個人資訊。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">分享個人資訊</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">傳送訊息？</string>
   <string name="UntrustedSendDialog_send">傳送</string>
@@ -1607,7 +1651,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">群組現在名為「%1$s」。</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">要讓這個群組能看見你個人資訊的名字與照片？</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">要讓這個群組能看見你個人資訊的名字與照片？</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
@@ -1832,7 +1876,7 @@
   <string name="preferences__typing_indicators">打字狀態</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果打字狀態被關閉，你將無法看見其他人的打字狀態。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">要求鍵盤關閉個人化學習</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">封鎖聯絡人</string> -->
+  <string name="preferences_app_protection__blocked_users">被封鎖的使用者</string>
   <string name="preferences_chats__when_using_mobile_data">當使用行動數據時</string>
   <string name="preferences_chats__when_using_wifi">當使用 Wi-Fi 時</string>
   <string name="preferences_chats__when_roaming">當漫遊時</string>
@@ -1895,6 +1939,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">給…新訊息</string>
+  <string name="contact_selection_list__unknown_contact_block">封鎖使用者</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">新增到群組</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">撥出</string>
@@ -2299,6 +2344,9 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s到%2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\"已經被封鎖。</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">封鎖\"%1$s\"失敗</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\"已經被解封鎖。</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">審查成員</string>
   <string name="ReviewCardDialogFragment__review_request">審查要求</string>

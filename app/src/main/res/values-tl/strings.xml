@@ -847,12 +847,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Update sa Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">May bagong bersyon ang Signal, pindutin upang i-update</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">I-block si %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Ang mga naka-block na kontak ay hindi na makakapagpadala sa iyo ng mga mensahe o kaya\'y makakatawag sa iyo. </string>
-  <string name="UnknownSenderView_block">I-block</string>
-  <string name="UnknownSenderView_share_profile_with_s">Ibahagi ang profile kay %s?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts"> Ang pinakamadaling paraan upang maibahagi ang impormasyon ng iyong profile ay sa pamamagitan ng pagdaragdag ng nagpadala sa iyong mga kontak. Kung ayaw mo itong gawin, maaari mo pa ring ibahagi ang impormasyon ng iyong profile sa ganitong paraan.</string>
-  <string name="UnknownSenderView_share_profile">Ibahagi ang profile</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">I-block si %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Ang mga naka-block na kontak ay hindi na makakapagpadala sa iyo ng mga mensahe o kaya\'y makakatawag sa iyo. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">I-block</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Ibahagi ang profile kay %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts"> Ang pinakamadaling paraan upang maibahagi ang impormasyon ng iyong profile ay sa pamamagitan ng pagdaragdag ng nagpadala sa iyong mga kontak. Kung ayaw mo itong gawin, maaari mo pa ring ibahagi ang impormasyon ng iyong profile sa ganitong paraan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Ibahagi ang profile</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Ipadala ang mensahe?</string>
   <string name="UntrustedSendDialog_send">Ipadala</string>
@@ -1196,7 +1196,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">\'%1$s\' na ang pangalan ng grupo.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Gawaing nakikita ang iyong profile name at photo sa grupong ito?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Gawaing nakikita ang iyong profile name at photo sa grupong ito?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">I-unlock</string>
   <!--prompt_mms_activity-->

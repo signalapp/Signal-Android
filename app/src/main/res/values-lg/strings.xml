@@ -351,7 +351,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Message yakusanguka mu dakiika %s</string>
   <!--UpdateApkReadyListener-->
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block">Zziyiiza</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Zziyiiza</string> -->
   <!--UntrustedSendDialog-->
   <!--UnverifiedSendDialog-->
   <!--VerifyIdentityActivity-->

@@ -788,12 +788,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Sabuntuwar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">An samu sabon Signal, taba domin sabuntarwa</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">Toshe %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Tosasshen lambobi zasu daina samun damar kiranka/ki ko kuma aika maka/ki sakwanni.</string>
-  <string name="UnknownSenderView_block">Toshe</string>
-  <string name="UnknownSenderView_share_profile_with_s">Bawa %s damar ganin furofayil dinka/ki?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Hanya mafi saukin nunawa mutane furofayil dinka/ki shine ka/ki sa lmabar mai turawa a cikin adireshin lambobin sadarwarka/ki. Idan kuma baka/ki son haka, zaka/ki iya tura bayananka/ki ta wannan hanyar.</string>
-  <string name="UnknownSenderView_share_profile">Tura furofayil</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Toshe %s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Tosasshen lambobi zasu daina samun damar kiranka/ki ko kuma aika maka/ki sakwanni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Toshe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Bawa %s damar ganin furofayil dinka/ki?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Hanya mafi saukin nunawa mutane furofayil dinka/ki shine ka/ki sa lmabar mai turawa a cikin adireshin lambobin sadarwarka/ki. Idan kuma baka/ki son haka, zaka/ki iya tura bayananka/ki ta wannan hanyar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Tura furofayil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Tura sako?</string>
   <string name="UntrustedSendDialog_send">Tura</string>
@@ -1138,7 +1138,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">Sunan rukuni ya koma\'%1$s\'.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Bari membobin rukuninnan suga suna da hoton furofayil dinka/ki</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Bari membobin rukuninnan suga suna da hoton furofayil dinka/ki</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Bude</string>
   <!--prompt_mms_activity-->

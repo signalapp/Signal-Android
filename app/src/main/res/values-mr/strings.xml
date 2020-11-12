@@ -867,12 +867,12 @@
   <string name="UpdateApkReadyListener_Signal_update">Signal अद्यतन</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ची एक नवीन आवृत्ती उपलब्ध आहे, अद्ययावत करण्यासाठी टॅप करा</string>
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block_s">%s अवरोधित करायचे?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">अवरोधित संपर्क आपल्याला यापुढे आपल्याला संदेश पाठवू किंवा कॉल करू शकणार नाहीत.</string>
-  <string name="UnknownSenderView_block">अवरोधित करा</string>
-  <string name="UnknownSenderView_share_profile_with_s">%s सोबत प्रोफाईल सामायिक करायची?</string>
-  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">आपली प्रोफाईल माहिती सामायिक करण्याचा सर्वात सहज मार्ग म्हणजे प्रेषकाला आपल्या संपर्कात जोडणे आहे. जर आपली इच्छा नसेल, तरीही आपण ह्या मार्गाने आपली प्रोफाईल माहिती सामायिक करू शकता.</string>
-  <string name="UnknownSenderView_share_profile">प्रोफाईल सामायिक करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s अवरोधित करायचे?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">अवरोधित संपर्क आपल्याला यापुढे आपल्याला संदेश पाठवू किंवा कॉल करू शकणार नाहीत.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">अवरोधित करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">%s सोबत प्रोफाईल सामायिक करायची?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">आपली प्रोफाईल माहिती सामायिक करण्याचा सर्वात सहज मार्ग म्हणजे प्रेषकाला आपल्या संपर्कात जोडणे आहे. जर आपली इच्छा नसेल, तरीही आपण ह्या मार्गाने आपली प्रोफाईल माहिती सामायिक करू शकता.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">प्रोफाईल सामायिक करा</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">संदेश पाठवायचा?</string>
   <string name="UntrustedSendDialog_send">पाठवा</string>
@@ -1217,7 +1217,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">गटाचे नाव आता \'%1$s\' आहे.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">आपले प्रोफाईल नाव आणि फोटो या गटासाठी दृश्यमान करायचे?</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">आपले प्रोफाईल नाव आणि फोटो या गटासाठी दृश्यमान करायचे?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">अनलॉक करा</string>
   <!--prompt_mms_activity-->

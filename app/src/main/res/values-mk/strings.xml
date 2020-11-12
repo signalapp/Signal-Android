@@ -263,7 +263,7 @@
   <string name="ThreadRecord_draft">Скица:</string>
   <!--UpdateApkReadyListener-->
   <!--UnknownSenderView-->
-  <string name="UnknownSenderView_block">Блокирај</string>
+  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Блокирај</string> -->
   <!--UntrustedSendDialog-->
   <!--UnverifiedSendDialog-->
   <!--VerifyIdentityActivity-->
