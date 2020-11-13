@@ -12,10 +12,13 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.ConfigurationUtil;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -75,17 +78,20 @@ public abstract class BaseActivity extends AppCompatActivity {
   }
 
   @Override
-  protected void attachBaseContext(Context newBase) {
+  protected void attachBaseContext(@NonNull Context newBase) {
     super.attachBaseContext(newBase);
 
-    Configuration configuration = new Configuration();
-    configuration.uiMode = (configuration.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | getDelegate().getLocalNightMode();
+    Configuration configuration      = new Configuration(newBase.getResources().getConfiguration());
+    int           appCompatNightMode = getDelegate().getLocalNightMode() != AppCompatDelegate.MODE_NIGHT_UNSPECIFIED ? getDelegate().getLocalNightMode()
+                                                                                                                     : AppCompatDelegate.getDefaultNightMode();
+
+    configuration.uiMode = (configuration.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | mapNightModeToConfigurationUiMode(newBase, appCompatNightMode);
 
     applyOverrideConfiguration(configuration);
   }
 
   @Override
-  public void applyOverrideConfiguration(Configuration overrideConfiguration) {
+  public void applyOverrideConfiguration(@NonNull Configuration overrideConfiguration) {
     DynamicLanguageContextWrapper.prepareOverrideConfiguration(this, overrideConfiguration);
     super.applyOverrideConfiguration(overrideConfiguration);
   }
@@ -96,5 +102,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   public final @NonNull ActionBar requireSupportActionBar() {
     return Objects.requireNonNull(getSupportActionBar());
+  }
+
+  private static int mapNightModeToConfigurationUiMode(@NonNull Context context, @AppCompatDelegate.NightMode int appCompatNightMode) {
+    if (appCompatNightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+      return Configuration.UI_MODE_NIGHT_YES;
+    } else if (appCompatNightMode == AppCompatDelegate.MODE_NIGHT_NO) {
+      return Configuration.UI_MODE_NIGHT_NO;
+    }
+    return ConfigurationUtil.getNightModeConfiguration(context.getApplicationContext());
   }
 }
