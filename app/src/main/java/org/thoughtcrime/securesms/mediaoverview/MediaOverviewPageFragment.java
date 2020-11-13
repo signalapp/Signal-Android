@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 public final class MediaOverviewPageFragment extends Fragment
   implements MediaGalleryAllAdapter.ItemClickListener,
@@ -352,7 +353,7 @@ public final class MediaOverviewPageFragment extends Fragment
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = requireActivity().getWindow();
         originalStatusBarColor = window.getStatusBarColor();
-        window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+        WindowUtil.setStatusBarColor(requireActivity().getWindow(), getResources().getColor(R.color.action_mode_status_bar));
       }
       return true;
     }
@@ -390,9 +391,7 @@ public final class MediaOverviewPageFragment extends Fragment
 
       ((MediaOverviewActivity) activity).onExitMultiSelect();
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        activity.getWindow().setStatusBarColor(originalStatusBarColor);
-      }
+      WindowUtil.setStatusBarColor(requireActivity().getWindow(), originalStatusBarColor);
     }
   }
 

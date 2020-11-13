@@ -201,7 +201,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     if (Build.VERSION.SDK_INT >= 21) {
       this.activity = activity;
       originalStatusBarColor = activity.getWindow().getStatusBarColor();
-      activity.getWindow().setStatusBarColor(ContextCompat.getColor(getContext(), R.color.signal_background_secondary));
+      WindowUtil.setStatusBarColor(activity.getWindow(), ContextCompat.getColor(getContext(), R.color.action_mode_status_bar));
 
       if (!ThemeUtil.isDarkTheme(getContext())) {
         WindowUtil.setLightStatusBar(activity.getWindow());
@@ -243,7 +243,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     hideAnimatorSet.start();
 
     if (Build.VERSION.SDK_INT >= 21 && activity != null) {
-      activity.getWindow().setStatusBarColor(originalStatusBarColor);
+      WindowUtil.setStatusBarColor(activity.getWindow(), originalStatusBarColor);
       WindowUtil.clearLightStatusBar(activity.getWindow());
       activity = null;
     }

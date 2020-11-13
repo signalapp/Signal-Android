@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicDarkActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -124,9 +125,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
     assert getSupportActionBar() != null;
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      getWindow().setStatusBarColor(color.toStatusBarColor(this));
-    }
+    WindowUtil.setStatusBarColor(getWindow(), color.toStatusBarColor(this));
   }
 
   private List<MessageDetailsViewState<?>> convertToRows(MessageDetails details) {

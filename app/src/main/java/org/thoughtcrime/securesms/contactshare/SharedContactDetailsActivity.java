@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -119,9 +120,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActivity {
     getSupportActionBar().setTitle("");
     toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.shared_contact_details_titlebar));
-    }
+    WindowUtil.setStatusBarColor(getWindow(), ContextCompat.getColor(this, R.color.shared_contact_details_titlebar));
   }
 
   private void initViews() {

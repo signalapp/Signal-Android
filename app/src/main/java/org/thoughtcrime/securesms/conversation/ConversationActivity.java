@@ -258,6 +258,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TextSecurePreferences.MediaKeyboardMode;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
@@ -2368,7 +2369,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar == null) throw new AssertionError();
     supportActionBar.setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
-    setStatusBarColor(color.toStatusBarColor(this));
+    WindowUtil.setStatusBarColor(getWindow(), color.toStatusBarColor(this));
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {

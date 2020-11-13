@@ -167,7 +167,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     primaryToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.signal_text_primary));
 
     if (Build.VERSION.SDK_INT >= 23) {
-      getWindow().setStatusBarColor(ThemeUtil.getThemedColor(this, android.R.attr.statusBarColor));
+      WindowUtil.setStatusBarColor(getWindow(), ThemeUtil.getThemedColor(this, android.R.attr.statusBarColor));
       getWindow().setNavigationBarColor(ThemeUtil.getThemedColor(this, android.R.attr.navigationBarColor));
       WindowUtil.setLightStatusBarFromTheme(this);
     }
@@ -181,7 +181,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     primaryToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.signal_text_toolbar_title));
 
     if (Build.VERSION.SDK_INT >= 23) {
-      getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.core_ultramarine));
+      WindowUtil.setStatusBarColor(getWindow(), ContextCompat.getColor(this, R.color.core_ultramarine));
       WindowUtil.clearLightStatusBar(getWindow());
     }
 

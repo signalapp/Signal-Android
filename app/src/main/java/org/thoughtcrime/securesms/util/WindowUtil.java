@@ -5,6 +5,7 @@ import android.os.Build;
 import android.view.View;
 import android.view.Window;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 public final class WindowUtil {
@@ -52,6 +53,12 @@ public final class WindowUtil {
     if (Build.VERSION.SDK_INT < 23) return;
 
     setSystemUiFlags(window, View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+  }
+
+  public static void setStatusBarColor(@NonNull Window window, @ColorInt int color) {
+    if (Build.VERSION.SDK_INT < 21) return;
+
+    window.setStatusBarColor(color);
   }
 
   private static void clearSystemUiFlags(@NonNull Window window, int flags) {

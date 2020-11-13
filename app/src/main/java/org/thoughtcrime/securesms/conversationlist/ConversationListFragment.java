@@ -124,6 +124,7 @@ import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
@@ -888,9 +889,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     mode.setTitle("1");
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
-    }
+    WindowUtil.setStatusBarColor(requireActivity().getWindow(), getResources().getColor(R.color.action_mode_status_bar));
 
     return true;
   }
@@ -922,7 +921,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
-      getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
+      WindowUtil.setStatusBarColor(getActivity().getWindow(), color.getColor(0, Color.BLACK));
       color.recycle();
     }
 

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -80,7 +82,7 @@ public class GiphyActivity extends PassphraseRequiredActivity
 
     final int conversationColor = getConversationColor();
     toolbar.setBackgroundColor(conversationColor);
-    setStatusBarColor(conversationColor);
+    WindowUtil.setStatusBarColor(getWindow(), conversationColor);
 
     setSupportActionBar(toolbar);
 

@@ -17,6 +17,7 @@ import androidx.core.app.ActivityOptionsCompat;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
 import java.util.Objects;
@@ -71,13 +72,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this, sharedView, transitionName)
                                          .toBundle();
     ActivityCompat.startActivity(this, intent, bundle);
-  }
-
-  @TargetApi(21)
-  protected void setStatusBarColor(int color) {
-    if (Build.VERSION.SDK_INT >= 21) {
-      getWindow().setStatusBarColor(color);
-    }
   }
 
   @Override

@@ -1523,7 +1523,7 @@ public class ConversationFragment extends LoggingFragment {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = getActivity().getWindow();
         statusBarColor = window.getStatusBarColor();
-        window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+        WindowUtil.setStatusBarColor(window, getResources().getColor(R.color.action_mode_status_bar));
       }
 
       if (!ThemeUtil.isDarkTheme(getContext())) {
@@ -1547,7 +1547,7 @@ public class ConversationFragment extends LoggingFragment {
       list.getAdapter().notifyDataSetChanged();
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        getActivity().getWindow().setStatusBarColor(statusBarColor);
+        WindowUtil.setStatusBarColor(requireActivity().getWindow(), statusBarColor);
       }
 
       WindowUtil.clearLightStatusBar(getActivity().getWindow());
