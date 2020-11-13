@@ -124,7 +124,7 @@
                 android:gravity="center"
                 android:scaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="@id/help_fragment_emoji_5"
-                app:layout_constraintEnd_toEndOf="@id/help_fragment_emoji_3"
+                app:layout_constraintEnd_toStartOf="@id/help_fragment_emoji_3"
                 app:layout_constraintStart_toEndOf="@id/help_fragment_emoji_5"
                 app:layout_constraintTop_toTopOf="@id/help_fragment_emoji_5" />
 
