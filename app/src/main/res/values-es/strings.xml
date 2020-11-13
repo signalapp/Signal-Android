@@ -474,10 +474,14 @@
     <item quantity="one">Esta persona tiene que aceptar la invitación al grupo y no recibirá ningún mensaje hasta que la acepte:</item>
     <item quantity="other">Estas personas tienen que aceptar la invitación al grupo y no recibirán ningún mensaje hasta que la acepten:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Esta persona no puede unirse a grupos del nuevo sistema y no está entre sus participantes:</item>
-    <item quantity="other">Estas personas no pueden unirse a grupos del nuevo sistema y no están entre sus participantes:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualizar al nuevo sistema de grupos</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Funciones de los nuevos grupos incluyen @menciones, admins y más en el futuro.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Los mensajes y adjuntos se mantendrán tras la actualización.</string>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acceder a funciones que incluyen @menciones y admins, actualiza este grupo.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Ahora no</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizar grupo</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">No se ha podido añadir a %1$d participante al nuevo grupo. ¿Deseas hacerlo ahora?</item>
@@ -1336,13 +1340,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualizar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Una nueva versión de Signal está disponible. Toca para actualizar.</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">¿Bloquear %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Las personas bloqueadas ya no podrán enviarte mensajes o llamarte.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bloquear</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">¿Compartir perfil con %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">La forma más fácil de compartir la información de tu perfil es añadir a esta persona a tus contactos. Si no deseas hacerlo, aún puedes compartir la información de perfil aquí.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Compartir perfil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">¿Enviar mensaje?</string>
   <string name="UntrustedSendDialog_send">Enviar</string>
@@ -1721,8 +1718,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">%1$s se ha unido al grupo.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Ahora el nombre del grupo es «%1$s».</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">¿Hacer visibles para este grupo tu nombre y foto?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloquear</string>
   <!--prompt_mms_activity-->

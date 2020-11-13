@@ -425,6 +425,10 @@
   </plurals>
   <string name="GroupManagement_learn_more">더 알아보기</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">나중에</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">그룹 업데이트</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">나중에</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1053,13 +1057,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 업데이트</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">새 Signal 버전 출시, 탭하여 업데이트</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s 님을 차단하시겠습니까?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">차단된 연락처는 나에게 메시지를 보내거나 전화할 수 없습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">차단</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">%s 님과 프로필을 공유하시겠습니까?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">프로필 정보를 가장 간단하게 공유하는 방법은 해당 연락처를 추가하는 것입니다. 연락처에 저장하기 싫다면 이 방법으로도 프로필 정보를 공유할 수 있습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">프로필 공유</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">메시지를 보내시겠습니까?</string>
   <string name="UntrustedSendDialog_send">보내기</string>
@@ -1405,8 +1402,6 @@
     <item quantity="other">%1$s 님이 그룹에 참여했습니다.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">이제 그룹 이름은 \'%1$s\'입니다.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">그룹에서 프로필 이름과 사진을 표시하시겠습니까?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">잠금 해제</string>
   <!--prompt_mms_activity-->

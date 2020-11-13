@@ -474,10 +474,25 @@
     <item quantity="one">Denna medlem måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
     <item quantity="other">Dessa medlemmar måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Denna medlem kan inte gå med i nya grupper och har tagits bort från gruppen:</item>
-    <item quantity="other">Dessa medlemmar kan inte gå med i Nya grupper och har tagits bort från gruppen:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Uppgradera till Ny grupp</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Uppgradera denna grupp</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nya grupper har funktioner som @omnämnanden och gruppadministratörer och kommer att stöda fler funktioner i framtiden.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">All meddelandehistorik och media kommer att sparas före uppgraderingen.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Påträffade ett nätverksfel. Försök igen senare.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Det gick inte att uppgradera.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Denna medlem måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
+    <item quantity="other">Dessa medlemmar måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Denna medlem kan inte gå med i Nya grupper och kommer att tas bort från gruppen:</item>
+    <item quantity="other">Dessa medlemmar kan inte gå med i Nya grupper och kommer att tas bort från gruppen:</item>
+  </plurals>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">För att få tillgång till nya funktioner som @omnämnanden och administratörer, uppgradera denna grupp.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Inte nu</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Uppdatera grupp</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunde inte läggas till igen i den Nya gruppen. Vill du lägga till dem nu?</item>
@@ -627,6 +642,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Redigera namn och bild</string>
   <string name="ManageGroupActivity_legacy_group">Äldre grupp</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en Äldre grupp. Funktioner som gruppadministratörer är endast tillgängliga för Nya grupper.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Detta är en Äldre grupp. För att komma åt nya funktioner som @omnämnanden och administratörer,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Den här Äldre gruppen kan inte uppgraderas till en Ny grupp eftersom den är för stor. Den maximala gruppstorleken är %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">uppgradera denna grupp.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Det här är en osäker MMS-grupp. Om du vill samtala privat och få tillgång till funktioner som gruppnamn, bjud in dina kontakter till Signal.</string>
   <string name="ManageGroupActivity_invite_now">Bjud in nu</string>
   <!--GroupMentionSettingDialog-->
@@ -906,10 +924,10 @@
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du återkallade administratörsbehörigheter från %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s återkallade dina administratörsbehörigheter.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s återkallade administratörsbehörigheter från %2$s.</string>
-  <string name="MessageRecord_s_is_now_an_admin">%1$s är nu en adminstratör.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s är nu en administratör.</string>
   <string name="MessageRecord_you_are_now_an_admin">Du är nu en administratör.</string>
-  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s är inte längre en adminstratör.</string>
-  <string name="MessageRecord_you_are_no_longer_an_admin">Du är inte längre en adminstratör.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s är inte längre en administratör.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Du är inte längre en administratör.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Du bjöd in %1$s till gruppen.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s bjöd in dig till gruppen.</string>
@@ -934,7 +952,7 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Någon avböjde en inbjudan till gruppen.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avböjde inbjudan till gruppen.</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s återkallade din inbjudan till gruppen.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">En adminstratör återkallade din inbjudan till gruppen.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">En administratör återkallade din inbjudan till gruppen.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">En inbjudan till gruppen återkallades.</item>
     <item quantity="other">%1$d inbjudningar till gruppen återkallades.</item>
@@ -1013,6 +1031,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Låt %1$s meddela dig och dela ditt namn och foto med dem? De vet inte att du har sett deras meddelande förrän du accepterar.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Låt %1$s meddela dig och dela ditt namn och foto med dem? Du får inte några meddelanden förrän du har slutat blockerat dem.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsätta din konversation med den här gruppen och dela ditt namn och foto med dess medlemmar?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppgradera denna grupp för att aktivera nya funktioner som @omnämnanden och administratörer. Medlemmar som inte har delat sitt namn eller foto i den här gruppen kommer att inbjudas att gå med.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Den här Äldre gruppen kan inte längre användas eftersom den är för stor. Den maximala gruppstorleken är %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsätt din konversation med %1$s och dela ditt namn och foto med dem?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? De kommer inte att veta att du har sett deras meddelanden förrän du accepterar.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i den här gruppen? De vet inte att du har sett deras meddelanden förrän du accepterar det.</string>
@@ -1330,13 +1350,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-uppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version av Signal finns tillgänglig, tryck för att uppdatera</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Blockera %s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blockerade kontakter kommer inte längre att kunna skriva eller ringa till dig.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Blockera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Dela profil med %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Det lättaste sättet att dela din profilinformation på är genom att lägga till mottagaren till dina kontakter. Om du inte vill det kan du fortfarande dela på det här sättet.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Dela profil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Skicka meddelande?</string>
   <string name="UntrustedSendDialog_send">Skicka</string>
@@ -1715,8 +1728,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">%1$s gick med i gruppen.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Gruppnamnet är nu \"%1$s\".</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Gör ditt profilnamn och profilbild synligt för denna grupp?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
   <!--prompt_mms_activity-->
@@ -2381,7 +2392,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Lägg till i en grupp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lägg till i en annan grupp</string>
   <string name="RecipientBottomSheet_view_safety_number">Visa säkerhetsnummer</string>
-  <string name="RecipientBottomSheet_make_group_admin">Gör till gruppadminstratör</string>
+  <string name="RecipientBottomSheet_make_group_admin">Gör till gruppadministratör</string>
   <string name="RecipientBottomSheet_remove_as_admin">Ta bort som administratör</string>
   <string name="RecipientBottomSheet_remove_from_group">Ta bort från grupp</string>
   <string name="RecipientBottomSheet_message_description">Meddelande</string>

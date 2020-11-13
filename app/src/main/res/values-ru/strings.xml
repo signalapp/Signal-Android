@@ -508,12 +508,29 @@
     <item quantity="many">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
     <item quantity="other">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Этот участник не может присоединяться к Новым группам и был удалён из группы:</item>
-    <item quantity="few">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
-    <item quantity="many">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
-    <item quantity="other">Эти участники не могут присоединяться к Новым группам и были удалены из группы:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Обновление до Новой группы</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Обновить эту группу</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">В Новых группах есть такие функции, как @упоминания и администраторы групп, и они будут поддерживать больше функций в будущем.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Вся история сообщений и все медиа будут оставлены при обновлении.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Произошла ошибка сети. Попробуйте ещё раз позже.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Не удалось обновить группу.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Этому участнику будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и он не будет получать сообщения группы до того, как примет приглашение:</item>
+    <item quantity="few">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
+    <item quantity="many">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
+    <item quantity="other">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Этот участник не может присоединяться к Новым группам и будет удалён из группы:</item>
+    <item quantity="few">Эти участники не могут присоединяться к Новым группам и будут удалены из группы:</item>
+    <item quantity="many">Эти участники не могут присоединяться к Новым группам и будут удалены из группы:</item>
+    <item quantity="other">Эти участники не могут присоединяться к Новым группам и будут удалены из группы:</item>
+  </plurals>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Чтобы получить доступ к таким новым функциям, как @упоминания и администраторы групп, обновите эту группу.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Не сейчас</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Обновить группу</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d участник не мог быть заново добавлен в Новую группу. Вы хотите добавить его сейчас?</item>
@@ -693,6 +710,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Редактировать имя и фото</string>
   <string name="ManageGroupActivity_legacy_group">Старая группа</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Это Старая группа. Такие функции, как администраторы групп, доступны только для Новых групп.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Это Старая группа. Чтобы получить доступ к таким функциям, как @упоминания и администраторы групп,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Эта Старая группа не может быть обновлена до Новой группы, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">обновите эту группу.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Это небезопасная группа MMS. Чтобы общаться конфиденциально и получить доступ к таким функциям, как имена групп, пригласите своих контактов в Signal.</string>
   <string name="ManageGroupActivity_invite_now">Пригласить сейчас</string>
   <!--GroupMentionSettingDialog-->
@@ -1113,6 +1133,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Он не узнает, что вы видели его сообщение, пока вы не примете.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Вы не получите никаких сообщений, пока не разблокируете его.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продолжить ваш разговор с этой группой и поделиться своими именем и фото с её участниками?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Обновите эту группу, чтобы активировать такие новые функции, как @упоминания и администраторы групп. Участники, которые ещё не поделились своими именем или фото с этой группой, будут приглашены присоединиться.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Эта Старая группа больше не может быть использована, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продолжить ваш разговор с %1$s и поделиться своими именем и фото с этим человеком?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и поделиться своими именем и фото с её участниками? Они не узнают, что вы видели их сообщения, пока вы не примете.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
@@ -1445,13 +1467,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Signal. Обновиться?</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Заблокировать %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Заблокированные контакты больше не смогут отправлять вам сообщения или звонить вам.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Заблокировать</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Открыть ваш профиль для %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Самый простой способ открыть свой профиль кому-то — добавить отправителя в контакты. Если вы не хотите этого делать, можете открыть профиль и так.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Открыть профиль</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Отправить сообщение?</string>
   <string name="UntrustedSendDialog_send">Отправить</string>
@@ -1850,8 +1865,6 @@
     <item quantity="other">%1$s присоединились к группе.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Группа теперь называется «%1$s».</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Сделать ваше имя и фотографию профиля видимыми для этой группы?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Открыть</string>
   <!--prompt_mms_activity-->

@@ -420,6 +420,10 @@
   <string name="GroupManagement_learn_more">Tìm hiểu thêm</string>
   <string name="GroupManagement_invite_multiple_users">Những người dùng này không thể được tự động thêm vào nhóm bởi bạn.\n\nHọ đã được mời tham gia và sẽ không thấy tin nhắn trong nhóm cho đến khi họ chấp nhận.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Để sau</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Cập nhật nhóm</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Để sau</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1155,13 +1159,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Cập nhật Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Đã có phiên bản mới của Signal, nhấn để cập nhật</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Chặn %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Liên hệ bị chặn sẽ không thể nhắn tin hay gọi bạn.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Chặn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Chia sẻ hồ sơ với %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Các đơn giản nhất để chia sẻ thông tin hồ sơ là thêm người gửi vào danh bạ. Nếu bạn không muốn, bạn vẫn có thể chia sẻ thông tin hồ sơ bằng cách này.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Chia sẻ hồ sơ</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Gửi tin nhắn?</string>
   <string name="UntrustedSendDialog_send">Gửi</string>
@@ -1520,8 +1517,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
     <item quantity="other">%1$s đã tham gia nhóm.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Tên nhóm hiện giờ là \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Cho nhóm này thấy ảnh đại diện và tên của bạn?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
   <!--prompt_mms_activity-->

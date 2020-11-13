@@ -80,14 +80,14 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fehler bei der Audiowiedergabe</string>
   <!--BlockedUsersActivity-->
-  <string name="BlockedUsersActivity__blocked_users">Blockierte Benutzer</string>
+  <string name="BlockedUsersActivity__blocked_users">Blockierte Nutzer</string>
   <string name="BlockedUsersActivity__add_blocked_user">Nutzer blockieren</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Blockierte Benutzer werden dich nicht anrufen oder dir Nachrichten senden können.</string>
-  <string name="BlockedUsersActivity__no_blocked_users">Keine blockierten Benutzer</string>
-  <string name="BlockedUsersActivity__block_user">Benutzer blockieren?</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Blockierte Nutzer werden dich nicht anrufen oder dir Nachrichten senden können.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Keine blockierten Nutzer</string>
+  <string name="BlockedUsersActivity__block_user">Nutzer blockieren?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">»%1$s« wird dich nicht anrufen oder dir Nachrichten senden können.</string>
   <string name="BlockedUsersActivity__block">Blockieren</string>
-  <string name="BlockedUsersActivity__unblock_user">Benutzer freigeben?</string>
+  <string name="BlockedUsersActivity__unblock_user">Nutzer freigeben?</string>
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Möchstest du »%1$s« freigeben?</string>
   <string name="BlockedUsersActivity__unblock">Freigeben</string>
   <!--BlockUnblockDialog-->
@@ -474,10 +474,25 @@
     <item quantity="one">Dieses Mitglied muss eine Einladung zum erneuten Gruppenbeitritt annehmen und wird bis dahin keine Gruppennachrichten erhalten:</item>
     <item quantity="other">Diese Mitglieder müssen eine Einladung zum erneuten Gruppenbeitritt annehmen und werden bis dahin keine Gruppennachrichten erhalten:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Dieses Mitglied kann Gruppen neuen Typs nicht beitreten und wurde daher aus der Gruppe entfernt:</item>
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Aktualisiere zu einer Gruppe neuen Typs</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Aktualisiere diese Gruppe</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Gruppen neuen Typs besitzen Funktionen wie @Erwähnungen und Gruppen-Admins und werden zukünftig weitere Funktionen unterstützen.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Der Nachrichtenverlauf und die Medieninhalte werden durch die Aktualisierung erhalten bleiben.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Ein Netzwerkfehler ist aufgetreten. Versuche es später erneut.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Aktualisierung fehlgeschlagen.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Dieses Mitglied muss eine Einladung zum erneuten Gruppenbeitritt annehmen und wird bis dahin keine Gruppennachrichten erhalten:</item>
+    <item quantity="other">Diese Mitglieder müssen eine Einladung zum erneuten Gruppenbeitritt annehmen und werden bis dahin keine Gruppennachrichten erhalten:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Dieses Mitglied kann Gruppen neuen Typs nicht beitreten und wurden daher aus der Gruppe entfernt:</item>
     <item quantity="other">Diese Mitglieder können Gruppen neuen Typs nicht beitreten und wurden daher aus der Gruppe entfernt:</item>
-  </plurals> -->
+  </plurals>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Für neue Funktionen, wie @Erwähnungen und Admins, aktualisiere diese Gruppe.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Jetzt nicht</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualisiere Gruppe</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d Mitglied konnte der Gruppe neuen Typs nicht hinzugefügt werden. Möchtest du dieses jetzt hinzufügen?</item>
@@ -627,6 +642,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Name und Bild bearbeiten</string>
   <string name="ManageGroupActivity_legacy_group">Gruppe alten Typs</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dies ist eine Gruppe alten Typs. Funktionen wie Gruppen-Admins sind nur in Gruppen neuen Typs verfügbar.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Dies ist eine Gruppe alten Typs. Für neue Funktionen, wie @Erwähnungen und Admins,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Diese Gruppe alten Typs kann nicht zu einer Gruppe neuen Typs aktualisiert werden. Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">aktualisiere diese Gruppe.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dies ist eine unverschlüsselte MMS-Gruppe. Lade deine Kontakte zu Signal ein, um dich vertraulich zu unterhalten und Funktionen wie Gruppennamen verwenden zu können.</string>
   <string name="ManageGroupActivity_invite_now">Jetzt einladen</string>
   <!--GroupMentionSettingDialog-->
@@ -1013,6 +1031,9 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Der Benutzer weiß nicht, dass du seine Nachricht gesehen hast, bis du die Anfrage annimmst.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Du wirst keine Nachrichten erhalten, bis du die Unterhaltung freigibst.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Unterhaltung mit dieser Gruppe fortsetzen und deinen Namen und dein Foto mit deren Mitgliedern teilen?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Aktualisiere diese Gruppe für neue Funktionen, wie @Erwähnungen und Admins. Mitglieder, die ihren Namen und Foto in dieser Gruppe noch nicht geteilt haben, werden eingeladen beizutreten.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Diese Gruppe alten Typs kann nicht länger verwendet werden.
+Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Unterhaltung mit %1$s fortsetzen und deinen Namen und dein Foto mit diesem Benutzer teilen?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Sie wissen nicht, dass du ihre Nachrichten gesehen hast, bis du die Anfrage annimmst.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Dieser Gruppe beitreten? Solange du nicht beitrittst, werden die Gruppenmitglieder nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
@@ -1325,13 +1346,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-Aktualisierung</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Eine neue Signal-Version ist verfügbar. Zum Aktualisieren antippen.</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s blockieren?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blockierte Kontakte können dir keine Nachrichten senden und dich nicht anrufen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Blockieren</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Profil mit %s teilen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Der einfachste Weg zum Teilen deiner Profilinformationen ist das Hinzufügen des Absenders zu deinen Kontakten. Falls du das nicht möchtest, kannst du deine Profilinformationen auch auf diese Weise teilen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Profil teilen</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Nachricht senden?</string>
   <string name="UntrustedSendDialog_send">Senden</string>
@@ -1710,8 +1724,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">%1$s sind der Gruppe beigetreten.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Gruppenname lautet jetzt »%1$s«.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Hier antippen, um deinen Profilnamen und dein Profilfoto für diese Gruppe sichtbar zu machen</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_mms_activity-->
@@ -1937,7 +1949,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__typing_indicators">Tipp-Indikatoren</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren kannst du auch die Tipp-Indikatoren anderer nicht sehen</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tastatur auffordern, personalisiertes Lernen auszuschalten</string>
-  <string name="preferences_app_protection__blocked_users">Blockierte Benutzer</string>
+  <string name="preferences_app_protection__blocked_users">Blockierte Nutzer</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
@@ -2000,7 +2012,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Neue Nachricht an …</string>
-  <string name="contact_selection_list__unknown_contact_block">Benutzer blockieren</string>
+  <string name="contact_selection_list__unknown_contact_block">Nutzer blockieren</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Zur Gruppe hinzufügen</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Anruf</string>

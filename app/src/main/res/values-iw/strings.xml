@@ -508,12 +508,14 @@
     <item quantity="many">חברי קבוצה אלו יצטרכו לאשר הזמנה כדי להצטרף אל קבוצה זו שוב והם לא יקבלו הודעות קבוצה עד שהם יאשרו:</item>
     <item quantity="other">חברי קבוצה אלו יצטרכו לאשר הזמנה כדי להצטרף אל קבוצה זו שוב והם לא יקבלו הודעות קבוצה עד שהם יאשרו:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">חבר קבוצה זה אינו מסוגל להצטרף אל קבוצות חדשות, והוא הוסר מהקבוצה:</item>
-    <item quantity="two">חברי קבוצה אלו אינם מסוגלים להצטרף אל קבוצות חדשות, והם הוסרו מהקבוצה:</item>
-    <item quantity="many">חברי קבוצה אלו אינם מסוגלים להצטרף אל קבוצות חדשות, והם הוסרו מהקבוצה:</item>
-    <item quantity="other">חברי קבוצה אלו אינם מסוגלים להצטרף אל קבוצות חדשות, והם הוסרו מהקבוצה:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">שדרג אל קבוצה חדשה</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">לקבוצות חדשות יש מאפיינים כמו @אזכורים ומנהלני קבוצה, ויתמכו במאפיינים נוספים בעתיד.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">כל היסטורית ההודעות והמדיה יישמרו מלפני השדרוג.</string>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">כדי להשיג גישה אל מאפיינים חדשים כמו @אזכורים ומנהלנים, שדרג קבוצה זו.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">לא עכשיו</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">עדכון קבוצה</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d חבר קבוצה לא היה יכול להתווסף מחדש אל הקבוצה החדשה. האם אתה רוצה להוסיף אותו עכשיו?</item>
@@ -1452,13 +1454,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">עדכון Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">גרסה חדשה של Signal זמינה, הקש כדי לעדכן</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">לחסום את %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">אנשי קשר חסומים לא יוכלו יותר לשלוח לך הודעות או להתקשר אליך.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">חסום</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">לשתף פרופיל עם %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">הדרך הקלה ביותר לשתף את מידע הפרופיל שלך היא להוסיף את השולח אל אנשי הקשר שלך. אם אינך רוצה לעשות זאת, אתה עדין יכול לשתף את מידע הפרופיל שלך בדרך זו.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">שתף פרופיל</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">לשלוח הודעה?</string>
   <string name="UntrustedSendDialog_send">שלח</string>
@@ -1857,8 +1852,6 @@
     <item quantity="other">%1$s הצטרף אל הקבוצה.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">שם הקבוצה עכשיו הוא \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">להפוך את השם והתמונה של הפרופיל שלך לנראים בפני קבוצה זו?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">בטל נעילה</string>
   <!--prompt_mms_activity-->

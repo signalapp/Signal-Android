@@ -456,6 +456,10 @@
   <string name="GroupManagement_invite_multiple_users">Et voi lisätä näitä käyttäjiä automaattisesti tähän ryhmään.\n\nHeidät on kutsuttu liittymään, eivätkä näe ryhmäviestejä ennen kuin he hyväksyvät kutsun.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Mitä ovat uudet ryhmät?</string>
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Ei nyt</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Päivitä ryhmää</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ei nyt</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1268,13 +1272,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napauttamalla.</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Estä %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Estetyt yhteystiedot eivät voi enää lähettää sinulle viestejä eivätkä soittaa sinulle.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Estä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Jaa profiili yhteystiedon %s kanssa?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Helpoin tapa jakaa profiilitietosi on lisätä lähettäjä yhteystietoihisi. Jos ei halua tehdä sitä, voit silti jakaa profiilitietosi tällä tavalla.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Jaa profiili</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Lähetä viesti?</string>
   <string name="UntrustedSendDialog_send">Lähetä</string>
@@ -1652,8 +1649,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">%1$s liittyivät ryhmään</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Ryhmän nimi on nyt \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tee profiilikuvasi ja -nimesi näkyväksi tälle ryhmälle?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Avaa</string>
   <!--prompt_mms_activity-->

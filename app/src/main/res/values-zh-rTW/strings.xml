@@ -457,9 +457,23 @@
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="other">這些成員將需要接受邀請才能再次加入該群組，並且在他們接受之前不會收到群組訊息：</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="other">這些成員無法加入新群組，並且已從該群組中刪除：</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">升級為新版群組</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">升級此群組</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">新群組具有@提及和群組管理員等功能，並且將來會支援更多功能。</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">升級之前，所有訊息歷史記錄和媒體檔案都將保留。</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">網路錯誤。請稍後再試。</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">升級失敗。</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="other">這些成員將須要接受邀請才能再次加入該群組，並且在他們接受之前不會收到群組訊息：</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="other">這些成員無法加入新版群組，因此將從該群組中刪除：</item>
+  </plurals>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">要連結@提及和管理員等新功能，請升級此群組。</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">稍後</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">更新群組</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d 個成員無法將重新新增到新群組中。你要立即新增他們嗎？</item>
@@ -594,6 +608,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">編輯名稱及圖片</string>
   <string name="ManageGroupActivity_legacy_group">舊版群組</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">這是一個舊版群組。群組管理員之類的功能僅適用於新群組。</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">這是一個舊版群組。 要連結@提及和管理員等新功能，</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">這個舊版群組太大，因此無法升級為新版群組。 最大群組大小為%1$d。</string>
+  <string name="ManageGroupActivity_upgrade_this_group">升級此群組。</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">這是一個不安全的多媒體訊息群組。要私密聊天並存取群組名稱等功能，請邀請你的聯絡人加入 Signal。</string>
   <string name="ManageGroupActivity_invite_now">立即邀請</string>
   <!--GroupMentionSettingDialog-->
@@ -963,6 +980,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 除非你解鎖他們，否則你將不會收到任何訊息。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">繼續與該群組對話，並與該群組成員分享你的名字和照片嗎？</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升級此群組以啟動新功能，例如@提及和管理員功能。未在此群組中分享姓名或照片的成員將被邀請加入。</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">此舊版群組太大，因此無法再使用。 最大組大小為%1$d。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">繼續與%1$s交談，並與他們分享你的名字和照片嗎？</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">加入該群組並與其成員分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入這個群組？ 在你接受之前，他們不會知道你已看過他們的訊息。</string>
@@ -1274,13 +1293,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">封鎖 %s？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">已封鎖的聯絡人將再也不能夠傳送訊息給你及與你通話。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">封鎖</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">與 %s 分享個人資訊？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">最簡單分享個人資訊的方式是將傳送者加入你的聯絡人。如果你不希望這樣做，你仍然可以用這個方式來分享你的個人資訊。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">分享個人資訊</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">傳送訊息？</string>
   <string name="UntrustedSendDialog_send">傳送</string>
@@ -1650,8 +1662,6 @@
     <item quantity="other">%1$s 加入了群組。</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">群組現在名為「%1$s」。</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">要讓這個群組能看見你個人資訊的名字與照片？</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->

@@ -80,8 +80,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">S\'ha produït un error en reproduir l\'àudio.</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Usuaris blocats</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Afegeix un usuari blocat</string>
   <string name="BlockedUsersActivity__blocked_users_will">Els usuaris blocats no podran trucar-vos ni enviar-vos missatges.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Sense usuaris blocats</string>
+  <string name="BlockedUsersActivity__block_user">Voleu blocar l\'usuari?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s no us podrà trucar ni enviar missatges.</string>
   <string name="BlockedUsersActivity__block">Bloca</string>
+  <string name="BlockedUsersActivity__unblock_user">Voleu desblocar l\'usuari?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Voleu desblocar %1$s?</string>
   <string name="BlockedUsersActivity__unblock">Desbloca</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Voleu blocar i abandonar %1$s?</string>
@@ -467,13 +474,56 @@
     <item quantity="one">Aquest membre haurà d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebrà missatges fins que no l\'accepti:</item>
     <item quantity="other">Aquests membres hauran d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebran missatges fins que no l\'acceptin:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Aquest membre no pot afegir-se als grups nous i s\'ha suprimit del grup:</item>
-    <item quantity="other">Aquests membres no poden afegir-se als grups nous i s\'han suprimit del grup:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualitza a grup nou</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Actualitza aquest grup</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Els grups nous tenen funcions com ara @mencions i administradors de grups, i admetran més funcions en el futur.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Es conservaran tot l\'historial i tot el contingut d\'abans de l\'actualització.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">S\'ha trobat un error de xarxa. Torneu-ho a provar més tard.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Ha fallat l\'actualització.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Aquest membre haurà d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebrà missatges fins que no l\'accepti:</item>
+    <item quantity="other">Aquests membres hauran d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebran missatges fins que no l\'acceptin:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Aquest membre no és capaç d\'afegir-se als grups nous i se suprimirà del grup:</item>
+    <item quantity="other">Aquests membres no són capaços d\'afegir-se als grups nous i se suprimiran del grup:</item>
+  </plurals>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Per accedir a les funcions noves com ara les @mencions i els administradors, actualitzeu aquest grup.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Ara no</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Actualitzar grup</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d membre no s\'ha pogut tornar a afegir al grup nou. Voleu afegir-l\'hi ara?</item>
+    <item quantity="other">%1$d membres no s\'han pogut tornar a afegir al grup nou. Voleu afegir-los-hi ara?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Afegeix-hi un membre</item>
+    <item quantity="other">Afegeix-hi membres</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ara no</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Voleu afegir-hi un membre?</item>
+    <item quantity="other">Voleu afegir-hi membres?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Aquest membre no s\'ha pogut afegir automàticament al grup nou al moment de l\'actualització:</item>
+    <item quantity="other">Aquests membres no s\'han pogut afegir automàticament al grup nou al moment de l\'actualització:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Afegeix-hi un membre</item>
+    <item quantity="other">Afegeix-hi membres</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Ha fallat afegir-hi un membre. Torneu-ho a provar més tard.</item>
+    <item quantity="other">Ha fallat afegir-hi membres. Torneu-ho a provar més tard.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">No s\'hi pot afegir el membre.</item>
+    <item quantity="other">No s\'hi poden afegir membres.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Voleu abandonar el grup?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Ja no podreu enviar o rebre missatges d\'aquest grup.</string>
@@ -592,6 +642,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Editeu el nom i la imatge</string>
   <string name="ManageGroupActivity_legacy_group">Grup de llegat</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Aquest és un grup de llegat. Característiques com ara els administradors de grup només estan disponibles per als grups nous.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Aquest és un grup de llegat. Per accedir a funcions noves com ara les @mencions i als administradors,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Aquest grup de llegat no es pot actualitzar a un grup nou perquè és massa gros. La mida màxima d\'un grup és %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">actualitzeu aquest grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per conversar privadament i accedir a funcions com ara els noms de grup, convideu els contactes al Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convida ara</string>
   <!--GroupMentionSettingDialog-->
@@ -978,6 +1031,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No sabran que heu vist el missatge fins que no ho accepteu.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Voleu permetre que %1$s us envii missatges i compartir-hi el nom i la fotografia? No rebreu cap missatge fins que no el desbloqueu.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Voleu continuar la conversa amb aquest grup i compartir-hi el nom i la fotografia?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Actualitzeu aquest grup i activeu-ne les funcions noves com ara les @mencions i els administradors. Els membres que no hi han compartit el nom o la fotografia es convidaran a afegir-s\'hi.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Aquest grup de llegat ja no es pot usar perquè és massa gros. La mida màxima d\'un grup és %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Voleu continuar aquesta conversa amb %1$s i compartir-hi el nom i la fotografia?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup i compartir el nom i la fotografia amb els seus membres? No sabran que heu vist els seus missatges fins que no ho accepteu.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup? No sabran que n\'heu vist els missatges fins que no ho accepteu.</string>
@@ -1114,12 +1169,20 @@
   <string name="WebRtcCallView__signal_video_call">Trucada de vídeo del Signal…</string>
   <string name="WebRtcCallView__start_call">Inicia una trucada</string>
   <string name="WebRtcCallView__join_call">Afegeix-me a la trucada</string>
+  <string name="WebRtcCallView__s_group_call">Trucada de grup \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Mostra els participants</string>
   <string name="WebRtcCallView__your_video_is_off">El vídeo està desactivat.</string>
   <string name="WebRtcCallView__connecting">Es connecta…</string>
   <string name="WebRtcCallView__reconnecting">Es torna a connectar…</string>
+  <string name="WebRtcCallView__joining">S\'afegeix…</string>
   <string name="WebRtcCallView__disconnected">Desconnectat</string>
   <string name="WebRtcCallView__no_one_else_is_here">Aquí no hi ha ningú més.</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s és en aquesta trucada.</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s i %2$s són en aquesta trucada.</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
+    <item quantity="other">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">En aquesta trucada · %1$d persona</item>
@@ -1287,13 +1350,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualització del Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hi ha disponible una versió nova del Signal. Toqueu per actualitzar-lo</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Bloca %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Els contactes blocats ja no podran enviar-vos missatges ni trucar-vos.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bloca</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Voleu compartir el perfil amb %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">La manera més fàcil de compartir la informació del perfil és afegir el remitent als contactes. Si no ho voleu, encara podreu compartir la informació del perfil d\'aquesta manera.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Comparteix el perfil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Voleu enviar el missatge?</string>
   <string name="UntrustedSendDialog_send">Envia</string>
@@ -1672,8 +1728,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">%1$s s\'han unit al grup.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">El nom del grup ara és «%1$s».</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Voleu que el nom i la foto del perfil siguin visibles en aquest grup?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desbloca</string>
   <!--prompt_mms_activity-->
@@ -1899,6 +1953,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__typing_indicators">Indicadors de tecleig</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Demana el teclat per desactivar l\'aprenentatge personalitzat</string>
+  <string name="preferences_app_protection__blocked_users">Usuaris blocats</string>
   <string name="preferences_chats__when_using_mobile_data">En usar dades mòbils</string>
   <string name="preferences_chats__when_using_wifi">En usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">En itinerància</string>
@@ -1961,6 +2016,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Missatge nou per a…</string>
+  <string name="contact_selection_list__unknown_contact_block">Bloca l\'usuari</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Afegeix-lo al grup</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Truca</string>
@@ -2140,8 +2196,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KbsReminderDialog__forgot_pin">Heu oblidat el PIN?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorrecte. Torneu-ho a provar.</string>
   <!--AccountLockedFragment-->
-  <string name="AccountLockedFragment__account_locked">Compte bloquejat</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Hem bloquejat el compte per protegir la vostra privadesa i seguretat. Al cap de %1$d dies d’inactivitat, podreu tornar a registrar aquest número de telèfon sense necessitar el PIN. Se n\'esborrarà tot el contingut.</string>
+  <string name="AccountLockedFragment__account_locked">Compte blocat</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Hem blocat el compte per protegir la vostra privadesa i seguretat. Al cap de %1$d dies d’inactivitat, podreu tornar a registrar aquest número de telèfon sense necessitar el PIN. Se n\'esborrarà tot el contingut.</string>
   <string name="AccountLockedFragment__next">Següent</string>
   <string name="AccountLockedFragment__learn_more">Més informació</string>
   <!--KbsLockFragment-->
@@ -2165,7 +2221,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="one">Si no us resten intents, el compte es bloquejarà durant %1$d dia. Al cap de %1$d dia d\'inactivitat, podreu tornar a registrar-vos-hi sense el PIN. El compte s\'esborrarà i se\'n suprimirà tot el contingut.</item>
-    <item quantity="other">Si no us resten intents, el compte es bloquejarà durant %1$d dies. Al cap de %1$d dies d\'inactivitat, podreu tornar a registrar-vos-hi sense el PIN. El compte s\'esborrarà i se\'n suprimirà tot el contingut.</item>
+    <item quantity="other">Si no us resten intents, el compte es blocarà durant %1$d dies. Al cap de %1$d dies d\'inactivitat, podreu tornar a registrar-vos-hi sense el PIN. El compte s\'esborrarà i se\'n suprimirà tot el contingut.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Us resta %1$d intent.</item>
@@ -2372,6 +2428,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s a %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">S\'ha blocat %1$s.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Ha fallat blocar %1$s.</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">S\'ha desblocat %1$s.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Reviseu els mebres</string>
   <string name="ReviewCardDialogFragment__review_request">Reviseu la sol·licitud</string>

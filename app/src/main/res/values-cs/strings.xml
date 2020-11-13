@@ -501,12 +501,10 @@
     <item quantity="many">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
     <item quantity="other">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Tento člen není způsobilý pro připojení k nové verzi skupin a byl odstraněn ze skupiny:</item>
-    <item quantity="few">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a byli odstraněni ze skupiny:</item>
-    <item quantity="many">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a byli odstraněni ze skupiny:</item>
-    <item quantity="other">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a byli odstraněni ze skupiny:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nové skupiny mají funkce jako @zmínky a správce skupin, a v budoucnu budou podporovat další funkce.</string>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Teď ne</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Teď ne</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1392,13 +1390,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizace Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Je k dispozici nová verze Signal, klikněte pro aktualizaci</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Blokovat %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokované kontakty vám už nebudou smět posílat zprávy ani volat.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Blokovat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Sdílet profil s %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Nejsnazší způsob sdílení profilových informací je přidat si odesílatele do kontaktů. Pokud si to nepřejete, můžet stále sdílet profilové informace tímto způsobem.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Sdílet profil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Odeslat zprávu?</string>
   <string name="UntrustedSendDialog_send">Odeslat</string>
@@ -1797,8 +1788,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">%1$s se připojili ke skupině.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Jméno skupiny je nyní \"%1$s\".</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Zapnout viditelnost profilového jména a fotografie pro tuto skupinu?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odemknout</string>
   <!--prompt_mms_activity-->

@@ -80,8 +80,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Σφάλμα κατά την αναπαραγωγή ήχου!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Φραγμένοι χρήστες/τριες</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Προσθήκη φραγμένου/ης χρήστη/τριας</string>
   <string name="BlockedUsersActivity__blocked_users_will">Οι φραγμένοι χρήστες δεν θα μπορούν να σε καλέσουν ή να σου στείλουν μηνύματα.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Δεν υπάρχουν φραγμένοι χρήστες/τριες</string>
+  <string name="BlockedUsersActivity__block_user">Φραγή χρήστη/τριας;</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">Ο/Η \"%1$s\" δεν θα μπορεί να σε καλέσει ή να σου στείλει μηνύματα.</string>
   <string name="BlockedUsersActivity__block">Φραγή</string>
+  <string name="BlockedUsersActivity__unblock_user">Κατάργηση φραγής χρήστη/τριας;</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Θέλεις να καταργήσεις τη φραγή του/της \"%1$s\";</string>
   <string name="BlockedUsersActivity__unblock">Κατάργηση φραγής</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Φραγή και αποχώρηση από %1$s;</string>
@@ -467,13 +474,56 @@
     <item quantity="one">Αυτό το μέλος θα πρέπει να αποδεχτεί την πρόσκληση να ξαναμπεί στην ομάδα, και δεν θα λαμβάνει τα μηνύματα της ομάδας μέχρι να αποδεχτεί:</item>
     <item quantity="other">Αυτά τα μέλη θα πρέπει να αποδεχτούν την πρόσκληση να ξαναμπούν στην ομάδα, και δεν θα λαμβάνουν τα μηνύματα της ομάδας μέχρι να αποδεχτούν:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Αυτό το μέλος δεν μπορεί να μπει σε Ομάδες νέου τύπου, και αφαιρέθηκε από την ομάδα.</item>
-    <item quantity="other">Αυτά τα μέλη δεν μπορούν να μπουν σε Ομάδες νέου τύπου, και αφαιρέθηκαν από την ομάδα.</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Αναβάθμιση σε Ομάδα νέου τύπου</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Αναβάθμισε την ομάδα</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Οι ομάδες νέου τύπου έχουν χαρακτηριστικά όπως τις @αναφορές και τους διαχειριστές ομάδας, και θα αποκτήσουν παραπάνω χαρακτηριστικά στο μέλλον.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Όλο το ιστορικό των μηνυμάτων και τα πολυμέσα διατηρήθηκαν ως είχαν πριν την αναβάθμιση.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Υπήρξε σφάλμα δικτύου. Δοκίμασε ξανά αργότερα.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Αποτυχία αναβάθμισης.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Αυτό το μέλος θα πρέπει να αποδεχτεί την πρόσκληση να ξαναμπεί στην ομάδα, και δεν θα λαμβάνει τα μηνύματα της ομάδας μέχρι να αποδεχτεί:</item>
+    <item quantity="other">Αυτά τα μέλη θα πρέπει να αποδεχτούν την πρόσκληση να ξαναμπούν στην ομάδα, και δεν θα λαμβάνουν τα μηνύματα της ομάδας μέχρι να αποδεχτούν:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Αυτό το μέλος δεν μπορεί να μπει σε Ομάδες νέου τύπου, και θα αφαιρεθεί από την ομάδα:</item>
+    <item quantity="other">Αυτά τα μέλη δεν μπορούν να μπουν σε Ομάδες νέου τύπου, και θα αφαιρεθούν από την ομάδα:</item>
+  </plurals>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Για πρόσβαση σε χαρακτηριστικά όπως οι @αναφορές και οι διαχειριστές ομάδας, αναβάθμισε την ομάδα.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Όχι τώρα</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Αναβάθμιση ομάδας</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d μέλος δεν μπόρεσε να επαναπροστεθεί στην Ομάδα νέου τύπου. Θέλεις να τον/την προσθέσεις τώρα;</item>
+    <item quantity="other">%1$d μέλη δεν μπόρεσαν να επαναπροστεθούν στην Ομάδα νέου τύπου. Θέλεις να τα προσθέσεις τώρα;</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Προσθήκη μέλους</item>
+    <item quantity="other">Προσθήκη μελών</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Όχι τώρα</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Προσθήκη μέλους;</item>
+    <item quantity="other">Προσθήκη μελών;</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Αυτό το μέλος δεν μπορεσε να προστεθεί αυτόματα στην Ομάδα νέου τύπου αυτόματα κατά την αναβάθμιση:</item>
+    <item quantity="other">Αυτά τα μέλη δεν μπόρεσαν να προστεθούν αυτόματα στην Ομάδα νέου τύπου αυτόματα κατά την αναβάθμιση:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Προσθήκη μέλους</item>
+    <item quantity="other">Προσθήκη μελών</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Αποτυχία προσθήκης μέλους. Προσπάθησε ξανά αργότερα.</item>
+    <item quantity="other">Αποτυχία προσθήκης μελών. Προσπάθησε ξανά αργότερα.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Το μέλος δεν μπορεί να προστεθεί.</item>
+    <item quantity="other">Τα μέλη δεν μπορούν να προστεθούν.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Αποχώρηση απ\' την ομάδα;</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Δε θα μπορείς πια να στείλεις ή να λάεις μηνύματα σε αυτήν την ομάδα.</string>
@@ -592,6 +642,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
   <string name="ManageGroupActivity_legacy_group">Ομάδα παλαιού τύπου</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Αυτή είναι ομάδα παλαιού τύπου. Χαρακτηριστικά όπως οι διαχειριστές ομάδας είναι διαθέσιμα μόνο στις ομάδες νέου τύπου.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Αυτή είναι μια ομάδα παλαιού τύπου. Για πρόσβαση σε χαρακτηριστικά όπως οι @αναφορές και οι διαχειριστές ομάδας,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Αυτή η ομάδα παλαιού τύπου δεν μπορεί να αναβαθμιστεί σε Ομάδα νέου τύπου επειδή είναι πολύ μεγάλη. Το μέγιστο μέγεθος της ομάδας είναι %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">αναβάθμισε την ομάδα.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Αυτή είναι μια ομάδα με μη ασφαλή MMS. Για προστατευμένες ιδιωτικές συνομιλίες και χαρακτηριστικά όπως τα ονόματα ομάδας, προσκάλεσε τις επαφές σου στο Signal. </string>
   <string name="ManageGroupActivity_invite_now">Πρόσκληση τώρα</string>
   <!--GroupMentionSettingDialog-->
@@ -671,7 +724,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_join">Γίνε μέλος</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Αίτηση εισόδου</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Αδυναμία εγγραφής στην ομάδα. Προσπαθήστε ξανά αργότερα</string>
-  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Εμφανίστηκε σφάλμα δικτύου.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ο σύνδεσμος της ομάδας δεν είναι ενεργός</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Δεν μπορέσαμε να λάβουμε τις πληροφορίες της ομάδας, προσπάθησε ξανά αργότερα</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Θέλεις να μπεις σε αυτή την ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;</string>
@@ -978,6 +1031,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα γνωρίζει ότι έχεις δει τα μηνύματα που έστειλε μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Να επιτραπεί στον/στην %1$s να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα λάβεις κανένα μήνυμα μέχρι να καταργήσεις τη φραγή του/της.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Να συνεχίσεις τη συνομιλία με αυτή την ομάδα, και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Αναβάθμισε την ομάδα για να ενεργοποιήσεις νέα χαρακτηριστικά όπως οι @αναφορές και οι διαχειριστές. Τα μέλη που δεν έχουν μοιραστεί τη φωτογραφία ή το όνομά τους με την ομάδα θα προσκληθούν να μπουν.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Αυτή η ομάδα παλαιού τύπου δεν μπορεί πλέον να χρησιμοποιηθεί επειδή είναι πολύ μεγάλη. Το μέγιστο μέγεθος της ομάδας είναι %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Να συνεχίσεις τη συνομιλία σου με τον/την %1$s και να μοιραστείς το όνομα και τη φωτογραφία σου μαζί του/της;</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις στην ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχτείς.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπεις σε αυτή την ομάδα; Δεν θα γνωρίζουν οτι έχεις δει τα μηνυματά τους μέχρι να δεχτείς.</string>
@@ -1114,12 +1169,20 @@
   <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal…</string>
   <string name="WebRtcCallView__start_call">Έναρξη κλήσης</string>
   <string name="WebRtcCallView__join_call">Είσοδος στην κλήση</string>
+  <string name="WebRtcCallView__s_group_call">Ομαδική κλήση \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Προβολή συμμετέχοντων</string>
   <string name="WebRtcCallView__your_video_is_off">Το βίντεό σου είναι απενεργοποιημένο</string>
   <string name="WebRtcCallView__connecting">Συνδέεται…</string>
   <string name="WebRtcCallView__reconnecting">Επανασύνδεση…</string>
+  <string name="WebRtcCallView__joining">Εισέρχεσαι…</string>
   <string name="WebRtcCallView__disconnected">Αποσυνδέθηκε</string>
   <string name="WebRtcCallView__no_one_else_is_here">Δεν είναι κανένας άλλος εδώ</string>
+  <string name="WebRtcCallView__s_is_in_this_call">Ο/Η %1$s είναι στην κλήση</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">Οι %1$s και %2$s είναι στην κλήση</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
+    <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Σε αυτή τη κλήση · %1$d άτομο</item>
@@ -1288,13 +1351,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Μια νέα έκδοση του Signal είναι διαθέσιμη, πάτα για αναβάθμιση</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Φραγή του/της %s; </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Οι φραγμένες επαφές δε θα μπορούν πια να σου στέλνουν μηνύματα ή να σε καλούν.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Φραγή</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Να μοιραστείς το προφίλ με τον/την %s;</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Ο πιο εύκολος τρόπος για να μοιραστείς τις πληροφορίες προφίλ σου είναι να προσθέσεις τον/την αποστολέα στις επαφές σου. Αν δεν το επιθυμείς, μπορείς και πάλι να μοιραστείς τις πληροφορίες προφίλ σου με αυτό τον τρόπο.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Μοιράσου το προφίλ</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Αποστολή μηνύματος;</string>
   <string name="UntrustedSendDialog_send">Αποστολή</string>
@@ -1306,7 +1362,7 @@
   <string name="UsernameEditFragment_delete">Διαγραφή</string>
   <string name="UsernameEditFragment_successfully_set_username">Το όνομα χρήστη ορίστηκε με επιτυχία.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Το όνομα χρήστη αφαιρέθηκε με επιτυχία.</string>
-  <string name="UsernameEditFragment_encountered_a_network_error">Εμφανίστηκε σφάλμα δικτύου.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Αυτό το όνομα χρήστη χρησιμοποιείται ήδη.</string>
   <string name="UsernameEditFragment_this_username_is_available">Αυτό το όνομα χρήστη είναι διαθέσιμο.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Τα ονόματα χρήστη μπορούν να περιέχουν μόνο λατινικούς χαρακτήρες a-Z, αριθμούς 0-9 και κάτω παύλες.</string>
@@ -1401,7 +1457,7 @@
   <string name="NotificationChannel_voice_notes">Ηχητικές σημειώσεις</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Το όνομα προφίλ ορίστηκε με επιτυχία.</string>
-  <string name="ProfileEditNameFragment_encountered_a_network_error">Εμφανίστηκε σφάλμα δικτύου.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
@@ -1673,8 +1729,6 @@
     <item quantity="other">Οι %1$s μπήκαν στην ομάδα.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Η ομάδα λέγεται πλέον \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Να γίνει το όνομα και η φωτογραφία προφίλ σου ορατή σε αυτή την ομάδα;</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ξεκλείδωμα</string>
   <!--prompt_mms_activity-->
@@ -1900,6 +1954,7 @@
   <string name="preferences__typing_indicators">Δείκτες πληκτρολόγησης</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Αν οι δείκτες πληκτρολόγησης είναι απενεργοποιημένοι, δε θα μπορείς να δεις δείκτες πληκτρολόγησης από άλλους/ες.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Αίτηση πληκτρολογίου για να απενεργοποιηθεί η προσωποποιημένη εκμάθηση</string>
+  <string name="preferences_app_protection__blocked_users">Φραγμένοι χρήστες/τριες</string>
   <string name="preferences_chats__when_using_mobile_data">Όταν χρησιμοποιούνται δεδομένα</string>
   <string name="preferences_chats__when_using_wifi">Όταν χρησιμοποιείται WiFi</string>
   <string name="preferences_chats__when_roaming">Κατά το roaming</string>
@@ -1962,6 +2017,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Νέο μήνυμα προς…</string>
+  <string name="contact_selection_list__unknown_contact_block">Φραγή χρήστη/τριας</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Προσθήκη στην ομάδα</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Κλήση</string>
@@ -2374,6 +2430,9 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s προς %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">Ο/Η \"%1$s\" έχει φραγεί</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Αποτυχία φραγής του/της \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">Η φραγή του/της \"%1$s\" καταργήθηκε.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Ανασκόπηση μελών</string>
   <string name="ReviewCardDialogFragment__review_request">Ανασκόπηση αιτήματος</string>

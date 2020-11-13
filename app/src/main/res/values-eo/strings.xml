@@ -455,6 +455,10 @@
   <string name="GroupManagement_learn_more">Scii pli</string>
   <string name="GroupManagement_invite_multiple_users">Vi ne povas aŭtomate aldoni tiujn uzantoj al tiu grupo.\n\nIli estis invititaj kaj ne vidos iujn grupmesaĝojn, antaŭ ol ili akceptas la inviton.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Ne nun</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualigi grupon</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne nun</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1266,13 +1270,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Ĝisdatigo de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova versio de Signal disponeblas, tuŝetu por ĝisdatigi</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Ĉu bloki %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokitaj kontaktoj ne plu eblos sendi al vi mesaĝojn aŭ alvoki vin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bloki</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Ĉu kunhavigi profilon kun %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">La plej facila maniero sendi viajn profilinformojn estas per aldono de la sendinto al via kontaktaro. Se tion vi ne volas, vi tamen povas kunhavigi viajn profilinformojn tiumaniere.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Kunhavigi profilon</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Ĉu sendi mesaĝon?</string>
   <string name="UntrustedSendDialog_send">Sendi</string>
@@ -1650,8 +1647,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="other">%1$s estis aldonitaj al la grupo.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">La grupnomo estas nun „%1$s“.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Ĉu vidigi viajn profilajn nomon kaj foton al tiu ĉi grupo?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Malŝlosi</string>
   <!--prompt_mms_activity-->

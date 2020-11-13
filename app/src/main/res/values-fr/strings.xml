@@ -81,7 +81,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">Erreur de lecture du son.</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users_will">Les utilisateurs bloqués ne pourront ni vous appeler ni vous envoyer des messages.</string>
+  <string name="BlockedUsersActivity__block_user">Souhaitez-vous bloquer cet utilisateur ?</string>
   <string name="BlockedUsersActivity__block">Bloquer</string>
+  <string name="BlockedUsersActivity__unblock_user">Souhaitez-vous débloquer cet utilisateur ?</string>
   <string name="BlockedUsersActivity__unblock">Débloquer</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquer et quitter %1$s ?</string>
@@ -454,6 +456,11 @@
   <string name="GroupManagement_invite_multiple_users">Ces utilisateurs ne peuvent pas être ajoutés automatiquement par vous à ce groupe.\n\nDes invitations ont été envoyées et ces utilisateurs ne verront aucun message du groupe tant que les invitations n’auront pas été acceptées.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Que sont les nouveaux groupes ?</string>
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Convertir en nouveau groupe</string>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Pas maintenant</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Mettre à jour le groupe</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Pas maintenant</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1242,13 +1249,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est proposée, touchez pour lancer la mise à jour</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Bloquer %s ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Les contacts bloqués ne pourront plus ni vous envoyer de messages ni vous appeler.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bloquer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Partager le profil avec %s ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">La manière la plus simple de partager vos renseignements de profil est d’ajouter l’expéditeur à vos contacts. Si vous ne souhaitez pas le faire, vous pouvez toujours partager vos renseignements de profil de cette façon.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Partager le profil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Envoyer le message ?</string>
   <string name="UntrustedSendDialog_send">Envoyer</string>
@@ -1621,8 +1621,6 @@
     <item quantity="other">%1$s se sont joints au groupe.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Le nom du groupe est désormais « %1$s ».</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Rendre vos nom et photo de profil visibles pour ce groupe ?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Déverrouiller</string>
   <!--prompt_mms_activity-->

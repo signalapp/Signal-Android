@@ -440,6 +440,10 @@
   <string name="GroupManagement_learn_more">了解更多</string>
   <string name="GroupManagement_invite_multiple_users">这些用户不能直接被你邀请入群组。\n\n他们已经收到入群邀请，但在他们同意之前无法收到来自该群组的任何消息。</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">稍后再说</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">更新群组</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">稍后再说</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1223,13 +1227,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 新版本可用，点击升级</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">屏蔽 %s？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">已屏蔽联系人将无法再向您发送消息或呼叫。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">屏蔽</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">分享个人资料至 %s？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">分享个人资料的最简便方式是将发送人添加至联系人。如果不想添加，仍可使用该方式分享。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">分享个人资料</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">发送消息？</string>
   <string name="UntrustedSendDialog_send">发送</string>
@@ -1597,8 +1594,6 @@
     <item quantity="other">%1$s 加入群组。</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">现在群组名称为“%1$s”。</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">个人资料名称和图片对该群组可见？</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解锁</string>
   <!--prompt_mms_activity-->

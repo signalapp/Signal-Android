@@ -493,6 +493,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Beth yw Grwpiau Newydd?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Mae gan Grwpiau Newydd nodweddion fel @crybwyll a gewinyddwyr grwpiau, a byddant â nodweddion ychwanegol yn y dyfodol.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Mae holl hanes negeseuon a chyfryngau o cyn uwchraddio wedi\'u cadw.</string>
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Uwchraddio i Grŵp Newydd</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Mae gan Grwpiau Newydd nodweddion fel @crybwyll a gewinyddwyr grwpiau, a byddant â nodweddion ychwanegol yn y dyfodol.</string>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I gyrchu nodweddion newydd fel @crybwyll a gweinyddwyr, uwchraddiwch y grŵp hwn.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Nid nawr</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Nid nawr</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1370,13 +1376,6 @@ Send neges heb ei ddiogelu?</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Diweddariad Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mae fersiwn newydd o Signal ar gael. Tapiwch i ddiweddaru</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Rhwystro %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Ni fydd yn bosib i gysylltiadau wedi\'u rhwystro anfon negeseuon atoch neu eich ffonio.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Rhwystro</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Rhannu proffil gyda %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Y ffordd hawsaf o rannu eich manylion proffil yw ychwanegu\'r anfonwr i\'ch cysylltiadau. Os nad ydych yn dymuno, gallwch barhau i rannu\'ch manylion proffil fel hyn.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Rhannu proffil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Anfon neges?</string>
   <string name="UntrustedSendDialog_send">Anfon</string>
@@ -1774,8 +1773,6 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Ymunodd %1$s â\'r grŵp.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Enw\'r grŵp nawr yw \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Gwneud eich enw a llun proffil yn weladwy i\'r grŵp hwn?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Datgloi</string>
   <!--prompt_mms_activity-->

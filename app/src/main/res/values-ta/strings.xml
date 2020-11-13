@@ -184,7 +184,7 @@
   <string name="ConversationItem_read_more">மேலும் படிக்க</string>
   <string name="ConversationItem_download_more">மேலும் பதிவிறக்க</string>
   <string name="ConversationItem_pending">நிலுவையில்</string>
-  <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
+  <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி நீக்கப்பட்டது.</string>
   <string name="ConversationItem_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
@@ -434,6 +434,10 @@
   <string name="GroupManagement_learn_more">மேலும் அறிக</string>
   <string name="GroupManagement_invite_multiple_users">இந்த பயனர்களை இந்த குழுவில் தானாக உங்களால் சேர்க்க முடியாது. குழுவில் சேர அவர்கள் அழைக்கப்பட்டுள்ளனர், அவர்கள் ஏற்றுக்கொள்ளும் வரை எந்த குழு செய்திகளையும் பார்க்க மாட்டார்கள்.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">இப்போது இல்லை</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">குழுவை மேம்படுத்து</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">இப்போது இல்லை</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1152,13 +1156,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal புதுப்பிப்பு</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal புதிய பதிப்பு கிடைக்கும், புதுப்பிக்க தட்டவும்</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s  ஐத் தடுக்கவா?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">தடுக்கப்பட்ட தொடர்புகள் இனி உங்களுக்கு செய்திகளை அனுப்பவோ அல்லது உங்களை அழைக்கவோ முடியாது.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">முடக்கு</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">சுயவிவரத்தை %s உடன் பகிரவா?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">உங்கள் சுயவிவரத் தகவலைப் பகிர எளிதான வழி, உங்கள் தொடர்புகளில் அனுப்புநரைச் சேர்ப்பது. நீங்கள் விரும்பவில்லை என்றால், உங்கள் சுயவிவரத் தகவலை இந்த வழியில் பகிரலாம்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">சுயவிவரத்தைப் பகிரவும்</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">செய்தி அனுப்ப?</string>
   <string name="UntrustedSendDialog_send">அனுப்புக</string>
@@ -1527,8 +1524,6 @@
     <item quantity="other">%1$s குழுவில் சேர்ந்தார்.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">இக்குழுவின் பெயர் இப்பொழுது  \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">உங்கள் சுயவிவரப் பெயரையும் புகைப்படத்தையும் இந்தக் குழுவுக்கு தெரியப்படுத்தவா?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">திற</string>
   <!--prompt_mms_activity-->

@@ -501,12 +501,11 @@
     <item quantity="many">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
     <item quantity="other">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Šis narys negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalintas:</item>
-    <item quantity="few">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
-    <item quantity="many">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
-    <item quantity="other">Šie nariai negali prisijungti prie naujosios grupės ir todėl buvo iš jos pašalinti:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Naujinti į naująją grupę</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Naujosiose grupėse yra tokios ypatybės kaip @paminėjimai, grupių administratoriai, o ateityje ypatybių bus dar daugiau.</string>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Ne dabar</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne dabar</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1393,13 +1392,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite, norėdami atnaujinti</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Užblokuoti %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Užblokuoti adresatai daugiau nebegalės jums siųsti žinučių ar skambinti.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Užblokuoti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Bendrinti profilį su %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Lengviausias būdas bendrinti savo profilio informaciją, tai pridėti siuntėją į savo adresatus. Jeigu to daryti nenorite, jūs vis tiek galite bendrinti savo profilio informaciją tokiu būdu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Bendrinti profilį</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Siųsti žinutę?</string>
   <string name="UntrustedSendDialog_send">Siųsti</string>
@@ -1798,8 +1790,6 @@
     <item quantity="other">%1$s prisijungė prie grupės.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Dabar, grupės pavadinimas yra „%1$s“.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Padaryti jūsų profilio vardą ir nuotrauką matomą šiai grupei?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Atrakinti</string>
   <!--prompt_mms_activity-->

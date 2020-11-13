@@ -455,6 +455,9 @@
   <string name="GroupManagement_learn_more">Dahasını öğrenin</string>
   <string name="GroupManagement_invite_multiple_users">Bu kullanıcılar otomatik olarak bu gruba eklenemez.\n\nKatılmaları için davet gönderildi ve daveti kabul edene kadar hiçbir grup iletisini görmeyecekler.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Şimdi değil</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Şimdi değil</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1268,13 +1271,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal güncellemesi</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal\'in yeni sürümü mevcut, güncellemek için dokunun</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">\'%s\' engellensin mi?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Engellenmiş kişiler artık size ileti gönderemeyecek ya da sizi arayamayacaklardır.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Engelle</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">%s ile profiliniz paylaşılsın mı?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Profilinizi paylaşmanın en kolay yolu göndereni kişilerinize eklemektir. Bunu yapmak istemiyorsanız, profilinizi bu şekilde de paylaşabilirsiniz.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Profili paylaş</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">İleti gönderilsin mi?</string>
   <string name="UntrustedSendDialog_send">Gönder</string>
@@ -1652,8 +1648,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">%1$s gruba katıldı.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Grup adı artık \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Profil adınızı ve fotoğrafınızı bu gruba görünür yapın?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>
   <!--prompt_mms_activity-->

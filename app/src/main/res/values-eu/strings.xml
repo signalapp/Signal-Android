@@ -475,10 +475,11 @@
     <item quantity="one">Talde honetan berriro sartzeko, kide honek gonbidapena onartu beharko du; ez du talde mezurik jasoko onartu arte:</item>
     <item quantity="other">Talde honetan berriro sartzeko, kide hauek gonbidapena onartu beharko dute; ez dute talde mezurik jasoko onartu arte:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Kide hau ezin da Talde Berrietan sartu eta taldetik ezabatua izan da:</item>
-    <item quantity="other">Kide hauek ezin dira Talde Berrietara gehitu eta taldetik ezabatuak izan dira:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Talde Berriek ezaugarri berriak dituzte, hala nola, @aipamenak eta talde administrazaileak; etorkizunean ezaugarri gahiago izango dituzte.</string>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Orain ez</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Taldea eguneratu</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">Kide %1$d  kide ezin izan da Talde Berrira gehitu. Gehitu nahi duzu orain?</item>
@@ -1337,13 +1338,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal eguneratu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalaren bertsio berria dago, sakatu eguneratzeko</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">%s blokeatu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokeatutako kontaktuek ezingo dizute mezurik bidali eta ezta deirik egin ere.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Blokeatu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Profila %s-rekin partekatu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Zure profileko informazioa partekatzeko modu errazena, bidaltzailea zure kontaktuetara gehitzea da. Ez baduzu hori egin nahi, modu honetan ere partekatu dezakezu zure informazioa.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Profila partekatu</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Mezua bidali?</string>
   <string name="UntrustedSendDialog_send">Bidali</string>
@@ -1723,8 +1717,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
     <item quantity="other">%1$s taldera sartu dira.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Taldeak \'%1$s\' izena du orain.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Zure profileko izena eta argazkia talde honetan erakutsi?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Desblokeatu</string>
   <!--prompt_mms_activity-->

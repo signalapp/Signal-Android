@@ -411,6 +411,9 @@
   </plurals>
   <string name="GroupManagement_learn_more">សិក្សាបន្ថែម</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_not_now">ពេលក្រោយ</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">ពេលក្រោយ</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -1048,13 +1051,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">កំណែថ្មីរបស់ Signal មានហើយ, ចុច ដើម្បីធ្វើបច្ចុប្បន្នភាព។</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">ហាមឃាត់ %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">លេខទំនាក់ទំនងដែលបានហាមឃាត់ នឹងលែងផ្ញើសារឱ្យអ្នកបាន ឬហៅមកអ្នកបានទៀតទេ។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">ហាមឃាត់</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">ចែករំលែកប្រវត្តិរូបជាមួយ %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">វិធីដែលងាយបំផុតក្នុងការចែករំលែកព័ត៌មានរបស់អ្នក គឺបន្ថែមអ្នកផ្ញើចូលក្នុងបញ្ជីទំនាក់ទំនងអ្នក។ ប្រសិនបើអ្នកមិនចង់ធ្វើដូចនេះទេ អ្នកនៅតែអាចចែករំលែកព័ត៌មានរបស់អ្នកតាមវិធីនេះ។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">ចែករំលែកប្រវត្តិរូប</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">ផ្ញើសារ?</string>
   <string name="UntrustedSendDialog_send">ផ្ញើ</string>
@@ -1401,8 +1397,6 @@
     <item quantity="other">%1$s ចូលក្រុម។</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">ឈ្មោះក្រុមឥឡូវគឺ \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">បង្ហាញឈ្មោះ និងរូបភាពអ្នកក្នុងក្រុមនេះ?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ដោះសោរ</string>
   <!--prompt_mms_activity-->

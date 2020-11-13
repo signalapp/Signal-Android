@@ -81,7 +81,7 @@
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Pessoas bloqueadas</string>
-  <string name="BlockedUsersActivity__add_blocked_user">Bloquear uma pessoa</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Adicionar uma pessoa bloqueada</string>
   <string name="BlockedUsersActivity__blocked_users_will">As pessoas bloqueadas não poderão mais fazer chamadas ou enviar mensagens para você.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Nenhuma pessoa bloqueada</string>
   <string name="BlockedUsersActivity__block_user">Bloquear esta pessoa?</string>
@@ -95,7 +95,7 @@
   <string name="BlockUnblockDialog_block_s">Bloquear %1$s ?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Você deixará de receber as mensagens e atualizações do grupo, e nenhum membro poderá adicionar você ao grupo novamente.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Os membros do grupo não poderão adicionar você novamente.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membros do grupo poderão adicionar você ao grupo novamente</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Os membros poderão adicionar você a este grupo novamente</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vocês poderão trocar mensagens e fazer chamadas entre si, e o seu nome e foto serão compartilhados com essa pessoa..</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">As pessoas bloqueadas não poderão mais fazer chamadas ou enviar mensagens para você.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s ?</string>
@@ -179,7 +179,7 @@
   <string name="ContactShareEditActivity_invalid_contact">O contato selecionado é inválido</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Não enviado, toque para ver detalhes</string>
-  <string name="ConversationItem_error_partially_not_delivered">Envio parcial, toque para ver detalhes</string>
+  <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente, toque para ver detalhes</string>
   <string name="ConversationItem_error_network_not_delivered">Falha no envio</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Mensagem para troca de chaves recebida, clique para processá-la.</string>
   <string name="ConversationItem_group_action_left">%1$s saiu do grupo.</string>
@@ -339,7 +339,7 @@
   <string name="ConversationTitleView_verified">Verificado</string>
   <string name="ConversationTitleView_you">Você</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contatos não podem estar em grupos legado.</string>
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contatos não podem estar em grupos legados.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir foto do perfil</string>
@@ -364,7 +364,7 @@
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Os backups são criptografados com uma frase-personalizada e armazenados no seu dispositivo.</string>
   <string name="BackupsPreferenceFragment__create_backup">Criar backup</string>
   <string name="BackupsPreferenceFragment__last_backup">Último backup: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Pasta de backup</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Pasta do backup</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar senha de backup</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste sua senha de backup e verifique se elas correspondem.</string>
   <string name="BackupsPreferenceFragment__turn_on">Ativar</string>
@@ -373,7 +373,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Saiba mais</string>
   <string name="BackupsPreferenceFragment__in_progress">Em andamento…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d até agora…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal precisa da permissão ao armazenamento externo para fazer backup, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\". </string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal precisa da permissão ao armazenamento externo para fazer backup, mas ela foi permanentemente negada. Por favor, vá ao menu de configurações de aplicativos, selecione \"Permissões\", e habilite \"Armazenamento\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando padrão: %s</string>
@@ -436,17 +436,17 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Figurinhas</string>
   <!--AddToGroupActivity-->
-  <string name="AddToGroupActivity_add_member">Adicional membro?</string>
-  <string name="AddToGroupActivity_add_s_to_s">Adicionar \"%1$s\" a \"%2$s\"?</string>
-  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" foi adicionado/a a \"%2$s\".</string>
+  <string name="AddToGroupActivity_add_member">Adicionar membro?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Adicionar \"%1$s\" em \"%2$s\"?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" foi adicionado/a em \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Adicionar ao grupo</string>
   <string name="AddToGroupActivity_add_to_groups">Adicionar aos grupos</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legado.</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legados.</string>
   <string name="AddToGroupActivity_add">Adicionar</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Escolha novo admin</string>
   <string name="ChooseNewAdminActivity_done">Pronto</string>
-  <string name="ChooseNewAdminActivity_you_left">Você deixou \"%1$s.\"</string>
+  <string name="ChooseNewAdminActivity_you_left">Você saiu de \"%1$s.\"</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartilhar seu nome e foto do perfil com este grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Você quer tornar seu nome e foto do perfil visíveis para todos os membros atuais e futuros deste grupo?</string>
@@ -474,14 +474,29 @@
     <item quantity="one">Este membro precisará aceitar um convite para participar novamente neste grupo e não receberá as mensagens do grupo até que aceite:</item>
     <item quantity="other">Estes membros precisarão aceitar um convite para participar novamente neste grupo e não receberão as mensagens do grupo até que aceitem:</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="GroupsV1MigrationLearnMore_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Este membro não é capaz de participar em Novos Grupos, e foi removido do grupo:</item>
-    <item quantity="other">Estes membros não são capazes de participar em Novos Grupos, e foram removidos do grupo:</item>
-  </plurals> -->
+  <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Atualizar para o Novo Grupo</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Atualizar este grupo</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Os Novos Grupos têm recursos como @menções e administradores de grupos, entre outros que serão implementados no futuro.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Todo o histórico de mensagens e mídias serão mantidos após a atualização.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Foi encontrado um erro de rede. Tente mais tarde.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Falha ao atualizar.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Este membro precisará aceitar um convite para participar novamente neste grupo e não receberá as mensagens do grupo até que aceite:</item>
+    <item quantity="other">Estes membros precisarão aceitar um convite para participar novamente neste grupo e não receberão as mensagens do grupo até que aceitem:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Este membro não é capaz de participar de Novos Grupos, e será removido do grupo:</item>
+    <item quantity="other">Estes membros não são capazes de participar de Novos Grupos, e serão removidos do grupo:</item>
+  </plurals>
+  <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acessar novos recursos como @menções e administradores, atualize este grupo.</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">Agora não</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Atualizar grupo</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro não pôde ser adicionado ao Novo Grupo. Você deseja adicioná-lo agora?</item>
-    <item quantity="other">%1$d membros não puderam ser adicionados ao Novo Grupo. Você deseja adicioná-los agora?</item>
+    <item quantity="other">%1$d membros não puderam ser adicionados ao Novo Grupo. Gostaria de adicioná-los agora?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Adicionar membro</item>
@@ -495,7 +510,7 @@
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
     <item quantity="one">Esse membro não pôde ser adicionado automaticamente ao Novo Grupo quando ele foi atualizado:</item>
-    <item quantity="other">Esses membros não puderam ser adicionados automaticamente ao Novo Grupo quando ele foi atualizado:</item>
+    <item quantity="other">Estes membros não puderam ser adicionados automaticamente ao Novo Grupo quando ele foi atualizado:</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="one">Adicionar membro</item>
@@ -552,14 +567,14 @@
   <string name="RequestingMembersFragment_pending_member_requests">Solicitações de membros pendentes</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Nenhuma solicitação de membros.</string>
   <string name="RequestingMembersFragment_explanation">As pessoas desta lista estão tentando se conectar a este grupo através do link de grupo.</string>
-  <string name="RequestingMembersFragment_added_s">Adicionado \"%1$s\"</string>
-  <string name="RequestingMembersFragment_denied_s">Negado \"%1$s\"</string>
+  <string name="RequestingMembersFragment_added_s">Adicionou \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">Recusou \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Pronto</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legado.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legados.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="one">Adicionar \"%1$s\" a \"%2$s\"?</item>
-    <item quantity="other">Adicionar os membros de %3$d a \"%2$s\"?</item>
+    <item quantity="one">Adicionar \"%1$s\" em \"%2$s\"?</item>
+    <item quantity="other">Adicionar %3$d membros em \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Adicionar</string>
   <!--AddGroupDetailsFragment-->
@@ -571,20 +586,20 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Este campo é obrigatório.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Os grupos requerem pelo menos dois membros.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">A criação do grupo falhou.</string>
-  <string name="AddGroupDetailsFragment__try_again_later">Tentar novamente mais tarde.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Tente novamente mais tarde.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Você selecionou um contato que não tem suporte para grupos do Signal. Então este grupo será de MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Remover</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contato de SMS</string>
-  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Excluir %1$s desse grupo?</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Remover %1$s desse grupo?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d membro não suporta Novos Grupos, portanto, este será um Grupo Legado.</item>
     <item quantity="other">%d membros não suportam Novos Grupos, portanto, este grupo será um Grupo Legado.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Um Grupo Legado será criado porque \"%1$s\" está usando uma versão desatualizada do Signal. Você pode criar um Grupo Novo Estilo com eles depois de atualizarem o Signal, ou removê-los antes de criar o grupo.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Um Grupo Legado será criado porque \"%1$s\" está usando uma versão desatualizada do Signal. Você pode criar um Novo Grupo com ele depois dele atualizar o Signal, ou remova-o antes de criar o grupo.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Um Grupo Legado será criado porque %1$d está usando uma versão antiga do Signal. Você pode criar um Grupo Novo Estilo com eles após de atualização do Signal, ou removê-los antes de criar o grupo.</item>
-    <item quantity="other">Um Grupo Legado será criado porque membros %1$d estão usando uma versão desatualizada do Signal. Você pode criar um Grupo Novo Estilo com eles depois atualizarem o Signal, ou removê-los antes de criar o grupo.</item>
+    <item quantity="other">Um Grupo Legado será criado porque %1$d membros estão usando uma versão desatualizada do Signal. Você pode criar um Novo Grupo com eles depois de atualizarem o Signal, ou remova-os antes de criar o grupo.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mensagens efêmeras</string>
@@ -592,9 +607,9 @@
   <string name="ManageGroupActivity_member_requests_and_invites">Pedidos de membros &amp; convites</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_edit_group_info">Editar informações do grupo</string>
-  <string name="ManageGroupActivity_who_can_add_new_members">Quem pode adicionar os novos membros?</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Quem pode adicionar novos membros?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Quem pode editar as informações deste grupo?</string>
-  <string name="ManageGroupActivity_group_link">O link de grupo</string>
+  <string name="ManageGroupActivity_group_link">Link do grupo</string>
   <string name="ManageGroupActivity_block_group">Bloquear o grupo</string>
   <string name="ManageGroupActivity_unblock_group">Desbloquear o grupo</string>
   <string name="ManageGroupActivity_leave_group">Sair do grupo</string>
@@ -615,18 +630,21 @@
     <item quantity="one">%d membro adicionado.</item>
     <item quantity="other">%d membros adicionados.</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Somente os administradores podem ativar ou desativar o link de grupo compartilhável.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Somente os administradores podem ativar ou desativar a opção de aprovar os novos membros.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Somente os administradores podem redefinir o link de grupo compartilhável.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Somente os administradores podem ativar ou desativar o link do grupo compartilhável.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Somente os administradores podem ativar ou desativar a opção de aprovar novos membros.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Somente os administradores podem redefinir o link do grupo compartilhável.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Você não dispõe de privilégio para fazer isso</string>
   <string name="ManageGroupActivity_not_capable">Alguém que você adicionou não suporta novos grupos e precisa atualizar o Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar o grupo</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Você não é membro do grupo</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Não foi possível atualizar o grupo, por favor, tente novamente mais tarde</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Falha ao atualizar o grupo devido a um erro da rede, favor tentar novamente mais tarde</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Não foi possível atualizar o grupo. Por favor, tente novamente mais tarde</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Falha ao atualizar o grupo devido à um erro na rede. Por favor, tente novamente mais tarde</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Editar nome e foto</string>
   <string name="ManageGroupActivity_legacy_group">Grupo Legado</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Este é um Grupo Legado. Recursos como administradores de grupos só estão disponíveis em Novos Grupos.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Este é um Grupo Legado. Para acessar novos recursos como @menções e administradores,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Este Grupo Legado não pode ser atualizado para um Grupo Novo porque é muito grande. O tamanho máximo de grupos é %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">atualizar este grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é um Grupo MMS inseguro. Para conversar em privado e acessar recursos como nomes de grupos, convide seus contatos para usar o Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convide agora</string>
   <!--GroupMentionSettingDialog-->
@@ -651,7 +669,7 @@
   <string name="ManageRecipientActivity_on">Ligado</string>
   <string name="ManageRecipientActivity_add_to_a_group">Adicionar ao grupo</string>
   <string name="ManageRecipientActivity_view_all_groups">Ver todos os grupos</string>
-  <string name="ManageRecipientActivity_see_all">Ver tudo</string>
+  <string name="ManageRecipientActivity_see_all">Ver todas</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Nenhum grupo em comum</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupo em comum</item>
@@ -678,9 +696,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desabilitada</string>
   <string name="CustomNotificationsDialogFragment__default">Padrão</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">O link de grupo compartilhável</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link do grupo compartilhável</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gerenciar &amp; compartilhar</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">O link de grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Link do grupo</string>
   <string name="ShareableGroupLinkDialogFragment__share">Compartilhar</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Resetar o link</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Pedidos de membros</string>
@@ -688,12 +706,12 @@
   <string name="ShareableGroupLinkDialogFragment__enabled">Habilitada</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Desabilitada</string>
   <string name="ShareableGroupLinkDialogFragment__default">Padrão</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Resetar link de grupo</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Exigir que um administrador aprove pedidos de novos membros entrando através de link do grupo.</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Resetar link do grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Exigir que um administrador aprove pedidos de novos membros que entrarem através do link do grupo.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Tem certeza que quer resetar o link do grupo? As pessoas não poderão mais se conectar ao grupo usando o link atual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">As pessoas que escanearem este código poderão participar no seu grupo. Os administradores ainda precisarão aprovar os novos membros se você tiver essa opção ativada.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">As pessoas que escanearem este código poderão participar do seu grupo. Os administradores ainda precisarão aprovar os novos membros, se você tiver ativado essa opção.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Compartilhar código</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Você deseja anular o convite que você enviou para %1$s?</string>
@@ -703,26 +721,26 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Você já é um membro</string>
-  <string name="GroupJoinBottomSheetDialogFragment_join">Conecte-se</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">Entrar</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Pedido de participação</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Não foi possível participar no grupo. Por favor, tente novamente mais tarde</string>
-  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Foi encontrado um erro de rede.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este link de grupo não está ativo</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Não foi possível obter informação de grupo, por favor tente novamente mais tarde</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Você quer participar neste grupo e compartilhar seu nome e foto com seus membros?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Um administrador deste grupo deve aprovar seu pedido antes que você possa participar. Quando você solicitar seu pedido, seu nome e foto serão compartilhados com membros de grupo.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Não foi possível entrar no grupo. Por favor, tente novamente mais tarde</string>
+  <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Ocorreu um erro de rede.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este link do grupo não está ativo</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Não foi possível obter informação do grupo. Por favor, tente novamente mais tarde</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Você quer entrar neste grupo e compartilhar seu nome e foto com os membros?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Um administrador deste grupo deve aprovar seu pedido antes que você possa participar. Quando você solicita seu pedido, seu nome e foto serão compartilhados com os membros do grupo.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grupo · %1$d membro</item>
     <item quantity="other">Grupo · %1$d membros</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Links de grupos em breve</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atualize o Signal para usar links do grupo</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Participar no grupo através de um link ainda não é suportado pelo Signal. Este recurso será lançado na próxima atualização.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que você está usando não suporta links de grupo. Atualize para a versão mais recente para se conectar a este grupo via link.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atualize o Signal para usar links de grupos</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Entrar em um grupo através de um link ainda não é suportado pelo Signal. Este recurso será lançado na próxima atualização.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que você está usando não suporta links de grupos. Atualize para a versão mais recente para entrar neste grupo via link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Um ou mais de seus dispositivos vinculados estão usando uma versão do Signal que não suporta as chamadas de grupo. Actualize o Signal no(s) seu(s) dispositivo(s) vinculado(s) para participar neste grupo.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">O link de grupo não é válido</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Um ou mais de seus dispositivos vinculados estão usando uma versão do Signal que não suporta links de grupos. Atualize o Signal no(s) seu(s) dispositivo(s) vinculado(s) para entrar neste grupo.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">O link do grupo não é válido</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adicionar “%1$s” ao grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Recusar solicitação de “%1$s”?</string>
@@ -818,7 +836,7 @@
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Toque e segure qualquer mensagem para compartilhar rapidamente sua reação ou como você se sente.</string>
   <string name="Megaphones_remind_me_later">Me lembre mais tarde</string>
   <string name="Megaphones_verify_your_signal_pin">Confirme seu PIN do Signal</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocasionalmente, solicitaremos que você confirme seu PIN, isso te ajuda a não esquecê-lo.</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocasionalmente, solicitaremos que você confirme seu PIN, para te ajudar a não esquecê-lo.</string>
   <string name="Megaphones_verify_pin">Verifique o PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
@@ -872,11 +890,11 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desabilitou as mensagens efêmeras.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu o tempo de duração das mensagens efêmeras como %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de duração das mensagens efêmeras como %2$s.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">O temporizador de mensagem efémera foi definido para %1$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">O cronômetro de mensagem efêmera foi definido para %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Este grupo foi atualizado para um Novo Grupo.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s membro não pôde ser adicionado ao Novo Grupo porém foi convidado a participar.</item>
-    <item quantity="other">%1$s membros não puderam ser adicionados ao Novo Grupo porém foram convidados a participar.</item>
+    <item quantity="one">%1$s membro não pôde ser adicionado ao Novo Grupo, porém foi convidado a participar.</item>
+    <item quantity="other">%1$s membros não puderam ser adicionados ao Novo Grupo, porém foram convidados a participar.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s alterou o nome de perfil para %2$s.</string>
@@ -892,9 +910,9 @@
   <string name="MessageRecord_you_joined_the_group">Você entrou no grupo.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s entraram no grupo.</string>
   <!--GV2 member removals-->
-  <string name="MessageRecord_you_removed_s">Você excluiu %1$s.</string>
-  <string name="MessageRecord_s_removed_s">%1$s excluiu %2$s.</string>
-  <string name="MessageRecord_s_removed_you_from_the_group">%1$s excluiu você desse grupo.</string>
+  <string name="MessageRecord_you_removed_s">Você removeu %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s removeu %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s removeu você desse grupo.</string>
   <string name="MessageRecord_you_left_the_group">Você saiu do grupo.</string>
   <string name="MessageRecord_s_left_the_group">%1$s saiu do grupo.</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">Você não está mais no grupo.</string>
@@ -904,18 +922,18 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s nomeou %2$s como admin.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s nomeou você como admin.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Você revogou privilégios de admin de %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revogou seus privilégios de administrador.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revogou seus privilégios de admin.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revogou os privilégios de admin de %2$s.</string>
-  <string name="MessageRecord_s_is_now_an_admin">%1$s agora é um administrador</string>
-  <string name="MessageRecord_you_are_now_an_admin">Agora você é um/a admin</string>
-  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s é agora um administrador.</string>
-  <string name="MessageRecord_you_are_no_longer_an_admin">Você não é mais um administrador.</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s agora é um admin.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Agora você é um admin.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s não é mais um admin.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Você não é mais um admin.</string>
   <!--GV2 invitations-->
-  <string name="MessageRecord_you_invited_s_to_the_group">Você convidou %1$s ao grupo.</string>
-  <string name="MessageRecord_s_invited_you_to_the_group">%1$s convidou você ao grupo..</string>
+  <string name="MessageRecord_you_invited_s_to_the_group">Você convidou %1$s para o grupo.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s convidou você para o grupo.</string>
   <plurals name="MessageRecord_s_invited_members">
-    <item quantity="one">%1$s convidou 1 pessoa ao grupo.</item>
-    <item quantity="other">%1$s convidou %2$d pessoas ao grupo.</item>
+    <item quantity="one">%1$s convidou 1 pessoa para o grupo.</item>
+    <item quantity="other">%1$s convidou %2$d pessoas para o grupo.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Você recebeu um convite para o grupo.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
@@ -934,24 +952,24 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguém recusou um convite ao grupo.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Você recusou o convite ao grupo.</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s anulou seu convite para o grupo.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Um administrador anulou seu convite para o grupo.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Um admin anulou seu convite para o grupo.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Um convite para o grupo foi anulado.</item>
-    <item quantity="other">%1$d os convites para o grupo foram anulados.</item>
+    <item quantity="other">%1$d convites para o grupo foram anulados.</item>
   </plurals>
   <!--GV2 invitation acceptance-->
-  <string name="MessageRecord_you_accepted_invite">Você aceitou o convite ao grupo.</string>
-  <string name="MessageRecord_s_accepted_invite">%1$s aceitou o convite ao grupo.</string>
-  <string name="MessageRecord_you_added_invited_member_s">Você adicionou um membro convidado %1$s.</string>
-  <string name="MessageRecord_s_added_invited_member_s">%1$s adicionou membro convidado %2$s.</string>
+  <string name="MessageRecord_you_accepted_invite">Você aceitou o convite para o grupo.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s aceitou o convite para o grupo.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Você adicionou o membro convidado %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s adicionou o membro convidado %2$s.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Você mudou o nome do grupo para \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s  mudou o nome do grupo para \"%2$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s mudou o nome do grupo para \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">O nome do grupo mudou para \"%1$s\".</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">Você mudou o avatar do grupo.</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">%1$s mudou o avatar do grupo.</string>
-  <string name="MessageRecord_the_group_group_avatar_has_been_changed">O avatar do grupo foi alterado.</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">Você mudou a foto do grupo.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s mudou a foto do grupo.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">A foto do grupo foi alterada.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Você mudou quem pode editar as informações do grupo. Agora é \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s mudou quem pode editar as informações do grupo. Agora é \"%2$s\".</string>
@@ -961,41 +979,41 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s mudou quem pode editar os membros do grupo. Agora é \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Quem pode editar as informações do grupo foi alterado para \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Você ativou o link do grupo com a aprovação do administrador desativada.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Você ativou o link do grupo com a aprovação de administrador ativada.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Você ativou o link do grupo com a aprovação do admin desativada.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Você ativou o link do grupo com a aprovação do admin ativada.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Você desativou o link do grupo.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ativou o link do grupo com a aprovação de administrador desativada.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ativou o link do grupo com a aprovação de administrador ativada.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ativou o link do grupo com a aprovação do admin desativada.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ativou o link do grupo com a aprovação do admin ativada.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s desativou o link do grupo.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">O link do grupo foi ativado com a aprovação de administrador desativada.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">O link do grupo foi ativado com a aprovação de administrador ativada.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">O link do grupo foi ativado com a aprovação do admin desativada.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">O link do grupo foi ativado com a aprovação do admin ativada.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">O link do grupo foi desativado.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Você desativou a aprovação do administrador para o link do grupo.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s desativou a aprovação de administrador para o link do grupo.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">A aprovação de administrador para o link de grupo foi desativada.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Você ativou a aprovação do administrador para o link do grupo.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ativou a aprovação de administrador para o link do grupo.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">A aprovação de administrador para o link de grupo foi ativada.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Você desativou a aprovação do admin para o link do grupo.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s desativou a aprovação do admin para o link do grupo.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">A aprovação do admin para o link do grupo foi desativada.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Você ativou a aprovação do admin para o link do grupo.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ativou a aprovação do admin para o link do grupo.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">A aprovação do admin para o link do grupo foi ativada.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Você resetou o link do grupo.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s resetou o link do grupo.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">O link do grupo foi resetado.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Você se conectou ao grupo via o link do grupo.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se conectou ao grupo via o link do grupo.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Você entrou no grupo via o link do grupo.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s entrou no grupo via o link do grupo.</string>
   <!--GV2 group link requests-->
-  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Você enviou um pedido para participar no grupo.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou a participar via o link do grupo.</string>
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">Você enviou um pedido para entrar no grupo.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou entrar via o link do grupo.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprovou seu pedido de participação no grupo.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou um pedido de participação no grupo de %2$s.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Você aprovou um pedido de participação no grupo de %1$s.</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Foi aprovado seu pedido para participar no grupo.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Foi aprovado um pedido de participação no grupo de %1$s.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou o pedido de participação no grupo de %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Você aprovou o pedido de participação no grupo de %1$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">O seu pedido para entrar no grupo foi aprovado.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">O pedido de participação no grupo de %1$s foi aprovado.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Foi negado seu pedido para participar no grupo por um administrador.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s negou um pedido para participar no grupo de %2$s.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Foi negado um pedido de participação no grupo de %1$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">O seu pedido para entrar no grupo foi recusado por um admin.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s recusou o pedido para entrar no grupo de %2$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">O pedido de participação no grupo de %1$s foi recusado.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Você cancelou seu pedido de participação no grupo.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s cancelou seu pedido de participação no grupo.</string>
   <!--End of GV2 specific update messages-->
@@ -1013,9 +1031,11 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permita %1$s enviar uma mensagem para você e compartilhar seu nome e foto com outros? Eles não saberão que você viu a mensagem deles até que você aceite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permita %1$s enviar uma mensagem para você e compartilhar seu nome e foto com outros? Você não receberá nenhumas mensagens até que os desbloqueie.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar sua conversa com este grupo e compartilhar seu nome e foto com seus membros?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Atualize este grupo para ativar novos recursos como @menções e administradores. Os membros que não compartilharam seus nomes ou fotos neste grupo serão convidados a participar.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este Grupo Legado não pode mais ser usado porque é muito grande. O tamanho máximo de grupos é %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Continuar sua conversa com %1$s e compartilhar seu nome e foto com eles?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Você quer entrar nesse grupo e compartilhar seu nome e foto com os membros dele? Eles não saberão que você visualizou as mensagens deles se você não aceitar.</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Participar desse grupo? Eles não saberão que você leu suas mensagens até que você aceite.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Entrar nesse grupo? Eles não saberão que você leu as mensagens deles até que você aceite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Você quer desbloquear esse grupo e compartilhar seu nome e foto com os membros dele? Você não receberá nenhuma mensagem deles até que desbloqueie o grupo.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s </string>
@@ -1336,13 +1356,6 @@
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, toque para atualizar</string>
-  <!--UnknownSenderView-->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block_s">Bloquear %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Contatos bloqueados não irão mais conseguir enviar mensagens ou ligar para você.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_block">Bloquear</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile_with_s">Compartilhar perfil com %s?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">O jeito mais fácil de compartilhar as informações do seu perfil é adicionar o remetente aos seus contatos. Caso não queira adicioná-lo, você ainda pode compartilhar as informações do seu perfil desta maneira.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="UnknownSenderView_share_profile">Compartilhar perfil</string> -->
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Enviar mensagem?</string>
   <string name="UntrustedSendDialog_send">Enviar</string>
@@ -1551,7 +1564,7 @@
   <string name="ContactSelectionListFragment_maximum_group_size_reached">O tamanho máximo do grupo alcançado</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Os grupos do Signal podem ter o máximo de %1$d membros.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">O limite recomendado de membros alcançado</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Os grupos do Signal têm melhor desempenho com %1$d membros ou menos. Adicionando mais membros causará atrasos no envio e recebimento de mensagens.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Os grupos do Signal têm melhor desempenho com %1$d membros ou menos. Adicionar mais membros causará atrasos no envio e recebimento de mensagens.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d membro</item>
     <item quantity="other">%1$d membros</item>
@@ -1721,8 +1734,6 @@
     <item quantity="other">%1$s entraram no  grupo.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">O nome do grupo agora é \'%1$s\'.</string>
-  <!--profile_group_share_view-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tornar seu nome e foto do perfil visíveis para este grupo?</string> -->
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Destrancar</string>
   <!--prompt_mms_activity-->
