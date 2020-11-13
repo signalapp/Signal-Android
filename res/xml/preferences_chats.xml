@@ -94,7 +94,7 @@
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="false"
-            android:key="pref_backup_enabled_v2"
+            android:key="pref_backup_enabled_v3"
             android:title="@string/preferences_chats__chat_backups"
             android:summary="@string/preferences_chats__backup_chats_to_external_storage" />
 
@@ -102,7 +102,7 @@
             android:key="pref_backup_create"
             android:title="@string/preferences_chats__create_backup"
             android:persistent="false"
-            android:dependency="pref_backup_enabled_v2"
+            android:dependency="pref_backup_enabled_v3"
             tools:summary="Last backup: 3 days ago" />
 
     </PreferenceCategory>
