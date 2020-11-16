@@ -2804,7 +2804,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     WindowManager.LayoutParams params = getWindow().getAttributes();
     params.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
-     
+
     getWindow().setAttributes(params);
     audioRecorder.startRecording();
   }
