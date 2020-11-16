@@ -2801,7 +2801,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(20);
 
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    
     WindowManager.LayoutParams params = getWindow().getAttributes();
     params.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
     params.screenBrightness = 0; 
