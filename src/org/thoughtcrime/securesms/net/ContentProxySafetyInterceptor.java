@@ -31,7 +31,7 @@ public class ContentProxySafetyInterceptor implements Interceptor {
       Response response = chain.proceed(chain.request());
 
       if (response.isRedirect()) {
-        if (isWhitelisted(response.header("Location"))) {
+        if (isWhitelisted(response.header("location")) || isWhitelisted(response.header("Location"))) {
           return response;
         } else {
           Log.w(TAG, "Tried to redirect to a non-whitelisted domain!");
