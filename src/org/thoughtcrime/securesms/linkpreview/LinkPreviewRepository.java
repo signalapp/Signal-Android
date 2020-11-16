@@ -187,10 +187,16 @@ public class LinkPreviewRepository implements InjectableType {
   private @NonNull Optional<String> getProperty(@NonNull String searchText, @NonNull String property) {
     Pattern pattern = Pattern.compile("<\\s*meta\\s+property\\s*=\\s*\"\\s*og:" + property + "\\s*\"\\s+[^>]*content\\s*=\\s*\"(.*?)\"[^>]*/?\\s*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
     Matcher matcher = pattern.matcher(searchText);
-
     if (matcher.find()) {
       String text = Html.fromHtml(matcher.group(1)).toString();
-      return TextUtils.isEmpty(text) ? Optional.absent() : Optional.of(text);
+      if (!TextUtils.isEmpty(text)) { return Optional.of(text); }
+    }
+
+    pattern = Pattern.compile("<\\s*" + property + "[^>]*>(.*?)<\\s*/" + property + "[^>]*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+    matcher = pattern.matcher(searchText);
+    if (matcher.find()) {
+      String text = Html.fromHtml(matcher.group(1)).toString();
+      if (!TextUtils.isEmpty(text)) { return Optional.of(text); }
     }
 
     return Optional.absent();
