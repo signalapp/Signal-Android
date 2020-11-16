@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
@@ -388,7 +389,7 @@ public final class FeatureFlags {
         changes.put(key, Change.REMOVED);
       } else if (newValue != oldValue && newValue instanceof Boolean) {
         changes.put(key, (boolean) newValue ? Change.ENABLED : Change.DISABLED);
-      } else if (newValue != oldValue) {
+      } else if (!Objects.equals(oldValue, newValue)) {
         changes.put(key, Change.CHANGED);
       }
     }

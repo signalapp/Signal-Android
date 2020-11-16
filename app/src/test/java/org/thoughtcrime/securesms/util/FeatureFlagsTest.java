@@ -390,6 +390,8 @@ public class FeatureFlagsTest extends BaseUnitTest {
       put("d", false);
       put("g", 5);
       put("h", 5);
+      put("i", new String("parker")); // Need to use new String to avoid interning string constants
+      put("j", "gwen");
     }};
 
     Map<String, Object> newMap = new HashMap<String, Object>() {{
@@ -399,6 +401,8 @@ public class FeatureFlagsTest extends BaseUnitTest {
       put("e", true);
       put("f", false);
       put("h", 7);
+      put("i", new String("parker")); // Need to use new String to avoid interning string constants
+      put("j", "stacy");
     }};
 
     Map<String, Change> changes = FeatureFlags.computeChanges(oldMap, newMap);
@@ -410,6 +414,8 @@ public class FeatureFlagsTest extends BaseUnitTest {
     assertEquals(Change.ENABLED, changes.get("e"));
     assertEquals(Change.DISABLED, changes.get("f"));
     assertEquals(Change.CHANGED, changes.get("h"));
+    assertFalse(changes.containsKey("i"));
+    assertEquals(Change.CHANGED, changes.get("j"));
   }
 
   private static <V> Set<V> setOf(V... values) {
