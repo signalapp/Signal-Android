@@ -86,8 +86,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Chyba při přehrávání audia!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Zablokovaní uživatelé</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Přidat blokovaného uživatele</string>
   <string name="BlockedUsersActivity__blocked_users_will">Zablokovaní uživatelé vám nebudou moci zavolat nebo posílat zprávy.</string>
-  <string name="BlockedUsersActivity__block">Blokovat</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Žádní zablokovaní uživatelé</string>
+  <string name="BlockedUsersActivity__block_user">Zablokovat uživatele?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" nebude moci vám volat nebo posílat zprávy.</string>
+  <string name="BlockedUsersActivity__block">Zablokovat</string>
+  <string name="BlockedUsersActivity__unblock_user">Odblokovat uživatele?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Chcete odblokovat \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Odblokovat</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Zablokovat a opustit %1$s?</string>
@@ -99,7 +106,7 @@
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudou moci volat ani posílat zprávy.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokovat %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Odblokovat</string>
-  <string name="BlockUnblockDialog_block">Blokovat</string>
+  <string name="BlockUnblockDialog_block">Zablokovat</string>
   <string name="BlockUnblockDialog_block_and_leave">Zablokovat a odejít</string>
   <string name="BlockUnblockDialog_block_and_delete">Zablokovat a smazat</string>
   <!--BucketedThreadMedia-->
@@ -502,12 +509,73 @@
     <item quantity="other">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Aktualizovat na novou skupinu</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Aktualizovat tuto skupinu</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nové skupiny mají funkce jako @zmínky a správce skupin, a v budoucnu budou podporovat další funkce.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Před aktualizací bude uchována veškerá historie zpráv a média.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Došlo k síťové chybě. Zkuste to znovu později.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Aktualizace se nezdařila.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Tento člen bude muset přijmout pozvánku, aby se znovu připojil k této skupině, a dokud ji nepřijme, nebude dostávat skupinové zprávy:</item>
+    <item quantity="few">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
+    <item quantity="many">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
+    <item quantity="other">Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Tento člen není způsobilý pro připojení k nové verzi skupin a bude odstraněn ze skupiny:</item>
+    <item quantity="few">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:</item>
+    <item quantity="many">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:</item>
+    <item quantity="other">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pro přístup k funkcím jako @zmínky a správci aktualizujete tuto skupinu.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Teď ne</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualizovat skupinu</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d člen nemohl být znovu přidán do nové skupiny. Chcete ho nyní přidat?</item>
+    <item quantity="few">%1$d členové nemohli být znovu přidáni do nové skupiny. Chcete je nyní přidat?</item>
+    <item quantity="many">%1$d členů nemohlo být znovu přidáno do nové skupiny. Chcete je nyní přidat?</item>
+    <item quantity="other">%1$d členů nemohlo být znovu přidáno do nové skupiny. Chcete je nyní přidat?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Přidat člena</item>
+    <item quantity="few">Přidat členy</item>
+    <item quantity="many">Přidat členy</item>
+    <item quantity="other">Přidat členy</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Teď ne</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Přidat člena?</item>
+    <item quantity="few">Přidat členy?</item>
+    <item quantity="many">Přidat členy?</item>
+    <item quantity="other">Přidat členy?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Tento člen nemohl být automaticky přidán do nové skupiny, když byla zaktualizována:</item>
+    <item quantity="few">Tito členové nemohli být automaticky přidáni do nové skupiny, když byla zaktualizována:</item>
+    <item quantity="many">Tito členové nemohli být automaticky přidáni do nové skupiny, když byla zaktualizována:</item>
+    <item quantity="other">Tito členové nemohli být automaticky přidáni do nové skupiny, když byla zaktualizována:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Přidat člena</item>
+    <item quantity="few">Přidat členy</item>
+    <item quantity="many">Přidat členy</item>
+    <item quantity="other">Přidat členy</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Nepodařilo se přidat člena. Zkuste to znovu později.</item>
+    <item quantity="few">Nepodařilo se přidat členy. Zkuste to znovu později.</item>
+    <item quantity="many">Nepodařilo se přidat členy. Zkuste to znovu později.</item>
+    <item quantity="other">Nepodařilo se přidat členy. Zkuste to znovu později.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Nelze přidat člena.</item>
+    <item quantity="few">Nelze přidat členy.</item>
+    <item quantity="many">Nelze přidat členy.</item>
+    <item quantity="other">Nelze přidat členy.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Opustit skupinu?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nebudete dále moci odesílat nebo přijímat zprávy v této skupině.</string>
@@ -642,6 +710,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Upravit název a obrázek</string>
   <string name="ManageGroupActivity_legacy_group">Starší skupina</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Toto je starší skupina. Funkce jako správci skupin jsou dostupné pouze pro nové skupiny.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Toto je starší verze skupiny. Pro přístup k novým funkcím jako @zmínky a správci,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Tuto starší verzi skupiny nelze aktualizovat na novou skupinu, protože je příliš velká. Maximální velikost skupiny je %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">Aktualizovat tuto skupinu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nezabezpečená MMS skupina. Chcete-li komunikovat soukromě a mít přístup k funkcím jako jsou názvy skupin, pozvěte své kontakty do Signalu.</string>
   <string name="ManageGroupActivity_invite_now">Pozvat nyní</string>
   <!--GroupMentionSettingDialog-->
@@ -1057,11 +1128,13 @@
   <string name="MessageRequestBottomView_accept">Přijmout</string>
   <string name="MessageRequestBottomView_continue">Pokračovat</string>
   <string name="MessageRequestBottomView_delete">Smazat</string>
-  <string name="MessageRequestBottomView_block">Blokovat</string>
+  <string name="MessageRequestBottomView_block">Zablokovat</string>
   <string name="MessageRequestBottomView_unblock">Odblokovat</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dovolit %1$s zasílat vám zprávy a sdílet vaše jméno a fotografii? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dovolit %1$s zasílat vám zprávy a sdílet vaše jméno a fotografii? Dokud je neodblokujete, tak žádné zprávy neobdržíte.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovat ve vaší konverzaci s touto skupinou a sdílet vaše jméno a fotografii s jejími členy?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Pro aktivaci nových funkcí jako @zmínky a správci aktualizujte tuto skupinu. Členové, kteří dosud nesdílejí své jméno nebo fotografii v této skupině, budou pozváni, aby se připojili.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Tuto starší verzi skupiny již nelze používat, protože je příliš velká. Maximální velikost skupiny je %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Pokračovat ve vaší konverzaci s %1$s a sdílet s nimi vaše jméno a fotografii?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Připojit se k této skupině a sdílet vaše jméno a fotografii s jejími členy? Nebudou vědět, že jste viděl jejich zprávy, dokud je nepřijmete.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete se připojit k této skupině? Dokud tak neučiníte, členové se nedozví, že jste viděli jejich zprávy.</string>
@@ -1177,7 +1250,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Vy</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block">Blokovat</string>
+  <string name="RecipientPreferenceActivity_block">Zablokovat</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Chyba při opouštění skupiny</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>
   <string name="RecipientPreferenceActivity_enabled">Povoleno</string>
@@ -1208,12 +1281,22 @@
   <string name="WebRtcCallView__signal_video_call">Signal videohovor…</string>
   <string name="WebRtcCallView__start_call">Zahájit hovor</string>
   <string name="WebRtcCallView__join_call">Připojit se k hovoru</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" skupinový hovor</string>
   <string name="WebRtcCallView__view_participants_list">Zobrazit účastníky</string>
   <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
   <string name="WebRtcCallView__connecting">Připojování…</string>
   <string name="WebRtcCallView__reconnecting">Opětovné připojování…</string>
+  <string name="WebRtcCallView__joining">Připojování…</string>
   <string name="WebRtcCallView__disconnected">Odpojen</string>
   <string name="WebRtcCallView__no_one_else_is_here">Nikdo další tady není</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s se účastní tohoto hovoru</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s a %2$s se účastní tohoto hovoru</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s a %3$d další se účastní tohoto hovoru</item>
+    <item quantity="few">%1$s, %2$s a %3$d další se účastní tohoto hovoru</item>
+    <item quantity="many">%1$s, %2$s a %3$d dalších se účastní tohoto hovoru</item>
+    <item quantity="other">%1$s, %2$s a %3$d dalších se účastní tohoto hovoru</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">V tomto hovoru - %1$d člověk</item>
@@ -1608,7 +1691,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">%1$d členů</item>
   </plurals>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Žádné blokované kontakty</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Žádné zablokované kontakty</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal potřebuje přístup k vašim kontaktům, aby je mohl zobrazit.</string>
   <string name="contact_selection_list_fragment__show_contacts">Zobrazit kontakty</string>
@@ -1816,7 +1899,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="recipients_panel__add_members">Přidat členy</string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Odesílatel není v seznamu vašich kontaktů</string>
-  <string name="unknown_sender_view__block">BLOKOVAT</string>
+  <string name="unknown_sender_view__block">ZABLOKOVAT</string>
   <string name="unknown_sender_view__add_to_contacts">PŘIDAT DO KONTAKTŮ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEPŘIDÁVAT, ALE PONECHAT MŮJ PROFIL VIDITELNÝ</string>
   <!--verify_display_fragment-->
@@ -2015,6 +2098,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__typing_indicators">Indikátory psaní</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Pokud máte vypnuté indikátory psaní, nebudete je vidět ani od ostatních.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Vyžádat klávesnici s vypnutým učením</string>
+  <string name="preferences_app_protection__blocked_users">Zablokovaní uživatelé</string>
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
   <string name="preferences_chats__when_using_wifi">Při použití WiFi</string>
   <string name="preferences_chats__when_roaming">Při roamingu</string>
@@ -2077,6 +2161,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nová zpráva pro…</string>
+  <string name="contact_selection_list__unknown_contact_block">Zablokovat uživatele</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Přidat do skupiny</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Volat</string>
@@ -2460,7 +2545,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="recipient_preferences__about">Info</string>
   <string name="Recipient_unknown">Neznámý</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_block">Blokovat</string>
+  <string name="RecipientBottomSheet_block">Zablokovat</string>
   <string name="RecipientBottomSheet_unblock">Odblokovat</string>
   <string name="RecipientBottomSheet_add_to_contacts">Přidat do kontaktů</string>
   <string name="RecipientBottomSheet_add_to_a_group">Přidat do skupiny</string>
@@ -2502,6 +2587,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s pro %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" byl zablokován.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Nepodařilo se zablokovat \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" byl odblokován.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Prověřit členy</string>
   <string name="ReviewCardDialogFragment__review_request">Prověřit požadavek</string>
@@ -2530,7 +2618,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ReviewCard__your_contact">Váš kontakt</string>
   <string name="ReviewCard__remove_from_group">Odebrat ze skupiny</string>
   <string name="ReviewCard__update_contact">Aktualizovat kontakt</string>
-  <string name="ReviewCard__block">Blokovat</string>
+  <string name="ReviewCard__block">Zablokovat</string>
   <string name="ReviewCard__delete">Smazat</string>
   <string name="ReviewCard__recently_changed">Nedávno změněno profilové jméno z %1$s na %2$s</string>
   <!--EOF-->

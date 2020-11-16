@@ -76,8 +76,11 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">오디오 재생 중 오류가 발생했습니다!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">차단된 사용자</string>
   <string name="BlockedUsersActivity__blocked_users_will">차단한 사용자는 나에게 전화 또는 메시지를 보낼 수 없습니다.</string>
+  <string name="BlockedUsersActivity__block_user">이 사용자를 차단하시겠습니까?</string>
   <string name="BlockedUsersActivity__block">차단</string>
+  <string name="BlockedUsersActivity__unblock_user">이 사용자를 차단 해제하시겠습니까?</string>
   <string name="BlockedUsersActivity__unblock">차단 해제</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s를 차단하고 나갈까요?</string>
@@ -425,13 +428,20 @@
   </plurals>
   <string name="GroupManagement_learn_more">더 알아보기</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">새 그룹이 무엇인가요?</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">나중에</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">그룹 업데이트</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="other">멤버 추가하기</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">나중에</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="other">멤버를 추가하시겠습니까?</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">그룹을 탈퇴하시겠습니까?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">이 그룹에서 메시지를 보내거나 받을 수 없게 됩니다.</string>
@@ -496,6 +506,7 @@
   <string name="ManageGroupActivity_mute_notifications">대화 알림 끄기</string>
   <string name="ManageGroupActivity_custom_notifications">맞춤형 알림</string>
   <string name="ManageGroupActivity_mentions">언급</string>
+  <string name="ManageGroupActivity_until_s">%1$s까지</string>
   <string name="ManageGroupActivity_off">꺼짐</string>
   <string name="ManageGroupActivity_on">켜짐</string>
   <string name="ManageGroupActivity_view_all_members">모든 멤버 보기</string>
@@ -517,6 +528,7 @@
   <string name="GroupMentionSettingDialog_always_notify_me">항상 알림받기</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">알림 받지않기</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">이 사람은 내 연락처에 있습니다.</string>
   <string name="ManageRecipientActivity_disappearing_messages">사라지는 메시지</string>
   <string name="ManageRecipientActivity_chat_color">대화창 색</string>
   <string name="ManageRecipientActivity_block">차단</string>
@@ -524,6 +536,7 @@
   <string name="ManageRecipientActivity_view_safety_number">안전 번호 보기</string>
   <string name="ManageRecipientActivity_mute_notifications">대화 알림 끄기</string>
   <string name="ManageRecipientActivity_custom_notifications">맞춤형 알림</string>
+  <string name="ManageRecipientActivity_until_s">%1$s까지</string>
   <string name="ManageRecipientActivity_off">꺼짐</string>
   <string name="ManageRecipientActivity_on">켜짐</string>
   <string name="ManageRecipientActivity_view_all_groups">모든 그룹 보기</string>
@@ -701,6 +714,8 @@
   <string name="MessageRecord_left_group">그룹에서 탈퇴했습니다.</string>
   <string name="MessageRecord_you_updated_group">그룹을 업데이트했습니다.</string>
   <string name="MessageRecord_the_group_was_updated">그룹이 업데이트 되었습니다.</string>
+  <string name="MessageRecord_missed_audio_call_date">부재중 음성 통화 %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">부재중 영상 통화 %1$s</string>
   <string name="MessageRecord_s_updated_group">%s 님이 그룹을 업데이트했습니다.</string>
   <string name="MessageRecord_called_s">%s에게 전화</string>
   <string name="MessageRecord_s_joined_signal">%s 님이 온라인입니다!</string>
@@ -891,14 +906,17 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">비디오를 사용하려면 탭하세요</string>
   <string name="WebRtcCallActivity__signal_s">시그널 %1$s</string>
   <string name="WebRtcCallActivity__calling">전화 진행 중…</string>
+  <string name="WebRtcCallActivity__group_call">그룹 전화</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">시그널 음성 통화…</string>
   <string name="WebRtcCallView__signal_video_call">시그널 영상 통화…</string>
   <string name="WebRtcCallView__start_call">전화 시작하기</string>
   <string name="WebRtcCallView__join_call">전화 참여하기</string>
+  <string name="WebRtcCallView__view_participants_list">참가자 보기</string>
   <string name="WebRtcCallView__your_video_is_off">영상이 꺼졌습니다.</string>
   <string name="WebRtcCallView__connecting">연결 중…</string>
   <string name="WebRtcCallView__reconnecting">재연결 중…</string>
+  <string name="WebRtcCallView__joining">참가하는 중…</string>
   <string name="WebRtcCallView__disconnected">연결 끊김</string>
   <string name="WebRtcCallView__no_one_else_is_here">아무도 없음</string>
   <!--CallParticipantsListDialog-->
@@ -975,6 +993,7 @@
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">며칠 후 다시 알려드리겠습니다.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">일주일 후 다시 알려드리겠습니다.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">몇 주 후 다시 알려드리겠습니다.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">한 달 뒤에 다시 알려드리겠습니다.</string>
   <!--Slide-->
   <string name="Slide_image">이미지</string>
   <string name="Slide_sticker">스티커</string>
@@ -1032,6 +1051,8 @@
   <string name="ThreadRecord_draft">초안:</string>
   <string name="ThreadRecord_called">발신 전화</string>
   <string name="ThreadRecord_called_you">수신 전화</string>
+  <string name="ThreadRecord_missed_audio_call">부재중 음성 통화</string>
+  <string name="ThreadRecord_missed_video_call">부재중 영상 통화</string>
   <string name="ThreadRecord_media_message">미디어 메시지</string>
   <string name="ThreadRecord_sticker">스티커</string>
   <string name="ThreadRecord_view_once_photo">한 번 볼 수 있는 이미지</string>
@@ -1155,6 +1176,7 @@
   <string name="NotificationChannel_other">기타</string>
   <string name="NotificationChannel_group_messages">메시지</string>
   <string name="NotificationChannel_missing_display_name">알 수 없음</string>
+  <string name="NotificationChannel_voice_notes">음성 노트</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">프로필 이름을 성공적으로 설정했습니다.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
@@ -1613,6 +1635,7 @@
   <string name="preferences__typing_indicators">입력 안내</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">입력 안내 기능이 꺼져 있다면, 다른 사람이 메시지를 쓰고 있는지 확인할 수 없습니다.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">키보드에서 맞춤형 자동 완성이 비활성화되도록 요청</string>
+  <string name="preferences_app_protection__blocked_users">차단된 사용자</string>
   <string name="preferences_chats__when_using_mobile_data">모바일 데이터 사용 시</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi 사용 시</string>
   <string name="preferences_chats__when_roaming">로밍 시</string>
@@ -1904,6 +1927,7 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">잠금 해제하여 보류 중인 메시지 보기</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">암호 백업</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">백업은 외부 저장 공간에 보관되며 암호로 암호화됩니다. 백업에서 복원하려면 다음에 표시되는 암호가 필요합니다.</string>
+  <string name="backup_enable_dialog__folder">폴더</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">암호를 적었습니다. 비밀번호를 잊었을 때 백업을 복구할 수 없다는 점에 동의합니다.</string>
   <string name="registration_activity__restore_backup">백업 복원</string>
   <string name="registration_activity__skip">건너뛰기</string>
@@ -1939,6 +1963,7 @@
   <string name="ChatsPreferenceFragment_last_backup_s">마지막 백업: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">진행 중</string>
   <string name="LocalBackupJob_creating_backup">백업 생성 중…</string>
+  <string name="LocalBackupJobApi29_backup_failed">백업을 실패했습니다.</string>
   <string name="ProgressPreference_d_messages_so_far">현재 메시지 %d개 처리됨</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s 주소로 보낸 인증 코드를 입력하세요.</string>
   <string name="RegistrationActivity_wrong_number">잘못된 번호</string>
@@ -1947,6 +1972,7 @@
   <string name="RegistrationActivity_code_support_subject">Signal 등록 - 안드로이드용 인증 코드</string>
   <string name="BackupUtil_never">없음</string>
   <string name="BackupUtil_unknown">알 수 없음</string>
+  <string name="PhoneNumberPrivacy_everyone">모두</string>
   <string name="PhoneNumberPrivacy_my_contacts">내 연락처</string>
   <string name="PhoneNumberPrivacy_nobody">아무도</string>
   <string name="PhoneNumberPrivacy_my_contacts_see_description">내 연락처에 있는 사람만 Signal에서 나를 볼 수 있습니다.</string>
@@ -2034,13 +2060,16 @@
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">현재 링크가 활성화되지 않았습니다.</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">음성 메시지 %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s~%2$s</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__remove">삭제</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">멤버</string>
   <string name="ReviewCard__remove_from_group">그룹에서 제외</string>
+  <string name="ReviewCard__update_contact">연락처 업데이트</string>
   <string name="ReviewCard__block">차단</string>
   <string name="ReviewCard__delete">삭제</string>
   <!--EOF-->

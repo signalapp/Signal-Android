@@ -86,8 +86,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Chyba pri prehrávaní zvuku!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Blokovaní používatelia</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Pridať blokovaného používateľa</string>
   <string name="BlockedUsersActivity__blocked_users_will">Blokovaní používatelia Vám nebudú môcť zavolať alebo posielať správy.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Žiadni blokovaní používatelia</string>
+  <string name="BlockedUsersActivity__block_user">Zablokovať používateľa?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vám nebude môcť zavolať alebo posielať správy.</string>
   <string name="BlockedUsersActivity__block">Blokovať</string>
+  <string name="BlockedUsersActivity__unblock_user">Odblokovať používateľa?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Chcete odblokovať \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Odblokovať</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Zablokovať a opustiť %1$s?</string>
@@ -502,13 +509,73 @@
     <item quantity="other">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Modernizovať na Novú skupinu</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Modernizovať túto skupinu</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nové skupiny majú funkcie ako @spomenutia, administrátorov skupín a v budúcnosti budú podporovať ďalšie nové funkcie.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Celá história správ a médií ostane zachovaná tak ako pred modernizáciou.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Vyskytla sa chyba siete. Skúste znovu neskôr.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Modernizácia zlyhala.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Tento člen musí znova prijať pozvánku do skupiny a kým ju neprijme, nebude dostávať skupinové správy:</item>
+    <item quantity="few">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
+    <item quantity="many">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
+    <item quantity="other">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Tento člen nedokáže vstupovať do Nových skupín a bude zo skupiny odstránený:</item>
+    <item quantity="few">Títo členovia nedokážu vstupovať do Nových skupín a budú zo skupiny odstránení:</item>
+    <item quantity="many">Títo členovia nedokážu vstupovať do Nových skupín a budú zo skupiny odstránení:</item>
+    <item quantity="other">Títo členovia nedokážu vstupovať do Nových skupín a budú zo skupiny odstránení:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pre prístup k novým funkciám ako @spomenutia a administrátori modernizujte túto skupinu.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Teraz nie</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualizuj skupinu</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d člen nemohol byť znovu pridaný do Novej skupiny. Chcete ho pridať teraz?</item>
+    <item quantity="few">%1$d členovia nemohli byť znovu pridaní do Novej skupiny. Chcete ich pridať teraz?</item>
+    <item quantity="many">%1$d členov nemohlo byť znovu pridaných do Novej skupiny. Chcete ich pridať teraz?</item>
+    <item quantity="other">%1$d členov nemohlo byť znovu pridaných do Novej skupiny. Chcete ich pridať teraz?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Pridať člena</item>
+    <item quantity="few">Pridať členov</item>
+    <item quantity="many">Pridať členov</item>
+    <item quantity="other">Pridať členov</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Teraz nie</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Pridať člena?</item>
+    <item quantity="few">Pridať členov?</item>
+    <item quantity="many">Pridať členov?</item>
+    <item quantity="other">Pridať členov?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Tento člen nemohol byť počas modernizácie automaticky pridaný do Novej skupiny:</item>
+    <item quantity="few">Títo členovia nemohli byť počas modernizácie automaticky pridaní do Novej skupiny:</item>
+    <item quantity="many">Títo členovia nemohli byť počas modernizácie automaticky pridaní do Novej skupiny:</item>
+    <item quantity="other">Títo členovia nemohli byť počas modernizácie automaticky pridaní do Novej skupiny:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Pridať člena</item>
+    <item quantity="few">Pridať členov</item>
+    <item quantity="many">Pridať členov</item>
+    <item quantity="other">Pridať členov</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Nepodarilo sa pridať člena. Skúste znovu neskôr.</item>
+    <item quantity="few">Nepodarilo sa pridať členov. Skúste znovu neskôr.</item>
+    <item quantity="many">Nepodarilo sa pridať členov. Skúste znovu neskôr.</item>
+    <item quantity="other">Nepodarilo sa pridať členov. Skúste znovu neskôr.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Nemožno pridať člena.</item>
+    <item quantity="few">Nemožno pridať členov.</item>
+    <item quantity="many">Nemožno pridať členov.</item>
+    <item quantity="other">Nemožno pridať členov.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Opustiť skupinu?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nebudete môcť poslať ani prijať správy z tejto skupiny.</string>
@@ -643,6 +710,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Zmeniť názov a obrázok</string>
   <string name="ManageGroupActivity_legacy_group">Zastaraná skupina</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Toto je Zastaraná skupina. Funkcie ako administrátori skupín sú dostupné len pre Nové skupiny.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Toto je Zastaraná skupina. Pre prístup k novým funkciám ako @spomenutia a administrátori</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Táto Zastaraná skupina nemôže byť modernizovaná na Novú skupinu, lebo je príliš veľká. Maximálna veľkosť skupiny je %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">modernizujte túto skupinu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nezabezpečená MMS skupina. Ak si chcete dopisovať súkromne a mať prístup k funkciám ako názvy skupín, pozvite svoje kontakty do aplikácie Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozvať teraz</string>
   <!--GroupMentionSettingDialog-->
@@ -1063,6 +1133,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Povoliť používateľovi %1$s, aby vám posielal správy a zdieľať s ním vaše meno a fotku? Kým s tým nebudete súhlasiť, nebude vedieť, že ste jeho správu videli.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Povoliť používateľovi %1$s, aby vám posielal správy a zdieľať s ním vaše meno a fotku? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovať v chate v tejto skupine a zdieľať vaše meno a fotku s jej členmi?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Modernizovaním tejto skupiny aktivujete nové funkcie ako @spomenutia a administrátori. Členovia, ktorí nezdieľali svoje meno alebo fotku, budú do tejto skupiny pozvaní.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Táto Zastaraná skupina sa nemôže ďalej používať, pretože je príliš veľká. Maximálna veľkosť skupiny je %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Pokračovať v chate s %1$s a zdieľať s týmto používateľom vaše meno a fotku?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny a zdieľať vaše meno a fotku s jej členmi? Kým s tým nebudete súhlasiť, členovia skupiny nebudú vedieť, že ste ich správy videli.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny? Kým pozvanie neprijmete, jej členovia sa nedozvú, že ste ich správy videli.</string>
@@ -1209,12 +1281,22 @@
   <string name="WebRtcCallView__signal_video_call">Signal videohovor…</string>
   <string name="WebRtcCallView__start_call">Začať hovor</string>
   <string name="WebRtcCallView__join_call">Pripojiť sa k hovoru</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" Skupinový hovor</string>
   <string name="WebRtcCallView__view_participants_list">Zobraziť účastníkov</string>
   <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
   <string name="WebRtcCallView__connecting">Pripájanie…</string>
   <string name="WebRtcCallView__reconnecting">Pripájanie…</string>
+  <string name="WebRtcCallView__joining">Pripája sa…</string>
   <string name="WebRtcCallView__disconnected">Odpojený</string>
   <string name="WebRtcCallView__no_one_else_is_here">Nikto iný tu nie je</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s je v tomto hovore</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s a %2$s sú v tomto hovore</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s a %3$d ďalší sú v tomto hovore</item>
+    <item quantity="few">%1$s, %2$s a %3$d ďalší sú v tomto hovore</item>
+    <item quantity="many">%1$s, %2$s a %3$d ďalších je v tomto hovore</item>
+    <item quantity="other">%1$s, %2$s a %3$d ďalších je v tomto hovore</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">V tomto hovore · %1$d osoba</item>
@@ -2016,6 +2098,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__typing_indicators">Indikátory písania</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Keď sú indikátory písania vypnuté, nezobrazia sa Vám ani indikátory iných.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Požiadať klávesnicu aby sa neučila</string>
+  <string name="preferences_app_protection__blocked_users">Blokovaní používatelia</string>
   <string name="preferences_chats__when_using_mobile_data">Pri použití mobilných dát</string>
   <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Pri roamingu</string>
@@ -2078,6 +2161,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nová správa pre…</string>
+  <string name="contact_selection_list__unknown_contact_block">Zablokovať používateľa</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Pridať do skupiny</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Zavolať</string>
@@ -2503,6 +2587,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">od %1$s do %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" bol/a zablokovaný/á.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Zlyhalo zablokovanie \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" bol/a odblokovaný/á.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Overiť členov</string>
   <string name="ReviewCardDialogFragment__review_request">Overiť žiadosť</string>

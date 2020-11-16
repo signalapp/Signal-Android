@@ -80,7 +80,14 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Eraro dum ludo de sonaĵo!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Blokataj uzantoj</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Neniu blokata kontakto</string>
+  <string name="BlockedUsersActivity__block_user">Ĉu bloki la uzanton?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">„%1$s“ ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
   <string name="BlockedUsersActivity__block">Bloki</string>
+  <string name="BlockedUsersActivity__unblock_user">Ĉu malbloki la uzanton?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Ĉu vi volas malbloki „%1$s“?</string>
   <string name="BlockedUsersActivity__unblock">Malbloki</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Ĉu bloki kaj forlasi %1$s?</string>
@@ -296,6 +303,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Nurunufoje videblaj elirantaj aŭdvidaĵoj estas aŭtomate forigitaj post ilia sendado</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Vi jam vidis tiun mesaĝon</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vi povas aldoni notojn al vi mem en tiu interparolo.\nSe via konto estas ligita al aliaj aparatoj, novaj notoj sinkroniĝos.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupanoj havas la saman nomon.</string>
+  <string name="ConversationFragment__tap_to_review">Tuŝeti por kontroli</string>
+  <string name="ConversationFragment__review_requests_carefully">Kontroli la petojn zorgeme</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal trovis plian kontakton kun la sama nomo.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ne estas foliumilo instalata sur via aparato.</string>
   <!--ConversationListFragment-->
@@ -455,13 +466,47 @@
   <string name="GroupManagement_learn_more">Scii pli</string>
   <string name="GroupManagement_invite_multiple_users">Vi ne povas aŭtomate aldoni tiujn uzantoj al tiu grupo.\n\nIli estis invititaj kaj ne vidos iujn grupmesaĝojn, antaŭ ol ili akceptas la inviton.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Kio estas novtipaj grupoj?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Novtipaj grupoj havas trajtojn kiel @menciojn kaj grupadministrantojn, kaj pliajn estontece.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Ĉiuj mesaĝoj kaj aŭdvidaĵoj konserviĝis tiel, kiel ili estis antaŭ la ĝisdatigon.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Tiuj ĉi ano bezonos akcepti inviton por anigi la grupon ree, kaj li aŭ ŝi ne ricevos grupmesaĝojn ĝis ŝia aŭ lia akcepto:</item>
+    <item quantity="other">Tiuj ĉi anoj bezonos akcepti inviton por anigi la grupon ree, kaj ili ne ricevos grupmesaĝojn ĝis ilia akcepto:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Ĝisdatigi al novtipa grupo</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Ĝisdatigi tiun ĉi grupon</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Novtipaj grupoj havas trajtojn kiel @menciojn kaj grupadministrantojn, kaj pliajn estontece.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Ĉiuj mesaĝoj kaj aŭdvidaĵoj konserviĝis tiel, kiel ili estis antaŭ la ĝisdatigon.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Okazis reta eraro. Reprovu poste.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Malsukcesa ĝisdatigo.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Tiuj ĉi ano bezonos akcepti inviton por anigi la grupon ree, kaj li aŭ ŝi ne ricevos grupmesaĝojn ĝis ŝia aŭ lia akcepto:</item>
+    <item quantity="other">Tiuj ĉi anoj bezonos akcepti inviton por anigi la grupon ree, kaj ili ne ricevos grupmesaĝojn ĝis ilia akcepto:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Tiuj ĉi ano ne povas anigi novtipajn grupojn, kaj ŝi aŭ li foriĝos de la grupo:</item>
+    <item quantity="other">Tiuj ĉi anoj ne povas anigi novtipajn grupojn, kaj ili foriĝos de la grupo:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Por uzi @menciojn kaj grupadministrantojn, ĝisdatigu tiun ĉi grupon.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ne nun</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualigi grupon</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d ano ne povis re-aldoniĝi al la novtipa grupo. Ĉu vi volas aldoni ŝin aŭ lin nun?</item>
+    <item quantity="other">%1$d anoj ne povis re-aldoniĝi al la novtipa grupo. Ĉu vi volas aldoni ilin nun?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Aldoni anon</item>
+    <item quantity="other">Aldoni anojn</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne nun</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Ĉu aldoni anon?</item>
+    <item quantity="other">Ĉu aldoni anojn?</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Ĉu forlasi grupon?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Vi ne plu povos ricevi aŭ sendi mesaĝojn en tiu grupo.</string>
@@ -1872,6 +1917,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__typing_indicators">Tajp-indikiloj</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se tajp-indikiloj ne estas ŝaltitaj, vi ne vidos aliulajn tajp-indikilojn.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Peti al la klavaro malŝalti personan lernadon</string>
+  <string name="preferences_app_protection__blocked_users">Blokataj uzantoj</string>
   <string name="preferences_chats__when_using_mobile_data">Kiam uziĝas sendrataj datumoj</string>
   <string name="preferences_chats__when_using_wifi">Kiam uziĝas vifio</string>
   <string name="preferences_chats__when_roaming">Dum retmigrado</string>

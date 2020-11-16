@@ -114,7 +114,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">تماس ورودی</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">تصویر ذخیره نشد.</string>
+  <string name="CameraActivity_image_save_failure">ذخیرهٔ تصویر ناموفق بود.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">برای عکس ضربه بزنید، برای ویدئو نگه دارید</string>
   <string name="CameraXFragment_capture_description">گرفتن تصویر</string>
@@ -298,7 +298,7 @@
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">این پیام برای همه در این مکالمه حذف خواهد شد اگر آن‌ها از نسخه‌های اخیر Signal استفاده کنند. آن‌ها قادر خواهند بود ببینند که شما پیامی را پاک کردید.</string>
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
-  <string name="ConversationFragment_failed_to_open_message">عدم موفقیت در باز کردن پیام</string>
+  <string name="ConversationFragment_failed_to_open_message">باز کردن پیام ناموفق بود</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ دهی سریع روی هر پیام به سمت راست بکشید</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ دهی سریع روی هر پیام به سمت چپ بکشید</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل‌های رسانه‌ای یکبار مصرف خروجی، پس از ارسال به صورت خودکار حذف می‌شوند</string>
@@ -475,8 +475,22 @@
     <item quantity="other">این اعضا نیاز به پذیرفتن دعوت برای پیوستن به گروه خواهند داشت و پیام‌های گروه را تا زمانی که بپذیرند دریافت نخواهند کرد:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">ارتقا به گروه جدید</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">ارتقا این گروه</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">گروه‌های جدید دارای قابلیت‌هایی مانند @اشاره‌ها و مدیران گروه هستند و از قابلیت‌های بیشتری در آینده پشتیبانی خواهند کرد.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">تمام تاریخچهٔ پیام و رسانه از قبل از ارتقا حفظ خواهند شد.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">برخورد با خطای شبکه. دوباره تلاش کنید.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ارتقا ناموفق بود.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">این عضو نیاز خواهند داشت تا دعوتی را برای پیوستن دوباره به گروه بپذیرد و پیام‌های گروه را تا زمانی که نپذیرد دریافت نخواهد کرد:</item>
+    <item quantity="other">این اعضا نیاز خواهند داشت تا دعوتی را برای پیوستن دوباره به گروه بپذیرند و پیام‌های گروه را تا زمانی که نپذیرند دریافت نخواهند کرد:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">این عضو قابلیت پیوستن به گروه‌های جدید را ندارد و از گروه حذف خواهد شد:</item>
+    <item quantity="other">این اعضا قابلیت پیوستن به گروه‌های جدید را ندارند و از گروه حذف خواهند شد:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">برای دسترسی به قابلیت‌های جدید مثل اشاره‌ها@ و مدیران این گروه را ارتقا دهید.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">حالا نه</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">به روز رسانی گروه</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
@@ -503,8 +517,8 @@
     <item quantity="other">افزودن اعضا</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-    <item quantity="one">افزودن اعضا موفق نبود. دوباره امتحان کنید.</item>
-    <item quantity="other">افزودن عضو موفق نبود. دوباره امتحان کنید.</item>
+    <item quantity="one">افزودن عضو ناموفق بود. دوباره امتحان کنید.</item>
+    <item quantity="other">افزودن اعضا ناموفق بود. دوباره امتحان کنید.</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
     <item quantity="one">قابلیت افزودن عضو وجود ندارد.</item>
@@ -571,7 +585,7 @@
   <string name="AddGroupDetailsFragment__group_name_required">نام گروه (ضروری)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">پر کردن این قسمت الزامی است.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">گروه‌ها باید حداقل دو عضو داشته باشند.</string>
-  <string name="AddGroupDetailsFragment__group_creation_failed">ایجاد گروه با مشکل مواجه شد.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">ایجاد گروه موفق نبود.</string>
   <string name="AddGroupDetailsFragment__try_again_later">بعداً دوباره امتحان کنید.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">شما مخاطبی را انتخاب کردید که از گروه‌های Signal پشتیبانی نمی‌کند، پس این یک گروه فراپیامی (MMS) خواهد بود.</string>
   <string name="AddGroupDetailsFragment__remove">حذف</string>
@@ -621,13 +635,16 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">فقط مدیران می‌توانند پیوند قابل اشتراک گروه را بازنشانی کنند.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">شما اجازهٔ انجام این کار را ندارید</string>
   <string name="ManageGroupActivity_not_capable">کسی که شما به گروه اضافه کردید از گروه‌های جدید پشتیبانی نمی‌کند و باید Signal را به‌روزرسانی کند</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group">به‌روزرسانی گروه با اشکال مواجه شد</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">به‌روزرسانی گروه ناموفق بود.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">شما عضو گروه نیستید</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">به‌روزرسانی گروه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">به‌روزرسانی گروه به علت اشکال شبکه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ویرایش نام و عکس</string>
   <string name="ManageGroupActivity_legacy_group">گروه موروثی</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">این یک گروه قدیمی است. قابلیت‌هایی نظیر مدیران گروه فقط در گروه‌های جدید موجود هستند.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">این گروه یک گروه قدیمی است. برای دسترسی به قابلیت‌های جدید همانند اشاره‌ها@ و مدیران،</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">این گروه قدیمی نمی‌تواند به یک گروه جدید ارتقا پیدا کند چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">این گروه را ارتقا دهید.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">این یک گروه فراپیامی ناامن است. برای گفتگوی خصوصی و دسترسی به قابلیت‌هایی مثل نام‌ گروه، مخاطبین خود را به Signal دعوت کنید.</string>
   <string name="ManageGroupActivity_invite_now">همین حالا دعوت کنید</string>
   <!--GroupMentionSettingDialog-->
@@ -1014,6 +1031,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که نپذیرید او متوجه نمی‌شود که پیامش را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">آیا به %1$s اجازه می‌دهید که به شما پیام دهد و نام و عکس خود را با او به اشتراک می‌گذارید؟ تا زمانی که مسدودیت او را رفع نکنید هیچ پیامی دریافت نخواهید کرد.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">آیا به مکالمه با این گروه ادامه می‌دهید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">این گروه را برای فعال‌سازی قابلیت‌های جدید همانند اشاره‌ها@ و مدیران ارتقا دهید. اعضایی که که نام یا عکس خود را در این گروه به اشتراک نگذاشته‌اند برای پیوستن دعوت خواهند شد.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">این گروه قدیمی دیگر نمی‌تواند استفاده شود چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">آیا به مکالمه با %1$s ادامه می‌دهید و نام و عکس خود را با او به اشتراک می‌گذارید؟</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">آیا می‌خواهید به این گروه بپیوندید و نام و عکس خود را با اعضای آن به اشتراک بگذارید؟ تا زمانی که نپذیرید آن‌ها متوجه نمی‌شوند که پیام‌شان را خوانده‌اید.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">به این گروه می‌پیوندید؟ تا زمانی که نپذیرید آن‌ها متوجه نخواهند شد که پیام‌شان را خوانده‌اید.</string>
@@ -1200,7 +1219,7 @@
     <item quantity="other">شما  %d قدم از ارسال گزارش اشکال‌زدایی فاصله دارید.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ما باید تأیید کنیم که شما یک انسان هستید.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">عدم موفقیت در تأیید کپچا</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">تأیید CAPTCHA ناموفق بود</string>
   <string name="RegistrationActivity_next">بعدی</string>
   <string name="RegistrationActivity_continue">ادامه</string>
   <string name="RegistrationActivity_continue_d_attempts_left">ادامه (%d تلاش دیگر باقی مانده است)</string>
@@ -1224,7 +1243,7 @@
   <string name="RevealableMessageView_viewed">دیده شد</string>
   <string name="RevealableMessageView_media">رسانه</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">عدم موفقیت در ذخیره تغییرات تصویر</string>
+  <string name="ScribbleActivity_save_failure">ذخیرهٔ تغییرات تصویر ناموفق بود</string>
   <!--Search-->
   <string name="SearchFragment_no_results">هیچ نتیجه‌ای برای \'%s\' یافت نشد</string>
   <string name="SearchFragment_header_conversations">مکالمه‌ها</string>
@@ -1279,13 +1298,13 @@
   <string name="StickerPackPreviewActivity_install">نصب</string>
   <string name="StickerPackPreviewActivity_remove">حذف</string>
   <string name="StickerPackPreviewActivity_stickers">استیکرها</string>
-  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">عدم موفقیت در بارگذاری بسته استیکر</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">بارگیری بستهٔ استیکر ناموفق بود</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">ویرایش</string>
   <string name="SubmitDebugLogActivity_done">انجام شد</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">برای حذف هر خط روی آن ضربه بزنید</string>
   <string name="SubmitDebugLogActivity_submit">ارسال</string>
-  <string name="SubmitDebugLogActivity_failed_to_submit_logs">ارسال گزارش با مشکل مواجه شد</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">ارسال گزارش ناموفق بود</string>
   <string name="SubmitDebugLogActivity_success">موفقیت!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">این ‌‌URL را کپی کرده و آن را به گزارش اشکال یا ایمیل پشتیبانی اضافه کنید:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
@@ -1402,7 +1421,7 @@
   <string name="MessageNotifier_locked_message">پیام قفل شده</string>
   <string name="MessageNotifier_media_message_with_text">پیام رسانه‌ای: %s</string>
   <string name="MessageNotifier_message_delivery_failed">تحویل پیام ناموفق بود.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">عدم موفقیت در تحویل پیام.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">تحویل پیام ناموفق بود.</string>
   <string name="MessageNotifier_error_delivering_message">خطا در تحویل پیام.</string>
   <string name="MessageNotifier_mark_all_as_read">علامت‌گذاری همه به صورت خوانده شده</string>
   <string name="MessageNotifier_mark_read">علامت‌گذاری به صورت خوانده شده</string>
@@ -1768,7 +1787,7 @@
   <string name="message_details_recipient_header__read_by">خوانده شد توسط</string>
   <string name="message_details_recipient_header__not_sent">ارسال نشد</string>
   <!--message_Details_recipient-->
-  <string name="message_details_recipient__failed_to_send">عدم موفقیت در ارسال</string>
+  <string name="message_details_recipient__failed_to_send">ارسال ناموفق بود</string>
   <string name="message_details_recipient__new_safety_number">شمارهٔ امنیتی جدید</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">ایجاد گذرواژه</string>
@@ -2157,7 +2176,7 @@
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پین‌ها مطابقت ندارند. دوباره تلاش کنید.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">پین خود را تأیید کنید</string>
-  <string name="ConfirmKbsPinFragment__pin_creation_failed">پین ایجاد نشد</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">ایجاد پین ناموفق بود</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">پین شما ذخیره نشد. ما بعداً از شما خواهیم خواست تا یک پین دیگر ایجاد کنید.</string>
   <string name="ConfirmKbsPinFragment__pin_created">پین ایجاد شد.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">پین خود را دوباره وارد نمایید</string>
@@ -2290,7 +2309,7 @@
   <string name="ChatsPreferenceFragment_last_backup_s">آخرین پشتیبان: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">در حال انجام</string>
   <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string>
-  <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری موفق نبود</string>
+  <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری ناموفق بود</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس پشتیبان‌ شما حذف شده یا انتقال یافته است.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">حجم فایل پشتیبان شما برای نگهداری در این محل زیاد است.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">فضای کافی برای نگهداری پشتیبان شما وجود ندارد.</string>
@@ -2326,8 +2345,8 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">رمز Signal خود را تائید کنید</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">مطمئن شوید که پین خود را بخاطر سپرده یا آن را به صورت امن نگه‌داری کنید، چون قابل بازیابی نیست. اگر پین‌ خود را فراموش کردید، ممکن است در زمان ثبت‌نام دوباره اطلاعاتی را از دست بدهید.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
-  <string name="preferences_app_protection__failed_to_enable_registration_lock">قفل ثبت‌نام فعال نشد.</string>
-  <string name="preferences_app_protection__failed_to_disable_registration_lock">قفل ثبت‌نام غیرفعال نشد.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">فعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">غیرفعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
   <string name="AppProtectionPreferenceFragment_none">هیچکدام</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">پین قفل ثبت‌نام همان کد تأییدی که الان از طریق پیامک دریافت کردید نیست. لطفاً رمزی را که قبلاً در برنامه تنظیم کرده بودید را وارد کنید.</string>
   <string name="registration_activity__registration_lock_pin">پین قفل ثبت‌نام</string>
@@ -2414,7 +2433,7 @@
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» مسدود شد.</string>
-  <string name="BlockedUsersActivity__failed_to_block_s">مسدود کردن «%1$s» موفق نبود</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">مسدود کردن «%1$s» ناموفق بود</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">مسدودیت «%1$s» رفع شد.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">بازبینی اعضا</string>
@@ -2433,7 +2452,7 @@
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">حذف %1$s از گروه؟</string>
   <string name="ReviewCardDialogFragment__remove">حذف</string>
-  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">حذف عضو گروه موفق نبود.</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">حذف عضو گروه ناموفق بود.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">عضو</string>
   <string name="ReviewCard__request">درخواست</string>

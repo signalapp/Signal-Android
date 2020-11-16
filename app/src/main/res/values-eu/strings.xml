@@ -476,8 +476,22 @@
     <item quantity="other">Talde honetan berriro sartzeko, kide hauek gonbidapena onartu beharko dute; ez dute talde mezurik jasoko onartu arte:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Eguneratu Talde Berrira</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Eguneratu talde hau</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Talde Berriek ezaugarri berriak dituzte, hala nola, @aipamenak eta talde administrazaileak; etorkizunean ezaugarri gahiago izango dituzte.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Mezuen historiala eta multimedia eduki guztiak eguneraketa egin baino lehenagoko egoeran mantenduko dira.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Sare errore bat izan da. Saia zaitez beranduago.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Ezin izan da eguneratu.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Talde honetan berriro sartzeko, kide honek gonbidapena onartu beharko du; ez du talde mezurik jasoko onartu arte:</item>
+    <item quantity="other">Talde honetan berriro sartzeko, kide hauek gonbidapena onartu beharko dute; ez dute talde mezurik jasoko onartu arte:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Kide hau ezin da Talde Berrietara gehitu eta taldetik ezabatuko da:</item>
+    <item quantity="other">Kide hauek ezin dira Talde Berrietara gehitu eta taldetik ezabatuko dira:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@aipamenak eta admnistratzaileak moduko ezaugarri berriak erabili ahal izateko, eguneratu talde hau.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Orain ez</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Taldea eguneratu</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
@@ -629,6 +643,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Editatu izena eta irudia</string>
   <string name="ManageGroupActivity_legacy_group">Jarauntsitako Taldea</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Hau Jarauntsitako Talde bat da. Talde administratzaile moduko ezaugarriak Talde Berrietan erabil daitezke bakarrik.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Hau Jarauntsitako Talde bat da. Talde administratzaile eta @aipamenak moduko ezaugarriak erabili ahal izateko, </string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Jarauntsitako Talde Hau ezin da Talde Berrira eguneratu oso handia delako. Gehienezko talde tamaina %1$d da.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">eguneratu talde hau.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Hau segurtasunik gabeko MMS Talde bat da. Modu pribatuan txateatzeko eta talde izenak moduko ezaugarriak erabili ahal izateko, Signalera gonbidatu zure kontaktuak.</string>
   <string name="ManageGroupActivity_invite_now">Gonbidatu orain</string>
   <!--GroupMentionSettingDialog-->
@@ -1015,6 +1032,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partekatzeko. Zuk onartu arte ez dute jakingo beraien mezua ikusi duzunik.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s erabiltzaileari baimena eman nahi diozu zuri mezuak bidaltzeko eta zure izena eta argazkia beraiekin partzekatzeko. Ez duzu mezurik jasoko zuk desblokeatu arte.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Jarraitu nahi duzu talde honekin duzun solasaldian eta zure izena eta argazkia bere kideekin partekatu?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Eguneratu talde hau ezaugarri berriak, hala nola @aipamenak eta administratzaileak, aktibatzeko. Bere izen edo argazkia partekatu ez duten kideek taldera sartzeko gonbidatuak izango dira.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jarauntsitako Talde Hau ezin da erabili jadanik oso handia delako. Gehienezko talde tamaina %1$d da.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Jarraitu nahi duzu %1$s erabiltzailearekin duzun solasaldian eta zure izena eta argazkia berarekin partekatu?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu eta zure izena eta argazkia kideekin partekatu nahi duzu? Zuk onartu arte, ez dute jakingo beraien mezuak ikusi duzunik.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Talde honetara sartu nahi duzu? Onartu arte ez dute jakingo beraien mezuak ikusi dituzunik.</string>
@@ -1700,8 +1719,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="import_fragment__import_system_sms_database">Inportatu sistemaren SMS datubasea</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Inportatu sistemako mezulari aplikazio lehenetsiaren datu-basea.</string>
   <string name="import_fragment__import_plaintext_backup">Inportatu zifratu gabeko babeskopia</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">
-Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babeskopia bat.</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Inportatu \'SMSBackup &amp;  Restore\' aukerarekin bateragarria den enkriptatu gabeko babeskopia bat.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Ikusi solasaldi osoa</string>
   <string name="load_more_header__loading">Kargatzen</string>
@@ -1721,7 +1739,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="prompt_passphrase_activity__unlock">Desblokeatu</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signalek MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Medio eta talde mezuak bidaltzeko, ukitu \'Ados\' eta osatu behar diren ezarpenak. Zure hornitzailearentzako ezarpenak normalean topa daitezke zure hornitzailearen APNa bilatuz. Bakarrik behin egin beharko duzu hau.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Medio eta talde mezuak bidaltzeko, ukitu \'Ados\' eta osatu beharrezkoak diren ezarpenak. Zure hornitzailearentzako ezarpenak normalean topa daitezke zure hornitzailearen APNa bilatuz. Bakarrik behin egin beharko duzu hau.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Izena (beharrezkoa)</string>
   <string name="CreateProfileActivity_last_name_optional">Abizena (aukerazkoa)</string>
@@ -1737,7 +1755,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="redphone_call_card__signal_call">Signal deia</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONO ZENBAKIA</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signalek komunikatzea erraz bihurtzen du, zure telefono zenbaki eta helbide-liburua erabiliz. Zurekin harremanetan nola jarri dakiten lagunek eta kontaktuek modu errazean komunikatu ahal izango dira zurekin Signalen bitartez.\n\nErregistratzeak kontaktuei buruzko zenbait datu igortzen du zerbitzarira. Aipatutako datuak ez dira gordeko.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signalek komunikatzea erraza egiten du, zure telefono zenbaki eta helbide-liburua erabiliz. Zurekin harremanetan nola jarri dakiten lagunek eta kontaktuek modu errazean komunikatu ahal izango dira zurekin Signalen bitartez.\n\nErregistratzeak kontaktuei buruzko zenbait datu igortzen du zerbitzarira. Aipatutako datuak ez dira gordeko.</string>
   <string name="registration_activity__verify_your_number">Zure zenbakia egiaztatzen</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Idatzi zure telefono zenbakia egiaztatze-kode bat lortzeko. Telefono-konpainiaren arabera kostua izan dezake mezu honek.</string>
   <!--recipients_panel-->
@@ -1862,7 +1880,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences__pref_enter_sends_title">Enter tekla sakatutakoan</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tekla sakatzeak testu mezuak bidaliko ditu</string>
   <string name="preferences__generate_link_previews">Sortu esteken aurrebistak</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Eskaratu esteken aurrebistak zuzenean webguneetatik eta erabili bidaltzen dituzun mezuetan.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Eskuratu esteken aurrebistak zuzenean webguneetatik eta erabili bidaltzen dituzun mezuetan.</string>
   <string name="preferences__choose_identity">Aukeratu nortasuna</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Hautatu zure kontaktua kontaktuen zerrendatik.</string>
   <string name="preferences__change_passphrase">Aldatu pasaesaldia</string>
@@ -1990,9 +2008,9 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_notifications__priority">Lehentasuna</string>
   <string name="preferences_communication__category_sealed_sender">Igorle Zigilatuta</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Erakutsi adierazpenak</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">\"Igorle zigilatuta\" aukera erabiliz bidali diren mezuetan, \"mezuaren xehetasunak\" hautatzen duzunean,  egoera-ikono bat erakutsi.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">\"Igorle zigilatuta\" aukera erabiliz bidali diren mezuetan, egoera-ikono bat erakutsi \"Mezuaren xehetasunak\" hautatzen duzunean.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Edozeinengandik onartu</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Nahiz eta zure kontaktuetan ez egon eta beraiekin zure profila ez partekatu, gaitu igorle zigilatuta horrelako erabiltzaileek bidaltzen dituzten mezuetarako.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktibatu igorle zigilatuta zure kontaktuetan ez dauden edo zure profila partekatu ez duzun erabiltzaileek bidaltzen dituzten mezuetarako.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Gehiago jakin</string>
   <string name="preferences_notifications__mentions">Aipamenak</string>
   <string name="preferences_notifications__notify_me">Jakinarazi iezadazu</string>

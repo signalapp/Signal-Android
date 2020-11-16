@@ -1271,8 +1271,8 @@
   <string name="ThreadRecord_view_once_photo">一次性照片</string>
   <string name="ThreadRecord_view_once_video">一次性影片</string>
   <string name="ThreadRecord_view_once_media">一次性多媒體檔案</string>
-  <string name="ThreadRecord_this_message_was_deleted">這個訊息已經被刪除。</string>
-  <string name="ThreadRecord_you_deleted_this_message">你刪除了此訊息。</string>
+  <string name="ThreadRecord_this_message_was_deleted">此訊息已被刪除。</string>
+  <string name="ThreadRecord_you_deleted_this_message">你已刪除此訊息。</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 了！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">自動銷毀訊息功能已被關閉。</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設定為 %s</string>
@@ -1385,7 +1385,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">對你的一次性觀看照片作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">對你的一次性觀看影片作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖作出了 %1$s 反應。</string>
-  <string name="MessageNotifier_this_message_was_deleted">這個訊息已經被刪除。</string>
+  <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">關閉聯絡人已加入Signal 的通知嗎？你可以在次開啟他們在 Signal &gt; 設定 &gt; 通知。</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">預設</string>

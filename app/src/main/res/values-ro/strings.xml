@@ -83,8 +83,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Eroare la redarea audio!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Utilizatori blocați</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Adaugă un utilizator blocat</string>
   <string name="BlockedUsersActivity__blocked_users_will">Utilizatorii blocați nu vor putea să te sune sau să îți trimită mesaje.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Nu există utilizatori blocați</string>
+  <string name="BlockedUsersActivity__block_user">Blocați utilizatorul?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" nu vă va putea apela sau trimite mesaje.</string>
   <string name="BlockedUsersActivity__block">Blochează</string>
+  <string name="BlockedUsersActivity__unblock_user">Deblocați utilizatorul?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Doriți să deblocați pe \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Deblochează</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blocați și părăsiți %1$s?</string>
@@ -308,6 +315,9 @@
   <string name="ConversationFragment_you_already_viewed_this_message">Ați văzut deja acest mesaj</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puteți adăuga notiţe pentru dvs. în această conversație.\nDacă contul dvs. are dispozitive asociate, notiţele noi vor fi sincronizate.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membrii ai grupului au același nume.</string>
+  <string name="ConversationFragment__tap_to_review">Atingeți pentru examinare</string>
+  <string name="ConversationFragment__review_requests_carefully">Examinați cu atenție solicitările</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal a găsit un alt contact cu același nume.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
@@ -476,12 +486,29 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Ce sunt Noile Grupuri?</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tot istoricul mesajelor și conținutul media a fost păstrat înainte de actualizare.</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualizează la noul grup</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Actualizează acest grup</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">Nu acum</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizează grup</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Adăugați membru</item>
+    <item quantity="few">Adăugați membrii</item>
+    <item quantity="other">Adăugați membrii</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Nu acum</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Adăugați membru?</item>
+    <item quantity="few">Adăugați membrii?</item>
+    <item quantity="other">Adăugați membrii?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Adăugați membru</item>
+    <item quantity="few">Adăugați membrii</item>
+    <item quantity="other">Adăugați membrii</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Părăsiți grupul?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nu vei mai putea trimite sau primi mesaje in acest grup.</string>
@@ -608,6 +635,7 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Editare nume și poză</string>
   <string name="ManageGroupActivity_legacy_group">Grup vechi</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Funcții precum administratorii de grup sunt disponibile doar grupurilor noi.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">actualizați acest grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Acesta este un grup MMS nesigur. Pentru a comunica în mod privat și a accesa funcții precum numele de grupuri, invitați-vă contactele la Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invită acum</string>
   <!--GroupMentionSettingDialog-->
@@ -1148,12 +1176,21 @@
   <string name="WebRtcCallView__signal_video_call">Apel video Signal…</string>
   <string name="WebRtcCallView__start_call">Începeți apelul</string>
   <string name="WebRtcCallView__join_call">Alătură-te apelului</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" Apel de grup</string>
   <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
   <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
   <string name="WebRtcCallView__connecting">Se conectează…</string>
   <string name="WebRtcCallView__reconnecting">Se reconectează…</string>
+  <string name="WebRtcCallView__joining">Se alătură…</string>
   <string name="WebRtcCallView__disconnected">Deconectat</string>
   <string name="WebRtcCallView__no_one_else_is_here">Nu este nimeni aici</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s este în acest apel </string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s și %2$s sunt în acest apel</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
+    <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
+    <item quantity="other">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">În acest apel · %1$d persoană</item>
@@ -1939,6 +1976,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__typing_indicators">Indicatori tastare</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Dacă indicatorii de tastare sunt dezactivați, nu vei putea vedea indicatorii de tastare de la ceilalți.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitați tastaturii dezactivarea învățării personalizate</string>
+  <string name="preferences_app_protection__blocked_users">Utilizatori blocați</string>
   <string name="preferences_chats__when_using_mobile_data">Când se utilizează datele mobile </string>
   <string name="preferences_chats__when_using_wifi">Când se utilizează Wi-Fi </string>
   <string name="preferences_chats__when_roaming">Când se utilizează roaming-ul </string>
@@ -2001,6 +2039,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Mesaj nou către…</string>
+  <string name="contact_selection_list__unknown_contact_block">Blocați utilizatorul</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Adaugaţi la grup</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Apelează</string>
@@ -2419,8 +2458,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s la %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" a fost blocat.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Blocarea utilizatorului \"%1$s\" a eșuat</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" a fost deblocat.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Revizuire membrii</string>
+  <string name="ReviewCardDialogFragment__review_request">Revizuire solicitări</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nu există alte grupuri în comun.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Niciun grup în comun.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">

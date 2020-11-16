@@ -77,8 +77,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">音声再生中にエラーが発生しました！</string>
   <!--BlockedUsersActivity-->
-  <string name="BlockedUsersActivity__blocked_users_will">ブロックされたユーザは、あなたにメッセージや通話を発信することができなくなります。</string>
+  <string name="BlockedUsersActivity__blocked_users">ブロック中のユーザ</string>
+  <string name="BlockedUsersActivity__add_blocked_user">ブロックするユーザを追加する</string>
+  <string name="BlockedUsersActivity__blocked_users_will">ブロックされたユーザは、あなたにメッセージや通話の発信ができなくなります。</string>
+  <string name="BlockedUsersActivity__no_blocked_users">ブロック中のユーザはいません</string>
+  <string name="BlockedUsersActivity__block_user">ユーザをブロックしますか？</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">「%1$s」は、あなたにメッセージや通話の発信ができなくなります。</string>
   <string name="BlockedUsersActivity__block">ブロックする</string>
+  <string name="BlockedUsersActivity__unblock_user">ユーザのブロックを解除しますか？</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">「%1$s」のブロックを解除しますか？</string>
   <string name="BlockedUsersActivity__unblock">ブロックを解除する</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s から抜けてブロックしますか？</string>
@@ -288,6 +295,8 @@
   <string name="ConversationFragment_you_already_viewed_this_message">このメッセージは閲覧済みです</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">この会話に自分用のメモを追加できます。\n新しいメモはリンク済み端末にも同期されます。</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d人のグループメンバーが同じ名前です。</string>
+  <string name="ConversationFragment__tap_to_review">タップして確認</string>
+  <string name="ConversationFragment__review_requests_carefully">慎重に申請を確認してください</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signalは同じ名前で別の連絡先を見つけました。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
@@ -443,19 +452,52 @@
   <string name="GroupManagement_invite_multiple_users">これらのユーザをを自動的にこのグループに追加することはできません。\n\nユーザは招待を受け入れるまで、グループメッセージを閲覧できません。</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">新しいグループとは？</string>
-  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">新グループには、@mentionや管理者機能などがあります。将来、新しい機能も追加されます。</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">新しいグループには、@メンションやグループ管理者機能などがあります。将来、新しい機能も追加されます。</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">すべてのメッセージ履歴とメディアは、アップグレード前から維持されています。</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="other">以下のメンバーがこのグループに再参加するには、招待を受け入れる必要があり、それまではグループメッセージを受信することはありません:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">新グループにアップグレード</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">新しいグループにアップグレード</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">このグループをアップグレードする</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">新グループには、@mentionや管理者機能などがあります。将来、新しい機能も追加されます。</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">すべてのメッセージ履歴とメディアは、新グループに引き継がれます。</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ネットワークエラーが発生しました。あとで再度試してください。</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">アップグレードに失敗しました。</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="other">以下のメンバーがこのグループに再参加するには、招待を受け入れる必要があり、それまではグループメッセージを受信することはありません:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="other">以下のメンバーは新しいグループに参加できないため、グループから削除されます:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">メンションや管理機能を利用するには、このグループをアップグレードしてください。</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">今はしない</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">グループを更新する</string>
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@メンションや管理者などの新機能を使用するには、このグループをアップグレードしてください。</string>
+  <string name="GroupsV1MigrationInitiationReminder_not_now">いまはしない</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">グループをアップデートしてください</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">今はしない</string>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="other">%1$d人のメンバーが、新しいグループに再参加できませんでした。このメンバーをいま追加しますか？</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="other">メンバーを追加する</item>
+  </plurals>
+  <string name="GroupsV1MigrationSuggestionsReminder_not_now">いまはしない</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="other">メンバーを追加しますか？</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="other">以下のメンバーは、新しいグループにアップグレードした際に、自動で追加できませんでした:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="other">メンバーを追加する</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="other">メンバーの追加に失敗しました。あとで再度試してください。</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="other">メンバーを追加できません。</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">グループを抜けますか？</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">このグループでのメッセージ送受信ができなくなります。</string>
@@ -566,6 +608,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">名前と写真の編集</string>
   <string name="ManageGroupActivity_legacy_group">レガシーグループ</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">これはレガシーグループです。グループ管理者などの機能は新しいグループでのみ利用可能です。</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">これはレガシーグループです。@メンションや管理者などの新機能を使用するには、</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">このレガシーグループは大きすぎるため、新しいグループにアップグレードできません。グループの最大人数は%1$d人です。</string>
+  <string name="ManageGroupActivity_upgrade_this_group">このグループをアップグレードしてください。</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットしたりグループ名などの機能を利用するには、連絡先をSignalに招待してください。</string>
   <string name="ManageGroupActivity_invite_now">招待する</string>
   <!--GroupMentionSettingDialog-->
@@ -802,6 +847,9 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s が消えるメッセージのタイマーを%2$sに設定しました。</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">消えるメッセージのタイマーが%1$sに設定されました。</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">このグループは新しいグループにアップデートされました。</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="other">%1$s人のメンバーが新しいグループに追加できなかったため、招待を送信しました。</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s がプロフィール名を %2$s に変更しました。</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s がプロフィール名を %2$s から %3$s に変更しました。</string>
@@ -932,6 +980,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s からメッセージを受信し、あなたの名前と画像を共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s にあなたへのメッセージ送信や、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">このグループとの会話を継続して、あなたの名前と画像をそのメンバーと共有しますか？</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@メンションや管理者などの機能を有効にするため、グループをアップグレードしてください。名前や写真を共有していないグループメンバーは、改めて招待されます。</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">このレガシーグループは大きすぎるため使用できません。グループの最大人数は%1$d人です。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s との会話を継続して、あなたの名前と画像を共有しますか？</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、あなたの名前と画像をメンバーと共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加しますか？招待を受け入れるまで、あなたがメッセージを見たことは他のメンバーにはわかりません。</string>
@@ -1062,13 +1112,20 @@
   <string name="WebRtcCallView__signal_voice_call">Signal音声通話…</string>
   <string name="WebRtcCallView__signal_video_call">Signalビデオ通話…</string>
   <string name="WebRtcCallView__start_call">通話を開始する</string>
-  <string name="WebRtcCallView__join_call">通話に参加</string>
+  <string name="WebRtcCallView__join_call">通話に参加する</string>
+  <string name="WebRtcCallView__s_group_call">「%1$s」グループ通話</string>
   <string name="WebRtcCallView__view_participants_list">参加者を確認する</string>
   <string name="WebRtcCallView__your_video_is_off">あなたの映像はオフです</string>
   <string name="WebRtcCallView__connecting">接続しています…</string>
   <string name="WebRtcCallView__reconnecting">再接続しています…</string>
+  <string name="WebRtcCallView__joining">参加しています…</string>
   <string name="WebRtcCallView__disconnected">接続していません</string>
   <string name="WebRtcCallView__no_one_else_is_here">誰も参加していません</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s が参加中</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s と %2$s が参加中</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="other">%1$s, %2$s, %3$d などが参加中</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">参加者 · %1$d人</item>
@@ -1822,6 +1879,7 @@
   <string name="preferences__typing_indicators">入力中アイコン</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">キーボードに自動学習の停止を要求します</string>
+  <string name="preferences_app_protection__blocked_users">ブロック中のユーザ</string>
   <string name="preferences_chats__when_using_mobile_data">モバイルデータ通信利用時</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi利用時</string>
   <string name="preferences_chats__when_roaming">ローミング時</string>
@@ -1884,6 +1942,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">新規メッセージ…</string>
+  <string name="contact_selection_list__unknown_contact_block">ユーザをブロックする</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">グループに追加</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">通話</string>
@@ -2253,13 +2312,13 @@
   <string name="RecipientBottomSheet_add_to_another_group">他のグループに追加</string>
   <string name="RecipientBottomSheet_view_safety_number">安全番号を表示</string>
   <string name="RecipientBottomSheet_make_group_admin">グループ管理者にする</string>
-  <string name="RecipientBottomSheet_remove_as_admin">管理者権限を取り消す</string>
+  <string name="RecipientBottomSheet_remove_as_admin">管理者から外す</string>
   <string name="RecipientBottomSheet_remove_from_group">グループから削除</string>
   <string name="RecipientBottomSheet_message_description">メッセージ</string>
   <string name="RecipientBottomSheet_voice_call_description">音声通話</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">安全ではない音声電話</string>
   <string name="RecipientBottomSheet_video_call_description">ビデオ通話</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$sのグループ管理者権限を取り消しますか?</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s をグループ管理者から外しますか？</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">「%1$s」がこのグループの設定やメンバーを編集できるようになります。</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">このグループから %1$s を削除しますか？</string>
   <string name="RecipientBottomSheet_remove">削除</string>
@@ -2288,8 +2347,12 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s から %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">「%1$s」はブロックされました。</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">「%1$s」のブロックに失敗しました</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">「%1$s」ブロックは解除されました。</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">メンバーを確認してください</string>
+  <string name="ReviewCardDialogFragment__review_request">申請の確認</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d人のグループメンバーが同じ名前です。以下のメンバーを確認して、対応してください。</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">この申請者が誰であるか不確かな場合、以下の連絡先を確認して対応してください。</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">他の共通のグループはありません</string>
@@ -2301,14 +2364,16 @@
     <item quantity="other">共通のグループは%d件あります</item>
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s をグループから削除しますか？</string>
-  <string name="ReviewCardDialogFragment__remove">消去</string>
+  <string name="ReviewCardDialogFragment__remove">削除する</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">グループメンバーの削除に失敗しました。</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">メンバー</string>
   <string name="ReviewCard__request">申請</string>
   <string name="ReviewCard__your_contact">あなたの連絡先</string>
   <string name="ReviewCard__remove_from_group">グループから削除</string>
+  <string name="ReviewCard__update_contact">連絡先をアップデートする</string>
   <string name="ReviewCard__block">ブロックする</string>
   <string name="ReviewCard__delete">削除する</string>
+  <string name="ReviewCard__recently_changed">最近、プロフィール名を %1$s から %2$s に変更しました。</string>
   <!--EOF-->
 </resources>

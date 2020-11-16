@@ -83,8 +83,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Greška prilikom reprodukcije zvuka!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Blokirani korisnici</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Dodaj blokiranog korisnika</string>
   <string name="BlockedUsersActivity__blocked_users_will">Blokirani korisnici neće biti u mogućnosti da vas nazovu ili vam pošalju poruku.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Nema blokiranih korisnika</string>
+  <string name="BlockedUsersActivity__block_user">Blokirati korisnika?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" neće Vas moći nazvati ili Vam slati poruke.</string>
   <string name="BlockedUsersActivity__block">Blokiraj</string>
+  <string name="BlockedUsersActivity__unblock_user">Deblokirati korisnika?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Želite li prestati s blokiranjem \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Deblokiraj</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokirati i napustiti %1$s?</string>
@@ -478,19 +485,71 @@
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Šta su nove grupe?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nove grupe posjeduju mogućnosti poput @spomena i administratora grupe, a više će mogućnosti dobiti u budućnosti.</string>
-  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Historija poruka i datoteke sačuvane su prije ažuriranja.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Historija poruka i datoteke sačuvane su prije nadogradnje.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Ovaj član mora prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učini neće primati grupne poruke.</item>
     <item quantity="few">Ovi članovi moraju prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učine neće primati grupne poruke.</item>
     <item quantity="other">Ovi članovi moraju prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učine neće primati grupne poruke.</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Preinači staru u novu grupu</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Nadogradi ovu grupu</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nove grupe posjeduju mogućnosti poput @spomena i administratora grupe, a više će mogućnosti dobiti u budućnosti.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Historija poruka i datoteke bit će sačuvani prije nadogradnje.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Došlo je do greške u mreži. Pokušajte ponovo kasnije.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Neuspjela nadogradnja.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Ovaj član mora prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učine neće primati grupne poruke:</item>
+    <item quantity="few">Ovi članovi moraju prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učine neće primati grupne poruke:</item>
+    <item quantity="other">Ovi članovi moraju prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učine neće primati grupne poruke:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Ovaj član ne može pristupiti novim grupama i stoga će biti uklonjen iz grupe:</item>
+    <item quantity="few">Ovi članovi ne mogu pristupiti novim grupama i stoga će biti uklonjeni iz grupe:</item>
+    <item quantity="other">Ovi članovi ne mogu pristupiti novim grupama i stoga će biti uklonjeni iz grupe:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Da biste mogli koristiti nove mogućnosti poput @spomena i administracije grupe, nadogradite ovu grupu.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ne sada</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Ažuriraj grupu</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d člana nije bilo moguće ponovo dodati u novu grupu. Želite li ga dodati sada?</item>
+    <item quantity="few">%1$d člana nije bilo moguće ponovo dodati u novu grupu. Želite li ih dodati sada?</item>
+    <item quantity="other">%1$d članova nije bilo moguće ponovo dodati u novu grupu. Želite li ih dodati sada?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Dodaj člana</item>
+    <item quantity="few">Dodaj članove</item>
+    <item quantity="other">Dodaj članove</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne sada</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Dodati člana?</item>
+    <item quantity="few">Dodati članove?</item>
+    <item quantity="other">Dodati članove?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Ovog člana nije bilo moguće automatski dodati u novu grupu nakon nadogradnje:</item>
+    <item quantity="few">Ove članove nije bilo moguće automatski dodati u novu grupu nakon nadogradnje:</item>
+    <item quantity="other">Ove članove nije bilo moguće automatski dodati u novu grupu nakon nadogradnje:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Dodaj člana</item>
+    <item quantity="few">Dodaj članove</item>
+    <item quantity="other">Dodaj članove</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Neuspjelo dodavanje člana. Pokušajte ponovo kasnije.</item>
+    <item quantity="few">Neuspjelo dodavanje članova. Pokušajte ponovo kasnije.</item>
+    <item quantity="other">Neuspjelo dodavanje članova. Pokušajte ponovo kasnije.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Nije moguće dodati člana.</item>
+    <item quantity="few">Nije moguće dodati članove.</item>
+    <item quantity="other">Nije moguće dodati članove.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Napustiti grupu?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nećete više biti u mogućnosti slati i primati poruke u ovoj grupi.</string>
@@ -617,6 +676,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Upišite ime i dodajte sliku</string>
   <string name="ManageGroupActivity_legacy_group">Stara grupa</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Ovo je stara grupa. Opcije poput grupnog administratora dostupne su samo za nove grupe.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Ovo je stara grupa. Da biste mogli koristiti opcije poput @spomena i administracije grupe,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Ova grupa ne može se preinačiti u novu grupu jer je prevelika. Maksimum za grupu iznosi %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">nadogradi ovu grupu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ovo je nezaštićena MMS grupa. Da biste razgovarali u privatnosti i imali pristup opcijama poput naziva grupe, pozovite svoje kontakte da koriste Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozovi odmah</string>
   <!--GroupMentionSettingDialog-->
@@ -1020,6 +1082,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dopustiti %1$s da Vam šalje poruke i vidi Vaše ime i sliku? On ili ona neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dopustiti %1$s da Vam šalje poruke i vidi Vaše ime i sliku? Nećete primati poruke od njega ili nje dok ih ne prestanete blokirati.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Nastaviti konverzaciju s ovom grupom i dopustiti njenim članovima da vide Vaše ime i sliku?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nadogradite ovu grupu da biste aktivirali mogućnosti poput @spomena i administracije grupe. Članovi koji nisu podijelili svoje ime ili sliku s grupom bit će pozvani da se pridruže.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ova grupa više se ne može koristiti jer je prevelika. Maksimum za grupu iznosi %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Nastaviti konverzaciju sa %1$s i dopustiti da vidi Vaše ime i sliku?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi i dopustiti članovima da vide Vaše ime i sliku? Oni neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi? Članovi neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
@@ -1161,9 +1225,22 @@
   <string name="WebRtcCallView__signal_voice_call">Signal glasovni poziv…</string>
   <string name="WebRtcCallView__signal_video_call">Signal videopoziv…</string>
   <string name="WebRtcCallView__start_call">Nazovi</string>
+  <string name="WebRtcCallView__join_call">Pridruži se pozivu</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" grupni poziv</string>
   <string name="WebRtcCallView__view_participants_list">Vidi učesnike</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš videoprikaz je isključen</string>
   <string name="WebRtcCallView__connecting">Povezivanje…</string>
+  <string name="WebRtcCallView__reconnecting">Povezujem iznova…</string>
+  <string name="WebRtcCallView__joining">Pristupam…</string>
+  <string name="WebRtcCallView__disconnected">Prekinuta veza</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Niko drugi nije tu</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s učestvuje u pozivu</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s i %2$s učestvuju u pozivu</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s i %3$d osoba učestvuju u pozivu</item>
+    <item quantity="few">%1$s, %2$s i %3$d drugih učestvuju u pozivu</item>
+    <item quantity="other">%1$s, %2$s i %3$d drugih učestvuju u pozivu</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">U ovom pozivu · %1$d osoba</item>
@@ -1952,6 +2029,7 @@
   <string name="preferences__typing_indicators">Indikatori kucanja</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako je indikator kucanja onemogućen, nećete moći vidjeti indikator kucanja od drugih.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Zahtijevaj od tastature da onemogući personalizovano učenje</string>
+  <string name="preferences_app_protection__blocked_users">Blokirani korisnici</string>
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnog interneta</string>
   <string name="preferences_chats__when_using_wifi">Prilikom korištenja Wi-Fi konekcije</string>
   <string name="preferences_chats__when_roaming">Prilikom roaminga</string>
@@ -2014,6 +2092,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nova poruka za…</string>
+  <string name="contact_selection_list__unknown_contact_block">Blokiraj korisnika</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Uvrsti u grupu</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Poziv</string>
@@ -2432,6 +2511,9 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" je blokiran/a.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Neuspjelo blokiranje \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" je deblokiran.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Provjeri članove</string>
   <string name="ReviewCardDialogFragment__review_request">Provjeri zahtjev</string>

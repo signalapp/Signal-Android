@@ -345,6 +345,7 @@
   <string name="RestoreBackupFragment__not_now">Ikke nå</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Sikkerhetskopi av samtaler</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Sikkerhetskopier krypteres med en passordfrase og lagres på enheten din.</string>
   <string name="BackupsPreferenceFragment__create_backup">Lag sikkerhetskopi</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Bekreft passordfrasen for sikkerhetskopi</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test passordfrasen din og bekreft at den stemmer overens</string>

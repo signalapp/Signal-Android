@@ -86,8 +86,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Užblokuoti naudotojai</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Pridėti užblokuotą naudotoją</string>
   <string name="BlockedUsersActivity__blocked_users_will">Užblokuoti naudotojai negalės jums skambinti ar siųsti žinutes.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Nėra užblokuotų naudotojų</string>
+  <string name="BlockedUsersActivity__block_user">Užblokuoti naudotoją?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">„%1$s“ negalės jums skambinti ar siųsti žinučių.</string>
   <string name="BlockedUsersActivity__block">Užblokuoti</string>
+  <string name="BlockedUsersActivity__unblock_user">Atblokuoti naudotoją?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Ar norite atblokuoti „%1$s“?</string>
   <string name="BlockedUsersActivity__unblock">Atblokuoti</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Užblokuoti ir išeiti iš %1$s?</string>
@@ -503,12 +510,72 @@
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Naujinti į naująją grupę</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Naujinti šią grupę</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Naujosiose grupėse yra tokios ypatybės kaip @paminėjimai, grupių administratoriai, o ateityje ypatybių bus dar daugiau.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Visa prieš naujinimą buvusi žinučių istorija ir medija bus išsaugota.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Susidurta su tinklo klaida. Vėliau bandykite dar kartą.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Nepavyko naujinti.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Šis narys, norėdamas vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
+    <item quantity="few">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
+    <item quantity="many">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
+    <item quantity="other">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Šis narys negali prisijungti prie naujosios grupės ir todėl bus iš jos pašalintas:</item>
+    <item quantity="few">Šie nariai negali prisijungti prie naujosios grupės ir todėl bus iš jos pašalinti:</item>
+    <item quantity="many">Šie nariai negali prisijungti prie naujosios grupės ir todėl bus iš jos pašalinti:</item>
+    <item quantity="other">Šie nariai negali prisijungti prie naujosios grupės ir todėl bus iš jos pašalinti:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Norėdami naudotis tokiomis ypatybėmis kaip @paminėjimai ir administratoriai, naujinkite šią grupę.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ne dabar</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Naujinti grupę</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d nario nepavyko iš naujo pridėti į naująją grupę. Ar norite pridėti jį dabar?</item>
+    <item quantity="few">%1$d narių nepavyko iš naujo pridėti į naująją grupę. Ar norite pridėti juos dabar?</item>
+    <item quantity="many">%1$d narių nepavyko iš naujo pridėti į naująją grupę. Ar norite pridėti juos dabar?</item>
+    <item quantity="other">%1$d nario nepavyko iš naujo pridėti į naująją grupę. Ar norite pridėti juos dabar?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Pridėti narį</item>
+    <item quantity="few">Pridėti narius</item>
+    <item quantity="many">Pridėti narius</item>
+    <item quantity="other">Pridėti narius</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne dabar</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Pridėti narį?</item>
+    <item quantity="few">Pridėti narius?</item>
+    <item quantity="many">Pridėti narius?</item>
+    <item quantity="other">Pridėti narius?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Atnaujinus, šio nario nepavyko automatiškai pridėti į naująją grupę:</item>
+    <item quantity="few">Atnaujinus, šių narių nepavyko automatiškai pridėti į naująją grupę:</item>
+    <item quantity="many">Atnaujinus, šių narių nepavyko automatiškai pridėti į naująją grupę:</item>
+    <item quantity="other">Atnaujinus, šių narių nepavyko automatiškai pridėti į naująją grupę:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Pridėti narį</item>
+    <item quantity="few">Pridėti narius</item>
+    <item quantity="many">Pridėti narius</item>
+    <item quantity="other">Pridėti narius</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Nepavyko pridėti nario. Vėliau bandykite dar kartą.</item>
+    <item quantity="few">Nepavyko pridėti narių. Vėliau bandykite dar kartą.</item>
+    <item quantity="many">Nepavyko pridėti narių. Vėliau bandykite dar kartą.</item>
+    <item quantity="other">Nepavyko pridėti narių. Vėliau bandykite dar kartą.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Nepavyksta pridėti nario.</item>
+    <item quantity="few">Nepavyksta pridėti narių.</item>
+    <item quantity="many">Nepavyksta pridėti narių.</item>
+    <item quantity="other">Nepavyksta pridėti narių.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Išeiti iš grupės?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Jūs daugiau šioje grupėje nebegalėsite siųsti ar gauti žinutes.</string>
@@ -643,6 +710,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Taisyti pavadinimą ir paveikslą</string>
   <string name="ManageGroupActivity_legacy_group">Pasenusi grupė</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Tai yra pasenusi grupė. Tokios ypatybės, kaip grupės administratoriai, yra prieinamos tik naujosiose grupėse.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Tai yra pasenusi grupė. Norėdami naudoti tokias ypatybes kaip @paminėjimai ir administratoriai,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Ši pasenusi grupė negali būti naujinta į naująją grupę, nes yra per didelė. Didžiausias grupės dydis yra %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">naujinkite šią grupę.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tai yra nesaugi MMS grupė. Norėdami kalbėtis privačiai ir turėti prieigą prie tokių ypatybių, kaip grupių pavadinimai, pakvieskite savo adresatus į Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pakviesti dabar</string>
   <!--GroupMentionSettingDialog-->
@@ -1063,6 +1133,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Naudotojas nežinos, kad matėte jo žinutę tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Jūs negausite jokių žinučių tol, kol neatblokuosite šio naudotojo.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tęsti jūsų pokalbį su šia grupe ir bendrinti jūsų vardą ir nuotrauką su jos nariais?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Naujinkite šią grupę, norėdami aktyvuoti tokias naujas ypatybes kaip @paminėjimai ir administratoriai. Nariai, kurie šioje grupėje nebendrino savo vardo ar nuotraukos, bus pakviesti prie jos prisijungti.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Pasenusi grupė daugiau nebegali būti naudojama, nes yra per didelė. Didžiausias grupės dydis yra %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Tęsti jūsų pokalbį su %1$s ir bendrinti jūsų vardą ir nuotrauką su šiuo žmogumi?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės ir bendrinti jūsų vardą bei nuotrauką su grupės nariais? Jie nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Prisijungti prie šios grupės? Kiti asmenys nežinos, kad matėte jų žinutes tol, kol nesutiksite.</string>
@@ -1210,12 +1282,22 @@
   <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis…</string>
   <string name="WebRtcCallView__start_call">Pradėti skambutį</string>
   <string name="WebRtcCallView__join_call">Prisijungti prie skambučio</string>
+  <string name="WebRtcCallView__s_group_call">„%1$s“ grupės skambutis</string>
   <string name="WebRtcCallView__view_participants_list">Rodyti dalyvius</string>
   <string name="WebRtcCallView__your_video_is_off">Jūsų vaizdas yra išjungtas</string>
   <string name="WebRtcCallView__connecting">Jungiamasi…</string>
   <string name="WebRtcCallView__reconnecting">Jungiamasi iš naujo…</string>
+  <string name="WebRtcCallView__joining">Prisijungiama…</string>
   <string name="WebRtcCallView__disconnected">Atsijungta</string>
   <string name="WebRtcCallView__no_one_else_is_here">Čia daugiau nieko nėra</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s yra šiame skambutyje</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ir %2$s yra šiame skambutyje</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
+    <item quantity="few">%1$s, %2$s ir dar %3$d žmonės yra šiame skambutyje</item>
+    <item quantity="many">%1$s, %2$s ir dar %3$d žmonių yra šiame skambutyje</item>
+    <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Šiame skambutyje · %1$d žmogus</item>
@@ -2017,6 +2099,7 @@
   <string name="preferences__typing_indicators">Rašymo indikatoriai</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Išjungę rašymo indikatorius, nebegalėsite matyti kitų žmonių rašymo indikatorių.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Užklausti klaviatūrą, kad būtų išjungtas suasmenintas mokymasis</string>
+  <string name="preferences_app_protection__blocked_users">Užblokuoti naudotojai</string>
   <string name="preferences_chats__when_using_mobile_data">Naudojant mobiliuosius duomenis</string>
   <string name="preferences_chats__when_using_wifi">Naudojant belaidį ryšį (Wi-Fi)</string>
   <string name="preferences_chats__when_roaming">Naudojant tarptinklinį ryšį</string>
@@ -2079,6 +2162,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nauja žinutė, skirta…</string>
+  <string name="contact_selection_list__unknown_contact_block">Užblokuoti naudotoją</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Pridėti į grupę</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Skambinti</string>
@@ -2504,6 +2588,9 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naudotojui %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">Naudotojas „%1$s“ užblokuotas.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Nepavyko užblokuoti naudotojo „%1$s“</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">Naudotojas „%1$s“ atblokuotas.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Peržiūrėti narius</string>
   <string name="ReviewCardDialogFragment__review_request">Peržiūrėti prašymą</string>

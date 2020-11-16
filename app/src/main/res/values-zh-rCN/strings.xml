@@ -77,8 +77,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音频出错！</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">已屏蔽的用户</string>
+  <string name="BlockedUsersActivity__add_blocked_user">屏蔽更多用户</string>
   <string name="BlockedUsersActivity__blocked_users_will">被屏蔽的用户将无法向您发起通话，或发送消息。</string>
+  <string name="BlockedUsersActivity__no_blocked_users">没有屏蔽的用户</string>
+  <string name="BlockedUsersActivity__block_user">屏蔽该用户？</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s”将无法呼叫您或向您发送消息。</string>
   <string name="BlockedUsersActivity__block">屏蔽</string>
+  <string name="BlockedUsersActivity__unblock_user">取消屏蔽该用户？</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">您要取消屏蔽“%1$s”吗？</string>
   <string name="BlockedUsersActivity__unblock">取消屏蔽</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">屏蔽并离开%1$s?</string>
@@ -287,6 +294,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">一次性媒体文件在发送之后将自动删除</string>
   <string name="ConversationFragment_you_already_viewed_this_message">已查看该消息</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">您可在此对话中为自己做笔记。\n若您的账户有关联设备，新笔记将同步到各设备上。</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d 位群组成员的名字相同。</string>
+  <string name="ConversationFragment__tap_to_review">点击开始审核</string>
+  <string name="ConversationFragment__review_requests_carefully">请仔细审核请求</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal 碰到了一个同名的联系人。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">设备上没有安装浏览器。</string>
   <!--ConversationListFragment-->
@@ -440,13 +451,53 @@
   <string name="GroupManagement_learn_more">了解更多</string>
   <string name="GroupManagement_invite_multiple_users">这些用户不能直接被你邀请入群组。\n\n他们已经收到入群邀请，但在他们同意之前无法收到来自该群组的任何消息。</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">什么是新版群组？</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">新版群组支持@提醒和群管理员的功能，未来还将支持更多功能。</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">升级前已保留聊天和媒体记录。</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="other">这些成员需要再次同意入群邀请来加入群组，其同意前不会收到群组消息：</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">升级到新版群组</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">升级此群组</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">新版群组支持@提醒和群管理员的功能，未来还将支持更多功能。</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">升级前将保留现有的聊天和媒体记录。</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">网络错误，请稍候再试。</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">升级失败</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="other">这些成员需要再次同意入群邀请来加入群组，其同意前不会收到群组消息：</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="other">这些成员无法加入新版群组，所以其将被移出群组：</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">若要解锁@提醒和管理员的功能，请升级该群组。</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">稍后再说</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">更新群组</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="other">无法转移%1$d位成员到新版群组，您现要再尝试添加其到新版群组吗？</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="other">添加成员</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">稍后再说</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="other">要添加成员吗？</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="other">升级到新版群组时无法自动添加这些成员：</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="other">添加成员</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="other">添加成员失败，请稍候再试。</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="other">无法添加成员。</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">离开群组？</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">您将无法在这个群聊里面发送和接收消息。</string>
@@ -557,6 +608,9 @@
   <string name="ManageGroupActivity_edit_name_and_picture">编辑昵称和头像</string>
   <string name="ManageGroupActivity_legacy_group">旧版群组</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">这是个旧版群组，管理员等功能支持新版群组。</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">这是一个旧版群组，要是使用@提醒和管理员功能，</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">由于人数太多，此旧版群组无法升级成新版群组。升级要求人数在%1$d以下。</string>
+  <string name="ManageGroupActivity_upgrade_this_group">升级此群组。</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">这是个未加密的彩信群组。要使用加密聊天和群组名称等功能，请邀请您的联系人加入 Signal。</string>
   <string name="ManageGroupActivity_invite_now">现在邀请</string>
   <!--GroupMentionSettingDialog-->
@@ -781,6 +835,8 @@
   <string name="MessageRecord_you_updated_group">您已更新该群组</string>
   <string name="MessageRecord_the_group_was_updated">群组已更新。</string>
   <string name="MessageRecord_you_called_date">你曾致电 · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">未接语音来电 · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">未接视频来电 · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s 已更新该群组。</string>
   <string name="MessageRecord_s_called_you_date">%1$s 曾呼叫你· %2$s</string>
   <string name="MessageRecord_called_s">曾呼叫 %s</string>
@@ -790,6 +846,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">设置阅后即焚消失时间为 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 设置阅后即焚消失时间为 %2$s。</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">阅后即焚消息的销毁时间被设置为 %1$s。</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">此群已升级为新版群组。</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="other">%1$s 位无法加入新版群组，已向其发送入群邀请。</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s 更改其昵称为 %2$s。</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 的个人资料名称已从 %2$s 更改为 %3$s。</string>
@@ -920,6 +980,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">是否允许 %1$s 给您发消息并查看您的昵称头像？您同意前对方无法知晓您是否查看了其消息。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">是否允许 %1$s 给您发消息并查看您的昵称头像？取消屏蔽前您将不会收到其发来的消息。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">是否继续该群组对话并与其成员分享你的名称和图片？</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升级此群组来激活@提及和管理员新功能，将邀请未在此群分享名称和头像的成员入群。</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">由于人数太多，此旧版群组已无法使用。人数上限为%1$d。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">是否继续与 %1$s 对话并与其分享你的名称和图片？</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组并与之分享您的名字和头像？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">是否加入此群组？接受邀请前群成员无法知道您是否阅读了他们发来的消息。</string>
@@ -1052,12 +1114,19 @@
   <string name="WebRtcCallView__signal_video_call">Signal 视频通话…</string>
   <string name="WebRtcCallView__start_call">发起通话</string>
   <string name="WebRtcCallView__join_call">加入呼叫</string>
+  <string name="WebRtcCallView__s_group_call">“%1$s”群组通话</string>
   <string name="WebRtcCallView__view_participants_list">查看参与者</string>
   <string name="WebRtcCallView__your_video_is_off">您的视频已关闭</string>
   <string name="WebRtcCallView__connecting">正在连接…</string>
   <string name="WebRtcCallView__reconnecting">重连中…</string>
+  <string name="WebRtcCallView__joining">正在加入…</string>
   <string name="WebRtcCallView__disconnected">连接已断开</string>
   <string name="WebRtcCallView__no_one_else_is_here">没有人在这里</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s 在此通话中</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 和 %2$s 在此通话中</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="other">%1$s、%2$s 及其它 %3$d 位用户在此通话中</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">此通话 · %1$d位用户</item>
@@ -1200,6 +1269,8 @@
   <string name="ThreadRecord_draft">草稿：</string>
   <string name="ThreadRecord_called">您呼叫</string>
   <string name="ThreadRecord_called_you">呼叫您</string>
+  <string name="ThreadRecord_missed_audio_call">未接音频来电</string>
+  <string name="ThreadRecord_missed_video_call">未接视频来电</string>
   <string name="ThreadRecord_media_message">媒体消息</string>
   <string name="ThreadRecord_sticker">表情</string>
   <string name="ThreadRecord_view_once_photo">一次性图片</string>
@@ -1287,6 +1358,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">这将永久删除该消息。</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s 至 %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">媒体已失效。</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">未找到可分享此媒体的应用。</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d 个对话中有 %1$d 条新消息</string>
   <string name="MessageNotifier_most_recent_from_s">最新消息来自：%1$s</string>
@@ -1818,6 +1890,7 @@
   <string name="preferences__typing_indicators">“正在输入”提示</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">禁用“正在输入”提示之后，无法查看其他用户的正在输入状态。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">禁用键盘的个性化学习功能</string>
+  <string name="preferences_app_protection__blocked_users">已屏蔽的用户</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
   <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
   <string name="preferences_chats__when_roaming">当漫游时</string>
@@ -1880,6 +1953,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">新消息至…</string>
+  <string name="contact_selection_list__unknown_contact_block">屏蔽用户</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">添加至群组</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">呼叫</string>
@@ -2163,6 +2237,8 @@
   <string name="LocalBackupJob_creating_backup">正在创建备份…</string>
   <string name="LocalBackupJobApi29_backup_failed">备份失败</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">备份目录已删除或移动。</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您的备份文件太大，无法保存到此位置。</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">没有足够的空间来存放您的备份。</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">点击以管理备份。</string>
   <string name="ProgressPreference_d_messages_so_far">已处理 %d 条消息</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">请输入发送至 %s 的验证码。</string>
@@ -2282,12 +2358,33 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s 至 %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">已屏蔽“%1$s”。</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">屏蔽“%1$s”失败</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">已解除屏蔽“%1$s”。</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">审查成员</string>
+  <string name="ReviewCardDialogFragment__review_request">审查请求</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d 位成员的名字相同，请审阅下列成员并采取相应措施。</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">如果您不确定此请求的来源，请审阅以下联系人并采取相应措施。</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">没有其它共同群组。</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">无共同群组。</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="other">%d 个共同群组</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="other">%d 个共同群组</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">将 %1$s 移出群组？</string>
   <string name="ReviewCardDialogFragment__remove">删除</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">移出群成员失败。</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">成员</string>
+  <string name="ReviewCard__request">入群请求</string>
+  <string name="ReviewCard__your_contact">您的联系人</string>
   <string name="ReviewCard__remove_from_group">移出群组</string>
+  <string name="ReviewCard__update_contact">更新联系人</string>
   <string name="ReviewCard__block">屏蔽</string>
   <string name="ReviewCard__delete">删除</string>
+  <string name="ReviewCard__recently_changed">最近更改了其用户名 %1$s 为 %2$s</string>
   <!--EOF-->
 </resources>
