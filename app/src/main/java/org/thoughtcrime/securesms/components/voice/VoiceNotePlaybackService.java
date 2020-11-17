@@ -144,14 +144,15 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
       switch (playbackState) {
         case Player.STATE_BUFFERING:
         case Player.STATE_READY:
-          voiceNoteProximityManager.onPlayerReady();
           voiceNoteNotificationManager.showNotification(player);
 
           if (!playWhenReady) {
             stopForeground(false);
             becomingNoisyReceiver.unregister();
+            voiceNoteProximityManager.onPlayerEnded();
           } else {
             becomingNoisyReceiver.register();
+            voiceNoteProximityManager.onPlayerReady();
           }
           break;
         default:
