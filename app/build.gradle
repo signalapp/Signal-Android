@@ -109,8 +109,8 @@ def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties')
 
 android {
     flavorDimensions 'distribution', 'environment'
-    compileSdkVersion 29
-    buildToolsVersion '29.0.3'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
@@ -133,7 +133,7 @@ android {
         versionName canonicalVersionName
 
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 30
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true

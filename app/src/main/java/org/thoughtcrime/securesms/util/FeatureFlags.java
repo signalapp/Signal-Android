@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
-import com.google.android.collect.Sets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,8 +71,7 @@ public final class FeatureFlags {
    * We will only store remote values for flags in this set. If you want a flag to be controllable
    * remotely, place it in here.
    */
-
-  private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
+  private static final Set<String> REMOTE_CAPABLE = SetUtil.newHashSet(
       GROUPS_V2_RECOMMENDED_LIMIT,
       GROUPS_V2_HARD_LIMIT,
       GROUPS_V2_JOIN_VERSION,
@@ -108,7 +106,7 @@ public final class FeatureFlags {
    * will be updated arbitrarily at runtime. This will make values more responsive, but also places
    * more burden on the reader to ensure that the app experience remains consistent.
    */
-  private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
+  private static final Set<String> HOT_SWAPPABLE = SetUtil.newHashSet(
       GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
       CLIENT_EXPIRATION,
@@ -118,7 +116,7 @@ public final class FeatureFlags {
   /**
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
-  private static final Set<String> STICKY = Sets.newHashSet(
+  private static final Set<String> STICKY = SetUtil.newHashSet(
       VERIFY_V2
     );
 

@@ -4,29 +4,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.BidiFormatter;
 
-import com.google.android.collect.Sets;
-
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.Set;
 
 public final class StringUtil {
 
-  private static final Set<Character> WHITESPACE = Sets.newHashSet('\u200E',  // left-to-right mark
-                                                                   '\u200F',  // right-to-left mark
-                                                                   '\u2007'); // figure space
+  private static final Set<Character> WHITESPACE = SetUtil.newHashSet('\u200E',  // left-to-right mark
+                                                                      '\u200F',  // right-to-left mark
+                                                                      '\u2007'); // figure space
 
   private static final class Bidi {
     /** Override text direction  */
-    private static final Set<Integer> OVERRIDES = Sets.newHashSet("\u202a".codePointAt(0), /* LRE */
-                                                                  "\u202b".codePointAt(0), /* RLE */
-                                                                  "\u202d".codePointAt(0), /* LRO */
-                                                                  "\u202e".codePointAt(0)  /* RLO */);
+    private static final Set<Integer> OVERRIDES = SetUtil.newHashSet("\u202a".codePointAt(0), /* LRE */
+                                                                     "\u202b".codePointAt(0), /* RLE */
+                                                                     "\u202d".codePointAt(0), /* LRO */
+                                                                     "\u202e".codePointAt(0)  /* RLO */);
 
     /** Set direction and isolate surrounding text */
-    private static final Set<Integer> ISOLATES = Sets.newHashSet("\u2066".codePointAt(0), /* LRI */
-                                                                 "\u2067".codePointAt(0), /* RLI */
-                                                                 "\u2068".codePointAt(0)  /* FSI */);
+    private static final Set<Integer> ISOLATES = SetUtil.newHashSet("\u2066".codePointAt(0), /* LRI */
+                                                                    "\u2067".codePointAt(0), /* RLI */
+                                                                    "\u2068".codePointAt(0)  /* FSI */);
     /** Closes things in {@link #OVERRIDES} */
     private static final int PDF = "\u202c".codePointAt(0);
 

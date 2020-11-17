@@ -11,8 +11,8 @@ RUN apt-get update -y && apt-get install -y $(cat docker/dependencies.txt)
 RUN docker/print-versions.sh docker/dependencies.txt
 
 ENV ANDROID_SDK_FILENAME        android-sdk_r24.4.1-linux.tgz
-ENV ANDROID_API_LEVELS          android-29
-ENV ANDROID_BUILD_TOOLS_VERSION 29.0.3
+ENV ANDROID_API_LEVELS          android-30
+ENV ANDROID_BUILD_TOOLS_VERSION 30.0.2
 
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV PATH         ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools

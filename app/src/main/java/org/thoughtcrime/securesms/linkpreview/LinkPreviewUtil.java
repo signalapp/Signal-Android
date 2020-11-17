@@ -1,34 +1,29 @@
 package org.thoughtcrime.securesms.linkpreview;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
-
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
+
 import com.annimon.stream.Stream;
-import com.google.android.collect.Sets;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -50,7 +45,7 @@ public final class LinkPreviewUtil {
   private static final Pattern FAVICON_PATTERN            = Pattern.compile("<\\s*link[^>]*rel\\s*=\\s*\".*icon.*\"[^>]*>");
   private static final Pattern FAVICON_HREF_PATTERN       = Pattern.compile("href\\s*=\\s*\"([^\"]*)\"");
 
-  private static final Set<String> INVALID_TOP_LEVEL_DOMAINS = Sets.newHashSet("onion", "i2p");
+  private static final Set<String> INVALID_TOP_LEVEL_DOMAINS = SetUtil.newHashSet("onion", "i2p");
 
   /**
    * @return All whitelisted URLs in the source text.

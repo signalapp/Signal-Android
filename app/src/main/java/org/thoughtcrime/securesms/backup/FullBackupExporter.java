@@ -12,7 +12,6 @@ import androidx.documentfile.provider.DocumentFile;
 
 import com.annimon.stream.function.Consumer;
 import com.annimon.stream.function.Predicate;
-import com.google.android.collect.Sets;
 import com.google.protobuf.ByteString;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -38,6 +37,7 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
@@ -69,7 +69,7 @@ public class FullBackupExporter extends FullBackupBase {
   @SuppressWarnings("unused")
   private static final String TAG = FullBackupExporter.class.getSimpleName();
 
-  private static final Set<String> BLACKLISTED_TABLES = Sets.newHashSet(
+  private static final Set<String> BLACKLISTED_TABLES = SetUtil.newHashSet(
     SignedPreKeyDatabase.TABLE_NAME,
     OneTimePreKeyDatabase.TABLE_NAME,
     SessionDatabase.TABLE_NAME,
