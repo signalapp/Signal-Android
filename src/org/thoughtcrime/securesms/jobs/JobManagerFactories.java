@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
-import org.thoughtcrime.securesms.loki.api.BackgroundPollJob;
 import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
@@ -33,7 +32,6 @@ public final class JobManagerFactories {
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AttachmentUploadJob.KEY,                   new AttachmentUploadJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
-      put(BackgroundPollJob.KEY,                     new BackgroundPollJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
       put(ClosedGroupUpdateMessageSendJob.KEY,       new ClosedGroupUpdateMessageSendJob.Factory());
       put(CreateSignedPreKeyJob.KEY,                 new CreateSignedPreKeyJob.Factory());

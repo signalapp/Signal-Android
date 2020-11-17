@@ -89,6 +89,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+    implementation "androidx.work:work-runtime-ktx:2.4.0"
 
     implementation ("com.google.firebase:firebase-messaging:18.0.0") {
         exclude group: 'com.google.firebase', module: 'firebase-core'
@@ -254,6 +255,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
     packagingOptions {

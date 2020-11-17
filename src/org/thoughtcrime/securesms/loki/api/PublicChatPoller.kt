@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki.api
 import android.content.Context
 import android.os.Handler
 import android.util.Log
+import androidx.annotation.WorkerThread
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
@@ -30,9 +31,10 @@ import org.whispersystems.signalservice.loki.api.opengroups.PublicChatMessage
 import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.security.MessageDigest
 import java.util.*
+import java.util.concurrent.CompletableFuture
 
 class PublicChatPoller(private val context: Context, private val group: PublicChat) {
-    private val handler = Handler()
+    private val handler by lazy { Handler() }
     private var hasStarted = false
     private var isPollOngoing = false
     public var isCaughtUp = false
