@@ -480,7 +480,7 @@ public class ConversationFragment extends LoggingFragment {
 
     int startingPosition  = getStartPosition();
 
-    this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
+    this.recipient         = Recipient.live(ConversationActivity.getRecipientId(requireActivity().getIntent()));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.markReadHelper    = new MarkReadHelper(threadId, requireContext());
 
@@ -1498,8 +1498,8 @@ public class ConversationFragment extends LoggingFragment {
     public boolean onMenuItemClick(MenuItem item) {
       switch (item.getItemId()) {
         case R.id.action_info:        handleDisplayDetails(conversationMessage);                                            return true;
-        case R.id.action_delete:      handleDeleteMessages(SetUtil.newHashSet(conversationMessage));                           return true;
-        case R.id.action_copy:        handleCopyMessage(SetUtil.newHashSet(conversationMessage));                              return true;
+        case R.id.action_delete:      handleDeleteMessages(SetUtil.newHashSet(conversationMessage));                        return true;
+        case R.id.action_copy:        handleCopyMessage(SetUtil.newHashSet(conversationMessage));                           return true;
         case R.id.action_reply:       handleReplyMessage(conversationMessage);                                              return true;
         case R.id.action_multiselect: handleEnterMultiSelect(conversationMessage);                                          return true;
         case R.id.action_forward:     handleForwardMessage(conversationMessage);                                            return true;

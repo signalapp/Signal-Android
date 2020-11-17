@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.tracing.Trace;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -245,6 +246,7 @@ public class ThreadDatabase extends Database {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, ID_WHERE, new String[] {threadId + ""});
     notifyConversationListListeners();
+    ConversationUtil.clearShortcuts(context, Collections.singleton(threadId));
   }
 
   private void deleteThreads(Set<Long> threadIds) {
@@ -259,12 +261,14 @@ public class ThreadDatabase extends Database {
 
     db.delete(TABLE_NAME, where, null);
     notifyConversationListListeners();
+    ConversationUtil.clearShortcuts(context, threadIds);
   }
 
   private void deleteAllThreads() {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, null, null);
     notifyConversationListListeners();
+    ConversationUtil.clearAllShortcuts(context);
   }
 
   public void trimAllThreads(int length, long trimBeforeDate) {
@@ -1192,6 +1196,10 @@ public class ThreadDatabase extends Database {
       if (reader != null)
         reader.close();
     }
+  }
+
+  public @NonNull ThreadRecord getThreadRecordFor(@NonNull Recipient recipient) {
+    return Objects.requireNonNull(getThreadRecord(getThreadIdFor(recipient)));
   }
 
   @NonNull MergeResult merge(@NonNull RecipientId primaryRecipientId, @NonNull RecipientId secondaryRecipientId) {

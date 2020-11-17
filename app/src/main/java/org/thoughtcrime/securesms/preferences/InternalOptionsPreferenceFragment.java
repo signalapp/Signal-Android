@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.jobs.StorageForcePushJob;
 import org.thoughtcrime.securesms.keyvalue.InternalValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 
 public class InternalOptionsPreferenceFragment extends CorrectedPreferenceFragment {
   private static final String TAG = Log.tag(InternalOptionsPreferenceFragment.class);
@@ -67,6 +68,12 @@ public class InternalOptionsPreferenceFragment extends CorrectedPreferenceFragme
     findPreference("pref_force_send").setOnPreferenceClickListener(preference -> {
       ApplicationDependencies.getJobManager().add(new StorageForcePushJob());
       Toast.makeText(getContext(), "Scheduled storage force push", Toast.LENGTH_SHORT).show();
+      return true;
+    });
+
+    findPreference("pref_delete_dynamic_shortcuts").setOnPreferenceClickListener(preference -> {
+      ConversationUtil.clearAllShortcuts(requireContext());
+      Toast.makeText(getContext(), "Deleted all dynamic shortcuts.", Toast.LENGTH_SHORT).show();
       return true;
     });
   }

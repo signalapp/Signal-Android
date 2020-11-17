@@ -100,7 +100,7 @@ public class NewConversationActivity extends ContactSelectionActivity
 
   private void launch(Recipient recipient) {
     Intent intent = new Intent(this, ConversationActivity.class);
-    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
+    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId().serialize());
     intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
     intent.setDataAndType(getIntent().getData(), getIntent().getType());
 

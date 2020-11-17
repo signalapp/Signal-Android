@@ -325,7 +325,7 @@ public class ShareActivity extends PassphraseRequiredActivity
       Log.i(TAG, "Shared data was not external.");
     }
 
-    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId);
+    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId.serialize());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
 

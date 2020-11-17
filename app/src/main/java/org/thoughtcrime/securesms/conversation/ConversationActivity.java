@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ShortcutManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -242,6 +243,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ContextUtil;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -413,10 +415,15 @@ public class ConversationActivity extends PassphraseRequiredActivity
                                             long threadId)
   {
     Intent intent = new Intent(context, ConversationActivity.class);
-    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId);
+    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId.serialize());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
+    intent.setAction(Intent.ACTION_DEFAULT);
 
     return intent;
+  }
+
+  public static @NonNull RecipientId getRecipientId(@NonNull Intent intent) {
+    return RecipientId.from(Objects.requireNonNull(intent.getStringExtra(RECIPIENT_EXTRA)));
   }
 
   @Override
@@ -427,7 +434,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   protected void onCreate(Bundle state, boolean ready) {
-    RecipientId recipientId = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
+    RecipientId recipientId = getRecipientId(getIntent());
 
     if (recipientId == null) {
       Log.w(TAG, "[onCreate] Missing recipientId!");
@@ -437,7 +444,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
-
+    reportShortcutLaunch(recipientId);
     setContentView(R.layout.conversation_activity);
 
     getWindow().getDecorView().setBackgroundResource(R.color.signal_background_primary);
@@ -505,7 +512,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       silentlySetComposeText("");
     }
 
-    RecipientId recipientId = intent.getParcelableExtra(RECIPIENT_EXTRA);
+    RecipientId recipientId = getRecipientId(intent);
 
     if (recipientId == null) {
       Log.w(TAG, "[onNewIntent] Missing recipientId!");
@@ -515,6 +522,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
+    reportShortcutLaunch(recipientId);
     setIntent(intent);
     initializeResources();
     initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
@@ -559,6 +567,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
+
+    ConversationUtil.pushShortcutForRecipient(getApplicationContext(), recipientSnapshot);
   }
 
   @Override
@@ -741,6 +751,17 @@ public class ConversationActivity extends PassphraseRequiredActivity
     super.onRestoreInstanceState(savedInstanceState);
 
     reactWithAnyEmojiStartPage = savedInstanceState.getInt(STATE_REACT_WITH_ANY_PAGE, 0);
+  }
+
+  private void reportShortcutLaunch(@NonNull RecipientId recipientId) {
+    if (Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
+      return;
+    }
+
+    ShortcutManager shortcutManager = ServiceUtil.getShortcutManager(this);
+    if (shortcutManager != null) {
+      shortcutManager.reportShortcutUsed(ConversationUtil.getShortcutId(recipientId));
+    }
   }
 
   private void handleImageFromDeviceCameraApp() {
@@ -1955,14 +1976,13 @@ public class ConversationActivity extends PassphraseRequiredActivity
       recipient.removeObservers(this);
     }
 
-    recipient        = Recipient.live(getIntent().getParcelableExtra(RECIPIENT_EXTRA));
+    recipient        = Recipient.live(getRecipientId(getIntent()));
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
     glideRequests    = GlideApp.with(this);
 
     recipient.observe(this, this::onRecipientChanged);
   }
-
 
   private void initializeLinkPreviewObserver() {
     linkPreviewViewModel = ViewModelProviders.of(this, new LinkPreviewViewModel.Factory(new LinkPreviewRepository())).get(LinkPreviewViewModel.class);

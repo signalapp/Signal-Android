@@ -2386,6 +2386,9 @@
     <string name="preferences__internal_network" translatable="false">Network</string>
     <string name="preferences__internal_force_censorship" translatable="false">Force censorship</string>
     <string name="preferences__internal_force_censorship_description" translatable="false">Force the app to behave as if it is in a country where Signal is censored.</string>
+    <string name="preferences__internal_conversations_and_shortcuts">Conversations and Shortcuts</string>
+    <string name="preferences__internal_delete_all_dynamic_shortcuts">Delete all dynamic shortcuts</string>
+    <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Click to delete all dynamic shortcuts</string>
 
     <!-- **************************************** -->
     <!-- menus -->
