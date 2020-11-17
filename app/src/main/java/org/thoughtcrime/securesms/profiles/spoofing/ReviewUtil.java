@@ -24,7 +24,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class ReviewUtil {
+public final class ReviewUtil {
+
+  private ReviewUtil() { }
 
   private static final long TIMEOUT = TimeUnit.HOURS.toMillis(24);
 
@@ -91,9 +93,13 @@ public class ReviewUtil {
   @WorkerThread
   public static @NonNull List<MessageRecord> getProfileChangeRecordsForGroup(@NonNull Context context, @NonNull GroupId.V2 groupId) {
     RecipientId recipientId = DatabaseFactory.getRecipientDatabase(context).getByGroupId(groupId).get();
-    long        threadId    = Objects.requireNonNull(DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId));
+    Long        threadId    = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
 
-    return DatabaseFactory.getSmsDatabase(context).getProfileChangeDetailsRecords(threadId, System.currentTimeMillis() - TIMEOUT);
+    if (threadId == null) {
+      return Collections.emptyList();
+    } else {
+      return DatabaseFactory.getSmsDatabase(context).getProfileChangeDetailsRecords(threadId, System.currentTimeMillis() - TIMEOUT);
+    }
   }
 
   @WorkerThread
