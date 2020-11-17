@@ -1,15 +1,16 @@
 package org.thoughtcrime.securesms.mediasend;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.ViewPager;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ControllableViewPager;
@@ -145,6 +146,10 @@ public class MediaSendFragment extends Fragment {
         playbackControlsContainer.removeAllViews();
       }
     });
+  }
+
+  void pausePlayback() {
+    fragmentPagerAdapter.pausePlayback();
   }
 
   private class FragmentPageChangeListener extends ViewPager.SimpleOnPageChangeListener {

@@ -11,18 +11,22 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 @RequiresApi(api = 23)
 public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView {
+
+  private static final String TAG = Log.tag(VideoThumbnailsRangeSelectorView.class);
 
   private static final long MINIMUM_SELECTABLE_RANGE = TimeUnit.MILLISECONDS.toMicros(500);
   private static final int  ANIMATION_DURATION_MS    = 100;
@@ -63,6 +67,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
   @ColorInt private int                   thumbHintBackgroundColor;
             private long                  dragStartTimeMs;
             private long                  dragEndTimeMs;
+            private long                  maximumSelectableRangeMicros;
 
   public VideoThumbnailsRangeSelectorView(final Context context) {
     super(context);
@@ -134,6 +139,13 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
       if (externalMaxValue != null) {
         setMinMax(getMinValue(), externalMaxValue, Thumb.MAX);
         externalMaxValue = null;
+      }
+    }
+
+    if (setMinValue(getMinValue())) {
+      Log.d(TAG, "Clamped video duration to " + getMaxValue());
+      if (onRangeChangeListener != null) {
+        onRangeChangeListener.onRangeDragEnd(getMinValue(), getMaxValue(), getDuration(), Thumb.MAX);
       }
     }
 
@@ -310,11 +322,18 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     final long duration   = getDuration();
 
     final long minDiff = Math.max(MINIMUM_SELECTABLE_RANGE, pixelToDuration(thumbSizePixels * 2.5f));
+    final long maxDiff = maximumSelectableRangeMicros <= MINIMUM_SELECTABLE_RANGE ? 0 : Math.max(maximumSelectableRangeMicros, pixelToDuration(thumbSizePixels * 2.5f));
 
     if (thumb == Thumb.MIN) {
       newMin = clamp(newMin, 0, currentMax - minDiff);
+      if (maxDiff > 0) {
+        newMax = clamp(newMax, newMin + minDiff, Math.min(newMin + maxDiff, duration));
+      }
     } else {
       newMax = clamp(newMax, currentMin + minDiff, duration);
+      if (maxDiff > 0) {
+        newMin = clamp(newMin, Math.max(0, newMax - maxDiff), newMax - minDiff);
+      }
     }
 
     if (newMin != currentMin || newMax != currentMax) {
@@ -423,6 +442,10 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
       externalMinValue = minValue;
       externalMaxValue = maxValue;
     }
+  }
+
+  public void setTimeLimit(int t, @NonNull TimeUnit timeUnit) {
+    maximumSelectableRangeMicros = timeUnit.toMicros(t);
   }
 
   public enum Thumb {

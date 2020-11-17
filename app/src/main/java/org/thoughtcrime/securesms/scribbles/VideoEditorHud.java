@@ -14,11 +14,13 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
+import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.video.VideoUtil;
 import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The HUD (heads-up display) that contains all of the tools for editing video.
@@ -68,6 +70,8 @@ public final class VideoEditorHud extends LinearLayout {
     if (uri == null || !slide.hasVideo()) {
       return;
     }
+
+    videoTimeLine.setTimeLimit(VideoUtil.getMaxVideoUploadDurationInSeconds(), TimeUnit.SECONDS);
 
     videoTimeLine.setInput(DecryptableUriMediaInput.createForUri(getContext(), uri));
 

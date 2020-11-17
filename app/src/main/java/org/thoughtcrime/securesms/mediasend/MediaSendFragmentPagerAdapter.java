@@ -1,13 +1,14 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.net.Uri;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.annimon.stream.Stream;
 
@@ -120,6 +121,14 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
   @Nullable View getPlaybackControls(int position) {
     return fragments.containsKey(position) ? fragments.get(position).getPlaybackControls() : null;
+  }
+
+  void pausePlayback() {
+    for (MediaSendPageFragment fragment : fragments.values()) {
+      if (fragment instanceof MediaSendVideoFragment) {
+        ((MediaSendVideoFragment)fragment).pausePlayback();
+      }
+    }
   }
 
   void notifyHidden() {

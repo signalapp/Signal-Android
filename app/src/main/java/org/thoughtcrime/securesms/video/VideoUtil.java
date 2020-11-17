@@ -14,12 +14,15 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 
 public final class VideoUtil {
 
-  public static final int AUDIO_BIT_RATE     = 192_000;
-  public static final int VIDEO_FRAME_RATE   = 30;
-  public static final int VIDEO_BIT_RATE     = 2_000_000;
-  public static final int VIDEO_LONG_WIDTH   = 1280;
-  public static final int VIDEO_SHORT_WIDTH  = 720;
-  public static final int VIDEO_MAX_LENGTH_S = 30;
+  public static final int AUDIO_BIT_RATE   = 192_000;
+  public static final int VIDEO_FRAME_RATE = 30;
+  public static final int VIDEO_BIT_RATE   = 2_000_000;
+
+  static final int VIDEO_SHORT_WIDTH = 720;
+
+  private static final int VIDEO_LONG_WIDTH          = 1280;
+  private static final int VIDEO_MAX_RECORD_LENGTH_S = 30;
+  private static final int VIDEO_MAX_UPLOAD_LENGTH_S = 120;
 
   private static final int TOTAL_BYTES_PER_SECOND = (VIDEO_BIT_RATE / 8) + (AUDIO_BIT_RATE / 8);
 
@@ -38,11 +41,15 @@ public final class VideoUtil {
            : new Size(VIDEO_LONG_WIDTH, VIDEO_SHORT_WIDTH);
   }
 
-  public static int getMaxVideoDurationInSeconds(@NonNull Context context, @NonNull MediaConstraints mediaConstraints) {
+  public static int getMaxVideoRecordDurationInSeconds(@NonNull Context context, @NonNull MediaConstraints mediaConstraints) {
     int allowedSize = mediaConstraints.getCompressedVideoMaxSize(context);
     int duration    = (int) Math.floor((float) allowedSize / TOTAL_BYTES_PER_SECOND);
 
-    return Math.min(duration, VIDEO_MAX_LENGTH_S);
+    return Math.min(duration, VIDEO_MAX_RECORD_LENGTH_S);
+  }
+
+  public static int getMaxVideoUploadDurationInSeconds() {
+    return VIDEO_MAX_UPLOAD_LENGTH_S;
   }
 
   @RequiresApi(21)

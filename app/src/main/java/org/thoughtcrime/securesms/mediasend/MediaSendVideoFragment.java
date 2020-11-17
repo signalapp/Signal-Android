@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.scribbles.VideoEditorHud;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Throttler;
 import org.thoughtcrime.securesms.video.VideoPlayer;
 
@@ -203,6 +202,10 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
 
   @Override
   public void notifyHidden() {
+    pausePlayback();
+  }
+
+  public void pausePlayback() {
     if (player != null) {
       player.pause();
       if (hud != null) {
