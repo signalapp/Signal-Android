@@ -500,7 +500,7 @@ public class ConversationItem extends TapJackingProofLinearLayout
   private void adjustMarginsIfNeeded(MessageRecord messageRecord) {
     LinearLayout.LayoutParams bodyTextLayoutParams = (LinearLayout.LayoutParams)bodyText.getLayoutParams();
     bodyTextLayoutParams.topMargin = 0;
-    if (hasOnlyThumbnail(messageRecord)) {
+    if (hasOnlyThumbnail(messageRecord) || hasLinkPreview(messageRecord)) {
       int topPadding = 0;
       if (groupSenderHolder.getVisibility() == VISIBLE) {
         topPadding = (int)getResources().getDimension(R.dimen.medium_spacing);

@@ -31,7 +31,7 @@ public class ContentProxySafetyInterceptor implements Interceptor {
       Response response = chain.proceed(chain.request());
 
       if (response.isRedirect()) {
-        if (isWhitelisted(response.header("Location"))) {
+        if (isWhitelisted(response.header("location")) || isWhitelisted(response.header("Location"))) {
           return response;
         } else {
           Log.w(TAG, "Tried to redirect to a non-whitelisted domain!");
@@ -53,6 +53,6 @@ public class ContentProxySafetyInterceptor implements Interceptor {
   }
 
   private static boolean isWhitelisted(@Nullable String url) {
-    return LinkPreviewUtil.isWhitelistedLinkUrl(url) || LinkPreviewUtil.isWhitelistedMediaUrl(url);
+    return LinkPreviewUtil.isValidLinkUrl(url) || LinkPreviewUtil.isValidMediaUrl(url);
   }
 }

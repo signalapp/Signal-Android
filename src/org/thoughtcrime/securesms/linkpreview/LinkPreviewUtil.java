@@ -38,14 +38,14 @@ public final class LinkPreviewUtil {
 
     return Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
                  .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
-                 .filter(link -> isWhitelistedLinkUrl(link.getUrl()))
+                 .filter(link -> isValidLinkUrl(link.getUrl()))
                  .toList();
   }
 
   /**
-   * @return True if the host is present in the link whitelist.
+   * @return True if the host is valid.
    */
-  public static boolean isWhitelistedLinkUrl(@Nullable String linkUrl) {
+  public static boolean isValidLinkUrl(@Nullable String linkUrl) {
     if (linkUrl == null)                      return false;
     if (StickerUrl.isValidShareLink(linkUrl)) return true;
 
@@ -53,21 +53,19 @@ public final class LinkPreviewUtil {
     return url != null                                   &&
            !TextUtils.isEmpty(url.scheme())              &&
            "https".equals(url.scheme())                  &&
-           LinkPreviewDomains.LINKS.contains(url.host()) &&
            isLegalUrl(linkUrl);
   }
 
   /**
-   * @return True if the top-level domain is present in the media whitelist.
+   * @return True if the top-level domain is valid.
    */
-  public static boolean isWhitelistedMediaUrl(@Nullable String mediaUrl) {
+  public static boolean isValidMediaUrl(@Nullable String mediaUrl) {
     if (mediaUrl == null) return false;
 
     HttpUrl url = HttpUrl.parse(mediaUrl);
     return url != null                                                &&
            !TextUtils.isEmpty(url.scheme())                           &&
            "https".equals(url.scheme())                               &&
-           LinkPreviewDomains.IMAGES.contains(url.topPrivateDomain()) &&
            isLegalUrl(mediaUrl);
   }
 

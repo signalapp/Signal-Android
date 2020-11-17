@@ -2370,7 +2370,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                        recipient.getAddress().isEmail()               ||
                                        inputPanel.getQuote().isPresent()              ||
                                        linkPreviewViewModel.hasLinkPreview()          ||
-                                       LinkPreviewUtil.isWhitelistedMediaUrl(message) || // Loki - Send GIFs as media messages
+                                       LinkPreviewUtil.isValidMediaUrl(message) || // Loki - Send GIFs as media messages
                                        needsSplit;
 
       Log.i(TAG, "isManual Selection: " + sendButton.isManualSelection());
