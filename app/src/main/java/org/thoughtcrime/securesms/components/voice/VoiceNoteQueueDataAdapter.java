@@ -20,31 +20,31 @@ final class VoiceNoteQueueDataAdapter implements TimelineQueueEditor.QueueDataAd
   private final List<MediaDescriptionCompat> descriptions = new LinkedList<>();
 
   @Override
-  public MediaDescriptionCompat getMediaDescription(int position) {
+  public synchronized MediaDescriptionCompat getMediaDescription(int position) {
     return descriptions.get(position);
   }
 
   @Override
-  public void add(int position, MediaDescriptionCompat description) {
+  public synchronized void add(int position, MediaDescriptionCompat description) {
     descriptions.add(position, description);
   }
 
   @Override
-  public void remove(int position) {
+  public synchronized void remove(int position) {
     descriptions.remove(position);
   }
 
   @Override
-  public void move(int from, int to) {
+  public synchronized void move(int from, int to) {
     MediaDescriptionCompat description = descriptions.remove(from);
     descriptions.add(to, description);
   }
 
-  int size() {
+  synchronized int size() {
     return descriptions.size();
   }
 
-  int indexOf(@NonNull Uri uri) {
+  synchronized int indexOf(@NonNull Uri uri) {
     for (int i = 0; i < descriptions.size(); i++) {
       if (Objects.equals(uri, descriptions.get(i).getMediaUri())) {
         return i;
@@ -54,7 +54,7 @@ final class VoiceNoteQueueDataAdapter implements TimelineQueueEditor.QueueDataAd
     return -1;
   }
 
-  int indexAfter(@NonNull MediaDescriptionCompat target) {
+  synchronized int indexAfter(@NonNull MediaDescriptionCompat target) {
     if (isEmpty()) {
       return 0;
     }
@@ -71,11 +71,11 @@ final class VoiceNoteQueueDataAdapter implements TimelineQueueEditor.QueueDataAd
     return descriptions.size();
   }
 
-  boolean isEmpty() {
+  synchronized boolean isEmpty() {
     return descriptions.isEmpty();
   }
 
-  void clear() {
+  synchronized void clear() {
     descriptions.clear();
   }
 }

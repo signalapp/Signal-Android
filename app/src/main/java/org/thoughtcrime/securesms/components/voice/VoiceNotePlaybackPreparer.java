@@ -140,56 +140,58 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   }
 
   private void applyDescriptionsToQueue(@NonNull List<MediaDescriptionCompat> descriptions) {
-    for (MediaDescriptionCompat description : descriptions) {
-      int                    holderIndex  = queueDataAdapter.indexOf(description.getMediaUri());
-      MediaDescriptionCompat next         = createNextClone(description);
-      int                    currentIndex = player.getCurrentWindowIndex();
+    synchronized (queueDataAdapter) {
+      for (MediaDescriptionCompat description : descriptions) {
+        int                    holderIndex  = queueDataAdapter.indexOf(description.getMediaUri());
+        MediaDescriptionCompat next         = createNextClone(description);
+        int                    currentIndex = player.getCurrentWindowIndex();
 
-      if (holderIndex != -1) {
-        queueDataAdapter.remove(holderIndex);
-
-        if (!queueDataAdapter.isEmpty()) {
+        if (holderIndex != -1) {
           queueDataAdapter.remove(holderIndex);
-        }
 
-        queueDataAdapter.add(holderIndex, createNextClone(description));
-        queueDataAdapter.add(holderIndex, description);
-
-        if (currentIndex != holderIndex) {
-          dataSource.removeMediaSource(holderIndex);
-          dataSource.addMediaSource(holderIndex, mediaSourceFactory.createMediaSource(description));
-        }
-
-        if (currentIndex != holderIndex + 1) {
-          if (dataSource.getSize() > 1) {
-            dataSource.removeMediaSource(holderIndex + 1);
+          if (!queueDataAdapter.isEmpty()) {
+            queueDataAdapter.remove(holderIndex);
           }
 
-          dataSource.addMediaSource(holderIndex + 1, mediaSourceFactory.createMediaSource(next));
+          queueDataAdapter.add(holderIndex, createNextClone(description));
+          queueDataAdapter.add(holderIndex, description);
+
+          if (currentIndex != holderIndex) {
+            dataSource.removeMediaSource(holderIndex);
+            dataSource.addMediaSource(holderIndex, mediaSourceFactory.createMediaSource(description));
+          }
+
+          if (currentIndex != holderIndex + 1) {
+            if (dataSource.getSize() > 1) {
+              dataSource.removeMediaSource(holderIndex + 1);
+            }
+
+            dataSource.addMediaSource(holderIndex + 1, mediaSourceFactory.createMediaSource(next));
+          }
+        } else {
+          int insertLocation = queueDataAdapter.indexAfter(description);
+
+          queueDataAdapter.add(insertLocation, next);
+          queueDataAdapter.add(insertLocation, description);
+
+          dataSource.addMediaSource(insertLocation, mediaSourceFactory.createMediaSource(next));
+          dataSource.addMediaSource(insertLocation, mediaSourceFactory.createMediaSource(description));
         }
-      } else {
-        int insertLocation = queueDataAdapter.indexAfter(description);
-
-        queueDataAdapter.add(insertLocation, next);
-        queueDataAdapter.add(insertLocation, description);
-
-        dataSource.addMediaSource(insertLocation, mediaSourceFactory.createMediaSource(next));
-        dataSource.addMediaSource(insertLocation, mediaSourceFactory.createMediaSource(description));
       }
-    }
 
-    int                    lastIndex = queueDataAdapter.size() - 1;
-    MediaDescriptionCompat last      = queueDataAdapter.getMediaDescription(lastIndex);
+      int                    lastIndex = queueDataAdapter.size() - 1;
+      MediaDescriptionCompat last      = queueDataAdapter.getMediaDescription(lastIndex);
 
-    if (Objects.equals(last.getMediaUri(), NEXT_URI)) {
-      queueDataAdapter.remove(lastIndex);
-      dataSource.removeMediaSource(lastIndex);
+      if (Objects.equals(last.getMediaUri(), NEXT_URI)) {
+        queueDataAdapter.remove(lastIndex);
+        dataSource.removeMediaSource(lastIndex);
 
-      if (queueDataAdapter.size() > 1) {
-        MediaDescriptionCompat end = createEndClone(last);
+        if (queueDataAdapter.size() > 1) {
+          MediaDescriptionCompat end = createEndClone(last);
 
-        queueDataAdapter.add(lastIndex, end);
-        dataSource.addMediaSource(lastIndex, mediaSourceFactory.createMediaSource(end));
+          queueDataAdapter.add(lastIndex, end);
+          dataSource.addMediaSource(lastIndex, mediaSourceFactory.createMediaSource(end));
+        }
       }
     }
   }
