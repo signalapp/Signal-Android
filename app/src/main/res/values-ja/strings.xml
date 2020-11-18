@@ -460,8 +460,8 @@
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">新しいグループにアップグレード</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">このグループをアップグレードする</string>
-  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">新グループには、@mentionや管理者機能などがあります。将来、新しい機能も追加されます。</string>
-  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">すべてのメッセージ履歴とメディアは、新グループに引き継がれます。</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">新しいグループには、@メンションやグループ管理者機能などがあります。将来、新しい機能も追加されます。</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">すべてのメッセージ履歴とメディアは、アップグレード後も維持されます。</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ネットワークエラーが発生しました。あとで再度試してください。</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">アップグレードに失敗しました。</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">

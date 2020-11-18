@@ -441,7 +441,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" lagd till \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Lägg till i grupp</string>
   <string name="AddToGroupActivity_add_to_groups">Lägg till i grupper</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Den här personen kan inte läggas till i äldre grupper.</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Denna person kan inte läggas till i äldre grupper.</string>
   <string name="AddToGroupActivity_add">Lägg till</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Välj ny administratör</string>
@@ -571,7 +571,7 @@
   <string name="RequestingMembersFragment_denied_s">Avvisade \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klar</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Den här personen kan inte läggas till i äldre grupper.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denna person kan inte läggas till i äldre grupper.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Lägg till \"%1$s\" i \"%2$s\"?</item>
     <item quantity="other">Lägg till %3$d medlemmar i \"%2$s\"?</item>
@@ -656,7 +656,7 @@
   <string name="GroupMentionSettingDialog_dont_notify_me">Meddela inte mig</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Den här personen är i dina kontakter</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denna person är i dina kontakter</string>
   <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageRecipientActivity_chat_color">Konversationsfärg</string>
   <string name="ManageRecipientActivity_block">Blockera</string>
@@ -1365,7 +1365,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Detta användarnamn är taget.</string>
   <string name="UsernameEditFragment_this_username_is_available">Detta användarnamn är tillgängligt.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Användarnamn kan bara innehålla a–Z, 0–9 och understreck.</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med ett nummer.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med en siffra.</string>
   <string name="UsernameEditFragment_username_is_invalid">Användarnamnet är ogiltigt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Användarnamn på Signal är valfria. Om du väljer att skapa ett användarnamn kan andra Signal-användare hitta dig med detta användarnamn och kontakta dig utan att veta ditt telefonnummer.</string>
@@ -1678,7 +1678,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="IdentityUtil_unverified_dialog_many">Dina säkerhetsnummer med %1$s, %2$s och %3$s är inte längre verifierade. Detta kan antingen betyda att någon försöker avlyssna er kommunikation eller att de helt enkelt installerat om Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Ditt säkerhetsnummer med %s har just ändrats.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Dina säkerhetsnummer med %1$s och %2$s har just ändrats.</string>
-  <string name="IdentityUtil_untrusted_dialog_many">Dina säkerhetsnummer med %1$s , %2$s och %3$s har just ändrats.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Dina säkerhetsnummer med %1$s, %2$s och %3$s har just ändrats.</string>
   <plurals name="identity_others">
     <item quantity="one">%d annan</item>
     <item quantity="other">%d andra</item>

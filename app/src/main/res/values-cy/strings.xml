@@ -86,8 +86,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gwall chwarae sain!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Defnyddwyr wedi\'u rhwystro</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Ychwanegu defnyddiwr sydd wedi\'i rwystro</string>
   <string name="BlockedUsersActivity__blocked_users_will">Ni fydd defnyddwyr wedi\'u rhwystro yn gallu eich galw nac anfon negeseuon atoch.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Dim defnyddwyr wedi\'u rhwystro</string>
+  <string name="BlockedUsersActivity__block_user">Rhwystro defnyddiwr?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">Fydd \"%1$s\" ddim yn gallu eich ffonio nac anfon negeseuon atoch.</string>
   <string name="BlockedUsersActivity__block">Rhwystro</string>
+  <string name="BlockedUsersActivity__unblock_user">Dadrwystro defnyddiwr?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Ydych chi am ddadrwystro \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Dadrwystro</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Rhwystro a gadael %1$s?</string>
@@ -319,6 +326,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Mae ffeiliau cyfrwng gweld unwaith a anfonwyd yn cael eu tynnu ar ôl eu hanfon</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Rydych eisoes wedi gweld y neges hon</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Gallwch ychwanegu nodiadau i chi\'ch hun yn ystod y sgwrs hon.\nOs oes gan eich cyfrif ddyfeisiau cysylltiedig, bydd nodiadau newydd yn cael eu cydweddu.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">Mae gan aelodau\'r grŵp %1$d yr un enw.</string>
+  <string name="ConversationFragment__tap_to_review">Tapio i adolygu</string>
+  <string name="ConversationFragment__review_requests_carefully">Adolygu ceisiadau yn ofalus</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Daeth Signal o hyd i gyswllt arall gyda\'r un enw.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nid oes porwr wedi\'i osod ar eich dyfais.</string>
   <!--ConversationListFragment-->
@@ -493,15 +504,80 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Beth yw Grwpiau Newydd?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Mae gan Grwpiau Newydd nodweddion fel @crybwyll a gewinyddwyr grwpiau, a byddant â nodweddion ychwanegol yn y dyfodol.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Mae holl hanes negeseuon a chyfryngau o cyn uwchraddio wedi\'u cadw.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Bydd angen i\'r aelod hwn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fydd yn derbyn negeseuon grŵp nes ei fod yn derbyn:</item>
+    <item quantity="two">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
+    <item quantity="many">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
+    <item quantity="other">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Uwchraddio i Grŵp Newydd</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Uwchraddio\'r grŵp hwn</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Mae gan Grwpiau Newydd nodweddion fel @crybwyll a gewinyddwyr grwpiau, a byddant â nodweddion ychwanegol yn y dyfodol.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Mae holl hanes negeseuon a chyfryngau o cyn uwchraddio wedi\'u cadw.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Digwyddodd gwall rhwydwaith. Ceisiwch eto\'n hwyrach.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Wedi methu uwchraddio.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Bydd angen i\'r aelod hwn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fydd yn derbyn negeseuon grŵp nes ei fod yn derbyn:</item>
+    <item quantity="two">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
+    <item quantity="many">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
+    <item quantity="other">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Nid yw\'r aelod hwn yn gallu ymuno â Grwpiau Newydd, a bydd yn cael ei dynnu o\'r grŵp:</item>
+    <item quantity="two">Nid yw\'r aelodau hyn yn gallu ymuno â Grwpiau Newydd, a chânt eu tynnu o\'r grŵp:</item>
+    <item quantity="many">Nid yw\'r aelodau hyn yn gallu ymuno â Grwpiau Newydd, a chânt eu tynnu o\'r grŵp:</item>
+    <item quantity="other">Nid yw\'r aelodau hyn yn gallu ymuno â Grwpiau Newydd, a chânt eu tynnu o\'r grŵp:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I gyrchu nodweddion newydd fel @crybwyll a gweinyddwyr, uwchraddiwch y grŵp hwn.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Nid nawr</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Diweddaru grŵp</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">Nid oes modd ail-ychwanegu aelod %1$d at y Grŵp Newydd. Ydych chi am eu hychwanegu nawr?</item>
+    <item quantity="two">Nid oes modd ail-ychwanegu aelod %1$d at y Grŵp Newydd. Ydych chi am eu hychwanegu nawr?</item>
+    <item quantity="many">Nid oes modd ail-ychwanegu aelod %1$d at y Grŵp Newydd. Ydych chi am eu hychwanegu nawr?</item>
+    <item quantity="other">Nid oes modd ail-ychwanegu aelod %1$d at y Grŵp Newydd. Ydych chi am eu hychwanegu nawr?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Ychwanegu aelod</item>
+    <item quantity="two">Ychwanegu aelodau</item>
+    <item quantity="many">Ychwanegu aelodau</item>
+    <item quantity="other">Ychwanegu aelodau</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Nid nawr</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Ychwanegu aelod?</item>
+    <item quantity="two">Ychwanegu aelodau?</item>
+    <item quantity="many">Ychwanegu aelodau?</item>
+    <item quantity="other">Ychwanegu aelodau?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Nid oedd modd ychwanegu\'r aelod hwn yn awtomatig i\'r Grŵp Newydd pan gafodd ei uwchraddio:</item>
+    <item quantity="two">Nid oedd modd ychwanegu\'r aelod hwn yn awtomatig i\'r Grŵp Newydd pan gafodd ei uwchraddio:</item>
+    <item quantity="many">Nid oedd modd ychwanegu\'r aelod hwn yn awtomatig i\'r Grŵp Newydd pan gafodd ei uwchraddio:</item>
+    <item quantity="other">Nid oedd modd ychwanegu\'r aelod hwn yn awtomatig i\'r Grŵp Newydd pan gafodd ei uwchraddio:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Ychwanegu aelod</item>
+    <item quantity="two">Ychwanegu aelodau</item>
+    <item quantity="many">Ychwanegu aelodau</item>
+    <item quantity="other">Ychwanegu aelodau</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Wedi methu ychwanegu aelod. Ceisiwch eto\'n hwyrach.</item>
+    <item quantity="two">Wedi methu ychwanegu aelodau. Ceisiwch eto\'n hwyrach.</item>
+    <item quantity="many">Wedi methu ychwanegu aelodau. Ceisiwch eto\'n hwyrach.</item>
+    <item quantity="other">Wedi methu ychwanegu aelodau. Ceisiwch eto\'n hwyrach.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Methu ychwanegu aelod.</item>
+    <item quantity="two">Methu ychwanegu aelodau.</item>
+    <item quantity="many">Methu ychwanegu aelodau.</item>
+    <item quantity="other">Methu ychwanegu aelodau.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Gadael y grŵp?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Ni fyddwch yn gallu anfon na derbyn negeseuon yn y grŵp hwn mwyach.</string>
@@ -636,6 +712,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Golygu enw a llun</string>
   <string name="ManageGroupActivity_legacy_group">Hen Grŵp</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Hen Grŵp yw hwn. Dim ond ar gyfer Grwpiau Newydd y mae nodweddion fel gweinyddwyr grwpiau ar gael.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Hen Grŵp yw hwn. I gael mynediad at nodweddion newydd fel @mentions a gweinyddwyr,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Nid oes modd uwchraddio\'r Hen Grŵp hwn i Grŵp Newydd oherwydd ei fod yn rhy fawr. Uchafswm maint y grŵp yw %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">uwchraddio\'r grŵp hwn.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Mae hwn yn Grŵp MMS anniogel. I sgwrsio\'n breifat a chael nodweddion fel enwau grwpiau, gwahoddwch eich cysylltiadau i Signal.</string>
   <string name="ManageGroupActivity_invite_now">Gwahodd nawr</string>
   <!--GroupMentionSettingDialog-->
@@ -893,6 +972,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_updated_group">Rydych chi wedi diweddaru\'r grŵp.</string>
   <string name="MessageRecord_the_group_was_updated">Diweddarwyd y grŵp.</string>
   <string name="MessageRecord_you_called_date">Rydych wedi galw · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Galwad sain wedi\'i golli · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Galwad fideo wedi\'i golli · %1$s</string>
   <string name="MessageRecord_s_updated_group">Mae %s wedi diweddaru\'r grŵp.</string>
   <string name="MessageRecord_s_called_you_date">Fe wnaeth %1$s eich galw chi · %2$s</string>
   <string name="MessageRecord_called_s">Wedi galw %s</string>
@@ -902,6 +983,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Rydych wedi gosod yr amserydd neges sy\'n diflannu i%1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Gosododd %1$s amserydd y neges diflannu i %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Mae\'r amserydd neges sy\'n diflannu wedi\'i osod i %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Diweddarwyd y grŵp hwn i Grŵp Newydd.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
+    <item quantity="two">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
+    <item quantity="many">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
+    <item quantity="other">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">Newidiodd %1$s eu henwau proffil i %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">Newidiodd %1$s eu henwau proffil o %2$s i %3$s.</string>
@@ -1047,6 +1135,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn gwybod eich bod wedi gweld eich neges nes i ch dderbyn.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Parhau â\'ch sgwrs gyda\'r grŵp hwn a rhannu eich enw a\'ch llun gyda\'i aelodau?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uwchraddiwch y grŵp hwn i agor nodweddion newydd fel @mentions a gweinyddwyr. Bydd aelodau nad ydyn nhw wedi rhannu eu henw na\'u llun yn y grŵp hwn yn cael gwahoddiad i ymuno.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Nid oes modd defnyddio\'r Hen Grŵp hwn mwyach oherwydd ei fod yn rhy fawr. Uchafswm maint y grŵp yw %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Parhewch â\'ch sgwrs gyda %1$s a rhannwch eich enw a\'ch llun gyda nhw?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau? Byddan nhw ddim yn gwybod eich bod wedi gweld eu negeseuon nes eich bod wedi derbyn.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ymuno â\'r grŵp hwn? Ni fyddant yn gwybod eich bod wedi gweld eu negeseuon nes i chi dderbyn.</string>
@@ -1194,12 +1284,22 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallView__signal_video_call">Galwad fideo Signal</string>
   <string name="WebRtcCallView__start_call">Cychwyn Galwad</string>
   <string name="WebRtcCallView__join_call">Ymuno â\'r Alwad</string>
+  <string name="WebRtcCallView__s_group_call">Galwad Grŵp \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Gweld cyfranogwyr</string>
   <string name="WebRtcCallView__your_video_is_off">Mae\'ch fideo i ffwrdd</string>
   <string name="WebRtcCallView__connecting">Yn cysylltu</string>
   <string name="WebRtcCallView__reconnecting">Yn Ailgysylltu…</string>
+  <string name="WebRtcCallView__joining">Yn ymuno…</string>
   <string name="WebRtcCallView__disconnected">Datgysylltwyd</string>
   <string name="WebRtcCallView__no_one_else_is_here">Does neb arall yma</string>
+  <string name="WebRtcCallView__s_is_in_this_call">Mae %1$s yn yr alwad hon</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">Mae %1$s a %2$s yn yr alwad hon</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">Mae %1$s, %2$s, a %3$d arall yn yr alwad hon</item>
+    <item quantity="two">Mae %1$s, %2$s, a %3$d arall yn yr alwad hon</item>
+    <item quantity="many">Mae %1$s, %2$s, a %3$d arall yn yr alwad hon</item>
+    <item quantity="other">Mae %1$s, %2$s, a %3$d arall yn yr alwad hon</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Yn yr alwad hon · %1$d person</item>
@@ -1436,6 +1536,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bydd hyn yn dileu yn barhaol y neges hon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s i %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Nid yw\'r cyfryngau ar gael bellach.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Methu dod o hyd i ap sy\'n gallu rhannu\'r cyfryngau hyn.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neges newydd mewn %2$d sgwrs</string>
   <string name="MessageNotifier_most_recent_from_s">Y diweddaraf gan: %1$s</string>
@@ -2000,6 +2101,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__typing_indicators">Dangosyddion Teipio</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Os yw dangosyddion teipio wedi eu hanalluogi, fyddwch chi ddim yn gweld dangosyddion teipio pobl eraill.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Gofyn i\'r bysellfwrdd analluogi dysgu personol</string>
+  <string name="preferences_app_protection__blocked_users">Defnyddwyr wedi\'u rhwystro</string>
   <string name="preferences_chats__when_using_mobile_data">Wrth ddefnyddio data symudol</string>
   <string name="preferences_chats__when_using_wifi">Wrth ddefnyddio diwifr</string>
   <string name="preferences_chats__when_roaming">Wrth grwydro</string>
@@ -2062,6 +2164,7 @@ Send neges heb ei ddiogelu?</string>
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Neges newydd at…</string>
+  <string name="contact_selection_list__unknown_contact_block">Rhwystro defnyddiwr</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Ychwanegu i grŵp</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Galw</string>
@@ -2487,12 +2590,39 @@ Send neges heb ei ddiogelu?</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s i %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">Mae \"%1$s\" wedi\'i rwystro.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Wedi methu rhwystro \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">Mae \"%1$s\" wedi\'i ddadrwystro.</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Adolygu Aelodau</string>
+  <string name="ReviewCardDialogFragment__review_request">Adolygu Ceisiadau</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">Mae gan aelodau grŵp %1$d yr un enw, adolygwch yr aelodau isod a dewis gweithredu.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Os nad ydych yn siŵr o ble ddaw\'r cais, adolygwch y cysylltiadau isod a gweithredu.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Dim grwpiau eraill yn gyffredin.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Dim grwpiau\'n gyffredin</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d grŵp yn gyffredin</item>
+    <item quantity="two">%d grŵp yn gyffredin</item>
+    <item quantity="many">%d grŵp yn gyffredin</item>
+    <item quantity="other">%d grŵp yn gyffredin</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d grŵp yn gyffredin</item>
+    <item quantity="two">%d grŵp yn gyffredin</item>
+    <item quantity="many">%d grŵp yn gyffredin</item>
+    <item quantity="other">%d grŵp yn gyffredin</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Tynnu %1$s o\'r grŵp?</string>
   <string name="ReviewCardDialogFragment__remove">Tynnu</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Wedi methu tynnu aelod o\'r grŵp.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Aelod</string>
+  <string name="ReviewCard__request">Gofyn</string>
+  <string name="ReviewCard__your_contact">Eich cyswllt</string>
   <string name="ReviewCard__remove_from_group">Tynnu o\'r grŵp</string>
+  <string name="ReviewCard__update_contact">Diweddaru\'r cyswllt</string>
   <string name="ReviewCard__block">Rhwystro</string>
   <string name="ReviewCard__delete">Dileu</string>
+  <string name="ReviewCard__recently_changed">Wedi newid eu henw proffil yn ddiweddar o %1$s i %2$s</string>
   <!--EOF-->
 </resources>

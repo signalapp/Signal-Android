@@ -80,10 +80,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erreur de lecture du son.</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Utilisateurs bloqués</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Ajouter un utilisateur bloqué</string>
   <string name="BlockedUsersActivity__blocked_users_will">Les utilisateurs bloqués ne pourront ni vous appeler ni vous envoyer des messages.</string>
-  <string name="BlockedUsersActivity__block_user">Souhaitez-vous bloquer cet utilisateur ?</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Aucun utilisateur bloqué</string>
+  <string name="BlockedUsersActivity__block_user">Bloquer cet utilisateur ?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">« %1$s » ne pourra ni vous appeler ni vous envoyer des messages.</string>
   <string name="BlockedUsersActivity__block">Bloquer</string>
-  <string name="BlockedUsersActivity__unblock_user">Souhaitez-vous débloquer cet utilisateur ?</string>
+  <string name="BlockedUsersActivity__unblock_user">Débloquer cet utilisateur ?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Voulez-vous débloquer « %1$s » ?</string>
   <string name="BlockedUsersActivity__unblock">Débloquer</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquer et quitter %1$s ?</string>
@@ -351,6 +356,7 @@
   <string name="ChooseBackupFragment__learn_more">En apprendre davantage</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">La restauration est terminée.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Pour continuer à utiliser les sauvegardes, veuillez choisir un dossier. Les nouvelles sauvegardes seront enregistrées dans cet emplacement.</string>
   <string name="RestoreBackupFragment__choose_folder">Sélectionner un dossier</string>
   <string name="RestoreBackupFragment__not_now">Pas maintenant</string>
   <!--BackupsPreferenceFragment-->
@@ -363,8 +369,10 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Essayez la phrase de passe de la sauvegarde et confirmez qu’elle correspond</string>
   <string name="BackupsPreferenceFragment__turn_on">Activer</string>
   <string name="BackupsPreferenceFragment__turn_off">Désactiver</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Pour restorer une sauvegarde, installez une nouvelle version de Signal. Ouvrez l\'application, et selectionnez \"Restorer sauvegarde\", puis selectionnez un fichier de sauvegarde. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">En apprendre davantage</string>
   <string name="BackupsPreferenceFragment__in_progress">En cours…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d jusqu\'ici…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à la mémoire externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé utilisé : %s</string>
@@ -409,6 +417,10 @@
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Votre version de Signal est expirée. Mettez-la à jour maintenant afin d’échanger des messages.</string>
   <string name="ExpiredBuildReminder_update_now">Mettre Signal à jour maintenant</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%d requête de membre en attente.</item>
+    <item quantity="other">%d requêtes de membres en attente.</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Afficher</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
@@ -456,14 +468,62 @@
   <string name="GroupManagement_invite_multiple_users">Ces utilisateurs ne peuvent pas être ajoutés automatiquement par vous à ce groupe.\n\nDes invitations ont été envoyées et ces utilisateurs ne verront aucun message du groupe tant que les invitations n’auront pas été acceptées.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Que sont les nouveaux groupes ?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Les nouveaux Groupes ont des fonctionalités comme les @mentions et les administrateurs de groupes, et en auront encore davantages dans le futur.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">L\'ensemble de l\'historique des messages et des medias a été conservé avant la mise à jour.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">ce membre doit accepter l\'invitation à de nouveau rejoindre ce groupe. Ils ne recevront pas ses messages avant d\'avoir accepté:</item>
+    <item quantity="other">Chaque membre doit accepter l\'invitation à de nouveau rejoindre ce groupe. Ils ne recevront pas ses messages avant d\'avoir accepté:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Convertir en nouveau groupe</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Mettre à jour ce groupe</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Les nouveaux Groupes ont des fonctionalités comme les @mentions et les administrateurs de groupes, et en auront encore davantages dans le futur.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">L\'ensemble de l\'historique des messages ainsi que des medias seront sauvegardés avant la mise à niveau.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Une erreur réseau a été rencontrée. Merci de réessayer ultérieurement.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Erreur lors de la mise à jour.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Ce membre devra à nouveau accepter une invitation à se joindre à ce groupe et ne recevront pas de messages du groupe avant de l\'avoir fait.</item>
+    <item quantity="other">Ces membres devront à nouveau accepter une invitation à se joindre à ce groupe et ne recevront pas de messages du groupe avant de l\'avoir fait.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Ce membre n\'est pas capables de se joindre à des Nouveaux Groupes, et seront supprimés du groupe:</item>
+    <item quantity="other">Ces membres ne sont pas capables de se joindre à des Nouveaux Groupes, et seront supprimés du groupe:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pour accéder aux nouvelles fonctionalités comme les @mentions et les administrateur, mettez ce groupe à niveau.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Pas maintenant</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Mettre à jour le groupe</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Mettre le groupe à jour</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d membre n\'a pas pu être ajoutés au Nouveau Groupe. Voulez-vous l\'ajouter maintenant ?</item>
+    <item quantity="other">%1$d membres n\'ont pas pu être ajoutés au Nouveau Groupe. Voulez-vous les ajouter maintenant ?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Ajouter un membre</item>
+    <item quantity="other">Ajouter des membres</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Pas maintenant</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Ajouter un membre?</item>
+    <item quantity="other">Ajouter des membres?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Ce membre n\'a pas pu être automatiquement ajouté au Nouveau Groupe lors de sa mise à niveau:</item>
+    <item quantity="other">Ces membres n\'ont pas pu être automatiquement ajoutés au Nouveau Groupe lors de sa mise à niveau:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Ajouter un membre</item>
+    <item quantity="other">Ajouter des membres</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Impossible d\'ajouter le membre. Merci de reéssayer ultérieurement.</item>
+    <item quantity="other">Impossible d\'ajouter de nouveaux membres. Merci de reéssayer ultérieurement.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Impossible d\'ajouter le membre.</item>
+    <item quantity="other">Impossible d\'ajouter des membres.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Quitter le groupe ?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Vous ne pourrez plus recevoir ni envoyer de messages dans ce groupe.</string>
@@ -571,6 +631,7 @@
     <item quantity="other">%d membres ont été ajoutés.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Seuls les administrateurs peuvent activer ou désactiver le lien de groupe partageable.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Seuls les administrateurs peuvent activer ou désactiver l\'option pour approver de nouveaux membres.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Seuls les administrateurs peuvent réinitialiser le lien de groupe partageable.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
@@ -580,6 +641,12 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Échec de mise à jour du groupe en raison d’une erreur réseau, veuillez réessayer plus tard</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Modifier le nom et l’image</string>
   <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Il s\'agit d\'un groupé hérité. Les fonctionalités comme les administrateurs de groupes sont uniquement disponible pour les Nouveaux Groupes.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Il s\'agit d\'un groupé hérité. Pour accéder aux nouvelles fonctionalités comme les @mentions et les administrateurs,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Ce groupe hérité ne peut pas être mis à niveau vers un Nouveau Group car il est trop grand. La taille maximum d\'un groupe est de %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">convertir ce groupe</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Il s\'agit d\'un groupe de message multimédia non-sécurité. Pour converser de manière privée et utiliser des foncitonalités comme des groupes nommés, invitez vos contacts sur Signal.</string>
+  <string name="ManageGroupActivity_invite_now">Inviter maintenant</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications si vous êtes mentionné dans des conversations en sourdine ?</string>
@@ -672,6 +739,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Il n’est pas encore possible dans Signal de se joindre à un groupe grâce à un lien. Cette fonction sera proposée dans une mise à jour future.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La version de Signal que vous utilisez ne prend pas en charge les liens de groupe. Installez la dernière version de Signal pour vous joindre à ce groupe grâce à un lien.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Mettre Signal à jour</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un ou plusieurs de vos appareils liés utilisent une version de Signal ne supportant pas les liens de groupes. Mettez à jour vos appareils pour vous joindre au groupe.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Le lien de groupe est invalide</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Ajouter « %1$s » au groupe ?</string>
@@ -824,6 +892,10 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">L’expiration des messages éphémères a été définie à %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ce groupe a été converti en nouveau groupe.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">%1$s membre n\'a pas pu être ajouté au Nouveau Groupe et a été invité à le rejoindre.</item>
+    <item quantity="other">%1$s membres n\'ont pas pu être ajouté au Nouveau Groupe et ont été invités à le rejoindre.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s a changé le nom de son profil en %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s a changé le nom de son profil de %2$s en %3$s.</string>
@@ -917,7 +989,11 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Le lien de groupe a été activé et l’approbation d’un administrateur est activée.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Le lien de groupe a été désactivé.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Vous avez désactivé l’approbation d’un administrateur pour le lien de groupe.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s a désactivé l\'approbation d\'un administrateur pour le lien du groupe.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">L\'approbation d\'un administrateur pour le lien du groupe a été désactivé.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Vous avez activé l’approbation d’un administrateur pour le lien de groupe.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s a activé d\'approbation d\'un administrateur pour le lien d\'invitation du groupe.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">L\'approbation d\'un administrateur pour le lien d\'invitation du groupe a été activée.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Vous avez réinitialisé le lien de groupe.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s a réinitialisé le lien de groupe.</string>
@@ -954,6 +1030,10 @@
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Poursuivre votre conversation dans ce groupe, et partager votre nom ainsi que votre photo avec ses membres?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Mettez ce Groupe à niveau pour activer de nouvelles fonctionalités comme les @mentions et les administrateurs. Les Membres n\'ayant pas partagé leur nom ou photo avec ce group seront invités à le rejoindre.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ce groupe hérité ne peut plus être utilisé car il est trop grand. La taille maximum d\'un groupe est de %1$d.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Poursuivre votre conversation avec %1$s et partager votre nom et photo avec eux ?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vous joindre à ce groupe et partager votre nom et votre photo avec ses membres ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vous joindre à ce groupe ? Ses membres ne sauront pas que vous avez lu leurs messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
@@ -1002,6 +1082,11 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus de cette conversation disparaîtront %s après avoir été lus.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Mettre Signal à jour maintenant</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Cette version de Signal expirera aujourd\'hui. Mettez à jour vers une version plus récente.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Cette version de Signal va expirer demain, il est recommandé de mettre à jour.</item>
+    <item quantity="other">Cette version de Signal va expirer dans %djours, il est recommandé de mettre à jour.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Saisissez la phrase de passe</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icône de Signal</string>
@@ -1085,12 +1170,25 @@
   <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
   <string name="WebRtcCallView__start_call">Démarrer un appel</string>
   <string name="WebRtcCallView__join_call">Me joindre à l’appel</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" Appel de groupe</string>
   <string name="WebRtcCallView__view_participants_list">Afficher les participants</string>
+  <string name="WebRtcCallView__your_video_is_off">Votre video est désactivée</string>
   <string name="WebRtcCallView__connecting">Connexion…</string>
   <string name="WebRtcCallView__reconnecting">Reconnexion…</string>
+  <string name="WebRtcCallView__joining">Adhésion en cours…</string>
   <string name="WebRtcCallView__disconnected">L’application est déconnectée</string>
   <string name="WebRtcCallView__no_one_else_is_here">Il n’y a personne d’autre ici</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s est présent dans cet appel</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s et %2$s sont présents dans ce appel</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s, et %3$d personne sont dans cet appel</item>
+    <item quantity="other">%1$s, %2$s, et %3$d personnes sont dans cet appel</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Dans cet appel · %1$d personne</item>
+    <item quantity="other">Dans cet appel · %1$d personnes</item>
+  </plurals>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vous devez indiquer votre indicatif de pays</string>
@@ -1457,6 +1555,11 @@
   <string name="ContactSelectionListFragment_maximum_group_size_reached">La taille maximale du groupe est atteinte</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal ne peuvent pas avoir plus de %1$dmembres.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">La limite de membres recommandée est atteinte</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Les Groupes fonctionnent mieux avec %1$d membres ou moins. En ajouter davantage peut cuaser des détails lors de l\'envoi et la réception de messages.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d membre</item>
+    <item quantity="other">%1$d membres</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Aucun contact n’est bloqué</string>
   <!--contact_selection_list_fragment-->
@@ -1518,6 +1621,7 @@
   <string name="safety_number_change_dialog__call_anyway">Appeler quand même</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Les personnes suivantes ont peut-être réinstallé Signal ou changé d’appareil. Pour assurer la confidentialité, confirmez votre numéro de sécurité avec elles.</string>
   <string name="safety_number_change_dialog__view">Afficher</string>
+  <string name="safety_number_change_dialog__previous_verified">Précédement vérifé</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays…</string>
   <string name="country_selection_fragment__search">Chercher</string>
@@ -1846,6 +1950,7 @@
   <string name="preferences__typing_indicators">Indicateurs de saisie</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie d’autrui.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l’apprentissage personnalisé</string>
+  <string name="preferences_app_protection__blocked_users">Utilisateurs bloqués</string>
   <string name="preferences_chats__when_using_mobile_data">En utilisant les données mobiles</string>
   <string name="preferences_chats__when_using_wifi">En utilisant le WI-FI</string>
   <string name="preferences_chats__when_roaming">En itinérance</string>
@@ -1908,6 +2013,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nouveau message à…</string>
+  <string name="contact_selection_list__unknown_contact_block">Bloquer l\'utilisateur</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Ajouter au groupe</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Appeler</string>
@@ -2142,6 +2248,7 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Nous croyons en la protection des renseignements personnels.</b></p><p>Signal ne vous suit pas à la trace ni ne recueille vos données. Afin d’améliorer Signal pour tous, nous comptons sur la rétroaction des utilisateurs <b>et nous aimerions connaître la vôtre.</b></p><p> Nous effectuons un sondage afin de comprendre comment vous utilisez Signal. Notre sondage ne recueille aucune donnée qui permettrait de vous identifier. Si vous souhaitez nous faire part d’autres commentaires, la possibilité de nous indiquer vos coordonnées vous sera offerte.</p><p>Si vous avez quelques minutes à nous consacrer et une rétroaction à nous communiquer, nous serions ravis de vous lire.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Répondre au sondage</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Non merci</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Ce sondage est hebergé par Alchemer sur le domaine sécurité surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>
@@ -2290,6 +2397,7 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">Appel vocal non sécurisé</string>
   <string name="RecipientBottomSheet_video_call_description">Appel vidéo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Supprimer %1$s en tant qu’administrateur du groupe ?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" aura la possibilité d\'éditer ce groupe ainsi que ses membres.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Supprimer %1$s du groupe ? </string>
   <string name="RecipientBottomSheet_remove">Supprimer</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
@@ -2301,6 +2409,8 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">Que sont les groupes hérités ?</string>
   <string name="GroupsLearnMore_paragraph_1">Les groupes hérités sont des groupes qui ne sont pas compatibles avec les fonctions des nouveaux groupes, telles que les administrateurs et les mises à jour plus descriptives des groupes.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Puis-je transformer un groupe hérité en nouveau groupe ?</string>
+  <string name="GroupsLearnMore_paragraph_2">Les groupes hérités ne peuvent pour l\'instant pas être mis à niveau vers des Nouveaux Groups, mais vous pouvez créer un Nouveau Group avec des membres identiques s\'ils possèdent la version la plus récente de Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal offrira un moyen de mettre à jour les groupes hérités dans le future.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partager avec Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copier</string>
@@ -2315,12 +2425,24 @@
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s à %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" a ée bloqué.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Impossible de bloquer \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" a ée débloqué.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Examiner les membres</string>
   <string name="ReviewCardDialogFragment__review_request">Examiner la requête</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membres du groupes ont le meme nom, passez les en revue ci-dessous, et choisissez l\'action appropriée.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Si vous n’êtes pas certain de qui la demande provient, examinez les contacts ci-dessous et agissez en conséquence.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Aucun autre groupe en commun.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d groupe en commun</item>
+    <item quantity="other">%d groupes en commun</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%dgroupe en commun</item>
+    <item quantity="other">%dgroupes en commun</item>
+  </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">Supprimer %1$s du groupe ?</string>
   <string name="ReviewCardDialogFragment__remove">Supprimer</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Échec de suppression du membre du groupe.</string>
