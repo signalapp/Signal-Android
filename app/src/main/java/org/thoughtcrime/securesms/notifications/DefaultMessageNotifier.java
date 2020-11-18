@@ -29,6 +29,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.TransactionTooLargeException;
 import android.service.notification.StatusBarNotification;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -69,6 +70,7 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -436,8 +438,19 @@ public class DefaultMessageNotifier implements MessageNotifier {
     }
 
     Notification notification = builder.build();
-    NotificationManagerCompat.from(context).notify(notificationId, notification);
-    Log.i(TAG, "Posted notification.");
+
+    try {
+      NotificationManagerCompat.from(context).notify(notificationId, notification);
+      Log.i(TAG, "Posted notification.");
+    } catch (SecurityException e) {
+      Uri defaultValue = TextSecurePreferences.getNotificationRingtone(context);
+      if (!defaultValue.equals(notificationState.getRingtone(context))) {
+        Log.e(TAG, "Security exception when posting notification with custom ringtone", e);
+        clearNotificationRingtone(context, notifications.get(0).getRecipient());
+      } else {
+        throw e;
+      }
+    }
 
     return shouldAlert;
   }
@@ -489,8 +502,26 @@ public class DefaultMessageNotifier implements MessageNotifier {
     }
 
     Notification notification = builder.build();
-    NotificationManagerCompat.from(context).notify(NotificationIds.MESSAGE_SUMMARY, builder.build());
-    Log.i(TAG, "Posted notification. " + notification.toString());
+
+    try {
+      NotificationManagerCompat.from(context).notify(NotificationIds.MESSAGE_SUMMARY, builder.build());
+      Log.i(TAG, "Posted notification. " + notification.toString());
+    } catch (SecurityException securityException) {
+      Uri defaultValue = TextSecurePreferences.getNotificationRingtone(context);
+      if (!defaultValue.equals(notificationState.getRingtone(context))) {
+        Log.e(TAG, "Security exception when posting notification with custom ringtone", securityException);
+        clearNotificationRingtone(context, notifications.get(0).getRecipient());
+      } else {
+        throw securityException;
+      }
+    } catch (RuntimeException runtimeException) {
+      Throwable cause = runtimeException.getCause();
+      if (cause instanceof TransactionTooLargeException) {
+        Log.e(TAG, "Transaction too large", runtimeException);
+      } else {
+        throw runtimeException;
+      }
+    }
   }
 
   private static void sendInThreadNotification(Context context, Recipient recipient) {
@@ -708,6 +739,13 @@ public class DefaultMessageNotifier implements MessageNotifier {
     long          timeout       = TimeUnit.MINUTES.toMillis(2);
 
     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + timeout, pendingIntent);
+  }
+
+  private static void clearNotificationRingtone(@NonNull Context context, @NonNull Recipient recipient) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      DatabaseFactory.getRecipientDatabase(context).setMessageRingtone(recipient.getId(), null);
+      NotificationChannels.updateMessageRingtone(context, recipient, null);
+    });
   }
 
   @Override
