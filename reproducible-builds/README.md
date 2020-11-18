@@ -18,7 +18,7 @@ docker build -t signal-android .
 cd ..
 
 # Build using the Docker environment
-docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assembleRelease
+docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assemblePlayProdRelease
 
 # Verify the APKs
 python3 apkdiff/apkdiff.py build/outputs/apks/project-release-unsigned.apk path/to/SignalFromPlay.apk
