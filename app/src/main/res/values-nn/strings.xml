@@ -411,6 +411,8 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fil utan namn</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglande Play-tenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne eininga støttar ikkje Play-tenester. Trykk for å skru av batterioptimaliseringane i systemet som hindrar Signal frå å henta meldingar når programmet ikkje er aktivt. </string>

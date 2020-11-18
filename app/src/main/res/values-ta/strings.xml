@@ -384,6 +384,10 @@
   <string name="DeviceListItem_today">இன்று</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">பெயரிடப்படாத கோப்பு</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Signal-க்கு நன்கொடை அளி</string>
+  <string name="DonateMegaphone_donate">நன்கொடை</string>
+  <string name="DonateMegaphone_not_now">இப்போது வேண்டாம் </string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">காணாமல் போன விளையாட்டு சேவைகளை மேம்படுத்தவும்</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>

@@ -390,6 +390,9 @@
   <string name="DeviceListItem_today">Täna</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nimetu fail</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Anneta Signal-ile</string>
+  <string name="DonateMegaphone_not_now">Mitte praegu</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>

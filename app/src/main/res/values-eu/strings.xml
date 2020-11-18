@@ -411,6 +411,9 @@
   <string name="DeviceListItem_today">Gaur</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Izenik gabeko fitxategia</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Signal-i dohaintza eman</string>
+  <string name="DonateMegaphone_not_now">Orain ez</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizatu Google Play-ren zerbitzuetarko</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Gailu honek ez dauka Play Services erabiltzerik. Signal irekita ez dagoenean, sistemaren bateria optimizazioek galarazten diote mezuak jasotzea. Ukitu sistemaren bateria optimizazioak desaktibatzeko.</string>

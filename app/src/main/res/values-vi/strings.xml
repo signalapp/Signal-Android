@@ -370,6 +370,10 @@
   <string name="DeviceListItem_today">Hôm nay</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Tệp không tên</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Ủng hộ Signal</string>
+  <string name="DonateMegaphone_donate">Đóng góp</string>
+  <string name="DonateMegaphone_not_now">Để sau</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Tối ưu hóa khi không có dịch vụ Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Thiết bị này không hỗ trợ dịch vụ Google Play. Nhấn để tắt tính năng tối ưu hóa pin khiến Signal không thể nhận tin nhắn duới nền.</string>

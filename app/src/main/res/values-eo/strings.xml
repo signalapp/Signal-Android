@@ -409,6 +409,8 @@
   <string name="DeviceListItem_today">Hodiaŭ</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Donaci al Signal</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumigi por mankantaj „Play Services“</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tiu aparato ne subtenas „Play Services“. Tuŝetu por malebligi baterian optimumigon, kiu alie malhelpus al Signal ricevi mesaĝojn dum neaktiva.</string>

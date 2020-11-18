@@ -410,6 +410,10 @@
   <string name="DeviceListItem_today">Aujourd’hui</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Faire un don à Signal</string>
+  <string name="DonateMegaphone_donate">Faire un don</string>
+  <string name="DonateMegaphone_not_now">Pas maintenant</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiser pour palier l’absence des Services Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas les Services Google Play en charge. Touchez pour désactiver les optimisations système de la pile qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>

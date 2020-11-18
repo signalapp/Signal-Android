@@ -380,6 +380,8 @@
   <string name="DeviceListItem_today">ഇന്ന്</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">പേരിടാത്ത ഫയൽ</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Play Services ഇല്ലാത്തതിനാൽ ഡിവൈസ് ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ഈ ഉപകരണം Play Services പിന്തുണയ്ക്കുന്നില്ല. നിഷ്‌ക്രിയമായിരിക്കുമ്പോൾ സന്ദേശങ്ങൾ വീണ്ടെടുക്കുന്നതിൽ നിന്ന് Signal നെ തടയുന്ന സിസ്റ്റം ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കാൻ ടാപ്പുചെയ്യുക.</string>

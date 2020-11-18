@@ -411,6 +411,9 @@
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Unavngivet fil</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string>
+  <string name="DonateMegaphone_not_now">Ikke nu</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheden understøtter ikke Play Services. Tap for at slå batterioptimering fra, som forhindrer Signal i at modtage beskeder i baggrunden</string>

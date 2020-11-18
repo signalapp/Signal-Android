@@ -438,6 +438,9 @@
   <string name="DeviceListItem_today">Šiandien</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bevardis failas</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Paaukokite Signal programėlei</string>
+  <string name="DonateMegaphone_not_now">Ne dabar</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuoti trūkstamoms „Play“ paslaugoms</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Šis įrenginys nepalaiko „Play“ paslaugų. Bakstelėkite, norėdami išjungti sistemos baterijos optimizavimus, kurie neleidžia Signal gauti žinučių tol, kol įrenginys yra neaktyvus.</string>

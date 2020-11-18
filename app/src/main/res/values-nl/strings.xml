@@ -411,6 +411,10 @@
   <string name="DeviceListItem_today">Vandaag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Onbenoemd bestand</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Aan Signal doneren</string>
+  <string name="DonateMegaphone_donate">Doneren</string>
+  <string name="DonateMegaphone_not_now">Niet nu</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>

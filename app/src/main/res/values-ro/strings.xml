@@ -424,6 +424,9 @@
   <string name="DeviceListItem_today">Azi</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fișier fără nume</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Donați pentru Signal</string>
+  <string name="DonateMegaphone_not_now">Nu acum</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>

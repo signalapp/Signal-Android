@@ -404,6 +404,10 @@
   <string name="DeviceListItem_today">Ma</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Névtelen fájl</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Adomány a Signal számára</string>
+  <string name="DonateMegaphone_donate">Támogatás</string>
+  <string name="DonateMegaphone_not_now">Később</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizálás hiányzó Play Szolgáltatásokra</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ez a készülék nem támogatja a Play Szolgáltatásokat. Koppints a rendszer akkumulátor-optimalizációinak letiltásához, ami megakadályozza a Signal-t abban, hogy inaktív állapotban is letöltse az üzeneteket.</string>

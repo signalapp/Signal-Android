@@ -410,6 +410,10 @@
   <string name="DeviceListItem_today">Heute</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Unbenannte Datei</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">An Signal spenden</string>
+  <string name="DonateMegaphone_donate">Spenden</string>
+  <string name="DonateMegaphone_not_now">Jetzt nicht</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für Betrieb ohne Google-Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungen zu deaktivieren, die Signal daran hindern, Nachrichten im Hintergrund zu empfangen.</string>

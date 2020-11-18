@@ -438,6 +438,10 @@
   <string name="DeviceListItem_today">Сегодня</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Безымянный файл</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string>
+  <string name="DonateMegaphone_donate">Пожертвовать</string>
+  <string name="DonateMegaphone_not_now">Не сейчас</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизация при отсутствии Служб Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Это устройство не поддерживает Службы Google Play. Нажмите для отключения оптимизации энергопотребления, которая не позволяет Signal получать сообщения, когда он неактивен.</string>

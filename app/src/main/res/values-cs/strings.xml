@@ -374,7 +374,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problém při nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavit váš profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil je end-to-end šifrován. Váš profil a změny na něm budou viditelné pro vaše kontakty, když zahájíte nebo přijmete novou konverzaci a když se připojíte k novým skupinám.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil využívá koncové šifrování. Váš profil a změny v něm budou viditelné pro vaše kontakty, když zahájíte nebo přijmete nové konverzace a když se připojíte k novým skupinám.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastavit avatar</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Obnovit ze zálohy?</string>
@@ -438,6 +438,10 @@
   <string name="DeviceListItem_today">Dnes</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nepojmenovaný soubor</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Podpořte Signal finančně</string>
+  <string name="DonateMegaphone_donate">Sponzorujte</string>
+  <string name="DonateMegaphone_not_now">Nyní ne</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimlizovat pro chybějící Google Play službu</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Klepnutím zakážete systémové optimalizace baterie, které způsobují nemožnost Signalu přijímat zprávy v době nečinnosti.</string>
@@ -727,7 +731,7 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tato osoba je ve vašich kontaktech</string>
   <string name="ManageRecipientActivity_disappearing_messages">Zmizení zpráv</string>
   <string name="ManageRecipientActivity_chat_color">Barva konverzace</string>
-  <string name="ManageRecipientActivity_block">Blokovat</string>
+  <string name="ManageRecipientActivity_block">Zablokovat</string>
   <string name="ManageRecipientActivity_unblock">Odblokovat</string>
   <string name="ManageRecipientActivity_view_safety_number">Zobrazit bezpečnostní kód</string>
   <string name="ManageRecipientActivity_mute_notifications">Ztišit upozornění</string>
@@ -1205,7 +1209,7 @@
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Neplatná adresa</string>
-  <string name="PlacePickerActivity_drop_pin">Umístit špendlík</string>
+  <string name="PlacePickerActivity_drop_pin">Umístit ukazatel</string>
   <string name="PlacePickerActivity_accept_address">Potvrdit adresu</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verze služby Google Play, kterou máte nainstalovánu, nepracuje správně. Prosím, přeinstalujte službu Google Play a zkuste to znovu.</string>
@@ -2146,7 +2150,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_notifications__priority">Priorita</string>
   <string name="preferences_communication__category_sealed_sender">Utajený odesílatel</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Zobrazit indikátory</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Zobrazit stavovou ikonu když zvolíte \"Detail zprávy\" u zprávy poslané s použitím funkce utajený odesílatel.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Zobrazit stavovou ikonu v podrobnostech zprávy doručené s použitím funkce utajený odesílatel.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Povolit od kohokoliv</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Povolit utajené odesílatele pro příchozí zprávy od lidí, které nemáte kontaktech a se kterými nesdílíte váš profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Zjistit více</string>
@@ -2276,13 +2280,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Postřehy</string>
   <string name="InsightsDashboardFragment__title">Postřehy</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky chráněno %1$d%% odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signalu jsou vždy end-to-end šifrovány. </string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky ochráněno %1$d%% vašich odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signalu jsou vždy koncově šifrovány.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Podpořte Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procento je vypočteno na základě odchozích zpráv za posledních %1$d dnů, které nezmizely ani nebyly smazány. </string>
   <string name="InsightsDashboardFragment__start_a_conversation">Zahájit konverzaci</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Začněte komunikovat bezpečně a využijte nové funkce překonávající omezení nezašifrovaných SMS zpráv tím, že pozvete více kontaktů, aby se připojily k Signalu.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tyto statistiky jsou vytvořeny lokálně na vašem zařízení a pouze vy je můžete vidět. Nikdy nejsou nikam odesílány.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Pozvěte více kontaktů, aby se připojily k Signalu, a začněte komunikovat bezpečně s využitím nových funkcí, které překonávají omezení nezašifrovaných SMS zpráv.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tyto statistiky jsou vytvořeny lokálně na vašem zařízení a pouze vy je můžete vidět. Nejsou nikdy nikam odesílány.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Zašifrované zprávy</string>
   <string name="InsightsDashboardFragment__cancel">Storno</string>
   <string name="InsightsDashboardFragment__send">Odeslat</string>

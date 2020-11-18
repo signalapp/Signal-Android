@@ -410,6 +410,9 @@
   <string name="DeviceListItem_today">Avui</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fitxer sense nom</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Feu una donació a Signal</string>
+  <string name="DonateMegaphone_not_now">Ara no</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimitza per a la no presència dels Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">El dispositiu no és compatible amb Play Services. Toqueu per desactivar les optimitzacions de la bateria que impedeixen que el Signal rebi missatges quan estigui inactiu.</string>

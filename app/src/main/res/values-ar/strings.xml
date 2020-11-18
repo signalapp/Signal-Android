@@ -437,6 +437,9 @@
   <string name="DeviceListItem_today">اليوم</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ملف بدون اسم</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate">تبرع</string>
+  <string name="DonateMegaphone_not_now">ليس الآن</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">الإعداد الأمثل عند غياب خدمات Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">هذا الهاتف لا يدعم خدمات Play. أنقر لإلغاء تفعيل ميزة الأداء الأمثل للبطارية والتي تمنع Signal من استقبال الرسائل عند عدم النشاط.</string>

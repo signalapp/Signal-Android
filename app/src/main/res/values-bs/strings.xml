@@ -424,6 +424,9 @@
   <string name="DeviceListItem_today">Danas</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Datoteka bez naziva</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Donirajte za Signal</string>
+  <string name="DonateMegaphone_not_now">Ne sada</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuj za nepostojanje Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite ovdje kako biste onemogućili sistemske optimizacije korištenja baterije koje sprečavaju Signal da prima poruke dok je aplikacija zatvorena.</string>

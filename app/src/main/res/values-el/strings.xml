@@ -410,6 +410,10 @@
   <string name="DeviceListItem_today">Σήμερα</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ανώνυμο αρχείο</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Κάνε μια δωρεά στο Signal</string>
+  <string name="DonateMegaphone_donate">Δωρεά</string>
+  <string name="DonateMegaphone_not_now">Όχι τώρα</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Βελτιστοποίηση για τις υπηρεσίες Play που λείπουν</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Αυτή η συσκευή δεν υποστηρίζει τις υπηρεσίες Play. Πάτα για απενεργοποίηση των βελτιστοποιήσεων μπαταρίας του συστήματος που εμποδίζουν το Signal από το να λαμβάνει μηνύματα όταν είναι ανενεργό.</string>

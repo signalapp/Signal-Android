@@ -398,6 +398,10 @@
   <string name="DeviceListItem_today">Bugün</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">İsimsiz dosya</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Signal\'e Bağış Yap</string>
+  <string name="DonateMegaphone_donate">Bağış yapın</string>
+  <string name="DonateMegaphone_not_now">Şimdi Değil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Eksik Google Play Hizmetleri için optimize et</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Hizmetlerini desteklemiyor. Signal etkin değilken ileti almasını engelleyebilecek pil iyileştirmelerini devre dışı bırakmak için dokunun.</string>

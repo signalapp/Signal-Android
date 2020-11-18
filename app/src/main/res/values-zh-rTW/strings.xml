@@ -396,6 +396,10 @@
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名稱的檔案</string>
+  <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">捐贈 Signal</string>
+  <string name="DonateMegaphone_donate">捐</string>
+  <string name="DonateMegaphone_not_now">稍後</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
