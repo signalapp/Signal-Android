@@ -548,7 +548,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     if (fragment != null) {
       fragment.pausePlayback();
 
-      SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(this);
+      SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(this, 300, 0);
       viewModel.onSendClicked(buildModelsToTransform(fragment), recipients, composeText.getMentions()).observe(this, result -> {
         dialog.dismiss();
         finish();
@@ -573,11 +573,11 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
     fragment.pausePlayback();
 
-    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(this);
+    SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(this, 300, 0);
     viewModel.onSendClicked(buildModelsToTransform(fragment), Collections.emptyList(), composeText.getMentions())
              .observe(this, result -> {
-                dialog.dismiss();
-                setActivityResultAndFinish(result);
+               dialog.dismiss();
+               setActivityResultAndFinish(result);
              });
   }
 
