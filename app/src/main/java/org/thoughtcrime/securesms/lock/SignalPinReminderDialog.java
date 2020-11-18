@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
 
@@ -75,11 +76,7 @@ public final class SignalPinReminderDialog {
     SpannableString reminderText = new SpannableString(context.getString(R.string.KbsReminderDialog__to_help_you_memorize_your_pin));
     SpannableString forgotText   = new SpannableString(context.getString(R.string.KbsReminderDialog__forgot_pin));
 
-    pinEditText.post(() -> {
-      if (pinEditText.requestFocus()) {
-        ServiceUtil.getInputMethodManager(pinEditText.getContext()).showSoftInput(pinEditText, 0);
-      }
-    });
+    ViewUtil.focusAndShowKeyboard(pinEditText);
     ViewCompat.setAutofillHints(pinEditText, HintConstants.AUTOFILL_HINT_PASSWORD);
 
     switch (SignalStore.pinValues().getKeyboardType()) {
