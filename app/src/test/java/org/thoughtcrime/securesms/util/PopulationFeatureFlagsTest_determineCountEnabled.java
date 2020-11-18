@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
 
-import com.google.protobuf.Empty;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +17,7 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
-public class ResearchMegaphoneTest_determineCountEnabled {
+public class PopulationFeatureFlagsTest_determineCountEnabled {
 
   private final String               phoneNumber;
   private final Map<String, Integer> countryCounts;
@@ -68,9 +66,9 @@ public class ResearchMegaphoneTest_determineCountEnabled {
     Log.initialize(new EmptyLogger());
   }
 
-  public ResearchMegaphoneTest_determineCountEnabled(@NonNull String phoneNumber,
-                                                     @NonNull Map<String, Integer> countryCounts,
-                                                     long output)
+  public PopulationFeatureFlagsTest_determineCountEnabled(@NonNull String phoneNumber,
+                                                          @NonNull Map<String, Integer> countryCounts,
+                                                          long output)
   {
     this.phoneNumber   = phoneNumber;
     this.countryCounts = countryCounts;
@@ -79,7 +77,7 @@ public class ResearchMegaphoneTest_determineCountEnabled {
 
   @Test
   public void determineCountEnabled() {
-    assertEquals(output, ResearchMegaphone.determineCountEnabled(countryCounts, phoneNumber));
+    assertEquals(output, PopulationFeatureFlags.determineCountEnabled(countryCounts, phoneNumber));
   }
 
 }

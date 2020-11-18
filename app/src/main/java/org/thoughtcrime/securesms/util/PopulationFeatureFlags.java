@@ -19,9 +19,9 @@ import java.util.Map;
  * in the list. For example, "1:20000,*:40000" would mean 2% of the NANPA phone numbers and 4% of the rest of
  * the world should see the megaphone.
  */
-public final class ResearchMegaphone {
+public final class PopulationFeatureFlags {
 
-  private static final String TAG = Log.tag(ResearchMegaphone.class);
+  private static final String TAG = Log.tag(PopulationFeatureFlags.class);
 
   private static final String COUNTRY_WILDCARD = "*";
 
@@ -29,7 +29,18 @@ public final class ResearchMegaphone {
    * In research megaphone group for given country code
    */
   public static boolean isInResearchMegaphone() {
-    Map<String, Integer> countryCountEnabled = parseCountryCounts(FeatureFlags.researchMegaphone());
+    return isEnabled(FeatureFlags.RESEARCH_MEGAPHONE_1, FeatureFlags.researchMegaphone());
+  }
+
+  /**
+   * In donate megaphone group for given country code
+   */
+  public static boolean isInDonateMegaphone() {
+    return isEnabled(FeatureFlags.DONATE_MEGAPHONE, FeatureFlags.donateMegaphone());
+  }
+
+  private static boolean isEnabled(@NonNull String flag, @NonNull String serialized) {
+    Map<String, Integer> countryCountEnabled = parseCountryCounts(serialized);
     Recipient            self                = Recipient.self();
 
     if (countryCountEnabled.isEmpty() || !self.getE164().isPresent() || !self.getUuid().isPresent()) {
@@ -37,7 +48,7 @@ public final class ResearchMegaphone {
     }
 
     long countEnabled      = determineCountEnabled(countryCountEnabled, self.getE164().or(""));
-    long currentUserBucket = BucketingUtil.bucket(FeatureFlags.RESEARCH_MEGAPHONE_1, self.requireUuid(), 1_000_000);
+    long currentUserBucket = BucketingUtil.bucket(flag, self.requireUuid(), 1_000_000);
 
     return countEnabled > currentUserBucket;
   }

@@ -22,8 +22,9 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestMegaphoneActivity;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.ResearchMegaphone;
+import org.thoughtcrime.securesms.util.PopulationFeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.LinkedHashMap;
@@ -89,6 +90,7 @@ public final class Megaphones {
       put(Event.LINK_PREVIEWS, shouldShowLinkPreviewsMegaphone(context) ? ALWAYS : NEVER);
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.RESEARCH, shouldShowResearchMegaphone() ? ShowForDurationSchedule.showForDays(7) : NEVER);
+      put(Event.DONATE, shouldShowDonateMegaphone() ? ShowForDurationSchedule.showForDays(7) : NEVER);
     }};
   }
 
@@ -108,6 +110,8 @@ public final class Megaphones {
         return buildClientDeprecatedMegaphone(context);
       case RESEARCH:
         return buildResearchMegaphone(context);
+      case DONATE:
+        return buildDonateMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -219,12 +223,31 @@ public final class Megaphones {
                         .build();
   }
 
+  private static @NonNull Megaphone buildDonateMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.DONATE, Megaphone.Style.BASIC)
+                        .disableSnooze()
+                        .setTitle(R.string.DonateMegaphone_donate_to_signal)
+                        .setBody(R.string.DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today)
+                        .setImage(R.drawable.ic_donate_megaphone)
+                        .setActionButton(R.string.DonateMegaphone_donate, (megaphone, controller) -> {
+                          controller.onMegaphoneCompleted(megaphone.getEvent());
+                          CommunicationActions.openBrowserLink(controller.getMegaphoneActivity(), context.getString(R.string.donate_url));
+                        })
+                        .setSecondaryButton(R.string.DonateMegaphone_not_now, (megaphone, controller) -> controller.onMegaphoneCompleted(megaphone.getEvent()))
+                        .setPriority(Megaphone.Priority.DEFAULT)
+                        .build();
+  }
+
   private static boolean shouldShowMessageRequestsMegaphone() {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
 
   private static boolean shouldShowResearchMegaphone() {
-    return ResearchMegaphone.isInResearchMegaphone();
+    return PopulationFeatureFlags.isInResearchMegaphone();
+  }
+
+  private static boolean shouldShowDonateMegaphone() {
+    return PopulationFeatureFlags.isInDonateMegaphone();
   }
 
   private static boolean shouldShowLinkPreviewsMegaphone(@NonNull Context context) {
@@ -238,7 +261,8 @@ public final class Megaphones {
     MESSAGE_REQUESTS("message_requests"),
     LINK_PREVIEWS("link_previews"),
     CLIENT_DEPRECATED("client_deprecated"),
-    RESEARCH("research");
+    RESEARCH("research"),
+    DONATE("donate");
 
     private final String key;
 

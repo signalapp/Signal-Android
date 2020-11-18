@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class ResearchMegaphoneTest_parseCountryCounts {
+public class PopulationFeatureFlagsTest_parseCountryCounts {
 
   private final String               input;
   private final Map<String, Integer> output;
@@ -46,14 +46,14 @@ public class ResearchMegaphoneTest_parseCountryCounts {
     });
   }
 
-  public ResearchMegaphoneTest_parseCountryCounts(String input, Map<String, Integer> output) {
+  public PopulationFeatureFlagsTest_parseCountryCounts(String input, Map<String, Integer> output) {
     this.input  = input;
     this.output = output;
   }
 
   @Test
   public void parseCountryCounts() {
-    assertEquals(output, ResearchMegaphone.parseCountryCounts(input));
+    assertEquals(output, PopulationFeatureFlags.parseCountryCounts(input));
   }
 
 }
