@@ -9,12 +9,15 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
@@ -32,16 +35,18 @@ public class SendReadReceiptJob extends BaseJob {
 
   private static final String TAG = SendReadReceiptJob.class.getSimpleName();
 
+  private static final int MAX_TIMESTAMPS = 500;
+
   private static final String KEY_THREAD      = "thread";
   private static final String KEY_ADDRESS     = "address";
   private static final String KEY_RECIPIENT   = "recipient";
   private static final String KEY_MESSAGE_IDS = "message_ids";
   private static final String KEY_TIMESTAMP   = "timestamp";
 
-  private long        threadId;
-  private RecipientId recipientId;
-  private List<Long>  messageIds;
-  private long        timestamp;
+  private final long        threadId;
+  private final RecipientId recipientId;
+  private final List<Long>  messageIds;
+  private final long        timestamp;
 
   public SendReadReceiptJob(long threadId, @NonNull RecipientId recipientId, List<Long> messageIds) {
     this(new Job.Parameters.Builder()
@@ -51,7 +56,7 @@ public class SendReadReceiptJob extends BaseJob {
                            .build(),
          threadId,
          recipientId,
-         messageIds,
+         ensureSize(messageIds, MAX_TIMESTAMPS),
          System.currentTimeMillis());
   }
 
@@ -67,6 +72,23 @@ public class SendReadReceiptJob extends BaseJob {
     this.recipientId = recipientId;
     this.messageIds  = messageIds;
     this.timestamp   = timestamp;
+  }
+
+  /**
+   * Enqueues all the necessary jobs for read receipts, ensuring that they're all within the
+   * maximum size.
+   */
+  public static void enqueue(long threadId, @NonNull RecipientId recipientId, List<Long> messageIds) {
+    JobManager       jobManager      = ApplicationDependencies.getJobManager();
+    List<List<Long>> messageIdChunks = Util.chunk(messageIds, MAX_TIMESTAMPS);
+
+    if (messageIdChunks.size() > 1) {
+      Log.w(TAG, "Large receipt count! Had to break into multiple chunks. Total count: " + messageIds.size());
+    }
+
+    for (List<Long> chunk : messageIdChunks) {
+      jobManager.add(new SendReadReceiptJob(threadId, recipientId, chunk));
+    }
   }
 
   @Override
@@ -126,6 +148,13 @@ public class SendReadReceiptJob extends BaseJob {
   @Override
   public void onFailure() {
     Log.w(TAG, "Failed to send read receipts to: " + recipientId);
+  }
+
+  private static <E> List<E> ensureSize(@NonNull List<E> list, int maxSize) {
+    if (list.size() > maxSize) {
+      throw new IllegalArgumentException("Too large! Size: " + list.size() + ", maxSize: " + maxSize);
+    }
+    return list;
   }
 
   public static final class Factory implements Job.Factory<SendReadReceiptJob> {
