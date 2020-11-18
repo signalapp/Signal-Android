@@ -75,14 +75,17 @@ public final class WebRtcIntentParser {
   }
 
   public static @NonNull RemotePeer getRemotePeerFromMap(@NonNull Intent intent, @NonNull WebRtcServiceState currentState) {
-    int        remotePeerKey = getRemotePeerKey(intent);
-    RemotePeer remotePeer    = currentState.getCallInfoState().getPeer(remotePeerKey);
+    RemotePeer remotePeer = getNullableRemotePeerFromMap(intent, currentState);
 
     if (remotePeer == null) {
-      throw new AssertionError("No RemotePeer in map for key: " + remotePeerKey + "!");
+      throw new AssertionError("No RemotePeer in map for key: " + getRemotePeerKey(intent) + "!");
     }
 
     return remotePeer;
+  }
+
+  public static @Nullable RemotePeer getNullableRemotePeerFromMap(@NonNull Intent intent, @NonNull WebRtcServiceState currentState) {
+    return currentState.getCallInfoState().getPeer(getRemotePeerKey(intent));
   }
 
   public static int getRemotePeerKey(@NonNull Intent intent) {

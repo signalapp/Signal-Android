@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 /**
@@ -39,13 +41,20 @@ public class DisconnectingCallActionProcessor extends WebRtcActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
     Log.i(TAG, "handleCallConcluded():");
-    Log.i(TAG, "delete remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
-    return currentState.builder()
-                       .actionProcessor(new IdleActionProcessor(webRtcInteractor))
-                       .changeCallInfoState()
-                       .removeRemotePeer(remotePeer)
-                       .build();
+
+    WebRtcServiceStateBuilder builder = currentState.builder()
+                                                    .actionProcessor(new IdleActionProcessor(webRtcInteractor));
+
+    if (remotePeer != null) {
+      Log.i(TAG, "delete remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
+
+      builder.changeCallInfoState()
+             .removeRemotePeer(remotePeer)
+             .commit();
+    }
+
+    return builder.build();
   }
 }

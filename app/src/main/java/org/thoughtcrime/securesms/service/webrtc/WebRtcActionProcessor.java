@@ -119,6 +119,7 @@ import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getEr
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getGroupMembershipToken;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getIceCandidates;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getIceServers;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getNullableRemotePeerFromMap;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getOfferMessageType;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemotePeer;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemotePeerFromMap;
@@ -180,7 +181,7 @@ public abstract class WebRtcActionProcessor {
       case ACTION_CALL_CONNECTED:                      return handleCallConnected(currentState, getRemotePeerFromMap(intent, currentState));
       case ACTION_RECEIVED_OFFER_WHILE_ACTIVE:         return handleReceivedOfferWhileActive(currentState, getRemotePeerFromMap(intent, currentState));
       case ACTION_SEND_BUSY:                           return handleSendBusy(currentState, CallMetadata.fromIntent(intent), getBroadcastFlag(intent));
-      case ACTION_CALL_CONCLUDED:                      return handleCallConcluded(currentState, getRemotePeerFromMap(intent, currentState));
+      case ACTION_CALL_CONCLUDED:                      return handleCallConcluded(currentState, getNullableRemotePeerFromMap(intent, currentState));
       case ACTION_REMOTE_VIDEO_ENABLE:                 return handleRemoteVideoEnable(currentState, getEnable(intent));
       case ACTION_RECEIVE_HANGUP:                      return handleReceivedHangup(currentState, CallMetadata.fromIntent(intent), HangupMetadata.fromIntent(intent));
       case ACTION_LOCAL_HANGUP:                        return handleLocalHangup(currentState);
@@ -425,7 +426,7 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
     Log.i(tag, "handleCallConcluded not processed");
     return currentState;
   }

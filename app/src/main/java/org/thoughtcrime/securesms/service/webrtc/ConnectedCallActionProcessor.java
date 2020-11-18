@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallException;
-import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -14,7 +13,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Handles action for a connected/ongoing call. At this point it's mostly responding
@@ -121,7 +119,7 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
     return activeCallDelegate.handleCallConcluded(currentState, remotePeer);
   }
 }
