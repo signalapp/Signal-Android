@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -109,7 +110,7 @@ public final class ConversationUpdateItem extends LinearLayout
     observeSender(lifecycleOwner, messageRecord.getIndividualRecipient());
 
     UpdateDescription   updateDescription = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext()));
-    LiveData<Spannable> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription);
+    LiveData<Spannable> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription, ContextCompat.getColor(getContext(), R.color.conversation_item_update_text_color));
     LiveData<Spannable> spannableMessage  = loading(liveUpdateMessage);
 
     present(conversationMessage, nextMessageRecord);

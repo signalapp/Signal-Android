@@ -8,6 +8,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LiveData;
@@ -32,9 +33,9 @@ public final class LiveUpdateMessage {
    * recreates the string asynchronously when they change.
    */
   @AnyThread
-  public static LiveData<Spannable> fromMessageDescription(@NonNull Context context, @NonNull UpdateDescription updateDescription) {
+  public static LiveData<Spannable> fromMessageDescription(@NonNull Context context, @NonNull UpdateDescription updateDescription, @ColorInt int defaultTint) {
     if (updateDescription.isStringStatic()) {
-      return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticString()));
+      return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticString(), defaultTint));
     }
 
     List<LiveData<Recipient>> allMentionedRecipients = Stream.of(updateDescription.getMentioned())
@@ -44,7 +45,7 @@ public final class LiveUpdateMessage {
     LiveData<?> mentionedRecipientChangeStream = allMentionedRecipients.isEmpty() ? LiveDataUtil.just(new Object())
                                                                                   : LiveDataUtil.merge(allMentionedRecipients);
 
-    return LiveDataUtil.mapAsync(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getString()));
+    return LiveDataUtil.mapAsync(mentionedRecipientChangeStream, event -> toSpannable(context, updateDescription, updateDescription.getString(), defaultTint));
   }
 
   /**
@@ -56,13 +57,13 @@ public final class LiveUpdateMessage {
     return LiveDataUtil.mapAsync(Recipient.live(recipientId).getLiveData(), createStringInBackground);
   }
 
-  private static @NonNull Spannable toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string) {
+  private static @NonNull Spannable toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string, @ColorInt int defaultTint) {
     boolean  isDarkTheme      = ThemeUtil.isDarkTheme(context);
     int      drawableResource = updateDescription.getIconResource();
     int      tint             = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
 
     if (tint == 0) {
-      tint = ContextCompat.getColor(context, R.color.conversation_item_update_text_color);
+      tint = defaultTint;
     }
 
     if (drawableResource == 0) {
