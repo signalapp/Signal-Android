@@ -2208,15 +2208,15 @@ public class RecipientDatabase extends Database {
   private static @NonNull String getAccentuatedCharRegex(@NonNull String query) {
     switch (query) {
       case "a" :
-        return "À-Åà-åĀ-ąǍǎǞ-ǡǺ-ǻȀ-ȃȦȧȺɐ-ɒḀḁẚẠặ";
+        return "À-Åà-åĀ-ąǍǎǞ-ǡǺ-ǻȀ-ȃȦȧȺɐ-ɒḀḁẚẠ-ặ";
       case "b" :
         return "ßƀ-ƅɃɓḂ-ḇ";
       case "c" :
         return "çÇĆ-čƆ-ƈȻȼɔḈḉ";
       case "d" :
-        return "ÐðĎ-đƉ-ƍɖɗḊ-ḓ";
+        return "ÐðĎ-đƉ-ƍȡɖɗḊ-ḓ";
       case "e" :
-        return "È-Ëè-ëĒ-ěƎ-ƐǝȨȩɆɇɘ-ɞḔ-ḝẸ-ệ";
+        return "È-Ëè-ëĒ-ěƎ-ƐǝȄ-ȇȨȩɆɇɘ-ɞḔ-ḝẸ-ệ";
       case "f" :
         return "ƑƒḞḟ";
       case "g" :
@@ -2228,7 +2228,7 @@ public class RecipientDatabase extends Database {
       case "j" :
         return "ĴĵǰȷɈɉɟ";
       case "k" :
-        return "ĶĸƘƙǨǩḰ-ḵ";
+        return "Ķ-ĸƘƙǨǩḰ-ḵ";
       case "l" :
         return "Ĺ-łƚȴȽɫ-ɭḶ-ḽ";
       case "m" :
