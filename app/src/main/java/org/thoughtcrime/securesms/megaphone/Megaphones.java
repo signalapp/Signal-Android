@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.PopulationFeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -89,8 +90,8 @@ public final class Megaphones {
       put(Event.MESSAGE_REQUESTS, shouldShowMessageRequestsMegaphone() ? ALWAYS : NEVER);
       put(Event.LINK_PREVIEWS, shouldShowLinkPreviewsMegaphone(context) ? ALWAYS : NEVER);
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
-      put(Event.RESEARCH, shouldShowResearchMegaphone() ? ShowForDurationSchedule.showForDays(7) : NEVER);
-      put(Event.DONATE, shouldShowDonateMegaphone() ? ShowForDurationSchedule.showForDays(7) : NEVER);
+      put(Event.RESEARCH, shouldShowResearchMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
+      put(Event.DONATE, shouldShowDonateMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
     }};
   }
 
@@ -242,12 +243,12 @@ public final class Megaphones {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
 
-  private static boolean shouldShowResearchMegaphone() {
-    return PopulationFeatureFlags.isInResearchMegaphone();
+  private static boolean shouldShowResearchMegaphone(@NonNull Context context) {
+    return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && PopulationFeatureFlags.isInResearchMegaphone();
   }
 
-  private static boolean shouldShowDonateMegaphone() {
-    return PopulationFeatureFlags.isInDonateMegaphone();
+  private static boolean shouldShowDonateMegaphone(@NonNull Context context) {
+    return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && PopulationFeatureFlags.isInDonateMegaphone();
   }
 
   private static boolean shouldShowLinkPreviewsMegaphone(@NonNull Context context) {
