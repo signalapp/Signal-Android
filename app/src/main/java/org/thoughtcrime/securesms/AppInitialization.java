@@ -34,6 +34,11 @@ public final class AppInitialization {
     TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
     TextSecurePreferences.setLastExperienceVersionCode(context, Util.getCanonicalVersionCode());
     TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
+    TextSecurePreferences.setPasswordDisabled(context, true);
+    TextSecurePreferences.setLastExperienceVersionCode(context, Util.getCanonicalVersionCode());
+    TextSecurePreferences.setReadReceiptsEnabled(context, true);
+    TextSecurePreferences.setTypingIndicatorsEnabled(context, true);
+    TextSecurePreferences.setHasSeenWelcomeScreen(context, false);
     ApplicationDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
     SignalStore.onFirstEverAppLaunch();
     ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.ZOZO.getPackId(), BlessedPacks.ZOZO.getPackKey(), false));
