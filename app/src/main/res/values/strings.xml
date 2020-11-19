@@ -478,7 +478,7 @@
     <string name="DonateMegaphone_donate_to_signal">Donate to Signal</string>
     <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal is powered by people like you. Show your support today!</string>
     <string name="DonateMegaphone_donate">Donate</string>
-    <string name="DonateMegaphone_not_now">Not Now</string>
+    <string name="DonateMegaphone_no_thanks">No Thanks</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>

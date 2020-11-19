@@ -234,7 +234,7 @@ public final class Megaphones {
                           controller.onMegaphoneCompleted(megaphone.getEvent());
                           CommunicationActions.openBrowserLink(controller.getMegaphoneActivity(), context.getString(R.string.donate_url));
                         })
-                        .setSecondaryButton(R.string.DonateMegaphone_not_now, (megaphone, controller) -> controller.onMegaphoneCompleted(megaphone.getEvent()))
+                        .setSecondaryButton(R.string.DonateMegaphone_no_thanks, (megaphone, controller) -> controller.onMegaphoneCompleted(megaphone.getEvent()))
                         .setPriority(Megaphone.Priority.DEFAULT)
                         .build();
   }
