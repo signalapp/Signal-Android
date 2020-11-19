@@ -412,6 +412,7 @@
   <string name="DocumentView_unnamed_file">Ficheiro sem nome</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Doar ao Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">O Signal é feito por pessoas como você. Mostre mesmo hoje o seu apoio!</string>
   <string name="DonateMegaphone_donate">Doar</string>
   <string name="DonateMegaphone_not_now">Agora não</string>
   <!--DozeReminder-->
@@ -2017,6 +2018,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_setup_a_username">Defina um nome de utilizador</string>
   <string name="configurable_single_select__customize_option">Personalizar opção</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Conversas e Atalhos</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Elimine todos os atalhos dinâmicos</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Clique para eliminar todos os atalhos dinâmicos</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

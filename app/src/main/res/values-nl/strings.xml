@@ -413,6 +413,7 @@
   <string name="DocumentView_unnamed_file">Onbenoemd bestand</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Aan Signal doneren</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Zou je ons willen steunen?</string>
   <string name="DonateMegaphone_donate">Doneren</string>
   <string name="DonateMegaphone_not_now">Niet nu</string>
   <!--DozeReminder-->
@@ -2027,6 +2028,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_setup_a_username">Gebruikersnaam aanmaken</string>
   <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Gesprekken en snelkoppelingen</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Alle dynamische snelkoppelingen wissen</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Tik hier om alle dynamische snelkoppelingen te wissen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
