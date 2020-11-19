@@ -20,19 +20,6 @@ public class LogSectionTrace implements LogSection {
 
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
-    try (ByteArrayOutputStream outputStream     = new ByteArrayOutputStream();
-         GZIPOutputStream      compressedStream = new GZIPOutputStream(outputStream))
-    {
-      compressedStream.write(Tracer.getInstance().serialize());
-      compressedStream.flush();
-      compressedStream.close();
-
-      outputStream.flush();
-      outputStream.close();
-
-      return Base64.encodeBytes(outputStream.toByteArray());
-    } catch (IOException e) {
-      return "";
-    }
+    return LogStyleParser.TRACE_PLACEHOLDER;
   }
 }

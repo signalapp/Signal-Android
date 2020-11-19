@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -82,16 +83,48 @@ public class SubmitDebugLogRepository {
   }
 
   public void submitLog(@NonNull List<LogLine> lines, Callback<Optional<String>> callback) {
-    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(lines)));
+    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(lines, null)));
+  }
+
+  public void submitLog(@NonNull List<LogLine> lines, @Nullable byte[] trace, Callback<Optional<String>> callback) {
+    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(lines, trace)));
   }
 
   @WorkerThread
-  private @NonNull Optional<String> submitLogInternal(@NonNull List<LogLine> lines) {
-    StringBuilder bodyBuilder = new StringBuilder();
-    for (LogLine line : lines) {
-      bodyBuilder.append(line.getText()).append('\n');
+  private @NonNull Optional<String> submitLogInternal(@NonNull List<LogLine> lines, @Nullable byte[] trace) {
+    String traceUrl = null;
+    if (trace != null) {
+      try {
+        traceUrl = uploadContent("application/octet-stream", trace);
+      } catch (IOException e) {
+        Log.w(TAG, "Error during trace upload.", e);
+        return Optional.absent();
+      }
     }
 
+    StringBuilder bodyBuilder = new StringBuilder();
+    for (LogLine line : lines) {
+      switch (line.getPlaceholderType()) {
+        case NONE:
+          bodyBuilder.append(line.getText()).append('\n');
+          break;
+        case TRACE:
+          bodyBuilder.append(traceUrl).append('\n');
+          break;
+      }
+    }
+
+    try {
+      String logUrl = uploadContent("text/plain", bodyBuilder.toString().getBytes());
+      return Optional.of(logUrl);
+    } catch (IOException e) {
+      Log.w(TAG, "Error during log upload.", e);
+      return Optional.absent();
+    }
+  }
+
+  @WorkerThread
+  private @NonNull String uploadContent(@NonNull String contentType, @NonNull byte[] content) throws IOException {
     try {
       OkHttpClient client   = new OkHttpClient.Builder().addInterceptor(new StandardUserAgentInterceptor()).dns(SignalServiceNetworkAccess.DNS).build();
       Response     response = client.newCall(new Request.Builder().url(API_ENDPOINT).get().build()).execute();
@@ -108,14 +141,14 @@ public class SubmitDebugLogRepository {
       MultipartBody.Builder post   = new MultipartBody.Builder();
       Iterator<String>      keys   = fields.keys();
 
-      post.addFormDataPart("Content-Type", "text/plain");
+      post.addFormDataPart("Content-Type", contentType);
 
       while (keys.hasNext()) {
         String key = keys.next();
         post.addFormDataPart(key, fields.getString(key));
       }
 
-      post.addFormDataPart("file", "file", RequestBody.create(MediaType.parse("text/plain"), bodyBuilder.toString()));
+      post.addFormDataPart("file", "file", RequestBody.create(MediaType.parse(contentType), content));
 
       Response postResponse = client.newCall(new Request.Builder().url(url).post(post.build()).build()).execute();
 
@@ -123,10 +156,10 @@ public class SubmitDebugLogRepository {
         throw new IOException("Bad response: " + postResponse);
       }
 
-      return Optional.of(API_ENDPOINT + "/" + item);
-    } catch (IOException | JSONException e) {
+      return API_ENDPOINT + "/" + item;
+    } catch (JSONException e) {
       Log.w(TAG, "Error during upload.", e);
-      return Optional.absent();
+      throw new IOException(e);
     }
   }
 
@@ -166,12 +199,12 @@ public class SubmitDebugLogRepository {
     long startTime = System.currentTimeMillis();
 
     List<LogLine> out = new ArrayList<>();
-    out.add(new SimpleLogLine(formatTitle(section.getTitle(), maxTitleLength), LogLine.Style.NONE));
+    out.add(new SimpleLogLine(formatTitle(section.getTitle(), maxTitleLength), LogLine.Style.NONE, LogLine.Placeholder.NONE));
 
     CharSequence content = Scrubber.scrub(section.getContent(context));
 
     List<LogLine> lines = Stream.of(Pattern.compile("\\n").split(content))
-                                .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s)))
+                                .map(s -> new SimpleLogLine(s, LogStyleParser.parseStyle(s), LogStyleParser.parsePlaceholderType(s)))
                                 .map(line -> (LogLine) line)
                                 .toList();
 

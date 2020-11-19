@@ -29,4 +29,9 @@ public class CompleteLogLine implements LogLine {
   public @NonNull Style getStyle() {
     return line.getStyle();
   }
+
+  @Override
+  public @NonNull Placeholder getPlaceholderType() {
+    return line.getPlaceholderType();
+  }
 }

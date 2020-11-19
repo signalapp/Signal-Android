@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.tracing.Tracer;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -23,11 +24,16 @@ public class SubmitDebugLogViewModel extends ViewModel {
   private final MutableLiveData<Mode>               mode;
 
   private List<LogLine> sourceLines;
+  private byte[]        trace;
 
   private SubmitDebugLogViewModel() {
     this.repo  = new SubmitDebugLogRepository();
     this.lines = new DefaultValueLiveData<>(Collections.emptyList());
     this.mode  = new MutableLiveData<>();
+
+    if (Tracer.getInstance().isEnabled()) {
+      this.trace = Tracer.getInstance().serialize();
+    }
 
     repo.getLogLines(result -> {
       sourceLines = result;
@@ -40,10 +46,6 @@ public class SubmitDebugLogViewModel extends ViewModel {
     return lines;
   }
 
-  boolean hasLines() {
-    return lines.getValue().size() > 0;
-  }
-
   @NonNull LiveData<Mode> getMode() {
     return mode;
   }
@@ -53,7 +55,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
     MutableLiveData<Optional<String>> result = new MutableLiveData<>();
 
-    repo.submitLog(lines.getValue(), value -> {
+    repo.submitLog(lines.getValue(), trace, value -> {
       mode.postValue(Mode.NORMAL);
       result.postValue(value);
     });

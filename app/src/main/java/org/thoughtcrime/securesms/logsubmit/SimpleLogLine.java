@@ -7,14 +7,16 @@ import androidx.annotation.NonNull;
  */
 class SimpleLogLine implements LogLine {
 
-  static final SimpleLogLine EMPTY = new SimpleLogLine("", Style.NONE);
+  static final SimpleLogLine EMPTY = new SimpleLogLine("", Style.NONE, Placeholder.NONE);
 
-  private final String text;
-  private final Style  style;
+  private final String      text;
+  private final Style       style;
+  private final Placeholder placeholder;
 
-  SimpleLogLine(@NonNull String text, @NonNull Style style) {
-    this.text = text;
-    this.style = style;
+  SimpleLogLine(@NonNull String text, @NonNull Style style, @NonNull Placeholder placeholder) {
+    this.text        = text;
+    this.style       = style;
+    this.placeholder = placeholder;
   }
 
   @Override
@@ -22,11 +24,18 @@ class SimpleLogLine implements LogLine {
     return -1;
   }
 
+  @Override
   public @NonNull String getText() {
     return text;
   }
 
+  @Override
   public @NonNull Style getStyle() {
     return style;
+  }
+
+  @Override
+  public @NonNull Placeholder getPlaceholderType() {
+    return placeholder;
   }
 }
