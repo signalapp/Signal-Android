@@ -21,7 +21,7 @@ public final class VideoUtil {
   static final int VIDEO_SHORT_WIDTH = 720;
 
   private static final int VIDEO_LONG_WIDTH          = 1280;
-  private static final int VIDEO_MAX_RECORD_LENGTH_S = 30;
+  private static final int VIDEO_MAX_RECORD_LENGTH_S = 60;
   private static final int VIDEO_MAX_UPLOAD_LENGTH_S = 120;
 
   private static final int TOTAL_BYTES_PER_SECOND = (VIDEO_BIT_RATE / 8) + (AUDIO_BIT_RATE / 8);
