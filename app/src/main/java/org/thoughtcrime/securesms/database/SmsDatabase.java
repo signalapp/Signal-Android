@@ -471,7 +471,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, boolean deliveryReceipt) {
+  public boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+    if (receiptType == ReceiptType.VIEWED) {
+      return false;
+    }
+
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     boolean        foundMessage = false;
 
@@ -483,7 +487,7 @@ public class SmsDatabase extends MessageDatabase {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
           RecipientId theirRecipientId = messageId.getRecipientId();
           RecipientId outRecipientId   = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
-          String      columnName       = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
+          String      columnName       = receiptType.getColumnName();
           boolean     isFirstIncrement = cursor.getLong(cursor.getColumnIndexOrThrow(columnName)) == 0;
 
           if (outRecipientId.equals(theirRecipientId)) {
@@ -507,7 +511,7 @@ public class SmsDatabase extends MessageDatabase {
         }
       }
 
-      if (!foundMessage && deliveryReceipt) {
+      if (!foundMessage && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
         return true;
       }
@@ -621,6 +625,16 @@ public class SmsDatabase extends MessageDatabase {
   public Pair<Long, Long> updateBundleMessageBody(long messageId, String body) {
     long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
     return updateMessageBodyAndType(messageId, body, Types.TOTAL_MASK, type);
+  }
+
+  @Override
+  public @NonNull List<MarkedMessageInfo> getViewedIncomingMessages(long threadId) {
+    return Collections.emptyList();
+  }
+
+  @Override
+  public @Nullable MarkedMessageInfo setIncomingMessageViewed(long messageId) {
+    return null;
   }
 
   private Pair<Long, Long> updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {

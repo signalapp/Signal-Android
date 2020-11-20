@@ -433,6 +433,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
         if      (message.isReadReceipt())     handleReadReceipt(content, message);
         else if (message.isDeliveryReceipt()) handleDeliveryReceipt(content, message);
+        else if (message.isViewedReceipt())   handleViewedReceipt(content, message);
       } else if (content.getTypingMessage().isPresent()) {
         handleTypingMessage(content, content.getTypingMessage().get());
       } else {
@@ -1570,6 +1571,29 @@ public final class PushProcessMessageJob extends BaseJob {
                                           @NonNull SignalServiceDataMessage message)
   {
     ApplicationDependencies.getJobManager().add(new SendDeliveryReceiptJob(RecipientId.fromHighTrust(content.getSender()), message.getTimestamp()));
+  }
+
+  private void handleViewedReceipt(@NonNull SignalServiceContent content,
+                                   @NonNull SignalServiceReceiptMessage message)
+  {
+    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
+      log(TAG, "Ignoring viewed receipts for IDs: " + Util.join(message.getTimestamps(), ", "));
+      return;
+    }
+
+    log(TAG, "Processing viewed reciepts for IDs: " + Util.join(message.getTimestamps(), ","));
+
+    Recipient                 sender    = Recipient.externalHighTrustPush(context, content.getSender());
+    List<SyncMessageId>       ids       = Stream.of(message.getTimestamps())
+                                                .map(t -> new SyncMessageId(sender.getId(), t))
+                                                .toList();
+    Collection<SyncMessageId> unhandled = DatabaseFactory.getMmsSmsDatabase(context)
+                                                         .incrementViewedReceiptCounts(ids, content.getTimestamp());
+
+    for (SyncMessageId id : unhandled) {
+      warn(TAG, String.valueOf(content.getTimestamp()), "[handleViewedReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + sender.getId());
+      ApplicationDependencies.getEarlyMessageCache().store(sender.getId(), id.getTimetamp(), content);
+    }
   }
 
   @SuppressLint("DefaultLocale")

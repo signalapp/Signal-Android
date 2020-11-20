@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
+import com.annimon.stream.Stream;
+
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -19,6 +21,7 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
+import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -139,6 +142,16 @@ final class MessageRequestRepository {
                                                                             .setEntireThreadRead(threadId);
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
+
+        List<MessageDatabase.MarkedMessageInfo> viewedInfos = DatabaseFactory.getMmsDatabase(context)
+                                                                             .getViewedIncomingMessages(threadId);
+
+        ApplicationDependencies.getJobManager()
+                               .add(new SendViewedReceiptJob(threadId,
+                                                             liveRecipient.getId(),
+                                                             Stream.of(viewedInfos)
+                                                                   .map(info -> info.getSyncMessageId().getTimetamp())
+                                                                   .toList()));
 
         if (TextSecurePreferences.isMultiDevice(context)) {
           ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(liveRecipient.getId()));

@@ -185,7 +185,8 @@ public class MmsDatabase extends MessageDatabase {
                                                                                   REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1, " +
                                                                                   REMOTE_DELETED         + " INTEGER DEFAULT 0, " +
                                                                                   MENTIONS_SELF          + " INTEGER DEFAULT 0, " +
-                                                                                  NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0);";
+                                                                                  NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0, " +
+                                                                                  VIEWED_RECEIPT_COUNT   + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -210,7 +211,7 @@ public class MmsDatabase extends MessageDatabase {
       DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
       EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT, QUOTE_MISSING, QUOTE_MENTIONS,
       SHARED_CONTACTS, LINK_PREVIEWS, UNIDENTIFIED, VIEW_ONCE, REACTIONS, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
-      REMOTE_DELETED, MENTIONS_SELF, NOTIFIED_TIMESTAMP,
+      REMOTE_DELETED, MENTIONS_SELF, NOTIFIED_TIMESTAMP, VIEWED_RECEIPT_COUNT,
       "json_group_array(json_object(" +
           "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
           "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
@@ -384,6 +385,69 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull List<MarkedMessageInfo> getViewedIncomingMessages(long threadId) {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    String[]       columns = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID};
+    String         where   = THREAD_ID + " = ? AND " + VIEWED_RECEIPT_COUNT + " > 0 AND " + MESSAGE_BOX + " & " + Types.BASE_INBOX_TYPE + " = " + Types.BASE_INBOX_TYPE;
+    String[]       args    = SqlUtil.buildArgs(threadId);
+
+
+    try (Cursor cursor = db.query(getTableName(), columns, where, args, null, null, null, null)) {
+      if (cursor == null) {
+        return Collections.emptyList();
+      }
+
+      List<MarkedMessageInfo> results = new ArrayList<>(cursor.getCount());
+      while (cursor.moveToNext()) {
+        RecipientId    recipientId   = RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
+        long           dateSent      = cursor.getLong(cursor.getColumnIndex(DATE_SENT));
+        SyncMessageId  syncMessageId = new SyncMessageId(recipientId, dateSent);
+
+        results.add(new MarkedMessageInfo(threadId, syncMessageId, null));
+      }
+
+      return results;
+    }
+  }
+
+  @Override
+  public @Nullable MarkedMessageInfo setIncomingMessageViewed(long messageId) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    String[]       columns  = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID};
+    String         where    = ID_WHERE + " AND " + VIEWED_RECEIPT_COUNT + " = 0";
+    String[]       args     = SqlUtil.buildArgs(messageId);
+
+    database.beginTransaction();
+    try (Cursor cursor = database.query(TABLE_NAME, columns, where, args, null, null, null)) {
+      if (cursor == null || !cursor.moveToFirst()) {
+        return null;
+      }
+
+      long type = CursorUtil.requireLong(cursor, MESSAGE_BOX);
+      if (Types.isSecureType(type) && Types.isInboxType(type)) {
+        long           threadId       = cursor.getLong(cursor.getColumnIndex(THREAD_ID));
+        RecipientId    recipientId    = RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
+        long           dateSent       = cursor.getLong(cursor.getColumnIndex(DATE_SENT));
+        SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
+
+        MarkedMessageInfo result = new MarkedMessageInfo(threadId, syncMessageId, null);
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(VIEWED_RECEIPT_COUNT, 1);
+
+        database.update(TABLE_NAME, contentValues, where, args);
+        database.setTransactionSuccessful();
+
+        return result;
+      } else {
+        return null;
+      }
+    } finally {
+      database.endTransaction();
+    }
+  }
+
+  @Override
   public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address, boolean isVideoOffer) {
     throw new UnsupportedOperationException();
   }
@@ -540,23 +604,23 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, boolean deliveryReceipt) {
+  public boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     boolean        found    = false;
 
-    try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT},
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName()},
                                         DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
                                         null, null, null, null)) {
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
           RecipientId theirRecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
           RecipientId ourRecipientId   = messageId.getRecipientId();
-          String      columnName       = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
+          String      columnName       = receiptType.getColumnName();
 
           if (ourRecipientId.equals(theirRecipientId) || Recipient.resolved(theirRecipientId).isGroup()) {
             long    id               = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
             long    threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
-            int     status           = deliveryReceipt ? GroupReceiptDatabase.STATUS_DELIVERED : GroupReceiptDatabase.STATUS_READ;
+            int     status           = receiptType.getGroupStatus();
             boolean isFirstIncrement = cursor.getLong(cursor.getColumnIndexOrThrow(columnName)) == 0;
 
             found = true;
@@ -577,7 +641,7 @@ public class MmsDatabase extends MessageDatabase {
         }
       }
 
-      if (!found && deliveryReceipt) {
+      if (!found && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
         return true;
       }
@@ -1808,6 +1872,7 @@ public class MmsDatabase extends MessageDatabase {
                                        Collections.emptyList(),
                                        false,
                                        false,
+                                       0,
                                        0);
     }
   }
@@ -1859,6 +1924,7 @@ public class MmsDatabase extends MessageDatabase {
       int       deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.DELIVERY_RECEIPT_COUNT));
       int       readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ_RECEIPT_COUNT));
       int       subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID));
+      int       viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.VIEWED_RECEIPT_COUNT));
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
@@ -1880,7 +1946,7 @@ public class MmsDatabase extends MessageDatabase {
                                               addressDeviceId, dateSent, dateReceived, deliveryReceiptCount, threadId,
                                               contentLocationBytes, messageSize, expiry, status,
                                               transactionIdBytes, mailbox, subscriptionId, slideDeck,
-                                              readReceiptCount);
+                                              readReceiptCount, viewedReceiptCount);
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
@@ -1907,9 +1973,11 @@ public class MmsDatabase extends MessageDatabase {
       List<ReactionRecord> reactions            = parseReactions(cursor);
       boolean              mentionsSelf         = CursorUtil.requireBoolean(cursor, MENTIONS_SELF);
       long                 notifiedTimestamp    = CursorUtil.requireLong(cursor, NOTIFIED_TIMESTAMP);
+      int                  viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.VIEWED_RECEIPT_COUNT));
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
-        readReceiptCount = 0;
+        readReceiptCount   = 0;
+        viewedReceiptCount = 0;
       }
 
       Recipient                 recipient          = Recipient.live(RecipientId.from(recipientId)).get();
@@ -1928,7 +1996,7 @@ public class MmsDatabase extends MessageDatabase {
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
                                        isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, reactions,
-                                       remoteDelete, mentionsSelf, notifiedTimestamp);
+                                       remoteDelete, mentionsSelf, notifiedTimestamp, viewedReceiptCount);
     }
 
     private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {

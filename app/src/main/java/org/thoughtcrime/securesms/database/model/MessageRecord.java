@@ -93,10 +93,12 @@ public abstract class MessageRecord extends DisplayRecord {
                 List<NetworkFailure> networkFailures,
                 int subscriptionId, long expiresIn, long expireStarted,
                 int readReceiptCount, boolean unidentified,
-                @NonNull List<ReactionRecord> reactions, boolean remoteDelete, long notifiedTimestamp)
+                @NonNull List<ReactionRecord> reactions, boolean remoteDelete, long notifiedTimestamp,
+                int viewedReceiptCount)
   {
     super(body, conversationRecipient, dateSent, dateReceived,
-          threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
+          threadId, deliveryStatus, deliveryReceiptCount, type,
+          readReceiptCount, viewedReceiptCount);
     this.id                  = id;
     this.individualRecipient = individualRecipient;
     this.recipientDeviceId   = recipientDeviceId;

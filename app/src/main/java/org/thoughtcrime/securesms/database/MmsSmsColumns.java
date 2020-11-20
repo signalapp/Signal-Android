@@ -14,6 +14,7 @@ public interface MmsSmsColumns {
   public static final String ADDRESS_DEVICE_ID        = "address_device_id";
   public static final String DELIVERY_RECEIPT_COUNT   = "delivery_receipt_count";
   public static final String READ_RECEIPT_COUNT       = "read_receipt_count";
+  public static final String VIEWED_RECEIPT_COUNT     = "viewed_receipt_count";
   public static final String MISMATCHED_IDENTITIES    = "mismatched_identities";
   public static final String UNIQUE_ROW_ID            = "unique_row_id";
   public static final String SUBSCRIPTION_ID          = "subscription_id";

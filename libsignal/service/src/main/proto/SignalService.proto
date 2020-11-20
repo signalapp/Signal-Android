@@ -279,6 +279,7 @@ message ReceiptMessage {
   enum Type {
     DELIVERY = 0;
     READ     = 1;
+    VIEWED   = 2;
   }
 
   optional Type   type      = 1;

@@ -505,6 +505,7 @@ public class MessageSender {
 
       mmsSmsDatabase.incrementDeliveryReceiptCount(syncId, System.currentTimeMillis());
       mmsSmsDatabase.incrementReadReceiptCount(syncId, System.currentTimeMillis());
+      mmsSmsDatabase.incrementViewedReceiptCount(syncId, System.currentTimeMillis());
 
       if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
         mmsDatabase.markExpireStarted(messageId);

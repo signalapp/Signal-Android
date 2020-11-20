@@ -34,6 +34,7 @@ public class GroupReceiptDatabase extends Database {
   public static final int STATUS_UNDELIVERED = 0;
   public static final int STATUS_DELIVERED   = 1;
   public static final int STATUS_READ        = 2;
+  public static final int STATUS_VIEWED      = 3;
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
       MMS_ID + " INTEGER, " + RECIPIENT_ID + " INTEGER, " + STATUS + " INTEGER, " + TIMESTAMP + " INTEGER, " + UNIDENTIFIED + " INTEGER DEFAULT 0);";

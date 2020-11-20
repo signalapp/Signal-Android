@@ -6,7 +6,7 @@ import java.util.List;
 public class SignalServiceReceiptMessage {
 
   public enum Type {
-    UNKNOWN, DELIVERY, READ
+    UNKNOWN, DELIVERY, READ, VIEWED
   }
 
   private final Type       type;
@@ -37,5 +37,9 @@ public class SignalServiceReceiptMessage {
 
   public boolean isReadReceipt() {
     return type == Type.READ;
+  }
+
+  public boolean isViewedReceipt() {
+    return type == Type.VIEWED;
   }
 }

@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.RotateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
+import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
@@ -90,6 +91,7 @@ public class WorkManagerFactoryMappings {
     put("RotateSignedPreKeyJob", RotateSignedPreKeyJob.KEY);
     put("SendDeliveryReceiptJob", SendDeliveryReceiptJob.KEY);
     put("SendReadReceiptJob", SendReadReceiptJob.KEY);
+    put("SendViewedReceiptJob", SendViewedReceiptJob.KEY);
     put("ServiceOutageDetectionJob", ServiceOutageDetectionJob.KEY);
     put("SmsReceiveJob", SmsReceiveJob.KEY);
     put("SmsSendJob", SmsSendJob.KEY);

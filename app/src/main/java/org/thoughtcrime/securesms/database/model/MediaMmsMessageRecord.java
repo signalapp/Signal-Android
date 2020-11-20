@@ -74,12 +74,13 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                @NonNull List<ReactionRecord> reactions,
                                boolean remoteDelete,
                                boolean mentionsSelf,
-                               long notifiedTimestamp)
+                               long notifiedTimestamp,
+                               int viewedReceiptCount)
   {
     super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, dateServer, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
           subscriptionId, expiresIn, expireStarted, viewOnce, slideDeck,
-          readReceiptCount, quote, contacts, linkPreviews, unidentified, reactions, remoteDelete, notifiedTimestamp);
+          readReceiptCount, quote, contacts, linkPreviews, unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount);
     this.partCount    = partCount;
     this.mentionsSelf = mentionsSelf;
   }

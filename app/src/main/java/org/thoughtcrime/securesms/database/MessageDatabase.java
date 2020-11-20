@@ -117,12 +117,14 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markDownloadState(long messageId, long state);
   public abstract void markIncomingNotificationReceived(long threadId);
 
-  public abstract boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, boolean deliveryReceipt);
+  public abstract boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType);
   public abstract List<Pair<Long, Long>> setTimestampRead(SyncMessageId messageId, long proposedExpireStarted);
   public abstract List<MarkedMessageInfo> setEntireThreadRead(long threadId);
   public abstract List<MarkedMessageInfo> setMessagesReadSince(long threadId, long timestamp);
   public abstract List<MarkedMessageInfo> setAllMessagesRead();
   public abstract Pair<Long, Long> updateBundleMessageBody(long messageId, String body);
+  public abstract @NonNull List<MarkedMessageInfo> getViewedIncomingMessages(long threadId);
+  public abstract @Nullable MarkedMessageInfo setIncomingMessageViewed(long messageId);
 
   public abstract void addFailures(long messageId, List<NetworkFailure> failure);
   public abstract void removeFailure(long messageId, NetworkFailure failure);
@@ -553,6 +555,28 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     }
 
     return -1;
+  }
+
+  protected enum ReceiptType {
+    READ(READ_RECEIPT_COUNT, GroupReceiptDatabase.STATUS_READ),
+    DELIVERY(DELIVERY_RECEIPT_COUNT, GroupReceiptDatabase.STATUS_DELIVERED),
+    VIEWED(VIEWED_RECEIPT_COUNT, GroupReceiptDatabase.STATUS_VIEWED);
+
+    private final String columnName;
+    private final int    groupStatus;
+
+    ReceiptType(String columnName, int groupStatus) {
+      this.columnName  = columnName;
+      this.groupStatus = groupStatus;
+    }
+
+    public String getColumnName() {
+      return columnName;
+    }
+
+    public int getGroupStatus() {
+      return groupStatus;
+    }
   }
 
   public static class SyncMessageId {
