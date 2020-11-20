@@ -953,6 +953,13 @@ public final class PushProcessMessageJob extends BaseJob {
     try {
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
 
+      if (message.getMessage().isGroupV2Message()) {
+        Optional<GroupDatabase.GroupRecord> possibleGv1 = groupDatabase.getGroupV1ByExpectedV2(GroupId.v2(message.getMessage().getGroupContext().get().getGroupV2().get().getMasterKey()));
+        if (possibleGv1.isPresent()) {
+          GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
+        }
+      }
+
       long threadId = -1;
 
       if (message.isRecipientUpdate()) {
@@ -965,6 +972,8 @@ public final class PushProcessMessageJob extends BaseJob {
       } else if (message.getMessage().isGroupV2Update()) {
         handleSynchronizeSentGv2Update(content, message);
         threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
+      } else if (message.getMessage().isEmptyGroupV2Message()) {
+        // Do nothing
       } else if (message.getMessage().isExpirationUpdate()) {
         threadId = handleSynchronizeSentExpirationUpdate(message);
       } else if (message.getMessage().getReaction().isPresent()) {

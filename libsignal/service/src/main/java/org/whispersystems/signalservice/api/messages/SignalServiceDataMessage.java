@@ -163,6 +163,10 @@ public class SignalServiceDataMessage {
            !hasRenderableContent();
   }
 
+  public boolean isEmptyGroupV2Message() {
+    return isGroupV2Message() && !isGroupV2Update() && !hasRenderableContent();
+  }
+
   /** Contains some user data that affects the conversation */
   public boolean hasRenderableContent() {
     return attachments.isPresent()   ||
