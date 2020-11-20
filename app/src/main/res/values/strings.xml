@@ -702,12 +702,21 @@
         <item quantity="one">%d member does not support New Groups, so this will be a Legacy Group.</item>
         <item quantity="other">%d members do not support New Groups, so this group will be a Legacy Group.</item>
     </plurals>
+    <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+        <item quantity="one">%d member does not support New Groups, so this group cannot be created.</item>
+        <item quantity="other">%d members do not support New Groups, so this group cannot be created.</item>
+    </plurals>
 
     <!-- NonGv2MemberDialog -->
     <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">A Legacy Group will be created because “%1$s” is using an old version of Signal. You can create a New Style Group with them after they update Signal, or remove them before creating the group.</string>
     <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
         <item quantity="one">A Legacy Group will be created because %1$d member is using an old version of Signal. You can create a New Style Group with them after they update Signal, or remove them before creating the group.</item>
         <item quantity="other">A Legacy Group will be created because %1$d members are using an old version of Signal. You can create a New Style Group with them after they update Signal, or remove them before creating the group.</item>
+    </plurals>
+    <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">This group cannot be created because “%1$s” is using an old version of Signal. You must remove them before creating the group.</string>
+    <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+        <item quantity="one">This group cannot be created because %1$d member is using an old version of Signal. You must remove them before creating the group.</item>
+        <item quantity="other">This group cannot be created because %1$d members are using an old version of Signal. You must remove them before creating the group.</item>
     </plurals>
 
     <!-- ManageGroupActivity -->

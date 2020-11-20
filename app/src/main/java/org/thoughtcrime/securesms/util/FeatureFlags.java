@@ -86,6 +86,7 @@ public final class FeatureFlags {
       MAX_ENVELOPE_SIZE,
       GV1_AUTO_MIGRATE_VERSION,
       GV1_MANUAL_MIGRATE_VERSION,
+      GV1_FORCED_MIGRATE_VERSION,
       GROUP_CALLING_VERSION
   );
 

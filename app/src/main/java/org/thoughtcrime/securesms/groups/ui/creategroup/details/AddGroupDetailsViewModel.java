@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
@@ -62,7 +63,8 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     });
 
     nonGv2CapableMembers = LiveDataUtil.mapAsync(membersToCheckGv2CapabilityOf, memberList -> repository.checkCapabilities(Stream.of(memberList).map(newGroupCandidate -> newGroupCandidate.getMember().getId()).toList()));
-    canSubmitForm        = LiveDataUtil.combineLatest(isMms, isValidName, (mms, validName) -> mms || validName);
+    canSubmitForm        = FeatureFlags.groupsV1ForcedMigration() ? LiveDataUtil.just(false)
+                                                                  : LiveDataUtil.combineLatest(isMms, isValidName, (mms, validName) -> mms || validName);
 
     repository.resolveMembers(recipientIds, initialMembers::postValue);
   }
