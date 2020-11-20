@@ -64,7 +64,7 @@ public class CommunicationActions {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
-        return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
       }
 
       @Override

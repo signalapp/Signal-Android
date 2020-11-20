@@ -25,10 +25,9 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
         @JvmStatic
         fun scheduleInstant(context: Context) {
             val workRequest = OneTimeWorkRequestBuilder<BackgroundPollWorker>()
-                    .setConstraints(
-                            Constraints.Builder()
-                                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                                    .build()
+                    .setConstraints(Constraints.Builder()
+                            .setRequiredNetworkType(NetworkType.CONNECTED)
+                            .build()
                     )
                     .build()
 
@@ -41,10 +40,9 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
         fun schedulePeriodic(context: Context) {
             Log.v(TAG, "Scheduling periodic work.")
             val workRequest = PeriodicWorkRequestBuilder<BackgroundPollWorker>(15, TimeUnit.MINUTES)
-                    .setConstraints(
-                            Constraints.Builder()
-                                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                                    .build()
+                    .setConstraints(Constraints.Builder()
+                            .setRequiredNetworkType(NetworkType.CONNECTED)
+                            .build()
                     )
                     .build()
 

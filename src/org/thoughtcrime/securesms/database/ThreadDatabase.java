@@ -512,11 +512,11 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public long getThreadIdFor(Recipient recipient) {
-    return getThreadIdFor(recipient, DistributionTypes.DEFAULT);
+  public long getOrCreateThreadIdFor(Recipient recipient) {
+    return getOrCreateThreadIdFor(recipient, DistributionTypes.DEFAULT);
   }
 
-  public long getThreadIdFor(Recipient recipient, int distributionType) {
+  public long getOrCreateThreadIdFor(Recipient recipient, int distributionType) {
     SQLiteDatabase db            = databaseHelper.getReadableDatabase();
     String         where         = ADDRESS + " = ?";
     String[]       recipientsArg = new String[]{recipient.getAddress().serialize()};

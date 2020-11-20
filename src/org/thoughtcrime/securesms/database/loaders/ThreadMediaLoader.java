@@ -23,7 +23,7 @@ public class ThreadMediaLoader extends AbstractCursorLoader {
 
   @Override
   public Cursor getCursor() {
-    long threadId = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(Recipient.from(getContext(), address, true));
+    long threadId = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(Recipient.from(getContext(), address, true));
 
     if (gallery) return DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId);
     else         return DatabaseFactory.getMediaDatabase(getContext()).getDocumentMediaForThread(threadId);

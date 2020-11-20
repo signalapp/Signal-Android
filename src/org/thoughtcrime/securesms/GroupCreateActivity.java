@@ -348,7 +348,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
       String    groupId        = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true, Collections.singletonList(local));
       Recipient groupRecipient = Recipient.from(activity, Address.fromSerialized(groupId), true);
-      long      threadId       = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.DEFAULT);
+      long      threadId       = DatabaseFactory.getThreadDatabase(activity).getOrCreateThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.DEFAULT);
 
       return new GroupActionResult(groupRecipient, threadId);
     }

@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 
 fun getOpenGroupDisplayName(recipient: Recipient, threadRecipient: Recipient, context: Context): String {
-    val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient)
+    val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(threadRecipient)
     val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
     val publicKey = recipient.address.toString()
     val displayName = if (publicChat != null) {

@@ -25,7 +25,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.GroupType
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext
-import org.whispersystems.signalservice.loki.api.SnodeAPI
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchet
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
 import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupSenderKey
@@ -82,7 +81,7 @@ object ClosedGroupsProtocol {
             // Add the group to the user's set of public keys to poll for
             DatabaseFactory.getSSKDatabase(context).setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
             // Notify the user
-            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
             insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
             // Notify the PN server
             LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
@@ -166,7 +165,7 @@ object ClosedGroupsProtocol {
                 if (isUserLeaving) {
                     sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
                     groupDB.setActive(groupID, false)
-                    groupDB.remove(groupID, Address.fromSerialized(userPublicKey))
+                    groupDB.removeMember(groupID, Address.fromSerialized(userPublicKey))
                     // Notify the PN server
                     LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
                 } else {
@@ -230,7 +229,7 @@ object ClosedGroupsProtocol {
             }
             // Notify the user
             val infoType = if (isUserLeaving) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
-            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
             insertOutgoingInfoMessage(context, groupID, infoType, name, members, admins, threadID)
             deferred.resolve(Unit)
         }.start()
@@ -385,7 +384,7 @@ object ClosedGroupsProtocol {
             if (wasCurrentUserRemoved) {
                 sskDatabase.removeClosedGroupPrivateKey(groupPublicKey)
                 groupDB.setActive(groupID, false)
-                groupDB.remove(groupID, Address.fromSerialized(userPublicKey))
+                groupDB.removeMember(groupID, Address.fromSerialized(userPublicKey))
                 // Notify the PN server
                 LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Unsubscribe, groupPublicKey, userPublicKey)
             } else {
@@ -510,7 +509,7 @@ object ClosedGroupsProtocol {
     @JvmStatic
     fun leaveLegacyGroup(context: Context, recipient: Recipient): Boolean {
         if (!recipient.address.isClosedGroup) { return true }
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
+        val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
         val message = GroupUtil.createGroupLeaveMessage(context, recipient).orNull()
         if (threadID < 0 || message == null) { return false }
         MessageSender.send(context, message, threadID, false, null)
@@ -522,7 +521,7 @@ object ClosedGroupsProtocol {
         val groupDatabase = DatabaseFactory.getGroupDatabase(context)
         val groupID = recipient.address.toGroupString()
         groupDatabase.setActive(groupID, false)
-        groupDatabase.remove(groupID, Address.fromSerialized(userPublicKey))
+        groupDatabase.removeMember(groupID, Address.fromSerialized(userPublicKey))
         return true
     }
 

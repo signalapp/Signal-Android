@@ -197,7 +197,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
     String quoteeDisplayName = author.toShortString();
 
-    long threadID = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
+    long threadID = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(conversationRecipient);
     String senderHexEncodedPublicKey = author.getAddress().serialize();
     PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadID);
     if (senderHexEncodedPublicKey.equalsIgnoreCase(TextSecurePreferences.getLocalNumber(getContext()))) {

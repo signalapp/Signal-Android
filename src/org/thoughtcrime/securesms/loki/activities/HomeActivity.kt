@@ -26,13 +26,12 @@ import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
-import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
@@ -343,6 +342,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val recipient = thread.recipient
         val threadDB = DatabaseFactory.getThreadDatabase(this)
         val deleteThread = Runnable {
+            //TODO Move open group related logic to OpenGroupUtilities / PublicChatManager / GroupManager
             AsyncTask.execute {
                 val publicChat = DatabaseFactory.getLokiThreadDatabase(this@HomeActivity).getPublicChat(threadID)
                 if (publicChat != null) {
@@ -351,6 +351,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     apiDB.removeLastDeletionServerID(publicChat.channel, publicChat.server)
                     apiDB.clearOpenGroupProfilePictureURL(publicChat.channel, publicChat.server)
                     ApplicationContext.getInstance(this@HomeActivity).publicChatAPI!!.leave(publicChat.channel, publicChat.server)
+
+                    //FIXME Group deletion should be synchronized with the related thread deletion.
+                    val groupId = threadDB.getRecipientForThreadId(threadID)!!.address.serialize()
+                    GroupManager.deleteGroup(groupId, this@HomeActivity)
                 }
                 threadDB.deleteConversation(threadID)
                 ApplicationContext.getInstance(this@HomeActivity).messageNotifier.updateNotification(this@HomeActivity)

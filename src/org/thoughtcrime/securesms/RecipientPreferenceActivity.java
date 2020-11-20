@@ -767,7 +767,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                            .setBlocked(recipient, blocked);
 
             if (recipient.isGroupRecipient() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.getAddress().toGroupString())) {
-              long                                threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+              long                                threadId     = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
               Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, recipient);
 
               if (threadId != -1 && leaveMessage.isPresent()) {
@@ -776,7 +776,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                 GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
                 String        groupId       = recipient.getAddress().toGroupString();
                 groupDatabase.setActive(groupId, false);
-                groupDatabase.remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+                groupDatabase.removeMember(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
               } else {
                 Log.w(TAG, "Failed to leave group. Can't block.");
                 Toast.makeText(context, R.string.RecipientPreferenceActivity_error_leaving_group, Toast.LENGTH_LONG).show();

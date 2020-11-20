@@ -11,8 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_join_public_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_chat_url.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
@@ -22,6 +26,7 @@ import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
+import java.lang.Exception
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = JoinPublicChatActivityAdapter(this)
@@ -67,13 +72,19 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         }
         showLoader()
         val channel: Long = 1
-        OpenGroupUtilities.addGroup(this, url, channel).success {
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    hideLoader()
+                    Toast.makeText(this@JoinPublicChatActivity, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
+                }
+                return@launch
+            }
             SyncMessagesProtocol.syncAllOpenGroups(this@JoinPublicChatActivity)
-        }.successUi {
-            finish()
-        }.failUi {
-            hideLoader()
-            Toast.makeText(this, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
+            withContext(Dispatchers.Main) { finish() }
         }
     }
     // endregion
@@ -123,13 +134,13 @@ class EnterChatURLFragment : Fragment() {
     }
 
     private fun joinPublicChatIfPossible() {
-        val inputMethodManager = context!!.getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = requireContext().getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(chatURLEditText.windowToken, 0)
         var chatURL = chatURLEditText.text.trim().toString().toLowerCase().replace("http://", "https://")
         if (!chatURL.toLowerCase().startsWith("https")) {
             chatURL = "https://$chatURL"
         }
-        (activity!! as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
+        (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
     }
 }
 // endregion
