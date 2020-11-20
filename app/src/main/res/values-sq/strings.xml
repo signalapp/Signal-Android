@@ -412,7 +412,9 @@
   <string name="DocumentView_unnamed_file">Kartelë e paemërtuar</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Dhuroni për Signal-in</string>
-  <string name="DonateMegaphone_not_now">Jo Tani</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-i bazohet në njerëz si ju. Shpaloseni përkrahjen tuaj sot!</string>
+  <string name="DonateMegaphone_donate">Dhuroni</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Jo Tani</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizoje për Shërbime Play që mungojnë</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Signal-in të marrë mesazhe teksa është joaktiv.</string>
@@ -2022,6 +2024,9 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_setup_a_username">Ujdisë një emër përdoruesi</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Biseda dhe shkurtore</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Fshi krejt shkurtoret dinamike</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klikoni që të fshihen krejt shkurtoret dinamike</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

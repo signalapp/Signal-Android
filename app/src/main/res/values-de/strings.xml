@@ -81,14 +81,14 @@
   <string name="AudioSlidePlayer_error_playing_audio">Fehler bei der Audiowiedergabe</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blockierte Nutzer</string>
-  <string name="BlockedUsersActivity__add_blocked_user">Nutzer blockieren</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Zu blockierenden Nutzer hinzufügen</string>
   <string name="BlockedUsersActivity__blocked_users_will">Blockierte Nutzer werden dich nicht anrufen oder dir Nachrichten senden können.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Keine blockierten Nutzer</string>
   <string name="BlockedUsersActivity__block_user">Nutzer blockieren?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">»%1$s« wird dich nicht anrufen oder dir Nachrichten senden können.</string>
   <string name="BlockedUsersActivity__block">Blockieren</string>
   <string name="BlockedUsersActivity__unblock_user">Nutzer freigeben?</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Möchstest du »%1$s« freigeben?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Möchtest du »%1$s« freigeben?</string>
   <string name="BlockedUsersActivity__unblock">Freigeben</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s blockieren und verlassen?</string>
@@ -96,7 +96,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du wirst von dieser Gruppe keine Nachrichten oder Aktualisierungen mehr erhalten, und Mitglieder werden dich nicht wieder zu dieser Gruppe hinzufügen können.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppenmitglieder werden dich nicht wieder zu dieser Gruppe hinzufügen können.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppenmitglieder werden dich wieder zu dieser Gruppe hinzufügen können.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ihr werdet einander schreiben und euch anrufen können, und dein Name und Foto werden mit diesem Benutzer geteilt.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ihr werdet einander schreiben und euch anrufen können, und dein Name und Foto werden mit diesem Nutzer geteilt.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blockierte Personen werden dich nicht anrufen oder dir Nachrichten senden können.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s freigeben?</string>
   <string name="BlockUnblockDialog_unblock">Freigeben</string>
@@ -161,7 +161,7 @@
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
   <string name="ContactsCursorLoader_groups">Gruppen</string>
   <string name="ContactsCursorLoader_phone_number_search">Rufnummernsuche</string>
-  <string name="ContactsCursorLoader_username_search">Benutzernamensuche</string>
+  <string name="ContactsCursorLoader_username_search">Nutzernamensuche</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-Anruf %s</string>
@@ -303,7 +303,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Zum schnellen Antworten kannst du auf jeder Nachricht nach links wischen</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Versendete einmalig anzeigbare Mediendateien werden nach dem Senden automatisch entfernt</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Du hast diese Nachricht bereits angezeigt</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kannst in dieser Unterhaltung an dich selbst gerichtete Notizen hinzufügen.\nFalls dein Benutzerkonto gekoppelte Geräte besitzt, werden neue Notizen synchronisiert.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kannst in dieser Unterhaltung an dich selbst gerichtete Notizen hinzufügen.\nFalls dein Nutzerkonto gekoppelte Geräte besitzt, werden neue Notizen synchronisiert.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d Gruppenmitglieder haben denselben Namen.</string>
   <string name="ConversationFragment__tap_to_review">Zum Prüfen antippen</string>
   <string name="ConversationFragment__review_requests_carefully">Prüfe Anfragen sorgfältig</string>
@@ -366,12 +366,12 @@
   <string name="BackupsPreferenceFragment__last_backup">Letzte Sicherung: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Ordner für Datensicherung</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Sicherungspassphrase überprüfen</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste die Passphrase deiner Datensicherung, um dich zu vergewissern, dass du sie öffnen kannst</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste die Passphrase deiner Datensicherung und vergewissere dich, dass du sie öffnen kannst</string>
   <string name="BackupsPreferenceFragment__turn_on">Einschalten</string>
   <string name="BackupsPreferenceFragment__turn_off">Ausschalten</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Um eine Datensicherung wiederherzustellen, installiere Signal neu. Öffne die App, tippe auf »Sicherung wiederherstellen« und wähle dann eine Sicherungsdatei. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Mehr erfahren</string>
-  <string name="BackupsPreferenceFragment__in_progress">In Arbeit …</string>
+  <string name="BackupsPreferenceFragment__in_progress">In Bearbeitung …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d bisher …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal benötigt zum Erstellen von Datensicherungen die Berechtigung »Speicher«, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <!--CustomDefaultPreference-->
@@ -412,8 +412,9 @@
   <string name="DocumentView_unnamed_file">Unbenannte Datei</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">An Signal spenden</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal existiert dank Menschen wie dir. Zeig heute deine Unterstützung!</string>
   <string name="DonateMegaphone_donate">Spenden</string>
-  <string name="DonateMegaphone_not_now">Jetzt nicht</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Jetzt nicht</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für Betrieb ohne Google-Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungen zu deaktivieren, die Signal daran hindern, Nachrichten im Hintergrund zu empfangen.</string>
@@ -467,9 +468,9 @@
     <item quantity="one">Einladung versendet</item>
     <item quantity="other">%d Einladungen versendet</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDer Benutzer wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis er die Einladung angenommen hat.</string>
+  <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDer Nutzer wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis er die Einladung angenommen hat.</string>
   <string name="GroupManagement_learn_more">Mehr erfahren</string>
-  <string name="GroupManagement_invite_multiple_users">Diese Benutzer können von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nSie wurden eingeladen, der Gruppe beizutreten, werden aber keine Gruppennachrichten erhalten, bis sie die Einladung angenommen haben.</string>
+  <string name="GroupManagement_invite_multiple_users">Diese Nutzer können von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nSie wurden eingeladen, der Gruppe beizutreten, werden aber keine Gruppennachrichten erhalten, bis sie die Einladung angenommen haben.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Was sind Gruppen neuen Typs?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Gruppen neuen Typs besitzen Funktionen wie @Erwähnungen und Gruppen-Admins und werden zukünftig weitere Funktionen unterstützen.</string>
@@ -479,28 +480,28 @@
     <item quantity="other">Diese Mitglieder müssen eine Einladung zum erneuten Gruppenbeitritt annehmen und werden bis dahin keine Gruppennachrichten erhalten:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Aktualisiere zu einer Gruppe neuen Typs</string>
-  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Aktualisiere diese Gruppe</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Zu Gruppe neuen Typs aktualisieren</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Diese Gruppe aktualisieren</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Gruppen neuen Typs besitzen Funktionen wie @Erwähnungen und Gruppen-Admins und werden zukünftig weitere Funktionen unterstützen.</string>
-  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Der Nachrichtenverlauf und die Medieninhalte werden durch die Aktualisierung erhalten bleiben.</string>
-  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Ein Netzwerkfehler ist aufgetreten. Versuche es später erneut.</string>
-  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Aktualisierung fehlgeschlagen.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Der bestehende Nachrichtenverlauf und die Medieninhalte werden durch die Aktualisierung erhalten bleiben.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Ein Netzfehler ist aufgetreten. Bitte versuche es später erneut.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Aktualisierung konnte nicht durchgeführt werden.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Dieses Mitglied muss eine Einladung zum erneuten Gruppenbeitritt annehmen und wird bis dahin keine Gruppennachrichten erhalten:</item>
     <item quantity="other">Diese Mitglieder müssen eine Einladung zum erneuten Gruppenbeitritt annehmen und werden bis dahin keine Gruppennachrichten erhalten:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Dieses Mitglied kann Gruppen neuen Typs nicht beitreten und wurden daher aus der Gruppe entfernt:</item>
-    <item quantity="other">Diese Mitglieder können Gruppen neuen Typs nicht beitreten und wurden daher aus der Gruppe entfernt:</item>
+    <item quantity="one">Dieses Mitglied kann Gruppen neuen Typs nicht beitreten und wird daher aus der Gruppe entfernt:</item>
+    <item quantity="other">Diese Mitglieder können Gruppen neuen Typs nicht beitreten und werden daher aus der Gruppe entfernt:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Für neue Funktionen, wie @Erwähnungen und Admins, aktualisiere diese Gruppe.</string>
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Aktualisiere diese Gruppe für neue Funktionen wie @Erwähnungen und Admins.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Jetzt nicht</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualisiere Gruppe</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Gruppe aktualisieren</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="one">%1$d Mitglied konnte der Gruppe neuen Typs nicht hinzugefügt werden. Möchtest du dieses jetzt hinzufügen?</item>
-    <item quantity="other">%1$d Mitglieder konnten der Gruppe neuen Typs nicht hinzugefügt werden. Möchtest du diese jetzt hinzufügen?</item>
+    <item quantity="one">%1$d Mitglied konnte der Gruppe neuen Typs nicht wieder hinzugefügt werden. Möchtest du es jetzt hinzufügen?</item>
+    <item quantity="other">%1$d Mitglieder konnten der Gruppe neuen Typs nicht wieder hinzugefügt werden. Möchtest du sie jetzt hinzufügen?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Mitglied hinzufügen</item>
@@ -513,19 +514,19 @@
     <item quantity="other">Mitglieder hinzufügen?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-    <item quantity="one">Dieses Mitglied konnte während der Aktualisierung zu einer Gruppe neuen Typs nicht automatisch hinzugefügt werden:</item>
-    <item quantity="other">Diese Mitglieder konnten während der Aktualisierung zu einer Gruppe neuen Typs nicht automatisch hinzugefügt werden:</item>
+    <item quantity="one">Dieses Mitglied konnte bei der Aktualisierung zur Gruppe neuen Typs nicht automatisch hinzugefügt werden:</item>
+    <item quantity="other">Diese Mitglieder konnten bei der Aktualisierung zur Gruppe neuen Typs nicht automatisch hinzugefügt werden:</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="one">Mitglied hinzufügen</item>
     <item quantity="other">Mitglieder hinzufügen</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-    <item quantity="one">Mitglied konnte nicht hinzugefügt werden. Versuche es später erneut.</item>
-    <item quantity="other">Mitglieder konnten nicht hinzugefügt werden. Versuche es später erneut.</item>
+    <item quantity="one">Mitglied konnte nicht hinzugefügt werden. Bitte versuche es später erneut.</item>
+    <item quantity="other">Mitglieder konnten nicht hinzugefügt werden. Bitte versuche es später erneut.</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
-    <item quantity="one">Mitglieder kann nicht hinzugefügt werden.</item>
+    <item quantity="one">Mitglied kann nicht hinzugefügt werden.</item>
     <item quantity="other">Mitglieder können nicht hinzugefügt werden.</item>
   </plurals>
   <!--LeaveGroupDialog-->
@@ -646,7 +647,7 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Name und Bild bearbeiten</string>
   <string name="ManageGroupActivity_legacy_group">Gruppe alten Typs</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dies ist eine Gruppe alten Typs. Funktionen wie Gruppen-Admins sind nur in Gruppen neuen Typs verfügbar.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">Dies ist eine Gruppe alten Typs. Für neue Funktionen, wie @Erwähnungen und Admins,</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Dies ist eine Gruppe alten Typs. Für neue Funktionen wie @Erwähnungen und Admins,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Diese Gruppe alten Typs kann nicht zu einer Gruppe neuen Typs aktualisiert werden. Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
   <string name="ManageGroupActivity_upgrade_this_group">aktualisiere diese Gruppe.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dies ist eine unverschlüsselte MMS-Gruppe. Lade deine Kontakte zu Signal ein, um dich vertraulich zu unterhalten und Funktionen wie Gruppennamen verwenden zu können.</string>
@@ -1032,13 +1033,12 @@
   <string name="MessageRequestBottomView_delete">Löschen</string>
   <string name="MessageRequestBottomView_block">Blockieren</string>
   <string name="MessageRequestBottomView_unblock">Freigeben</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Der Benutzer weiß nicht, dass du seine Nachricht gesehen hast, bis du die Anfrage annimmst.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Der Nutzer weiß nicht, dass du seine Nachricht gesehen hast, bis du die Anfrage annimmst.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Darf %1$s dir Nachrichten schreiben und deinen Namen und dein Foto sehen? Du wirst keine Nachrichten erhalten, bis du die Unterhaltung freigibst.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Unterhaltung mit dieser Gruppe fortsetzen und deinen Namen und dein Foto mit deren Mitgliedern teilen?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Aktualisiere diese Gruppe für neue Funktionen, wie @Erwähnungen und Admins. Mitglieder, die ihren Namen und Foto in dieser Gruppe noch nicht geteilt haben, werden eingeladen beizutreten.</string>
-  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Diese Gruppe alten Typs kann nicht länger verwendet werden.
-Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Unterhaltung mit %1$s fortsetzen und deinen Namen und dein Foto mit diesem Benutzer teilen?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Aktualisiere diese Gruppe für neue Funktionen wie @Erwähnungen und Admins. Mitglieder, die ihre Namen und Fotos nicht mit dieser Gruppe geteilt haben, werden eingeladen, beizutreten.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Unterhaltung mit %1$s fortsetzen und deinen Namen und dein Foto mit diesem Nutzer teilen?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen? Sie wissen nicht, dass du ihre Nachrichten gesehen hast, bis du die Anfrage annimmst.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Dieser Gruppe beitreten? Solange du nicht beitrittst, werden die Gruppenmitglieder nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Möchtest du diese Gruppe freigeben und deinen Namen und dein Foto mit deren Mitgliedern teilen? Du wirst keine Nachrichten erhalten, bis du die Gruppe freigibst.</string>
@@ -1107,15 +1107,15 @@ Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
   <string name="PinRestoreEntryFragment_incorrect_pin">Falsche PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">PIN-Eingabe überspringen?</string>
   <string name="PinRestoreEntryFragment_need_help">Hilfe benötigt?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Deine PIN ist ein von dir erstellter, numerischer oder alphanumerischer Code von %1$d+ Zeichen.\n\nFalls du deine PIN vergessen hast, kannst du eine neue erstellen. Du kannst dich registrieren und dein Benutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Falls du deine PIN vergessen hast, kannst du eine neue erstellen. Du kannst dich registrieren und dein Benutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Deine PIN ist ein von dir erstellter, numerischer oder alphanumerischer Code von %1$d+ Zeichen.\n\nFalls du deine PIN vergessen hast, kannst du eine neue erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Falls du deine PIN vergessen hast, kannst du eine neue erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Neue PIN erstellen</string>
   <string name="PinRestoreEntryFragment_contact_support">Support kontaktieren</string>
   <string name="PinRestoreEntryFragment_cancel">Abbrechen</string>
   <string name="PinRestoreEntryFragment_skip">Überspringen</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="one">Du hast %1$d verbleibenden Versuch. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Benutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
-    <item quantity="other">Du hast %1$d verbleibende Versuche. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Benutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
+    <item quantity="one">Du hast %1$d verbleibenden Versuch. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
+    <item quantity="other">Du hast %1$d verbleibende Versuche. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-Registrierung – Benötige Hilfe zur PIN für Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Alphanumerische PIN eingeben</string>
@@ -1177,9 +1177,9 @@ Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
   <string name="WebRtcCallView__view_participants_list">Teilnehmer anzeigen</string>
   <string name="WebRtcCallView__your_video_is_off">Dein Video ist aus</string>
   <string name="WebRtcCallView__connecting">Verbindung wird hergestellt …</string>
-  <string name="WebRtcCallView__reconnecting">Neu verbinden …</string>
+  <string name="WebRtcCallView__reconnecting">Verbindung wird neu hergestellt …</string>
   <string name="WebRtcCallView__joining">Beitreten …</string>
-  <string name="WebRtcCallView__disconnected">Keine Serververbindung</string>
+  <string name="WebRtcCallView__disconnected">Verbindung getrennt</string>
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
@@ -1199,7 +1199,7 @@ Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
   <string name="RegistrationActivity_invalid_number">Ungültige Rufnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Rufummer (%s) ist ungültig.</string>
   <string name="RegistrationActivity_missing_google_play_services">Fehlende Google-Play-Dienste</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein erfahrener Benutzer bist, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein erfahrener Nutzer bist, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
   <string name="RegistrationActivity_i_understand">Verstanden</string>
   <string name="RegistrationActivity_play_services_error">Fehler bei den Google-Play-Diensten</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht verfügbar. Bitte erneut versuchen.</string>
@@ -1357,18 +1357,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UnverifiedSendDialog_send_message">Nachricht senden?</string>
   <string name="UnverifiedSendDialog_send">Senden</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_username">Benutzername</string>
+  <string name="UsernameEditFragment_username">Nutzername</string>
   <string name="UsernameEditFragment_delete">Löschen</string>
-  <string name="UsernameEditFragment_successfully_set_username">Benutzername erfolgreich festgelegt.</string>
-  <string name="UsernameEditFragment_successfully_removed_username">Benutzername erfolgreich entfernt.</string>
+  <string name="UsernameEditFragment_successfully_set_username">Nutzername erfolgreich festgelegt.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">Nutzername erfolgreich entfernt.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten</string>
-  <string name="UsernameEditFragment_this_username_is_taken">Dieser Benutzername ist vergeben.</string>
-  <string name="UsernameEditFragment_this_username_is_available">Dieser Benutzername ist verfügbar.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Benutzernamen dürfen nur a–Z, 0–9 und Unterstriche beinhalten.</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Benutzernamen dürfen nicht mit einer Ziffer beginnen.</string>
-  <string name="UsernameEditFragment_username_is_invalid">Benutzername ist ungültig.</string>
-  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Benutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Benutzernamen sind bei Signal optional. Falls du dich dafür entscheidest, einen Benutzernamen zu erstellen, werden andere Nutzer dich über diesen finden und kontaktieren können, ohne deine Rufnummer zu kennen.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">Dieser Nutzername ist vergeben.</string>
+  <string name="UsernameEditFragment_this_username_is_available">Dieser Nutzername ist verfügbar.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Nutzernamen dürfen nur a–Z, 0–9 und Unterstriche beinhalten.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nutzernamen dürfen nicht mit einer Ziffer beginnen.</string>
+  <string name="UsernameEditFragment_username_is_invalid">Nutzername ist ungültig.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nutzernamen sind bei Signal optional. Falls du dich dafür entscheidest, einen Nutzernamen zu erstellen, werden andere Nutzer dich über diesen finden und kontaktieren können, ohne deine Rufnummer zu kennen.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Signal-Version. Bitte ihn, Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Signal-Version mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
@@ -1379,7 +1379,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Keine zu vergleichende Sicherheitsnummer in der Zwischenablage gefunden</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kamera« für das Einscannen von QR-Codes, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-Codes können ohne die Berechtigung »Kamera« nicht eingescannt werden.</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Um die Sicherheitsnummer von %1$s sehen zu können, müssen zuerst Nachrichten ausgetauscht werden.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du musst zuerst Nachrichten mit %1$s austauschen, um eure Sicherheitsnummer sehen zu können.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1552,8 +1552,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal benötigt zum Anzeigen deiner Kontakte die Berechtigung »Kontakte«, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontakte konnten nicht abgerufen werden. Überprüfe bitte deine Netzverbindung.</string>
-  <string name="ContactSelectionListFragment_username_not_found">Benutzername nicht gefunden</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">»%1$s« ist kein Signal-Nutzer. Bitte überprüfe den Benutzernamen und versuche es erneut.</string>
+  <string name="ContactSelectionListFragment_username_not_found">Nutzername nicht gefunden</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">»%1$s« ist kein Signal-Nutzer. Bitte überprüfe den Nutzernamen und versuche es erneut.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du musst dich nicht selbst zur Gruppe hinzufügen</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Maximale Gruppengröße erreicht</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-Gruppen können maximal %1$d Mitglieder besitzen.</string>
@@ -1737,8 +1737,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreateProfileActivity_first_name_required">Vorname (erforderlich)</string>
   <string name="CreateProfileActivity_last_name_optional">Nachname (optional)</string>
   <string name="CreateProfileActivity_next">Weiter</string>
-  <string name="CreateProfileActivity__username">Benutzername</string>
-  <string name="CreateProfileActivity__create_a_username">Erstelle einen Benutzernamen</string>
+  <string name="CreateProfileActivity__username">Nutzername</string>
+  <string name="CreateProfileActivity__create_a_username">Erstelle einen Nutzernamen</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Gruppenname und -bild bearbeiten</string>
   <string name="EditProfileFragment__group_name">Gruppenname</string>
@@ -1915,12 +1915,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__advanced">Weitere Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
   <string name="preferences__privacy">Datenschutz</string>
-  <string name="preferences__mms_user_agent">MMS-Benutzer-Agent</string>
+  <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-Einstellungen</string>
   <string name="preferences__mmsc_url">MMSC-URL</string>
   <string name="preferences__mms_proxy_host">MMS-Proxy-Host</string>
   <string name="preferences__mms_proxy_port">MMS-Proxy-Port</string>
-  <string name="preferences__mmsc_username">MMSC-Benutzername</string>
+  <string name="preferences__mmsc_username">MMSC-Nutzername</string>
   <string name="preferences__mmsc_password">MMSC-Passwort</string>
   <string name="preferences__sms_delivery_reports">SMS-Zustellberichte</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
@@ -1938,7 +1938,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__enable_pin">PIN aktivieren</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
-  <string name="preferences__system_default">Systemstandard</string>
+  <string name="preferences__system_default">System</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprache</string>
   <string name="preferences__signal_messages_and_calls">Signal-Nachrichten und ‑Anrufe</string>
@@ -2008,9 +2008,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_notifications__mentions">Erwähnungen</string>
   <string name="preferences_notifications__notify_me">Mich benachrichtigen</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Benachrichtigungen erhalten, wenn du in stummgeschalteten Unterhaltungen erwähnt wirst</string>
-  <string name="preferences_setup_a_username">Benutzername einrichten</string>
+  <string name="preferences_setup_a_username">Nutzername einrichten</string>
   <string name="configurable_single_select__customize_option">Option anpassen</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Unterhaltungen und Verknüpfungen</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Alle dynamischen Verknüpfungen löschen</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Antippen zum Löschen aller dynamischen Verknüpfungen</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2248,7 +2251,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ResearchMegaphone_learn_more">Mehr erfahren</string>
   <string name="ResearchMegaphone_dismiss">Verwerfen</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal-Forschung</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Wir glauben an Datenschutz.</b></p><p>Signal verfolgt dich nicht und sammelt auch nicht deine Daten. Um Signal für alle zu verbessern, stützen wir uns auf Rückmeldungen der Benutzer, <b>und wir wären sehr an deinen interessiert.</b></p><p>Zum besseren Verständnis darüber, wie du Signal nutzt, führen wir eine Umfrage durch. Unsere Umfrage sammelt keinerlei Daten, die Rückschlüsse auf deine Identität erlauben. Falls du weiteres Feedback geben möchtest, kannst du optional deine Kontaktinformationen hinterlassen.</p><p>Wenn du einige Minuten erübrigen kannst, würden wir sehr gerne von dir hören.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Wir glauben an Datenschutz.</b></p><p>Signal verfolgt dich nicht und sammelt auch nicht deine Daten. Um Signal für alle zu verbessern, stützen wir uns auf Rückmeldungen der Nutzer, <b>und wir wären sehr an deinen interessiert.</b></p><p>Zum besseren Verständnis darüber, wie du Signal nutzt, führen wir eine Umfrage durch. Unsere Umfrage sammelt keinerlei Daten, die Rückschlüsse auf deine Identität erlauben. Falls du weiteres Feedback geben möchtest, kannst du optional deine Kontaktinformationen hinterlassen.</p><p>Wenn du einige Minuten erübrigen kannst, würden wir sehr gerne von dir hören.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">An Umfrage teilnehmen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nein, danke</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Diese Umfrage wird bei »Alchemer« auf der sicheren Domain »surveys.signalusers.org« gehostet.</string>
@@ -2307,7 +2310,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
   <string name="LocalBackupJobApi29_backup_failed">Sicherung gescheitert</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dein Verzeichnis für die Datensicherung wurde gelöscht oder verschoben.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Die Datei für die Datensicherung ist zu groß, um auf diesem Laufwerk gespeichert zu werden.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Deine Sicherungsdatei ist zu groß, um auf diesem Laufwerk gespeichert zu werden.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Es ist nicht genug Speicherplatz verfügbar, um deine Datensicherung zu speichern.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Antippen zum Verwalten von Datensicherungen.</string>
   <string name="ProgressPreference_d_messages_so_far">%d Nachrichten bisher</string>
@@ -2347,7 +2350,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Die PIN für die Registrierungssperre ist unabhängig vom SMS-Verifikationscode, den du gerade erhalten hast. Bitte gib die PIN ein, die du zuvor in der App festgelegt hast.</string>
   <string name="registration_activity__registration_lock_pin">PIN für Registrierungssperre</string>
   <string name="registration_activity__forgot_pin">PIN vergessen?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Die PIN kann aus vier oder mehr Ziffern bestehen. Falls du deine PIN vergisst, kannst du unter Umständen bis zu sieben Tage lang nicht auf dein Benutzerkonto zugreifen.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Die PIN kann aus vier oder mehr Ziffern bestehen. Falls du deine PIN vergisst, kannst du unter Umständen bis zu sieben Tage lang nicht auf dein Nutzerkonto zugreifen.</string>
   <string name="registration_lock_dialog_view__enter_pin">PIN eingeben</string>
   <string name="registration_lock_dialog_view__confirm_pin">PIN bestätigen</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Gib deine PIN für die Registrierungssperre ein</string>
@@ -2434,8 +2437,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Mitglieder prüfen</string>
   <string name="ReviewCardDialogFragment__review_request">Anfrage prüfen</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d Gruppenmitglieder haben denselben Namen. Prüfe die folgenden Mitglieder und verfahre entsprechend.</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Falls du dir über die Herkunft der Anfrage unsicher bist, prüfe die folgenden Kontakte und verfahre entsprechend.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d Gruppenmitglieder haben denselben Namen. Prüfe die folgenden Mitglieder und handle entsprechend.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Falls du dir über die Herkunft der Anfrage unsicher bist, prüfe die folgenden Kontakte und handle entsprechend.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Keine anderen gemeinsamen Gruppen.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Keine gemeinsamen Gruppen.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">

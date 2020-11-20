@@ -440,7 +440,7 @@
   <string name="DocumentView_unnamed_file">Nepomenovaný súbor</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Prispieť na Signal</string>
-  <string name="DonateMegaphone_not_now">Teraz nie</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Teraz nie</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizovať pre chýbajúce služby Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zariadenie nepodporuje služby Google Play. Ťuknite pre vypnutie systémovej optimalizácie batérie, ktorá zabraňuje Signalu prijímať správy v neaktívnom stave.</string>

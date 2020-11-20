@@ -412,8 +412,9 @@
   <string name="DocumentView_unnamed_file">Ανώνυμο αρχείο</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Κάνε μια δωρεά στο Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Το Signal στηρίζεται σε άτομα σαν και σένα. Δείξε την υποστήριξή σου!</string>
   <string name="DonateMegaphone_donate">Δωρεά</string>
-  <string name="DonateMegaphone_not_now">Όχι τώρα</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Όχι τώρα</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Βελτιστοποίηση για τις υπηρεσίες Play που λείπουν</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Αυτή η συσκευή δεν υποστηρίζει τις υπηρεσίες Play. Πάτα για απενεργοποίηση των βελτιστοποιήσεων μπαταρίας του συστήματος που εμποδίζουν το Signal από το να λαμβάνει μηνύματα όταν είναι ανενεργό.</string>
@@ -2016,6 +2017,7 @@
   <string name="preferences_setup_a_username">Ορισμός ονόματος χρήστη`</string>
   <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Συνομιλίες και συντομεύσεις</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -4,7 +4,7 @@
   <string name="no">അല്ല</string>
   <string name="delete">ഇല്ലാതാക്കുക </string>
   <string name="please_wait">കാത്തിരിക്കൂ…</string>
-  <string name="save">സേവ് ചെയ്യുക</string>
+  <string name="save">സംരക്ഷിക്കുക</string>
   <string name="note_to_self">സ്വന്തം കുറിപ്പുകൾ</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">പുതിയ സന്ദേശം</string>
@@ -129,7 +129,9 @@
   <string name="ClearProfileActivity_remove_profile_photo">പ്രൊഫൈല്‍ ഫോട്ടോ ഒഴിവാക്കണോ?</string>
   <string name="ClearProfileActivity_remove_group_photo">ഗ്രൂപ്പ് ഫോട്ടോ നീക്കംചെയ്യണോ?</string>
   <!--ClientDeprecatedActivity-->
+  <string name="ClientDeprecatedActivity_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
   <string name="ClientDeprecatedActivity_update">അപ്‌ഡേറ്റ്</string>
+  <string name="ClientDeprecatedActivity_dont_update">അപ്ഡേറ്റ് ചെയ്യരുത്</string>
   <string name="ClientDeprecatedActivity_warning">മുന്നറിയിപ്പ്</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">വെബ്‌ബ്രൗസറൊന്നും കണ്ടെത്തിയില്ല.</string>
@@ -332,6 +334,7 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">ഒരു ലോക്കൽ ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും റിസ്റ്റോർ ചെയ്യുക. നിങ്ങൾ ഇപ്പോൾ റിസ്റ്റോർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
+  <string name="ChooseBackupFragment__choose_backup">ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
   <string name="ChooseBackupFragment__learn_more">കൂടുതൽ അറിയുക</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക </string>
@@ -344,6 +347,8 @@
   <string name="BackupsPreferenceFragment__turn_on">ഓൺ ചെയ്യുക</string>
   <string name="BackupsPreferenceFragment__turn_off">ഓഫ് ആക്കുക</string>
   <string name="BackupsPreferenceFragment__learn_more">കൂടുതൽ അറിയുക</string>
+  <string name="BackupsPreferenceFragment__in_progress">പുരോഗതിയിൽ…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d ഇതുവരെ….</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ബാക്കപ്പുകൾ സൃഷ്ടിക്കുന്നതിന് Signal-ന് ബാഹ്യ സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ഉപയോഗിക്കുന്നു: %s</string>
@@ -381,7 +386,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">പേരിടാത്ത ഫയൽ</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_not_now">ഇപ്പോൾ വേണ്ട</string>
+  <string name="DonateMegaphone_donate">സംഭാവനചെയ്യുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">ഇപ്പോൾ വേണ്ട</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Play Services ഇല്ലാത്തതിനാൽ ഡിവൈസ് ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ഈ ഉപകരണം Play Services പിന്തുണയ്ക്കുന്നില്ല. നിഷ്‌ക്രിയമായിരിക്കുമ്പോൾ സന്ദേശങ്ങൾ വീണ്ടെടുക്കുന്നതിൽ നിന്ന് Signal നെ തടയുന്ന സിസ്റ്റം ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കാൻ ടാപ്പുചെയ്യുക.</string>
@@ -407,6 +413,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\"-നെ \"%2$s\"-ലേക്ക്  ചേർത്തു.</string>
   <string name="AddToGroupActivity_add_to_group">ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="AddToGroupActivity_add_to_groups">ഗ്രൂപ്പുകളിലേക്ക് ചേർക്കുക</string>
+  <string name="AddToGroupActivity_add">ചേർക്കുക</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
   <string name="ChooseNewAdminActivity_done">ചെയ്‌തു</string>
@@ -465,6 +472,7 @@
     <item quantity="one">\"%1$s\"-നെ  \"%2$s\"-ലേക്ക് ചേർക്കുക</item>
     <item quantity="other">\"%2$s\"-ലേക്ക് %3$d അംഗങ്ങളെ ചേർക്കുക?</item>
   </plurals>
+  <string name="AddMembersActivity__add">ചേർക്കുക</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ഈ ഗ്രൂപ്പിന് പേര് നൽകുക</string>
   <string name="AddGroupDetailsFragment__create_group">ഗ്രൂപ്പ് സൃഷ്ടിക്കുക</string>
@@ -572,7 +580,9 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add">ചേർക്കുക</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ഗ്രൂപ്പ് അവതാർ</string>
   <string name="CropImageActivity_profile_avatar">അവതാർ</string>
@@ -914,6 +924,8 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">സിഗ്നൽ വോയ്‌സ് കോൾ…</string>
   <string name="WebRtcCallView__signal_video_call">സിഗ്നൽ വീഡിയോ കോൾ…</string>
+  <string name="WebRtcCallView__start_call">കോൾ ആരംഭിക്കുക</string>
+  <string name="WebRtcCallView__join_call">കോളിൽ ചേരുക</string>
   <string name="WebRtcCallView__connecting">കണക്ട് ചെയ്യുന്നു</string>
   <string name="WebRtcCallView__reconnecting">റീകണക്ടിംഗ്…</string>
   <!--CallParticipantsListDialog-->

@@ -440,8 +440,9 @@
   <string name="DocumentView_unnamed_file">Безымянный файл</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Покажите свою поддержку уже сегодня!</string>
   <string name="DonateMegaphone_donate">Пожертвовать</string>
-  <string name="DonateMegaphone_not_now">Не сейчас</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Не сейчас</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизация при отсутствии Служб Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Это устройство не поддерживает Службы Google Play. Нажмите для отключения оптимизации энергопотребления, которая не позволяет Signal получать сообщения, когда он неактивен.</string>
@@ -2154,6 +2155,9 @@
   <string name="preferences_setup_a_username">Настройте имя пользователя</string>
   <string name="configurable_single_select__customize_option">Изменить опцию</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Разговоры и ярлыки</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Удалить все динамические ярлыки</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Нажмите, чтобы удалить все динамические ярлыки</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

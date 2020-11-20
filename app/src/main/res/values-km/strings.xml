@@ -364,7 +364,7 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ឯកសារគ្មានឈ្មោះ</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_not_now">លើកក្រោយ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">លើកក្រោយ</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">បង្កើនប្រសិទ្ធភាពសម្រាប់ការបាត់ Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>

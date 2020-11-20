@@ -440,8 +440,9 @@
   <string name="DocumentView_unnamed_file">Plik bez nazwy</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Datek na Signal</string>
-  <string name="DonateMegaphone_donate">Darowizna</string>
-  <string name="DonateMegaphone_not_now">Nie teraz</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal funkcjonuje dzięki ludziom takim jak Ty. Wesprzyj nas już dziś!</string>
+  <string name="DonateMegaphone_donate">Podaruj</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Nie teraz</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optymalizacja dla brakujących Usług Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Urządzenie nie wspiera Usług Play. Dotknij, aby wyłączyć systemową optymalizację baterii uniemożliwiającą odbieranie wiadomości w czasie braku aktywności.</string>
@@ -2153,6 +2154,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_setup_a_username">Ustaw nazwę użytkownika</string>
   <string name="configurable_single_select__customize_option">Dostosuj opcję</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Konwersacje i skróty</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Usuń wszystkie dynamiczne skróty</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Stuknij, aby usunąć wszystkie dynamiczne skróty</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

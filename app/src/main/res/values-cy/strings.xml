@@ -442,7 +442,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="DocumentView_unnamed_file">Ffeil dienw</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Cyfrannu at Signal</string>
-  <string name="DonateMegaphone_not_now">Nid nawr</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Mae grym Signal mewn pobl fel chi. Dangoswch eich cefnogaeth heddiw!</string>
+  <string name="DonateMegaphone_donate">Cyfraniad</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Nid nawr</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeiddio ar gyfer Play Services coll</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Nid yw\'r ddyfais hon yn cefnogi Play Services Tapiwch i analluogi gwelliannau batri system sy\'n atal Signal rhag adfer negeseuon tra\'n anweithredol.</string>
@@ -2162,6 +2164,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_setup_a_username">Gosod enw defnyddiwr</string>
   <string name="configurable_single_select__customize_option">Cyfaddasu opsiwn</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Sgyrsiau a Llwybrau Byr</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Dileu pob llwybr byr dynamig</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliciwch i ddileu pob llwybr byr dynamig</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

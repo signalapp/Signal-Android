@@ -440,7 +440,9 @@
   <string name="DocumentView_unnamed_file">Datoteka brez imena</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Podprite Signal</string>
-  <string name="DonateMegaphone_not_now">Ne zdaj</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Podprite ga tudi vi!</string>
+  <string name="DonateMegaphone_donate">Podpri Signal!</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ne zdaj</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za manjkajočo aplikacijo Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Naprava ne podpira storitev Play Services. Tapnite za izklop optimizacije baterije, ki aplikaciji Signal preprečuje povezavo v času neaktivnosti naprave.</string>
@@ -2151,6 +2153,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_setup_a_username">Določite uporabniško ime</string>
   <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Pogovori in povezave</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Izbris vseh dinamičnih povezav</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Kliknite za izbris vseh dinamičnih povezav</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

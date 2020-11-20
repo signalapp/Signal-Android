@@ -412,8 +412,9 @@
   <string name="DocumentView_unnamed_file">Namnlös fil</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Donera till Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drivs av människor som du. Visa ditt stöd idag!</string>
   <string name="DonateMegaphone_donate">Donera</string>
-  <string name="DonateMegaphone_not_now">Inte nu</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Inte nu</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheten stöder inte Play-tjänster. Tryck för att inaktivera systembatterioptimeringar som hindrar Signal från att hämta meddelanden vid inaktivitet.</string>
@@ -2015,6 +2016,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
   <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Konversationer och genvägar</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Ta bort alla dynamiska genvägar</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klicka för att ta bort alla dynamiska genvägar</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

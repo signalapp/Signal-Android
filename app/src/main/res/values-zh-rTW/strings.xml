@@ -398,8 +398,9 @@
   <string name="DocumentView_unnamed_file">無名稱的檔案</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">捐贈 Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 由像你這樣的人提供動力。這顯示了你的支持！</string>
   <string name="DonateMegaphone_donate">捐</string>
-  <string name="DonateMegaphone_not_now">稍後</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">稍後</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
@@ -1948,6 +1949,9 @@
   <string name="preferences_setup_a_username">設定使用者名稱</string>
   <string name="configurable_single_select__customize_option">自定義選項</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">對話與捷徑</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">刪除所有動態捷徑</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">單擊以刪除所有動態捷徑</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

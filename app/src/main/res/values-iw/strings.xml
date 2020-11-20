@@ -440,7 +440,9 @@
   <string name="DocumentView_unnamed_file">קובץ ללא שם</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">תרום אל Signal</string>
-  <string name="DonateMegaphone_not_now">לא עכשיו</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ממונע על ידי אנשים כמוך. הראה לנו את תמיכתך היום!</string>
+  <string name="DonateMegaphone_donate">תרום</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">לא עכשיו</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">מטב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ־Signal לאחזר הודעות בעת אי־פעילות.</string>
@@ -2160,6 +2162,9 @@
   <string name="preferences_setup_a_username">הגדר שם משתמש</string>
   <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">שיחות וקיצורי דרך</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">מחק את כל קיצורי הדרך הדינמיים</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">לחץ כדי למחוק את כל קיצורי הדרך הדינמיים</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

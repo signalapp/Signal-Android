@@ -362,7 +362,7 @@
   <string name="RestoreBackupFragment__not_now">Niet nu</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Back-up-bestanden maken</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-up-bestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je Back-up-bestanden inschakelt maakt Signal automatisch elke dag een nieuw back-up-bestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-up-bestanden blijven bewaard, oudere back-up-bestanden worden overschreven.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-up-bestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-up-bestanden inschakelt maakt Signal automatisch elke dag een nieuw back-up-bestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-up-bestanden blijven bewaard, oudere back-up-bestanden worden overschreven.</string>
   <string name="BackupsPreferenceFragment__create_backup">Nu een back-up-bestand maken</string>
   <string name="BackupsPreferenceFragment__last_backup">Meest recente back-up-bestand: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Back-up-directory</string>
@@ -415,7 +415,7 @@
   <string name="DonateMegaphone_donate_to_signal">Aan Signal doneren</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Zou je ons willen steunen?</string>
   <string name="DonateMegaphone_donate">Doneren</string>
-  <string name="DonateMegaphone_not_now">Niet nu</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Niet nu</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>

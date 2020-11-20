@@ -412,8 +412,9 @@
   <string name="DocumentView_unnamed_file">File senza nome</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Dona a Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal è sostenuto da persone come te. Mostra il tuo sostegno oggi!</string>
   <string name="DonateMegaphone_donate">Dona</string>
-  <string name="DonateMegaphone_not_now">Non ora</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Non ora</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Ottimizza per la mancanza di Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Questo dispositivo non supporta Google Play Services. Premi per disabilitare l\'ottimizzazione di sistema del consumo della batteria che impedisce a Signal di ricevere messaggi quando è inattivo.</string>
@@ -494,7 +495,7 @@
     <item quantity="other">Questi membri non sono in grado di unirsi ai Nuovi Gruppi e saranno rimossi dal gruppo:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Per accedere a nuove funzionalità come @menzioni e amministratori del gruppo, aggiorna questo gruppo.</string>
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Per accedere a nuove funzionalità come @menzioni e amministratori, aggiorna questo gruppo.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Non ora</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Aggiorna gruppo</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
@@ -2021,6 +2022,9 @@
   <string name="preferences_setup_a_username">Imposta un nome utente</string>
   <string name="configurable_single_select__customize_option">Personalizza opzione</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Conversazioni e scorciatoie</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Elimina tutte le scorciatoie dinamiche</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Clicca per eliminare tutte le scorciatoie dinamiche</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

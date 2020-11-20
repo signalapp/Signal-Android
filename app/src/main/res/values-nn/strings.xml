@@ -413,6 +413,9 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="DocumentView_unnamed_file">Fil utan namn</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drive av folk som deg. Vis di støtte i dag!</string>
+  <string name="DonateMegaphone_donate">Doner</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ikkje no</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglande Play-tenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne eininga støttar ikkje Play-tenester. Trykk for å skru av batterioptimaliseringane i systemet som hindrar Signal frå å henta meldingar når programmet ikkje er aktivt. </string>
@@ -2025,6 +2028,9 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_setup_a_username">Lag eit brukarnamn</string>
   <string name="configurable_single_select__customize_option">Endra val</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Samtalar og snarvegar</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Slett alle dynamiske snarvegar</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klikk for å sletta alle dynamiske snarvegar</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

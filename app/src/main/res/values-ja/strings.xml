@@ -399,7 +399,7 @@
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signalへの寄付</string>
   <string name="DonateMegaphone_donate">寄付する</string>
-  <string name="DonateMegaphone_not_now">今はしない</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">今はしない</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Google Play開発者サービスの不在に対応する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。Signalがいつでもメッセージを受信できるよう、タップしてバッテリー最適化機能を無効にしてください。</string>
@@ -1941,6 +1941,9 @@
   <string name="preferences_setup_a_username">ユーザ名の設定</string>
   <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">会話とショートカット</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">すべての動的ショートカットを削除する</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">クリックしてすべての動的ショートカットを削除します</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

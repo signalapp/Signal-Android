@@ -412,7 +412,9 @@
   <string name="DocumentView_unnamed_file">Fitxer sense nom</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Feu una donació a Signal</string>
-  <string name="DonateMegaphone_not_now">Ara no</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">El Signal funciona gràcies a persones com vosaltres. Demostreu-hi el vostre suport avui!</string>
+  <string name="DonateMegaphone_donate">Feu una donació</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ara no</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimitza per a la no presència dels Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">El dispositiu no és compatible amb Play Services. Toqueu per desactivar les optimitzacions de la bateria que impedeixen que el Signal rebi missatges quan estigui inactiu.</string>
@@ -2014,6 +2016,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_setup_a_username">Estableix un nom d\'usuari</string>
   <string name="configurable_single_select__customize_option">Opció de personalització</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Converses i dreceres</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Suprimeix totes les dreceres dinàmiques</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliqueu per suprimir totes les dreceres dinàmiques.</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

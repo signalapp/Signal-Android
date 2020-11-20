@@ -398,8 +398,9 @@
   <string name="DocumentView_unnamed_file">未命名文件</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">捐赠 Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 的进步离不开用户的支持，如果您觉得获益良多可以考虑捐助我们。</string>
   <string name="DonateMegaphone_donate">捐</string>
-  <string name="DonateMegaphone_not_now">以后再说</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">以后再说</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">缺失 Google Play 服务时优化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">该设备不支持 Google Play 服务。点击禁用系统电池优化，防止 Signal 非活动时无法获取新消息。</string>
@@ -1952,6 +1953,9 @@
   <string name="preferences_setup_a_username">设置用户名</string>
   <string name="configurable_single_select__customize_option">自定义选项</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">对话和捷径</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">删除所有动态捷径</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">点击此处删除所有捷径</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

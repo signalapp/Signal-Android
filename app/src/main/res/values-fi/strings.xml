@@ -400,7 +400,7 @@
   <string name="DocumentView_unnamed_file">Nimeämätön tiedosto</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Lahjoita Signalille</string>
-  <string name="DonateMegaphone_not_now">Ei nyt</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ei nyt</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimoi Play Servicesin puuttumista</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tämä laite ei tue Play Servicesiä. Napauta tästä ottaaksesi pois päältä virransäästöominaisuudet, jotka estävät Signalia hakemasta viestejä taustalla.</string>

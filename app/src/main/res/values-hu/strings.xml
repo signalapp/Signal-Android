@@ -80,8 +80,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Hiba történt a hang lejátszása során!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Letiltott felhasználók</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Felhasználó letiltása</string>
   <string name="BlockedUsersActivity__blocked_users_will">A letiltott felhasználók nem fognak tudni sem üzenetet küldeni neked, sem pedig felhívni.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Nincs letiltott felhasználó</string>
+  <string name="BlockedUsersActivity__block_user">Felhasználó letiltása?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">A \"%1$s\" nem fog tudni sem üzenetet küldeni neked, sem pedig felhívni.</string>
   <string name="BlockedUsersActivity__block">Letiltás</string>
+  <string name="BlockedUsersActivity__unblock_user">Tiltás feloldása?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Szeretnéd feloldani \"%1$s\" felhasználót?</string>
   <string name="BlockedUsersActivity__unblock">Tiltás feloldása</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s letiltása és kilépés?</string>
@@ -406,8 +413,9 @@
   <string name="DocumentView_unnamed_file">Névtelen fájl</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Adomány a Signal számára</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">A Signalt olyan emberek működtetik, mint Te. Támogasd te is még ma!</string>
   <string name="DonateMegaphone_donate">Támogatás</string>
-  <string name="DonateMegaphone_not_now">Később</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Később</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizálás hiányzó Play Szolgáltatásokra</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ez a készülék nem támogatja a Play Szolgáltatásokat. Koppints a rendszer akkumulátor-optimalizációinak letiltásához, ami megakadályozza a Signal-t abban, hogy inaktív állapotban is letöltse az üzeneteket.</string>
@@ -474,13 +482,20 @@
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Frissítés új típusú csoportra</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Csoport bővítése</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Az új típusú csoportok olyan képességekkel rendelkeznek, mint példáui @említések, csoportadminok, és a jövőben újabb képességes hozzáadása várható.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Megtartottuk a frissítés előtti üzenet-előzményeket és médiafájlokat.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Hálózati hiba történt. Próbáld újra később.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Bővítés sikertelen</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Az újabb funkciók eléréséhez, mint az @említések, vagy admin szerep, frissítsd a csoportot.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Most nem</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Csoport frissítése</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Tag hozzáadása</item>
+    <item quantity="other">Tagok hozzáadása</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Most nem</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
@@ -1907,6 +1922,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__typing_indicators">Gépelés-indikátorok</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ha a gépelés-indikátorod ki van kapcsolva, te sem fogsz értesülni róla, ha mások épp gépelnek.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása)</string>
+  <string name="preferences_app_protection__blocked_users">Letiltott felhasználók</string>
   <string name="preferences_chats__when_using_mobile_data">Mobilinternet használata során</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi használata során</string>
   <string name="preferences_chats__when_roaming">Barangoláskor</string>
@@ -1969,6 +1985,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Új üzenet…</string>
+  <string name="contact_selection_list__unknown_contact_block">Felhasználó letiltása</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Hozzáadás a csoporthoz</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Hívás</string>

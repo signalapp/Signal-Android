@@ -81,7 +81,7 @@
   <string name="AudioSlidePlayer_error_playing_audio">¡Fallo al reproducir sonido!</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Personas bloqueadas</string>
-  <string name="BlockedUsersActivity__add_blocked_user">Agregar persona bloqueada</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Añadir persona bloqueada</string>
   <string name="BlockedUsersActivity__blocked_users_will">Las personas bloqueadas no podrán llamarte ni enviarte mensajes.</string>
   <string name="BlockedUsersActivity__no_blocked_users">No hay personas bloqueadas</string>
   <string name="BlockedUsersActivity__block_user">¿Bloquear a esta persona?</string>
@@ -412,8 +412,9 @@
   <string name="DocumentView_unnamed_file">Archivo sin nombre</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Donar a Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal se mantiene por gente como tú. ¡Muestra hoy tu apoyo!</string>
   <string name="DonateMegaphone_donate">Donar</string>
-  <string name="DonateMegaphone_not_now">Ahora no</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ahora no</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizar sin servicios de Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no dispone de los servicios de Google Play. Toca para desactivar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
@@ -484,7 +485,7 @@
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Funciones de los nuevos grupos incluyen @menciones, admins y más en el futuro.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Los mensajes y adjuntos se mantendrán tras la actualización.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Fallo en la conexión de red. Inténtalo más tarde.</string>
-  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Fallo al actualizarse.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Fallo al actualizar.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Esta persona tiene que aceptar la invitación para unirse al grupo de nuevo y no recibirá ningún mensaje del grupo hasta que acepte:</item>
     <item quantity="other">Estas personas tienen que aceptar la invitación para unirse al grupo de nuevo y no recibirán ningún mensaje del grupo hasta que acepten:</item>
@@ -647,7 +648,7 @@
   <string name="ManageGroupActivity_legacy_group">Grupo antiguo</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Este grupo usa el sistema antiguo de Signal. Funciones como admins de grupo o menciones solo están disponibles en el nuevo sistema.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Este es un grupo del sistema antiguo. Para acceder a funciones como @menciones y admins,</string>
-  <string name="ManageGroupActivity_legacy_group_too_large">Este grupo no se puede actualizar al nuevo sistema porque es demasiado grande. El tamaño máximo de grupo es %1$d.</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Este grupo no se puede actualizar al nuevo sistema porque es demasiado grande. El tamaño máximo de grupo es de%1$d participantes.</string>
   <string name="ManageGroupActivity_upgrade_this_group">actualiza este grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este es un grupo de MMS sin cifrar. Para chatear en privado y acceder a funciones como nombre e imagen de grupo, invita a tus amistades a usar Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invitar ahora</string>
@@ -1036,7 +1037,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">¿Deseas chatear con este grupo y así compartir tu nombre y foto con sus participantes?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Actualiza este grupo para activar funciones como @menciones y admins. L@s participantes que no comparten su nombre o foto de perfil con este grupo recibirán una invitación para unirse.</string>
-  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este grupo no se puede utilizar más porque es demasiado grande. El tamaño máximo de grupo es %1$d.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este grupo antiguo no es válido porque es demasiado grande. El tamaño máximo de grupo es de %1$d participantes.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">¿Deseas chatear con %1$s y así compartir tu nombre y foto con esta persona?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y así compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
@@ -2021,6 +2022,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_setup_a_username">Selecciona un alias</string>
   <string name="configurable_single_select__customize_option">Personalizar opción</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Chats y atajos</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Eliminar todos los atajos dinámicos</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Toca para eliminar todos los atajos dinámicos</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

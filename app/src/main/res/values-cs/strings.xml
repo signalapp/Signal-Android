@@ -440,8 +440,9 @@
   <string name="DocumentView_unnamed_file">Nepojmenovaný soubor</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Podpořte Signal finančně</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal je aplikace, za kterou stojí lidé jako vy. Prokažte jim dnes svoji podporu!</string>
   <string name="DonateMegaphone_donate">Sponzorujte</string>
-  <string name="DonateMegaphone_not_now">Nyní ne</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Nyní ne</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimlizovat pro chybějící Google Play službu</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Klepnutím zakážete systémové optimalizace baterie, které způsobují nemožnost Signalu přijímat zprávy v době nečinnosti.</string>
@@ -2160,6 +2161,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_setup_a_username">Nastavit uživatelské jméno</string>
   <string name="configurable_single_select__customize_option">Nastavit předvolbu</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Konverzace a zkratky</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Smazat všechny dynamické zkratky</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Kliknutím smažte všechny dynamické zkratky</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

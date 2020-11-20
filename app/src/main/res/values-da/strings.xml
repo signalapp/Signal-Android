@@ -413,7 +413,9 @@
   <string name="DocumentView_unnamed_file">Unavngivet fil</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Donér til Signal</string>
-  <string name="DonateMegaphone_not_now">Ikke nu</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drevet af personer som dig. Vis din støtte i dag!</string>
+  <string name="DonateMegaphone_donate">Doner</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ikke nu</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheden understøtter ikke Play Services. Tap for at slå batterioptimering fra, som forhindrer Signal i at modtage beskeder i baggrunden</string>
@@ -2020,6 +2022,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_setup_a_username">Opret et brugernavn</string>
   <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Samtaler og genveje</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Slet alle dynamiske genveje</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Tryk for at slette alle dynamiske genveje</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
