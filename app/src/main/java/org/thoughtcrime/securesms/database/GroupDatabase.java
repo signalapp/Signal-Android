@@ -483,6 +483,11 @@ public final class GroupDatabase extends Database {
 
   /**
    * Migrates a V1 group to a V2 group.
+   *
+   * @param decryptedGroup The state that represents the group on the server. This will be used to
+   *                       determine if we need to save our old membership list and stuff. It will
+   *                       *not* be stored as the definitive group state as-is. In order to ensure
+   *                       proper diffing, we modify this model to have our V1 membership.
    */
   public @NonNull GroupId.V2 migrateToV2(@NonNull GroupId.V1 groupIdV1, @NonNull DecryptedGroup decryptedGroup) {
     SQLiteDatabase db             = databaseHelper.getWritableDatabase();
@@ -513,7 +518,7 @@ public final class GroupDatabase extends Database {
 
       DatabaseFactory.getRecipientDatabase(context).updateGroupId(groupIdV1, groupIdV2);
 
-      update(groupMasterKey, decryptedGroup);
+      update(groupMasterKey, updateToHaveV1Membership(decryptedGroup, record.getMembers()));
 
       db.setTransactionSuccessful();
     } finally {
@@ -521,6 +526,23 @@ public final class GroupDatabase extends Database {
     }
 
     return groupIdV2;
+  }
+
+  private static DecryptedGroup updateToHaveV1Membership(@NonNull DecryptedGroup serverGroup, @NonNull List<RecipientId> v1Members) {
+    DecryptedGroup.Builder builder = serverGroup.toBuilder();
+    builder.clearMembers();
+
+    for (RecipientId v1MemberId : v1Members) {
+      Recipient v1Member = Recipient.resolved(v1MemberId);
+      if (v1Member.hasUuid()) {
+        builder.addMembers(DecryptedMember.newBuilder()
+                                          .setUuid(UuidUtil.toByteString(v1Member.getUuid().get()))
+                                          .setRole(Member.Role.ADMINISTRATOR)
+                                          .build());
+      }
+    }
+
+    return builder.build();
   }
 
   public void update(@NonNull GroupMasterKey groupMasterKey, @NonNull DecryptedGroup decryptedGroup) {
