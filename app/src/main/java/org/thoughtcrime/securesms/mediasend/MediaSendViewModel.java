@@ -672,6 +672,10 @@ class MediaSendViewModel extends ViewModel {
     }
   }
 
+  boolean isSms() {
+    return transport.isSms();
+  }
+
   enum Error {
     ITEM_TOO_LARGE, TOO_MANY_ITEMS, NO_ITEMS, ONLY_ITEM_TOO_LARGE
   }

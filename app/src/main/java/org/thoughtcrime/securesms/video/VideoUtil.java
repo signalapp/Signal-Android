@@ -12,6 +12,8 @@ import androidx.annotation.RequiresApi;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
+import java.util.concurrent.TimeUnit;
+
 public final class VideoUtil {
 
   public static final int AUDIO_BIT_RATE   = 192_000;
@@ -22,7 +24,7 @@ public final class VideoUtil {
 
   private static final int VIDEO_LONG_WIDTH          = 1280;
   private static final int VIDEO_MAX_RECORD_LENGTH_S = 60;
-  private static final int VIDEO_MAX_UPLOAD_LENGTH_S = 120;
+  private static final int VIDEO_MAX_UPLOAD_LENGTH_S = (int) TimeUnit.MINUTES.toSeconds(10);
 
   private static final int TOTAL_BYTES_PER_SECOND = (VIDEO_BIT_RATE / 8) + (AUDIO_BIT_RATE / 8);
 

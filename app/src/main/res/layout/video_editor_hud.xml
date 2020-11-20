@@ -16,8 +16,10 @@
         <org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView
             android:id="@+id/video_timeline"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="72dp"
             android:layout_margin="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             app:cursorColor="#fff"
             app:cursorWidth="2dp"
             app:layout_constraintEnd_toEndOf="parent"

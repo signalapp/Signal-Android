@@ -256,7 +256,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     } else if (!Util.isEmpty(media)) {
       viewModel.onSelectedMediaChanged(this, media);
 
-      Fragment fragment = MediaSendFragment.newInstance(Locale.getDefault());
+      Fragment fragment = MediaSendFragment.newInstance();
       getSupportFragmentManager().beginTransaction()
                                  .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
                                  .commit();
@@ -306,7 +306,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     sendButton.setTransport(transport);
     sendButton.disableTransport(transport.getType() == TransportOption.Type.SMS ? TransportOption.Type.TEXTSECURE : TransportOption.Type.SMS);
 
-    countButton.setOnClickListener(v -> navigateToMediaSend(Locale.getDefault()));
+    countButton.setOnClickListener(v -> navigateToMediaSend());
 
     composeText.append(viewModel.getBody());
 
@@ -368,7 +368,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
   @Override
   public void onMediaSelected(@NonNull Media media) {
     viewModel.onSingleMediaSelected(this, media);
-    navigateToMediaSend(Locale.getDefault());
+    navigateToMediaSend();
   }
 
   @Override
@@ -458,7 +458,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
       Log.i(TAG, "Camera capture stored: " + media.getUri().toString());
 
       viewModel.onMediaCaptured(media);
-      navigateToMediaSend(Locale.getDefault());
+      navigateToMediaSend();
     });
   }
 
@@ -469,7 +469,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
   @Override
   public void onCameraCountButtonClicked() {
-    navigateToMediaSend(Locale.getDefault());
+    navigateToMediaSend();
   }
 
   @Override
@@ -841,8 +841,8 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
   }
 
-  private void navigateToMediaSend(@NonNull Locale locale) {
-    MediaSendFragment fragment     = MediaSendFragment.newInstance(locale);
+  private void navigateToMediaSend() {
+    MediaSendFragment fragment     = MediaSendFragment.newInstance();
     String            backstackTag = null;
 
     if (getSupportFragmentManager().findFragmentByTag(TAG_SEND) != null) {

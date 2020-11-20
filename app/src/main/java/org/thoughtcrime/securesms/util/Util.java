@@ -62,7 +62,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -625,12 +624,7 @@ public class Util {
   }
 
   public static String getPrettyFileSize(long sizeBytes) {
-    if (sizeBytes <= 0) return "0";
-
-    String[] units       = new String[]{"B", "kB", "MB", "GB", "TB"};
-    int      digitGroups = (int) (Math.log10(sizeBytes) / 3);
-
-    return new DecimalFormat("#,##0.#").format(sizeBytes/Math.pow(1000, digitGroups)) + " " + units[digitGroups];
+    return MemoryUnitFormat.formatBytes(sizeBytes);
   }
 
   public static void sleep(long millis) {

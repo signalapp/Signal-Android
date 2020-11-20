@@ -14,10 +14,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ControllableViewPager;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -25,20 +25,14 @@ import java.util.Map;
  */
 public class MediaSendFragment extends Fragment {
 
-  private static final String TAG = MediaSendFragment.class.getSimpleName();
-
-  private static final String KEY_LOCALE    = "locale";
-
   private ViewGroup                     playbackControlsContainer;
   private ControllableViewPager         fragmentPager;
   private MediaSendFragmentPagerAdapter fragmentPagerAdapter;
 
   private MediaSendViewModel viewModel;
 
-
-  public static MediaSendFragment newInstance(@NonNull Locale locale) {
+  public static MediaSendFragment newInstance() {
     Bundle args = new Bundle();
-    args.putSerializable(KEY_LOCALE, locale);
 
     MediaSendFragment fragment = new MediaSendFragment();
     fragment.setArguments(args);
@@ -61,8 +55,7 @@ public class MediaSendFragment extends Fragment {
     fragmentPager             = view.findViewById(R.id.mediasend_pager);
     playbackControlsContainer = view.findViewById(R.id.mediasend_playback_controls_container);
 
-
-    fragmentPagerAdapter = new MediaSendFragmentPagerAdapter(getChildFragmentManager());
+    fragmentPagerAdapter = new MediaSendFragmentPagerAdapter(getChildFragmentManager(), viewModel.isSms() ? MediaConstraints.getMmsMediaConstraints(-1) : MediaConstraints.getPushMediaConstraints());
     fragmentPager.setAdapter(fragmentPagerAdapter);
 
     FragmentPageChangeListener pageChangeListener = new FragmentPageChangeListener();

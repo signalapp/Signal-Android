@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.scribbles.VideoEditorHud;
 import org.thoughtcrime.securesms.util.Throttler;
+import org.thoughtcrime.securesms.video.VideoBitRateCalculator;
 import org.thoughtcrime.securesms.video.VideoPlayer;
 
 import java.io.IOException;
@@ -28,7 +29,9 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
 
   private static final String TAG = Log.tag(MediaSendVideoFragment.class);
 
-  private static final String KEY_URI = "uri";
+  private static final String KEY_URI        = "uri";
+  private static final String KEY_MAX_OUTPUT = "max_output_size";
+  private static final String KEY_MAX_SEND   = "max_send_size";
 
   private final Throttler videoScanThrottle = new Throttler(150);
   private final Handler   handler           = new Handler();
@@ -40,9 +43,11 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
   @Nullable private VideoEditorHud hud;
             private Runnable       updatePosition;
 
-  public static MediaSendVideoFragment newInstance(@NonNull Uri uri) {
+  public static MediaSendVideoFragment newInstance(@NonNull Uri uri, long maxCompressedVideoSize, long maxAttachmentSize) {
     Bundle args = new Bundle();
     args.putParcelable(KEY_URI, uri);
+    args.putLong(KEY_MAX_OUTPUT, maxCompressedVideoSize);
+    args.putLong(KEY_MAX_SEND, maxAttachmentSize);
 
     MediaSendVideoFragment fragment = new MediaSendVideoFragment();
     fragment.setArguments(args);
@@ -71,7 +76,9 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
     player = view.findViewById(R.id.video_player);
 
     uri = requireArguments().getParcelable(KEY_URI);
-    VideoSlide slide = new VideoSlide(requireContext(), uri, 0);
+    long       maxOutput = requireArguments().getLong(KEY_MAX_OUTPUT);
+    long       maxSend   = requireArguments().getLong(KEY_MAX_SEND);
+    VideoSlide slide     = new VideoSlide(requireContext(), uri, 0);
 
     player.setWindow(requireActivity().getWindow());
     player.setVideoSource(slide, true);
@@ -84,7 +91,7 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
         player.clip(data.startTimeUs, data.endTimeUs, true);
       }
       try {
-        hud.setVideoSource(slide);
+        hud.setVideoSource(slide, new VideoBitRateCalculator(maxOutput), maxSend);
         hud.setVisibility(View.VISIBLE);
         startPositionUpdates();
       } catch (IOException e) {

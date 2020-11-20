@@ -11,11 +11,11 @@ import androidx.annotation.RequiresApi;
 import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.media.MediaInput;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
-import org.thoughtcrime.securesms.media.MediaInput;
 
 import java.io.Closeable;
 import java.io.FileDescriptor;
@@ -29,25 +29,17 @@ public final class InMemoryTranscoder implements Closeable {
 
   private static final String TAG = Log.tag(InMemoryTranscoder.class);
 
-  private static final int MAXIMUM_TARGET_VIDEO_BITRATE = VideoUtil.VIDEO_BIT_RATE;
-  private static final int LOW_RES_TARGET_VIDEO_BITRATE = 1_750_000;
-  private static final int MINIMUM_TARGET_VIDEO_BITRATE = 500_000;
-  private static final int AUDIO_BITRATE                = VideoUtil.AUDIO_BIT_RATE;
-  private static final int OUTPUT_FORMAT                = VideoUtil.VIDEO_SHORT_WIDTH;
-  private static final int LOW_RES_OUTPUT_FORMAT        = 480;
-
-  private final Context         context;
-  private final MediaDataSource dataSource;
-  private final long            upperSizeLimit;
-  private final long            inSize;
-  private final long            duration;
-  private final int             inputBitRate;
-  private final int             targetVideoBitRate;
-  private final long            memoryFileEstimate;
-  private final boolean         transcodeRequired;
-  private final long            fileSizeEstimate;
-  private final int             outputFormat;
-  private final @Nullable Options options;
+  private final           Context                        context;
+  private final           MediaDataSource                dataSource;
+  private final           long                           upperSizeLimit;
+  private final           long                           inSize;
+  private final           long                           duration;
+  private final           int                            inputBitRate;
+  private final           VideoBitRateCalculator.Quality targetQuality;
+  private final           long                           memoryFileEstimate;
+  private final           boolean                        transcodeRequired;
+  private final           long                           fileSizeEstimate;
+  private final @Nullable Options                        options;
 
   private @Nullable MemoryFileDescriptor memoryFile;
 
@@ -67,24 +59,19 @@ public final class InMemoryTranscoder implements Closeable {
       throw new VideoSourceException("Unable to read datasource", e);
     }
 
-    long upperSizeLimitWithMargin = (long) (upperSizeLimit / 1.1);
+    this.inSize         = dataSource.getSize();
+    this.duration       = getDuration(mediaMetadataRetriever);
+    this.inputBitRate   = VideoBitRateCalculator.bitRate(inSize, duration);
+    this.targetQuality  = new VideoBitRateCalculator(upperSizeLimit).getTargetQuality(duration, inputBitRate);
+    this.upperSizeLimit = upperSizeLimit;
 
-    this.inSize             = dataSource.getSize();
-    this.duration           = getDuration(mediaMetadataRetriever);
-    this.inputBitRate       = bitRate(inSize, duration);
-    this.targetVideoBitRate = getTargetVideoBitRate(upperSizeLimitWithMargin, duration);
-    this.upperSizeLimit     = upperSizeLimit;
-
-    this.transcodeRequired = inputBitRate >= targetVideoBitRate * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null;
+    this.transcodeRequired = inputBitRate >= targetQuality.getTargetTotalBitRate() * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null;
     if (!transcodeRequired) {
       Log.i(TAG, "Video is within 20% of target bitrate, below the size limit, contained no location metadata or custom options.");
     }
 
-    this.fileSizeEstimate   = (targetVideoBitRate + AUDIO_BITRATE) * duration / 8000;
+    this.fileSizeEstimate   = targetQuality.getFileSizeEstimate();
     this.memoryFileEstimate = (long) (fileSizeEstimate * 1.1);
-    this.outputFormat       = targetVideoBitRate < LOW_RES_TARGET_VIDEO_BITRATE
-                              ? LOW_RES_OUTPUT_FORMAT
-                              : OUTPUT_FORMAT;
   }
 
   public @NonNull MediaStream transcode(@NonNull Progress progress,
@@ -106,10 +93,10 @@ public final class InMemoryTranscoder implements Closeable {
                              "Estimate       : %s kB\n" +
                              "Input size     : %s kB\n" +
                              "Input bitrate  : %s bps",
-                             numberFormat.format(targetVideoBitRate),
-                             numberFormat.format(AUDIO_BITRATE),
-                             numberFormat.format(targetVideoBitRate + AUDIO_BITRATE),
-                             outputFormat,
+                             numberFormat.format(targetQuality.getTargetVideoBitRate()),
+                             numberFormat.format(targetQuality.getTargetAudioBitRate()),
+                             numberFormat.format(targetQuality.getTargetTotalBitRate()),
+                             targetQuality.getOutputResolution(),
                              durationSec,
                              numberFormat.format(upperSizeLimit / 1024),
                              numberFormat.format(fileSizeEstimate / 1024),
@@ -131,9 +118,9 @@ public final class InMemoryTranscoder implements Closeable {
 
     converter.setInput(new MediaInput.MediaDataSourceMediaInput(dataSource));
     converter.setOutput(memoryFileFileDescriptor);
-    converter.setVideoResolution(outputFormat);
-    converter.setVideoBitrate(targetVideoBitRate);
-    converter.setAudioBitrate(AUDIO_BITRATE);
+    converter.setVideoResolution(targetQuality.getOutputResolution());
+    converter.setVideoBitrate(targetQuality.getTargetVideoBitRate());
+    converter.setAudioBitrate(targetQuality.getTargetAudioBitRate());
 
     if (options != null) {
       if (options.endTimeUs > 0) {
@@ -169,7 +156,7 @@ public final class InMemoryTranscoder implements Closeable {
                              (outSize * 100d) / inSize,
                              (outSize * 100d) / fileSizeEstimate,
                              (outSize * 100d) / memoryFileEstimate,
-                             numberFormat.format(bitRate(outSize, duration))));
+                             numberFormat.format(VideoBitRateCalculator.bitRate(outSize, duration))));
 
     if (outSize > upperSizeLimit) {
       throw new VideoSizeException("Size constraints could not be met!");
@@ -189,19 +176,6 @@ public final class InMemoryTranscoder implements Closeable {
     if (memoryFile != null) {
       memoryFile.close();
     }
-  }
-
-  private static int bitRate(long bytes, long duration) {
-    return (int) (bytes * 8 / (duration / 1000f));
-  }
-
-  private static int getTargetVideoBitRate(long sizeGuideBytes, long duration) {
-    sizeGuideBytes -= (duration / 1000d) * AUDIO_BITRATE / 8;
-
-    double targetAttachmentSizeBits = sizeGuideBytes * 8L;
-
-    double bitRateToFixTarget = targetAttachmentSizeBits / (duration / 1000d);
-    return Math.max(MINIMUM_TARGET_VIDEO_BITRATE, Math.min(MAXIMUM_TARGET_VIDEO_BITRATE, (int) bitRateToFixTarget));
   }
 
   private static long getDuration(MediaMetadataRetriever mediaMetadataRetriever) throws VideoSourceException {

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.net.Uri;
+import android.net.http.LoggingEventHandler;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,6 +13,10 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -25,12 +30,14 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
   private final List<Media>                         media;
   private final Map<Integer, MediaSendPageFragment> fragments;
   private final Map<Uri, Object>                    savedState;
+  private final MediaConstraints                    mediaConstraints;
 
-  MediaSendFragmentPagerAdapter(@NonNull FragmentManager fm) {
+  MediaSendFragmentPagerAdapter(@NonNull FragmentManager fm, @NonNull MediaConstraints mediaConstraints) {
     super(fm);
-    this.media      = new ArrayList<>();
-    this.fragments  = new HashMap<>();
-    this.savedState = new HashMap<>();
+    this.mediaConstraints = mediaConstraints;
+    this.media            = new ArrayList<>();
+    this.fragments        = new HashMap<>();
+    this.savedState       = new HashMap<>();
   }
 
   @Override
@@ -42,7 +49,9 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
     } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
       return ImageEditorFragment.newInstance(mediaItem.getUri());
     } else if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
-      return MediaSendVideoFragment.newInstance(mediaItem.getUri());
+      return MediaSendVideoFragment.newInstance(mediaItem.getUri(),
+                                                mediaConstraints.getCompressedVideoMaxSize(ApplicationDependencies.getApplication()),
+                                                mediaConstraints.getVideoMaxSize(ApplicationDependencies.getApplication()));
     } else {
       throw new UnsupportedOperationException("Can only render images and videos. Found mimetype: '" + mediaItem.getMimeType() + "'");
     }
