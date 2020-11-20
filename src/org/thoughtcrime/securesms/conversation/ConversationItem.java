@@ -583,7 +583,7 @@ public class ConversationItem extends TapJackingProofLinearLayout
         mediaThumbnailStub.get().setDownloadClickListener(downloadClickListener);
         mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);
 
-        linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, false);
+        linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, false, false);
 
         setThumbnailCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
         setLinkPreviewCorners(messageRecord, previousRecord, nextRecord, isGroupThread, true);
@@ -591,7 +591,7 @@ public class ConversationItem extends TapJackingProofLinearLayout
         ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       } else {
-        linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, true);
+        linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, true, false);
         linkPreviewStub.get().setDownloadClickedListener(downloadClickListener);
         setLinkPreviewCorners(messageRecord, previousRecord, nextRecord, isGroupThread, false);
         ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -600,7 +600,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
 
       linkPreviewStub.get().setOnClickListener(linkPreviewClickListener);
       linkPreviewStub.get().setOnLongClickListener(passthroughClickListener);
-
 
       footer.setVisibility(VISIBLE);
     } else if (hasAudio(messageRecord)) {

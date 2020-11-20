@@ -79,11 +79,11 @@
             android:layout_marginEnd="6dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/ic_close_white_18dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/gray70"
-            tools:ignore="MissingPrefix" />
+            tools:visibility="visible" />
 
         <com.github.ybq.android.spinkit.SpinKitView
             style="@style/SpinKitView.DoubleBounce"
