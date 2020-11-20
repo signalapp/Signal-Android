@@ -27,13 +27,17 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Collection;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public final class ConversationUpdateItem extends LinearLayout
@@ -177,6 +181,28 @@ public final class ConversationUpdateItem extends LinearLayout
           eventListener.onGroupMigrationLearnMoreClicked(conversationMessage.getMessageRecord().getGroupV1MigrationEventInvites());
         }
       });
+    } else if (conversationMessage.getMessageRecord().isGroupCall()) {
+
+      UpdateDescription updateDescription = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody());
+      Collection<UUID>  uuids             = updateDescription.getMentioned();
+
+      int text = 0;
+      if (Util.hasItems(uuids)) {
+        text = uuids.contains(TextSecurePreferences.getLocalUuid(getContext())) ? R.string.ConversationUpdateItem_return_to_call : R.string.ConversationUpdateItem_join_call;
+      }
+
+      if (text != 0) {
+        actionButton.setText(text);
+        actionButton.setVisibility(VISIBLE);
+        actionButton.setOnClickListener(v -> {
+          if (batchSelected.isEmpty() && eventListener != null) {
+            eventListener.onJoinGroupCallClicked();
+          }
+        });
+      } else {
+        actionButton.setVisibility(GONE);
+        actionButton.setOnClickListener(null);
+      }
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);

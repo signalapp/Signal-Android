@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -132,9 +133,23 @@ public final class AvatarImageView extends AppCompatImageView {
     setAvatar(GlideApp.with(this), recipient, false);
   }
 
+  /**
+   * Shows self as the profile avatar.
+   */
+  public void setAvatarUsingProfile(@Nullable Recipient recipient) {
+    setAvatar(GlideApp.with(this), recipient, false, true);
+  }
+
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
+    setAvatar(requestManager, recipient, quickContactEnabled, false);
+  }
+
+  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled, boolean useSelfProfileAvatar) {
     if (recipient != null) {
-      RecipientContactPhoto photo = new RecipientContactPhoto(recipient);
+      RecipientContactPhoto photo = (recipient.isSelf() && useSelfProfileAvatar) ? new RecipientContactPhoto(recipient,
+                                                                                                             new ProfileContactPhoto(Recipient.self(),
+                                                                                                                                     Recipient.self().getProfileAvatar()))
+                                                                                 : new RecipientContactPhoto(recipient);
 
       if (!photo.equals(recipientContactPhoto)) {
         requestManager.clear(this);
@@ -218,9 +233,13 @@ public final class AvatarImageView extends AppCompatImageView {
     private final           boolean      ready;
 
     RecipientContactPhoto(@NonNull Recipient recipient) {
+      this(recipient, recipient.getContactPhoto());
+    }
+
+    RecipientContactPhoto(@NonNull Recipient recipient, @Nullable ContactPhoto contactPhoto) {
       this.recipient    = recipient;
       this.ready        = !recipient.isResolving();
-      this.contactPhoto = recipient.getContactPhoto();
+      this.contactPhoto = contactPhoto;
     }
 
     public boolean equals(@Nullable RecipientContactPhoto other) {

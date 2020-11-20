@@ -7,12 +7,16 @@ import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.UUID;
 
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_GROUP_CALL_ERA_ID;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_GROUP;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_SENDER;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_DEVICE_ID;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_IS_LEGACY;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_TYPE;
@@ -22,6 +26,7 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HTTP_RE
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_MESSAGE_AGE_SECONDS;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_SERVER_DELIVERED_TIMESTAMP;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_SERVER_RECEIVED_TIMESTAMP;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRecipientId;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemoteDevice;
 
 /**
@@ -302,6 +307,46 @@ public class WebRtcData {
 
     long getMessageAgeSeconds() {
       return messageAgeSeconds;
+    }
+  }
+
+  /**
+   * Metadata associated with a group call update message.
+   */
+  public static class GroupCallUpdateMetadata {
+    private final RecipientId sender;
+    private final RecipientId groupRecipientId;
+    private final String      groupCallEraId;
+    private final long        serverReceivedTimestamp;
+
+    static @NonNull GroupCallUpdateMetadata fromIntent(@NonNull Intent intent) {
+      return new GroupCallUpdateMetadata(getRecipientId(intent, EXTRA_GROUP_CALL_UPDATE_SENDER),
+                                         getRecipientId(intent, EXTRA_GROUP_CALL_UPDATE_GROUP),
+                                         intent.getStringExtra(EXTRA_GROUP_CALL_ERA_ID),
+                                         intent.getLongExtra(EXTRA_SERVER_RECEIVED_TIMESTAMP, 0));
+    }
+
+    public GroupCallUpdateMetadata(@NonNull RecipientId sender, @NonNull RecipientId groupRecipientId, @Nullable String groupCallEraId, long serverReceivedTimestamp) {
+      this.sender                  = sender;
+      this.groupRecipientId        = groupRecipientId;
+      this.groupCallEraId          = groupCallEraId;
+      this.serverReceivedTimestamp = serverReceivedTimestamp;
+    }
+
+    public @NonNull RecipientId getSender() {
+      return sender;
+    }
+
+    public @NonNull RecipientId getGroupRecipientId() {
+      return groupRecipientId;
+    }
+
+    public @Nullable String getGroupCallEraId() {
+      return groupCallEraId;
+    }
+
+    public long getServerReceivedTimestamp() {
+      return serverReceivedTimestamp;
     }
   }
 }

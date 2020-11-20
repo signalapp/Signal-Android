@@ -92,9 +92,9 @@ public class WebRtcCallView extends FrameLayout {
   private RecyclerView                  callParticipantsRecycler;
   private Toolbar                       toolbar;
   private MaterialButton                startCall;
+  private TextView                      participantCount;
   private int                           pagerBottomMarginDp;
   private boolean                       controlsVisible = true;
-  private EventListener                 eventListener;
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
@@ -168,7 +168,6 @@ public class WebRtcCallView extends FrameLayout {
       @Override
       public void onPageSelected(int position) {
         runIfNonNull(controlsListener, listener -> listener.onPageChanged(position == 0 ? CallParticipantsState.SelectedPage.GRID : CallParticipantsState.SelectedPage.FOCUSED));
-        runIfNonNull(eventListener, EventListener::onPotentialLayoutChange);
       }
     });
 
@@ -239,10 +238,6 @@ public class WebRtcCallView extends FrameLayout {
     this.controlsListener = controlsListener;
   }
 
-  public void setEventListener(@Nullable EventListener eventListener) {
-    this.eventListener = eventListener;
-  }
-
   public void setMicEnabled(boolean isMicEnabled) {
     micToggle.setChecked(isMicEnabled, false);
   }
@@ -262,6 +257,12 @@ public class WebRtcCallView extends FrameLayout {
       recipientName.setText(state.getRemoteParticipantsDescription(getContext()));
     }
 
+    if (state.getGroupCallState().isNotIdle() && participantCount != null) {
+      boolean includeSelf = state.getGroupCallState() == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
+
+      participantCount.setText(String.valueOf(state.getAllRemoteParticipants().size() + (includeSelf ? 1 : 0)));
+    }
+
     pagerAdapter.submitList(pages);
     recyclerAdapter.submitList(state.getListParticipants());
     updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant());
@@ -270,10 +271,6 @@ public class WebRtcCallView extends FrameLayout {
       layoutParticipantsForLargeCount();
     } else {
       layoutParticipantsForSmallCount();
-    }
-
-    if (eventListener != null) {
-      eventListener.onPotentialLayoutChange();
     }
   }
 
@@ -362,7 +359,11 @@ public class WebRtcCallView extends FrameLayout {
       recipientName.setText(getContext().getString(R.string.WebRtcCallView__s_group_call, recipient.getDisplayName(getContext())));
       if (toolbar.getMenu().findItem(R.id.menu_group_call_participants_list) == null) {
         toolbar.inflateMenu(R.menu.group_call);
-        toolbar.setOnMenuItemClickListener(unused -> showParticipantsList());
+
+        View showParticipants = toolbar.getMenu().findItem(R.id.menu_group_call_participants_list).getActionView();
+        showParticipants.setOnClickListener(unused -> showParticipantsList());
+
+        participantCount = showParticipants.findViewById(R.id.show_participants_menu_counter);
       }
     } else {
       recipientName.setText(recipient.getDisplayName(getContext()));
@@ -398,15 +399,13 @@ public class WebRtcCallView extends FrameLayout {
       case DISCONNECTED:
         status.setText(R.string.WebRtcCallView__disconnected);
         break;
-      case CONNECTING:
-        status.setText(R.string.WebRtcCallView__connecting);
-        break;
       case RECONNECTING:
         status.setText(R.string.WebRtcCallView__reconnecting);
         break;
       case CONNECTED_AND_JOINING:
         status.setText(R.string.WebRtcCallView__joining);
         break;
+      case CONNECTING:
       case CONNECTED_AND_JOINED:
       case CONNECTED:
         status.setText("");

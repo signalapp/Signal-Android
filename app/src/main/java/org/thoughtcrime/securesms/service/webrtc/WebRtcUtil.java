@@ -4,9 +4,11 @@ import android.content.Context;
 import android.media.AudioManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
+import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
@@ -65,5 +67,14 @@ public final class WebRtcUtil {
       default:
         return WebRtcViewModel.GroupCallState.DISCONNECTED;
     }
+  }
+
+  public static @Nullable String getGroupCallEraId(@Nullable GroupCall groupCall) {
+    if (groupCall == null) {
+      return null;
+    }
+
+    PeekInfo peekInfo = groupCall.getPeekInfo();
+    return peekInfo != null ? peekInfo.getEraId() : null;
   }
 }

@@ -44,15 +44,25 @@ public final class AvatarUtil {
   }
 
   public static void loadBlurredIconIntoViewBackground(@NonNull Recipient recipient, @NonNull View target) {
+    loadBlurredIconIntoViewBackground(recipient, target, false);
+  }
+
+  public static void loadBlurredIconIntoViewBackground(@NonNull Recipient recipient, @NonNull View target, boolean useSelfProfileAvatar) {
     Context context = target.getContext();
 
-    if (recipient.getContactPhoto() == null) {
+    ContactPhoto photo;
+
+    if (recipient.isSelf() && useSelfProfileAvatar) {
+      photo = new ProfileContactPhoto(Recipient.self(), Recipient.self().getProfileAvatar());
+    } else if (recipient.getContactPhoto() == null) {
       target.setBackgroundColor(ContextCompat.getColor(target.getContext(), R.color.black));
       return;
+    } else {
+      photo = recipient.getContactPhoto();
     }
 
     GlideApp.with(target)
-            .load(recipient.getContactPhoto())
+            .load(photo)
             .transform(new CenterCrop(), new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS))
             .into(new CustomViewTarget<View, Drawable>(target) {
               @Override

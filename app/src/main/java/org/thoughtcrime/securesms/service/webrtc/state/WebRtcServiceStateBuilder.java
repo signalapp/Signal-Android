@@ -127,6 +127,11 @@ public class WebRtcServiceStateBuilder {
       toBuild.acceptWithVideo = acceptWithVideo;
       return this;
     }
+
+    public @NonNull CallSetupStateBuilder sentJoinedMessage(boolean sentJoinedMessage) {
+      toBuild.sentJoinedMessage = sentJoinedMessage;
+      return this;
+    }
   }
 
   public class VideoStateBuilder {

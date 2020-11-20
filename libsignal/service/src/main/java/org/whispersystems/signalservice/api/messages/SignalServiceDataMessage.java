@@ -38,6 +38,7 @@ public class SignalServiceDataMessage {
   private final boolean                                 viewOnce;
   private final Optional<Reaction>                      reaction;
   private final Optional<RemoteDelete>                  remoteDelete;
+  private final Optional<GroupCallUpdate>               groupCallUpdate;
 
   /**
    * Construct a SignalServiceDataMessage.
@@ -56,7 +57,8 @@ public class SignalServiceDataMessage {
                            String body, boolean endSession, int expiresInSeconds,
                            boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
                            Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                           List<Mention> mentions, Sticker sticker, boolean viewOnce, Reaction reaction, RemoteDelete remoteDelete)
+                           List<Mention> mentions, Sticker sticker, boolean viewOnce, Reaction reaction, RemoteDelete remoteDelete,
+                           GroupCallUpdate groupCallUpdate)
   {
     try {
       this.group = SignalServiceGroupContext.createOptional(group, groupV2);
@@ -64,18 +66,19 @@ public class SignalServiceDataMessage {
       throw new AssertionError(e);
     }
 
-    this.timestamp             = timestamp;
-    this.body                  = OptionalUtil.absentIfEmpty(body);
-    this.endSession            = endSession;
-    this.expiresInSeconds      = expiresInSeconds;
-    this.expirationUpdate      = expirationUpdate;
-    this.profileKey            = Optional.fromNullable(profileKey);
-    this.profileKeyUpdate      = profileKeyUpdate;
-    this.quote                 = Optional.fromNullable(quote);
-    this.sticker               = Optional.fromNullable(sticker);
-    this.viewOnce              = viewOnce;
-    this.reaction              = Optional.fromNullable(reaction);
-    this.remoteDelete          = Optional.fromNullable(remoteDelete);
+    this.timestamp        = timestamp;
+    this.body             = OptionalUtil.absentIfEmpty(body);
+    this.endSession       = endSession;
+    this.expiresInSeconds = expiresInSeconds;
+    this.expirationUpdate = expirationUpdate;
+    this.profileKey       = Optional.fromNullable(profileKey);
+    this.profileKeyUpdate = profileKeyUpdate;
+    this.quote            = Optional.fromNullable(quote);
+    this.sticker          = Optional.fromNullable(sticker);
+    this.viewOnce         = viewOnce;
+    this.reaction         = Optional.fromNullable(reaction);
+    this.remoteDelete     = Optional.fromNullable(remoteDelete);
+    this.groupCallUpdate  = Optional.fromNullable(groupCallUpdate);
 
     if (attachments != null && !attachments.isEmpty()) {
       this.attachments = Optional.of(attachments);
@@ -220,6 +223,10 @@ public class SignalServiceDataMessage {
     return remoteDelete;
   }
 
+  public Optional<GroupCallUpdate> getGroupCallUpdate() {
+    return groupCallUpdate;
+  }
+
   public static class Builder {
 
     private List<SignalServiceAttachment> attachments    = new LinkedList<>();
@@ -241,6 +248,7 @@ public class SignalServiceDataMessage {
     private boolean              viewOnce;
     private Reaction             reaction;
     private RemoteDelete         remoteDelete;
+    private GroupCallUpdate      groupCallUpdate;
 
     private Builder() {}
 
@@ -358,12 +366,18 @@ public class SignalServiceDataMessage {
       return this;
     }
 
+    public Builder withGroupCallUpdate(GroupCallUpdate groupCallUpdate) {
+      this.groupCallUpdate = groupCallUpdate;
+      return this;
+    }
+
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
       return new SignalServiceDataMessage(timestamp, group, groupV2, attachments, body, endSession,
                                           expiresInSeconds, expirationUpdate, profileKey,
                                           profileKeyUpdate, quote, sharedContacts, previews,
-                                          mentions, sticker, viewOnce, reaction, remoteDelete);
+                                          mentions, sticker, viewOnce, reaction, remoteDelete,
+                                          groupCallUpdate);
     }
   }
 
@@ -562,6 +576,18 @@ public class SignalServiceDataMessage {
 
     public int getLength() {
       return length;
+    }
+  }
+
+  public static class GroupCallUpdate {
+    private final String eraId;
+
+    public GroupCallUpdate(String eraId) {
+      this.eraId = eraId;
+    }
+
+    public String getEraId() {
+      return eraId;
     }
   }
 }

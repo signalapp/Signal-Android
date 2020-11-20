@@ -117,7 +117,7 @@ public class WebRtcCallViewModel extends ViewModel {
     if (webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED && callConnectedTime == -1) {
       callConnectedTime = webRtcViewModel.getCallConnectedTime();
       startTimer();
-    } else if (webRtcViewModel.getState() != WebRtcViewModel.State.CALL_CONNECTED) {
+    } else if (webRtcViewModel.getState() != WebRtcViewModel.State.CALL_CONNECTED || webRtcViewModel.getGroupState().isNotIdleOrConnected()) {
       cancelTimer();
       callConnectedTime = -1;
     }

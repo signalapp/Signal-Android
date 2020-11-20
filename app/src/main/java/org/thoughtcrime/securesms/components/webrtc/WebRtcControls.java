@@ -57,7 +57,7 @@ public final class WebRtcControls {
   }
 
   boolean displayGroupMembersButton() {
-    return groupCallState == GroupCallState.CONNECTED;
+    return groupCallState.isAtLeast(GroupCallState.CONNECTING);
   }
 
   boolean displayEndCall() {
@@ -156,8 +156,12 @@ public final class WebRtcControls {
   public enum GroupCallState {
     NONE,
     DISCONNECTED,
+    RECONNECTING,
     CONNECTING,
-    CONNECTED,
-    RECONNECTING
+    CONNECTED;
+
+    boolean isAtLeast(@SuppressWarnings("SameParameterValue") @NonNull GroupCallState other) {
+      return compareTo(other) >= 0;
+    }
   }
 }

@@ -14,6 +14,7 @@ import com.google.android.flexbox.FlexboxLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -88,6 +89,8 @@ public class CallParticipantsLayout extends FlexboxLayout {
       }
     } else if (childCount > count) {
       for (int i = count; i < childCount; i++) {
+        CallParticipantView callParticipantView = getChildAt(count).findViewById(R.id.group_call_participant);
+        callParticipantView.releaseRenderer();
         removeViewAt(count);
       }
     }

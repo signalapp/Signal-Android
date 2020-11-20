@@ -44,6 +44,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                        remotePeer.getRecipient(),
                                                        null,
                                                        new BroadcastVideoSink(currentState.getVideoState().getEglBase()),
+                                                       true,
                                                        false
                                                ))
                                .build();
@@ -82,6 +83,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                remotePeer.getRecipient(),
                                                null,
                                                new BroadcastVideoSink(currentState.getVideoState().getEglBase()),
+                                               true,
                                                false
                                        ))
                        .build();

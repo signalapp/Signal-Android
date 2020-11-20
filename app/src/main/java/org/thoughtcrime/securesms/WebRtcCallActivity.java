@@ -207,7 +207,6 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   private void initializeResources() {
     callScreen = findViewById(R.id.callScreen);
     callScreen.setControlsListener(new ControlsListener());
-    callScreen.setEventListener(new EventListener());
   }
 
   private void initializeViewModel() {
@@ -218,6 +217,17 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
     viewModel.getCallTime().observe(this, this::handleCallTime);
     viewModel.getCallParticipantsState().observe(this, callScreen::updateCallParticipants);
+
+    callScreen.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+      CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
+      if (state != null) {
+        if (state.needsNewRequestSizes()) {
+          Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
+          intent.setAction(WebRtcCallService.ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS);
+          startService(intent);
+        }
+      }
+    });
   }
 
   private void handleViewModelEvent(@NonNull WebRtcCallViewModel.Event event) {
@@ -617,15 +627,6 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     @Override
     public void onPageChanged(@NonNull CallParticipantsState.SelectedPage page) {
       viewModel.setIsViewingFocusedParticipant(page);
-    }
-  }
-
-  private class EventListener implements WebRtcCallView.EventListener {
-    @Override
-    public void onPotentialLayoutChange() {
-      Intent intent = new Intent(WebRtcCallActivity.this, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS);
-      startService(intent);
     }
   }
 }

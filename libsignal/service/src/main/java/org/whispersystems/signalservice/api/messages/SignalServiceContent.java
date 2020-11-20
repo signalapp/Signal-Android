@@ -342,18 +342,19 @@ public final class SignalServiceContent {
     }
 
 
-    List<SignalServiceAttachment>          attachments      = new LinkedList<>();
-    boolean                                endSession       = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.END_SESSION_VALUE            ) != 0);
-    boolean                                expirationUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0);
-    boolean                                profileKeyUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE     ) != 0);
-    boolean                                isGroupV2        = groupInfoV2 != null;
-    SignalServiceDataMessage.Quote         quote            = createQuote(content, isGroupV2);
-    List<SharedContact>                    sharedContacts   = createSharedContacts(content);
-    List<SignalServiceDataMessage.Preview> previews         = createPreviews(content);
-    List<SignalServiceDataMessage.Mention> mentions         = createMentions(content.getBodyRangesList(), content.getBody(), isGroupV2);
-    SignalServiceDataMessage.Sticker       sticker          = createSticker(content);
-    SignalServiceDataMessage.Reaction      reaction         = createReaction(content);
-    SignalServiceDataMessage.RemoteDelete  remoteDelete     = createRemoteDelete(content);
+    List<SignalServiceAttachment>            attachments      = new LinkedList<>();
+    boolean                                  endSession       = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.END_SESSION_VALUE            ) != 0);
+    boolean                                  expirationUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0);
+    boolean                                  profileKeyUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE     ) != 0);
+    boolean                                  isGroupV2        = groupInfoV2 != null;
+    SignalServiceDataMessage.Quote           quote            = createQuote(content, isGroupV2);
+    List<SharedContact>                      sharedContacts   = createSharedContacts(content);
+    List<SignalServiceDataMessage.Preview>   previews         = createPreviews(content);
+    List<SignalServiceDataMessage.Mention>   mentions         = createMentions(content.getBodyRangesList(), content.getBody(), isGroupV2);
+    SignalServiceDataMessage.Sticker         sticker          = createSticker(content);
+    SignalServiceDataMessage.Reaction        reaction         = createReaction(content);
+    SignalServiceDataMessage.RemoteDelete    remoteDelete     = createRemoteDelete(content);
+    SignalServiceDataMessage.GroupCallUpdate groupCallUpdate  = createGroupCallUpdate(content);
 
     if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE) {
       throw new UnsupportedDataMessageProtocolVersionException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE,
@@ -389,7 +390,8 @@ public final class SignalServiceContent {
                                         sticker,
                                         content.getIsViewOnce(),
                                         reaction,
-                                        remoteDelete);
+                                        remoteDelete,
+                                        groupCallUpdate);
   }
 
   private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata,
@@ -785,6 +787,16 @@ public final class SignalServiceContent {
     SignalServiceProtos.DataMessage.Delete delete = content.getDelete();
 
     return new SignalServiceDataMessage.RemoteDelete(delete.getTargetSentTimestamp());
+  }
+
+  private static SignalServiceDataMessage.GroupCallUpdate createGroupCallUpdate(SignalServiceProtos.DataMessage content) {
+    if (!content.hasGroupCallUpdate()) {
+      return null;
+    }
+
+    SignalServiceProtos.DataMessage.GroupCallUpdate groupCallUpdate = content.getGroupCallUpdate();
+
+    return new SignalServiceDataMessage.GroupCallUpdate(groupCallUpdate.getEraId());
   }
 
   private static List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {

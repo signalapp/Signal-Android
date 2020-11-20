@@ -89,6 +89,8 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
       return;
     }
 
+    eglRenderer.clearImage();
+
     if (attachedVideoSink != null) {
       attachedVideoSink.removeSink(this);
       attachedVideoSink.removeRequestingSize(this);
@@ -265,7 +267,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
   @Override
   public void onFrame(VideoFrame videoFrame) {
-    eglRenderer.onFrame(videoFrame);
+    if (isAttachedToWindow()) {
+      eglRenderer.onFrame(videoFrame);
+    }
   }
 
   @Override

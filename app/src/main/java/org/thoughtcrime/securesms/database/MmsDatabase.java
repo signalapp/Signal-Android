@@ -92,6 +92,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
@@ -394,6 +395,17 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp, boolean isVideoOffer) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
+                                               @NonNull RecipientId sender,
+                                               long timestamp,
+                                               @Nullable String messageGroupCallEraId,
+                                               @Nullable String peekGroupCallEraId,
+                                               @NonNull Collection<UUID> peekJoinedUuids)
+  {
     throw new UnsupportedOperationException();
   }
 

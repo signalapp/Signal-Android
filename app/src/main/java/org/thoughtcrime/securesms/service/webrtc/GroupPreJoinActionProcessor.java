@@ -8,6 +8,8 @@ import com.annimon.stream.Stream;
 
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
+import org.signal.ringrtc.PeekInfo;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -40,6 +42,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     byte[]      groupId = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
+                                                                            BuildConfig.SIGNAL_SFU_URL,
                                                                             currentState.getVideoState().requireEglBase(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
@@ -96,8 +99,14 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
     Log.i(tag, "handleGroupJoinedMembershipChanged():");
 
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
+    PeekInfo  peekInfo  = groupCall.getPeekInfo();
 
-    List<Recipient> callParticipants = Stream.of(groupCall.getJoinedGroupMembers())
+    if (peekInfo == null) {
+      Log.i(tag, "No peek info available");
+      return currentState;
+    }
+
+    List<Recipient> callParticipants = Stream.of(peekInfo.getJoinedMembers())
                                              .map(uuid -> Recipient.externalPush(context, uuid, null, false))
                                              .toList();
 
@@ -105,7 +114,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                          .changeCallInfoState();
 
     for (Recipient recipient : callParticipants) {
-      builder.putParticipant(recipient, CallParticipant.createRemote(recipient, null, new BroadcastVideoSink(null), false));
+      builder.putParticipant(recipient, CallParticipant.createRemote(recipient, null, new BroadcastVideoSink(null), true, true));
     }
 
     return builder.build();

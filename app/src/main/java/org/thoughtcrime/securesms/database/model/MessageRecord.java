@@ -28,6 +28,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import com.annimon.stream.Stream;
+
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -35,6 +37,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
+import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -154,6 +157,8 @@ public abstract class MessageRecord extends DisplayRecord {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_audio_call_date, getCallDateString(context)), R.drawable.ic_update_audio_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
     } else if (isMissedVideoCall()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_video_call_date, getCallDateString(context)), R.drawable.ic_update_video_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
+    } else if (isGroupCall()) {
+      return getGroupCallUpdateDescription(context, getBody());
     } else if (isJoined()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().getDisplayName(context)), R.drawable.ic_update_group_add_16);
     } else if (isExpirationTimerUpdate()) {
@@ -279,6 +284,19 @@ public abstract class MessageRecord extends DisplayRecord {
     }
 
     return context.getString(R.string.MessageRecord_changed_their_profile, getIndividualRecipient().getDisplayName(context));
+  }
+
+  public static @NonNull UpdateDescription getGroupCallUpdateDescription(@NonNull Context context, @NonNull String body) {
+    GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(body);
+
+    List<UUID> joinedMembers = Stream.of(groupCallUpdateDetails.getInCallUuidsList())
+                                     .map(UuidUtil::parseOrNull)
+                                     .withoutNulls()
+                                     .toList();
+
+    UpdateDescription.StringFactory stringFactory = new GroupCallUpdateMessageFactory(context, joinedMembers, groupCallUpdateDetails);
+
+    return UpdateDescription.mentioning(joinedMembers, stringFactory, R.drawable.ic_video_16);
   }
 
   /**

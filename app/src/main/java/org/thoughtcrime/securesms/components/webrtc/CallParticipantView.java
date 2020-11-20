@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -42,6 +43,7 @@ public class CallParticipantView extends ConstraintLayout {
   private TextureViewRenderer renderer;
   private ImageView           pipAvatar;
   private ContactPhoto        contactPhoto;
+  private View                audioMuted;
 
   public CallParticipantView(@NonNull Context context) {
     super(context);
@@ -59,9 +61,10 @@ public class CallParticipantView extends ConstraintLayout {
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    avatar    = findViewById(R.id.call_participant_item_avatar);
-    pipAvatar = findViewById(R.id.call_participant_item_pip_avatar);
-    renderer  = findViewById(R.id.call_participant_renderer);
+    avatar     = findViewById(R.id.call_participant_item_avatar);
+    pipAvatar  = findViewById(R.id.call_participant_item_pip_avatar);
+    renderer   = findViewById(R.id.call_participant_renderer);
+    audioMuted = findViewById(R.id.call_participant_mic_muted);
 
     avatar.setFallbackPhotoProvider(FALLBACK_PHOTO_PROVIDER);
     useLargeAvatar();
@@ -83,11 +86,13 @@ public class CallParticipantView extends ConstraintLayout {
     }
 
     if (participantChanged || !Objects.equals(contactPhoto, participant.getRecipient().getContactPhoto())) {
-      avatar.setAvatar(participant.getRecipient());
-      AvatarUtil.loadBlurredIconIntoViewBackground(participant.getRecipient(), this);
+      avatar.setAvatarUsingProfile(participant.getRecipient());
+      AvatarUtil.loadBlurredIconIntoViewBackground(participant.getRecipient(), this, true);
       setPipAvatar(participant.getRecipient());
       contactPhoto = participant.getRecipient().getContactPhoto();
     }
+
+    audioMuted.setVisibility(participant.isMicrophoneEnabled() ? View.GONE : View.VISIBLE);
   }
 
   void setRenderInPip(boolean shouldRenderInPip) {
@@ -101,6 +106,10 @@ public class CallParticipantView extends ConstraintLayout {
 
   void useSmallAvatar() {
     changeAvatarParams(SMALL_AVATAR);
+  }
+
+  void releaseRenderer() {
+    renderer.release();
   }
 
   private void changeAvatarParams(int dimension) {

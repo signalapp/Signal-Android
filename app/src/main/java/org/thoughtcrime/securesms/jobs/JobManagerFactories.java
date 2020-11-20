@@ -70,6 +70,7 @@ public final class JobManagerFactories {
       put(DirectoryRefreshJob.KEY,                   new DirectoryRefreshJob.Factory());
       put(FcmRefreshJob.KEY,                         new FcmRefreshJob.Factory());
       put(GroupV1MigrationJob.KEY,                   new GroupV1MigrationJob.Factory());
+      put(GroupCallUpdateSendJob.KEY,                new GroupCallUpdateSendJob.Factory());
       put(KbsEnclaveMigrationWorkerJob.KEY,          new KbsEnclaveMigrationWorkerJob.Factory());
       put(LeaveGroupJob.KEY,                         new LeaveGroupJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());

@@ -147,6 +147,7 @@ android {
         buildConfigField "String", "SIGNAL_CONTACT_DISCOVERY_URL", "\"https://api.directory.signal.org\""
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api.backup.signal.org\""
+        buildConfigField "String", "SIGNAL_SFU_URL", "\"https://sfu.voip.signal.org\""
         buildConfigField "String", "CONTENT_PROXY_HOST", "\"contentproxy.signal.org\""
         buildConfigField "int", "CONTENT_PROXY_PORT", "443"
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
@@ -368,7 +369,7 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
     implementation 'org.signal:argon2:13.1@aar'
 
-    implementation 'org.signal:ringrtc-android:2.8.0'
+    implementation 'org.signal:ringrtc-android:2.8.3'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'

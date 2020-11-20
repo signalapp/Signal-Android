@@ -17,11 +17,13 @@ public class BroadcastVideoSink implements VideoSink {
   private final EglBase                         eglBase;
   private final WeakHashMap<VideoSink, Boolean> sinks;
   private final WeakHashMap<Object, Point>      requestingSizes;
+  private       boolean                         dirtySizes;
 
   public BroadcastVideoSink(@Nullable EglBase eglBase) {
     this.eglBase         = eglBase;
     this.sinks           = new WeakHashMap<>();
     this.requestingSizes = new WeakHashMap<>();
+    this.dirtySizes      = true;
   }
 
   public @Nullable EglBase getEglBase() {
@@ -46,12 +48,14 @@ public class BroadcastVideoSink implements VideoSink {
   void putRequestingSize(@NonNull Object object, @NonNull Point size) {
     synchronized (requestingSizes) {
       requestingSizes.put(object, size);
+      dirtySizes = true;
     }
   }
 
   void removeRequestingSize(@NonNull Object object) {
     synchronized (requestingSizes) {
       requestingSizes.remove(object);
+      dirtySizes = true;
     }
   }
 
@@ -69,6 +73,14 @@ public class BroadcastVideoSink implements VideoSink {
     }
 
     return new RequestedSize(width, height);
+  }
+
+  public void newSizeRequested() {
+    dirtySizes = false;
+  }
+
+  public boolean needsNewRequestingSize() {
+    return dirtySizes;
   }
 
   public static class RequestedSize {

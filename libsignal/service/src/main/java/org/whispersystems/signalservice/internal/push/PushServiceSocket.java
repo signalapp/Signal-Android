@@ -215,6 +215,8 @@ public class PushServiceSocket {
 
   private static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
 
+  private static final int MAX_FOLLOW_UPS = 20;
+
   private       long      soTimeoutMillis = TimeUnit.SECONDS.toMillis(30);
   private final Set<Call> connections     = new HashSet<>();
 
@@ -1672,7 +1674,7 @@ public class PushServiceSocket {
     ConnectionHolder connectionHolder = getRandom(serviceClients, random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
-                                                        .followRedirects(true)
+                                                        .followRedirects(false)
                                                         .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .build();
@@ -1688,21 +1690,35 @@ public class PushServiceSocket {
       }
     }
 
-    Call call = okHttpClient.newCall(builder.build());
+    Request request = builder.build();
 
-    try {
-      Response response       = call.execute();
-      int      responseStatus = response.code();
-      byte[]   responseBody   = response.body() != null ? response.body().bytes() : new byte[0];
+    for (int i = 0; i < MAX_FOLLOW_UPS; i++) {
+      try (Response response = okHttpClient.newCall(request).execute()) {
+        int responseStatus = response.code();
 
-      return new CallingResponse.Success(requestId, responseStatus, responseBody);
-    } catch (IOException e) {
-      Log.w(TAG, "Exception during ringrtc http call.", e);
-      return new CallingResponse.Error(requestId, e);
+        if (responseStatus != 307) {
+          return new CallingResponse.Success(requestId,
+                                             responseStatus,
+                                             response.body() != null ? response.body().bytes() : new byte[0]);
+        }
+
+        String  location = response.header("Location");
+        HttpUrl newUrl   = location != null ? request.url().resolve(location) : null;
+
+        if (newUrl != null) {
+          request = request.newBuilder().url(newUrl).build();
+        } else {
+          return new CallingResponse.Error(requestId, new IOException("Received redirect without a valid Location header"));
+        }
+      } catch (IOException e) {
+        Log.w(TAG, "Exception during ringrtc http call.", e);
+        return new CallingResponse.Error(requestId, e);
+      }
     }
+
+    Log.w(TAG, "Calling request max redirects exceeded");
+    return new CallingResponse.Error(requestId, new IOException("Redirect limit exceeded"));
   }
-
-
 
   private ServiceConnectionHolder[] createServiceConnectionHolders(SignalUrl[] urls,
                                                                    List<Interceptor> interceptors,

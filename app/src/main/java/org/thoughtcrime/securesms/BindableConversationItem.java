@@ -60,6 +60,7 @@ public interface BindableConversationItem extends Unbindable {
     void onVoiceNotePlay(@NonNull Uri uri, long messageId, double position);
     void onVoiceNoteSeekTo(@NonNull Uri uri, double position);
     void onGroupMigrationLearnMoreClicked(@NonNull List<RecipientId> pendingRecipients);
+    void onJoinGroupCallClicked();
 
     /** @return true if handled, false if you want to let the normal url handling continue */
     boolean onUrlClicked(@NonNull String url);

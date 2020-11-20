@@ -1419,6 +1419,11 @@ public class ConversationFragment extends LoggingFragment {
     public void onGroupMigrationLearnMoreClicked(@NonNull List<RecipientId> pendingRecipients) {
       GroupsV1MigrationInfoBottomSheetDialogFragment.showForLearnMore(requireFragmentManager(), pendingRecipients);
     }
+
+    @Override
+    public void onJoinGroupCallClicked() {
+      CommunicationActions.startVideoCall(requireActivity(), recipient.get());
+    }
   }
 
   @Override

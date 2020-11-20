@@ -234,6 +234,10 @@ message DataMessage {
     optional uint64 targetSentTimestamp = 1;
   }
 
+  message GroupCallUpdate {
+    optional string eraId = 1;
+  }
+
   enum ProtocolVersion {
     option allow_alias = true;
 
@@ -264,6 +268,7 @@ message DataMessage {
   optional Reaction           reaction                = 16;
   optional Delete             delete                  = 17;
   repeated BodyRange          bodyRanges              = 18;
+  optional GroupCallUpdate    groupCallUpdate         = 19;
 }
 
 message NullMessage {

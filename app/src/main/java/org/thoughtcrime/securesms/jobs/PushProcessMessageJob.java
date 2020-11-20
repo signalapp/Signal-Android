@@ -84,6 +84,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -373,14 +374,15 @@ public final class PushProcessMessageJob extends BaseJob {
           }
         }
 
-        if      (isInvalidMessage(message))             handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
-        else if (message.isEndSession())                handleEndSessionMessage(content, smsMessageId);
-        else if (message.isGroupV1Update())             handleGroupV1Message(content, message, smsMessageId, groupId.get().requireV1());
-        else if (message.isExpirationUpdate())          handleExpirationUpdate(content, message, smsMessageId, groupId);
-        else if (message.getReaction().isPresent())     handleReaction(content, message);
-        else if (message.getRemoteDelete().isPresent()) handleRemoteDelete(content, message);
-        else if (isMediaMessage)                        handleMediaMessage(content, message, smsMessageId);
-        else if (message.getBody().isPresent())         handleTextMessage(content, message, smsMessageId, groupId);
+        if      (isInvalidMessage(message))                                               handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
+        else if (message.isEndSession())                                                  handleEndSessionMessage(content, smsMessageId);
+        else if (message.isGroupV1Update())                                               handleGroupV1Message(content, message, smsMessageId, groupId.get().requireV1());
+        else if (message.isExpirationUpdate())                                            handleExpirationUpdate(content, message, smsMessageId, groupId);
+        else if (message.getReaction().isPresent())                                       handleReaction(content, message);
+        else if (message.getRemoteDelete().isPresent())                                   handleRemoteDelete(content, message);
+        else if (isMediaMessage)                                                          handleMediaMessage(content, message, smsMessageId);
+        else if (message.getBody().isPresent())                                           handleTextMessage(content, message, smsMessageId, groupId);
+        else if (FeatureFlags.groupCalling() && message.getGroupCallUpdate().isPresent()) handleGroupCallUpdateMessage(content, message, groupId);
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
           handleUnknownGroupMessage(content, message.getGroupContext().get());
@@ -645,6 +647,28 @@ public final class PushProcessMessageJob extends BaseJob {
           .putExtra(WebRtcCallService.EXTRA_UUID, Recipient.externalHighTrustPush(context, content.getSender()).requireUuid().toString())
           .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice())
           .putExtra(WebRtcCallService.EXTRA_MESSAGE_AGE_SECONDS, messageAgeSeconds);
+
+    context.startService(intent);
+  }
+
+  private void handleGroupCallUpdateMessage(@NonNull SignalServiceContent content,
+                                            @NonNull SignalServiceDataMessage message,
+                                            @NonNull Optional<GroupId> groupId)
+  {
+    if (!groupId.isPresent() || !groupId.get().isV2()) {
+      Log.w(TAG, "Invalid group for group call update message");
+      return;
+    }
+
+    RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(groupId.get());
+
+    Intent intent = new Intent(context, WebRtcCallService.class);
+
+    intent.setAction(WebRtcCallService.ACTION_GROUP_CALL_UPDATE_MESSAGE)
+          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_SENDER, RecipientId.from(content.getSender()).serialize())
+          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_GROUP, groupRecipientId.serialize())
+          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_ERA_ID, message.getGroupCallUpdate().get().getEraId())
+          .putExtra(WebRtcCallService.EXTRA_SERVER_RECEIVED_TIMESTAMP, content.getServerReceivedTimestamp());
 
     context.startService(intent);
   }

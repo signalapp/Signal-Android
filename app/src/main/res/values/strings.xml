@@ -1199,6 +1199,20 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">You marked your safety number with %s unverified</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">You marked your safety number with %s unverified from another device</string>
 
+    <!-- Group Calling update messages -->
+    <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
+    <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in the group call · %2$s</string>
+    <string name="MessageRecord_you_are_in_the_group_call_s">You are in the group call · %2$s</string>
+    <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s and %2$s are in the group call · %3$s</string>
+    <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, and %3$s are in the group call · %4$s</string>
+    <string name="MessageRecord_group_call_s">Group call · %1$s</string>
+    <string name="MessageRecord_you">You</string>
+
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+    </plurals>
+
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Accept</string>
     <string name="MessageRequestBottomView_continue">Continue</string>
@@ -1884,6 +1898,8 @@
     <!-- ConversationUpdateItem -->
     <string name="ConversationUpdateItem_loading">Loading</string>
     <string name="ConversationUpdateItem_learn_more">Learn more</string>
+    <string name="ConversationUpdateItem_join_call">Join call</string>
+    <string name="ConversationUpdateItem_return_to_call">Return to call</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>

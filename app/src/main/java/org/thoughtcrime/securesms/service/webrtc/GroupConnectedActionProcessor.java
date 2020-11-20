@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
+import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.ringrtc.Camera;
@@ -18,6 +19,32 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
   public GroupConnectedActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
     super(webRtcInteractor, TAG);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleGroupLocalDeviceStateChanged(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "handleGroupLocalDeviceStateChanged():");
+
+    GroupCall                  groupCall       = currentState.getCallInfoState().requireGroupCall();
+    GroupCall.LocalDeviceState device          = groupCall.getLocalDeviceState();
+    GroupCall.ConnectionState  connectionState = device.getConnectionState();
+    GroupCall.JoinState        joinState       = device.getJoinState();
+
+    Log.i(tag, "local device changed: " + connectionState + " " + joinState);
+
+    WebRtcViewModel.GroupCallState groupCallState = WebRtcUtil.groupCallStateForConnection(connectionState);
+
+    if (connectionState == GroupCall.ConnectionState.CONNECTED || connectionState == GroupCall.ConnectionState.CONNECTING) {
+      if (joinState == GroupCall.JoinState.JOINED) {
+        groupCallState = WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
+      } else if (joinState == GroupCall.JoinState.JOINING) {
+        groupCallState = WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING;
+      }
+    }
+
+    return currentState.builder().changeCallInfoState()
+                       .groupCallState(groupCallState)
+                       .build();
   }
 
   @Override
@@ -58,15 +85,42 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
                        .build();
   }
 
+  @Override
+  protected @NonNull WebRtcServiceState handleGroupJoinedMembershipChanged(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "handleGroupJoinedMembershipChanged():");
+
+    GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
+    PeekInfo  peekInfo  = groupCall.getPeekInfo();
+
+    if (peekInfo == null) {
+      return currentState;
+    }
+
+    if (currentState.getCallSetupState().hasSentJoinedMessage()) {
+      return currentState;
+    }
+
+    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), WebRtcUtil.getGroupCallEraId(groupCall));
+
+    return currentState.builder()
+                       .changeCallSetupState()
+                       .sentJoinedMessage(true)
+                       .build();
+  }
+
+  @Override
   protected @NonNull WebRtcServiceState handleLocalHangup(@NonNull WebRtcServiceState currentState) {
     Log.i(TAG, "handleLocalHangup():");
 
     GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
+
     try {
       groupCall.disconnect();
     } catch (CallException e) {
       return groupCallFailure(currentState, "Unable to disconnect from group call", e);
     }
+
+    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), WebRtcUtil.getGroupCallEraId(groupCall));
 
     currentState = currentState.builder()
                                .changeCallInfoState()

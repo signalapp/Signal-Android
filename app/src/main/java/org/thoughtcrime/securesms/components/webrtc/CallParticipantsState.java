@@ -5,9 +5,12 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 
 import java.util.ArrayList;
@@ -146,6 +149,10 @@ public final class CallParticipantsState {
     return isInPipMode;
   }
 
+  public boolean needsNewRequestSizes() {
+    return Stream.of(getAllRemoteParticipants()).anyMatch(p -> p.getVideoSink().needsNewRequestingSize());
+  }
+
   public static @NonNull CallParticipantsState update(@NonNull CallParticipantsState oldState,
                                                       @NonNull WebRtcViewModel webRtcViewModel,
                                                       boolean enableVideo)
@@ -161,7 +168,7 @@ public final class CallParticipantsState {
                                                                        oldState.isInPipMode,
                                                                        newShowVideoForOutgoing,
                                                                        webRtcViewModel.getState(),
-                                                                       oldState.getAllRemoteParticipants().size(),
+                                                                       webRtcViewModel.getRemoteParticipants().size(),
                                                                        oldState.isViewingFocusedParticipant);
 
     CallParticipant focused = oldState.remoteParticipants.isEmpty() ? null : oldState.remoteParticipants.get(0);
@@ -233,8 +240,10 @@ public final class CallParticipantsState {
       if (callState == WebRtcViewModel.State.CALL_CONNECTED) {
         if (isViewingFocusedParticipant || numberOfRemoteParticipants > 1) {
           localRenderState = WebRtcLocalRenderState.SMALLER_RECTANGLE;
-        } else {
+        } else if (numberOfRemoteParticipants == 1) {
           localRenderState = WebRtcLocalRenderState.SMALL_RECTANGLE;
+        } else {
+          localRenderState = WebRtcLocalRenderState.LARGE;
         }
       } else if (callState != WebRtcViewModel.State.CALL_INCOMING && callState != WebRtcViewModel.State.CALL_DISCONNECTED) {
         localRenderState = WebRtcLocalRenderState.LARGE;

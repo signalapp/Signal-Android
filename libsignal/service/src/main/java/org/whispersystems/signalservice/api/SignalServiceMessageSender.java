@@ -713,6 +713,10 @@ public class SignalServiceMessageSender {
       builder.setDelete(delete);
     }
 
+    if (message.getGroupCallUpdate().isPresent()) {
+      builder.setGroupCallUpdate(DataMessage.GroupCallUpdate.newBuilder().setEraId(message.getGroupCallUpdate().get().getEraId()));
+    }
+
     builder.setTimestamp(message.getTimestamp());
 
     return enforceMaxContentSize(container.setDataMessage(builder).build().toByteArray());

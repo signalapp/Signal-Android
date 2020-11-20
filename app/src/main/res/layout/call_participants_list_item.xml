@@ -21,7 +21,8 @@
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_view_name"
         style="@style/TextAppearance.Signal.Body1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
@@ -30,5 +31,20 @@
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.Preview"
         tools:text="@tools:sample/full_names" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/call_participant_video_muted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_video_off_solid_white_18"
+        app:tint="@color/core_white"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/call_participant_audio_muted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:srcCompat="@drawable/ic_mic_off_solid_18"
+        app:tint="@color/core_white"/>
 
 </LinearLayout>
