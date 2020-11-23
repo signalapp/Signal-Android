@@ -966,7 +966,10 @@ public final class GroupDatabase extends Database {
       }
     }
 
-    boolean isPendingMember(@NonNull Recipient recipient) {
+    /**
+     * Whether or not the recipient is a pending member.
+     */
+    public boolean isPendingMember(@NonNull Recipient recipient) {
       if (isV2Group()) {
         Optional<UUID> uuid = recipient.getUuid();
         if (uuid.isPresent()) {

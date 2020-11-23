@@ -170,6 +170,14 @@ final class ConversationGroupViewModel extends ViewModel {
       return Collections.emptyList();
     }
 
+    if (!record.isV2Group()) {
+      return Collections.emptyList();
+    }
+
+    if (!record.isActive() || record.isPendingMember(Recipient.self())) {
+      return Collections.emptyList();
+    }
+
     Set<RecipientId> difference = SetUtil.difference(record.getFormerV1Members(), record.getMembers());
 
     return Stream.of(Recipient.resolvedList(difference))
@@ -180,7 +188,13 @@ final class ConversationGroupViewModel extends ViewModel {
 
   @WorkerThread
   private static boolean mapToGroupV1MigrationReminder(@Nullable GroupRecord record) {
-    if (record == null || !record.isV1Group() || !record.isActive() || !FeatureFlags.groupsV1ManualMigration()) {
+    if (record == null                          ||
+        !record.isV1Group()                     ||
+        !record.isActive()                      ||
+        !FeatureFlags.groupsV1ManualMigration() ||
+        FeatureFlags.groupsV1ForcedMigration()  ||
+        !Recipient.resolved(record.getRecipientId()).isProfileSharing())
+    {
       return false;
     }
 

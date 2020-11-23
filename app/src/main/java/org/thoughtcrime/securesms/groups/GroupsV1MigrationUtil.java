@@ -140,17 +140,25 @@ public final class GroupsV1MigrationUtil {
     DecryptedGroup decryptedGroup = performLocalMigration(context, gv1Id, threadId, groupRecipient);
 
     if (newlyCreated && decryptedGroup != null && !SignalStore.internalValues().disableGv1AutoMigrateNotification()) {
+      Log.i(TAG, "Sending no-op update to notify others.");
       GroupManager.sendNoopUpdate(context, gv2MasterKey, decryptedGroup);
     }
   }
 
   public static void performLocalMigration(@NonNull Context context, @NonNull GroupId.V1 gv1Id) throws IOException
   {
+    Log.i(TAG, "Beginning local migration!", new Throwable());
     try (Closeable ignored = GroupsV2ProcessingLock.acquireGroupProcessingLock()) {
+      if (DatabaseFactory.getGroupDatabase(context).groupExists(gv1Id.deriveV2MigrationGroupId())) {
+        Log.w(TAG, "Group was already migrated! Could have been waiting for the lock.", new Throwable());
+        return;
+      }
+
       Recipient recipient = Recipient.externalGroupExact(context, gv1Id);
       long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
       performLocalMigration(context, gv1Id, threadId, recipient);
+      Log.i(TAG, "Migration complete!", new Throwable());
     } catch (GroupChangeBusyException e) {
       throw new IOException(e);
     }

@@ -72,44 +72,57 @@ final class MessageRequestRepository {
     });
   }
 
-  void getMessageRequestState(@NonNull Recipient recipient, long threadId, @NonNull Consumer<MessageRequestState> state) {
-    executor.execute(() -> state.accept(findMessageRequestState(recipient, threadId)));
-  }
-
   @WorkerThread
-  private MessageRequestState findMessageRequestState(@NonNull Recipient recipient, long threadId) {
-    if (recipient.isGroup() && recipient.isPushV2Group()) {
-      GroupDatabase.MemberLevel memberLevel = DatabaseFactory.getGroupDatabase(context)
-                                                             .getGroup(recipient.getId())
-                                                             .transform(g -> g.memberLevel(Recipient.self()))
-                                                             .or(GroupDatabase.MemberLevel.NOT_A_MEMBER);
-
-      if (memberLevel == GroupDatabase.MemberLevel.PENDING_MEMBER) {
-        return MessageRequestState.REQUIRED;
-      }
-    }
-
-    if (recipient.isPushV1Group() && FeatureFlags.groupsV1ForcedMigration()) {
-      return MessageRequestState.REQUIRED;
-    }
-
-    if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+  @NonNull MessageRequestState getMessageRequestState(@NonNull Recipient recipient, long threadId) {
+    if (recipient.isBlocked()) {
       if (recipient.isGroup()) {
-        GroupDatabase.MemberLevel memberLevel = DatabaseFactory.getGroupDatabase(context)
-                                                               .getGroup(recipient.getId())
-                                                               .transform(g -> g.memberLevel(Recipient.self()))
-                                                               .or(GroupDatabase.MemberLevel.NOT_A_MEMBER);
-
-        if (memberLevel == GroupDatabase.MemberLevel.NOT_A_MEMBER) {
-          return MessageRequestState.NOT_REQUIRED;
-        }
+        return MessageRequestState.BLOCKED_GROUP;
+      } else {
+        return MessageRequestState.BLOCKED_INDIVIDUAL;
       }
-
-      return MessageRequestState.REQUIRED;
-    } else if (!RecipientUtil.isLegacyProfileSharingAccepted(recipient) && threadId > 0) {
-      return MessageRequestState.REQUIRED;
+    } else if (threadId <= 0) {
+      return MessageRequestState.NONE;
+    } else if (recipient.isPushV2Group()) {
+      switch (getGroupMemberLevel(recipient.getId())) {
+        case NOT_A_MEMBER:
+          return MessageRequestState.NONE;
+        case PENDING_MEMBER:
+          return MessageRequestState.GROUP_V2_INVITE;
+        default:
+          if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+            return MessageRequestState.NONE;
+          } else {
+            return MessageRequestState.GROUP_V2_ADD;
+          }
+      }
+    } else if (!RecipientUtil.isLegacyProfileSharingAccepted(recipient) && isLegacyThread(recipient)) {
+      if (recipient.isGroup()) {
+        return MessageRequestState.LEGACY_GROUP_V1;
+      } else {
+        return MessageRequestState.LEGACY_INDIVIDUAL;
+      }
+    } else if (recipient.isPushV1Group()) {
+      if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+        if (FeatureFlags.groupsV1ForcedMigration()) {
+          if (recipient.getParticipants().size() > FeatureFlags.groupLimits().getHardLimit()) {
+            return MessageRequestState.DEPRECATED_GROUP_V1_TOO_LARGE;
+          } else {
+            return MessageRequestState.DEPRECATED_GROUP_V1;
+          }
+        } else {
+          return MessageRequestState.NONE;
+        }
+      } else if (!recipient.isActiveGroup()) {
+        return MessageRequestState.NONE;
+      } else {
+        return MessageRequestState.GROUP_V1;
+      }
     } else {
-      return MessageRequestState.NOT_REQUIRED;
+      if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+        return MessageRequestState.NONE;
+      } else {
+        return MessageRequestState.INDIVIDUAL;
+      }
     }
   }
 
@@ -259,23 +272,20 @@ final class MessageRequestRepository {
     });
   }
 
-  @WorkerThread
-  boolean isPendingMember(@NonNull GroupId.V2 groupId) {
-    return DatabaseFactory.getGroupDatabase(context).isPendingMember(groupId, Recipient.self());
+  private GroupDatabase.MemberLevel getGroupMemberLevel(@NonNull RecipientId recipientId) {
+    return DatabaseFactory.getGroupDatabase(context)
+                          .getGroup(recipientId)
+                          .transform(g -> g.memberLevel(Recipient.self()))
+                          .or(GroupDatabase.MemberLevel.NOT_A_MEMBER);
   }
 
-  enum MessageRequestState {
-    /**
-     * Message request permission does not need to be gained at this time.
-     * <p>
-     * Either:
-     * - Explicit message request has been accepted, or;
-     * - Did not need to be shown because they are a contact etc, or;
-     * - It's a group that they are no longer in or invited to.
-     */
-    NOT_REQUIRED,
 
-    /** Explicit message request permission is required. */
-    REQUIRED
+  @WorkerThread
+  private boolean isLegacyThread(@NonNull Recipient recipient) {
+    Context context  = ApplicationDependencies.getApplication();
+    Long    threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient.getId());
+
+    return threadId != null &&
+        (RecipientUtil.hasSentMessageInThread(context, threadId) || RecipientUtil.isPreMessageRequestThread(context, threadId));
   }
 }

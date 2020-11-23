@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -69,7 +71,9 @@ public class ManageRecipientFragment extends LoggingFragment {
   private Toolbar                                toolbar;
   private TextView                               title;
   private TextView                               subtitle;
-  private TextView                               internalDetails;
+  private ViewGroup                              internalDetails;
+  private TextView                               internalDetailsText;
+  private View                                   disableProfileSharingButton;
   private View                                   contactRow;
   private TextView                               contactText;
   private ImageView                              contactIcon;
@@ -128,6 +132,8 @@ public class ManageRecipientFragment extends LoggingFragment {
     title                       = view.findViewById(R.id.name);
     subtitle                    = view.findViewById(R.id.username_number);
     internalDetails             = view.findViewById(R.id.recipient_internal_details);
+    internalDetailsText         = view.findViewById(R.id.recipient_internal_details_text);
+    disableProfileSharingButton = view.findViewById(R.id.recipient_internal_details_disable_profile_sharing_button);
     sharedGroupList             = view.findViewById(R.id.shared_group_list);
     groupsInCommonCount         = view.findViewById(R.id.groups_in_common_count);
     threadPhotoRailView         = view.findViewById(R.id.recent_photos);
@@ -218,7 +224,10 @@ public class ManageRecipientFragment extends LoggingFragment {
     viewModel.getCanAddToAGroup().observe(getViewLifecycleOwner(), canAdd -> addToAGroup.setVisibility(canAdd ? View.VISIBLE : View.GONE));
 
     if (SignalStore.internalValues().recipientDetails()) {
-      viewModel.getInternalDetails().observe(getViewLifecycleOwner(), internalDetails::setText);
+      viewModel.getInternalDetails().observe(getViewLifecycleOwner(), internalDetailsText::setText);
+      disableProfileSharingButton.setOnClickListener(v -> {
+        SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getRecipientDatabase(requireContext()).setProfileSharing(recipientId, false));
+      });
       internalDetails.setVisibility(View.VISIBLE);
     } else {
       internalDetails.setVisibility(View.GONE);

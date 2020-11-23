@@ -190,6 +190,7 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity;
+import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -3140,8 +3141,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     messageRequestBottomView.setGroupV1MigrationContinueListener(v -> GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(getSupportFragmentManager(), recipient.getId()));
 
     viewModel.getRequestReviewDisplayState().observe(this, this::presentRequestReviewBanner);
-    viewModel.getMessageData().observe(this, this::presentMessageRequestBottomViewTo);
-    viewModel.getMessageRequestDisplayState().observe(this, this::presentMessageRequestDisplayState);
+    viewModel.getMessageData().observe(this, this::presentMessageRequestState);
     viewModel.getFailures().observe(this, this::showGroupChangeErrorToast);
     viewModel.getMessageRequestStatus().observe(this, status -> {
       switch (status) {
@@ -3155,7 +3155,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
           break;
         case ACCEPTED:
           hideMessageRequestBusy();
-          messageRequestBottomView.setVisibility(View.GONE);
           break;
         case DELETED:
         case BLOCKED:
@@ -3426,31 +3425,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     BlockUnblockDialog.showUnblockFor(this, getLifecycle(), recipient, requestModel::onUnblock);
   }
 
-  private void presentMessageRequestDisplayState(@NonNull MessageRequestViewModel.DisplayState displayState) {
-    if ((getIntent().hasExtra(TEXT_EXTRA) && !Util.isEmpty(getIntent().getStringExtra(TEXT_EXTRA))) ||
-         getIntent().hasExtra(MEDIA_EXTRA)                                                          ||
-         getIntent().hasExtra(STICKER_EXTRA))
-    {
-      Log.d(TAG, "[presentMessageRequestDisplayState] Have extra, so ignoring provided state.");
-      messageRequestBottomView.setVisibility(View.GONE);
-    } else if (isPushGroupV1Conversation() && !isActiveGroup()) {
-      Log.d(TAG, "[presentMessageRequestDisplayState] Inactive push group V1, so ignoring provided state.");
-      messageRequestBottomView.setVisibility(View.GONE);
-    } else {
-      Log.d(TAG, "[presentMessageRequestDisplayState] " + displayState);
-      switch (displayState) {
-        case DISPLAY_MESSAGE_REQUEST:
-          messageRequestBottomView.setVisibility(View.VISIBLE);
-          break;
-        case DISPLAY_NONE:
-          messageRequestBottomView.setVisibility(View.GONE);
-          break;
-      }
-    }
-
-    invalidateOptionsMenu();
-  }
-
   private static void hideMenuItem(@NonNull Menu menu, @IdRes int menuItem) {
     if (menu.findItem(menuItem) != null) {
       menu.findItem(menuItem).setVisible(false);
@@ -3597,10 +3571,28 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
   }
 
-  private void presentMessageRequestBottomViewTo(@Nullable MessageRequestViewModel.MessageData messageData) {
-    if (messageData == null) return;
+  private void presentMessageRequestState(@Nullable MessageRequestViewModel.MessageData messageData) {
+    if ((getIntent().hasExtra(TEXT_EXTRA) && !Util.isEmpty(getIntent().getStringExtra(TEXT_EXTRA))) ||
+        getIntent().hasExtra(MEDIA_EXTRA)                                                           ||
+        getIntent().hasExtra(STICKER_EXTRA))
+    {
+      Log.d(TAG, "[presentMessageRequestState] Have extra, so ignoring provided state.");
+      messageRequestBottomView.setVisibility(View.GONE);
+    } else if (isPushGroupV1Conversation() && !isActiveGroup()) {
+      Log.d(TAG, "[presentMessageRequestState] Inactive push group V1, so ignoring provided state.");
+      messageRequestBottomView.setVisibility(View.GONE);
+    } else if (messageData == null) {
+      Log.d(TAG, "[presentMessageRequestState] Null messageData. Ignoring.");
+    } else if (messageData.getMessageState() == MessageRequestState.NONE) {
+      Log.d(TAG, "[presentMessageRequestState] No message request necessary.");
+      messageRequestBottomView.setVisibility(View.GONE);
+    } else {
+      Log.d(TAG, "[presentMessageRequestState] " + messageData.getMessageState());
+      messageRequestBottomView.setMessageData(messageData);
+      messageRequestBottomView.setVisibility(View.VISIBLE);
+    }
 
-    messageRequestBottomView.setMessageData(messageData);
+    invalidateOptionsMenu();
   }
 
   private static class KeyboardImageDetails {
