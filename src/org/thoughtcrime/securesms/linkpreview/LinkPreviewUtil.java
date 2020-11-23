@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -94,6 +95,15 @@ public final class LinkPreviewUtil {
     } else {
       return false;
     }
+  }
+
+  public static boolean isVaildMimeType(@NonNull String url) {
+    String[] vaildMimeType = {"jpg", "png", "gif", "jpeg"};
+    if (url.contains(".")) {
+      String extenstion = url.substring(url.lastIndexOf(".") + 1).toLowerCase();
+      return Arrays.asList(vaildMimeType).contains(extenstion);
+    }
+    return true;
   }
 
   public static @NonNull OpenGraph parseOpenGraphFields(@Nullable String html) {
