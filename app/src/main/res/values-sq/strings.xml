@@ -414,7 +414,7 @@
   <string name="DonateMegaphone_donate_to_signal">Dhuroni për Signal-in</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-i bazohet në njerëz si ju. Shpaloseni përkrahjen tuaj sot!</string>
   <string name="DonateMegaphone_donate">Dhuroni</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Jo Tani</string> -->
+  <string name="DonateMegaphone_no_thanks">Jo Falemnderit</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizoje për Shërbime Play që mungojnë</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Signal-in të marrë mesazhe teksa është joaktiv.</string>
@@ -601,14 +601,23 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="one">%d anëtar nuk mbulon Grupe të Rinj, ndaj ky do të jetë Grup i Dikurshëm.</item>
     <item quantity="other">%d anëtarë nuk mbulojnë Grupe të Rinj, ndaj ky grup do të jetë Grup i Dikurshëm.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d anëtar nuk mbulon Grupe të Rinj, ndaj ky grup s’mund të krijohet.</item>
+    <item quantity="other">%d anëtarë nuk mbulojnë Grupe të Rinj, ndaj ky grup s’mund të krijohet.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Do të krijohet një Grup i Dikurshëm, ngaqë “%1$s” po përdor një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me të pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Do të krijohet një Grup i Dikurshëm, ngaqë 1%1$d anëtar po përdor një
+    <item quantity="one">Do të krijohet një Grup i Dikurshëm, ngaqë %1$d anëtar po përdor një
  version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri 
 me të pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.</item>
-    <item quantity="other">Do të krijohet një Grup i Dikurshëm, ngaqë 1%1$d anëtarë po përdorin një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me ta pasi 
+    <item quantity="other">Do të krijohet një Grup i Dikurshëm, ngaqë %1$d anëtarë po përdorin një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me ta pasi 
 të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ky grup s’mund të krijohet, ngaqë “%1$s” po përdor një version të vjetër të Signal-it. Duhet ta hiqni para krijimit të grupit.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Ky grup s’mund të krijohet, ngaqë %1$d anëtar i grupit po përdor një version të vjetër të Signal-it. Duhet ta hiqni, para krijimit të grupit.</item>
+    <item quantity="other">Ky grup s’mund të krijohet, ngaqë %1$d anëtarë të grupit po përdorin një version të vjetër të Signal-it. Duhet t’i hiqni, para krijimit të grupit.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zhdukje mesazhesh</string>
@@ -899,7 +908,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s çaktivizoi zhdukje mesazhesh.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutë kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s e vuri kohëmatësin e tretjes së mesazheve në %2$s.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Koha për zhdukje mesazhesh është vënë 1%1$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Koha për zhdukje mesazhesh është vënë %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ky grup u përditësua si një Grup i Ri.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">%1$s anëtar s’u shtua dot te Grupi i Ri dhe u ftua të bëhet pjesë e tij.</item>
@@ -1031,6 +1040,18 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të verifikuar nga një tjetër pajisje</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar nga një tjetër pajisje</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Gjendeni te thirrja e grupit · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s dhe %2$s gjenden te thirrja e grupit · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, dhe %3$s gjenden te thirrja e grupit · %4$s</string>
+  <string name="MessageRecord_group_call_s">Thirrje grupi · %1$s</string>
+  <string name="MessageRecord_you">Ju</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s, dhe %3$d tjetër gjenden te thirrja e grupit · %4$s</item>
+    <item quantity="other">%1$s, %2$s, dhe %3$d të tjerë gjenden te thirrja e grupit · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Pranoje</string>
   <string name="MessageRequestBottomView_continue">Vazhdo</string>
@@ -1615,6 +1636,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Po ngarkohet</string>
   <string name="ConversationUpdateItem_learn_more">Mësoni më tepër</string>
+  <string name="ConversationUpdateItem_join_call">Hyni në thirrje</string>
+  <string name="ConversationUpdateItem_return_to_call">Kthehuni te thirrja</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>

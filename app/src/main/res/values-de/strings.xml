@@ -414,7 +414,7 @@
   <string name="DonateMegaphone_donate_to_signal">An Signal spenden</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal existiert dank Menschen wie dir. Zeig heute deine Unterstützung!</string>
   <string name="DonateMegaphone_donate">Spenden</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Jetzt nicht</string> -->
+  <string name="DonateMegaphone_no_thanks">Nein danke</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für Betrieb ohne Google-Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungen zu deaktivieren, die Signal daran hindern, Nachrichten im Hintergrund zu empfangen.</string>
@@ -600,11 +600,20 @@
     <item quantity="one">%d Mitglied unterstützt keine Gruppen neuen Typs, daher wird diese Gruppe als Gruppe alten Typs erstellt.</item>
     <item quantity="other">%d Mitglieder unterstützen keine Gruppen neuen Typs, daher wird diese Gruppe als Gruppe alten Typs erstellt.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d Mitglied unterstützt keine Gruppen neuen Typs, daher kann diese Gruppe nicht erstellt werden.</item>
+    <item quantity="other">%d Mitglieder unterstützen keine Gruppen neuen Typs, daher kann diese Gruppe nicht erstellt werden.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Es wird eine Gruppe alten Typs erstellt, da »%1$s« eine alte Signal-Version verwendet. Du kannst eine Gruppe neuen Typs mit diesem Mitglied erstellen, sobald es Signal aktualisiert hat, oder es vor Erstellen der Gruppe entfernen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Es wird eine Gruppen alten Typs erstellt, da %1$d Mitglied eine alte Signal-Version verwendet. Du kannst eine Gruppe neuen Typs mit diesem Mitglied erstellen, sobald es Signal aktualisiert hat, oder es vor Erstellen der Gruppe entfernen.</item>
     <item quantity="other">Es wird eine Gruppe alten Typs erstellt, da %1$d Mitglieder eine alte Signal-Version verwenden. Du kannst eine Gruppe neuen Typs mit diesen Mitgliedern erstellen, sobald sie Signal aktualisiert haben, oder sie vor Erstellen der Gruppe entfernen.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Diese Gruppe kann nicht erstellt werden, da »%1$s« eine alte Signal-Version verwendet. Entferne das Mitglied vor Erstellen der Gruppe.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Diese Gruppe kann nicht erstellt werden, da %1$d Mitglied eine alte Signal-Version verwendet. Entferne dieses Mitglied vor Erstellen der Gruppe.</item>
+    <item quantity="other">Diese Gruppe kann nicht erstellt werden, da %1$d Mitglieder eine alte Signal-Version verwenden. Entferne diese Mitglieder vor Erstellen der Gruppe.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Verschwindende Nachrichten</string>
@@ -1027,6 +1036,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %s als nicht verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als nicht verifiziert markiert.</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">»%1$s« hat einen Gruppenanruf begonnen · »%2$s«</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">»%1$s« nimmt am Gruppenanruf teil · »%2$s«</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Du nimmst am Gruppenanruf teil · »%2$s«</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">»%1$s« und »%2$s« nehmen am Gruppenanruf teil · »%3$s«</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">»%1$s«, »%2$s« und »%3$s« nehmen am Gruppenanruf teil · »%4$s«</string>
+  <string name="MessageRecord_group_call_s">Gruppenanruf · »%1$s«</string>
+  <string name="MessageRecord_you">Du</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">»%1$s«, »%2$s« und %3$d Weiterer nehmen am Gruppenanruf teil · »%4$s«</item>
+    <item quantity="other">»%1$s«, »%2$s« und %3$d Weitere nehmen am Gruppenanruf teil · »%4$s«</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Annehmen</string>
   <string name="MessageRequestBottomView_continue">Fortfahren</string>
@@ -1604,6 +1625,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Wird geladen …</string>
   <string name="ConversationUpdateItem_learn_more">Mehr erfahren</string>
+  <string name="ConversationUpdateItem_join_call">Anruf beitreten</string>
+  <string name="ConversationUpdateItem_return_to_call">Zurück zum Anruf</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Abspielen … Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
@@ -1752,7 +1775,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="registration_activity__verify_your_number">Verifiziere deine Rufnummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Bitte gib deine Rufnummer ein, um einen Verifikationscode zu erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to"><small>Name/Nummer  eingeben</small></string>
+  <string name="recipients_panel__to"><small>Name/Rufnummer eingeben</small></string>
   <string name="recipients_panel__add_members">Mitglieder hinzufügen</string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Der Absender ist nicht in deiner Kontaktliste</string>

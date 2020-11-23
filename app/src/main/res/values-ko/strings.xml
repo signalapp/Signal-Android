@@ -380,7 +380,6 @@
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signal에 후원</string>
   <string name="DonateMegaphone_donate">기부</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">나중에</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">누락된 Play Services에 최적화</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">기기에서는 Play Services를 지원하지 않습니다. 탭하여 시스템 배터리 최적화 기능을 사용하지 않을 수 있습니다. 해당 기능은 Signal이 비활성화된 동안에 메시지를 검색하지 못하게 합니다.</string>
@@ -796,6 +795,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s 님과의 안전 번호를 다른 기기에서 인증됨 상태로 표시했습니다.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s 님과의 안전 번호를 인증되지 않음 상태로 표시했습니다.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s 님과의 안전 번호를 다른 기기에서 인증되지 않음 상태로 표시했습니다.</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_you">나</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">수락</string>
   <string name="MessageRequestBottomView_continue">계속</string>

@@ -414,7 +414,7 @@
   <string name="DonateMegaphone_donate_to_signal">Κάνε μια δωρεά στο Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Το Signal στηρίζεται σε άτομα σαν και σένα. Δείξε την υποστήριξή σου!</string>
   <string name="DonateMegaphone_donate">Δωρεά</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Όχι τώρα</string> -->
+  <string name="DonateMegaphone_no_thanks">Όχι ευχαριστώ</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Βελτιστοποίηση για τις υπηρεσίες Play που λείπουν</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Αυτή η συσκευή δεν υποστηρίζει τις υπηρεσίες Play. Πάτα για απενεργοποίηση των βελτιστοποιήσεων μπαταρίας του συστήματος που εμποδίζουν το Signal από το να λαμβάνει μηνύματα όταν είναι ανενεργό.</string>
@@ -600,11 +600,20 @@
     <item quantity="one">%d μέλος δεν έχει υποστήριξη για νέες ομάδες, οπότε αυτή η ομάδα θα είναι παλαιού τύπου.</item>
     <item quantity="other">%d μέλη δεν έχουν υποστήριξη για Νέες ομάδες, οπότε αυτή η ομάδα θα είναι παλαιού τύπου.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d μέλος δεν έχει υποστήριξη για Ομάδες νέου τύπου, οπότε η ομάδα δεν μπορεί να δημιουργηθεί.</item>
+    <item quantity="other">%d μέλη δεν έχουν υποστήριξη για Ομάδες νέου τύπου,  οπότε η ομάδα δεν μπορεί να δημιουργηθεί.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Θα δημιουργηθεί ομάδα παλαιού τύπου γιατί ο/η \"%1$s\" χρησιμοποιεί μια παλιά έκδοση του Signal. Θα μπορείς να δημιουργήσεις ομάδα νέου τύπου μαζί του/της αφού αναβαθμίσει το Signal, ή αν τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Θα δημιουργηθεί ομάδα παλαιού τύπου γιατί %1$d μέλος χρησιμοποιεί μια παλιά έκδοση του Signal. Θα μπορείς να δημιουργήσεις ομάδα νέου τύπου μαζί του/της αφού αναβαθμίσει το Signal, ή αν τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</item>
     <item quantity="other">Θα δημιουργηθεί ομάδα παλαιού τύπου γιατί %1$d μέλη χρησιμοποιούν μια παλιά έκδοση του Signal. Θα μπορείς να δημιουργήσεις ομάδα νέου τύπου μαζί τους αφού αναβαθμίσουν το Signal, ή αν τους αφαιρέσεις πριν δημιουργήσεις την ομάδα.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Η ομάδα δεν μπορεί να δημιουργηθεί επειδή ο/η \"%1$s\" χρησιμοποιεί μια παλιά έκδοση του Signal. Θα πρέπει να τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Η ομάδα δεν μπορεί να δημιουργηθεί επειδή %1$d μέλος χρησιμοποιεί μια παλιά έκδοση του Signal. Θα πρέπει να τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</item>
+    <item quantity="other">Η ομάδα δεν μπορεί να δημιουργηθεί επειδή %1$d μέλη χρησιμοποιούν μια παλιά έκδοση του Signal. Θα πρέπει να τους/τις αφαιρέσεις πριν δημιουργήσεις την ομάδα.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
@@ -1027,6 +1036,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως επιβεβαιωμένο από άλλη συσκευή</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο από άλλη συσκευή</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Είσαι στην ομαδική κλήση · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">Οι %1$s, %2$s και %3$s είναι στην ομαδική κλήση · %4$s</string>
+  <string name="MessageRecord_group_call_s">Ομαδική κλήση · %1$s</string>
+  <string name="MessageRecord_you">Εσύ</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση · %4$s</item>
+    <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην ομαδική κλήση · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Αποδοχή</string>
   <string name="MessageRequestBottomView_continue">Συνέχεια</string>
@@ -1610,6 +1631,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Φορτώνει</string>
   <string name="ConversationUpdateItem_learn_more">Μάθε περισσότερα</string>
+  <string name="ConversationUpdateItem_join_call">Είσοδος στην κλήση</string>
+  <string name="ConversationUpdateItem_return_to_call">Επιστροφή στην κλήση</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Αναπαραγωγή … Παύση</string>
   <string name="audio_view__download_accessibility_description">Λήψη</string>

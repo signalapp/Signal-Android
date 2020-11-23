@@ -442,7 +442,7 @@
   <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Покажите свою поддержку уже сегодня!</string>
   <string name="DonateMegaphone_donate">Пожертвовать</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Не сейчас</string> -->
+  <string name="DonateMegaphone_no_thanks">Нет, спасибо</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизация при отсутствии Служб Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Это устройство не поддерживает Службы Google Play. Нажмите для отключения оптимизации энергопотребления, которая не позволяет Signal получать сообщения, когда он неактивен.</string>
@@ -657,10 +657,16 @@
   <string name="AddGroupDetailsFragment__sms_contact">SMS-контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Удалить %1$s из этой группы?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">%d участник не поддерживает Новые группы, так что это будет Старая группа.</item>
-    <item quantity="few">%d участника не поддерживают Новые группы, так что эта группа будет Старой группой.</item>
-    <item quantity="many">%d участников не поддерживают Новые группы, так что эта группа будет Старой группой.</item>
-    <item quantity="other">%d участников не поддерживают Новые группы, так что эта группа будет Старой группой.</item>
+    <item quantity="one">%d участник не поддерживает Новые группы, поэтому эта группа будет Старой группой.</item>
+    <item quantity="few">%d участника не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
+    <item quantity="many">%d участников не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
+    <item quantity="other">%d участников не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
+  </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d участник не поддерживает Новые группы, поэтому эта группа не может быть создана.</item>
+    <item quantity="few">%d участника не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
+    <item quantity="many">%d участников не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
+    <item quantity="other">%d участников не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Будет создана Старая группа, потому что «%1$s» использует старую версию Signal. Вы можете создать группу нового типа с этим человеком после того, как он обновит Signal, или убрать его до создания группы.</string>
@@ -669,6 +675,13 @@
     <item quantity="few">Будет создана Старая группа, потому что %1$d участника используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
     <item quantity="many">Будет создана Старая группа, потому что %1$d участников используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
     <item quantity="other">Будет создана Старая группа, потому что %1$d участников используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Эта группа не может быть создана, потому что «%1$s» использует старую версию Signal. Вы должны удалить этого участника перед созданием группы.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Эта группа не может быть создана, потому что %1$d участник использует старую версию Signal. Вы должны удалить этого участника перед созданием группы.</item>
+    <item quantity="few">Эта группа не может быть создана, потому что %1$d участника используют старую версию Signal. Вы должны удалить этих участников перед созданием группы.</item>
+    <item quantity="many">Эта группа не может быть создана, потому что %1$d участников используют старую версию Signal. Вы должны удалить этих участников перед созданием группы.</item>
+    <item quantity="other">Эта группа не может быть создана, потому что %1$d участников используют старую версию Signal. Вы должны удалить этих участников перед созданием группы.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Исчезающие сообщения</string>
@@ -1129,6 +1142,20 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Вы отметили код безопасности с %s как подтверждённый с другого устройства</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили код безопасности с %s как неподтверждённый</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили код безопасности с %s как неподтверждённый с другого устройства</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s начал(-а) групповой звонок · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s в групповом звонке · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Вы в групповом звонке · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s и %2$s в групповом звонке · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s и %3$s в групповом звонке · %4$s</string>
+  <string name="MessageRecord_group_call_s">Групповой звонок · %1$s</string>
+  <string name="MessageRecord_you">Вы</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s и ещё %3$d человек в групповом звонке · %4$s</item>
+    <item quantity="few">%1$s, %2$s и ещё %3$d человека в групповом звонке · %4$s</item>
+    <item quantity="many">%1$s, %2$s и ещё %3$d человек в групповом звонке · %4$s</item>
+    <item quantity="other">%1$s, %2$s и ещё %3$d человек в групповом звонке · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Принять</string>
   <string name="MessageRequestBottomView_continue">Продолжить</string>
@@ -1732,6 +1759,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Загрузка</string>
   <string name="ConversationUpdateItem_learn_more">Узнать больше</string>
+  <string name="ConversationUpdateItem_join_call">Присоединиться к звонку</string>
+  <string name="ConversationUpdateItem_return_to_call">Вернуться к звонку</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>

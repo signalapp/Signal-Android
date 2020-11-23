@@ -442,7 +442,7 @@
   <string name="DonateMegaphone_donate_to_signal">Podpořte Signal finančně</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal je aplikace, za kterou stojí lidé jako vy. Prokažte jim dnes svoji podporu!</string>
   <string name="DonateMegaphone_donate">Sponzorujte</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Nyní ne</string> -->
+  <string name="DonateMegaphone_no_thanks">Ne, děkuji</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimlizovat pro chybějící Google Play službu</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Klepnutím zakážete systémové optimalizace baterie, které způsobují nemožnost Signalu přijímat zprávy v době nečinnosti.</string>
@@ -662,6 +662,12 @@
     <item quantity="many">%d členů nepodporuje nové skupiny, takže tato skupina bude ve starší verzi.</item>
     <item quantity="other">%d členů nepodporuje nové skupiny, takže tato skupina bude ve starší verzi.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d člen nepodporuje nové skupiny, takže tuto skupinu nelze vytvořit.</item>
+    <item quantity="few">%d členové nepodporují nové skupiny, takže tuto skupinu nelze vytvořit.</item>
+    <item quantity="many">%d členů nepodporuje nové skupiny, takže tuto skupinu nelze vytvořit.</item>
+    <item quantity="other">%d členů nepodporuje nové skupiny, takže tuto skupinu nelze vytvořit.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Bude vytvořena starší skupina, protože \"%1$s\" používá zastaralou verzi Signalu. Novou verzi skupiny s ním budete moci vytvořit, až si zaktualizuje Signal, nebo jej před vytvořením skupiny odeberte.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
@@ -669,6 +675,13 @@
     <item quantity="few">Bude vytvořena starší skupina, protože %1$d členové používají zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny odeberte.</item>
     <item quantity="many">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny odeberte.</item>
     <item quantity="other">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny  odeberte.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tuto skupinu nelze vytvořit, protože \"%1$s\" používá starou verzi Signalu. Musíte je odstranit před vytvořením skupiny.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Tuto skupinu nelze vytvořit, protože %1$d člen používá starou verzi Signalu. Musíte ho odstranit před vytvořením skupiny.</item>
+    <item quantity="few">Tuto skupinu nelze vytvořit, protože %1$d členové používají starou verzi Signalu. Musíte je odstranit před vytvořením skupiny.</item>
+    <item quantity="many">Tuto skupinu nelze vytvořit, protože %1$d členů používá starou verzi Signalu. Musíte je odstranit před vytvořením skupiny.</item>
+    <item quantity="other">Tuto skupinu nelze vytvořit, protože %1$d členů používá starou verzi Signalu. Musíte je odstranit před vytvořením skupiny.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zmizení zpráv</string>
@@ -1129,6 +1142,20 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní kódy pro komunikaci s %s jako ověřené.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili jste vaše bezpečnostní kódy pro komunikaci s %s jako neověřené.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní kódy pro komunikaci s %s jako neověřené.</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil skupinový hovor · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s se účastní skupinového hovoru · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Účastníte se skupinového hovoru · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s a %2$s se účastní skupinového hovoru · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s a %3$s se účastní skupinového hovoru · %4$s</string>
+  <string name="MessageRecord_group_call_s">Skupinový hovor · %1$s</string>
+  <string name="MessageRecord_you">Vy</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s a %3$d další se účastní skupinového hovoru · %4$s</item>
+    <item quantity="few">%1$s, %2$s a %3$d další se účastní skupinového hovoru · %4$s</item>
+    <item quantity="many">%1$s, %2$s a %3$d dalších se účastní skupinového hovoru · %4$s</item>
+    <item quantity="other">%1$s, %2$s a %3$d dalších se účastní skupinového hovoru · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Přijmout</string>
   <string name="MessageRequestBottomView_continue">Pokračovat</string>
@@ -1738,6 +1765,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Načítám</string>
   <string name="ConversationUpdateItem_learn_more">Zjistit více</string>
+  <string name="ConversationUpdateItem_join_call">Připojit se k hovoru</string>
+  <string name="ConversationUpdateItem_return_to_call">Vrátit se k hovoru</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spustit … Pozastavit</string>
   <string name="audio_view__download_accessibility_description">Stáhnout</string>

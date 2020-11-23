@@ -412,8 +412,9 @@
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Faire un don à Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est alimenté par des gens comme vous. Montrez votre soutien dès aujourd\'hui !</string>
   <string name="DonateMegaphone_donate">Faire un don</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Pas maintenant</string> -->
+  <string name="DonateMegaphone_no_thanks">Non merci</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiser pour palier l’absence des Services Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas les Services Google Play en charge. Touchez pour désactiver les optimisations système de la pile qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>
@@ -599,11 +600,20 @@
     <item quantity="one">%d membre ne prend pas en charge les nouveaux groupes, ce sera donc un groupe hérité</item>
     <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes, ce sera donc un groupe hérité</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d membre ne prend pas en charge les nouveaux groupes, alors ce groupe ne peut être créé.</item>
+    <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes, alors ce groupe ne peut être créé.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un groupe hérité sera créé, car « %1$s » utilise une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec cette personne une fois qu’elle aura mis Signal à jour, ou supprimez-la avant de créer le groupe.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Un groupe hérité sera créé, car %1$d membre utilise une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec ce membre une fois qu’il aura mis Signal à jour, ou supprimez-le avant de créer le groupe.</item>
     <item quantity="other">Un groupe hérité sera créé, car %1$d membres utilisent une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec eux une fois qu’ils auront mis Signal à jour, ou supprimez-les avant de créer le groupe.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ce groupe ne peut être créé puisque « %1$s » utilise une ancienne version de Signal. Vous devez le retirer avant de créer ce groupe.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Ce groupe ne peut être créé puisque %1$d membre utilise une ancienne version de Signal. Vous devez le retirer avant de créer ce groupe.</item>
+    <item quantity="other">Ce groupe ne peut être créé puisque %1$dmembres utilisent une ancienne version de Signal. Vous devez les retirer avant de créer ce groupe.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Messages éphémères</string>
@@ -996,8 +1006,8 @@
   <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s a désactivé l\'approbation d\'un administrateur pour le lien du groupe.</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">L\'approbation d\'un administrateur pour le lien du groupe a été désactivé.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Vous avez activé l’approbation d’un administrateur pour le lien de groupe.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s a activé d\'approbation d\'un administrateur pour le lien d\'invitation du groupe.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">L\'approbation d\'un administrateur pour le lien d\'invitation du groupe a été activée.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s a activé d\'approbation d\'un administrateur pour le lien du groupe.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">L\'approbation d\'un administrateur pour le lien du groupe a été activée.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Vous avez réinitialisé le lien de groupe.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s a réinitialisé le lien de groupe.</string>
@@ -1026,6 +1036,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme confirmé à partir d’un autre appareil</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vous avez marqué votre numéro de sécurité avec %s comme non confirmé</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme non confirmé à partir d’un autre appareil</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s est dans l\'appel de groupe · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Vous êtes dans l\'appel de groupe · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s et %2$s sont dans l\'appel de groupe · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, et  %3$s sont dans l\'appel de groupe · %4$s</string>
+  <string name="MessageRecord_group_call_s">Appel de groupe · %1$s</string>
+  <string name="MessageRecord_you">Vous</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s, et %3$d autre sont dans l\'appel de groupe · %4$s</item>
+    <item quantity="other">%1$s, %2$s, et %3$d autres sont dans l\'appel de groupe · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Accepter</string>
   <string name="MessageRequestBottomView_continue">Poursuivre</string>
@@ -1605,6 +1627,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Chargement</string>
   <string name="ConversationUpdateItem_learn_more">En apprendre davantage</string>
+  <string name="ConversationUpdateItem_join_call">Rejoindre l\'appel</string>
+  <string name="ConversationUpdateItem_return_to_call">Retourner à l\'appel</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
@@ -2013,6 +2037,8 @@
   <string name="configurable_single_select__customize_option">Personnaliser l’option</string>
   <!--Internal only preferences-->
   <string name="preferences__internal_conversations_and_shortcuts">Conversations et Raccourcis</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Supprimer tous les raccourcis dynamiques</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliquer pour supprimer tous les raccourcis dynamiques</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

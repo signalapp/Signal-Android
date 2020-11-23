@@ -415,7 +415,7 @@
   <string name="DonateMegaphone_donate_to_signal">Adomány a Signal számára</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">A Signalt olyan emberek működtetik, mint Te. Támogasd te is még ma!</string>
   <string name="DonateMegaphone_donate">Támogatás</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Később</string> -->
+  <string name="DonateMegaphone_no_thanks">Köszönöm, nem!</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizálás hiányzó Play Szolgáltatásokra</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ez a készülék nem támogatja a Play Szolgáltatásokat. Koppints a rendszer akkumulátor-optimalizációinak letiltásához, ami megakadályozza a Signal-t abban, hogy inaktív állapotban is letöltse az üzeneteket.</string>
@@ -993,6 +993,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Biztonsági számodat egy másik eszközről megerősítetlennek jelölted %s nevű partnereddel</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Biztonsági számodat megerősítetlennek jelölted a %s nevű partnereddel</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Biztonsági számodat egy másik készülékről megerősítetlennek jelölted %s nevű partnereddel</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_you">Te</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Elfogadás</string>
   <string name="MessageRequestBottomView_continue">Folytatás</string>

@@ -84,8 +84,8 @@
   <string name="BlockedUsersActivity__block_user">要封鎖使用者嗎？</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" 將無法給你打電話或向你傳送訊息。</string>
   <string name="BlockedUsersActivity__block">封鎖</string>
-  <string name="BlockedUsersActivity__unblock_user">解封鎖使用者嗎?</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">你要解封鎖 \"%1$s\"嗎?</string>
+  <string name="BlockedUsersActivity__unblock_user">解除封鎖使用者嗎？</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">你要解除封鎖「%1$s」嗎？</string>
   <string name="BlockedUsersActivity__unblock">解除封鎖</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">封鎖並離開%1$s嗎？</string>
@@ -399,8 +399,8 @@
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">捐贈 Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 由像你這樣的人提供動力。這顯示了你的支持！</string>
-  <string name="DonateMegaphone_donate">捐</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">稍後</string> -->
+  <string name="DonateMegaphone_donate">捐贈</string>
+  <string name="DonateMegaphone_no_thanks">在心中</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
@@ -445,7 +445,7 @@
   <string name="GroupMembersDialog_you">您</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">任何人</string>
-  <string name="GroupManagement_access_level_all_members">所有的成員</string>
+  <string name="GroupManagement_access_level_all_members">所有成員</string>
   <string name="GroupManagement_access_level_only_admins">僅限管理員</string>
   <string name="GroupManagement_access_level_no_one">沒有人</string>
   <!--GV2 invites sent-->
@@ -569,10 +569,17 @@
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%d個成員不支援新群組，因此該群組將成為舊群組。</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="other">%d 個成員不支援新群組，因此無法建立此群組。</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">舊版群組將被建立，因為“%1$s”使用的是舊版本的Signal。 你可以在他們更新Signal之後用他們建立一個新樣式的群組，或者在建立群組之前將他們刪除。</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">舊版群組將被建立，因為%1$d個成員使用的是舊版本的 Signal。 你可以在他們更新Signal之後用他們建立一個新樣式的群組，或者在建立群組之前將他們刪除。</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">無法建立此群組，因為「%1$s」正使用舊版 Signal。你必須先將其移除，然後才建立群組。</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="other">無法建立此群組，因為 %1$d 個成員正使用舊版 Signal。你必須先將其移除，然後才建立群組。</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">自動銷毀訊息</string>
@@ -683,7 +690,7 @@
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">掃描此代碼的人將可以加入你的群組。 如果你啟用了該裝置，則管理員仍需要批准新成員。</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">分享代碼</string>
   <!--GV2 Invite Revoke confirmation dialog-->
-  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">你要撤消傳送給%1$s的邀請嗎？</string>
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">你要撤銷由你傳送給%1$s的邀請嗎？</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
     <item quantity="other">你要撤銷由%1$s傳送給%2$d的邀請嗎？</item>
   </plurals>
@@ -796,9 +803,9 @@
   <string name="Megaphones_introducing_reactions">介紹表情符號</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">點擊並按住任何訊息以分享你的感覺。</string>
   <string name="Megaphones_remind_me_later">稍後提醒我</string>
-  <string name="Megaphones_verify_your_signal_pin">驗證你的 Signal PIN碼</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">我們有時會要求你驗證PIN碼，以便你能記住它。</string>
-  <string name="Megaphones_verify_pin">驗證PIN碼</string>
+  <string name="Megaphones_verify_your_signal_pin">驗證你的 Signal PIN 碼</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">我們偶爾會要求你驗證你的 PIN 碼，以便你能記住它。</string>
+  <string name="Megaphones_verify_pin">驗證 PIN 碼</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
@@ -880,8 +887,8 @@
   <string name="MessageRecord_you_made_s_an_admin">你將%1$s設為管理員。</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s將%2$s設為管理員。</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s將你設為管理員。</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">你撤消了%1$s的管理員權限。</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s撤消你的管理員權限。\"</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">你撤銷了%1$s的管理員權限。</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 撤銷了你的管理員權限。</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s從%2$s撤銷了管理員權限。</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s現在是管理者。</string>
   <string name="MessageRecord_you_are_now_an_admin">你現在是管理員。</string>
@@ -976,6 +983,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">你從另一個裝置標記與 %s 的安全碼為已驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">你已標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">你在群組通話中 · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s 和 %2$s 在群組通話中 · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s、%2$s 和 %3$s 在群組通話中 · %4$s</string>
+  <string name="MessageRecord_group_call_s">群組通話 · %1$s</string>
+  <string name="MessageRecord_you">您</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="other">%1$s、%2$s 和另外 %3$d 人在群組通話中 · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">接受</string>
   <string name="MessageRequestBottomView_continue">繼續</string>
@@ -995,13 +1013,13 @@
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s及%2$s的成員</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s、及%3$s的成員</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="other">%1$d個成員</item>
+    <item quantity="other">%1$d 個成員</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="other">%1$d成員(+%2$d已被邀請)</item>
+    <item quantity="other">%1$d 個成員 (+%2$d 人已獲邀請)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-    <item quantity="other">%d其他群組</item>
+    <item quantity="other">另外 %d 個群組</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">輸入的自訂密碼不相符！</string>
@@ -1077,7 +1095,7 @@
   <string name="RatingManager_rate_this_app">評分這個應用程式</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜歡使用此應用程式，請使用片刻時間幫我們對其進行評分。</string>
   <string name="RatingManager_rate_now">立即評分！</string>
-  <string name="RatingManager_no_thanks">不，謝謝。</string>
+  <string name="RatingManager_no_thanks">不用了，謝謝</string>
   <string name="RatingManager_later">稍後</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕，您的設備上未安裝 Google Play 商店。</string>
   <!--ReactionsBottomSheetDialogFragment-->
@@ -1118,7 +1136,7 @@
   <string name="WebRtcCallView__signal_video_call">Signal 視訊電話…</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
   <string name="WebRtcCallView__join_call">加入通話</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" 群組通話</string>
+  <string name="WebRtcCallView__s_group_call">「%1$s」群組通話</string>
   <string name="WebRtcCallView__view_participants_list">查看參與者</string>
   <string name="WebRtcCallView__your_video_is_off">你的視訊已關閉</string>
   <string name="WebRtcCallView__connecting">連接中…</string>
@@ -1322,7 +1340,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
 請升級您的 Signal。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼格式不正確。請重新掃一次。</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">透過…分享安全碼</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">分享安全碼到…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">我方 Signal 安全碼：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">沒有在剪貼簿中發現安全碼，因此無法進行比較</string>
@@ -1508,7 +1526,7 @@
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">已達到推薦成員數上限</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal 群組在%1$d個成員數或更少的情況下表現最佳。 新增更多成員將導致傳送和接收訊息的延遲。</string>
   <plurals name="ContactSelectionListFragment_d_members">
-    <item quantity="other">%1$d個成員</item>
+    <item quantity="other">%1$d 個成員</item>
   </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">無已封鎖的聯絡人</string>
@@ -1550,6 +1568,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">載入中</string>
   <string name="ConversationUpdateItem_learn_more">了解更多</string>
+  <string name="ConversationUpdateItem_join_call">加入通話</string>
+  <string name="ConversationUpdateItem_return_to_call">返回通話</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
@@ -1713,7 +1733,7 @@
   <string name="message_details_header__sent">傳送時間</string>
   <string name="message_details_header__received">接收時間</string>
   <string name="message_details_header__disappears">銷毀期限</string>
-  <string name="message_details_header__via">傳遞方式</string>
+  <string name="message_details_header__via">經由</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">等候中</string>
   <string name="message_details_recipient_header__sent_to">傳送給</string>
@@ -1863,7 +1883,7 @@
   <string name="preferences__sms_delivery_reports">手機簡訊傳送狀態報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">針對每則手機簡訊都要求回覆傳送報告</string>
   <string name="preferences__chats">聊天與媒體</string>
-  <string name="preferences__storage">儲存</string>
+  <string name="preferences__storage">儲存空間</string>
   <string name="preferences__conversation_length_limit">對話群組長度上限</string>
   <string name="preferences__keep_messages">保留訊息</string>
   <string name="preferences__clear_message_history">清除訊息歷史記錄</string>
@@ -1916,7 +1936,7 @@
   <string name="preferences_storage__six_months">6個月</string>
   <string name="preferences_storage__thirty_days">30天</string>
   <string name="preferences_storage__none">無</string>
-  <string name="preferences_storage__s_messages">%1$s則訊息</string>
+  <string name="preferences_storage__s_messages">%1$s 則訊息</string>
   <string name="preferences_storage__custom">自訂</string>
   <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
@@ -2184,7 +2204,7 @@
   <string name="ResearchMegaphoneDialog_signal_research">Signal 研究</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>我們相信隱私。</b></p><p>Signal無法追踪你或收集你的資料。 為了改善所有人的Signal，我們依靠使用者反應，<b>我們會愛上你的。</b></p><p>我們正在進行一項調查，以了解你如何使用Signal。 我們的調查不會收集任何可以識別你身份的資料。 如果你有興趣分享其他回應，則可以選擇提供聯絡訊息。</p><p>如果你有幾分鐘的時間要提供反應意見，我們很高興收到你的來信。</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">參加問卷</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">不，謝謝。</string>
+  <string name="ResearchMegaphoneDialog_no_thanks">不用了，謝謝</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">該問卷由Alchemer託管在安全域surveys.signalusers.org中</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
@@ -2197,7 +2217,7 @@
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人的權限來搜尋聯絡人，但是現在設定為永久拒絕存取。請繼續到\"應用程式\"ˇ的設定中，選擇\"權限\"，接著啟動\"聯絡人\"。</string>
   <string name="conversation_activity__enable_signal_messages">啟用 Signal 訊息</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">遷移 Signal 資料庫</string>
-  <string name="PushDecryptJob_new_locked_message">新鎖定的訊息</string>
+  <string name="PushDecryptJob_new_locked_message">新的已鎖定訊息</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">解鎖以查看待處理的訊息</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">備份密碼</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">備份將會儲存到外部儲存空間，並以下方的密碼加密。你必須擁有這個密碼來還原此備份。</string>
@@ -2246,7 +2266,7 @@
   <string name="LocalBackupJobApi29_tap_to_manage_backups">點擊以管理備份。</string>
   <string name="ProgressPreference_d_messages_so_far">目前有 %d 則訊息</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
-  <string name="RegistrationActivity_wrong_number">驗證碼錯誤</string>
+  <string name="RegistrationActivity_wrong_number">電話號碼不對</string>
   <string name="RegistrationActivity_call_me_instead_available_in">改為致電給我 \n (請稍候 %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
   <string name="RegistrationActivity_code_support_subject">Signal 註冊 - Android驗證碼</string>
@@ -2254,9 +2274,9 @@
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__see_my_phone_number">查看我的電話號碼</string>
   <string name="preferences_app_protection__find_me_by_phone_number">透過電話號碼找到我</string>
-  <string name="PhoneNumberPrivacy_everyone">每個人</string>
+  <string name="PhoneNumberPrivacy_everyone">所有人</string>
   <string name="PhoneNumberPrivacy_my_contacts">我的聯絡人</string>
-  <string name="PhoneNumberPrivacy_nobody">無人</string>
+  <string name="PhoneNumberPrivacy_nobody">沒有人</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">你的電話號碼將可被與你傳送訊息的所有人員和群組看見。</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">任何在你的聯絡人中擁有你的電話號碼的人都會在 Signal 上將你視為聯絡人。 其他人將可以在搜尋中找到你。</string>
   <string name="PhoneNumberPrivacy_my_contacts_see_description">只有你的聯絡人會在Signal上看到你的電話號碼。</string>
@@ -2306,7 +2326,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">註冊鎖定協助護你的電話號碼，免於未經授權註冊的企圖。此功能可以隨時在 Signal 的隱私權設定內關閉。</string>
   <string name="RegistrationLockDialog_registration_lock">註冊鎖</string>
   <string name="RegistrationLockDialog_enable">啟用</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">註冊鎖定PIN碼必需至少%d數字字母。</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">註冊鎖定 PIN 碼必須至少有 %d 個數字。</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">你輸入的兩個 PIN 碼不一致。</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">連線到服務錯誤</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">關閉註冊鎖定 PIN 碼？</string>
@@ -2327,13 +2347,13 @@
   <string name="RecipientBottomSheet_add_to_another_group">新增到另一個群組</string>
   <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
   <string name="RecipientBottomSheet_make_group_admin">成為群組管理員</string>
-  <string name="RecipientBottomSheet_remove_as_admin">以管理員身份移除</string>
+  <string name="RecipientBottomSheet_remove_as_admin">移除管理員身份</string>
   <string name="RecipientBottomSheet_remove_from_group">從群組中移除</string>
   <string name="RecipientBottomSheet_message_description">訊息</string>
   <string name="RecipientBottomSheet_voice_call_description">語音電話</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">不安全的語音電話</string>
   <string name="RecipientBottomSheet_video_call_description">視訊電話</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">以管理員身分移除%1$s嗎？</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">移除%1$s的群組管理員身份嗎？</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\"將能夠編輯該群組及其使用者。</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">從群組中移除%1$s嗎?</string>
   <string name="RecipientBottomSheet_remove">移除</string>
@@ -2359,7 +2379,7 @@
   <string name="VoiceNotePlaybackPreparer__could_not_start_playback">無法開始播放。</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">語音訊息 · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s到%2$s</string>
+  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s 傳送給 %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\"已經被封鎖。</string>
@@ -2370,13 +2390,13 @@
   <string name="ReviewCardDialogFragment__review_request">審查要求</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d 個群組成員的名字相同，請查看以下成員並選擇採取措施。</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">如果你不確定請求來自誰，請查看下面的聯絡人並採取措施。</string>
-  <string name="ReviewCardDialogFragment__no_other_groups_in_common">沒有其他群組有共同點。</string>
-  <string name="ReviewCardDialogFragment__no_groups_in_common">沒有群組有共同點。</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">沒有其他共同的群組。</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">沒有共同的群組。</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-    <item quantity="other">%d 個群組有共同點</item>
+    <item quantity="other">%d 個共同的群組</item>
   </plurals>
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
-    <item quantity="other">%d 群組有共同點</item>
+    <item quantity="other">%d 個共同的群組</item>
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">要從群組中移除%1$s嗎？</string>
   <string name="ReviewCardDialogFragment__remove">移除</string>

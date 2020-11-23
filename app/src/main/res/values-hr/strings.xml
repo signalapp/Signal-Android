@@ -428,7 +428,7 @@
   <string name="DonateMegaphone_donate_to_signal">Donirajte Signalu</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal napajaju ljudi poput vas. Pokažite svoju podršku već danas!</string>
   <string name="DonateMegaphone_donate">Doniraj</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ne sada</string> -->
+  <string name="DonateMegaphone_no_thanks">Ne Hvala</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za nedostatak Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite kako biste onemogućili sistemsku optimizaciju baterije koja spriječava Signal da dohvaća poruke dok je uređaj neaktivan.</string>
@@ -1078,6 +1078,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili ste s drugog uređaja vaš sigurnosni broj s %s provjerenim</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili ste vaš sigurnosni broj s %s kao ne provjernim</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste da vaš sigurnosni broj s %s nije provjeren na drugom uređaju</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_you">Vi</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Prihvati</string>
   <string name="MessageRequestBottomView_continue">Nastavi</string>

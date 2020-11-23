@@ -414,7 +414,7 @@
   <string name="DonateMegaphone_donate_to_signal">Doar para o Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">O Signal é criado por pessoas como você. Mostre o seu apoio hoje!</string>
   <string name="DonateMegaphone_donate">Doar</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Agora não</string> -->
+  <string name="DonateMegaphone_no_thanks">Não. Agradeço.</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para ausência do Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não tem suporte para o Play Services. Clique para desabilitar as otimizações de bateria do sistema que impedem o Signal de receber mensagens enquanto está inativo.</string>
@@ -600,11 +600,20 @@
     <item quantity="one">%d membro não tem suporte aos Novos Grupos, portanto, este será um Grupo Legado.</item>
     <item quantity="other">%d membros não têm suporte aos Novos Grupos, portanto, este grupo será um Grupo Legado.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d membro não tem suporte aos Novos Grupos, portanto este grupo não pode ser criado.</item>
+    <item quantity="other">%d membros não têm suporte aos Novos Grupos, portanto este grupo não pode ser criado.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Um Grupo Legado será criado porque \"%1$s\" está usando uma versão desatualizada do Signal. Você pode criar um Novo Grupo com ele depois dele atualizar o Signal, ou remova-o antes de criar o grupo.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Um Grupo Legado será criado porque %1$d está usando uma versão desatualizada do Signal. Você poderá criar um Novo Grupo com ele depois de ter atualizado o Signal, ou remova-o antes de criar o grupo.</item>
     <item quantity="other">Um Grupo Legado será criado porque %1$d membros estão usando uma versão desatualizada do Signal. Você poderá criar um Novo Grupo com eles depois de terem atualizado o Signal, ou remova-os antes de criar o grupo.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Este grupo não pode ser criado porque \"%1$s\" está usando uma versão desatualizada do Signal. Você deverá remover essa pessoa antes de criar o grupo.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Este grupo não pode ser criado porque %1$d membro está usando uma versão desatualizada do Signal. Você deverá removê-lo antes de criar o grupo.</item>
+    <item quantity="other">Este grupo não pode ser criado porque %1$d membros estão usando versões desatualizadas do Signal. Você deverá removê-los antes de criar o grupo.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mensagens efêmeras</string>
@@ -1027,6 +1036,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Você marcou o seu número de segurança com %scomo verificado através de outro dispositivo</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Você marcou o seu número de segurança com %scomo não verificado</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Você marcou o seu número de segurança com %s como não verificado através de outro dispositivo</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s começou uma chamada em grupo · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada em grupo · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Você está na chamada em grupo · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s e %2$s estão na chamada em grupo · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s e %3$s estão na chamada em grupo · %4$s</string>
+  <string name="MessageRecord_group_call_s">Chamada em grupo · %1$s</string>
+  <string name="MessageRecord_you">Você</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s e %3$d outra pessoa estão na chamada em grupo · %4$s</item>
+    <item quantity="other">%1$s, %2$s e %3$d outras pessoas estão na chamada em grupo · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Aceitar</string>
   <string name="MessageRequestBottomView_continue">Continuar</string>
@@ -1615,6 +1636,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Carregando</string>
   <string name="ConversationUpdateItem_learn_more">Saiba mais</string>
+  <string name="ConversationUpdateItem_join_call">Participar da chamada</string>
+  <string name="ConversationUpdateItem_return_to_call">Voltar para a chamada</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Tocar … Pausar</string>
   <string name="audio_view__download_accessibility_description">Baixar</string>

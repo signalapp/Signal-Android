@@ -229,10 +229,10 @@
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">درخواست شما برای پیوستن به مدیر گروه ارسال شد. هنگامی که به درخواست شما پاسخ دهند مطلع خواهید شد.</string>
   <string name="ConversationActivity_cancel_request">لغو درخواست</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال پیام‌ های صوتی، به Signal اجازه دهید تا به میکروفون شما دسترسی داشته باشد.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal به منظور ارسال پیام های صوتی Signal نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «میکروفون» را فعال کنید.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">برای ارسال پیام های صوتی Signal نیاز به مجوز میکروفون دارد، ولی این اجازه به صورت دائم رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «میکروفون» را فعال کنید.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal نیاز به دسترسی به دوربین و میکروفون دارد تا بتواند با %s تماس بگیرد، اما دسترسی به آن ها داده نشده است. لطفاً به قسمت تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، «دوربین» و «میکروفون» را فعال کنید.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">برای گرفتن تصاویر و ویدیو، به Signal اجازه بدهید به دوربین شما دسترسی داشته باشد.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal برای گرفتن عکس یا ضبط ویدئو نیاز به دسترسی به دوربین دارد، اما دسترسی به آن رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، «دوربین» را فعال کنید. </string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">برای گرفتن عکس یا ضبط ویدئو Signal نیاز به دسترسی به دوربین دارد، اما دسترسی به آن رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کرده، «دوربین» را فعال کنید. </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">برای گرفتن تصویر یا ویدئو Signal نیاز به اجازه دوربین دارد</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">مجوز میکروفون را برای ضبط فیلم با صدا فعال کنید.</string>
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">سیگنال برای ضبط ویدئو به اجازه میکروفون نیاز دارد، اما اجازه آن رد شده است. لطفاً به تنظیمات برنامه بروید، «مجوزها» را انتخاب کرده و «میکروفون» و «دوربین» را فعال کنید.</string>
@@ -414,7 +414,7 @@
   <string name="DonateMegaphone_donate_to_signal">حمایت از Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal با کمک افرادی همانند شما حمایت می‌شود. امروز حمایت خود را نشان دهید!</string>
   <string name="DonateMegaphone_donate">حمایت کردن</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">حالا نه</string> -->
+  <string name="DonateMegaphone_no_thanks">نه ،‌ ممنون</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">بهینه‌سازی به علت ناموجود بودن خدمات Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">این دستگاه از خدمات Play پشتیبانی نمی‌کند. برای غیرفعال کردن بهینه‌سازی باتری سیستم که از دریافت پیام‌ها هنگامی که Signal غیرفعال است ممانعت می‌کند، ضربه بزنید.</string>
@@ -600,11 +600,20 @@
     <item quantity="one">%d عضو از گروه‌های جدید پشتیبانی نمی‌کند، پس این گروه یک گروه قدیمی خواهد بود.</item>
     <item quantity="other">%d عضو از گرو‌های جدید پشتیبانی نمی‌کنند، پس این گروه یک گروه قدیمی خواهد بود.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d عضو از گروه‌های جدید پشتیبانی نمی‌کند، پس این گروه نمی‌تواند ایجاد شود.</item>
+    <item quantity="other">%d عضو از گروه‌های جدید پشتیبانی نمی‌کنند، پس این گروه نمی‌تواند ایجاد شود.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">یک گروه قدیمی ساخته خواهد شد، چون «%1$s» از یک نسخهٔ قدیمی Signal استفاده می‌کند. شما می‌توانید با آن‌ها، بعد ازینکه Signal را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">یک گروه قدیمی ساخته خواهد شد، چون %1$d عضو از یک نسخهٔ قدیمی Signal استفاده می‌کند. شما می‌توانید با آن‌ها، بعد ازینکه Signal را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</item>
     <item quantity="other">یک گروه قدیمی ساخته خواهد شد، چون %1$d عضو از یک نسخهٔ قدیمی Signal استفاده می‌کنند. شما می‌توانید با آن‌ها، بعد ازینکه Signal را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">این گروه نمی‌تواند ایجاد شود چون «%1$s» از یک نسخهٔ قدیمی Signal استفاده می‌کند. شما باید قبل از ایجاد کردن گروه آن‌ها را حذف کنید.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">این گروه نمی‌تواند ایجاد شود چون %1$d نفر از اعضا از یک نسخهٔ قدیمی Signal استفاده می‌کند. شما باید قبل از ایجاد کردن گروه او را حذف کنید.</item>
+    <item quantity="other">این گروه نمی‌تواند ایجاد شود چون %1$d نفر از اعضا از یک نسخهٔ قدیمی Signal استفاده می‌کنند. شما باید قبل از ایجاد کردن گروه آن‌ها را حذف کنید.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
@@ -867,8 +876,8 @@
   <string name="MediaSendActivity_message_to_s">پیام به %s </string>
   <string name="MediaSendActivity_message">پیام</string>
   <string name="MediaSendActivity_select_recipients">گیرندگان را انتخاب کنید</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal به دسترسی مخاطبین برای نمایش آن‌ها نیاز دارد.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal برای نشان دادن مخاطبین شما نیاز به دسترسی مخاطبین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">برای نمایش مخاطبین Signal به دسترسی به آن‌ها نیاز دارد.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">برای نشان دادن مخاطبین شما Signal نیاز به دسترسی مخاطبین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">شما نمی‌توانید بیش از %d مورد را به اشتراک بگذارید.</item>
     <item quantity="other">شما نمی‌توانید بیش از %d مورد را به اشتراک بگذارید.</item>
@@ -1027,6 +1036,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">شما شمارهٔ امنیتی خود با %s را از دستگاه دیگری تأیید شده علامت زدید</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">شما شمارهٔ امنیتی خود با %s را تأیید نشده علامت زدید</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ امنیتی خود با %s را از دستگاه دیگری تأیید نشده علامت زدید</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی حضور دارد · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">شما در تماس گروهی حضور دارید · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s و %2$s در تماس گروهی حضور دارند · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s، %2$s و %3$s در این تماس گروهی حضور دارند · %4$s</string>
+  <string name="MessageRecord_group_call_s">تماس گروهی · %1$s</string>
+  <string name="MessageRecord_you">شما</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s، %2$s و %3$d نفر دیگر در این تماس گروهی حضور دارند · %4$s</item>
+    <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در این تماس گروهی حضور دارند · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">پذیرفتن</string>
   <string name="MessageRequestBottomView_continue">ادامه</string>
@@ -1613,6 +1634,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">در حال بارگذاری</string>
   <string name="ConversationUpdateItem_learn_more">بیشتر یاد بگیرید</string>
+  <string name="ConversationUpdateItem_join_call">پیوستن به تماس</string>
+  <string name="ConversationUpdateItem_return_to_call">بازگشت به تماس</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پخش … وقفه</string>
   <string name="audio_view__download_accessibility_description">دریافت</string>

@@ -398,8 +398,9 @@
   <string name="DocumentView_unnamed_file">無名のファイル</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signalへの寄付</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalはあなたのような人々に支えられています。Signalを支援していただけませんか？</string>
   <string name="DonateMegaphone_donate">寄付する</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">今はしない</string> -->
+  <string name="DonateMegaphone_no_thanks">今はしない</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Google Play開発者サービスの不在に対応する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。Signalがいつでもメッセージを受信できるよう、タップしてバッテリー最適化機能を無効にしてください。</string>
@@ -568,10 +569,17 @@
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">新しいグループをサポートしないメンバーが%d人いるため、このグループはレガシーグループになります。</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="other">新しいグループをサポートしていないメンバーが%d人いるため、このグループを作成できません。</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">「%1$s」が古いバージョンのSignalを使用しているため、レガシーグループが作成されます。当該ユーザのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">古いバージョンのSignalを使用しているメンバーが%1$d人いるため、レガシーグループが作成されます。当該メンバーのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">「%1$s」が古いバージョンのSignalを使用しているため、このグループを作成できません。当該ユーザーを対象から外せば、グループを作成できます。</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="other">%1$d人のメンバーが古いバージョンのSignalを使用しているため、このグループを作成できません。当該ユーザーを対象から外せば、グループを作成できます。</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">消えるメッセージ</string>
@@ -975,6 +983,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s に対する安全番号を他の端末で検証済みにしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s に対する安全番号を未検証にしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s に対する安全番号を他の端末で未検証にしました</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始 · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s がグループ通話に参加 · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">あなたがグループ通話に参加 · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s と %2$s がグループ通話に参加 · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s 、%2$s 、%3$s がグループ通話に参加 · %4$s</string>
+  <string name="MessageRecord_group_call_s">グループ通話 · %1$s</string>
+  <string name="MessageRecord_you">あなた</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="other">%1$s 、%2$s 、%3$d などがグループ通話に参加 · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">承認する</string>
   <string name="MessageRequestBottomView_continue">続ける</string>
@@ -1542,6 +1561,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">読み込んでいます</string>
   <string name="ConversationUpdateItem_learn_more">詳しく見る</string>
+  <string name="ConversationUpdateItem_join_call">通話に参加</string>
+  <string name="ConversationUpdateItem_return_to_call">通話に戻る</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>

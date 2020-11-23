@@ -389,7 +389,7 @@
   <string name="DocumentView_unnamed_file">Uten navn</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ikke nå</string> -->
+  <string name="DonateMegaphone_no_thanks">Nei takk</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglende Play Tjenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enheten støtter ikke Play-tjenester. Trykk én gang for å slå av batterioptimalisering som kan hindre Signal i å motta meldinger når det kjører i bakgrunnen.</string>
@@ -834,6 +834,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du markerte sikkerhetsnummeret for %s som bekreftet fra en annen enhet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte sikkerhetsnummer for %s som ikke bekreftet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte sikkerhetsnummer for %s som ikke bekreftet fra en annen enhet</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_you">Deg</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Godta</string>
   <string name="MessageRequestBottomView_continue">Fortsett</string>

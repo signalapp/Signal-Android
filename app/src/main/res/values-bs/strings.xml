@@ -426,7 +426,9 @@
   <string name="DocumentView_unnamed_file">Datoteka bez naziva</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Donirajte za Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ne sada</string> -->
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal postoji zahvaljujući osobama poput Vas. Pokažite svoju podršku već danas!</string>
+  <string name="DonateMegaphone_donate">Doniraj</string>
+  <string name="DonateMegaphone_no_thanks">Ne, hvala</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuj za nepostojanje Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite ovdje kako biste onemogućili sistemske optimizacije korištenja baterije koje sprečavaju Signal da prima poruke dok je aplikacija zatvorena.</string>
@@ -629,12 +631,23 @@
     <item quantity="few">%d člana ne podržavaju nove grupe, stoga će ova grupa biti podešena kao stara grupa.</item>
     <item quantity="other">%d članova ne podržava nove grupe, stoga će ova grupa biti podešena kao stara grupa.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d član ne podržava nove grupe, stoga se ova grupa ne može kreirati.</item>
+    <item quantity="few">%d člana ne podržavaju nove grupe, stoga se ova grupa ne može kreirati.</item>
+    <item quantity="other">%d članova ne podržava nove grupe, stoga se ova grupa ne može kreirati.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Stara grupa bit će kreirana zato što “%1$s” koristi stariju verziju Signala. Možete s njim ili njom kreirati novu grupu nakon što ažuriraju Signal, ili ih možete odstraniti prije kreiranja grupe.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Stara grupa bit će kreirana zato što %1$d član koristi stariju verziju Signala. Možete s njim ili njom kreirati novu grupu nakon što ažuriraju Signal, ili ih možete odstraniti prije kreiranja grupe.</item>
     <item quantity="few">Stara grupa bit će kreirana zato što %1$d člana koriste stariju verziju Signala. Možete s njima kreirati novu grupu nakon što ažuriraju Signal, ili ih možete odstraniti prije kreiranja grupe.</item>
     <item quantity="other">Stara grupa bit će kreirana zato što %1$d članova koristi stariju verziju Signala. Možete s njima kreirati novu grupu nakon što ažuriraju Signal, ili ih možete odstraniti prije kreiranja grupe.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ova grupa ne može se kreirati jer “%1$s” koristi staru verziju Signala. Morat ćete ovog člana ukloniti da biste mogli kreirati grupu.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Ova grupa ne može se kreirati jer %1$d član koristi staru verziju Signala. Morat ćete ga ukloniti da biste mogli kreirati grupu.</item>
+    <item quantity="few">Ova grupa ne može se kreirati jer %1$d člana koriste staru verziju Signala. Morat ćete ih ukloniti da biste mogli kreirati grupu.</item>
+    <item quantity="other">Ova grupa ne može se kreirati jer %1$d članova koristi staru verziju Signala. Morat ćete ih ukloniti da biste mogli kreirati grupu.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Nestajuće poruke</string>
@@ -1076,6 +1089,19 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili ste svoj sigurnosni broj sa %s kao potvrđen sa drugog uređaja</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen sa drugog uređaja</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s učestvuje u grupnom pozivu · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Učestvujete u grupnom pozivu · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s i %2$s učestvuju u grupnom pozivu · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s i %3$s učestvuju u grupnom pozivu · %4$s</string>
+  <string name="MessageRecord_group_call_s">Grupni poziv · %1$s</string>
+  <string name="MessageRecord_you">Vi</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s i još %3$d osoba učestvuju u grupnom pozivu · %4$s</item>
+    <item quantity="few">%1$s, %2$s i još %3$d osobe učestvuju u grupnom pozivu · %4$s</item>
+    <item quantity="other">%1$s, %2$s i %3$d drugih učestvuje u grupnom pozivu · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Prihvati</string>
   <string name="MessageRequestBottomView_continue">Nastavi</string>
@@ -1675,6 +1701,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Učitavam</string>
   <string name="ConversationUpdateItem_learn_more">Saznajte više</string>
+  <string name="ConversationUpdateItem_join_call">Pridruži se pozivu</string>
+  <string name="ConversationUpdateItem_return_to_call">Vrati se pozivu</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Sviraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
@@ -2090,6 +2118,9 @@
   <string name="preferences_setup_a_username">Podesite korisničko ime</string>
   <string name="configurable_single_select__customize_option">Prilagodi</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Konverzacije i kratice</string>
+  <string name="preferences__internal_delete_all_dynamic_shortcuts">Izbriši sve dinamičke kratice</string>
+  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Kliknite da izbrišete sve dinamičke kratice</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

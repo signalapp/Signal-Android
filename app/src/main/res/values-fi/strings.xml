@@ -400,7 +400,7 @@
   <string name="DocumentView_unnamed_file">Nimeämätön tiedosto</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Lahjoita Signalille</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ei nyt</string> -->
+  <string name="DonateMegaphone_no_thanks">Ei kiitos</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimoi Play Servicesin puuttumista</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tämä laite ei tue Play Servicesiä. Napauta tästä ottaaksesi pois päältä virransäästöominaisuudet, jotka estävät Signalia hakemasta viestejä taustalla.</string>
@@ -957,6 +957,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Merkitsit turvanumerosi yhteystiedon %s kanssa varmennetuksi toisesta laitteestasi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Merkitsit turvanumerosi yhteystiedon %s kanssa varmentamattomaksi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Merkitsit turvanumerosi yhteystiedon %s kanssa varmentamattomaksi toisesta laitteesta.</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_you">Sinä</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Hyväksy</string>
   <string name="MessageRequestBottomView_continue">Jatka</string>

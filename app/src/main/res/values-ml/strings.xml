@@ -44,9 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">സ്‌ക്രീൻ ലോക്ക് %1$s, രജിസ്‌ട്രേഷൻ ലോക്ക് %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">സ്‌ക്രീൻ ലോക്ക് %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">തീം %1$s, ഭാഷ %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">രജിസ്ട്രേഷൻ ലോക്കിനായി പിൻ ആവശ്യമാണ്. പിൻ അപ്രാപ്‌തമാക്കുന്നതിന്, ആദ്യം രജിസ്‌ട്രേഷൻ ലോക്ക് പ്രവർത്തനരഹിതമാക്കുക.</string>
-  <string name="ApplicationPreferencesActivity_pin_created">പിൻ സൃഷ്ടിച്ചു.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">പിൻ പ്രവർത്തനരഹിതമാക്കി.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">രജിസ്ട്രേഷൻ ലോക്കിനായി PIN ആവശ്യമാണ്. PIN അപ്രാപ്‌തമാക്കുന്നതിന്, ആദ്യം രജിസ്‌ട്രേഷൻ ലോക്ക് പ്രവർത്തനരഹിതമാക്കുക.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN സൃഷ്ടിച്ചു.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN പ്രവർത്തനരഹിതമാക്കി.</string>
   <string name="ApplicationPreferencesActivity_hide">മറയ്ക്കുക</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">ഓർമ്മപ്പെടുത്തൽ മറയ്‌ക്കുക</string>
   <!--AppProtectionPreferenceFragment-->
@@ -80,8 +80,13 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ഓഡിയോ പ്ലേ ചെയ്യുന്നതിൽ പിശക്!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">തടഞ്ഞ ഉപയോക്താക്കൾ</string>
+  <string name="BlockedUsersActivity__add_blocked_user">തടഞ്ഞ ഉപയോക്താവിനെ ചേർക്കുക</string>
   <string name="BlockedUsersActivity__blocked_users_will">ബ്ലോക്ക് ചെയ്യപ്പെറ്റ ഉപയോക്താക്കൾക്ക് നിങ്ങളെ വിളിക്കാനോ മെസേജുകൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">തടഞ്ഞ ഉപയോക്താക്കളൊന്നുമില്ല</string>
+  <string name="BlockedUsersActivity__block_user">ഉപയോക്താവിനെ തടയണോ?</string>
   <string name="BlockedUsersActivity__block">ബ്ലോക്ക്</string>
+  <string name="BlockedUsersActivity__unblock_user">ഉപയോക്താവിനെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockedUsersActivity__unblock">തടഞ്ഞത് മാറ്റുക</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s-നെ ബ്ലോക്ക്യും ഉപേക്ഷിക്കുകയും ചെയ്യണോ?</string>
@@ -293,6 +298,7 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">അയയ്ക്കുന്ന താൽക്കാലിക മീഡിയ ഫയലുകൾ അയച്ചതിനുശേഷം അവ സ്വയമേവ നീക്കംചെയ്യപ്പെടും</string>
   <string name="ConversationFragment_you_already_viewed_this_message">നിങ്ങൾ ഇതിനകം ഈ സന്ദേശം കണ്ടു</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ഈ സംഭാഷണത്തിൽ‌ നിങ്ങൾ‌ക്കായി കുറിപ്പുകൾ‌ ചേർ‌ക്കാൻ‌ കഴിയും.\nനിങ്ങളുടെ അക്കൗണ്ടിൽ ലിങ്കുചെയ്‌ത ഉപകരണങ്ങളുണ്ടെങ്കിൽ, പുതിയ കുറിപ്പുകൾ സമന്വയിപ്പിക്കും.</string>
+  <string name="ConversationFragment__tap_to_review">അവലോകനം ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഒരു ബ്രൌസർ ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല.</string>
   <!--ConversationListFragment-->
@@ -342,6 +348,8 @@
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
   <string name="BackupsPreferenceFragment__create_backup">ബാക്കപ്പ് സൃഷ്ടിക്കുക</string>
+  <string name="BackupsPreferenceFragment__last_backup">അവസാന ബാക്കപ്പ്:%1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">ബാക്കപ്പ് ഫോൾഡർ</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിക്കുക</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിച്ച് അത് പൊരുത്തപ്പെടുന്നുണ്ടോയെന്ന് പരിശോധിക്കുക</string>
   <string name="BackupsPreferenceFragment__turn_on">ഓൺ ചെയ്യുക</string>
@@ -386,12 +394,14 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">പേരിടാത്ത ഫയൽ</string>
   <!--DonateMegaphone-->
+  <string name="DonateMegaphone_donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
   <string name="DonateMegaphone_donate">സംഭാവനചെയ്യുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">ഇപ്പോൾ വേണ്ട</string> -->
+  <string name="DonateMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Play Services ഇല്ലാത്തതിനാൽ ഡിവൈസ് ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ഈ ഉപകരണം Play Services പിന്തുണയ്ക്കുന്നില്ല. നിഷ്‌ക്രിയമായിരിക്കുമ്പോൾ സന്ദേശങ്ങൾ വീണ്ടെടുക്കുന്നതിൽ നിന്ന് Signal നെ തടയുന്ന സിസ്റ്റം ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കാൻ ടാപ്പുചെയ്യുക.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_update_now">ഇപ്പോൾ അപ്ഡേറ്റ് ചെയ്യുക</string>
   <!--PendingGroupJoinRequestsReminder-->
   <string name="PendingGroupJoinRequestsReminder_view">കാണുക</string>
   <!--ShareActivity-->
@@ -430,14 +440,41 @@
   <string name="GroupManagement_access_level_only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
   <string name="GroupManagement_access_level_no_one">ആരുമില്ല</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">ക്ഷണം അയച്ചു</item>
+    <item quantity="other">%d ക്ഷണങ്ങൾ അയച്ചു</item>
+  </plurals>
   <string name="GroupManagement_learn_more">കൂടുതൽ അറിയുക</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">പുതിയ ഗ്രൂപ്പുകൾ എന്താണ്?</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">ഇപ്പോൾ വേണ്ട</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">ഗ്രൂപ്പ് അപ്ഡേറ്റ് ചെയ്യുക</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">അംഗത്തെ ചേർക്കണോ?</item>
+    <item quantity="other">അംഗങ്ങളെ ചേർക്കുക</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">അംഗത്തെ ചേർക്കണോ?</item>
+    <item quantity="other">അംഗങ്ങളെ ചേർക്കണോ?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">അംഗത്തെ ചേർക്കുക</item>
+    <item quantity="other">അംഗങ്ങളെ ചേർക്കുക</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">അംഗത്തെ ചേർക്കുന്നതിൽ പരാജയപ്പെട്ടു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</item>
+    <item quantity="other">അംഗങ്ങളെ ചേർക്കുന്നതിൽ പരാജയപ്പെട്ടു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">അംഗത്തെ ചേർക്കാൻ കഴിയില്ല.</item>
+    <item quantity="other">അംഗങ്ങളെ ചേർക്കാൻ കഴിയില്ല.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ഗ്രൂപ്പില്‍ നിന്നും ഒഴിയണോ?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ മെസേജുകൾ അയയ്ക്കാനോ സ്വീകരിക്കാനോ കഴിയില്ല.</string>
@@ -453,6 +490,10 @@
   <string name="LinkPreviewView_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d അംഗം</item>
+    <item quantity="other">%1$d അംഗങ്ങൾ</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="PendingMembersActivity_requests">അഭ്യർത്ഥനകൾ</string>
@@ -493,6 +534,7 @@
   <string name="ManageGroupActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ManageGroupActivity_edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
   <string name="ManageGroupActivity_group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
   <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് ബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
@@ -518,6 +560,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
   <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
+  <string name="ManageGroupActivity_legacy_group">ലെഗസി ഗ്രൂപ്പ്</string>
+  <string name="ManageGroupActivity_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_always_notify_me">എല്ലായ്പ്പോഴും എന്നെ അറിയിക്കുക</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">എന്നെ അറിയിക്കരുത്</string>
@@ -583,6 +627,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">ചേർക്കുക</string>
+  <string name="RequestConfirmationDialog_deny">നിരസിക്കുക</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ഗ്രൂപ്പ് അവതാർ</string>
   <string name="CropImageActivity_profile_avatar">അവതാർ</string>
@@ -715,6 +760,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ഇപ്പോൾ പിന്തുണയ്‌ക്കാത്ത Signal-ന്റെ പഴയ പതിപ്പ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റുചെയ്‌ത ഒരു സന്ദേശം ലഭിച്ചു. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്ത് സന്ദേശം വീണ്ടും അയയ്‌ക്കാൻ അയച്ചയാളോട് ആവശ്യപ്പെടുക.</string>
   <string name="MessageRecord_left_group">നിങ്ങൾ ഗ്രൂപ്പ് വിട്ടു.</string>
   <string name="MessageRecord_you_updated_group">നിങ്ങൾ ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
+  <string name="MessageRecord_the_group_was_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
   <string name="MessageRecord_s_updated_group">%s ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
   <string name="MessageRecord_called_s">%s വിളിച്ചു</string>
   <string name="MessageRecord_s_joined_signal">%s Signal-ലിൽ ഉണ്ട്!</string>
@@ -799,6 +845,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് പരിശോധിച്ചുറപ്പിച്ചതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_you">നിങ്ങൾ</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">സ്വീകരിക്കുക</string>
   <string name="MessageRequestBottomView_continue">തുടരുക</string>
@@ -848,6 +896,7 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">നിങ്ങളുടെ സന്ദേശങ്ങൾ‌ കാലഹരണപ്പെടില്ല.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ഈ സംഭാഷണത്തിൽ അയച്ചതും സ്വീകരിച്ചതുമായ സന്ദേശങ്ങൾ കണ്ടുകഴിഞ്ഞാൽ അവ %s കഴിഞ്ഞാൽ അപ്രത്യക്ഷമാകും.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">ഇപ്പോൾ അപ്ഡേറ്റ് ചെയ്യുക</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ഐക്കൺ</string>
@@ -862,10 +911,10 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">നിങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്ത Google Play Services പതിപ്പ് ശരിയായി പ്രവർത്തിക്കുന്നില്ല. Google Play Services വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്ത് വീണ്ടും ശ്രമിക്കുക.</string>
   <!--PinRestoreEntryFragment-->
-  <string name="PinRestoreEntryFragment_incorrect_pin">തെറ്റായ പിൻ</string>
-  <string name="PinRestoreEntryFragment_skip_pin_entry">പിൻ എൻട്രി ഒഴിവാക്കണോ?</string>
+  <string name="PinRestoreEntryFragment_incorrect_pin">തെറ്റായ PIN</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">PIN എൻട്രി ഒഴിവാക്കണോ?</string>
   <string name="PinRestoreEntryFragment_need_help">സഹായം ആവശ്യമുണ്ടോ?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">നിങ്ങൾ സൃഷ്ടിച്ച %1$d+ അക്ക കോഡാണ് നിങ്ങളുടെ പിൻ, അത് സംഖ്യാ അല്ലെങ്കിൽ ആൽഫാന്യൂമെറിക് ആകാം. \n\nനിങ്ങളുടെ പിൻ ഓർമിക്കാൻ കഴിയുന്നില്ലെങ്കിൽ, നിങ്ങൾക്ക് പുതിയൊരെണ്ണം സൃഷ്ടിക്കാൻ കഴിയും. നിങ്ങൾക്ക് അക്കൗണ്ട് രജിസ്റ്റർ ചെയ്യാനും ഉപയോഗിക്കാനും കഴിയും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലുള്ള ചില സംരക്ഷിച്ച ക്രമീകരണങ്ങൾ നഷ്‌ടപ്പെടും.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">നിങ്ങൾ സൃഷ്ടിച്ച %1$d+ അക്ക കോഡാണ് നിങ്ങളുടെ PIN, അത് സംഖ്യാ അല്ലെങ്കിൽ ആൽഫാന്യൂമെറിക് ആകാം. \n\nനിങ്ങളുടെ PIN ഓർമിക്കാൻ കഴിയുന്നില്ലെങ്കിൽ, നിങ്ങൾക്ക് പുതിയൊരെണ്ണം സൃഷ്ടിക്കാൻ കഴിയും. നിങ്ങൾക്ക് അക്കൗണ്ട് രജിസ്റ്റർ ചെയ്യാനും ഉപയോഗിക്കാനും കഴിയും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലുള്ള ചില സംരക്ഷിച്ച ക്രമീകരണങ്ങൾ നഷ്‌ടപ്പെടും.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">നിങ്ങൾക്ക് നിങ്ങളുടെ PIN ഓർമ്മിക്കാൻ കഴിയുന്നില്ലായെങ്കിൽ, നിങ്ങൾക്ക് പുതിയ ഒരെണ്ണം സൃഷ്ടിക്കാവുന്നതാണ്.  നിങ്ങൾക്ക് രജിസ്റ്റർ ചെയ്യാനും നിങ്ങളുടെ അക്കൗണ്ട് ഉപയോഗിക്കാനും സാധിക്കും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലെ സേവ് ചെയ്തിട്ടുള്ള ചില സെറ്റിംഗ്സ് നിങ്ങൾക്ക് നഷ്ടമാകും.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">പുതിയ പിൻ സൃഷ്ടിക്കുക</string>
   <string name="PinRestoreEntryFragment_contact_support">കോണ്ടാക്ട് സഹായം</string>
@@ -1630,6 +1679,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__slow">പതുക്കെ</string>
   <string name="preferences__help">സഹായം</string>
   <string name="preferences__advanced">അഡ്വാൻസ്‌ഡ്`</string>
+  <string name="preferences__donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
   <string name="preferences__privacy">സ്വകാര്യത</string>
   <string name="preferences__mms_user_agent">MMS യൂസർ ഏജൻറ്</string>
   <string name="preferences__advanced_mms_access_point_names">സ്വമേധയാലുള്ള MMS ക്രമീകരണങ്ങൾ</string>
@@ -1665,6 +1715,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ടൈപ്പിംഗ് സൂചകങ്ങൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്ന് ടൈപ്പിംഗ് സൂചകങ്ങൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">വ്യക്തിഗത പഠനം അപ്രാപ്‌തമാക്കുന്നതിന് കീബോർഡിനോട് അഭ്യർത്ഥിക്കുക</string>
+  <string name="preferences_app_protection__blocked_users">തടഞ്ഞ ഉപയോക്താക്കൾ</string>
   <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_using_wifi">വൈഫൈ ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_roaming">റോമിംഗ് ചെയ്യുമ്പോൾ</string>
@@ -1830,7 +1881,7 @@ grūpp ap‌ḍē</string>
   <string name="InsightsModalFragment__title">അവതരിപ്പിക്കുന്നു ഉള്‍ക്കാഴ്‌ചൽ</string>
   <string name="InsightsModalFragment__description">നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ എത്രയെണ്ണം സുരക്ഷിതമായി അയച്ചുവെന്ന് കണ്ടെത്തുക, തുടർന്ന് നിങ്ങളുടെ Signal ശതമാനം വർദ്ധിപ്പിക്കുന്നതിന് പുതിയ കോൺടാക്റ്റുകളെ വേഗത്തിൽ ക്ഷണിക്കുക.</string>
   <string name="InsightsModalFragment__view_insights">ഉള്‍ക്കാഴ്‌ചകൽ കാണുക</string>
-  <string name="FirstInviteReminder__title">Signalലേക്ക് ക്ഷണിക്കുക</string>
+  <string name="FirstInviteReminder__title">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
   <string name="FirstInviteReminder__description">നിങ്ങൾ അയച്ച എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശങ്ങളുടെ എണ്ണം %1$d%% ആയി വർദ്ധിപ്പിക്കാം</string>
   <string name="SecondInviteReminder__title">നിങ്ങളുടെ സിഗ്നൽ വർദ്ധിപ്പിക്കുക</string>
   <string name="SecondInviteReminder__description">%1$s ക്ഷണിക്കുക</string>
@@ -2066,6 +2117,7 @@ grūpp ap‌ḍē</string>
   <string name="RecipientBottomSheet_remove">ഒഴിവാക്കുക</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupRecipientListItem_admin">അഡ്‌മിൻ‌</string>
+  <string name="GroupRecipientListItem_deny_description">നിരസിക്കുക</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">ലെഗസി vs. പുതിയ ഗ്രൂപ്പുകൾ</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">ലെഗസി ഗ്രൂപ്പുകൾ എന്താണ്?</string>

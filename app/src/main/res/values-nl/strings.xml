@@ -347,7 +347,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam en -foto zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, personen met wie je een gesprek aanvaard en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam en -foto nooit zien.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam en -foto zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, personen met wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam en -foto nooit zien.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar instellen</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-up-gegevens terugzetten?</string>
@@ -415,7 +415,7 @@
   <string name="DonateMegaphone_donate_to_signal">Aan Signal doneren</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Zou je ons willen steunen?</string>
   <string name="DonateMegaphone_donate">Doneren</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Niet nu</string> -->
+  <string name="DonateMegaphone_no_thanks">Nee, bedankt</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
@@ -532,7 +532,7 @@
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Groep verlaten?</string>
-  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult in dit groepsgesprek niet langer berichten  kunnen verzenden of ontvangen.</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Je zult in dit groepsgesprek niet langer berichten kunnen verzenden of ontvangen.</string>
   <string name="LeaveGroupDialog_leave">Verlaten</string>
   <string name="LeaveGroupDialog_choose_new_admin">Kies een nieuwe beheerder</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string>
@@ -602,11 +602,20 @@
     <item quantity="one">%d groepslid ondersteunt geen nieuwe groepen, dus deze groep wordt een oude groep.</item>
     <item quantity="other">%d groepsleden ondersteunen geen nieuwe groepen, dus deze groep wordt een oude groep.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d groepslid ondersteunt geen nieuwe groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
+    <item quantity="other">%d groepsleden ondersteunen geen nieuwe groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Er zal een oude groep aangemaakt worden omdat “%1$s”een oude versie van Signal gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Signal bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Er zal een oude groep aangemaakt worden omdat %1$d lid een oude versie van Signal gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Signal bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</item>
     <item quantity="other">Er zal een oude groep aangemaakt worden omdat %1$d leden een oude versie van Signal gebruiken. Je kunt een groep nieuwe stijl aanmaken met hen als lid nadat ze Signal bijgewerkt hebben, of hen voordat je de groep aanmaakt verwijderen.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">De nieuwe groep kon niet aangemaakt worden omdat “%1$s” een oude versie van Signal gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">De nieuwe groep kon niet aangemaakt worden omdat %1$d lid een oude versie van Signal gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</item>
+    <item quantity="other">De nieuwe groep kon niet aangemaakt worden omdat %1$d leden een oude versie van Signal gebruiken. Je zult hen moeten verwijderen om een nieuwe groep aan te kunnen maken.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Verlopende berichten</string>
@@ -1029,6 +1038,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘geverifieerd’ vanaf een ander apparaat</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Je hebt je veiligheidsnummer met %s vanaf een ander apparaat gemarkeerd als ‘niet geverifieerd’</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s heeft een groepsoproep gestart · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in deze groepsoproep aanwezig · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Je neemt deel aan een groepsoproep · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s, %2$s zijn in deze groepsoproep aanwezig · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s en %3$s zijn in deze groepsoproep aanwezig · %4$s</string>
+  <string name="MessageRecord_group_call_s">Groepsoproep · %1$s</string>
+  <string name="MessageRecord_you">Jij</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s en %3$d ander zijn in deze groepsoproep aanwezig · %4$s</item>
+    <item quantity="other">%1$s, %2$s en %3$d anderen zijn in deze groepsoproep aanwezig · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Aanvaarden</string>
   <string name="MessageRequestBottomView_continue">Gesprek voortzetten</string>
@@ -1619,6 +1640,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Aan het laden</string>
   <string name="ConversationUpdateItem_learn_more">Meer leren hierover</string>
+  <string name="ConversationUpdateItem_join_call">Aan oproep deelnemen</string>
+  <string name="ConversationUpdateItem_return_to_call">Naar de oproep terugkeren</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -2294,7 +2317,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="registration_activity__skip">Overslaan</string>
   <string name="registration_activity__register">Registreren</string>
   <string name="preferences_chats__chat_backups">Back-up-bestanden maken</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Laat Signal versleutelde back-up-bestanden maken van gesprekken en media.</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Laat Signal versleutelde back-up-bestanden maken van gesprekken en media</string>
   <string name="preferences_chats__create_backup">Nu een back-up-bestand maken</string>
   <string name="preferences_chats__verify_backup_passphrase">Back-up-wachtwoord verifiëren</string>
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test je back-up-wachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>

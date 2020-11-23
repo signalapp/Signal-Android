@@ -442,7 +442,7 @@
   <string name="DonateMegaphone_donate_to_signal">תרום אל Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ממונע על ידי אנשים כמוך. הראה לנו את תמיכתך היום!</string>
   <string name="DonateMegaphone_donate">תרום</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">לא עכשיו</string> -->
+  <string name="DonateMegaphone_no_thanks">לא תודה</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">מטב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ־Signal לאחזר הודעות בעת אי־פעילות.</string>
@@ -662,6 +662,12 @@
     <item quantity="many">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
     <item quantity="other">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">חבר קבוצה %d אינו תומך בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
+    <item quantity="two">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
+    <item quantity="many">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
+    <item quantity="other">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">קבוצה מיושנת תיוצר כי \"%1$s\" משתמש בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתו לאחר שהוא יעדכן את Signal, או להסיר אותו לפני יצירת הקבוצה.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
@@ -669,6 +675,13 @@
     <item quantity="two">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
     <item quantity="many">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
     <item quantity="other">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">קבוצה זו אינה יכולה להיווצר כי \"%1$s\" משתמש/ת בגרסה ישנה של Signal. אתה חייב להסיר אותו/אותה לפני יצירת הקבוצה.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">קבוצה זו אינה יכולה להיווצר כי חבר קבוצה %1$d משתמש בגרסה ישנה של Signal. אתה חייב להסיר אותו לפני יצירת הקבוצה.</item>
+    <item quantity="two">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
+    <item quantity="many">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
+    <item quantity="other">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">הודעות נעלמות</string>
@@ -1013,7 +1026,7 @@
   <string name="MessageRecord_you_left_the_group">עזבת את הקבוצה.</string>
   <string name="MessageRecord_s_left_the_group">%1$s עזב את הקבוצה.</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">אינך בקבוצה יותר.</string>
-  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s לא נמצא יותר בקבוצה.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s לא בקבוצה יותר.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">עשית את %1$s מנהלן.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s עשה את %2$s מנהלן.</string>
@@ -1129,6 +1142,20 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">סימנת את מספר הביטחון שלך עם %s כמוודא ממכשיר אחר</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא ממכשיר אחר</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s התחיל/ה שיחה קבוצתית · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s בשיחה הקבוצתית · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">את/ה בשיחה הקבוצתית · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s וגם %2$s בשיחה הקבוצתית · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s וגם %3$s בשיחה הקבוצתית · %4$s</string>
+  <string name="MessageRecord_group_call_s">שיחה קבוצתית · %1$s</string>
+  <string name="MessageRecord_you">את/ה</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s, ועוד %3$d אחר בשיחה הקבוצתית · %4$s</item>
+    <item quantity="two">%1$s, %2$s ועוד %3$d אחרים בשיחה הקבוצתית · %4$s</item>
+    <item quantity="many">%1$s, %2$s ועוד %3$d אחרים בשיחה הקבוצתית · %4$s</item>
+    <item quantity="other">%1$s, %2$s ועוד %3$d אחרים בשיחה הקבוצתית · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">קבל</string>
   <string name="MessageRequestBottomView_continue">המשך</string>
@@ -1295,13 +1322,13 @@
   <string name="WebRtcCallView__joining">מצטרף…</string>
   <string name="WebRtcCallView__disconnected">מנותק</string>
   <string name="WebRtcCallView__no_one_else_is_here">אף אחד אחר לא כאן</string>
-  <string name="WebRtcCallView__s_is_in_this_call">%1$s נמצא/ת בשיחה זו</string>
-  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s וגם %2$s נמצאים/נמצאות בשיחה זו</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s בשיחה זו</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s וגם %2$s בשיחה זו</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">%1$s, %2$s, ועוד %3$d אחר נמצאים בשיחה זו</item>
-    <item quantity="two">%1$s, %2$s, ועוד %3$d אחרים נמצאים בשיחה זו </item>
-    <item quantity="many">%1$s, %2$s, ועוד %3$d אחרים נמצאים בשיחה זו</item>
-    <item quantity="other">%1$s, %2$s, ועוד %3$d אחרים נמצאים בשיחה זו</item>
+    <item quantity="one">%1$s, %2$s, ועוד %3$d אחר בשיחה זו</item>
+    <item quantity="two">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו </item>
+    <item quantity="many">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו</item>
+    <item quantity="other">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו</item>
   </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1369,7 +1396,7 @@
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">נכשל בשמירת שינויי תמונה</string>
   <!--Search-->
-  <string name="SearchFragment_no_results">לא נמצאו תוצאות עבור \'%s\'</string>
+  <string name="SearchFragment_no_results">תוצאות לא נמצאו עבור \'%s\'</string>
   <string name="SearchFragment_header_conversations">שיחות</string>
   <string name="SearchFragment_header_contacts">אנשי קשר</string>
   <string name="SearchFragment_header_messages">הודעות</string>
@@ -1739,6 +1766,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">טוען</string>
   <string name="ConversationUpdateItem_learn_more">למד עוד</string>
+  <string name="ConversationUpdateItem_join_call">הצטרף לשיחה</string>
+  <string name="ConversationUpdateItem_return_to_call">חזור לשיחה</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -1833,7 +1862,7 @@
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">חפש קבצי GIF ומדבקות</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__nothing_found">לא נמצא דבר</string>
+  <string name="giphy_fragment__nothing_found">שום דבר לא נמצא</string>
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">לא היה ניתן לקרוא את היומן במכשיר שלך. אתה עדין יכול להשתמש ב־ADB כדי לקבל יומן תקלים במקום.</string>
   <string name="log_submit_activity__thanks">תודה על עזרתך!</string>

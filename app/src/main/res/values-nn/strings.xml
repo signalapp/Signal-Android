@@ -415,7 +415,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drive av folk som deg. Vis di støtte i dag!</string>
   <string name="DonateMegaphone_donate">Doner</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ikkje no</string> -->
+  <string name="DonateMegaphone_no_thanks">Nei takk</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglande Play-tenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne eininga støttar ikkje Play-tenester. Trykk for å skru av batterioptimaliseringane i systemet som hindrar Signal frå å henta meldingar når programmet ikkje er aktivt. </string>
@@ -605,11 +605,20 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="one">%d medlem støttar ikkje Nye grupper, så denne gruppa blir ei Eldre gruppe.</item>
     <item quantity="other">%d medlemmar støttar ikkje Nye grupper, så denne gruppa blir ei Eldre gruppe.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d medlem støttar ikkje Nye grupper, så denne gruppa kan ikkje opprettast.</item>
+    <item quantity="other">%d medlemmar støttar ikkje Nye grupper, så denne gruppa kan ikkje opprettast.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Ei Eldre gruppe vart oppretta sidan «%1$s» bruker ei eldre utgåve av Signal. Du kan laga ei Ny gruppe med dei etter at dei har oppdatert Signal, eller fjerna dei før du opprettar gruppa.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Ei Eldre gruppe blir oppretta sidan %1$d medlem bruker ei eldre utgåve av Signal. Du kan laga ei Ny gruppe med dei etter at dei har oppdatert Signal, eller fjerna dei før du opprettar gruppa.</item>
     <item quantity="other">Ei Eldre gruppe blir oppretta sidan %1$d medlemmar bruker ei eldre utgåve av Signal. Du kan laga ei Ny gruppe med dei etter at dei har oppdatert Signal, eller fjerna dei før du opprettar gruppa.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denne gruppa kan ikkje opprettast sidan «%1$s» bruker ei eldre utgåve av Signal. Du må fjerna dei før du opprettar gruppa.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Denne gruppa kan ikkje opprettast sidan %1$d medlem bruker ei eldre utgåve av Signal. Du må fjerna dei før du opprettar gruppa.</item>
+    <item quantity="other">Denne gruppa kan ikkje opprettast sidan %1$d medlemmar bruker ei eldre utgåve av Signal. Du må fjerna dei før du opprettar gruppa.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Forsvinnande meldingar</string>
@@ -1032,6 +1041,18 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du markerte at tryggleiksnummeret ditt med %s er stadfesta frå ei anna eining</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta frå ei anna eining</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s starta ein gruppesamtale · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Du er i gruppesamtalen · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s og %2$s er i gruppesamtalen · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s og %3$s er i gruppesamtalen · %4$s</string>
+  <string name="MessageRecord_group_call_s">Gruppesamtale · %1$s</string>
+  <string name="MessageRecord_you">Du</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s og %3$d til er i gruppesamtalen · %4$s</item>
+    <item quantity="other">%1$s, %2$s og %3$d til er i gruppesamtalen · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Godta</string>
   <string name="MessageRequestBottomView_continue">Hald fram</string>
@@ -1619,6 +1640,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Lastar</string>
   <string name="ConversationUpdateItem_learn_more">Lær meir</string>
+  <string name="ConversationUpdateItem_join_call">Bli med i samtalen</string>
+  <string name="ConversationUpdateItem_return_to_call">Tilbake til samtalen</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spel … pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>

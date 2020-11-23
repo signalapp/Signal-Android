@@ -426,7 +426,9 @@
   <string name="DocumentView_unnamed_file">Fișier fără nume</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Donați pentru Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Nu acum</string> -->
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal este susținut de oameni ca tine. Arată-ți sprijinul astăzi!</string>
+  <string name="DonateMegaphone_donate">Donați</string>
+  <string name="DonateMegaphone_no_thanks">Nu, mulțumesc</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
@@ -487,11 +489,16 @@
   <string name="GroupManagement_invite_multiple_users">Acești utilizatori nu pot fi adăugați automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Ce sunt Noile Grupuri?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Noile grupuri au funcții precum @mențiuni și administratori de grup și vor sprijini mai multe funcții în viitor.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tot istoricul mesajelor și conținutul media a fost păstrat înainte de actualizare.</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualizează la noul grup</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Actualizează acest grup</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Noile grupuri au funcții precum @mențiuni și administratori de grup și vor sprijini mai multe funcții în viitor.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">A apărut o eroare de rețea. Încercați mai târziu.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Actualizarea nu a reușit.</string>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pentru a accesa funcții precum @mențiuni și administratori, actualizați acest grup.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Nu acum</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizează grup</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
@@ -638,6 +645,7 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Editare nume și poză</string>
   <string name="ManageGroupActivity_legacy_group">Grup vechi</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Funcții precum administratorii de grup sunt disponibile doar grupurilor noi.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Acesta este un grup vechi. Pentru a accesa funcții precum @mențiuni și administratorii de grup,</string>
   <string name="ManageGroupActivity_upgrade_this_group">actualizați acest grup.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Acesta este un grup MMS nesigur. Pentru a comunica în mod privat și a accesa funcții precum numele de grupuri, invitați-vă contactele la Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invită acum</string>
@@ -1028,6 +1036,14 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ați marcat numărul tău de siguranță cu %s ca și verificat de pe alt dispozitiv</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ați marcat numărul tău de siguranță cu %s ca și neverificat</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ați marcat numărul tău de siguranță cu %s ca și neverificat de pe alt dispozitiv</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s a început un apel de grup · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s este în apelul de grup · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Sunteți în apelul de grup · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s și %2$s sunt în apelul de grup · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s și %3$s sunt în apelul de grup · %4$s</string>
+  <string name="MessageRecord_group_call_s">Apel de grup · %1$s</string>
+  <string name="MessageRecord_you">Dvs.</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Acceptați</string>
   <string name="MessageRequestBottomView_continue">Continuă</string>
@@ -1621,6 +1637,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Se încarcă</string>
   <string name="ConversationUpdateItem_learn_more">Aflați mai multe</string>
+  <string name="ConversationUpdateItem_join_call">Alăturați-vă apelului</string>
+  <string name="ConversationUpdateItem_return_to_call">Întoarceți-vă la apel</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Redare … Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
@@ -2037,6 +2055,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_setup_a_username">Configurați un nume de utilizator</string>
   <string name="configurable_single_select__customize_option">Personalizați opțiunea</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Conversații și scurtături</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

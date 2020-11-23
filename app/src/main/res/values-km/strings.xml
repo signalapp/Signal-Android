@@ -364,7 +364,6 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ឯកសារគ្មានឈ្មោះ</string>
   <!--DonateMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">លើកក្រោយ</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">បង្កើនប្រសិទ្ធភាពសម្រាប់ការបាត់ Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>
@@ -772,6 +771,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">អ្នកបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព %sដោយបានផ្ទៀងផ្ទាត់ជាមួយឧបករណ៍ផ្សេង</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">អ្នកមិនបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពជាមួយ​%s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">អ្នកមិនបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព %s ជាមួយឧបករណ៍ផ្សេងទៀត</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_you">អ្នក</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
   <string name="MessageRequestBottomView_continue">បន្ត</string>

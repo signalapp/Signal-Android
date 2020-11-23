@@ -81,6 +81,7 @@
   <string name="AudioSlidePlayer_error_playing_audio">Eraro dum ludo de sonaĵo!</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokataj uzantoj</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Aldonu blokata uzanto</string>
   <string name="BlockedUsersActivity__blocked_users_will">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Neniu blokata kontakto</string>
   <string name="BlockedUsersActivity__block_user">Ĉu bloki la uzanton?</string>
@@ -411,8 +412,9 @@
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Donaci al Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ekzistas pro la subteno de homoj kiaj vi. Bonvole subtenu hodiaŭ ja!</string>
   <string name="DonateMegaphone_donate">Donaci</string>
-  <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_not_now">Ne nun</string> -->
+  <string name="DonateMegaphone_no_thanks">Ne, dankon</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumigi por mankantaj „Play Services“</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tiu aparato ne subtenas „Play Services“. Tuŝetu por malebligi baterian optimumigon, kiu alie malhelpus al Signal ricevi mesaĝojn dum neaktiva.</string>
@@ -604,6 +606,7 @@
     <item quantity="one">Malvotipa grupo kreiĝos, ĉar %1$d ano uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ili, post kiam ili ĝisdatigos Signal-on, aŭ se vi tuj forigas ilin, antaŭ ol krei la grupon.</item>
     <item quantity="other">Malvotipa grupo kreiĝos, ĉar %1$d anoj uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ili, post kiam ili ĝisdatigos Signal-on, aŭ se vi tuj forigas ilin, antaŭ ol krei la grupon.</item>
   </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tiu ĉi grupo ne kreiĝos ĉar “%1$s” uzas malnovan version de Signal. Oni devas forigi ilin antaŭ ol povi krei la grupon.</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
   <string name="ManageGroupActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
@@ -646,6 +649,7 @@
   <string name="ManageGroupActivity_legacy_group">Malnovtipaj grupoj</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Tiu estas malnovtipa grupo. Ebloj (kiel grupadministrantoj) nur disponeblas en novtipa grupo.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Tiu estas malnovtipa grupo. Por uzi eblojn (kiel grupadministrantojn kaj @menciojn),</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Jena malnovtipa grupo ne povas ĝisdatiĝi pro troa grandeco. Maksimuma grupgrando estas %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">ĝisdatigu tiun ĉi grupon.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tio estas nesekura MMS-grupo. Por mesaĝi private kaj uzi eblojn kiel grupnomon, invitu viajn kontaktojn al uzo de Signal.</string>
   <string name="ManageGroupActivity_invite_now">Inviti nun</string>
@@ -883,6 +887,7 @@
   <string name="MessageRecord_the_group_was_updated">La grupo estis ĝisdatigita.</string>
   <string name="MessageRecord_you_called_date">Vi alvokis · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Maltrafita aŭdalvoko · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Maltrafita vidalvoko · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ĝisdatigis la grupon.</string>
   <string name="MessageRecord_s_called_you_date">%1$s alvokis vin · %2$s</string>
   <string name="MessageRecord_called_s">Vi alvokis %s</string>
@@ -892,6 +897,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vi agordis la malaperon de la memviŝontaj mesaĝoj al %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s agordis la malaperon de la memviŝontaj mesaĝoj al %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">La malapero de la memviŝontaj mesaĝoj agordiĝis al %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Tiu ĉi grupo ĝisdatiĝis al novtipa grupo.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ŝanĝis sian profilnomon al %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ŝanĝis sian profilnomon de %2$s al %3$s.</string>
@@ -1018,6 +1024,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Vi markis, el alia aparato, vian sekurigan numeron kun %s kiel konfirmita.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vi markis vian sekurigan numeron kun %s kiel nekonfirmita.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vi markis, el alia aparato, vian sekurigan numeron kun %s kiel nekonfirmita.</string>
+  <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s komencis grupvokon · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s estas en la grupvoko · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Vi estas en la grupvoko · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s kaj %2$s estas en la grupvoko · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, kaj %3$s estas en la grupvoko · %4$s</string>
+  <string name="MessageRecord_group_call_s">Grupvoko · %1$s</string>
+  <string name="MessageRecord_you">Vi</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s, kaj %3$d aliaj homoj estas en grupvoko · %4$s</item>
+    <item quantity="other">%1$s, %2$s, kaj %3$d aliaj estas en la grupvoko · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Akcepti</string>
   <string name="MessageRequestBottomView_continue">Daŭrigi</string>
@@ -1027,6 +1045,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Ŝi aŭ li ne scios, ke vi vidis ŝian aŭ lian mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ĉu plu interparoli al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jenan malnovtipan grupon jam ne povas uzi pro troa grandeco. Maksimuma grupgrando estas %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Ĉu plu interparoli al %1$s kaj kunhavigi vian nomon kaj foton kun ili?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas aliĝi al tiu grupo kaj kunhavigi vian nomon kaj foton? La grupo ne scios, ke vi vidis ĝiajn mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas anigi al tiu ĉi grupo? Ili ne scios, ke vi vidis iliajn mesaĝojn ĝis via akcepto.</string>
@@ -1163,6 +1182,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal-voĉalvoko…</string>
   <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko…</string>
   <string name="WebRtcCallView__start_call">Ekalvoki</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupvoko</string>
   <string name="WebRtcCallView__view_participants_list">Vidi partoprenantojn</string>
   <string name="WebRtcCallView__your_video_is_off">Via kamerao estas malŝaltita</string>
   <string name="WebRtcCallView__connecting">Konekto…</string>
