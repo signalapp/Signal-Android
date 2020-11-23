@@ -1103,7 +1103,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__chats">Rozmowy i multimedia</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
   <string name="preferences__trim_all_conversations_now">Przytnij wszystkie konwersacje teraz</string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Przeskanuj wszystkie konwersacje i przytnij to określonej długości</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Przeskanuj wszystkie konwersacje i przytnij do określonej długości</string>
   <string name="preferences__linked_devices">Połączone urządzenia</string>
   <string name="preferences__light_theme">Jasny</string>
   <string name="preferences__dark_theme">Ciemny</string>
@@ -1360,29 +1360,29 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="continue_2">Kontyntynuj</string>
   <string name="copy">Kopiuj</string>
   <string name="invalid_url">nieprawidłowy URL</string>
-  <string name="copied_to_clipboard">Skopiowane do schowka</string>
-  <string name="device_linking_failed">Nie można połączyć urządzenia.</string>
-  <string name="next">Kolejny</string>
-  <string name="share">Dzielić</string>
+  <string name="copied_to_clipboard">Skopiowano do schowka</string>
+  <string name="device_linking_failed">Nie można podłączyć urządzenia.</string>
+  <string name="next">Dalej</string>
+  <string name="share">Udostępnij</string>
   <string name="invalid_session_id">Nieprawidłowy identyfikator Session</string>
   <string name="cancel">Anuluj</string>
   <string name="your_session_id">Twój identyfikator Session</string>
 
-  <string name="activity_landing_title_2">Twoja Session zaczyna się tutaj...</string>
+  <string name="activity_landing_title_2">Twoja sesja zaczyna się tutaj...</string>
   <string name="activity_landing_register_button_title">Utwórz identyfikator Session</string>
   <string name="activity_landing_restore_button_title">Kontynuuj swoją sesję</string>
   <string name="activity_landing_link_button_title">Połącz z istniejącym kontem</string>
   <string name="activity_landing_device_unlinked_dialog_title">Twoje urządzenie zostało rozłączone pomyślnie</string>
 
-  <string name="view_fake_chat_bubble_1">Jaka jest Session</string>
+  <string name="view_fake_chat_bubble_1">Jaki jest Session</string>
   <string name="view_fake_chat_bubble_2">To zdecentralizowana, szyfrowana aplikacja do przesyłania wiadomości</string>
   <string name="view_fake_chat_bubble_3">Więc nie zbiera moich danych osobowych ani metadanych z mojej rozmowy? Jak to działa?</string>
   <string name="view_fake_chat_bubble_4">Wykorzystując połączenie zaawansowanych anonimowych tras i technologii szyfrowania end-to-end.</string>
   <string name="view_fake_chat_bubble_5">Znajomi nie pozwalają znajomym korzystać z zainfekowanych komunikatorów. Nie ma za co.</string>
 
   <string name="activity_register_title">Przywitaj się z identyfikatorem Session</string>
-  <string name="activity_register_explanation">Twój identyfikator Session to unikalny adres, za pomocą którego można się z Tobą kontaktować w Sesji. Bez połączenia z twoją prawdziwą tożsamością, identyfikator Session jest z założenia całkowicie anonimowy i prywatny.</string>
-  <string name="activity_register_public_key_copied_message">Skopiowane do schowka</string>
+  <string name="activity_register_explanation">Twój identyfikator Session to unikalny adres, za pomocą którego można się z Tobą kontaktować w Session. Bez połączenia z twoją prawdziwą tożsamością, identyfikator Session jest z założenia całkowicie anonimowy i prywatny.</string>
+  <string name="activity_register_public_key_copied_message">Skopiowano do schowka</string>
 
   <string name="activity_restore_title">Przywróć swoje konto</string>
   <string name="activity_restore_explanation">Wprowadź frazę odzyskiwania, która została Ci przekazana podczas rejestracji w celu przywrócenia konta.</string>
@@ -1398,11 +1398,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="fragment_enter_session_id_edit_text_hint">Wpisz swój identyfikator Session</string>
 
   <string name="activity_display_name_title_2">Wybierz swoją nazwę wyświetlaną</string>
-  <string name="activity_display_name_explanation">To będzie twoje imię, kiedy będziesz używać Sesji. Może to być twoje prawdziwe imię, alias lub cokolwiek innego, co lubisz.</string>
+  <string name="activity_display_name_explanation">To będzie twoje imię, kiedy będziesz używać Session. Może to być twoje prawdziwe imię, pseudonim lub cokolwiek innego, co lubisz.</string>
   <string name="activity_display_name_edit_text_hint">Wprowadź wyświetlaną nazwe</string>
   <string name="activity_display_name_display_name_missing_error">Wybierz wyświetlaną nazwę</string>
   <string name="activity_display_name_display_name_invalid_error">Wybierz wyświetlaną nazwę, która składa się tylko z znaków az, AZ, 0–9 i _</string>
-  <string name="activity_display_name_display_name_too_long_error">Wybierz krótszą nazwę wyświetlaną</string>
+  <string name="activity_display_name_display_name_too_long_error">Wybierz krótszą wyświetlaną nazwę</string>
 
   <string name="activity_pn_mode_recommended_option_tag">Zalecana</string>
   <string name="activity_pn_mode_no_option_picked_dialog_title">Wybierz opcję</string>
@@ -1416,35 +1416,35 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
 
   <string name="activity_seed_title">Twoja fraza odzyskiwania</string>
   <string name="activity_seed_title_2">Poznaj swoją frazę odzyskiwania</string>
-  <string name="activity_seed_explanation">Twoja fraza odzyskiwania jest kluczem głównym do identyfikatora Session - możesz go użyć do przywrócenia identyfikatora Session, jeśli stracisz dostęp do urządzenia. Przechowuj swoją frazę odzyskiwania w bezpiecznym miejscu i nikomu jej nie udostępniaj.</string>
+  <string name="activity_seed_explanation">Twoja fraza odzyskiwania jest głównym kluczem do identyfikatora Session - możesz jej użyć do przywrócenia identyfikatora Session, jeśli stracisz dostęp do urządzenia. Przechowuj swoją frazę odzyskiwania w bezpiecznym miejscu i nikomu jej nie udostępniaj.</string>
   <string name="activity_seed_reveal_button_title">Przytrzymaj, aby odsłonić</string>
 
   <string name="view_seed_reminder_subtitle_1">Zabezpiecz swoje konto, zapisując frazę odzyskiwania</string>
-  <string name="view_seed_reminder_subtitle_2">Stuknij i przytrzymaj zredagowane słowa, aby odsłonić frazę odzyskiwania, a następnie przechowuj ją bezpiecznie, aby zabezpieczyć identyfikator Session.</string>
+  <string name="view_seed_reminder_subtitle_2">Stuknij i przytrzymaj zredagowane słowa, aby odsłonić frazę odzyskiwania, a następnie przechowuj ją w bezpiecznym miejscu, aby zabezpieczyć identyfikator Session.</string>
   <string name="view_seed_reminder_subtitle_3">Pamiętaj, aby przechowywać frazę odzyskiwania w bezpiecznym miejscu</string>
 
   <string name="activity_path_title">Ścieżka</string>
-  <string name="activity_path_explanation">Sesja ukrywa Twój adres IP, odbijając wiadomości przez kilka węzłów usług w zdecentralizowanej sieci Session. Oto kraje, w których obecnie Twoje połączenie jest odbijane:</string>
+  <string name="activity_path_explanation">Session ukrywa Twój adres IP, odbijając wiadomości przez kilka węzłów usług w zdecentralizowanej sieci Session. Oto kraje, w których obecnie Twoje połączenie jest odbijane:</string>
   <string name="activity_path_device_row_title">ty</string>
   <string name="activity_path_guard_node_row_title">Węzeł wejścia</string>
   <string name="activity_path_service_node_row_title">Węzeł serwisowy</string>
   <string name="activity_path_destination_row_title">Miejsce docelowe</string>
-  <string name="activity_path_learn_more_button_title">Ucz się więcej</string>
+  <string name="activity_path_learn_more_button_title">Dowiedz się więcej</string>
 
-  <string name="activity_create_private_chat_title">Nowa Session</string>
+  <string name="activity_create_private_chat_title">Nowa sesja</string>
   <string name="activity_create_private_chat_enter_session_id_tab_title">Wpisz identyfikator Session</string>
   <string name="activity_create_private_chat_scan_qr_code_tab_title">Skanowania QR code</string>
   <string name="activity_create_private_chat_scan_qr_code_explanation">Zeskanuj kod QR użytkownika, aby rozpocząć sesję. Kody QR można znaleźć, dotykając ikony kodu QR w ustawieniach konta.</string>
 
   <string name="fragment_enter_public_key_edit_text_hint">Wprowadź identyfikator Session odbiorcy</string>
-  <string name="fragment_enter_public_key_explanation">Użytkownicy mogą udostępnić swój identyfikator Session, przechodząc do ustawień konta i stukając opcję Udostępnij identyfikator Session lub udostępniając kod QR.</string>
+  <string name="fragment_enter_public_key_explanation">Użytkownicy mogą udostępnić swój identyfikator Session, przechodząc do ustawień konta i klikając opcję Udostępnij identyfikator Session lub udostępniając kod QR.</string>
 
-  <string name="fragment_scan_qr_code_camera_access_explanation">Sesja wymaga dostępu do kamery, aby skanować kody QR</string>
+  <string name="fragment_scan_qr_code_camera_access_explanation">Session wymaga dostępu do kamery, aby skanować kody QR</string>
   <string name="fragment_scan_qr_code_grant_camera_access_button_title">Udziel dostępu do kamery</string>
 
   <string name="activity_create_closed_group_title">Nowa grupa zamknięta</string>
   <string name="activity_create_closed_group_edit_text_hint">Wpisz nazwę grupy</string>
-  <string name="activity_create_closed_group_explanation">Grupy zamknięte obsługują do 10 członków i zapewniają taką samą ochronę prywatności jak sesje jeden na jednego.</string>
+  <string name="activity_create_closed_group_explanation">Grupy zamknięte obsługują do 10 członków i zapewniają taką samą ochronę prywatności jak sesje jeden do jednego.</string>
   <string name="activity_create_closed_group_empty_state_message">Nie masz jeszcze żadnych kontaktów</string>
   <string name="activity_create_closed_group_empty_state_button_title">Rozpocznij sesję</string>
   <string name="activity_create_closed_group_group_name_missing_error">Wpisz nazwę grupy</string>
@@ -1452,7 +1452,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="activity_create_closed_group_too_many_group_members_error">Grupa zamknięta nie może mieć więcej niż 20 członków</string>
   <string name="activity_create_closed_group_invalid_session_id_error">Jeden z członków Twojej grupy ma nieprawidłowy identyfikator Session</string>
 
-  <string name="activity_join_public_chat_title">Dołącz do Open Group</string>
+  <string name="activity_join_public_chat_title">Dołącz do otwartej grupy</string>
   <string name="activity_join_public_chat_error">Nie można dołączyć do grupy</string>
   <string name="activity_join_public_chat_enter_group_url_tab_title">Otwórz adres URL grupy</string>
   <string name="activity_join_public_chat_scan_qr_code_tab_title">Skanowania QR code</string>
@@ -1463,13 +1463,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="activity_settings_title">Ustawienia</string>
   <string name="activity_settings_display_name_edit_text_hint">Wprowadź wyświetlaną nazwe</string>
   <string name="activity_settings_display_name_missing_error">Wybierz wyświetlaną nazwę</string>
-  <string name="activity_settings_invalid_display_name_error">Wybierz wyświetlaną nazwę, która składa się tylko z znaków az, AZ, 0–9 i _</string>
-  <string name="activity_settings_display_name_too_long_error">Wybierz krótszą nazwę wyświetlaną</string>
+  <string name="activity_settings_invalid_display_name_error">Wybierz wyświetlaną nazwę, która składa się tylko ze znaków az, AZ, 0–9 i _</string>
+  <string name="activity_settings_display_name_too_long_error">Wybierz krótszą wyświetlaną nazwę</string>
   <string name="activity_settings_privacy_button_title">Prywatność</string>
   <string name="activity_settings_notifications_button_title">Powiadomienia</string>
   <string name="activity_settings_chats_button_title">Czaty</string>
   <string name="activity_settings_devices_button_title">Urządzenia</string>
-  <string name="activity_settings_recovery_phrase_button_title">Zwrot odzyskiwania</string>
+  <string name="activity_settings_recovery_phrase_button_title">Fraza odzyskiwania</string>
   <string name="activity_settings_clear_all_data_button_title">Wyczyść dane</string>
 
   <string name="activity_notification_settings_title">Powiadomienia</string>
@@ -1482,9 +1482,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
 
   <string name="activity_linked_devices_title">Urządzenia</string>
   <string name="activity_linked_devices_multi_device_limit_reached_dialog_title">Osiągnięto limit urządzeń</string>
-  <string name="activity_linked_devices_multi_device_limit_reached_dialog_explanation">Obecnie nie można łączyć więcej niż jednego urządzenia.</string>
+  <string name="activity_linked_devices_multi_device_limit_reached_dialog_explanation">Obecnie nie można podłączyć więcej niż jednego urządzenia.</string>
   <string name="activity_linked_devices_unlinking_failed_message">Nie można odłączyć urządzenia.</string>
-  <string name="activity_linked_devices_unlinking_successful_message">Twoje urządzenie zostało rozłączone pomyślnie</string>
+  <string name="activity_linked_devices_unlinking_successful_message">Twoje urządzenie zostało odłączone pomyślnie</string>
   <string name="activity_linked_devices_linking_failed_message">Nie można połączyć urządzenia.</string>
   <string name="activity_linked_devices_empty_state_message">Nie podłączyłeś jeszcze żadnych urządzeń</string>
   <string name="activity_linked_devices_empty_state_button_title">Połącz urządzenie (Beta)</string>
@@ -1502,7 +1502,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="dialog_link_device_master_mode_explanation_1">Pobierz Sesję na drugie urządzenie i dotknij Połącz z istniejącym kontem u dołu ekranu docelowego. Jeśli masz już konto na drugim urządzeniu, najpierw musisz je usunąć.</string>
   <string name="dialog_link_device_master_mode_explanation_2">Sprawdź, czy poniższe słowa odpowiadają słowom wyświetlanym na drugim urządzeniu.</string>
   <string name="dialog_link_device_master_mode_explanation_3">Poczekaj, aż łącze urządzenia zostanie utworzone. Może to potrwać do minuty.</string>
-  <string name="dialog_link_device_master_mode_authorize_button_title">Autoryzować</string>
+  <string name="dialog_link_device_master_mode_authorize_button_title">Autoryzuj</string>
 
   <string name="fragment_device_list_bottom_sheet_change_name_button_title">Zmień nazwę</string>
   <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Odłącz urządzenie</string>
@@ -1510,10 +1510,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="dialog_edit_device_name_edit_text_hint">Wpisz imię</string>
 
   <string name="dialog_seed_title">Twoja fraza odzyskiwania</string>
-  <string name="dialog_seed_explanation">To jest twoja fraza odzyskiwania. Dzięki niemu możesz przywrócić lub przenieść identyfikator Session na nowe urządzenie.</string>
+  <string name="dialog_seed_explanation">To jest twoja fraza odzyskiwania. Dzięki niej możesz przywrócić lub przenieść identyfikator Session na nowe urządzenie.</string>
 
   <string name="dialog_clear_all_data_title">Wyczyść wszystkie dane</string>
-  <string name="dialog_clear_all_data_explanation">Spowoduje to trwałe usunięcie wiadomości, Session i kontaktów.</string>
+  <string name="dialog_clear_all_data_explanation">Spowoduje to trwałe usunięcie wiadomości, sesji i kontaktów.</string>
 
   <string name="activity_qr_code_title">Kod QR</string>
   <string name="activity_qr_code_view_my_qr_code_tab_title">Wyświetl mój kod QR</string>
@@ -1524,8 +1524,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="fragment_view_my_qr_code_share_title">Udostępnij kod QR</string>
 
   <string name="session_reset_banner_message">Czy chcesz przywrócić sesję za pomocą %s?</string>
-  <string name="session_reset_banner_dismiss_button_title">Oddalić</string>
-  <string name="session_reset_banner_restore_button_title">Przywracać</string>
+  <string name="session_reset_banner_dismiss_button_title">Anuluj</string>
+  <string name="session_reset_banner_restore_button_title">Przywróć</string>
 
   <string name="fragment_contact_selection_contacts_title">Łączność</string>
   <string name="fragment_contact_selection_closed_groups_title">Grupy zamknięte</string>
