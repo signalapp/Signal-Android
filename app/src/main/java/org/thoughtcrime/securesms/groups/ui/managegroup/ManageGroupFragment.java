@@ -416,7 +416,7 @@ public class ManageGroupFragment extends LoggingFragment {
 
   public boolean onMenuItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.action_edit) {
-      startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), getGroupId().requirePush()));
+      startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), getGroupId()));
       return true;
     }
 

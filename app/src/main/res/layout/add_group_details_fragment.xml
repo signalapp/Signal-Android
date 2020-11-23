@@ -40,23 +40,41 @@
         app:layout_constraintStart_toEndOf="@id/group_avatar"
         app:layout_constraintTop_toTopOf="@id/group_avatar" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/mms_warning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="?colorAccent"
-        android:paddingStart="16dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="8dp"
-        android:text="@string/AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="@color/white"
+        android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/gv2_warning"
         app:layout_constraintTop_toBottomOf="@id/group_avatar"
-        tools:visibility="visible" />
+        tools:visibility="visible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?colorAccent"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:text="@string/AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?colorAccent"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="@string/AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
     <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/gv2_warning"

@@ -73,13 +73,15 @@ public final class GroupManager {
       try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
         return edit.updateGroupTitleAndAvatar(nameChanged ? name : null, avatar, avatarChanged);
       }
-    } else {
+    } else if (groupId.isV1()) {
       List<Recipient> members = DatabaseFactory.getGroupDatabase(context)
                                                .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       Set<RecipientId> recipientIds = getMemberIds(new HashSet<>(members));
 
       return GroupManagerV1.updateGroup(context, groupId.requireV1(), recipientIds, avatar, name, 0);
+    } else {
+      return GroupManagerV1.updateGroup(context, groupId.requireMms(), avatar, name);
     }
   }
 

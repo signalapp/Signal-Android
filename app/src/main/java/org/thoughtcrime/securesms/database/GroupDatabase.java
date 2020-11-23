@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -38,7 +39,6 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.io.Closeable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -254,7 +254,7 @@ public final class GroupDatabase extends Database {
                       .requireMms();
       } else {
         GroupId.Mms groupId = GroupId.createMms(new SecureRandom());
-        create(groupId, members);
+        create(groupId, null, members);
         return groupId;
       }
     } finally {
@@ -364,9 +364,10 @@ public final class GroupDatabase extends Database {
   }
 
   public void create(@NonNull GroupId.Mms groupId,
+                     @Nullable String title,
                      @NonNull Collection<RecipientId> members)
   {
-    create(groupId, null, members, null, null, null, null);
+    create(groupId, Util.isEmpty(title) ? null : title, members, null, null, null, null);
   }
 
   public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
@@ -575,6 +576,18 @@ public final class GroupDatabase extends Database {
   }
 
   public void updateTitle(@NonNull GroupId.V1 groupId, String title) {
+    updateTitle((GroupId) groupId, title);
+  }
+
+  public void updateTitle(@NonNull GroupId.Mms groupId, @Nullable String title) {
+    updateTitle((GroupId) groupId, Util.isEmpty(title) ? null : title);
+  }
+
+  private void updateTitle(@NonNull GroupId groupId, String title) {
+    if (!groupId.isV1() && !groupId.isMms()) {
+      throw new AssertionError();
+    }
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(TITLE, title);
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
@@ -587,7 +600,7 @@ public final class GroupDatabase extends Database {
   /**
    * Used to bust the Glide cache when an avatar changes.
    */
-  public void onAvatarUpdated(@NonNull GroupId.Push groupId, boolean hasAvatar) {
+  public void onAvatarUpdated(@NonNull GroupId groupId, boolean hasAvatar) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(AVATAR_ID, hasAvatar ? Math.abs(new SecureRandom().nextLong()) : 0);
 
@@ -962,7 +975,7 @@ public final class GroupDatabase extends Database {
         }
         return GroupAccessControl.ONLY_ADMINS;
       } else {
-        return id.isV1() ? GroupAccessControl.ALL_MEMBERS : GroupAccessControl.ONLY_ADMINS;
+        return GroupAccessControl.ALL_MEMBERS;
       }
     }
 

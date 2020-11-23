@@ -119,11 +119,10 @@ public class EditProfileFragment extends LoggingFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    final GroupId      groupId     = GroupId.parseNullableOrThrow(requireArguments().getString(GROUP_ID, null));
-    final GroupId.Push pushGroupId = groupId != null ? groupId.requirePush() : null;
+    GroupId groupId = GroupId.parseNullableOrThrow(requireArguments().getString(GROUP_ID, null));
 
-    initializeResources(view, pushGroupId != null);
-    initializeViewModel(requireArguments().getBoolean(EXCLUDE_SYSTEM, false), pushGroupId,  savedInstanceState != null);
+    initializeResources(view, groupId);
+    initializeViewModel(requireArguments().getBoolean(EXCLUDE_SYSTEM, false), groupId, savedInstanceState != null);
     initializeProfileAvatar();
     initializeProfileName();
     initializeUsername();
@@ -174,11 +173,11 @@ public class EditProfileFragment extends LoggingFragment {
     }
   }
 
-  private void initializeViewModel(boolean excludeSystem, @Nullable GroupId.Push groupId, boolean hasSavedInstanceState) {
+  private void initializeViewModel(boolean excludeSystem, @Nullable GroupId groupId, boolean hasSavedInstanceState) {
     EditProfileRepository repository;
 
     if (groupId != null) {
-      repository = new EditPushGroupProfileRepository(requireContext(), groupId);
+      repository = new EditGroupProfileRepository(requireContext(), groupId);
     } else {
       repository = new EditSelfProfileRepository(requireContext(), excludeSystem);
     }
@@ -189,8 +188,9 @@ public class EditProfileFragment extends LoggingFragment {
                                   .get(EditProfileViewModel.class);
   }
 
-  private void initializeResources(@NonNull View view, boolean isEditingGroup) {
-    Bundle arguments = requireArguments();
+  private void initializeResources(@NonNull View view, @Nullable GroupId groupId) {
+    Bundle  arguments      = requireArguments();
+    boolean isEditingGroup = groupId != null;
 
     this.toolbar            = view.findViewById(R.id.toolbar);
     this.title              = view.findViewById(R.id.title);
@@ -213,10 +213,13 @@ public class EditProfileFragment extends LoggingFragment {
 
     this.avatar.setOnClickListener(v -> startAvatarSelection());
 
-    this.givenName .addTextChangedListener(new AfterTextChanged(s -> {
-                                                                       trimInPlace(s, isEditingGroup);
-                                                                       viewModel.setGivenName(s.toString());
-                                                                     }));
+    this.givenName.addTextChangedListener(new AfterTextChanged(s -> {
+                                                                      trimInPlace(s, isEditingGroup);
+                                                                      viewModel.setGivenName(s.toString());
+                                                                    }));
+
+    view.findViewById(R.id.mms_group_hint)
+        .setVisibility(isEditingGroup && groupId.isMms() ? View.VISIBLE : View.GONE);
 
     if (isEditingGroup) {
       givenName.setHint(R.string.EditProfileFragment__group_name);

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.profiles.edit;
 
-import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
@@ -30,13 +29,15 @@ class EditProfileViewModel extends ViewModel {
   private final MutableLiveData<byte[]>           originalAvatar      = new MutableLiveData<>();
   private final MutableLiveData<Optional<String>> internalUsername    = new MutableLiveData<>();
   private final MutableLiveData<String>           originalDisplayName = new MutableLiveData<>();
-  private final LiveData<Boolean>                 isFormValid         = Transformations.map(trimmedGivenName, s -> s.length() > 0);
+  private final LiveData<Boolean>                 isFormValid;
   private final EditProfileRepository             repository;
   private final GroupId                           groupId;
 
   private EditProfileViewModel(@NonNull EditProfileRepository repository, boolean hasInstanceState, @Nullable GroupId groupId) {
-    this.repository = repository;
-    this.groupId    = groupId;
+    this.repository  = repository;
+    this.groupId     = groupId;
+    this.isFormValid = groupId != null && groupId.isMms() ? LiveDataUtil.just(true)
+                                                          : Transformations.map(trimmedGivenName, s -> s.length() > 0);
 
     if (!hasInstanceState) {
       if (groupId != null) {

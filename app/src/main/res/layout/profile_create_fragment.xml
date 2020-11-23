@@ -137,6 +137,18 @@
                         android:inputType="textPersonName"
                         android:singleLine="true" />
 
+                    <TextView
+                        android:id="@+id/mms_group_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you"
+                        android:textAppearance="@style/Signal.Text.Caption"
+                        android:textColor="@color/signal_text_secondary"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
                     <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                         android:id="@+id/family_name"
                         style="@style/Signal.Text.Body"

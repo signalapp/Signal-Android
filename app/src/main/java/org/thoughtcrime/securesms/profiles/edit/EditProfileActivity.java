@@ -44,7 +44,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileFrag
     return intent;
   }
 
-  public static @NonNull Intent getIntentForGroupProfile(@NonNull Context context, @NonNull GroupId.Push groupId) {
+  public static @NonNull Intent getIntentForGroupProfile(@NonNull Context context, @NonNull GroupId groupId) {
     Intent intent = new Intent(context, EditProfileActivity.class);
     intent.putExtra(EditProfileActivity.SHOW_TOOLBAR, true);
     intent.putExtra(EditProfileActivity.GROUP_ID, groupId.toString());

@@ -48,11 +48,11 @@ final class AddGroupDetailsRepository {
     });
   }
 
-  void createPushGroup(@NonNull  Set<RecipientId>  members,
-                       @Nullable byte[]            avatar,
-                       @Nullable String            name,
-                       boolean                     mms,
-                       Consumer<GroupCreateResult> resultConsumer)
+  void createGroup(@NonNull  Set<RecipientId>  members,
+                   @Nullable byte[]            avatar,
+                   @Nullable String            name,
+                   boolean                     mms,
+                   Consumer<GroupCreateResult> resultConsumer)
   {
     SignalExecutors.BOUNDED.execute(() -> {
       Set<Recipient> recipients = new HashSet<>(Stream.of(members).map(Recipient::resolved).toList());

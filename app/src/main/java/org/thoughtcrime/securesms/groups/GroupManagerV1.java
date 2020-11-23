@@ -74,7 +74,15 @@ final class GroupManagerV1 {
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
       return sendGroupUpdate(context, groupIdV1, memberIds, name, avatarBytes, memberIds.size() - 1);
     } else {
-      groupDatabase.create(groupId.requireMms(), memberIds);
+      groupDatabase.create(groupId.requireMms(), name, memberIds);
+
+      try {
+        AvatarHelper.setAvatar(context, groupRecipientId, avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to save avatar!", e);
+      }
+      groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
+
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId, memberIds.size() - 1, Collections.emptyList());
     }
@@ -110,6 +118,28 @@ final class GroupManagerV1 {
       long        threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
       return new GroupActionResult(groupRecipient, threadId, newMemberCount, Collections.emptyList());
     }
+  }
+
+  static GroupActionResult updateGroup(@NonNull  Context     context,
+                                       @NonNull  GroupId.Mms groupId,
+                                       @Nullable byte[]      avatarBytes,
+                                       @Nullable String      name)
+  {
+    GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
+    RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    Recipient     groupRecipient   = Recipient.resolved(groupRecipientId);
+    long          threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+
+    groupDatabase.updateTitle(groupId, name);
+    groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
+
+    try {
+      AvatarHelper.setAvatar(context, groupRecipientId, avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
+    } catch (IOException e) {
+      Log.w(TAG, "Failed to save avatar!", e);
+    }
+
+    return new GroupActionResult(groupRecipient, threadId, 0, Collections.emptyList());
   }
 
   private static GroupActionResult sendGroupUpdate(@NonNull Context context,
