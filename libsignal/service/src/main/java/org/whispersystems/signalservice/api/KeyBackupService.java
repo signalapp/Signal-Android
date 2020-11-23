@@ -1,6 +1,5 @@
 package org.whispersystems.signalservice.api;
 
-import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
@@ -124,7 +123,7 @@ public final class KeyBackupService {
 
     @Override
     public KbsPinData restorePin(HashedPin hashedPin)
-      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException, InvalidKeyException
+      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException
     {
       int           attempt = 0;
       SecureRandom  random  = new SecureRandom();
@@ -157,7 +156,7 @@ public final class KeyBackupService {
     }
 
     private KbsPinData restorePin(HashedPin hashedPin, TokenResponse token)
-      throws UnauthenticatedResponseException, IOException, TokenException, KeyBackupSystemNoDataException, InvalidKeyException
+      throws UnauthenticatedResponseException, IOException, TokenException, KeyBackupSystemNoDataException
     {
       try {
         final int               remainingTries    = token.getTries();
@@ -198,7 +197,7 @@ public final class KeyBackupService {
       }
     }
 
-    private RemoteAttestation getAndVerifyRemoteAttestation() throws UnauthenticatedResponseException, IOException, InvalidKeyException {
+    private RemoteAttestation getAndVerifyRemoteAttestation() throws UnauthenticatedResponseException, IOException {
       try {
         return RemoteAttestationUtil.getAndVerifyRemoteAttestation(pushServiceSocket, PushServiceSocket.ClientSet.KeyBackup, iasKeyStore, enclaveName, mrenclave, authorization);
       } catch (Quote.InvalidQuoteFormatException | UnauthenticatedQuoteException | InvalidCiphertextException | SignatureException e) {
@@ -227,7 +226,7 @@ public final class KeyBackupService {
         KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
 
         KeyBackupCipher.getKeyDeleteResponseStatus(response, remoteAttestation);
-      } catch (InvalidCiphertextException | InvalidKeyException e) {
+      } catch (InvalidCiphertextException e) {
         throw new UnauthenticatedResponseException(e);
       }
     }
@@ -262,7 +261,7 @@ public final class KeyBackupService {
           default:
             throw new AssertionError("Unknown response status " + status);
         }
-      } catch (InvalidCiphertextException | InvalidKeyException e) {
+      } catch (InvalidCiphertextException e) {
         throw new UnauthenticatedResponseException(e);
       }
     }
@@ -276,7 +275,7 @@ public final class KeyBackupService {
   public interface RestoreSession extends HashSession {
 
     KbsPinData restorePin(HashedPin hashedPin)
-      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException, InvalidKeyException;
+      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException;
   }
 
   public interface PinChangeSession extends HashSession {

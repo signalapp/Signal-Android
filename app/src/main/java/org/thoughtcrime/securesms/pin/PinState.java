@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.registration.service.KeyBackupSystemWrongPinException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
@@ -91,7 +90,7 @@ public final class PinState {
       }
 
       return kbsData;
-    } catch (UnauthenticatedResponseException | InvalidKeyException e) {
+    } catch (UnauthenticatedResponseException e) {
       Log.w(TAG, "Failed to restore key", e);
       throw new IOException(e);
     } catch (KeyBackupServicePinException e) {
@@ -171,7 +170,7 @@ public final class PinState {
    */
   @WorkerThread
   public static synchronized void onPinChangedOrCreated(@NonNull Context context, @NonNull String pin, @NonNull PinKeyboardType keyboard)
-      throws IOException, UnauthenticatedResponseException, InvalidKeyException
+      throws IOException, UnauthenticatedResponseException
   {
     Log.i(TAG, "onPinChangedOrCreated()");
 
@@ -273,7 +272,7 @@ public final class PinState {
    */
   @WorkerThread
   public static synchronized void onMigrateToRegistrationLockV2(@NonNull Context context, @NonNull String pin)
-      throws IOException, UnauthenticatedResponseException, InvalidKeyException
+      throws IOException, UnauthenticatedResponseException
   {
     Log.i(TAG, "onMigrateToRegistrationLockV2()");
 

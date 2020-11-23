@@ -1,8 +1,8 @@
 package org.whispersystems.signalservice.internal.push;
 
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.ecc.Curve;
-import org.whispersystems.libsignal.ecc.ECKeyPair;
+import org.whispersystems.curve25519.Curve25519;
+import org.whispersystems.curve25519.Curve25519KeyPair;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
@@ -38,9 +38,9 @@ public final class RemoteAttestationUtil {
                                                                 String enclaveName,
                                                                 String mrenclave,
                                                                 String authorization)
-    throws IOException, Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException, InvalidKeyException
+    throws IOException, Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException
   {
-    ECKeyPair                 keyPair  = buildKeyPair();
+    Curve25519KeyPair         keyPair  = buildKeyPair();
     ResponsePair              result   = makeAttestationRequest(socket, clientSet, authorization, enclaveName, keyPair);
     RemoteAttestationResponse response = JsonUtil.fromJson(result.body, RemoteAttestationResponse.class);
 
@@ -53,9 +53,9 @@ public final class RemoteAttestationUtil {
                                                                                   String enclaveName,
                                                                                   String mrenclave,
                                                                                   String authorization)
-      throws IOException, Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException, InvalidKeyException
+      throws IOException, Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException
   {
-    ECKeyPair                      keyPair      = buildKeyPair();
+    Curve25519KeyPair              keyPair      = buildKeyPair();
     ResponsePair                   result       = makeAttestationRequest(socket, clientSet, authorization, enclaveName, keyPair);
     MultiRemoteAttestationResponse response     = JsonUtil.fromJson(result.body, MultiRemoteAttestationResponse.class);
     Map<String, RemoteAttestation> attestations = new HashMap<>();
@@ -76,18 +76,19 @@ public final class RemoteAttestationUtil {
     return attestations;
   }
 
-  private static ECKeyPair buildKeyPair() {
-    return Curve.generateKeyPair();
+  private static Curve25519KeyPair buildKeyPair() {
+    Curve25519 curve = Curve25519.getInstance(Curve25519.BEST);
+    return curve.generateKeyPair();
   }
 
   private static ResponsePair makeAttestationRequest(PushServiceSocket socket,
                                                      PushServiceSocket.ClientSet clientSet,
                                                      String authorization,
                                                      String enclaveName,
-                                                     ECKeyPair keyPair)
+                                                     Curve25519KeyPair keyPair)
       throws IOException
   {
-    RemoteAttestationRequest attestationRequest = new RemoteAttestationRequest(keyPair.getPublicKey().getPublicKeyBytes());
+    RemoteAttestationRequest attestationRequest = new RemoteAttestationRequest(keyPair.getPublicKey());
     Response                 response           = socket.makeRequest(clientSet, authorization, new LinkedList<String>(), "/v1/attestation/" + enclaveName, "PUT", JsonUtil.toJson(attestationRequest));
     ResponseBody             body               = response.body();
 
@@ -112,9 +113,9 @@ public final class RemoteAttestationUtil {
   private static RemoteAttestation validateAndBuildRemoteAttestation(RemoteAttestationResponse response,
                                                                      List<String> cookies,
                                                                      KeyStore iasKeyStore,
-                                                                     ECKeyPair keyPair,
+                                                                     Curve25519KeyPair keyPair,
                                                                      String mrenclave)
-      throws Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException, InvalidKeyException
+      throws Quote.InvalidQuoteFormatException, InvalidCiphertextException, UnauthenticatedQuoteException, SignatureException
   {
     RemoteAttestationKeys keys      = new RemoteAttestationKeys(keyPair, response.getServerEphemeralPublic(), response.getServerStaticPublic());
     Quote                 quote     = new Quote(response.getQuote());
