@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
@@ -134,8 +134,8 @@ public class GroupManager {
     return new GroupActionResult(groupRecipient, threadID);
   }
 
-  public static boolean deleteGroup(@NonNull  String  groupId,
-                                    @NonNull  Context context)
+  public static boolean deleteGroup(@NonNull String  groupId,
+                                    @NonNull Context context)
   {
     final GroupDatabase  groupDatabase  = DatabaseFactory.getGroupDatabase(context);
     final ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);

@@ -5,9 +5,6 @@ import android.database.ContentObserver
 import android.graphics.Bitmap
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
-import nl.komponents.kovenant.Promise
-import nl.komponents.kovenant.functional.bind
-import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -96,9 +93,19 @@ class PublicChatManager(private val context: Context) {
       ApplicationContext.getInstance(context).publicChatAPI?.setDisplayName(displayName, server)
     }
     // Start polling
-    Util.runOnMain{ startPollersIfNeeded() }
+    Util.runOnMain { startPollersIfNeeded() }
 
     return chat
+  }
+
+  public fun removeChat(server: String, channel: Long) {
+    val threadDB = DatabaseFactory.getThreadDatabase(context)
+    val groupId = PublicChat.getId(channel, server)
+    val threadId = GroupManager.getOpenGroupThreadID(groupId, context)
+    val groupAddress = threadDB.getRecipientForThreadId(threadId)!!.address.serialize()
+    GroupManager.deleteGroup(groupAddress, context)
+
+    Util.runOnMain { startPollersIfNeeded() }
   }
 
   private fun refreshChatsAndPollers() {
