@@ -269,6 +269,7 @@ message DataMessage {
   optional Delete             delete                  = 17;
   repeated BodyRange          bodyRanges              = 18;
   optional GroupCallUpdate    groupCallUpdate         = 19;
+  reserved                 /* future use */             20;
 }
 
 message NullMessage {
