@@ -183,7 +183,7 @@ public final class ConversationUpdateItem extends LinearLayout
       });
     } else if (conversationMessage.getMessageRecord().isGroupCall()) {
 
-      UpdateDescription updateDescription = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody());
+      UpdateDescription updateDescription = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody(), true);
       Collection<UUID>  uuids             = updateDescription.getMentioned();
 
       int text = 0;

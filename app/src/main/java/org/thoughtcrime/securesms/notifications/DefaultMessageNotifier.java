@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.TransactionTooLargeException;
 import android.service.notification.StatusBarNotification;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
@@ -607,6 +608,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
           body      = ThreadBodyUtil.getFormattedBodyFor(context, record);
           slideDeck = ((MmsMessageRecord) record).getSlideDeck();
           canReply  = true;
+        } else if (record.isGroupCall()) {
+          body     = new SpannableString(MessageRecord.getGroupCallUpdateDescription(context, record.getBody(), false).getString());
+          canReply = false;
         } else {
           canReply  = true;
         }

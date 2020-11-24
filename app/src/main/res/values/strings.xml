@@ -1215,15 +1215,28 @@
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in the group call · %2$s</string>
-    <string name="MessageRecord_you_are_in_the_group_call_s">You are in the group call · %2$s</string>
-    <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s and %2$s are in the group call · %3$s</string>
+    <string name="MessageRecord_you_are_in_the_group_call_s1">You are in the group call · %1$s</string>
+    <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s and %2$s are in the group call · %3$s</string>
     <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, and %3$s are in the group call · %4$s</string>
     <string name="MessageRecord_group_call_s">Group call · %1$s</string>
+
+    <string name="MessageRecord_s_started_a_group_call">%1$s started a group call</string>
+    <string name="MessageRecord_s_is_in_the_group_call">%1$s is in the group call</string>
+    <string name="MessageRecord_you_are_in_the_group_call">You are in the group call</string>
+    <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s and %2$s are in the group call</string>
+    <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, and %3$s are in the group call</string>
+    <string name="MessageRecord_group_call">Group call</string>
+
     <string name="MessageRecord_you">You</string>
 
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
         <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
         <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+    </plurals>
+
+    <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
     </plurals>
 
     <!-- MessageRequestBottomView -->

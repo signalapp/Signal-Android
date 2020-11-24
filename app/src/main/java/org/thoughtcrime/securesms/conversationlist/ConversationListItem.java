@@ -462,7 +462,7 @@ public final class ConversationListItem extends RelativeLayout
     } else if (SmsDatabase.Types.isMissedVideoCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_missed_video_call), defaultTint);
     } else if (MmsSmsColumns.Types.isGroupCall(thread.getType())) {
-      return emphasisAdded(context, MessageRecord.getGroupCallUpdateDescription(context, thread.getBody()), defaultTint);
+      return emphasisAdded(context, MessageRecord.getGroupCallUpdateDescription(context, thread.getBody(), false), defaultTint);
     } else if (SmsDatabase.Types.isJoinedType(thread.getType())) {
       return emphasisAdded(recipientToStringAsync(thread.getRecipient().getId(), r -> new SpannableString(context.getString(R.string.ThreadRecord_s_is_on_signal, r.getDisplayName(context)))));
     } else if (SmsDatabase.Types.isExpirationTimerUpdate(thread.getType())) {

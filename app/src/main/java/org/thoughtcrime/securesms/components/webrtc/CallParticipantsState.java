@@ -5,12 +5,12 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 
 import java.util.ArrayList;
@@ -171,7 +171,10 @@ public final class CallParticipantsState {
                                                                        webRtcViewModel.getRemoteParticipants().size(),
                                                                        oldState.isViewingFocusedParticipant);
 
-    CallParticipant focused = oldState.remoteParticipants.isEmpty() ? null : oldState.remoteParticipants.get(0);
+    List<CallParticipant> participantsByLastSpoke = new ArrayList<>(webRtcViewModel.getRemoteParticipants());
+    Collections.sort(participantsByLastSpoke, ComparatorCompat.reversed((p1, p2) -> Long.compare(p1.getLastSpoke(), p2.getLastSpoke())));
+
+    CallParticipant focused = participantsByLastSpoke.isEmpty() ? null : participantsByLastSpoke.get(0);
 
     return new CallParticipantsState(webRtcViewModel.getState(),
                                      webRtcViewModel.getGroupState(),

@@ -162,7 +162,7 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isMissedVideoCall()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_video_call_date, getCallDateString(context)), R.drawable.ic_update_video_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
     } else if (isGroupCall()) {
-      return getGroupCallUpdateDescription(context, getBody());
+      return getGroupCallUpdateDescription(context, getBody(), true);
     } else if (isJoined()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_s_joined_signal, getIndividualRecipient().getDisplayName(context)), R.drawable.ic_update_group_add_16);
     } else if (isExpirationTimerUpdate()) {
@@ -308,8 +308,7 @@ public abstract class MessageRecord extends DisplayRecord {
     }
   }
 
-
-  public static @NonNull UpdateDescription getGroupCallUpdateDescription(@NonNull Context context, @NonNull String body) {
+  public static @NonNull UpdateDescription getGroupCallUpdateDescription(@NonNull Context context, @NonNull String body, boolean withTime) {
     GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(body);
 
     List<UUID> joinedMembers = Stream.of(groupCallUpdateDetails.getInCallUuidsList())
@@ -317,7 +316,7 @@ public abstract class MessageRecord extends DisplayRecord {
                                      .withoutNulls()
                                      .toList();
 
-    UpdateDescription.StringFactory stringFactory = new GroupCallUpdateMessageFactory(context, joinedMembers, groupCallUpdateDetails);
+    UpdateDescription.StringFactory stringFactory = new GroupCallUpdateMessageFactory(context, joinedMembers, withTime, groupCallUpdateDetails);
 
     return UpdateDescription.mentioning(joinedMembers, stringFactory, R.drawable.ic_video_16);
   }

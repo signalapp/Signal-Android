@@ -2,13 +2,20 @@ package org.thoughtcrime.securesms.service.webrtc;
 
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Stream;
+
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Process actions for when the call has at least once been connected and joined.
@@ -100,7 +107,14 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
       return currentState;
     }
 
-    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), WebRtcUtil.getGroupCallEraId(groupCall));
+    String eraId = WebRtcUtil.getGroupCallEraId(groupCall);
+    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId);
+
+    List<UUID> members = new ArrayList<>(peekInfo.getJoinedMembers());
+    if (!members.contains(Recipient.self().requireUuid())) {
+      members.add(Recipient.self().requireUuid());
+    }
+    webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members);
 
     return currentState.builder()
                        .changeCallSetupState()
@@ -120,7 +134,11 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
       return groupCallFailure(currentState, "Unable to disconnect from group call", e);
     }
 
-    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), WebRtcUtil.getGroupCallEraId(groupCall));
+    String eraId = WebRtcUtil.getGroupCallEraId(groupCall);
+    webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId);
+
+    List<UUID> members = Stream.of(currentState.getCallInfoState().getRemoteCallParticipants()).map(p -> p.getRecipient().requireUuid()).toList();
+    webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members);
 
     currentState = currentState.builder()
                                .changeCallInfoState()

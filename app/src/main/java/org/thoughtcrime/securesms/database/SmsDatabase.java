@@ -687,11 +687,11 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
-                                               @NonNull RecipientId sender,
-                                               long timestamp,
-                                               @Nullable String messageGroupCallEraId,
-                                               @Nullable String peekGroupCallEraId,
-                                               @NonNull Collection<UUID> peekJoinedUuids)
+                                      @NonNull RecipientId sender,
+                                      long timestamp,
+                                      @Nullable String messageGroupCallEraId,
+                                      @Nullable String peekGroupCallEraId,
+                                      @NonNull Collection<UUID> peekJoinedUuids)
   {
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
 
@@ -704,6 +704,9 @@ public class SmsDatabase extends MessageDatabase {
       boolean peerEraIdSameAsPrevious = updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids);
 
       if (!peerEraIdSameAsPrevious && !Util.isEmpty(peekGroupCallEraId)) {
+        Recipient self     = Recipient.self();
+        boolean   markRead = peekJoinedUuids.contains(self.requireUuid()) || self.getId().equals(sender);
+
         byte[] updateDetails = GroupCallUpdateDetails.newBuilder()
                                                      .setEraId(Util.emptyIfNull(peekGroupCallEraId))
                                                      .setStartedCallUuid(Recipient.resolved(sender).requireUuid().toString())
@@ -719,7 +722,7 @@ public class SmsDatabase extends MessageDatabase {
         values.put(ADDRESS_DEVICE_ID, 1);
         values.put(DATE_RECEIVED, timestamp);
         values.put(DATE_SENT, timestamp);
-        values.put(READ, 0);
+        values.put(READ, markRead ? 1 : 0);
         values.put(BODY, body);
         values.put(TYPE, Types.GROUP_CALL_TYPE);
         values.put(THREAD_ID, threadId);
@@ -753,6 +756,7 @@ public class SmsDatabase extends MessageDatabase {
 
       GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.getBody());
       boolean                sameEraId              = groupCallUpdateDetails.getEraId().equals(peekGroupCallEraId) && !Util.isEmpty(peekGroupCallEraId);
+      boolean                containsSelf           = peekJoinedUuids.contains(Recipient.self().requireUuid());
 
       List<String> inCallUuids = sameEraId ? Stream.of(peekJoinedUuids).map(UUID::toString).toList()
                                            : Collections.emptyList();
@@ -761,6 +765,10 @@ public class SmsDatabase extends MessageDatabase {
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(BODY, body);
+
+      if (sameEraId && containsSelf) {
+        contentValues.put(READ, 1);
+      }
 
       db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(record.getId()));
 
