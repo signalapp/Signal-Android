@@ -1,3 +1,0 @@
--dontwarn org.webrtc.NetworkMonitorAutoDetect
--dontwarn android.net.Network
--keep class org.webrtc.** { *; }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="enable_alarm_manager">true</bool>
+    <bool name="enable_job_service">false</bool>
+</resources>

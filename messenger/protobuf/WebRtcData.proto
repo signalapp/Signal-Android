@@ -1,0 +1,31 @@
+/**
+ * Copyright (C) 2014-2016 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+
+package signal;
+
+option java_package         = "org.thoughtcrime.securesms.webrtc";
+option java_outer_classname = "WebRtcDataProtos";
+
+message Connected {
+  optional uint64 id = 1;
+}
+
+message Hangup {
+  optional uint64 id = 1;
+}
+
+message VideoStreamingStatus {
+  optional uint64 id      = 1;
+  optional bool   enabled = 2;
+}
+
+message Data {
+
+  optional Connected            connected            = 1;
+  optional Hangup               hangup               = 2;
+  optional VideoStreamingStatus videoStreamingStatus = 3;
+
+}

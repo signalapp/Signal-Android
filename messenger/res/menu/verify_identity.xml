@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto" >
+    <item android:id="@+id/verify_identity__share"
+          android:title="@string/verify_identity__share_safety_number"
+          android:icon="@drawable/ic_share_white_24dp"
+          app:showAsAction="ifRoom" />
+</menu>

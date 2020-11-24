@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="8">
+    <int name="maxMessageSize">1048576</int>
+    <int name="maxImageHeight">1944</int>
+    <int name="maxImageWidth">2592</int>
+    <int name="recipientLimit">10</int>
+    <string name="spamForwardingNumber">7726</string>
+    <bool name="smsDeliveryReportSettingOnByDefault">false</bool>
+    <bool name="enableSMSDeliveryReports">false</bool>
+    <bool name="allowChangingMmsRoamingAutoRetrieve">false</bool>
+    <bool name="mmsRoamingAutoRetrieveByDefault">true</bool>
+    <bool name="supportMmsPriority">false</bool>
+</mms_config>

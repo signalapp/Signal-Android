@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="5">
+    <int name="maxMessageSize">307200</int>
+    <int name="maxImageHeight">1944</int>
+    <int name="maxImageWidth">2592</int>
+    <int name="recipientLimit">20</int>
+    <int name="smsToMmsTextThreshold">6</int>
+    <int name="maxSubjectLength">80</int>
+</mms_config>

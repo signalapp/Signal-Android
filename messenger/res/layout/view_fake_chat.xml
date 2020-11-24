@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/very_large_spacing"
+    android:paddingRight="@dimen/very_large_spacing"
+    android:paddingBottom="@dimen/medium_spacing"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/FakeChatViewMessageBubble.Outgoing"
+        android:id="@+id/bubble1"
+        android:layout_width="@dimen/fake_chat_view_bubble_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:text="@string/view_fake_chat_bubble_1"
+        android:layout_gravity="right" />
+
+    <TextView
+        style="@style/FakeChatViewMessageBubble.Incoming"
+        android:id="@+id/bubble2"
+        android:layout_width="@dimen/fake_chat_view_bubble_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:text="@string/view_fake_chat_bubble_2"
+        android:layout_gravity="left" />
+
+    <TextView
+        style="@style/FakeChatViewMessageBubble.Outgoing"
+        android:id="@+id/bubble3"
+        android:layout_width="@dimen/fake_chat_view_bubble_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:text="@string/view_fake_chat_bubble_3"
+        android:layout_gravity="right" />
+
+    <TextView
+        style="@style/FakeChatViewMessageBubble.Incoming"
+        android:id="@+id/bubble4"
+        android:layout_width="@dimen/fake_chat_view_bubble_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:text="@string/view_fake_chat_bubble_4"
+        android:layout_gravity="left" />
+
+    <TextView
+        style="@style/FakeChatViewMessageBubble.Incoming"
+        android:id="@+id/bubble5"
+        android:layout_width="@dimen/fake_chat_view_bubble_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:text="@string/view_fake_chat_bubble_5"
+        android:layout_gravity="left" />
+
+</LinearLayout>

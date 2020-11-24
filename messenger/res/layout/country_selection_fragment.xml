@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:background="#ffffff">
+
+    <EditText android:id="@+id/country_search"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:drawableStart="@drawable/ic_menu_search_holo_light"
+              android:hint="@string/country_selection_fragment__search" />
+
+    <ListView android:id="@android:id/list"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:divider="#ffdddddd"
+              android:dividerHeight="1.0px"
+              android:choiceMode="singleChoice" />
+
+    <TextView android:id="@android:id/empty"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:text="@string/country_selection_fragment__loading_countries" />
+</LinearLayout>

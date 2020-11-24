@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+      <item android:title="@string/conversation_secure_verified__menu_reset_secure_session"
+            android:id="@+id/menu_reset_secure_session"/>
+</menu>

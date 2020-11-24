@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="6">
+    <bool name="enabledMMS">true</bool>
+    <int name="maxMessageSize">1048576</int>
+    <int name="maxImageHeight">1944</int>
+    <int name="maxImageWidth">2592</int>
+    <int name="recipientLimit">40</int>
+    <bool name="enableMultipartSMS">true</bool>
+    <int name="smsToMmsTextThreshold">6</int>
+    <bool name="enableSlideDuration">false</bool>
+    <int name="maxMessageTextSize">-1</int>
+    <int name="maxSubjectLength">80</int>
+    <string name="emailGatewayNumber">6245</string>
+    <bool name="enableMMSReadReports">false</bool>
+    <bool name="enableSMSDeliveryReports">false</bool>
+    <bool name="enableMMSDeliveryReports">false</bool>
+    <string name="httpParams">X-MDN: ##LINE1##|Proxy-Authorization: Basic ##NAI##</string>
+    <string name="naiSuffix">:pcs</string>
+    <bool name="supportMmsContentDisposition">false</bool>
+    <bool name="allowMmsOverWifi">true</bool>
+    <bool name="allowEnablingWapPushSI">false</bool>
+    <bool name="enableWapPushSI">true</bool>
+</mms_config>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+
+    <!-- L10N errors -->
+    <!-- This is a runtime crash so we don't want to ship with this. -->
+    <issue id="StringFormatMatches" severity="error" />
+
+    <!-- L10N warnings -->
+    <issue id="MissingTranslation" severity="warning" />
+    <issue id="MissingQuantity" severity="warning" />
+    <issue id="ExtraTranslation" severity="warning" />
+    <issue id="ImpliedQuantity" severity="warning" />
+
+</lint>

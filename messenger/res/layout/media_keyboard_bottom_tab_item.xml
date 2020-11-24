@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?selectableItemBackground"
+    android:animateLayoutChanges="true">
+
+    <View
+        android:id="@+id/media_keyboard_bottom_tab_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?emoji_tab_indicator"/>
+
+    <ImageView
+        android:id="@+id/media_keyboard_bottom_tab_image"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="6dp"/>
+
+</LinearLayout>
+

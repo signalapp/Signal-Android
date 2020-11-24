@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:maxLevel="0" android:drawable="@drawable/ic_outline_night_mode_24"/>
+    <item android:maxLevel="1" android:drawable="@drawable/ic_baseline_night_mode_24"/>
+    <item android:maxLevel="2" android:drawable="@drawable/ic_outline_night_mode_auto_24"/>
+</level-list>

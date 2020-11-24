@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="3">
+    <int name="maxMessageSize">102400</int>
+    <bool name="allowEnablingWapPushSI">false</bool>
+    <bool name="enableWapPushSI">true</bool>
+    <bool name="allowEditingSmscAddress">true</bool>
+</mms_config>

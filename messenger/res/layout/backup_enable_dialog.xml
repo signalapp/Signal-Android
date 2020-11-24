@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingTop="16dp"
+              android:paddingStart="23dp"
+              android:paddingEnd="23dp">
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="12sp"
+              android:text="@string/backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup"/>
+
+    <TableLayout android:id="@+id/number_table"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="16dp"
+                 android:layout_gravity="center_horizontal"
+                 android:clickable="true"
+                 android:focusable="true">
+
+        <TableRow android:gravity="center_horizontal"
+                  android:clickable="false"
+                  android:focusable="false">
+
+            <TextView android:id="@+id/code_first"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      style="@style/BackupPassphrase"
+                      tools:text="22934"/>
+
+            <TextView android:id="@+id/code_second"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="20dp"
+                      style="@style/BackupPassphrase"
+                      tools:text="56944" />
+
+            <TextView android:id="@+id/code_third"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="20dp"
+                      style="@style/BackupPassphrase"
+                      tools:text="42738" />
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+            <TextView android:id="@+id/code_fourth"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      style="@style/BackupPassphrase"
+                      tools:text="34431"/>
+
+            <TextView android:id="@+id/code_fifth"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="20dp"
+                      style="@style/BackupPassphrase"
+                      tools:text="24922" />
+
+            <TextView android:id="@+id/code_sixth"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="20dp"
+                      style="@style/BackupPassphrase"
+                      tools:text="58594" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout android:layout_marginTop="20dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+            android:gravity="center">
+
+        <CheckBox android:id="@+id/confirmation_check"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginEnd="10dp"/>
+
+        <TextView android:id="@+id/confirmation_text"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="12sp"
+                  android:text="@string/backup_enable_dialog__i_have_written_down_this_passphrase"/>
+    </LinearLayout>
+
+</LinearLayout>
