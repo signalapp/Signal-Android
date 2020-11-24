@@ -662,6 +662,12 @@
     <item quantity="many">%d narių nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
     <item quantity="other">%d narys nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d narys nepalaiko naujųjų grupių, todėl ši grupė negali būti sukurta.</item>
+    <item quantity="few">%d nariai nepalaiko naujųjų grupių, todėl ši grupė negali būti sukurta.</item>
+    <item quantity="many">%d narių nepalaiko naujųjų grupių, todėl ši grupė negali būti sukurta.</item>
+    <item quantity="other">%d narys nepalaiko naujųjų grupių, todėl ši grupė negali būti sukurta.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Kadangi „%1$s“ naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiam žmogui atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šį žmogų.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
@@ -669,6 +675,13 @@
     <item quantity="few">Kadangi %1$d nariai naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šiuos žmones.</item>
     <item quantity="many">Kadangi %1$d narių naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šiuos žmones.</item>
     <item quantity="other">Kadangi %1$d narys naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, galite pašalinti šiuos žmones.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ši grupė negali būti sukurta, nes „%1$s“ naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šį naudotoją.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Ši grupė negali būti sukurta, nes %1$d narys naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šį naudotoją.</item>
+    <item quantity="few">Ši grupė negali būti sukurta, nes %1$d nariai naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šiuos naudotojus.</item>
+    <item quantity="many">Ši grupė negali būti sukurta, nes %1$d narių naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šiuos naudotojus.</item>
+    <item quantity="other">Ši grupė negali būti sukurta, nes %1$d narys naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šiuos naudotojus.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
@@ -1130,8 +1143,19 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Jūs pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s">Jūs esate grupės skambutyje · %2$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s ir %2$s yra grupės skambutyje · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s ir %3$s yra grupės skambutyje · %4$s</string>
   <string name="MessageRecord_group_call_s">Grupės skambutis · %1$s</string>
   <string name="MessageRecord_you">Jūs</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s ir dar %3$d žmogus yra grupės skambutyje · %4$s</item>
+    <item quantity="few">%1$s, %2$s ir dar %3$d žmonės yra grupės skambutyje · %4$s</item>
+    <item quantity="many">%1$s, %2$s ir dar %3$d žmonių yra grupės skambutyje · %4$s</item>
+    <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra grupės skambutyje · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Priimti</string>
   <string name="MessageRequestBottomView_continue">Tęsti</string>
@@ -1742,6 +1766,7 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Įkeliama</string>
   <string name="ConversationUpdateItem_learn_more">Sužinoti daugiau</string>
+  <string name="ConversationUpdateItem_join_call">Prisijungti prie skambučio</string>
   <string name="ConversationUpdateItem_return_to_call">Grįžti į skambutį</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>

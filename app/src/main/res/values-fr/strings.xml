@@ -369,7 +369,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Essayez la phrase de passe de la sauvegarde et confirmez qu’elle correspond</string>
   <string name="BackupsPreferenceFragment__turn_on">Activer</string>
   <string name="BackupsPreferenceFragment__turn_off">Désactiver</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Pour restaurer une sauvegarde, installez une nouvelle version de Signal. Ouvrez l\'application, et touchez « Restorer sauvegarde », puis selectionnez un fichier de sauvegarde. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Pour restaurer une sauvegarde, installez une nouvelle version de Signal. Ouvrez l\'application, puis touchez « Restorer sauvegarde », et selectionnez un fichier de sauvegarde. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">En apprendre davantage</string>
   <string name="BackupsPreferenceFragment__in_progress">En cours…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d jusqu\'ici…</string>
@@ -412,7 +412,7 @@
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Faire un don à Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est alimenté par des gens comme vous. Montrez votre soutien dès aujourd\'hui !</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est propulsé par des gens comme vous. Montrez votre soutien dès aujourd\'hui !</string>
   <string name="DonateMegaphone_donate">Faire un don</string>
   <string name="DonateMegaphone_no_thanks">Non merci</string>
   <!--DozeReminder-->
@@ -602,7 +602,7 @@
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d membre ne prend pas en charge les nouveaux groupes, alors ce groupe ne peut être créé.</item>
-    <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes, alors ce groupe ne peut être créé.</item>
+    <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes, ce groupe ne peut donc être créé.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un groupe hérité sera créé, car « %1$s » utilise une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec cette personne une fois qu’elle aura mis Signal à jour, ou supprimez-la avant de créer le groupe.</string>

@@ -1537,7 +1537,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WebRtcCallControls_contact_photo_description">Kontaktfoto</string>
   <string name="WebRtcCallControls_speaker_button_description">Högtalare</string>
   <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
-  <string name="WebRtcCallControls_mute_button_description">Mikrofon av</string>
+  <string name="WebRtcCallControls_mute_button_description">Tysta</string>
   <string name="WebRtcCallControls_your_camera_button_description">Din kamera</string>
   <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Växla till bakre kamera</string>
   <string name="WebRtcCallControls_answer_call_description">Svara på samtal</string>

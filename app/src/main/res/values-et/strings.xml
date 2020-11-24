@@ -80,8 +80,14 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Heli esitamisel tekkis viga!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">Blokeeritud kasutajad</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Lisa blokeeritud kasutaja</string>
   <string name="BlockedUsersActivity__blocked_users_will">Blokeeritud kasutajatel pole võimalik sulle helistada ega sõnumeid saata.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">Blokeeritud kasutajad puuduvad</string>
+  <string name="BlockedUsersActivity__block_user">Blokeerid kasutaja?</string>
   <string name="BlockedUsersActivity__block">Blokeeri</string>
+  <string name="BlockedUsersActivity__unblock_user">Eemaldad kasutaja blokeeringu?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Kas soovid kasutaja \"%1$s\" blokeeringu eemaldada?</string>
   <string name="BlockedUsersActivity__unblock">Eemalda blokeering</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Kas blokeerida ja lahkuda %1$s?</string>
@@ -134,6 +140,7 @@
   <string name="ClientDeprecatedActivity_update">Uuenda</string>
   <string name="ClientDeprecatedActivity_dont_update">Ära uuenda</string>
   <string name="ClientDeprecatedActivity_warning">Hoiatus</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Sinu Signali versioon on aegunud. Sa saad vaadata sõnumiajalugu, kuid ei saa enne uuendamist sõnumeid saata ega vastu võtta.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Veebibrauserit ei leitud.</string>
   <string name="CommunicationActions_no_email_app_found">E-posti rakendust ei leitud.</string>
@@ -294,6 +301,9 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Väljuvad korra vaatamise meediafailid eemaldatakse pärast nende saatmist automaatselt</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Sa juba vaatasid seda sõnumit</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Saad selles vestluses enda jaoks märkmeid lisada.\nKui su kontol on lingitud seadmeid, sünkroonitakse uued märkmed.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grupiliikmel on sama nimi.</string>
+  <string name="ConversationFragment__tap_to_review">Üle vaatamiseks koputa</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal leidis teise samanimelise kontakti</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sinu seadmesse pole installitud brauserit.</string>
   <!--ConversationListFragment-->
@@ -337,10 +347,12 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Kas taastada varukoopiast?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Taasta oma sõnumid ja meedia kohalikust varukoopiast. Kui sa kohe ei taasta, ei saa seda teha ka hiljem.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Varundusest taastamise ikoon</string>
   <string name="ChooseBackupFragment__choose_backup">Vali varundus</string>
   <string name="ChooseBackupFragment__learn_more">Rohkem infot</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Taastamine õnnestus</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Varunduste kasutamise jätkamiseks palun vali kaust. Uued varundused salvestatakse sinna.</string>
   <string name="RestoreBackupFragment__choose_folder">Vali kaust</string>
   <string name="RestoreBackupFragment__not_now">Mitte praegu</string>
   <!--BackupsPreferenceFragment-->
@@ -365,6 +377,8 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Pildista</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vali galeriist</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eemalda pilt</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Foto tegemine nõuab kaameraluba.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Galerii vaatamine nõuab mäluruumi luba.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nüüd</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -392,10 +406,14 @@
   <string name="DocumentView_unnamed_file">Nimetu fail</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Anneta Signal-ile</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalit hoiavad käimas sinusarnased inimesed. Näita oma toetust täna!</string>
+  <string name="DonateMegaphone_donate">Anneta</string>
+  <string name="DonateMegaphone_no_thanks">Tänan, ei</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">See Signali versioon on aegunud. Sõnumite saatmiseks ja vastuvõtmiseks uuenda kohe.</string>
   <string name="ExpiredBuildReminder_update_now">Uuenda kohe</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -448,13 +466,40 @@
   <string name="GroupManagement_learn_more">Rohkem infot</string>
   <string name="GroupManagement_invite_multiple_users">Neid kasutajaid ei saa sinu poolt automaatselt gruppi lisada.\n\nNad on kutsutud grupiga ühinema ja ei näe grupi sõnumeid enne kui on ühinemisega nõustunud.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Mis on uued grupid?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Uutel gruppidel on funktsioonid nagu @mainimised ja grupiadminid, ning need toetavad tulevikus veel rohkem funktsioone.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Kogu täienduse-eelne sõnumiajalugu ja -meedia on alles.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">See liige peab grupiga liitumise kutse uuesti vastu võtma ning ei saa enne seda sõnumeid näha:</item>
+    <item quantity="other">Need liikmed peavad grupiga liitumise kutse uuesti vastu võtma ning ei saa enne seda sõnumeid näha:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Täienda uuele grupile</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Täienda seda gruppi</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Uutel gruppidel on funktsioonid nagu @mainimised ja grupiadminid, ning need toetavad tulevikus veel rohkem funktsioone.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Täiendamine ebaõnnestus.</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">Mitte praegu</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Uuenda gruppi</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Lisa liige</item>
+    <item quantity="other">Lisa liikmeid</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Mitte praegu</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Lisad liikme?</item>
+    <item quantity="other">Lisad liikmed?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Lisa liige</item>
+    <item quantity="other">Lisa liikmed</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Liiget ei saanud lisada.</item>
+    <item quantity="other">Liikmeid ei saanud lisada.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Lahkud grupist?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Sul pole enam võimalik saata ega saada selle grupi sõnumeid.</string>
@@ -525,6 +570,10 @@
     <item quantity="one">%d liige ei toeta uut tüüpi gruppe, seega see grupp jääb vana tüüpi grupiks.</item>
     <item quantity="other">%d liiget ei toeta uut tüüpi gruppe, seega see grupp jääb vana tüüpi grupiks.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d liige ei toeta uusi gruppe, seega seda gruppi ei saa luua.</item>
+    <item quantity="other">%d liiget ei toeta uusi gruppe, seega seda gruppi ei saa luua.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Luuakse vana tüüpi grupp, sest “%1$s” kasutab Signal-i vana versiooni. Selle kasutajaga on võimalik luua uut tüüpi grupp pärast seda, kui ta on Signal-it uuendanud või oled ta enne uue grupi loomist eemaldanud.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
@@ -534,8 +583,11 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaduvad sõnumid</string>
   <string name="ManageGroupActivity_pending_group_invites">Ootel grupikutsed</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Liikmetaotlused ja -kutsed</string>
   <string name="ManageGroupActivity_add_members">Lisa liikmeid</string>
   <string name="ManageGroupActivity_edit_group_info">Muuda grupi infot</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Kes saab uusi liikmeid lisada?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kes saab selle grupi infot muuta?</string>
   <string name="ManageGroupActivity_group_link">Grupilink</string>
   <string name="ManageGroupActivity_block_group">Blokeeri grupp</string>
   <string name="ManageGroupActivity_unblock_group">Eemalda grupi blokeering</string>
@@ -792,6 +844,8 @@
   <string name="MessageRecord_you_updated_group">Sa uuendasid gruppi.</string>
   <string name="MessageRecord_the_group_was_updated">Grupp on uuendatud.</string>
   <string name="MessageRecord_you_called_date">Sa helistasid · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Vastamata häälkõne · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Vastamata videokõne · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s uuendas gruppi.</string>
   <string name="MessageRecord_s_called_you_date">%1$s helistas sulle · %2$s</string>
   <string name="MessageRecord_called_s">Helistasid kontaktile %s</string>
@@ -801,6 +855,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid kaduvate sõnumite taimeriks %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras kaduvate sõnumite taimeriks %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Kaduvate sõnumite ajaks seadistati %1$s.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">See grupp on uueks grupiks täiendatud.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s muutis enda profiilinimeks %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s muutis enda profiilinime %2$s -&gt; %3$s.</string>
@@ -1043,8 +1098,15 @@
   <string name="WebRtcCallView__your_video_is_off">Sinu video on väljas</string>
   <string name="WebRtcCallView__connecting">Ühendumine…</string>
   <string name="WebRtcCallView__reconnecting">Ühenduse taastamine…</string>
+  <string name="WebRtcCallView__joining">Liitumine…</string>
   <string name="WebRtcCallView__disconnected">Ühendus katkestatud</string>
   <string name="WebRtcCallView__no_one_else_is_here">Kedagi teist pole siin</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s on selles kõnes</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ja %2$s on selles kõnes</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s ja %3$d teine on selles kõnes</item>
+    <item quantity="other">%1$s, %2$s ja %3$d teist on selles kõnes</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Selles kõnes · %1$d inimene</item>
@@ -1464,6 +1526,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Laadimine</string>
   <string name="ConversationUpdateItem_learn_more">Rohkem infot</string>
+  <string name="ConversationUpdateItem_join_call">Liitu kõnega</string>
+  <string name="ConversationUpdateItem_return_to_call">Pöördu kõnne tagasi</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
   <string name="audio_view__download_accessibility_description">Laadi alla</string>
@@ -1813,6 +1877,7 @@
   <string name="preferences__typing_indicators">Kirjutamisindikaatorid</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Kui kirjutamisindikaatorid on keelatud, ei näe sa neid ka teiste puhul.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Palu klaviatuuril keelata isikupärastatud õppimine</string>
+  <string name="preferences_app_protection__blocked_users">Blokeeritud kasutajad</string>
   <string name="preferences_chats__when_using_mobile_data">Kui kasutad mobiilandmesidet</string>
   <string name="preferences_chats__when_using_wifi">Kui kasutad Wi-Fit</string>
   <string name="preferences_chats__when_roaming">Kui oled välismaal</string>
@@ -1865,11 +1930,13 @@
   <string name="preferences_setup_a_username">Vali kasutajanimi</string>
   <string name="configurable_single_select__customize_option">Kohanda valikut</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_conversations_and_shortcuts">Vestlused ja otseteed</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Uus sõnum kasutajale…</string>
+  <string name="contact_selection_list__unknown_contact_block">Blokeeri kasutaja</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Lisa gruppi</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Kõne</string>
@@ -2269,10 +2336,15 @@
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Vaata liikmed üle</string>
+  <string name="ReviewCardDialogFragment__review_request">Vaata taotlus üle</string>
   <string name="ReviewCardDialogFragment__remove">Eemalda</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Liige</string>
+  <string name="ReviewCard__request">Taotlus</string>
+  <string name="ReviewCard__your_contact">Sinu kontakt</string>
   <string name="ReviewCard__remove_from_group">Eemalda grupist</string>
+  <string name="ReviewCard__update_contact">Uuendatud kontakt</string>
   <string name="ReviewCard__block">Blokeeri</string>
   <string name="ReviewCard__delete">Kustuta</string>
   <!--EOF-->
