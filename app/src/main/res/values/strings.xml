@@ -564,9 +564,14 @@
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">What are New Groups?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">New Groups have features like @mentions and group admins, and will support more features in the future.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All message history and media has been kept from before the upgrade.</string>
+    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">You will need to accept an invite to join this group again, and will not receive group messages until you accept.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">This member will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
         <item quantity="other">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
+    </plurals>
+    <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+        <item quantity="one">This member was removed from the group and will not be able to rejoin until they upgrade:</item>
+        <item quantity="other">These members were removed from the group and will not be able to rejoin until they upgrade:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -1050,9 +1055,15 @@
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s.</string>
     <string name="MessageRecord_disappearing_message_time_set_to_s">The disappearing message timer has been set to %1$s.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">This group was updated to a New Group.</string>
+    <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">You couldn\'t be added to the New Group and have been invited to join.</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">%1$s member couldn\'t be added to the New Group and has been invited to join.</item>
+        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
         <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+    </plurals>
+
+    <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
+        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
     </plurals>
 
     <!-- Profile change updates -->

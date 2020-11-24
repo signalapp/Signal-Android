@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -72,7 +73,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -862,11 +862,14 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void insertGroupV1MigrationEvents(@NonNull RecipientId recipientId, long threadId, @NonNull List<RecipientId> pendingRecipients) {
+  public void insertGroupV1MigrationEvents(@NonNull RecipientId recipientId,
+                                           long threadId,
+                                           @NonNull GroupMigrationMembershipChange membershipChange)
+  {
     insertGroupV1MigrationNotification(recipientId, threadId);
 
-    if (pendingRecipients.size() > 0) {
-      insertGroupV1MigrationEvent(recipientId, threadId, pendingRecipients);
+    if (!membershipChange.isEmpty()) {
+      insertGroupV1MigrationMembershipChanges(recipientId, threadId, membershipChange);
     }
 
     notifyConversationListeners(threadId);
@@ -874,10 +877,13 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   private void insertGroupV1MigrationNotification(@NonNull RecipientId recipientId, long threadId) {
-    insertGroupV1MigrationEvent(recipientId, threadId, Collections.emptyList());
+    insertGroupV1MigrationMembershipChanges(recipientId, threadId, GroupMigrationMembershipChange.empty());
   }
 
-  private void insertGroupV1MigrationEvent(@NonNull RecipientId recipientId, long threadId, @NonNull List<RecipientId> pendingRecipients) {
+  private void insertGroupV1MigrationMembershipChanges(@NonNull RecipientId recipientId,
+                                                       long threadId,
+                                                       @NonNull GroupMigrationMembershipChange membershipChange)
+  {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
     values.put(ADDRESS_DEVICE_ID, 1);
@@ -887,8 +893,8 @@ public class SmsDatabase extends MessageDatabase {
     values.put(TYPE, Types.GV1_MIGRATION_TYPE);
     values.put(THREAD_ID, threadId);
 
-    if (pendingRecipients.size() > 0) {
-      values.put(BODY, RecipientId.toSerializedList(pendingRecipients));
+    if (!membershipChange.isEmpty()) {
+      values.put(BODY, membershipChange.serialize());
     }
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);

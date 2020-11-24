@@ -26,6 +26,7 @@ import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor.LATEST;
@@ -182,15 +183,8 @@ public final class GroupsV1MigrationUtil {
         return null;
       }
 
-      List<RecipientId> pendingRecipients = Stream.of(DecryptedGroupUtil.pendingToUuidList(decryptedGroup.getPendingMembersList()))
-                                                  .map(uuid -> Recipient.externalPush(context, uuid, null, false))
-                                                  .filterNot(Recipient::isSelf)
-                                                  .map(Recipient::getId)
-                                                  .toList();
-
       Log.i(TAG, "[Local] Migrating group over to the version we were added to: V" + decryptedGroup.getRevision());
-      DatabaseFactory.getGroupDatabase(context).migrateToV2(gv1Id, decryptedGroup);
-      DatabaseFactory.getSmsDatabase(context).insertGroupV1MigrationEvents(groupRecipient.getId(), threadId, pendingRecipients);
+      DatabaseFactory.getGroupDatabase(context).migrateToV2(threadId, gv1Id, decryptedGroup);
 
       Log.i(TAG, "[Local] Applying all changes since V" + decryptedGroup.getRevision());
       try {

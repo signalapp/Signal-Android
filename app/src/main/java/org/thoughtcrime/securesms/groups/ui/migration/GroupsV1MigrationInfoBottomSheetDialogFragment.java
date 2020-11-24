@@ -15,13 +15,12 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,16 +29,19 @@ import java.util.List;
  */
 public final class GroupsV1MigrationInfoBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
-  private static final String KEY_PENDING = "pending";
+  private static final String KEY_MEMBERSHIP_CHANGE = "membership_change";
 
   private GroupsV1MigrationInfoViewModel viewModel;
   private GroupMemberListView            pendingList;
   private TextView                       pendingTitle;
   private View                           pendingContainer;
+  private GroupMemberListView            droppedList;
+  private TextView                       droppedTitle;
+  private View                           droppedContainer;
 
-  public static void showForLearnMore(@NonNull FragmentManager manager, @NonNull List<RecipientId> pendingRecipients) {
+  public static void show(@NonNull FragmentManager manager, @NonNull GroupMigrationMembershipChange membershipChange) {
     Bundle args = new Bundle();
-    args.putParcelableArrayList(KEY_PENDING, new ArrayList<>(pendingRecipients));
+    args.putString(KEY_MEMBERSHIP_CHANGE, membershipChange.serialize());
 
     GroupsV1MigrationInfoBottomSheetDialogFragment fragment = new GroupsV1MigrationInfoBottomSheetDialogFragment();
     fragment.setArguments(args);
@@ -66,12 +68,16 @@ public final class GroupsV1MigrationInfoBottomSheetDialogFragment extends Bottom
     this.pendingContainer = view.findViewById(R.id.gv1_learn_more_pending_container);
     this.pendingTitle     = view.findViewById(R.id.gv1_learn_more_pending_title);
     this.pendingList      = view.findViewById(R.id.gv1_learn_more_pending_list);
+    this.droppedContainer = view.findViewById(R.id.gv1_learn_more_dropped_container);
+    this.droppedTitle     = view.findViewById(R.id.gv1_learn_more_dropped_title);
+    this.droppedList      = view.findViewById(R.id.gv1_learn_more_dropped_list);
 
     //noinspection ConstantConditions
-    List<RecipientId> pending = getArguments().getParcelableArrayList(KEY_PENDING);
+    GroupMigrationMembershipChange membershipChange = GroupMigrationMembershipChange.deserialize(getArguments().getString(KEY_MEMBERSHIP_CHANGE));
 
-    this.viewModel = ViewModelProviders.of(this, new GroupsV1MigrationInfoViewModel.Factory(pending)).get(GroupsV1MigrationInfoViewModel.class);
+    this.viewModel = ViewModelProviders.of(this, new GroupsV1MigrationInfoViewModel.Factory(membershipChange)).get(GroupsV1MigrationInfoViewModel.class);
     viewModel.getPendingMembers().observe(getViewLifecycleOwner(), this::onPendingMembersChanged);
+    viewModel.getDroppedMembers().observe(getViewLifecycleOwner(), this::onDroppedMembersChanged);
 
     view.findViewById(R.id.gv1_learn_more_ok_button).setOnClickListener(v -> dismiss());
   }
@@ -82,12 +88,25 @@ public final class GroupsV1MigrationInfoBottomSheetDialogFragment extends Bottom
   }
 
   private void onPendingMembersChanged(@NonNull List<Recipient> pendingMembers) {
-    if (pendingMembers.size() > 0) {
+    if (pendingMembers.size() == 1 && pendingMembers.get(0).isSelf()) {
+      pendingContainer.setVisibility(View.VISIBLE);
+      pendingTitle.setText(R.string.GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again);
+    } else if (pendingMembers.size() > 0) {
       pendingContainer.setVisibility(View.VISIBLE);
       pendingTitle.setText(getResources().getQuantityText(R.plurals.GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite, pendingMembers.size()));
       pendingList.setDisplayOnlyMembers(pendingMembers);
     } else {
       pendingContainer.setVisibility(View.GONE);
+    }
+  }
+
+  private void onDroppedMembersChanged(@NonNull List<Recipient> droppedMembers) {
+    if (droppedMembers.size() > 0) {
+      droppedContainer.setVisibility(View.VISIBLE);
+      droppedTitle.setText(getResources().getQuantityText(R.plurals.GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group, droppedMembers.size()));
+      droppedList.setDisplayOnlyMembers(droppedMembers);
+    } else {
+      droppedContainer.setVisibility(View.GONE);
     }
   }
 }

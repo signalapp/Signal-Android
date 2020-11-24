@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
@@ -494,7 +495,10 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void insertGroupV1MigrationEvents(@NonNull RecipientId recipientId, long threadId, List<RecipientId> pendingRecipients) {
+  public void insertGroupV1MigrationEvents(@NonNull RecipientId recipientId,
+                                           long threadId,
+                                           @NonNull GroupMigrationMembershipChange membershipChange)
+  {
     throw new UnsupportedOperationException();
   }
 

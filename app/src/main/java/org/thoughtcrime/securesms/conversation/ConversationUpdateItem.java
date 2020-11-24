@@ -178,7 +178,7 @@ public final class ConversationUpdateItem extends LinearLayout
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
-          eventListener.onGroupMigrationLearnMoreClicked(conversationMessage.getMessageRecord().getGroupV1MigrationEventInvites());
+          eventListener.onGroupMigrationLearnMoreClicked(conversationMessage.getMessageRecord().getGroupV1MigrationMembershipChanges());
         }
       });
     } else if (conversationMessage.getMessageRecord().isGroupCall()) {
