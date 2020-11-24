@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -89,7 +90,8 @@ public class GroupManager {
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
     } else {
-      long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+      long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(
+              groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
     }
   }
@@ -127,8 +129,28 @@ public class GroupManager {
 
     groupDatabase.updateProfilePicture(groupId, avatarBytes);
 
-    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+    long threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(
+            groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
     return new GroupActionResult(groupRecipient, threadID);
+  }
+
+  public static boolean deleteGroup(@NonNull String  groupId,
+                                    @NonNull Context context)
+  {
+    final GroupDatabase  groupDatabase  = DatabaseFactory.getGroupDatabase(context);
+    final ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    final Recipient      groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), false);
+
+    if (!groupDatabase.getGroup(groupId).isPresent()) {
+      return false;
+    }
+
+    long threadId = threadDatabase.getThreadIdIfExistsFor(groupRecipient);
+    if (threadId != -1L) {
+      threadDatabase.deleteConversation(threadId);
+    }
+
+    return groupDatabase.delete(groupId);
   }
 
   public static GroupActionResult updateGroup(@NonNull  Context        context,
@@ -154,7 +176,7 @@ public class GroupManager {
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
     } else {
       Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), true);
-      long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      long      threadId       = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
       return new GroupActionResult(groupRecipient, threadId);
     }
   }

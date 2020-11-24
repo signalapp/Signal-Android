@@ -556,7 +556,7 @@ public class SmsDatabase extends MessagingDatabase {
 
   private @NonNull Pair<Long, Long> insertCallLog(@NonNull Address address, long type, boolean unread) {
     Recipient recipient = Recipient.from(context, address, true);
-    long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long      threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, address.serialize());
@@ -620,8 +620,8 @@ public class SmsDatabase extends MessagingDatabase {
 
     long       threadId;
 
-    if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-    else                        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+    else                        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
 
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender().serialize());

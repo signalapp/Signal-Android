@@ -4,9 +4,7 @@ import android.content.Context
 import android.database.ContentObserver
 import android.graphics.Bitmap
 import android.text.TextUtils
-import nl.komponents.kovenant.Promise
-import nl.komponents.kovenant.functional.bind
-import nl.komponents.kovenant.functional.map
+import androidx.annotation.WorkerThread
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -16,6 +14,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChatInfo
 import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
+import kotlin.jvm.Throws
 
 class PublicChatManager(private val context: Context) {
   private var chats = mutableMapOf<Long, PublicChat>()
@@ -23,7 +22,7 @@ class PublicChatManager(private val context: Context) {
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
 
-  public fun areAllCaughtUp():Boolean {
+  public fun areAllCaughtUp(): Boolean {
     var areAllCaughtUp = true
     refreshChatsAndPollers()
     for ((threadID, chat) in chats) {
@@ -58,19 +57,24 @@ class PublicChatManager(private val context: Context) {
     isPolling = false
   }
 
-  public fun addChat(server: String, channel: Long): Promise<PublicChat, Exception> {
+  //TODO Declare a specific type of checked exception instead of "Exception".
+  @WorkerThread
+  @Throws(java.lang.Exception::class)
+  public fun addChat(server: String, channel: Long): PublicChat {
     val groupChatAPI = ApplicationContext.getInstance(context).publicChatAPI
-            ?: return Promise.ofFail(IllegalStateException("LokiPublicChatAPI is not set!"))
-    return groupChatAPI.getAuthToken(server).bind {
-      groupChatAPI.getChannelInfo(channel, server)
-    }.map {
-      addChat(server, channel, it)
-    }
+            ?: throw IllegalStateException("LokiPublicChatAPI is not set!")
+
+    // Ensure the auth token is acquired.
+    groupChatAPI.getAuthToken(server).get()
+
+    val channelInfo = groupChatAPI.getChannelInfo(channel, server).get()
+    return addChat(server, channel, channelInfo)
   }
 
+  @WorkerThread
   public fun addChat(server: String, channel: Long, info: PublicChatInfo): PublicChat {
     val chat = PublicChat(channel, server, info.displayName, true)
-    var threadID =  GroupManager.getOpenGroupThreadID(chat.id, context)
+    var threadID = GroupManager.getOpenGroupThreadID(chat.id, context)
     var profilePicture: Bitmap? = null
     // Create the group if we don't have one
     if (threadID < 0) {
@@ -89,9 +93,19 @@ class PublicChatManager(private val context: Context) {
       ApplicationContext.getInstance(context).publicChatAPI?.setDisplayName(displayName, server)
     }
     // Start polling
-    Util.runOnMain{ startPollersIfNeeded() }
+    Util.runOnMain { startPollersIfNeeded() }
 
     return chat
+  }
+
+  public fun removeChat(server: String, channel: Long) {
+    val threadDB = DatabaseFactory.getThreadDatabase(context)
+    val groupId = PublicChat.getId(channel, server)
+    val threadId = GroupManager.getOpenGroupThreadID(groupId, context)
+    val groupAddress = threadDB.getRecipientForThreadId(threadId)!!.address.serialize()
+    GroupManager.deleteGroup(groupAddress, context)
+
+    Util.runOnMain { startPollersIfNeeded() }
   }
 
   private fun refreshChatsAndPollers() {
@@ -105,7 +119,7 @@ class PublicChatManager(private val context: Context) {
 
   private fun listenToThreadDeletion(threadID: Long) {
     if (threadID < 0 || observers[threadID] != null) { return }
-    val observer = createDeletionObserver(threadID, Runnable {
+    val observer = createDeletionObserver(threadID) {
       val chat = chats[threadID]
 
       // Reset last message cache
@@ -119,7 +133,7 @@ class PublicChatManager(private val context: Context) {
       pollers.remove(threadID)?.stop()
       observers.remove(threadID)
       startPollersIfNeeded()
-    })
+    }
     observers[threadID] = observer
 
     context.applicationContext.contentResolver.registerContentObserver(DatabaseContentProviders.Conversation.getUriForThread(threadID), true, observer)

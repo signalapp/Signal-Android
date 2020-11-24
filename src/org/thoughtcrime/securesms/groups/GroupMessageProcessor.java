@@ -233,7 +233,7 @@ public class GroupMessageProcessor {
     String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
     if (masterDevice == null) { masterDevice = content.getSender(); }
     if (members.contains(Address.fromExternal(context, masterDevice))) {
-      database.remove(id, Address.fromExternal(context, masterDevice));
+      database.removeMember(id, Address.fromExternal(context, masterDevice));
       if (outgoing) database.setActive(id, false);
 
       return storeMessage(context, content, group, builder.build(), outgoing);
@@ -260,7 +260,7 @@ public class GroupMessageProcessor {
         Address                   address         = Address.fromExternal(context, GroupUtil.getEncodedId(group));
         Recipient                 recipient       = Recipient.from(context, address, false);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, null, Collections.emptyList(), Collections.emptyList());
-        long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        long                      threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
         long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);

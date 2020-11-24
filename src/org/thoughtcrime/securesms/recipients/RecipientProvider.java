@@ -79,6 +79,10 @@ class RecipientProvider {
     return Optional.fromNullable(recipientCache.get(address));
   }
 
+  boolean removeCached(@NonNull Address address) {
+    return recipientCache.remove(address);
+  }
+
   private @NonNull Optional<RecipientDetails> createPrefetchedRecipientDetails(@NonNull Context context, @NonNull Address address,
                                                                                @NonNull Optional<RecipientSettings> settings,
                                                                                @NonNull Optional<GroupRecord> groupRecord)
@@ -228,6 +232,10 @@ class RecipientProvider {
 
     public synchronized void set(Address address, Recipient recipient) {
       cache.put(address, recipient);
+    }
+
+    public synchronized boolean remove(Address address) {
+      return cache.remove(address) != null;
     }
 
   }

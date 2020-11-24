@@ -321,10 +321,10 @@ public class MmsDatabase extends MessagingDatabase {
   private long getThreadIdFor(IncomingMediaMessage retrieved) throws RecipientFormattingException, MmsException {
     if (retrieved.getGroupId() != null) {
       Recipient groupRecipients = Recipient.from(context, retrieved.getGroupId(), true);
-      return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
+      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipients);
     } else {
       Recipient sender = Recipient.from(context, retrieved.getFrom(), true);
-      return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(sender);
+      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(sender);
     }
   }
 
@@ -333,7 +333,7 @@ public class MmsDatabase extends MessagingDatabase {
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
     Recipient recipient = Recipient.from(context, Address.fromExternal(context, fromString), false);
-    return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
   }
 
   private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments) {

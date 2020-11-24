@@ -209,7 +209,7 @@ public class SmsMigrator {
 
         if (ourRecipients != null) {
           if (ourRecipients.size() == 1) {
-            long ourThreadId = threadDatabase.getThreadIdFor(ourRecipients.iterator().next());
+            long ourThreadId = threadDatabase.getOrCreateThreadIdFor(ourRecipients.iterator().next());
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           } else if (ourRecipients.size() > 1) {
             ourRecipients.add(Recipient.from(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), true));
@@ -222,7 +222,7 @@ public class SmsMigrator {
 
             String    ourGroupId        = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(memberAddresses, true, null);
             Recipient ourGroupRecipient = Recipient.from(context, Address.fromSerialized(ourGroupId), true);
-            long      ourThreadId       = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+            long      ourThreadId       = threadDatabase.getOrCreateThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
 
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           }

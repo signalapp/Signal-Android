@@ -498,7 +498,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     OutgoingTextMessage       outgoingTextMessage       = new OutgoingTextMessage(recipient, "", -1);
     OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
     if (!recipient.isGroupRecipient()) {
       // TODO: Handle session reset on sync messages
@@ -808,7 +808,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (result.getMessageId() > -1) {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
         LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-        long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
+        long originalThreadId = threadDatabase.getOrCreateThreadIdFor(originalRecipient);
         lokiMessageDatabase.setOriginalThreadID(result.getMessageId(), originalThreadId);
       }
     }
@@ -822,7 +822,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                                                                                   message.getTimestamp(),
                                                                                                   message.getMessage().getExpiresInSeconds() * 1000L);
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     long messageId = database.insertMessageOutbox(expirationUpdateMessage, threadId, false, null);
 
     database.markAsSent(messageId, true);
@@ -864,7 +864,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipients);
 
     database.beginTransaction();
 
@@ -995,7 +995,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if (result.getMessageId() > -1) {
           ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
           LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-          long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
+          long originalThreadId = threadDatabase.getOrCreateThreadIdFor(originalRecipient);
           lokiMessageDatabase.setOriginalThreadID(result.getMessageId(), originalThreadId);
         }
       }
@@ -1018,7 +1018,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
-    long    threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long    threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     boolean isGroup   = recipient.getAddress().isGroup();
 
     MessagingDatabase database;
@@ -1102,7 +1102,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (canRecoverAutomatically(e)) {
       Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
       LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
-      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+      long threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
       threadDB.addSessionRestoreDevice(threadID, sender);
       SessionManagementProtocol.startSessionReset(context, sender);
     } else {
@@ -1249,7 +1249,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       // See if we need to redirect the message
       author = getMessageMasterDestination(content.getSender());
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(author);
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(author);
     }
 
     if (threadId <= 0) {
@@ -1459,7 +1459,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient conversationRecipient, @NonNull String sender, int device) {
     Recipient author   = Recipient.from(context, Address.fromSerialized(sender), false);
-    long      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(conversationRecipient);
+    long      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(conversationRecipient);
 
     if (threadId > 0) {
       Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");

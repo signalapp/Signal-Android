@@ -156,6 +156,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
@@ -163,6 +164,7 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
+import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView;
@@ -462,20 +464,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null) {
-      PublicChatAPI publicChatAPI = ApplicationContext.getInstance(this).getPublicChatAPI();
-      publicChatAPI.getChannelInfo(publicChat.getChannel(), publicChat.getServer()).success(info -> {
-        String groupId = GroupUtil.getEncodedOpenGroupId(publicChat.getId().getBytes());
-
-        publicChatAPI.updateProfileIfNeeded(
-            publicChat.getChannel(),
-            publicChat.getServer(),
-            groupId,
-            info,
-            false);
-
-        runOnUiThread(ConversationActivity.this::updateSubtitleTextView);
-        return Unit.INSTANCE;
-      });
+      // Request open group info update and handle the successful result in #onOpenGroupInfoUpdated().
+      PublicChatInfoUpdateWorker.scheduleInstant(this, publicChat.getServer(), publicChat.getChannel());
     }
 
     View rootView = findViewById(R.id.rootView);
@@ -1940,6 +1930,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 .show(TooltipPopup.POSITION_ABOVE);
   }
 
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  public void onOpenGroupInfoUpdated(OpenGroupUtilities.GroupInfoUpdatedEvent event) {
+    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
+    if (publicChat != null &&
+            publicChat.getChannel() == event.getChannel() &&
+            publicChat.getServer().equals(event.getUrl())) {
+      this.updateSubtitleTextView();
+    }
+  }
+
   private void initializeReceivers() {
     securityUpdateReceiver = new BroadcastReceiver() {
       @Override
@@ -2095,7 +2095,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         long           threadId       = params[0];
 
         if (drafts.size() > 0) {
-          if (threadId == -1) threadId = threadDatabase.getThreadIdFor(getRecipient(), thisDistributionType);
+          if (threadId == -1) threadId = threadDatabase.getOrCreateThreadIdFor(getRecipient(), thisDistributionType);
 
           draftDatabase.insertDrafts(threadId, drafts);
           threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this),
