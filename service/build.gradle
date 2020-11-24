@@ -1,0 +1,14 @@
+apply plugin: "maven"
+
+subprojects {
+    ext.versionNumber = "2.13.2"
+    ext.groupName = "org.whispersystems"
+
+    if (JavaVersion.current().isJava8Compatible()) {
+        allprojects {
+            tasks.withType(Javadoc) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+        }
+    }
+}

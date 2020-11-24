@@ -1,3 +1,7 @@
 rootProject.name = "session-android"
 
+include ":service"
+include ":service:java"
+include ":service:android"
+
 include ":messenger"

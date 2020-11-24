@@ -93,18 +93,18 @@ dependencies {
     }
     // Loki
     // Local:
-    implementation "org.whispersystems:signal-service-android:2.13.2" // Run ./gradlew install from session-android-service to install
-    implementation "org.whispersystems:curve25519-java:0.5.0"
+    implementation project(":service:android")
     // Remote:
+    implementation "org.whispersystems:curve25519-java:$curve25519Version"
     implementation "com.goterl.lazycode:lazysodium-android:4.2.0@aar"
     implementation "net.java.dev.jna:jna:5.5.0@aar"
-    implementation "com.google.protobuf:protobuf-java:2.5.0"
-    implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
-    implementation "com.squareup.okhttp3:okhttp:3.12.1"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.google.protobuf:protobuf-java:$protobufVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
-    implementation "nl.komponents.kovenant:kovenant:$kovenant_version"
-    implementation "nl.komponents.kovenant:kovenant-android:$kovenant_version"
+    implementation "nl.komponents.kovenant:kovenant:$kovenantVersion"
+    implementation "nl.komponents.kovenant:kovenant-android:$kovenantVersion"
     implementation "com.github.lelloman:android-identicons:v11"
     implementation "com.prof.rssparser:rssparser:2.0.4"
     implementation "com.jakewharton.rxbinding3:rxbinding:3.1.0"
@@ -147,8 +147,8 @@ def abiPostFix = ['armeabi-v7a' : 1,
 
 android {
     flavorDimensions "none"
-    compileSdkVersion 29
-    buildToolsVersion '29.0.3'
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
@@ -159,8 +159,9 @@ android {
         versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
 
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidCompileSdkVersion
+
         multiDexEnabled true // Even though we're running API 21+, this is still needed for release builds
 
         vectorDrawables.useSupportLibrary = true
@@ -309,15 +310,6 @@ android {
 
     buildFeatures {
         dataBinding true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
     }
 }
 

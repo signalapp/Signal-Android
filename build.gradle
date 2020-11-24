@@ -7,9 +7,9 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.1"
-        classpath files('libs/gradle-witness.jar')
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.gms:google-services:4.3.3"
+        classpath files('libs/gradle-witness.jar')
     }
 }
 
@@ -55,5 +55,11 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
+    }
+
+    project.ext {
+        androidBuildToolsVersion = '29.0.3'
+        androidCompileSdkVersion = 29
+        androidMinSdkVersion = 21
     }
 }
