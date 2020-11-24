@@ -34,6 +34,7 @@ import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionM
 import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
+import java.lang.UnsupportedOperationException
 
 class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelegate {
 
@@ -79,14 +80,19 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
     private fun requestDeviceLink(hexEncodedPublicKey: String) {
         var seed: ByteArray? = null
         var keyPair: ECKeyPair? = null
+
+        //FIXME AC: Previously we used the modified version of the Signal's Curve25519 lib to generate the seed and key pair.
+        // If you need to restore this logic you should probably fork and patch the lib to support that method as well.
+        // https://github.com/signalapp/curve25519-java
         fun generateKeyPair() {
-            val seedCandidate = Curve25519.getInstance(Curve25519.BEST).generateSeed(16)
-            try {
-                keyPair = Curve.generateKeyPair(seedCandidate + seedCandidate) // Validate the seed
-            } catch (exception: Exception) {
-                return generateKeyPair()
-            }
-            seed = seedCandidate
+            throw UnsupportedOperationException("Generating device link key pair is not supported at the moment.")
+//            val seedCandidate = Curve25519.getInstance(Curve25519.BEST).generateSeed(16)
+//            try {
+//                keyPair = Curve.generateKeyPair(seedCandidate + seedCandidate) // Validate the seed
+//            } catch (exception: Exception) {
+//                return generateKeyPair()
+//            }
+//            seed = seedCandidate
         }
         generateKeyPair()
         IdentityKeyUtil.save(this, IdentityKeyUtil.LOKI_SEED, Hex.toStringCondensed(seed))

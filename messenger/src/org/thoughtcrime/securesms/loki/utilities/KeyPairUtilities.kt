@@ -7,12 +7,13 @@ import com.goterl.lazycode.lazysodium.utils.KeyPair
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
-import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.ecc.DjbECPrivateKey
 import org.whispersystems.libsignal.ecc.DjbECPublicKey
 import org.whispersystems.libsignal.ecc.ECKeyPair
 
 object KeyPairUtilities {
+
+    private val sodium = LazySodiumAndroid(SodiumAndroid())
 
     data class KeyPairGenerationResult(
         val seed: ByteArray,
@@ -21,7 +22,7 @@ object KeyPairUtilities {
     )
 
     fun generate(): KeyPairGenerationResult {
-        val seed = Curve25519.getInstance(Curve25519.BEST).generateSeed(16)
+        val seed = sodium.randomBytesBuf(16)
         try {
             return generate(seed)
         } catch (exception: Exception) {
@@ -30,7 +31,6 @@ object KeyPairUtilities {
     }
 
     fun generate(seed: ByteArray): KeyPairGenerationResult {
-        val sodium = LazySodiumAndroid(SodiumAndroid())
         val padding = ByteArray(16) { 0 }
         val ed25519KeyPair = sodium.cryptoSignSeedKeypair(seed + padding)
         val sodiumX25519KeyPair = sodium.convertKeyPairEd25519ToCurve25519(ed25519KeyPair)

@@ -13,11 +13,8 @@ import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.goterl.lazycode.lazysodium.LazySodiumAndroid
-import com.goterl.lazycode.lazysodium.SodiumAndroid
 import com.goterl.lazycode.lazysodium.utils.KeyPair
 import kotlinx.android.synthetic.main.activity_register.*
 import network.loki.messenger.R
@@ -29,11 +26,8 @@ import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.util.Base64
-import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.curve25519.Curve25519
-import org.whispersystems.libsignal.ecc.*
+import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 

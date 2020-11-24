@@ -87,21 +87,12 @@ public class IdentityKeyUtil {
     }
   }
 
-  public static void generateIdentityKeyPair(Context context, byte[] seed) {
-    ECKeyPair keyPair;
-    if (seed != null) {
-      keyPair = Curve.generateKeyPair(seed);
-    } else {
-      keyPair = Curve.generateKeyPair();
-    }
+  public static void generateIdentityKeyPair(Context context) {
+    ECKeyPair keyPair = Curve.generateKeyPair();;
     IdentityKey publicKey = new IdentityKey(keyPair.getPublicKey());
     ECPrivateKey privateKey = keyPair.getPrivateKey();
     save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(publicKey.serialize()));
     save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(privateKey.serialize()));
-  }
-
-  public static void generateIdentityKeyPair(Context context) {
-    generateIdentityKeyPair(context, null);
   }
 
   public static void migrateIdentityKeys(@NonNull Context context,

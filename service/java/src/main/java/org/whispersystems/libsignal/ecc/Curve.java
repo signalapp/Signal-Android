@@ -20,11 +20,6 @@ public class Curve {
     return Curve25519.getInstance(BEST).isNative();
   }
 
-  public static ECKeyPair generateKeyPair(byte[] seed) {
-    Curve25519KeyPair keyPair = Curve25519.getInstance(BEST).generateKeyPair(seed);
-    return new ECKeyPair(new DjbECPublicKey(keyPair.getPublicKey()), new DjbECPrivateKey(keyPair.getPrivateKey()));
-  }
-
   public static ECKeyPair generateKeyPair() {
     Curve25519KeyPair keyPair = Curve25519.getInstance(BEST).generateKeyPair();
     return new ECKeyPair(new DjbECPublicKey(keyPair.getPublicKey()), new DjbECPrivateKey(keyPair.getPrivateKey()));
