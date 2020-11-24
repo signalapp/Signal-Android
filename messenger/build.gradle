@@ -114,7 +114,7 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.11.1'
-    testImplementation 'org.mockito:mockito-core:1.9.5'
+    testImplementation 'org.mockito:mockito-core:1.10.8'
     testImplementation 'org.powermock:powermock-api-mockito:1.6.1'
     testImplementation 'org.powermock:powermock-module-junit4:1.6.1'
     testImplementation 'org.powermock:powermock-module-junit4-rule:1.6.1'
@@ -131,7 +131,7 @@ dependencies {
         exclude group: 'org.hamcrest',        module: 'hamcrest-core'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    testImplementation 'org.robolectric:robolectric:4.2'
+    testImplementation 'org.robolectric:robolectric:4.2.1'
     testImplementation 'org.robolectric:shadows-multidex:4.2'
 }
 
@@ -220,26 +220,26 @@ android {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                          'proguard-dagger.pro',
-                          'proguard-jackson.pro',
-                          'proguard-jna.pro',
-                          'proguard-sqlite.pro',
-                          'proguard-appcompat-v7.pro',
-                          'proguard-square-okhttp.pro',
-                          'proguard-square-okio.pro',
-                          'proguard-spongycastle.pro',
-                          'proguard-rounded-image-view.pro',
-                          'proguard-glide.pro',
-                          'proguard-shortcutbadger.pro',
-                          'proguard-retrofit.pro',
-                          'proguard-webrtc.pro',
-                          'proguard-klinker.pro',
-                          'proguard-retrolambda.pro',
-                          'proguard-okhttp.pro',
-                          'proguard-ez-vcard.pro',
-                          'proguard.cfg'
-            testProguardFiles 'proguard-automation.pro',
-                              'proguard.cfg'
+                          'proguard/proguard-dagger.pro',
+                          'proguard/proguard-jackson.pro',
+                          'proguard/proguard-jna.pro',
+                          'proguard/proguard-sqlite.pro',
+                          'proguard/proguard-appcompat-v7.pro',
+                          'proguard/proguard-square-okhttp.pro',
+                          'proguard/proguard-square-okio.pro',
+                          'proguard/proguard-spongycastle.pro',
+                          'proguard/proguard-rounded-image-view.pro',
+                          'proguard/proguard-glide.pro',
+                          'proguard/proguard-shortcutbadger.pro',
+                          'proguard/proguard-retrofit.pro',
+                          'proguard/proguard-webrtc.pro',
+                          'proguard/proguard-klinker.pro',
+                          'proguard/proguard-retrolambda.pro',
+                          'proguard/proguard-okhttp.pro',
+                          'proguard/proguard-ez-vcard.pro',
+                          'proguard/proguard.pro'
+            testProguardFiles 'proguard/proguard-automation.pro',
+                              'proguard/proguard.cfg'
         }
         release {
             minifyEnabled true
@@ -276,24 +276,6 @@ android {
     }
 
     sourceSets {
-        main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            resources.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
-            res.srcDirs = ['res']
-            assets.srcDirs = ['assets']
-            jniLibs.srcDirs = ['libs']
-        }
-        androidTest {
-            java.srcDirs = ['test/androidTest/java']
-        }
-        test {
-            java.srcDirs = ['test/unitTest/java']
-            resources.srcDirs = ['test/unitTest/resources']
-        }
-
         website.manifest.srcFile 'website/AndroidManifest.xml'
     }
 
@@ -397,7 +379,7 @@ def getLastCommitTimestamp() {
  */
 def autoResConfig() {
     def files = new ArrayList<String>()
-    def root = file("res")
+    def root = file("src/main/res")
     root.eachFile { f -> files.add(f.name) }
     ['en'] + files.collect { f -> f =~ /^values-([a-z]{2}(-r[A-Z]{2})?)$/ }
          .findAll { matcher -> matcher.find() }

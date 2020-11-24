@@ -1,30 +1,27 @@
 package org.thoughtcrime.securesms.recipients;
 
-import android.app.Application;
 import android.content.Intent;
 import android.provider.ContactsContract;
 
+import junit.framework.TestCase;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.thoughtcrime.securesms.database.Address;
 
-import static org.assertj.core.api.Assertions.*;
-
-import static android.provider.ContactsContract.Intents.Insert.NAME;
 import static android.provider.ContactsContract.Intents.Insert.EMAIL;
+import static android.provider.ContactsContract.Intents.Insert.NAME;
 import static android.provider.ContactsContract.Intents.Insert.PHONE;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE, application = Application.class)
-public final class RecipientExporterTest {
+//FIXME AC: This test group is outdated.
+@Ignore("This test group uses outdated instrumentation and needs a migration to modern tools.")
+@RunWith(MockitoJUnitRunner.class)
+public final class RecipientExporterTest extends TestCase {
 
   @Test
   public void asAddContactIntent_with_phone_number() {

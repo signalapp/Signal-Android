@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util.dynamiclanguage;
 
 import android.app.Application;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -15,6 +16,8 @@ import java.util.Locale;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+//FIXME AC: This test group is outdated.
+@Ignore("This test group uses outdated instrumentation and needs a migration to modern tools.")
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
 public final class LocaleParserTest {

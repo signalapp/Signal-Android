@@ -86,23 +86,6 @@ public class Address implements Parcelable, Comparable<Address> {
     return Util.join(escapedAddresses, delimiter + "");
   }
 
-  private static @NonNull ExternalAddressFormatter getExternalAddressFormatter(Context context) {
-    String localNumber = TextSecurePreferences.getLocalNumber(context);
-
-    if (!TextUtils.isEmpty(localNumber)) {
-      Pair<String, ExternalAddressFormatter> cached = cachedFormatter.get();
-
-      if (cached != null && cached.first.equals(localNumber)) return cached.second;
-
-      ExternalAddressFormatter formatter = new ExternalAddressFormatter(localNumber);
-      cachedFormatter.set(new Pair<>(localNumber, formatter));
-
-      return formatter;
-    } else {
-      return new ExternalAddressFormatter(Util.getSimCountryIso(context).or("US"), true);
-    }
-  }
-
   public boolean isGroup() { return GroupUtil.isEncodedGroup(address); }
 
   public boolean isClosedGroup() { return GroupUtil.isClosedGroup(address); }
@@ -195,10 +178,6 @@ public class Address implements Parcelable, Comparable<Address> {
     private final String                localCountryCode;
 
     private final Pattern         ALPHA_PATTERN   = Pattern.compile("[a-zA-Z]");
-
-    ExternalAddressFormatter(@NonNull String localNumberString) {
-      throw new AssertionError("Not Implemented");
-    }
 
     ExternalAddressFormatter(@NonNull String localCountryCode, boolean countryCode) {
       this.localNumber      = Optional.absent();

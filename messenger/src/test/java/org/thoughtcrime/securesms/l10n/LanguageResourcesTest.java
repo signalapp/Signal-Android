@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.l10n;
 import android.app.Application;
 import android.content.res.Resources;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -21,6 +22,8 @@ import androidx.test.core.app.ApplicationProvider;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+//FIXME AC: This test group is outdated.
+@Ignore("This test group uses outdated instrumentation and needs a migration to modern tools.")
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
 public final class LanguageResourcesTest {
