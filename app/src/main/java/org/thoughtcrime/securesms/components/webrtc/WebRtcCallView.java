@@ -217,6 +217,13 @@ public class WebRtcCallView extends FrameLayout {
 
     int statusBarHeight = ViewUtil.getStatusBarHeight(this);
     statusBarGuideline.setGuidelineBegin(statusBarHeight);
+
+    toolbar.inflateMenu(R.menu.group_call);
+
+    View showParticipants = toolbar.getMenu().findItem(R.id.menu_group_call_participants_list).getActionView();
+    showParticipants.setOnClickListener(unused -> showParticipantsList());
+
+    participantCount = showParticipants.findViewById(R.id.show_participants_menu_counter);
   }
 
   @Override
@@ -357,14 +364,6 @@ public class WebRtcCallView extends FrameLayout {
 
     if (recipient.isGroup()) {
       recipientName.setText(getContext().getString(R.string.WebRtcCallView__s_group_call, recipient.getDisplayName(getContext())));
-      if (toolbar.getMenu().findItem(R.id.menu_group_call_participants_list) == null) {
-        toolbar.inflateMenu(R.menu.group_call);
-
-        View showParticipants = toolbar.getMenu().findItem(R.id.menu_group_call_participants_list).getActionView();
-        showParticipants.setOnClickListener(unused -> showParticipantsList());
-
-        participantCount = showParticipants.findViewById(R.id.show_participants_menu_counter);
-      }
     } else {
       recipientName.setText(recipient.getDisplayName(getContext()));
     }
