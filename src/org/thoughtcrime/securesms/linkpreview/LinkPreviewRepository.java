@@ -10,7 +10,6 @@ import android.text.Html;
 import android.text.TextUtils;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.FutureTarget;
 import com.google.android.gms.common.util.IOUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -18,7 +17,6 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.net.CallRequestController;
@@ -37,6 +35,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest.StickerInfo;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -116,7 +115,8 @@ public class LinkPreviewRepository implements InjectableType {
   }
 
   private @NonNull RequestController fetchMetadata(@NonNull String url, Callback<Metadata> callback) {
-    Call call = client.newCall(new Request.Builder().url(url).cacheControl(NO_CACHE).build());
+    Call call = client.newCall(new Request.Builder().url(url).removeHeader("User-Agent").addHeader("User-Agent",
+            "WhatsApp").cacheControl(NO_CACHE).build());
 
     call.enqueue(new okhttp3.Callback() {
       @Override
@@ -138,11 +138,17 @@ public class LinkPreviewRepository implements InjectableType {
         }
 
         String            body     = response.body().string();
-        Optional<String>  title    = getProperty(body, "title");
-        Optional<String>  imageUrl = getProperty(body, "image");
+        OpenGraph        openGraph   = LinkPreviewUtil.parseOpenGraphFields(body);
+        Optional<String> title       = openGraph.getTitle();
+        Optional<String> imageUrl    = openGraph.getImageUrl();
 
         if (imageUrl.isPresent() && !LinkPreviewUtil.isValidMediaUrl(imageUrl.get())) {
           Log.i(TAG, "Image URL was invalid or for a non-whitelisted domain. Skipping.");
+          imageUrl = Optional.absent();
+        }
+
+        if (imageUrl.isPresent() && !LinkPreviewUtil.isVaildMimeType(imageUrl.get())) {
+          Log.i(TAG, "Image URL was invalid mime type. Skipping.");
           imageUrl = Optional.absent();
         }
 
@@ -161,6 +167,8 @@ public class LinkPreviewRepository implements InjectableType {
       try {
         Response response = call.execute();
         if (!response.isSuccessful() || response.body() == null) {
+          controller.cancel();
+          callback.onComplete(Optional.absent());
           return;
         }
 
@@ -182,24 +190,6 @@ public class LinkPreviewRepository implements InjectableType {
     });
 
     return controller;
-  }
-
-  private @NonNull Optional<String> getProperty(@NonNull String searchText, @NonNull String property) {
-    Pattern pattern = Pattern.compile("<\\s*meta\\s+property\\s*=\\s*\"\\s*og:" + property + "\\s*\"\\s+[^>]*content\\s*=\\s*\"(.*?)\"[^>]*/?\\s*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-    Matcher matcher = pattern.matcher(searchText);
-    if (matcher.find()) {
-      String text = Html.fromHtml(matcher.group(1)).toString();
-      if (!TextUtils.isEmpty(text)) { return Optional.of(text); }
-    }
-
-    pattern = Pattern.compile("<\\s*" + property + "[^>]*>(.*?)<\\s*/" + property + "[^>]*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-    matcher = pattern.matcher(searchText);
-    if (matcher.find()) {
-      String text = Html.fromHtml(matcher.group(1)).toString();
-      if (!TextUtils.isEmpty(text)) { return Optional.of(text); }
-    }
-
-    return Optional.absent();
   }
 
   private RequestController fetchStickerPackLinkPreview(@NonNull Context context,
