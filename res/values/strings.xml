@@ -1545,6 +1545,7 @@
     <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
     <string name="RegistrationLockDialog_disable">Disable</string>
     <string name="preferences_chats__backups">Backups</string>
+    <string name="preferences_chats__backup_export_error">An error occurred during exporting a backup. Please try again later.</string>
     <string name="prompt_passphrase_activity__signal_is_locked">Session is Locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
@@ -1669,6 +1670,7 @@
     <string name="activity_landing_title_2">Your Session begins here...</string>
     <string name="activity_landing_register_button_title">Create Session ID</string>
     <string name="activity_landing_restore_button_title">Continue Your Session</string>
+    <string name="activity_landing_restore_backup_button_title">Restore Backup</string>
     <string name="activity_landing_link_button_title">Link to an existing account</string>
     <string name="activity_landing_device_unlinked_dialog_title">Your device was unlinked successfully</string>
 
@@ -1867,5 +1869,10 @@
     <string name="details">Details</string>
 
     <string name="dialog_backup_activation_failed">Failed to activate backups. Please try again or contact support.</string>
+
+    <string name="activity_backup_restore_title">Restore backup</string>
+    <string name="activity_backup_restore_select_file">Select a file</string>
+    <string name="activity_backup_restore_explanation_1">Select a backup file and enter the passphrase it was created with.</string>
+    <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
 
 </resources>

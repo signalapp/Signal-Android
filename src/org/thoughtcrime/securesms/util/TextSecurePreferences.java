@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
@@ -24,9 +25,14 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import network.loki.messenger.R;
+
+import static org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_BOOLEAN;
+import static org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_INT;
 
 public class TextSecurePreferences {
 
@@ -141,7 +147,7 @@ public class TextSecurePreferences {
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
   private static final String NEXT_SIGNED_PRE_KEY_ID   = "pref_next_signed_pre_key_id";
 
-  public  static final String BACKUP_ENABLED              = "pref_backup_enabled_v2";
+  public  static final String BACKUP_ENABLED              = "pref_backup_enabled_v3";
   private static final String BACKUP_PASSPHRASE           = "pref_backup_passphrase";
   private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
   private static final String BACKUP_TIME                 = "pref_backup_next_time";
@@ -1332,6 +1338,94 @@ public class TextSecurePreferences {
 
   public static void setHasSeenLightThemeIntroSheet(Context context) {
     setBooleanPreference(context, "has_seen_light_theme_intro_sheet", true);
+  }
+  // endregion
+
+  // region Backup related
+  public static List<BackupProtos.SharedPreference> getBackupRecords(@NonNull Context context) {
+    final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    final String prefsFileName;
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      prefsFileName = PreferenceManager.getDefaultSharedPreferencesName(context);
+    } else {
+      prefsFileName = context.getPackageName() + "_preferences";
+    }
+
+    final LinkedList<BackupProtos.SharedPreference> prefList = new LinkedList<>();
+    addBackupEntryInt    (prefList, preferences, prefsFileName, LOCAL_REGISTRATION_ID_PREF);
+    addBackupEntryString (prefList, preferences, prefsFileName, LOCAL_NUMBER_PREF);
+    addBackupEntryString (prefList, preferences, prefsFileName, PROFILE_NAME_PREF);
+    addBackupEntryString (prefList, preferences, prefsFileName, PROFILE_AVATAR_URL_PREF);
+    addBackupEntryInt    (prefList, preferences, prefsFileName, PROFILE_AVATAR_ID_PREF);
+    addBackupEntryString (prefList, preferences, prefsFileName, PROFILE_KEY_PREF);
+    addBackupEntryBoolean(prefList, preferences, prefsFileName, IS_USING_FCM);
+
+    return prefList;
+  }
+
+  private static void addBackupEntryString(
+          List<BackupProtos.SharedPreference> outPrefList,
+          SharedPreferences prefs,
+          String prefFileName,
+          String prefKey) {
+    String value = prefs.getString(prefKey, null);
+    if (value == null) {
+      logBackupEntry(prefKey, false);
+      return;
+    }
+    outPrefList.add(BackupProtos.SharedPreference.newBuilder()
+              .setFile(prefFileName)
+              .setKey(prefKey)
+              .setValue(value)
+              .build());
+    logBackupEntry(prefKey, true);
+  }
+
+  private static void addBackupEntryInt(
+          List<BackupProtos.SharedPreference> outPrefList,
+          SharedPreferences prefs,
+          String prefFileName,
+          String prefKey) {
+    int value = prefs.getInt(prefKey, -1);
+    if (value == -1) {
+      logBackupEntry(prefKey, false);
+      return;
+    }
+    outPrefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(prefFileName)
+            .setKey(PREF_PREFIX_TYPE_INT + prefKey) // The prefix denotes the type of the preference.
+            .setValue(String.valueOf(value))
+            .build());
+    logBackupEntry(prefKey, true);
+  }
+
+  private static void addBackupEntryBoolean(
+          List<BackupProtos.SharedPreference> outPrefList,
+          SharedPreferences prefs,
+          String prefFileName,
+          String prefKey) {
+    if (!prefs.contains(prefKey)) {
+      logBackupEntry(prefKey, false);
+      return;
+    }
+    outPrefList.add(BackupProtos.SharedPreference.newBuilder()
+            .setFile(prefFileName)
+            .setKey(PREF_PREFIX_TYPE_BOOLEAN + prefKey) // The prefix denotes the type of the preference.
+            .setValue(String.valueOf(prefs.getBoolean(prefKey, false)))
+            .build());
+    logBackupEntry(prefKey, true);
+  }
+
+  private static void logBackupEntry(String prefName, boolean wasIncluded) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Backup preference ");
+    sb.append(wasIncluded ? "+ " : "- ");
+    sb.append('\"').append(prefName).append("\" ");
+    if (!wasIncluded) {
+      sb.append("(is empty and not included)");
+    }
+    Log.d(TAG, sb.toString());
   }
   // endregion
 }

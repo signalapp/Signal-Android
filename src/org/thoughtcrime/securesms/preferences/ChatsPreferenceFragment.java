@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +19,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.backup.BackupDialog;
-import org.thoughtcrime.securesms.backup.FullBackupBase.BackupEvent;
+import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -104,7 +105,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(BackupEvent event) {
-    ProgressPreference preference = (ProgressPreference)findPreference(TextSecurePreferences.BACKUP_NOW);
+    ProgressPreference preference = findPreference(TextSecurePreferences.BACKUP_NOW);
 
     if (event.getType() == BackupEvent.Type.PROGRESS) {
       preference.setEnabled(false);
@@ -114,12 +115,21 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
       preference.setEnabled(true);
       preference.setProgressVisible(false);
       setBackupSummary();
+
+      if (event.getException() != null) {
+        Toast.makeText(
+                getActivity(),
+                getString(R.string.preferences_chats__backup_export_error),
+                Toast.LENGTH_LONG)
+                .show();
+      }
     }
   }
 
   private void setBackupSummary() {
     findPreference(TextSecurePreferences.BACKUP_NOW)
-            .setSummary(String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s), BackupUtil.getLastBackupTimeString(getContext(), Locale.getDefault())));
+            .setSummary(String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s),
+                    BackupUtil.getLastBackupTimeString(getContext(), Locale.getDefault())));
   }
 
   private void setMediaDownloadSummaries() {

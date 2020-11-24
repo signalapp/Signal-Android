@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.api.ClosedGroupPoller;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
+import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;

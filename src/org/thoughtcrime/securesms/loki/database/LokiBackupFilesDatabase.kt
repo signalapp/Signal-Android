@@ -18,7 +18,7 @@ class LokiBackupFilesDatabase(context: Context, databaseHelper: SQLCipherOpenHel
     : Database(context, databaseHelper) {
 
     companion object {
-        private const val TABLE_NAME = "backup_files"
+        public  const val TABLE_NAME = "backup_files"
         private const val COLUMN_ID = "_id"
         private const val COLUMN_URI = "uri"
         private const val COLUMN_FILE_SIZE = "file_size"

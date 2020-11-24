@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="org.thoughtcrime.securesms.loki.activities.BackupRestoreViewModel"/>
+        <import type="org.thoughtcrime.securesms.util.BackupUtil"/>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="org.thoughtcrime.securesms.loki.activities.BackupRestoreViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginRight="@dimen/very_large_spacing"
+                android:text="@string/activity_backup_restore_title"
+                android:textColor="@color/text"
+                android:textSize="@dimen/large_font_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="@dimen/very_large_spacing"
+                android:text="@string/activity_backup_restore_explanation_1"
+                android:textColor="@color/text"
+                android:textSize="@dimen/small_font_size" />
+
+            <Button
+                android:id="@+id/buttonSelectFile"
+                style="@style/Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="@dimen/very_large_spacing"
+                android:textColor="@color/black"
+                android:text="@{viewModel.backupFile != null ? BackupRestoreViewModel.uriToFileName(buttonSelectFile, viewModel.backupFile) : @string/activity_backup_restore_select_file}"
+                tools:text="Select a file"
+                />
+
+            <EditText
+                android:id="@+id/backupCode"
+                style="@style/SmallSessionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/very_large_spacing"
+                android:hint="@string/activity_backup_restore_passphrase"
+                android:inputType="numberDecimal|textNoSuggestions"
+                android:digits="0123456789"
+                android:maxLength="@{BackupUtil.BACKUP_PASSPHRASE_LENGTH}"
+                android:text="@={viewModel.backupPassphrase}"
+                android:visibility="@{viewModel.backupFile != null ? View.VISIBLE : View.INVISIBLE}"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/restoreButton"
+                style="@style/Widget.Session.Button.Common.ProminentFilled"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_marginLeft="@dimen/massive_spacing"
+                android:layout_marginRight="@dimen/massive_spacing"
+                android:text="@string/continue_2"
+                android:visibility="@{BackupRestoreViewModel.validateData(viewModel.backupFile, viewModel.backupPassphrase) ? View.VISIBLE : View.INVISIBLE}"/>
+
+            <TextView
+                android:id="@+id/termsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/onboarding_button_bottom_offset"
+                android:layout_marginLeft="@dimen/massive_spacing"
+                android:layout_marginRight="@dimen/massive_spacing"
+                android:gravity="center"
+                android:text="By using this service, you agree to our Terms of Service and Privacy Policy"
+                android:textColor="@color/text"
+                android:textColorLink="@color/text"
+                android:textSize="@dimen/very_small_font_size" /> <!-- Intentionally not yet translated -->
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/busyIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#A4000000"
+            android:visibility="@{viewModel.processingBackupFile == true ? View.VISIBLE : View.GONE}"
+            tools:visibility="visible">
+
+            <ProgressBar
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:indeterminate="true"
+                android:layout_gravity="center"/>
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+</layout>

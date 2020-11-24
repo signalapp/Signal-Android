@@ -17,11 +17,11 @@ import java.util.Set;
 
 public class DraftDatabase extends Database {
 
-  private static final String TABLE_NAME  = "drafts";
-  public  static final String ID          = "_id";
-  public  static final String THREAD_ID   = "thread_id";
-  public  static final String DRAFT_TYPE  = "type";
-  public  static final String DRAFT_VALUE = "value";
+  public static final String TABLE_NAME  = "drafts";
+  public static final String ID          = "_id";
+  public static final String THREAD_ID   = "thread_id";
+  public static final String DRAFT_TYPE  = "type";
+  public static final String DRAFT_VALUE = "value";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
                                             THREAD_ID + " INTEGER, " + DRAFT_TYPE + " TEXT, " + DRAFT_VALUE + " TEXT);";

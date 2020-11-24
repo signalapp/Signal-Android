@@ -106,6 +106,11 @@
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
+            android:name="org.thoughtcrime.securesms.loki.activities.BackupRestoreActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
+        <activity
             android:name="org.thoughtcrime.securesms.loki.activities.LinkDeviceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"

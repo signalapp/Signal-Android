@@ -71,7 +71,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val openGroupPublicKeyTable = "open_group_public_keys"
         @JvmStatic val createOpenGroupPublicKeyTableCommand = "CREATE TABLE $openGroupPublicKeyTable ($server STRING PRIMARY KEY, $publicKey INTEGER DEFAULT 0);"
         // Open group profile picture cache
-        private val openGroupProfilePictureTable = "open_group_avatar_cache"
+        public val openGroupProfilePictureTable = "open_group_avatar_cache"
         private val openGroupProfilePicture = "open_group_avatar"
         @JvmStatic val createOpenGroupProfilePictureTableCommand = "CREATE TABLE $openGroupProfilePictureTable ($publicChatID STRING PRIMARY KEY, $openGroupProfilePicture TEXT NULLABLE DEFAULT NULL);"
 
