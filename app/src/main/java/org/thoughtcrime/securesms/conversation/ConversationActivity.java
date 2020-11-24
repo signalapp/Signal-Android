@@ -434,15 +434,15 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   protected void onCreate(Bundle state, boolean ready) {
-    RecipientId recipientId = getRecipientId(getIntent());
-
-    if (recipientId == null) {
+    if (getIntent().getStringExtra(RECIPIENT_EXTRA) == null) {
       Log.w(TAG, "[onCreate] Missing recipientId!");
       // TODO [greyson] Navigation
       startActivity(new Intent(this, MainActivity.class));
       finish();
       return;
     }
+
+    RecipientId recipientId = getRecipientId(getIntent());
 
     reportShortcutLaunch(recipientId);
     setContentView(R.layout.conversation_activity);
