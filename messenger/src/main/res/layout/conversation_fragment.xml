@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="fill_parent"
+             android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="2dp"
+            android:scrollbars="vertical"
+            android:cacheColorHint="?conversation_background"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+    <TextView android:id="@+id/scroll_date_header"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:layout_gravity="center_horizontal|top"
+              android:paddingStart="12dp"
+              android:paddingEnd="12dp"
+              android:paddingTop="4dp"
+              android:paddingBottom="4dp"
+              android:layout_marginTop="8dp"
+              android:textSize="@dimen/small_font_size"
+              android:textColor="?conversation_item_sticky_date_text_color"
+              android:background="?conversation_item_sticky_date_background"
+              android:elevation="10dp"
+              android:visibility="gone"
+              tools:text="March 1, 2015" />
+
+    <View android:id="@+id/compose_divider"
+          android:layout_width="match_parent"
+          android:layout_height="2dp"
+          android:layout_gravity="bottom"
+          android:background="@drawable/compose_divider_background"
+          android:alpha="1"
+          android:visibility="invisible" />
+
+    <ImageButton
+            android:id="@+id/scroll_to_bottom_button"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_spacing"
+            android:layout_marginBottom="@dimen/medium_spacing"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/scroll_to_bottom_button_background"
+            android:paddingLeft="@dimen/small_spacing"
+            android:paddingTop="10dp"
+            android:paddingRight="@dimen/small_spacing"
+            android:paddingBottom="6dp"
+            android:elevation="10dp"
+            android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"/>
+
+</FrameLayout>

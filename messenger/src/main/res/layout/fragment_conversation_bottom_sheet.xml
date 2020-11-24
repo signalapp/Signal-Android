@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/detailsTextView"
+        style="@style/BottomSheetActionItem"
+        android:drawableStart="@drawable/ic_info_outline_white_24dp"
+        android:drawableTint="?attr/colorControlNormal"
+        android:text="@string/details" />
+
+    <TextView
+        android:id="@+id/blockTextView"
+        style="@style/BottomSheetActionItem"
+        android:drawableStart="?attr/menu_block_icon"
+        android:text="@string/RecipientPreferenceActivity_block"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/unblockTextView"
+        style="@style/BottomSheetActionItem"
+        android:drawableStart="?attr/menu_accept_icon"
+        android:text="@string/RecipientPreferenceActivity_unblock"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/deleteTextView"
+        style="@style/BottomSheetActionItem"
+        android:drawableStart="?attr/menu_trash_icon"
+        android:text="@string/delete" />
+
+</LinearLayout>

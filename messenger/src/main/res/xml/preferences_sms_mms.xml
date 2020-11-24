@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                        android:defaultValue="true"
+                        android:key="pref_all_sms"
+                        android:summary="@string/preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages"
+                        android:title="@string/preferences__pref_all_sms_title" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                        android:defaultValue="true"
+                        android:key="pref_all_mms"
+                        android:summary="@string/preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages"
+                        android:title="@string/preferences__pref_all_mms_title" />
+
+    <Preference android:key="pref_set_default"
+                android:title="@string/ApplicationPreferencesActivity_sms_disabled"
+                android:summary="@string/ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                        android:defaultValue="false"
+                        android:key="pref_delivery_report_sms"
+                        android:summary="@string/preferences__request_a_delivery_report_for_each_sms_message_you_send"
+                        android:title="@string/preferences__sms_delivery_reports" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+                        android:defaultValue="false"
+                        android:key="pref_wifi_sms"
+                        android:title="@string/preferences__support_wifi_calling"
+                        android:summary="@string/preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi"/>
+
+    <Preference android:key="pref_mms_preferences"
+                android:title="@string/preferences__advanced_mms_access_point_names"/>
+
+</PreferenceScreen>

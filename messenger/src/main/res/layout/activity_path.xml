@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
+        android:textSize="@dimen/small_font_size"
+        android:textColor="@color/text"
+        android:alpha="0.6"
+        android:textAlignment="center"
+        android:text="@string/activity_path_explanation" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/large_spacing"
+        android:clipChildren="false">
+
+        <LinearLayout
+            android:id="@+id/pathRowsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            style="@style/SpinKitView.Large.ThreeBounce"
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:SpinKit_Color="@color/text" />
+
+    </RelativeLayout>
+
+    <Button
+        style="@style/Widget.Session.Button.Common.ProminentOutline"
+        android:id="@+id/learnMoreButton"
+        android:layout_width="196dp"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginBottom="@dimen/medium_spacing"
+        android:text="@string/activity_path_learn_more_button_title" />
+
+</LinearLayout>

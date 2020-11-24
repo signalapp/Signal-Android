@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+                android:duration="@integer/play_button_animation_duration"
+                android:interpolator="@android:interpolator/accelerate_decelerate"
+                android:propertyName="pathData"
+                android:valueFrom="@string/pause_icon_bottom_path_data"
+                android:valueTo="@string/play_icon_bottom_path_data"
+                android:valueType="pathType"/>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="5">
+    <bool name="enabledMMS">true</bool>
+    <int name="maxMessageSize">1048576</int>
+    <int name="maxImageHeight">2432</int>
+    <int name="maxImageWidth">4320</int>
+    <int name="defaultSMSMessagesPerThread">500</int>
+    <int name="defaultMMSMessagesPerThread">50</int>
+    <int name="minMessageCountPerThread">10</int>
+    <int name="maxMessageCountPerThread">5000</int>
+    <int name="recipientLimit">20</int>
+    <bool name="enableMultipartSMS">true</bool>
+    <int name="smsToMmsTextThreshold">1</int>
+    <bool name="enableSlideDuration">true</bool>
+    <int name="maxMessageTextSize">-1</int>
+    <int name="maxSubjectLength">80</int>
+    <string name="httpParams">X-MDN: ##LINE1##</string>
+    <bool name="allowEnablingWapPushSI">false</bool>
+    <bool name="enableWapPushSI">true</bool>
+</mms_config>

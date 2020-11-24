@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="4">
+    <bool name="enabledMMS">true</bool>
+    <int name="maxMessageSize">1048576</int>
+    <int name="maxImageHeight">2432</int>
+    <int name="maxImageWidth">4320</int>
+    <int name="defaultSMSMessagesPerThread">500</int>
+    <int name="defaultMMSMessagesPerThread">50</int>
+    <int name="minMessageCountPerThread">10</int>
+    <int name="maxMessageCountPerThread">5000</int>
+    <int name="recipientLimit">20</int>
+    <bool name="enableMultipartSMS">false</bool>
+    <int name="smsToMmsTextThreshold">-1</int>
+    <bool name="enableSlideDuration">false</bool>
+    <int name="maxMessageTextSize">-1</int>
+    <int name="maxSubjectLength">80</int>
+    <string name="emailGatewayNumber">6245</string>
+    <bool name="enableMMSReadReports">false</bool>
+    <bool name="enableSMSDeliveryReports">false</bool>
+    <bool name="enableMMSDeliveryReports">false</bool>
+    <string name="httpParams">x-cs3g-mdn: ##LINE1##|Proxy-Authorization: Basic ##NAI##</string>
+    <string name="naiSuffix">:pcs</string>
+</mms_config>

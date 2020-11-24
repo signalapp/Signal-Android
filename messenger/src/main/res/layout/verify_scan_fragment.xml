@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <org.thoughtcrime.securesms.components.camera.CameraView
+            android:id="@+id/scanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:camera="0"/>
+
+    <LinearLayout android:id="@+id/overlay"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+
+        <org.thoughtcrime.securesms.components.ShapeScrim
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:radius="0.3"
+                app:shape="circle"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>

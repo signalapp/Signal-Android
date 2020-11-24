@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.emoji.EmojiTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sticker_management_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/sticker_management_horizontal_margin"
+    android:layout_marginEnd="@dimen/sticker_management_horizontal_margin"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="24dp"
+    style="@style/Signal.Text.Preview"
+    android:fontFamily="sans-serif-medium"
+    tools:text="@string/StickerManagementAdapter_installed_stickers"/>

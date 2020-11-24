@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="3">
+    <bool name="enabledTransID">true</bool>
+    <bool name="enabledNotifyWapMMSC">true</bool>
+    <int name="maxMessageSize">1048576</int>
+    <string name="uaProfTagName">x-wap-profile</string>
+    <int name="recipientLimit">20</int>
+    <string name="httpParams">x-vzw-mdn: 1##LINE1NOCOUNTRYCODE##</string>
+    <int name="maxImageHeight">1944</int>
+    <int name="maxImageWidth">2592</int>
+    <bool name="enableMultipartSMS">false</bool>
+    <string name="emailGatewayNumber">6245</string>
+    <bool name="allowAttachAudio">true</bool>
+    <bool name="enableMMSReadReports">false</bool>
+    <int name="maxSubjectLength">80</int>
+    <int name="maxFrameRate">15</int>
+</mms_config>

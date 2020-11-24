@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:parentTag="android.widget.LinearLayout"
+    tools:background="@color/core_grey_60">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:id="@+id/scribble_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/scribble_delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_trash_filled_32" />
+
+            <ImageView
+                android:id="@+id/scribble_undo_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_undo_32" />
+
+            <ImageView
+                android:id="@+id/scribble_text_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_text_32" />
+                
+            <ImageView
+                android:id="@+id/scribble_draw_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_brush_marker_32" />
+
+            <ImageView
+                android:id="@+id/scribble_highlight_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_brush_highlight_32" />
+
+            <ImageView
+                android:id="@+id/scribble_sticker_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_emoji_32" />
+
+            <ImageView
+                android:id="@+id/scribble_crop_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_crop_32" />
+
+            <ImageView
+                android:id="@+id/scribble_confirm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_check_circle_32" />
+
+        </LinearLayout>
+
+        <org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker
+            android:id="@+id/scribble_color_picker"
+            android:layout_width="32dp"
+            android:layout_height="250dp"
+            android:layout_below="@id/scribble_toolbar"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/scribble_toolbar"
+            app:layout_constraintTop_toBottomOf="@+id/scribble_toolbar"
+            app:pickerBorderColor="@color/white"
+            app:pickerBorderWidth="3dp"
+            app:pickerColors="@array/scribble_colors" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/scribble_color_palette"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_below="@id/scribble_color_picker"
+            android:layout_alignEnd="@id/scribble_color_picker"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/scribble_color_picker"
+            app:layout_constraintTop_toBottomOf="@+id/scribble_color_picker"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/scribble_crop_flip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/ic_flip_32"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/scribble_crop_rotate" />
+
+        <ImageView
+            android:id="@+id/scribble_crop_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/ic_rotate_32"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/scribble_crop_aspect_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/ic_crop_lock_32"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

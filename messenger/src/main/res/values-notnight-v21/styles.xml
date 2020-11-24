@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Widget.Session.Button.Common.ProminentOutline">
+        <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:drawableTint" tools:ignore="NewApi">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Widget.Session.Button.Common.ProminentFilled">
+        <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:drawableTint" tools:ignore="NewApi">@android:color/white</item>
+    </style>
+
+    <style name="FakeChatViewMessageBubble.Incoming">
+        <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <style name="FakeChatViewMessageBubble.Outgoing">
+        <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <style name="Widget.Session.Button.Dialog.Destructive">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/destructive</item>
+    </style>
+
+</resources>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/sticker_install_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?sticker_preview_toolbar_background"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/sticker_install_cover"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@id/sticker_install_title"
+        app:layout_constraintBottom_toBottomOf="@id/sticker_install_author"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@mipmap/ic_person_shortcut"/>
+
+    <TextView
+        android:id="@+id/sticker_install_title"
+        style="@style/Signal.Text.Headline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        app:layout_constraintEnd_toStartOf="@id/sticker_install_share_button"
+        app:layout_constraintStart_toEndOf="@id/sticker_install_cover"
+        app:layout_constraintTop_toBottomOf="@id/sticker_install_toolbar"
+        tools:text="Spider-Man" />
+
+    <TextView
+        android:id="@+id/sticker_install_author"
+        style="@style/Signal.Text.Caption"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="@id/sticker_install_title"
+        app:layout_constraintStart_toStartOf="@id/sticker_install_title"
+        app:layout_constraintTop_toBottomOf="@id/sticker_install_title"
+        tools:text="Peter Parker" />
+
+    <View
+        android:id="@+id/sticker_install_share_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="?sticker_management_icon"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sticker_install_title"
+        app:layout_constraintBottom_toBottomOf="@id/sticker_install_title"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/sticker_install_share_button_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="@color/core_grey_90"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_forward_outline"
+        app:layout_constraintTop_toTopOf="@id/sticker_install_share_button"
+        app:layout_constraintBottom_toBottomOf="@id/sticker_install_share_button"
+        app:layout_constraintStart_toStartOf="@id/sticker_install_share_button"
+        app:layout_constraintEnd_toEndOf="@id/sticker_install_share_button"
+        tools:visibility="visible"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sticker_install_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/sticker_install_bottom_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sticker_install_author" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/sticker_install_button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="@color/StickerPreviewActivity_install_button_color"
+        app:cpb_cornerRadius="4dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/StickerPackPreviewActivity_install"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/sticker_install_list"
+        app:layout_constraintStart_toStartOf="@id/sticker_install_list" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/sticker_install_remove_button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:elevation="4dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="@color/StickerPreviewActivity_remove_button_color"
+        app:cpb_cornerRadius="4dp"
+        app:cpb_selectorIdle="@drawable/remove_button_state"
+        app:cpb_textIdle="@string/StickerPackPreviewActivity_remove"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/sticker_install_list"
+        app:layout_constraintStart_toStartOf="@id/sticker_install_list" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/sticker_install_bottom_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="sticker_install_remove_button,sticker_install_button"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

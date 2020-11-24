@@ -1,0 +1,73 @@
+{
+  "strings": {
+    "s1": "s1 value",
+    "s2": "s2 value"
+  },
+  "stringArrays": {
+    "s_array_1": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  "integers": {
+    "i1": 1,
+    "i2": 2,
+    "max": 2147483647,
+    "min": -2147483648
+  },
+  "integerArrays": {
+    "i_array_1": [
+      1,
+      2,
+      3,
+      2147483647,
+      -2147483648
+    ]
+  },
+  "longs": {
+    "l1": 10,
+    "l2": 20,
+    "max": 9223372036854775807,
+    "min": -9223372036854775808
+  },
+  "longArrays": {
+    "l_array_1": [
+      1,
+      2,
+      3,
+      9223372036854775807,
+      -9223372036854775808
+    ]
+  },
+  "floats": {
+    "f1": 1.2,
+    "f2": 3.4
+  },
+  "floatArrays": {
+    "f_array_1": [
+      5.6,
+      7.8
+    ]
+  },
+  "doubles": {
+    "d1": 10.2,
+    "d2": 30.4
+  },
+  "doubleArrays": {
+    "d_array_1": [
+      50.6,
+      70.8
+    ]
+  },
+  "booleans": {
+    "b1": true,
+    "b2": false
+  },
+  "booleanArrays": {
+    "b_array_1": [
+      false,
+      true
+    ]
+  }
+}

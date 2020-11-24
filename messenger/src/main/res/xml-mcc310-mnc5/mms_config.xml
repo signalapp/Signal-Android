@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="4">
+    <bool name="enabledTransID">true</bool>
+    <bool name="enabledNotifyWapMMSC">true</bool>
+    <int name="maxMessageSize">1258291</int>
+    <string name="uaProfTagName">Profile</string>
+    <int name="recipientLimit">20</int>
+    <string name="httpParams">x-up-calling-line-id: 1##LINE1NOCOUNTRYCODE##|X-VzW-MDN: 1##LINE1NOCOUNTRYCODE##</string>
+    <int name="maxImageHeight">1944</int>
+    <int name="maxImageWidth">2592</int>
+    <string name="emailGatewayNumber">6245</string>
+    <bool name="aliasEnabled">true</bool>
+    <int name="aliasMinChars">2</int>
+    <int name="aliasMaxChars">48</int>
+    <bool name="allowAttachAudio">false</bool>
+    <bool name="enableMMSReadReports">false</bool>
+    <int name="maxSubjectLength">80</int>
+    <bool name="enableMultipartSMS">true</bool>
+    <int name="smsToMmsTextThreshold">7</int>
+    <int name="maxFrameRate">15</int>
+    <string name="cdmaSmsErrorDescMap">verizon_cdma</string>
+</mms_config>

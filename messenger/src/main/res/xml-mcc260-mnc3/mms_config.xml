@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mms_config version="6">
+    <bool name="smsUsesSimpleCharactersOnly">false</bool>
+    <bool name="allowEnablingWapPushSI">false</bool>
+    <bool name="enableWapPushSI">false</bool>
+    <int name="httpSocketTimeout">120000</int>
+    <int name="maxMessageSize">600000</int>
+    <int name="maxImageHeight">768</int>
+    <int name="maxImageWidth">1024</int>
+    <bool name="mmsRoamingAutoRetrieveByDefault">true</bool>
+    <bool name="allowEditingSmscAddress">true</bool>
+</mms_config>

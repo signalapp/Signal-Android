@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true">
+
+    <FrameLayout android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="center">
+        
+        <LinearLayout android:paddingEnd="16dip"
+                      android:paddingStart="16dip"
+                      android:paddingTop="10dip"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:visibility="visible"
+                      android:orientation="vertical">
+                
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText android:id="@+id/old_passphrase"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:inputType="textPassword"
+                          android:layout_marginBottom="10dip"
+                          android:hint="@string/change_passphrase_activity__old_passphrase"
+                          android:singleLine="true"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText android:id="@+id/new_passphrase"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:inputType="textPassword"
+                          android:hint="@string/change_passphrase_activity__new_passphrase"
+                          android:singleLine="true"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText android:id="@+id/repeat_passphrase"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:inputType="textPassword"
+                          android:hint="@string/change_passphrase_activity__repeat_new_passphrase"
+                          android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout android:orientation="horizontal"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="30dp">
+
+                <Button android:id="@+id/cancel_button"
+                        android:text="@android:string/cancel"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="7dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+                
+                <Button android:id="@+id/ok_button"
+                        android:text="@android:string/ok"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>                
+            </LinearLayout>                        
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>

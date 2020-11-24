@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.SharedContactView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shared_contact_view"
+    android:layout_width="@dimen/media_bubble_default_dimens"
+    android:layout_height="wrap_content"
+    app:contact_titleColor="?conversation_item_sent_text_primary_color"
+    app:contact_captionColor="?conversation_item_sent_text_secondary_color"
+    app:contact_footerIconColor="?conversation_item_sent_icon_color"/>
