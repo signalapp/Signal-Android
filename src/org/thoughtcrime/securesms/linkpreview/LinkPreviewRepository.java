@@ -2,20 +2,21 @@ package org.thoughtcrime.securesms.linkpreview;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.Html;
 import android.text.TextUtils;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.FutureTarget;
+import com.google.android.gms.common.util.IOUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.net.CallRequestController;
@@ -34,9 +35,11 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest.StickerInfo;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
@@ -73,7 +76,7 @@ public class LinkPreviewRepository implements InjectableType {
   RequestController getLinkPreview(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<LinkPreview>> callback) {
     CompositeRequestController compositeController = new CompositeRequestController();
 
-    if (!LinkPreviewUtil.isWhitelistedLinkUrl(url)) {
+    if (!LinkPreviewUtil.isValidLinkUrl(url)) {
       Log.w(TAG, "Tried to get a link preview for a non-whitelisted domain.");
       callback.onComplete(Optional.absent());
       return compositeController;
@@ -112,7 +115,8 @@ public class LinkPreviewRepository implements InjectableType {
   }
 
   private @NonNull RequestController fetchMetadata(@NonNull String url, Callback<Metadata> callback) {
-    Call call = client.newCall(new Request.Builder().url(url).cacheControl(NO_CACHE).build());
+    Call call = client.newCall(new Request.Builder().url(url).removeHeader("User-Agent").addHeader("User-Agent",
+            "WhatsApp").cacheControl(NO_CACHE).build());
 
     call.enqueue(new okhttp3.Callback() {
       @Override
@@ -134,11 +138,17 @@ public class LinkPreviewRepository implements InjectableType {
         }
 
         String            body     = response.body().string();
-        Optional<String>  title    = getProperty(body, "title");
-        Optional<String>  imageUrl = getProperty(body, "image");
+        OpenGraph        openGraph   = LinkPreviewUtil.parseOpenGraphFields(body);
+        Optional<String> title       = openGraph.getTitle();
+        Optional<String> imageUrl    = openGraph.getImageUrl();
 
-        if (imageUrl.isPresent() && !LinkPreviewUtil.isWhitelistedMediaUrl(imageUrl.get())) {
+        if (imageUrl.isPresent() && !LinkPreviewUtil.isValidMediaUrl(imageUrl.get())) {
           Log.i(TAG, "Image URL was invalid or for a non-whitelisted domain. Skipping.");
+          imageUrl = Optional.absent();
+        }
+
+        if (imageUrl.isPresent() && !LinkPreviewUtil.isVaildMimeType(imageUrl.get())) {
+          Log.i(TAG, "Image URL was invalid mime type. Skipping.");
           imageUrl = Optional.absent();
         }
 
@@ -150,60 +160,36 @@ public class LinkPreviewRepository implements InjectableType {
   }
 
   private @NonNull RequestController fetchThumbnail(@NonNull Context context, @NonNull String imageUrl, @NonNull Callback<Optional<Attachment>> callback) {
-    FutureTarget<Bitmap> bitmapFuture = GlideApp.with(context).asBitmap()
-                                                              .load(new ChunkedImageUrl(imageUrl))
-                                                              .skipMemoryCache(true)
-                                                              .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                                              .centerInside()
-                                                              .submit(1024, 1024);
-
-    RequestController controller = () -> bitmapFuture.cancel(false);
+    Call                  call       = client.newCall(new Request.Builder().url(imageUrl).build());
+    CallRequestController controller = new CallRequestController(call);
 
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        Bitmap                bitmap = bitmapFuture.get();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Response response = call.execute();
+        if (!response.isSuccessful() || response.body() == null) {
+          controller.cancel();
+          callback.onComplete(Optional.absent());
+          return;
+        }
 
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+        InputStream bodyStream = response.body().byteStream();
+        controller.setStream(bodyStream);
 
-        byte[]               bytes     = baos.toByteArray();
-        Uri                  uri       = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
-        Optional<Attachment> thumbnail = Optional.of(new UriAttachment(uri,
-                                                                       uri,
-                                                                       MediaUtil.IMAGE_JPEG,
-                                                                       AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
-                                                                       bytes.length,
-                                                                       bitmap.getWidth(),
-                                                                       bitmap.getHeight(),
-                                                                       null,
-                                                                       null,
-                                                                       false,
-                                                                       false,
-                                                                       null,
-                                                                       null));
+        byte[]               data      = IOUtils.readInputStreamFully(bodyStream);
+        Bitmap               bitmap    = BitmapFactory.decodeByteArray(data, 0, data.length);
+        Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.JPEG, MediaUtil.IMAGE_JPEG);
+
+        if (bitmap != null) bitmap.recycle();
 
         callback.onComplete(thumbnail);
-      } catch (CancellationException | ExecutionException | InterruptedException e) {
+      } catch (IOException e) {
+        Log.w(TAG, "Exception during link preview image retrieval.", e);
         controller.cancel();
         callback.onComplete(Optional.absent());
-      } finally {
-        bitmapFuture.cancel(false);
       }
     });
 
-    return () -> bitmapFuture.cancel(true);
-  }
-
-  private @NonNull Optional<String> getProperty(@NonNull String searchText, @NonNull String property) {
-    Pattern pattern = Pattern.compile("<\\s*meta\\s+property\\s*=\\s*\"\\s*og:" + property + "\\s*\"\\s+[^>]*content\\s*=\\s*\"(.*?)\"[^>]*/?\\s*>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-    Matcher matcher = pattern.matcher(searchText);
-
-    if (matcher.find()) {
-      String text = Html.fromHtml(matcher.group(1)).toString();
-      return TextUtils.isEmpty(text) ? Optional.absent() : Optional.of(text);
-    }
-
-    return Optional.absent();
+    return controller;
   }
 
   private RequestController fetchStickerPackLinkPreview(@NonNull Context context,
@@ -265,6 +251,38 @@ public class LinkPreviewRepository implements InjectableType {
 
     return () -> Log.i(TAG, "Cancelled sticker pack link preview fetch -- no effect.");
   }
+
+  private static Optional<Attachment> bitmapToAttachment(@Nullable Bitmap bitmap,
+                                                         @NonNull Bitmap.CompressFormat format,
+                                                         @NonNull String contentType)
+  {
+    if (bitmap == null) {
+      return Optional.absent();
+    }
+
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+    bitmap.compress(format, 80, baos);
+
+    byte[] bytes = baos.toByteArray();
+    Uri    uri   = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
+
+    return  Optional.of(new UriAttachment(uri,
+            uri,
+            contentType,
+            AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
+            bytes.length,
+            bitmap.getWidth(),
+            bitmap.getHeight(),
+            null,
+            null,
+            false,
+            false,
+            null,
+            null));
+
+  }
+
 
   private static class Metadata {
     private final Optional<String> title;

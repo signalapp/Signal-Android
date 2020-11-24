@@ -62,7 +62,7 @@ public class BucketedThreadMediaLoader extends AsyncTaskLoader<BucketedThreadMed
   @Override
   public BucketedThreadMedia loadInBackground() {
     BucketedThreadMedia result   = new BucketedThreadMedia(getContext());
-    long                threadId = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(Recipient.from(getContext(), address, true));
+    long                threadId = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(Recipient.from(getContext(), address, true));
 
     DatabaseFactory.getMediaDatabase(getContext()).subscribeToMediaChanges(observer);
     try (Cursor cursor = DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId)) {

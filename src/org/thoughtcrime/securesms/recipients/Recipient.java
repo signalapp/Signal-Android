@@ -121,6 +121,10 @@ public class Recipient implements RecipientModifiedListener {
     if (recipient.isPresent()) consumer.accept(recipient.get());
   }
 
+  public static boolean removeCached(@NonNull Address address) {
+    return provider.removeCached(address);
+  }
+
   Recipient(@NonNull  Context context,
             @NonNull  Address address,
             @Nullable Recipient stale,

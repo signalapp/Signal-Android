@@ -23,6 +23,10 @@ import java.util.concurrent.TimeUnit;
  * {@link #serialize()}. Your job is then recreated using a {@link Factory} that you register in
  * {@link JobManager.Configuration.Builder#setJobFactories(Map)}, which is given the saved
  * {@link Data} bundle.
+ *
+ * @deprecated
+ * use <a href="https://developer.android.com/reference/androidx/work/WorkManager">WorkManager</a>
+ * API instead.
  */
 public abstract class Job {
 

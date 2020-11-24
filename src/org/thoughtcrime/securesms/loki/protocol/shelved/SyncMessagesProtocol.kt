@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.protocol.shelved
 
 import android.content.Context
 import android.util.Log
+import androidx.annotation.WorkerThread
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData
 import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData
@@ -132,6 +133,7 @@ object SyncMessagesProtocol {
     }
 
     @JvmStatic
+    @WorkerThread
     fun handleOpenGroupSyncMessage(context: Context, content: SignalServiceContent, openGroups: List<PublicChat>) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)

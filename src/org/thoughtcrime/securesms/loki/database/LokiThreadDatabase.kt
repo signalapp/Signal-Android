@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.loki.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.util.Log
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -34,7 +33,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     override fun getThreadID(hexEncodedPublicKey: String): Long {
         val address = Address.fromSerialized(hexEncodedPublicKey)
         val recipient = Recipient.from(context, address, false)
-        return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
+        return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
     }
 
     fun getThreadID(messageID: Long): Long {

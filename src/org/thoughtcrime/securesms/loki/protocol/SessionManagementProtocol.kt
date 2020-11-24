@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
-import android.os.AsyncTask
 import android.util.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -11,7 +10,6 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob
 import org.thoughtcrime.securesms.loki.utilities.recipient
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
@@ -28,7 +26,7 @@ object SessionManagementProtocol {
         val recipient = recipient(context, publicKey)
         if (recipient.isGroupRecipient) { return }
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
+        val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
         val devices = lokiThreadDB.getSessionRestoreDevices(threadID)
         for (device in devices) {
             val endSessionMessage = OutgoingEndSessionMessage(OutgoingTextMessage(recipient, "TERMINATE", 0, -1))
@@ -106,7 +104,7 @@ object SessionManagementProtocol {
         if (TextSecurePreferences.getRestorationTime(context) > errorTimestamp) {
             return ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(publicKey)
         }
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(masterDeviceAsRecipient)
+        val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(masterDeviceAsRecipient)
         DatabaseFactory.getLokiThreadDatabase(context).addSessionRestoreDevice(threadID, publicKey)
     }
 }

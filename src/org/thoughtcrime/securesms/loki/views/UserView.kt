@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
-import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +9,9 @@ import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
 import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 
 class UserView : LinearLayout {
     var openGroupThreadID: Long = -1 // FIXME: This is a bit ugly
@@ -63,7 +60,7 @@ class UserView : LinearLayout {
                 return result ?: publicKey
             }
         }
-        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(user)
+        val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(user)
         MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, context) // FIXME: This is a bad place to do this
         val address = user.address.serialize()
         profilePictureView.glide = glide

@@ -88,7 +88,7 @@ public class IdentityUtil {
           smsDatabase.insertMessageInbox(incoming);
         } else {
           Recipient           groupRecipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(group.getGroupId(), false)), true);
-          long                threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+          long                threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
           OutgoingTextMessage outgoing ;
 
           if (verified) outgoing = new OutgoingIdentityVerifiedMessage(recipient);
@@ -112,7 +112,7 @@ public class IdentityUtil {
       if (verified) outgoing = new OutgoingIdentityVerifiedMessage(recipient);
       else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
 
-      long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+      long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
       Log.i(TAG, "Inserting verified outbox...");
       DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoing, false, time, null);

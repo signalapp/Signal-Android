@@ -6,6 +6,11 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.logging.Log;
 
+/**
+ * @deprecated
+ * use <a href="https://developer.android.com/reference/androidx/work/WorkManager">WorkManager</a>
+ * API instead.
+ */
 public abstract class BaseJob extends Job {
 
   private static final String TAG = BaseJob.class.getSimpleName();

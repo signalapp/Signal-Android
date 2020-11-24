@@ -34,7 +34,7 @@ public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
   @Nullable
   @Override
   public Pair<Cursor, Integer> loadInBackground() {
-    long   threadId = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(recipient);
+    long   threadId = DatabaseFactory.getThreadDatabase(getContext()).getOrCreateThreadIdFor(recipient);
     Cursor cursor   = DatabaseFactory.getMediaDatabase(getContext()).getGalleryMediaForThread(threadId);
 
     while (cursor != null && cursor.moveToNext()) {

@@ -69,7 +69,7 @@ public class MessageSender {
     long allocatedThreadId;
 
     if (threadId == -1) {
-      allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+      allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     } else {
       allocatedThreadId = threadId;
     }
@@ -94,7 +94,7 @@ public class MessageSender {
       long allocatedThreadId;
 
       if (threadId == -1) {
-        allocatedThreadId = threadDatabase.getThreadIdFor(message.getRecipient(), message.getDistributionType());
+        allocatedThreadId = threadDatabase.getOrCreateThreadIdFor(message.getRecipient(), message.getDistributionType());
       } else {
         allocatedThreadId = threadId;
       }

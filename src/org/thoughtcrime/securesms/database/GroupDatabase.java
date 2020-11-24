@@ -218,6 +218,18 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     notifyConversationListListeners();
   }
 
+  public boolean delete(@NonNull String groupId) {
+    int result = databaseHelper.getWritableDatabase().delete(TABLE_NAME, GROUP_ID + " = ?", new String[]{groupId});
+
+    if (result > 0) {
+      Recipient.removeCached(Address.fromSerialized(groupId));
+      notifyConversationListListeners();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public void update(String groupId, String title, SignalServiceAttachmentPointer avatar) {
     ContentValues contentValues = new ContentValues();
     if (title != null) contentValues.put(TITLE, title);
@@ -262,7 +274,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     long avatarId;
 
     if (newValue != null) avatarId = Math.abs(new SecureRandom().nextLong());
-    else                avatarId = 0;
+    else                  avatarId = 0;
 
 
     ContentValues contentValues = new ContentValues(2);
@@ -300,7 +312,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?", new String[] {groupId});
   }
 
-  public void remove(String groupId, Address source) {
+  public void removeMember(String groupId, Address source) {
     List<Address> currentMembers = getCurrentMembers(groupId);
     currentMembers.remove(source);
 
@@ -352,11 +364,19 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     database.update(TABLE_NAME, values, GROUP_ID + " = ?", new String[] {groupId});
   }
 
-
   public byte[] allocateGroupId() {
     byte[] groupId = new byte[16];
     new SecureRandom().nextBytes(groupId);
     return groupId;
+  }
+
+  public boolean hasGroup(@NonNull String groupId) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase().rawQuery(
+            "SELECT 1 FROM " + TABLE_NAME + " WHERE " + GROUP_ID + " = ? LIMIT 1",
+            new String[]{groupId}
+    )) {
+      return cursor.getCount() > 0;
+    }
   }
 
   public static class Reader implements Closeable {
