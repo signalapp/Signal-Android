@@ -195,7 +195,7 @@ cd ~/reproducible-signal/signal-source
 To build with the docker image you just built (`signal-android`), run:
 
 ```
-docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assemblePlayRelease
+docker run --rm -v $(pwd):/project -w /project signal-android ./gradlew clean assemblePlayProdRelease
 ```
 
 This will take a few minutes :sleeping:
@@ -221,7 +221,7 @@ And run the diff script to compare (updating the filenames for your specific ver
 
 ```bash
 python3 reproducible-builds/apkdiff/apkdiff.py \
-        build/outputs/apk/play/release/*play-$abi-release-unsigned*.apk \
+        app/build/outputs/apk/playProd/release/*play-prod-$abi-release-unsigned*.apk \
         ../apk-from-google-play-store/Signal-5.0.0.apk
 ```
 
