@@ -1432,7 +1432,7 @@
   <string name="KeyCachingService_lock">قفل Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">شما</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">نوع رسانه پشتیبانی نشده</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">نوع رسانه پشتیبانی نشده</string>
   <string name="MediaPreviewActivity_draft">پیش‌نویس</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal  به منظور ذخیره سازی روی حافظهٔ خارجی نیاز به مجوز حافظه دارد اما اجازه اینکار به طور دائمی رد شده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «حافظه» را فعال کنید.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">عدم توانایی در ذخیره بر روی حافظهٔ خارجی بدون مجوز</string>
@@ -1780,7 +1780,7 @@
   <string name="redphone_call_card__signal_call">تماس Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">شمارهٔ همراه</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal با کمک شماره و دفترچهٔ تلفن شما ارتباط را آسان می‌کند. دوستان و مخاطبینی که می‌دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود به آسانی با شما از طریق Signal ارتباط برقرار کنند.\n\nثبت‌نام، برخی اطلاعات مخاطب را به سرور ارسال می‌کند. چیزی ذخیره نمی‌شود.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal با کمک شماره و دفترچهٔ تلفن شما ارتباط را آسان می‌کند. دوستان و مخاطبینی که می‌دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود به آسانی با شما از طریق Signal ارتباط برقرار کنند.\n\nثبت‌نام، برخی اطلاعات مخاطب را به سرور ارسال می‌کند. چیزی ذخیره نمی‌شود.</string>
   <string name="registration_activity__verify_your_number">شمارهٔ خود را تأیید کنید</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">لطفاً شمارهٔ موبایل خود را جهت دریافت کد تأیید وارد نمایید. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <!--recipients_panel-->
@@ -2065,7 +2065,7 @@
   <string name="conversation_context__menu_forward_message">ارسال پیام</string>
   <string name="conversation_context__menu_resend_message">ارسال مجدد پیام</string>
   <string name="conversation_context__menu_reply_to_message">پاسخ به پیام</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">انتخاب چندگانه</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ذخیره‌سازی پیوست</string>
@@ -2120,7 +2120,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">افزودن به مخاطبین</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">فهرست گیرندگان</string>
+  <string name="conversation_group_options__recipients_list">فهرست گیرندگان</string>
   <string name="conversation_group_options__delivery">تحویل</string>
   <string name="conversation_group_options__conversation">مکالمه</string>
   <string name="conversation_group_options__broadcast">پخش</string>

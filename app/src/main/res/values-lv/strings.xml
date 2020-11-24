@@ -1039,7 +1039,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="KeyCachingService_lock">Noslēgt Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jūs</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Neatbalstīts multimediju faila tips</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Neatbalstīts multimediju faila tips</string>
   <string name="MediaPreviewActivity_draft">Melnraksts</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal ir nepieciešama pieeja glabātuvei, lai saglabātu ārējā glabātuvē, bet pieeja nav dota. Dodieties uz lietotņu iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Krātuve\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nav iespējams saglabāt ārējā glabātuvē bez atļaujas.</string>
@@ -1370,7 +1370,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="redphone_call_card__signal_call">Signal zvans</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TĀLRUŅA NUMURS</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal atvieglo saziņu, izmantojot esošo tālruņa numuru un adrešu grāmatu. Draugi un kontaktpersonas, kas jau zina, kā sazināties ar jums pa tālruni, varēs viegli sazināties, izmantojot Signal.\n\nReģistrācija pārsūta kontaktinformāciju uz serveri. Šī informācija netiek saglabāta.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal atvieglo saziņu, izmantojot esošo tālruņa numuru un adrešu grāmatu. Draugi un kontaktpersonas, kas jau zina, kā sazināties ar jums pa tālruni, varēs viegli sazināties, izmantojot Signal.\n\nReģistrācija pārsūta kontaktinformāciju uz serveri. Šī informācija netiek saglabāta.</string>
   <string name="registration_activity__verify_your_number">Pārbaudīt Jūsu Numuru</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Lūdzu, ievadiet savu mobilā tālruņa numuru, lai saņemtu verifikācijas kodu. Var tikt piemēroti operatora tarifi.</string>
   <!--recipients_panel-->
@@ -1615,7 +1615,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="conversation_context__menu_forward_message">Pārsūtīt ziņu</string>
   <string name="conversation_context__menu_resend_message">Atkārtoti sūtīt ziņu</string>
   <string name="conversation_context__menu_reply_to_message">Atbildēt uz ziņu</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Atzīmējiet vairākus</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Saglabāt pielikumu</string>
@@ -1663,7 +1663,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Pievienot kontaktiem</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Adresātu saraksts</string>
+  <string name="conversation_group_options__recipients_list">Adresātu saraksts</string>
   <string name="conversation_group_options__delivery">Piegāde</string>
   <string name="conversation_group_options__conversation">Saruna</string>
   <string name="conversation_group_options__broadcast">Plašsaziņa/Pārraide</string>

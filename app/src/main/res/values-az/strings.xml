@@ -673,7 +673,7 @@
   <string name="KeyCachingService_lock">Signal-ı kilidlə</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sən</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Dəstəklənməyən media növü</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Dəstəklənməyən media növü</string>
   <string name="MediaPreviewActivity_draft">Qaralama</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Xarici yaddaşa məlumat yaza bilməsi üçün Signal-ın Yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">İcazəsiz xarici yaddaşa məlumat yaza bilmərik</string>
@@ -955,7 +955,7 @@
   <string name="redphone_call_card__signal_call">Signal Zəngi</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFON NÖMRƏ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal sənin mövcud telefon nömrəni və əlaqələr kitabçanı istifadə edərək ünsiyyəti asanlaşdırır. Telefon ilə səninlə əlaqə qura bilən bütün dostların eyni zamanda Signal ilə də səninlə ünsiyyət yarada biləcək.\n\nQeydiyyat zamanı bəzi əlaqələr serverə köçürülür. Onlar yaddaşda saxlanmır.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal sənin mövcud telefon nömrəni və əlaqələr kitabçanı istifadə edərək ünsiyyəti asanlaşdırır. Telefon ilə səninlə əlaqə qura bilən bütün dostların eyni zamanda Signal ilə də səninlə ünsiyyət yarada biləcək.\n\nQeydiyyat zamanı bəzi əlaqələr serverə köçürülür. Onlar yaddaşda saxlanmır.</string>
   <string name="registration_activity__verify_your_number">Nömrəni Təsdiq Et</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Təsdiq şifrəsini əlaqə etmək üçün mobil nömrəni daxil et. Provayder tərəfindən ödəniş tətbiq oluna bilər.</string>
   <!--recipients_panel-->
@@ -1152,7 +1152,7 @@
   <string name="conversation_context__menu_forward_message">Mesajı yönləndir</string>
   <string name="conversation_context__menu_resend_message">Mesajı yenidən göndər</string>
   <string name="conversation_context__menu_reply_to_message">Mesajı cavabla</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Faylı yadda saxla</string>
   <!--conversation_expiring_off-->
@@ -1194,7 +1194,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Əlaqələrinə əlavə et</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Qəbul edənlərin siyahısı</string>
+  <string name="conversation_group_options__recipients_list">Qəbul edənlərin siyahısı</string>
   <string name="conversation_group_options__delivery">Çatdırılma</string>
   <string name="conversation_group_options__conversation">Söhbət</string>
   <string name="conversation_group_options__broadcast">Yayımlanma</string>

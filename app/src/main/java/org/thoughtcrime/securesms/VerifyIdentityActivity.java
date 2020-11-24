@@ -279,7 +279,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       this.codes[8]         = ViewUtil.findById(container, R.id.code_ninth);
       this.codes[9]         = ViewUtil.findById(container, R.id.code_tenth);
       this.codes[10]        = ViewUtil.findById(container, R.id.code_eleventh);
-      this.codes[11]        = ViewUtil.findById(container, R.id.code_twelth);
+      this.codes[11]        = ViewUtil.findById(container, R.id.code_twelfth);
 
       this.qrCode.setOnClickListener(clickListener);
       this.registerForContextMenu(numbersContainer);

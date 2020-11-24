@@ -1434,7 +1434,7 @@
   <string name="KeyCachingService_lock">Blocca Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipo di media non supportato</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Tipo di media non supportato</string>
   <string name="MediaPreviewActivity_draft">Bozza</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per salvare in memoria, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossibile salvare nella memoria esterna senza l\'autorizzazione</string>
@@ -1782,7 +1782,7 @@
   <string name="redphone_call_card__signal_call">Chiamata Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMERO DI TELEFONO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal rende facile comunicare usando il tuo numero di telefono e la tua rubrica. Gli amici e i contatti che sanno già come chiamarti per telefono potranno mettersi in contatto facilmente con Signal.\n\nLa registrazione trasmette alcune informazioni di contatto al sever. Non vengono salvate.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal rende facile comunicare usando il tuo numero di telefono e la tua rubrica. Gli amici e i contatti che sanno già come chiamarti per telefono potranno mettersi in contatto facilmente con Signal.\n\nLa registrazione trasmette alcune informazioni di contatto al sever. Non vengono salvate.</string>
   <string name="registration_activity__verify_your_number">Verifica il tuo numero</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Inseirisci il tuo numero di telefono per ricevere un codice di verifica. Costi dell\'operatore applicabili.</string>
   <!--recipients_panel-->
@@ -2067,7 +2067,7 @@
   <string name="conversation_context__menu_forward_message">Inoltra messaggio</string>
   <string name="conversation_context__menu_resend_message">Rinvia il messaggio</string>
   <string name="conversation_context__menu_reply_to_message">Rispondi al messaggio</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Selezione multipla</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salva allegato</string>
@@ -2122,7 +2122,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Aggiungi ai contatti</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista dei destinatari</string>
+  <string name="conversation_group_options__recipients_list">Lista dei destinatari</string>
   <string name="conversation_group_options__delivery">Invio</string>
   <string name="conversation_group_options__conversation">Conversazione</string>
   <string name="conversation_group_options__broadcast">Broadcast</string>

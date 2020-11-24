@@ -1006,7 +1006,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KeyCachingService_lock">Kunci Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Anda</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipe media tidak didukung</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Tipe media tidak didukung</string>
   <string name="MediaPreviewActivity_draft">Draf</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal memerlukan izin Penyimpanan untuk menyimpan di penyimpanan eksternal, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Penyimpanan\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Tidak bisa menyimpan ke penyimpanan eksternal tanpa izin</string>
@@ -1315,7 +1315,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="redphone_call_card__signal_call">Panggilan Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NOMOR TELEPON</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal memudahkan komunikasi dengan menggunakan nomor telepon dan buku alamat yang ada. Teman dan kontak yang sudah tahu cara menghubungi Anda melalui telepon akan dapat dengan mudah menghubungi dengan Signal.\n\nPendaftaran mentransmisikan beberapa informasi kontak ke peladen, tanpa menyimpannya.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal memudahkan komunikasi dengan menggunakan nomor telepon dan buku alamat yang ada. Teman dan kontak yang sudah tahu cara menghubungi Anda melalui telepon akan dapat dengan mudah menghubungi dengan Signal.\n\nPendaftaran mentransmisikan beberapa informasi kontak ke peladen, tanpa menyimpannya.</string>
   <string name="registration_activity__verify_your_number">Verifikasi Nomor Anda</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Silakan masukkan nomor telepon seluler Anda untuk menerima kode verifikasi. Tarif operator berlaku.</string>
   <!--recipients_panel-->
@@ -1557,7 +1557,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_context__menu_forward_message">Teruskan pesan</string>
   <string name="conversation_context__menu_resend_message">Kirim ulang pesan</string>
   <string name="conversation_context__menu_reply_to_message">Balas pesan</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Pilih beberapa</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Simpan lampiran</string>
@@ -1605,7 +1605,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Tambah ke kontak</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Daftar Penerima</string>
+  <string name="conversation_group_options__recipients_list">Daftar Penerima</string>
   <string name="conversation_group_options__delivery">Pengiriman</string>
   <string name="conversation_group_options__conversation">Percakapan</string>
   <string name="conversation_group_options__broadcast">Siaran</string>

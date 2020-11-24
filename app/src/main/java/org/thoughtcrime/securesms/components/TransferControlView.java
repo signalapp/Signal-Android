@@ -46,7 +46,7 @@ public final class TransferControlView extends FrameLayout {
   private final TextView      downloadDetailsText;
 
   private final Map<Attachment, Float> networkProgress;
-  private final Map<Attachment, Float> compresssionProgress;
+  private final Map<Attachment, Float> compressionProgress;
 
   public TransferControlView(Context context) {
     this(context, null);
@@ -65,8 +65,8 @@ public final class TransferControlView extends FrameLayout {
     setVisibility(GONE);
     setLayoutTransition(new LayoutTransition());
 
-    this.networkProgress      = new HashMap<>();
-    this.compresssionProgress = new HashMap<>();
+    this.networkProgress     = new HashMap<>();
+    this.compressionProgress = new HashMap<>();
 
     this.progressWheel       = ViewUtil.findById(this, R.id.progress_wheel);
     this.downloadDetails     = ViewUtil.findById(this, R.id.download_details);
@@ -110,7 +110,7 @@ public final class TransferControlView extends FrameLayout {
 
     if (!isUpdateToExistingSet(slides)) {
       networkProgress.clear();
-      compresssionProgress.clear();
+      compressionProgress.clear();
       Stream.of(slides).forEach(s -> networkProgress.put(s.asAttachment(), 0f));
     }
     
@@ -122,7 +122,7 @@ public final class TransferControlView extends FrameLayout {
 
     switch (getTransferState(slides)) {
       case AttachmentDatabase.TRANSFER_PROGRESS_STARTED:
-        showProgressSpinner(calculateProgress(networkProgress, compresssionProgress));
+        showProgressSpinner(calculateProgress(networkProgress, compressionProgress));
         break;
       case AttachmentDatabase.TRANSFER_PROGRESS_PENDING:
       case AttachmentDatabase.TRANSFER_PROGRESS_FAILED:
@@ -136,7 +136,7 @@ public final class TransferControlView extends FrameLayout {
   }
 
   public void showProgressSpinner() {
-    showProgressSpinner(calculateProgress(networkProgress, compresssionProgress));
+    showProgressSpinner(calculateProgress(networkProgress, compressionProgress));
   }
 
   public void showProgressSpinner(float progress) {
@@ -223,7 +223,7 @@ public final class TransferControlView extends FrameLayout {
     current = view;
   }
 
-  private static float calculateProgress(@NonNull Map<Attachment, Float> uploadDownloadProgress, Map<Attachment, Float> compresssionProgress) {
+  private static float calculateProgress(@NonNull Map<Attachment, Float> uploadDownloadProgress, Map<Attachment, Float> compressionProgress) {
     float totalDownloadProgress    = 0;
     float totalCompressionProgress = 0;
 
@@ -231,12 +231,12 @@ public final class TransferControlView extends FrameLayout {
       totalDownloadProgress += progress;
     }
 
-    for (float progress : compresssionProgress.values()) {
+    for (float progress : compressionProgress.values()) {
       totalCompressionProgress += progress;
     }
 
     float weightedProgress = UPLOAD_TASK_WEIGHT * totalDownloadProgress         + COMPRESSION_TASK_WEIGHT * totalCompressionProgress;
-    float weightedTotal    = UPLOAD_TASK_WEIGHT * uploadDownloadProgress.size() + COMPRESSION_TASK_WEIGHT * compresssionProgress.size();
+    float weightedTotal    = UPLOAD_TASK_WEIGHT * uploadDownloadProgress.size() + COMPRESSION_TASK_WEIGHT * compressionProgress.size();
 
     return weightedProgress / weightedTotal;
   }
@@ -247,12 +247,12 @@ public final class TransferControlView extends FrameLayout {
       float proportionCompleted = ((float) event.progress) / event.total;
 
       if (event.type == PartProgressEvent.Type.COMPRESSION) {
-        compresssionProgress.put(event.attachment, proportionCompleted);
+        compressionProgress.put(event.attachment, proportionCompleted);
       } else {
         networkProgress.put(event.attachment, proportionCompleted);
       }
 
-      progressWheel.setInstantProgress(calculateProgress(networkProgress, compresssionProgress));
+      progressWheel.setInstantProgress(calculateProgress(networkProgress, compressionProgress));
     }
   }
 }

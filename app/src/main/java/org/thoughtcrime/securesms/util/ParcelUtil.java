@@ -14,9 +14,9 @@ import java.util.List;
 
 public class ParcelUtil {
 
-  public static byte[] serialize(Parcelable parceable) {
+  public static byte[] serialize(Parcelable parcelable) {
     Parcel parcel = Parcel.obtain();
-    parceable.writeToParcel(parcel, 0);
+    parcelable.writeToParcel(parcel, 0);
     byte[] bytes = parcel.marshall();
     parcel.recycle();
     return bytes;

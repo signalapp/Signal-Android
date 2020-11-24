@@ -1409,7 +1409,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KeyCachingService_lock">Bloca el Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jo</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipus de fitxer no compatible</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Tipus de fitxer no compatible</string>
   <string name="MediaPreviewActivity_draft">Esborrany</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">El Signal necessita el permís de l\'emmagatzematge per tal de desar en un emmagatzematge extern, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi l\'emmagatzematge.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No es pot desar en un emmagatzematge extern sense permís.</string>
@@ -1755,7 +1755,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="redphone_call_card__signal_call">Trucada del Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÈFON</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">El Signal fa que comunicar-se sigui fàcil usant el vostre número de telèfon i el llibre d\'adreces. Les amistats i contactes que ja saben com contactar-vos pel número de telèfon us podran trobar fàcilment al Signal.\n\nEl registre tramet certa informació de contacte al servidor. No s\'emmagatzema.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">El Signal fa que comunicar-se sigui fàcil usant el vostre número de telèfon i el llibre d\'adreces. Les amistats i contactes que ja saben com contactar-vos pel número de telèfon us podran trobar fàcilment al Signal.\n\nEl registre tramet certa informació de contacte al servidor. No s\'emmagatzema.</string>
   <string name="registration_activity__verify_your_number">Verifiqueu el número de telèfon</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Marqueu el vostre número de mòbil per rebre un codi de verificació. Pot ser que s\'apliquin càrrecs de l\'operadora.</string>
   <!--recipients_panel-->
@@ -2040,7 +2040,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_context__menu_forward_message">Reenvia el missatge</string>
   <string name="conversation_context__menu_resend_message">Torna a enviar el missatge</string>
   <string name="conversation_context__menu_reply_to_message">Respon el missatge</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Selecció múltiple</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Desa l\'adjunt</string>
@@ -2095,7 +2095,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Afegeix als contactes</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Llista de destinataris</string>
+  <string name="conversation_group_options__recipients_list">Llista de destinataris</string>
   <string name="conversation_group_options__delivery">Lliurament</string>
   <string name="conversation_group_options__conversation">Conversa</string>
   <string name="conversation_group_options__broadcast">Difusió</string>

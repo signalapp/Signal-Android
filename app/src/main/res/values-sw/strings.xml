@@ -853,7 +853,7 @@ nambari yako ya simu</string>
   <string name="KeyCachingService_lock">Funga Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Wewe</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Aina ya media isiyowezeshwa</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Aina ya media isiyowezeshwa</string>
   <string name="MediaPreviewActivity_draft">Rasimu</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Hifadhi ili kuhifadhi kwenye hifadhi ya nje, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Uhifadhi\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Haiwezekani kuhifadhi kwenye hifadhi ya nje bila ruhusa</string>
@@ -1167,7 +1167,7 @@ nambari yako ya simu</string>
   <string name="redphone_call_card__signal_call">Simu ya Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NAMBARI YA SIMU</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal inarahisisha kuwasiliana kwa kutumia nambari yako ya simu iliyopo na kitabu cha anwani. Marafiki na wawasiliani ambao tayari wanajua jinsi ya kuwasiliana nawe kwa simu wataweza kuwasiliana kwa urahisi na Signal. \ n \ nUsajili unatuma maelezo fulani ya mawasiliano kwenye seva. Hayahifadhiwi.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal inarahisisha kuwasiliana kwa kutumia nambari yako ya simu iliyopo na kitabu cha anwani. Marafiki na wawasiliani ambao tayari wanajua jinsi ya kuwasiliana nawe kwa simu wataweza kuwasiliana kwa urahisi na Signal. \ n \ nUsajili unatuma maelezo fulani ya mawasiliano kwenye seva. Hayahifadhiwi.</string>
   <string name="registration_activity__verify_your_number">Hakiki namba yako</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Tafadhali ingiza nambari yako ya simu ili upokee nambari ya kuthibitisha. Malipo ya mtoa huduma yatazingatiwa</string>
   <!--recipients_panel-->
@@ -1384,7 +1384,7 @@ nambari yako ya simu</string>
   <string name="conversation_context__menu_forward_message">Tuma ujumbe </string>
   <string name="conversation_context__menu_resend_message">Tuma tena ujumbe</string>
   <string name="conversation_context__menu_reply_to_message">Jibu ujumbe</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Chagua anuai</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Hifadhi ambatisho</string>
@@ -1430,7 +1430,7 @@ nambari yako ya simu</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Ongeza kwa wawasiliani</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Orodha ya wapokeaji</string>
+  <string name="conversation_group_options__recipients_list">Orodha ya wapokeaji</string>
   <string name="conversation_group_options__delivery">Uwasilishaji</string>
   <string name="conversation_group_options__conversation">Mazungumzo</string>
   <string name="conversation_group_options__broadcast">Tangaza</string>

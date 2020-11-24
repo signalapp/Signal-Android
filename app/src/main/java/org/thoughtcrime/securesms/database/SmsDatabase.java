@@ -476,7 +476,7 @@ public class SmsDatabase extends MessageDatabase {
     boolean        foundMessage = false;
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT},
-                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
+                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimestamp())},
                               null, null, null, null)) {
 
       while (cursor.moveToNext()) {
@@ -508,7 +508,7 @@ public class SmsDatabase extends MessageDatabase {
       }
 
       if (!foundMessage && deliveryReceipt) {
-        earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
+        earlyDeliveryReceiptCache.increment(messageId.getTimestamp(), messageId.getRecipientId());
         return true;
       }
 
@@ -524,7 +524,7 @@ public class SmsDatabase extends MessageDatabase {
 
     try {
       cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, EXPIRES_IN, EXPIRE_STARTED},
-                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
+                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimestamp())},
                               null, null, null, null);
 
       while (cursor.moveToNext()) {

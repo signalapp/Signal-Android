@@ -73,7 +73,7 @@ public final class ReminderView extends FrameLayout {
       space.setVisibility(VISIBLE);
     }
 
-    if (!reminder.isDismissable()) {
+    if (!reminder.isDismissible()) {
       space.setVisibility(GONE);
     }
 
@@ -95,7 +95,7 @@ public final class ReminderView extends FrameLayout {
 
     setOnClickListener(reminder.getOkListener());
 
-    closeButton.setVisibility(reminder.isDismissable() ? View.VISIBLE : View.GONE);
+    closeButton.setVisibility(reminder.isDismissible() ? View.VISIBLE : View.GONE);
     closeButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {

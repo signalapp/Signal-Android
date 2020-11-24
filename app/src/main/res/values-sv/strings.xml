@@ -1428,7 +1428,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KeyCachingService_lock">Lås Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds inte</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Mediatypen stöds inte</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att spara i extern lagring men det har avvisats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan inte spara i extern lagring utan behörighet</string>
@@ -1776,7 +1776,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="redphone_call_card__signal_call">Signal-samtal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din adressbok. Vänner och kontakter som redan vet hur de ska kontakta dig via telefon kommer enkelt att kunna kontakta dig på Signal.\n\nRegistreringen överför viss kontaktinformation till servern. Den lagras inte.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din adressbok. Vänner och kontakter som redan vet hur de ska kontakta dig via telefon kommer enkelt att kunna kontakta dig på Signal.\n\nRegistreringen överför viss kontaktinformation till servern. Den lagras inte.</string>
   <string name="registration_activity__verify_your_number">Verifiera ditt nummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Vänligen ange ditt mobilnummer för att få en verifieringskod. Din operatör kan ta betalt för det.</string>
   <!--recipients_panel-->
@@ -2061,7 +2061,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_context__menu_forward_message">Vidarebefordra meddelande</string>
   <string name="conversation_context__menu_resend_message">Skicka meddelande igen</string>
   <string name="conversation_context__menu_reply_to_message">Svara på meddelande</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Välj flera</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Spara bilaga</string>
@@ -2116,7 +2116,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Lägg till som kontakt</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Mottagarlista</string>
+  <string name="conversation_group_options__recipients_list">Mottagarlista</string>
   <string name="conversation_group_options__delivery">Leverans</string>
   <string name="conversation_group_options__conversation">Konversation</string>
   <string name="conversation_group_options__broadcast">Sändning</string>

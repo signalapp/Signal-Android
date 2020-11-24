@@ -1357,7 +1357,7 @@
   <string name="KeyCachingService_lock">锁定 Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">不支持的媒体类型</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">不支持的媒体类型</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需“存储”权限，来保存文件至外部存储，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">没有权限，无法保存至外部存储</string>
@@ -1693,7 +1693,7 @@
   <string name="redphone_call_card__signal_call">Signal 呼叫</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">电话号码</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">借助你的电话号码和联系人，Signal 让通信变得便捷。通过电话联系的好友和联系人能够很方便地通过 Signal 与您沟通。\n\n注册过程中某些联系人信息将传输至服务器，但服务器并不保存这些信息。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">借助你的电话号码和联系人，Signal 让通信变得便捷。通过电话联系的好友和联系人能够很方便地通过 Signal 与您沟通。\n\n注册过程中某些联系人信息将传输至服务器，但服务器并不保存这些信息。</string>
   <string name="registration_activity__verify_your_number">验证号码</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">请输入电话号码，接收验证码。可能收费。</string>
   <!--recipients_panel-->
@@ -1977,7 +1977,7 @@
   <string name="conversation_context__menu_forward_message">转发消息</string>
   <string name="conversation_context__menu_resend_message">重新发送信息</string>
   <string name="conversation_context__menu_reply_to_message">回复消息</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">多选</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">保存附件</string>
@@ -2032,7 +2032,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">添加到联系人</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">接收人列表</string>
+  <string name="conversation_group_options__recipients_list">接收人列表</string>
   <string name="conversation_group_options__delivery">送达</string>
   <string name="conversation_group_options__conversation">对话</string>
   <string name="conversation_group_options__broadcast">广播</string>

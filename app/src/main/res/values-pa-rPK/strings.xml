@@ -853,7 +853,7 @@
   <string name="KeyCachingService_lock">Signal نوں لاک کرو</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">تسیں</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">غیر معاونتی میڈیا قسم</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">غیر معاونتی میڈیا قسم</string>
   <string name="MediaPreviewActivity_draft">مسودہ</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">بیرونی اسٹوریج اچ محفوط کرن لئیSignal نوں اسٹوریج دی اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دی ترتیباں تے جاری رکھو، \"اجازتاں\" چنو ، تے \"اسٹوریج\" فعال کرو۔</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">اجازت دے بغیر بیرونی اسٹوریج اچ محفوظ نئیں کر سکدا</string>
@@ -1165,7 +1165,7 @@
   <string name="redphone_call_card__signal_call">Signal کال</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">فون نمبر</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal تہاڈے موجودہ فون نمبر تے ایڈریس بک نوں ورتدے ہوئے مواصلت نوں اسان بناندا اے۔ دوست تے رابطے جیہڑے پہلاں توں جاندے نیں کہ تہانوں فون دے ذریعے کس طراں رابطہ کرنا اے اوہ Signal دے راہیں اسانی نال رابطہ کر سکن گے۔\n\nرجسٹریشن رابطے دی کجھ معلومات سرور نوں منتقل کردی اے۔ ایہہ اسٹور نئیں اے۔</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal تہاڈے موجودہ فون نمبر تے ایڈریس بک نوں ورتدے ہوئے مواصلت نوں اسان بناندا اے۔ دوست تے رابطے جیہڑے پہلاں توں جاندے نیں کہ تہانوں فون دے ذریعے کس طراں رابطہ کرنا اے اوہ Signal دے راہیں اسانی نال رابطہ کر سکن گے۔\n\nرجسٹریشن رابطے دی کجھ معلومات سرور نوں منتقل کردی اے۔ ایہہ اسٹور نئیں اے۔</string>
   <string name="registration_activity__verify_your_number">اپنے نمبر دی تصدیق کرو</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">توثیقی کوڈ حاصل کرن لئی مہربانی کر کے اپناں موبائل نمبر درج کرو۔ کیریئر دیاں شرحاں لاگو ہو سکدیاں نیں۔</string>
   <!--recipients_panel-->
@@ -1382,7 +1382,7 @@
   <string name="conversation_context__menu_forward_message"> سنیہا اگے گھلو</string>
   <string name="conversation_context__menu_resend_message"> سنیہا فیر گھلو</string>
   <string name="conversation_context__menu_reply_to_message"> سنیہے دا جواب دیو</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select"> اک توں ودھ چنو</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment"> اٹیچمنٹ محفوظ کرو</string>
@@ -1429,7 +1429,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">رابطیاں اچ شامل کرو</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">وصول کرن آلیاں دی فہرست</string>
+  <string name="conversation_group_options__recipients_list">وصول کرن آلیاں دی فہرست</string>
   <string name="conversation_group_options__delivery">ڈلیوری</string>
   <string name="conversation_group_options__conversation">گل بات</string>
   <string name="conversation_group_options__broadcast">نشریات</string>

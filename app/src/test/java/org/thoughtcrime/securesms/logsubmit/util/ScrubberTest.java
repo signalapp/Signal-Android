@@ -49,7 +49,7 @@ public final class ScrubberTest {
     { "A short email a@def.com",
       "A short email a...@..." },
 
-    { "A email with multiple parts before the @ d.c+b.a@mulitpart.domain.com and a multipart domain",
+    { "A email with multiple parts before the @ d.c+b.a@multipart.domain.com and a multipart domain",
       "A email with multiple parts before the @ d...@... and a multipart domain" },
 
     { "An avatar email filename: file:///data/user/0/org.thoughtcrime.securesms/files/avatars/abc@signal.org",

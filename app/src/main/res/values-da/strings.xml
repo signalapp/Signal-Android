@@ -1420,7 +1420,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="KeyCachingService_lock">Lås Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Dig</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Multimedie type ikke understøttet</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Multimedie type ikke understøttet</string>
   <string name="MediaPreviewActivity_draft">Kladde</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå din hukommelse, for at kunne gemme til ekstern placering, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ikke muligt at gemme til ekstern placering, uden tilladelse</string>
@@ -1766,7 +1766,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="redphone_call_card__signal_call">Signal opkald</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gør det nemt at kommunikere, ved at bruge dit eksisterende telefonnummer og kontaktbog. Venner og kontakter som allerede ved hvordan de kontakter dig via mobil, vil have nemt ved at komme i kontakt gennem Signal.\n\nRegistreringen overfører nogle kontaktinformationer til serveren. Disse bliver ikke gemt</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal gør det nemt at kommunikere, ved at bruge dit eksisterende telefonnummer og kontaktbog. Venner og kontakter som allerede ved hvordan de kontakter dig via mobil, vil have nemt ved at komme i kontakt gennem Signal.\n\nRegistreringen overfører nogle kontaktinformationer til serveren. Disse bliver ikke gemt</string>
   <string name="registration_activity__verify_your_number">Verificer dit nummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Indtast venligst dit mobilnummer, for at modtage en verifikationskode. Takster fra din udbyder kan blive pålagt</string>
   <!--recipients_panel-->
@@ -2051,7 +2051,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="conversation_context__menu_forward_message">Videresend besked</string>
   <string name="conversation_context__menu_resend_message">Send beskeden igen</string>
   <string name="conversation_context__menu_reply_to_message">Svar på besked</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Vælg flere</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Gem vedhæftet fil</string>
@@ -2106,7 +2106,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Tilføj til kontakter</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Modtagerliste</string>
+  <string name="conversation_group_options__recipients_list">Modtagerliste</string>
   <string name="conversation_group_options__delivery">Levering</string>
   <string name="conversation_group_options__conversation">Samtale</string>
   <string name="conversation_group_options__broadcast">Transmission</string>

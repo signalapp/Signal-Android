@@ -1212,7 +1212,7 @@
   <string name="KeyCachingService_lock">Signal ஐ பூட்டு</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">நீங்கள்</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">ஆதரிக்கப்படாத மீடியா வகை</string>
   <string name="MediaPreviewActivity_draft">வரைவு</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">வெளிப்புற சேமிப்பகத்தில் சேமிக்க Signal சேமிப்பக அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"சேமிப்பகத்தை\" இயக்கவும்.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">அனுமதியின்றி வெளிப்புற சேமிப்பகத்தில் சேமிக்க முடியவில்லை</string>
@@ -1549,7 +1549,7 @@
   <string name="redphone_call_card__signal_call">Signal  அழைப்பு</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">தொலைபேசி எண்</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">உங்கள் இருக்கும் தொலைபேசி எண் மற்றும் முகவரி புத்தகத்தைப் பயன்படுத்தி Signal தொடர்புகொள்வதை எளிதாக்குகிறது. தொலைபேசியில் உங்களை எவ்வாறு தொடர்பு கொள்வது என்பது ஏற்கனவே அறிந்த நண்பர்கள் மற்றும் தொடர்புகள் Signal மூலம் எளிதில் தொடர்பு கொள்ள முடியும். \ N \ n பதிவுசெய்தல் சில தொடர்பு தகவல்களை சேவையகத்திற்கு அனுப்புகிறது. இது சேமிக்கப்படவில்லை.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">உங்கள் இருக்கும் தொலைபேசி எண் மற்றும் முகவரி புத்தகத்தைப் பயன்படுத்தி Signal தொடர்புகொள்வதை எளிதாக்குகிறது. தொலைபேசியில் உங்களை எவ்வாறு தொடர்பு கொள்வது என்பது ஏற்கனவே அறிந்த நண்பர்கள் மற்றும் தொடர்புகள் Signal மூலம் எளிதில் தொடர்பு கொள்ள முடியும். \ N \ n பதிவுசெய்தல் சில தொடர்பு தகவல்களை சேவையகத்திற்கு அனுப்புகிறது. இது சேமிக்கப்படவில்லை.</string>
   <string name="registration_activity__verify_your_number">உங்கள் எண்ணைச் சரிபார்க்கவும்</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">சரிபார்ப்புக் குறியீட்டைப் பெற உங்கள் மொபைல் எண்ணை உள்ளிடவும். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
   <!--recipients_panel-->
@@ -1830,7 +1830,7 @@
   <string name="conversation_context__menu_forward_message">செய்தியை முன்னனுப்புக</string>
   <string name="conversation_context__menu_resend_message">செய்தியை மீண்டும் அனுப்பு</string>
   <string name="conversation_context__menu_reply_to_message">செய்திக்கு பதில்</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">பலவற்றை தேர்வு செய்க</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">இணைப்பைச் சேமி</string>
@@ -1885,7 +1885,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">தொடர்புகளுடன் சேர்க்க</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">பெறுநர்கள் பட்டியல்</string>
+  <string name="conversation_group_options__recipients_list">பெறுநர்கள் பட்டியல்</string>
   <string name="conversation_group_options__delivery">விநியோகம்</string>
   <string name="conversation_group_options__conversation">உரையாடல்</string>
   <string name="conversation_group_options__broadcast">ஒளிபரப்பு</string>

@@ -772,7 +772,7 @@
   <string name="KeyCachingService_lock">Закључај Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ви</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Неподржан тип медијума</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Неподржан тип медијума</string>
   <string name="MediaPreviewActivity_draft">Нацрт</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Обрисати поруку?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ово ће трајно да обрише ову поруку.</string>
@@ -1063,7 +1063,7 @@
   <string name="redphone_call_card__signal_call">Позив на Signalу</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">БРОЈ ТЕЛЕФОНА</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal омогућује једноставну комуникацију користећи ваш број телефона и адресар. Пријатељи и контакти који већ знају како да вас контактирају телефоном ће бити у стању да вас лако контактирају преко Signal-a.\n\nПријава ће пренети неке податке о контакту на сервер. Подаци се не чувају.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal омогућује једноставну комуникацију користећи ваш број телефона и адресар. Пријатељи и контакти који већ знају како да вас контактирају телефоном ће бити у стању да вас лако контактирају преко Signal-a.\n\nПријава ће пренети неке податке о контакту на сервер. Подаци се не чувају.</string>
   <string name="registration_activity__verify_your_number">Провери сигурносни број</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Унесите број телефона како бисте примили потврдни код. Могућа је наплата СМС услуге</string>
   <!--recipients_panel-->
@@ -1269,7 +1269,7 @@
   <string name="conversation_context__menu_forward_message">Проследи поруку</string>
   <string name="conversation_context__menu_resend_message">Понови слање</string>
   <string name="conversation_context__menu_reply_to_message">Одговори на поруку</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Сачувај прилог</string>
   <!--conversation_expiring_off-->
@@ -1313,7 +1313,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додај у контакте</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Списак прималаца</string>
+  <string name="conversation_group_options__recipients_list">Списак прималаца</string>
   <string name="conversation_group_options__delivery">Испорука</string>
   <string name="conversation_group_options__conversation">Преписка</string>
   <string name="conversation_group_options__broadcast">Емитовање</string>

@@ -53,7 +53,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
+import org.thoughtcrime.securesms.util.ElapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
@@ -259,13 +259,13 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   }
 
   private void handleCallTime(long callTime) {
-    EllapsedTimeFormatter ellapsedTimeFormatter = EllapsedTimeFormatter.fromDurationMillis(callTime);
+    ElapsedTimeFormatter elapsedTimeFormatter = ElapsedTimeFormatter.fromDurationMillis(callTime);
 
-    if (ellapsedTimeFormatter == null) {
+    if (elapsedTimeFormatter == null) {
       return;
     }
 
-    callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, ellapsedTimeFormatter.toString()));
+    callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, elapsedTimeFormatter.toString()));
   }
 
   private void handleSetAudioHandset() {

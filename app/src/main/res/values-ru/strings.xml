@@ -1551,7 +1551,7 @@
   <string name="KeyCachingService_lock">Блокировать Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вы</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Тип медиа-файла не поддерживается</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Тип медиа-файла не поддерживается</string>
   <string name="MediaPreviewActivity_draft">Черновик</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к хранилищу для сохранения во внешнее хранилище, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Хранилище».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Не удалось сохранить во внешнем хранилище без разрешений</string>
@@ -1919,7 +1919,7 @@
   <string name="redphone_call_card__signal_call">Звонок Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНА</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Чтобы упростить общение, Signal использует ваши существующие номер телефона и адресную книгу. Друзья и контакты, которые могут связаться с вами по телефону, с легкостью смогут сделать это и через Signal.\n\nПри регистрации на сервер передается некоторая информация о контактах, но не сохраняется там.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Чтобы упростить общение, Signal использует ваши существующие номер телефона и адресную книгу. Друзья и контакты, которые могут связаться с вами по телефону, с легкостью смогут сделать это и через Signal.\n\nПри регистрации на сервер передается некоторая информация о контактах, но не сохраняется там.</string>
   <string name="registration_activity__verify_your_number">Подтвердите свой номер</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Пожалуйста, введите свой номер мобильного телефона для получения кода подтверждения. Вашим оператором может взиматься плата за входящее SMS.</string>
   <!--recipients_panel-->
@@ -2206,7 +2206,7 @@
   <string name="conversation_context__menu_forward_message">Переслать сообщение</string>
   <string name="conversation_context__menu_resend_message">Отправить заново</string>
   <string name="conversation_context__menu_reply_to_message">Ответить на сообщение</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Выбрать несколько</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Сохранить вложение</string>
@@ -2261,7 +2261,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Добавить в контакты</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Список получателей</string>
+  <string name="conversation_group_options__recipients_list">Список получателей</string>
   <string name="conversation_group_options__delivery">Доставка</string>
   <string name="conversation_group_options__conversation">Разговор</string>
   <string name="conversation_group_options__broadcast">Вещание</string>

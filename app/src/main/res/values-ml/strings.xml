@@ -1186,7 +1186,7 @@ grūpp ap‌ḍē</string>
   <string name="KeyCachingService_lock">Signal ലോക്ക് ചെയ്യുക</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">നിങ്ങൾ</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">പിന്തുണയ്‌ക്കാത്ത മീഡിയ തരം</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">പിന്തുണയ്‌ക്കാത്ത മീഡിയ തരം</string>
   <string name="MediaPreviewActivity_draft">ഡ്രാഫ്റ്റ്</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ബാഹ്യ  സ്റ്റോറേജിലെക് സംരക്ഷിക്കുന്നതിന് Signal-ന് സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">അനുമതിയില്ലാതെ ബാഹ്യ സ്റ്റോറേജിലേക്ക് സേവ് ചെയ്യാൻ കഴിയില്ല</string>
@@ -1516,7 +1516,7 @@ grūpp ap‌ḍē</string>
   <string name="redphone_call_card__signal_call">Signal കോൾ</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ഫോൺ നമ്പർ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">നിങ്ങളുടെ നിലവിലുള്ള ഫോൺ നമ്പറും വിലാസ പുസ്തകവും ഉപയോഗിച്ച് സിഗ്നൽ ആശയവിനിമയം എളുപ്പമാക്കുന്നു. ഫോണിലൂടെ നിങ്ങളെ എങ്ങനെ ബന്ധപ്പെടാമെന്ന് ഇതിനകം അറിയുന്ന സുഹൃത്തുക്കൾക്കും കോൺടാക്റ്റുകൾക്കും സിഗ്നൽ വഴി എളുപ്പത്തിൽ ബന്ധപ്പെടാൻ കഴിയും. \ N \ n രജിസ്ട്രേഷൻ ചില കോൺടാക്റ്റ് വിവരങ്ങൾ സെർവറിലേക്ക് കൈമാറുന്നു. ഇത് സംഭരിക്കില്ല.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">നിങ്ങളുടെ നിലവിലുള്ള ഫോൺ നമ്പറും വിലാസ പുസ്തകവും ഉപയോഗിച്ച് സിഗ്നൽ ആശയവിനിമയം എളുപ്പമാക്കുന്നു. ഫോണിലൂടെ നിങ്ങളെ എങ്ങനെ ബന്ധപ്പെടാമെന്ന് ഇതിനകം അറിയുന്ന സുഹൃത്തുക്കൾക്കും കോൺടാക്റ്റുകൾക്കും സിഗ്നൽ വഴി എളുപ്പത്തിൽ ബന്ധപ്പെടാൻ കഴിയും. \ N \ n രജിസ്ട്രേഷൻ ചില കോൺടാക്റ്റ് വിവരങ്ങൾ സെർവറിലേക്ക് കൈമാറുന്നു. ഇത് സംഭരിക്കില്ല.</string>
   <string name="registration_activity__verify_your_number">നിങ്ങളുടെ നമ്പർ പരിശോധിക്കുക</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കുന്നതിന് ദയവായി നിങ്ങളുടെ മൊബൈൽ നമ്പർ നൽകുക. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
   <!--recipients_panel-->
@@ -1771,7 +1771,7 @@ grūpp ap‌ḍē</string>
   <string name="conversation_context__menu_forward_message">സന്ദേശം ഫോർവേഡ് ചെയ്യുക</string>
   <string name="conversation_context__menu_resend_message">സന്ദേശം വീണ്ടും അയയ്‌ക്കുക</string>
   <string name="conversation_context__menu_reply_to_message">സന്ദേശത്തിന് മറുപടി നൽകുക</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">ഒന്നിലധികം തിരഞ്ഞെടുക്കുക</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">അറ്റാച്ചുമെന്റ് സേവ് ചെയ്യുക</string>
@@ -1822,7 +1822,7 @@ grūpp ap‌ḍē</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">സ്വീകർത്താക്കളുടെ പട്ടിക</string>
+  <string name="conversation_group_options__recipients_list">സ്വീകർത്താക്കളുടെ പട്ടിക</string>
   <string name="conversation_group_options__delivery">ഡെലിവറി</string>
   <string name="conversation_group_options__conversation">സംഭാഷണം</string>
   <string name="conversation_group_options__broadcast">ബ്രോഡ്കാസ്റ്റ്</string>

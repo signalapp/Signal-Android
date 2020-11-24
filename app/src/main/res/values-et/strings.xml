@@ -1328,7 +1328,7 @@
   <string name="KeyCachingService_lock">Lukusta Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sina</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Mittetoetatud meediatüüp</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Mittetoetatud meediatüüp</string>
   <string name="MediaPreviewActivity_draft">Mustand</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal vajab mäluruumi luba, et salvestada välismällu, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Mäluruum\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Õiguste puudumise tõttu pole võimalik välisele andmekandjale salvestada.</string>
@@ -1672,7 +1672,7 @@
   <string name="redphone_call_card__signal_call">Signali kõne</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONINUMBER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal teeb suhtlemise lihtsaks, kasutades olemasolevat telefoninumbrit ja aadressiraamatut. Sõbrad ja kontaktid, kes juba saavad sinuga telefoni teel ühendust, saavad ka Signali kaudu seda teha.\n\nRegistreerimine saadab osalist kontaktinfot serverile, seda ei salvestata.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal teeb suhtlemise lihtsaks, kasutades olemasolevat telefoninumbrit ja aadressiraamatut. Sõbrad ja kontaktid, kes juba saavad sinuga telefoni teel ühendust, saavad ka Signali kaudu seda teha.\n\nRegistreerimine saadab osalist kontaktinfot serverile, seda ei salvestata.</string>
   <string name="registration_activity__verify_your_number">Kinnita oma number</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Palun sisesta enda mobiilinumber kinnituskoodi saamiseks. Lisanduvad teenustasud.</string>
   <!--recipients_panel-->
@@ -1950,7 +1950,7 @@
   <string name="conversation_context__menu_forward_message">Edasta sõnum</string>
   <string name="conversation_context__menu_resend_message">Saada sõnum uuesti</string>
   <string name="conversation_context__menu_reply_to_message">Vasta sõnumile</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Vali mitu</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvesta manus</string>
@@ -2005,7 +2005,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Lisa kontaktidesse</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Saajate nimekiri</string>
+  <string name="conversation_group_options__recipients_list">Saajate nimekiri</string>
   <string name="conversation_group_options__delivery">Kohaletoimetamine</string>
   <string name="conversation_group_options__conversation">Vestlus</string>
   <string name="conversation_group_options__broadcast">Kanna üle</string>

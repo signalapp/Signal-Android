@@ -596,7 +596,7 @@
   <string name="KeyCachingService_lock">Lock Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">သင်</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ပံ့ပိုးမှုမပြုနိုင်သော ရုပ်၊သံ၊ပုံ ဖိုင်များ</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">ပံ့ပိုးမှုမပြုနိုင်သော ရုပ်၊သံ၊ပုံ ဖိုင်များ</string>
   <string name="MediaPreviewActivity_draft">မူကြမ်း</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">သင်၏ ပြင်ပသိုလှောင်ရာနေရာတွင် သိမ်းရန် သိုလှောင်မှုခွင့်ပြုချက်အား Signal ကို ပေးရန်လိုအပ်ပါသည်။ သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ သိုလှောင်မှုခွင့်ပြုချက်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ခွင့်ပြုချက်မပေးထားပါက အပြင်ဘက်တွင် သိမ်းဆည်း၍မရပါ</string>
@@ -845,7 +845,7 @@
   <string name="redphone_call_card__signal_call">Signal ခေါ်ဆိုမှု</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ဖုန်းနံပါတ်</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal သည် သင့်လက်ရှိဖုန်းနံပါတ် နှင့် လိပ်စာစာအုပ်ကို အသုံးပြု၍ ဆက်သွယ်နိုင်စေသည်။ သင့်ဖုန်းနံပါတ်နှင့်ဆက်သွယ်မှုရှိသည့် မိတ်ဆွေများနှင့် လူများသည် Signal ဖြင့် သင့်ကို အလွယ်တကူဆက်သွယ်နိုင်ပါသည်။ \n\nစာရင်းသွင်းခြင်း ကသင့်အဆက်အသွယ်များ၏အချက်အလက်ကို ဆာဗာသို့ ပေးပို့သည်။ သိမ်းဆည်းထားခြင်းမရှိပါ။ </string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal သည် သင့်လက်ရှိဖုန်းနံပါတ် နှင့် လိပ်စာစာအုပ်ကို အသုံးပြု၍ ဆက်သွယ်နိုင်စေသည်။ သင့်ဖုန်းနံပါတ်နှင့်ဆက်သွယ်မှုရှိသည့် မိတ်ဆွေများနှင့် လူများသည် Signal ဖြင့် သင့်ကို အလွယ်တကူဆက်သွယ်နိုင်ပါသည်။ \n\nစာရင်းသွင်းခြင်း ကသင့်အဆက်အသွယ်များ၏အချက်အလက်ကို ဆာဗာသို့ ပေးပို့သည်။ သိမ်းဆည်းထားခြင်းမရှိပါ။ </string>
   <string name="registration_activity__verify_your_number">မိမိဖုန်းနံပါတ်ကို အတည်ပြုပါ။</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">အတည်ပြုချက်နံပါတ်အား ရယူနိုင်ရန် မိမိ၏ဖုန်းနံပါတ်အား ရိုက်ထည့်ပါ။ ဖုန်းခေါ်ဆိုခ သို့ စာတိုပို့ဆောင်ခ ကျသင့်မည်ဖြစ်သည်။</string>
   <!--recipients_panel-->
@@ -1033,7 +1033,7 @@
   <string name="conversation_context__menu_forward_message">စာတို ဆက်ပို့ရန်</string>
   <string name="conversation_context__menu_resend_message">စာကို ပြန်ပို့ပါ</string>
   <string name="conversation_context__menu_reply_to_message">စာပြန်ပို့မည်</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ပူးတွဲဖိုင်ကို သိမ်းပါ</string>
   <!--conversation_expiring_off-->
@@ -1074,7 +1074,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">လိပ်စာစာရင်းထဲ ထည့်ပါ</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">လက်ခံမည့်သူ စာရင်း</string>
+  <string name="conversation_group_options__recipients_list">လက်ခံမည့်သူ စာရင်း</string>
   <string name="conversation_group_options__delivery">ပေးပို့ခြင်း</string>
   <string name="conversation_group_options__conversation">စကားဝိုင်း</string>
   <string name="conversation_group_options__broadcast">ထုတ်လွှင့်ပါ</string>

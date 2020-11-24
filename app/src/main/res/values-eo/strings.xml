@@ -1410,7 +1410,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KeyCachingService_lock">Ŝlosi Signal-on</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nesubtenata tipo de aŭdvidaĵo</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Nesubtenata tipo de aŭdvidaĵo</string>
   <string name="MediaPreviewActivity_draft">Malneto</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal bezonas la permeson aliri al konservejo por konservi al ekstera konservejo, sed ĝi estis porĉiame malakceptita. Bonvolu iri al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ne eblas konservi en la eksteran konservejon sen permesoj</string>
@@ -1755,7 +1755,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="redphone_call_card__signal_call">Signal-alvoko</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMERO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal faciligas komunikon uzante vian ekzistantan telefonnumeron kaj adresaron. Amikoj kaj kontaktoj, kiuj jam scias, kiel telefoni vin, facile kontaktos vin per Signal.\n\nRegistrado sendas kontaktajn informojn al la servilo: ili ne estas konservitaj.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal faciligas komunikon uzante vian ekzistantan telefonnumeron kaj adresaron. Amikoj kaj kontaktoj, kiuj jam scias, kiel telefoni vin, facile kontaktos vin per Signal.\n\nRegistrado sendas kontaktajn informojn al la servilo: ili ne estas konservitaj.</string>
   <string name="registration_activity__verify_your_number">Konfirmi vian numeron</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Bonvolu entajpi vian poŝtelefonan telefonnumeron por ricevi konfirman kodon per SMS. Eble via sendrata provizanto pagigos al vi la SMS-on.</string>
   <!--recipients_panel-->
@@ -2036,7 +2036,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_context__menu_forward_message">Plusendi mesaĝon</string>
   <string name="conversation_context__menu_resend_message">Resendi mesaĝon</string>
   <string name="conversation_context__menu_reply_to_message">Respondi mesaĝon</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Elekti plurajn</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Konservi kunsendaĵon</string>
@@ -2091,7 +2091,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Aldoni al kontaktoj</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Ricevontolisto</string>
+  <string name="conversation_group_options__recipients_list">Ricevontolisto</string>
   <string name="conversation_group_options__delivery">Livero</string>
   <string name="conversation_group_options__conversation">Interparolo</string>
   <string name="conversation_group_options__broadcast">Dissendo</string>

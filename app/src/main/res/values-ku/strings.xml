@@ -620,7 +620,7 @@
   <string name="KeyCachingService_lock">Signalê kilîd bike</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Cureyê medyayê ya nepesartî</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Cureyê medyayê ya nepesartî</string>
   <string name="MediaPreviewActivity_draft">Reşnivîs</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal pêdivî destûrê ye ku li bîrbara derveyî tomar bike. Lê ev mayinde hatiye redkirî. Ji kerema xwe ji \'Sazkarî\' &gt; \'Destûr\' &gt; \'Bîrbar\' destûr bide.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Bê destûr nabe ku li bîrbara derveyî tomar bibe</string>
@@ -897,7 +897,7 @@
   <string name="redphone_call_card__signal_call">Gaziya Signalê</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">HEJMARA TELEFONÊ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Bi Signal ê ragihandin hêsan e. Ew hejmara telefon û pirtûka navnîşana te bikartîne. Heval û têkiliyên te yên ku jixwe dizanin ku wê çawa bi telefonê li te bigerin wê karibin bi rehetî bi Signal ê bi te re têkiliyê deynin.\n\nKiryara tomarbûnê hinek agahî dişîne rajekarê, lê ew vê depo nake.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Bi Signal ê ragihandin hêsan e. Ew hejmara telefon û pirtûka navnîşana te bikartîne. Heval û têkiliyên te yên ku jixwe dizanin ku wê çawa bi telefonê li te bigerin wê karibin bi rehetî bi Signal ê bi te re têkiliyê deynin.\n\nKiryara tomarbûnê hinek agahî dişîne rajekarê, lê ew vê depo nake.</string>
   <string name="registration_activity__verify_your_number">Hejmara Xwe Birastîne</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Ji bo standina koda rastandinê, hejmara telefona xwe têkeve. Şirketa telefona te belkî hinek pere bikişîne.</string>
   <!--recipients_panel-->
@@ -1094,7 +1094,7 @@
   <string name="conversation_context__menu_forward_message">Peyamê bişîne yekî din</string>
   <string name="conversation_context__menu_resend_message">Peyam dîsa bişîne</string>
   <string name="conversation_context__menu_reply_to_message">Bersiv bide peyamê</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Servehiyê tomar bike</string>
   <!--conversation_expiring_off-->
@@ -1136,7 +1136,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Tevlî berdengan bike</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lîsta wergiran</string>
+  <string name="conversation_group_options__recipients_list">Lîsta wergiran</string>
   <string name="conversation_group_options__delivery">Gihiştin</string>
   <string name="conversation_group_options__conversation">Gotûbêj</string>
   <string name="conversation_group_options__broadcast">Belav bike</string>

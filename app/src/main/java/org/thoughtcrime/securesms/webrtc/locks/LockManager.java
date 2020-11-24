@@ -60,7 +60,7 @@ public class LockManager {
       @Override
       public void orientationChanged(int newOrientation) {
         orientation = newOrientation;
-        Log.d(TAG, "Orentation Update: " + newOrientation);
+        Log.d(TAG, "Orientation Update: " + newOrientation);
         updateInCallLockState();
       }
     });

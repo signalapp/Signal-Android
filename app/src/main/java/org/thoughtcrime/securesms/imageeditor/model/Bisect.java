@@ -37,10 +37,10 @@ final class Bisect {
                              @NonNull ModifyElement modifyElement,
                              @NonNull Runnable invalidate)
  {
-   Matrix closestSuccesful = bisectToTest(element, outOfBoundsValue, atMost, predicate, modifyElement);
+   Matrix closestSuccessful = bisectToTest(element, outOfBoundsValue, atMost, predicate, modifyElement);
 
-   if (closestSuccesful != null) {
-     element.animateLocalTo(closestSuccesful, invalidate);
+   if (closestSuccessful != null) {
+     element.animateLocalTo(closestSuccessful, invalidate);
      return true;
    } else {
      return false;

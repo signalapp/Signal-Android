@@ -1438,7 +1438,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="KeyCachingService_lock">Vergrendel Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">jou</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Niet-ondersteund mediatype</string>
   <string name="MediaPreviewActivity_draft">Concept</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslagruimte nodig om iets op te slaan op de externe opslag, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
@@ -1786,7 +1786,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="redphone_call_card__signal_call">Signal-oproep</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal maakt het mogelijk voor anderen wie jou als hun contactpersoon toevoegen om te weten dat ze je kunnen bereiken via Signal. Om dat mogelijk te maken wordt je telefoonnummer opgeslagen op de Signal servers.
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal maakt het mogelijk voor anderen wie jou als hun contactpersoon toevoegen om te weten dat ze je kunnen bereiken via Signal. Om dat mogelijk te maken wordt je telefoonnummer opgeslagen op de Signal servers.
 Signal laat je ook zien wie van jou contactpersonen je kunt bereiken via Signal. Om dat mogelijk te maken worden uitsluitend de telefoonnummers van je contactpersonen geüpload, maar die telefoonnummers worden niet op de servers opgeslagen. Omdat de broncode van Signal\'s servers open is kan iedereen nagaan dat de telefoonnummers van je contactpersonen echt nooit worden opgeslagen en nooit worden gebruikt voor andere doeleinden.
 Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wie van je contactpersonen bereikbaar zijn om Signal-berichten en -oproepen te ontvangen.</string>
   <string name="registration_activity__verify_your_number">Verifieer je telefoonnummer</string>
@@ -2073,7 +2073,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="conversation_context__menu_forward_message">Bericht doorsturen</string>
   <string name="conversation_context__menu_resend_message">Bericht opnieuw verzenden</string>
   <string name="conversation_context__menu_reply_to_message">Reageren</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Meerdere selecteren</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Bijlage opslaan</string>
@@ -2128,7 +2128,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Aan contactenlijst toevoegen</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lijst met ontvangers</string>
+  <string name="conversation_group_options__recipients_list">Lijst met ontvangers</string>
   <string name="conversation_group_options__delivery">Verzending</string>
   <string name="conversation_group_options__conversation">Gesprek</string>
   <string name="conversation_group_options__broadcast">Uitzenden</string>

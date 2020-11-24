@@ -1557,7 +1557,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="KeyCachingService_lock">Zamknout Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ dat</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Nepodporovaný typ dat</string>
   <string name="MediaPreviewActivity_draft">Koncept</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal potřebuje oprávnění pro přístup k úložišti, aby mohl zapisovat do externího úložiště, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nelze ukládat do externího úložiště bez oprávnění.</string>
@@ -1925,7 +1925,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="redphone_call_card__signal_call">Signal volání</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNÍ ČÍSLO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal umožňuje snadnou komunikaci s použitím vašeho stávajícího telefonního čísla a adresáře kontaktů. Přátelé a ostatní kontakty se s vámi budou moci snadno spojit pomocí aplikace Signal.\n\nRegistrace odesílá některé kontaktní údaje na server, kde ale nejsou uloženy.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal umožňuje snadnou komunikaci s použitím vašeho stávajícího telefonního čísla a adresáře kontaktů. Přátelé a ostatní kontakty se s vámi budou moci snadno spojit pomocí aplikace Signal.\n\nRegistrace odesílá některé kontaktní údaje na server, kde ale nejsou uloženy.</string>
   <string name="registration_activity__verify_your_number">Zkontrolujte vaše číslo</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Zadejte své mobilní číslo a obdržíte ověřovací kód. Může to být zpoplatněno podle sazeb vašeho operátora.</string>
   <!--recipients_panel-->
@@ -2212,7 +2212,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="conversation_context__menu_forward_message">Přeposlat zprávu</string>
   <string name="conversation_context__menu_resend_message">Znovu poslat zprávu</string>
   <string name="conversation_context__menu_reply_to_message">Odpovědět na zprávu</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Vícenásobný výběr</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Uložit přílohu</string>
@@ -2267,7 +2267,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Přidat do kontaktů</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Seznam příjemců</string>
+  <string name="conversation_group_options__recipients_list">Seznam příjemců</string>
   <string name="conversation_group_options__delivery">Doručení</string>
   <string name="conversation_group_options__conversation">Konverzace</string>
   <string name="conversation_group_options__broadcast">Rozeslat</string>

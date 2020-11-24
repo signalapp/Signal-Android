@@ -19,7 +19,7 @@ class ProximityLock {
 
   private static final String TAG = ProximityLock.class.getSimpleName();
 
-  private final Method wakelockParameterizedRelease = getWakelockParamterizedReleaseMethod();
+  private final Method wakelockParameterizedRelease = getWakelockParameterizedReleaseMethod();
   private final Optional<PowerManager.WakeLock> proximityLock;
 
   private static final int PROXIMITY_SCREEN_OFF_WAKE_LOCK = 32;
@@ -83,7 +83,7 @@ class ProximityLock {
     Log.d(TAG, "Released proximity lock:" + proximityLock.get().isHeld());
   }
 
-  private static Method getWakelockParamterizedReleaseMethod() {
+  private static Method getWakelockParameterizedReleaseMethod() {
     try {
       return PowerManager.WakeLock.class.getDeclaredMethod("release", Integer.TYPE);
     } catch (NoSuchMethodException e) {

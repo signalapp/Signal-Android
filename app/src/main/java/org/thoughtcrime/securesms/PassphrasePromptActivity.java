@@ -366,7 +366,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
     @Override
     public void onAuthenticationFailed() {
-      Log.w(TAG, "onAuthenticatoinFailed()");
+      Log.w(TAG, "onAuthenticationFailed()");
       FingerprintManagerCompat.AuthenticationCallback callback = this;
 
       fingerprintPrompt.setImageResource(R.drawable.ic_close_white_48dp);

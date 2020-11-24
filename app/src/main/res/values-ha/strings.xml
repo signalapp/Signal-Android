@@ -847,7 +847,7 @@
   <string name="KeyCachingService_lock">Kulle Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Kai/Ke</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Ba\'a daukar iri wannan midiyan ba.</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Ba\'a daukar iri wannan midiyan ba.</string>
   <string name="MediaPreviewActivity_draft">Daftarin sako</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal na bukatar izinin ajiya domin ajiyar daga waje amma an hana wannan damar. Cigaba ka/ki shiga saitin afilikashon, zabi \"Izini\", kuma ka/ki karfafa \"Ajiya\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Baza\'a iya ajiye wani wurin ajiya daga waje ba tareda izini ba</string>
@@ -1158,7 +1158,7 @@
   <string name="redphone_call_card__signal_call">Kiran Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">LAMBAR WAYA</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal na saukake hira ta hanyar amfani da ainihin lambar waya da kuma littafin adireshi. Abokai da suke da lambar sadarwarka zasu samu saukin samunka/ki ta Signal.\n\n Yin rijista na daukar bayanan lambobin sadarwa zuwa saba. Ba\'a ajiye yake ba.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal na saukake hira ta hanyar amfani da ainihin lambar waya da kuma littafin adireshi. Abokai da suke da lambar sadarwarka zasu samu saukin samunka/ki ta Signal.\n\n Yin rijista na daukar bayanan lambobin sadarwa zuwa saba. Ba\'a ajiye yake ba.</string>
   <string name="registration_activity__verify_your_number">Tabbatar da lambar tsarinka/ki</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Dan shigar da lambar wayanka/ki domin samun lambar sirri na tabbatarwa. Akwai adadin kudi da za\'a iya dauka.</string>
   <!--recipients_panel-->
@@ -1375,7 +1375,7 @@
   <string name="conversation_context__menu_forward_message">Ingiza sako</string>
   <string name="conversation_context__menu_resend_message">Sake tura sako</string>
   <string name="conversation_context__menu_reply_to_message">Amsa sako</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Zaba da yawa</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Ajiye kari</string>
@@ -1421,7 +1421,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Sa a lambobin sadarwa</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Jerin masu karban sako</string>
+  <string name="conversation_group_options__recipients_list">Jerin masu karban sako</string>
   <string name="conversation_group_options__delivery">Sako ya isa</string>
   <string name="conversation_group_options__conversation">Hira</string>
   <string name="conversation_group_options__broadcast">Yada</string>

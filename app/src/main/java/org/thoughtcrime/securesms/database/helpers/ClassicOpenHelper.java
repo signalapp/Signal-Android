@@ -396,7 +396,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
     }
 
     if (fromVersion < LegacyMigrationJob.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
-      if (!MasterSecretUtil.hasAsymmericMasterSecret(context)) {
+      if (!MasterSecretUtil.hasAsymmetricMasterSecret(context)) {
         MasterSecretUtil.generateAsymmetricMasterSecret(context, masterSecret);
 
         MasterCipher masterCipher = new MasterCipher(masterSecret);

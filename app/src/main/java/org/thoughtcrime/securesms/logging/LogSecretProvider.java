@@ -26,7 +26,7 @@ class LogSecretProvider {
     try {
       return Base64.decode(secret);
     } catch (IOException e) {
-      throw new AssertionError("Failed to decode the unecrypted secret.");
+      throw new AssertionError("Failed to decode the unencrypted secret.");
     }
   }
 

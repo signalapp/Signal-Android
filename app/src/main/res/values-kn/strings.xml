@@ -881,7 +881,7 @@
   <string name="KeyCachingService_lock">Signal ಲಾಕ್ ಮಾಡಿ</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">ನೀವು</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ಬೆಂಬಲವಿಲ್ಲದ ಮೀಡಿಯಾ ವಿಧ</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">ಬೆಂಬಲವಿಲ್ಲದ ಮೀಡಿಯಾ ವಿಧ</string>
   <string name="MediaPreviewActivity_draft">ಡ್ರಾಫ್ಟ್</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ಬಾಹ್ಯ ಸ್ಟೋರೇಜ್ ಗೆ ಉಳಿಸುವುದಕ್ಕೆ Signal ಗೆ ಸ್ಟೊರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ , ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್‌ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು  \"ಸ್ಟೊರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ಅನುಮತಿಗಳಿಲ್ಲದೆ ಬಾಹ್ಯ ಸ್ಟೊರೇಜ್‌ಗೆ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ</string>
@@ -1194,7 +1194,7 @@
   <string name="redphone_call_card__signal_call">Signal ಕರೆ</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಫೋನ್ ಸಂಖ್ಯೆ ಮತ್ತು ವಿಳಾಸ ಪುಸ್ತಕವನ್ನು ಬಳಸಿಕೊಂಡು ಸಂವಹನವನ್ನು ಸುಲಭಗೊಳಿಸುತ್ತದೆ. ಫೋನ್ ಮೂಲಕ ನಿಮ್ಮನ್ನು ಹೇಗೆ ಸಂಪರ್ಕಿಸಬೇಕು ಎಂದು ಈಗಾಗಲೇ ತಿಳಿದಿರುವ ಸ್ನೇಹಿತರು ಮತ್ತು ಸಂಪರ್ಕಗಳು Signal ಮೂಲಕ ಸುಲಭವಾಗಿ ಸಂಪರ್ಕ ಸಾಧಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ. \n\nನೋಂದಣಿಯು ಕೆಲವು ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಸರ್ವರ್‌ಗೆ ರವಾನಿಸುತ್ತದೆ. ಅದನ್ನು ಸಂಗ್ರಹಿಸಲಾಗಿಲ್ಲ.  </string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಫೋನ್ ಸಂಖ್ಯೆ ಮತ್ತು ವಿಳಾಸ ಪುಸ್ತಕವನ್ನು ಬಳಸಿಕೊಂಡು ಸಂವಹನವನ್ನು ಸುಲಭಗೊಳಿಸುತ್ತದೆ. ಫೋನ್ ಮೂಲಕ ನಿಮ್ಮನ್ನು ಹೇಗೆ ಸಂಪರ್ಕಿಸಬೇಕು ಎಂದು ಈಗಾಗಲೇ ತಿಳಿದಿರುವ ಸ್ನೇಹಿತರು ಮತ್ತು ಸಂಪರ್ಕಗಳು Signal ಮೂಲಕ ಸುಲಭವಾಗಿ ಸಂಪರ್ಕ ಸಾಧಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ. \n\nನೋಂದಣಿಯು ಕೆಲವು ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಸರ್ವರ್‌ಗೆ ರವಾನಿಸುತ್ತದೆ. ಅದನ್ನು ಸಂಗ್ರಹಿಸಲಾಗಿಲ್ಲ.  </string>
   <string name="registration_activity__verify_your_number">ನಿಮ್ಮ ಸಂಖ್ಯೆ ದೃಢೀಕರಿಸಿ</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">ದೃಢೀಕರಣ ಕೋಡ್ ಸ್ವೀಕರಿಸಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ. ಕೆರಿಯರ್ ವಿಧಿಸುವ ದರಗಳು ಅನ್ವಯವಾಗಬಹುದು.</string>
   <!--recipients_panel-->
@@ -1416,7 +1416,7 @@
   <string name="conversation_context__menu_forward_message">ಸಂದೇಶವನ್ನು ರವಾನಿಸಿ</string>
   <string name="conversation_context__menu_resend_message">ಸಂದೇಶ ಪುನಃ ಕಳುಹಿಸಿ</string>
   <string name="conversation_context__menu_reply_to_message">ಸಂದೇಶಕ್ಕೆ ಉತ್ತರಿಸಿ</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">ಬಹು ಆಯ್ಕೆ ಮಾಡಿ </string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ಲಗತ್ತು ಉಳಿಸು</string>
@@ -1463,7 +1463,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸು</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">ಸ್ವೀಕೃತದಾರರ ಪಟ್ಟಿ</string>
+  <string name="conversation_group_options__recipients_list">ಸ್ವೀಕೃತದಾರರ ಪಟ್ಟಿ</string>
   <string name="conversation_group_options__delivery">ಡೆಲಿವರಿ</string>
   <string name="conversation_group_options__conversation">ಸಂಭಾಷಣೆ</string>
   <string name="conversation_group_options__broadcast">ಪ್ರಸಾರ ಮಾಡಿ</string>

@@ -674,7 +674,7 @@
   <string name="KeyCachingService_lock">Заблокувати Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ви</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Непідтримуваний тип медіа</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Непідтримуваний тип медіа</string>
   <string name="MediaPreviewActivity_draft">Чернетка</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal потребує дозволу \"Зберігання\", щоб зберігати файли,  але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Зберігання\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Без доступу до файлової системи зберегти файли неможливо</string>
@@ -958,7 +958,7 @@
   <string name="redphone_call_card__signal_call">Виклик Signal </string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНУ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">З Signal дуже легко спілкуватися маючи лише телефонну книги. Друзі та контакти з якими ви вже спілкуєтесь телефоном зможуть легко початки користуватись Signal.\n\nПід час реєстрації передається деяка інформація на сервер але вона не зберігається.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">З Signal дуже легко спілкуватися маючи лише телефонну книги. Друзі та контакти з якими ви вже спілкуєтесь телефоном зможуть легко початки користуватись Signal.\n\nПід час реєстрації передається деяка інформація на сервер але вона не зберігається.</string>
   <string name="registration_activity__verify_your_number">Перевірити ваш номер</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Вкажіть ваш мобільний номер, щоб отримати перевірочний код. Вашим оператором може стягуватися плата.</string>
   <!--recipients_panel-->
@@ -1151,7 +1151,7 @@
   <string name="conversation_context__menu_forward_message">Переслати повідомлення</string>
   <string name="conversation_context__menu_resend_message">Переслати повідомлення</string>
   <string name="conversation_context__menu_reply_to_message">Відповісти на повідомлення</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Зберегти вкладення</string>
   <!--conversation_expiring_off-->
@@ -1194,7 +1194,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додати до контактів</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Список одержувачів</string>
+  <string name="conversation_group_options__recipients_list">Список одержувачів</string>
   <string name="conversation_group_options__delivery">Доставка</string>
   <string name="conversation_group_options__conversation">Розмова</string>
   <string name="conversation_group_options__broadcast">Трансляція</string>

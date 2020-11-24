@@ -122,7 +122,7 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
     ringtoneRow               = view.findViewById(R.id.custom_notifications_ringtone_row);
     ringtoneSelector          = view.findViewById(R.id.custom_notifications_ringtone_selection);
     callVibrateRow            = view.findViewById(R.id.custom_notifications_call_vibrate_row);
-    callVibrateSelector       = view.findViewById(R.id.custom_notifications_call_vibrate_selectior);
+    callVibrateSelector       = view.findViewById(R.id.custom_notifications_call_vibrate_selection);
 
     Toolbar toolbar = view.findViewById(R.id.custom_notifications_toolbar);
 

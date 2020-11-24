@@ -65,7 +65,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private TextureRender mTextureRender;
 
     /**
-     * Creates an OutputSurface backed by a pbuffer with the specifed dimensions.  The new
+     * Creates an OutputSurface backed by a pbuffer with the specified dimensions.  The new
      * EGL context and surface will be made current.  Creates a Surface that can be passed
      * to MediaCodec.configure().
      */

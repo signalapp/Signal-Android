@@ -951,7 +951,7 @@
   <string name="KeyCachingService_lock">Bloquear Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ti</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipo multimedia non compatible</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Tipo multimedia non compatible</string>
   <string name="MediaPreviewActivity_draft">Borrador</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita permiso para acceder ao almacenamento externo e poder gardar nel, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Non é posible gardar no almacenamento externo sen permiso</string>
@@ -1255,7 +1255,7 @@
   <string name="redphone_call_card__signal_call">Chamada Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilita a comunicación utilizando o teu número de teléfono e axenda de contactos. As amizades e os contactos que xa saben como contactar contigo polo número de teléfono agora atoparante facilmente con Signal.\n\nO rexistro transmite algunha información ao servidor, que non se almacena.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal facilita a comunicación utilizando o teu número de teléfono e axenda de contactos. As amizades e os contactos que xa saben como contactar contigo polo número de teléfono agora atoparante facilmente con Signal.\n\nO rexistro transmite algunha información ao servidor, que non se almacena.</string>
   <string name="registration_activity__verify_your_number">Verificar o teu número</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Insire o teu número de teléfono para recibir un código de verificación. Pode supor a aplicación dalgunha tarifa por parte do operador.</string>
   <!--recipients_panel-->
@@ -1497,7 +1497,7 @@
   <string name="conversation_context__menu_forward_message">Reenviar mensaxe</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensaxe</string>
   <string name="conversation_context__menu_reply_to_message">Responder a mensaxe</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Gardar anexo</string>
   <!--conversation_expiring_off-->
@@ -1545,7 +1545,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Engadir a contactos</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Listaxe de destinatarios</string>
+  <string name="conversation_group_options__recipients_list">Listaxe de destinatarios</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Conversa</string>
   <string name="conversation_group_options__broadcast">Difusión</string>

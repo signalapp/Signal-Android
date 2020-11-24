@@ -1434,7 +1434,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="KeyCachingService_lock">Kyçe Signal-in</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ju</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Lloj media i pambuluar</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Lloj media i pambuluar</string>
   <string name="MediaPreviewActivity_draft">Skicë</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Për të ruajtur gjëra në depozitë të jashtme, Signal-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">S\’bëhet dot ruajtje në depozitë të jashtme pa leje</string>
@@ -1782,7 +1782,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="redphone_call_card__signal_call">Thirrje përmes Signal-i</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMËR TELEFONI</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal e bën të lehtë të komunikoni duke përdorur numrin tuaj ekzistues të telefonit dhe librin e adresave. Shokë dhe kontakte, që dinë tashmë si të lidhen me ju përmes telefonit, do të jenë në gjendje të lidhen me ju lehtësisht përmes Signal-it.\n\nRegjistrimi transmeton te shërbyesi disa të dhëna kontakti. Të cilat nuk depozitohen.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal e bën të lehtë të komunikoni duke përdorur numrin tuaj ekzistues të telefonit dhe librin e adresave. Shokë dhe kontakte, që dinë tashmë si të lidhen me ju përmes telefonit, do të jenë në gjendje të lidhen me ju lehtësisht përmes Signal-it.\n\nRegjistrimi transmeton te shërbyesi disa të dhëna kontakti. Të cilat nuk depozitohen.</string>
   <string name="registration_activity__verify_your_number">Verifikoni Numrin Tuaj</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Ju lutemi, jepni numrin tuaj të celularit, që të merrni një kod verifikimi. Mund të aplikohen tarifa operatori.</string>
   <!--recipients_panel-->
@@ -2069,7 +2069,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation_context__menu_forward_message">Përcille mesazhin</string>
   <string name="conversation_context__menu_resend_message">Ridërgoje mesazhin</string>
   <string name="conversation_context__menu_reply_to_message">Përgjigjuni mesazhin</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Përzgjidhni disa</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Ruaje bashkëngjitjen</string>
@@ -2124,7 +2124,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Shtoje te kontaktet</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Listë marrësish</string>
+  <string name="conversation_group_options__recipients_list">Listë marrësish</string>
   <string name="conversation_group_options__delivery">Dërgim</string>
   <string name="conversation_group_options__conversation">Bisedë</string>
   <string name="conversation_group_options__broadcast">Transmetim</string>

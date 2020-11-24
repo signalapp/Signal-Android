@@ -329,7 +329,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
 
-    viewModel.onSuccessulShare();
+    viewModel.onSuccessfulShare();
 
     startActivity(intent);
   }

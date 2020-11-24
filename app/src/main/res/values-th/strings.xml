@@ -1005,7 +1005,7 @@
   <string name="KeyCachingService_lock">ล็อก Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">คุณ</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ชนิดสื่อที่ไม่รองรับ</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">ชนิดสื่อที่ไม่รองรับ</string>
   <string name="MediaPreviewActivity_draft">ร่าง</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">เพื่อที่จะบันทึกข้อมูลลงที่เก็บข้อมูลภายนอก Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ไม่สามารถบันทึกลงที่เก็บข้อมูลภายนอกได้ หากไม่ได้รับอนุญาต</string>
@@ -1314,7 +1314,7 @@
   <string name="redphone_call_card__signal_call">สาย Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">หมายเลขโทรศัพท์</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ทำให้การสื่อสารง่ายขึ้นด้วยการใช้หมายเลขโทรศัพท์และรายชื่อผู้ติดต่อที่คุณมีอยู่แล้ว เพื่อนและผู้ติดต่อที่คุณรู้จักอยู่แล้วที่ติดต่อคุณผ่านทางโทรศัพท์ได้จะสามารถติดต่อคุณผ่าน Signal ได้เช่นกัน การลงทะเบียนจะส่งข้อมูลส่วนหนึ่งของผู้ติดต่อไปที่เซิร์ฟเวอร์ แต่จะไม่มีการบันทึกข้อมูลเหล่านั้นไว้</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal ทำให้การสื่อสารง่ายขึ้นด้วยการใช้หมายเลขโทรศัพท์และรายชื่อผู้ติดต่อที่คุณมีอยู่แล้ว เพื่อนและผู้ติดต่อที่คุณรู้จักอยู่แล้วที่ติดต่อคุณผ่านทางโทรศัพท์ได้จะสามารถติดต่อคุณผ่าน Signal ได้เช่นกัน การลงทะเบียนจะส่งข้อมูลส่วนหนึ่งของผู้ติดต่อไปที่เซิร์ฟเวอร์ แต่จะไม่มีการบันทึกข้อมูลเหล่านั้นไว้</string>
   <string name="registration_activity__verify_your_number">ตรวจยืนยันหมายเลขของคุณ</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">กรุณาใส่หมายเลขโทรศัพท์ของคุณเพื่อรับรหัสตรวจยืนยัน อาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
   <!--recipients_panel-->
@@ -1556,7 +1556,7 @@
   <string name="conversation_context__menu_forward_message">ส่งต่อข้อความ</string>
   <string name="conversation_context__menu_resend_message">ส่งข้อความอีกครั้ง</string>
   <string name="conversation_context__menu_reply_to_message">ตอบกลับข้อความ</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">เลือกหลายข้อความ</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">บันทึกแฟ้มแนบ</string>
@@ -1607,7 +1607,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">รายชื่อผู้รับ</string>
+  <string name="conversation_group_options__recipients_list">รายชื่อผู้รับ</string>
   <string name="conversation_group_options__delivery">ส่ง</string>
   <string name="conversation_group_options__conversation">สนทนา</string>
   <string name="conversation_group_options__broadcast">เผยแพร่</string>

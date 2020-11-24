@@ -345,7 +345,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   private void initializeMedia() {
     if (!isContentTypeSupported(initialMediaType)) {
       Log.w(TAG, "Unsupported media type sent to MediaPreviewActivity, finishing.");
-      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unssuported_media_type, Toast.LENGTH_LONG).show();
+      Toast.makeText(getApplicationContext(), R.string.MediaPreviewActivity_unsupported_media_type, Toast.LENGTH_LONG).show();
       finish();
     }
 

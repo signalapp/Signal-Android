@@ -843,7 +843,7 @@
   <string name="KeyCachingService_lock">Signal લૉક</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">તમે</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">અસમર્થિત મીડિયા પ્રકાર</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">અસમર્થિત મીડિયા પ્રકાર</string>
   <string name="MediaPreviewActivity_draft">ડ્રાફ્ટ</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">બાહ્ય સ્ટોરેજ માં સેવ કરવા માટે Signal ને સ્ટોરેજ પરવાનગીની જરૂર છે, પરંતુ તેનો કાયમી નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ ચાલુ રાખો \"પરવાનગી\" પસંદ કરો, અને \"સ્ટોરેજ\" સક્ષમ કરો.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">પરવાનગી વિના બાહ્ય સ્ટોરેજમાં સેવ કરવામાં અસમર્થ</string>
@@ -1154,7 +1154,7 @@
   <string name="redphone_call_card__signal_call">Signal કૉલ</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ફોન નંબર</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal તમારા અસ્તિત્વમાં છે તે ફોન નંબર અને એડ્રેસ બુકનો ઉપયોગ કરીને વાતચીત કરવાનું સરળ બનાવે છે. મિત્રો અને સંપર્કો કે જેઓ પહેલાથી જાણે છે કે ફોન દ્વારા તમારો સંપર્ક કેવી રીતે કરવો તે Signal દ્વારા સરળતાથી સંપર્કમાં આવવા માટે સક્ષમ હશે.\n\n રજિસ્ટ્રેશન સર્વર પર કેટલીક સંપર્ક માહિતી પ્રસારિત કરે છે. તે સંગ્રહિત નથી.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal તમારા અસ્તિત્વમાં છે તે ફોન નંબર અને એડ્રેસ બુકનો ઉપયોગ કરીને વાતચીત કરવાનું સરળ બનાવે છે. મિત્રો અને સંપર્કો કે જેઓ પહેલાથી જાણે છે કે ફોન દ્વારા તમારો સંપર્ક કેવી રીતે કરવો તે Signal દ્વારા સરળતાથી સંપર્કમાં આવવા માટે સક્ષમ હશે.\n\n રજિસ્ટ્રેશન સર્વર પર કેટલીક સંપર્ક માહિતી પ્રસારિત કરે છે. તે સંગ્રહિત નથી.</string>
   <string name="registration_activity__verify_your_number">તમારો નંબર ચકાસો</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">કૃપા કરીને ચકાસણી કોડ મેળવવા માટે તમારો મોબાઇલ નંબર દાખલ કરો. દરો લાગુ થઈ શકે છે.</string>
   <!--recipients_panel-->
@@ -1371,7 +1371,7 @@
   <string name="conversation_context__menu_forward_message">ફોરવર્ડ મેસેજ</string>
   <string name="conversation_context__menu_resend_message">મેસેજ ફરીથી મોકલો</string>
   <string name="conversation_context__menu_reply_to_message">મેસેજ નો જવાબ આપો</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">વધારે પસંદ કરો</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">જોડાણ સેવ કરો</string>
@@ -1417,7 +1417,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">સંપર્કોમાં ઉમેરો </string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">પ્રાપ્તકર્તાઓની સૂચિ</string>
+  <string name="conversation_group_options__recipients_list">પ્રાપ્તકર્તાઓની સૂચિ</string>
   <string name="conversation_group_options__delivery">ડિલિવરી</string>
   <string name="conversation_group_options__conversation">સંવાદ</string>
   <string name="conversation_group_options__broadcast">બ્રોડકાસ્ટ</string>

@@ -1438,7 +1438,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="KeyCachingService_lock">Lås Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Deg</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Ustøtta medietype</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Ustøtta medietype</string>
   <string name="MediaPreviewActivity_draft">Kladd</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal treng tilgang til lagring for å lagra til eksterne minnekort, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan ikkje lagra til eksterne minnekort utan tilgang</string>
@@ -1786,7 +1786,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="redphone_call_card__signal_call">Signal-samtale</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gjer det enkelt å kommunisera ved hjelp av telefonnummeret ditt og adresseboka di. Vennar og kontaktar som allereie veit korleis dei skal ta kontakt med deg over telefon vil enkelt kunna ta kontakt over Signal.
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal gjer det enkelt å kommunisera ved hjelp av telefonnummeret ditt og adresseboka di. Vennar og kontaktar som allereie veit korleis dei skal ta kontakt med deg over telefon vil enkelt kunna ta kontakt over Signal.
 
 Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen vert ikkje lagra.</string>
   <string name="registration_activity__verify_your_number">Stadfest nummeret ditt</string>
@@ -2073,7 +2073,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="conversation_context__menu_forward_message">Vidaresend melding</string>
   <string name="conversation_context__menu_resend_message">Send melding på nytt</string>
   <string name="conversation_context__menu_reply_to_message">Svar på meldinga</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Vel fleire</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagra vedlegg</string>
@@ -2129,7 +2129,7 @@ Du er à jour!</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Legg til i kontaktar</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Mottakarliste</string>
+  <string name="conversation_group_options__recipients_list">Mottakarliste</string>
   <string name="conversation_group_options__delivery">Levering</string>
   <string name="conversation_group_options__conversation">Samtale</string>
   <string name="conversation_group_options__broadcast">Kringkast</string>

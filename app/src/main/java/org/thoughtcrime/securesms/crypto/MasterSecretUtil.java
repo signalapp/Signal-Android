@@ -190,7 +190,7 @@ public class MasterSecretUtil {
     }
   }
 
-  public static boolean hasAsymmericMasterSecret(Context context) {
+  public static boolean hasAsymmetricMasterSecret(Context context) {
     SharedPreferences settings = context.getSharedPreferences(PREFERENCES_NAME, 0);
     return settings.contains(ASYMMETRIC_LOCAL_PUBLIC_DJB);
   }

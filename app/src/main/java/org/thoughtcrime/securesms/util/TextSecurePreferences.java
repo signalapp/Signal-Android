@@ -123,7 +123,7 @@ public class TextSecurePreferences {
   private static final String PROFILE_NAME_PREF                = "pref_profile_name";
   private static final String PROFILE_AVATAR_ID_PREF           = "pref_profile_avatar_id";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
-  public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
+  public  static final String INCOGNITO_KEYBOARD_PREF          = "pref_incognito_keyboard";
   private static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
   private static final String SUCCESSFUL_DIRECTORY_PREF        = "pref_successful_directory";
 
@@ -178,7 +178,7 @@ public class TextSecurePreferences {
 
   private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time";
   public  static final String UNIVERSAL_UNIDENTIFIED_ACCESS                      = "pref_universal_unidentified_access";
-  public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
+  public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentified_delivery_indicators";
   private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
 
   public static final String TYPING_INDICATORS = "pref_typing_indicators";
@@ -318,7 +318,7 @@ public class TextSecurePreferences {
   }
 
   public static void setNextPreKeyId(@NonNull Context context, int value) {
-    setIntegerPrefrence(context, NEXT_PRE_KEY_ID, value);
+    setIntegerPreference(context, NEXT_PRE_KEY_ID, value);
   }
 
   public static int getNextSignedPreKeyId(@NonNull Context context) {
@@ -326,7 +326,7 @@ public class TextSecurePreferences {
   }
 
   public static void setNextSignedPreKeyId(@NonNull Context context, int value) {
-    setIntegerPrefrence(context, NEXT_SIGNED_PRE_KEY_ID, value);
+    setIntegerPreference(context, NEXT_SIGNED_PRE_KEY_ID, value);
   }
 
   public static int getActiveSignedPreKeyId(@NonNull Context context) {
@@ -334,7 +334,7 @@ public class TextSecurePreferences {
   }
 
   public static void setActiveSignedPreKeyId(@NonNull Context context, int value) {
-    setIntegerPrefrence(context, ACTIVE_SIGNED_PRE_KEY_ID, value);;
+    setIntegerPreference(context, ACTIVE_SIGNED_PRE_KEY_ID, value);;
   }
 
   public static void setNeedsSqlCipherMigration(@NonNull Context context, boolean value) {
@@ -390,12 +390,12 @@ public class TextSecurePreferences {
     setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value);
   }
 
-  public static boolean isUnauthorizedRecieved(Context context) {
+  public static boolean isUnauthorizedReceived(Context context) {
     return getBooleanPreference(context, UNAUTHORIZED_RECEIVED, false);
   }
 
   public static boolean isIncognitoKeyboardEnabled(Context context) {
-    return getBooleanPreference(context, INCOGNITO_KEYBORAD_PREF, false);
+    return getBooleanPreference(context, INCOGNITO_KEYBOARD_PREF, false);
   }
 
   public static boolean isReadReceiptsEnabled(Context context) {
@@ -460,7 +460,7 @@ public class TextSecurePreferences {
   }
 
   public static void setDirectCaptureCameraId(Context context, int value) {
-    setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value);
+    setIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, value);
   }
 
   @SuppressWarnings("deprecation")
@@ -477,7 +477,7 @@ public class TextSecurePreferences {
   }
 
   public static void setSignedPreKeyFailureCount(Context context, int value) {
-    setIntegerPrefrence(context, SIGNED_PREKEY_FAILURE_COUNT_PREF, value);
+    setIntegerPreference(context, SIGNED_PREKEY_FAILURE_COUNT_PREF, value);
   }
 
   public static int getSignedPreKeyFailureCount(Context context) {
@@ -547,7 +547,7 @@ public class TextSecurePreferences {
 
   public static void setFcmToken(Context context, String registrationId) {
     setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);
-    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCanonicalVersionCode());
+    setIntegerPreference(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCanonicalVersionCode());
   }
 
   public static String getFcmToken(Context context) {
@@ -577,7 +577,7 @@ public class TextSecurePreferences {
   }
 
   public static void setLocalRegistrationId(Context context, int registrationId) {
-    setIntegerPrefrence(context, LOCAL_REGISTRATION_ID_PREF, registrationId);
+    setIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, registrationId);
   }
 
   public static boolean isInThreadNotifications(Context context) {
@@ -813,7 +813,7 @@ public class TextSecurePreferences {
   }
 
   public static void setLastVersionCode(Context context, int versionCode) throws IOException {
-    if (!setIntegerPrefrenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
+    if (!setIntegerPreferenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
       throw new IOException("couldn't write version code to sharedpreferences");
     }
   }
@@ -823,7 +823,7 @@ public class TextSecurePreferences {
   }
 
   public static void setLastExperienceVersionCode(Context context, int versionCode) {
-    setIntegerPrefrence(context, LAST_EXPERIENCE_VERSION_PREF, versionCode);
+    setIntegerPreference(context, LAST_EXPERIENCE_VERSION_PREF, versionCode);
   }
 
   public static int getExperienceDismissedVersionCode(Context context) {
@@ -831,7 +831,7 @@ public class TextSecurePreferences {
   }
 
   public static void setExperienceDismissedVersionCode(Context context, int versionCode) {
-    setIntegerPrefrence(context, EXPERIENCE_DISMISSED_PREF, versionCode);
+    setIntegerPreference(context, EXPERIENCE_DISMISSED_PREF, versionCode);
   }
 
   public static String getTheme(Context context) {
@@ -860,7 +860,7 @@ public class TextSecurePreferences {
   }
 
   public static void setPassphraseTimeoutInterval(Context context, int interval) {
-    setIntegerPrefrence(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval);
+    setIntegerPreference(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval);
   }
 
   public static String getLanguage(Context context) {
@@ -1076,7 +1076,7 @@ public class TextSecurePreferences {
   }
 
   public static void setNotificationChannelVersion(Context context, int version) {
-    setIntegerPrefrence(context, NOTIFICATION_CHANNEL_VERSION, version);
+    setIntegerPreference(context, NOTIFICATION_CHANNEL_VERSION, version);
   }
 
   public static int getNotificationMessagesChannelVersion(Context context) {
@@ -1084,7 +1084,7 @@ public class TextSecurePreferences {
   }
 
   public static void setNotificationMessagesChannelVersion(Context context, int version) {
-    setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version);
+    setIntegerPreference(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version);
   }
 
   public static boolean getNeedsMessagePull(Context context) {
@@ -1129,15 +1129,15 @@ public class TextSecurePreferences {
   }
 
   public static void setJobManagerVersion(Context context, int version) {
-    setIntegerPrefrence(context, JOB_MANAGER_VERSION, version);
+    setIntegerPreference(context, JOB_MANAGER_VERSION, version);
   }
 
-  public static int getJobManagerVersion(Context contex) {
-    return getIntegerPreference(contex, JOB_MANAGER_VERSION, 1);
+  public static int getJobManagerVersion(Context context) {
+    return getIntegerPreference(context, JOB_MANAGER_VERSION, 1);
   }
 
   public static void setAppMigrationVersion(Context context, int version) {
-    setIntegerPrefrence(context, APP_MIGRATION_VERSION, version);
+    setIntegerPreference(context, APP_MIGRATION_VERSION, version);
   }
 
   public static int getAppMigrationVersion(Context context) {
@@ -1145,7 +1145,7 @@ public class TextSecurePreferences {
   }
 
   public static void setFirstInstallVersion(Context context, int version) {
-    setIntegerPrefrence(context, FIRST_INSTALL_VERSION, version);
+    setIntegerPreference(context, FIRST_INSTALL_VERSION, version);
   }
 
   public static int getFirstInstallVersion(Context context) {
@@ -1204,11 +1204,11 @@ public class TextSecurePreferences {
     return PreferenceManager.getDefaultSharedPreferences(context).getInt(key, defaultValue);
   }
 
-  private static void setIntegerPrefrence(Context context, String key, int value) {
+  private static void setIntegerPreference(Context context, String key, int value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).apply();
   }
 
-  private static boolean setIntegerPrefrenceBlocking(Context context, String key, int value) {
+  private static boolean setIntegerPreferenceBlocking(Context context, String key, int value) {
     return PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(key, value).commit();
   }
 

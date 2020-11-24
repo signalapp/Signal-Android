@@ -956,7 +956,7 @@
   <string name="KeyCachingService_lock">లాక్ Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">మీరు</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">మద్ధతు  లేనటువంటి ప్రసార మాధ్యమం</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">మద్ధతు  లేనటువంటి ప్రసార మాధ్యమం</string>
   <string name="MediaPreviewActivity_draft">చిత్తు పత్రం</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">బాహ్య నిల్వకు భద్రపరచడానికి Signal కు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి, ఆపై \"నిల్వ\" ను ప్రారంభించండి.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">అనుమతులు లేకుండా బాహ్య నిల్వకి భద్రపరచడం సాధ్యపడలేదు</string>
@@ -1269,7 +1269,7 @@
   <string name="redphone_call_card__signal_call">Signal కాల్ </string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ఫోన్ నంబరు</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal మీ ప్రస్తుత ఫోన్ నంబర్ మరియు చిరునామా పుస్తకం ఉపయోగించి సమాచార మార్పిడి సులభం చేస్తుంది. ఫోన్ ద్వారా మిమ్మల్ని ఎలా సంప్రదించాలో ఇప్పటికే తెలిసిన స్నేహితులు మరియు పరిచయాలు సులభంగా Signal ద్వారా సన్నిహితంగా ఉంటాయి. \ N \ n రిజిస్ట్రేషన్ కొంత సంప్రదింపు సమాచారాన్ని సర్వర్కు బదిలీ చేస్తుంది. ఇది నిల్వ చేయబడలేదు.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal మీ ప్రస్తుత ఫోన్ నంబర్ మరియు చిరునామా పుస్తకం ఉపయోగించి సమాచార మార్పిడి సులభం చేస్తుంది. ఫోన్ ద్వారా మిమ్మల్ని ఎలా సంప్రదించాలో ఇప్పటికే తెలిసిన స్నేహితులు మరియు పరిచయాలు సులభంగా Signal ద్వారా సన్నిహితంగా ఉంటాయి. \ N \ n రిజిస్ట్రేషన్ కొంత సంప్రదింపు సమాచారాన్ని సర్వర్కు బదిలీ చేస్తుంది. ఇది నిల్వ చేయబడలేదు.</string>
   <string name="registration_activity__verify_your_number">మీ నంబర్ ని ధృవీకరించండి</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">దయచేసి ధృవీకరణ కోడ్ను స్వీకరించడానికి మీ మొబైల్ నంబర్ను నమోదు చేయండి. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
   <!--recipients_panel-->
@@ -1486,7 +1486,7 @@
   <string name="conversation_context__menu_forward_message">సందేశాన్ని బదలాయించు</string>
   <string name="conversation_context__menu_resend_message">సందేశాన్ని తిరిగి పంపు</string>
   <string name="conversation_context__menu_reply_to_message">సందేశానికి ప్రత్యుత్తరం ఇవ్వండి</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">బహుళ ఎంచుకోండి</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">జత పరిచినది దాచి పెట్టు </string>
@@ -1533,7 +1533,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">పరిచయాలకు జోడించండి</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">గ్రహీతల జాబితా</string>
+  <string name="conversation_group_options__recipients_list">గ్రహీతల జాబితా</string>
   <string name="conversation_group_options__delivery">చేర్చుట</string>
   <string name="conversation_group_options__conversation">సంభాషణ</string>
   <string name="conversation_group_options__broadcast">ప్రసారం </string>

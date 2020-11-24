@@ -63,7 +63,7 @@ public class Permissions {
     private @DrawableRes int[]  rationalDialogHeader;
     private              String rationaleDialogMessage;
 
-    private boolean ifNecesary;
+    private boolean ifNecessary;
 
     private boolean condition = true;
 
@@ -77,12 +77,12 @@ public class Permissions {
     }
 
     public PermissionsBuilder ifNecessary() {
-      this.ifNecesary = true;
+      this.ifNecessary = true;
       return this;
     }
 
     public PermissionsBuilder ifNecessary(boolean condition) {
-      this.ifNecesary = true;
+      this.ifNecessary = true;
       this.condition  = condition;
       return this;
     }
@@ -137,7 +137,7 @@ public class Permissions {
       PermissionsRequest request = new PermissionsRequest(allGrantedListener, anyDeniedListener, anyPermanentlyDeniedListener, anyResultListener,
                                                           someGrantedListener, someDeniedListener, somePermanentlyDeniedListener);
 
-      if (ifNecesary && (permissionObject.hasAll(requestedPermissions) || !condition)) {
+      if (ifNecessary && (permissionObject.hasAll(requestedPermissions) || !condition)) {
         executePreGrantedPermissionsRequest(request);
       } else if (rationaleDialogMessage != null && rationalDialogHeader != null) {
         executePermissionsRequestWithRationale(request);

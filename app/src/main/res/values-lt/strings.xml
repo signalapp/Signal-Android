@@ -1558,7 +1558,7 @@
   <string name="KeyCachingService_lock">Užrakinti Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Jūs</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nepalaikomas medijos tipas</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Nepalaikomas medijos tipas</string>
   <string name="MediaPreviewActivity_draft">Juodraštis</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Norint įrašyti į išorinę saugyklą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Saugyklą“.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nepavyksta įrašyti į išorinę saugyklą be leidimų</string>
@@ -1926,7 +1926,7 @@
   <string name="redphone_call_card__signal_call">Signal skambutis</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONO NUMERIS</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal padaro bendravimą, naudojant jūsų esamą telefono numerį ir adresų knygą, lengvą. Draugai ir adresatai, kurie jau žino kaip susisiekti su jumis telefonu, galės lengvai su jumis susisiekti, naudojant Signal.\n\nRegistracija persiunčia kai kurią kontaktinę informaciją į serverį. Ši informacija nėra kaupiama.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal padaro bendravimą, naudojant jūsų esamą telefono numerį ir adresų knygą, lengvą. Draugai ir adresatai, kurie jau žino kaip susisiekti su jumis telefonu, galės lengvai su jumis susisiekti, naudojant Signal.\n\nRegistracija persiunčia kai kurią kontaktinę informaciją į serverį. Ši informacija nėra kaupiama.</string>
   <string name="registration_activity__verify_your_number">Patvirtinkite savo numerį</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Norėdami gauti patvirtinimo kodą, įveskite savo mobiliojo telefono numerį. Gali būti taikomi mobiliojo ryšio paslaugos teikėjo mokesčiai.</string>
   <!--recipients_panel-->
@@ -2210,7 +2210,7 @@
   <string name="conversation_context__menu_forward_message">Persiųsti žinutę</string>
   <string name="conversation_context__menu_resend_message">Iš naujo siųsti žinutę</string>
   <string name="conversation_context__menu_reply_to_message">Atsakyti į žinutę</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Pasirinkti kelis</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Įrašyti priedą</string>
@@ -2265,7 +2265,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Įtraukti į adresatus</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Gavėjų sąrašas</string>
+  <string name="conversation_group_options__recipients_list">Gavėjų sąrašas</string>
   <string name="conversation_group_options__delivery">Pristatymas</string>
   <string name="conversation_group_options__conversation">Pokalbis</string>
   <string name="conversation_group_options__broadcast">Transliavimas</string>

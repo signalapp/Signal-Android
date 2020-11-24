@@ -446,7 +446,7 @@ public abstract class Job {
       }
 
       /**
-       * Sets the input data that will be made availabe to the job when it is run.
+       * Sets the input data that will be made available to the job when it is run.
        * Should only be set by {@link JobController}.
        */
       @NonNull Builder setInputData(@Nullable Data inputData) {

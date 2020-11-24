@@ -1132,7 +1132,7 @@
   <string name="KeyCachingService_lock">Signal 잠금</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">나</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">지원되지 않는 미디어 형식</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">지원되지 않는 미디어 형식</string>
   <string name="MediaPreviewActivity_draft">초안</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal에서 외부 저장 공간에 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">외부 저장 공간에 저장하려면 저장 공간 권한이 필요함</string>
@@ -1448,7 +1448,7 @@
   <string name="redphone_call_card__signal_call">Signal 전화</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">전화번호</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal에서는 연락처와 전화번호를 통해 쉽게 대화를 나눌 수 있습니다. 이미 휴대 전화를 통해 연락을 주고받는 친구들과 Signal에서 자연스럽게 대화를 나눠보세요.\n\n일부 연락처 정보는 서버에 전송되나, 서버에 저장되지는 않습니다.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal에서는 연락처와 전화번호를 통해 쉽게 대화를 나눌 수 있습니다. 이미 휴대 전화를 통해 연락을 주고받는 친구들과 Signal에서 자연스럽게 대화를 나눠보세요.\n\n일부 연락처 정보는 서버에 전송되나, 서버에 저장되지는 않습니다.</string>
   <string name="registration_activity__verify_your_number">내 번호 인증</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">안전 번호를 받을 휴대 전화 번호를 입력하세요. 통신사 요금이 적용될 수 있습니다.</string>
   <!--recipients_panel-->
@@ -1711,7 +1711,7 @@
   <string name="conversation_context__menu_forward_message">메시지 전달</string>
   <string name="conversation_context__menu_resend_message">메시지 다시 보내기</string>
   <string name="conversation_context__menu_reply_to_message">메시지 답장</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">여러 개 선택</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">첨부 파일 저장</string>
@@ -1764,7 +1764,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">연락처에 추가</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">수신자 목록</string>
+  <string name="conversation_group_options__recipients_list">수신자 목록</string>
   <string name="conversation_group_options__delivery">전송</string>
   <string name="conversation_group_options__conversation">대화</string>
   <string name="conversation_group_options__broadcast">방송</string>

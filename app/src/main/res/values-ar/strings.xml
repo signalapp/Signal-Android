@@ -1402,7 +1402,7 @@
   <string name="KeyCachingService_lock">إقفِل Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">أنت</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">غير مدعوم.</string>
   <string name="MediaPreviewActivity_draft">مسودة</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق، واختيار\"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">لا يمكن الحفظ إلى الذاكرة الخارجية بدون أذونات</string>
@@ -1773,7 +1773,7 @@
   <string name="redphone_call_card__signal_call">مكالمة Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">رقم الهاتف</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">يسهّل Signal من التواصل باستخدام رقم هاتفك الحالي وجهات الاتصال لديك. سيتمكن أصدقائك ومعارفك الذين يعرفون كيف يتصلون بك هاتفيّاً أن يتواصلوا معك عبر Signal.
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">يسهّل Signal من التواصل باستخدام رقم هاتفك الحالي وجهات الاتصال لديك. سيتمكن أصدقائك ومعارفك الذين يعرفون كيف يتصلون بك هاتفيّاً أن يتواصلوا معك عبر Signal.
 
 عملية التسجيل ستنقل بعض بيانات جهات الاتصال إلى الخادوم. لكنّ، لا يتم تخزين هذه البيانات. </string>
   <string name="registration_activity__verify_your_number">تحقق من رقمك</string>
@@ -2048,7 +2048,7 @@
   <string name="conversation_context__menu_forward_message">إعادة الإرسال</string>
   <string name="conversation_context__menu_resend_message">إعادة الإرسال</string>
   <string name="conversation_context__menu_reply_to_message">الرَدّ على الرسالة</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">اختيار متعدد</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">حفظ المرفق</string>
@@ -2103,7 +2103,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">أضف إلى جهات الاتصال</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">قائمة المستلمون</string>
+  <string name="conversation_group_options__recipients_list">قائمة المستلمون</string>
   <string name="conversation_group_options__delivery">تسليم</string>
   <string name="conversation_group_options__conversation">محادثة</string>
   <string name="conversation_group_options__broadcast">بث</string>

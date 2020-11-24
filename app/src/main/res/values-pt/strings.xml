@@ -1430,7 +1430,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KeyCachingService_lock">Bloquear Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipo de multimédia não suportado</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Tipo de multimédia não suportado</string>
   <string name="MediaPreviewActivity_draft">Rascunho</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal requer permissão de acesso ao armazenamento para escrever no suporte de armazenamento externo, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do telemóvel, seleccione o Signal e, em \"Permissões\" active \"Armazenamento\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Não é possível guardar para o armazenamento externo sem permissões</string>
@@ -1778,7 +1778,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO TELEFONE</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O Signal facilita as suas comunicações, já que utiliza o seu número e a sua lista telefónica já existente. Amigos e contactos que já lhe conseguem ligar por telemóvel vão poder facilmente entrar em contacto consigo pelo Signal.\n\nO registo envia algumas informações de contacto para o servidor. Estas não são armazenadas.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">O Signal facilita as suas comunicações, já que utiliza o seu número e a sua lista telefónica já existente. Amigos e contactos que já lhe conseguem ligar por telemóvel vão poder facilmente entrar em contacto consigo pelo Signal.\n\nO registo envia algumas informações de contacto para o servidor. Estas não são armazenadas.</string>
   <string name="registration_activity__verify_your_number">Verifique o seu número</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Por favor insira o seu número de telefone para receber o código de verificação. Podem haver custos por parte da sua operadora.</string>
   <!--recipients_panel-->
@@ -2063,7 +2063,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_context__menu_forward_message">Reencaminhar mensagem</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensagem</string>
   <string name="conversation_context__menu_reply_to_message">Responder à mensagem</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Selecionar vários(as)</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar anexo</string>
@@ -2118,7 +2118,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Adicionar aos contactos</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
+  <string name="conversation_group_options__recipients_list">Lista de destinatários</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Conversa</string>
   <string name="conversation_group_options__broadcast">Emissão</string>

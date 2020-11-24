@@ -374,7 +374,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="KeyCachingService_passphrase_cached">Signal eggudwa</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Gwe</string>
-  <string name="MediaPreviewActivity_unssuported_media_type"> ekika kino ekya  Tekiwaniriddwa </string>
+  <string name="MediaPreviewActivity_unsupported_media_type"> ekika kino ekya  Tekiwaniriddwa </string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d obubaka obupya mu %2$d mboozi</string>
   <string name="MessageNotifier_most_recent_from_s">Ebiyiseewo okuva:%1$s</string>
@@ -708,7 +708,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Ggatta ku kontakiti zo.</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">olukalala lwabafunye obubaka</string>
+  <string name="conversation_group_options__recipients_list">olukalala lwabafunye obubaka</string>
   <string name="conversation_group_options__delivery">okutuusibwa</string>
   <string name="conversation_group_options__conversation">Emboozi</string>
   <string name="conversation_group_options__broadcast">Okusasaanya mubutongole</string>

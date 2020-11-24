@@ -851,7 +851,7 @@
   <string name="KeyCachingService_lock">Signal पर ताला लगाओ</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">आप</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">असमर्थित मीडिया प्रकार</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">असमर्थित मीडिया प्रकार</string>
   <string name="MediaPreviewActivity_draft">ड्राफ्ट</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">बाहरी स्टॉरेज में सेव करने के लिए Signal को स्टोरेज अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"स्टॉरेज\" सक्षम करें।</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">अनुमति के बिना बाहरी स्टॉरेज में सहेजने में असमर्थ</string>
@@ -1164,7 +1164,7 @@
   <string name="redphone_call_card__signal_call">Signal कॉल </string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">फ़ोन नंबर </string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal आपके मौजूदा फोन नंबर और एड्रेस बुक का उपयोग करके संवाद करना आसान बनाता है। दोस्तों और संपर्क जो पहले से ही फोन से संपर्क करने के बारे में जानते हैं, वे Signal द्वारा आसानी से संपर्क में रह सकेंगे । \n\nपंजीकरण सर्वर पर कुछ संपर्क जानकारी प्रसारित करता है। यह संग्रहीत नहीं है।</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal आपके मौजूदा फोन नंबर और एड्रेस बुक का उपयोग करके संवाद करना आसान बनाता है। दोस्तों और संपर्क जो पहले से ही फोन से संपर्क करने के बारे में जानते हैं, वे Signal द्वारा आसानी से संपर्क में रह सकेंगे । \n\nपंजीकरण सर्वर पर कुछ संपर्क जानकारी प्रसारित करता है। यह संग्रहीत नहीं है।</string>
   <string name="registration_activity__verify_your_number">अपना नंबर सत्यापित करें</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">सत्यापन कोड प्राप्त करने के लिए कृपया अपना मोबाइल नंबर दर्ज करें। कैरियर दरें लागू हो सकती हैं।</string>
   <!--recipients_panel-->
@@ -1382,7 +1382,7 @@
   <string name="conversation_context__menu_forward_message">फॉर्वर्ड मेसेज</string>
   <string name="conversation_context__menu_resend_message">मेसेज दोबारा भेजें</string>
   <string name="conversation_context__menu_reply_to_message">मेसेज का जवाब</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">कई का चयन करें</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">अटैचमेंट सेव करे</string>
@@ -1428,7 +1428,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">संपर्क के खाते में जोड़ दे</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">प्राप्तकर्ता सूची</string>
+  <string name="conversation_group_options__recipients_list">प्राप्तकर्ता सूची</string>
   <string name="conversation_group_options__delivery">वितरण</string>
   <string name="conversation_group_options__conversation">संभाषण</string>
   <string name="conversation_group_options__broadcast">प्रसारण</string>

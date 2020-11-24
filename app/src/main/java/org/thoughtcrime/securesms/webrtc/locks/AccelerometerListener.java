@@ -92,7 +92,7 @@ public final class AccelerometerListener {
             }
 
             // Cancel any pending messages.
-            // We will either start a new timer or cancel alltogether
+            // We will either start a new timer or cancel altogether
             // if the orientation has not changed.
             mHandler.removeMessages(ORIENTATION_CHANGED);
 

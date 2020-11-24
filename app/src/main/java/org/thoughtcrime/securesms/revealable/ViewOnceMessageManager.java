@@ -43,7 +43,7 @@ public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpiration
     ViewOnceExpirationInfo expirationInfo = mmsDatabase.getNearestExpiringViewOnceMessage();
 
     if (expirationInfo != null) {
-      Log.i(TAG, "Next closest expiration is in " + getDelayForEvent(expirationInfo) + " ms for messsage " + expirationInfo.getMessageId() + ".");
+      Log.i(TAG, "Next closest expiration is in " + getDelayForEvent(expirationInfo) + " ms for message " + expirationInfo.getMessageId() + ".");
     } else {
       Log.i(TAG, "No messages to schedule.");
     }

@@ -125,7 +125,7 @@ public class FullBackupImporter extends FullBackupBase {
     List<Object> parameters = new LinkedList<>();
 
     for (SqlStatement.SqlParameter parameter : statement.getParametersList()) {
-      if      (parameter.hasStringParamter())   parameters.add(parameter.getStringParamter());
+      if      (parameter.hasStringParameter())  parameters.add(parameter.getStringParameter());
       else if (parameter.hasDoubleParameter())  parameters.add(parameter.getDoubleParameter());
       else if (parameter.hasIntegerParameter()) parameters.add(parameter.getIntegerParameter());
       else if (parameter.hasBlobParameter())    parameters.add(parameter.getBlobParameter().toByteArray());

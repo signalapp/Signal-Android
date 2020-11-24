@@ -904,7 +904,7 @@
   <string name="KeyCachingService_lock">I-lock ang Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ikaw</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Hindi suportadong uri ng media</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Hindi suportadong uri ng media</string>
   <string name="MediaPreviewActivity_draft">Draft</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Kailangan ng Signal ng pahintulot sa Storage upang makapag-save sa panlabas na storage, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Storage\". </string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Hindi makapag-save sa panlabas na storage nang walang pahintulot</string>
@@ -1216,7 +1216,7 @@
   <string name="redphone_call_card__signal_call">Tawag sa Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMERO NG TELEPONO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pinadadali ni Signal ang pakikipag-ugnayan gamit ang iyong kasalukuyang numero ng telepono at libro ng address. Gamit ang Signal, madaling makipag-ugnayan sa mga kaibigan at kontak na nakakaalam na kung paano ka ikontak sa pamamagitan ng telepono.\n\nAng pagpaparehistro ay magpapadala ng ilang impormasyon ng kontak sa server. Hindi ito maiimbak.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Pinadadali ni Signal ang pakikipag-ugnayan gamit ang iyong kasalukuyang numero ng telepono at libro ng address. Gamit ang Signal, madaling makipag-ugnayan sa mga kaibigan at kontak na nakakaalam na kung paano ka ikontak sa pamamagitan ng telepono.\n\nAng pagpaparehistro ay magpapadala ng ilang impormasyon ng kontak sa server. Hindi ito maiimbak.</string>
   <string name="registration_activity__verify_your_number">Beripikahin ang Iyong Numero</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Pakilagay ang numero ng iyong mobile upang makatanggap ng verification code. Maaaring mailapat ang mga singilin ng Carrier.</string>
   <!--recipients_panel-->
@@ -1456,7 +1456,7 @@
   <string name="conversation_context__menu_forward_message">Ipasa ang mensahe</string>
   <string name="conversation_context__menu_resend_message">Muling ipadala ang mensahe</string>
   <string name="conversation_context__menu_reply_to_message">Tugon sa mensahe</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Pumili ng marami</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">I-save ang kalakip</string>
@@ -1503,7 +1503,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Idagdag sa mga kontak</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Listahan ng mga tatanggap</string>
+  <string name="conversation_group_options__recipients_list">Listahan ng mga tatanggap</string>
   <string name="conversation_group_options__delivery">Paghahatid</string>
   <string name="conversation_group_options__conversation">Pag-uusap</string>
   <string name="conversation_group_options__broadcast">Broadcast</string>

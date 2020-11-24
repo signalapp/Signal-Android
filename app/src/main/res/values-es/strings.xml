@@ -1434,7 +1434,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KeyCachingService_lock">Bloquear Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tú</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido incompatible</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Formato de contenido incompatible</string>
   <string name="MediaPreviewActivity_draft">Borrador</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento del teléfono para guardar adjuntos en la tarjeta SD. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar en una unidad de almacenamiento externo si Signal no tiene acceso</string>
@@ -1782,7 +1782,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal hace fácil la comunicación usando tu número de teléfono y lista de contactos existentes. Las personas que ya conocen tu teléfono podrán ponerse en contacto contigo a través de Signal.\n\nEl proceso de registro transmite una información mínima y cifrada sobre tus contactos al servidor y éste no almacena tu lista de contactos.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal hace fácil la comunicación usando tu número de teléfono y lista de contactos existentes. Las personas que ya conocen tu teléfono podrán ponerse en contacto contigo a través de Signal.\n\nEl proceso de registro transmite una información mínima y cifrada sobre tus contactos al servidor y éste no almacena tu lista de contactos.</string>
   <string name="registration_activity__verify_your_number">Verifica tu número</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Por favor, introduce tu número móvil para recibir el código de verificación por SMS. Puede que tu proveedor aplique un cargo por recibir SMS.</string>
   <!--recipients_panel-->
@@ -2067,7 +2067,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_context__menu_forward_message">Reenviar mensaje</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
   <string name="conversation_context__menu_reply_to_message">Responder al mensaje</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Selección múltiple</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar archivo adjunto</string>
@@ -2123,7 +2123,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Añadir a contactos</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista de participantes</string>
+  <string name="conversation_group_options__recipients_list">Lista de participantes</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Chat</string>
   <string name="conversation_group_options__broadcast">Transmisión</string>

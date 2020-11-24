@@ -545,7 +545,7 @@ public class MmsDatabase extends MessageDatabase {
     boolean        found    = false;
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT},
-                                        DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
+                                        DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimestamp())},
                                         null, null, null, null)) {
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
@@ -578,7 +578,7 @@ public class MmsDatabase extends MessageDatabase {
       }
 
       if (!found && deliveryReceipt) {
-        earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
+        earlyDeliveryReceiptCache.increment(messageId.getTimestamp(), messageId.getRecipientId());
         return true;
       }
 
@@ -883,7 +883,7 @@ public class MmsDatabase extends MessageDatabase {
     Cursor                 cursor          = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, RECIPIENT_ID}, DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())}, null, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, RECIPIENT_ID}, DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimestamp())}, null, null, null, null);
 
       while (cursor.moveToNext()) {
         RecipientId theirRecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));

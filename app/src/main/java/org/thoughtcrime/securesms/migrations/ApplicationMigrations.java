@@ -223,7 +223,7 @@ public class ApplicationMigrations {
       jobs.put(Version.STORAGE_SERVICE, new StorageServiceMigrationJob());
     }
 
-    // Superceded by StorageCapabilityMigrationJob
+    // Superseded by StorageCapabilityMigrationJob
 //    if (lastSeenVersion < Version.STORAGE_KEY_ROTATE) {
 //      jobs.put(Version.STORAGE_KEY_ROTATE, new StorageKeyRotationMigrationJob());
 //    }

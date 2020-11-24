@@ -103,7 +103,7 @@
   <PreferenceCategory android:title="@string/preferences_communication__category_sealed_sender">
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
         android:defaultValue="false"
-        android:key="pref_show_unidentifed_delivery_indicators"
+        android:key="pref_show_unidentified_delivery_indicators"
         android:summary="@string/preferences_communication__sealed_sender_display_indicators_description"
         android:title="@string/preferences_communication__sealed_sender_display_indicators" />
 

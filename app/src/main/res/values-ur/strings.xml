@@ -848,7 +848,7 @@
   <string name="KeyCachingService_lock"> Signal لاک کریں</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">تم</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">غیر معاون قسم کا میڈیا</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">غیر معاون قسم کا میڈیا</string>
   <string name="MediaPreviewActivity_draft">مسودہ تیار ہے</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal کو بیرونی ذخیرہ کو محفوظ کرنے کیلئے اسٹورج کی اجازت کی ضرورت ہے، لیکن اس کو مستقل طور پر رد کر دیا گیا ہے۔ براہ کرم ایپ کی ترتیبات میں جا کر \"اجازت نامہ\" کا انتخاب کریں، اور\"اسٹورج \" کو فعال کریں۔</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">اجازت کے بغیر بیرونی ذخیرہ کو محفوظ کرنے کے قابل نہیں</string>
@@ -1161,7 +1161,7 @@
   <string name="redphone_call_card__signal_call">Signal  کال</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">فون  نمبر</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal آپ کے موجودہ فون نمبر اور ایڈریس بک کا استعمال کرکے بات چیت کرنا آسان بناتا ہے۔ وہ دوست اور رابطے جو پہلے ہی آپ کو فون کے ذریعے رابطہ کرنا جانتے ہیں وہ Signal کے ذریعہ آسانی سے رابطہ کرسکیں گے۔ \ n R n رجسٹریشن سرور سے کچھ رابطہ کی معلومات منتقل کرتا ہے۔ یہ ذخیرہ نہیں ہے۔</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal آپ کے موجودہ فون نمبر اور ایڈریس بک کا استعمال کرکے بات چیت کرنا آسان بناتا ہے۔ وہ دوست اور رابطے جو پہلے ہی آپ کو فون کے ذریعے رابطہ کرنا جانتے ہیں وہ Signal کے ذریعہ آسانی سے رابطہ کرسکیں گے۔ \ n R n رجسٹریشن سرور سے کچھ رابطہ کی معلومات منتقل کرتا ہے۔ یہ ذخیرہ نہیں ہے۔</string>
   <string name="registration_activity__verify_your_number">اپنے نمبر کی تصدیق کریں</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">برائے مہربانی تصدیقی کوڈ حاصل کرنے کے لیے اپنا موبائل نمبر داخل کریں۔کیریئر کی شرحیں لاگو ہو سکتی ہیں۔</string>
   <!--recipients_panel-->
@@ -1379,7 +1379,7 @@
   <string name="conversation_context__menu_forward_message">پیغام آگے بھیجیں</string>
   <string name="conversation_context__menu_resend_message">پیغام دوبارہ بھیجیں</string>
   <string name="conversation_context__menu_reply_to_message">پیغام کا جواب دیں</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">متعدد منتخب کریں</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">منسلک چیزیں محفوظ کریں</string>
@@ -1425,7 +1425,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">رابطوں میں شامل کریں</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">وصول کنندگان کی فہرست</string>
+  <string name="conversation_group_options__recipients_list">وصول کنندگان کی فہرست</string>
   <string name="conversation_group_options__delivery">سپردگی</string>
   <string name="conversation_group_options__conversation">گفتگو</string>
   <string name="conversation_group_options__broadcast">نشر کرنا</string>

@@ -975,7 +975,7 @@
   <string name="KeyCachingService_lock">ਲੌਕ  Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">ਤੁਸੀਂ</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">ਗ਼ੈਰਸਮਰਥਿਤ ਮੀਡੀਆ ਕਿਸਮ</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">ਗ਼ੈਰਸਮਰਥਿਤ ਮੀਡੀਆ ਕਿਸਮ</string>
   <string name="MediaPreviewActivity_draft">ਡਰਾਫਟ</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ਬਾਹਰੀ ਸਟੋਰੇਜ ਤੇ ਦਰਜ ਕਰਨ ਲਈ Signal ਨੂੰ ਸਟੋਰੇਜ ਅਨੁਮਤੀ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ, ਪਰ ਇਸਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਨਾਮਨਜ਼ੂਰ ਕਰ ਦਿੱਤਾ ਗਿਆ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਚ ਜਾਓ , \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਸਟੋਰੇਜ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ਅਨੁਮਤੀਆਂ ਦੇ ਬਿਨਾਂ ਬਾਹਰੀ ਸਟੋਰੇਜ ਵਿੱਚ ਦਰਜ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ</string>
@@ -1269,7 +1269,7 @@
   <string name="redphone_call_card__signal_call">Signal ਕਾਲ </string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ਫੋਨ ਨੰਬਰ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਫੋਨ ਨੰਬਰ ਅਤੇ ਐਡਰੈੱਸ ਬੁੱਕ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਸੰਚਾਰ ਕਰਨਾ ਸੌਖਾ ਬਣਾਉਂਦਾ ਹੈ. ਦੋਸਤ ਅਤੇ ਸੰਪਰਕ ਜੋ ਪਹਿਲਾਂ ਹੀ ਜਾਣਦੇ ਹਨ ਕਿ ਤੁਸੀਂ ਫੋਨ ਦੁਆਰਾ ਕਿਸ ਤਰ੍ਹਾਂ ਸੰਪਰਕ ਕਰਨਾ ਹੈ, Signal ਦੁਆਰਾ ਆਸਾਨੀ ਨਾਲ ਸੰਪਰਕ ਵਿੱਚ ਆਉਣ ਦੇ ਯੋਗ ਹੋਵੇਗਾ. \n\n ਰਜਿਸਟਰਡ ਕੁਝ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਨੂੰ ਸਰਵਰ ਤੇ ਸੰਚਾਰਿਤ ਕਰਦਾ ਹੈ. ਇਹ ਸਟੋਰ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਫੋਨ ਨੰਬਰ ਅਤੇ ਐਡਰੈੱਸ ਬੁੱਕ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਸੰਚਾਰ ਕਰਨਾ ਸੌਖਾ ਬਣਾਉਂਦਾ ਹੈ. ਦੋਸਤ ਅਤੇ ਸੰਪਰਕ ਜੋ ਪਹਿਲਾਂ ਹੀ ਜਾਣਦੇ ਹਨ ਕਿ ਤੁਸੀਂ ਫੋਨ ਦੁਆਰਾ ਕਿਸ ਤਰ੍ਹਾਂ ਸੰਪਰਕ ਕਰਨਾ ਹੈ, Signal ਦੁਆਰਾ ਆਸਾਨੀ ਨਾਲ ਸੰਪਰਕ ਵਿੱਚ ਆਉਣ ਦੇ ਯੋਗ ਹੋਵੇਗਾ. \n\n ਰਜਿਸਟਰਡ ਕੁਝ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਨੂੰ ਸਰਵਰ ਤੇ ਸੰਚਾਰਿਤ ਕਰਦਾ ਹੈ. ਇਹ ਸਟੋਰ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ.</string>
   <string name="registration_activity__verify_your_number">ਆਪਣਾ ਨੰਬਰ ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਆਪਣਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ. ਕੈਰੀਅਰ ਦਰ ਲਾਗੂ ਹੋ ਸਕਦੀ ਹੈ</string>
   <!--recipients_panel-->
@@ -1490,7 +1490,7 @@
   <string name="conversation_context__menu_forward_message">ਸੰਦੇਸ਼ ਅੱਗੇ ਭੇਜੋ </string>
   <string name="conversation_context__menu_resend_message">ਸੁਨੇਹਾ ਦੁਬਾਰਾ ਭੇਜੋ</string>
   <string name="conversation_context__menu_reply_to_message">ਸੁਨੇਹੇ ਨੂੰ ਜਵਾਬ ਦਿਓ</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ਅਟੈਚਮੈਂਟਸ ਦਰਜ ਕਰੋ</string>
   <!--conversation_expiring_off-->
@@ -1537,7 +1537,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">ਪ੍ਰਾਪਤਕਰਤਾ ਸੂਚੀ</string>
+  <string name="conversation_group_options__recipients_list">ਪ੍ਰਾਪਤਕਰਤਾ ਸੂਚੀ</string>
   <string name="conversation_group_options__delivery">ਡਿਲਿਵਰੀ</string>
   <string name="conversation_group_options__conversation">ਗੱਲਬਾਤ</string>
   <string name="conversation_group_options__broadcast">ਬ੍ਰੌਡਕਾਸਟ</string>

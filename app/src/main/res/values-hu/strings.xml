@@ -1372,7 +1372,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="KeyCachingService_lock">Signal zárolása</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Te</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nem támogatott médiatípus</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Nem támogatott médiatípus</string>
   <string name="MediaPreviewActivity_draft">Piszkozat</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">A Signal-nak szüksége van a Tárhely engedélyre ahhoz, hogy külső tárolóra menthessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Tárhely\"-t.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nem lehet engedély nélkül menteni a külső tárolóra</string>
@@ -1719,7 +1719,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="redphone_call_card__signal_call">Signal hívás</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONSZÁM</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">A Signal jelenlegi telefonszámod és címjegyzéked felhasználásával adatainak egyszerűvé teszi a kommunikációt. Azon barátaid és ismerőseid, akik már tudják, hogy hogyan érhetnek el telefonon, a jövőben Signal-on is könnyedén megtalálnak.\n\nA regisztráció során néhány névjegyadat is továbbításra kerül a kiszolgálónak. Az adatokat nem tároljuk.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">A Signal jelenlegi telefonszámod és címjegyzéked felhasználásával adatainak egyszerűvé teszi a kommunikációt. Azon barátaid és ismerőseid, akik már tudják, hogy hogyan érhetnek el telefonon, a jövőben Signal-on is könnyedén megtalálnak.\n\nA regisztráció során néhány névjegyadat is továbbításra kerül a kiszolgálónak. Az adatokat nem tároljuk.</string>
   <string name="registration_activity__verify_your_number">Telefonszám ellenőrzése</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Kérlek add meg telefonszámod az ellenőrző kód elküldéséhez! Szolgáltatói költségek felmerülhetnek.</string>
   <!--recipients_panel-->
@@ -2001,7 +2001,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_context__menu_forward_message">Üzenet továbbítása</string>
   <string name="conversation_context__menu_resend_message">Üzenet újraküldése</string>
   <string name="conversation_context__menu_reply_to_message">Válasz az üzenetre</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Több kiválasztása</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Melléklet mentése</string>
@@ -2056,7 +2056,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Hozzáadás a névjegyzékhez</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Címzettek listája</string>
+  <string name="conversation_group_options__recipients_list">Címzettek listája</string>
   <string name="conversation_group_options__delivery">Kézbesítés</string>
   <string name="conversation_group_options__conversation">Beszélgetés</string>
   <string name="conversation_group_options__broadcast">Adás</string>

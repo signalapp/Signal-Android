@@ -25,13 +25,13 @@ import java.util.UUID;
  * - An optional {@link Renderer} so that it can draw itself.
  * - A list of child elements that make the tree possible.
  * - Its own transformation matrix, which applies to itself and all its children.
- * - A set of flags controlling visibility, selectablity etc.
+ * - A set of flags controlling visibility, selectability etc.
  * <p>
  * Then some temporary state.
  * - A editor matrix for displaying as yet uncommitted edits.
  * - An animation matrix for animating from one matrix to another.
  * - Deleted children to allow them to fade out on delete.
- * - Temporary flags, for temporary visibility, selectablity etc.
+ * - Temporary flags, for temporary visibility, selectability etc.
  */
 public final class EditorElement implements Parcelable {
 

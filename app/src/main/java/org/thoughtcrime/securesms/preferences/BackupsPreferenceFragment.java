@@ -222,7 +222,7 @@ public class BackupsPreferenceFragment extends Fragment {
 
   @RequiresApi(29)
   private void onCreateClickedApi29() {
-    Log.i(TAG, "Queing backup...");
+    Log.i(TAG, "Queuing backup...");
     LocalBackupJob.enqueue(true);
   }
 

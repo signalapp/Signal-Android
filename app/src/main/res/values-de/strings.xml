@@ -1423,7 +1423,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KeyCachingService_lock">Signal sperren</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Du</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nicht unterstützter Medieninhalt</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Nicht unterstützter Medieninhalt</string>
   <string name="MediaPreviewActivity_draft">Entwurf</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Speicher« für das Speichern in den Gerätespeicher, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Speichern in den Gerätespeicher ohne Berechtigungen nicht möglich.</string>
@@ -1771,7 +1771,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="redphone_call_card__signal_call">Signal-Anruf</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">RUFNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal macht Kommunikation einfach, indem es deine bestehende Rufnummer und dein Adressbuch verwendet. Freunde und Kontakte, die deine Rufnummer kennen, können so über Signal leicht mit dir Kontakt aufnehmen.\n\nBeim Registrieren werden einige Kontaktdaten an den Server übermittelt. Diese werden nicht gespeichert.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal macht Kommunikation einfach, indem es deine bestehende Rufnummer und dein Adressbuch verwendet. Freunde und Kontakte, die deine Rufnummer kennen, können so über Signal leicht mit dir Kontakt aufnehmen.\n\nBeim Registrieren werden einige Kontaktdaten an den Server übermittelt. Diese werden nicht gespeichert.</string>
   <string name="registration_activity__verify_your_number">Verifiziere deine Rufnummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Bitte gib deine Rufnummer ein, um einen Verifikationscode zu erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
   <!--recipients_panel-->
@@ -2056,7 +2056,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_context__menu_forward_message">Nachricht weiterleiten</string>
   <string name="conversation_context__menu_resend_message">Nachricht erneut senden</string>
   <string name="conversation_context__menu_reply_to_message">Auf Nachricht antworten</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Mehrere auswählen</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Anhang speichern</string>
@@ -2111,7 +2111,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Zu Kontakten hinzufügen</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Empfängerliste</string>
+  <string name="conversation_group_options__recipients_list">Empfängerliste</string>
   <string name="conversation_group_options__delivery">Zustellung</string>
   <string name="conversation_group_options__conversation">Unterhaltung</string>
   <string name="conversation_group_options__broadcast">Broadcast</string>

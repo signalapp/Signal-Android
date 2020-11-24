@@ -1362,7 +1362,7 @@
   <string name="KeyCachingService_lock">Signalをロック</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">あなた</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">サポートされないメディアタイプ</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">サポートされないメディアタイプ</string>
   <string name="MediaPreviewActivity_draft">下書き</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">外部ストレージにデータを保存するには、Signalにストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「ストレージ」を有効にしてください。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ストレージへのアクセス許可がないと外部ストレージに保存できません</string>
@@ -1700,7 +1700,7 @@
   <string name="redphone_call_card__signal_call">Signal通話</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">電話番号</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signalはあなたの電話番号とアドレス帳を利用して、コミュニケーションを簡単にします。すでにあなたの電話番号を知っている友人や連絡先は、Signalで手軽にあなたと連絡を取ることができます。\n\n登録を行うと連絡先の情報がサーバに送信されますが、保存はされません。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signalはあなたの電話番号とアドレス帳を利用して、コミュニケーションを簡単にします。すでにあなたの電話番号を知っている友人や連絡先は、Signalで手軽にあなたと連絡を取ることができます。\n\n登録を行うと連絡先の情報がサーバに送信されますが、保存はされません。</string>
   <string name="registration_activity__verify_your_number">番号を確認する</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">あなたの電話番号を入力して、認証コードを取得してください。通信料金が発生する場合があります。</string>
   <!--recipients_panel-->
@@ -1984,7 +1984,7 @@
   <string name="conversation_context__menu_forward_message">メッセージの転送</string>
   <string name="conversation_context__menu_resend_message">メッセージの再送信</string>
   <string name="conversation_context__menu_reply_to_message">メッセージに返信</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">複数を選択</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">添付ファイルを保存</string>
@@ -2039,7 +2039,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">連絡先に追加</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">宛先リスト</string>
+  <string name="conversation_group_options__recipients_list">宛先リスト</string>
   <string name="conversation_group_options__delivery">配信</string>
   <string name="conversation_group_options__conversation">会話</string>
   <string name="conversation_group_options__broadcast">一斉送信</string>

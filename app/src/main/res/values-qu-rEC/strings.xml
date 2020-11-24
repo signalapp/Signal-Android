@@ -600,7 +600,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="KeyCachingService_lock">Signalta pakana</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Kikin</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tiyashkakunapa imashinakayka mana chaypurachu. </string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Tiyashkakunapa imashinakayka mana chaypurachu. </string>
   <string name="MediaPreviewActivity_draft">Pichak</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal ari nichun munanmi kanllapi allichina ukuman (SDcard, USB) yaykushpa allichinkapak, shinapash mana arinirishkachu.  \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Almacenamiento\" paskarichun.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kanllapi allichita mana ushanchikchu kikin mana arinikpika.</string>
@@ -876,7 +876,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="redphone_call_card__signal_call">Signalwan kayachipay</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">WILLIWILLIPA YUPAY</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal yanapanmi rimarinkapak kikinpa yupaywan shinallata kikinpa mashiyupaykunwanpash. Kikinpa mashikuna ña  yachashpaka Signalwan rimarita ushankichimi.\n\nKallari killkari willayta riksichin kikinpa yupaymashipata shinapash mana servidor ukupi allichinchu.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal yanapanmi rimarinkapak kikinpa yupaywan shinallata kikinpa mashiyupaykunwanpash. Kikinpa mashikuna ña  yachashpaka Signalwan rimarita ushankichimi.\n\nKallari killkari willayta riksichin kikinpa yupaymashipata shinapash mana servidor ukupi allichinchu.</string>
   <string name="registration_activity__verify_your_number">Kikinpa yupayta rikuy</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Kikinpa williwillipa yupayta churay, mushuk yupay chaayamuchun. Wakinpika kay chaskika mana yanakalla shamunkachu.</string>
   <!--recipients_panel-->
@@ -1064,7 +1064,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="conversation_context__menu_forward_message">Chaskita kutin kachana</string>
   <string name="conversation_context__menu_resend_message">Chaskita kutin kachana</string>
   <string name="conversation_context__menu_reply_to_message">Chaskita kutichina</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Allichina kimichishkata</string>
   <!--conversation_expiring_off-->
@@ -1107,7 +1107,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Yupaymashiman churay</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Chaskikkunapa shutikuna</string>
+  <string name="conversation_group_options__recipients_list">Chaskikkunapa shutikuna</string>
   <string name="conversation_group_options__delivery">Kuna</string>
   <string name="conversation_group_options__conversation">Rimarikuna</string>
   <string name="conversation_group_options__broadcast">Wayraman llukchina</string>

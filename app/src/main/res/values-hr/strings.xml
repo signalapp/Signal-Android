@@ -1493,7 +1493,7 @@ broj telefona</string>
   <string name="KeyCachingService_lock">Zaključaj Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nepodržana vrsta medijskog zapisa</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Nepodržana vrsta medijskog zapisa</string>
   <string name="MediaPreviewActivity_draft">Skica</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal zahtijeva dopuštenje za prostor za pohranu kako bi mogao spremiti u vanjski prostor za pohranu, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Prostor za pohranu\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nije moguće spremiti u vanjski prostor za pohranu bez dozvola</string>
@@ -1852,7 +1852,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="redphone_call_card__signal_call">Signal poziv</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">BROJ TELEFONA</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal olakšava komunikaciju koristeći postojeći broj telefona i kontakte. Prijatelji i kontakti s kojima ste već u kontaktu putem mobilnog uređaja, moći će vas lako kontaktirati putem Signala.\n\nRegistracija prenosi određene podatke o kontaktu na poslužitelj, ali se ne pohranjuje.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal olakšava komunikaciju koristeći postojeći broj telefona i kontakte. Prijatelji i kontakti s kojima ste već u kontaktu putem mobilnog uređaja, moći će vas lako kontaktirati putem Signala.\n\nRegistracija prenosi određene podatke o kontaktu na poslužitelj, ali se ne pohranjuje.</string>
   <string name="registration_activity__verify_your_number">Potvrdite vaš broj</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Unesite svoj broj telefona da biste primili potvrdni kôd. Mogu se primijeniti naknade operatera.</string>
   <!--recipients_panel-->
@@ -2138,7 +2138,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="conversation_context__menu_forward_message">Proslijedi poruku</string>
   <string name="conversation_context__menu_resend_message">Ponovno pošalji poruku</string>
   <string name="conversation_context__menu_reply_to_message">Odgovori na poruku</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Odaberi više</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Spremi privitak</string>
@@ -2193,7 +2193,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj u kontakte</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Popis primatelja</string>
+  <string name="conversation_group_options__recipients_list">Popis primatelja</string>
   <string name="conversation_group_options__delivery">Isporuka</string>
   <string name="conversation_group_options__conversation">Razgovor</string>
   <string name="conversation_group_options__broadcast">Emitiranje</string>

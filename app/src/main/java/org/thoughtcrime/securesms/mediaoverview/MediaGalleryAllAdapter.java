@@ -190,7 +190,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   }
 
   public long getSelectedMediaTotalFileSize() {
-    //noinspection ConstantConditions attacment cannot be null if selected
+    //noinspection ConstantConditions attachment cannot be null if selected
     return Stream.of(selected.values())
                  .collect(Collectors.summingLong(a -> a.getAttachment().getSize()));
   }

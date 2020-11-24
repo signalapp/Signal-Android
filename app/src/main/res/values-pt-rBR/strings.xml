@@ -1434,7 +1434,7 @@
   <string name="KeyCachingService_lock">Trancar Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Tipo de mídia não suportado</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Tipo de mídia não suportado</string>
   <string name="MediaPreviewActivity_draft">Rascunho</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Signal precisa da permissão Armazenamento para gravar dados no armazenamento externo, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Não é possível gravar dados no armazenamento externo sem as permissões</string>
@@ -1782,7 +1782,7 @@
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELEFONE</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">É fácil se comunicar com o Signal usando seu número de telefone e contatos já existentes. Quem já fala com você pelo celular também não terá dificuldade de entrar em contato pelo aplicativo.\n\nDurante o cadastro, algumas informações de contato são transmitidas para o servidor. Elas não são armazenadas.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">É fácil se comunicar com o Signal usando seu número de telefone e contatos já existentes. Quem já fala com você pelo celular também não terá dificuldade de entrar em contato pelo aplicativo.\n\nDurante o cadastro, algumas informações de contato são transmitidas para o servidor. Elas não são armazenadas.</string>
   <string name="registration_activity__verify_your_number">Verificar seu número</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Favor inserir seu número de celular para receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
   <!--recipients_panel-->
@@ -2067,7 +2067,7 @@
   <string name="conversation_context__menu_forward_message">Reencaminhar mensagem</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensagem</string>
   <string name="conversation_context__menu_reply_to_message">Responder à mensagem</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Selecionar várias</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvar anexo</string>
@@ -2122,7 +2122,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Adicionar aos contatos</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista de destinatários</string>
+  <string name="conversation_group_options__recipients_list">Lista de destinatários</string>
   <string name="conversation_group_options__delivery">Entrega</string>
   <string name="conversation_group_options__conversation">Conversa</string>
   <string name="conversation_group_options__broadcast">Transmissão</string>

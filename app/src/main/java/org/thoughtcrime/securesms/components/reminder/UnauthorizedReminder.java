@@ -18,11 +18,11 @@ public class UnauthorizedReminder extends Reminder {
   }
 
   @Override
-  public boolean isDismissable() {
+  public boolean isDismissible() {
     return false;
   }
 
   public static boolean isEligible(Context context) {
-    return TextSecurePreferences.isUnauthorizedRecieved(context);
+    return TextSecurePreferences.isUnauthorizedReceived(context);
   }
 }

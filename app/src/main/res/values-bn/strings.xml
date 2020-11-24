@@ -1057,7 +1057,7 @@
   <string name="KeyCachingService_lock">Signal লক্ করুন</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">আপনি</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">অসমর্থিত ধরনের মিডিয়া</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">অসমর্থিত ধরনের মিডিয়া</string>
   <string name="MediaPreviewActivity_draft">খসড়া</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">বাহ্যিক স্টোরেজে সংরক্ষণের জন্য Signalএর স্টোরেজের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"স্টোরেজ\" সক্ষম করুন।</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">অনুমতি ব্যতীত বাহ্যিক স্টোরেজে সংরক্ষণ করতে অক্ষম</string>
@@ -1379,7 +1379,7 @@
   <string name="redphone_call_card__signal_call">Signal কল</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ফোন নাম্বার</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal আপনার বিদ্যমান ফোন নাম্বার  এবং এড্রোস বুক ব্যবহার করে যোগাযোগ করা সহজ করে তোলে। বন্ধুরা এবং পরিচিতিসমূহ যারা ইতিমধ্যে ফোনে আপনার সাথে যোগাযোগ করতে পারে তারা Signal এর মাধ্যমে সহজেই যোগাযোগ করতে সক্ষম হবে। \n\n নিবন্ধন করার সময় সার্ভারে পরিচিতির কিছু তথ্য প্রেরণ করে। এটি সংরক্ষণ করা হয় না।</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal আপনার বিদ্যমান ফোন নাম্বার  এবং এড্রোস বুক ব্যবহার করে যোগাযোগ করা সহজ করে তোলে। বন্ধুরা এবং পরিচিতিসমূহ যারা ইতিমধ্যে ফোনে আপনার সাথে যোগাযোগ করতে পারে তারা Signal এর মাধ্যমে সহজেই যোগাযোগ করতে সক্ষম হবে। \n\n নিবন্ধন করার সময় সার্ভারে পরিচিতির কিছু তথ্য প্রেরণ করে। এটি সংরক্ষণ করা হয় না।</string>
   <string name="registration_activity__verify_your_number">আপনার নাম্বার যাচাই করুন</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">একটি যাচাইকরণ কোড পেতে আপনার মোবাইল নাম্বার প্রবেশ করুন। ক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string>
   <!--recipients_panel-->
@@ -1618,7 +1618,7 @@
   <string name="conversation_context__menu_forward_message">বার্তা ফরোয়ার্ড করুন</string>
   <string name="conversation_context__menu_resend_message">বার্তা পুনরায় পাঠান</string>
   <string name="conversation_context__menu_reply_to_message">বার্তার জবাব দিন</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">একাধিক নির্বাচন করুন</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">সংযুক্তি সংরক্ষন করুন</string>
@@ -1669,7 +1669,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">পরিচিতি তালিকায় যোগ করুন</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">প্রাপকদের তালিকা</string>
+  <string name="conversation_group_options__recipients_list">প্রাপকদের তালিকা</string>
   <string name="conversation_group_options__delivery">পৌছে দেওয়া</string>
   <string name="conversation_group_options__conversation">কথোপকথন</string>
   <string name="conversation_group_options__broadcast">ব্রডকাস্ট</string>

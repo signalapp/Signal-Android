@@ -603,7 +603,7 @@ a shonrú</string>
   <string name="KeyCachingService_lock">Cuir Signal faoi ghlas</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tusa</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Cineál meán nach dtugtar tacaíocht dó</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Cineál meán nach dtugtar tacaíocht dó</string>
   <string name="MediaPreviewActivity_draft">Dréacht</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Scrios an teachtaireacht?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Scriosfaidh sé sin an teachtaireacht sin go buan.</string>
@@ -1056,7 +1056,7 @@ a shonrú</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Cuir lena teagmhálaithe</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Liosta faighteoirí</string>
+  <string name="conversation_group_options__recipients_list">Liosta faighteoirí</string>
   <string name="conversation_group_options__delivery">Seachadadh</string>
   <string name="conversation_group_options__conversation">Comhrá</string>
   <string name="conversation_group_options__broadcast">Craoladh</string>

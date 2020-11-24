@@ -1558,7 +1558,7 @@
   <string name="KeyCachingService_lock">נעל את Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">אתה</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">סוג מדיה בלתי נתמך</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">סוג מדיה בלתי נתמך</string>
   <string name="MediaPreviewActivity_draft">טיוטה</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal צריך את הרשאת האחסון על מנת לשמור באחסון חיצוני, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">לא היה ניתן לשמור באחסון חיצוני ללא הרשאות</string>
@@ -1926,7 +1926,7 @@
   <string name="redphone_call_card__signal_call">שיחת Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">מספר טלפון</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal מקל לתקשר ע״י שימוש במספר הטלפון ובפנקס הכתובות הקיימים שלך. חברים ואנשי קשר שיודעים כבר איך ליצור איתך קשר בטלפון, יוכלו לשמור על קשר בקלות ב־Signal.\n\nהרשמה משדרת מידע מסוים של אנשי קשר אל השרת. המידע אינו מאוחסן.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal מקל לתקשר ע״י שימוש במספר הטלפון ובפנקס הכתובות הקיימים שלך. חברים ואנשי קשר שיודעים כבר איך ליצור איתך קשר בטלפון, יוכלו לשמור על קשר בקלות ב־Signal.\n\nהרשמה משדרת מידע מסוים של אנשי קשר אל השרת. המידע אינו מאוחסן.</string>
   <string name="registration_activity__verify_your_number">וודא את המספר שלך</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">אנא הכנס את המספר הנייד שלך כדי לקבל קוד וידוא. תשלומי מפעיל עשויים לחול.</string>
   <!--recipients_panel-->
@@ -2213,7 +2213,7 @@
   <string name="conversation_context__menu_forward_message">העבר הלאה הודעה</string>
   <string name="conversation_context__menu_resend_message">שלח מחדש הודעה</string>
   <string name="conversation_context__menu_reply_to_message">השב אל הודעה</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">בחר רבים</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">שמור צרופה</string>
@@ -2268,7 +2268,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">הוסף לאנשי הקשר</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">רשימת מקבלים</string>
+  <string name="conversation_group_options__recipients_list">רשימת מקבלים</string>
   <string name="conversation_group_options__delivery">מסירה</string>
   <string name="conversation_group_options__conversation">שיחה</string>
   <string name="conversation_group_options__broadcast">שידור</string>

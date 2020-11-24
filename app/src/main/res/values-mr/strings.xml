@@ -924,7 +924,7 @@
   <string name="KeyCachingService_lock">Signal लॉक करा</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">आपण</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">असमर्थित मिडिया प्रकार</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">असमर्थित मिडिया प्रकार</string>
   <string name="MediaPreviewActivity_draft">मसुदा</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">बाह्य संचयनात जतन करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">परवानग्यांविना बाह्य संचयनात जतन करण्यात अक्षम</string>
@@ -1237,7 +1237,7 @@
   <string name="redphone_call_card__signal_call">Signal कॉल</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">फोन नंबर</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">आपले अस्तित्वात असलेले फोन नंबर आणि पत्ता पुस्तक वापरून Signal परस्परसंवाद साधणे सहज बनवते. मित्र आणि संपर्क ज्यांना आधीपासून आपल्याला कसा संपर्क करायचा हे माहिती आहे ते Signal द्वारा सहज संपर्क साधू शकतात.\n\nनोंदणी काही संपर्क माहिती सर्व्हर वर पाठवते. ती संचयित केली जात नाही.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">आपले अस्तित्वात असलेले फोन नंबर आणि पत्ता पुस्तक वापरून Signal परस्परसंवाद साधणे सहज बनवते. मित्र आणि संपर्क ज्यांना आधीपासून आपल्याला कसा संपर्क करायचा हे माहिती आहे ते Signal द्वारा सहज संपर्क साधू शकतात.\n\nनोंदणी काही संपर्क माहिती सर्व्हर वर पाठवते. ती संचयित केली जात नाही.</string>
   <string name="registration_activity__verify_your_number">आपला नंबर सत्यापित करा</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">सत्यापन कोड प्राप्त करण्यासाठी कृपया आपला मोबाईल नंबर प्रविष्ट करा. वाहक रेट लागू होऊ शकतात.</string>
   <!--recipients_panel-->
@@ -1455,7 +1455,7 @@
   <string name="conversation_context__menu_forward_message">संदेश फॉर्वर्ड करा</string>
   <string name="conversation_context__menu_resend_message">संदेश पुन्हा पाठवा</string>
   <string name="conversation_context__menu_reply_to_message">संदेशाला प्रत्युत्तर द्या</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">अनेक निवडा</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">संलग्न जतन करा</string>
@@ -1502,7 +1502,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">संपर्कात जोडा</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">प्राप्तकर्ते यादी</string>
+  <string name="conversation_group_options__recipients_list">प्राप्तकर्ते यादी</string>
   <string name="conversation_group_options__delivery">पोचवणी</string>
   <string name="conversation_group_options__conversation">संभाषण</string>
   <string name="conversation_group_options__broadcast">प्रक्षेपण</string>

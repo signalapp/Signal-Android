@@ -169,7 +169,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     try {
       camera2EnumeratorIsSupported = Camera2Enumerator.isSupported(context);
     } catch (final Throwable throwable) {
-      Log.w(TAG, "Camera2Enumator.isSupport() threw.", throwable);
+      Log.w(TAG, "Camera2Enumerator.isSupport() threw.", throwable);
     }
 
     Log.i(TAG, "Camera2 enumerator supported: " + camera2EnumeratorIsSupported);

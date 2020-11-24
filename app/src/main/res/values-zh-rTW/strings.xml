@@ -1369,7 +1369,7 @@
   <string name="KeyCachingService_lock">鎖定 Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">不支援的媒體類型</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存的權限以儲存外接儲存空間，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「儲存空間」的權限。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">因為沒有儲存的權限，無法儲存到外部儲存空間</string>
@@ -1707,7 +1707,7 @@
   <string name="redphone_call_card__signal_call">Signal 通話</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">手機號碼</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal 使用你現在的手機號碼和通訊簿，讓通訊變得簡單。知道如何用手機聯繫你的朋友與聯絡人們，他們會更容易的透過 Signal 與你保持聯絡。\n\n註冊時，會傳輸一些聯絡資訊到伺服器，這些聯絡資訊並不會被儲存。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal 使用你現在的手機號碼和通訊簿，讓通訊變得簡單。知道如何用手機聯繫你的朋友與聯絡人們，他們會更容易的透過 Signal 與你保持聯絡。\n\n註冊時，會傳輸一些聯絡資訊到伺服器，這些聯絡資訊並不會被儲存。</string>
   <string name="registration_activity__verify_your_number">驗證你的號碼</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">請輸入你的行動電話號碼來接收驗證碼。也許要支付簡訊費用。</string>
   <!--recipients_panel-->
@@ -1991,7 +1991,7 @@
   <string name="conversation_context__menu_forward_message">轉寄訊息</string>
   <string name="conversation_context__menu_resend_message">重送訊息</string>
   <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">選擇多個</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">儲存附檔</string>
@@ -2046,7 +2046,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">新增至聯絡人</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">收件人清單</string>
+  <string name="conversation_group_options__recipients_list">收件人清單</string>
   <string name="conversation_group_options__delivery">傳送</string>
   <string name="conversation_group_options__conversation">對話</string>
   <string name="conversation_group_options__broadcast">訊息廣播</string>

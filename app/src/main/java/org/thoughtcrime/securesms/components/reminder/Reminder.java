@@ -50,7 +50,7 @@ public abstract class Reminder {
     this.dismissListener = dismissListener;
   }
 
-  public boolean isDismissable() {
+  public boolean isDismissible() {
     return true;
   }
 

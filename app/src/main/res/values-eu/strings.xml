@@ -1416,7 +1416,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="KeyCachingService_lock">Blokeatu Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Zu</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Multimedia fitxategi mota ez-onartua</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Multimedia fitxategi mota ez-onartua</string>
   <string name="MediaPreviewActivity_draft">Zirriborroa</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signalek Gordailu baimena behar du kanpoko gordailuan datuak idazteko baina baimena ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ezin izan da kanpoko gordailuan idatzi baimen faltagatik</string>
@@ -1762,7 +1762,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="redphone_call_card__signal_call">Signal deia</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONO ZENBAKIA</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signalek komunikatzea erraza egiten du, zure telefono zenbaki eta helbide-liburua erabiliz. Zurekin harremanetan nola jarri dakiten lagunek eta kontaktuek modu errazean komunikatu ahal izango dira zurekin Signalen bitartez.\n\nErregistratzeak kontaktuei buruzko zenbait datu igortzen du zerbitzarira. Aipatutako datuak ez dira gordeko.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signalek komunikatzea erraza egiten du, zure telefono zenbaki eta helbide-liburua erabiliz. Zurekin harremanetan nola jarri dakiten lagunek eta kontaktuek modu errazean komunikatu ahal izango dira zurekin Signalen bitartez.\n\nErregistratzeak kontaktuei buruzko zenbait datu igortzen du zerbitzarira. Aipatutako datuak ez dira gordeko.</string>
   <string name="registration_activity__verify_your_number">Zure zenbakia egiaztatzen</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Idatzi zure telefono zenbakia egiaztatze-kode bat lortzeko. Telefono-konpainiaren arabera kostua izan dezake mezu honek.</string>
   <!--recipients_panel-->
@@ -2047,7 +2047,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_context__menu_forward_message">Birbidali mezua</string>
   <string name="conversation_context__menu_resend_message">Berriro bidali mezua</string>
   <string name="conversation_context__menu_reply_to_message">Erantzun mezuari</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Hautapen anitza</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Eraskina gorde</string>
@@ -2102,7 +2102,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Kontaktuetara gehitu</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Hartzaileen zerrenda</string>
+  <string name="conversation_group_options__recipients_list">Hartzaileen zerrenda</string>
   <string name="conversation_group_options__delivery">Banatu</string>
   <string name="conversation_group_options__conversation">Solasaldia</string>
   <string name="conversation_group_options__broadcast">Difusioa</string>

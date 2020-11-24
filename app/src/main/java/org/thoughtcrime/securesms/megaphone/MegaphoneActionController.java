@@ -39,7 +39,7 @@ public interface MegaphoneActionController {
   void onMegaphoneCompleted(@NonNull Megaphones.Event event);
 
   /**
-   * When a megaphone wnats to show a dialog fragment.
+   * When a megaphone wants to show a dialog fragment.
    */
   void onMegaphoneDialogFragmentRequested(@NonNull DialogFragment dialogFragment);
 }

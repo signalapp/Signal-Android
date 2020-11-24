@@ -48,7 +48,7 @@ public class ShareViewModel extends ViewModel {
     externalShare = false;
   }
 
-  void onSuccessulShare() {
+  void onSuccessfulShare() {
     mediaUsed = true;
   }
 

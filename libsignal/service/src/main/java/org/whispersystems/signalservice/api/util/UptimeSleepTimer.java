@@ -3,7 +3,7 @@ package org.whispersystems.signalservice.api.util;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 
 /**
- * A simle sleep timer.  Since Thread.sleep is based on uptime
+ * A simple sleep timer.  Since Thread.sleep is based on uptime
  * this will not work properly in low-power sleep modes, when
  * the CPU is suspended and uptime does not elapse.
  *

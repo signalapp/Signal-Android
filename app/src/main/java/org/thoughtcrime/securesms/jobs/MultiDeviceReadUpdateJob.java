@@ -55,7 +55,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
     this.messageIds = new LinkedList<>();
 
     for (SyncMessageId messageId : messageIds) {
-      this.messageIds.add(new SerializableSyncMessageId(messageId.getRecipientId().serialize(), messageId.getTimetamp()));
+      this.messageIds.add(new SerializableSyncMessageId(messageId.getRecipientId().serialize(), messageId.getTimestamp()));
     }
   }
 

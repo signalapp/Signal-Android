@@ -218,7 +218,7 @@ public class FullBackupExporter extends FullBackupBase {
             statement.append('?');
 
             if (cursor.getType(i) == Cursor.FIELD_TYPE_STRING) {
-              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setStringParamter(cursor.getString(i)));
+              statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setStringParameter(cursor.getString(i)));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_FLOAT) {
               statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setDoubleParameter(cursor.getDouble(i)));
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_INTEGER) {

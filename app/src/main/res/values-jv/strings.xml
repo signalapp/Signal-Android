@@ -838,7 +838,7 @@
   <string name="KeyCachingService_lock">Kunci Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sampeyan</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Jenis media mboten dipundukung</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Jenis media mboten dipundukung</string>
   <string name="MediaPreviewActivity_draft">Draf</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal betah izin Penyimpenan kangge nyimpen dhateng penyimpenan njawi, nanging izin kesebat sampun dipuntolak sacara permanen. Bikak panatanan aplikasi, pileh \"Izin\", lajeng aktifaken \"Penyimpenan\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Mboten saged nyimpen ing penyimpenan njawi tanpa izin</string>
@@ -1142,7 +1142,7 @@
   <string name="redphone_call_card__signal_call">Telepon Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NOMER TELEPON</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ngaringkesaken komunikasi ngginakaken buku alamat lan nomer telepon sampeyan ingkang sampun enten. Kanca-kanca lan kontak sampeyan ingkang sampun ngertos cara ngontak sampeyan bakal saged ngobrol ngginakaken Signal sacara gampil.\n\nNdaftar Signal bakal nyiaraken ragam informasi kontak dhateng server, nanging informasi kasebut mboten dipunsimpen.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal ngaringkesaken komunikasi ngginakaken buku alamat lan nomer telepon sampeyan ingkang sampun enten. Kanca-kanca lan kontak sampeyan ingkang sampun ngertos cara ngontak sampeyan bakal saged ngobrol ngginakaken Signal sacara gampil.\n\nNdaftar Signal bakal nyiaraken ragam informasi kontak dhateng server, nanging informasi kasebut mboten dipunsimpen.</string>
   <string name="registration_activity__verify_your_number">Verifikasi Nomer Telepon Sampeyan</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Lebetaken nomer telepon sampeyan kangge nampi kode verifikasi. Mbokmenawi bakal enten biaya operator.</string>
   <!--recipients_panel-->
@@ -1362,7 +1362,7 @@
   <string name="conversation_context__menu_forward_message">Terusaken pesen</string>
   <string name="conversation_context__menu_resend_message">Kirimaken pesen malih</string>
   <string name="conversation_context__menu_reply_to_message">Wangsuli pesen</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Pileh ingkang kathah</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Simpen lampiran</string>
@@ -1408,7 +1408,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Minggahaken dhateng kontak</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Daftar penampi</string>
+  <string name="conversation_group_options__recipients_list">Daftar penampi</string>
   <string name="conversation_group_options__delivery">Pangiriman</string>
   <string name="conversation_group_options__conversation">Obrolan</string>
   <string name="conversation_group_options__broadcast">Siaran</string>

@@ -47,7 +47,7 @@ public class MultiDeviceViewOnceOpenJob extends BaseJob {
 
   private MultiDeviceViewOnceOpenJob(@NonNull Parameters parameters, @NonNull SyncMessageId syncMessageId) {
     super(parameters);
-    this.messageId = new SerializableSyncMessageId(syncMessageId.getRecipientId().serialize(), syncMessageId.getTimetamp());
+    this.messageId = new SerializableSyncMessageId(syncMessageId.getRecipientId().serialize(), syncMessageId.getTimestamp());
   }
 
   @Override

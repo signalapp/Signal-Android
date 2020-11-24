@@ -1560,7 +1560,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="KeyCachingService_lock">Cloi Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Chi</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Math o gyfrwng heb ei gynnal</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Math o gyfrwng heb ei gynnal</string>
   <string name="MediaPreviewActivity_draft">Drafft</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Mae ar Signal angen caniatâd Storio er mwyn cadw i storfa allanol, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storfa".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Methu cadw i storfa allanol heb ganiatâd</string>
@@ -1928,7 +1928,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="redphone_call_card__signal_call">Galwad Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">RHIF FFÔN</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Mae Signal yn ei gwneud hi\'n hawdd i gyfathrebu trwy ddefnyddio\'ch rhif ffôn a\'ch llyfr cyfeiriadau. Bydd cyfeillion a chysylltiadau sydd eisoes yn gwybod sut i gysylltu â chi dros y ffôn yn gallu cysylltu â Signal yn rhwydd.\n\nMae cofrestru\'n trosglwyddo peth gwybodaeth cyswllt i\'r gweinydd. Nid yw\'n cael ei gadw.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Mae Signal yn ei gwneud hi\'n hawdd i gyfathrebu trwy ddefnyddio\'ch rhif ffôn a\'ch llyfr cyfeiriadau. Bydd cyfeillion a chysylltiadau sydd eisoes yn gwybod sut i gysylltu â chi dros y ffôn yn gallu cysylltu â Signal yn rhwydd.\n\nMae cofrestru\'n trosglwyddo peth gwybodaeth cyswllt i\'r gweinydd. Nid yw\'n cael ei gadw.</string>
   <string name="registration_activity__verify_your_number">Gwirio eich Rhif</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Rhowch eich rhif ffôn symudol i dderbyn cod dilysu. Gall cyfraddau darparwr gael eu codi.</string>
   <!--recipients_panel-->
@@ -2215,7 +2215,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_context__menu_forward_message">Anfon ymlaen</string>
   <string name="conversation_context__menu_resend_message">Ailanfon y neges</string>
   <string name="conversation_context__menu_reply_to_message">Ateb neges</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Dewis nifer</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Cadw atodiad</string>
@@ -2270,7 +2270,7 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Ychwanegu at gysylltiadau</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Rhestr derbynwyr</string>
+  <string name="conversation_group_options__recipients_list">Rhestr derbynwyr</string>
   <string name="conversation_group_options__delivery">Trosglwyddo</string>
   <string name="conversation_group_options__conversation">Sgwrs</string>
   <string name="conversation_group_options__broadcast">Darlledu</string>

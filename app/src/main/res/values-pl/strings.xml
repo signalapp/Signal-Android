@@ -1550,7 +1550,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KeyCachingService_lock">Zablokuj Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ty</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Nieobsługiwany typ multimediów</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Nieobsługiwany typ multimediów</string>
   <string name="MediaPreviewActivity_draft">Szkic</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal wymaga pozwolenia na dostęp do danych telefonu w celu zapisu do pamięci zewnętrznej, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Przechowywanie\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nie można zapisać do pamięci zewnętrznej bez odpowiedniego pozwolenia</string>
@@ -1918,7 +1918,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="redphone_call_card__signal_call">Połączenie Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMER TELEFONU</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ułatwia komunikację używając Twój numer telefonu i książkę adresową. Znajomi i kontakty, którzy wiedzą, jak się z Tobą skontaktować przez telefon, będą mogli łatwo nawiązać kontakt przez Signal. \n\nPodczas rejestracji wysyłane są na serwer pewne informacje o kontaktach, lecz nie są one przechowywane.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal ułatwia komunikację używając Twój numer telefonu i książkę adresową. Znajomi i kontakty, którzy wiedzą, jak się z Tobą skontaktować przez telefon, będą mogli łatwo nawiązać kontakt przez Signal. \n\nPodczas rejestracji wysyłane są na serwer pewne informacje o kontaktach, lecz nie są one przechowywane.</string>
   <string name="registration_activity__verify_your_number">Zweryfikuj swój numer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Wpisz swój numer telefonu w celu wysłania kodu weryfikacyjnego. Mogą obowiązywać stawki operatora.</string>
   <!--recipients_panel-->
@@ -2205,7 +2205,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_context__menu_forward_message">Przekaż wiadomość</string>
   <string name="conversation_context__menu_resend_message">Wyślij ponownie wiadomość</string>
   <string name="conversation_context__menu_reply_to_message">Odpowiedz na wiadomość</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <string name="conversation_context__reaction_multi_select">Wybierz wiele</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Zapisz załącznik</string>
@@ -2260,7 +2260,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Dodaj do kontaktów</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Lista odbiorców</string>
+  <string name="conversation_group_options__recipients_list">Lista odbiorców</string>
   <string name="conversation_group_options__delivery">Dostarczanie</string>
   <string name="conversation_group_options__conversation">Konwersacja</string>
   <string name="conversation_group_options__broadcast">Nadawanie</string>

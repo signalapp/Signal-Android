@@ -18,7 +18,7 @@ public class ServiceOutageReminder extends Reminder {
   }
 
   @Override
-  public boolean isDismissable() {
+  public boolean isDismissible() {
     return false;
   }
 

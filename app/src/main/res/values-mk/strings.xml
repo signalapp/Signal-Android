@@ -278,7 +278,7 @@
   <!--KeyCachingService-->
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Вие</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Неподдржан тип на датотека</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Неподдржан тип на датотека</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_most_recent_from_s">Најнови од: %1$s</string>
   <string name="MessageNotifier_media_message_with_text">Медиа порака: %s</string>
@@ -525,7 +525,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Додади во контакти</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Листа на примачи</string>
+  <string name="conversation_group_options__recipients_list">Листа на примачи</string>
   <string name="conversation_group_options__delivery">Достава</string>
   <string name="conversation_group_options__conversation">Разговор</string>
   <string name="conversation_group_options__broadcast">Емитување</string>

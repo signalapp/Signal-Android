@@ -71,7 +71,7 @@ public final class GroupsV2StateProcessor {
   public static final int LATEST = GroupStateMapper.LATEST;
 
   /**
-   * Used to mark a group state as a placeholder when there is partial knowledge (title and avater)
+   * Used to mark a group state as a placeholder when there is partial knowledge (title and avatar)
    * gathered from a group join link.
    */
   public static final int PLACEHOLDER_REVISION = GroupStateMapper.PLACEHOLDER_REVISION;

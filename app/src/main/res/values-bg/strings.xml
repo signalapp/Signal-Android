@@ -709,7 +709,7 @@
   <string name="KeyCachingService_lock">Заключване на Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ти</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">Неподдържан медиен формат.</string>
+  <string name="MediaPreviewActivity_unsupported_media_type">Неподдържан медиен формат.</string>
   <string name="MediaPreviewActivity_draft">Чернова</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal се нуждае от достъп до вградения диск, за да може да запазва на  него, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Дискове\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Неуспешно запазване на външен диск без нуждното разрешение за достъп</string>
@@ -990,7 +990,7 @@
   <string name="redphone_call_card__signal_call">Обаждане през Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ТЕЛЕФОНЕН НОМЕР</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal улеснява комуникирането като използва вече съществущ телефонен номер и адресна книга. Прителите и контакти, които вече знаят как да се свържат по телефона ще могат да се свържат лесно и през Signal.\n\nРегистрацията изпраща информация за контактите до сървъра. Тази информация не се пази.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporarily">Signal улеснява комуникирането като използва вече съществущ телефонен номер и адресна книга. Прителите и контакти, които вече знаят как да се свържат по телефона ще могат да се свържат лесно и през Signal.\n\nРегистрацията изпраща информация за контактите до сървъра. Тази информация не се пази.</string>
   <string name="registration_activity__verify_your_number">Потвърдете числата си</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Моля, въведете мобилния си номер, за да получите код за потвърждение. Стандартните такси на мобилния Ви оператор ще бъдат приложени.</string>
   <!--recipients_panel-->
@@ -1193,7 +1193,7 @@
   <string name="conversation_context__menu_forward_message">Препрати съобщението</string>
   <string name="conversation_context__menu_resend_message">Повторно изпращане</string>
   <string name="conversation_context__menu_reply_to_message">Отговор на съобщение</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Запази прикачения файл</string>
   <!--conversation_expiring_off-->
@@ -1235,7 +1235,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Добавяне в контакти</string>
   <!--conversation_group_options-->
-  <string name="convesation_group_options__recipients_list">Участници</string>
+  <string name="conversation_group_options__recipients_list">Участници</string>
   <string name="conversation_group_options__delivery">Доставка</string>
   <string name="conversation_group_options__conversation">Разговор</string>
   <string name="conversation_group_options__broadcast">Предаване</string>
