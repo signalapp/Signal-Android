@@ -63,7 +63,7 @@ public final class FeatureFlags {
   private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
   private static final String MAX_ENVELOPE_SIZE            = "android.maxEnvelopeSize";
   private static final String GROUP_CALLING_VERSION        = "android.groupsv2.callingVersion";
-  private static final String GV1_AUTO_MIGRATE             = "android.groupsV1Migration.auto";
+  private static final String GV1_AUTO_MIGRATE             = "android.groupsV1Migration.auto.2";
   private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
   private static final String GV1_FORCED_MIGRATE           = "android.groupsV1Migration.forced";
 
