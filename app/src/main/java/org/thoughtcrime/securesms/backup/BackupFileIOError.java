@@ -13,6 +13,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.notifications.NotificationCancellationHelper;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 
 import java.io.IOException;
@@ -34,7 +35,7 @@ public enum BackupFileIOError {
   }
 
   public static void clearNotification(@NonNull Context context) {
-    NotificationManagerCompat.from(context).cancel(BACKUP_FAILED_ID);
+    NotificationCancellationHelper.cancelLegacy(context, BACKUP_FAILED_ID);
   }
 
   public void postNotification(@NonNull Context context) {

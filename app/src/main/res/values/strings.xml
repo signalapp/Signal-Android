@@ -2532,6 +2532,7 @@
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
     <string name="conversation__menu_add_shortcut">Add to home screen</string>
     <string name="conversation__menu_pending_members">Pending members</string>
+    <string name="conversation__menu_create_bubble">Create bubble</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expand popup</string>

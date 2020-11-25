@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -44,7 +43,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     final long[] threadIds = intent.getLongArrayExtra(THREAD_IDS_EXTRA);
 
     if (threadIds != null) {
-      NotificationManagerCompat.from(context).cancel(intent.getIntExtra(NOTIFICATION_ID_EXTRA, -1));
+      NotificationCancellationHelper.cancelLegacy(context, intent.getIntExtra(NOTIFICATION_ID_EXTRA, -1));
 
       new AsyncTask<Void, Void, Void>() {
         @Override

@@ -15,5 +15,4 @@ public final class NotificationIds {
   public static int getNotificationIdForThread(long threadId) {
     return THREAD + (int) threadId;
   }
-
 }

@@ -481,9 +481,9 @@ public class ConversationFragment extends LoggingFragment {
 
     int startingPosition  = getStartPosition();
 
-    this.recipient         = Recipient.live(conversationViewModel.getArgs().getRecipientId());
-    this.threadId          = conversationViewModel.getArgs().getThreadId();
-    this.markReadHelper    = new MarkReadHelper(threadId, requireContext());
+    this.recipient      = Recipient.live(conversationViewModel.getArgs().getRecipientId());
+    this.threadId       = conversationViewModel.getArgs().getThreadId();
+    this.markReadHelper = new MarkReadHelper(threadId, requireContext());
 
     conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
     messageCountsViewModel.setThreadId(threadId);

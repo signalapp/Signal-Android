@@ -19,6 +19,7 @@ import java.util.Objects;
 
 public class ConversationIntents {
 
+  private static final String BUBBLE_AUTHORITY        = "bubble";
   private static final String EXTRA_RECIPIENT         = "recipient_id";
   private static final String EXTRA_THREAD_ID         = "thread_id";
   private static final String EXTRA_TEXT              = "draft_text";
@@ -39,8 +40,20 @@ public class ConversationIntents {
     return new Builder(context, ConversationPopupActivity.class, recipientId, threadId);
   }
 
+  public static @NonNull Intent createBubbleIntent(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
+    return new Builder(context, BubbleConversationActivity.class, recipientId, threadId).build();
+  }
+
   static boolean isInvalid(@NonNull Intent intent) {
-    return !intent.hasExtra(EXTRA_RECIPIENT);
+    if (isBubbleIntent(intent)) {
+      return intent.getData().getQueryParameter(EXTRA_RECIPIENT) == null;
+    } else {
+      return !intent.hasExtra(EXTRA_RECIPIENT);
+    }
+  }
+
+  private static boolean isBubbleIntent(@NonNull Intent intent) {
+    return intent.getData() != null && Objects.equals(intent.getData().getAuthority(), BUBBLE_AUTHORITY);
   }
 
   final static class Args {
@@ -54,6 +67,17 @@ public class ConversationIntents {
     private final int              startingPosition;
 
     static Args from(@NonNull Intent intent) {
+      if (isBubbleIntent(intent)) {
+        return new Args(RecipientId.from(intent.getData().getQueryParameter(EXTRA_RECIPIENT)),
+                        Long.parseLong(intent.getData().getQueryParameter(EXTRA_THREAD_ID)),
+                        null,
+                        null,
+                        null,
+                        false,
+                        ThreadDatabase.DistributionTypes.DEFAULT,
+                        -1);
+      }
+
       return new Args(RecipientId.from(Objects.requireNonNull(intent.getStringExtra(EXTRA_RECIPIENT))),
                       intent.getLongExtra(EXTRA_THREAD_ID, -1),
                       intent.getStringExtra(EXTRA_TEXT),
@@ -197,6 +221,16 @@ public class ConversationIntents {
       Intent intent = new Intent(context, conversationActivityClass);
 
       intent.setAction(Intent.ACTION_DEFAULT);
+
+      if (Objects.equals(conversationActivityClass, BubbleConversationActivity.class)) {
+        intent.setData(new Uri.Builder().authority(BUBBLE_AUTHORITY)
+                                        .appendQueryParameter(EXTRA_RECIPIENT, recipientId.serialize())
+                                        .appendQueryParameter(EXTRA_THREAD_ID, String.valueOf(threadId))
+                                        .build());
+
+        return intent;
+      }
+
       intent.putExtra(EXTRA_RECIPIENT, recipientId.serialize());
       intent.putExtra(EXTRA_THREAD_ID, threadId);
       intent.putExtra(EXTRA_DISTRIBUTION_TYPE, distributionType);

@@ -1,15 +1,20 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.util.BubbleUtil;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.concurrent.Executor;
@@ -32,6 +37,17 @@ class ConversationRepository {
     });
 
     return liveData;
+  }
+
+  @WorkerThread
+  boolean canShowAsBubble(long threadId) {
+    if (Build.VERSION.SDK_INT >= ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
+      Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
+
+      return recipient != null && BubbleUtil.canBubble(context, recipient.getId(), threadId);
+    } else {
+      return false;
+    }
   }
 
   private @NonNull ConversationData getConversationDataInternal(long threadId, int jumpToPosition) {

@@ -1,17 +1,11 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.documentfile.provider.DocumentFile;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupFileIOError;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;

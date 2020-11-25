@@ -121,6 +121,15 @@ public final class AvatarUtil {
   }
 
   @WorkerThread
+  public static IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
+    try {
+      return IconCompat.createWithAdaptiveBitmap(getShortcutInfoBitmap(context, recipient));
+    } catch (ExecutionException | InterruptedException e) {
+      return IconCompat.createWithAdaptiveBitmap(getFallbackForShortcut(context, recipient));
+    }
+  }
+
+  @WorkerThread
   public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient) {
     try {
       return requestCircle(GlideApp.with(context).asBitmap(), context, recipient).submit().get();

@@ -1,11 +1,15 @@
 package org.thoughtcrime.securesms.util;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Person;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.os.Build;
+import android.service.notification.StatusBarNotification;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -18,7 +22,11 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
+import org.thoughtcrime.securesms.notifications.SingleRecipientNotificationBuilder;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -33,9 +41,20 @@ import java.util.Set;
  */
 public final class ConversationUtil {
 
-  public static final int CONVERSATION_SUPPORT_VERSION = 30;
+  public static final int CONVERSATION_SUPPORT_VERSION  = 30;
 
   private ConversationUtil() {}
+
+
+  /**
+   * @return The stringified channel id for a given Recipient
+   */
+  @WorkerThread
+  public static @NonNull String getChannelId(@NonNull Context context, @NonNull Recipient recipient) {
+    Recipient resolved =  recipient.resolve();
+
+    return resolved.getNotificationChannel() != null ? resolved.getNotificationChannel() : NotificationChannels.getMessagesChannel(context);
+  }
 
   /**
    * Pushes a new dynamic shortcut for the given recipient and updates the ranks of all current
@@ -130,7 +149,7 @@ public final class ConversationUtil {
     ShortcutManager    shortcutManager  = ServiceUtil.getShortcutManager(context);
     List<ShortcutInfo> currentShortcuts = shortcutManager.getDynamicShortcuts();
 
-    if (Util.isEmpty(currentShortcuts)) {
+    if (Util.hasItems(currentShortcuts)) {
       for (ShortcutInfo shortcutInfo : currentShortcuts) {
         RecipientId  recipientId = RecipientId.from(shortcutInfo.getId());
         Recipient    resolved    = Recipient.resolved(recipientId);

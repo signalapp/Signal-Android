@@ -27,6 +27,8 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -36,6 +38,7 @@ import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPrefere
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -54,10 +57,11 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
   private final List<NotificationCompat.MessagingStyle.Message> messages = new LinkedList<>();
 
-  private SlideDeck    slideDeck;
-  private CharSequence contentTitle;
-  private CharSequence contentText;
-  private Recipient threadRecipient;
+  private SlideDeck              slideDeck;
+  private CharSequence           contentTitle;
+  private CharSequence           contentText;
+  private Recipient              threadRecipient;
+  private BubbleUtil.BubbleState defaultBubbleState;
 
   public SingleRecipientNotificationBuilder(@NonNull Context context, @NonNull NotificationPrivacyPreference privacy)
   {
@@ -229,7 +233,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   public void addMessageBody(@NonNull Recipient threadRecipient,
                              @NonNull Recipient individualRecipient,
                              @Nullable CharSequence messageBody,
-                             long timestamp)
+                             long timestamp,
+                             @Nullable SlideDeck slideDeck)
   {
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
     Person.Builder personBuilder = new Person.Builder()
@@ -257,7 +262,21 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       text = stringBuilder.append(context.getString(R.string.SingleRecipientNotificationBuilder_new_message));
     }
 
-    messages.add(new NotificationCompat.MessagingStyle.Message(text, timestamp, personBuilder.build()));
+    Uri    dataUri  = null;
+    String mimeType = null;
+
+    if (slideDeck != null && slideDeck.getThumbnailSlide() != null) {
+      Slide thumbnail = slideDeck.getThumbnailSlide();
+
+      dataUri  = thumbnail.getUri();
+      mimeType = thumbnail.getContentType();
+    }
+
+    messages.add(new NotificationCompat.MessagingStyle.Message(text, timestamp, personBuilder.build()).setData(mimeType, dataUri));
+  }
+
+  public void setDefaultBubbleState(@NonNull BubbleUtil.BubbleState bubbleState) {
+    this.defaultBubbleState = bubbleState;
   }
 
   @Override
@@ -270,13 +289,17 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
         setLargeIcon(getNotificationPicture(largeIconUri.get(), LARGE_ICON_DIMEN));
       }
 
-      if (messages.size() == 1 && bigPictureUri.isPresent()) {
+      if (messages.size() == 1 && bigPictureUri.isPresent() && Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
         setStyle(new NotificationCompat.BigPictureStyle()
                                        .bigPicture(getNotificationPicture(bigPictureUri.get(), BIG_PICTURE_DIMEN))
                                        .setSummaryText(getBigText()));
       } else {
         if (Build.VERSION.SDK_INT >= 24) {
           applyMessageStyle();
+
+          if (Build.VERSION.SDK_INT >= ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
+            applyBubbleMetadata();
+          }
         } else {
           applyLegacy();
         }
@@ -302,6 +325,19 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     Stream.of(messages).forEach(messagingStyle::addMessage);
     setStyle(messagingStyle);
+  }
+
+  private void applyBubbleMetadata() {
+    long                              threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient);
+    PendingIntent                     intent         = PendingIntent.getActivity(context, 0, ConversationIntents.createBubbleIntent(context, threadRecipient.getId(), threadId), 0);
+    NotificationCompat.BubbleMetadata bubbleMetadata = new NotificationCompat.BubbleMetadata.Builder()
+                                                                                            .setAutoExpandBubble(defaultBubbleState == BubbleUtil.BubbleState.SHOWN)
+                                                                                            .setDesiredHeight(600)
+                                                                                            .setIcon(AvatarUtil.getIconCompatForShortcut(context, threadRecipient))
+                                                                                            .setSuppressNotification(defaultBubbleState == BubbleUtil.BubbleState.SHOWN)
+                                                                                            .setIntent(intent)
+                                                                                            .build();
+    setBubbleMetadata(bubbleMetadata);
   }
 
   private void applyLegacy() {

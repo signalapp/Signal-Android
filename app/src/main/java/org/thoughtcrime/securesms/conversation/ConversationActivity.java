@@ -44,6 +44,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -241,6 +242,7 @@ import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ContextUtil;
@@ -530,15 +532,17 @@ public class ConversationActivity extends PassphraseRequiredActivity
                              .enqueue();
     }
 
-    ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
-
+    setVisibleThread(threadId);
     ConversationUtil.pushShortcutForRecipient(getApplicationContext(), recipientSnapshot);
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    ApplicationDependencies.getMessageNotifier().clearVisibleThread();
+    if (!isInBubble()) {
+      ApplicationDependencies.getMessageNotifier().clearVisibleThread();
+    }
+
     if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_end);
     inputPanel.onPause();
 
@@ -717,6 +721,12 @@ public class ConversationActivity extends PassphraseRequiredActivity
     reactWithAnyEmojiStartPage = savedInstanceState.getInt(STATE_REACT_WITH_ANY_PAGE, 0);
   }
 
+  private void setVisibleThread(long threadId) {
+    if (!isInBubble()) {
+      ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
+    }
+  }
+
   private void reportShortcutLaunch(@NonNull RecipientId recipientId) {
     if (Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
       return;
@@ -870,6 +880,15 @@ public class ConversationActivity extends PassphraseRequiredActivity
       hideMenuItem(menu, R.id.menu_conversation_settings);
     }
 
+    hideMenuItem(menu, R.id.menu_create_bubble);
+    viewModel.canShowAsBubble().observe(this, canShowAsBubble -> {
+      MenuItem item = menu.findItem(R.id.menu_create_bubble);
+
+      if (item != null) {
+        item.setVisible(canShowAsBubble && !isInBubble());
+      }
+    });
+
     searchViewItem = menu.findItem(R.id.menu_search);
 
     SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
@@ -948,6 +967,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
     case R.id.menu_expiring_messages_off:
     case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
+    case R.id.menu_create_bubble:             handleCreateBubble();                              return true;
     case android.R.id.home:                   onNavigateUp();                                    return true;
     }
 
@@ -1218,6 +1238,13 @@ public class ConversationActivity extends PassphraseRequiredActivity
               }
             });
 
+  }
+
+  private void handleCreateBubble() {
+    ConversationIntents.Args args = viewModel.getArgs();
+
+    BubbleUtil.displayAsBubble(this, args.getRecipientId(), args.getThreadId());
+    finish();
   }
 
   private static void addIconToHomeScreen(@NonNull Context context,
@@ -1933,6 +1960,21 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     supportActionBar.setDisplayHomeAsUpEnabled(true);
     supportActionBar.setDisplayShowTitleEnabled(false);
+
+    if (isInBubble()) {
+      supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_notification));
+      toolbar.setNavigationOnClickListener(unused -> startActivity(new Intent(Intent.ACTION_MAIN).setClass(this, MainActivity.class)));
+    }
+  }
+
+  private boolean isInBubble() {
+    if (Build.VERSION.SDK_INT >= ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
+      Display display = getDisplay();
+
+      return display != null && display.getDisplayId() != Display.DEFAULT_DISPLAY;
+    } else {
+      return false;
+    }
   }
 
   private void initializeResources(@NonNull ConversationIntents.Args args) {
@@ -2498,7 +2540,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (refreshFragment) {
       fragment.reload(recipient.get(), threadId);
-      ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
+      setVisibleThread(threadId);
     }
 
     fragment.scrollToBottom();

@@ -17,4 +17,7 @@
     <item android:title="@string/conversation__menu_add_shortcut"
           android:id="@+id/menu_add_shortcut"/>
 
+    <item android:title="@string/conversation__menu_create_bubble"
+          android:id="@+id/menu_create_bubble" />
+
 </menu>

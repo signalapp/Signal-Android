@@ -259,6 +259,11 @@
                 android:value="org.thoughtcrime.securesms.MainActivity" />
     </activity>
 
+    <activity android:name=".conversation.BubbleConversationActivity"
+              android:theme="@style/Signal.DayNight"
+              android:allowEmbedded="true"
+              android:resizeableActivity="true" />
+
     <activity android:name=".longmessage.LongMessageActivity" />
 
     <activity android:name=".conversation.ConversationPopupActivity"
