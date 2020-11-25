@@ -97,9 +97,6 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
     canLoadMore = false;
     latestUri   = uri;
 
-    queueDataAdapter.clear();
-    dataSource.clear();
-
     SimpleTask.run(EXECUTOR,
                    () -> {
                      if (singlePlayback) {
@@ -110,7 +107,12 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
                    },
                    descriptions -> {
                      if (Util.hasItems(descriptions) && Objects.equals(latestUri, uri)) {
-                       applyDescriptionsToQueue(descriptions);
+                       synchronized (queueDataAdapter) {
+                         queueDataAdapter.clear();
+                         dataSource.clear();
+
+                         applyDescriptionsToQueue(descriptions);
+                       }
 
                        int window = Math.max(0, queueDataAdapter.indexOf(uri));
 
