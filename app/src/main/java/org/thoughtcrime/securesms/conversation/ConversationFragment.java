@@ -114,7 +114,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
-import org.thoughtcrime.securesms.sharing.ShareActivity;
+import org.thoughtcrime.securesms.sharing.ShareIntents;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -389,7 +389,7 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private int getStartPosition() {
-    return requireActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
+    return conversationViewModel.getArgs().getStartingPosition();
   }
 
   private void initializeMessageRequestViewModel() {
@@ -481,8 +481,8 @@ public class ConversationFragment extends LoggingFragment {
 
     int startingPosition  = getStartPosition();
 
-    this.recipient         = Recipient.live(ConversationActivity.getRecipientId(requireActivity().getIntent()));
-    this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
+    this.recipient         = Recipient.live(conversationViewModel.getArgs().getRecipientId());
+    this.threadId          = conversationViewModel.getArgs().getThreadId();
     this.markReadHelper    = new MarkReadHelper(threadId, requireContext());
 
     conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
@@ -773,8 +773,8 @@ public class ConversationFragment extends LoggingFragment {
     listener.onForwardClicked();
 
     SimpleTask.run(getLifecycle(), () -> {
-      Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
-      composeIntent.putExtra(Intent.EXTRA_TEXT, conversationMessage.getDisplayBody(requireContext()));
+      ShareIntents.Builder shareIntentBuilder = new ShareIntents.Builder(requireActivity());
+      shareIntentBuilder.setText(conversationMessage.getDisplayBody(requireContext()));
 
       if (conversationMessage.getMessageRecord().isMms()) {
         MmsMessageRecord mediaMessage = (MmsMessageRecord) conversationMessage.getMessageRecord();
@@ -810,31 +810,24 @@ public class ConversationFragment extends LoggingFragment {
           }
 
           if (!mediaList.isEmpty()) {
-            composeIntent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaList);
+            shareIntentBuilder.setMedia(mediaList);
           }
         } else if (mediaMessage.containsMediaSlide()) {
           Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
-          composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
-          composeIntent.setType(slide.getContentType());
-          composeIntent.putExtra(ConversationActivity.BORDERLESS_EXTRA, slide.isBorderless());
-
-          if (slide.hasSticker()) {
-            composeIntent.putExtra(ConversationActivity.STICKER_EXTRA, slide.asAttachment().getSticker());
-            composeIntent.setType(slide.asAttachment().getContentType());
-          }
+          shareIntentBuilder.setSlide(slide);
         }
 
         if (mediaMessage.getSlideDeck().getTextSlide() != null && mediaMessage.getSlideDeck().getTextSlide().getUri() != null) {
           try (InputStream stream = PartAuthority.getAttachmentStream(requireContext(), mediaMessage.getSlideDeck().getTextSlide().getUri())) {
             String fullBody = Util.readFullyAsString(stream);
-            composeIntent.putExtra(Intent.EXTRA_TEXT, fullBody);
+            shareIntentBuilder.setText(fullBody);
           } catch (IOException e) {
             Log.w(TAG, "Failed to read long message text when forwarding.");
           }
         }
       }
 
-      return composeIntent;
+      return shareIntentBuilder.build();
     }, this::startActivity);
   }
 

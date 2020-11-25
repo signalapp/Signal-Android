@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.TaskStackBuilder;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -90,7 +90,9 @@ public class NotificationItem {
     Recipient recipient        = threadRecipient != null ? threadRecipient : conversationRecipient;
     int       startingPosition = jumpToMessage ? getStartingPosition(context, threadId, messageReceivedTimestamp) : -1;
 
-    Intent intent = ConversationActivity.buildIntent(context, recipient.getId(), threadId, 0, startingPosition);
+    Intent intent = ConversationIntents.createBuilder(context, recipient.getId(), threadId)
+                                       .withStartingPosition(startingPosition)
+                                       .build();
 
     makeIntentUniqueToPreventMerging(intent);
 

@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
@@ -152,7 +152,8 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
     viewModel.getJoinSuccess().observe(getViewLifecycleOwner(), joinGroupSuccess -> {
         Log.i(TAG, "Group joined, navigating to group");
 
-        Intent intent = ConversationActivity.buildIntent(requireContext(), joinGroupSuccess.getGroupRecipient().getId(), joinGroupSuccess.getGroupThreadId());
+        Intent intent = ConversationIntents.createBuilder(requireContext(), joinGroupSuccess.getGroupRecipient().getId(), joinGroupSuccess.getGroupThreadId())
+                                           .build();
         requireActivity().startActivity(intent);
 
         dismiss();

@@ -1,13 +1,7 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Intent;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import androidx.core.app.ActivityOptionsCompat;
-
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
@@ -16,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.core.app.ActivityOptionsCompat;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
@@ -83,9 +81,8 @@ public class ConversationPopupActivity extends ConversationActivity {
           @Override
           public void onSuccess(Long result) {
             ActivityOptionsCompat transition = ActivityOptionsCompat.makeScaleUpAnimation(getWindow().getDecorView(), 0, 0, getWindow().getAttributes().width, getWindow().getAttributes().height);
-            Intent intent = new Intent(ConversationPopupActivity.this, ConversationActivity.class);
-            intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, getRecipient().getId().serialize());
-            intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, result);
+            Intent                intent     = ConversationIntents.createBuilder(ConversationPopupActivity.this, getRecipient().getId(), result)
+                                                                  .build();
 
             startActivity(intent, transition.toBundle());
 

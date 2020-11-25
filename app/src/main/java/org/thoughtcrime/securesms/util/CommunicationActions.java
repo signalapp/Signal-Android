@@ -23,6 +23,7 @@ import androidx.fragment.app.FragmentActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -103,12 +104,12 @@ public class CommunicationActions {
 
       @Override
       protected void onPostExecute(Long threadId) {
-        Intent intent = ConversationActivity.buildIntent(context, recipient.getId(), threadId);
-
+        ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId);
         if (!TextUtils.isEmpty(text)) {
-          intent.putExtra(ConversationActivity.TEXT_EXTRA, text);
+          builder.withDraftText(text);
         }
 
+        Intent intent = builder.build();
         if (backStack != null) {
           backStack.addNextIntent(intent);
           backStack.startActivities();

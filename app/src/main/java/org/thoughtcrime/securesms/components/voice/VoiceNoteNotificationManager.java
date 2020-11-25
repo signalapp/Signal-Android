@@ -17,8 +17,7 @@ import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -103,11 +102,9 @@ class VoiceNoteNotificationManager {
 
       notificationManager.setColor(color.toNotificationColor(context));
 
-      Intent conversationActivity = ConversationActivity.buildIntent(context,
-                                                                     recipientId,
-                                                                     threadId,
-                                                                     ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                     startingPosition);
+      Intent conversationActivity = ConversationIntents.createBuilder(context, recipientId, threadId)
+                                                       .withStartingPosition(startingPosition)
+                                                       .build();
 
       conversationActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

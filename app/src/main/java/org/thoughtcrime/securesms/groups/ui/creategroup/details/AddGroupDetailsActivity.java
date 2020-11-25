@@ -12,7 +12,7 @@ import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -73,11 +73,8 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
   }
 
   void goToConversation(@NonNull RecipientId recipientId, long threadId) {
-    Intent intent = ConversationActivity.buildIntent(this,
-                                                     recipientId,
-                                                     threadId,
-                                                     ThreadDatabase.DistributionTypes.DEFAULT,
-                                                     -1);
+    Intent intent = ConversationIntents.createBuilder(this, recipientId, threadId)
+                                       .build();
 
     startActivity(intent);
     setResult(RESULT_OK);

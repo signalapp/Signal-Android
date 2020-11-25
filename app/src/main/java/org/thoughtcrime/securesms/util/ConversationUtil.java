@@ -15,6 +15,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -176,7 +177,7 @@ public final class ConversationUtil {
 
     return new ShortcutInfo.Builder(context, getShortcutId(resolved))
                            .setLongLived(true)
-                           .setIntent(ConversationActivity.buildIntent(context, resolved.getId(), threadId))
+                           .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId).build())
                            .setShortLabel(shortName)
                            .setLongLabel(longName)
                            .setIcon(AvatarUtil.getIconForShortcut(context, resolved))

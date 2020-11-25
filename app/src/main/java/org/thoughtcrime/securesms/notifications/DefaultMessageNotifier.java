@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -135,12 +136,11 @@ public class DefaultMessageNotifier implements MessageNotifier {
     if (visibleThread == threadId) {
       sendInThreadNotification(context, recipient);
     } else {
-      Intent intent = new Intent(context, ConversationActivity.class);
-      intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId().serialize());
-      intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-      intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
-
+      Intent                    intent  = ConversationIntents.createBuilder(context, recipient.getId(), threadId)
+                                                             .withDataUri(Uri.parse("custom://" + System.currentTimeMillis()))
+                                                             .build();
       FailedNotificationBuilder builder = new FailedNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context), intent);
+
       ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
         .notify((int)threadId, builder.build());
     }

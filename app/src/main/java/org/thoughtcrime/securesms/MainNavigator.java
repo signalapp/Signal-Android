@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment;
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
@@ -59,7 +59,10 @@ public class MainNavigator {
   }
 
   public void goToConversation(@NonNull RecipientId recipientId, long threadId, int distributionType, int startingPosition) {
-    Intent intent = ConversationActivity.buildIntent(activity, recipientId, threadId, distributionType, startingPosition);
+    Intent intent = ConversationIntents.createBuilder(activity, recipientId, threadId)
+                                       .withDistributionType(distributionType)
+                                       .withStartingPosition(startingPosition)
+                                       .build();
 
     activity.startActivity(intent);
     activity.overridePendingTransition(R.anim.slide_from_end, R.anim.fade_scale_out);

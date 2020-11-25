@@ -20,32 +20,29 @@ package org.thoughtcrime.securesms.sharing;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -56,7 +53,6 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -300,37 +296,30 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   private void openConversation(long threadId, @NonNull RecipientId recipientId, @Nullable ShareData shareData) {
-    Intent           intent          = new Intent(this, ConversationActivity.class);
-    CharSequence     textExtra       = getIntent().getCharSequenceExtra(Intent.EXTRA_TEXT);
-    ArrayList<Media> mediaExtra      = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
-    StickerLocator   stickerExtra    = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
-    boolean          borderlessExtra = getIntent().getBooleanExtra(ConversationActivity.BORDERLESS_EXTRA, false);
-
-    intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
-    intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
-    intent.putExtra(ConversationActivity.STICKER_EXTRA, stickerExtra);
-    intent.putExtra(ConversationActivity.BORDERLESS_EXTRA, borderlessExtra);
+    ShareIntents.Args           args    = ShareIntents.Args.from(getIntent());
+    ConversationIntents.Builder builder = ConversationIntents.createBuilder(this, recipientId, threadId)
+                                                             .withMedia(args.getExtraMedia())
+                                                             .withDraftText(args.getExtraText() != null ? args.getExtraText().toString() : null)
+                                                             .withStickerLocator(args.getExtraSticker())
+                                                             .asBorderless(args.isBorderless());
 
     if (shareData != null && shareData.isForIntent()) {
       Log.i(TAG, "Shared data is a single file.");
-      intent.setDataAndType(shareData.getUri(), shareData.getMimeType());
+      builder.withDataUri(shareData.getUri())
+             .withDataType(shareData.getMimeType());
     } else if (shareData != null && shareData.isForMedia()) {
       Log.i(TAG, "Shared data is set of media.");
-      intent.putExtra(ConversationActivity.MEDIA_EXTRA, shareData.getMedia());
+      builder.withMedia(shareData.getMedia());
     } else if (shareData != null && shareData.isForPrimitive()) {
       Log.i(TAG, "Shared data is a primitive type.");
-    } else if (shareData == null && stickerExtra != null) {
-      intent.setType(getIntent().getType());
+    } else if (shareData == null && args.getExtraSticker() != null) {
+      builder.withDataType(getIntent().getType());
     } else {
       Log.i(TAG, "Shared data was not external.");
     }
 
-    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId.serialize());
-    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
-
     viewModel.onSuccessulShare();
 
-    startActivity(intent);
+    startActivity(builder.build());
   }
 }

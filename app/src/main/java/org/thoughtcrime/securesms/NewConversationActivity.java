@@ -25,6 +25,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
@@ -99,15 +100,13 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void launch(Recipient recipient) {
-    Intent intent = new Intent(this, ConversationActivity.class);
-    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId().serialize());
-    intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA));
-    intent.setDataAndType(getIntent().getData(), getIntent().getType());
+    long   existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient.getId());
+    Intent intent         = ConversationIntents.createBuilder(this, recipient.getId(), existingThread)
+                                               .withDraftText(getIntent().getStringExtra(Intent.EXTRA_TEXT))
+                                               .withDataUri(getIntent().getData())
+                                               .withDataType(getIntent().getType())
+                                               .build();
 
-    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient.getId());
-
-    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread);
-    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
     startActivity(intent);
     finish();
   }
