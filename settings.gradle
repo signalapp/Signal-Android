@@ -1,12 +1,9 @@
-include ':signalutilities'
-include ':sessionutilities'
-include ':sessionsnode'
-include ':sessionprotocol'
-include ':sessionmessaging'
+include ':libsignal'
+include ':libsession'
 rootProject.name = "session-android"
 
 include ":service"
 include ":service:java"
 include ":service:android"
 
-include ':session'
+include ':app'
