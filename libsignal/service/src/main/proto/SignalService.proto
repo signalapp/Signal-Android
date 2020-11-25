@@ -44,9 +44,9 @@ message Content {
 message CallMessage {
   message Offer {
     enum Type {
-      OFFER_AUDIO_CALL      = 0;
-      OFFER_VIDEO_CALL      = 1;
-      // 2 is reserved, removed OFFER_NEED_PERMISSION
+      OFFER_AUDIO_CALL                   = 0;
+      OFFER_VIDEO_CALL                   = 1;
+      reserved /* OFFER_NEED_PERMISSION */ 2; // removed
     }
 
     optional uint64 id     = 1;
@@ -101,7 +101,7 @@ message CallMessage {
   repeated IceUpdate iceUpdate           = 3;
   optional Hangup    legacyHangup        = 4;
   optional Busy      busy                = 5;
-  // 6 is reserved.
+  reserved        /* profileKey */         6;
   optional Hangup    hangup              = 7;
   optional bool      multiRing           = 8;
   optional uint32    destinationDeviceId = 9;
@@ -225,7 +225,7 @@ message DataMessage {
   message Reaction {
     optional string emoji               = 1;
     optional bool   remove              = 2;
-    // optional string targetAuthorE164    = 3;
+    reserved     /* targetAuthorE164 */   3; // removed
     optional string targetAuthorUuid    = 4;
     optional uint64 targetSentTimestamp = 5;
   }
@@ -367,7 +367,7 @@ message SyncMessage {
     optional bool   readReceipts                   = 1;
     optional bool   unidentifiedDeliveryIndicators = 2;
     optional bool   typingIndicators               = 3;
-    // 4 is reserved (old link preview setting)
+    reserved     /* linkPreviews */                  4; // removed
     optional uint32 provisioningVersion            = 5;
     optional bool   linkPreviews                   = 6;
   }
@@ -470,8 +470,8 @@ message GroupContext {
   }
 
   message Member {
-    // 1 is reserved
-    optional string e164 = 2;
+    reserved     /* uuid */ 1; // removed
+    optional string e164  = 2;
   }
 
   optional bytes             id          = 1;
@@ -514,8 +514,8 @@ message GroupDetails {
   }
 
   message Member {
-    // 1 is reserved
-    optional string e164 = 2;
+    reserved     /* uuid */ 1; // removed
+    optional string e164  = 2;
   }
 
   optional bytes  id            = 1;
