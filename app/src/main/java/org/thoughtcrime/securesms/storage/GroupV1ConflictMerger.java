@@ -35,7 +35,7 @@ final class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<Si
     return Stream.of(remoteRecords)
                  .filter(record -> {
                    try {
-                     GroupId.V1 id = GroupId.v1Exact(record.getGroupId());
+                     GroupId.V1 id = GroupId.v1(record.getGroupId());
                      return groupExistenceChecker.exists(id.deriveV2MigrationGroupId());
                    } catch (BadGroupIdException e) {
                      return true;

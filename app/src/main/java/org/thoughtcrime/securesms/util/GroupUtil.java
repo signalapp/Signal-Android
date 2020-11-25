@@ -25,7 +25,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.IOException;
@@ -46,7 +45,7 @@ public final class GroupUtil {
       throws BadGroupIdException
   {
     if (groupContext.getGroupV1().isPresent()) {
-      return GroupId.v1Exact(groupContext.getGroupV1().get().getGroupId());
+      return GroupId.v1(groupContext.getGroupV1().get().getGroupId());
     } else if (groupContext.getGroupV2().isPresent()) {
       return GroupId.v2(groupContext.getGroupV2().get().getMasterKey());
     } else {

@@ -22,12 +22,6 @@ import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
-import org.thoughtcrime.securesms.database.MentionDatabase;
-import org.thoughtcrime.securesms.database.RemappedRecordsDatabase;
-import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -38,10 +32,12 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.MegaphoneDatabase;
+import org.thoughtcrime.securesms.database.MentionDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RemappedRecordsDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
@@ -55,10 +51,15 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.FileUtils;
+import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -72,6 +73,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
@@ -161,8 +163,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int NOTIFIED_TIMESTAMP               = 81;
   private static final int GV1_MIGRATION_LAST_SEEN          = 82;
   private static final int VIEWED_RECEIPTS                  = 83;
+  private static final int CLEAN_UP_GV1_IDS                 = 84;
 
-  private static final int    DATABASE_VERSION = 83;
+  private static final int    DATABASE_VERSION = 84;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1173,6 +1176,62 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < VIEWED_RECEIPTS) {
         db.execSQL("ALTER TABLE mms ADD COLUMN viewed_receipt_count INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < CLEAN_UP_GV1_IDS) {
+        List<String> deletableRecipients = new LinkedList<>();
+        try (Cursor cursor = db.rawQuery("SELECT _id, group_id FROM recipient\n" +
+                                         "WHERE group_id NOT IN (SELECT group_id FROM groups)\n" +
+                                         "AND group_id LIKE '__textsecure_group__!%' AND length(group_id) <> 53\n" +
+                                         "AND (_id NOT IN (SELECT recipient_ids FROM thread) OR _id IN (SELECT recipient_ids FROM thread WHERE message_count = 0))", null))
+        {
+          while (cursor.moveToNext()) {
+            String recipientId = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+            String groupIdV1   = cursor.getString(cursor.getColumnIndexOrThrow("group_id"));
+            deletableRecipients.add(recipientId);
+            Log.d(TAG, String.format(Locale.US, "Found invalid GV1 on %s with no or empty thread %s length %d", recipientId, groupIdV1, groupIdV1.length()));
+          }
+        }
+
+        for (String recipientId : deletableRecipients) {
+          db.delete("recipient", "_id = ?", new String[]{recipientId});
+          Log.d(TAG, "Deleted recipient " + recipientId);
+        }
+
+        List<String> orphanedThreads = new LinkedList<>();
+        try (Cursor cursor = db.rawQuery("SELECT _id FROM thread WHERE message_count = 0 AND recipient_ids NOT IN (SELECT _id FROM recipient)", null)) {
+          while (cursor.moveToNext()) {
+            orphanedThreads.add(cursor.getString(cursor.getColumnIndexOrThrow("_id")));
+          }
+        }
+
+        for (String orphanedThreadId : orphanedThreads) {
+          db.delete("thread", "_id = ?", new String[]{orphanedThreadId});
+          Log.d(TAG, "Deleted orphaned thread " + orphanedThreadId);
+        }
+
+        List<String> remainingInvalidGV1Recipients = new LinkedList<>();
+        try (Cursor cursor = db.rawQuery("SELECT _id, group_id FROM recipient\n" +
+                                         "WHERE group_id NOT IN (SELECT group_id FROM groups)\n" +
+                                         "AND group_id LIKE '__textsecure_group__!%' AND length(group_id) <> 53\n" +
+                                         "AND _id IN (SELECT recipient_ids FROM thread)", null))
+        {
+          while (cursor.moveToNext()) {
+            String recipientId = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+            String groupIdV1   = cursor.getString(cursor.getColumnIndexOrThrow("group_id"));
+            remainingInvalidGV1Recipients.add(recipientId);
+            Log.d(TAG, String.format(Locale.US, "Found invalid GV1 on %s with non-empty thread %s length %d", recipientId, groupIdV1, groupIdV1.length()));
+          }
+        }
+
+        for (String recipientId : remainingInvalidGV1Recipients) {
+          String        newId  = "__textsecure_group__!" + Hex.toStringCondensed(Util.getSecretBytes(16));
+          ContentValues values = new ContentValues(1);
+          values.put("group_id", newId);
+
+          db.update("recipient", values, "_id = ?", new String[] { String.valueOf(recipientId) });
+          Log.d(TAG, String.format("Replaced group id on recipient %s now %s", recipientId, newId));
+        }
       }
 
       db.setTransactionSuccessful();
