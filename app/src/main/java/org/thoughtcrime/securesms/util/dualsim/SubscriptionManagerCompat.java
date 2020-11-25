@@ -11,8 +11,8 @@ import android.telephony.TelephonyManager;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.whispersystems.libsignal.util.guava.Function;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Function;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.Collection;
 import java.util.Collections;

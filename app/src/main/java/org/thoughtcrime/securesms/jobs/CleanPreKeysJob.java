@@ -8,12 +8,12 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.whispersystems.libsignal.InvalidKeyIdException;
-import org.whispersystems.libsignal.state.SignedPreKeyRecord;
-import org.whispersystems.libsignal.state.SignedPreKeyStore;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.session.libsignal.libsignal.InvalidKeyIdException;
+import org.session.libsignal.libsignal.state.SignedPreKeyRecord;
+import org.session.libsignal.libsignal.state.SignedPreKeyStore;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.util.Collections;

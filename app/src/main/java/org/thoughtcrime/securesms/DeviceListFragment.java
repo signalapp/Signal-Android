@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.loki.dialogs.DeviceEditingOptionsBottomSheet;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.whispersystems.libsignal.util.guava.Function;
+import org.session.libsignal.libsignal.util.guava.Function;
 
 import java.util.List;
 import java.util.Locale;

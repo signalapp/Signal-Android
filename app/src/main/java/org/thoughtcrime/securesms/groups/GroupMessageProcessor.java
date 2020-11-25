@@ -26,13 +26,13 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
-import org.whispersystems.signalservice.api.messages.SignalServiceContent;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.SignalServiceAttachment;
+import org.session.libsignal.service.api.messages.SignalServiceContent;
+import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
+import org.session.libsignal.service.api.messages.SignalServiceGroup;
+import org.session.libsignal.service.api.messages.SignalServiceGroup.Type;
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -41,8 +41,8 @@ import java.util.List;
 import java.util.Set;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
-import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
+import static org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer;
+import static org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 
 public class GroupMessageProcessor {
 

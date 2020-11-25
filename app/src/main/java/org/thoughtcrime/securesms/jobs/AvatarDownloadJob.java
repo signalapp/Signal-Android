@@ -15,11 +15,11 @@ import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Hex;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
+import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.File;
 import java.io.IOException;

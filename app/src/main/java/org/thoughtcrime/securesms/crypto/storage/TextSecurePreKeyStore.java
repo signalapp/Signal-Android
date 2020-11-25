@@ -4,11 +4,11 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.whispersystems.libsignal.InvalidKeyIdException;
-import org.whispersystems.libsignal.state.PreKeyRecord;
-import org.whispersystems.libsignal.state.PreKeyStore;
-import org.whispersystems.libsignal.state.SignedPreKeyRecord;
-import org.whispersystems.libsignal.state.SignedPreKeyStore;
+import org.session.libsignal.libsignal.InvalidKeyIdException;
+import org.session.libsignal.libsignal.state.PreKeyRecord;
+import org.session.libsignal.libsignal.state.PreKeyStore;
+import org.session.libsignal.libsignal.state.SignedPreKeyRecord;
+import org.session.libsignal.libsignal.state.SignedPreKeyStore;
 
 import java.util.List;
 

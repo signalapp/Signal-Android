@@ -12,12 +12,12 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.ecc.Curve;
-import org.whispersystems.libsignal.ecc.ECKeyPair;
-import org.whispersystems.libsignal.ecc.ECPrivateKey;
-import org.whispersystems.libsignal.ecc.ECPublicKey;
-import org.whispersystems.libsignal.state.SignedPreKeyRecord;
+import org.session.libsignal.libsignal.InvalidKeyException;
+import org.session.libsignal.libsignal.ecc.Curve;
+import org.session.libsignal.libsignal.ecc.ECKeyPair;
+import org.session.libsignal.libsignal.ecc.ECPrivateKey;
+import org.session.libsignal.libsignal.ecc.ECPublicKey;
+import org.session.libsignal.libsignal.state.SignedPreKeyRecord;
 
 import java.io.IOException;
 import java.util.LinkedList;

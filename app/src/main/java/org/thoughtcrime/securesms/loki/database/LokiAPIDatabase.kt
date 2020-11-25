@@ -6,9 +6,9 @@ import android.util.Log
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.whispersystems.signalservice.loki.api.Snode
-import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
+import org.session.libsignal.service.loki.api.Snode
+import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
 
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
 

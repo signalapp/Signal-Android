@@ -11,13 +11,13 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.crypto.ProfileCipher;
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceMessagePipe;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.crypto.ProfileCipher;
+import org.session.libsignal.service.api.profiles.SignalServiceProfile;
+import org.session.libsignal.service.api.push.SignalServiceAddress;
+import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 

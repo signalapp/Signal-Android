@@ -14,11 +14,11 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
-import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.session.libsignal.service.api.SignalServiceMessageSender;
+import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
+import org.session.libsignal.service.api.messages.multidevice.BlockedListMessage;
+import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
+import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.util.LinkedList;

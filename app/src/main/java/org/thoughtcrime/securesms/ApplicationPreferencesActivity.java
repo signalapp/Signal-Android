@@ -52,7 +52,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.utilities.HexEncodingKt;
+import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 
 import network.loki.messenger.R;
 

@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 
 import java.util.List;
 
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
+import static org.session.libsignal.libsignal.SessionCipher.SESSION_LOCK;
 
 public class UnverifiedSendDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener {
 

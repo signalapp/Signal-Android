@@ -11,7 +11,7 @@ import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 
 import java.io.InputStream;
 

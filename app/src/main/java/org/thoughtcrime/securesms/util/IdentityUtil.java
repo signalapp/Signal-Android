@@ -27,20 +27,20 @@ import org.thoughtcrime.securesms.sms.OutgoingIdentityVerifiedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.IdentityKeyStore;
-import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionStore;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
-import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.SignalProtocolAddress;
+import org.session.libsignal.libsignal.state.IdentityKeyStore;
+import org.session.libsignal.libsignal.state.SessionRecord;
+import org.session.libsignal.libsignal.state.SessionStore;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.SignalServiceGroup;
+import org.session.libsignal.service.api.messages.multidevice.VerifiedMessage;
 
 import java.util.List;
 
 import network.loki.messenger.R;
 
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
+import static org.session.libsignal.libsignal.SessionCipher.SESSION_LOCK;
 
 public class IdentityUtil {
 

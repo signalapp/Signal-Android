@@ -10,11 +10,11 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
-import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.service.api.SignalServiceMessageSender;
+import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
+import org.session.libsignal.service.api.messages.multidevice.VerifiedMessage;
+import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

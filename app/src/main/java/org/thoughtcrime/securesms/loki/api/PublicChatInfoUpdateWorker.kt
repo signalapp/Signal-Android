@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.work.*
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
 /**
  * Delegates the [OpenGroupUtilities.updateGroupInfo] call to the work manager.

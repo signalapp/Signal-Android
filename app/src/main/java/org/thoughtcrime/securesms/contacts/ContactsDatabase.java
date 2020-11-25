@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.HashMap;

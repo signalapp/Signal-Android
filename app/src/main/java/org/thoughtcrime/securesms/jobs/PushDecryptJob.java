@@ -16,17 +16,17 @@ import androidx.core.app.NotificationManagerCompat;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.signal.libsignal.metadata.InvalidMetadataMessageException;
-import org.signal.libsignal.metadata.InvalidMetadataVersionException;
-import org.signal.libsignal.metadata.ProtocolDuplicateMessageException;
-import org.signal.libsignal.metadata.ProtocolInvalidKeyException;
-import org.signal.libsignal.metadata.ProtocolInvalidKeyIdException;
-import org.signal.libsignal.metadata.ProtocolInvalidMessageException;
-import org.signal.libsignal.metadata.ProtocolInvalidVersionException;
-import org.signal.libsignal.metadata.ProtocolLegacyMessageException;
-import org.signal.libsignal.metadata.ProtocolNoSessionException;
-import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
-import org.signal.libsignal.metadata.SelfSendException;
+import org.session.libsignal.metadata.InvalidMetadataMessageException;
+import org.session.libsignal.metadata.InvalidMetadataVersionException;
+import org.session.libsignal.metadata.ProtocolDuplicateMessageException;
+import org.session.libsignal.metadata.ProtocolInvalidKeyException;
+import org.session.libsignal.metadata.ProtocolInvalidKeyIdException;
+import org.session.libsignal.metadata.ProtocolInvalidMessageException;
+import org.session.libsignal.metadata.ProtocolInvalidVersionException;
+import org.session.libsignal.metadata.ProtocolLegacyMessageException;
+import org.session.libsignal.metadata.ProtocolNoSessionException;
+import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
+import org.session.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -99,36 +99,36 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.loki.SessionResetProtocol;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.messages.SignalServiceContent;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
-import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
-import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
-import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
-import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
-import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
-import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
-import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOperationMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
-import org.whispersystems.signalservice.api.messages.shared.SharedContact;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI;
-import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
-import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.loki.SessionResetProtocol;
+import org.session.libsignal.libsignal.state.SignalProtocolStore;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceMessageSender;
+import org.session.libsignal.service.api.messages.SignalServiceContent;
+import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
+import org.session.libsignal.service.api.messages.SignalServiceDataMessage.Preview;
+import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
+import org.session.libsignal.service.api.messages.SignalServiceGroup;
+import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
+import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
+import org.session.libsignal.service.api.messages.calls.AnswerMessage;
+import org.session.libsignal.service.api.messages.calls.BusyMessage;
+import org.session.libsignal.service.api.messages.calls.HangupMessage;
+import org.session.libsignal.service.api.messages.calls.IceUpdateMessage;
+import org.session.libsignal.service.api.messages.calls.OfferMessage;
+import org.session.libsignal.service.api.messages.calls.SignalServiceCallMessage;
+import org.session.libsignal.service.api.messages.multidevice.ReadMessage;
+import org.session.libsignal.service.api.messages.multidevice.RequestMessage;
+import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage;
+import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
+import org.session.libsignal.service.api.messages.multidevice.StickerPackOperationMessage;
+import org.session.libsignal.service.api.messages.multidevice.VerifiedMessage;
+import org.session.libsignal.service.api.messages.shared.SharedContact;
+import org.session.libsignal.service.api.push.SignalServiceAddress;
+import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
+import org.session.libsignal.service.loki.crypto.LokiServiceCipher;
+import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -1406,14 +1406,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       String publicKey = message.getDestination().get();
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
+      Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
       if (allUserDevices.contains(publicKey)) {
         return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
       } else {
         try {
           // TODO: Burn this with fire when we can
           PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
-          String masterPublicKey = org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
+          String masterPublicKey = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
           }
@@ -1438,14 +1438,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } else {
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
+      Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
       if (allUserDevices.contains(publicKey)) {
         return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
       } else {
         try {
           // TODO: Burn this with fire when we can
           PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
-          String masterPublicKey = org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
+          String masterPublicKey = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
           }

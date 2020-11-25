@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;

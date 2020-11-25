@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintOb
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
-import org.whispersystems.libsignal.util.Medium;
+import org.session.libsignal.libsignal.util.Medium;
 
 import java.io.IOException;
 import java.security.SecureRandom;

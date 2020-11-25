@@ -11,8 +11,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
-import org.whispersystems.signalservice.loki.api.SnodeAPI
+import org.session.libsignal.service.api.messages.SignalServiceEnvelope
+import org.session.libsignal.service.loki.api.SnodeAPI
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Worker(context, params) {

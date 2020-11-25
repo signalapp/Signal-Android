@@ -24,9 +24,9 @@ import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
+import org.session.libsignal.service.api.messages.SignalServiceDataMessage
+import org.session.libsignal.service.api.push.SignalServiceAddress
+import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import java.util.*
 import kotlin.concurrent.schedule
 

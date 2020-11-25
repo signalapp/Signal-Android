@@ -11,12 +11,12 @@ import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.util.Hex
-import org.whispersystems.libsignal.SignalProtocolAddress
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupSenderKey
-import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities
-import org.whispersystems.signalservice.loki.utilities.toHexString
+import org.session.libsignal.libsignal.SignalProtocolAddress
+import org.session.libsignal.service.api.push.SignalServiceAddress
+import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey
+import org.session.libsignal.service.loki.protocol.meta.TTLUtilities
+import org.session.libsignal.service.loki.utilities.toHexString
 import java.util.*
 import java.util.concurrent.TimeUnit
 

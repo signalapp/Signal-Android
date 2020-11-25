@@ -27,9 +27,9 @@ import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.ecc.ECKeyPair
-import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.libsignal.ecc.ECKeyPair
+import org.session.libsignal.libsignal.util.KeyHelper
+import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 
 class RegisterActivity : BaseActionBarActivity() {
     private var seed: ByteArray? = null

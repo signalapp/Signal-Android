@@ -60,7 +60,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
-import org.whispersystems.signalservice.internal.util.Util;
+import org.session.libsignal.service.internal.util.Util;
 
 import java.util.HashSet;
 import java.util.List;

@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.InvalidMessageException;
 
 import java.io.IOException;
 import java.util.HashSet;

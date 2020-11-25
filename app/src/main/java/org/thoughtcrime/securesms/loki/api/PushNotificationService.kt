@@ -7,10 +7,10 @@ import com.google.firebase.messaging.RemoteMessage
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.logging.Log
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
-import org.whispersystems.signalservice.internal.util.Base64
-import org.whispersystems.signalservice.loki.api.MessageWrapper
+import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.service.api.messages.SignalServiceEnvelope
+import org.session.libsignal.service.internal.util.Base64
+import org.session.libsignal.service.loki.api.MessageWrapper
 
 class PushNotificationService : FirebaseMessagingService() {
 

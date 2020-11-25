@@ -21,7 +21,7 @@ import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import network.loki.messenger.R;
 

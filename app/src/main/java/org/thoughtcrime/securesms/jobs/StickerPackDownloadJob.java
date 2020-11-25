@@ -13,11 +13,11 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Hex;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
-import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest.StickerInfo;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.messages.SignalServiceStickerManifest;
+import org.session.libsignal.service.api.messages.SignalServiceStickerManifest.StickerInfo;
+import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.util.ArrayList;

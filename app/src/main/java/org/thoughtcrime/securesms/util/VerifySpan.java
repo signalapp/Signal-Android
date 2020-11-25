@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.whispersystems.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.IdentityKey;
 
 public class VerifySpan extends ClickableSpan {
 

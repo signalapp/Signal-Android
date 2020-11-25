@@ -10,9 +10,9 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.SignalServiceMessageSender
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
+import org.session.libsignal.service.api.SignalServiceMessageSender
+import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

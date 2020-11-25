@@ -5,7 +5,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.components.location.SignalPlace;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 public class LocationSlide extends ImageSlide {
 

@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getInt
 import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
-import org.whispersystems.signalservice.loki.database.LokiMessageDatabaseProtocol
+import org.session.libsignal.service.loki.database.LokiMessageDatabaseProtocol
 
 class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
 

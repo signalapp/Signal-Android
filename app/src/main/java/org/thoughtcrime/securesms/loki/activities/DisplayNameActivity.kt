@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.crypto.ProfileCipher
+import org.session.libsignal.service.api.crypto.ProfileCipher
 
 class DisplayNameActivity : BaseActionBarActivity() {
 

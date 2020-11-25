@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
 
 import network.loki.messenger.BuildConfig;
 

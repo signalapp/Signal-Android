@@ -6,9 +6,9 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
-import org.whispersystems.libsignal.loki.SessionResetProtocol
-import org.whispersystems.libsignal.loki.SessionResetStatus
-import org.whispersystems.libsignal.protocol.PreKeySignalMessage
+import org.session.libsignal.libsignal.loki.SessionResetProtocol
+import org.session.libsignal.libsignal.loki.SessionResetStatus
+import org.session.libsignal.libsignal.protocol.PreKeySignalMessage
 
 class SessionResetImplementation(private val context: Context) : SessionResetProtocol {
 

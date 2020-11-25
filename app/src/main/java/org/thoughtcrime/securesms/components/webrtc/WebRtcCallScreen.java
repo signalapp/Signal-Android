@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.util.VerifySpan;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.webrtc.CameraState;
 import org.webrtc.SurfaceViewRenderer;
-import org.whispersystems.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.IdentityKey;
 
 /**
  * A UI widget that encapsulates the entire in-call screen

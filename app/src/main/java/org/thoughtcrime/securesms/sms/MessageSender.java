@@ -46,9 +46,9 @@ import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.push.ContactTokenDetails;
 
 import java.io.IOException;
 

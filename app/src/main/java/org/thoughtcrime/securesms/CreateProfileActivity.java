@@ -52,12 +52,12 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.crypto.ProfileCipher;
-import org.whispersystems.signalservice.api.util.StreamDetails;
-import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
-import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI;
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.crypto.ProfileCipher;
+import org.session.libsignal.service.api.util.StreamDetails;
+import org.session.libsignal.service.loki.api.LokiDotNetAPI;
+import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
+import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

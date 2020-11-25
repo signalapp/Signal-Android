@@ -25,9 +25,9 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.push.exceptions.AuthorizationFailedException;
 
 import java.io.IOException;
 

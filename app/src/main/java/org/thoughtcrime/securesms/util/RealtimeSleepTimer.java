@@ -10,7 +10,7 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
 
-import org.whispersystems.signalservice.api.util.SleepTimer;
+import org.session.libsignal.service.api.util.SleepTimer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -52,7 +52,7 @@ public class RealtimeSleepTimer implements SleepTimer {
     }
 
     private class AlarmReceiver extends BroadcastReceiver {
-        private static final String WAKE_UP_THREAD_ACTION = "org.whispersystems.signalservice.api.util.RealtimeSleepTimer.AlarmReceiver.WAKE_UP_THREAD";
+        private static final String WAKE_UP_THREAD_ACTION = "org.session.libsignal.service.api.util.RealtimeSleepTimer.AlarmReceiver.WAKE_UP_THREAD";
 
         private void setAlarm(long millis) {
             final Intent        intent        = new Intent(WAKE_UP_THREAD_ACTION);

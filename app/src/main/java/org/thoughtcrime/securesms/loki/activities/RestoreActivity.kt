@@ -24,9 +24,9 @@ import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.libsignal.util.KeyHelper
+import org.session.libsignal.service.loki.crypto.MnemonicCodec
+import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 
 class RestoreActivity : BaseActionBarActivity() {
 

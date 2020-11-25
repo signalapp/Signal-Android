@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.database.BackupFileRecord
 import org.thoughtcrime.securesms.service.LocalBackupListener
-import org.whispersystems.libsignal.util.ByteUtil
+import org.session.libsignal.libsignal.util.ByteUtil
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException

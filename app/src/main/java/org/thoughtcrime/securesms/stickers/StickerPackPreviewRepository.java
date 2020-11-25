@@ -16,10 +16,10 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.messages.SignalServiceStickerManifest;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -19,8 +19,8 @@ package org.thoughtcrime.securesms.crypto;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.InvalidKeyException;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.InvalidKeyException;
 
 public class IdentityKeyParcelable implements Parcelable {
 

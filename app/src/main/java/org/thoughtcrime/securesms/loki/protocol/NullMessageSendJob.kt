@@ -10,9 +10,9 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.loki.protocol.meta.TTLUtilities
+import org.session.libsignal.service.api.push.SignalServiceAddress
+import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.protocol.meta.TTLUtilities
 import java.io.IOException
 import java.security.SecureRandom
 import java.util.*

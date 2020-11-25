@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.session.libsignal.service.api.SignalServiceMessageSender;
+import org.session.libsignal.service.api.push.SignalServiceAddress;
 
 public class MessageSenderEventListener implements SignalServiceMessageSender.EventListener {
   private final Context context;

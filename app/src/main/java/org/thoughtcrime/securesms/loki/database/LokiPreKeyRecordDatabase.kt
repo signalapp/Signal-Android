@@ -8,8 +8,8 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getInt
 import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
-import org.whispersystems.libsignal.state.PreKeyRecord
-import org.whispersystems.signalservice.loki.database.LokiPreKeyRecordDatabaseProtocol
+import org.session.libsignal.libsignal.state.PreKeyRecord
+import org.session.libsignal.service.loki.database.LokiPreKeyRecordDatabaseProtocol
 
 class LokiPreKeyRecordDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiPreKeyRecordDatabaseProtocol {
 

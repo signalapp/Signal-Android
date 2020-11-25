@@ -12,7 +12,7 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 class LongMessageViewModel extends ViewModel {
 

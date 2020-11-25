@@ -7,9 +7,9 @@ import com.goterl.lazycode.lazysodium.utils.KeyPair
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
-import org.whispersystems.libsignal.ecc.DjbECPrivateKey
-import org.whispersystems.libsignal.ecc.DjbECPublicKey
-import org.whispersystems.libsignal.ecc.ECKeyPair
+import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
+import org.session.libsignal.libsignal.ecc.DjbECPublicKey
+import org.session.libsignal.libsignal.ecc.ECKeyPair
 
 object KeyPairUtilities {
 

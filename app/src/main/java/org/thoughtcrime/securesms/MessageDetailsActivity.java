@@ -58,8 +58,8 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import java.lang.ref.WeakReference;
 import java.sql.Date;

@@ -2,18 +2,18 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.IdentityKeyPair;
-import org.whispersystems.libsignal.InvalidKeyIdException;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.IdentityKeyStore;
-import org.whispersystems.libsignal.state.PreKeyRecord;
-import org.whispersystems.libsignal.state.PreKeyStore;
-import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionStore;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
-import org.whispersystems.libsignal.state.SignedPreKeyRecord;
-import org.whispersystems.libsignal.state.SignedPreKeyStore;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.IdentityKeyPair;
+import org.session.libsignal.libsignal.InvalidKeyIdException;
+import org.session.libsignal.libsignal.SignalProtocolAddress;
+import org.session.libsignal.libsignal.state.IdentityKeyStore;
+import org.session.libsignal.libsignal.state.PreKeyRecord;
+import org.session.libsignal.libsignal.state.PreKeyStore;
+import org.session.libsignal.libsignal.state.SessionRecord;
+import org.session.libsignal.libsignal.state.SessionStore;
+import org.session.libsignal.libsignal.state.SignalProtocolStore;
+import org.session.libsignal.libsignal.state.SignedPreKeyRecord;
+import org.session.libsignal.libsignal.state.SignedPreKeyStore;
 
 import java.util.List;
 

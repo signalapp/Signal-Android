@@ -45,9 +45,9 @@ import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.crypto.ProfileCipher
-import org.whispersystems.signalservice.api.util.StreamDetails
-import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
+import org.session.libsignal.service.api.crypto.ProfileCipher
+import org.session.libsignal.service.api.util.StreamDetails
+import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.security.SecureRandom

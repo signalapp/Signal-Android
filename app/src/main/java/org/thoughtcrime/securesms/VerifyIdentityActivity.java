@@ -81,18 +81,18 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.fingerprint.Fingerprint;
-import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
-import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
-import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.fingerprint.Fingerprint;
+import org.session.libsignal.libsignal.fingerprint.FingerprintParsingException;
+import org.session.libsignal.libsignal.fingerprint.FingerprintVersionMismatchException;
+import org.session.libsignal.libsignal.fingerprint.NumericFingerprintGenerator;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
 import network.loki.messenger.R;
 
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
+import static org.session.libsignal.libsignal.SessionCipher.SESSION_LOCK;
 
 /**
  * Activity for verifying identity keys.

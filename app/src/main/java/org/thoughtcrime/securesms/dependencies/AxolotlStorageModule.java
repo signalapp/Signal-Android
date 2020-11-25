@@ -4,7 +4,7 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
-import org.whispersystems.libsignal.state.SignedPreKeyStore;
+import org.session.libsignal.libsignal.state.SignedPreKeyStore;
 
 import dagger.Module;
 import dagger.Provides;

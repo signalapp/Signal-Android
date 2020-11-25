@@ -5,9 +5,9 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.SessionStore;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.session.libsignal.libsignal.SignalProtocolAddress;
+import org.session.libsignal.libsignal.state.SessionStore;
+import org.session.libsignal.service.api.push.SignalServiceAddress;
 
 public class SessionUtil {
 

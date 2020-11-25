@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
-class Broadcaster(private val context: Context) : org.whispersystems.signalservice.loki.utilities.Broadcaster {
+class Broadcaster(private val context: Context) : org.session.libsignal.service.loki.utilities.Broadcaster {
 
     override fun broadcast(event: String) {
         val intent = Intent(event)

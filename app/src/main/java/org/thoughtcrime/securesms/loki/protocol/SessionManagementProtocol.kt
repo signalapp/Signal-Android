@@ -14,9 +14,9 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.loki.SessionResetStatus
-import org.whispersystems.signalservice.api.messages.SignalServiceContent
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
+import org.session.libsignal.libsignal.loki.SessionResetStatus
+import org.session.libsignal.service.api.messages.SignalServiceContent
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.util.*
 
 object SessionManagementProtocol {

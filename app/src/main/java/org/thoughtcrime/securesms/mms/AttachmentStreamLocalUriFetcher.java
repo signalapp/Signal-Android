@@ -7,9 +7,9 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
 
 import org.thoughtcrime.securesms.logging.Log;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream;
 
 import java.io.File;
 import java.io.IOException;

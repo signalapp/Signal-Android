@@ -6,9 +6,9 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.SignalServiceAttachment;
+import org.session.libsignal.service.api.messages.SignalServiceGroup;
 
 import java.util.Collections;
 import java.util.LinkedList;

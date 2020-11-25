@@ -25,8 +25,8 @@ import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.Conversions
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.libsignal.kdf.HKDFv3
-import org.whispersystems.libsignal.util.ByteUtil
+import org.session.libsignal.libsignal.kdf.HKDFv3
+import org.session.libsignal.libsignal.util.ByteUtil
 import java.io.*
 import java.lang.Exception
 import java.security.InvalidAlgorithmParameterException

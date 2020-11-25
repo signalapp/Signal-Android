@@ -16,9 +16,9 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.state.PreKeyRecord;
-import org.whispersystems.libsignal.state.SignedPreKeyRecord;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.state.PreKeyRecord;
+import org.session.libsignal.libsignal.state.SignedPreKeyRecord;
 
 import java.io.File;
 import java.io.FileInputStream;

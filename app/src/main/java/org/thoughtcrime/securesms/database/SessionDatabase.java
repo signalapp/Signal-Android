@@ -11,8 +11,8 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.logging.Log;
-import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.session.libsignal.libsignal.state.SessionRecord;
+import org.session.libsignal.service.api.push.SignalServiceAddress;
 
 import java.io.IOException;
 import java.util.LinkedList;

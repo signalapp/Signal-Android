@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.LinkedList;
 import java.util.List;

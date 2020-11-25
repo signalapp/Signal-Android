@@ -15,7 +15,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
 class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = LinkDeviceActivityAdapter(this)

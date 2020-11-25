@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.webrtc.CameraState;
 import org.webrtc.SurfaceViewRenderer;
-import org.whispersystems.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.IdentityKey;
 
 public class WebRtcViewModel {
 

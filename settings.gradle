@@ -2,8 +2,4 @@ include ':libsignal'
 include ':libsession'
 rootProject.name = "session-android"
 
-include ":service"
-include ":service:java"
-include ":service:android"
-
 include ':app'

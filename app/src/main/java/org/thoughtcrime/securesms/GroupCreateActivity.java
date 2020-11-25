@@ -68,8 +68,8 @@ import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter.OnRecipientDele
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.util.InvalidNumberException;
 
 import java.io.File;
 import java.util.Collection;

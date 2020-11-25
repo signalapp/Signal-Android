@@ -9,8 +9,8 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_mention_candidate.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI
-import org.whispersystems.signalservice.loki.protocol.mentions.Mention
+import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI
+import org.session.libsignal.service.loki.protocol.mentions.Mention
 
 class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     var mentionCandidate = Mention("", "")

@@ -5,8 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
-import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.Pair;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

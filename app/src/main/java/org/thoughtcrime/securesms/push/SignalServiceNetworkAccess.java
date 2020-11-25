@@ -5,11 +5,11 @@ import android.content.Context;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.push.TrustStore;
-import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
-import org.whispersystems.signalservice.internal.configuration.SignalContactDiscoveryUrl;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl;
+import org.session.libsignal.service.api.push.TrustStore;
+import org.session.libsignal.service.internal.configuration.SignalCdnUrl;
+import org.session.libsignal.service.internal.configuration.SignalContactDiscoveryUrl;
+import org.session.libsignal.service.internal.configuration.SignalServiceConfiguration;
+import org.session.libsignal.service.internal.configuration.SignalServiceUrl;
 
 import java.util.HashMap;
 import java.util.Map;

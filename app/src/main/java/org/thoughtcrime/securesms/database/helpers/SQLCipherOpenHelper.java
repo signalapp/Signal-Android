@@ -48,7 +48,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
+import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import java.io.File;
 

@@ -25,15 +25,15 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.VerifySpan;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.session.libsignal.libsignal.SignalProtocolAddress;
+import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
+import org.session.libsignal.service.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 
 import network.loki.messenger.R;
 
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
+import static org.session.libsignal.libsignal.SessionCipher.SESSION_LOCK;
 
 public class ConfirmIdentityDialog extends AlertDialog {
 

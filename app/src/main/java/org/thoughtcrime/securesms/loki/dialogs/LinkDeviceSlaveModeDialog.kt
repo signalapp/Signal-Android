@@ -15,10 +15,10 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSession
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSessionListener
+import org.session.libsignal.service.loki.crypto.MnemonicCodec
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLinkingSession
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLinkingSessionListener
 
 class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private lateinit var contentView: View

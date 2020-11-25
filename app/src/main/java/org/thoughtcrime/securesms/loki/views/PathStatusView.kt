@@ -13,7 +13,7 @@ import androidx.annotation.ColorInt
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toPx
-import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
+import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 
 class PathStatusView : View {
     private val broadcastReceivers = mutableListOf<BroadcastReceiver>()

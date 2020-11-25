@@ -7,10 +7,10 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.logging.Log;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.protocol.CiphertextMessage;
-import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionStore;
+import org.session.libsignal.libsignal.SignalProtocolAddress;
+import org.session.libsignal.libsignal.protocol.CiphertextMessage;
+import org.session.libsignal.libsignal.state.SessionRecord;
+import org.session.libsignal.libsignal.state.SessionStore;
 
 import java.util.List;
 

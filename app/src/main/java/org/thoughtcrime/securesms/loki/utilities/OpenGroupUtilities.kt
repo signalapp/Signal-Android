@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import java.lang.Exception
 import java.lang.IllegalStateException
 import kotlin.jvm.Throws

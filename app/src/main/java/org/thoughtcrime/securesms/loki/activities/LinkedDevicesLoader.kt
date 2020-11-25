@@ -6,8 +6,8 @@ import org.thoughtcrime.securesms.devicelist.Device
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.AsyncLoader
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
+import org.session.libsignal.service.loki.crypto.MnemonicCodec
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.io.File
 
 class LinkedDevicesLoader(context: Context) : AsyncLoader<List<Device>>(context) {

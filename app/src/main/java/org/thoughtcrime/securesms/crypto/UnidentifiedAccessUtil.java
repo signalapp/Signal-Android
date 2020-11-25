@@ -6,17 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import org.signal.libsignal.metadata.SignalProtos;
-import org.signal.libsignal.metadata.certificate.CertificateValidator;
-import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
+import org.session.libsignal.metadata.SignalProtos;
+import org.session.libsignal.metadata.certificate.CertificateValidator;
+import org.session.libsignal.metadata.certificate.InvalidCertificateException;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
+import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
+import org.session.libsignal.service.api.push.SignalServiceAddress;
 
 public class UnidentifiedAccessUtil {
 

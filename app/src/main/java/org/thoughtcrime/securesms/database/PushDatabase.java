@@ -10,9 +10,9 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
-import org.whispersystems.signalservice.internal.util.Util;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
+import org.session.libsignal.service.internal.util.Util;
 
 import java.io.IOException;
 

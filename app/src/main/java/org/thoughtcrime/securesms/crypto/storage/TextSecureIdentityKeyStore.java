@@ -13,11 +13,11 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.IdentityKeyPair;
-import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.state.IdentityKeyStore;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.IdentityKeyPair;
+import org.session.libsignal.libsignal.SignalProtocolAddress;
+import org.session.libsignal.libsignal.state.IdentityKeyStore;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.concurrent.TimeUnit;
 

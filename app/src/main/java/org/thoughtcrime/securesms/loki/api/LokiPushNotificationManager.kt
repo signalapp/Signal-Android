@@ -5,11 +5,11 @@ import nl.komponents.kovenant.functional.map
 import okhttp3.*
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.logging.Log
-import org.whispersystems.signalservice.internal.util.JsonUtil
-import org.whispersystems.signalservice.loki.api.PushNotificationAPI
-import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
-import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
+import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.service.loki.api.PushNotificationAPI
+import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
+import org.session.libsignal.service.loki.utilities.retryIfNeeded
 
 object LokiPushNotificationManager {
     private val maxRetryCount = 4

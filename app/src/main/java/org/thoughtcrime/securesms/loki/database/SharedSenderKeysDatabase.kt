@@ -6,11 +6,11 @@ import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.util.Hex
-import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchet
-import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
-import org.whispersystems.signalservice.loki.protocol.closedgroups.ClosedGroupSenderKey
-import org.whispersystems.signalservice.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
+import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchet
+import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
+import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey
+import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
 class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), SharedSenderKeysDatabaseProtocol {
 

@@ -18,17 +18,17 @@ import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
-import org.whispersystems.signalservice.api.messages.SignalServiceContent
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup
-import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage
-import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsInputStream
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
+import org.session.libsignal.service.api.messages.SignalServiceAttachment
+import org.session.libsignal.service.api.messages.SignalServiceContent
+import org.session.libsignal.service.api.messages.SignalServiceDataMessage
+import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.service.api.messages.multidevice.BlockedListMessage
+import org.session.libsignal.service.api.messages.multidevice.ContactsMessage
+import org.session.libsignal.service.api.messages.multidevice.DeviceContactsInputStream
+import org.session.libsignal.service.api.messages.multidevice.DeviceGroupsInputStream
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
 object SyncMessagesProtocol {
 

@@ -46,12 +46,12 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.SignalProtocolAddress;
 
 import network.loki.messenger.R;
 
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
+import static org.session.libsignal.libsignal.SessionCipher.SESSION_LOCK;
 
 public class WebRtcCallActivity extends Activity {
 

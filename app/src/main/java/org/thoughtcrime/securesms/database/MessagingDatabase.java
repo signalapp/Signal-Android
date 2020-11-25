@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.whispersystems.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.IdentityKey;
 
 import java.io.IOException;
 import java.util.ArrayList;

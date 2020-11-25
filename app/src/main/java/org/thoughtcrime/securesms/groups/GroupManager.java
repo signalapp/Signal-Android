@@ -24,8 +24,8 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
+import org.session.libsignal.service.api.util.InvalidNumberException;
+import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.IOException;
 import java.util.Collection;

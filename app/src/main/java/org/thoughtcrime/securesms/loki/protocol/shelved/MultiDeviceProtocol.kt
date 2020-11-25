@@ -16,14 +16,14 @@ import org.thoughtcrime.securesms.loki.utilities.Broadcaster
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.messages.SignalServiceContent
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSession
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
-import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
+import org.session.libsignal.service.api.messages.SignalServiceContent
+import org.session.libsignal.service.api.messages.SignalServiceDataMessage
+import org.session.libsignal.service.api.push.SignalServiceAddress
+import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLinkingSession
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
+import org.session.libsignal.service.loki.utilities.retryIfNeeded
 
 object MultiDeviceProtocol {
 

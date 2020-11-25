@@ -20,9 +20,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
-import org.whispersystems.signalservice.loki.database.LokiOpenGroupDatabaseProtocol;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
+import org.session.libsignal.service.loki.database.LokiOpenGroupDatabaseProtocol;
 
 import java.io.Closeable;
 import java.io.IOException;

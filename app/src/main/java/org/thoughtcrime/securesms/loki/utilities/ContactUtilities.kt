@@ -4,7 +4,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 
 data class Contact(
     val recipient: Recipient,

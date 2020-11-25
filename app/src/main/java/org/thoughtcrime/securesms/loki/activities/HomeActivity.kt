@@ -53,13 +53,13 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.TextSecurePreferences.getBooleanPreference
 import org.thoughtcrime.securesms.util.TextSecurePreferences.setBooleanPreference
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
-import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
-import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
-import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol
-import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
-import org.whispersystems.signalservice.loki.utilities.toHexString
+import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
+import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
+import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
+import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
+import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
+import org.session.libsignal.service.loki.utilities.toHexString
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {

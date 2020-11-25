@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.shared.SharedContact;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.shared.SharedContact;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

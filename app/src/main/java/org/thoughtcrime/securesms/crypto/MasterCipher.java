@@ -22,9 +22,9 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Hex;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.ecc.Curve;
-import org.whispersystems.libsignal.ecc.ECPrivateKey;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.ecc.Curve;
+import org.session.libsignal.libsignal.ecc.ECPrivateKey;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -86,12 +86,12 @@ public class MasterCipher {
   }
 	
   public ECPrivateKey decryptKey(byte[] key)
-      throws org.whispersystems.libsignal.InvalidKeyException
+      throws org.session.libsignal.libsignal.InvalidKeyException
   {
     try {
       return Curve.decodePrivatePoint(decryptBytes(key));
     } catch (InvalidMessageException ime) {
-      throw new org.whispersystems.libsignal.InvalidKeyException(ime);
+      throw new org.session.libsignal.libsignal.InvalidKeyException(ime);
     }
   }
 	

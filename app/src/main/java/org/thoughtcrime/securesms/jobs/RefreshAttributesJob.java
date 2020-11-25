@@ -12,8 +12,8 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.push.exceptions.NetworkFailureException;
 
 import java.io.IOException;
 

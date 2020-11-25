@@ -26,11 +26,11 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.ecc.Curve;
-import org.whispersystems.libsignal.ecc.ECKeyPair;
-import org.whispersystems.libsignal.ecc.ECPrivateKey;
-import org.whispersystems.libsignal.ecc.ECPublicKey;
+import org.session.libsignal.libsignal.InvalidKeyException;
+import org.session.libsignal.libsignal.ecc.Curve;
+import org.session.libsignal.libsignal.ecc.ECKeyPair;
+import org.session.libsignal.libsignal.ecc.ECPrivateKey;
+import org.session.libsignal.libsignal.ecc.ECPublicKey;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;

@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.InvalidKeyException;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.InvalidKeyException;
 
 import java.io.IOException;
 

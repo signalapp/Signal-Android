@@ -13,12 +13,12 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
-import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.Action;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceMessageSender;
+import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
+import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
+import org.session.libsignal.service.api.messages.SignalServiceTypingMessage.Action;
+import org.session.libsignal.service.api.push.SignalServiceAddress;
 
 import java.util.Collections;
 import java.util.List;

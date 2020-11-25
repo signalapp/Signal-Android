@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.Collection;
 import java.util.Collections;

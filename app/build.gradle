@@ -93,7 +93,8 @@ dependencies {
     }
     // Loki
     // Local:
-    implementation project(":service:android")
+    implementation project(":libsignal")
+    implementation project(":libsession")
     // Remote:
     implementation "org.whispersystems:curve25519-java:$curve25519Version"
     implementation "com.goterl.lazycode:lazysodium-android:4.2.0@aar"

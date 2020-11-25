@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.sms;
 
 import org.thoughtcrime.securesms.database.Address;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.SignalServiceGroup;
 
 public class IncomingJoinedMessage extends IncomingTextMessage {
 

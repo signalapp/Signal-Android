@@ -10,10 +10,10 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.util.Conversions;
-import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionState;
-import org.whispersystems.libsignal.state.StorageProtos.SessionStructure;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.session.libsignal.libsignal.state.SessionRecord;
+import org.session.libsignal.libsignal.state.SessionState;
+import org.session.libsignal.libsignal.state.StorageProtos.SessionStructure;
+import org.session.libsignal.service.api.push.SignalServiceAddress;
 
 import java.io.File;
 import java.io.FileInputStream;

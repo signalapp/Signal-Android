@@ -9,11 +9,11 @@ import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase
 import org.thoughtcrime.securesms.loki.utilities.successBackground
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import org.whispersystems.signalservice.loki.api.SnodeAPI
-import org.whispersystems.signalservice.loki.api.SwarmAPI
-import org.whispersystems.signalservice.loki.utilities.getRandomElementOrNull
+import org.session.libsignal.service.api.messages.SignalServiceEnvelope
+import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.api.SnodeAPI
+import org.session.libsignal.service.loki.api.SwarmAPI
+import org.session.libsignal.service.loki.utilities.getRandomElementOrNull
 
 class ClosedGroupPoller private constructor(private val context: Context, private val database: SharedSenderKeysDatabase) {
     private var isPolling = false

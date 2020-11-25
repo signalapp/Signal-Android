@@ -28,14 +28,14 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.whispersystems.libsignal.IdentityKeyPair;
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.ecc.Curve;
-import org.whispersystems.libsignal.ecc.ECPublicKey;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
-import org.whispersystems.signalservice.internal.push.DeviceLimitExceededException;
+import org.session.libsignal.libsignal.IdentityKeyPair;
+import org.session.libsignal.libsignal.InvalidKeyException;
+import org.session.libsignal.libsignal.ecc.Curve;
+import org.session.libsignal.libsignal.ecc.ECPublicKey;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.push.exceptions.NotFoundException;
+import org.session.libsignal.service.internal.push.DeviceLimitExceededException;
 
 import java.io.IOException;
 

@@ -24,12 +24,12 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.IdentityKeyPair;
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.ecc.Curve;
-import org.whispersystems.libsignal.ecc.ECKeyPair;
-import org.whispersystems.libsignal.ecc.ECPrivateKey;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.IdentityKeyPair;
+import org.session.libsignal.libsignal.InvalidKeyException;
+import org.session.libsignal.libsignal.ecc.Curve;
+import org.session.libsignal.libsignal.ecc.ECKeyPair;
+import org.session.libsignal.libsignal.ecc.ECPrivateKey;
 
 import java.io.IOException;
 import java.util.LinkedList;

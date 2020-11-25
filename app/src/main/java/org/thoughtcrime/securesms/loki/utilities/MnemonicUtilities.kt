@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.service.loki.crypto.MnemonicCodec
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import java.io.File
 import java.io.FileOutputStream
 

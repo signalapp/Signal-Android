@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 
 import network.loki.messenger.R;
 

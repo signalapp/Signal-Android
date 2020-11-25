@@ -227,16 +227,16 @@ import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChatAPI;
-import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
-import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
-import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
-import org.whispersystems.signalservice.loki.utilities.HexEncodingKt;
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.loki.api.opengroups.PublicChat;
+import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
+import org.session.libsignal.service.loki.protocol.mentions.Mention;
+import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
+import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
+import org.session.libsignal.service.loki.utilities.HexEncodingKt;
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -256,7 +256,7 @@ import network.loki.messenger.R;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
+import static org.session.libsignal.libsignal.SessionCipher.SESSION_LOCK;
 
 /**
  * Activity for displaying a message thread, as well as

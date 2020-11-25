@@ -10,11 +10,11 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.loki.SessionResetStatus
-import org.whispersystems.signalservice.internal.util.JsonUtil
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat
-import org.whispersystems.signalservice.loki.database.LokiThreadDatabaseProtocol
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
+import org.session.libsignal.libsignal.loki.SessionResetStatus
+import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
+import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
     var delegate: LokiThreadDatabaseDelegate? = null

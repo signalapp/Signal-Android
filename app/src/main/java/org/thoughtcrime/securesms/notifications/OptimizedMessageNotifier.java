@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.whispersystems.signalservice.loki.api.Poller;
+import org.session.libsignal.service.loki.api.Poller;
 
 import java.util.concurrent.TimeUnit;
 

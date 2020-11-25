@@ -4,14 +4,14 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Local model that represents the data present in the libsignal model
- * {@link org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest}.
+ * {@link org.session.libsignal.service.api.messages.SignalServiceStickerManifest}.
  */
 public final class StickerManifest {
 

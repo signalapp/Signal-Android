@@ -22,9 +22,9 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidVersionException;
-import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.session.libsignal.libsignal.InvalidVersionException;
+import org.session.libsignal.service.api.SignalServiceMessagePipe;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;

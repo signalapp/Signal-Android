@@ -37,8 +37,8 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.InvalidMessageException;
 
 import java.io.File;
 import java.io.FileInputStream;

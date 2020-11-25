@@ -23,8 +23,8 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
 import org.thoughtcrime.securesms.loki.views.PathDotView
-import org.whispersystems.signalservice.loki.api.Snode
-import org.whispersystems.signalservice.loki.api.onionrequests.OnionRequestAPI
+import org.session.libsignal.service.loki.api.Snode
+import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 
 class PathActivity : PassphraseRequiredActionBarActivity() {
     private val broadcastReceivers = mutableListOf<BroadcastReceiver>()

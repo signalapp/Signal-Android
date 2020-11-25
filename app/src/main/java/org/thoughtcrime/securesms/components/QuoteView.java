@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.opengroups.PublicChat;
+import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import java.util.List;
 

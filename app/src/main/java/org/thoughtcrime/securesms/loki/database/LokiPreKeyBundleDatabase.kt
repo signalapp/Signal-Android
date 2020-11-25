@@ -15,13 +15,13 @@ import org.thoughtcrime.securesms.loki.utilities.getInt
 import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.IdentityKey
-import org.whispersystems.libsignal.InvalidKeyException
-import org.whispersystems.libsignal.ecc.Curve
-import org.whispersystems.libsignal.state.PreKeyBundle
-import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.database.LokiPreKeyBundleDatabaseProtocol
+import org.session.libsignal.libsignal.IdentityKey
+import org.session.libsignal.libsignal.InvalidKeyException
+import org.session.libsignal.libsignal.ecc.Curve
+import org.session.libsignal.libsignal.state.PreKeyBundle
+import org.session.libsignal.libsignal.util.KeyHelper
+import org.session.libsignal.service.api.push.SignalServiceAddress
+import org.session.libsignal.service.loki.database.LokiPreKeyBundleDatabaseProtocol
 
 class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiPreKeyBundleDatabaseProtocol {
 

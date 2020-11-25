@@ -12,7 +12,7 @@ import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository.StickerManifestResult;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 final class StickerPackPreviewViewModel extends ViewModel {
 

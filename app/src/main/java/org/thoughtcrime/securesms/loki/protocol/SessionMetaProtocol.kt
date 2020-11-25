@@ -8,8 +8,8 @@ import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.api.messages.SignalServiceContent
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
+import org.session.libsignal.service.api.messages.SignalServiceContent
+import org.session.libsignal.service.api.messages.SignalServiceDataMessage
 import java.security.MessageDigest
 
 object SessionMetaProtocol {

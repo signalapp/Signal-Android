@@ -29,12 +29,12 @@ import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
-import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest.StickerInfo;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.util.Pair;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.messages.SignalServiceStickerManifest;
+import org.session.libsignal.service.api.messages.SignalServiceStickerManifest.StickerInfo;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 
 import java.io.ByteArrayOutputStream;

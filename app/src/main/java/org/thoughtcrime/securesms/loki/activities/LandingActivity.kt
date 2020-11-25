@@ -24,16 +24,16 @@ import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.curve25519.Curve25519
-import org.whispersystems.libsignal.ecc.Curve
-import org.whispersystems.libsignal.ecc.ECKeyPair
-import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
-import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
-import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
-import org.whispersystems.signalservice.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
-import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
-import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
+import org.session.libsignal.libsignal.ecc.Curve
+import org.session.libsignal.libsignal.ecc.ECKeyPair
+import org.session.libsignal.libsignal.util.KeyHelper
+import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
+import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
+import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol
+import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
+import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import java.lang.UnsupportedOperationException
 
 class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelegate {
@@ -123,7 +123,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         val sessionResetImpl = SessionResetImplementation(this)
         MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
         SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
-        org.whispersystems.signalservice.loki.protocol.shelved.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
+        org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
         SessionManagementProtocol.configureIfNeeded(sessionResetImpl, sskDatabase, application)
         SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
         application.setUpP2PAPIIfNeeded()

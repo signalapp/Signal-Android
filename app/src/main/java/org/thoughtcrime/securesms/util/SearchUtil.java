@@ -9,7 +9,7 @@ import android.text.style.CharacterStyle;
 
 import com.annimon.stream.Stream;
 
-import org.whispersystems.libsignal.util.Pair;
+import org.session.libsignal.libsignal.util.Pair;
 
 import java.util.Collections;
 import java.util.LinkedList;

@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.Pair;
+import org.session.libsignal.libsignal.util.Pair;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;

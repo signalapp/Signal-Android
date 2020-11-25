@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.logging;
 
-import org.whispersystems.libsignal.logging.SignalProtocolLogger;
+import org.session.libsignal.libsignal.logging.SignalProtocolLogger;
 
 public class CustomSignalProtocolLogger implements SignalProtocolLogger {
   @Override

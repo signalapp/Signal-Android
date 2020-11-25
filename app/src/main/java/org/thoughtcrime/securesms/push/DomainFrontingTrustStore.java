@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import network.loki.messenger.R;
-import org.whispersystems.signalservice.api.push.TrustStore;
+import org.session.libsignal.service.api.push.TrustStore;
 
 import java.io.InputStream;
 

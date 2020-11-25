@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
 
 import java.util.concurrent.TimeUnit;
 

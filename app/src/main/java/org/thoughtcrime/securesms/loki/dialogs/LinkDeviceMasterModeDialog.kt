@@ -21,12 +21,12 @@ import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.SnodeAPI
-import org.whispersystems.signalservice.loki.api.fileserver.FileServerAPI
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLink
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSession
-import org.whispersystems.signalservice.loki.protocol.shelved.multidevice.DeviceLinkingSessionListener
+import org.session.libsignal.service.loki.api.SnodeAPI
+import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
+import org.session.libsignal.service.loki.crypto.MnemonicCodec
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLinkingSession
+import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLinkingSessionListener
 
 class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private lateinit var contentView: View

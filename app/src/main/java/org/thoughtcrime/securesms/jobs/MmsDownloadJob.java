@@ -32,11 +32,11 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.DuplicateMessageException;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.LegacyMessageException;
-import org.whispersystems.libsignal.NoSessionException;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.DuplicateMessageException;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.LegacyMessageException;
+import org.session.libsignal.libsignal.NoSessionException;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

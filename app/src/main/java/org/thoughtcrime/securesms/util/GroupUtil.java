@@ -14,8 +14,8 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.SignalServiceGroup;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -24,7 +24,7 @@ import java.util.List;
 
 import network.loki.messenger.R;
 
-import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
+import static org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 
 public class GroupUtil {
 

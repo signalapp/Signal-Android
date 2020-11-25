@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.whispersystems.libsignal.logging.Log;
+import org.session.libsignal.libsignal.logging.Log;
 
 import java.util.Collections;
 import java.util.LinkedList;

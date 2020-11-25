@@ -4,7 +4,7 @@ import android.os.Build;
 import android.os.PowerManager;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
