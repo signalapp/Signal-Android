@@ -53,7 +53,6 @@ class ClosedGroupUpdate() : ControlMessage() {
             return ClosedGroupUpdate(kind)
         }
     }
-    //private val TAG: String = ClosedGroupUpdate::class.java.simpleName
 
     // Kind enum
     sealed class Kind {
@@ -65,11 +64,12 @@ class ClosedGroupUpdate() : ControlMessage() {
 
     var kind: Kind? = null
 
-    // constructors
+    // constructor
     internal constructor(kind: Kind?) : this() {
         this.kind = kind
     }
 
+    // validation
     override fun isValid(): Boolean {
         if (!super.isValid() || kind == null) return false
         val kind = kind ?: return false
