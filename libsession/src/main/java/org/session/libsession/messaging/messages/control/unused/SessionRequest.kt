@@ -7,7 +7,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 class SessionRequest() : ControlMessage() {
 
     companion object {
-        fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
+        fun fromProto(proto: SignalServiceProtos.Content): SessionRequest? {
             TODO("Not yet implemented")
         }
     }

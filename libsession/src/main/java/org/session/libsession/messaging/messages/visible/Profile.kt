@@ -6,7 +6,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 internal class Profile : VisibleMessage() {
 
     companion object {
-        fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
+        fun fromProto(proto: SignalServiceProtos.Content): Profile? {
             TODO("Not yet implemented")
         }
     }

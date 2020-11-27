@@ -8,7 +8,7 @@ class NullMessage() : ControlMessage() {
 
 
     companion object {
-        fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
+        fun fromProto(proto: SignalServiceProtos.Content): NullMessage? {
             TODO("Not yet implemented")
         }
     }

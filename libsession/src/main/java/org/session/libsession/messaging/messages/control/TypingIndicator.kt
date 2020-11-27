@@ -5,7 +5,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 class TypingIndicator : ControlMessage() {
 
     companion object {
-        fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
+        fun fromProto(proto: SignalServiceProtos.Content): TypingIndicator? {
             TODO("Not yet implemented")
         }
     }

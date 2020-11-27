@@ -6,7 +6,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 internal class Contact : VisibleMessage() {
 
     companion object {
-        fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
+        fun fromProto(proto: SignalServiceProtos.Content): Contact? {
             TODO("Not yet implemented")
         }
     }

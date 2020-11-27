@@ -7,7 +7,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 internal class Attachment : VisibleMessage() {
 
     companion object {
-        fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
+        fun fromProto(proto: SignalServiceProtos.Content): Attachment? {
             TODO("Not yet implemented")
         }
     }
