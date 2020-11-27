@@ -1,6 +1,6 @@
-package org.session.messaging.messages.visible
+package org.session.libsession.messaging.messages.visible
 
-import org.session.messaging.messages.Message
+import org.session.libsession.messaging.messages.Message
 
-class VisibleMessage : Message() {
+abstract class VisibleMessage : Message() {
 }

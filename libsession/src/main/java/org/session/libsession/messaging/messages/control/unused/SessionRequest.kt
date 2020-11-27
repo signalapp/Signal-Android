@@ -1,6 +1,14 @@
-package org.session.messaging.messages.control.unused
+package org.session.libsession.messaging.messages.control.unused
 
-import org.session.messaging.messages.control.ControlMessage
+import org.session.libsession.messaging.messages.control.ControlMessage
+import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class SessionRequest : ControlMessage() {
+    override fun fromProto(proto: SignalServiceProtos.Content): SessionRequest? {
+        TODO("Not yet implemented")
+    }
+
+    override fun toProto(): SignalServiceProtos.Content? {
+        TODO("Not yet implemented")
+    }
 }
