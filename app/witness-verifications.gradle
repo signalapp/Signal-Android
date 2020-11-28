@@ -420,9 +420,6 @@ dependencyVerification {
         ['org.apache.httpcomponents:httpclient-android:4.3.5',
          '6f56466a9bd0d42934b90bfbfe9977a8b654c058bf44a12bdc2877c4e1f033f1'],
 
-        ['org.aspectj:aspectjrt:1.9.4',
-         '4ff12340d4f1197b95fc9d53dd43b7ada6150426d685778979ceca4304361698'],
-
         ['org.conscrypt:conscrypt-android:2.0.0',
          '400ca559a49b860a82862b22cee0e3110764bdcf7ee7c79e7479895c25cdfc09'],
 
