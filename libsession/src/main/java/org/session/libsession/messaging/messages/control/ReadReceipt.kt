@@ -33,7 +33,7 @@ class ReadReceipt() : ControlMessage() {
     }
 
     override fun toProto(): SignalServiceProtos.Content? {
-        val timestamps = timestamps ?: return null
+        val timestamps = timestamps
         if (timestamps == null) {
             Log.w(ExpirationTimerUpdate.TAG, "Couldn't construct read receipt proto from: $this")
             return null

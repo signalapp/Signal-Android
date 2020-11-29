@@ -7,6 +7,16 @@ import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSende
 
 class ClosedGroupUpdate() : ControlMessage() {
 
+    // Kind enum
+    sealed class Kind {
+        class New(val groupPublicKey: ByteArray, val name: String, val groupPrivateKey: ByteArray, val senderKeys: Collection<org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
+        class Info(val groupPublicKey: ByteArray, val name: String, val senderKeys: Collection<org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
+        class SenderKeyRequest(val groupPublicKey: ByteArray) : Kind()
+        class SenderKey(val groupPublicKey: ByteArray, val senderKey: org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey) : Kind()
+    }
+
+    var kind: Kind? = null
+
     companion object {
         const val TAG = "ClosedGroupUpdate"
 
@@ -53,16 +63,6 @@ class ClosedGroupUpdate() : ControlMessage() {
             return ClosedGroupUpdate(kind)
         }
     }
-
-    // Kind enum
-    sealed class Kind {
-        class New(val groupPublicKey: ByteArray, val name: String, val groupPrivateKey: ByteArray, val senderKeys: Collection<org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
-        class Info(val groupPublicKey: ByteArray, val name: String, val senderKeys: Collection<org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
-        class SenderKeyRequest(val groupPublicKey: ByteArray) : Kind()
-        class SenderKey(val groupPublicKey: ByteArray, val senderKey: org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey) : Kind()
-    }
-
-    var kind: Kind? = null
 
     // constructor
     internal constructor(kind: Kind?) : this() {
