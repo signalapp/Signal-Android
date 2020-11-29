@@ -155,7 +155,7 @@ public class CommunicationActions {
     intent.putExtra(Intent.EXTRA_SUBJECT, Util.emptyIfNull(subject));
     intent.putExtra(Intent.EXTRA_TEXT, Util.emptyIfNull(body));
 
-    context.startActivity(intent);
+    context.startActivity(Intent.createChooser(intent, "Send email using: "));
   }
 
   /**
