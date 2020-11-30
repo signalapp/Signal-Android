@@ -50,8 +50,6 @@ public final class FeatureFlags {
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
   private static final String USERNAMES                    = "android.usernames";
-  private static final String GROUPS_V2_JOIN_VERSION       = "android.groupsv2.joinVersion";
-  private static final String GROUPS_V2_LINKS_VERSION      = "android.groupsv2.manageGroupLinksVersion";
   private static final String GROUPS_V2_RECOMMENDED_LIMIT  = "global.groupsv2.maxGroupSize";
   private static final String GROUPS_V2_HARD_LIMIT         = "global.groupsv2.groupSizeHardLimit";
   private static final String INTERNAL_USER                = "android.internalUser";
@@ -73,8 +71,6 @@ public final class FeatureFlags {
   private static final Set<String> REMOTE_CAPABLE = SetUtil.newHashSet(
       GROUPS_V2_RECOMMENDED_LIMIT,
       GROUPS_V2_HARD_LIMIT,
-      GROUPS_V2_JOIN_VERSION,
-      GROUPS_V2_LINKS_VERSION,
       INTERNAL_USER,
       USERNAMES,
       VERIFY_V2,
@@ -106,7 +102,6 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = SetUtil.newHashSet(
-      GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
       CLIENT_EXPIRATION
   );
@@ -183,42 +178,12 @@ public final class FeatureFlags {
     return getBoolean(USERNAMES, false);
   }
 
-  /** Allow creation and managing of group links. */
-  public static boolean groupsV2manageGroupLinks() {
-    return getVersionFlag(GROUPS_V2_LINKS_VERSION) == VersionFlag.ON;
-  }
-
   /**
    * Maximum number of members allowed in a group.
    */
   public static SelectionLimits groupLimits() {
     return new SelectionLimits(getInteger(GROUPS_V2_RECOMMENDED_LIMIT, 151),
                                getInteger(GROUPS_V2_HARD_LIMIT, 1001));
-  }
-
-  /**
-   * Ability of local client to join a GV2 group.
-   * <p>
-   * You must still check GV2 capabilities to respect linked devices.
-   */
-  public static GroupJoinStatus clientLocalGroupJoinStatus() {
-    switch (getVersionFlag(GROUPS_V2_JOIN_VERSION)) {
-      case ON_IN_FUTURE_VERSION: return GroupJoinStatus.UPDATE_TO_JOIN;
-      case ON                  : return GroupJoinStatus.LOCAL_CAN_JOIN;
-      case OFF                 :
-      default                  : return GroupJoinStatus.COMING_SOON;
-    }
-  }
-
-  public enum GroupJoinStatus {
-    /** No version of the client that can join V2 groups by link is in production. */
-    COMING_SOON,
-
-    /** A newer version of the client is in production that will allow joining via GV2 group links. */
-    UPDATE_TO_JOIN,
-
-    /** This version of the client allows joining via GV2 group links. */
-    LOCAL_CAN_JOIN
   }
 
   /** Internal testing extensions. */

@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@android:color/transparent"
-            app:title="@string/PendingMemberInvitesActivity_pending_group_invites"
+            app:title="@string/PendingMembersActivity_pending_group_invites"
             app:titleTextColor="@color/signal_text_primary" />
 
     </com.google.android.material.appbar.AppBarLayout>

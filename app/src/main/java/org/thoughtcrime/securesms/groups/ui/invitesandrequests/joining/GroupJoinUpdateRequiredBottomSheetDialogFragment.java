@@ -16,7 +16,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
@@ -54,24 +53,13 @@ public final class GroupJoinUpdateRequiredBottomSheetDialogFragment extends Bott
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    switch (FeatureFlags.clientLocalGroupJoinStatus()) {
-      case COMING_SOON:
-        groupJoinTitle.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon);
-        groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon);
-        groupJoinButton.setText(android.R.string.ok);
-        groupJoinButton.setOnClickListener(v -> dismiss());
-        break;
-      case UPDATE_TO_JOIN:
-      case LOCAL_CAN_JOIN:
-        groupJoinTitle.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links);
-        groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message);
-        groupJoinButton.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal);
-        groupJoinButton.setOnClickListener(v -> {
-          PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
-          dismiss();
-        });
-        break;
-    }
+    groupJoinTitle.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links);
+    groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message);
+    groupJoinButton.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal);
+    groupJoinButton.setOnClickListener(v -> {
+      PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+      dismiss();
+    });
   }
 
   @Override

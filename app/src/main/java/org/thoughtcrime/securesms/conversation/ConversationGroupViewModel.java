@@ -138,7 +138,6 @@ final class ConversationGroupViewModel extends ViewModel {
 
   private static int mapToActionableRequestingMemberCount(@Nullable GroupRecord record) {
     if (record != null                          &&
-        FeatureFlags.groupsV2manageGroupLinks() &&
         record.isV2Group()                      &&
         record.memberLevel(Recipient.self()) == GroupDatabase.MemberLevel.ADMINISTRATOR)
     {

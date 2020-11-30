@@ -1745,7 +1745,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       reminderView.get().setOnActionClickListener(this::handleReminderAction);
       reminderView.get().setOnDismissListener(() -> inviteReminderModel.dismissReminder());
       reminderView.get().showReminder(inviteReminder.get());
-    } else if (actionableRequestingMembers != null && actionableRequestingMembers > 0 && FeatureFlags.groupsV2manageGroupLinks()) {
+    } else if (actionableRequestingMembers != null && actionableRequestingMembers > 0) {
       reminderView.get().showReminder(PendingGroupJoinRequestsReminder.create(this, actionableRequestingMembers));
       reminderView.get().setOnActionClickListener(id -> {
         if (id == R.id.reminder_action_review_join_requests) {

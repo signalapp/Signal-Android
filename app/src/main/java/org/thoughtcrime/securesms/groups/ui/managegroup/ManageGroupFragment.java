@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentD
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupRightsDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment;
-import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -79,8 +78,6 @@ public class ManageGroupFragment extends LoggingFragment {
 
   private ManageGroupViewModel               viewModel;
   private GroupMemberListView                groupMemberList;
-  private View                               pendingMembersRow;
-  private TextView                           pendingMembersCount;
   private View                               pendingAndRequestingRow;
   private TextView                           pendingAndRequestingCount;
   private Toolbar                            toolbar;
@@ -92,7 +89,6 @@ public class ManageGroupFragment extends LoggingFragment {
   private ThreadPhotoRailView                threadPhotoRailView;
   private View                               groupMediaCard;
   private View                               accessControlCard;
-  private View                               pendingMembersCard;
   private View                               groupLinkCard;
   private ManageGroupViewModel.CursorFactory cursorFactory;
   private View                               sharedMediaRow;
@@ -150,14 +146,11 @@ public class ManageGroupFragment extends LoggingFragment {
     memberCountUnderAvatar      = view.findViewById(R.id.member_count);
     memberCountAboveList        = view.findViewById(R.id.member_count_2);
     groupMemberList             = view.findViewById(R.id.group_members);
-    pendingMembersRow           = view.findViewById(R.id.pending_members_row);
-    pendingMembersCount         = view.findViewById(R.id.pending_members_count);
     pendingAndRequestingRow     = view.findViewById(R.id.pending_and_requesting_members_row);
     pendingAndRequestingCount   = view.findViewById(R.id.pending_and_requesting_members_count);
     threadPhotoRailView         = view.findViewById(R.id.recent_photos);
     groupMediaCard              = view.findViewById(R.id.group_media_card);
     accessControlCard           = view.findViewById(R.id.group_access_control_card);
-    pendingMembersCard          = view.findViewById(R.id.group_pending_card);
     groupLinkCard               = view.findViewById(R.id.group_link_card);
     sharedMediaRow              = view.findViewById(R.id.shared_media_row);
     editGroupAccessRow          = view.findViewById(R.id.edit_group_access_row);
@@ -210,34 +203,18 @@ public class ManageGroupFragment extends LoggingFragment {
       }
     });
 
-    if (FeatureFlags.groupsV2manageGroupLinks()) {
-      viewModel.getPendingAndRequestingCount().observe(getViewLifecycleOwner(),
-        pendingAndRequestingCount -> {
-          pendingAndRequestingRow.setOnClickListener(v -> {
-            FragmentActivity activity = requireActivity();
-            activity.startActivity(ManagePendingAndRequestingMembersActivity.newIntent(activity, groupId.requireV2()));
-          });
-          if (pendingAndRequestingCount == 0) {
-            this.pendingAndRequestingCount.setVisibility(View.GONE);
-          } else {
-            this.pendingAndRequestingCount.setText(String.format(Locale.getDefault(), "%d", pendingAndRequestingCount));
-            this.pendingAndRequestingCount.setVisibility(View.VISIBLE);
-          }
-        });
-    } else {
-      viewModel.getPendingMemberCount().observe(getViewLifecycleOwner(),
-        pendingInviteCount -> {
-          pendingMembersRow.setOnClickListener(v -> {
-            FragmentActivity activity = requireActivity();
-            activity.startActivity(PendingMemberInvitesActivity.newIntent(activity, groupId.requireV2()));
-          });
-          if (pendingInviteCount == 0) {
-            pendingMembersCount.setText(R.string.ManageGroupActivity_none);
-          } else {
-            pendingMembersCount.setText(getResources().getQuantityString(R.plurals.ManageGroupActivity_invited, pendingInviteCount, pendingInviteCount));
-          }
-        });
-    }
+    viewModel.getPendingAndRequestingCount().observe(getViewLifecycleOwner(), pendingAndRequestingCount -> {
+      pendingAndRequestingRow.setOnClickListener(v -> {
+        FragmentActivity activity = requireActivity();
+        activity.startActivity(ManagePendingAndRequestingMembersActivity.newIntent(activity, groupId.requireV2()));
+      });
+      if (pendingAndRequestingCount == 0) {
+        this.pendingAndRequestingCount.setVisibility(View.GONE);
+      } else {
+        this.pendingAndRequestingCount.setText(String.format(Locale.getDefault(), "%d", pendingAndRequestingCount));
+        this.pendingAndRequestingCount.setVisibility(View.VISIBLE);
+      }
+    });
 
     avatar.setFallbackPhotoProvider(fallbackPhotoProvider);
 
@@ -283,8 +260,7 @@ public class ManageGroupFragment extends LoggingFragment {
                                                                             ViewCompat.getLayoutDirection(threadPhotoRailView) == ViewCompat.LAYOUT_DIRECTION_LTR),
                                  RETURN_FROM_MEDIA));
 
-      pendingMembersCard.setVisibility(!FeatureFlags.groupsV2manageGroupLinks() && vs.getGroupRecipient().requireGroupId().isV2() ? View.VISIBLE : View.GONE);
-      groupLinkCard     .setVisibility( FeatureFlags.groupsV2manageGroupLinks() && vs.getGroupRecipient().requireGroupId().isV2() ? View.VISIBLE : View.GONE);
+      groupLinkCard.setVisibility(vs.getGroupRecipient().requireGroupId().isV2() ? View.VISIBLE : View.GONE);
     });
 
     leaveGroup.setVisibility(groupId.isPush() ? View.VISIBLE : View.GONE);
