@@ -13,12 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 /**
  * A class that can be used to pre-cache layouts. Usage flow:
@@ -81,7 +84,8 @@ public class CachedInflater {
 
   private static class ViewCache {
 
-    private static final ViewCache INSTANCE = new ViewCache();
+    private static final ViewCache INSTANCE           = new ViewCache();
+    private static final Executor  ENQUEUING_EXECUTOR = new SerialExecutor(SignalExecutors.BOUNDED);
 
     private final Map<Integer, List<View>> cache = new HashMap<>();
 
@@ -107,12 +111,19 @@ public class CachedInflater {
 
       AsyncLayoutInflater inflater = new AsyncLayoutInflater(context);
 
-      int existingCount = Util.getOrDefault(cache, layoutRes, Collections.emptyList()).size();
-      int inflateCount  = Math.max(limit - existingCount, 0);
+      int  existingCount = Util.getOrDefault(cache, layoutRes, Collections.emptyList()).size();
+      int  inflateCount  = Math.max(limit - existingCount, 0);
+      long enqueueTime   = System.currentTimeMillis();
 
-      for (int i = 0; i < inflateCount; i++) {
-        final long enqueueTime = System.currentTimeMillis();
-        inflater.inflate(layoutRes, parent, (view, resId, p) -> {
+      // Calling AsyncLayoutInflator#inflate can block the calling thread when there's a large number of requests.
+      // The method is annotated @UiThread, but unnecessarily so.
+      ENQUEUING_EXECUTOR.execute(() -> {
+        if (enqueueTime < lastClearTime) {
+          Log.d(TAG, "Prefetch is no longer valid. Ignoring " + inflateCount + " inflates.");
+          return;
+        }
+
+        AsyncLayoutInflater.OnInflateFinishedListener onInflateFinishedListener = (view, resId, p) -> {
           Util.assertMainThread();
           if (enqueueTime < lastClearTime) {
             Log.d(TAG, "Prefetch is no longer valid. Ignoring.");
@@ -125,8 +136,12 @@ public class CachedInflater {
           views.add(view);
 
           cache.put(resId, views);
-        });
-      }
+        };
+
+        for (int i = 0; i < inflateCount; i++) {
+          inflater.inflate(layoutRes, parent, onInflateFinishedListener);
+        }
+      });
     }
 
     @MainThread
