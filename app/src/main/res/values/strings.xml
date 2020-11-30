@@ -173,6 +173,7 @@
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
     <string name="CommunicationActions_no_email_app_found">No email app found.</string>
+    <string name="CommunicationActions_send_email">Send email</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">A cellular call is already in progress.</string>
     <string name="CommunicationActions_start_video_call">Start video call?</string>
     <string name="CommunicationActions_start_voice_call">Start voice call?</string>
