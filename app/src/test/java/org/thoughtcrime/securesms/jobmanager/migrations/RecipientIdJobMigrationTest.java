@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
-import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -88,7 +87,7 @@ public class RecipientIdJobMigrationTest {
   @Test
   public void migrate_requestGroupInfoJob() throws Exception {
     JobData testData = new JobData("RequestGroupInfoJob", null, new Data.Builder().putString("source", "+16101234567")
-                                                                                  .putString("group_id", "__textsecure_group__!abcd")
+                                                                                  .putString("group_id", "__textsecure_group__!abcdef0123456789abcdef0123456789")
                                                                                   .build());
     mockRecipientResolve("+16101234567", 1);
 
@@ -98,7 +97,7 @@ public class RecipientIdJobMigrationTest {
     assertEquals("RequestGroupInfoJob", converted.getFactoryKey());
     assertNull(converted.getQueueKey());
     assertEquals("1", converted.getData().getString("source"));
-    assertEquals("__textsecure_group__!abcd", converted.getData().getString("group_id"));
+    assertEquals("__textsecure_group__!abcdef0123456789abcdef0123456789", converted.getData().getString("group_id"));
 
     new RequestGroupInfoJob.Factory().create(mock(Job.Parameters.class), converted.getData());
   }
@@ -185,7 +184,7 @@ public class RecipientIdJobMigrationTest {
   @Test
   public void migrate_pushGroupUpdateJob() throws Exception {
     JobData testData = new JobData("PushGroupUpdateJob", null, new Data.Builder().putString("source", "+16101234567")
-                                                                                 .putString("group_id", "__textsecure_group__!abcd")
+                                                                                 .putString("group_id", "__textsecure_group__!abcdef0123456789abcdef0123456789")
                                                                                  .build());
     mockRecipientResolve("+16101234567", 1);
 
@@ -195,7 +194,7 @@ public class RecipientIdJobMigrationTest {
     assertEquals("PushGroupUpdateJob", converted.getFactoryKey());
     assertNull(converted.getQueueKey());
     assertEquals("1", converted.getData().getString("source"));
-    assertEquals("__textsecure_group__!abcd", converted.getData().getString("group_id"));
+    assertEquals("__textsecure_group__!abcdef0123456789abcdef0123456789", converted.getData().getString("group_id"));
 
     new PushGroupUpdateJob.Factory().create(mock(Job.Parameters.class), converted.getData());
   }

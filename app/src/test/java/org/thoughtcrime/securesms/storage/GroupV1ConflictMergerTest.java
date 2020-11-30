@@ -15,6 +15,7 @@ import static org.junit.Assert.assertFalse;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.byteArray;
+import static org.thoughtcrime.securesms.testutil.ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS;
 
 public final class GroupV1ConflictMergerTest {
 
@@ -27,13 +28,13 @@ public final class GroupV1ConflictMergerTest {
 
   @Test
   public void merge_alwaysPreferRemote() {
-    SignalGroupV1Record remote = new SignalGroupV1Record.Builder(byteArray(1), byteArray(100))
+    SignalGroupV1Record remote = new SignalGroupV1Record.Builder(byteArray(1), byteArray(100, 16))
                                                         .setBlocked(false)
                                                         .setProfileSharingEnabled(false)
                                                         .setArchived(false)
                                                         .setForcedUnread(false)
                                                         .build();
-    SignalGroupV1Record local  = new SignalGroupV1Record.Builder(byteArray(2), byteArray(100))
+    SignalGroupV1Record local  = new SignalGroupV1Record.Builder(byteArray(2), byteArray(100, 16))
                                                         .setBlocked(true)
                                                         .setProfileSharingEnabled(true)
                                                         .setArchived(true)
@@ -43,7 +44,7 @@ public final class GroupV1ConflictMergerTest {
     SignalGroupV1Record merged = new GroupV1ConflictMerger(Collections.singletonList(local), id -> false).merge(remote, local, KEY_GENERATOR);
 
     assertArrayEquals(remote.getId().getRaw(), merged.getId().getRaw());
-    assertArrayEquals(byteArray(100), merged.getGroupId());
+    assertArrayEquals(byteArray(100, 16), merged.getGroupId());
     assertFalse(merged.isProfileSharingEnabled());
     assertFalse(merged.isBlocked());
     assertFalse(merged.isArchived());
@@ -52,12 +53,12 @@ public final class GroupV1ConflictMergerTest {
 
   @Test
   public void merge_returnRemoteIfEndResultMatchesRemote() {
-    SignalGroupV1Record remote = new SignalGroupV1Record.Builder(byteArray(1), byteArray(100))
+    SignalGroupV1Record remote = new SignalGroupV1Record.Builder(byteArray(1), byteArray(100, 16))
                                                         .setBlocked(false)
                                                         .setProfileSharingEnabled(true)
                                                         .setArchived(true)
                                                         .build();
-    SignalGroupV1Record local  = new SignalGroupV1Record.Builder(byteArray(2), byteArray(100))
+    SignalGroupV1Record local  = new SignalGroupV1Record.Builder(byteArray(2), byteArray(100, 16))
                                                         .setBlocked(true)
                                                         .setProfileSharingEnabled(false)
                                                         .setArchived(false)
@@ -70,6 +71,8 @@ public final class GroupV1ConflictMergerTest {
 
   @Test
   public void merge_excludeBadGroupId() {
+    assumeZkGroupSupportedOnOS();
+
     SignalGroupV1Record badRemote  = new SignalGroupV1Record.Builder(byteArray(1), badGroupKey(99))
                                                             .setBlocked(false)
                                                             .setProfileSharingEnabled(true)
@@ -89,6 +92,8 @@ public final class GroupV1ConflictMergerTest {
 
   @Test
   public void merge_excludeMigratedGroupId() {
+    assumeZkGroupSupportedOnOS();
+
     GroupId.V1 v1Id = GroupId.v1orThrow(groupKey(1));
     GroupId.V2 v2Id = v1Id.deriveV2MigrationGroupId();
 
