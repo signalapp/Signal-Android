@@ -91,7 +91,6 @@ import org.thoughtcrime.securesms.MediaOverviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.PromptMmsActivity;
-import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
@@ -119,7 +118,6 @@ import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.InviteReminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
-import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -215,7 +213,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -230,7 +227,6 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
-import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 import org.session.libsignal.service.loki.protocol.mentions.Mention;
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
@@ -315,7 +311,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ConversationFragment        fragment;
   private   Button                      unblockButton;
   private   Button                      makeDefaultSmsButton;
-  private   Button                      registerButton;
   private   InputAwareLayout            container;
   protected Stub<ReminderView>          reminderView;
   private   Stub<UnverifiedBannerView>  unverifiedBannerView;
@@ -1032,12 +1027,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivityForResult(intent, SMS_DEFAULT);
   }
 
-  private void handleRegisterForSignal() {
-    Intent intent = new Intent(this, RegistrationActivity.class);
-    intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
-    startActivity(intent);
-  }
-
   private void handleInviteLink() {
     String inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, getString(R.string.install_url));
 
@@ -1253,25 +1242,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           return null;
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    }
-  }
-
-  private void handleDial(final Recipient recipient, boolean isSecure) {
-    if (recipient == null) return;
-
-    if (isSecure) {
-      CommunicationActions.startVoiceCall(this, recipient);
-    } else {
-      try {
-        Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                                       Uri.parse("tel:" + recipient.getAddress().serialize()));
-        startActivity(dialIntent);
-      } catch (ActivityNotFoundException anfe) {
-        Log.w(TAG, anfe);
-        Dialogs.showAlertDialog(this,
-                                getString(R.string.ConversationActivity_calls_not_supported),
-                                getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
-      }
     }
   }
 
@@ -1566,9 +1536,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void updateReminders(boolean seenInvite) {
     Log.i(TAG, "updateReminders(" + seenInvite + ")");
 
-    if (UnauthorizedReminder.isEligible(this)) {
-      reminderView.get().showReminder(new UnauthorizedReminder(this));
-    } else if (ExpiredBuildReminder.isEligible()) {
+    if (ExpiredBuildReminder.isEligible()) {
       reminderView.get().showReminder(new ExpiredBuildReminder(this));
     } else if (ServiceOutageReminder.isEligible(this)) {
       ApplicationContext.getInstance(this).getJobManager().add(new ServiceOutageDetectionJob());
@@ -1686,7 +1654,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     emojiDrawerStub                        = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
     unblockButton                          = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton                   = ViewUtil.findById(this, R.id.make_default_sms_button);
-    registerButton                         = ViewUtil.findById(this, R.id.register_button);
     container                              = ViewUtil.findById(this, R.id.layout_container);
     reminderView                           = ViewUtil.findStubById(this, R.id.reminder_stub);
     unverifiedBannerView                   = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
@@ -1738,7 +1705,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
      */
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
-    registerButton.setOnClickListener(v -> handleRegisterForSignal());
 
     composeText.setOnKeyListener(composeKeyPressedListener);
     composeText.addTextChangedListener(composeKeyPressedListener);
@@ -2132,27 +2098,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       unblockButton.setVisibility(View.GONE);
       inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
-      registerButton.setVisibility(View.GONE);
     } else if (recipient.isBlocked()) {
       unblockButton.setVisibility(View.VISIBLE);
       inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
-      registerButton.setVisibility(View.GONE);
     } else if (!isSecureText && isPushGroupConversation()) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
-      registerButton.setVisibility(View.VISIBLE);
     } else if (!isSecureText && !isDefaultSms) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
-      registerButton.setVisibility(View.GONE);
     } else {
       inputPanel.setVisibility(View.VISIBLE);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
-      registerButton.setVisibility(View.GONE);
     }
   }
 

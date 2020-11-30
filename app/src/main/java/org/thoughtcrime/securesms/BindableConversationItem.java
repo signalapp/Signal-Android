@@ -38,9 +38,5 @@ public interface BindableConversationItem extends Unbindable {
     void onLinkPreviewClicked(@NonNull LinkPreview linkPreview);
     void onMoreTextClicked(@NonNull Address conversationAddress, long messageId, boolean isMms);
     void onStickerClicked(@NonNull StickerLocator stickerLocator);
-    void onSharedContactDetailsClicked(@NonNull Contact contact, @NonNull View avatarTransitionView);
-    void onAddToContactsClicked(@NonNull Contact contact);
-    void onMessageSharedContactClicked(@NonNull List<Recipient> choices);
-    void onInviteSharedContactClicked(@NonNull List<Recipient> choices);
   }
 }

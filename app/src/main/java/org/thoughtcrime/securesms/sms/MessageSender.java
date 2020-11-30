@@ -42,12 +42,10 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceAccountManager;
 import org.session.libsignal.service.api.push.ContactTokenDetails;
 
 import java.io.IOException;
@@ -213,30 +211,6 @@ public class MessageSender {
   private static boolean isGroupPushSend(Recipient recipient) {
     return recipient.getAddress().isGroup() &&
            !recipient.getAddress().isMmsGroup();
-  }
-
-  private static boolean isPushDestination(Context context, Recipient destination) {
-    if (destination.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-      return true;
-    } else if (destination.resolve().getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
-      return false;
-    } else {
-      try {
-        SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
-        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination.getAddress().serialize());
-
-        if (!registeredUser.isPresent()) {
-          DatabaseFactory.getRecipientDatabase(context).setRegistered(destination, RecipientDatabase.RegisteredState.NOT_REGISTERED);
-          return false;
-        } else {
-          DatabaseFactory.getRecipientDatabase(context).setRegistered(destination, RecipientDatabase.RegisteredState.REGISTERED);
-          return true;
-        }
-      } catch (IOException e1) {
-        Log.w(TAG, e1);
-        return false;
-      }
-    }
   }
 
   private static boolean isLocalSelfSend(@NonNull Context context, @NonNull Recipient recipient, boolean forceSms) {

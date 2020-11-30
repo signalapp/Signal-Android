@@ -798,33 +798,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
     }
 
-    private class AboutNumberClickedListener implements ContactPreference.Listener {
-
-      @Override
-      public void onMessageClicked() {
-        CommunicationActions.startConversation(getContext(), recipient, null);
-      }
-
-      @Override
-      public void onSecureCallClicked() {
-        CommunicationActions.startVoiceCall(getActivity(), recipient);
-      }
-
-      @Override
-      public void onInSecureCallClicked() {
-        try {
-          Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                                         Uri.parse("tel:" + recipient.getAddress().serialize()));
-          startActivity(dialIntent);
-        } catch (ActivityNotFoundException anfe) {
-          Log.w(TAG, anfe);
-          Dialogs.showAlertDialog(getContext(),
-                                  getString(R.string.ConversationActivity_calls_not_supported),
-                                  getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
-        }
-      }
-    }
-
     private class CustomNotificationsChangedListener implements Preference.OnPreferenceChangeListener {
 
       @Override

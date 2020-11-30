@@ -139,13 +139,6 @@ dependencies {
 def canonicalVersionCode = 121
 def canonicalVersionName = "1.6.4"
 
-def postFixSize = 10
-def abiPostFix = ['armeabi-v7a' : 1,
-                  'arm64-v8a'   : 2,
-                  'x86'         : 3,
-                  'x86_64'      : 4,
-                  'universal'   : 5]
-
 android {
     flavorDimensions "none"
     compileSdkVersion androidCompileSdkVersion
@@ -157,7 +150,7 @@ android {
     }
 
     defaultConfig {
-        versionCode canonicalVersionCode * postFixSize
+        versionCode canonicalVersionCode
         versionName canonicalVersionName
 
         minSdkVersion androidMinSdkVersion
@@ -182,20 +175,7 @@ android {
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
 
-        ndk {
-            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-        }
-
         resConfigs autoResConfig()
-
-        splits {
-            abi {
-                enable true
-                reset()
-                include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-                universalApk true
-            }
-        }
     }
 
     compileOptions {
@@ -267,12 +247,7 @@ android {
     android.applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
-            def abiName = output.getFilter("ABI") ?: 'universal'
-            def postFix = abiPostFix.get(abiName, 0)
-
-            if (postFix >= postFixSize) throw new AssertionError("postFix is too large")
-
-            output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
+            output.versionCodeOverride = canonicalVersionCode
         }
     }
 

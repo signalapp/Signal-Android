@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -86,7 +85,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -111,12 +109,6 @@ import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
-import org.session.libsignal.service.api.messages.calls.AnswerMessage;
-import org.session.libsignal.service.api.messages.calls.BusyMessage;
-import org.session.libsignal.service.api.messages.calls.HangupMessage;
-import org.session.libsignal.service.api.messages.calls.IceUpdateMessage;
-import org.session.libsignal.service.api.messages.calls.OfferMessage;
-import org.session.libsignal.service.api.messages.calls.SignalServiceCallMessage;
 import org.session.libsignal.service.api.messages.multidevice.ReadMessage;
 import org.session.libsignal.service.api.messages.multidevice.RequestMessage;
 import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage;
@@ -325,15 +317,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
         else if (syncMessage.getBlockedList().isPresent())           SyncMessagesProtocol.handleBlockedContactsSyncMessage(context, content, syncMessage.getBlockedList().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
-      } else if (content.getCallMessage().isPresent()) {
-        Log.i(TAG, "Got call message...");
-        SignalServiceCallMessage message = content.getCallMessage().get();
-
-        if      (message.getOfferMessage().isPresent())      handleCallOfferMessage(content, message.getOfferMessage().get(), smsMessageId);
-        else if (message.getAnswerMessage().isPresent())     handleCallAnswerMessage(content, message.getAnswerMessage().get());
-        else if (message.getIceUpdateMessages().isPresent()) handleCallIceUpdateMessage(content, message.getIceUpdateMessages().get());
-        else if (message.getHangupMessage().isPresent())     handleCallHangupMessage(content, message.getHangupMessage().get(), smsMessageId);
-        else if (message.getBusyMessage().isPresent())       handleCallBusyMessage(content, message.getBusyMessage().get());
       } else if (content.getReceiptMessage().isPresent()) {
         SignalServiceReceiptMessage message = content.getReceiptMessage().get();
 
@@ -380,86 +363,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } catch (IOException e) {
       Log.i(TAG, "IOException during message decryption.");
     }
-  }
-
-  private void handleCallOfferMessage(@NonNull SignalServiceContent content,
-                                      @NonNull OfferMessage message,
-                                      @NonNull Optional<Long> smsMessageId)
-  {
-    Log.w(TAG, "handleCallOfferMessage...");
-
-    if (smsMessageId.isPresent()) {
-      SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
-      database.markAsMissedCall(smsMessageId.get());
-    } else {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_INCOMING_CALL);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
-      intent.putExtra(WebRtcCallService.EXTRA_TIMESTAMP, content.getTimestamp());
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
-      else                                                context.startService(intent);
-    }
-  }
-
-  private void handleCallAnswerMessage(@NonNull SignalServiceContent content,
-                                       @NonNull AnswerMessage message)
-  {
-    Log.i(TAG, "handleCallAnswerMessage...");
-    Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_RESPONSE_MESSAGE);
-    intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
-
-    context.startService(intent);
-  }
-
-  private void handleCallIceUpdateMessage(@NonNull SignalServiceContent content,
-                                          @NonNull List<IceUpdateMessage> messages)
-  {
-    Log.w(TAG, "handleCallIceUpdateMessage... " + messages.size());
-    for (IceUpdateMessage message : messages) {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_ICE_MESSAGE);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP, message.getSdp());
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_MID, message.getSdpMid());
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_LINE_INDEX, message.getSdpMLineIndex());
-
-      context.startService(intent);
-    }
-  }
-
-  private void handleCallHangupMessage(@NonNull SignalServiceContent content,
-                                       @NonNull HangupMessage message,
-                                       @NonNull Optional<Long> smsMessageId)
-  {
-    Log.i(TAG, "handleCallHangupMessage");
-    if (smsMessageId.isPresent()) {
-      DatabaseFactory.getSmsDatabase(context).markAsMissedCall(smsMessageId.get());
-    } else {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_REMOTE_HANGUP);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-
-      context.startService(intent);
-    }
-  }
-
-  private void handleCallBusyMessage(@NonNull SignalServiceContent content,
-                                     @NonNull BusyMessage message)
-  {
-    Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_REMOTE_BUSY);
-    intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-
-    context.startService(intent);
   }
 
   private void handleEndSessionMessage(@NonNull SignalServiceContent content,
@@ -1509,8 +1412,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else {
         return sender.isBlocked();
       }
-    } else if (content.getCallMessage().isPresent() || content.getTypingMessage().isPresent()) {
-      return sender.isBlocked();
     } else if (content.getSyncMessage().isPresent()) {
       return SyncMessagesProtocol.shouldIgnoreSyncMessage(context, sender);
     }

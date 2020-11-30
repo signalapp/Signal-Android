@@ -161,9 +161,8 @@ public class ConversationItem extends TapJackingProofLinearLayout
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
   private           Recipient                       conversationRecipient;
   private           Stub<ConversationItemThumbnail> mediaThumbnailStub;
-  private           Stub<MessageAudioView>                 audioViewStub;
+  private           Stub<MessageAudioView>          audioViewStub;
   private           Stub<DocumentView>              documentViewStub;
-  private           Stub<SharedContactView>         sharedContactStub;
   private           Stub<LinkPreviewView>           linkPreviewStub;
   private           Stub<StickerView>               stickerStub;
   private @Nullable EventListener                   eventListener;
@@ -174,8 +173,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
   private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener       = new AttachmentDownloadClickListener();
   private final SlideClickPassthroughListener   singleDownloadClickListener = new SlideClickPassthroughListener(downloadClickListener);
-  private final SharedContactEventListener      sharedContactEventListener  = new SharedContactEventListener();
-  private final SharedContactClickListener      sharedContactClickListener  = new SharedContactClickListener();
   private final LinkPreviewClickListener        linkPreviewClickListener    = new LinkPreviewClickListener();
 
   private final Context context;
@@ -213,7 +210,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
     this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));
     this.audioViewStub           = new Stub<>(findViewById(R.id.audio_view_stub));
     this.documentViewStub        = new Stub<>(findViewById(R.id.document_view_stub));
-    this.sharedContactStub       = new Stub<>(findViewById(R.id.shared_contact_view_stub));
     this.linkPreviewStub         = new Stub<>(findViewById(R.id.link_preview_stub));
     this.stickerStub             = new Stub<>(findViewById(R.id.sticker_view_stub));
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
@@ -417,7 +413,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
     return hasThumbnail(messageRecord)      &&
            !hasAudio(messageRecord)         &&
            !hasDocument(messageRecord)      &&
-           !hasSharedContact(messageRecord) &&
            !hasSticker(messageRecord);
   }
 
@@ -426,7 +421,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
            !hasThumbnail(messageRecord)          &&
            !hasAudio(messageRecord)              &&
            hasDocument(messageRecord)            &&
-           !hasSharedContact(messageRecord)      &&
            !hasSticker(messageRecord)            &&
            !hasQuote(messageRecord);
   }
@@ -436,7 +430,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
            !hasThumbnail(messageRecord)          &&
            !hasAudio(messageRecord)              &&
            !hasDocument(messageRecord)           &&
-           !hasSharedContact(messageRecord)      &&
            !hasSticker(messageRecord)            &&
            !hasQuote(messageRecord);
   }
@@ -454,10 +447,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
 
   private boolean hasQuote(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getQuote() != null;
-  }
-
-  private boolean hasSharedContact(MessageRecord messageRecord) {
-    return messageRecord.isMms() && !((MmsMessageRecord)messageRecord).getSharedContacts().isEmpty();
   }
 
   private boolean hasLinkPreview(MessageRecord  messageRecord) {
@@ -547,30 +536,11 @@ public class ConversationItem extends TapJackingProofLinearLayout
   {
     boolean showControls = !messageRecord.isFailed();
 
-    if (hasSharedContact(messageRecord)) {
-      sharedContactStub.get().setVisibility(VISIBLE);
-      if (audioViewStub.resolved())      mediaThumbnailStub.get().setVisibility(View.GONE);
-      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
-      if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
-      if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
-      if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
-
-      sharedContactStub.get().setContact(((MediaMmsMessageRecord) messageRecord).getSharedContacts().get(0), glideRequests, locale);
-      sharedContactStub.get().setEventListener(sharedContactEventListener);
-      sharedContactStub.get().setOnClickListener(sharedContactClickListener);
-      sharedContactStub.get().setOnLongClickListener(passthroughClickListener);
-
-      setSharedContactCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
-
-      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      footer.setVisibility(GONE);
-    } else if (hasLinkPreview(messageRecord)) {
+    if (hasLinkPreview(messageRecord)) {
       linkPreviewStub.get().setVisibility(View.VISIBLE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
-      if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
@@ -606,7 +576,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
       audioViewStub.get().setVisibility(View.VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
-      if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
 
@@ -623,7 +592,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
       documentViewStub.get().setVisibility(View.VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
-      if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
 
@@ -644,7 +612,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
-      if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
 
       //noinspection ConstantConditions
@@ -662,7 +629,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
       mediaThumbnailStub.get().setVisibility(View.VISIBLE);
       if (audioViewStub.resolved())     audioViewStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())  documentViewStub.get().setVisibility(View.GONE);
-      if (sharedContactStub.resolved()) sharedContactStub.get().setVisibility(GONE);
       if (linkPreviewStub.resolved())   linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
 
@@ -691,7 +657,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
-      if (sharedContactStub.resolved())  sharedContactStub.get().setVisibility(GONE);
       if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
 
@@ -764,17 +729,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
 
     mediaThumbnailStub.get().setCorners(topLeft, topRight, bottomRight, bottomLeft);
   }
-
-  private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
-      sharedContactStub.get().setSingularStyle();
-    } else if (current.isOutgoing()) {
-      sharedContactStub.get().setClusteredOutgoingStyle();
-    } else {
-      sharedContactStub.get().setClusteredIncomingStyle();
-    }
-  }
-
   private void setLinkPreviewCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, boolean bigImage) {
     int defaultRadius  = readDimen(R.dimen.message_corner_radius);
     int collapseRadius = readDimen(R.dimen.message_corner_collapse_radius);
@@ -910,7 +864,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
 
     footer.setVisibility(GONE);
     stickerFooter.setVisibility(GONE);
-    if (sharedContactStub.resolved())  sharedContactStub.get().getFooter().setVisibility(GONE);
     if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().getFooter().setVisibility(GONE);
 
     boolean differentTimestamps = next.isPresent() && !DateUtils.isSameExtendedRelativeTimestamp(context, locale, next.get().getTimestamp(), current.getTimestamp());
@@ -927,8 +880,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
     if (hasSticker(messageRecord)) {
       return stickerFooter;
-    } else if (hasSharedContact(messageRecord)) {
-      return sharedContactStub.get().getFooter();
     } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return mediaThumbnailStub.get().getFooter();
     } else {
@@ -1148,46 +1099,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
       setGroupMessageStatus(messageRecord, recipient);
       setAudioViewTint(messageRecord, conversationRecipient);
     });
-  }
-
-  private class SharedContactEventListener implements SharedContactView.EventListener {
-    @Override
-    public void onAddToContactsClicked(@NonNull Contact contact) {
-      if (eventListener != null && batchSelected.isEmpty()) {
-        eventListener.onAddToContactsClicked(contact);
-      } else {
-        passthroughClickListener.onClick(sharedContactStub.get());
-      }
-    }
-
-    @Override
-    public void onInviteClicked(@NonNull List<Recipient> choices) {
-      if (eventListener != null && batchSelected.isEmpty()) {
-        eventListener.onInviteSharedContactClicked(choices);
-      } else {
-        passthroughClickListener.onClick(sharedContactStub.get());
-      }
-    }
-
-    @Override
-    public void onMessageClicked(@NonNull List<Recipient> choices) {
-      if (eventListener != null && batchSelected.isEmpty()) {
-        eventListener.onMessageSharedContactClicked(choices);
-      } else {
-        passthroughClickListener.onClick(sharedContactStub.get());
-      }
-    }
-  }
-
-  private class SharedContactClickListener implements View.OnClickListener {
-    @Override
-    public void onClick(View view) {
-      if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
-        eventListener.onSharedContactDetailsClicked(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), sharedContactStub.get().getAvatarView());
-      } else {
-        passthroughClickListener.onClick(view);
-      }
-    }
   }
 
   private class LinkPreviewClickListener implements View.OnClickListener {

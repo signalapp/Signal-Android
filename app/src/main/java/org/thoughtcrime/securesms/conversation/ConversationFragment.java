@@ -68,7 +68,6 @@ import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
-import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.database.Address;
@@ -1034,49 +1033,6 @@ public class ConversationFragment extends Fragment
       if (getContext() != null && getActivity() != null) {
         startActivity(StickerPackPreviewActivity.getIntent(sticker.getPackId(), sticker.getPackKey()));
       }
-    }
-
-    @Override
-    public void onSharedContactDetailsClicked(@NonNull Contact contact, @NonNull View avatarTransitionView) {
-      if (getContext() != null && getActivity() != null) {
-        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), avatarTransitionView, "avatar").toBundle();
-        ActivityCompat.startActivity(getActivity(), SharedContactDetailsActivity.getIntent(getContext(), contact), bundle);
-      }
-    }
-
-    @Override
-    public void onAddToContactsClicked(@NonNull Contact contactWithAvatar) {
-      if (getContext() != null) {
-        new AsyncTask<Void, Void, Intent>() {
-          @Override
-          protected Intent doInBackground(Void... voids) {
-            return ContactUtil.buildAddToContactsIntent(getContext(), contactWithAvatar);
-          }
-
-          @Override
-          protected void onPostExecute(Intent intent) {
-            startActivityForResult(intent, CODE_ADD_EDIT_CONTACT);
-          }
-        }.execute();
-      }
-    }
-
-    @Override
-    public void onMessageSharedContactClicked(@NonNull List<Recipient> choices) {
-      if (getContext() == null) return;
-
-      ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
-        CommunicationActions.startConversation(getContext(), recipient, null);
-      });
-    }
-
-    @Override
-    public void onInviteSharedContactClicked(@NonNull List<Recipient> choices) {
-      if (getContext() == null) return;
-
-      ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
-        CommunicationActions.composeSmsThroughDefaultApp(getContext(), recipient.getAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
-      });
     }
   }
 

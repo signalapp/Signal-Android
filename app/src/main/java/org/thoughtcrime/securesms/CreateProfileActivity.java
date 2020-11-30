@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
 
+import org.session.libsignal.service.api.SignalServiceAccountManager;
 import org.thoughtcrime.securesms.avatar.AvatarSelection;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.LabeledEditText;
@@ -52,7 +53,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.session.libsignal.service.api.SignalServiceAccountManager;
 import org.session.libsignal.service.api.crypto.ProfileCipher;
 import org.session.libsignal.service.api.util.StreamDetails;
 import org.session.libsignal.service.loki.api.LokiDotNetAPI;

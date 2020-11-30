@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.util.RealtimeSleepTimer;
@@ -88,7 +87,6 @@ import network.loki.messenger.BuildConfig;
                                      PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
                                      RotateSignedPreKeyJob.class,
-                                     WebRtcCallService.class,
                                      RetrieveProfileJob.class,
                                      MultiDeviceVerifiedUpdateJob.class,
                                      CreateProfileActivity.class,
