@@ -15,9 +15,9 @@ abstract class Message {
 
     companion object {
         @JvmStatic
-        val ttl = 2 * 24 * 60 * 60 * 1000
+        val ttl = 2 * 24 * 60 * 60 * 1000 //TODO not sure about that declaration
 
-        //fun fromProto(proto: SignalServiceProtos.Content): Message? {}
+        //TODO how to declare fromProto?
     }
 
     open fun isValid(): Boolean {
@@ -25,8 +25,6 @@ abstract class Message {
         receivedTimestamp = if (receivedTimestamp!! > 0) receivedTimestamp else return false
         return sender != null && recipient != null
     }
-
-
 
     abstract fun toProto(): SignalServiceProtos.Content?
 
