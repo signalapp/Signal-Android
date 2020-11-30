@@ -85,7 +85,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     scheduleDeletion(context, smsExpirationInfo, mmsExpirationInfo);
 
-    ApplicationDependencies.getJobManager().add(new MultiDeviceReadUpdateJob(syncMessageIds));
+    MultiDeviceReadUpdateJob.enqueue(syncMessageIds);
 
     Map<Long, List<MarkedMessageInfo>> threadToInfo = Stream.of(markedReadMessages)
                                                             .collect(Collectors.groupingBy(MarkedMessageInfo::getThreadId));

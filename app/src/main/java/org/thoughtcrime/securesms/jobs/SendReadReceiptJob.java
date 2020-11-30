@@ -35,7 +35,7 @@ public class SendReadReceiptJob extends BaseJob {
 
   private static final String TAG = SendReadReceiptJob.class.getSimpleName();
 
-  private static final int MAX_TIMESTAMPS = 500;
+  static final int MAX_TIMESTAMPS = 500;
 
   private static final String KEY_THREAD      = "thread";
   private static final String KEY_ADDRESS     = "address";
@@ -150,7 +150,7 @@ public class SendReadReceiptJob extends BaseJob {
     Log.w(TAG, "Failed to send read receipts to: " + recipientId);
   }
 
-  private static <E> List<E> ensureSize(@NonNull List<E> list, int maxSize) {
+  static <E> List<E> ensureSize(@NonNull List<E> list, int maxSize) {
     if (list.size() > maxSize) {
       throw new IllegalArgumentException("Too large! Size: " + list.size() + ", maxSize: " + maxSize);
     }

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
@@ -40,13 +42,13 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
 
   private List<SerializableSyncMessageId> messageIds;
 
-  public MultiDeviceReadUpdateJob(List<SyncMessageId> messageIds) {
+  private MultiDeviceReadUpdateJob(List<SyncMessageId> messageIds) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .build(),
-         messageIds);
+         SendReadReceiptJob.ensureSize(messageIds, SendReadReceiptJob.MAX_TIMESTAMPS));
   }
 
   private MultiDeviceReadUpdateJob(@NonNull Job.Parameters parameters, @NonNull List<SyncMessageId> messageIds) {
@@ -56,6 +58,23 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
 
     for (SyncMessageId messageId : messageIds) {
       this.messageIds.add(new SerializableSyncMessageId(messageId.getRecipientId().serialize(), messageId.getTimetamp()));
+    }
+  }
+
+  /**
+   * Enqueues all the necessary jobs for read receipts, ensuring that they're all within the
+   * maximum size.
+   */
+  public static void enqueue(@NonNull List<SyncMessageId> messageIds) {
+    JobManager                jobManager      = ApplicationDependencies.getJobManager();
+    List<List<SyncMessageId>> messageIdChunks = Util.chunk(messageIds, SendReadReceiptJob.MAX_TIMESTAMPS);
+
+    if (messageIdChunks.size() > 1) {
+      Log.w(TAG, "Large receipt count! Had to break into multiple chunks. Total count: " + messageIds.size());
+    }
+
+    for (List<SyncMessageId> chunk : messageIdChunks) {
+      jobManager.add(new MultiDeviceReadUpdateJob(chunk));
     }
   }
 
