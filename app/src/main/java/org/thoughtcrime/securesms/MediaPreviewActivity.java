@@ -55,7 +55,6 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.MediaView;
-import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
@@ -472,11 +471,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   }
 
-  private class ViewPagerListener extends ExtendedOnPageChangedListener {
+  private class ViewPagerListener implements ViewPager.OnPageChangeListener {
+
+    private int currentPage = -1;
 
     @Override
     public void onPageSelected(int position) {
-      super.onPageSelected(position);
+      if (currentPage != -1 && currentPage != position) onPageUnselected(currentPage);
+      currentPage = position;
 
       MediaItemAdapter adapter = (MediaItemAdapter)mediaPager.getAdapter();
 
@@ -489,7 +491,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     }
 
 
-    @Override
     public void onPageUnselected(int position) {
       MediaItemAdapter adapter = (MediaItemAdapter)mediaPager.getAdapter();
 
@@ -499,6 +500,16 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
         adapter.pause(position);
       }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
   }
 

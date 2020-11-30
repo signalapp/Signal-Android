@@ -20,7 +20,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <org.thoughtcrime.securesms.components.viewpager.HackyViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/media_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

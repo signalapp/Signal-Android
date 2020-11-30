@@ -115,7 +115,6 @@ import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.identity.UnverifiedSendDialog;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
-import org.thoughtcrime.securesms.components.reminder.InviteReminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
@@ -786,8 +785,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (isSingleConversation() && isSecureText) {
       inflater.inflate(R.menu.conversation_secure, menu);
-    } else if (isSingleConversation()) {
-      inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
     if (recipient != null && recipient.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
@@ -885,7 +882,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
-    case R.id.menu_invite:                    handleInviteLink();                                return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
     case R.id.menu_unmute_notifications:      handleUnmuteNotifications();                       return true;
 //    case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
@@ -1025,20 +1021,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
     intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
     startActivityForResult(intent, SMS_DEFAULT);
-  }
-
-  private void handleInviteLink() {
-    String inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, getString(R.string.install_url));
-
-    if (isDefaultSms) {
-      composeText.appendInvite(inviteText);
-    } else {
-      Intent intent = new Intent(Intent.ACTION_SENDTO);
-      intent.setData(Uri.parse("smsto:" + recipient.getAddress().serialize()));
-      intent.putExtra("sms_body", inviteText);
-      intent.putExtra(Intent.EXTRA_TEXT, inviteText);
-      startActivity(intent);
-    }
   }
 
   private void handleResetSecureSession() {
@@ -1541,18 +1523,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (ServiceOutageReminder.isEligible(this)) {
       ApplicationContext.getInstance(this).getJobManager().add(new ServiceOutageDetectionJob());
       reminderView.get().showReminder(new ServiceOutageReminder(this));
-    } else if (TextSecurePreferences.isPushRegistered(this)      &&
-               TextSecurePreferences.isShowInviteReminders(this) &&
-               !isSecureText                                            &&
-               !seenInvite                                              &&
-               !recipient.isGroupRecipient())
-    {
-      InviteReminder reminder = new InviteReminder(this, recipient);
-      reminder.setOkListener(v -> {
-        handleInviteLink();
-        reminderView.get().requestDismiss();
-      });
-      reminderView.get().showReminder(reminder);
     } else if (reminderView.resolved()) {
       reminderView.get().hide();
     }
