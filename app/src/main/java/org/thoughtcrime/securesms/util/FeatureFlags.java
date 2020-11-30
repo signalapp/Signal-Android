@@ -59,7 +59,7 @@ public final class FeatureFlags {
   public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
   public  static final String DONATE_MEGAPHONE             = "android.donate";
   private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
-  private static final String GROUP_CALLING_VERSION        = "android.groupsv2.callingVersion";
+  private static final String GROUP_CALLING                = "android.groupsv2.calling";
   private static final String GV1_AUTO_MIGRATE             = "android.groupsV1Migration.auto.2";
   private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
   private static final String GV1_FORCED_MIGRATE           = "android.groupsV1Migration.forced";
@@ -81,7 +81,7 @@ public final class FeatureFlags {
       GV1_AUTO_MIGRATE,
       GV1_MANUAL_MIGRATE,
       GV1_FORCED_MIGRATE,
-      GROUP_CALLING_VERSION
+      GROUP_CALLING
   );
 
   /**
@@ -226,7 +226,7 @@ public final class FeatureFlags {
 
   /** Whether or not group calling is enabled. */
   public static boolean groupCalling() {
-    return getVersionFlag(GROUP_CALLING_VERSION) == VersionFlag.ON;
+    return getBoolean(GROUP_CALLING, false);
   }
 
   /** Whether or not auto-migration from GV1->GV2 is enabled. */
