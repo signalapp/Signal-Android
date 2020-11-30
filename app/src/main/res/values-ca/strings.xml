@@ -550,7 +550,7 @@
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Invitacions de grup pendents</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Invitacions de grup pendents</string> -->
   <string name="PendingMembersActivity_requests">Sol·licituds</string>
   <string name="PendingMembersActivity_invites">Invitacions</string>
   <string name="PendingMembersActivity_people_you_invited">Persones que heu convidat</string>
@@ -600,15 +600,24 @@
     <item quantity="one">%d membre no admet els grups nous, per això aquest grup serà un grup de llegat.</item>
     <item quantity="other">%d membres no admeten els grups nous, per això aquest grup serà un grup de llegat.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one"> %d membre no admet els grups nous, per això no es pot crear aquest grup.</item>
+    <item quantity="other">%d membres no admeten els grups nous, per això no es pot crear aquest grup.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Es crearà un grup de llegat perquè %1$s usa una versió antiga del Signal. Podeu crear un grup d\'estil nou amb ells després que actualitzin el Signal o suprimir-los-en abans de crear el grup.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Es crearà un grup de llegat perquè %1$d membre usa una versió antiga del Signal. Podeu crear un grup d\'estil nou amb ells després que actualitzin el Signal o suprimir-los-en abans de crear el grup.</item>
     <item quantity="other">Es crearà un grup de llegat perquè %1$d membres usen una versió antiga del Signal. Podeu crear un grup d\'estil nou amb ells després que actualitzin el Signal o suprimir-los-en abans de crear el grup.</item>
   </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Aquest grup no es pot crear perquè %1$s usa una versió antiga del Signal. L\'heu de suprimir abans de crear el grup.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Aquest grup no es pot crear perquè %1$d membre usa una versió antiga del Signal. L\'heu de suprimir abans de crear el grup.</item>
+    <item quantity="other">Aquest grup no es pot crear perquè %1$d membres usen una versió antiga del Signal. Els heu de suprimir abans de crear el grup.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Missatges efímers</string>
-  <string name="ManageGroupActivity_pending_group_invites">Invitacions de grup pendents</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Invitacions de grup pendents</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Sol·licituds d\'adhesió i invitacions</string>
   <string name="ManageGroupActivity_add_members">Afegiu-hi membres</string>
   <string name="ManageGroupActivity_edit_group_info">Edita la informació del grup</string>
@@ -741,7 +750,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Aviat hi haurà enllaços de grup</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualitzeu el Signal per usar els enllaços de grup</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Afegir-se a un grup per un enllaç encara no és possible amb el Signal. Aquesta funció s\'activarà en una actualització propera.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Afegir-se a un grup per un enllaç encara no és possible amb el Signal. Aquesta funció s\'activarà en una actualització propera.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versió del Signal que useu no admet enllaços de grup. Actualitzeu-lo a la versió més recent per afegir-vos a aquest grup per l\'enllaç.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualitza el Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un o més dels vostres dispositius enllaçats executen una versió del Signal que no admet enllaços de grup. Actualitzeu el Signal dels dispositius enllaçats per afegir-vos a aquest grup.</string>
@@ -1028,7 +1037,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Heu tret la verificació del número de seguretat amb %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Heu tret la verificació del número de seguretat amb %s des d\'un altre dispositiu</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciat una trucada de grup · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s és a la trucada de grup · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Sou a la trucada de grup · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s i %2$s són a la trucada de grup · %3$s</string> -->
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s i %3$s són a la trucada de grup · %4$s</string>
+  <string name="MessageRecord_group_call_s">Trucada de grup · %1$s</string>
   <string name="MessageRecord_you">Vós</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s i %3$d més són a la trucada de grup · %4$s</item>
+    <item quantity="other">%1$s, %2$s i  %3$d més són a la trucada de grup · %4$s</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Ho accepto</string>
   <string name="MessageRequestBottomView_continue">Continua</string>
@@ -1611,6 +1630,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Es carrega</string>
   <string name="ConversationUpdateItem_learn_more">Més informació</string>
+  <string name="ConversationUpdateItem_join_call">Afegeix-me a la trucada</string>
+  <string name="ConversationUpdateItem_return_to_call">Torna a la trucada</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
@@ -2018,9 +2039,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_setup_a_username">Estableix un nom d\'usuari</string>
   <string name="configurable_single_select__customize_option">Opció de personalització</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Converses i dreceres</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Suprimeix totes les dreceres dinàmiques</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliqueu per suprimir totes les dreceres dinàmiques.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Converses i dreceres</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Suprimeix totes les dreceres dinàmiques</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliqueu per suprimir totes les dreceres dinàmiques.</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

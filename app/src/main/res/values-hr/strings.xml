@@ -577,7 +577,7 @@
     <item quantity="other">%1$d članova</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Pozivnice grupe na čekanju</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Pozivnice grupe na čekanju</string> -->
   <string name="PendingMembersActivity_requests">Zahtjevi</string>
   <string name="PendingMembersActivity_invites">Pozivnice</string>
   <string name="PendingMembersActivity_people_you_invited">Osobe koje ste pozvali</string>
@@ -651,7 +651,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Poruke koje nestaju</string>
-  <string name="ManageGroupActivity_pending_group_invites">Pozivnice grupe na čekanju</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Pozivnice grupe na čekanju</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Zahtjevi za članove i pozivnice</string>
   <string name="ManageGroupActivity_add_members">Dodaj članove</string>
   <string name="ManageGroupActivity_edit_group_info">Uredi detalje o grupi</string>
@@ -790,7 +790,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Poveznice grupe uskoro dolaze</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste koristili poveznice grupe</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Pridruživanje grupi putem poveznice još nije podržano u Signalu. Ova će značajka biti objavljena u nadolazećem ažuriranju.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Pridruživanje grupi putem poveznice još nije podržano u Signalu. Ova će značajka biti objavljena u nadolazećem ažuriranju.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju upotrebljavate ne podržava poveznice grupe. Ažurirajte na najnoviju verziju da biste se pridružili ovoj grupi putem poveznice.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ažuriraj Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na jednom ili više povezanih uređaja pokrenuta je verzija Signala koja ne podržava poveznice grupe. Ažurirajte Signal na povezanim uređajima da biste se pridružili ovoj grupi.</string>
@@ -1092,8 +1092,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv  · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je na ovom grupnom pozivu · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Vi ste na ovom grupnom pozivu · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s i %2$s su na ovom grupnom pozivu · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Vi ste na ovom grupnom pozivu · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s i %2$s su na ovom grupnom pozivu · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s i %3$s su na ovom grupnom pozivu · %4$s</string>
   <string name="MessageRecord_group_call_s">Grupni poziv · %1$s</string>
   <string name="MessageRecord_you">Vi</string>
@@ -2116,9 +2116,9 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="preferences_setup_a_username">Postavite korisničko ime</string>
   <string name="configurable_single_select__customize_option">Opcija prilagođavanja</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Razgovori i prečaci</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Izbriši sve dinamičke prečace</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Pritisnite za brisanje svih dinamičkih prečaca</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Razgovori i prečaci</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Izbriši sve dinamičke prečace</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Pritisnite za brisanje svih dinamičkih prečaca</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

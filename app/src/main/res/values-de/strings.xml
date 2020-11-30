@@ -550,7 +550,7 @@
     <item quantity="other">%1$d Mitglieder</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string> -->
   <string name="PendingMembersActivity_requests">Anfragen</string>
   <string name="PendingMembersActivity_invites">Einladungen</string>
   <string name="PendingMembersActivity_people_you_invited">Von dir eingeladene Personen</string>
@@ -617,7 +617,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Verschwindende Nachrichten</string>
-  <string name="ManageGroupActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Beitrittsanfragen &amp; Einladungen</string>
   <string name="ManageGroupActivity_add_members">Mitglieder hinzufügen</string>
   <string name="ManageGroupActivity_edit_group_info">Gruppendetails bearbeiten</string>
@@ -750,7 +750,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppen-Links kommen bald</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualisiere Signal zum Verwenden von Gruppen-Links</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Der Gruppenbeitritt über einen Link wird derzeit noch nicht von Signal unterstützt. Diese Funktion wird in einer kommenden Aktualisierung veröffentlicht.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Der Gruppenbeitritt über einen Link wird derzeit noch nicht von Signal unterstützt. Diese Funktion wird in einer kommenden Aktualisierung veröffentlicht.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Die von dir verwendete Signal-Version unterstützt keine Gruppen-Links. Aktualisiere auf die neueste Version, um dieser Gruppe über einen Link beizutreten.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal aktualisieren</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mindestens ein gekoppeltes Gerät verwendet eine Signal-Version, die keine Gruppen-Links unterstützt. Aktualisiere Signal auf deinen gekoppelten Geräten, um dieser Gruppe beizutreten.</string>
@@ -1039,8 +1039,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">»%1$s« hat einen Gruppenanruf begonnen · »%2$s«</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">»%1$s« nimmt am Gruppenanruf teil · »%2$s«</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Du nimmst am Gruppenanruf teil · »%2$s«</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">»%1$s« und »%2$s« nehmen am Gruppenanruf teil · »%3$s«</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Du nimmst am Gruppenanruf teil · »%2$s«</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">»%1$s« und »%2$s« nehmen am Gruppenanruf teil · »%3$s«</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">»%1$s«, »%2$s« und »%3$s« nehmen am Gruppenanruf teil · »%4$s«</string>
   <string name="MessageRecord_group_call_s">Gruppenanruf · »%1$s«</string>
   <string name="MessageRecord_you">Du</string>
@@ -2034,9 +2034,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_setup_a_username">Nutzername einrichten</string>
   <string name="configurable_single_select__customize_option">Option anpassen</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Unterhaltungen und Verknüpfungen</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Alle dynamischen Verknüpfungen löschen</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Antippen zum Löschen aller dynamischen Verknüpfungen</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Unterhaltungen und Verknüpfungen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Alle dynamischen Verknüpfungen löschen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Antippen zum Löschen aller dynamischen Verknüpfungen</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

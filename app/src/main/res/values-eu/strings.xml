@@ -551,7 +551,7 @@
     <item quantity="other">%1$d kide</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Falta diren talde gonbidapenak</string> -->
   <string name="PendingMembersActivity_requests">Eskaerak</string>
   <string name="PendingMembersActivity_invites">Gonbidapenak</string>
   <string name="PendingMembersActivity_people_you_invited">Gondibatu duzun jendea</string>
@@ -609,7 +609,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mezuen desagerpena</string>
-  <string name="ManageGroupActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Falta diren talde gonbidapenak</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Kideen eskaera &amp; gonbidapenak</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
   <string name="ManageGroupActivity_edit_group_info">Editatu taldeari buruzko informazioa</string>
@@ -742,7 +742,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Talderako estekak eskuragarri egongo dira laster</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Talderako estekak erabiltzeko Signal eguneatu behar duzu</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Talde batean sartzea link baten bidez oraindik ez dago onartuta Signal-en. Ezaugarri hau eskuragarri egongo da aurrerantzean egingo den egunerapen batean.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Talde batean sartzea link baten bidez oraindik ez dago onartuta Signal-en. Ezaugarri hau eskuragarri egongo da aurrerantzean egingo den egunerapen batean.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Erabiltzen ari zare Signalen bertsioak ez du talde estekak onartzen. Eguneratu azken bertsiora esteka bidez talde honetan sartzeko.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Eguneratu Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Gutxienez lotuta dituzun gailuetako batek Talde estekak onartzen ez dituen Signalen bertsio bat dauka instalatuta. Signal eguneratu lotutako gailuetan talde honetara gehitu ahal izateko.</string>
@@ -2025,9 +2025,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_setup_a_username">Ezarri erabiltzaile izena</string>
   <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Solasaldiak eta Lasterbideak</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Ezabatu lasterbide dinamiko guztiak</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Ukitu lasterbide dinamiko guztiak ezabatzeko</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Solasaldiak eta Lasterbideak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Ezabatu lasterbide dinamiko guztiak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Ukitu lasterbide dinamiko guztiak ezabatzeko</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

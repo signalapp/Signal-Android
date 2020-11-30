@@ -369,10 +369,10 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Essayez la phrase de passe de la sauvegarde et confirmez qu’elle correspond</string>
   <string name="BackupsPreferenceFragment__turn_on">Activer</string>
   <string name="BackupsPreferenceFragment__turn_off">Désactiver</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Pour restaurer une sauvegarde, installez une nouvelle version de Signal. Ouvrez l\'application, puis touchez « Restorer sauvegarde », et selectionnez un fichier de sauvegarde. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Pour restaurer une sauvegarde, installez un nouvel exemplaire de Signal. Ouvrez l’appli, touchez « Restaurer la sauvegarde », puis trouvez un fichier de sauvegarde. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">En apprendre davantage</string>
   <string name="BackupsPreferenceFragment__in_progress">En cours…</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d jusqu\'ici…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d jusqu’à présent…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à la mémoire externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé utilisé : %s</string>
@@ -412,7 +412,7 @@
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Faire un don à Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est propulsé par des gens comme vous. Montrez votre soutien dès aujourd\'hui !</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est alimenté par des personnes telles que vous. Montrez votre soutien dès aujourd’hui.</string>
   <string name="DonateMegaphone_donate">Faire un don</string>
   <string name="DonateMegaphone_no_thanks">Non merci</string>
   <!--DozeReminder-->
@@ -423,8 +423,8 @@
   <string name="ExpiredBuildReminder_update_now">Mettre Signal à jour maintenant</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
-    <item quantity="one">%d requête de membre en attente.</item>
-    <item quantity="other">%d requêtes de membres en attente.</item>
+    <item quantity="one">%d demande de membre en attente.</item>
+    <item quantity="other">%d demandes de membres en attente.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Afficher</string>
   <!--ShareActivity-->
@@ -473,35 +473,35 @@
   <string name="GroupManagement_invite_multiple_users">Ces utilisateurs ne peuvent pas être ajoutés automatiquement par vous à ce groupe.\n\nDes invitations ont été envoyées et ces utilisateurs ne verront aucun message du groupe tant que les invitations n’auront pas été acceptées.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Que sont les nouveaux groupes ?</string>
-  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Les nouveaux Groupes ont des fonctions comme les @mentions et les administrateurs de groupes, et en prendrons encore davantages en charge dans le futur.</string>
-  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">L\'ensemble de l\'historique des messages et des medias a été conservé avant la mise à niveau.</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Les nouveaux groupes offrent des fonctions telles que les @mentions et les administrateurs de groupes et en offriront d’autres dans le futur.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tout l’historique des messages et tous les médias d’avant la conversion ont été conservés.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">Ce membre devra accepter l\'invitation à se joindre à nouveau à ce groupe, et ne recevra pas ses messages avant d\'avoir accepté:</item>
-    <item quantity="other">Ces membres devront accepter l\'invitation à se joindre à nouveau à ce groupe, et ne recevront pas ses messages avant d\'avoir accepté:</item>
+    <item quantity="one">Ce membre devra accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevra aucun message du groupe avant d’en avoir accepté une :</item>
+    <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Convertir en nouveau groupe</string>
-  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Mettre ce groupe à niveau</string>
-  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Les nouveaux Groupes ont des fonctions comme les @mentions et les administrateurs, et en prendront en charge encore davantage dans le futur.</string>
-  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">L\'ensemble de l\'historique des messages ainsi que des medias seront sauvegardés avant la mise à niveau.</string>
-  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Une erreur réseau a été rencontrée. Merci de réessayer ultérieurement.</string>
-  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Erreur lors de la mise à niveau.</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Convertir ce groupe</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Les nouveaux groupes offrent des fonctions telles que les @mentions et les administrateurs de groupes et en offriront d’autres dans le futur.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Tout l’historique des messages et tous les médias d’avant la conversion seront conservés.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Une erreur réseau est survenue. Veuillez réessayer ultérieurement plus tard.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Échec de conversion</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">Ce membre devra à nouveau accepter une invitation à se joindre à ce groupe et ne recevront pas ses messages avant de l\'avoir fait.</item>
-    <item quantity="other">Ces membres devront à nouveau accepter une invitation à se joindre à ce groupe et ne recevront pas ses messages avant de l\'avoir fait.</item>
+    <item quantity="one">Ce membre devra accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevra aucun message du groupe avant d’en avoir accepté une :</item>
+    <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Ce membre n\'est pas capables de se joindre à des Nouveaux Groupes, et seront supprimés du groupe:</item>
-    <item quantity="other">Ces membres ne sont pas capables de se joindre à des Nouveaux Groupes, et seront supprimés du groupe:</item>
+    <item quantity="one">Ce membre ne peut pas se joindre aux nouveaux groupes et sera supprimé du groupe :</item>
+    <item quantity="other">Ces membres ne peuvent pas se joindre aux nouveaux groupes et seront supprimés du groupe :</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pour accéder aux nouvelles fonctionalités comme les @mentions et les administrateur, mettez ce groupe à niveau.</string>
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pour accéder aux nouvelles fonctions telles que les @mentions et l’administration, convertissez ce groupe.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Pas maintenant</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Mettre le groupe à jour</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="one">%1$d membre n\'a pas pu être ajoutés au Nouveau Groupe. Voulez-vous l\'ajouter maintenant ?</item>
-    <item quantity="other">%1$d membres n\'ont pas pu être ajoutés au Nouveau Groupe. Voulez-vous les ajouter maintenant ?</item>
+    <item quantity="one">%1$d membre n’a pas pu être rajouté au nouveau groupe. Voulez-vous l’ajouter maintenant ?</item>
+    <item quantity="other">%1$d membres n’ont pas pu être rajoutés au nouveau groupe. Voulez-vous les ajouter maintenant ?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Ajouter un membre</item>
@@ -510,24 +510,24 @@
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Pas maintenant</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-    <item quantity="one">Ajouter un membre?</item>
-    <item quantity="other">Ajouter des membres?</item>
+    <item quantity="one">Ajouter le membre ?</item>
+    <item quantity="other">Ajouter les membres ?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-    <item quantity="one">Ce membre n\'a pas pu être automatiquement ajouté au Nouveau Groupe lors de sa mise à niveau:</item>
-    <item quantity="other">Ces membres n\'ont pas pu être automatiquement ajoutés au Nouveau Groupe lors de sa mise à niveau:</item>
+    <item quantity="one">Ce membre n’a pas pu être ajouté automatiquement au nouveau groupe lors de sa conversion :</item>
+    <item quantity="other">Ces membres n’ont pas pu être ajoutés automatiquement au nouveau groupe lors de sa conversion :</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="one">Ajouter un membre</item>
     <item quantity="other">Ajouter des membres</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-    <item quantity="one">Impossible d\'ajouter le membre. Merci de reéssayer ultérieurement.</item>
-    <item quantity="other">Impossible d\'ajouter de nouveaux membres. Merci de reéssayer ultérieurement.</item>
+    <item quantity="one">Échec d’ajout du membre. Veuillez ressayer plus tard.</item>
+    <item quantity="other">Échec d’ajout des membres. Veuillez ressayer plus tard.</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
-    <item quantity="one">Impossible d\'ajouter le membre.</item>
-    <item quantity="other">Impossible d\'ajouter des membres.</item>
+    <item quantity="one">Impossible d’ajouter un membre.</item>
+    <item quantity="other">Impossible d’ajouter des membres.</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Quitter le groupe ?</string>
@@ -550,7 +550,7 @@
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Invitations de groupe en attente</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Invitations de groupe en attente</string> -->
   <string name="PendingMembersActivity_requests">Demandes</string>
   <string name="PendingMembersActivity_invites">Invitations</string>
   <string name="PendingMembersActivity_people_you_invited">Les personnes que vous avez invitées</string>
@@ -592,32 +592,32 @@
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Il faut au moins deux membres par groupe.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Échec de création du groupe.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Réessayez plus tard.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de messages multimédias.</string>
   <string name="AddGroupDetailsFragment__remove">Supprimer</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Supprimer %1$s de ce groupe ?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">%d membre ne prend pas en charge les nouveaux groupes, ce sera donc un groupe hérité</item>
-    <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes, ce sera donc un groupe hérité</item>
+    <item quantity="one">%d membre ne prend pas en charge les nouveaux groupes, ce sera donc un groupe hérité.</item>
+    <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes, ce sera donc un groupe hérité.</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="one">%d membre ne prend pas en charge les nouveaux groupes, alors ce groupe ne peut être créé.</item>
-    <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes, ce groupe ne peut donc être créé.</item>
+    <item quantity="one">%d membre ne prend pas en charge les nouveaux groupes. Ce groupe ne peut donc pas être créé.</item>
+    <item quantity="other">%d membres ne prennent pas en charge les nouveaux groupes. Ce groupe ne peut donc pas être créé.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un groupe hérité sera créé, car « %1$s » utilise une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec cette personne une fois qu’elle aura mis Signal à jour, ou supprimez-la avant de créer le groupe.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un groupe hérité sera créé, car « %1$s » utilise une ancienne version de Signal. Vous pourrez créer un nouveau groupe avec cette personne une fois qu’elle aura mis Signal à jour, ou supprimez-la avant de créer le groupe.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Un groupe hérité sera créé, car %1$d membre utilise une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec ce membre une fois qu’il aura mis Signal à jour, ou supprimez-le avant de créer le groupe.</item>
-    <item quantity="other">Un groupe hérité sera créé, car %1$d membres utilisent une ancienne version de Signal. Vous pourrez créer un groupe de type nouveau avec eux une fois qu’ils auront mis Signal à jour, ou supprimez-les avant de créer le groupe.</item>
+    <item quantity="one">Un groupe hérité sera créé, car %1$d membre utilise une ancienne version de Signal. Vous pourrez créer un nouveau groupe avec ce membre une fois qu’il aura mis Signal à jour, ou supprimez-le avant de créer le groupe.</item>
+    <item quantity="other">Un groupe hérité sera créé, car %1$d membres utilisent une ancienne version de Signal. Vous pourrez créer un nouveau groupe avec eux une fois qu’ils auront mis Signal à jour, ou supprimez-les avant de créer le groupe.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ce groupe ne peut être créé puisque « %1$s » utilise une ancienne version de Signal. Vous devez le retirer avant de créer ce groupe.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ce groupe ne peut pas être créé, car « %1$s » utilise une ancienne version de Signal. Vous devez supprimer ce membre avant de créer le groupe.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="one">Ce groupe ne peut être créé puisque %1$d membre utilise une ancienne version de Signal. Vous devez le retirer avant de créer ce groupe.</item>
-    <item quantity="other">Ce groupe ne peut être créé puisque %1$dmembres utilisent une ancienne version de Signal. Vous devez les retirer avant de créer ce groupe.</item>
+    <item quantity="one">Ce groupe ne peut pas être créé, car %1$d membre utilise une ancienne version de Signal. Vous devez le supprimer avant de créer le groupe.</item>
+    <item quantity="other">Ce groupe ne peut pas être créé, car %1$d membres utilisent une ancienne version de Signal. Vous devez les supprimer avant de créer le groupe.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Messages éphémères</string>
-  <string name="ManageGroupActivity_pending_group_invites">Invitations de groupe en attente</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Invitations de groupe en attente</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Demandes et invitations de membres</string>
   <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
   <string name="ManageGroupActivity_edit_group_info">Modifier les renseignements du groupe</string>
@@ -645,7 +645,7 @@
     <item quantity="other">%d membres ont été ajoutés.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Seuls les administrateurs peuvent activer ou désactiver le lien de groupe partageable.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Seuls les administrateurs peuvent activer ou désactiver l\'option pour approver de nouveaux membres.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Seuls les administrateurs peuvent activer ou désactiver l’option d’approbation des nouveaux membres.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Seuls les administrateurs peuvent réinitialiser le lien de groupe partageable.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
@@ -655,11 +655,11 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Échec de mise à jour du groupe en raison d’une erreur réseau, veuillez réessayer plus tard</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Modifier le nom et l’image</string>
   <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Il s\'agit d\'un groupé hérité. Les fonctionalités comme les administrateurs de groupes sont uniquement disponible pour les Nouveaux Groupes.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">Il s\'agit d\'un groupé hérité. Pour accéder aux nouvelles fonctionalités comme les @mentions et les administrateurs,</string>
-  <string name="ManageGroupActivity_legacy_group_too_large">Ce groupe hérité ne peut pas être mis à niveau vers un Nouveau Group car il est trop grand. La taille maximum d\'un groupe est de %1$d.</string>
-  <string name="ManageGroupActivity_upgrade_this_group">convertir ce groupe</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Il s\'agit d\'un groupe de message multimédia non-sécurité. Pour converser de manière privée et utiliser des foncitonalités comme des groupes nommés, invitez vos contacts sur Signal.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est un groupe hérité. Les fonctions telles que l’administration des groupes ne sont proposées que pour les nouveaux groupes.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Ce groupe est un groupe hérité. Pour accéder aux nouvelles fonctions telles que les @mentions et l’administration,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Ce groupe ne peut pas être converti en nouveau groupe, car il comporte trop de membres. La taille maximale du groupe est %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">convertissez ce groupe</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ce groupe est un groupe de messages multimédias non sécurisé. Pour converser en toute confidentialité et accéder aux fonctions telles que les noms de groupe, invitez vos contacts sur Signal.</string>
   <string name="ManageGroupActivity_invite_now">Inviter maintenant</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
@@ -750,7 +750,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Les liens de groupe arrivent bientôt</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Mettez Signal à jour pour utiliser les liens de groupe</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Il n’est pas encore possible dans Signal de se joindre à un groupe grâce à un lien. Cette fonction sera proposée dans une mise à jour future.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Il n’est pas encore possible dans Signal de se joindre à un groupe grâce à un lien. Cette fonction sera proposée dans une mise à jour future.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La version de Signal que vous utilisez ne prend pas en charge les liens de groupe. Installez la dernière version de Signal pour vous joindre à ce groupe grâce à un lien.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Mettre Signal à jour</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un ou plusieurs de vos appareils liés utilisent une version de Signal ne supportant pas les liens de groupes. Mettez à jour vos appareils pour vous joindre au groupe.</string>
@@ -1038,10 +1038,10 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme non confirmé à partir d’un autre appareil</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
-  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s est dans l\'appel de groupe · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Vous êtes dans l\'appel de groupe · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s et %2$s sont dans l\'appel de groupe · %3$s</string>
-  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, et  %3$s sont dans l\'appel de groupe · %4$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s fait partie de l’appel de groupe · %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Vous faites partie de l’appel de groupe · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s et %2$s font partie de l’appel de groupe · %3$s</string> -->
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s et  %3$s font partie de l’appel de groupe · %4$s</string>
   <string name="MessageRecord_group_call_s">Appel de groupe · %1$s</string>
   <string name="MessageRecord_you">Vous</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
@@ -1056,7 +1056,7 @@
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Poursuivre votre conversation dans ce groupe, et partager votre nom et photo avec ses membres?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Poursuivre votre conversation avec ce groupe et partager vos nom et photo avec ses membres ?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Mettez ce Groupe à niveau pour activer de nouvelles fonctions comme les @mentions et les administrateurs. Les Membres n\'ayant pas partagé leur nom ou photo avec ce group seront invités à le joindre.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ce groupe hérité ne peut plus être utilisé car il est trop grand. La taille maximum d\'un groupe est de %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Poursuivre votre conversation avec %1$s et partager votre nom et photo avec eux ?</string>
@@ -1204,11 +1204,11 @@
   <string name="WebRtcCallView__joining">Adhésion en cours…</string>
   <string name="WebRtcCallView__disconnected">L’application est déconnectée</string>
   <string name="WebRtcCallView__no_one_else_is_here">Il n’y a personne d’autre ici</string>
-  <string name="WebRtcCallView__s_is_in_this_call">%1$s est présent dans cet appel</string>
-  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s et %2$s sont présents dans ce appel</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s est dans cet appel</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s et %2$s font partie de cet appel</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">%1$s, %2$s, et %3$d personne sont dans cet appel</item>
-    <item quantity="other">%1$s, %2$s, et %3$d personnes sont dans cet appel</item>
+    <item quantity="one">%1$s, %2$s et %3$d autre personne font partie de cet appel</item>
+    <item quantity="other">%1$s, %2$s et %3$d autres personnes font partie de cet appel</item>
   </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1628,7 +1628,7 @@
   <string name="ConversationUpdateItem_loading">Chargement</string>
   <string name="ConversationUpdateItem_learn_more">En apprendre davantage</string>
   <string name="ConversationUpdateItem_join_call">Rejoindre l\'appel</string>
-  <string name="ConversationUpdateItem_return_to_call">Retourner à l\'appel</string>
+  <string name="ConversationUpdateItem_return_to_call">Revenir à l’appel</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
@@ -2036,9 +2036,9 @@
   <string name="preferences_setup_a_username">Définir un nom d’utilisateur</string>
   <string name="configurable_single_select__customize_option">Personnaliser l’option</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Conversations et Raccourcis</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Supprimer tous les raccourcis dynamiques</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliquer pour supprimer tous les raccourcis dynamiques</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Conversations et Raccourcis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Supprimer tous les raccourcis dynamiques</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliquer pour supprimer tous les raccourcis dynamiques</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2439,9 +2439,9 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">Les groupes hérités comparés aux nouveaux</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Que sont les groupes hérités ?</string>
   <string name="GroupsLearnMore_paragraph_1">Les groupes hérités sont des groupes qui ne sont pas compatibles avec les fonctions des nouveaux groupes, telles que les administrateurs et les mises à jour plus descriptives des groupes.</string>
-  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Puis-je transformer un groupe hérité en nouveau groupe ?</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Puis-je convertir un groupe hérité en nouveau groupe ?</string>
   <string name="GroupsLearnMore_paragraph_2">Les groupes hérités ne peuvent pour l\'instant pas être mis à niveau vers des Nouveaux Groupes, mais vous pouvez créer un Nouveau Groupe avec des membres identiques s\'ils possèdent la version la plus récente de Signal.</string>
-  <string name="GroupsLearnMore_paragraph_3">Signal offrira un moyen de mettre à jour les groupes hérités dans le futur.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal offrira dans le futur un moyen de convertir les groupes hérités.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partager avec Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copier</string>

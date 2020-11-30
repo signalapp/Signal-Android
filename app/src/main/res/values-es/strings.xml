@@ -550,7 +550,7 @@
     <item quantity="other">%1$d participantes</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Invitaciones pendientes</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Invitaciones pendientes</string> -->
   <string name="PendingMembersActivity_requests">Solicitudes</string>
   <string name="PendingMembersActivity_invites">Invitaciones</string>
   <string name="PendingMembersActivity_people_you_invited">Personas que has invitado</string>
@@ -617,7 +617,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Desaparición de mensajes</string>
-  <string name="ManageGroupActivity_pending_group_invites">Invitaciones pendientes</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Invitaciones pendientes</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitudes e invitaciones</string>
   <string name="ManageGroupActivity_add_members">Añadir participantes</string>
   <string name="ManageGroupActivity_edit_group_info">Editar detalles del grupo</string>
@@ -750,7 +750,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Los enlaces para compartir grupos están al llegar</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualiza Signal para usar enlaces a grupos</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">La función de unirse a un grupo vía enlace todavía no está completamente implementada. Se activará en una próxima actualización de Signal. </string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">La función de unirse a un grupo vía enlace todavía no está completamente implementada. Se activará en una próxima actualización de Signal. </string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta enlaces para compartir grupos. Actualiza a la versión más actual para unirte a este grupo vía enlace.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualiza Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Alguno(s) de tus dispositivos enlazados no soporta enlaces para compartir grupos. Actualiza Signal en esos dispositivos para unirte a este grupo vía enlace.</string>
@@ -1039,8 +1039,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciado una llamada en grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está en la llamada en grupo · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Estás en la llamada en grupo · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s y %2$s están en la llamada en grupo · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Estás en la llamada en grupo · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s y %2$s están en la llamada en grupo · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s y %3$s están en la llamada en grupo · %4$s</string>
   <string name="MessageRecord_group_call_s">Llamada en grupo · %1$s</string>
   <string name="MessageRecord_you">Tú</string>
@@ -1204,11 +1204,11 @@
   <string name="WebRtcCallView__joining">Uniéndose …</string>
   <string name="WebRtcCallView__disconnected">Desconectada</string>
   <string name="WebRtcCallView__no_one_else_is_here">Ya no queda nadie</string>
-  <string name="WebRtcCallView__s_is_in_this_call">%1$s está en esta llamada</string>
-  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s y %2$s están en esta llamada</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s en esta llamada</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s y %2$s en esta llamada</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">%1$s, %2$s y %3$d más están en esta llamada</item>
-    <item quantity="other">%1$s, %2$s y %3$d más están en esta llamada</item>
+    <item quantity="one">%1$s, %2$s y %3$d más en esta llamada</item>
+    <item quantity="other">%1$s, %2$s y %3$d más en esta llamada</item>
   </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -2045,9 +2045,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_setup_a_username">Selecciona un alias</string>
   <string name="configurable_single_select__customize_option">Personalizar opción</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Chats y atajos</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Eliminar todos los atajos dinámicos</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Toca para eliminar todos los atajos dinámicos</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Chats y atajos</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Eliminar todos los atajos dinámicos</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Toca para eliminar todos los atajos dinámicos</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

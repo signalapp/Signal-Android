@@ -551,7 +551,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="other">%1$d anëtarë</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string> -->
   <string name="PendingMembersActivity_requests">Kërkesa</string>
   <string name="PendingMembersActivity_invites">Ftesa</string>
   <string name="PendingMembersActivity_people_you_invited">Persona që keni ftuar</string>
@@ -621,7 +621,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zhdukje mesazhesh</string>
-  <string name="ManageGroupActivity_pending_group_invites">Ftesa për në grupe pezull</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Ftesa për në grupe pezull</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Kërkesa &amp; ftesa anëtarësie</string>
   <string name="ManageGroupActivity_add_members">Shtoni anëtarë</string>
   <string name="ManageGroupActivity_edit_group_info">Përpunoni të dhëna grupi</string>
@@ -754,7 +754,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Së shpejti mbërrijnë lidhje grupesh</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Që të përdorni lidhje grupi, përditësoni Signal-in</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Bërja pjesë e një grupi përmes një lidhjeje nuk mbulohet ende nga Signal-i. Kjo veçori do të hidhet në qarkullim në një përditësim të ardhshëm.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Bërja pjesë e një grupi përmes një lidhjeje nuk mbulohet ende nga Signal-i. Kjo veçori do të hidhet në qarkullim në një përditësim të ardhshëm.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk mbulon lidhje grupesh. Që të bëheni pjesë e një grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Përditësoni Signal-in</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Një ose më tepër prej pajisjeve tuaja të lidhura po xhirojnë një version të Signal-it që nuk mbulon lidhje grupesh. Që të bëheni pjesë e këtij grupi, përditësojeni Signal-in te pajisja(et) tuaj të lidhur.</string>
@@ -1043,8 +1043,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Gjendeni te thirrja e grupit · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s dhe %2$s gjenden te thirrja e grupit · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Gjendeni te thirrja e grupit · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s dhe %2$s gjenden te thirrja e grupit · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, dhe %3$s gjenden te thirrja e grupit · %4$s</string>
   <string name="MessageRecord_group_call_s">Thirrje grupi · %1$s</string>
   <string name="MessageRecord_you">Ju</string>
@@ -2047,9 +2047,9 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_setup_a_username">Ujdisë një emër përdoruesi</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Biseda dhe shkurtore</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Fshi krejt shkurtoret dinamike</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klikoni që të fshihen krejt shkurtoret dinamike</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Biseda dhe shkurtore</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Fshi krejt shkurtoret dinamike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klikoni që të fshihen krejt shkurtoret dinamike</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

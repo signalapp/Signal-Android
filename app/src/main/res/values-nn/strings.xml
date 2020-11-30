@@ -555,7 +555,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="other">%1$d medlemmar</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Usvarte gruppeinvitasjonar</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Usvarte gruppeinvitasjonar</string> -->
   <string name="PendingMembersActivity_requests">Førespurnader</string>
   <string name="PendingMembersActivity_invites">Invitasjonar</string>
   <string name="PendingMembersActivity_people_you_invited">Folk du har invitert</string>
@@ -622,7 +622,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Forsvinnande meldingar</string>
-  <string name="ManageGroupActivity_pending_group_invites">Ventande gruppeinvitasjonar</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Ventande gruppeinvitasjonar</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Medlemsførespurnader og invitasjonar</string>
   <string name="ManageGroupActivity_add_members">Legg til medlemmar</string>
   <string name="ManageGroupActivity_edit_group_info">Endra gruppeinfo</string>
@@ -755,7 +755,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppelenker kjem snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Oppdater Signal for å bruka gruppelenker</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal støtter ikkje enno å bli med i grupper via lenker. Denne funksjonaliteten kjem i ei seinare utgåve.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal støtter ikkje enno å bli med i grupper via lenker. Denne funksjonaliteten kjem i ei seinare utgåve.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-utgåva di støttar ikkje gruppelenker. Oppdater til siste utgåve for å bli med denne gruppa via ei lenke.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Ei eller fleire av dei lenka einingane dine køyrer ei utgåve av Signal som ikkje støtter gruppelenker. Oppdater Signal på dei lenka einingane dine for å bli med i gruppa.</string>
@@ -1044,8 +1044,8 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s starta ein gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Du er i gruppesamtalen · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s og %2$s er i gruppesamtalen · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Du er i gruppesamtalen · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s og %2$s er i gruppesamtalen · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s og %3$s er i gruppesamtalen · %4$s</string>
   <string name="MessageRecord_group_call_s">Gruppesamtale · %1$s</string>
   <string name="MessageRecord_you">Du</string>
@@ -2051,9 +2051,9 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_setup_a_username">Lag eit brukarnamn</string>
   <string name="configurable_single_select__customize_option">Endra val</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Samtalar og snarvegar</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Slett alle dynamiske snarvegar</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klikk for å sletta alle dynamiske snarvegar</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Samtalar og snarvegar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Slett alle dynamiske snarvegar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klikk for å sletta alle dynamiske snarvegar</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

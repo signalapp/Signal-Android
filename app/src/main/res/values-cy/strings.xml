@@ -606,7 +606,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">%1$d aelod</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string> -->
   <string name="PendingMembersActivity_requests">Ceisiadau</string>
   <string name="PendingMembersActivity_invites">Gwahoddiadau</string>
   <string name="PendingMembersActivity_people_you_invited">Pobl rydych wedi eu gwahodd</string>
@@ -687,7 +687,7 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Negeseuon yn diflannu</string>
-  <string name="ManageGroupActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Ceisiadau aelodau a gwahoddiadau</string>
   <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
   <string name="ManageGroupActivity_edit_group_info">Golygu manylion y grŵp</string>
@@ -832,7 +832,7 @@ Send neges heb ei ddiogelu?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Dolenni grŵp yn dod yn fuan</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Diweddarwch Signal i ddefnyddio dolenni grŵp</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Nid yw Signal yn cefnogi ymuno â grŵp trwy ddolen eto. Bydd y nodwedd hon yn cael ei rhyddhau mewn diweddariad sydd ar ddod.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Nid yw Signal yn cefnogi ymuno â grŵp trwy ddolen eto. Bydd y nodwedd hon yn cael ei rhyddhau mewn diweddariad sydd ar ddod.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Nid yw\'r fersiwn o Signal rydych chi\'n ei defnyddio yn cefnogi cysylltiadau grŵp. Diweddariad i\'r fersiwn ddiweddaraf i ymuno â\'r grŵp hwn trwy ddolen.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Diweddaru Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mae un neu fwy o\'ch dyfeisiau cysylltiedig yn rhedeg fersiwn o Signal nad yw\'n cefnogi cysylltiadau grŵp. Diweddarwch y Signal ar eich dyfais\dyfeisiau cysylltiedig i ymuno â\'r grŵp hwn.</string>
@@ -1147,8 +1147,8 @@ Send neges heb ei ddiogelu?</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Dechreuodd %1$s alwad grŵp · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Mae %1$s mewn galwad grŵp · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Rydych chi yn y galwad grŵp · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">Mae %1$s a %2$s yn yr alwad grŵp · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Rydych chi yn y galwad grŵp · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">Mae %1$s a %2$s yn yr alwad grŵp · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">Mae %1$s, %2$s, a %3$s yn yr alwad grŵp · %4$s</string>
   <string name="MessageRecord_group_call_s">Galwad grŵp · %1$s</string>
   <string name="MessageRecord_you">Chi</string>
@@ -2193,9 +2193,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_setup_a_username">Gosod enw defnyddiwr</string>
   <string name="configurable_single_select__customize_option">Cyfaddasu opsiwn</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Sgyrsiau a Llwybrau Byr</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Dileu pob llwybr byr dynamig</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliciwch i ddileu pob llwybr byr dynamig</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Sgyrsiau a Llwybrau Byr</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Dileu pob llwybr byr dynamig</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliciwch i ddileu pob llwybr byr dynamig</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

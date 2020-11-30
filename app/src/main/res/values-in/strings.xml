@@ -406,7 +406,7 @@
   <!--LinkPreviewView-->
   <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Undangan grup yang tertunda</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Undangan grup yang tertunda</string> -->
   <string name="PendingMembersActivity_people_you_invited">Orang yang Anda undang</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Anda tidak memiliki undangan tertunda</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Undangan dari anggota grup yang lain</string>
@@ -432,7 +432,7 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Penghilangan pesan</string>
-  <string name="ManageGroupActivity_pending_group_invites">Undangan grup yang tertunda</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Undangan grup yang tertunda</string> -->
   <string name="ManageGroupActivity_add_members">Tambahkan anggota</string>
   <string name="ManageGroupActivity_block_group">Blokir grup</string>
   <string name="ManageGroupActivity_leave_group">Keluar grup</string>

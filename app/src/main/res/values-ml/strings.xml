@@ -16,7 +16,7 @@
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">താങ്കൾ ഒരു രഹസ്യവാക്ക് ഇതു വരെ ക്രമീകരിച്ചിട്ടില്ല!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">ഒരു സംഭാഷണത്തിൽ %d സന്ദേശം</item>
-    <item quantity="other">ഒരു സംഭാഷണത്തിൽ %d സന്ദേശങ്ങൾ</item>
+    <item quantity="other">ഓരോ സംഭാഷണത്തിനും %d സന്ദേശങ്ങൾ</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">പഴയ സന്ദേശങ്ങളെല്ലാം ഇല്ലാതാക്കണോ?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -298,7 +298,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">അയയ്ക്കുന്ന താൽക്കാലിക മീഡിയ ഫയലുകൾ അയച്ചതിനുശേഷം അവ സ്വയമേവ നീക്കംചെയ്യപ്പെടും</string>
   <string name="ConversationFragment_you_already_viewed_this_message">നിങ്ങൾ ഇതിനകം ഈ സന്ദേശം കണ്ടു</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ഈ സംഭാഷണത്തിൽ‌ നിങ്ങൾ‌ക്കായി കുറിപ്പുകൾ‌ ചേർ‌ക്കാൻ‌ കഴിയും.\nനിങ്ങളുടെ അക്കൗണ്ടിൽ ലിങ്കുചെയ്‌ത ഉപകരണങ്ങളുണ്ടെങ്കിൽ, പുതിയ കുറിപ്പുകൾ സമന്വയിപ്പിക്കും.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് ഒരേ പേരാണ്.</string>
   <string name="ConversationFragment__tap_to_review">അവലോകനം ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
+  <string name="ConversationFragment__review_requests_carefully">അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">സിഗ്നല്‍ ഇതേ പേരിൽ മറ്റൊരു കോൺ‌ടാക്റ്റ് കണ്ടെത്തി.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഒരു ബ്രൌസർ ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല.</string>
   <!--ConversationListFragment-->
@@ -403,6 +406,10 @@
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_update_now">ഇപ്പോൾ അപ്ഡേറ്റ് ചെയ്യുക</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one"> %d തീർപ്പുകൽപ്പിക്കാത്ത അംഗത അഭ്യര്‍ത്ഥന.</item>
+    <item quantity="other">%d തീർപ്പുകൽപ്പിക്കാത്ത അംഗത അഭ്യര്‍ത്ഥനകള്‍.</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">കാണുക</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">പങ്കിടുക</string>
@@ -423,6 +430,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\"-നെ \"%2$s\"-ലേക്ക്  ചേർത്തു.</string>
   <string name="AddToGroupActivity_add_to_group">ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="AddToGroupActivity_add_to_groups">ഗ്രൂപ്പുകളിലേക്ക് ചേർക്കുക</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="AddToGroupActivity_add">ചേർക്കുക</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
@@ -444,11 +452,14 @@
     <item quantity="one">ക്ഷണം അയച്ചു</item>
     <item quantity="other">%d ക്ഷണങ്ങൾ അയച്ചു</item>
   </plurals>
+  <string name="GroupManagement_invite_single_user">\"%1$s\"നെ സ്വമേധയാ ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ നിങ്ങൾക്ക് കഴിയില്ല.\n\nഅവരെ അംഗത്വമെടുക്കാൻ ക്ഷണിച്ചിട്ടുണ്ട്, അവർ അത് സ്വീകരിക്കുന്നത് വരെ ഗ്രൂപ്പ് സന്ദേശങ്ങളൊന്നും കാണാൻ സാധിക്കുകയില്ല.</string>
   <string name="GroupManagement_learn_more">കൂടുതൽ അറിയുക</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">പുതിയ ഗ്രൂപ്പുകൾ എന്താണ്?</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">പുതിയ ഗ്രൂപ്പിലേക്ക് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">അപ്‌ഗ്രേഡുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">ഗ്രൂപ്പ് അപ്ഡേറ്റ് ചെയ്യുക</string>
@@ -495,7 +506,7 @@
     <item quantity="other">%1$d അംഗങ്ങൾ</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string> -->
   <string name="PendingMembersActivity_requests">അഭ്യർത്ഥനകൾ</string>
   <string name="PendingMembersActivity_invites">കഷണങ്ങൾ </string>
   <string name="PendingMembersActivity_people_you_invited">നിങ്ങൾ ക്ഷണിച്ച ആളുകൾ</string>
@@ -505,10 +516,17 @@
   <string name="PendingMembersActivity_missing_detail_explanation">മറ്റ് ഗ്രൂപ്പ് അംഗങ്ങൾ ക്ഷണിച്ച ആളുകളുടെ വിശദാംശങ്ങൾ കാണിക്കില്ല. ക്ഷണിതാക്കൾ ചേരാൻ തിരഞ്ഞെടുക്കുകയാണെങ്കിൽ, അവരുടെ വിവരങ്ങൾ ആ സമയത്ത് ഗ്രൂപ്പുമായി പങ്കിടും. ചേരുന്നതുവരെ അവർ ഗ്രൂപ്പിൽ സന്ദേശങ്ങളൊന്നും കാണില്ല.</string>
   <string name="PendingMembersActivity_revoke_invite">ക്ഷണം അസാധുവാക്കുക</string>
   <string name="PendingMembersActivity_revoke_invites">ക്ഷണങ്ങൾ അസാധുവാക്കുക</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">ക്ഷണം അസാധുവാക്കുക</item>
+    <item quantity="other">%1$d ക്ഷണങ്ങൾ അസാധുവാക്കുക</item>
+  </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_no_member_requests_to_show">കാണിക്കാൻ അംഗ അഭ്യർത്ഥനകളൊന്നുമില്ല.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" ചേർത്തു</string>
+  <string name="RequestingMembersFragment_denied_s">\"%1$s\" നിരസിച്ചു</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ചെയ്‌തു</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">\"%1$s\"-നെ  \"%2$s\"-ലേക്ക് ചേർക്കുക</item>
     <item quantity="other">\"%2$s\"-ലേക്ക് %3$d അംഗങ്ങളെ ചേർക്കുക?</item>
@@ -531,10 +549,11 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
-  <string name="ManageGroupActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string> -->
   <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ManageGroupActivity_edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
   <string name="ManageGroupActivity_who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
   <string name="ManageGroupActivity_group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
   <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് ബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
@@ -555,13 +574,19 @@
     <item quantity="one">%d അംഗം ചേർത്തു.</item>
     <item quantity="other">%d അംഗങ്ങൾ ചേർത്തു.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">അഡ്‌മിനുകൾക്ക് മാത്രമേ ഈ ഗ്രൂപ്പ് ലിങ്ക് പ്രവർത്തനക്ഷമമാക്കാനോ പ്രവർത്തനരഹിതമാക്കാനോ കഴിയൂ</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">അംഗങ്ങൾക്ക് അംഗീകാരം നൽകാനുള്ള ഓപ്ഷൻ അഡ്മിൻമാർക്ക് മാത്രമേ അപ്രാപ്തമാക്കാനോ പ്രാപ്തമാക്കാനോ കഴിയൂ</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">അഡ്‌മിനുകൾക്ക് മാത്രമേ പങ്കിടാനാകുന്ന ഗ്രൂപ്പ് ലിങ്ക് പുനഃസജ്ജമാക്കാൻ കഴിയൂ.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ഇത് ചെയ്യുന്നതിന് നിങ്ങൾക്ക് അവകാശമില്ല</string>
   <string name="ManageGroupActivity_not_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ പുതിയ ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കുന്നില്ല, അവർ Signal അപ്‌ഡേറ്റുചെയ്യേണ്ടതുണ്ട്</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">അഡ്‌മിനുകൾക്ക് മാത്രമേ പങ്കിടാനാകുന്ന ഗ്രൂപ്പ് ലിങ്ക് പുനഃസജ്ജമാക്കാൻ കഴിയൂ.</string>
   <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
   <string name="ManageGroupActivity_legacy_group">ലെഗസി ഗ്രൂപ്പ്</string>
   <string name="ManageGroupActivity_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ഇത് സുരക്ഷിതമല്ലാത്ത ഒരു MMS ഗ്രൂപ്പ് ആണ്. സ്വകാര്യമായി ചാറ്റുചെയ്യുന്നതിനും ഗ്രൂപ്പ് നാമങ്ങൾ പോലുള്ള സവിശേഷതകൾ ആക്സസ് ചെയ്യുന്നതിനും, നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകളെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
+  <string name="ManageGroupActivity_invite_now">ഇപ്പോൾ ക്ഷണിക്കുക</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_always_notify_me">എല്ലായ്പ്പോഴും എന്നെ അറിയിക്കുക</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">എന്നെ അറിയിക്കരുത്</string>
@@ -610,22 +635,33 @@
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">പങ്കിടാവുന്ന ഗ്രൂപ്പ് ലിങ്ക്</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
   <string name="ShareableGroupLinkDialogFragment__share">പങ്കിടുക</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">ലിങ്ക് പുനഃസജ്ജമാക്കുക്ക </string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">അംഗ അഭ്യർത്ഥനകൾ</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">പുതിയ അംഗങ്ങളെ അംഗീകരിക്കുക</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">അപ്രാപ്‌തമാക്കി</string>
   <string name="ShareableGroupLinkDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
   <!--GroupLinkShareQrDialogFragment-->
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR കോഡ്</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">കോഡ് പങ്കിടുക</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">നിങ്ങൾ ഇതിനകം ഒരു അംഗമാണ്</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">ചേരുക</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">ചേരാൻ അഭ്യർത്ഥിക്കുക</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ഗ്രൂപ്പിൽ ചേരാനായില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ഗ്രൂപ്പ് വിവരങ്ങൾ‌ നേടാൻ‌ കഴിയില്ല, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">ഈ ഗ്രൂപ്പിൽ ചേരാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടാനും നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് മുമ്പ് നിങ്ങളുടെ അഭ്യർത്ഥന ഈ ഗ്രൂപ്പിന്റെ അഡ്മിൻ അംഗീകരിക്കണം. ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങൾ അഭ്യർത്ഥിക്കുമ്പോൾ, നിങ്ങളുടെ ഫോട്ടോയും നമ്പറും അതിലെ അംഗങ്ങളുമായി പങ്കിടും</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">ഗ്രൂപ്പ് ലിങ്കുകൾ ഉടനെ വരുന്നു</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">ഗ്രൂപ്പ് ലിങ്കുകൾ ഉപയോഗിക്കുന്നതിന് Signal അപ്‌ഡേറ്റുചെയ്യുക</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ഗ്രൂപ്പ് ലിങ്ക് അസാധുവാണ്</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">ഗ്രൂപ്പിലേക്ക് \"%1$s\"-നെ ചേർക്കണോ?</string>
   <string name="RequestConfirmationDialog_add">ചേർക്കുക</string>
   <string name="RequestConfirmationDialog_deny">നിരസിക്കുക</string>
   <!--CropImageActivity-->
@@ -761,14 +797,18 @@
   <string name="MessageRecord_left_group">നിങ്ങൾ ഗ്രൂപ്പ് വിട്ടു.</string>
   <string name="MessageRecord_you_updated_group">നിങ്ങൾ ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
   <string name="MessageRecord_the_group_was_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
+  <string name="MessageRecord_you_called_date">നിങ്ങൾ വിളിച്ചു  · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
+  <string name="MessageRecord_s_called_you_date">%1$s നിങ്ങളെ വിളിച്ചു  · %2$s</string>
   <string name="MessageRecord_called_s">%s വിളിച്ചു</string>
   <string name="MessageRecord_s_joined_signal">%s Signal-ലിൽ ഉണ്ട്!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">സന്ദേശങ്ങൾ അപ്രത്യക്ഷമാകുന്നത് നിങ്ങൾ സജീവമല്ലാതാക്കിയിട്ടുണ്ട്.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ അപ്രാപ്തമാക്കി.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">നിങ്ങൾ സന്ദേശം അപ്രത്യക്ഷമാകാനുള്ള ടൈമർ %1$s ആയി ക്രമീകരിച്ചു.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s സന്ദേശം അപ്രത്യക്ഷമാകാനുള്ള ടൈമർ %2$s ആയി ക്രമീകരിച്ചു.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">ഈ ഗ്രൂപ്പ് ഒരു പുതിയ ഗ്രൂപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
   <!--Profile change updates-->
+  <string name="MessageRecord_changed_their_profile">%1$s അവരുടെ പ്രൊഫൈൽ മാറ്റി </string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">നിങ്ങൾ ഗ്രൂപ്പ് സൃഷ്ടിച്ചു.</string>
   <string name="MessageRecord_group_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
@@ -805,6 +845,10 @@
     <item quantity="other">%1$s %2$d ആളുകളെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">നിങ്ങളെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചിരിക്കുന്നു.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 വ്യക്തിയെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു.</item>
+    <item quantity="other">%1$d ആളുകളെ ഗ്രൂപ്പിലേക്ക് ക്ഷണിച്ചു.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">നിങ്ങൾ ഗ്രൂപ്പിലേക്കുള്ള ക്ഷണം റദ്ദാക്കി.</item>
@@ -824,9 +868,11 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">നിങ്ങൾ ഗ്രൂപ്പിന്റെ പേര് \"%1$s\" എന്ന് മാറ്റി.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ഗ്രൂപ്പിന്റെ പേര് \"%2$s\" എന്ന് മാറ്റി.</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">ഗ്രൂപ്പിന്റെ പേര് \"%1$s\" എന്നായി മാറ്റി.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">നിങ്ങൾ ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">ഗ്രൂപ്പ് വിവരം ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകുമെന്ന് നിങ്ങൾ \"%1$s\" എന്നതിലേക്ക് മാറ്റി.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">ഗ്രൂപ്പ് വിവരം ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകുമെന്ന് %1$s \"%2$s\" എന്നതിലേക്ക് മാറ്റി.</string>
@@ -834,6 +880,9 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">ആർക്കാണ് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാനാകുമെന്ന് നിങ്ങൾ  \"%1$s\" എന്നതിലേക്ക് മാറ്റി.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">ആർക്കാണ് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാനാകുമെന്ന് %1$s \"%2$s\" എന്നതിലേക്ക് മാറ്റി.</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_off_the_group_link">നിങ്ങൾ ഗ്രൂപ്പ് ലിങ്ക് ഓഫാക്കി</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s ഗ്രൂപ്പ് ലിങ്ക് ഓഫാക്കി</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">ഗ്രൂപ്പ് ലിങ്ക് ഓഫാക്കി.</string>
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
@@ -846,6 +895,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
+  <string name="MessageRecord_group_call_s">ഗ്രൂപ്പ് കോൾ · %1$s</string>
   <string name="MessageRecord_you">നിങ്ങൾ</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">സ്വീകരിക്കുക</string>

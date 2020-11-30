@@ -550,7 +550,7 @@
     <item quantity="other">%1$d عضو</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">دعوت‌های در حال انتظار</string> -->
   <string name="PendingMembersActivity_requests">درخواست‌ها</string>
   <string name="PendingMembersActivity_invites">دعوت‌ها</string>
   <string name="PendingMembersActivity_people_you_invited">افرادی که شما دعوت کردید</string>
@@ -617,7 +617,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
-  <string name="ManageGroupActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">دعوت‌های در حال انتظار</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">درخواست‌های عضویت و دعوت‌ها</string>
   <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
   <string name="ManageGroupActivity_edit_group_info">ویرایش اطلاعات گروه</string>
@@ -750,7 +750,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">پیوندهای گروه به زودی</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">برای استفاده از پیوند‌های گروه Signal را به‌روزرسانی کنید</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal هنوز از پیوستن به گروه از طریق پیوند پشتیبانی نمی‌کند، این قابلیت در به‌روزرسانی آینده منتشر خواهد شد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal هنوز از پیوستن به گروه از طریق پیوند پشتیبانی نمی‌کند، این قابلیت در به‌روزرسانی آینده منتشر خواهد شد.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">نسخهٔ Signal که در حال استفاده از آن هستید از پیوند‌های گروه پشتیبانی نمی‌کند. برای پیوستن به این گروه از طریق پیوند، به آخرین نسخه به‌روزرسانی کنید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">بروزرسانی Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">یک یا چند عدد از دستگاه‌های پیوند‌ داده شدهٔ شما در حال اجرای نسخه‌ای از Signal هستند که از پیوند‌های گروه پشتیبانی نمی‌کند. Signal را بر روی دستگاه‌های پیوند داده شده به‌روزرسانی کنید تا به این گروه بپیوندید.</string>
@@ -1039,8 +1039,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی حضور دارد · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">شما در تماس گروهی حضور دارید · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s و %2$s در تماس گروهی حضور دارند · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">شما در تماس گروهی حضور دارید · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s و %2$s در تماس گروهی حضور دارند · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s، %2$s و %3$s در این تماس گروهی حضور دارند · %4$s</string>
   <string name="MessageRecord_group_call_s">تماس گروهی · %1$s</string>
   <string name="MessageRecord_you">شما</string>
@@ -2043,9 +2043,9 @@
   <string name="preferences_setup_a_username">برپایی نام کاربری</string>
   <string name="configurable_single_select__customize_option">سفارشی‌سازی</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">مکالمه‌ها و میانبرها</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">حذف همهٔ میانبرهای پویا</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">برای حذف همهٔ میانبرهای پویا کلیک کنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">مکالمه‌ها و میانبرها</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">حذف همهٔ میانبرهای پویا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">برای حذف همهٔ میانبرهای پویا کلیک کنید</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

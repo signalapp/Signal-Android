@@ -437,7 +437,7 @@
     <item quantity="other">%1$d សមាជិក</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string> -->
   <string name="PendingMembersActivity_requests">ស្នើសុំ</string>
   <string name="PendingMembersActivity_invites">អញ្ជើញ</string>
   <string name="PendingMembersActivity_people_you_invited">មនុស្សដែលអ្នកបានអញ្ជើញ</string>
@@ -486,7 +486,7 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
-  <string name="ManageGroupActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string> -->
   <string name="ManageGroupActivity_add_members">បន្ថែមសមាជិក</string>
   <string name="ManageGroupActivity_edit_group_info">កែព័ត៌មានក្រុម</string>
   <string name="ManageGroupActivity_group_link">តំណក្រុម</string>

@@ -425,7 +425,7 @@
   <!--LinkPreviewView-->
   <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string> -->
   <string name="PendingMembersActivity_people_you_invited">Jūsu ielūgumi</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Jums nav neapstiprināto ielūgumu</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Citu grupu lietotāju ielūgumi</string>
@@ -449,7 +449,7 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Gaistošās ziņas</string>
-  <string name="ManageGroupActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Neapstiprinātie grupu ielūgumi</string> -->
   <string name="ManageGroupActivity_add_members">Pievienot dalībniekus</string>
   <string name="ManageGroupActivity_block_group">Bloķēt grupu</string>
   <string name="ManageGroupActivity_leave_group">Pamest grupu</string>

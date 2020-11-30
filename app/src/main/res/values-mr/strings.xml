@@ -406,7 +406,7 @@
   <string name="LinkPreviewsMegaphone_disable">अक्षम करा</string>
   <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">प्रलंबित गट आमंत्रणे</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">प्रलंबित गट आमंत्रणे</string> -->
   <string name="PendingMembersActivity_people_you_invited">आपण आमंत्रित केलेल्या व्यक्ती</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">आपल्याकडे प्रलंबित आमंत्रणे नाहीत.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">इतर गट सदस्यांद्वारा आमंत्रण</string>
@@ -432,7 +432,7 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">हरवणारे संदेश</string>
-  <string name="ManageGroupActivity_pending_group_invites">प्रलंबित गट आमंत्रणे</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">प्रलंबित गट आमंत्रणे</string> -->
   <string name="ManageGroupActivity_add_members">सदस्य जोडा</string>
   <string name="ManageGroupActivity_block_group">गट अवरोधित करा</string>
   <string name="ManageGroupActivity_unblock_group">गट अनवरोधित करा</string>

@@ -396,7 +396,7 @@
   <string name="LinkPreviewsMegaphone_disable">ਅਸਮਰੱਥ ਕਰੋ</string>
   <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">ਗਰੁੱਪ ਦੇ ਲੰਬਿਤ ਸੱਦੇ</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">ਗਰੁੱਪ ਦੇ ਲੰਬਿਤ ਸੱਦੇ</string> -->
   <string name="PendingMembersActivity_people_you_invited">ਤੁਹਾਡੇ ਵੱਲੋਂ ਸੱਦੇ ਗਏ ਲੋਕ</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">ਗਰੁੱਪ ਦੇ ਹੋਰਨਾਂ ਮੈਂਬਰਾਂ ਵੱਲੋਂ ਭੇਜੇ ਗਏ ਸੱਦੇ</string>
   <string name="PendingMembersActivity_missing_detail_explanation">ਗਰੁੱਪ ਦੇ ਹੋਰਨਾਂ ਮੈਂਬਰਾਂ ਵੱਲੋਂ ਸੱਦੇ ਲੋਕਾਂ ਦੇ ਵੇਰਵੇ ਨਹੀਂ ਦਿਖਾਏ ਜਾਂਦੇ. ਜੇਕਰ ਸੱਦਾ ਭੇਜੇ ਗਏ ਵਿਅਕਤੀ ਜੁੜਨ ਦਾ ਫੈਸਲਾ ਕਰਦੇ ਹਨ, ਤਾਂ ਉਹਨਾਂ ਦੀ ਜਾਣਕਾਰੀ ਗਰੁੱਪ ਦੇ ਨਾਲ ਉਸ ਸਮੇਂ ਸਾਂਝੀ ਕੀਤੀ ਜਾਵੇਗੀ. ਜਦੋਂ ਤੱਕ ਉਹ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਜਾਂਦੇ, ਉਹ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਨਹੀਂ ਦੇਖਣਗੇ.</string>
@@ -418,7 +418,7 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">ਗੁੰਮ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
-  <string name="ManageGroupActivity_pending_group_invites">ਗਰੁੱਪ ਦੇ ਲੰਬਿਤ ਸੱਦੇ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">ਗਰੁੱਪ ਦੇ ਲੰਬਿਤ ਸੱਦੇ</string> -->
   <string name="ManageGroupActivity_add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="ManageGroupActivity_block_group">ਗਰੁੱਪ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
   <string name="ManageGroupActivity_unblock_group">ਗਰੁੱਪ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ</string>

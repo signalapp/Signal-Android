@@ -465,7 +465,7 @@
     <item quantity="other">%1$d உறுப்பினர்கள் </item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string> -->
   <string name="PendingMembersActivity_requests">கோரிக்கைகளை</string>
   <string name="PendingMembersActivity_invites">அழைப்புகள்</string>
   <string name="PendingMembersActivity_people_you_invited">மக்கள் நீங்கள் அழைக்கப்பட்டார்</string>
@@ -519,7 +519,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
-  <string name="ManageGroupActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string> -->
   <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்தல்</string>
   <string name="ManageGroupActivity_edit_group_info">குழு தகவலைத் திருத்தல்</string>
   <string name="ManageGroupActivity_block_group">குழுவைத் தடு</string>

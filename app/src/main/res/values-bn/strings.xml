@@ -420,7 +420,7 @@
   <!--LinkPreviewView-->
   <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string> -->
   <string name="PendingMembersActivity_people_you_invited">আপনার আমন্ত্রিত লোকেরা</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">আপনার কোন অনিষ্পাদিত আমন্ত্রণ নেই।</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">গ্রুপের অন্যান্য সদস্যদের আমন্ত্রণ</string>
@@ -450,7 +450,7 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">অদৃশ্য বার্তা</string>
-  <string name="ManageGroupActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string> -->
   <string name="ManageGroupActivity_add_members">সদস্য যোগ করুন</string>
   <string name="ManageGroupActivity_block_group">গ্রুপ ব্লক করুন</string>
   <string name="ManageGroupActivity_unblock_group">গ্রুপ আনব্লক করুন</string>

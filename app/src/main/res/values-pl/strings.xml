@@ -604,7 +604,7 @@
     <item quantity="other">%1$d członków</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Oczekujące zaproszenia do grupy</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Oczekujące zaproszenia do grupy</string> -->
   <string name="PendingMembersActivity_requests">Prośby</string>
   <string name="PendingMembersActivity_invites">Zaproszenia</string>
   <string name="PendingMembersActivity_people_you_invited">Ludzie, których zaprosiłeś(aś)</string>
@@ -685,7 +685,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Znikające wiadomości</string>
-  <string name="ManageGroupActivity_pending_group_invites">Oczekujące zaproszenia do grupy</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Oczekujące zaproszenia do grupy</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Prośby o przyjęcie i zaproszenia</string>
   <string name="ManageGroupActivity_add_members">Dodaj członków</string>
   <string name="ManageGroupActivity_edit_group_info">Edytuj informacje o grupie</string>
@@ -830,7 +830,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Linki do grup już wkrótce</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uaktualnij Signal, aby korzystać z linków do grup</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Dołączanie do grupy przez link, nie jest jeszcze obsługiwane w Signal. Ta funkcja znajdzie się w kolejnej aktualizacji.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Dołączanie do grupy przez link, nie jest jeszcze obsługiwane w Signal. Ta funkcja znajdzie się w kolejnej aktualizacji.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Używana przez Ciebie wersja Signal nie obsługuje linków do grup. Zaktualizuj do najnowszej wersji, aby dołączyć do tej grupy przez link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Zaktualizuj Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedno lub więcej z Twoich połączonych urządzeń używa wersji Signal, która nie obsługuje linków do grup. Zaktualizuj aplikację Signal  na swoim połączonym urządzeniu(ach) do najnowszej wersji, aby dołączyć do tej grupy.</string>
@@ -1145,8 +1145,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s rozpoczął(ęła) połączenie grupowe · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s uczestniczy w rozmowie · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Uczestniczysz w rozmowie · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s i %2$s uczestniczą w rozmowie · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Uczestniczysz w rozmowie · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s i %2$s uczestniczą w rozmowie · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s i %3$s uczestniczą w rozmowie · %4$s</string>
   <string name="MessageRecord_group_call_s">Połączenie grupowe · %1$s</string>
   <string name="MessageRecord_you">Ty</string>
@@ -2183,9 +2183,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_setup_a_username">Ustaw nazwę użytkownika</string>
   <string name="configurable_single_select__customize_option">Dostosuj opcję</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Konwersacje i skróty</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Usuń wszystkie dynamiczne skróty</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Stuknij, aby usunąć wszystkie dynamiczne skróty</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Konwersacje i skróty</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Usuń wszystkie dynamiczne skróty</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Stuknij, aby usunąć wszystkie dynamiczne skróty</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

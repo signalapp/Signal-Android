@@ -541,7 +541,7 @@
     <item quantity="other">%1$d membrii</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Invitații la grup în așteptare</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Invitații la grup în așteptare</string> -->
   <string name="PendingMembersActivity_requests">Cereri</string>
   <string name="PendingMembersActivity_invites">Invitații</string>
   <string name="PendingMembersActivity_people_you_invited">Persoane pe care le-ați invitat</string>
@@ -604,7 +604,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Dispariție mesaje</string>
-  <string name="ManageGroupActivity_pending_group_invites">Invitații la grup în așteptare</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Invitații la grup în așteptare</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitări și invitații ale membrilor</string>
   <string name="ManageGroupActivity_add_members">Adăugați membrii</string>
   <string name="ManageGroupActivity_edit_group_info">Editare informații despre grup</string>
@@ -742,7 +742,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Linkurile de grup vin în curând</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizați Signal pentru a folosi link-uri la grupuri</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Înscrierea la un grup printr-un link nu este încă suportată de Signal. Această funcționalitate va fi lansată într-o actualizare viitoare.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Înscrierea la un grup printr-un link nu este încă suportată de Signal. Această funcționalitate va fi lansată într-o actualizare viitoare.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versiune de Signal pe care o folosiți nu suportă link-uri către grupuri. Actualizați la ultima versine pentru a te alătura acestui grup printr-un link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizați Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Unul sau mai multe dintre dispozitivele asociate rulează o versiune de Signal care nu acceptă link-uri către grup. Actualizați Signal pe dispozitivele asociate pentru a vă alătura acestui grup.</string>
@@ -1039,8 +1039,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a început un apel de grup · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s este în apelul de grup · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Sunteți în apelul de grup · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s și %2$s sunt în apelul de grup · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Sunteți în apelul de grup · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s și %2$s sunt în apelul de grup · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s și %3$s sunt în apelul de grup · %4$s</string>
   <string name="MessageRecord_group_call_s">Apel de grup · %1$s</string>
   <string name="MessageRecord_you">Dvs.</string>
@@ -2055,7 +2055,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_setup_a_username">Configurați un nume de utilizator</string>
   <string name="configurable_single_select__customize_option">Personalizați opțiunea</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Conversații și scurtături</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Conversații și scurtături</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

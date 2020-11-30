@@ -602,7 +602,7 @@
     <item quantity="other">%1$d členov</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Nevybavené pozvánky do skupín</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Nevybavené pozvánky do skupín</string> -->
   <string name="PendingMembersActivity_requests">Žiadosti</string>
   <string name="PendingMembersActivity_invites">Pozvánky</string>
   <string name="PendingMembersActivity_people_you_invited">Ľudia, ktorých ste pozvali vy</string>
@@ -670,7 +670,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Miznúce správy</string>
-  <string name="ManageGroupActivity_pending_group_invites">Nevybavené pozvánky do skupín</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Nevybavené pozvánky do skupín</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Žiadosti o členstvo a pozvánky</string>
   <string name="ManageGroupActivity_add_members">Pridať členov</string>
   <string name="ManageGroupActivity_edit_group_info">Upraviť informácie o skupine</string>
@@ -815,7 +815,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Odkazy do skupiny budú onedlho dostupné</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Pre používanie odkazov do skupín aktualizujte Signal.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Vstup do skupiny pomocou odkazu ešte v Signale nie je podporované. Táto funkcia bude pridaná v nasledujúcej aktualizácii.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Vstup do skupiny pomocou odkazu ešte v Signale nie je podporované. Táto funkcia bude pridaná v nasledujúcej aktualizácii.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzia Signalu, ktorú používate, nepodporuje odkazy do skupín. Ak sa chcete pridať do tejto skupiny pomocou odkazu, aktualizujte na najnovšiu verziu.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovať Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedno alebo viac pripojených zariadení používa verziu Signalu, ktorá nepodporuje odkazy do skupín. Ak sa chcete pridať do tejto skupiny, aktualizujte Signal na svojom pripojenom zariadení/iach.</string>

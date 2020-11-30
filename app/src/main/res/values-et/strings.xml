@@ -521,7 +521,7 @@
     <item quantity="other">%1$d liiget</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Ootel grupikutsed</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Ootel grupikutsed</string> -->
   <string name="PendingMembersActivity_requests">Taotlused</string>
   <string name="PendingMembersActivity_invites">Kutsed</string>
   <string name="PendingMembersActivity_people_you_invited">Sinu kutsutud inimesed</string>
@@ -582,7 +582,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaduvad sõnumid</string>
-  <string name="ManageGroupActivity_pending_group_invites">Ootel grupikutsed</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Ootel grupikutsed</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Liikmetaotlused ja -kutsed</string>
   <string name="ManageGroupActivity_add_members">Lisa liikmeid</string>
   <string name="ManageGroupActivity_edit_group_info">Muuda grupi infot</string>
@@ -1930,7 +1930,7 @@
   <string name="preferences_setup_a_username">Vali kasutajanimi</string>
   <string name="configurable_single_select__customize_option">Kohanda valikut</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Vestlused ja otseteed</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Vestlused ja otseteed</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

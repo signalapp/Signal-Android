@@ -550,7 +550,7 @@
     <item quantity="other">%1$d μέλη</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string> -->
   <string name="PendingMembersActivity_requests">Αιτήματα</string>
   <string name="PendingMembersActivity_invites">Προσκλήσεις</string>
   <string name="PendingMembersActivity_people_you_invited">Άτομα που έχεις προσκαλέσει</string>
@@ -617,7 +617,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
-  <string name="ManageGroupActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Αιτήματα μελών &amp; προσκλήσεις</string>
   <string name="ManageGroupActivity_add_members">Προσθήκη μελών</string>
   <string name="ManageGroupActivity_edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
@@ -750,7 +750,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Οι σύνδεσμοι ομάδων έρχονται σύντομα</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Αναβάθμσε το Signal για να χρησιμοποιήσεις συνδέσμους ομαδών.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Η εγγραφή σε ομάδα μέσω συνδέσμου δεν υποστηρίζεται ακόμα από το Signal. Η δυνατότητα αυτή θα είναι διαθέσιμη σε επόμενη ενημέρωση.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Η εγγραφή σε ομάδα μέσω συνδέσμου δεν υποστηρίζεται ακόμα από το Signal. Η δυνατότητα αυτή θα είναι διαθέσιμη σε επόμενη ενημέρωση.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Η έκδοση Signal που χρησιμοποιείς δεν υποστηρίζει συνδέσμους ομαδών. Αναβάθμισε στη τελευταία έκδοση για να μπεις στην ομάδα μέσω του συνδέσμου.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Αναβάθμιση του Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Μια ή παραπάνω από τις συνδεμένες συσκευές σου έχουν κάποια έκδοση του Signal που δεν υποστηρίζει τους συνδέσμους ομάδων. Αναβάθμισε το Signal στη συνδεμένη συσκευή/ές σου για να μπεις σε αυτή την ομάδα.</string>
@@ -1039,8 +1039,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Είσαι στην ομαδική κλήση · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Είσαι στην ομαδική κλήση · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">Οι %1$s, %2$s και %3$s είναι στην ομαδική κλήση · %4$s</string>
   <string name="MessageRecord_group_call_s">Ομαδική κλήση · %1$s</string>
   <string name="MessageRecord_you">Εσύ</string>
@@ -2040,7 +2040,7 @@
   <string name="preferences_setup_a_username">Ορισμός ονόματος χρήστη`</string>
   <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Συνομιλίες και συντομεύσεις</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Συνομιλίες και συντομεύσεις</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

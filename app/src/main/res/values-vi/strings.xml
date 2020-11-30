@@ -451,7 +451,7 @@
     <item quantity="other">%1$d thành viên</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string> -->
   <string name="PendingMembersActivity_requests">Yêu cầu</string>
   <string name="PendingMembersActivity_invites">Lời mời</string>
   <string name="PendingMembersActivity_people_you_invited">Người dùng bạn đã mời</string>
@@ -504,7 +504,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Tin nhắn tạm thời</string>
-  <string name="ManageGroupActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Yêu cầu tham gia &amp; Lời mời</string>
   <string name="ManageGroupActivity_add_members">Thêm thành viên</string>
   <string name="ManageGroupActivity_edit_group_info">Sửa thông tin nhóm</string>
@@ -620,7 +620,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Đường dẫn nhóm sẽ có trong tương lai</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Cập nhật Signal để dùng liên kết nhóm</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Tham gia nhóm bằng đường dẫn nhóm hiện chưa được Signal hỗ trợ. Tính năng này sẽ được hoàn thiện trong bản cập nhật tới.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Tham gia nhóm bằng đường dẫn nhóm hiện chưa được Signal hỗ trợ. Tính năng này sẽ được hoàn thiện trong bản cập nhật tới.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Phiên bản Signal bạn đang dùng không hỗ trợ liên kết nhóm. Vui lòng cập nhật để có thể tham gia nhóm qua liên kết.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Cập nhật Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Đường dẫn nhóm không hợp lệ</string>

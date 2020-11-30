@@ -604,7 +604,7 @@
     <item quantity="other">%1$d участников</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Приглашения в группу в ожидании</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Приглашения в группу в ожидании</string> -->
   <string name="PendingMembersActivity_requests">Запросы</string>
   <string name="PendingMembersActivity_invites">Приглашения</string>
   <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
@@ -685,7 +685,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Исчезающие сообщения</string>
-  <string name="ManageGroupActivity_pending_group_invites">Приглашения в группу в ожидании</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Приглашения в группу в ожидании</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Запросы на участие и приглашения</string>
   <string name="ManageGroupActivity_add_members">Добавить участников</string>
   <string name="ManageGroupActivity_edit_group_info">Редактировать информацию группы</string>
@@ -830,7 +830,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Ссылки на группы будут скоро доступны</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Обновите Signal, чтобы использовать ссылки на группы</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Присоединение к группе по ссылке ещё не поддерживается в Signal. Эта функция станет доступна в предстоящем обновлении.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Присоединение к группе по ссылке ещё не поддерживается в Signal. Эта функция станет доступна в предстоящем обновлении.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает ссылки на группы. Обновитесь до новейшей версии, чтобы присоединиться к этой группе по ссылке.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Обновить Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Одно или больше из ваших привязанных устройств используют версию Signal, которая не поддерживает ссылки на группы. Обновите Signal на своём(-их) привязанном(-ых) устройстве(-ах), чтобы присоединиться к этой группе.</string>
@@ -1145,8 +1145,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s начал(-а) групповой звонок · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s в групповом звонке · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Вы в групповом звонке · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s и %2$s в групповом звонке · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Вы в групповом звонке · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s и %2$s в групповом звонке · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s и %3$s в групповом звонке · %4$s</string>
   <string name="MessageRecord_group_call_s">Групповой звонок · %1$s</string>
   <string name="MessageRecord_you">Вы</string>
@@ -1306,7 +1306,7 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Нажмите здесь, чтобы включить своё видео</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Чтобы позвонить %1$s, Signal необходим доступ к вашей камере</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">Соединяемся…</string>
+  <string name="WebRtcCallActivity__calling">Подключаемся…</string>
   <string name="WebRtcCallActivity__group_call">Групповой звонок</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Голосовой звонок Signal…</string>
@@ -1316,8 +1316,8 @@
   <string name="WebRtcCallView__s_group_call">Групповой звонок «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">Просмотреть участников</string>
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
-  <string name="WebRtcCallView__connecting">Подключает…</string>
-  <string name="WebRtcCallView__reconnecting">Переподключает…</string>
+  <string name="WebRtcCallView__connecting">Подключаемся…</string>
+  <string name="WebRtcCallView__reconnecting">Переподключаемся…</string>
   <string name="WebRtcCallView__joining">Присоединяет…</string>
   <string name="WebRtcCallView__disconnected">Отключён</string>
   <string name="WebRtcCallView__no_one_else_is_here">Здесь нет никого, кроме вас</string>
@@ -2184,9 +2184,9 @@
   <string name="preferences_setup_a_username">Настройте имя пользователя</string>
   <string name="configurable_single_select__customize_option">Изменить опцию</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Разговоры и ярлыки</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Удалить все динамические ярлыки</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Нажмите, чтобы удалить все динамические ярлыки</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Разговоры и ярлыки</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Удалить все динамические ярлыки</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Нажмите, чтобы удалить все динамические ярлыки</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

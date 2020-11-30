@@ -604,7 +604,7 @@
     <item quantity="other">%1$d חברי קבוצה</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">הזמנות קבוצה ממתינות</string> -->
   <string name="PendingMembersActivity_requests">בקשות</string>
   <string name="PendingMembersActivity_invites">הזמנות</string>
   <string name="PendingMembersActivity_people_you_invited">אנשים שהזמנת</string>
@@ -685,7 +685,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">הודעות נעלמות</string>
-  <string name="ManageGroupActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">הזמנות קבוצה ממתינות</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">בקשות והזמנות של חברי קבוצה</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
   <string name="ManageGroupActivity_edit_group_info">ערוך מידע קבוצה</string>
@@ -830,7 +830,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">קישורי קבוצה מגיעים בקרוב</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">עדכן את Signal כדי להשתמש בקישורי קבוצה</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">הצטרפות אל קבוצה באמצעות קישור אינה נתמכת עדין על ידי Signal. מאפיין זה ישוחרר בעדכון עתידי.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">הצטרפות אל קבוצה באמצעות קישור אינה נתמכת עדין על ידי Signal. מאפיין זה ישוחרר בעדכון עתידי.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">הגרסה של Signal שאתה משתמש בה אינה תומכת בקישורי קבוצה. עדכן אל הגרסה האחרונה כדי להצטרף אל קבוצה זו באמצעות קישור.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">עדכן את Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">מכשיר מקושר אחד או יותר שלך מריצים גרסה של Signal שאינה תומכת בקישורי קבוצה. עדכן את Signal במכשירים המקושרים שלך כדי להצטרף אל קבוצה זו.</string>
@@ -1145,8 +1145,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s התחיל/ה שיחה קבוצתית · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s בשיחה הקבוצתית · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">את/ה בשיחה הקבוצתית · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s וגם %2$s בשיחה הקבוצתית · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">את/ה בשיחה הקבוצתית · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s וגם %2$s בשיחה הקבוצתית · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s וגם %3$s בשיחה הקבוצתית · %4$s</string>
   <string name="MessageRecord_group_call_s">שיחה קבוצתית · %1$s</string>
   <string name="MessageRecord_you">את/ה</string>
@@ -2191,9 +2191,9 @@
   <string name="preferences_setup_a_username">הגדר שם משתמש</string>
   <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">שיחות וקיצורי דרך</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">מחק את כל קיצורי הדרך הדינמיים</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">לחץ כדי למחוק את כל קיצורי הדרך הדינמיים</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">שיחות וקיצורי דרך</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">מחק את כל קיצורי הדרך הדינמיים</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">לחץ כדי למחוק את כל קיצורי הדרך הדינמיים</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

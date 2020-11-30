@@ -487,7 +487,7 @@
     <item quantity="other">%1$d jäsentä</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Odottavat ryhmäkutsut</string> -->
   <string name="PendingMembersActivity_requests">Pyynnöt</string>
   <string name="PendingMembersActivity_invites">Kutsut</string>
   <string name="PendingMembersActivity_people_you_invited">Kutsumasi henkilöt</string>
@@ -545,7 +545,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Katoavat viestit</string>
-  <string name="ManageGroupActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Odottavat ryhmäkutsut</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Ryhmäänliittymispyynnöt &amp; kutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
   <string name="ManageGroupActivity_edit_group_info">Muokkaa ryhmän tietoja</string>
@@ -675,7 +675,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Ryhmälinkit tulossa pian</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Päivitä Signal käyttääksesi ryhmälinkkejä</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal ei vielä tue ryhmään liittymistä linkin kautta. Tämä ominaisuus julkaistaan tulevassa päivityksessä.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal ei vielä tue ryhmään liittymistä linkin kautta. Tämä ominaisuus julkaistaan tulevassa päivityksessä.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Käyttämäsi versio Signalista ei tue ryhmälinkkejä. Päivitä uusimpaan versioon liittyäksesi tähän ryhmään linkin kautta.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Päivitä Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Yhdellä tai useammalla linkitetyllä laitteellasi on Signal-versio, joka ei tue ryhmälinkkejä. Päivitä linkitettyjen laitteidesi sovellukset liittyäksesi tähän ryhmään.</string>

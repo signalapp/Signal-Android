@@ -487,8 +487,8 @@
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Påträffade ett nätverksfel. Försök igen senare.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Det gick inte att uppgradera.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">Denna medlem måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
-    <item quantity="other">Dessa medlemmar måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
+    <item quantity="one">Denna medlem måste acceptera en inbjudan för att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
+    <item quantity="other">Dessa medlemmar måste acceptera en inbjudan för att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Denna medlem kan inte gå med i Nya grupper och kommer att tas bort från gruppen:</item>
@@ -550,7 +550,7 @@
     <item quantity="other">%1$d medlemmar</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMemberInvitesActivity_pending_group_invites">Väntande gruppinbjudningar</string>
+  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Väntande gruppinbjudningar</string> -->
   <string name="PendingMembersActivity_requests">Förfrågningar</string>
   <string name="PendingMembersActivity_invites">Inbjudningar</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du bjudit in</string>
@@ -617,7 +617,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Försvinnande meddelanden</string>
-  <string name="ManageGroupActivity_pending_group_invites">Väntande gruppinbjudningar</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Väntande gruppinbjudningar</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Medlemsförfrågningar &amp; inbjudningar</string>
   <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
   <string name="ManageGroupActivity_edit_group_info">Redigera gruppinformation</string>
@@ -750,7 +750,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupplänkar kommer snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uppdatera Signal för att använda grupplänkar</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Att gå med i en grupp via en länk stöds ännu inte av Signal. Denna funktion kommer att släppas i en kommande uppdatering.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Att gå med i en grupp via en länk stöds ännu inte av Signal. Denna funktion kommer att släppas i en kommande uppdatering.</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte grupplänkar. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flera av dina länkade enheter kör en version av Signal som inte stöder grupplänkar. Uppdatera Signal på dina länkade enheter för att gå med i denna grupp.</string>
@@ -1039,8 +1039,8 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startade ett gruppsamtal · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s är i gruppsamtalet · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s">Du är i gruppsamtalet · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s och %2$s är i gruppsamtalet · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Du är i gruppsamtalet · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s och %2$s är i gruppsamtalet · %3$s</string> -->
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s och %3$s är i gruppsamtalet · %4$s</string>
   <string name="MessageRecord_group_call_s">Gruppsamtal · %1$s</string>
   <string name="MessageRecord_you">Du</string>
@@ -2039,9 +2039,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
   <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_conversations_and_shortcuts">Konversationer och genvägar</string>
-  <string name="preferences__internal_delete_all_dynamic_shortcuts">Ta bort alla dynamiska genvägar</string>
-  <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klicka för att ta bort alla dynamiska genvägar</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Konversationer och genvägar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Ta bort alla dynamiska genvägar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klicka för att ta bort alla dynamiska genvägar</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
