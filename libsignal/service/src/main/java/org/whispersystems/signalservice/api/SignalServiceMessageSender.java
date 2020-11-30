@@ -126,7 +126,7 @@ public class SignalServiceMessageSender {
   private final AtomicBoolean                                       isMultiDevice;
 
   private final ExecutorService                                     executor;
-  private final int                                                 maxEnvelopeSize;
+  private final long                                                maxEnvelopeSize;
 
   /**
    * Construct a SignalServiceMessageSender.
@@ -163,7 +163,7 @@ public class SignalServiceMessageSender {
                                     Optional<EventListener> eventListener,
                                     ClientZkProfileOperations clientZkProfileOperations,
                                     ExecutorService executor,
-                                    int maxEnvelopeSize)
+                                    long maxEnvelopeSize)
   {
     this.socket           = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations);
     this.store            = store;

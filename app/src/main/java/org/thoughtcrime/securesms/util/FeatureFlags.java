@@ -61,7 +61,6 @@ public final class FeatureFlags {
   public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
   public  static final String DONATE_MEGAPHONE             = "android.donate";
   private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
-  private static final String MAX_ENVELOPE_SIZE            = "android.maxEnvelopeSize";
   private static final String GROUP_CALLING_VERSION        = "android.groupsv2.callingVersion";
   private static final String GV1_AUTO_MIGRATE             = "android.groupsV1Migration.auto.2";
   private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
@@ -83,7 +82,6 @@ public final class FeatureFlags {
       RESEARCH_MEGAPHONE_1,
       DONATE_MEGAPHONE,
       VIEWED_RECEIPTS,
-      MAX_ENVELOPE_SIZE,
       GV1_AUTO_MIGRATE,
       GV1_MANUAL_MIGRATE,
       GV1_FORCED_MIGRATE,
@@ -110,8 +108,7 @@ public final class FeatureFlags {
   private static final Set<String> HOT_SWAPPABLE = SetUtil.newHashSet(
       GROUPS_V2_JOIN_VERSION,
       VERIFY_V2,
-      CLIENT_EXPIRATION,
-      MAX_ENVELOPE_SIZE
+      CLIENT_EXPIRATION
   );
 
   /**
@@ -260,11 +257,6 @@ public final class FeatureFlags {
   /** Whether the user should display the content revealed dot in voice notes. */
   public static boolean viewedReceipts() {
     return getBoolean(VIEWED_RECEIPTS, false);
-  }
-
-  /** The max size envelope that is allowed to be sent. */
-  public static int maxEnvelopeSize() {
-    return getInteger(MAX_ENVELOPE_SIZE, 0);
   }
 
   /** Whether or not group calling is enabled. */
