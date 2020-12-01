@@ -1,9 +1,8 @@
 package org.session.libsession.messaging.messages.visible
 
-import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-internal class Contact : VisibleMessage() {
+class Contact : VisibleMessage<SignalServiceProtos.DataMessage.Contact?>() {
 
     companion object {
         fun fromProto(proto: SignalServiceProtos.Content): Contact? {
@@ -11,7 +10,7 @@ internal class Contact : VisibleMessage() {
         }
     }
 
-    override fun toProto(): SignalServiceProtos.Content? {
+    override fun toProto(transaction: String): SignalServiceProtos.DataMessage.Contact? {
         TODO("Not yet implemented")
     }
 }
