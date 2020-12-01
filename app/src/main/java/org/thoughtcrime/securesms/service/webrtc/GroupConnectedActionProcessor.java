@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
+import android.os.ResultReceiver;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
@@ -26,6 +29,14 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
 
   public GroupConnectedActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
     super(webRtcInteractor, TAG);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleIsInCallQuery(@NonNull WebRtcServiceState currentState, @Nullable ResultReceiver resultReceiver) {
+    if (resultReceiver != null) {
+      resultReceiver.send(1, null);
+    }
+    return currentState;
   }
 
   @Override

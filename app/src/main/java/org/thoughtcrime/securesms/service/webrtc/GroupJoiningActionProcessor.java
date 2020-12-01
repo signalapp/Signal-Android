@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
+import android.os.ResultReceiver;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
@@ -25,6 +28,14 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
   public GroupJoiningActionProcessor(@NonNull WebRtcInteractor webRtcInteractor) {
     super(webRtcInteractor, TAG);
     callSetupDelegate = new CallSetupActionProcessorDelegate(webRtcInteractor, TAG);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleIsInCallQuery(@NonNull WebRtcServiceState currentState, @Nullable ResultReceiver resultReceiver) {
+    if (resultReceiver != null) {
+      resultReceiver.send(1, null);
+    }
+    return currentState;
   }
 
   @Override
