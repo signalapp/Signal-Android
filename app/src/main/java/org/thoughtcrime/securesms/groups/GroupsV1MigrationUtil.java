@@ -148,7 +148,7 @@ public final class GroupsV1MigrationUtil {
 
   public static void performLocalMigration(@NonNull Context context, @NonNull GroupId.V1 gv1Id) throws IOException
   {
-    Log.i(TAG, "Beginning local migration!", new Throwable());
+    Log.i(TAG, "Beginning local migration! V1 ID: " + gv1Id, new Throwable());
     try (Closeable ignored = GroupsV2ProcessingLock.acquireGroupProcessingLock()) {
       if (DatabaseFactory.getGroupDatabase(context).groupExists(gv1Id.deriveV2MigrationGroupId())) {
         Log.w(TAG, "Group was already migrated! Could have been waiting for the lock.", new Throwable());
@@ -159,7 +159,7 @@ public final class GroupsV1MigrationUtil {
       long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
       performLocalMigration(context, gv1Id, threadId, recipient);
-      Log.i(TAG, "Migration complete!", new Throwable());
+      Log.i(TAG, "Migration complete! (" + gv1Id + ", " + threadId + ", " + recipient.getId() + ")", new Throwable());
     } catch (GroupChangeBusyException e) {
       throw new IOException(e);
     }
@@ -171,6 +171,8 @@ public final class GroupsV1MigrationUtil {
                                                                 @NonNull Recipient groupRecipient)
       throws IOException, GroupChangeBusyException
   {
+    Log.i(TAG, "performLocalMigration(" + gv1Id + ", " + threadId + ", " + groupRecipient.getId());
+
     try (Closeable ignored = GroupsV2ProcessingLock.acquireGroupProcessingLock()){
       DecryptedGroup decryptedGroup;
       try {

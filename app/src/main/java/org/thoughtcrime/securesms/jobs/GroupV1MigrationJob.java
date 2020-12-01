@@ -38,12 +38,10 @@ public class GroupV1MigrationJob extends BaseJob {
 
   public static final String KEY = "GroupV1MigrationJob";
 
-  public static final long MANUAL_TIMEOUT = TimeUnit.SECONDS.toMillis(20);
-
   private static final String KEY_RECIPIENT_ID = "recipient_id";
 
-  private static final int  ROUTINE_LIMIT    = 50;
-  private static final long REFRESH_INTERVAL = TimeUnit.HOURS.toMillis(3);
+  private static final int  ROUTINE_LIMIT    = 20;
+  private static final long REFRESH_INTERVAL = TimeUnit.HOURS.toMillis(1);
 
   private final RecipientId recipientId;
 
