@@ -167,6 +167,7 @@ public final class CallParticipantsState {
     WebRtcLocalRenderState localRenderState = determineLocalRenderMode(webRtcViewModel.getLocalParticipant(),
                                                                        oldState.isInPipMode,
                                                                        newShowVideoForOutgoing,
+                                                                       webRtcViewModel.getGroupState().isNotIdle(),
                                                                        webRtcViewModel.getState(),
                                                                        webRtcViewModel.getRemoteParticipants().size(),
                                                                        oldState.isViewingFocusedParticipant);
@@ -191,6 +192,7 @@ public final class CallParticipantsState {
     WebRtcLocalRenderState localRenderState = determineLocalRenderMode(oldState.localParticipant,
                                                                        isInPip,
                                                                        oldState.showVideoForOutgoing,
+                                                                       oldState.getGroupCallState().isNotIdle(),
                                                                        oldState.callState,
                                                                        oldState.getAllRemoteParticipants().size(),
                                                                        oldState.isViewingFocusedParticipant);
@@ -214,6 +216,7 @@ public final class CallParticipantsState {
     WebRtcLocalRenderState localRenderState = determineLocalRenderMode(oldState.localParticipant,
                                                                        oldState.isInPipMode,
                                                                        oldState.showVideoForOutgoing,
+                                                                       oldState.getGroupCallState().isNotIdle(),
                                                                        oldState.callState,
                                                                        oldState.getAllRemoteParticipants().size(),
                                                                        selectedPage == SelectedPage.FOCUSED);
@@ -232,11 +235,12 @@ public final class CallParticipantsState {
   private static @NonNull WebRtcLocalRenderState determineLocalRenderMode(@NonNull CallParticipant localParticipant,
                                                                           boolean isInPip,
                                                                           boolean showVideoForOutgoing,
+                                                                          boolean isNonIdleGroupCall,
                                                                           @NonNull WebRtcViewModel.State callState,
                                                                           int numberOfRemoteParticipants,
                                                                           boolean isViewingFocusedParticipant)
   {
-    boolean                displayLocal     = !isInPip && localParticipant.isVideoEnabled();
+    boolean                displayLocal     = isNonIdleGroupCall || (!isInPip && localParticipant.isVideoEnabled());
     WebRtcLocalRenderState localRenderState = WebRtcLocalRenderState.GONE;
 
     if (displayLocal || showVideoForOutgoing) {

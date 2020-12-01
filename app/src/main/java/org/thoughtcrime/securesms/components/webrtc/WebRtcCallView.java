@@ -69,7 +69,7 @@ public class WebRtcCallView extends FrameLayout {
   private AccessibleToggleButton        videoToggle;
   private AccessibleToggleButton        micToggle;
   private ViewGroup                     smallLocalRenderFrame;
-  private TextureViewRenderer           smallLocalRender;
+  private CallParticipantView           smallLocalRender;
   private View                          largeLocalRenderFrame;
   private TextureViewRenderer           largeLocalRender;
   private View                          largeLocalRenderNoVideo;
@@ -287,38 +287,33 @@ public class WebRtcCallView extends FrameLayout {
     largeLocalRender.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
 
     if (localCallParticipant.getVideoSink().getEglBase() != null) {
-      smallLocalRender.init(localCallParticipant.getVideoSink().getEglBase());
       largeLocalRender.init(localCallParticipant.getVideoSink().getEglBase());
     }
+
+    smallLocalRender.setCallParticipant(localCallParticipant);
+    smallLocalRender.setRenderInPip(true);
+    videoToggle.setChecked(localCallParticipant.isVideoEnabled(), false);
 
     switch (state) {
       case GONE:
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
-        smallLocalRender.attachBroadcastVideoSink(null);
         smallLocalRenderFrame.setVisibility(View.GONE);
 
-        videoToggle.setChecked(false, false);
         break;
       case SMALL_RECTANGLE:
         smallLocalRenderFrame.setVisibility(View.VISIBLE);
-        smallLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
         animatePipToLargeRectangle();
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
-
-        videoToggle.setChecked(true, false);
         break;
       case SMALLER_RECTANGLE:
         smallLocalRenderFrame.setVisibility(View.VISIBLE);
-        smallLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
         animatePipToSmallRectangle();
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
-
-        videoToggle.setChecked(true, false);
         break;
       case LARGE:
         largeLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
@@ -327,10 +322,7 @@ public class WebRtcCallView extends FrameLayout {
         largeLocalRenderNoVideo.setVisibility(View.GONE);
         largeLocalRenderNoVideoAvatar.setVisibility(View.GONE);
 
-        smallLocalRender.attachBroadcastVideoSink(null);
         smallLocalRenderFrame.setVisibility(View.GONE);
-
-        videoToggle.setChecked(true, false);
         break;
       case LARGE_NO_VIDEO:
         largeLocalRender.attachBroadcastVideoSink(null);
@@ -345,10 +337,7 @@ public class WebRtcCallView extends FrameLayout {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(largeLocalRenderNoVideoAvatar);
 
-        smallLocalRender.attachBroadcastVideoSink(null);
         smallLocalRenderFrame.setVisibility(View.GONE);
-
-        videoToggle.setChecked(false, false);
         break;
     }
   }

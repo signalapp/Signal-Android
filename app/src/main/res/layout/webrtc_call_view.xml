@@ -103,8 +103,9 @@
                 tools:background="@color/red"
                 tools:visibility="visible">
 
-                <org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
+                <include
                     android:id="@+id/call_screen_small_local_renderer"
+                    layout="@layout/call_participant_item"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
