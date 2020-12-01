@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
+import org.thoughtcrime.securesms.util.ConversationShortcutPhoto;
 
 import java.io.File;
 import java.io.InputStream;
@@ -89,6 +90,7 @@ public class SignalGlideModule extends AppGlideModule {
 
     registry.prepend(BlurHash.class, Bitmap.class, new BlurHashResourceDecoder());
 
+    registry.append(ConversationShortcutPhoto.class, Bitmap.class, new ConversationShortcutPhoto.Loader.Factory(context));
     registry.append(ContactPhoto.class, InputStream.class, new ContactPhotoLoader.Factory(context));
     registry.append(DecryptableUri.class, InputStream.class, new DecryptableStreamUriLoader.Factory(context));
     registry.append(AttachmentModel.class, InputStream.class, new AttachmentStreamUriLoader.Factory());

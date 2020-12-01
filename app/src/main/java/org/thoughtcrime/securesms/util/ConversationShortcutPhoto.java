@@ -1,0 +1,153 @@
+package org.thoughtcrime.securesms.util;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
+
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.Key;
+import com.bumptech.glide.load.Options;
+import com.bumptech.glide.load.data.DataFetcher;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.model.ModelLoader;
+import com.bumptech.glide.load.model.ModelLoaderFactory;
+import com.bumptech.glide.load.model.MultiModelLoaderFactory;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequest;
+import org.thoughtcrime.securesms.recipients.Recipient;
+
+import java.security.MessageDigest;
+import java.util.concurrent.ExecutionException;
+
+public final class ConversationShortcutPhoto implements Key {
+
+  private final Recipient recipient;
+
+  @WorkerThread
+  public ConversationShortcutPhoto(@NonNull Recipient recipient) {
+    this.recipient = recipient.resolve();
+  }
+
+  @Override
+  public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+    messageDigest.update(recipient.getDisplayName(ApplicationDependencies.getApplication()).getBytes());
+
+    if (recipient.getProfileAvatar() != null) {
+      messageDigest.update(recipient.getProfileAvatar().getBytes());
+    }
+  }
+
+  public static final class Loader implements ModelLoader<ConversationShortcutPhoto, Bitmap> {
+
+    private final Context context;
+
+    private Loader(@NonNull Context context) {
+      this.context = context;
+    }
+
+    @Override
+    public @Nullable LoadData<Bitmap> buildLoadData(@NonNull ConversationShortcutPhoto conversationShortcutPhoto, int width, int height, @NonNull Options options) {
+      return new LoadData<>(conversationShortcutPhoto, new Fetcher(context, conversationShortcutPhoto));
+    }
+
+    @Override
+    public boolean handles(@NonNull ConversationShortcutPhoto conversationShortcutPhoto) {
+      return true;
+    }
+
+    public static class Factory implements ModelLoaderFactory<ConversationShortcutPhoto, Bitmap> {
+
+      private final Context context;
+
+      public Factory(@NonNull Context context) {
+        this.context = context;
+      }
+
+      @Override
+      public @NonNull ModelLoader<ConversationShortcutPhoto, Bitmap> build(@NonNull MultiModelLoaderFactory multiFactory) {
+        return new Loader(context);
+      }
+
+      @Override
+      public void teardown() {
+      }
+    }
+  }
+
+  static final class Fetcher implements DataFetcher<Bitmap> {
+
+    private final Context                   context;
+    private final ConversationShortcutPhoto photo;
+
+    private Fetcher(@NonNull Context context, @NonNull ConversationShortcutPhoto photo) {
+      this.context = context;
+      this.photo   = photo;
+    }
+
+    @Override
+    public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super Bitmap> callback) {
+      Bitmap bitmap;
+
+      try {
+        bitmap = getShortcutInfoBitmap(context);
+      } catch (ExecutionException | InterruptedException e) {
+        bitmap = getFallbackForShortcut(context);
+      }
+
+      callback.onDataReady(bitmap);
+    }
+
+    @Override
+    public void cleanup() {
+    }
+
+    @Override
+    public void cancel() {
+    }
+
+    @Override
+    public @NonNull Class<Bitmap> getDataClass() {
+      return Bitmap.class;
+    }
+
+    @Override
+    public @NonNull DataSource getDataSource() {
+      return DataSource.LOCAL;
+    }
+
+    private @NonNull Bitmap getShortcutInfoBitmap(@NonNull Context context) throws ExecutionException, InterruptedException {
+      return DrawableUtil.wrapBitmapForShortcutInfo(request(GlideApp.with(context).asBitmap(), context, false).circleCrop().submit().get());
+    }
+
+    private @NonNull Bitmap getFallbackForShortcut(@NonNull Context context) {
+      @DrawableRes final int photoSource;
+      if (photo.recipient.isSelf()) {
+        photoSource = R.drawable.ic_note_80;
+      } else if (photo.recipient.isGroup()) {
+        photoSource = R.drawable.ic_group_80;
+      } else {
+        photoSource = R.drawable.ic_profile_80;
+      }
+
+      Bitmap toWrap  = DrawableUtil.toBitmap(new FallbackPhoto80dp(photoSource, photo.recipient.getColor()).asDrawable(context, -1), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
+      Bitmap wrapped = DrawableUtil.wrapBitmapForShortcutInfo(toWrap);
+
+      toWrap.recycle();
+
+      return wrapped;
+    }
+
+    private <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, boolean loadSelf) {
+      return glideRequest.load(photo.recipient.getContactPhoto()).diskCacheStrategy(DiskCacheStrategy.ALL);
+    }
+  }
+}

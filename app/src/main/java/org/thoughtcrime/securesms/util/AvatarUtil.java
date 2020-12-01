@@ -112,20 +112,20 @@ public final class AvatarUtil {
 
   @RequiresApi(ConversationUtil.CONVERSATION_SUPPORT_VERSION)
   @WorkerThread
-  public static Icon getIconForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
+  public static @NonNull Icon getIconForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
     try {
-      return Icon.createWithAdaptiveBitmap(getShortcutInfoBitmap(context, recipient));
+      return Icon.createWithAdaptiveBitmap(GlideApp.with(context).asBitmap().load(new ConversationShortcutPhoto(recipient)).submit().get());
     } catch (ExecutionException | InterruptedException e) {
-      return Icon.createWithAdaptiveBitmap(getFallbackForShortcut(context, recipient));
+      throw new AssertionError("This call should not fail.");
     }
   }
 
   @WorkerThread
-  public static IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
+  public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
     try {
-      return IconCompat.createWithAdaptiveBitmap(getShortcutInfoBitmap(context, recipient));
+      return IconCompat.createWithAdaptiveBitmap(GlideApp.with(context).asBitmap().load(new ConversationShortcutPhoto(recipient)).submit().get());
     } catch (ExecutionException | InterruptedException e) {
-      return IconCompat.createWithAdaptiveBitmap(getFallbackForShortcut(context, recipient));
+      throw new AssertionError("This call should not fail.");
     }
   }
 
@@ -136,10 +136,6 @@ public final class AvatarUtil {
     } catch (ExecutionException | InterruptedException e) {
       return null;
     }
-  }
-
-  private static @NonNull Bitmap getShortcutInfoBitmap(@NonNull Context context, @NonNull Recipient recipient) throws ExecutionException, InterruptedException {
-    return DrawableUtil.wrapBitmapForShortcutInfo(request(GlideApp.with(context).asBitmap(), context, recipient, false).circleCrop().submit().get());
   }
 
   private static <T> GlideRequest<T> requestCircle(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
@@ -165,24 +161,6 @@ public final class AvatarUtil {
     return glideRequest.load(photo)
                        .error(getFallback(context, recipient))
                        .diskCacheStrategy(DiskCacheStrategy.ALL);
-  }
-
-  private static @NonNull Bitmap getFallbackForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
-    @DrawableRes final int photoSource;
-    if (recipient.isSelf()) {
-      photoSource = R.drawable.ic_note_80;
-    } else if (recipient.isGroup()) {
-      photoSource = R.drawable.ic_group_80;
-    } else {
-      photoSource = R.drawable.ic_profile_80;
-    }
-
-    Bitmap toWrap  = DrawableUtil.toBitmap(new FallbackPhoto80dp(photoSource, recipient.getColor()).asDrawable(context, -1), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
-    Bitmap wrapped = DrawableUtil.wrapBitmapForShortcutInfo(toWrap);
-
-    toWrap.recycle();
-
-    return wrapped;
   }
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient) {
