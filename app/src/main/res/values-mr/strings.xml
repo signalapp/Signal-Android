@@ -957,8 +957,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">आपल्या चित्राला %1$s प्रतिसाद दिला.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">आपल्या फाईलला %1$s प्रतिसाद दिला. </string>
   <string name="MessageNotifier_reacted_s_to_your_audio">आपल्या ऑडिओला %1$s प्रतिसाद दिला.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">आपल्या एकदा-बघा फोटोला %1$s प्रतिसाद दिला.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">आपल्या एकदा-बघा व्हिडिओला %1$s प्रतिसाद दिला.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">आपल्या एकदा-बघा फोटोला %1$s प्रतिसाद दिला.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">आपल्या एकदा-बघा व्हिडिओला %1$s प्रतिसाद दिला.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">आपल्या स्टिकरला %1$s प्रतिसाद दिला.</string>
   <string name="MessageNotifier_this_message_was_deleted">हा संदेश हटविला गेला.</string>
   <!--Notification Channels-->

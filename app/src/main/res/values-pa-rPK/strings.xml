@@ -886,8 +886,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s نے تہاڈی تصویر تے ری ایکث کیتا اے۔</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s نے تہاڈی فائل تے ری ایکٹ کیتا اے،</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s نے تہاڈی آڈیو تے ری ایکٹ کیتا اے</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s نے تہاڈی اک وار ویکھی جان آلی تصویر تے ری ایکٹ کیتا اے۔</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s نے تہاڈی اک وار ویکھی جان آلی ویڈویو تے ری ایکٹ کیتا اے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s نے تہاڈی اک وار ویکھی جان آلی تصویر تے ری ایکٹ کیتا اے۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s نے تہاڈی اک وار ویکھی جان آلی ویڈویو تے ری ایکٹ کیتا اے۔</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s نے تہاڈے اسٹیکر تے ری ایکٹ کیتا اے۔</string>
   <string name="MessageNotifier_this_message_was_deleted">ایہہ سنیہا حذف کر دتا گیا سی۔</string>
   <!--Notification Channels-->

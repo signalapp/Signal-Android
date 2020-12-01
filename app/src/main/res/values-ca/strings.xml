@@ -475,9 +475,14 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Què són els grups nous?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Els grups nous tenen funcions com ara @mencions i administradors de grups, i admetran més funcions en el futur.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">S\'han conservat tot l\'historial de missatges i el contingut anteriors a l\'actualització.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Haureu d\'acceptar una invitació per a unir-vos al grup de nou, i no rebreu missatges del grup fins que ho feu.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Aquest membre haurà d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebrà missatges fins que no l\'accepti:</item>
     <item quantity="other">Aquests membres hauran d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebran missatges fins que no l\'acceptin:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Aquest membre s\'ha suprimit del grup i no podrà tornar a afegir-s\'hi fins que no l\'actualitzi:</item>
+    <item quantity="other">Aquests membres s\'han suprimit del grup i no podran tornar a afegir-s\'hi fins que no l\'actualitzin:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualitza a grup nou</string>
@@ -550,7 +555,7 @@
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Invitacions de grup pendents</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Invitacions de grup pendents</string>
   <string name="PendingMembersActivity_requests">Sol·licituds</string>
   <string name="PendingMembersActivity_invites">Invitacions</string>
   <string name="PendingMembersActivity_people_you_invited">Persones que heu convidat</string>
@@ -588,11 +593,13 @@
   <string name="AddGroupDetailsFragment__create">Crea</string>
   <string name="AddGroupDetailsFragment__members">Membres</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nom de grup (necessari)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Nom de grup (opcional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Aquest camp és necessari.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Els grups necessiten com a mínim dos membres.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Ha fallat la creació del grup.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Torneu-ho a provar més tard.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Heu seleccionat un contacte que no admet grups del Signal, per tant aquest grup serà per MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Els noms i les fotos del grup MMS personalitzat només seran visibles per a vós.</string>
   <string name="AddGroupDetailsFragment__remove">Suprimeix</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacte d\'SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Voleu suprimir %1$s d\'aquest grup?</string>
@@ -617,7 +624,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Missatges efímers</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Invitacions de grup pendents</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Sol·licituds d\'adhesió i invitacions</string>
   <string name="ManageGroupActivity_add_members">Afegiu-hi membres</string>
   <string name="ManageGroupActivity_edit_group_info">Edita la informació del grup</string>
@@ -750,8 +756,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Aviat hi haurà enllaços de grup</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualitzeu el Signal per usar els enllaços de grup</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Afegir-se a un grup per un enllaç encara no és possible amb el Signal. Aquesta funció s\'activarà en una actualització propera.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versió del Signal que useu no admet enllaços de grup. Actualitzeu-lo a la versió més recent per afegir-vos a aquest grup per l\'enllaç.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versió del Signal que useu no admet aquest enllaç de grup. Actualitzeu-lo a la versió més recent per afegir-vos a aquest grup per l\'enllaç.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualitza el Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un o més dels vostres dispositius enllaçats executen una versió del Signal que no admet enllaços de grup. Actualitzeu el Signal dels dispositius enllaçats per afegir-vos a aquest grup.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">L\'enllaç de grup no és vàlid.</string>
@@ -906,9 +911,14 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha establert el temporitzador dels missatges efímers a %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">S\'ha establert el temporitzador dels missatges efímers a %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Aquest grup s\'ha actualitzat a un grup nou.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">No se us ha pogut afegir al grup nou i se us ha convidat a afegir-vos-hi.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s membre no s\'ha pogut afegir al grup nou i s\'ha convidat a afegir-s\'hi.</item>
+    <item quantity="one">Un membre no s\'ha pogut afegir al grup nou i s\'ha convidat a afegir-s\'hi.</item>
     <item quantity="other">%1$s membres no s\'han pogut afegir al grup nou i s\'han convidat a afegir-s\'hi.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Un membre no s\'ha pogut afegir al grup nou i s\'ha suprimit.</item>
+    <item quantity="other">%1$s membres no s\'han pogut afegir al grup nou i s\'han suprimit.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ha canviat el nom del perfil a %2$s.</string>
@@ -1039,14 +1049,24 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciat una trucada de grup · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s és a la trucada de grup · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Sou a la trucada de grup · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s i %2$s són a la trucada de grup · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Sou a la trucada de grup · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s i %2$s són a la trucada de grup · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s i %3$s són a la trucada de grup · %4$s</string>
   <string name="MessageRecord_group_call_s">Trucada de grup · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s ha iniciat una trucada de grup.</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s és a la trucada de grup.</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Sou a la trucada de grup.</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s i %2$s són a la trucada de grup.</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s i %3$s són a la trucada de grup.</string>
+  <string name="MessageRecord_group_call">Trucada de grup</string>
   <string name="MessageRecord_you">Vós</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s i %3$d més són a la trucada de grup · %4$s</item>
     <item quantity="other">%1$s, %2$s i  %3$d més són a la trucada de grup · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s i  %3$d més són a la trucada de grup.</item>
+    <item quantity="other">%1$s, %2$s i  %3$d més són a la trucada de grup.</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Ho accepto</string>
@@ -1464,8 +1484,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s ha reaccionat al vostre missatge.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s ha reaccionat al vostre fitxer.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ha reaccionat al vostre àudio.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s  ha reaccionat a la vostra foto d\'una visualització.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s  ha reaccionat al vostre vídeo d\'una visualització.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s  ha reaccionat a la vostra foto d\'una visualització.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s  ha reaccionat al vostre vídeo d\'una visualització.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ha reaccionat al vostre adhesiu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Voleu desactivar les notificacions de contactes afegits al Signal? Les podeu tornar a activar a Signal &gt; Configuració &gt; Notificacions.</string>
@@ -1767,6 +1787,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="CreateProfileActivity_next">Següent</string>
   <string name="CreateProfileActivity__username">Nom d\'usuari</string>
   <string name="CreateProfileActivity__create_a_username">Creeu un nom d\'usuari</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Els noms i les fotos del grup MMS personalitzat només seran visibles per  a vós.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editeu el nom i la foto del grup</string>
   <string name="EditProfileFragment__group_name">Nom del grup</string>
@@ -2039,9 +2060,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_setup_a_username">Estableix un nom d\'usuari</string>
   <string name="configurable_single_select__customize_option">Opció de personalització</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Converses i dreceres</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Suprimeix totes les dreceres dinàmiques</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliqueu per suprimir totes les dreceres dinàmiques.</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2111,6 +2129,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation__menu_conversation_settings">Configuració de la conversa</string>
   <string name="conversation__menu_add_shortcut">Afegeix a la pantalla d\'inici</string>
   <string name="conversation__menu_pending_members">Membres pendents</string>
+  <string name="conversation__menu_create_bubble">Crea una bombolla</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandeix la finestra emergent</string>
   <!--conversation_callable_insecure-->

@@ -1090,8 +1090,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">আপনার চিত্রে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
   <string name="MessageNotifier_reacted_s_to_your_file">আপনার ফাইলে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">আপনার অডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">আপনার একবার দেখার যোগ্য ছবিতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">আপনার একবার দেখার যোগ্য ভিডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">আপনার একবার দেখার যোগ্য ছবিতে %1$s প্রতিক্রিয়া জানিয়েছে|</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">আপনার একবার দেখার যোগ্য ভিডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">আপনার স্টিকারে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
   <string name="MessageNotifier_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
   <!--Notification Channels-->

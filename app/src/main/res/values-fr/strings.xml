@@ -475,6 +475,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Que sont les nouveaux groupes ?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Les nouveaux groupes offrent des fonctions telles que les @mentions et les administrateurs de groupes et en offriront d’autres dans le futur.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tout l’historique des messages et tous les médias d’avant la conversion ont été conservés.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Vous devrez accepter une invitation afin de vous joindre à ce groupe de nouveau et vous ne recevrez aucun message du groupe avant d’en avoir accepté une :</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Ce membre devra accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevra aucun message du groupe avant d’en avoir accepté une :</item>
     <item quantity="other">Ces membres devront accepter une invitation afin de se joindre à ce groupe de nouveau et ne recevront aucun message du groupe avant d’en avoir accepté une :</item>
@@ -550,7 +551,7 @@
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Invitations de groupe en attente</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Invitations de groupe en attente</string>
   <string name="PendingMembersActivity_requests">Demandes</string>
   <string name="PendingMembersActivity_invites">Invitations</string>
   <string name="PendingMembersActivity_people_you_invited">Les personnes que vous avez invitées</string>
@@ -617,7 +618,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Messages éphémères</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Invitations de groupe en attente</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Demandes et invitations de membres</string>
   <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
   <string name="ManageGroupActivity_edit_group_info">Modifier les renseignements du groupe</string>
@@ -750,8 +750,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Les liens de groupe arrivent bientôt</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Mettez Signal à jour pour utiliser les liens de groupe</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Il n’est pas encore possible dans Signal de se joindre à un groupe grâce à un lien. Cette fonction sera proposée dans une mise à jour future.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La version de Signal que vous utilisez ne prend pas en charge les liens de groupe. Installez la dernière version de Signal pour vous joindre à ce groupe grâce à un lien.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Mettre Signal à jour</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un ou plusieurs de vos appareils liés utilisent une version de Signal ne supportant pas les liens de groupes. Mettez à jour vos appareils pour vous joindre au groupe.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Le lien de groupe est invalide</string>
@@ -906,10 +904,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">L’expiration des messages éphémères a été définie à %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ce groupe a été converti en nouveau groupe.</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s membre n\'a pas pu être ajouté au Nouveau Groupe et a été invité à le rejoindre.</item>
-    <item quantity="other">%1$s membres n\'ont pas pu être ajouté au Nouveau Groupe et ont été invités à le rejoindre.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s a changé le nom de son profil en %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s a changé le nom de son profil de %2$s en %3$s.</string>
@@ -1039,10 +1033,10 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s fait partie de l’appel de groupe · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Vous faites partie de l’appel de groupe · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s et %2$s font partie de l’appel de groupe · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s et %2$s font partie de l’appel de groupe · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s et  %3$s font partie de l’appel de groupe · %4$s</string>
   <string name="MessageRecord_group_call_s">Appel de groupe · %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Vous faites partie de l’appel de groupe</string>
   <string name="MessageRecord_you">Vous</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s, et %3$d autre sont dans l\'appel de groupe · %4$s</item>
@@ -1461,8 +1455,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">A réagi %1$s à votre image.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">A réagi %1$s à votre fichier.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">A réagi %1$s à votre son.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">A réagi %1$s à votre photo éphémère.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">A réagi %1$s à votre vidéo éphémère.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">A réagi %1$s à votre photo éphémère.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">A réagi %1$s à votre vidéo éphémère.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi %1$s à votre autocollant.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Désactiver les notifications pour les contacts qui se sont joints à Signal ? Vous pouvez les réactiver dans Signal &gt; Paramètres &gt; Notifications</string>
@@ -2036,9 +2030,6 @@
   <string name="preferences_setup_a_username">Définir un nom d’utilisateur</string>
   <string name="configurable_single_select__customize_option">Personnaliser l’option</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Conversations et Raccourcis</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Supprimer tous les raccourcis dynamiques</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliquer pour supprimer tous les raccourcis dynamiques</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

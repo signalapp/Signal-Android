@@ -884,8 +884,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">आपकी तस्वीर पर %1$s ने प्रतिक्रिया व्यक्त की.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">आपकी फ़ाइल पर %1$sने प्रतिक्रिया व्यक्त की|</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">आपके ऑडियो के लिए %1$sप्रतिक्रिया व्यक्त की।</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">आपके विचार-एक बार फोटो पर %1$sको पुनःप्रक्रिया|</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">आपके दृश्य-एक बार वीडियो पर %1$sप्रतिक्रिया व्यक्त की।</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">आपके विचार-एक बार फोटो पर %1$sको पुनःप्रक्रिया|</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">आपके दृश्य-एक बार वीडियो पर %1$sप्रतिक्रिया व्यक्त की।</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">आपके स्टिकर पर %1$sको पुन: सक्रिय किया।</string>
   <string name="MessageNotifier_this_message_was_deleted">यह मेसेज हटा दिया गया है।</string>
   <!--Notification Channels-->

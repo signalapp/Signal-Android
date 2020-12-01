@@ -507,11 +507,18 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Что такое Новые группы?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">В Новых группах есть такие функции, как @упоминания и администраторы групп, и они будут поддерживать больше функций в будущем.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Вся история сообщений и все медиа были оставлены при обновлении.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Вам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе. Вы не будете получать сообщения группы до того, как примете его.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Этому участнику будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и он не будут получать сообщения группы до того, как примет приглашение:</item>
     <item quantity="few">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
     <item quantity="many">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
     <item quantity="other">Этим участникам будет необходимо принять приглашение, чтобы заново присоединиться к этой группе, и они не будут получать сообщения группы до того, как примут приглашение:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Этот участник был удалён из группы и не сможет присоединиться заново до того, как обновит Signal до новейшей версии:</item>
+    <item quantity="few">Эти участники были удалены из группы и не смогут присоединиться заново до того, как обновят Signal до новейшей версии:</item>
+    <item quantity="many">Эти участники были удалены из группы и не смогут присоединиться заново до того, как обновят Signal до новейшей версии:</item>
+    <item quantity="other">Эти участники были удалены из группы и не смогут присоединиться заново до того, как обновят Signal до новейшей версии:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Обновление до Новой группы</string>
@@ -604,7 +611,7 @@
     <item quantity="other">%1$d участников</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Приглашения в группу в ожидании</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Приглашения в группу в ожидании</string>
   <string name="PendingMembersActivity_requests">Запросы</string>
   <string name="PendingMembersActivity_invites">Приглашения</string>
   <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
@@ -648,11 +655,13 @@
   <string name="AddGroupDetailsFragment__create">Создать</string>
   <string name="AddGroupDetailsFragment__members">Участники</string>
   <string name="AddGroupDetailsFragment__group_name_required">Имя группы (обязательно)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Имя группы (необязательно)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Это поле обязательно.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">В группе должно быть как минимум два участника.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Не удалось создать группу.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Попробуйте ещё раз позже.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Вы выбрали контакт, который не поддерживает группы Signal, поэтому эта группа будет преобразована в MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Пользовательские имена и фото групп MMS будут видны только вам.</string>
   <string name="AddGroupDetailsFragment__remove">Удалить</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Удалить %1$s из этой группы?</string>
@@ -685,7 +694,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Исчезающие сообщения</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Приглашения в группу в ожидании</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Запросы на участие и приглашения</string>
   <string name="ManageGroupActivity_add_members">Добавить участников</string>
   <string name="ManageGroupActivity_edit_group_info">Редактировать информацию группы</string>
@@ -830,8 +838,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Ссылки на группы будут скоро доступны</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Обновите Signal, чтобы использовать ссылки на группы</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Присоединение к группе по ссылке ещё не поддерживается в Signal. Эта функция станет доступна в предстоящем обновлении.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает ссылки на группы. Обновитесь до новейшей версии, чтобы присоединиться к этой группе по ссылке.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает эту ссылку на группу. Обновитесь до новейшей версии, чтобы присоединиться к этой группе по ссылке.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Обновить Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Одно или больше из ваших привязанных устройств используют версию Signal, которая не поддерживает ссылки на группы. Обновите Signal на своём(-их) привязанном(-ых) устройстве(-ах), чтобы присоединиться к этой группе.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ссылка на группу недействительна</string>
@@ -1000,11 +1007,18 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(-а) время исчезновения сообщений в%2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Было установлено время исчезновения сообщений — %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Эта группа была обновлена до Новой группы.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Вы не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s участник не мог быть добавлен в Новую группу и был приглашён присоединиться.</item>
-    <item quantity="few">%1$s участника не могли быть добавлены в Новую группу и были приглашены присоединиться.</item>
-    <item quantity="many">%1$s участников не могли быть добавлены в Новую группу и были приглашены присоединиться.</item>
-    <item quantity="other">%1$s участников не могли быть добавлены в Новую группу и были приглашены присоединиться.</item>
+    <item quantity="one">Один из участников не мог быть добавлен в Новую группу, поэтому был приглашён присоединиться.</item>
+    <item quantity="few">%1$s участника не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
+    <item quantity="many">%1$s участников не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
+    <item quantity="other">%1$s участников не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Один из участников не мог быть добавлен в Новую группу, поэтому был удалён из группы.</item>
+    <item quantity="few">%1$s участника не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
+    <item quantity="many">%1$s участников не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
+    <item quantity="other">%1$s участников не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s изменил(-а) своё имя профиля на %2$s.</string>
@@ -1145,16 +1159,28 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s начал(-а) групповой звонок · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s в групповом звонке · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Вы в групповом звонке · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s и %2$s в групповом звонке · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Вы в групповом звонке · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s и %2$s в групповом звонке · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s и %3$s в групповом звонке · %4$s</string>
   <string name="MessageRecord_group_call_s">Групповой звонок · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s начал(-а) групповой звонок</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s в групповом звонке</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Вы в групповом звонке</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s и %2$s в групповом звонке</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s и %3$s в групповом звонке</string>
+  <string name="MessageRecord_group_call">Групповой звонок</string>
   <string name="MessageRecord_you">Вы</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s и ещё %3$d человек в групповом звонке · %4$s</item>
     <item quantity="few">%1$s, %2$s и ещё %3$d человека в групповом звонке · %4$s</item>
     <item quantity="many">%1$s, %2$s и ещё %3$d человек в групповом звонке · %4$s</item>
     <item quantity="other">%1$s, %2$s и ещё %3$d человек в групповом звонке · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s и ещё %3$d человек в групповом звонке</item>
+    <item quantity="few">%1$s, %2$s и ещё %3$d человека в групповом звонке</item>
+    <item quantity="many">%1$s, %2$s и ещё %3$d человек в групповом звонке</item>
+    <item quantity="other">%1$s, %2$s и ещё %3$d человек в групповом звонке</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Принять</string>
@@ -1587,8 +1613,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Отреагировал(-а) %1$s на ваше изображение.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Отреагировал(-а) %1$s на ваш файл.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Отреагировал(-а) %1$s на ваше аудио.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Отреагировал(-а) %1$s на ваше одноразовое фото.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Отреагировал(-а) %1$s на ваше одноразовое видео.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Отреагировал(-а) %1$s на ваше одноразовое фото.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Отреагировал(-а) %1$s на ваше одноразовое видео.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Отреагировал(-а) %1$s на ваш стикер.</string>
   <string name="MessageNotifier_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Отключить уведомления «Контакт присоединился к Signal»? Вы можете заново включить их в Signal &gt; Настройки &gt; Уведомления.</string>
@@ -1910,6 +1936,7 @@
   <string name="CreateProfileActivity_next">Далее</string>
   <string name="CreateProfileActivity__username">Имя пользователя</string>
   <string name="CreateProfileActivity__create_a_username">Создать имя пользователя</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Пользовательские имена и фото групп MMS будут видны только вам.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Редактировать имя и фото группы</string>
   <string name="EditProfileFragment__group_name">Название группы</string>
@@ -2184,9 +2211,6 @@
   <string name="preferences_setup_a_username">Настройте имя пользователя</string>
   <string name="configurable_single_select__customize_option">Изменить опцию</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Разговоры и ярлыки</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Удалить все динамические ярлыки</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Нажмите, чтобы удалить все динамические ярлыки</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2256,6 +2280,7 @@
   <string name="conversation__menu_conversation_settings">Настройки разговора</string>
   <string name="conversation__menu_add_shortcut">Добавить на главный экран</string>
   <string name="conversation__menu_pending_members">Участники в ожидании</string>
+  <string name="conversation__menu_create_bubble">Создать всплывающий чат</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Расширить</string>
   <!--conversation_callable_insecure-->

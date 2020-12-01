@@ -1039,8 +1039,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_reacted_s_to_your_image">Bereaksi %1$s terhadap gambar Anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Bereaksi %1$s terhadap berkas Anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Bereaksi %1$s terhadap audio Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Bereaksi %1$s terhadap foto satu-tayangan Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Bereaksi %1$s terhadap video satu-tayangan Anda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Bereaksi %1$s terhadap foto satu-tayangan Anda.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Bereaksi %1$s terhadap video satu-tayangan Anda.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Bereaksi %1$s terhadap stiker Anda.</string>
   <string name="MessageNotifier_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <!--Notification Channels-->

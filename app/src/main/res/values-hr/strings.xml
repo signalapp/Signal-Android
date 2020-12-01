@@ -491,10 +491,16 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Što su Nove grupe?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nove grupe imaju značajke poput @spominjanja i administratora grupa, a ubuduće će podržavati više značajki.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Sva povijest poruka i medijskih zapisa sačuvani su od prije nadogradnje.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Morati će te prihvatiti pozivnicu da se ponovno pridruži ovoj grupi i nećete primati poruke grupe dok ne prihvatite:</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Ovaj član morat će prihvatiti pozivnicu da se ponovno pridruži ovoj grupi i neće primati poruke grupe dok ne prihvati:</item>
     <item quantity="few">Ovi članovi morat će prihvatiti pozivnicu da se ponovno pridruže ovoj grupi i neće primati poruke grupe dok ne prihvate:</item>
     <item quantity="other">Ovi članovi morat će prihvatiti pozivnicu da se ponovno pridruže ovoj grupi i neće primati poruke grupe dok ne prihvate:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Ovaj član je uklonjen iz grupe i neće se moći pridružiti grupi dok ne ažurira:</item>
+    <item quantity="few">Ovi su članovi uklonjeni iz grupe i neće se moći pridružiti grupi dok ne ažuriraju:</item>
+    <item quantity="other">Ovi su članovi uklonjeni iz grupe i neće se moći pridružiti grupi dok ne ažuriraju:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Nadogradi u Novu grupu.</string>
@@ -577,7 +583,7 @@
     <item quantity="other">%1$d članova</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Pozivnice grupe na čekanju</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Pozivnice grupe na čekanju</string>
   <string name="PendingMembersActivity_requests">Zahtjevi</string>
   <string name="PendingMembersActivity_invites">Pozivnice</string>
   <string name="PendingMembersActivity_people_you_invited">Osobe koje ste pozvali</string>
@@ -618,11 +624,13 @@
   <string name="AddGroupDetailsFragment__create">Stvori</string>
   <string name="AddGroupDetailsFragment__members">Članovi</string>
   <string name="AddGroupDetailsFragment__group_name_required">Naziv grupe (obavezno)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Naziv grupe (neobavezno)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Ovo polje je obavezno.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupe zahtijevaju najmanje dva člana.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Neuspješno stvaranje grupe.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Pokušajte ponovno kasnije.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Odabrali ste kontakt koji ne podržava Signal grupe, pa će ovo biti MMS grupa.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nazivi i fotografije prilagođenih MMS grupa biti će vidljivi samo vama.</string>
   <string name="AddGroupDetailsFragment__remove">Ukloni</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ukloniti %1$s iz ove grupe?</string>
@@ -651,7 +659,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Poruke koje nestaju</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Pozivnice grupe na čekanju</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Zahtjevi za članove i pozivnice</string>
   <string name="ManageGroupActivity_add_members">Dodaj članove</string>
   <string name="ManageGroupActivity_edit_group_info">Uredi detalje o grupi</string>
@@ -790,8 +797,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Poveznice grupe uskoro dolaze</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste koristili poveznice grupe</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Pridruživanje grupi putem poveznice još nije podržano u Signalu. Ova će značajka biti objavljena u nadolazećem ažuriranju.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju upotrebljavate ne podržava poveznice grupe. Ažurirajte na najnoviju verziju da biste se pridružili ovoj grupi putem poveznice.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju upotrebljavate ne podržava ovu poveznicu grupe. Ažurirajte na najnoviju verziju da biste se pridružili ovoj grupi putem poveznice.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ažuriraj Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na jednom ili više povezanih uređaja pokrenuta je verzija Signala koja ne podržava poveznice grupe. Ažurirajte Signal na povezanim uređajima da biste se pridružili ovoj grupi.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Poveznica grupe je nevažeća</string>
@@ -953,10 +959,16 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la da poruke nestaju za %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Postavljeno je da poruke nestaju za %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ova grupa je ažurirana u Novu grupu.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Ne možete biti dodani u Novu grupu, ali ste pozvani da se pridružite.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s član nije moguće dodati u Novu grupu i pozvan je da se pridruži.</item>
-    <item quantity="few">%1$s člana nije moguće dodati u Novu grupu i pozvani su da se pridruži.</item>
-    <item quantity="other">%1$s članova nije moguće dodati u Novu grupu i pozvani su da se pridruži.</item>
+    <item quantity="one">Nije moguće dodati člana u Novu grupu, ali je pozvan je da se pridruži</item>
+    <item quantity="few">%1$s člana nije moguće dodati u Novu grupu i pozvani su da se pridruže.</item>
+    <item quantity="other">%1$s članova nije moguće dodati u Novu grupu i pozvani su da se pridruže.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Nije moguće dodati člana u Novu grupu i uklonjen je iz grupe.</item>
+    <item quantity="few">%1$s člana nije moguće dodati u Novu grupu i uklonjeni su iz grupe.</item>
+    <item quantity="other">%1$s članova nije moguće dodati u Novu grupu i uklonjeni su iz grupe.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s je promijenio/la svoje ime na profilu u %2$s.</string>
@@ -1092,15 +1104,26 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv  · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je na ovom grupnom pozivu · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Vi ste na ovom grupnom pozivu · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s i %2$s su na ovom grupnom pozivu · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Vi ste na ovom grupnom pozivu · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s i %2$s su na ovom grupnom pozivu · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s i %3$s su na ovom grupnom pozivu · %4$s</string>
   <string name="MessageRecord_group_call_s">Grupni poziv · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s je započeo/la grupni poziv</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s je na ovom grupnom pozivu</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Vi ste na ovom grupnom pozivu</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s i %2$s su na ovom grupnom pozivu</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s i %3$s su na ovom grupnom pozivu</string>
+  <string name="MessageRecord_group_call">Grupni poziv</string>
   <string name="MessageRecord_you">Vi</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s i još %3$d osoba su na ovom grupnom pozivu · %4$s</item>
     <item quantity="few">%1$s, %2$s i %3$d osobe su na ovom grupnom pozivu · %4$s</item>
     <item quantity="other">%1$s, %2$s i %3$d osoba je na ovom grupnom pozivu · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s i %3$d osoba je na ovom grupnom pozivu</item>
+    <item quantity="few">%1$s, %2$s i %3$d osobe su na ovom grupnom pozivu</item>
+    <item quantity="other">%1$s, %2$s i %3$d osoba je na ovom grupnom pozivu</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Prihvati</string>
@@ -1529,8 +1552,8 @@ broj telefona</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagira s %1$s na vašu sliku.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagira s %1$s na vašu datoteku.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagira s %1$s na vaš zvuk.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagira s %1$s na vašu jednom vidljivu sliku.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagira s %1$s na vaš jednom vidljiv video.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagira s %1$s na vašu jednom vidljivu sliku.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagira s %1$s na vaš jednom vidljiv video.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagira s %1$s na vašu naljepnicu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ova poruka je izbrisana.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Isključiti obavijesti o novim kontaktima na Signalu? Možete ih ponovo omogućiti u Signal &amp;gt Postavke &amp;gt Obavijesti.</string>
@@ -1843,6 +1866,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="CreateProfileActivity_next">Sljedeće</string>
   <string name="CreateProfileActivity__username">Korisničko ime</string>
   <string name="CreateProfileActivity__create_a_username">Stvorite korisničko ime</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nazivi i fotografije prilagođenih MMS grupa biti će vidljivi samo vama.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Uredi naziv grupe i sliku</string>
   <string name="EditProfileFragment__group_name">Naziv grupe</string>
@@ -2116,9 +2140,6 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="preferences_setup_a_username">Postavite korisničko ime</string>
   <string name="configurable_single_select__customize_option">Opcija prilagođavanja</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Razgovori i prečaci</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Izbriši sve dinamičke prečace</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Pritisnite za brisanje svih dinamičkih prečaca</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2188,6 +2209,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="conversation__menu_conversation_settings">Postavke razgovora</string>
   <string name="conversation__menu_add_shortcut">Dodaj na početni zaslon</string>
   <string name="conversation__menu_pending_members">Članovi na čekanju</string>
+  <string name="conversation__menu_create_bubble">Stvori oblačić</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Proširi skočni prozor</string>
   <!--conversation_callable_insecure-->

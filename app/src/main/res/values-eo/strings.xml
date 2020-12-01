@@ -550,7 +550,7 @@
     <item quantity="other">%1$d anoj</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Pritraktotaj grupinvitoj</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
   <string name="PendingMembersActivity_requests">Petoj</string>
   <string name="PendingMembersActivity_invites">Invitoj</string>
   <string name="PendingMembersActivity_people_you_invited">Homoj, kiujn vi invitis</string>
@@ -609,7 +609,6 @@
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tiu ĉi grupo ne kreiĝos ĉar “%1$s” uzas malnovan version de Signal. Oni devas forigi ilin antaŭ ol povi krei la grupon.</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Pritraktotaj grupinvitoj</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Petoj kaj invitoj por aniĝi</string>
   <string name="ManageGroupActivity_add_members">Aldoni anojn</string>
   <string name="ManageGroupActivity_edit_group_info">Modifi grupinformon</string>
@@ -742,8 +741,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupligiloj baldaŭ disponeblos</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ĝisdatigu Signal-on por uzi grupligilojn</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Anigi grupon pere de ligilo ankoraŭ ne eblas en Signal. Tio alvenos per baldaŭa ĝisdatigo.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versio de Signal, kiun vi uzas ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu al lasta versio por anigi tiun grupon per ligilo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ĝisdatigi Signal-on</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Unu aŭ pli el viaj ligitaj aparatoj uzas version de Signal, kiu ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu Signal-on ĉe viaj ligitaj aparatoj por anigi tiun grupon.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupligilo ne validas</string>
@@ -1027,8 +1024,7 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s komencis grupvokon · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s estas en la grupvoko · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Vi estas en la grupvoko · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s kaj %2$s estas en la grupvoko · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s kaj %2$s estas en la grupvoko · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, kaj %3$s estas en la grupvoko · %4$s</string>
   <string name="MessageRecord_group_call_s">Grupvoko · %1$s</string>
   <string name="MessageRecord_you">Vi</string>
@@ -1445,8 +1441,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_reacted_s_to_your_image">Reagis per %1$s al via bildo.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagis per %1$s al via dosiero.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagis per %1$s al via aŭdaĵo.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagis per %1$s al via nurunufoje videbla bildo.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagis per %1$s al via nurunufoje videbla videaĵo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagis per %1$s al via nurunufoje videbla bildo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagis per %1$s al via nurunufoje videbla videaĵo.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagis per %1$s al via glumarko.</string>
   <string name="MessageNotifier_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Ĉu malŝalti sciigojn pri aliĝo de kontakto al Signal? Vi povos reŝalti ilin ĉe Signal → Agordoj → Sciigoj.</string>

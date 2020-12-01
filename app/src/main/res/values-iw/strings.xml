@@ -507,6 +507,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">מהן קבוצות חדשות?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">לקבוצות חדשות יש מאפיינים כמו @אזכורים ומנהלני קבוצה, ויתמכו במאפיינים נוספים בעתיד.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">כל היסטורית ההודעות וכל המדיה נשמרו מלפני השדרוג.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">תצטרך לאשר הזמנה כדי להצטרף אל קבוצה זו שוב, ולא תקבל הודעות קבוצה עד שתאשר:</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">חבר קבוצה זה יצטרך לאשר הזמנה כדי להצטרף אל קבוצה זו שוב והוא לא יקבל הודעות קבוצה עד שהוא יאשר:</item>
     <item quantity="two">חברי קבוצה אלו יצטרכו לאשר הזמנה כדי להצטרף אל קבוצה זו שוב והם לא יקבלו הודעות קבוצה עד שהם יאשרו:</item>
@@ -604,7 +605,7 @@
     <item quantity="other">%1$d חברי קבוצה</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">הזמנות קבוצה ממתינות</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
   <string name="PendingMembersActivity_requests">בקשות</string>
   <string name="PendingMembersActivity_invites">הזמנות</string>
   <string name="PendingMembersActivity_people_you_invited">אנשים שהזמנת</string>
@@ -685,7 +686,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">הודעות נעלמות</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">הזמנות קבוצה ממתינות</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">בקשות והזמנות של חברי קבוצה</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
   <string name="ManageGroupActivity_edit_group_info">ערוך מידע קבוצה</string>
@@ -830,8 +830,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">קישורי קבוצה מגיעים בקרוב</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">עדכן את Signal כדי להשתמש בקישורי קבוצה</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">הצטרפות אל קבוצה באמצעות קישור אינה נתמכת עדין על ידי Signal. מאפיין זה ישוחרר בעדכון עתידי.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">הגרסה של Signal שאתה משתמש בה אינה תומכת בקישורי קבוצה. עדכן אל הגרסה האחרונה כדי להצטרף אל קבוצה זו באמצעות קישור.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">עדכן את Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">מכשיר מקושר אחד או יותר שלך מריצים גרסה של Signal שאינה תומכת בקישורי קבוצה. עדכן את Signal במכשירים המקושרים שלך כדי להצטרף אל קבוצה זו.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">קישור הקבוצה בלתי תקף</string>
@@ -1000,12 +998,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sהגדיר את קוצב הזמן של ההודעות הנעלמות אל %2$s. </string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">קוצב הזמן של ההודעות הנעלמות הוגדר אל %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">קבוצה זו עודכנה אל קבוצה חדשה.</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">חבר קבוצה %1$s לא היה יכול להתווסף אל הקבוצה החדשה והם הוזמנו להצטרף.</item>
-    <item quantity="two">%1$s חברי קבוצה לא יכלו להתווסף אל הקבוצה החדשה והם הוזמנו להצטרף.</item>
-    <item quantity="many">%1$s חברי קבוצה לא יכלו להתווסף אל הקבוצה החדשה והם הוזמנו להצטרף.</item>
-    <item quantity="other">%1$s חברי קבוצה לא יכלו להתווסף אל הקבוצה החדשה והם הוזמנו להצטרף.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s שינה/שינתה את שם הפרופיל שלו/שלה אל %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s שינה/שינתה את שם הפרופיל שלו/שלה מן %2$s אל %3$s.</string>
@@ -1145,10 +1137,10 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s התחיל/ה שיחה קבוצתית · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s בשיחה הקבוצתית · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">את/ה בשיחה הקבוצתית · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s וגם %2$s בשיחה הקבוצתית · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s וגם %2$s בשיחה הקבוצתית · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s וגם %3$s בשיחה הקבוצתית · %4$s</string>
   <string name="MessageRecord_group_call_s">שיחה קבוצתית · %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call">את/ה בשיחה הקבוצתית</string>
   <string name="MessageRecord_you">את/ה</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s, ועוד %3$d אחר בשיחה הקבוצתית · %4$s</item>
@@ -1594,8 +1586,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">הגיב עם %1$s אל התמונה שלך.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">הגיב עם %1$s אל הקובץ שלך.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">הגיב עם %1$s אל השמע שלך.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">הגיב עם %1$s אל התמונה לצפייה חד־פעמית שלך.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">הגיב עם %1$s אל הסרטון לצפייה חד־פעמית שלך.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">הגיב עם %1$s אל התמונה לצפייה חד־פעמית שלך.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">הגיב עם %1$s אל הסרטון לצפייה חד־פעמית שלך.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">הגיב עם %1$s אל המדבקה שלך.</string>
   <string name="MessageNotifier_this_message_was_deleted">הודעה זו נמחקה.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">לכבות התראות של איש קשר הצטרף אל Signal? אתה יכול לאפשר אותן שוב דרך Signal &lt; הגדרות &lt; התראות.</string>
@@ -2191,9 +2183,6 @@
   <string name="preferences_setup_a_username">הגדר שם משתמש</string>
   <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">שיחות וקיצורי דרך</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">מחק את כל קיצורי הדרך הדינמיים</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">לחץ כדי למחוק את כל קיצורי הדרך הדינמיים</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

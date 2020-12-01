@@ -989,8 +989,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">మీ చిత్రానికి %1$s ప్రతిస్పందించింది.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">మీ ఫైల్‌కు %1$s ప్రతిస్పందించింది.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">మీ ఆడియోకు %1$s స్పందించింది.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">మీ వీక్షణ-ఒకసారి ఫోటోకు %1$s ప్రతిస్పందించింది.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">మీ వీక్షణ-ఒకసారి వీడియోకు %1$s ప్రతిస్పందించింది.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">మీ వీక్షణ-ఒకసారి ఫోటోకు %1$s ప్రతిస్పందించింది.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">మీ వీక్షణ-ఒకసారి వీడియోకు %1$s ప్రతిస్పందించింది.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">మీ స్టిక్కర్‌కు %1$s స్పందించింది.</string>
   <string name="MessageNotifier_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
   <!--Notification Channels-->

@@ -506,7 +506,7 @@
     <item quantity="other">%1$d അംഗങ്ങൾ</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="PendingMembersActivity_requests">അഭ്യർത്ഥനകൾ</string>
   <string name="PendingMembersActivity_invites">കഷണങ്ങൾ </string>
   <string name="PendingMembersActivity_people_you_invited">നിങ്ങൾ ക്ഷണിച്ച ആളുകൾ</string>
@@ -549,7 +549,6 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string> -->
   <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ManageGroupActivity_edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
   <string name="ManageGroupActivity_who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
@@ -1271,8 +1270,8 @@ grūpp ap‌ḍē</string>
   <string name="MessageNotifier_reacted_s_to_your_image">നിങ്ങളുടെ ചിത്രത്തോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">നിങ്ങളുടെ ഫയലിനോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">നിങ്ങളുടെ ഓഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">നിങ്ങളുടെ ഒരുതവണ മാത്രം കാണാവുന്ന ഫോട്ടോയോട് %1$s പ്രതികരിച്ചു.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">നിങ്ങളുടെ ഒരുതവണ മാത്രം കാണാവുന്ന വീഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">നിങ്ങളുടെ ഒരുതവണ മാത്രം കാണാവുന്ന ഫോട്ടോയോട് %1$s പ്രതികരിച്ചു.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">നിങ്ങളുടെ ഒരുതവണ മാത്രം കാണാവുന്ന വീഡിയോയോട് %1$s പ്രതികരിച്ചു.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">നിങ്ങളുടെ സ്റ്റിക്കറിനോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <!--Notification Channels-->

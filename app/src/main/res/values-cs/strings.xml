@@ -604,7 +604,7 @@
     <item quantity="other">%1$d členů</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Nevyřízené skupinové pozvánky</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Nevyřízené skupinové pozvánky</string>
   <string name="PendingMembersActivity_requests">Požadavky</string>
   <string name="PendingMembersActivity_invites">Pozvánky</string>
   <string name="PendingMembersActivity_people_you_invited">Osoby, které jste pozvali</string>
@@ -685,7 +685,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zmizení zpráv</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Nevyřízené skupinové pozvánky</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Požadavky &amp; pozvánky členů</string>
   <string name="ManageGroupActivity_add_members">Přidat členy</string>
   <string name="ManageGroupActivity_edit_group_info">Upravit informace o skupině</string>
@@ -830,8 +829,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Těšte se na skupinové odkazy</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualizujte Signal pro používání skupinových odkazů</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Připojení ke skupině pomocí odkazu ještě není v Signalu podporováno. Tato funkce bude zahrnuta v nadcházející aktualizaci.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verze Signalu, kterou používáte, nepodporuje skupinové odkazy. Aktualizujte na nejnovější verzi pro připojení k této skupině pomocí odkazu.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovat Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na jednom nebo více vašich propojených zařízeních běží verze Signalu, která nepodporuje skupinové odkazy. Aktualizujte Signal na propojeném zařízení či zařízeních, abyste se mohli připojit k této skupině. </string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Skupinový odkaz je neplatný</string>
@@ -1000,12 +997,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil(a) časovač pro zmizení zpráv na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač pro zmizení zprávy byl nastaven na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Tato skupina byla aktualizována na novou verzi.</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s člen nemohl být přidán do nové verze skupiny a byl pozván, aby se připojil.</item>
-    <item quantity="few">%1$s členy nebylo možné přidat do nové verze skupiny a byli pozváni, aby se připojili.</item>
-    <item quantity="many">%1$s členů nebylo možné přidat do nové verze skupiny a byli pozváni, aby se připojili.</item>
-    <item quantity="other">%1$s členů nebylo možné přidat do nové verze skupiny a byli pozváni, aby se připojili.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s změnil jméno svého profilu na %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s změnil jméno svého profilu z %2$s na %3$s.</string>
@@ -1145,10 +1136,10 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s se účastní skupinového hovoru · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Účastníte se skupinového hovoru · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s a %2$s se účastní skupinového hovoru · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s a %2$s se účastní skupinového hovoru · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s a %3$s se účastní skupinového hovoru · %4$s</string>
   <string name="MessageRecord_group_call_s">Skupinový hovor · %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Účastníte se skupinového hovoru</string>
   <string name="MessageRecord_you">Vy</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s a %3$d další se účastní skupinového hovoru · %4$s</item>
@@ -1593,8 +1584,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoval %1$s na váš obrázek.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoval %1$s na váš soubor.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval %1$s na vaše audio.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoval %1$sna vaši fotografii pro jednorázové zobrazení.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoval %1$sna vaše video pro jednorázové zobrazení.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoval %1$sna vaši fotografii pro jednorázové zobrazení.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoval %1$sna vaše video pro jednorázové zobrazení.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval %1$s na vaši nálepku.</string>
   <string name="MessageNotifier_this_message_was_deleted">Tato zpráva byla smazána.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnout upozornění, že se kontakt připojil k Signalu? Můžete je znovu zapnout v Signal &gt; Nastavení &gt; Upozornění.</string>
@@ -2190,9 +2181,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_setup_a_username">Nastavit uživatelské jméno</string>
   <string name="configurable_single_select__customize_option">Nastavit předvolbu</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Konverzace a zkratky</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Smazat všechny dynamické zkratky</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Kliknutím smažte všechny dynamické zkratky</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

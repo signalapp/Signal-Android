@@ -475,6 +475,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">O que são os \'Novos grupos\'?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Os \'Novos grupos\' têm recursos como @menções e administradores de grupos e oferecerão futuramente suporte para mais recursos.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Todo o histórico de mensagens e média foi mantido para antes do upgrade. </string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Você necessitará de aceitar um convite para se juntar novamente a este grupo e não receberá mensagens de grupo até que aceite.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Este membro necessitará de aceitar um convite para se juntar novamente a este grupo e não receberá mensagens do grupo até que eles aceitem:</item>
     <item quantity="other">Estes membros necessitarão de aceitar um convite para se juntarem novamente a este grupo e não receberão mensagens de grupo até que eles aceitem:</item>
@@ -550,7 +551,7 @@
     <item quantity="other">%1$d membros</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Convites de grupo pendentes</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Convites de grupo pendentes</string>
   <string name="PendingMembersActivity_requests">Pedidos</string>
   <string name="PendingMembersActivity_invites">Convites</string>
   <string name="PendingMembersActivity_people_you_invited">Pessoas que convidou</string>
@@ -617,7 +618,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Destruição de mensagens</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Convites de grupo pendentes</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Pedidos e convites para membro</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_edit_group_info">Editar informação do grupo</string>
@@ -750,8 +750,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Links para grupo muito em breve</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atualize o Signal para utilizar hiperligações de grupo</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Entrar para um grupo através de um link ainda não é suportado pelo Signal. Este recurso será lançado numa atualização futura.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que está a utilizar não suporta links de grupo. Atualize para a última versão de forma a poder entrar para este grupo através do link do grupo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Um ou mias dos seus dispositivos ligados estão a correr uma versão do Signal que não suporta ligações para grupos. Atualize o Signal nos seus dispositivos ligados para entrar para este grupo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link do grupo inválido</string>
@@ -906,10 +904,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu %2$s como o tempo a decorrer até as mensagens serem destruídas.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">O tempo a decorrer até que as mensagens sejam destruídas foi definido para %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">O grupo foi atualizado para um \'Novo grupo\'..</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s membro não pode ser adicionado ao \'Novo grupo\' e recebeu convites para se juntar.</item>
-    <item quantity="other">%1$s membros não puderam ser adicionados ao \'Novo grupo\' e receberam convites para se juntarem.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s alterou o seu nome de perfil para %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s alterou o seu nome de perfil de %2$s para %3$s.</string>
@@ -1039,10 +1033,10 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou uma chamada em grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada de grupo · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Está na chamada de grupo · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s e %2$s estão na chamada de grupo · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s e %2$s estão na chamada de grupo · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, e %3$s estão na chamada de grupo · %4$s</string>
   <string name="MessageRecord_group_call_s">Chamada de grupo · %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Você está na chamada de grupo</string>
   <string name="MessageRecord_you">Você</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s, e %3$d outro estão na chamada de grupo · %4$s</item>
@@ -1466,8 +1460,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_reacted_s_to_your_image">Reagiu %1$s à sua imagem.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagiu %1$s ao seu ficheiro.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagiu %1$s ao seu áudio.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagiu %1$s ˋa sua fotografia de visualização única.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagiu %1$s ao seu vídeo de visualização única.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagiu %1$s ˋa sua fotografia de visualização única.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagiu %1$s ao seu vídeo de visualização única.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu %1$s ao seu autocolante.</string>
   <string name="MessageNotifier_this_message_was_deleted">Esta mensagem foi eliminada.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Deseja desativar as notificações quando um novo contacto se junta ao Signal? Pode ativar novamente em Signal &gt; Definições &gt; Notificações.</string>
@@ -2041,9 +2035,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_setup_a_username">Defina um nome de utilizador</string>
   <string name="configurable_single_select__customize_option">Personalizar opção</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Conversas e Atalhos</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Elimine todos os atalhos dinâmicos</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Clique para eliminar todos os atalhos dinâmicos</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

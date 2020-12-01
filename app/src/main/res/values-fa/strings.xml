@@ -475,9 +475,14 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">گروه‌های جدید چیستند؟</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">گروه‌های جدید دارای قابلیت‌هایی مانند @اشاره‌ها و مدیران گروه هستند و از قابلیت‌های بیشتری در آینده پشتیبانی خواهند کرد.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">تمام تاریخچهٔ گروه و رسانه‌های پیش از ارتقا حفظ شده‌اند.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">شما به پذیرفتن یک دعوت برای پیوستن دوباره به این گروه نیاز خواهید داشت و پیام‌های گروه را تا زمانی که نپذیرید دریافت نخواهید کرد.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">این عضو نیاز به پذیرفتن دعوت برای</item>
     <item quantity="other">این اعضا نیاز به پذیرفتن دعوت برای پیوستن به گروه خواهند داشت و پیام‌های گروه را تا زمانی که بپذیرند دریافت نخواهند کرد:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">این عضو از گروه حذف شد و تا زمانی که گروه خود را ارتقا ندهد، دوباره نخواهد توانست به گروه بپیوندد:</item>
+    <item quantity="other">این اعضا از گروه حذف شدند و تا زمانی که گروه خود را ارتقا ندهند، دوباره نخواهند توانست به گروه بپیوندند:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">ارتقا به گروه جدید</string>
@@ -550,7 +555,7 @@
     <item quantity="other">%1$d عضو</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">دعوت‌های در حال انتظار</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
   <string name="PendingMembersActivity_requests">درخواست‌ها</string>
   <string name="PendingMembersActivity_invites">دعوت‌ها</string>
   <string name="PendingMembersActivity_people_you_invited">افرادی که شما دعوت کردید</string>
@@ -593,6 +598,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">ایجاد گروه موفق نبود.</string>
   <string name="AddGroupDetailsFragment__try_again_later">بعداً دوباره امتحان کنید.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">شما مخاطبی را انتخاب کردید که از گروه‌های Signal پشتیبانی نمی‌کند، پس این یک گروه فراپیامی (MMS) خواهد بود.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه‌‌های فراپیامک فقط برای شما قابل دیدن هستند.</string>
   <string name="AddGroupDetailsFragment__remove">حذف</string>
   <string name="AddGroupDetailsFragment__sms_contact">مخاطب پیامکی</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">حذف %1$s از این گروه؟</string>
@@ -617,7 +623,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">دعوت‌های در حال انتظار</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">درخواست‌های عضویت و دعوت‌ها</string>
   <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
   <string name="ManageGroupActivity_edit_group_info">ویرایش اطلاعات گروه</string>
@@ -750,8 +755,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">پیوندهای گروه به زودی</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">برای استفاده از پیوند‌های گروه Signal را به‌روزرسانی کنید</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal هنوز از پیوستن به گروه از طریق پیوند پشتیبانی نمی‌کند، این قابلیت در به‌روزرسانی آینده منتشر خواهد شد.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">نسخهٔ Signal که در حال استفاده از آن هستید از پیوند‌های گروه پشتیبانی نمی‌کند. برای پیوستن به این گروه از طریق پیوند، به آخرین نسخه به‌روزرسانی کنید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">بروزرسانی Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">یک یا چند عدد از دستگاه‌های پیوند‌ داده شدهٔ شما در حال اجرای نسخه‌ای از Signal هستند که از پیوند‌های گروه پشتیبانی نمی‌کند. Signal را بر روی دستگاه‌های پیوند داده شده به‌روزرسانی کنید تا به این گروه بپیوندید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">پیوند گروه معتبر نیست</string>
@@ -841,10 +844,10 @@
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">ویدئو</string>
   <string name="MediaOverviewActivity_image">تصویر</string>
-  <string name="MediaOverviewActivity_sent_by_s">ارسال شده از %1$s</string>
-  <string name="MediaOverviewActivity_sent_by_you">ارسال شده از طرف شما</string>
-  <string name="MediaOverviewActivity_sent_by_s_to_s">ارسال شده از %1$s به %2$s</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">ارسال شده از طرف شما به %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_s">ارسال شد از %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">ارسال شد از شما</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">ارسال شد از %1$s به %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">ارسال شد از شما به %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">معرفی واکنش‌ها</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">با نگاه داشتن دست خود بر روی هر پیام‌ احساستان را به‌ اشتراک بگذارید.</string>
@@ -906,10 +909,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان‌سنج پیام ناپدید شونده را روی %2$s تنظیم کرد.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">زمان‌سنج پیام ناپدید شونده روی %1$s تنظیم شد.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">این گروه به یک گروه جدید به‌روزرسانی شد.</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s عضو نمی‌تواند به گروه جدید اضافه شود و برای پیوستن دعوت شد‌‌.</item>
-    <item quantity="other">%1$s عضو نمی‌توانند به گروه جدید اضافه شوند و برای پیوستن دعوت شد‌‌ند.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s نام پروفایل خود را به %2$s تغییر داد.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام پروفایل خود را از %2$s  به %3$s تغییر داد.</string>
@@ -1039,8 +1038,7 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی حضور دارد · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">شما در تماس گروهی حضور دارید · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s و %2$s در تماس گروهی حضور دارند · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s و %2$s در تماس گروهی حضور دارند · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s، %2$s و %3$s در این تماس گروهی حضور دارند · %4$s</string>
   <string name="MessageRecord_group_call_s">تماس گروهی · %1$s</string>
   <string name="MessageRecord_you">شما</string>
@@ -1468,8 +1466,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s به تصویر شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s به فایل شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s به فایل صوتی شما واکنش نشان داد.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s به تصویر یکبار مصرف شما واکنش نشان داد.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s به ویدئوی یکبار مصرف شما واکنش نشان داد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s به تصویر یکبار مصرف شما واکنش نشان داد.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s به ویدئوی یکبار مصرف شما واکنش نشان داد.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s به استیکر شما واکنش نشان داد.</string>
   <string name="MessageNotifier_this_message_was_deleted">این پیام حذف شد</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به Signal را خاموش کنید؟ می‌توانید آن‌ها را دوباره در Signal &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>
@@ -1771,6 +1769,7 @@
   <string name="CreateProfileActivity_next">بعدی</string>
   <string name="CreateProfileActivity__username">نام کاربری</string>
   <string name="CreateProfileActivity__create_a_username">ایجاد نام کاربری</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه‌‌های فراپیامک فقط برای شما قابل دیدن هستند.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">نام و عکس گروه را ویرایش کنید</string>
   <string name="EditProfileFragment__group_name">نام گروه</string>
@@ -1809,8 +1808,8 @@
   <string name="message_details_header__via">از طریق</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">در انتظار…</string>
-  <string name="message_details_recipient_header__sent_to">ارسال شده به</string>
-  <string name="message_details_recipient_header__sent_from">ارسال شده از</string>
+  <string name="message_details_recipient_header__sent_to">ارسال شد به</string>
+  <string name="message_details_recipient_header__sent_from">ارسال شد از</string>
   <string name="message_details_recipient_header__delivered_to">تحویل داده شد به</string>
   <string name="message_details_recipient_header__read_by">خوانده شد توسط</string>
   <string name="message_details_recipient_header__not_sent">ارسال نشد</string>
@@ -2043,9 +2042,6 @@
   <string name="preferences_setup_a_username">برپایی نام کاربری</string>
   <string name="configurable_single_select__customize_option">سفارشی‌سازی</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">مکالمه‌ها و میانبرها</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">حذف همهٔ میانبرهای پویا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">برای حذف همهٔ میانبرهای پویا کلیک کنید</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

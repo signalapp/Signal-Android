@@ -476,6 +476,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Mik azok az új típusú csoportok?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Az új típusú csoportok olyan képességekkel rendelkeznek, mint példáui @említések, csoportadminok, és a jövőben újabb képességes hozzáadása várható.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Megtartottuk a frissítés előtti üzenet-előzményeket és médiafájlokat.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Csak egy meghívó elfogadása után leszel képes a csoporthoz újra csatlakozni, amíg ez nem teljesül, addig nem kapsz innen üzeneteket.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Ezt a tagot újra meg meg kell hívni, és kell fogadnia a meghívót, mielőtt újra üzenetet tudna fogadni a csoporttól:</item>
     <item quantity="other">Ezeket a tagokat újra meg meg kell hívni, és kell fogadniuk a meghívót, mielőtt újra üzenetet tudnak fogadni a csoporttól:</item>
@@ -519,7 +520,7 @@
     <item quantity="other">%1$d tag</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Függőben lévő csoportmeghívók</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Függőben lévő csoportmeghívók</string>
   <string name="PendingMembersActivity_requests">Kérések</string>
   <string name="PendingMembersActivity_invites">Meghívók</string>
   <string name="PendingMembersActivity_people_you_invited">Általad meghívott személyek</string>
@@ -577,7 +578,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Eltűnő üzenetek</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Függőben lévő csoportmeghívók</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Tagsági kérések és meghívók</string>
   <string name="ManageGroupActivity_add_members">Tagok hozzáadása</string>
   <string name="ManageGroupActivity_edit_group_info">Csoportinfó szerkesztése</string>
@@ -707,8 +707,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">A csoporthivatkozások hamarosan megérkeznek</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Frissítsd a Signalt a csoporthivatkozások használatához</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">A csoporthivatkozások általi belépést egyelőre nem támogatja a Signal. Ez a funkció egy jövőbeli frissítéssel lesz elérhető.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Az általad használt verziójú Signal nem támogatja a csoporthivatkozásokat. Frissíts a legújabb verzióra, hogy a hivatkozás használatával csatlakozhass ehhez a csoporthoz!</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal frissítése</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Egy vagy több párosított eszközöd a Signal olyan verzióját használja, amely nem támogatja a csoporthivatkozásokat. A belépéshez frissítsd Signalt párosított eszközeiden!</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">A csoporthivatkozás érvénytelen</string>
@@ -863,10 +861,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította, hogy az üzenetek ennyi idő után tűnjenek el: %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Az eltűnő üzenetek új beállítása: %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ez a csoport új típusú csoporttá lett alakítva.</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s db tagot nem lehetett közvetlenül az új típusú csoporthoz adni, ezért meg lett hívva.</item>
-    <item quantity="other">%1$s db tagot nem lehetett közvetlenül az új típusú csoporthoz adni, ezért meg lettek hívva.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s megváltoztatta profilnevét erre: %2$s</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s megváltoztatta profilnevét. Korábbi név: %2$s, új név: %3$s</string>
@@ -994,6 +988,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Biztonsági számodat megerősítetlennek jelölted a %s nevű partnereddel</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Biztonsági számodat egy másik készülékről megerősítetlennek jelölted %s nevű partnereddel</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_you_are_in_the_group_call">Csoporthívásban vagy</string>
   <string name="MessageRecord_you">Te</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Elfogadás</string>
@@ -1408,8 +1403,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_reacted_s_to_your_image">Reakció a képedre: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reakció a fájlodra: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reakció a hangfájlodra: %1$s</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reakció az egyszer megtekinthető fotódra: %1$s</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reakció az egyszer megtekinthető videódra: %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reakció az egyszer megtekinthető fotódra: %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reakció az egyszer megtekinthető videódra: %1$s</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reakció a matricádra: %1$s</string>
   <string name="MessageNotifier_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kikapcsolod az új kontakt érhető el Signalon értesítést? Újra engedélyezheted a  Signal &gt; Beállítások &gt; Értesítések menüpontban.</string>

@@ -437,7 +437,7 @@
     <item quantity="other">%1$d សមាជិក</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string>
   <string name="PendingMembersActivity_requests">ស្នើសុំ</string>
   <string name="PendingMembersActivity_invites">អញ្ជើញ</string>
   <string name="PendingMembersActivity_people_you_invited">មនុស្សដែលអ្នកបានអញ្ជើញ</string>
@@ -486,7 +486,6 @@
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">ការអញ្ជើញក្រុមមិនទាន់សម្រេច</string> -->
   <string name="ManageGroupActivity_add_members">បន្ថែមសមាជិក</string>
   <string name="ManageGroupActivity_edit_group_info">កែព័ត៌មានក្រុម</string>
   <string name="ManageGroupActivity_group_link">តំណក្រុម</string>
@@ -1136,8 +1135,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">ប្រតិកម្ម %1$s ទៅរូបភាពអ្នក។</string>
   <string name="MessageNotifier_reacted_s_to_your_file">ប្រតិកម្ម %1$s ទៅឯកសារអ្នក។</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">ប្រតិកម្ម %1$s ទៅសំឡេងអ្នក។</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">ប្រតិកម្ម %1$s ទៅរូបភាពមើលម្តងរបស់អ្នក។</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">ប្រតិកម្ម %1$s ទៅវីដេអូមើលម្តងរបស់អ្នក។</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">ប្រតិកម្ម %1$s ទៅរូបភាពមើលម្តងរបស់អ្នក។</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">ប្រតិកម្ម %1$s ទៅវីដេអូមើលម្តងរបស់អ្នក។</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">ប្រតិកម្ម %1$s ទៅស្ទីកគ័រអ្នក។</string>
   <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <!--Notification Channels-->

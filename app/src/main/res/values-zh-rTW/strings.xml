@@ -459,8 +459,12 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">什麼是新群組？</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">新群組具有@提及和群組管理員等功能，並且將來會支援更多功能。</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">升級之前，所有訊息歷史記錄和媒體均已保留。</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">你將需要接受邀請才能再次加入該群組，並且在你接受之前，你將不會收到群組訊息。</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="other">這些成員將需要接受邀請才能再次加入該群組，並且在他們接受之前不會收到群組訊息：</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="other">這些成員已從群組中刪除，並且只有在升級後才能重新加入：</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">升級為新版群組</string>
@@ -523,7 +527,7 @@
     <item quantity="other">%1$d 個成員</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">待處理的群組邀請</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">待處理的群組邀請</string>
   <string name="PendingMembersActivity_requests">要求</string>
   <string name="PendingMembersActivity_invites">邀請</string>
   <string name="PendingMembersActivity_people_you_invited">你所邀請的成員們</string>
@@ -558,11 +562,13 @@
   <string name="AddGroupDetailsFragment__create">建立</string>
   <string name="AddGroupDetailsFragment__members">成員</string>
   <string name="AddGroupDetailsFragment__group_name_required">群組名稱 (必填)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">群組名(可選)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">此欄位是必須的</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">群組必須要有至少兩個成員。</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">群組建立失敗。</string>
   <string name="AddGroupDetailsFragment__try_again_later">請稍後再試一次。</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">你選擇的聯絡人不支援 Signal 群組，因此該群組為多媒體訊息。</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自定義MMS群組名稱和照片僅有你可看見。</string>
   <string name="AddGroupDetailsFragment__remove">移除</string>
   <string name="AddGroupDetailsFragment__sms_contact">簡訊聯絡人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">從此群組移除%1$s嗎？</string>
@@ -583,7 +589,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">自動銷毀訊息</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">待處理的群組邀請</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">成員要求與邀請</string>
   <string name="ManageGroupActivity_add_members">新增成員</string>
   <string name="ManageGroupActivity_edit_group_info">編輯群組資訊</string>
@@ -710,8 +715,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">群組連結即將推出</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">更新Signal 以使用群組連結</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal尚不支援透過連結加入群組。 此功能將在即將進行的更新中發佈。</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">你使用的Signal版本不支援群組連結。 透過連結更新到最新版本以加入該群組。</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">你使用的Signal版本不支援此群組連結。透過連結更新到最新版本以加入該群組。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">更新 Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">你的一個或多個連結的裝置正在執行不支援群組連結的Signal版本。在你已連結的裝置上更新Signal以加入該群組。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">群組連結無效</string>
@@ -859,8 +863,12 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 已將訊息銷毀時間設為 %2$s。</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">自動銷毀訊息時間已經被設為%1$s。</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">該群組已更新為新群組。</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">你無法新增到新版群組中，但已被邀請加入。</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="other">%1$s 個成員無法被新增到新群組中，但已被邀請加入。</item>
+    <item quantity="other">%1$s 個成員無法被新增到新版群組中，但已被邀請加入。</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="other">%1$s 個成員無法被新增到新版群組中，並且已被刪除。</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s變更他們的個人資訊名稱為%2$s。</string>
@@ -986,13 +994,22 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">你在群組通話中 · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s 和 %2$s 在群組通話中 · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">你正在群組通話中· %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s 和 %2$s 在群組通話中 · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s、%2$s 和 %3$s 在群組通話中 · %4$s</string>
   <string name="MessageRecord_group_call_s">群組通話 · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s 發起了群組通話</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s 在群組通話中</string>
+  <string name="MessageRecord_you_are_in_the_group_call">你正在群組通話中</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s 及 %2$s 在群組通話中</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, 及 %3$s 在群組通話中</string>
+  <string name="MessageRecord_group_call">群組通話</string>
   <string name="MessageRecord_you">您</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="other">%1$s、%2$s 和另外 %3$d 人在群組通話中 · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="other">%1$s, %2$s, 及 %3$d 及其他人在群組通話中</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">接受</string>
@@ -1405,8 +1422,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">對你的影像作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_file">對你的檔案作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">對你的語音作出了 %1$s 反應。</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">對你的一次性觀看照片作出了 %1$s 反應。</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">對你的一次性觀看影片作出了 %1$s 反應。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">對你的一次性觀看照片作出了 %1$s 反應。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">對你的一次性觀看影片作出了 %1$s 反應。</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖作出了 %1$s 反應。</string>
   <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">關閉聯絡人已加入Signal 的通知嗎？你可以在次開啟他們在 Signal &gt; 設定 &gt; 通知。</string>
@@ -1698,6 +1715,7 @@
   <string name="CreateProfileActivity_next">下一步</string>
   <string name="CreateProfileActivity__username">使用者名稱</string>
   <string name="CreateProfileActivity__create_a_username">創立一個使用者名稱</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自定義MMS群組名稱和照片僅有你可看見。</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">編輯群組名稱及照片</string>
   <string name="EditProfileFragment__group_name">群組名稱</string>
@@ -1969,9 +1987,6 @@
   <string name="preferences_setup_a_username">設定使用者名稱</string>
   <string name="configurable_single_select__customize_option">自定義選項</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">對話與捷徑</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">刪除所有動態捷徑</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">單擊以刪除所有動態捷徑</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2041,6 +2056,7 @@
   <string name="conversation__menu_conversation_settings">對話設定</string>
   <string name="conversation__menu_add_shortcut">新增到主畫面</string>
   <string name="conversation__menu_pending_members">待處理的成員</string>
+  <string name="conversation__menu_create_bubble">建立對話泡泡</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">展開快顯</string>
   <!--conversation_callable_insecure-->

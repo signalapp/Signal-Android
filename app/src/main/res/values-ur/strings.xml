@@ -881,8 +881,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">آپ کی تصویر پر رد عمل%1$s ظاہر کیا</string>
   <string name="MessageNotifier_reacted_s_to_your_file">آپ کی فائل پر رد عمل%1$s ظاہر کیا</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">آپ کی آڈیو پر رد عمل %1$s ظاہر کیا</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">آپ کی صرف ایک بار دیکھیں والی تصویر پر رد عمل%1$s ظاہر کیا</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">آپ کی صرف ایک بار دیکھیں والی ویڈیو پر رد عمل %1$s ظاہر کیا</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">آپ کی صرف ایک بار دیکھیں والی تصویر پر رد عمل%1$s ظاہر کیا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">آپ کی صرف ایک بار دیکھیں والی ویڈیو پر رد عمل %1$s ظاہر کیا</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">آپ کی اسٹیکر پر رد عمل %1$s ظاہر کیا</string>
   <string name="MessageNotifier_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
   <!--Notification Channels-->

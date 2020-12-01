@@ -871,8 +871,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Nganggepi gambar sampeyan kangge %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Nganggepi file sampeyan kangge %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Nganggepi suwanten sampeyan kangge %1$s.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Nganggepi foto sampeyan ingkang saged ditingali sepisan mawon kangge %1$s.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Nganggepi video sampeyan ingkang saged ditingali sepisan mawon kangge %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Nganggepi foto sampeyan ingkang saged ditingali sepisan mawon kangge %1$s.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Nganggepi video sampeyan ingkang saged ditingali sepisan mawon kangge %1$s.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Nganggepi stiker sampeyan kangge %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Pesen niki sampun dibrusak</string>
   <!--Notification Channels-->

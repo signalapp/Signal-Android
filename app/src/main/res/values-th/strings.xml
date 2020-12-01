@@ -1038,8 +1038,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">ตอบสนอง %1$s ต่อรูปภาพของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_file">ตอบสนอง %1$s ต่อแฟ้มของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">ตอบสนอง %1$s ต่อเสียงของคุณ</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">ตอบสนอง %1$s กับรูปภาพที่ดูได้ครั้งเดียวของคุณ</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">ตอบสนอง %1$s กับวิดีโอที่ดูได้ครั้งเดียวของคุณ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">ตอบสนอง %1$s กับรูปภาพที่ดูได้ครั้งเดียวของคุณ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">ตอบสนอง %1$s กับวิดีโอที่ดูได้ครั้งเดียวของคุณ</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">ตอบสนอง %1$s ต่อสติกเกอร์ของคุณ</string>
   <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <!--Notification Channels-->

@@ -532,7 +532,7 @@
   <string name="LinkPreviewView_this_group_link_is_not_active">رابط هذه المجموعة غير مفعّل</string>
   <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">دعوات معلّقة</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">دعوات معلّقة</string>
   <string name="PendingMembersActivity_people_you_invited">الأشخاص الذين دعوتهم</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">لا يوجد لديك دعوات معلقة.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">دعوات من أعضاء المجموعة الآخرين</string>
@@ -603,7 +603,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">الرسائل المُختفية</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">دعوات معلّقة</string> -->
   <string name="ManageGroupActivity_add_members">إضافة أعضاء</string>
   <string name="ManageGroupActivity_edit_group_info">تعديل معلومات المجموعة</string>
   <string name="ManageGroupActivity_block_group">حظر المجموعة</string>
@@ -1437,8 +1436,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">تفاعل %1$s مع الصورة الخاصة بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">تفاعل %1$s مع الملف الخاص بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع التسجيل الصوتي الخاص بك.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">تفاعل %1$s مع الصورة لمشاهدة-واحدة الخاصّة بك.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">تفاعل %1$s مع فيديو المشاهدة-لمرة واحدة الخاص بك.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">تفاعل %1$s مع الصورة لمشاهدة-واحدة الخاصّة بك.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">تفاعل %1$s مع فيديو المشاهدة-لمرة واحدة الخاص بك.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">تم تفاعل %1$s مع الملصق الخاص بك.</string>
   <string name="MessageNotifier_this_message_was_deleted">تم حذف هذه الرسالة.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">تعطيل إشعارات انضمام شخص إلى Signal؟ تستطيع تفعيلهم مجدداً في Signal &gt; إعدادات &gt; إشعارات.</string>

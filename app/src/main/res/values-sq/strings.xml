@@ -475,10 +475,15 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Ç’janë Grupet e Reja?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Grupet e Reja kanë veçori të tilla si @përmendje dhe përgjegjës grupi, dhe në të ardhmen do të mbulojnë më tepër veçori.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Krejt historiku i mesazhe dhe mediat janë mbajtur prej kohës para përmirësimit.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Do t’ju duhet të pranoni një ftesë, ta të ribëheni pjesë e këtij grupi, dhe s’do të merrni mesazhe grupi, pa e pranuar.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Ky anëtar do të duhet të pranojë një ftesë për t’u bërë pjesë e 
 grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="other">Këta anëtarë do të duhet të pranojnë një ftesë për t’u bërë pjesë e grupit dhe s’do të marrin mesazhe grupi përpara se ta pranojnë:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Ky anëtar u hoq prej grupit dhe s’do të jetë në gjendje të ribëhet pjesë e grupit, pa përmirësuar versionin:</item>
+    <item quantity="other">Këta anëtarë u hoqën prej grupit dhe s’do të jenë në gjendje të ribëhen pjesë e grupit, pa përmirësuar versionin:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Përmirësoje si Grup të Ri</string>
@@ -551,7 +556,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="other">%1$d anëtarë</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Ftesa për në grupe pezull</string>
   <string name="PendingMembersActivity_requests">Kërkesa</string>
   <string name="PendingMembersActivity_invites">Ftesa</string>
   <string name="PendingMembersActivity_people_you_invited">Persona që keni ftuar</string>
@@ -589,11 +594,13 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="AddGroupDetailsFragment__create">Krijoje</string>
   <string name="AddGroupDetailsFragment__members">Anëtarë</string>
   <string name="AddGroupDetailsFragment__group_name_required">Emër grupi (e domosdoshme)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Emër grupi (i domosdoshëm)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Kjo fushë është e domosdoshme.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupet lypin të paktën dy vetë.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Krijimi i grupit dështoi.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Riprovoni më vonë.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Keni përzgjedhur një kontakt që nuk mbulon grupe Signal, kështu që ky grup do të jetë MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Emra dhe foto vetjake grupesh MMS do të jenë të dukshme vetëm për ju.</string>
   <string name="AddGroupDetailsFragment__remove">Hiqe</string>
   <string name="AddGroupDetailsFragment__sms_contact">Kontakt SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Të hiqet %1$s prej këtij grupi?</string>
@@ -621,7 +628,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zhdukje mesazhesh</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Ftesa për në grupe pezull</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Kërkesa &amp; ftesa anëtarësie</string>
   <string name="ManageGroupActivity_add_members">Shtoni anëtarë</string>
   <string name="ManageGroupActivity_edit_group_info">Përpunoni të dhëna grupi</string>
@@ -754,8 +760,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Së shpejti mbërrijnë lidhje grupesh</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Që të përdorni lidhje grupi, përditësoni Signal-in</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Bërja pjesë e një grupi përmes një lidhjeje nuk mbulohet ende nga Signal-i. Kjo veçori do të hidhet në qarkullim në një përditësim të ardhshëm.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk mbulon lidhje grupesh. Që të bëheni pjesë e një grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versioni i Signal-it që po përdorni nuk e mbulon këtë lidhje grupesh. Që të bëheni pjesë e një grupi përmes një lidhjeje, përditësojeni me versionin më të ri.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Përditësoni Signal-in</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Një ose më tepër prej pajisjeve tuaja të lidhura po xhirojnë një version të Signal-it që nuk mbulon lidhje grupesh. Që të bëheni pjesë e këtij grupi, përditësojeni Signal-in te pajisja(et) tuaj të lidhur.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Lidhja e grupit s’është e vlefshme</string>
@@ -910,9 +915,14 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s e vuri kohëmatësin e tretjes së mesazheve në %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Koha për zhdukje mesazhesh është vënë %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ky grup u përditësua si një Grup i Ri.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">S’u shtuat dot te Grupi i Ri dhe u ftuat të bëheni pjesë.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s anëtar s’u shtua dot te Grupi i Ri dhe u ftua të bëhet pjesë e tij.</item>
+    <item quantity="one">Një anëtar s’u shtua dot te Grupi i Ri dhe është ftuar të bëhet pjesë e tij.</item>
     <item quantity="other">%1$s anëtarë s’u shtuan dot te Grupi i Ri dhe janë ftuar të bëhen pjesë e tij.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Një anëtar s’u shtua dot te Grupi i Ri dhe është ftuar të bëhet pjesë e tij.</item>
+    <item quantity="other">%1$s anëtarë s’u shtuan dot te Grupi i Ri dhe u hoqën prej grupit.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ndryshoi emrin e tij te profili si %2$s.</string>
@@ -1043,14 +1053,24 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Gjendeni te thirrja e grupit · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s dhe %2$s gjenden te thirrja e grupit · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Gjendeni te thirrja e grupit · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s dhe %2$s gjenden te thirrja e grupit · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, dhe %3$s gjenden te thirrja e grupit · %4$s</string>
   <string name="MessageRecord_group_call_s">Thirrje grupi · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s nisi një thirrje grupi</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s gjendet te thirrja e grupit</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Gjendeni te thirrja e grupit</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s dhe %2$s gjenden te thirrja e grupit</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, dhe %3$s gjenden te thirrja e grupit</string>
+  <string name="MessageRecord_group_call">Thirrje grupi</string>
   <string name="MessageRecord_you">Ju</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s, dhe %3$d tjetër gjenden te thirrja e grupit · %4$s</item>
     <item quantity="other">%1$s, %2$s, dhe %3$d të tjerë gjenden te thirrja e grupit · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s, dhe %3$d tjetër gjenden te thirrja e grupit</item>
+    <item quantity="other">%1$s, %2$s, dhe %3$d të tjerë gjenden te thirrja e grupit</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Pranoje</string>
@@ -1470,8 +1490,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoi me %1$s ndaj figurës tuaj.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoi me %1$s ndaj kartelës tuaj.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi me %1$s ndaj audios tuaj.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoi me %1$s ndaj fotos tuaj për një parje të vetme.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoi me %1$s ndaj videos tuaj për një parje të vetme.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoi me %1$s ndaj fotos tuaj për një parje të vetme.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoi me %1$s ndaj videos tuaj për një parje të vetme.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi me %1$s ndaj ngjitësit tuaj.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Të çaktivizohen njoftime Signal për kontakte të sapoardhur? Mund t’i aktivizoni sërish që nga Signal &gt; Rregullime &gt; Njoftime.</string>
@@ -1773,6 +1793,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CreateProfileActivity_next">Pasuesi</string>
   <string name="CreateProfileActivity__username">Emër përdoruesi</string>
   <string name="CreateProfileActivity__create_a_username">Krijoni emër përdoruesi</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Emra dhe foto vetjake grupesh MMS do të jenë të dukshme vetëm për ju.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Përpunoni emër dhe foto grupi</string>
   <string name="EditProfileFragment__group_name">Emër grupi</string>
@@ -2047,9 +2068,6 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_setup_a_username">Ujdisë një emër përdoruesi</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Biseda dhe shkurtore</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Fshi krejt shkurtoret dinamike</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klikoni që të fshihen krejt shkurtoret dinamike</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2119,6 +2137,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation__menu_conversation_settings">Rregullime bisedash</string>
   <string name="conversation__menu_add_shortcut">Shtoje te skena e kreut</string>
   <string name="conversation__menu_pending_members">Anëtarë pezull</string>
+  <string name="conversation__menu_create_bubble">Krijo flluskë</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Zgjero flluskën</string>
   <!--conversation_callable_insecure-->

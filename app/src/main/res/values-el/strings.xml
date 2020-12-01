@@ -475,9 +475,14 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Τι είναι οι Ομάδες νέου τύπου;</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Οι ομάδες νέου τύπου έχουν χαρακτηριστικά όπως τις @αναφορές και τους διαχειριστές ομάδας, και θα αποκτήσουν παραπάνω χαρακτηριστικά στο μέλλον.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Όλο το ιστορικό της συζήτησης και τα πολυμέσα διατηρήθηκαν ως είχαν πριν την αναβάθμιση.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Θα χρειαστεί να αποδεχτείς πάλι μια πρόσκληση για να μπεις στην ομάδα, και δεν θα λαμβάνεις μηνύματα της ομάδας μέχρι να αποδεχτείς.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Αυτό το μέλος θα πρέπει να αποδεχτεί την πρόσκληση να ξαναμπεί στην ομάδα, και δεν θα λαμβάνει τα μηνύματα της ομάδας μέχρι να αποδεχτεί:</item>
     <item quantity="other">Αυτά τα μέλη θα πρέπει να αποδεχτούν την πρόσκληση να ξαναμπούν στην ομάδα, και δεν θα λαμβάνουν τα μηνύματα της ομάδας μέχρι να αποδεχτούν:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Αυτό το μέλος αφαιρέθηκε από την ομάδα και δεν θα μπορέσει να ξαναμπεί μέχρι να αναβαθμίσει:</item>
+    <item quantity="other">Αυτά τα μέλη αφαιρέθηκαν από την ομάδα και δεν θα μπορέσουν να ξαναμπούν μέχρι να αναβαθμίσουν:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Αναβάθμιση σε Ομάδα νέου τύπου</string>
@@ -550,7 +555,7 @@
     <item quantity="other">%1$d μέλη</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
   <string name="PendingMembersActivity_requests">Αιτήματα</string>
   <string name="PendingMembersActivity_invites">Προσκλήσεις</string>
   <string name="PendingMembersActivity_people_you_invited">Άτομα που έχεις προσκαλέσει</string>
@@ -588,11 +593,13 @@
   <string name="AddGroupDetailsFragment__create">Δημιουργία</string>
   <string name="AddGroupDetailsFragment__members">Μέλη</string>
   <string name="AddGroupDetailsFragment__group_name_required">Όνομα ομάδας (απαιτείται)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Όνομα ομάδας (προαιρετικά)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Αυτό το πεδίο απαιτείται.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Οι ομάδες χρειάζονται τουλάχιστον δυο μέλη.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Η δημιουργία της ομάδας απέτυχε.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Ξαναδοκίμασε αργότερα.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Επέλεξες μια επαφή που δεν υποστηρίζει τις ομάδες του Signal, οπότε αυτή η ομάδα θα είναι με MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Τα προσαρμοσμένα ονόματα και φωτογραφίες των ομαδών MMS θα είναι ορατά μόνο σε εσένα.</string>
   <string name="AddGroupDetailsFragment__remove">Αφαίρεση</string>
   <string name="AddGroupDetailsFragment__sms_contact">Επαφή SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Αφαίρεση του/της %1$s από την ομάδα;</string>
@@ -617,7 +624,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Αιτήματα μελών &amp; προσκλήσεις</string>
   <string name="ManageGroupActivity_add_members">Προσθήκη μελών</string>
   <string name="ManageGroupActivity_edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
@@ -750,8 +756,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Οι σύνδεσμοι ομάδων έρχονται σύντομα</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Αναβάθμσε το Signal για να χρησιμοποιήσεις συνδέσμους ομαδών.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Η εγγραφή σε ομάδα μέσω συνδέσμου δεν υποστηρίζεται ακόμα από το Signal. Η δυνατότητα αυτή θα είναι διαθέσιμη σε επόμενη ενημέρωση.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Η έκδοση Signal που χρησιμοποιείς δεν υποστηρίζει συνδέσμους ομαδών. Αναβάθμισε στη τελευταία έκδοση για να μπεις στην ομάδα μέσω του συνδέσμου.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Η έκδοση Signal που χρησιμοποιείς δεν υποστηρίζει αυτό τον σύνδεσμο ομάδας. Αναβάθμισε στη πιο πρόσφατη έκδοση για να μπεις στην ομάδα μέσω του συνδέσμου.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Αναβάθμιση του Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Μια ή παραπάνω από τις συνδεμένες συσκευές σου έχουν κάποια έκδοση του Signal που δεν υποστηρίζει τους συνδέσμους ομάδων. Αναβάθμισε το Signal στη συνδεμένη συσκευή/ές σου για να μπεις σε αυτή την ομάδα.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ο σύνδεσμος ομάδας δεν είναι έγκυρος</string>
@@ -906,9 +911,14 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Ο/Η %1$s όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ορίστηκε σε %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Αυτή η ομάδα αναβαθμίστηκε σε Ομάδα νέου τύπου.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Δεν μπόρεσες να προστεθείς στην Ομάδα νέου τύπου, και προσκλήθηκες να μπεις.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s μέλος δεν μπόρεσε να προστεθεί στην Ομάδα νέου τύπου, και προσκλήθηκε να μπει.</item>
+    <item quantity="one">Ένα μέλος δεν μπόρεσε να προστεθεί στην Ομάδα νέου τύπου και προσκλήθηκε να μπει.</item>
     <item quantity="other">%1$s μέλη δεν μπόρεσαν να προστεθούν στην Ομάδα νέου τύπου, και προσκλήθηκαν να μπουν.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Ένα μέλος δεν μπόρεσε να προστεθεί στην Ομάδα νέου τύπου και αφαιρέθηκε.</item>
+    <item quantity="other">%1$s δεν μπόρεσαν να προστεθούν στην Ομάδα νέου τύπου και αφαιρέθηκαν.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">Ο/Η %1$s άλλαξε το όνομα προφίλ του/της σε %2$s.</string>
@@ -1039,14 +1049,24 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Είσαι στην ομαδική κλήση · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Είσαι στην ομαδική κλήση · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Οι %1$s και %2$s είναι στην ομαδική κλήση · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">Οι %1$s, %2$s και %3$s είναι στην ομαδική κλήση · %4$s</string>
   <string name="MessageRecord_group_call_s">Ομαδική κλήση · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση</string>
+  <string name="MessageRecord_s_is_in_the_group_call"> Ο/Η %1$s είναι στην ομαδική κλήση</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Είσαι στην ομαδική κλήση</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">Οι %1$s και %2$s είναι στην ομαδική κλήση</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">Οι %1$s, %2$s και %3$s είναι στην ομαδική κλήση</string>
+  <string name="MessageRecord_group_call">Ομαδική κλήση</string>
   <string name="MessageRecord_you">Εσύ</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση · %4$s</item>
     <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην ομαδική κλήση · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην ομαδική κλήση</item>
+    <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην ομαδική κλήση </item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Αποδοχή</string>
@@ -1465,8 +1485,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Αντέδρασε με %1$s στη φωτογραφία σου.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Αντέδρασε με %1$s στο αρχείο σου.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Αντέδρασε με %1$s στο ηχητικό σου.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Αντέδρασε με%1$s στη φωτογραφία μιας μόνο προβολής σου.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Αντέδρασε με %1$s στο βίντεο μιας μόνο προβολής σου.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Αντέδρασε με%1$s στη φωτογραφία μιας μόνο προβολής σου.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Αντέδρασε με %1$s στο βίντεο μιας μόνο προβολής σου.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Αντέδρασε με %1$s στο αυτοκόλλητό σου.</string>
   <string name="MessageNotifier_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Απενεργοποίηση των ειδοποιήσεων για επαφές που έρχονται στο Signal; Μπορείς να τις ενεργοποιήσεις ξανά στο Signal &gt; Ρυθμίσεις &gt; Ειδοποιήσεις.</string>
@@ -1768,6 +1788,7 @@
   <string name="CreateProfileActivity_next">Επόμενο</string>
   <string name="CreateProfileActivity__username">Όνομα χρήστη</string>
   <string name="CreateProfileActivity__create_a_username">Δημιουργία ονόματος χρήστη</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Τα προσαρμοσμένα ονόματα και φωτογραφίες των ομαδών MMS θα είναι ορατά μόνο από εσένα.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Επεξεργασία ονόματος και φωτογραφίας ομάδας</string>
   <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
@@ -2040,7 +2061,6 @@
   <string name="preferences_setup_a_username">Ορισμός ονόματος χρήστη`</string>
   <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Συνομιλίες και συντομεύσεις</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -459,8 +459,12 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">新しいグループとは？</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">新しいグループには、@メンションやグループ管理者機能などがあります。将来、新しい機能も追加されます。</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">すべてのメッセージ履歴とメディアは、アップグレード前から維持されています。</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">あなたがグループへの招待を受け入れるまで、グループメッセージは受信できません:</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="other">以下のメンバーがこのグループに再参加するには、招待を受け入れる必要があり、それまではグループメッセージを受信することはありません:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="other">このメンバーはグループから削除されました。アップグレードするまで再参加できません:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">新しいグループにアップグレード</string>
@@ -523,7 +527,7 @@
     <item quantity="other">メンバー %1$d人</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">保留中のグループ招待</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">保留中のグループ招待</string>
   <string name="PendingMembersActivity_requests">申請</string>
   <string name="PendingMembersActivity_invites">招待</string>
   <string name="PendingMembersActivity_people_you_invited">あなたが招待した人々</string>
@@ -558,6 +562,7 @@
   <string name="AddGroupDetailsFragment__create">作成する</string>
   <string name="AddGroupDetailsFragment__members">メンバー</string>
   <string name="AddGroupDetailsFragment__group_name_required">グループ名 (必須)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">グループ名 (オプション)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">この項目の入力は必須です。</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">グループには少なくとも2人のメンバーが必要です。</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">グループの作成に失敗しました</string>
@@ -583,7 +588,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">消えるメッセージ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">保留中のグループ招待</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">メンバー申請と招待</string>
   <string name="ManageGroupActivity_add_members">メンバーを追加</string>
   <string name="ManageGroupActivity_edit_group_info">グループの情報を編集</string>
@@ -710,7 +714,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">グループリンクのご案内</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">グループリンクを使用するためSignalをアップデート</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">リンク経由でのグループ参加は、Signalではまだ対応していません。この機能は今後のアップデートで提供されます。</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">このバージョンのSignalはグループリンクをサポートしていません。リンク経由でこのグループに参加するには、最新バージョンにアップデートしてください。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signalをアップデート</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">リンク済み端末で使用中のSignalがグループリンクをサポートしていません。このグループに参加するには、リンク済み端末のSignalをアップデートしてください。</string>
@@ -859,9 +862,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s が消えるメッセージのタイマーを%2$sに設定しました。</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">消えるメッセージのタイマーが%1$sに設定されました。</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">このグループは新しいグループにアップデートされました。</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="other">%1$s人のメンバーが新しいグループに追加できなかったため、招待を送信しました。</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s がプロフィール名を %2$s に変更しました。</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s がプロフィール名を %2$s から %3$s に変更しました。</string>
@@ -986,13 +986,22 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s がグループ通話に参加 · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">あなたがグループ通話に参加 · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s と %2$s がグループ通話に参加 · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">グループ通話中です · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s と %2$s がグループ通話に参加 · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s 、%2$s 、%3$s がグループ通話に参加 · %4$s</string>
   <string name="MessageRecord_group_call_s">グループ通話 · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s がグループ通話を開始しました</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s はグループ通話中です</string>
+  <string name="MessageRecord_you_are_in_the_group_call">グループ通話中です。</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s と %2$s はグループ通話中です</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, %3$s はグループ通話中です</string>
+  <string name="MessageRecord_group_call">グループ通話</string>
   <string name="MessageRecord_you">あなた</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="other">%1$s 、%2$s 、%3$d などがグループ通話に参加 · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="other">%1$s, %2$s, %3$d などがグループ通話中です</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">承認する</string>
@@ -1398,8 +1407,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">あなたの画像に %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_file">あなたのファイルに %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">あなたの音声に %1$s</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">あなたの使い捨て写真に %1$s</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">あなたの使い捨てビデオに %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">あなたの使い捨て写真に %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">あなたの使い捨てビデオに %1$s</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$s</string>
   <string name="MessageNotifier_this_message_was_deleted">このメッセージは削除されました。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">連絡先のSignal参加時の通知を受け取らないようにしますか？この設定はあとでSignal &gt; 設定 &gt; 通知から元に戻せます。</string>
@@ -1962,9 +1971,6 @@
   <string name="preferences_setup_a_username">ユーザ名の設定</string>
   <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">会話とショートカット</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">すべての動的ショートカットを削除する</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">クリックしてすべての動的ショートカットを削除します</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2034,6 +2040,7 @@
   <string name="conversation__menu_conversation_settings">会話設定</string>
   <string name="conversation__menu_add_shortcut">ホーム画面に追加</string>
   <string name="conversation__menu_pending_members">保留中のメンバー</string>
+  <string name="conversation__menu_create_bubble">バブルを作成</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ポップアップを拡大</string>
   <!--conversation_callable_insecure-->

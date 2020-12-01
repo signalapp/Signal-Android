@@ -497,7 +497,7 @@
     <item quantity="other">%1$d üye</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Beklemedeki grup davetleri</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Beklemedeki grup davetleri</string>
   <string name="PendingMembersActivity_requests">İstekler</string>
   <string name="PendingMembersActivity_invites">Davetler</string>
   <string name="PendingMembersActivity_people_you_invited">Davet ettiğiniz kişiler</string>
@@ -555,7 +555,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaybolan iletiler</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Beklemedeki grup davetleri</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Üyelik istekleri &amp; davetleri</string>
   <string name="ManageGroupActivity_add_members">Üye ekle</string>
   <string name="ManageGroupActivity_edit_group_info">Grup bilgisini düzenle</string>
@@ -685,8 +684,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grup bağlantıları çok yakında</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Grup bağlantılarını kullanabilmek için Signal\'i güncelleyin</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Bir bağlantı aracılığıyla grupa katılmak henüz Signal tarafından desteklenmiyor. Bu özellik gelecek bir sürümde yayınlanacaktır.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Kullandığınız bu Signal sürümü grup bağlantılarını desteklemiyor. Bu gruba bağlantı aracılığıyla katılmak için son sürüme güncelleyin.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal\'i Güncelle</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Bağlı aygıtlarınızdan bir veya daha fazla grup bağlantılarını desteklemeyen Signal sürümü kullanıyor. Bu gruba katılabilmek için bağlı aygıtlarınızdaki Signal\'i güncelleyin.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grup bağlantısı geçersiz</string>
@@ -1375,8 +1372,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Görüntünüze karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Dosyanıza karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Sesinize karşılık verdi: %1$s</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Tek görümlük fotoğrafınıza karşılık verdi: %1$s</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Tek görümlük videonuza karşılık verdi: %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Tek görümlük fotoğrafınıza karşılık verdi: %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Tek görümlük videonuza karşılık verdi: %1$s</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Çıkartmanıza karşılık verdi: %1$s</string>
   <string name="MessageNotifier_this_message_was_deleted">Bu ileti silindi.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kişi katıldı Signal bildirimlerini kapatmak mı istiyorsunuz? Signal &gt; Ayarlar &gt; Bildirimler kısmında tekrar açabilirsiniz.</string>

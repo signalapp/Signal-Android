@@ -1072,8 +1072,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="MessageNotifier_reacted_s_to_your_image">Reaģēja %1$s uz Jūsu attēlu</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reaģēja %1$s uz Jūsu failu. </string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reaģēja %1$s uz Jūsu audio</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reaģēja %1$s uz  Jūsu vienreiz skatāmo attēlu.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reaģēja %1$s uz Jūsu vienreiz skatāmo video. </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reaģēja %1$s uz  Jūsu vienreiz skatāmo attēlu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reaģēja %1$s uz Jūsu vienreiz skatāmo video. </string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reaģēja %1$s uz Jūsu uzlīmi. </string>
   <string name="MessageNotifier_this_message_was_deleted">Ziņojums ir izdzēsts.</string>
   <!--Notification Channels-->

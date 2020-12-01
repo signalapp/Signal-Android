@@ -475,9 +475,14 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Vad är Nya grupper?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nya grupper har funktioner som @omnämnanden och gruppadministratörer och kommer att stöda fler funktioner i framtiden.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All meddelandeshistorik och media har sparats från före uppgraderingen.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Du måste acceptera en inbjudan för att gå med i denna grupp igen och kommer inte att få gruppmeddelanden förrän du accepterar.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Denna medlem måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
     <item quantity="other">Dessa medlemmar måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Denna medlem togs bort från gruppen och kommer inte att kunna gå med igen förrän de uppgraderar:</item>
+    <item quantity="other">Dessa medlemmar togs bort från gruppen och kommer inte att kunna gå med igen förrän de uppgraderar:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Uppgradera till Ny grupp</string>
@@ -550,7 +555,7 @@
     <item quantity="other">%1$d medlemmar</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Väntande gruppinbjudningar</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Väntande gruppinbjudningar</string>
   <string name="PendingMembersActivity_requests">Förfrågningar</string>
   <string name="PendingMembersActivity_invites">Inbjudningar</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du bjudit in</string>
@@ -588,11 +593,13 @@
   <string name="AddGroupDetailsFragment__create">Skapa</string>
   <string name="AddGroupDetailsFragment__members">Medlemmar</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppnamn (krävs)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Gruppnamn (valfritt)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Detta fält krävs.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupper kräver minst två medlemmar.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Det gick inte att skapa grupp.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Försök igen senare.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valt en kontakt som inte stöder Signal-grupper, så denna grupp kommer använda MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Anpassade MMS-gruppnamn och foton är bara synliga för dig.</string>
   <string name="AddGroupDetailsFragment__remove">Ta bort</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ta bort %1$s från denna grupp?</string>
@@ -617,7 +624,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Försvinnande meddelanden</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Väntande gruppinbjudningar</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Medlemsförfrågningar &amp; inbjudningar</string>
   <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
   <string name="ManageGroupActivity_edit_group_info">Redigera gruppinformation</string>
@@ -750,8 +756,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupplänkar kommer snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uppdatera Signal för att använda grupplänkar</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Att gå med i en grupp via en länk stöds ännu inte av Signal. Denna funktion kommer att släppas i en kommande uppdatering.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte grupplänkar. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte den här grupplänken. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flera av dina länkade enheter kör en version av Signal som inte stöder grupplänkar. Uppdatera Signal på dina länkade enheter för att gå med i denna grupp.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupplänken är inte giltig</string>
@@ -906,9 +911,14 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tidsgränsen för försvinnande meddelanden till %2$s. </string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Den försvinnande meddelandetidtagaren har ställts in till %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Denna grupp uppdaterades till en Ny grupp.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s medlem kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</item>
-    <item quantity="other">%1$s medlemmar kunde inte läggas till i den Nya gruppen och har bjudits in att gå med.</item>
+    <item quantity="one">En medlem kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</item>
+    <item quantity="other">%1$s medlemmar kunde inte läggas till i den Nya gruppen och har blivit inbjudna att gå med.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">En medlem kunde inte läggas till i den nya gruppen och har tagits bort.</item>
+    <item quantity="other">%1$s medlemmar kunde inte läggas till i den Nya gruppen och har tagits bort.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ändrade sitt profilnamn till %2$s.</string>
@@ -1039,14 +1049,24 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startade ett gruppsamtal · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s är i gruppsamtalet · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Du är i gruppsamtalet · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s och %2$s är i gruppsamtalet · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Du är i gruppsamtalet · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s och %2$s är i gruppsamtalet · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s och %3$s är i gruppsamtalet · %4$s</string>
   <string name="MessageRecord_group_call_s">Gruppsamtal · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s startade ett gruppsamtal</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s är i gruppsamtalet</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Du är i gruppsamtalet</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s och %2$s är i gruppsamtalet</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s och %3$s är i gruppsamtalet</string>
+  <string name="MessageRecord_group_call">Gruppsamtal</string>
   <string name="MessageRecord_you">Du</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s och %3$d andra är i gruppsamtalet · %4$s</item>
     <item quantity="other">%1$s, %2$s och %3$d andra är i gruppsamtalet · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s och %3$d andra är i gruppsamtalet</item>
+    <item quantity="other">%1$s, %2$s och %3$d andra är i gruppsamtalet</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Acceptera</string>
@@ -1464,8 +1484,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagerade %1$s på din bild.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagerade %1$s på din fil</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagerade %1$s på din ljudfil.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagerade %1$s på ditt visa-en-gång foto.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerade %1$s på ditt visa-en-gång video.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagerade %1$s på ditt visa-en-gång foto.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerade %1$s på ditt visa-en-gång video.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerade %1$s på dina klistermärken.</string>
   <string name="MessageNotifier_this_message_was_deleted">Det här meddelandet togs bort.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Inaktivera Signal-aviseringar när kontakter ansluter sig? Du kan aktivera dem igen i Signal &gt; Inställningar &gt; Aviseringar.</string>
@@ -1767,6 +1787,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CreateProfileActivity_next">Nästa</string>
   <string name="CreateProfileActivity__username">Användarnamn</string>
   <string name="CreateProfileActivity__create_a_username">Skapa ett användarnamn</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Anpassade MMS-gruppnamn och foton är bara synliga för dig.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Redigera gruppnamn och foto</string>
   <string name="EditProfileFragment__group_name">Gruppnamn</string>
@@ -2039,9 +2060,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
   <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Konversationer och genvägar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Ta bort alla dynamiska genvägar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Klicka för att ta bort alla dynamiska genvägar</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2111,6 +2129,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>
   <string name="conversation__menu_add_shortcut">Lägg till på hemskärmen</string>
   <string name="conversation__menu_pending_members">Väntande medlemmar</string>
+  <string name="conversation__menu_create_bubble">Skapa bubbla</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandera popup</string>
   <!--conversation_callable_insecure-->

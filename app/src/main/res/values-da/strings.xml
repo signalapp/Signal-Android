@@ -551,7 +551,7 @@
     <item quantity="other">%1$d medlemmer</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Afventende gruppeinvitationer</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Afventende gruppeinvitationer</string>
   <string name="PendingMembersActivity_requests">Anmodninger</string>
   <string name="PendingMembersActivity_invites">Invitationer</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du har inviteret</string>
@@ -618,7 +618,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Beskeder med tidsudløb</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Afventende gruppeinvitationer</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Medlemsanmodninger &amp; invitationer</string>
   <string name="ManageGroupActivity_add_members">Tilføj medlemmer</string>
   <string name="ManageGroupActivity_edit_group_info">Rediger gruppeinformation</string>
@@ -751,8 +750,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppelinks kommer snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Opdatér Signal for at bruge gruppelinks</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Deltagelse i en gruppe via et link understøttes endnu ikke af Signal. Funktionen frigives i en kommende opdatering</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal-versionen som du anvender, understøtter ikke gruppelinks. Opdater til den nyeste version for at deltage i denne gruppe via link</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Opdatér Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flere af din(e) forbundne enhed(er) kører en version af Signal, der ikke understøtter gruppelinks. Opdatér Signal for at deltage i gruppen</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelink er ikke gyldigt</string>
@@ -907,10 +904,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s har sat beskeder med tidsudløb til at udløbe efter %2$s</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Beskeder med tidsudløb blev tidsindstilet til %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen blev opdateret til en ny gruppe</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s medlem kunne ikke føjes til den nye gruppe og er blevet inviteret til at deltage.</item>
-    <item quantity="other">%1$s medlemmer kunne ikke tilføjes den nye gruppe og er blevet inviteret til at deltage.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ændrede deres profilnavn til %2$s</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ændrede deres profilnavn fra %2$s til %3$s</string>
@@ -1040,8 +1033,7 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startede en gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s deltager i gruppesamtalen · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Du deltager i gruppesamtalen · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s og %2$s deltager i gruppesamtalen · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s og %2$s deltager i gruppesamtalen · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, og %3$s deltager i gruppesamtalen · %4$s</string>
   <string name="MessageRecord_group_call_s">Gruppesamtale · %1$s</string>
   <string name="MessageRecord_you">Dig</string>
@@ -1470,8 +1462,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s reagerede på dit billede</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s reagerede på din fil</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s reagerede på din lydfil</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s reagerede på dit billed, vist kun én gang</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s reagerede på din video, vist kun én gang</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s reagerede på dit billed, vist kun én gang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s reagerede på din video, vist kun én gang</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s reagerede på dit klistermærke</string>
   <string name="MessageNotifier_this_message_was_deleted">Beskeden blev slettet.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Déaktiver: Kontakt har tilsluttet Signal meddelelser? Du kan aktivere dem igen i Signal &gt; Indstillinger &gt; Meddelelser</string>
@@ -2045,9 +2037,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_setup_a_username">Opret et brugernavn</string>
   <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Samtaler og genveje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Slet alle dynamiske genveje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Tryk for at slette alle dynamiske genveje</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

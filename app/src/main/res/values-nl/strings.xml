@@ -376,7 +376,7 @@
   <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-up-bestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <!--CustomDefaultPreference-->
-  <string name="CustomDefaultPreference_using_custom">Aanpassing in gebruik: %s</string>
+  <string name="CustomDefaultPreference_using_custom">Zelf ingesteld: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
   <string name="CustomDefaultPreference_none">Geen</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
@@ -476,9 +476,14 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Wat zijn ‘nieuwe’ groepen?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nieuwe groepen hebben functionaliteiten waaronder @vermeldingen en groepsbeheer en in de toekomst zullen er meer functionaliteiten aan worden toegevoegd.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Alle gespreksgeschiedenis en media van voor het omzetten zijn behouden gebleven.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Om weer lid te worden van deze groep zul je een uitnodiging moeten aanvaarden. Je zult geen berichten van deze groep ontvangen zolang je dat nog niet hebt gedaan.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Dit groepslid zal opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zal geen berichten krijgen zolang dit geaccepteerd is:</item>
     <item quantity="other">Deze groepsleden zullen opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zullen geen berichten krijgen zolang ze dit geaccepteerd hebben:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Dit groepslid is verwijderd uit de groep en kan niet opnieuw toetreden totdat hij Signal heeft bijgewerkt:</item>
+    <item quantity="other">Deze groepsleden zijn verwijderd uit de groep en kunnen niet opnieuw toetreden totdat ze Signal hebben bijgewerkt:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Omzetten naar nieuwe groep</string>
@@ -551,7 +556,7 @@
     <item quantity="other">%1$d leden</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Uitnodigingen in afwachting</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Uitnodigingen in afwachting</string>
   <string name="PendingMembersActivity_requests">Verzoeken</string>
   <string name="PendingMembersActivity_invites">Uitnodigingen</string>
   <string name="PendingMembersActivity_people_you_invited">Personen die jij voor de groep hebt uitgenodigd</string>
@@ -590,11 +595,13 @@
   <string name="AddGroupDetailsFragment__create">Aanmaken</string>
   <string name="AddGroupDetailsFragment__members">Leden</string>
   <string name="AddGroupDetailsFragment__group_name_required">Groepsnaam (vereist)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Groepsnaam (optioneel)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Dit veld is vereist.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Groepsgesprekken moeten tenminste twee deelnemers hebben.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Nieuw groepsgesprek aanmaken is mislukt</string>
   <string name="AddGroupDetailsFragment__try_again_later">Probeer het later opnieuw.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string>
   <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
   <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s van deze groep verwijderen?</string>
@@ -619,7 +626,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Verlopende berichten</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatschapsverzoeken &amp; uitnodigingen</string>
   <string name="ManageGroupActivity_add_members">Leden toevoegen</string>
   <string name="ManageGroupActivity_edit_group_info">Groepsinformatie aanpassen</string>
@@ -752,8 +758,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Binnenkort komen er groepsverwijzingen</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepsverwijzingen te kunnen gebruiken</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Lid worden van een groep is nog niet ondersteund in Signal. Deze functie zal in een komende versie uitgeleverd worden.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt groepsverwijzingen niet. Werk Signal bij naar de meest recente versie om via een verwijzing lid te kunnen worden van een groep.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt deze groepsverwijzing niet. Werk Signal bij naar de meest recente versie om via een verwijzing lid te kunnen worden van een groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Een of meerdere van je gekoppelde apparaten gebruikt een versie van Signal die geen groepsverwijzingen ondersteunt. Werk Signal op die apparaten bij om lid te worden van deze groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepsverwijzing</string>
@@ -853,7 +858,7 @@
   <string name="Megaphones_remind_me_later">Herinner me later</string>
   <string name="Megaphones_verify_your_signal_pin">Weet je je Signal-pincode nog?</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe of je je pincode nog weet, zodat je je pincode goed onthoudt.</string>
-  <string name="Megaphones_verify_pin">Pincode verifiëren </string>
+  <string name="Megaphones_verify_pin">Pincode bevestigen</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
@@ -908,9 +913,14 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor verlopende berichten op %2$s ingesteld.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">De timer voor verlopende berichten is op %1$s ingesteld.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Deze groep is omgezet in een nieuwe groep.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Je kon niet toegevoegd worden tot de nieuwe groep en je hebt daarom een uitnodiging gekregen om opnieuw lid te worden.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s groepslid kon niet toegevoegd worden tot de nieuwe groep en heeft een uitnodiging gekregen om toe te treden.</item>
-    <item quantity="other">%1$s groepsleden konden niet toegevoegd worden tot de nieuwe groep en hebben een uitnodiging gekregen om toe te treden.</item>
+    <item quantity="one">Een groepslid kon niet direct toegevoegd worden tot de nieuwe groep en heeft daarom een uitnodiging gekregen om toe te treden.</item>
+    <item quantity="other">%1$s groepsleden konden niet direct toegevoegd worden tot de nieuwe groep en hebben daarom een uitnodiging gekregen om toe te treden.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Een groepslid kon niet toegevoegd worden tot de nieuwe groep en is daarom verwijderd uit de groep.</item>
+    <item quantity="other">%1$s groepsleden konden niet toegevoegd worden tot de nieuwe groep en zijn daarom verwijderd uit de groep.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s heeft zijn of haar profielnaam naar %2$s gewijzigd.</string>
@@ -1041,14 +1051,24 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s heeft een groepsoproep gestart · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in deze groepsoproep aanwezig · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Je neemt deel aan een groepsoproep · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s, %2$s zijn in deze groepsoproep aanwezig · %3$s</string> -->
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Je neemt deel aan een groepsoproep · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s, %2$s zijn in deze groepsoproep aanwezig · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s en %3$s zijn in deze groepsoproep aanwezig · %4$s</string>
   <string name="MessageRecord_group_call_s">Groepsoproep · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s heeft een groepsoproep gestart</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s is in deze groepsoproep aanwezig</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Je neemt deel aan de groepsoproep</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s en %2$s zijn in deze groepsoproep aanwezig</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s en %3$s zijn in deze groepsoproep aanwezig</string>
+  <string name="MessageRecord_group_call">Groepsoproep</string>
   <string name="MessageRecord_you">Jij</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s en %3$d ander zijn in deze groepsoproep aanwezig · %4$s</item>
     <item quantity="other">%1$s, %2$s en %3$d anderen zijn in deze groepsoproep aanwezig · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s en %3$d ander zijn in deze groepsoproep aanwezig</item>
+    <item quantity="other">%1$s, %2$s en %3$d anderen zijn in deze groepsoproep aanwezig</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Aanvaarden</string>
@@ -1474,8 +1494,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MessageNotifier_reacted_s_to_your_image">reageerde met %1$s op je afbeelding.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">reageerde met %1$s op je bestand.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">reageerde met %1$s op je audio.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">reageerde met %1$s op je eenmaligeweergave-afbeelding.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">reageerde met %1$s op je eenmaligeweergave-video.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">reageerde met %1$s op je eenmaligeweergave-afbeelding.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">reageerde met %1$s op je eenmaligeweergave-video.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">reageerde met %1$s op je sticker.</string>
   <string name="MessageNotifier_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Zet meldingen uit over mensen die bereikbaar zijn via Signal. Je kunt ze opnieuw aanzetten in  Signal &gt; Instellingen &gt; Meldingen.</string>
@@ -1777,6 +1797,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CreateProfileActivity_next">Volgende</string>
   <string name="CreateProfileActivity__username">Gebruikersnaam</string>
   <string name="CreateProfileActivity__create_a_username">Gebruikersnaam aanmaken</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Groepsnaam en -afbeelding</string>
   <string name="EditProfileFragment__group_name">Groepsnaam</string>
@@ -1876,7 +1897,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren</string>
   <string name="arrays__use_default">Gebruik systeemstandaard</string>
-  <string name="arrays__use_custom">Gebruik aangepast</string>
+  <string name="arrays__use_custom">Gebruik eigen instelling</string>
   <string name="arrays__mute_for_one_hour">Demp voor 1 uur</string>
   <string name="arrays__mute_for_two_hours">Demp voor 2 uur</string>
   <string name="arrays__mute_for_one_day">Demp voor 1 dag</string>
@@ -2019,7 +2040,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_storage__thirty_days">30 dagen</string>
   <string name="preferences_storage__none">Geen limiet</string>
   <string name="preferences_storage__s_messages">%1$s berichten</string>
-  <string name="preferences_storage__custom">Aangepast</string>
+  <string name="preferences_storage__custom">Zelf ingesteld</string>
   <string name="preferences_advanced__use_system_emoji">Systeem-emoji gebruiken</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Gebruik de systeem-emoji in plaats van de ingebouwde emoji-ondersteuning van Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd al omgeleid via de Signal-servers. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
@@ -2051,9 +2072,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_setup_a_username">Gebruikersnaam aanmaken</string>
   <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Gesprekken en snelkoppelingen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Alle dynamische snelkoppelingen wissen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Tik hier om alle dynamische snelkoppelingen te wissen</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2123,6 +2141,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
   <string name="conversation__menu_add_shortcut">Aan thuisscherm toevoegen</string>
   <string name="conversation__menu_pending_members">Personen in afwachting</string>
+  <string name="conversation__menu_create_bubble">Bubbel weergeven</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Pop-up vergroten</string>
   <!--conversation_callable_insecure-->
@@ -2382,7 +2401,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__turn_off">Uitschakelen</string>
   <string name="preferences_app_protection__confirm_pin">Bevestig je pincode</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Je Signal-pincode bevestigen</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Je staat op het punt de herinnering uit te schakelen. Zorg ervoor dat je je Signal-pincode onthoudt of op een goed beveiligd manier opslaat, want je kunt de pincode niet langer veranderen of teruglezen als in de toekomst je telefoonnummer gederegistreerd raakt. Als je je pincode toch vergeet, dan verlies je mogelijk je Signal-instellingen en contacten als je in de toekomst je telefoonnummer opnieuw wilt registreren.</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Je staat op het punt de herinnering uit te schakelen. Zorg ervoor dat je je Signal-pincode onthoudt of op een goed beveiligd manier opslaat, want je kunt de pincode niet langer veranderen of teruglezen als in de toekomst je telefoonnummer gederegistreerd raakt. Als je je pincode toch vergeten bent wanneer je in de toekomst je telefoonnummer opnieuw wilt registreren, dan verlies je mogelijk je Signal-instellingen en contacten.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Het is niet gelukt on registratievergrendeling in te schakelen.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
@@ -2409,7 +2428,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zal zonder de pincode voor registratievergrendeling pas mogelijk zijn 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %d dagen te gaan.</string>
   <string name="RegistrationActivity_registration_lock_pin">Registratievergrendeling</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Registratievergrendeling is ingeschakeld voor dit telefoonnummer. Voer de pincode voor registratievergrendeling in.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling voor je telefoonnummer is ingeschakeld. Signal zal je af en toe vragen om je pincode te verifiëren om je te helpen deze te onthouden.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling voor je telefoonnummer is ingeschakeld. Signal zal je af en toe vragen om je pincode te bevestigen om je te helpen deze te onthouden.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ik ben mijn pincode vergeten.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Pincode vergeten?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratievergrendeling beschermt je telefoonnummer tegen niet-geautoriseerde registratiepogingen. Deze functie kan op elk moment in je Signal-privacyinstellingen uitgeschakeld worden.</string>

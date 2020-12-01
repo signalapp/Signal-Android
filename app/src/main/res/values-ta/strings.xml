@@ -465,7 +465,7 @@
     <item quantity="other">%1$d உறுப்பினர்கள் </item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string>
   <string name="PendingMembersActivity_requests">கோரிக்கைகளை</string>
   <string name="PendingMembersActivity_invites">அழைப்புகள்</string>
   <string name="PendingMembersActivity_people_you_invited">மக்கள் நீங்கள் அழைக்கப்பட்டார்</string>
@@ -519,7 +519,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">நிலுவையில் உள்ள குழு அழைப்புகள்</string> -->
   <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்தல்</string>
   <string name="ManageGroupActivity_edit_group_info">குழு தகவலைத் திருத்தல்</string>
   <string name="ManageGroupActivity_block_group">குழுவைத் தடு</string>
@@ -1247,8 +1246,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">உங்கள் படத்திற்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">உங்கள் கோப்பிற்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">உங்கள் கேட்பொலிக்கு %1$s என வினைபுரிந்தார்.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">உங்கள் காண்க-ஒருமுறை புகைப்படத்திற்கு %1$s என வினைபுரிந்தார்.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">உங்கள் காண்க-ஒருமுறை காணொளிக்கு %1$s வினைபுரிந்தார்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">உங்கள் காண்க-ஒருமுறை புகைப்படத்திற்கு %1$s என வினைபுரிந்தார்.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">உங்கள் காண்க-ஒருமுறை காணொளிக்கு %1$s வினைபுரிந்தார்.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஒட்டிக்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">இணைந்த சிக்னல் Signal அறிவிப்புகளை முடக்குவதா? அமைப்புகள் மற்றும் அறிவிப்புகளுக்குச் சென்று அவற்றை Signal settings சிக்னலில் மீண்டும் இயக்கலாம்.</string>

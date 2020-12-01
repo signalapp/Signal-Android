@@ -505,6 +505,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Čo sú Nové skupiny?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nové skupiny majú funkcie ako @spomenutia, administrátorov skupín a v budúcnosti budú podporovať ďalšie nové funkcie.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Celá história správ a médií ostala zachovaná tak ako pred modernizáciou.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Musíte znova prijať pozvánku do tejto skupiny a kým ju neprijmete, nebudete dostávať skupinové správy.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Tento člen musí znova prijať pozvánku do skupiny a kým ju neprijme, nebude dostávať skupinové správy:</item>
     <item quantity="few">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
@@ -602,7 +603,7 @@
     <item quantity="other">%1$d členov</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Nevybavené pozvánky do skupín</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Nevybavené pozvánky do skupín</string>
   <string name="PendingMembersActivity_requests">Žiadosti</string>
   <string name="PendingMembersActivity_invites">Pozvánky</string>
   <string name="PendingMembersActivity_people_you_invited">Ľudia, ktorých ste pozvali vy</string>
@@ -670,7 +671,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Miznúce správy</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Nevybavené pozvánky do skupín</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Žiadosti o členstvo a pozvánky</string>
   <string name="ManageGroupActivity_add_members">Pridať členov</string>
   <string name="ManageGroupActivity_edit_group_info">Upraviť informácie o skupine</string>
@@ -815,8 +815,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Odkazy do skupiny budú onedlho dostupné</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Pre používanie odkazov do skupín aktualizujte Signal.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Vstup do skupiny pomocou odkazu ešte v Signale nie je podporované. Táto funkcia bude pridaná v nasledujúcej aktualizácii.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzia Signalu, ktorú používate, nepodporuje odkazy do skupín. Ak sa chcete pridať do tejto skupiny pomocou odkazu, aktualizujte na najnovšiu verziu.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovať Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedno alebo viac pripojených zariadení používa verziu Signalu, ktorá nepodporuje odkazy do skupín. Ak sa chcete pridať do tejto skupiny, aktualizujte Signal na svojom pripojenom zariadení/iach.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Odkaz do skupiny nie je platný</string>
@@ -985,12 +983,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil/a časovač miznúcich správ na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač miznúcich správ bol nastavený na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Táto skupina bola modernizovaná na Novú skupinu.</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">%1$s člen nemohol byť pridaný do Novej skupiny a bol do nej pozvaný.</item>
-    <item quantity="few">%1$s členovia nemohli byť pridaní do Novej skupiny a boli do nej pozvaní.</item>
-    <item quantity="many">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
-    <item quantity="other">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s zmenil/a svoj názov profilu na %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s zmenil/a svoj názov profilu z %2$s na %3$s.</string>
@@ -1128,6 +1120,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Bezpečnostné číslo s %s ste označili ako neoverené</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bezpečnostné číslo s %s ste označili ako neoverené z iného zariadenia</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_you_are_in_the_group_call">Ste v skupinovom hovore</string>
   <string name="MessageRecord_you">Vy</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Potvrdiť</string>
@@ -1566,8 +1559,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_reacted_s_to_your_image">reagoval/a na váš obrázok: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">reagoval/a na váš súbor: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">reagoval/a na váš zvuk: %1$s.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">reagoval/a na vašu fotku na jedno zobrazenie: %1$s.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">reagoval/a na vaše video na jedno zobrazenie: %1$s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">reagoval/a na vašu fotku na jedno zobrazenie: %1$s.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">reagoval/a na vaše video na jedno zobrazenie: %1$s.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">reagoval/a na vašu nálepku: %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Táto správa bola zmazaná.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnúť upozornenia na to, že kontakt začal používať Signal? Môžete ich znova zapnúť v Signal &gt; Nastavenia &gt; Upozornenia.</string>

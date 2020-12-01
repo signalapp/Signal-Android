@@ -509,6 +509,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Beth yw Grwpiau Newydd?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Mae gan Grwpiau Newydd nodweddion fel @crybwyll a gewinyddwyr grwpiau, a byddant â nodweddion ychwanegol yn y dyfodol.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Mae holl hanes negeseuon a chyfryngau o cyn uwchraddio wedi\'u cadw.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Byddwch angen derbyn gwahoddiad i ymuno â\'r grŵp hwn eto, a ni fyddwch yn derbyn negeseuon grŵp nes eich bod wedi derbyn:</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Bydd angen i\'r aelod hwn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fydd yn derbyn negeseuon grŵp nes ei fod yn derbyn:</item>
     <item quantity="two">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
@@ -606,7 +607,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">%1$d aelod</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string>
   <string name="PendingMembersActivity_requests">Ceisiadau</string>
   <string name="PendingMembersActivity_invites">Gwahoddiadau</string>
   <string name="PendingMembersActivity_people_you_invited">Pobl rydych wedi eu gwahodd</string>
@@ -687,7 +688,6 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Negeseuon yn diflannu</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Grŵp yn yr arfaeth yn gwahodd</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Ceisiadau aelodau a gwahoddiadau</string>
   <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
   <string name="ManageGroupActivity_edit_group_info">Golygu manylion y grŵp</string>
@@ -832,8 +832,6 @@ Send neges heb ei ddiogelu?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Dolenni grŵp yn dod yn fuan</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Diweddarwch Signal i ddefnyddio dolenni grŵp</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Nid yw Signal yn cefnogi ymuno â grŵp trwy ddolen eto. Bydd y nodwedd hon yn cael ei rhyddhau mewn diweddariad sydd ar ddod.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Nid yw\'r fersiwn o Signal rydych chi\'n ei defnyddio yn cefnogi cysylltiadau grŵp. Diweddariad i\'r fersiwn ddiweddaraf i ymuno â\'r grŵp hwn trwy ddolen.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Diweddaru Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mae un neu fwy o\'ch dyfeisiau cysylltiedig yn rhedeg fersiwn o Signal nad yw\'n cefnogi cysylltiadau grŵp. Diweddarwch y Signal ar eich dyfais\dyfeisiau cysylltiedig i ymuno â\'r grŵp hwn.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Nid yw\'r cyswllt grŵp yn ddilys</string>
@@ -1002,12 +1000,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Gosododd %1$s amserydd y neges diflannu i %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Mae\'r amserydd neges sy\'n diflannu wedi\'i osod i %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Diweddarwyd y grŵp hwn i Grŵp Newydd.</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
-    <item quantity="two">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
-    <item quantity="many">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
-    <item quantity="other">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">Newidiodd %1$s eu henwau proffil i %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">Newidiodd %1$s eu henwau proffil o %2$s i %3$s.</string>
@@ -1147,10 +1139,10 @@ Send neges heb ei ddiogelu?</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Dechreuodd %1$s alwad grŵp · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Mae %1$s mewn galwad grŵp · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">Rydych chi yn y galwad grŵp · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">Mae %1$s a %2$s yn yr alwad grŵp · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Mae %1$s a %2$s yn yr alwad grŵp · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">Mae %1$s, %2$s, a %3$s yn yr alwad grŵp · %4$s</string>
   <string name="MessageRecord_group_call_s">Galwad grŵp · %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Rydych chi yn y galwad grŵp</string>
   <string name="MessageRecord_you">Chi</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">Mae %1$s, %2$s, a %3$d arall yn yr alwad grŵp · %4$s</item>
@@ -1596,8 +1588,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Ymatebodd %1$s i\'ch delwedd.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Ymatebodd %1$s i\'ch ffeil.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$si\'ch sain.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ymatebodd %1$si\'ch llun golwg unwaith.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ymatebodd %1$s i\'ch fideo golwg unwaith.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ymatebodd %1$si\'ch llun golwg unwaith.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ymatebodd %1$s i\'ch fideo golwg unwaith.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ymatebodd %1$s i\'ch sticer.</string>
   <string name="MessageNotifier_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Diffodd hysbysiadau cysylltiadau Signal? Gallwch eu galluogi eto yn Signal Hysbysiadau &gt; Gosodiadau &gt;.</string>
@@ -2193,9 +2185,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_setup_a_username">Gosod enw defnyddiwr</string>
   <string name="configurable_single_select__customize_option">Cyfaddasu opsiwn</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Sgyrsiau a Llwybrau Byr</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Dileu pob llwybr byr dynamig</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Cliciwch i ddileu pob llwybr byr dynamig</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

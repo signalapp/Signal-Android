@@ -880,8 +880,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Ya/ta yi martanin %1$s akan hotonka/ki.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Ya/ta yi martanin %1$s akan fayil dinka/ki.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Ya/ta yi martanin %1$s akan odiyonka/ki.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ya/ta yi martanin %1$s akan hotonka/ki mai kallo daya.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ya/ta yi martanin %1$s akan bidiyonka/ki mai kallo daya.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ya/ta yi martanin %1$s akan hotonka/ki mai kallo daya.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ya/ta yi martanin %1$s akan bidiyonka/ki mai kallo daya.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ya/ta yi martanin%1$s akan sitikarka/ki.</string>
   <string name="MessageNotifier_this_message_was_deleted">An goge sakon</string>
   <!--Notification Channels-->

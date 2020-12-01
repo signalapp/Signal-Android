@@ -876,8 +876,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">તમારી છબી પર %1$s પ્રતિક્રિયા આપી.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">તમારી ફાઇલ પર %1$s ની પ્રતિક્રિયા આપી.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">તમારા ઓડિયો પર %1$sપર પ્રતિક્રિયા આપી.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">તમારા વ્યુ-એકવાર ફોટા પર %1$s પર પ્રતિક્રિયા આપી.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">તમારી વ્યુ-એકવાર વિડિયો પર %1$s પ્રતિક્રિયા આપી.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">તમારા વ્યુ-એકવાર ફોટા પર %1$s પર પ્રતિક્રિયા આપી.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">તમારી વ્યુ-એકવાર વિડિયો પર %1$s પ્રતિક્રિયા આપી.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">તમારા સ્ટીકર પર %1$s પ્રતિક્રિયા આપી.</string>
   <string name="MessageNotifier_this_message_was_deleted">આ મેસેજ કાઢી નાખ્યો હતો.</string>
   <!--Notification Channels-->

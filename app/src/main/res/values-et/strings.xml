@@ -521,7 +521,7 @@
     <item quantity="other">%1$d liiget</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Ootel grupikutsed</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Ootel grupikutsed</string>
   <string name="PendingMembersActivity_requests">Taotlused</string>
   <string name="PendingMembersActivity_invites">Kutsed</string>
   <string name="PendingMembersActivity_people_you_invited">Sinu kutsutud inimesed</string>
@@ -582,7 +582,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaduvad sõnumid</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Ootel grupikutsed</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Liikmetaotlused ja -kutsed</string>
   <string name="ManageGroupActivity_add_members">Lisa liikmeid</string>
   <string name="ManageGroupActivity_edit_group_info">Muuda grupi infot</string>
@@ -1363,8 +1362,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Reageeris %1$s sinu pildile.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reageeris %1$s sinu failile.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reageeris %1$s sinu helile.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reageeris %1$s sinu korra-vaatamise fotole.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reageeris %1$s sinu korra-vaatamise videole.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reageeris %1$s sinu korra-vaatamise fotole.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reageeris %1$s sinu korra-vaatamise videole.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reageeris %1$s sinu kleepsule.</string>
   <string name="MessageNotifier_this_message_was_deleted">See sõnum kustutati.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kas lülitada Signal-iga liitumise teavitused välja? Neid saab uuesti lubada, valides Signal &gt; Seaded &gt; Teavitused.</string>
@@ -1930,7 +1929,6 @@
   <string name="preferences_setup_a_username">Vali kasutajanimi</string>
   <string name="configurable_single_select__customize_option">Kohanda valikut</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Vestlused ja otseteed</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

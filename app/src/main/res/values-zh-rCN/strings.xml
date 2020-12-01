@@ -459,6 +459,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">什么是新版群组？</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">新版群组支持@提醒和群管理员的功能，未来还将支持更多功能。</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">升级前已保留聊天和媒体记录。</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">您需要再次同意入群邀请。同意邀请之前，您将不会收到群组消息。</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="other">这些成员需要再次同意入群邀请来加入群组，其同意前不会收到群组消息：</item>
   </plurals>
@@ -523,7 +524,7 @@
     <item quantity="other">%1$d位成员</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">待处理的入群邀请</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">待处理的入群邀请</string>
   <string name="PendingMembersActivity_requests">入群申请</string>
   <string name="PendingMembersActivity_invites">邀请</string>
   <string name="PendingMembersActivity_people_you_invited">你邀请的人</string>
@@ -583,7 +584,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">阅后即焚</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">待处理的入群邀请</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">入群申请和邀请</string>
   <string name="ManageGroupActivity_add_members">添加成员</string>
   <string name="ManageGroupActivity_edit_group_info">编辑群组信息</string>
@@ -710,8 +710,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">即将推出群组链接功能</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">升级 Signal 以使用群组链接</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Signal 暂时不支持通过链接入群，此功能会在近期的版本更新中引入。</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">您当前版本的 Signal 不支持群组链接。请升级到最新版来通过链接入群。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">升级 Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">您有至少一台关联设备不支持群组链接，请升级其 Signal 版本来加入此群。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">群组链接无效</string>
@@ -859,9 +857,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 设置阅后即焚消失时间为 %2$s。</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">阅后即焚消息的销毁时间被设置为 %1$s。</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">此群已升级为新版群组。</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="other">%1$s 位无法加入新版群组，已向其发送入群邀请。</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s 更改其昵称为 %2$s。</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s 的个人资料名称已从 %2$s 更改为 %3$s。</string>
@@ -986,10 +981,10 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s发起了群组通话  · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群通话中 · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_you_are_in_the_group_call_s">您在群通话中 · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_and_s_are_in_the_group_call_s">%1$s 和 %2$s 在群通话中 · %3$s</string> -->
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s 和 %2$s 在群通话中 · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s，%2$s 和%3$s 在群通话中 · %4$s</string>
   <string name="MessageRecord_group_call_s">群组通话 · %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call">您在此群组通话中</string>
   <string name="MessageRecord_you">您</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="other">%1$s，%2$s 和其他%3$d位成员在群组通话中 · %4$s</item>
@@ -1409,8 +1404,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">对你的图片回应 %1$s。</string>
   <string name="MessageNotifier_reacted_s_to_your_file">对你的文件回应 %1$s。</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">对你的音频回应 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">对你的一次性图片回应 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">对你的一次性视频回应 %1$s。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">对你的一次性图片回应 %1$s。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">对你的一次性视频回应 %1$s。</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">对你的表情回应 %1$s。</string>
   <string name="MessageNotifier_this_message_was_deleted">消息已删除。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">关闭联系人加入 Signal 的通知吗？您可以在 Signal &gt; 设置 &gt; 通知 中再次启用。</string>
@@ -1973,9 +1968,6 @@
   <string name="preferences_setup_a_username">设置用户名</string>
   <string name="configurable_single_select__customize_option">自定义选项</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">对话和捷径</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">删除所有动态捷径</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">点击此处删除所有捷径</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

@@ -937,8 +937,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Nag-react ng %1$s sa iyong imahe.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Nag-react ng %1$s sa iyong file.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Nag-react ng %1$s sa iyong audio.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Nag-react ng %1$s sa iyong view-once na larawan.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Nag-react ng %1$s sa iyong view-once na video.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Nag-react ng %1$s sa iyong view-once na larawan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Nag-react ng %1$s sa iyong view-once na video.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Nag-react ng %1$s sa iyong sticker.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
   <!--Notification Channels-->

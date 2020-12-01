@@ -914,8 +914,8 @@
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s ನಿಮ್ಮ ಚಿತ್ರಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s ನಿಮ್ಮ ಫೈಲ್ ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ನಿಮ್ಮ ಆಡಿಯೋಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s ನಿಮ್ಮ ವ್ಯೂ-ಒನ್ಸ್ ಫೋಟೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$sನಿಮ್ಮ ವ್ಯೂ-ಒನ್ಸ್ ವೀಡಿಯೋಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s ನಿಮ್ಮ ವ್ಯೂ-ಒನ್ಸ್ ಫೋಟೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$sನಿಮ್ಮ ವ್ಯೂ-ಒನ್ಸ್ ವೀಡಿಯೋಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ನಿಮ್ಮ ಸ್ಟಿಕ್ಕರ್‌ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
   <string name="MessageNotifier_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
   <!--Notification Channels-->

@@ -886,8 +886,8 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Ametoa hisia%1$s kwa picha yako.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Ametoa hisia %1$s kwa faili yako.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Ametoa hisia %1$s kwa sauti yako.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ametoa hisia %1$s kwa picha yako ya mtazamo-mmoja.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ametoa hisia %1$s kwa video yako ya mtazamo-mmoja.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ametoa hisia %1$s kwa picha yako ya mtazamo-mmoja.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ametoa hisia %1$s kwa video yako ya mtazamo-mmoja.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ametoa hisia%1$s kwa kibandiko chako.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ujumbe huu umefutwa</string>
   <!--Notification Channels-->

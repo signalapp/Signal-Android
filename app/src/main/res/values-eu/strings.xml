@@ -551,7 +551,7 @@
     <item quantity="other">%1$d kide</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="PendingMemberInvitesActivity_pending_group_invites">Falta diren talde gonbidapenak</string> -->
+  <string name="PendingMembersActivity_pending_group_invites">Falta diren talde gonbidapenak</string>
   <string name="PendingMembersActivity_requests">Eskaerak</string>
   <string name="PendingMembersActivity_invites">Gonbidapenak</string>
   <string name="PendingMembersActivity_people_you_invited">Gondibatu duzun jendea</string>
@@ -609,7 +609,6 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mezuen desagerpena</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">Falta diren talde gonbidapenak</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Kideen eskaera &amp; gonbidapenak</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
   <string name="ManageGroupActivity_edit_group_info">Editatu taldeari buruzko informazioa</string>
@@ -742,8 +741,6 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Talderako estekak eskuragarri egongo dira laster</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Talderako estekak erabiltzeko Signal eguneatu behar duzu</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_coming_soon">Talde batean sartzea link baten bidez oraindik ez dago onartuta Signal-en. Ezaugarri hau eskuragarri egongo da aurrerantzean egingo den egunerapen batean.</string> -->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Erabiltzen ari zare Signalen bertsioak ez du talde estekak onartzen. Eguneratu azken bertsiora esteka bidez talde honetan sartzeko.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Eguneratu Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Gutxienez lotuta dituzun gailuetako batek Talde estekak onartzen ez dituen Signalen bertsio bat dauka instalatuta. Signal eguneratu lotutako gailuetan talde honetara gehitu ahal izateko.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Talde esteka hau ez da baliagarria</string>
@@ -898,10 +895,6 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Mezuen desagerpenaren denbora %2$s-tan ezarri du %1$s erabiltzaileak</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Desagertzen diren mezuen tenporizadorea honela ezarri da: %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Talde hau eguneratu da eta Talde Berria bilakatu da.</string>
-  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">Kide %1$s ezin izan da Talde Berrira gehitu eta sartzeko gonbidapena bidali zaio.</item>
-    <item quantity="other">%1$s kide ezin izan dira Talde Berrira gehitu eta sartzeko gonbidapena bidali zaie.</item>
-  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s erabiltzaileak bere profilaren izena aldatu du. Orain %2$s da.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s erabiltzaileak bere profilaren izena aldatu du. Lehen %2$s zen eta orain %3$s da.</string>
@@ -1452,8 +1445,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s izan da zure irudiarekiko erreakzioa.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s izan da zure fitxategiarekiko erreakzioa.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s izan da zure audioarekiko erreakzioa.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s izan da zure behin ikusteko argazkiarekiko erreakzioa.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s izan da zure behin ikusteko bideoarekiko erreakzioa.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s izan da zure behin ikusteko argazkiarekiko erreakzioa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s izan da zure behin ikusteko bideoarekiko erreakzioa.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s izan da zure eranskailuarekiko erreakzioa.</string>
   <string name="MessageNotifier_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desaktibatu nahi duzu kontaktu bat batzen denean bidaltzen diren jakinarazpenak? Berriro aktiba ditzakezu Signal &gt; Ezarpenak &gt; Jakinarazpenak atalean.</string>
@@ -2025,9 +2018,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_setup_a_username">Ezarri erabiltzaile izena</string>
   <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_conversations_and_shortcuts">Solasaldiak eta Lasterbideak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_delete_all_dynamic_shortcuts">Ezabatu lasterbide dinamiko guztiak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts">Ukitu lasterbide dinamiko guztiak ezabatzeko</string> -->
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
