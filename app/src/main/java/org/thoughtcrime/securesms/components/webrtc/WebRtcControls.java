@@ -57,7 +57,7 @@ public final class WebRtcControls {
   }
 
   boolean displayGroupMembersButton() {
-    return groupCallState.isAtLeast(GroupCallState.CONNECTING) && hasAtLeastOneRemote;
+    return groupCallState.isAtLeast(GroupCallState.CONNECTING);
   }
 
   boolean displayEndCall() {

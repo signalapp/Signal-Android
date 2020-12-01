@@ -6,10 +6,8 @@
     <item
         android:id="@+id/menu_group_call_participants_list"
         android:title="@string/WebRtcCallView__view_participants_list"
-        android:visible="false"
         app:actionLayout="@layout/show_participants_menu_view"
         app:showAsAction="always"
-        tools:ignore="AlwaysShowAction"
-        tools:visible="true" />
+        tools:ignore="AlwaysShowAction" />
 
 </menu>
