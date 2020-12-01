@@ -221,7 +221,11 @@ android {
                     'proguard/proguard-ez-vcard.pro',
                     'proguard/proguard.pro'
             testProguardFiles 'proguard/proguard-automation.pro'
+
+            // Uncomment for testing this build type without signing.
+            //  signingConfig signingConfigs.debug
         }
+
         debug {
             minifyEnabled false
 

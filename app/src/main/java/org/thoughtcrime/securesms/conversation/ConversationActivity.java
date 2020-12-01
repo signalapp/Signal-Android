@@ -85,12 +85,10 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ExpirationDialog;
-import org.thoughtcrime.securesms.GroupCreateActivity;
 import org.thoughtcrime.securesms.GroupMembersDialog;
 import org.thoughtcrime.securesms.MediaOverviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
@@ -184,7 +182,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -281,12 +278,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String LAST_SEEN_EXTRA         = "last_seen";
   public static final String STARTING_POSITION_EXTRA = "starting_position";
 
-  private static final int PICK_GALLERY        = 1;
+//  private static final int PICK_GALLERY        = 1;
   private static final int PICK_DOCUMENT       = 2;
   private static final int PICK_AUDIO          = 3;
   private static final int PICK_CONTACT        = 4;
   private static final int GET_CONTACT_DETAILS = 5;
-  private static final int GROUP_EDIT          = 6;
+//  private static final int GROUP_EDIT          = 6;
   private static final int TAKE_PHOTO          = 7;
   private static final int ADD_CONTACT         = 8;
   private static final int PICK_LOCATION       = 9;
@@ -337,7 +334,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private long       threadId;
   private int        distributionType;
   private boolean    archived;
-  private boolean    isSecureText;
+  private boolean    isSecureText; //TODO AC: Refaactor these field, as they are not required anyumore.
   private boolean    isDefaultSms            = false;
   private boolean    isMmsEnabled            = false;
   private boolean    isSecurityInitialized   = false;
@@ -624,16 +621,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case GET_CONTACT_DETAILS:
       sendSharedContact(data.getParcelableArrayListExtra(ContactShareEditActivity.KEY_CONTACTS));
       break;
-    case GROUP_EDIT:
-      recipient = Recipient.from(this, data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
-      recipient.addListener(this);
-      updateTitleTextView(recipient);
-      updateProfilePicture();
-      updateSubtitleTextView();
-      NotificationChannels.updateContactChannelName(this, recipient);
-      updateInputUI(recipient, isSecureText, isDefaultSms);
-      supportInvalidateOptionsMenu();
-      break;
     case TAKE_PHOTO:
       if (attachmentManager.getCaptureUri() != null) {
         setMedia(attachmentManager.getCaptureUri(), MediaType.IMAGE);
@@ -907,6 +894,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
@@ -1258,18 +1246,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 keyboardHeight);
       }
       attachmentTypeSelector.show(this, attachButton);
-    } else {
-      handleManualMmsRequired();
     }
-  }
-
-  private void handleManualMmsRequired() {
-    Toast.makeText(this, R.string.MmsDownloader_error_reading_mms_settings, Toast.LENGTH_LONG).show();
-
-    Bundle extras = getIntent().getExtras();
-    Intent intent = new Intent(this, PromptMmsActivity.class);
-    if (extras != null) intent.putExtras(extras);
-    startActivity(intent);
   }
 
   private void handleUnverifiedRecipients() {
@@ -2297,9 +2274,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.i(TAG, "isManual Selection: " + sendButton.isManualSelection());
       Log.i(TAG, "forceSms: " + forceSms);
 
-      if ((recipient.isMmsGroupRecipient() || recipient.getAddress().isEmail()) && !isMmsEnabled) {
-        handleManualMmsRequired();
-      } else if (!forceSms && identityRecords.isUnverified()) {
+      if (!forceSms && identityRecords.isUnverified()) {
         handleUnverifiedRecipients();
       }/* else if (!forceSms && identityRecords.isUntrusted()) {
         handleUntrustedRecipients();

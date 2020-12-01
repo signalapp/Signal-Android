@@ -5,25 +5,22 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
-import android.widget.Toast;
 
+import org.session.libsignal.service.api.SignalServiceAccountManager;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.BlockedContactsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.session.libsignal.service.api.SignalServiceAccountManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,9 +30,6 @@ import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
 import network.loki.messenger.R;
 
 public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment implements InjectableType {
-
-//  private static final String PREFERENCE_CATEGORY_BLOCKED        = "preference_category_blocked";
-//  private static final String PREFERENCE_UNIDENTIFIED_LEARN_MORE = "pref_unidentified_learn_more";
 
   private CheckBoxPreference disablePassphrase;
 
@@ -54,7 +48,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
     disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
 
-//    this.findPreference(TextSecurePreferences.REGISTRATION_LOCK_PREF).setOnPreferenceClickListener(new AccountLockClickListener());
     this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
     this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
 
@@ -63,10 +56,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     this.findPreference(TextSecurePreferences.READ_RECEIPTS_PREF).setOnPreferenceChangeListener(new ReadReceiptToggleListener());
     this.findPreference(TextSecurePreferences.TYPING_INDICATORS).setOnPreferenceChangeListener(new TypingIndicatorsToggleListener());
     this.findPreference(TextSecurePreferences.LINK_PREVIEWS).setOnPreferenceChangeListener(new LinkPreviewToggleListener());
-//    this.findPreference(PREFERENCE_CATEGORY_BLOCKED).setOnPreferenceClickListener(new BlockedContactsClickListener());
-//    this.findPreference(TextSecurePreferences.SHOW_UNIDENTIFIED_DELIVERY_INDICATORS).setOnPreferenceChangeListener(new ShowUnidentifiedDeliveryIndicatorsChangedListener());
-//    this.findPreference(TextSecurePreferences.UNIVERSAL_UNIDENTIFIED_ACCESS).setOnPreferenceChangeListener(new UniversalUnidentifiedAccessChangedListener());
-//    this.findPreference(PREFERENCE_UNIDENTIFIED_LEARN_MORE).setOnPreferenceClickListener(new UnidentifiedLearnMoreClickListener());
     disablePassphrase.setOnPreferenceChangeListener(new DisablePassphraseClickListener());
 
     initializeVisibility();
@@ -150,28 +139,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         initializeScreenLockTimeoutSummary();
       }, 0).show();
 
-      return true;
-    }
-  }
-
-  private class AccountLockClickListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      if (((SwitchPreferenceCompat)preference).isChecked()) {
-        RegistrationLockDialog.showRegistrationUnlockPrompt(getContext(), (SwitchPreferenceCompat)preference, accountManager);
-      } else {
-        RegistrationLockDialog.showRegistrationLockPrompt(getContext(), (SwitchPreferenceCompat)preference, accountManager);
-      }
-
-      return true;
-    }
-  }
-
-  private class BlockedContactsClickListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      Intent intent = new Intent(getActivity(), BlockedContactsActivity.class);
-      startActivity(intent);
       return true;
     }
   }
@@ -266,8 +233,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     }
   }
 
-  // Derecated
-
   private class ChangePassphraseClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
@@ -331,39 +296,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       }
 
       return false;
-    }
-  }
-
-  private class ShowUnidentifiedDeliveryIndicatorsChangedListener implements Preference.OnPreferenceChangeListener {
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-      boolean enabled = (boolean) newValue;
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(getContext()),
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
-                                                                   enabled,
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
-
-      return true;
-    }
-  }
-
-  private class UniversalUnidentifiedAccessChangedListener implements Preference.OnPreferenceChangeListener {
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object o) {
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new RefreshAttributesJob());
-      return true;
-    }
-  }
-
-  private class UnidentifiedLearnMoreClickListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      CommunicationActions.openBrowserLink(preference.getContext(), "https://signal.org/blog/sealed-sender/");
-      return true;
     }
   }
 }

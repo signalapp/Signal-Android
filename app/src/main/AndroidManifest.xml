@@ -180,14 +180,6 @@
             android:name="org.thoughtcrime.securesms.CountrySelectionActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
         <activity
-            android:name="org.thoughtcrime.securesms.PromptMmsActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:label="Configure MMS Settings"
-            android:windowSoftInputMode="stateUnchanged" />
-        <activity
-            android:name="org.thoughtcrime.securesms.preferences.MmsPreferencesActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
-        <activity
             android:name="org.thoughtcrime.securesms.ShareActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:excludeFromRecents="true"
@@ -283,10 +275,6 @@
             android:theme="@style/Theme.TextSecure.DayNight"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="org.thoughtcrime.securesms.GroupCreateActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:windowSoftInputMode="stateVisible" />
         <activity
             android:name="org.thoughtcrime.securesms.DatabaseMigrationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -387,9 +375,6 @@
             android:name="org.thoughtcrime.securesms.RecipientPreferenceActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:theme="@style/Theme.Session.DayNight.NoActionBar" />
-        <activity
-            android:name="org.thoughtcrime.securesms.BlockedContactsActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
         <activity
             android:name="org.thoughtcrime.securesms.scribbles.StickerSelectActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
