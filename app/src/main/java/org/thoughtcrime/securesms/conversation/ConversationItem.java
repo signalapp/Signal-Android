@@ -21,7 +21,6 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
@@ -45,7 +44,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,7 +92,6 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -113,11 +111,9 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VibrateUtil;
@@ -143,7 +139,7 @@ import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
  *
  */
 
-public class ConversationItem extends LinearLayout implements BindableConversationItem,
+public final class ConversationItem extends RelativeLayout implements BindableConversationItem,
     RecipientForeverObserver
 {
   private static final String TAG = ConversationItem.class.getSimpleName();
@@ -173,7 +169,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   @Nullable private   View                       groupSenderHolder;
             private   AvatarImageView            contactPhoto;
             private   AlertView                  alertView;
-            private   ViewGroup                  container;
             protected ReactionsConversationView  reactionsView;
 
   private @NonNull  Set<ConversationMessage>        batchSelected   = new HashSet<>();
@@ -242,7 +237,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     this.revealableStub          = new Stub<>(findViewById(R.id.revealable_view_stub));
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
     this.quoteView               =            findViewById(R.id.quote_view);
-    this.container               =            findViewById(R.id.container);
     this.reply                   =            findViewById(R.id.reply_icon);
     this.reactionsView           =            findViewById(R.id.reactions_view);
 
@@ -1053,9 +1047,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
   private void setGutterSizes(@NonNull MessageRecord current, boolean isGroupThread) {
     if (isGroupThread && current.isOutgoing()) {
-      ViewUtil.setLeftMargin(container, readDimen(R.dimen.conversation_group_left_gutter));
+      ViewUtil.setLeftMargin(this, readDimen(R.dimen.conversation_group_left_gutter));
     } else if (current.isOutgoing()) {
-      ViewUtil.setLeftMargin(container, readDimen(R.dimen.conversation_individual_left_gutter));
+      ViewUtil.setLeftMargin(this, readDimen(R.dimen.conversation_individual_left_gutter));
     }
   }
 
