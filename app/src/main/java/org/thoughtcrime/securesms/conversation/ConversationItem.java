@@ -59,17 +59,15 @@ import org.thoughtcrime.securesms.ConfirmIdentityDialog;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.components.AlertView;
+import org.thoughtcrime.securesms.components.ConversationItemAlertView;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.LinkPreviewView;
 import org.thoughtcrime.securesms.components.QuoteView;
-import org.thoughtcrime.securesms.components.SharedContactView;
 import org.thoughtcrime.securesms.components.StickerView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
-import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -155,7 +153,7 @@ public class ConversationItem extends TapJackingProofLinearLayout
   private   ProfilePictureView     profilePictureView;
   private   ImageView              moderatorIconImageView;
   private   ViewGroup              contactPhotoHolder;
-  private   AlertView              alertView;
+  private ConversationItemAlertView alertView;
   private   ViewGroup              container;
 
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();

@@ -86,11 +86,6 @@ public abstract class PushSendJob extends SendJob {
   public void onRetry() {
     super.onRetry();
     Log.i(TAG, "onRetry()");
-
-    if (getRunAttempt() > 1) {
-      Log.i(TAG, "Scheduling service outage detection job.");
-      ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob());
-    }
   }
 
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {

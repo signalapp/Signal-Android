@@ -198,33 +198,37 @@ android {
     }
 
     buildTypes {
-        debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                          'proguard/proguard-dagger.pro',
-                          'proguard/proguard-jackson.pro',
-                          'proguard/proguard-jna.pro',
-                          'proguard/proguard-sqlite.pro',
-                          'proguard/proguard-appcompat-v7.pro',
-                          'proguard/proguard-square-okhttp.pro',
-                          'proguard/proguard-square-okio.pro',
-                          'proguard/proguard-spongycastle.pro',
-                          'proguard/proguard-rounded-image-view.pro',
-                          'proguard/proguard-glide.pro',
-                          'proguard/proguard-shortcutbadger.pro',
-                          'proguard/proguard-retrofit.pro',
-                          'proguard/proguard-webrtc.pro',
-                          'proguard/proguard-klinker.pro',
-                          'proguard/proguard-retrolambda.pro',
-                          'proguard/proguard-okhttp.pro',
-                          'proguard/proguard-ez-vcard.pro',
-                          'proguard/proguard.pro'
-            testProguardFiles 'proguard/proguard-automation.pro',
-                              'proguard/proguard.cfg'
-        }
         release {
             minifyEnabled true
-            proguardFiles = buildTypes.debug.proguardFiles
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard/proguard-dagger.pro',
+                    'proguard/proguard-jackson.pro',
+                    'proguard/proguard-jna.pro',
+                    'proguard/proguard-sqlite.pro',
+                    'proguard/proguard-appcompat-v7.pro',
+                    'proguard/proguard-square-okhttp.pro',
+                    'proguard/proguard-square-okio.pro',
+                    'proguard/proguard-spongycastle.pro',
+                    'proguard/proguard-rounded-image-view.pro',
+                    'proguard/proguard-glide.pro',
+                    'proguard/proguard-shortcutbadger.pro',
+                    'proguard/proguard-retrofit.pro',
+                    'proguard/proguard-webrtc.pro',
+                    'proguard/proguard-klinker.pro',
+                    'proguard/proguard-retrolambda.pro',
+                    'proguard/proguard-okhttp.pro',
+                    'proguard/proguard-ez-vcard.pro',
+                    'proguard/proguard.pro'
+            testProguardFiles 'proguard/proguard-automation.pro'
+        }
+        debug {
+            minifyEnabled false
+
+            proguardFiles = buildTypes.release.proguardFiles + [
+                    'proguard/proguard-debug.pro'
+            ]
+            testProguardFiles = buildTypes.release.testProguardFiles
         }
     }
 

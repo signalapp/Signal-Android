@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import java.io.File;
+import java.util.Arrays;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -95,8 +96,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV16                          = 37;
   private static final int lokiV17                          = 38;
   private static final int lokiV18_CLEAR_BG_POLL_JOBS       = 39;
+  private static final int lokiV19_OLD_CODE_CLEANUP         = 40; //TODO Change back to 40 when the refactoring is over.
 
-  private static final int    DATABASE_VERSION = lokiV18_CLEAR_BG_POLL_JOBS; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV19_OLD_CODE_CLEANUP; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -649,6 +651,18 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         // BackgroundPollJob was replaced with BackgroundPollWorker. Clear all the scheduled job records.
         db.execSQL("DELETE FROM job_spec WHERE factory_key = 'BackgroundPollJob'");
         db.execSQL("DELETE FROM constraint_spec WHERE factory_key = 'BackgroundPollJob'");
+      }
+
+      if (oldVersion < lokiV19_OLD_CODE_CLEANUP) {
+        // Many classes were removed. We need to update D structure and data to match the code changes.
+
+        String[] deletedJobKeys = {
+                "ServiceOutageDetectionJob",
+        };
+        for (String jobKey : deletedJobKeys) {
+          db.execSQL("DELETE FROM job_spec WHERE factory_key = ?", new String[]{jobKey});
+          db.execSQL("DELETE FROM constraint_spec WHERE factory_key = ?", new String[]{jobKey});
+        }
       }
 
       db.setTransactionSuccessful();

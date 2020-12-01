@@ -68,7 +68,7 @@
                   android:layout_marginBottom="2dp"
                   android:drawablePadding="5dp"/>
 
-        <org.thoughtcrime.securesms.components.AlertView
+        <org.thoughtcrime.securesms.components.ConversationItemAlertView
                 android:id="@+id/indicators_parent"
                 android:layout_width="18dp"
                 android:layout_height="18dp"

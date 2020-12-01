@@ -30,7 +30,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.components.AlertView;
+import org.thoughtcrime.securesms.components.ConversationItemAlertView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
@@ -78,7 +78,7 @@ public class ConversationListItem extends RelativeLayout
   private TextView            dateView;
   private TextView            archivedView;
   private DeliveryStatusView  deliveryStatusIndicator;
-  private AlertView           alertView;
+  private ConversationItemAlertView alertView;
   private TextView            unreadIndicator;
   private long                lastSeen;
 

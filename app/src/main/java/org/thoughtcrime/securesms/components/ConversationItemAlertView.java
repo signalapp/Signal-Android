@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build.VERSION_CODES;
-import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,24 +11,24 @@ import android.widget.LinearLayout;
 
 import network.loki.messenger.R;
 
-public class AlertView extends LinearLayout {
+public class ConversationItemAlertView extends LinearLayout {
 
-  private static final String TAG = AlertView.class.getSimpleName();
+  private static final String TAG = ConversationItemAlertView.class.getSimpleName();
 
   private ImageView approvalIndicator;
   private ImageView failedIndicator;
 
-  public AlertView(Context context) {
+  public ConversationItemAlertView(Context context) {
     this(context, null);
   }
 
-  public AlertView(Context context, AttributeSet attrs) {
+  public ConversationItemAlertView(Context context, AttributeSet attrs) {
     super(context, attrs);
     initialize(attrs);
   }
 
   @TargetApi(VERSION_CODES.HONEYCOMB)
-  public AlertView(final Context context, AttributeSet attrs, int defStyle) {
+  public ConversationItemAlertView(final Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     initialize(attrs);
   }
