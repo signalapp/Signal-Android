@@ -27,10 +27,18 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
 
   private final String name;
   private final int    fallbackResId;
+  private final int    targetSize;
+  private final int    fontSize;
 
   public GeneratedContactPhoto(@NonNull String name, @DrawableRes int fallbackResId) {
+    this(name, fallbackResId, -1, ViewUtil.dpToPx(24));
+  }
+
+  public GeneratedContactPhoto(@NonNull String name, @DrawableRes int fallbackResId, int targetSize, int fontSize) {
     this.name          = name;
     this.fallbackResId = fallbackResId;
+    this.targetSize    = targetSize;
+    this.fontSize      = fontSize;
   }
 
   @Override
@@ -40,7 +48,10 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
 
   @Override
   public Drawable asDrawable(Context context, int color, boolean inverted) {
-    int targetSize = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+    int targetSize = this.targetSize != -1
+                     ? this.targetSize
+                     : context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+
     String character = getAbbreviation(name);
 
     if (!TextUtils.isEmpty(character)) {
@@ -49,7 +60,7 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
                                   .width(targetSize)
                                   .height(targetSize)
                                   .useFont(TYPEFACE)
-                                  .fontSize(ViewUtil.dpToPx(context, 24))
+                                  .fontSize(fontSize)
                                   .textColor(inverted ? color : Color.WHITE)
                                   .endConfig()
                                   .buildRound(character, inverted ? Color.WHITE : color);

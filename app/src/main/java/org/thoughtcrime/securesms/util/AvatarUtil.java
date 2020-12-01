@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -25,7 +24,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.logging.Log;

@@ -118,7 +118,7 @@ public class ManageGroupFragment extends LoggingFragment {
   private final Recipient.FallbackPhotoProvider fallbackPhotoProvider = new Recipient.FallbackPhotoProvider() {
     @Override
     public @NonNull FallbackContactPhoto getPhotoForGroup() {
-      return new FallbackPhoto80dp(R.drawable.ic_group_80, MaterialColor.ULTRAMARINE);
+      return new FallbackPhoto80dp(R.drawable.ic_group_80, MaterialColor.ULTRAMARINE.toAvatarColor(requireContext()));
     }
   };
 

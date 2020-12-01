@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -19,7 +20,9 @@ import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
@@ -129,17 +132,21 @@ public final class ConversationShortcutPhoto implements Key {
     }
 
     private @NonNull Bitmap getFallbackForShortcut(@NonNull Context context) {
+      Recipient recipient = photo.recipient;
+
       @DrawableRes final int photoSource;
-      if (photo.recipient.isSelf()) {
+      if (recipient.isSelf()) {
         photoSource = R.drawable.ic_note_80;
-      } else if (photo.recipient.isGroup()) {
+      } else if (recipient.isGroup()) {
         photoSource = R.drawable.ic_group_80;
       } else {
         photoSource = R.drawable.ic_profile_80;
       }
 
-      Bitmap toWrap  = DrawableUtil.toBitmap(new FallbackPhoto80dp(photoSource, photo.recipient.getColor()).asDrawable(context, -1), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
-      Bitmap wrapped = DrawableUtil.wrapBitmapForShortcutInfo(toWrap);
+      FallbackContactPhoto photo   = recipient.isSelf() || recipient.isGroup() ? new FallbackPhoto80dp(photoSource, recipient.getColor().toAvatarColor(context))
+                                                                               : new ShortcutGeneratedContactPhoto(recipient.getDisplayName(context), photoSource, ViewUtil.dpToPx(80), ViewUtil.dpToPx(28));
+      Bitmap               toWrap  = DrawableUtil.toBitmap(photo.asDrawable(context, recipient.getColor().toAvatarColor(context)), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
+      Bitmap               wrapped = DrawableUtil.wrapBitmapForShortcutInfo(toWrap);
 
       toWrap.recycle();
 
@@ -148,6 +155,17 @@ public final class ConversationShortcutPhoto implements Key {
 
     private <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, boolean loadSelf) {
       return glideRequest.load(photo.recipient.getContactPhoto()).diskCacheStrategy(DiskCacheStrategy.ALL);
+    }
+  }
+
+  private static final class ShortcutGeneratedContactPhoto extends GeneratedContactPhoto {
+    public ShortcutGeneratedContactPhoto(@NonNull String name, int fallbackResId, int targetSize, int fontSize) {
+      super(name, fallbackResId, targetSize, fontSize);
+    }
+
+    @Override
+    protected Drawable newFallbackDrawable(@NonNull Context context, int color, boolean inverted) {
+      return new FallbackPhoto80dp(getFallbackResId(), color).asDrawable(context, -1);
     }
   }
 }

@@ -306,12 +306,12 @@ public class ManageRecipientFragment extends LoggingFragment {
     avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
       @Override
       public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
-        return new FallbackPhoto80dp(R.drawable.ic_profile_80, recipientColor);
+        return new FallbackPhoto80dp(R.drawable.ic_profile_80, recipientColor.toAvatarColor(requireContext()));
       }
 
       @Override
       public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-        return new FallbackPhoto80dp(R.drawable.ic_note_80, recipientColor);
+        return new FallbackPhoto80dp(R.drawable.ic_note_80, recipientColor.toAvatarColor(requireContext()));
       }
     });
     avatar.setAvatar(recipient);

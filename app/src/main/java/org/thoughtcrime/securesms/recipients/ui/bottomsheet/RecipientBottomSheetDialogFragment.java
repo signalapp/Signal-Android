@@ -137,7 +137,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
         @Override
         public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
-          return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getColor());
+          return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getColor().toAvatarColor(requireContext()));
         }
       });
       avatar.setAvatar(recipient);
