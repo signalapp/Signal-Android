@@ -1,15 +1,11 @@
 package org.thoughtcrime.securesms.util;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.Person;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.os.Build;
-import android.service.notification.StatusBarNotification;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -18,19 +14,19 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.notifications.NotificationIds;
-import org.thoughtcrime.securesms.notifications.SingleRecipientNotificationBuilder;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -42,6 +38,8 @@ import java.util.Set;
 public final class ConversationUtil {
 
   public static final int CONVERSATION_SUPPORT_VERSION  = 30;
+
+  private static final String TAG = Log.tag(ConversationUtil.class);
 
   private ConversationUtil() {}
 
@@ -57,14 +55,11 @@ public final class ConversationUtil {
   }
 
   /**
-   * Pushes a new dynamic shortcut for the given recipient and updates the ranks of all current
-   * shortcuts.
+   * Enqueues a job to update the list of shortcuts.
    */
-  public static void pushShortcutForRecipient(@NonNull Context context, @NonNull Recipient recipient) {
+  public static void refreshRecipientShortcuts() {
     if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
-      SignalExecutors.BOUNDED.execute(() -> {
-        pushShortcutAndUpdateRanks(context, recipient);
-      });
+      ApplicationDependencies.getJobManager().add(new ConversationShortcutUpdateJob());
     }
   }
 
@@ -139,27 +134,44 @@ public final class ConversationUtil {
     return getShortcutId(recipient.getId());
   }
 
+  @RequiresApi(CONVERSATION_SUPPORT_VERSION)
+  public static int getMaxShortcuts(@NonNull Context context) {
+    ShortcutManager shortcutManager  = ServiceUtil.getShortcutManager(context);
+    return shortcutManager.getMaxShortcutCountPerActivity();
+  }
+
   /**
-   * Updates the rank of each existing shortcut by 1 and then publishes a new shortcut of rank 0
-   * for the given recipient.
+   * Sets the shortcuts to match the provided recipient list. This call may fail due to getting
+   * rate-limited.
+   *
+   * @param rankedRecipients The recipients in descending priority order. Meaning the most important
+   *                         recipient should be first in the list.
+   * @return True if the update was successful, false if we were rate-limited.
    */
   @RequiresApi(CONVERSATION_SUPPORT_VERSION)
   @WorkerThread
-  private static void pushShortcutAndUpdateRanks(@NonNull Context context, @NonNull Recipient recipient) {
-    ShortcutManager    shortcutManager  = ServiceUtil.getShortcutManager(context);
-    List<ShortcutInfo> currentShortcuts = shortcutManager.getDynamicShortcuts();
+  public static boolean setActiveShortcuts(@NonNull Context context, @NonNull List<Recipient> rankedRecipients) {
+    ShortcutManager shortcutManager  = ServiceUtil.getShortcutManager(context);
 
-    if (Util.hasItems(currentShortcuts)) {
-      for (ShortcutInfo shortcutInfo : currentShortcuts) {
-        RecipientId  recipientId = RecipientId.from(shortcutInfo.getId());
-        Recipient    resolved    = Recipient.resolved(recipientId);
-        ShortcutInfo updated     = buildShortcutInfo(context, resolved, shortcutInfo.getRank() + 1);
-
-        shortcutManager.pushDynamicShortcut(updated);
-      }
+    if (shortcutManager.isRateLimitingActive()) {
+      return false;
     }
 
-    pushShortcutForRecipientInternal(context, recipient, 0);
+    int maxShortcuts = shortcutManager.getMaxShortcutCountPerActivity();
+
+    if (rankedRecipients.size() > maxShortcuts) {
+      Log.w(TAG, "Too many recipients provided! Provided: " + rankedRecipients.size() + ", Max: " + maxShortcuts);
+      rankedRecipients = rankedRecipients.subList(0, maxShortcuts);
+    }
+
+    List<ShortcutInfo> shortcuts = new ArrayList<>(rankedRecipients.size());
+
+    for (int i = 0; i < rankedRecipients.size(); i++) {
+      ShortcutInfo info = buildShortcutInfo(context, rankedRecipients.get(i), i);
+      shortcuts.add(info);
+    }
+
+    return shortcutManager.setDynamicShortcuts(shortcuts);
   }
 
   /**

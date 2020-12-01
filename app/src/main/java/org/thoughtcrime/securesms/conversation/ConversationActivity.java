@@ -533,7 +533,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     setVisibleThread(threadId);
-    ConversationUtil.pushShortcutForRecipient(getApplicationContext(), recipientSnapshot);
+    ConversationUtil.refreshRecipientShortcuts();
   }
 
   @Override
