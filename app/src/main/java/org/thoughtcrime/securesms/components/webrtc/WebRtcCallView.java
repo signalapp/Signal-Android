@@ -207,7 +207,12 @@ public class WebRtcCallView extends FrameLayout {
 
     pictureInPictureGestureHelper = PictureInPictureGestureHelper.applyTo(smallLocalRenderFrame);
 
-    startCall.setOnClickListener(v -> runIfNonNull(controlsListener, listener -> listener.onStartCall(videoToggle.isChecked())));
+    startCall.setOnClickListener(v -> {
+      if (controlsListener != null) {
+        startCall.setEnabled(false);
+        controlsListener.onStartCall(videoToggle.isChecked());
+      }
+    });
     cancelStartCall.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCancelStartCall));
 
     ColorMatrix greyScaleMatrix = new ColorMatrix();
@@ -422,6 +427,7 @@ public class WebRtcCallView extends FrameLayout {
       visibleViewSet.add(startCallControls);
 
       startCall.setText(webRtcControls.getStartCallButtonText());
+      startCall.setEnabled(true);
     }
 
     MenuItem item = toolbar.getMenu().findItem(R.id.menu_group_call_participants_list);
