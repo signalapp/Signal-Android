@@ -9,7 +9,6 @@ import java.security.SecureRandom
 
 class NullMessage() : ControlMessage() {
 
-
     companion object {
         const val TAG = "NullMessage"
 
