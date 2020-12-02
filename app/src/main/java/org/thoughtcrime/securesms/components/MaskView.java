@@ -88,7 +88,9 @@ public class MaskView extends View {
     target.draw(maskCanvas);
 
     canvas.clipRect(drawingRect.left, Math.max(drawingRect.top, getTop() + getPaddingTop()), drawingRect.right, Math.min(drawingRect.bottom, getBottom() - getPaddingBottom()));
-    canvas.drawBitmap(mask, 0, drawingRect.top, maskPaint);
+
+    ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) target.getLayoutParams();
+    canvas.drawBitmap(mask, params.leftMargin, drawingRect.top, maskPaint);
 
     mask.recycle();
   }
