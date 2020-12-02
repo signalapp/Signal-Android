@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -130,7 +131,8 @@ public class CallParticipantView extends ConstraintLayout {
   }
 
   private void setPipAvatar(@NonNull Recipient recipient) {
-    ContactPhoto         contactPhoto  = recipient.getContactPhoto();
+    ContactPhoto         contactPhoto  = recipient.isSelf() ? new ProfileContactPhoto(Recipient.self(), Recipient.self().getProfileAvatar())
+                                                            : recipient.getContactPhoto();
     FallbackContactPhoto fallbackPhoto = recipient.getFallbackContactPhoto(FALLBACK_PHOTO_PROVIDER);
 
     GlideApp.with(this)

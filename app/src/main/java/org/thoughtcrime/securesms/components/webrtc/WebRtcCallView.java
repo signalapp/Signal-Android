@@ -272,7 +272,7 @@ public class WebRtcCallView extends FrameLayout {
     recyclerAdapter.submitList(state.getListParticipants());
     updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant());
 
-    if (state.isLargeVideoGroup()) {
+    if (state.isLargeVideoGroup() && !state.isInPipMode()) {
       layoutParticipantsForLargeCount();
     } else {
       layoutParticipantsForSmallCount();
@@ -521,7 +521,7 @@ public class WebRtcCallView extends FrameLayout {
     pictureInPictureGestureHelper.lockToBottomEnd();
 
     pictureInPictureGestureHelper.performAfterFling(() -> {
-      ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, ViewUtil.dpToPx(40), ViewUtil.dpToPx(72));
+      ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, ViewUtil.dpToPx(54), ViewUtil.dpToPx(72));
       animation.setDuration(PIP_RESIZE_DURATION);
       animation.setAnimationListener(new SimpleAnimationListener() {
         @Override

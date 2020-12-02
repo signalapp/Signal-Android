@@ -240,7 +240,7 @@ public final class CallParticipantsState {
                                                                           int numberOfRemoteParticipants,
                                                                           boolean isViewingFocusedParticipant)
   {
-    boolean                displayLocal     = isNonIdleGroupCall || (!isInPip && localParticipant.isVideoEnabled());
+    boolean                displayLocal     = (numberOfRemoteParticipants == 0 || !isInPip) && (isNonIdleGroupCall || localParticipant.isVideoEnabled());
     WebRtcLocalRenderState localRenderState = WebRtcLocalRenderState.GONE;
 
     if (displayLocal || showVideoForOutgoing) {
@@ -250,10 +250,10 @@ public final class CallParticipantsState {
         } else if (numberOfRemoteParticipants == 1) {
           localRenderState = WebRtcLocalRenderState.SMALL_RECTANGLE;
         } else {
-          localRenderState = WebRtcLocalRenderState.LARGE;
+          localRenderState = localParticipant.isVideoEnabled() ? WebRtcLocalRenderState.LARGE : WebRtcLocalRenderState.LARGE_NO_VIDEO;
         }
       } else if (callState != WebRtcViewModel.State.CALL_INCOMING && callState != WebRtcViewModel.State.CALL_DISCONNECTED) {
-        localRenderState = WebRtcLocalRenderState.LARGE;
+        localRenderState = localParticipant.isVideoEnabled() ? WebRtcLocalRenderState.LARGE : WebRtcLocalRenderState.LARGE_NO_VIDEO;
       }
     } else if (callState == WebRtcViewModel.State.CALL_PRE_JOIN) {
       localRenderState = WebRtcLocalRenderState.LARGE_NO_VIDEO;
