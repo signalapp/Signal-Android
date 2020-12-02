@@ -29,11 +29,11 @@ public data class OpenGroupMessage(
             // Validation
             if (!message.isValid()) { return null } // Should be valid at this point
             // Quote
-            val quote: OpenGroupMessage.Quote? = {
+            val quote: Quote? = {
                 val quote = message.quote
                 if (quote != null && quote.isValid()) {
                     val quotedMessageServerID = storage.getQuoteServerID(quote.id, quote.publicKey)
-                    OpenGroupMessage.Quote(quote.timestamp, quote.publicKey, quote.text, quotedMessageServerID)
+                    Quote(quote.timestamp!!, quote.publicKey!!, quote.text!!, quotedMessageServerID)
                 } else {
                     null
                 }
@@ -47,8 +47,8 @@ public data class OpenGroupMessage(
             linkPreview?.let {
                 if (!linkPreview.isValid()) { return@let }
                 val attachment = linkPreview.getImage() ?: return@let
-                val openGroupLinkPreview = OpenGroupMessage.Attachment(
-                        OpenGroupMessage.Attachment.Kind.LinkPreview,
+                val openGroupLinkPreview = Attachment(
+                        Attachment.Kind.LinkPreview,
                         server,
                         attachment.getId(),
                         attachment.getContentType(),
@@ -59,14 +59,14 @@ public data class OpenGroupMessage(
                         attachment.getHeight(),
                         attachment.getCaption(),
                         attachment.getUrl(),
-                        linkPreview.getUrl(),
-                        linkPreview.getTitle())
+                        linkPreview.url,
+                        linkPreview.title)
                 result.attachments.add(openGroupLinkPreview)
             }
             // Attachments
             val attachments = message.getAttachemnts().forEach {
-                val attachement = OpenGroupMessage.Attachment(
-                        OpenGroupMessage.Attachment.Kind.Attachment,
+                val attachement = Attachment(
+                        Attachment.Kind.Attachment,
                         server,
                         it.getId(),
                         it.getContentType(),
