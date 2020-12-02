@@ -20,10 +20,12 @@ object MessageReceiverDecryption {
     internal fun decryptWithSignalProtocol(envelope: SignalServiceEnvelope): Pair<ByteArray, String> {
         val storage = Configuration.shared.signalStorage
         val certificateValidator = Configuration.shared.certificateValidator
+        val sskDatabase = Configuration.shared.sskDatabase
+        val sessionResetImp = Configuration.shared.sessionResetImp
         val data = envelope.content
         if (data.count() == 0) { throw Error.NoData }
         val userPublicKey = Configuration.shared.storage.getUserPublicKey() ?: throw Error.NoUserPublicKey
-        val cipher = LokiServiceCipher(SignalServiceAddress(userPublicKey), storage, sskDatabase, Configuration.shared.sessionResetImp, certificateValidator)
+        val cipher = LokiServiceCipher(SignalServiceAddress(userPublicKey), storage, sskDatabase, sessionResetImp, certificateValidator)
         val result = cipher.decrypt(envelope)
     }
 
