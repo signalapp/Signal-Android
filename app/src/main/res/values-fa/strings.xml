@@ -1466,8 +1466,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s به تصویر شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s به فایل شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s به فایل صوتی شما واکنش نشان داد.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s به تصویر یکبار مصرف شما واکنش نشان داد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s به ویدئوی یکبار مصرف شما واکنش نشان داد.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s به استیکر شما واکنش نشان داد.</string>
   <string name="MessageNotifier_this_message_was_deleted">این پیام حذف شد</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به Signal را خاموش کنید؟ می‌توانید آن‌ها را دوباره در Signal &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>

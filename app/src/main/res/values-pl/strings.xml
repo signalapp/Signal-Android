@@ -151,6 +151,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nie znaleziono przeglądarki internetowej.</string>
   <string name="CommunicationActions_no_email_app_found">Nie znaleziono aplikacji e-mail.</string>
+  <string name="CommunicationActions_send_email">Wyślij e-mail</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Trwa już połączenie komórkowe.</string>
   <string name="CommunicationActions_start_video_call">Rozpocząć połączenie wideo?</string>
   <string name="CommunicationActions_start_voice_call">Rozpocząć połączenie głosowe?</string>
@@ -1612,8 +1613,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Zareagował(a) w ten sposób %1$s na Twoje zdjęcie.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Zareagował(a) w ten sposób %1$s na Twój plik.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Zareagował(a) w ten sposób %1$s na Twoje audio.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Zareagował(a) w ten sposób %1$s na Twoje zdjęcie jednorazowe.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Zareagował(a) w ten sposób %1$s na Twoje wideo jednorazowe.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Zareagował(a) w ten sposób %1$s na Twoje multimedia jednorazowe.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Zareagował(a) w ten sposób %1$s na Twoją naklejkę.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ta wiadomość została usunięta.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Wyłączyć powiadomienia \"Kontakt dołączył do Signal\"? Możesz włączyć je ponownie w Signal &gt; Ustawienia &gt; Powiadomienia.</string>

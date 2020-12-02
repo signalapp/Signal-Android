@@ -1404,8 +1404,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">对你的图片回应 %1$s。</string>
   <string name="MessageNotifier_reacted_s_to_your_file">对你的文件回应 %1$s。</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">对你的音频回应 %1$s。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">对你的一次性图片回应 %1$s。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">对你的一次性视频回应 %1$s。</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">对你的表情回应 %1$s。</string>
   <string name="MessageNotifier_this_message_was_deleted">消息已删除。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">关闭联系人加入 Signal 的通知吗？您可以在 Signal &gt; 设置 &gt; 通知 中再次启用。</string>

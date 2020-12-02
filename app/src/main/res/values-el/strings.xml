@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε web browser.</string>
   <string name="CommunicationActions_no_email_app_found">Δεν βρέθηκε εφαρμογή email.</string>
+  <string name="CommunicationActions_send_email">Αποστολή email</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Κάποια τηλεφωνική κλήση είναι ήδη σε εξέλιξη.</string>
   <string name="CommunicationActions_start_video_call">Έναρξη βιντεοκλήσης;</string>
   <string name="CommunicationActions_start_voice_call">Έναρξη κλήσης φωνής;</string>
@@ -1485,8 +1486,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Αντέδρασε με %1$s στη φωτογραφία σου.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Αντέδρασε με %1$s στο αρχείο σου.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Αντέδρασε με %1$s στο ηχητικό σου.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Αντέδρασε με%1$s στη φωτογραφία μιας μόνο προβολής σου.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Αντέδρασε με %1$s στο βίντεο μιας μόνο προβολής σου.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Αντέδρασε με %1$s στο πολυμέσο μιας μόνο προβολής</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Αντέδρασε με %1$s στο αυτοκόλλητό σου.</string>
   <string name="MessageNotifier_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Απενεργοποίηση των ειδοποιήσεων για επαφές που έρχονται στο Signal; Μπορείς να τις ενεργοποιήσεις ξανά στο Signal &gt; Ρυθμίσεις &gt; Ειδοποιήσεις.</string>
@@ -2131,6 +2131,7 @@
   <string name="conversation__menu_conversation_settings">Επιλογές συνομιλίας</string>
   <string name="conversation__menu_add_shortcut">Προσθήκη στην κεντρική οθόνη</string>
   <string name="conversation__menu_pending_members">Μέλη σε εκκρεμότητα</string>
+  <string name="conversation__menu_create_bubble">Δημιουργία bubble</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Επέκταση popup</string>
   <!--conversation_callable_insecure-->

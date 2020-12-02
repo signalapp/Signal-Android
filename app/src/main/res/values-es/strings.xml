@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">No se ha encontrado un navegador web.</string>
   <string name="CommunicationActions_no_email_app_found">No se encontró la aplicación de email.</string>
+  <string name="CommunicationActions_send_email">Enviar email</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Hay una llamada en progreso en la red móvil.</string>
   <string name="CommunicationActions_start_video_call">¿Iniciar vídeollamada?</string>
   <string name="CommunicationActions_start_voice_call">¿Iniciar llamada?</string>
@@ -599,7 +600,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Fallo al crear el grupo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Inténtalo de nuevo más tarde.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Has seleccionado una persona que no usa Signal, así que los mensajes de este grupo se enviarán como MMS, que no están cifrados y pueden originar más gastos.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nombres y imágenes de grupos MMS sólo son visibles para ti.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Los nombres e imágenes de los grupos MMS sólo son visibles para ti.</string>
   <string name="AddGroupDetailsFragment__remove">Eliminar</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacto SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">¿Expulsar a %1$s del grupo?</string>
@@ -756,7 +757,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Los enlaces para compartir grupos están al llegar</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualiza Signal para usar enlaces a grupos</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta este enlace para compartir grupos. Actualiza a la versión más actual para unirte a este grupo vía enlace.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta este enlace para compartir grupos. Actualiza Signal para unirte a este grupo vía enlace.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualiza Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Alguno(s) de tus dispositivos enlazados no soporta enlaces para compartir grupos. Actualiza Signal en esos dispositivos para unirte a este grupo vía enlace.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Enlace a grupo inválido</string>
@@ -1490,8 +1491,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reacted_s_to_your_image">Reacción a tu foto: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reacción a tu fichero: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reacción a tu audio: %1$s.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reacción a tu foto para ver sólo una vez: %1$s.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reacción a tu video para ver solo una vez: %1$s.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacción a tu archivo para ver solo una vez: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu cromo: %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Mensaje eliminado.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones cuando una persona comience a usar Signal? Puedes volver a activarlas en los ajustes de Signal &gt; Notificaciones.</string>
@@ -1793,7 +1793,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CreateProfileActivity_next">Siguiente</string>
   <string name="CreateProfileActivity__username">Alias (nombre de usuari@)</string>
   <string name="CreateProfileActivity__create_a_username">Crear alias (nombre de usuari@)</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nombres y imágenes de grupos MMS sólo son visibles para ti.</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Los nombres e imágenes de grupos MMS sólo son visibles para ti.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen del grupo</string>
   <string name="EditProfileFragment__group_name">Nombre del grupo</string>

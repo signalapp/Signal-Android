@@ -1455,8 +1455,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">A réagi %1$s à votre image.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">A réagi %1$s à votre fichier.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">A réagi %1$s à votre son.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">A réagi %1$s à votre photo éphémère.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">A réagi %1$s à votre vidéo éphémère.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi %1$s à votre autocollant.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Désactiver les notifications pour les contacts qui se sont joints à Signal ? Vous pouvez les réactiver dans Signal &gt; Paramètres &gt; Notifications</string>

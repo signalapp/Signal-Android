@@ -1436,8 +1436,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">تفاعل %1$s مع الصورة الخاصة بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">تفاعل %1$s مع الملف الخاص بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع التسجيل الصوتي الخاص بك.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">تفاعل %1$s مع الصورة لمشاهدة-واحدة الخاصّة بك.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">تفاعل %1$s مع فيديو المشاهدة-لمرة واحدة الخاص بك.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">تم تفاعل %1$s مع الملصق الخاص بك.</string>
   <string name="MessageNotifier_this_message_was_deleted">تم حذف هذه الرسالة.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">تعطيل إشعارات انضمام شخص إلى Signal؟ تستطيع تفعيلهم مجدداً في Signal &gt; إعدادات &gt; إشعارات.</string>

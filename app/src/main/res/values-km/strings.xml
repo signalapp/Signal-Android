@@ -1135,8 +1135,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">ប្រតិកម្ម %1$s ទៅរូបភាពអ្នក។</string>
   <string name="MessageNotifier_reacted_s_to_your_file">ប្រតិកម្ម %1$s ទៅឯកសារអ្នក។</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">ប្រតិកម្ម %1$s ទៅសំឡេងអ្នក។</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">ប្រតិកម្ម %1$s ទៅរូបភាពមើលម្តងរបស់អ្នក។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">ប្រតិកម្ម %1$s ទៅវីដេអូមើលម្តងរបស់អ្នក។</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">ប្រតិកម្ម %1$s ទៅស្ទីកគ័រអ្នក។</string>
   <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <!--Notification Channels-->

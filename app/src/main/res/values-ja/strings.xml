@@ -1407,8 +1407,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">あなたの画像に %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_file">あなたのファイルに %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">あなたの音声に %1$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">あなたの使い捨て写真に %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">あなたの使い捨てビデオに %1$s</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$s</string>
   <string name="MessageNotifier_this_message_was_deleted">このメッセージは削除されました。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">連絡先のSignal参加時の通知を受け取らないようにしますか？この設定はあとでSignal &gt; 設定 &gt; 通知から元に戻せます。</string>

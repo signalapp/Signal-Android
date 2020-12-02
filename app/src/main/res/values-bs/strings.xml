@@ -1523,8 +1523,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Reagovao/la je sa %1$s na Vašu sliku.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagovao/la je sa %1$s na Vašu datoteku.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagovao/la je sa %1$s na Vaš audiozapis.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagovao/la je sa %1$s na Vašu jednokratnu fotografiju.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagovao/la je sa %1$s na Vaš jednokratni videozapis.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagovao/la je sa %1$s na Vašu naljepnicu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Isključiti obavještenja o tome da se kontakt prijavio na Signal? Možete ih ponovo aktivirati kroz Signal &gt; Podešavanja &gt; Obavještenja.</string>

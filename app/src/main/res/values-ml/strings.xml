@@ -1270,8 +1270,6 @@ grūpp ap‌ḍē</string>
   <string name="MessageNotifier_reacted_s_to_your_image">നിങ്ങളുടെ ചിത്രത്തോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">നിങ്ങളുടെ ഫയലിനോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">നിങ്ങളുടെ ഓഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">നിങ്ങളുടെ ഒരുതവണ മാത്രം കാണാവുന്ന ഫോട്ടോയോട് %1$s പ്രതികരിച്ചു.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">നിങ്ങളുടെ ഒരുതവണ മാത്രം കാണാവുന്ന വീഡിയോയോട് %1$s പ്രതികരിച്ചു.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">നിങ്ങളുടെ സ്റ്റിക്കറിനോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <!--Notification Channels-->

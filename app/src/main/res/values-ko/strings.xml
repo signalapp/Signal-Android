@@ -1166,8 +1166,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">이미지에 대해 %1$s로 리액션했습니다.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">파일에 대해 %1$s로 리액션했습니다.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">오디오에 대해 %1$s로 리액션했습니다.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">한 번 볼 수 있는 이미지에 대해 %1$s로 리액션했습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">한 번 볼 수 있는 동영상에 대해 %1$s로 리액션했습니다.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">스티커에 대해 %1$s로 리액션했습니다.</string>
   <string name="MessageNotifier_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
   <!--Notification Channels-->

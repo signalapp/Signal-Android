@@ -1464,8 +1464,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_reacted_s_to_your_image">A reacționat cu %1$s la imaginea dvs.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">A reacționat cu %1$s la fișierul dvs.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">A reacționat cu %1$s la înregistrarea dvs. audio.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">A reacționat cu %1$s la poza dvs. vizibilă o singură dată.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">A reacționat cu %1$s la videoclipul dvs. vizibil o singură dată.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">A reacționat cu %1$s la autocolantul dvs.</string>
   <string name="MessageNotifier_this_message_was_deleted">Acest mesaj a fost șters.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Dezactivați notificările pentru contact alăturat la Signal? Le puteți activa din nou în Signal &gt; Setări &gt; Notificări.</string>

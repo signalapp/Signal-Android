@@ -151,6 +151,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Браузер не найден.</string>
   <string name="CommunicationActions_no_email_app_found">Приложение электронной почты не найдено.</string>
+  <string name="CommunicationActions_send_email">Отправить электронное письмо</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Уже выполняется сотовый звонок.</string>
   <string name="CommunicationActions_start_video_call">Начать видеозвонок?</string>
   <string name="CommunicationActions_start_voice_call">Начать аудиозвонок?</string>
@@ -695,8 +696,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Исчезающие сообщения</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Запросы на участие и приглашения</string>
-  <string name="ManageGroupActivity_add_members">Добавить участников</string>
-  <string name="ManageGroupActivity_edit_group_info">Редактировать информацию группы</string>
+  <string name="ManageGroupActivity_add_members">Добавлять участников</string>
+  <string name="ManageGroupActivity_edit_group_info">Редактировать информацию</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Кто может добавлять новых участников?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Кто может редактировать информацию этой группы?</string>
   <string name="ManageGroupActivity_group_link">Ссылка на группу</string>
@@ -1344,7 +1345,7 @@
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
   <string name="WebRtcCallView__connecting">Подключаемся…</string>
   <string name="WebRtcCallView__reconnecting">Переподключаемся…</string>
-  <string name="WebRtcCallView__joining">Присоединяет…</string>
+  <string name="WebRtcCallView__joining">Присоединяемся…</string>
   <string name="WebRtcCallView__disconnected">Отключён</string>
   <string name="WebRtcCallView__no_one_else_is_here">Здесь нет никого, кроме вас</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s в этом звонке</string>
@@ -1613,8 +1614,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Отреагировал(-а) %1$s на ваше изображение.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Отреагировал(-а) %1$s на ваш файл.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Отреагировал(-а) %1$s на ваше аудио.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Отреагировал(-а) %1$s на ваше одноразовое фото.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Отреагировал(-а) %1$s на ваше одноразовое видео.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Отреагировал(-а) %1$s на ваше одноразовое медиа.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Отреагировал(-а) %1$s на ваш стикер.</string>
   <string name="MessageNotifier_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Отключить уведомления «Контакт присоединился к Signal»? Вы можете заново включить их в Signal &gt; Настройки &gt; Уведомления.</string>

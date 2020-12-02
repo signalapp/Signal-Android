@@ -1584,8 +1584,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoval %1$s na váš obrázek.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoval %1$s na váš soubor.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval %1$s na vaše audio.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoval %1$sna vaši fotografii pro jednorázové zobrazení.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoval %1$sna vaše video pro jednorázové zobrazení.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval %1$s na vaši nálepku.</string>
   <string name="MessageNotifier_this_message_was_deleted">Tato zpráva byla smazána.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnout upozornění, že se kontakt připojil k Signalu? Můžete je znovu zapnout v Signal &gt; Nastavení &gt; Upozornění.</string>

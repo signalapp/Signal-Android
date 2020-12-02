@@ -151,6 +151,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Spletnega brskalnika ni bilo mogoče najti.</string>
   <string name="CommunicationActions_no_email_app_found">Nismo našli nobene aplikacije za e-pošto.</string>
+  <string name="CommunicationActions_send_email">Pošlji e-pošto</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Telefonski klic je že v teku.</string>
   <string name="CommunicationActions_start_video_call">Začetek video klica?</string>
   <string name="CommunicationActions_start_voice_call">Začetek glasovnega klica?</string>
@@ -393,7 +394,7 @@
   <string name="BackupsPreferenceFragment__create_backup">Ustvari varnostno kopijo</string>
   <string name="BackupsPreferenceFragment__last_backup">Zadnja varnostna kopija: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Mesto za varnostne kopije</string>
-  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Potrdite geslo za varnostno kopijo</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Potrdi geslo za varnostno kopijo</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Preizkusite geslo svoje varnostne kopije, da vidite, če se ujema</string>
   <string name="BackupsPreferenceFragment__turn_on">Vklopi</string>
   <string name="BackupsPreferenceFragment__turn_off">Izklopi</string>
@@ -1611,8 +1612,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s spremenjeno v vašo sliko.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s spremenjeno v vašo datoteko.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s spremenjeno v vaš zvok.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s spremenjeno v vašo fotografijo za enkraten ogled.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s spremenjeno v vaš video za enkraten ogled.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reakcija %1$s na vaše medijsko sporočilo za enkraten ogled.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s spremenjeno v vašo nalepko.</string>
   <string name="MessageNotifier_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Želite izklopiti obvestila o novih članih Signalove skupine? Kasneje jih lahko spet vklopite v Signal &gt; Nastavitve &gt; Obvestila.</string>
@@ -2490,7 +2490,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_chats__backup_chats_to_external_storage">Varnostna kopija klepetov bo ustvarjena na zunanjem pomnilniku</string>
   <string name="preferences_chats__create_backup">Ustvari varnostno kopijo</string>
   <string name="preferences_chats__verify_backup_passphrase">Potrdite geslo za varnostno kopijo</string>
-  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Preizkusite geslo svoje varnostne kopije, da vidite, če se ujema</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Preizkus gesla varnostne kopije</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Vnesite geslo varnostne kopije</string>
   <string name="RegistrationActivity_restore">Obnovi</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Uvoz varnostnih kopij iz novejših različic aplikacije Signal ni mogoč</string>

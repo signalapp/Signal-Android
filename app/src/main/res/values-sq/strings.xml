@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">S\’u gjet shfletues.</string>
   <string name="CommunicationActions_no_email_app_found">S’u gjet aplikacion email-esh.</string>
+  <string name="CommunicationActions_send_email">Dërgoni email</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ka në kryerje e sipër një thirrje në celular.</string>
   <string name="CommunicationActions_start_video_call">Të niset thirrje video?</string>
   <string name="CommunicationActions_start_voice_call">Të niset thirrje zanore?</string>
@@ -1490,8 +1491,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoi me %1$s ndaj figurës tuaj.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoi me %1$s ndaj kartelës tuaj.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi me %1$s ndaj audios tuaj.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoi me %1$s ndaj fotos tuaj për një parje të vetme.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoi me %1$s ndaj videos tuaj për një parje të vetme.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoi me %1$s te media juaj për një parje të vetme</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi me %1$s ndaj ngjitësit tuaj.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Të çaktivizohen njoftime Signal për kontakte të sapoardhur? Mund t’i aktivizoni sërish që nga Signal &gt; Rregullime &gt; Njoftime.</string>

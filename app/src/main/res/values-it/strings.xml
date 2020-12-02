@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nessun browser web trovato.</string>
   <string name="CommunicationActions_no_email_app_found">Nessuna app di posta elettronica trovata.</string>
+  <string name="CommunicationActions_send_email">Invia email</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">C\'è già una chiamata telefonica in corso.</string>
   <string name="CommunicationActions_start_video_call">Iniziare una videochiamata?</string>
   <string name="CommunicationActions_start_voice_call">Iniziare una chiamata vocale?</string>
@@ -911,7 +912,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha impostato il timer dei messaggi a scomparsa a %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Il timer dei messaggi a scomparsa è stato impostato a %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Questo gruppo è stato aggiornato a un Nuovo Gruppo.</string>
-  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Non è stato possibile aggiungerti al Nuovo Gruppo e sei stato invitato a unirti</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Non è stato possibile aggiungerti al Nuovo Gruppo e sei stato invitato a unirti.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Un membro non può essere aggiunto al Nuovo Gruppo ed è stato invitato a unirsi.</item>
     <item quantity="other">%1$s membri non possono essere aggiunti al Nuovo Gruppo e sono stati invitati a unirsi.</item>
@@ -1490,8 +1491,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Reagito %1$s alla tua immagine.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagito %1$s al tuo file.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagito %1$s al tuo audio.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagito %1$s alla tua foto visualizzabile una volta.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagito %1$s al tuo video visualizzabile una volta.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagito %1$s al tuo media visualizzabile una volta.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagito %1$s al tuo adesivo.</string>
   <string name="MessageNotifier_this_message_was_deleted">Questo messaggio è stato eliminato.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Disattivare le notifiche quando un contatto si unisce a Signal? Puoi attivarle di nuovo in Signal &gt; Impostazioni &gt; Notifiche.</string>
@@ -2135,7 +2135,7 @@
   <string name="conversation__menu_conversation_settings">Impostazioni conversazione</string>
   <string name="conversation__menu_add_shortcut">Aggiungi alla schermata principale</string>
   <string name="conversation__menu_pending_members">Membri in attesa</string>
-  <string name="conversation__menu_create_bubble">Crea bolle</string>
+  <string name="conversation__menu_create_bubble">Crea bolla</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Espandi popup</string>
   <!--conversation_callable_insecure-->

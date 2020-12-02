@@ -1484,8 +1484,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s ha reaccionat al vostre missatge.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s ha reaccionat al vostre fitxer.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ha reaccionat al vostre àudio.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s  ha reaccionat a la vostra foto d\'una visualització.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s  ha reaccionat al vostre vídeo d\'una visualització.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ha reaccionat al vostre adhesiu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Voleu desactivar les notificacions de contactes afegits al Signal? Les podeu tornar a activar a Signal &gt; Configuració &gt; Notificacions.</string>

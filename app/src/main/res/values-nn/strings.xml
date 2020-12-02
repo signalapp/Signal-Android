@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Fann ingen nettlesar.</string>
   <string name="CommunicationActions_no_email_app_found">Fann ingen e-postapp.</string>
+  <string name="CommunicationActions_send_email">Send e-post</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ein mobilsamtale er alt i gang.</string>
   <string name="CommunicationActions_start_video_call">Start videosamtale?</string>
   <string name="CommunicationActions_start_voice_call">Start lydsamtale?</string>
@@ -1494,8 +1495,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">reagerte med %1$s til bildet ditt.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">reagerte med %1$s til fila di.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">reagerte med %1$s til lyden din.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagerte med %1$s til éivisningsbildet ditt.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerte med %1$s til éivisningsfilmen din.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte med %1$s til éivisningsmediet ditt.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">reagerte med %1$s til klistremerket ditt.</string>
   <string name="MessageNotifier_this_message_was_deleted">Meldinga er sletta</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsel når ein kontakt blir med i Signal? Du kan skru på igjen varselet i Signal &gt; Innstillingar &gt; Varsel.</string>

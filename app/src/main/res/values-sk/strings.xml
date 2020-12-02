@@ -1559,8 +1559,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_reacted_s_to_your_image">reagoval/a na váš obrázok: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">reagoval/a na váš súbor: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">reagoval/a na váš zvuk: %1$s.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">reagoval/a na vašu fotku na jedno zobrazenie: %1$s.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">reagoval/a na vaše video na jedno zobrazenie: %1$s.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">reagoval/a na vašu nálepku: %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Táto správa bola zmazaná.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnúť upozornenia na to, že kontakt začal používať Signal? Môžete ich znova zapnúť v Signal &gt; Nastavenia &gt; Upozornenia.</string>

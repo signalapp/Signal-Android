@@ -1220,8 +1220,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagerte %1$s til bildet ditt. </string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagerte %1$s på filen din. </string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagerte %1$s på lyden din. </string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagerte %1$s på engangs-visnings-bildet ditt. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerte %1$s på engangs-visnings-videoen din. </string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte %1$s på klistremerket ditt. </string>
   <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <!--Notification Channels-->

@@ -514,6 +514,12 @@
     <item quantity="many">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
     <item quantity="other">Šie nariai, norėdami vėl prisijungti prie šios grupės, turės priimti pakvietimą ir negaus jokių grupės žinučių tol, kol jo nepriims:</item>
   </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Šis narys buvo pašalintas iš grupės ir negalės iš naujo prie jos prisijungti tol, kol neatsinaujins:</item>
+    <item quantity="few">Šie nariai buvo pašalinti iš grupės ir negalės iš naujo prie jos prisijungti tol, kol neatsinaujins:</item>
+    <item quantity="many">Šie nariai buvo pašalinti iš grupės ir negalės iš naujo prie jos prisijungti tol, kol neatsinaujins:</item>
+    <item quantity="other">Šie nariai buvo pašalinti iš grupės ir negalės iš naujo prie jos prisijungti tol, kol neatsinaujins:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Naujinti į naująją grupę</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Naujinti šią grupę</string>
@@ -655,6 +661,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Grupės sukūrimas nepavyko.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Vėliau bandykite dar kartą.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Jūs pasirinkote adresatą, kuris nepalaiko Signal grupių, taigi, ši grupė bus MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tinkinti MMS grupės vardai ir nuotraukos bus matomi tik jums.</string>
   <string name="AddGroupDetailsFragment__remove">Šalinti</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS adresatas</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Pašalinti %1$s iš šios grupės?</string>
@@ -1001,6 +1008,18 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Išnykstančių žinučių laikmatis nustatytas į %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ši grupė buvo atnaujinta į naująją grupę.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Jūsų nepavyko pridėti į naująją grupę ir todėl, buvote pakviesti prie jos prisijungti.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Nario nepavyko pridėti į naująją grupę ir todėl, jis buvo pakviestas prie jos prisijungti.</item>
+    <item quantity="few">%1$s narių nepavyko pridėti į naująją grupę ir todėl, jie buvo pakviesti prie jos prisijungti.</item>
+    <item quantity="many">%1$s narių nepavyko pridėti į naująją grupę ir todėl, jie buvo pakviesti prie jos prisijungti.</item>
+    <item quantity="other">%1$s nario nepavyko pridėti į naująją grupę ir todėl, jie buvo pakviesti prie jos prisijungti.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Nario nepavyko pridėti į naująją grupę ir jis buvo pašalintas.</item>
+    <item quantity="few">%1$s narių nepavyko pridėti į naująją grupę ir jie buvo pašalinti.</item>
+    <item quantity="many">%1$s narių nepavyko pridėti į naująją grupę ir jie buvo pašalinti.</item>
+    <item quantity="other">%1$s nario nepavyko pridėti į naująją grupę ir jie buvo pašalinti.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s pasikeitė profilio vardą į %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s pasikeitė profilio vardą iš %2$s į %3$s.</string>
@@ -1156,6 +1175,12 @@
     <item quantity="few">%1$s, %2$s ir dar %3$d žmonės yra grupės skambutyje · %4$s</item>
     <item quantity="many">%1$s, %2$s ir dar %3$d žmonių yra grupės skambutyje · %4$s</item>
     <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra grupės skambutyje · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s ir dar %3$d žmogus yra grupės skambutyje</item>
+    <item quantity="few">%1$s, %2$s ir dar %3$d žmonės yra grupės skambutyje</item>
+    <item quantity="many">%1$s, %2$s ir dar %3$d žmonių yra grupės skambutyje</item>
+    <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra grupės skambutyje</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Priimti</string>
@@ -1595,8 +1620,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Sureagavo į jūsų paveikslą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Sureagavo į jūsų failą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Sureagavo į jūsų garso įrašą: %1$s.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Sureagavo į jūsų vienkartinės peržiūros nuotrauką: %1$s.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Sureagavo į jūsų vienkartinės peržiūros vaizdo įrašą: %1$s.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Sureagavo į jūsų lipduką: %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Išjungti pranešimus apie tai, kad adresatai prisijungė prie Signal? Galėsite ir vėl įjungti šiuos pranešimus, perėję į Signal &gt; Nustatymai &gt; Pranešimai.</string>
@@ -1918,6 +1941,7 @@
   <string name="CreateProfileActivity_next">Kitas</string>
   <string name="CreateProfileActivity__username">Naudotojo vardas</string>
   <string name="CreateProfileActivity__create_a_username">Sukurti naudotojo vardą</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tinkinti MMS grupės vardai ir nuotraukos bus matomi tik jums.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Taisyti grupės pavadinimą ir nuotrauką</string>
   <string name="EditProfileFragment__group_name">Grupės pavadinimas</string>

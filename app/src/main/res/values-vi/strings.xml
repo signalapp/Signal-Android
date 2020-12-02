@@ -1248,8 +1248,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageNotifier_reacted_s_to_your_image">Đã bày tỏ cảm xúc %1$s cho hình ảnh của bạn.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Đã bày tỏ cảm xúc %1$s cho tệp tin của bạn.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Đã bày tỏ cảm xúc %1$s cho tệp âm thanh của bạn.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Đã bày tỏ cảm xúc %1$s cho ảnh xem một lần của bạn.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Đã bày tỏ cảm xúc %1$s cho video xem một lần của bạn.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Đã bày tỏ cảm xúc %1$s cho nhãn dán của bạn.</string>
   <string name="MessageNotifier_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Tắt thông báo khi liên hệ bắt đầu sử dụng Signal? Bạn có thể bật lại ở Signal &gt; Cài đặt &gt; Thông báo.</string>

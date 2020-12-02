@@ -142,6 +142,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">找不到網路瀏覽器。</string>
   <string name="CommunicationActions_no_email_app_found">找不到電子郵件應用程式。</string>
+  <string name="CommunicationActions_send_email">傳送電子郵件</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">手機通話正在進行中。</string>
   <string name="CommunicationActions_start_video_call">開始視訊通話嗎？</string>
   <string name="CommunicationActions_start_voice_call">開始語音通話嗎？</string>
@@ -1422,8 +1423,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">對你的影像作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_file">對你的檔案作出了 %1$s 反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">對你的語音作出了 %1$s 反應。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">對你的一次性觀看照片作出了 %1$s 反應。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">對你的一次性觀看影片作出了 %1$s 反應。</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">對你的一次觀看的媒體做出%1$s反應。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">對你的貼圖作出了 %1$s 反應。</string>
   <string name="MessageNotifier_this_message_was_deleted">此訊息已被刪除。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">關閉聯絡人已加入Signal 的通知嗎？你可以在次開啟他們在 Signal &gt; 設定 &gt; 通知。</string>

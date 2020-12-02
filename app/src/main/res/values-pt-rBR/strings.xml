@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenhum navegador encontrado.</string>
   <string name="CommunicationActions_no_email_app_found">Nenhum app de e-mail encontrado.</string>
+  <string name="CommunicationActions_send_email">Enviar e-mail</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Uma chamada já está em andamento.</string>
   <string name="CommunicationActions_start_video_call">Iniciar chamada de vídeo?</string>
   <string name="CommunicationActions_start_voice_call">Iniciar chamada de voz?</string>
@@ -1490,8 +1491,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Reagiu com %1$s à sua imagem.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagiu com %1$s ao seu arquivo.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagiu com %1$s ao seu áudio.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagiu com %1$s à sua imagem efêmera.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagiu com %1$s ao seu vídeo efêmero.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagiu com %1$s à sua mídia efêmera.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu com %1$s à sua figurinha.</string>
   <string name="MessageNotifier_this_message_was_deleted">Essa mensagem foi apagada.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desativar notificações de contatos que entram no Signal? Você pode ativá-las novamente em Signal &gt; Configurações &gt; Notificações.</string>

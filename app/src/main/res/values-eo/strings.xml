@@ -81,7 +81,7 @@
   <string name="AudioSlidePlayer_error_playing_audio">Eraro dum ludo de sonaĵo!</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokataj uzantoj</string>
-  <string name="BlockedUsersActivity__add_blocked_user">Aldonu blokata uzanto</string>
+  <string name="BlockedUsersActivity__add_blocked_user">Aldoni blokatan uzanton</string>
   <string name="BlockedUsersActivity__blocked_users_will">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Neniu blokata kontakto</string>
   <string name="BlockedUsersActivity__block_user">Ĉu bloki la uzanton?</string>
@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Neniu retumilo trovita.</string>
   <string name="CommunicationActions_no_email_app_found">Neniu retpoŝtilo trovita.</string>
+  <string name="CommunicationActions_send_email">Sendi retpoŝton</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Alia alvoko jam estas okazanta.</string>
   <string name="CommunicationActions_start_video_call">Ĉu eki vid-alvokon?</string>
   <string name="CommunicationActions_start_voice_call">Ĉu eki voĉ-alvokon?</string>
@@ -246,7 +247,7 @@
   <string name="ConversationActivity_sticker_pack_installed">Glumarkaro instaliĝis</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nove! Parolu per glumarkoj</string>
   <string name="ConversationActivity_cancel">Nuligi</string>
-  <string name="ConversationActivity_delete_conversation">Ĉu forviŝi konversacion?</string>
+  <string name="ConversationActivity_delete_conversation">Ĉu forviŝi interparolon?</string>
   <string name="ConversationActivity_delete_and_leave_group">Ĉu forigi kaj forlasi la grupon?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Tiu interparolo foriĝos el ĉiuj viaj aparatoj.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Vi forlasos tiun grupon, kaj ĝi foriĝos el ĉiuj viaj aparatoj.</string>
@@ -412,7 +413,7 @@
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Donaci al Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ekzistas pro la subteno de homoj kiaj vi. Bonvole subtenu hodiaŭ ja!</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ekzistas pro la subteno de homoj kiel vi. Montru vian subtenon hodiaŭ!</string>
   <string name="DonateMegaphone_donate">Donaci</string>
   <string name="DonateMegaphone_no_thanks">Ne, dankon</string>
   <!--DozeReminder-->
@@ -475,9 +476,14 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Kio estas novtipaj grupoj?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Novtipaj grupoj havas trajtojn kiel @menciojn kaj grupadministrantojn, kaj pliajn estontece.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Ĉiuj mesaĝoj kaj aŭdvidaĵoj konserviĝis tiel, kiel ili estis antaŭ la ĝisdatigon.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Vi bezonos akcepti inviton por anigi tiun grupon ree, kaj vi ne ricevos grupmesaĝojn ĝis via akcepto.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Tiuj ĉi ano bezonos akcepti inviton por anigi la grupon ree, kaj li aŭ ŝi ne ricevos grupmesaĝojn ĝis ŝia aŭ lia akcepto:</item>
     <item quantity="other">Tiuj ĉi anoj bezonos akcepti inviton por anigi la grupon ree, kaj ili ne ricevos grupmesaĝojn ĝis ilia akcepto:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Tiuj ĉi ano foriĝis el la grupo kaj ne povos reanigi, krom se ŝi aŭ li ĝisdatigas:</item>
+    <item quantity="other">Tiuj ĉi anoj foriĝis el la grupo kaj ne povos reanigi, krom se ili ĝisdatigas:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Ĝisdatigi al novtipa grupo</string>
@@ -588,11 +594,13 @@
   <string name="AddGroupDetailsFragment__create">Krei</string>
   <string name="AddGroupDetailsFragment__members">Anoj</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grupnomo (nepra)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Grupnomo (malnepra)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Tiu kampo nepras.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupoj postulas almenaŭ du anojn.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">La kreado de la grupo malsukcesis.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Reprovu poste.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vi elektis kontakton, kiu ne subtenas Signal-grupojn, do tiu ĉi grupo estos MMS-a.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Propraj MMS-aj grupaj nomoj kaj fotoj nur videblos de vi.</string>
   <string name="AddGroupDetailsFragment__remove">Forviŝi</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakto</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ĉu forigi %1$s el tiu grupo?</string>
@@ -600,13 +608,21 @@
     <item quantity="one">%d ano ne povas uzi novtipajn grupojn, do tiu ĉi grupo estos malnovtipa grupo.</item>
     <item quantity="other">%d anoj ne povas uzi novtipajn grupojn, do tiu ĉi grupo estos malnovtipa grupo.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d ano ne povas uzi novtipajn grupojn, do tiu ĉi grupo ne povas esti kreita.</item>
+    <item quantity="other">%d anoj ne povas uzi novtipajn grupojn, do tiu ĉi grupo ne povas esti kreita.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Malvotipa grupo kreiĝos, ĉar „%1$s“ uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ŝi aŭ li, post kiam ŝi aŭ li ĝisdatigos Signal-on, aŭ se vi forigas ŝin aŭ lin, antaŭ ol krei la grupon.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Malvotipa grupo kreiĝos, ĉar %1$d ano uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ili, post kiam ili ĝisdatigos Signal-on, aŭ se vi tuj forigas ilin, antaŭ ol krei la grupon.</item>
     <item quantity="other">Malvotipa grupo kreiĝos, ĉar %1$d anoj uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ili, post kiam ili ĝisdatigos Signal-on, aŭ se vi tuj forigas ilin, antaŭ ol krei la grupon.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tiu ĉi grupo ne kreiĝos ĉar “%1$s” uzas malnovan version de Signal. Oni devas forigi ilin antaŭ ol povi krei la grupon.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tiu ĉi grupo ne kreiĝos, ĉar „%1$s“ uzas malnovan version de Signal. Vi devas forigi ŝin aŭ lin, antaŭ ol krei la grupon.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Tiu ĉi grupo ne kreiĝos, ĉar %1$d ano uzas malnovan version de Signal. Vi devas forigi ŝin aŭ lin, antaŭ ol krei la grupon.</item>
+    <item quantity="other">Tiu ĉi grupo ne kreiĝos, ĉar %1$d anoj uzas malnovan version de Signal. Vi devas forigi ilin, antaŭ ol krei la grupon.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Petoj kaj invitoj por aniĝi</string>
@@ -741,6 +757,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupligiloj baldaŭ disponeblos</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ĝisdatigu Signal-on por uzi grupligilojn</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versio de Signal, kiun vi uzas ne subtenas tiun grupligilon. Ĝisdatigu al lasta versio por anigi tiun grupon per ligilo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ĝisdatigi Signal-on</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Unu aŭ pli el viaj ligitaj aparatoj uzas version de Signal, kiu ne subtenas kunhaveblajn grupligilojn. Ĝisdatigu Signal-on ĉe viaj ligitaj aparatoj por anigi tiun grupon.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupligilo ne validas</string>
@@ -895,6 +912,15 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s agordis la malaperon de la memviŝontaj mesaĝoj al %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">La malapero de la memviŝontaj mesaĝoj agordiĝis al %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Tiu ĉi grupo ĝisdatiĝis al novtipa grupo.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Vi ne povis re-aldoniĝi al la novtipa grupo kaj vi estis invitita aniĝi.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Unu ano ne povis re-aldoniĝi al la novtipa grupo kaj estis invitita aniĝi.</item>
+    <item quantity="other">%1$s anoj ne povis re-aldoniĝi al la novtipa grupo kaj estis invititaj aniĝi.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Unu ano ne povis re-aldoniĝi al la novtipa grupo kaj estis forigita.</item>
+    <item quantity="other">%1$s anoj ne povis re-aldoniĝi al la novtipa grupo kaj estis forigitaj.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ŝanĝis sian profilnomon al %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ŝanĝis sian profilnomon de %2$s al %3$s.</string>
@@ -1022,15 +1048,26 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vi markis vian sekurigan numeron kun %s kiel nekonfirmita.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vi markis, el alia aparato, vian sekurigan numeron kun %s kiel nekonfirmita.</string>
   <!--Group Calling update messages-->
-  <string name="MessageRecord_s_started_a_group_call_s">%1$s komencis grupvokon · %2$s</string>
-  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s estas en la grupvoko · %2$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s kaj %2$s estas en la grupvoko · %3$s</string>
-  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, kaj %3$s estas en la grupvoko · %4$s</string>
-  <string name="MessageRecord_group_call_s">Grupvoko · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s ekigis grupalvokon · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s estas en la grupalvoko · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Vi estas en la grupalvoko · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s kaj %2$s estas en la grupalvoko · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s kaj %3$s estas en la grupalvoko · %4$s</string>
+  <string name="MessageRecord_group_call_s">Grupalvoko · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s komencis grupalvokon</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s estas en la grupalvoko</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Vi estas en la grupalvoko</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s kaj %2$s estas en la grupalvoko</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s kaj %3$s estas en la grupalvoko</string>
+  <string name="MessageRecord_group_call">Grup-alvoko</string>
   <string name="MessageRecord_you">Vi</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s, kaj %3$d aliaj homoj estas en grupvoko · %4$s</item>
-    <item quantity="other">%1$s, %2$s, kaj %3$d aliaj estas en la grupvoko · %4$s</item>
+    <item quantity="other">%1$s, %2$s kaj %3$d aliaj estas en la grupalvoko · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s kaj %3$d alia estas en la grupalvoko</item>
+    <item quantity="other">%1$s, %2$s kaj %3$d aliaj estas en la grupalvoko</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Akcepti</string>
@@ -1041,7 +1078,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Ŝi aŭ li ne scios, ke vi vidis ŝian aŭ lian mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ĉu plu interparoli al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
-  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jenan malnovtipan grupon jam ne povas uzi pro troa grandeco. Maksimuma grupgrando estas %1$d.</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Ĝisdatigu tiun grupon por uzi novajn funkciojn kiel @menciojn kaj administranton. Anoj, kiuj ne kunhavis ilian nomon aŭ foton kun la grupo estos invititaj anigi.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jena malnovtipa grupo jam ne povas uziĝi pro troa grandeco. Maksimuma grupgrando estas %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Ĉu plu interparoli al %1$s kaj kunhavigi vian nomon kaj foton kun ili?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas aliĝi al tiu grupo kaj kunhavigi vian nomon kaj foton? La grupo ne scios, ke vi vidis ĝiajn mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas anigi al tiu ĉi grupo? Ili ne scios, ke vi vidis iliajn mesaĝojn ĝis via akcepto.</string>
@@ -1178,11 +1216,21 @@
   <string name="WebRtcCallView__signal_voice_call">Signal-voĉalvoko…</string>
   <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko…</string>
   <string name="WebRtcCallView__start_call">Ekalvoki</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupvoko</string>
+  <string name="WebRtcCallView__join_call">Eniri la alvokon</string>
+  <string name="WebRtcCallView__s_group_call">Grupalvoko „%1$s“</string>
   <string name="WebRtcCallView__view_participants_list">Vidi partoprenantojn</string>
   <string name="WebRtcCallView__your_video_is_off">Via kamerao estas malŝaltita</string>
   <string name="WebRtcCallView__connecting">Konekto…</string>
+  <string name="WebRtcCallView__reconnecting">Rekonektado…</string>
+  <string name="WebRtcCallView__joining">Enirado…</string>
   <string name="WebRtcCallView__disconnected">Nekonektite</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Neniu alia ĉeestas</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s estas en tiu alvoko</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s kaj %2$s estas en tiu alvoko</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s kaj %3$d alia estas en tiu alvoko</item>
+    <item quantity="other">%1$s, %2$s kaj %3$d aliaj estas en tiu alvoko</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">En tiu ĉi alvoko ⋅ %1$d homo</item>
@@ -1414,6 +1462,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tio daŭre forviŝos ĉi tiun mesaĝon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s al %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Aŭdvidaĵo ne plu disponeblas.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ne troveblas aplikaĵo, kiu kapablas kunhavigi ĉi tiun aŭdvidaĵon.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novaj mesaĝoj en %2$d interparoloj</string>
   <string name="MessageNotifier_most_recent_from_s">Plej lasta de: %1$s</string>
@@ -1441,8 +1490,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_reacted_s_to_your_image">Reagis per %1$s al via bildo.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagis per %1$s al via dosiero.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagis per %1$s al via aŭdaĵo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagis per %1$s al via nurunufoje videbla bildo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagis per %1$s al via nurunufoje videbla videaĵo.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagis per %1$s al via nurunufoje videbla videaĵo.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagis per %1$s al via glumarko.</string>
   <string name="MessageNotifier_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Ĉu malŝalti sciigojn pri aliĝo de kontakto al Signal? Vi povos reŝalti ilin ĉe Signal → Agordoj → Sciigoj.</string>
@@ -1607,6 +1655,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Ŝargo</string>
   <string name="ConversationUpdateItem_learn_more">Scii pli</string>
+  <string name="ConversationUpdateItem_join_call">Eniri la alvokon</string>
+  <string name="ConversationUpdateItem_return_to_call">Reiri al la alvoko</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Ludi … Paŭzigi</string>
   <string name="audio_view__download_accessibility_description">Elŝuti</string>
@@ -1742,6 +1792,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CreateProfileActivity_next">Sekva</string>
   <string name="CreateProfileActivity__username">Uzantnomo</string>
   <string name="CreateProfileActivity__create_a_username">Krei uzantnomon</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Propraj MMS-aj grupaj nomoj kaj fotoj nur videblos de vi.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Modifi nomon kaj bildon de la grupo</string>
   <string name="EditProfileFragment__group_name">Nomo de la grupo</string>
@@ -2019,6 +2070,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nova mesaĝo al…</string>
+  <string name="contact_selection_list__unknown_contact_block">Bloki uzanton</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Aldoni al grupo</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Alvoko</string>
@@ -2082,6 +2134,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation__menu_conversation_settings">Agordoj pri interparolo</string>
   <string name="conversation__menu_add_shortcut">Aldoni al la ĉefekrano</string>
   <string name="conversation__menu_pending_members">Pritraktotaj anojn</string>
+  <string name="conversation__menu_create_bubble">Krei vezikon</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Montri spruĉmenuon</string>
   <!--conversation_callable_insecure-->
@@ -2430,11 +2483,35 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s al %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">„%1$s“ estis blokita.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Bloko de „%1$s“ malsukcesis</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">„%1$s“ estis malblokita.</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Kontroli anojn</string>
+  <string name="ReviewCardDialogFragment__review_request">Kontroli petojn</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupanoj havas la saman nomon. Vidu la anojn ĉi-sube, kaj elekti tion, kion fari.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Se vi ne certas pri tiu, kiu faris la peton, vidu la kontaktojn ĉi-sube, kaj elekti tion, kion fari.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Neniu alia komuna grupo.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Neniu komuna grupo.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d komuna grupo</item>
+    <item quantity="other">%d komunaj grupoj</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d komuna grupo</item>
+    <item quantity="other">%d komunaj grupoj</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Ĉu forigi %1$s el tiu grupo?</string>
   <string name="ReviewCardDialogFragment__remove">Forviŝi</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Malsukceso forigi la grupanon.</string>
   <!--ReviewCard-->
+  <string name="ReviewCard__member">Ano</string>
+  <string name="ReviewCard__request">Peto</string>
+  <string name="ReviewCard__your_contact">Via kontakto</string>
   <string name="ReviewCard__remove_from_group">Forigi el la grupo</string>
+  <string name="ReviewCard__update_contact">Ĝisdatigi kontakton</string>
   <string name="ReviewCard__block">Bloki</string>
   <string name="ReviewCard__delete">Forigi</string>
+  <string name="ReviewCard__recently_changed">Ŝanĝis sian profilnomon de %1$s al %2$s</string>
   <!--EOF-->
 </resources>

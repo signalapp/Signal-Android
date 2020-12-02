@@ -1361,8 +1361,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoi %1$s kuvallesi.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoi %1$s tiedostollesi.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi %1$s ääniviestillesi.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoi %1$s kerran katsottavalle kuvallesi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoi %1$s kerran katsottavalle videollesi.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi %1$s tarrallesi.</string>
   <string name="MessageNotifier_this_message_was_deleted">Tämä viesti poistettiin.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Poista \'Yhteistietosi liittyi Signaliin\' ilmoitukset käytöstä? Voit ottaa ne uudelleen käyttöön avaamalla Signal &gt; Asetukset &gt; Ilmoitukset.</string>

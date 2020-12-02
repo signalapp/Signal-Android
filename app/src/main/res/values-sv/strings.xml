@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen webbläsare hittades.</string>
   <string name="CommunicationActions_no_email_app_found">Ingen e-postapp hittades.</string>
+  <string name="CommunicationActions_send_email">Skicka e-post</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ett mobilsamtal pågår redan.</string>
   <string name="CommunicationActions_start_video_call">Starta videosamtal?</string>
   <string name="CommunicationActions_start_voice_call">Starta röstsamtal?</string>
@@ -1484,8 +1485,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagerade %1$s på din bild.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagerade %1$s på din fil</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagerade %1$s på din ljudfil.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagerade %1$s på ditt visa-en-gång foto.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerade %1$s på ditt visa-en-gång video.</string> -->
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerade %1$s på din visa-en-gång media.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerade %1$s på dina klistermärken.</string>
   <string name="MessageNotifier_this_message_was_deleted">Det här meddelandet togs bort.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Inaktivera Signal-aviseringar när kontakter ansluter sig? Du kan aktivera dem igen i Signal &gt; Inställningar &gt; Aviseringar.</string>

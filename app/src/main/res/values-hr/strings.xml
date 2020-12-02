@@ -1552,8 +1552,6 @@ broj telefona</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagira s %1$s na vašu sliku.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagira s %1$s na vašu datoteku.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagira s %1$s na vaš zvuk.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagira s %1$s na vašu jednom vidljivu sliku.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagira s %1$s na vaš jednom vidljiv video.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagira s %1$s na vašu naljepnicu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ova poruka je izbrisana.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Isključiti obavijesti o novim kontaktima na Signalu? Možete ih ponovo omogućiti u Signal &amp;gt Postavke &amp;gt Obavijesti.</string>

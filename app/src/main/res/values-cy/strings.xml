@@ -1588,8 +1588,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Ymatebodd %1$s i\'ch delwedd.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Ymatebodd %1$s i\'ch ffeil.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$si\'ch sain.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ymatebodd %1$si\'ch llun golwg unwaith.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ymatebodd %1$s i\'ch fideo golwg unwaith.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ymatebodd %1$s i\'ch sticer.</string>
   <string name="MessageNotifier_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Diffodd hysbysiadau cysylltiadau Signal? Gallwch eu galluogi eto yn Signal Hysbysiadau &gt; Gosodiadau &gt;.</string>

@@ -1362,8 +1362,6 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Reageeris %1$s sinu pildile.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reageeris %1$s sinu failile.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reageeris %1$s sinu helile.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reageeris %1$s sinu korra-vaatamise fotole.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reageeris %1$s sinu korra-vaatamise videole.</string> -->
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reageeris %1$s sinu kleepsule.</string>
   <string name="MessageNotifier_this_message_was_deleted">See sõnum kustutati.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kas lülitada Signal-iga liitumise teavitused välja? Neid saab uuesti lubada, valides Signal &gt; Seaded &gt; Teavitused.</string>
