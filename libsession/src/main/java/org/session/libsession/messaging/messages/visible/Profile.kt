@@ -23,20 +23,19 @@ class Profile() : VisibleMessage<SignalServiceProtos.DataMessage?>() {
                 profilePictureURL?.let {
                     return Profile(displayName = displayName, profileKey = profileKey.toByteArray(), profilePictureURL = profilePictureURL)
                 }
-                return Profile(displayName)
             }
-
+            return Profile(displayName)
         }
     }
 
     //constructor
-    internal constructor(displayName: String, profileKey: ByteArray? = nil, profilePictureURL: String? = nil) : this() {
+    internal constructor(displayName: String, profileKey: ByteArray? = null, profilePictureURL: String? = null) : this() {
         this.displayName = displayName
         this.profileKey = profileKey
         this.profilePictureURL = profilePictureURL
     }
 
-    fun toProto(): SignalServiceProtos.DataMessage? {
+    fun toSSProto(): SignalServiceProtos.DataMessage? {
         return this.toProto("")
     }
 
