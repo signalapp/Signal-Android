@@ -141,7 +141,7 @@ class ClosedGroupUpdate() : ControlMessage() {
 
 // extension functions to class ClosedGroupSenderKey
 
-private fun ClosedGroupSenderKey.Companion.fromProto(proto: SignalServiceProtos.ClosedGroupUpdate.SenderKey): org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey {
+private fun ClosedGroupSenderKey.Companion.fromProto(proto: SignalServiceProtos.ClosedGroupUpdate.SenderKey): ClosedGroupSenderKey {
     return ClosedGroupSenderKey(chainKey = proto.chainKey.toByteArray(), keyIndex = proto.keyIndex, publicKey = proto.publicKey.toByteArray())
 }
 
