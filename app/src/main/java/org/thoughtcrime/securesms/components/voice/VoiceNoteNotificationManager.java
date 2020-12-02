@@ -79,7 +79,7 @@ class VoiceNoteNotificationManager {
     @Override
     public String getCurrentContentTitle(Player player) {
       if (hasMetadata()) {
-        return Objects.requireNonNull(controller.getMetadata().getDescription().getTitle()).toString();
+        return Objects.toString(controller.getMetadata().getDescription().getTitle(), null);
       } else {
         return null;
       }
@@ -89,9 +89,14 @@ class VoiceNoteNotificationManager {
     public @Nullable PendingIntent createCurrentContentIntent(Player player) {
       if (!hasMetadata()) return null;
 
-      RecipientId   recipientId      = RecipientId.from(Objects.requireNonNull(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_RECIPIENT_ID)));
-      int           startingPosition = (int) controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_POSITION);
-      long          threadId         = controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_ID);
+      String serializedRecipientId = controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_RECIPIENT_ID);
+      if (serializedRecipientId == null) {
+        return null;
+      }
+
+      RecipientId recipientId      = RecipientId.from(serializedRecipientId);
+      int         startingPosition = (int) controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_POSITION);
+      long        threadId         = controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_ID);
 
       MaterialColor color;
       try {
@@ -131,7 +136,12 @@ class VoiceNoteNotificationManager {
         return null;
       }
 
-      RecipientId currentRecipientId = RecipientId.from(Objects.requireNonNull(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_AVATAR_RECIPIENT_ID)));
+      String serializedRecipientId = controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_AVATAR_RECIPIENT_ID);
+      if (serializedRecipientId == null) {
+        return null;
+      }
+
+      RecipientId currentRecipientId = RecipientId.from(serializedRecipientId);
 
       if (Objects.equals(currentRecipientId, cachedRecipientId) && cachedBitmap != null) {
         return cachedBitmap;
