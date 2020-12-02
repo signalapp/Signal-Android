@@ -47,7 +47,7 @@ class Quote() : VisibleMessage<SignalServiceProtos.DataMessage.Quote?>() {
         quoteProto.id = timestamp
         quoteProto.author = publicKey
         text?.let { quoteProto.text = text }
-        //TODO addAttachmentsIfNeeded(quoteProto, transaction)
+        addAttachmentsIfNeeded(quoteProto, transaction)
         // Build
         try {
             return quoteProto.build()

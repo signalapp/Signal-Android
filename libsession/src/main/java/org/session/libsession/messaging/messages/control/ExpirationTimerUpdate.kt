@@ -12,7 +12,7 @@ class ExpirationTimerUpdate() : ControlMessage() {
 
         fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
             val dataMessageProto = proto.dataMessage ?: return null
-            val isExpirationTimerUpdate = (dataMessageProto.flags and SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0
+            val isExpirationTimerUpdate = (dataMessageProto.flags and SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0 //TODO validate that 'and' operator equivalent to Swift '&'
             if (!isExpirationTimerUpdate) return null
             val duration = dataMessageProto.expireTimer
             return ExpirationTimerUpdate(duration)

@@ -42,7 +42,7 @@ class LinkPreview() : VisibleMessage<SignalServiceProtos.DataMessage.Preview?>()
         }
         val linkPreviewProto = SignalServiceProtos.DataMessage.Preview.newBuilder()
         linkPreviewProto.url = url
-        title?. let { linkPreviewProto.title = title }
+        title?.let { linkPreviewProto.title = title }
         val attachmentID = attachmentID
         attachmentID?.let {
             //TODO database stuff

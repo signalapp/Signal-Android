@@ -33,7 +33,7 @@ class SessionRequest() : ControlMessage() {
                     null, //TODO preKeyBundleProto.signedKeyId,
                     preKeyBundleProto.signature.toByteArray(),
                     null, //TODO preKeyBundleProto.identityKey
-            ) ?: return null
+            )
             return SessionRequest(preKeyBundle)
         }
     }

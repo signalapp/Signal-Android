@@ -9,7 +9,7 @@ abstract class VisibleMessage<out T: com.google.protobuf.MessageOrBuilder?> : Me
 
     final override fun toProto(): SignalServiceProtos.Content? {
         //we don't need to implement this method in subclasses
-        //TODO it just needs an equivalent to swift: preconditionFailure("Use toProto(using:) instead.")
-        TODO("Not yet implemented")
+        //TODO it just needs an equivalent to swift: preconditionFailure("Use toProto(using:) if that exists...
+        TODO("Not implemented")
     }
 }

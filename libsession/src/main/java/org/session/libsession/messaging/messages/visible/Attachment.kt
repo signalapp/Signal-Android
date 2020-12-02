@@ -33,7 +33,7 @@ class Attachment : VisibleMessage<SignalServiceProtos.AttachmentPointer?>() {
             result.key = proto.key.toByteArray()
             result.digest = proto.digest.toByteArray()
             val kind: Kind
-            if (proto.hasFlags() && (proto.flags and SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) > 0) {
+            if (proto.hasFlags() && (proto.flags and SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) > 0) { //TODO validate that 'and' operator = swift '&'
                 kind = Kind.VOICEMESSAGE
             } else {
                 kind = Kind.GENERIC

@@ -21,14 +21,18 @@ class BaseVisibleMessage() : VisibleMessage<SignalServiceProtos.Content?>() {
             result.text = dataMessage.body
             // Attachments are handled in MessageReceiver
             val quoteProto = dataMessage.quote
-            val quote = Quote.fromProto(quoteProto)
-            quote?.let { result.quote = quote }
+            quoteProto?.let {
+                val quote = Quote.fromProto(quoteProto)
+                quote?.let { result.quote = quote }
+            }
             val linkPreviewProto = dataMessage.previewList.first()
-            val linkPreview = LinkPreview.fromProto(linkPreviewProto)
-            linkPreview?.let { result.linkPreview = linkPreview }
+            linkPreviewProto?.let {
+                val linkPreview = LinkPreview.fromProto(linkPreviewProto)
+                linkPreview?.let { result.linkPreview = linkPreview }
+            }
             // TODO Contact
             val profile = Profile.fromProto(dataMessage)
-            if (profile != null) { result.profile = profile }
+            profile?.let { result.profile = profile }
             return  result
         }
     }
@@ -38,7 +42,7 @@ class BaseVisibleMessage() : VisibleMessage<SignalServiceProtos.Content?>() {
         if (!super.isValid()) return false
         if (attachmentIDs.isNotEmpty()) return true
         val text = text?.trim() ?: return false
-        if (text.isEmpty()) return true
+        if (text.isNotEmpty()) return true
         return false
     }
 
@@ -48,7 +52,7 @@ class BaseVisibleMessage() : VisibleMessage<SignalServiceProtos.Content?>() {
         val dataMessage: SignalServiceProtos.DataMessage.Builder
         // Profile
         val profile = profile
-        val profileProto = profile?.toProto("") //TODO
+        val profileProto = profile?.toSSProto()
         if (profileProto != null) {
             dataMessage = profileProto.toBuilder()
         } else {
@@ -84,7 +88,7 @@ class BaseVisibleMessage() : VisibleMessage<SignalServiceProtos.Content?>() {
         // TODO I'm blocking on that one...
         //swift: let attachments = attachmentIDs.compactMap { TSAttachmentStream.fetch(uniqueId: $0, transaction: transaction) }
 
-
+        // TODO Contact
         // Build
         try {
             proto.dataMessage = dataMessage.build()

@@ -7,6 +7,8 @@ import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSende
 
 class ClosedGroupUpdate() : ControlMessage() {
 
+    var kind: Kind? = null
+
     // Kind enum
     sealed class Kind {
         class New(val groupPublicKey: ByteArray, val name: String, val groupPrivateKey: ByteArray, val senderKeys: Collection<org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
@@ -15,15 +17,13 @@ class ClosedGroupUpdate() : ControlMessage() {
         class SenderKey(val groupPublicKey: ByteArray, val senderKey: org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey) : Kind()
     }
 
-    var kind: Kind? = null
-
     companion object {
         const val TAG = "ClosedGroupUpdate"
 
         fun fromProto(proto: SignalServiceProtos.Content): ClosedGroupUpdate? {
             val closedGroupUpdateProto = proto.dataMessage?.closedGroupUpdate ?: return null
             val groupPublicKey = closedGroupUpdateProto.groupPublicKey
-            var kind: Kind? = null
+            var kind: Kind
             when(closedGroupUpdateProto.type) {
                 SignalServiceProtos.ClosedGroupUpdate.Type.NEW -> {
                     val name = closedGroupUpdateProto.name ?: return null
@@ -71,7 +71,7 @@ class ClosedGroupUpdate() : ControlMessage() {
 
     // validation
     override fun isValid(): Boolean {
-        if (!super.isValid() || kind == null) return false
+        if (!super.isValid()) return false
         val kind = kind ?: return false
         when(kind) {
             is Kind.New -> {

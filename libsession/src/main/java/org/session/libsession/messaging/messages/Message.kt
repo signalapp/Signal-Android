@@ -16,10 +16,9 @@ abstract class Message {
     companion object {
         @JvmStatic
         val ttl = 2 * 24 * 60 * 60 * 1000 //TODO not sure about that declaration
-
-        //TODO how to declare fromProto?
     }
 
+    // validation
     open fun isValid(): Boolean {
         sentTimestamp = if (sentTimestamp!! > 0) sentTimestamp else return false
         receivedTimestamp = if (receivedTimestamp!! > 0) receivedTimestamp else return false
