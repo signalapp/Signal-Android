@@ -1436,6 +1436,14 @@
         <item quantity="other">In this call · %1$d people</item>
     </plurals>
 
+    <!-- CallParticipantView -->
+    <string name="CallParticipantView__s_is_blocked">%1$s is blocked</string>
+    <string name="CallParticipantView__more_info">More Info</string>
+    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">You won\'t receive their audio or video and they won\'t receive yours.</string>
+    <string name="CallParticipantView__cant_receive_audio_video_from_s">Can\'t receive audio &amp; video from %1$s</string>
+    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Can\'t receive audio and video from %1$s</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">This may be because they have not verified your safety number change, there\'s a problem with their device, or they have blocked you.</string>
+
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Select your country</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your

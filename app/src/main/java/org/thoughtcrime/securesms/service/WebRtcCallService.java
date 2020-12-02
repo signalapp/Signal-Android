@@ -444,6 +444,10 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   {
     Callable<Boolean> callable = () -> {
       Recipient recipient = remotePeer.getRecipient();
+      if (recipient.isBlocked()) {
+        return true;
+      }
+
       messageSender.sendCallMessage(RecipientUtil.toSignalServiceAddress(WebRtcCallService.this, recipient),
                                     UnidentifiedAccessUtil.getAccessFor(WebRtcCallService.this, recipient),
                                     callMessage);

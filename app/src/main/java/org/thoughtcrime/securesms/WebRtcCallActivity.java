@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 
 import android.Manifest;
 import android.app.PictureInPictureParams;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -32,6 +33,7 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -76,6 +78,12 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   private TooltipPopup        videoTooltip;
   private WebRtcCallViewModel viewModel;
   private boolean             enableVideoIfAvailable;
+
+  @Override
+  protected void attachBaseContext(@NonNull Context newBase) {
+    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    super.attachBaseContext(newBase);
+  }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {

@@ -46,7 +46,8 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                        new BroadcastVideoSink(currentState.getVideoState().getEglBase()),
                                                        true,
                                                        false,
-                                                       0
+                                                       0,
+                                                       true
                                                ))
                                .build();
 
@@ -86,7 +87,8 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                new BroadcastVideoSink(currentState.getVideoState().getEglBase()),
                                                true,
                                                false,
-                                               0
+                                               0,
+                                               true
                                        ))
                        .build();
   }

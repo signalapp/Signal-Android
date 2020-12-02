@@ -266,7 +266,7 @@
         <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
     </style>
 
-    <style name="TextSecure.LightTheme.WebRTCCall">
+    <style name="TextSecure.DarkTheme.WebRTCCall">
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/core_ultramarine</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowTranslucentStatus">true</item>
