@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.preferences.widgets.UsernamePreference;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -159,6 +160,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       DynamicTheme.setDefaultDayNightMode(this);
       recreate();
     } else if (key.equals(TextSecurePreferences.LANGUAGE_PREF)) {
+      CachedInflater.from(this).clear();
       wasConfigurationUpdated = true;
       recreate();
 
