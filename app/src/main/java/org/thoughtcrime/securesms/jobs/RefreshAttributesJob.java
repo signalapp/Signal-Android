@@ -88,6 +88,8 @@ public class RefreshAttributesJob extends BaseJob {
                                               unidentifiedAccessKey, universalUnidentifiedAccess,
                                               capabilities,
                                               phoneNumberDiscoverable);
+
+    ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
   }
 
   @Override
