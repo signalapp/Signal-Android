@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -273,7 +274,7 @@ public class ContactsCursorLoader extends CursorLoader {
       ThreadRecord threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
         Recipient recipient = threadRecord.getRecipient();
-        String    stringId  = recipient.isGroup() ? recipient.requireGroupId().toString() : recipient.getE164().or(recipient.getEmail()).or("");
+        String    stringId  = recipient.isGroup() ? recipient.requireGroupId().toString() : recipient.getE164().transform(PhoneNumberFormatter::prettyPrint).or(recipient.getEmail()).or("");
 
         recentConversations.addRow(new Object[] { recipient.getId().serialize(),
                                                   recipient.getDisplayName(getContext()),
