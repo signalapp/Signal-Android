@@ -4,10 +4,8 @@ import android.util.Size
 import android.webkit.MimeTypeMap
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.io.File
-import java.net.URL
-import kotlin.math.absoluteValue
 
-class Attachment : VisibleMessage<SignalServiceProtos.AttachmentPointer?>() {
+class Attachment : VisibleMessageProto<SignalServiceProtos.AttachmentPointer?>() {
 
     var fileName: String? = null
     var contentType: String? = null

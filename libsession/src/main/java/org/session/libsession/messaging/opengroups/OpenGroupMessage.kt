@@ -27,11 +27,11 @@ public data class OpenGroupMessage(
             val storage = Configuration.shared.storage
             val userPublicKey = storage.getUserPublicKey() ?: return null
             // Validation
-            if (!message.isValid) { return null } // Should be valid at this point
+            if (!message.isValid()) { return null } // Should be valid at this point
             // Quote
             val quote: OpenGroupMessage.Quote? = {
                 val quote = message.quote
-                if (quote != null && quote.isValid) {
+                if (quote != null && quote.isValid()) {
                     val quotedMessageServerID = storage.getQuoteServerID(quote.id, quote.publicKey)
                     OpenGroupMessage.Quote(quote.timestamp, quote.publicKey, quote.text, quotedMessageServerID)
                 } else {
@@ -45,7 +45,7 @@ public data class OpenGroupMessage(
             // Link preview
             val linkPreview = message.linkPreview
             linkPreview?.let {
-                if (!linkPreview.isValid) { return@let }
+                if (!linkPreview.isValid()) { return@let }
                 val attachment = linkPreview.getImage() ?: return@let
                 val openGroupLinkPreview = OpenGroupMessage.Attachment(
                         OpenGroupMessage.Attachment.Kind.LinkPreview,

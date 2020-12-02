@@ -4,7 +4,7 @@ import com.google.protobuf.ByteString
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-class Profile() : VisibleMessage<SignalServiceProtos.DataMessage?>() {
+class Profile() : VisibleMessageProto<SignalServiceProtos.DataMessage?>() {
 
     var displayName: String? = null
     var profileKey: ByteArray? = null

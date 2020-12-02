@@ -3,7 +3,7 @@ package org.session.libsession.messaging.messages.visible
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-class Quote() : VisibleMessage<SignalServiceProtos.DataMessage.Quote?>() {
+class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
 
     var timestamp: Long? = 0
     var publicKey: String? = null

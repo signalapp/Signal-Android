@@ -69,7 +69,7 @@ object MessageSender {
                 is Destination.OpenGroup -> throw preconditionFailure
             }
             // Validate the message
-            message.isValid ?: throw Error.InvalidMessage
+            if (!message.isValid()) { throw Error.InvalidMessage }
             // Convert it to protobuf
             val proto = message.toProto() ?: throw Error.ProtoConversionFailed
             // Serialize the protobuf
@@ -162,7 +162,7 @@ object MessageSender {
                 }
             }
             // Validate the message
-            if (message !is VisibleMessage || !message.isValid) {
+            if (message !is VisibleMessage || !message.isValid()) {
                 throw Error.InvalidMessage
             }
             // Convert the message to an open group message
