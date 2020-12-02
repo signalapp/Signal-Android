@@ -82,6 +82,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     Log.i(TAG, "onCreate()");
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     super.onCreate(savedInstanceState);
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
