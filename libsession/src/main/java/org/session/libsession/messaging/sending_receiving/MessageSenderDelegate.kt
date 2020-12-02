@@ -1,4 +1,4 @@
-package org.session.messaging.sending_receiving
+package org.session.libsession.messaging.sending_receiving
 
 interface MessageSenderDelegate {
 }
