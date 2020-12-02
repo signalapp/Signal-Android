@@ -34,8 +34,9 @@ public final class GroupCallUpdateDetailsUtil {
     return groupCallUpdateDetails;
   }
 
-  public static @NonNull String createUpdatedBody(@NonNull GroupCallUpdateDetails groupCallUpdateDetails, @NonNull List<String> inCallUuids) {
+  public static @NonNull String createUpdatedBody(@NonNull GroupCallUpdateDetails groupCallUpdateDetails, @NonNull List<String> inCallUuids, boolean isCallFull) {
     GroupCallUpdateDetails.Builder builder = groupCallUpdateDetails.toBuilder()
+                                                                   .setIsCallFull(isCallFull)
                                                                    .clearInCallUuids();
 
     if (Util.hasItems(inCallUuids)) {

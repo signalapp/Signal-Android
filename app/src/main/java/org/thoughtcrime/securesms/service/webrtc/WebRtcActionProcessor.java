@@ -61,6 +61,7 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_TIMEOUT;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_FLIP_CAMERA;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_ENDED;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_PEEK;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_UPDATE_MESSAGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_JOINED_MEMBERSHIP_CHANGED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_LOCAL_DEVICE_STATE_CHANGED;
@@ -238,6 +239,7 @@ public abstract class WebRtcActionProcessor {
       case ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS:   return handleUpdateRenderedResolutions(currentState);
       case ACTION_GROUP_CALL_ENDED:                    return handleGroupCallEnded(currentState, getGroupCallHash(intent), getGroupCallEndReason(intent));
       case ACTION_GROUP_CALL_UPDATE_MESSAGE:           return handleGroupCallUpdateMessage(currentState, GroupCallUpdateMetadata.fromIntent(intent));
+      case ACTION_GROUP_CALL_PEEK:                     return handleGroupCallPeek(currentState, getRemotePeer(intent));
 
       case ACTION_HTTP_SUCCESS:                        return handleHttpSuccess(currentState, HttpData.fromIntent(intent));
       case ACTION_HTTP_FAILURE:                        return handleHttpFailure(currentState, HttpData.fromIntent(intent));
@@ -724,6 +726,11 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleGroupCallUpdateMessage(@NonNull WebRtcServiceState currentState, @NonNull GroupCallUpdateMetadata groupCallUpdateMetadata) {
     webRtcInteractor.peekGroupCall(groupCallUpdateMetadata);
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleGroupCallPeek(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
+    webRtcInteractor.peekGroupCall(remotePeer.getId());
     return currentState;
   }
 

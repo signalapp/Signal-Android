@@ -75,4 +75,5 @@ message GroupCallUpdateDetails {
              string startedCallUuid      = 2;
              int64  startedCallTimestamp = 3;
     repeated string inCallUuids          = 4;
+             bool   isCallFull           = 5;
 }

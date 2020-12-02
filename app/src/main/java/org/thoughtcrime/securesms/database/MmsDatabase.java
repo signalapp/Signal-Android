@@ -464,13 +464,19 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
-                                               @NonNull RecipientId sender,
-                                               long timestamp,
-                                               @Nullable String messageGroupCallEraId,
-                                               @Nullable String peekGroupCallEraId,
-                                               @NonNull Collection<UUID> peekJoinedUuids)
+  public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
+                                      @NonNull RecipientId sender,
+                                      long timestamp,
+                                      @Nullable String messageGroupCallEraId,
+                                      @Nullable String peekGroupCallEraId,
+                                      @NonNull Collection<UUID> peekJoinedUuids,
+                                      boolean isCallFull)
   {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public boolean updatePreviousGroupCall(long threadId, @Nullable String peekGroupCallEraId, @NonNull Collection<UUID> peekJoinedUuids, boolean isCallFull) {
     throw new UnsupportedOperationException();
   }
 

@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.ringrtc.TurnServerInfoParcel;
 import org.thoughtcrime.securesms.service.webrtc.IdleActionProcessor;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcInteractor;
+import org.thoughtcrime.securesms.service.webrtc.WebRtcUtil;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -200,6 +202,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS = "GROUP_UPDATE_RENDERED_RESOLUTIONS";
   public static final String ACTION_GROUP_CALL_ENDED                  = "GROUP_CALL_ENDED";
   public static final String ACTION_GROUP_CALL_UPDATE_MESSAGE         = "GROUP_CALL_UPDATE_MESSAGE";
+  public static final String ACTION_GROUP_CALL_PEEK                   = "GROUP_CALL_PEEK";
 
   public static final int BUSY_TONE_LENGTH = 2000;
 
@@ -686,25 +689,59 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                                                        groupCallUpdateMetadata.getServerReceivedTimestamp(),
                                                                        groupCallUpdateMetadata.getGroupCallEraId(),
                                                                        peekInfo.getEraId(),
-                                                                       peekInfo.getJoinedMembers());
+                                                                       peekInfo.getJoinedMembers(),
+                                                                       WebRtcUtil.isCallFull(peekInfo));
 
           long threadId = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(group);
           ApplicationDependencies.getMessageNotifier().updateNotification(this, threadId, true);
+
+          EventBus.getDefault().postSticky(new GroupCallPeekEvent(group.getId(), peekInfo.getEraId(), peekInfo.getDeviceCount(), peekInfo.getMaxDevices()));
         });
 
       } catch (IOException | VerificationFailedException | CallException e) {
-        Log.e(TAG, "error peeking", e);
+        Log.e(TAG, "error peeking from message", e);
       }
     });
   }
 
-  public void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers) {
+  public void peekGroupCall(@NonNull RecipientId id) {
+    networkExecutor.execute(() -> {
+      try {
+        Recipient               group      = Recipient.resolved(id);
+        GroupId.V2              groupId    = group.requireGroupId().requireV2();
+        GroupExternalCredential credential = GroupManager.getGroupExternalCredential(this, groupId);
+
+        List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(this, groupId))
+                                                        .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
+                                                        .toList();
+
+        callManager.peekGroupCall(BuildConfig.SIGNAL_SFU_URL, credential.getTokenBytes().toByteArray(), members, peekInfo -> {
+          long threadId = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(group);
+
+          DatabaseFactory.getSmsDatabase(this).updatePreviousGroupCall(threadId,
+                                                                       peekInfo.getEraId(),
+                                                                       peekInfo.getJoinedMembers(),
+                                                                       WebRtcUtil.isCallFull(peekInfo));
+
+          ApplicationDependencies.getMessageNotifier().updateNotification(this, threadId, true);
+
+          EventBus.getDefault().postSticky(new GroupCallPeekEvent(id, peekInfo.getEraId(), peekInfo.getDeviceCount(), peekInfo.getMaxDevices()));
+        });
+
+      } catch (IOException | VerificationFailedException | CallException e) {
+        Log.e(TAG, "error peeking from active conversation", e);
+      }
+    });
+  }
+
+  public void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {
     DatabaseFactory.getSmsDatabase(this).insertOrUpdateGroupCall(groupId,
                                                                  Recipient.self().getId(),
                                                                  System.currentTimeMillis(),
                                                                  null,
                                                                  groupCallEraId,
-                                                                 joinedMembers);
+                                                                 joinedMembers,
+                                                                 isCallFull);
   }
 
   @Override

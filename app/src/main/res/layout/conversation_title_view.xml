@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:gravity="center_vertical"
-    tools:background="#007fff">
+    tools:background="#007fff"
+    tools:layout_height="?actionBarSize">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/contact_photo_image"

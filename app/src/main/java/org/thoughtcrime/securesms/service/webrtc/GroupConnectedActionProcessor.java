@@ -125,7 +125,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     if (!members.contains(Recipient.self().requireUuid())) {
       members.add(Recipient.self().requireUuid());
     }
-    webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members);
+    webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, WebRtcUtil.isCallFull(peekInfo));
 
     return currentState.builder()
                        .changeCallSetupState()
@@ -149,7 +149,7 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId);
 
     List<UUID> members = Stream.of(currentState.getCallInfoState().getRemoteCallParticipants()).map(p -> p.getRecipient().requireUuid()).toList();
-    webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members);
+    webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, false);
 
     currentState = currentState.builder()
                                .changeCallInfoState()

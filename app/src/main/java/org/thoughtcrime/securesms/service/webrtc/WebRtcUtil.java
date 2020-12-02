@@ -77,4 +77,8 @@ public final class WebRtcUtil {
     PeekInfo peekInfo = groupCall.getPeekInfo();
     return peekInfo != null ? peekInfo.getEraId() : null;
   }
+
+  public static boolean isCallFull(@Nullable PeekInfo peekInfo) {
+    return peekInfo != null && peekInfo.getMaxDevices() != null && peekInfo.getDeviceCount() >= peekInfo.getMaxDevices();
+  }
 }

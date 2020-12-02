@@ -691,7 +691,8 @@ public class SmsDatabase extends MessageDatabase {
                                       long timestamp,
                                       @Nullable String messageGroupCallEraId,
                                       @Nullable String peekGroupCallEraId,
-                                      @NonNull Collection<UUID> peekJoinedUuids)
+                                      @NonNull Collection<UUID> peekJoinedUuids,
+                                      boolean isCallFull)
   {
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
 
@@ -701,7 +702,7 @@ public class SmsDatabase extends MessageDatabase {
       Recipient recipient = Recipient.resolved(groupRecipientId);
       long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
-      boolean peerEraIdSameAsPrevious = updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids);
+      boolean peerEraIdSameAsPrevious = updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids, isCallFull);
 
       if (!peerEraIdSameAsPrevious && !Util.isEmpty(peekGroupCallEraId)) {
         Recipient self     = Recipient.self();
@@ -712,6 +713,7 @@ public class SmsDatabase extends MessageDatabase {
                                                      .setStartedCallUuid(Recipient.resolved(sender).requireUuid().toString())
                                                      .setStartedCallTimestamp(timestamp)
                                                      .addAllInCallUuids(Stream.of(peekJoinedUuids).map(UUID::toString).toList())
+                                                     .setIsCallFull(isCallFull)
                                                      .build()
                                                      .toByteArray();
 
@@ -743,7 +745,8 @@ public class SmsDatabase extends MessageDatabase {
     }
   }
 
-  private boolean updatePreviousGroupCall(long threadId, @Nullable String peekGroupCallEraId, @NonNull Collection<UUID> peekJoinedUuids) {
+  @Override
+  public boolean updatePreviousGroupCall(long threadId, @Nullable String peekGroupCallEraId, @NonNull Collection<UUID> peekJoinedUuids, boolean isCallFull) {
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
     String         where = TYPE + " = ? AND " + THREAD_ID + " = ?";
     String[]       args  = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
@@ -761,7 +764,7 @@ public class SmsDatabase extends MessageDatabase {
       List<String> inCallUuids = sameEraId ? Stream.of(peekJoinedUuids).map(UUID::toString).toList()
                                            : Collections.emptyList();
 
-      String body = GroupCallUpdateDetailsUtil.createUpdatedBody(groupCallUpdateDetails, inCallUuids);
+      String body = GroupCallUpdateDetailsUtil.createUpdatedBody(groupCallUpdateDetails, inCallUuids, isCallFull);
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(BODY, body);
