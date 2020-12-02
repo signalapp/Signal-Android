@@ -15,7 +15,6 @@ import androidx.core.app.NotificationCompat;
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
-import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.session.libsignal.libsignal.util.Medium;
@@ -153,11 +152,6 @@ public class TextSecurePreferences {
   public static final String SCREEN_LOCK         = "pref_android_screen_lock";
   public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
 
-  public static final  String REGISTRATION_LOCK_PREF                   = "pref_registration_lock";
-  private static final String REGISTRATION_LOCK_PIN_PREF               = "pref_registration_lock_pin";
-  private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME     = "pref_registration_lock_last_reminder_time";
-  private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL = "pref_registration_lock_next_reminder_interval";
-
   private static final String LAST_FULL_CONTACT_SYNC_TIME = "pref_last_full_contact_sync_time";
   private static final String NEEDS_FULL_CONTACT_SYNC     = "pref_needs_full_contact_sync";
 
@@ -230,38 +224,6 @@ public class TextSecurePreferences {
 
   public static void setScreenLockTimeout(@NonNull Context context, long value) {
     setLongPreference(context, SCREEN_LOCK_TIMEOUT, value);
-  }
-
-  public static boolean isRegistrationtLockEnabled(@NonNull Context context) {
-    return getBooleanPreference(context, REGISTRATION_LOCK_PREF, false);
-  }
-
-  public static void setRegistrationtLockEnabled(@NonNull Context context, boolean value) {
-    setBooleanPreference(context, REGISTRATION_LOCK_PREF, value);
-  }
-
-  public static @Nullable String getRegistrationLockPin(@NonNull Context context) {
-    return getStringPreference(context, REGISTRATION_LOCK_PIN_PREF, null);
-  }
-
-  public static void setRegistrationLockPin(@NonNull Context context, String pin) {
-    setStringPreference(context, REGISTRATION_LOCK_PIN_PREF, pin);
-  }
-
-  public static long getRegistrationLockLastReminderTime(@NonNull Context context) {
-    return getLongPreference(context, REGISTRATION_LOCK_LAST_REMINDER_TIME, 0);
-  }
-
-  public static void setRegistrationLockLastReminderTime(@NonNull Context context, long time) {
-    setLongPreference(context, REGISTRATION_LOCK_LAST_REMINDER_TIME, time);
-  }
-
-  public static long getRegistrationLockNextReminderInterval(@NonNull Context context) {
-    return getLongPreference(context, REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL, RegistrationLockReminders.INITIAL_INTERVAL);
-  }
-
-  public static void setRegistrationLockNextReminderInterval(@NonNull Context context, long value) {
-    setLongPreference(context, REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL, value);
   }
 
   public static void setBackupPassphrase(@NonNull Context context, @Nullable String passphrase) {

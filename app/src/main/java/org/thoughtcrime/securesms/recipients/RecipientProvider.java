@@ -175,7 +175,6 @@ class RecipientProvider {
               final int                    expireMessages;
     @NonNull  final List<Recipient>        participants;
     @Nullable final String                 profileName;
-              final boolean                seenInviteReminder;
               final Optional<Integer>      defaultSubscriptionId;
     @NonNull  final RegisteredState        registered;
     @Nullable final byte[]                 profileKey;
@@ -205,7 +204,6 @@ class RecipientProvider {
       this.expireMessages                  = settings     != null ? settings.getExpireMessages() : 0;
       this.participants                    = participants == null ? new LinkedList<>() : participants;
       this.profileName                     = settings     != null ? settings.getProfileName() : null;
-      this.seenInviteReminder              = settings     != null && settings.hasSeenInviteReminder();
       this.defaultSubscriptionId           = settings     != null ? settings.getDefaultSubscriptionId() : Optional.absent();
       this.registered                      = settings     != null ? settings.getRegistered() : RegisteredState.UNKNOWN;
       this.profileKey                      = settings     != null ? settings.getProfileKey() : null;

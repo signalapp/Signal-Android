@@ -400,13 +400,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.thoughtcrime.securesms.contactshare.ContactShareEditActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
-        <activity
-            android:name="org.thoughtcrime.securesms.contactshare.ContactNameEditActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/Theme.Session.DayNight.NoActionBar" />
-        <activity
             android:name="org.thoughtcrime.securesms.ShortcutLauncherActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="true"

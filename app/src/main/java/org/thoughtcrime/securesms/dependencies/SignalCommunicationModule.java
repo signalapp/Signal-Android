@@ -2,13 +2,19 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.content.Context;
 
-import org.greenrobot.eventbus.EventBus;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.SignalServiceAccountManager;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.SignalServiceMessageSender;
+import org.session.libsignal.service.api.util.CredentialsProvider;
+import org.session.libsignal.service.api.util.SleepTimer;
+import org.session.libsignal.service.api.util.UptimeSleepTimer;
+import org.session.libsignal.service.api.websocket.ConnectivityListener;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
@@ -55,14 +61,6 @@ import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.util.RealtimeSleepTimer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceAccountManager;
-import org.session.libsignal.service.api.SignalServiceMessageReceiver;
-import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.util.CredentialsProvider;
-import org.session.libsignal.service.api.util.SleepTimer;
-import org.session.libsignal.service.api.util.UptimeSleepTimer;
-import org.session.libsignal.service.api.websocket.ConnectivityListener;
 
 import dagger.Module;
 import dagger.Provides;
@@ -232,7 +230,6 @@ public class SignalCommunicationModule {
     public void onAuthenticationFailure() {
       Log.w(TAG, "onAuthenticationFailure()");
       TextSecurePreferences.setUnauthorizedReceived(context, true);
-      EventBus.getDefault().post(new ReminderUpdateEvent());
     }
 
   }

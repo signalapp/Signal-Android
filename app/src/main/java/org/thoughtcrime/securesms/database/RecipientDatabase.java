@@ -199,7 +199,6 @@ public class RecipientDatabase extends Database {
     int     callVibrateState       = cursor.getInt(cursor.getColumnIndexOrThrow(CALL_VIBRATE));
     long    muteUntil              = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
     String  serializedColor        = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
-    boolean seenInviteReminder     = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
     int     defaultSubscriptionId  = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages         = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
     int     registeredState        = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED));
@@ -238,8 +237,8 @@ public class RecipientDatabase extends Database {
                                              VibrateState.fromId(messageVibrateState),
                                              VibrateState.fromId(callVibrateState),
                                              Util.uri(messageRingtone), Util.uri(callRingtone),
-                                             color, seenInviteReminder,
-                                             defaultSubscriptionId, expireMessages,
+                                             color,
+            defaultSubscriptionId, expireMessages,
                                              RegisteredState.fromId(registeredState),
                                              profileKey, systemDisplayName, systemContactPhoto,
                                              systemPhoneLabel, systemContactUri,
@@ -324,13 +323,6 @@ public class RecipientDatabase extends Database {
     values.put(MUTE_UNTIL, until);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setMuted(until);
-  }
-
-  public void setSeenInviteReminder(@NonNull Recipient recipient, @SuppressWarnings("SameParameterValue") boolean seen) {
-    ContentValues values = new ContentValues(1);
-    values.put(SEEN_INVITE_REMINDER, seen ? 1 : 0);
-    updateOrInsert(recipient.getAddress(), values);
-    recipient.resolve().setHasSeenInviteReminder(seen);
   }
 
   public void setExpireMessages(@NonNull Recipient recipient, int expiration) {
@@ -553,7 +545,6 @@ public class RecipientDatabase extends Database {
     private final Uri                    messageRingtone;
     private final Uri                    callRingtone;
     private final MaterialColor          color;
-    private final boolean                seenInviteReminder;
     private final int                    defaultSubscriptionId;
     private final int                    expireMessages;
     private final RegisteredState        registered;
@@ -575,10 +566,9 @@ public class RecipientDatabase extends Database {
                       @Nullable Uri messageRingtone,
                       @Nullable Uri callRingtone,
                       @Nullable MaterialColor color,
-                      boolean seenInviteReminder,
                       int defaultSubscriptionId,
                       int expireMessages,
-                      @NonNull  RegisteredState registered,
+                      @NonNull RegisteredState registered,
                       @Nullable byte[] profileKey,
                       @Nullable String systemDisplayName,
                       @Nullable String systemContactPhoto,
@@ -598,7 +588,6 @@ public class RecipientDatabase extends Database {
       this.messageRingtone        = messageRingtone;
       this.callRingtone           = callRingtone;
       this.color                  = color;
-      this.seenInviteReminder     = seenInviteReminder;
       this.defaultSubscriptionId  = defaultSubscriptionId;
       this.expireMessages         = expireMessages;
       this.registered             = registered;
@@ -641,10 +630,6 @@ public class RecipientDatabase extends Database {
 
     public @Nullable Uri getCallRingtone() {
       return callRingtone;
-    }
-
-    public boolean hasSeenInviteReminder() {
-      return seenInviteReminder;
     }
 
     public Optional<Integer> getDefaultSubscriptionId() {

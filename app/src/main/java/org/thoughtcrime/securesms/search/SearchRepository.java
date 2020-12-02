@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -53,21 +52,18 @@ public class SearchRepository {
 
   private final Context          context;
   private final SearchDatabase   searchDatabase;
-  private final ContactsDatabase contactsDatabase;
   private final ThreadDatabase   threadDatabase;
   private final ContactAccessor  contactAccessor;
   private final Executor         executor;
 
   public SearchRepository(@NonNull Context context,
                           @NonNull SearchDatabase searchDatabase,
-                          @NonNull ContactsDatabase contactsDatabase,
                           @NonNull ThreadDatabase threadDatabase,
                           @NonNull ContactAccessor contactAccessor,
                           @NonNull Executor executor)
   {
     this.context          = context.getApplicationContext();
     this.searchDatabase   = searchDatabase;
-    this.contactsDatabase = contactsDatabase;
     this.threadDatabase   = threadDatabase;
     this.contactAccessor  = contactAccessor;
     this.executor         = executor;

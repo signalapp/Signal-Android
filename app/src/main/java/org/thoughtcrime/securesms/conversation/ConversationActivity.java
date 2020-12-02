@@ -112,11 +112,9 @@ import org.thoughtcrime.securesms.components.identity.UntrustedSendDialog;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.identity.UnverifiedSendDialog;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
-import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
@@ -138,7 +136,6 @@ import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -282,7 +279,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int PICK_DOCUMENT       = 2;
   private static final int PICK_AUDIO          = 3;
   private static final int PICK_CONTACT        = 4;
-  private static final int GET_CONTACT_DETAILS = 5;
+//  private static final int GET_CONTACT_DETAILS = 5;
 //  private static final int GROUP_EDIT          = 6;
   private static final int TAKE_PHOTO          = 7;
   private static final int ADD_CONTACT         = 8;
@@ -303,7 +300,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Button                      unblockButton;
   private   Button                      makeDefaultSmsButton;
   private   InputAwareLayout            container;
-  protected Stub<ReminderView>          reminderView;
   private   Stub<UnverifiedBannerView>  unverifiedBannerView;
   private   Stub<GroupShareProfileView> groupShareProfileView;
   private   TypingStatusTextWatcher     typingTextWatcher;
@@ -613,13 +609,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case PICK_CONTACT:
       if (isSecureText && !isSmsForced()) {
-        openContactShareEditor(data.getData());
+//        openContactShareEditor(data.getData());
       } else {
         addAttachmentContactInfo(data.getData());
       }
-      break;
-    case GET_CONTACT_DETAILS:
-      sendSharedContact(data.getParcelableArrayListExtra(ContactShareEditActivity.KEY_CONTACTS));
       break;
     case TAKE_PHOTO:
       if (attachmentManager.getCaptureUri() != null) {
@@ -885,11 +878,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onKeyboardShown() {
     inputPanel.onKeyboardShown();
-  }
-
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  public void onEvent(ReminderUpdateEvent event) {
-    updateReminders(recipient.hasSeenInviteReminder());
   }
 
   @Override
@@ -1487,14 +1475,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  protected void updateReminders(boolean seenInvite) {
-    Log.i(TAG, "updateReminders(" + seenInvite + ")");
-
-   if (reminderView.resolved()) {
-      reminderView.get().hide();
-    }
-  }
-
   private void updateSessionRestoreBanner() {
     Set<String> devices = DatabaseFactory.getLokiThreadDatabase(this).getSessionRestoreDevices(threadId);
     if (devices.size() > 0) {
@@ -1592,7 +1572,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     unblockButton                          = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton                   = ViewUtil.findById(this, R.id.make_default_sms_button);
     container                              = ViewUtil.findById(this, R.id.layout_container);
-    reminderView                           = ViewUtil.findStubById(this, R.id.reminder_stub);
     unverifiedBannerView                   = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
     groupShareProfileView                  = ViewUtil.findStubById(this, R.id.group_share_profile_view_stub);
     quickAttachmentToggle                  = ViewUtil.findById(this, R.id.quick_attachment_toggle);
@@ -1807,7 +1786,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       updateInputUI(recipient, isSecureText, isDefaultSms);
       setActionBarColor(recipient.getColor());
       setGroupShareProfileReminder(recipient);
-      updateReminders(recipient.hasSeenInviteReminder());
       updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
       initializeSecurity(isSecureText, isDefaultSms);
 
@@ -1906,7 +1884,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (MediaType.VCARD.equals(mediaType) && isSecureText) {
-      openContactShareEditor(uri);
       return new SettableFuture<>(false);
     } else if (MediaType.IMAGE.equals(mediaType) || MediaType.GIF.equals(mediaType) || MediaType.VIDEO.equals(mediaType)) {
       Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, 0, Optional.absent(), Optional.absent());
@@ -1915,11 +1892,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       return attachmentManager.setMedia(glideRequests, uri, mediaType, getCurrentMediaConstraints(), width, height);
     }
-  }
-
-  private void openContactShareEditor(Uri contactUri) {
-    Intent intent = ContactShareEditActivity.getIntent(this, Collections.singletonList(contactUri));
-    startActivityForResult(intent, GET_CONTACT_DETAILS);
   }
 
   private void addAttachmentContactInfo(Uri contactUri) {

@@ -52,11 +52,10 @@ public class RefreshAttributesJob extends BaseJob implements InjectableType {
   public void onRun() throws IOException {
     int     registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
     boolean fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
-    String  pin                         = TextSecurePreferences.getRegistrationLockPin(context);
     byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
     boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
 
-    signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages, pin,
+    signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages, "",
                                               unidentifiedAccessKey, universalUnidentifiedAccess);
 
     ApplicationContext.getInstance(context)

@@ -94,7 +94,6 @@ public class Recipient implements RecipientModifiedListener {
   private @NonNull  RegisteredState      registered            = RegisteredState.UNKNOWN;
 
   private @Nullable MaterialColor  color;
-  private           boolean        seenInviteReminder;
   private @Nullable byte[]         profileKey;
   private @Nullable String         profileName;
   private @Nullable String         profileAvatar;
@@ -151,7 +150,6 @@ public class Recipient implements RecipientModifiedListener {
       this.messageVibrate         = stale.messageVibrate;
       this.callVibrate            = stale.callVibrate;
       this.expireMessages         = stale.expireMessages;
-      this.seenInviteReminder     = stale.seenInviteReminder;
       this.defaultSubscriptionId  = stale.defaultSubscriptionId;
       this.registered             = stale.registered;
       this.notificationChannel    = stale.notificationChannel;
@@ -179,7 +177,6 @@ public class Recipient implements RecipientModifiedListener {
       this.messageVibrate         = details.get().messageVibrateState;
       this.callVibrate            = details.get().callVibrateState;
       this.expireMessages         = details.get().expireMessages;
-      this.seenInviteReminder     = details.get().seenInviteReminder;
       this.defaultSubscriptionId  = details.get().defaultSubscriptionId;
       this.registered             = details.get().registered;
       this.notificationChannel    = details.get().notificationChannel;
@@ -213,7 +210,6 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.messageVibrate         = result.messageVibrateState;
             Recipient.this.callVibrate            = result.callVibrateState;
             Recipient.this.expireMessages         = result.expireMessages;
-            Recipient.this.seenInviteReminder     = result.seenInviteReminder;
             Recipient.this.defaultSubscriptionId  = result.defaultSubscriptionId;
             Recipient.this.registered             = result.registered;
             Recipient.this.notificationChannel    = result.notificationChannel;
@@ -263,7 +259,6 @@ public class Recipient implements RecipientModifiedListener {
     this.messageVibrate         = details.messageVibrateState;
     this.callVibrate            = details.callVibrateState;
     this.expireMessages         = details.expireMessages;
-    this.seenInviteReminder     = details.seenInviteReminder;
     this.defaultSubscriptionId  = details.defaultSubscriptionId;
     this.registered             = details.registered;
     this.notificationChannel    = details.notificationChannel;
@@ -610,18 +605,6 @@ public class Recipient implements RecipientModifiedListener {
   public void setExpireMessages(int expireMessages) {
     synchronized (this) {
       this.expireMessages = expireMessages;
-    }
-
-    notifyListeners();
-  }
-
-  public synchronized boolean hasSeenInviteReminder() {
-    return seenInviteReminder;
-  }
-
-  public void setHasSeenInviteReminder(boolean value) {
-    synchronized (this) {
-      this.seenInviteReminder = value;
     }
 
     notifyListeners();

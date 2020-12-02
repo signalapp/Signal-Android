@@ -117,11 +117,4 @@ public class ConversationPopupActivity extends ConversationActivity {
     super.sendComplete(threadId);
     finish();
   }
-
-  @Override
-  protected void updateReminders(boolean seenInvite) {
-    if (reminderView.resolved()) {
-      reminderView.get().setVisibility(View.GONE);
-    }
-  }
 }

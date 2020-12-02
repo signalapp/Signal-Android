@@ -37,7 +37,6 @@ public class ConversationSearchViewModel extends AndroidViewModel {
     debouncer        = new Debouncer(500);
     searchRepository = new SearchRepository(context,
                                             DatabaseFactory.getSearchDatabase(context),
-                                            DatabaseFactory.getContactsDatabase(context),
                                             DatabaseFactory.getThreadDatabase(context),
                                             ContactAccessor.getInstance(),
                                             SignalExecutors.SERIAL);
