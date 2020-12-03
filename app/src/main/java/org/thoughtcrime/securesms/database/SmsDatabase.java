@@ -694,13 +694,16 @@ public class SmsDatabase extends MessageDatabase {
                                       @NonNull Collection<UUID> peekJoinedUuids,
                                       boolean isCallFull)
   {
-    SQLiteDatabase db        = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    long threadId;
 
     try {
       db.beginTransaction();
 
       Recipient recipient = Recipient.resolved(groupRecipientId);
-      long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
       boolean peerEraIdSameAsPrevious = updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids, isCallFull);
 
@@ -736,13 +739,13 @@ public class SmsDatabase extends MessageDatabase {
 
       DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
-      notifyConversationListeners(threadId);
-      ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
-
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
     }
+
+    notifyConversationListeners(threadId);
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
   }
 
   @Override
