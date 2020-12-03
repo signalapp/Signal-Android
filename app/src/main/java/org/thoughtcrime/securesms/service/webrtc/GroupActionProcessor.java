@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.VideoTrack;
+import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 
@@ -33,6 +34,20 @@ import java.util.Map;
 public class GroupActionProcessor extends DeviceAwareActionProcessor {
   public GroupActionProcessor(@NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
     super(webRtcInteractor, tag);
+  }
+
+  protected @NonNull WebRtcServiceState handleReceivedOffer(@NonNull WebRtcServiceState currentState,
+                                                            @NonNull WebRtcData.CallMetadata callMetadata,
+                                                            @NonNull WebRtcData.OfferMetadata offerMetadata,
+                                                            @NonNull WebRtcData.ReceivedOfferMetadata receivedOfferMetadata)
+  {
+    Log.i(tag, "handleReceivedOffer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
+
+    Log.i(tag, "In a group call, send busy back to 1:1 call offer.");
+    currentState.getActionProcessor().handleSendBusy(currentState, callMetadata, true);
+    webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
+
+    return currentState;
   }
 
   @Override
