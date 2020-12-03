@@ -320,10 +320,7 @@ public class JobManager implements ConstraintObserver.Notifier {
   public void flush() {
     CountDownLatch latch = new CountDownLatch(1);
 
-    runOnExecutor(() -> {
-      jobController.flush();
-      latch.countDown();
-    });
+    runOnExecutor(latch::countDown);
 
     try {
       latch.await();

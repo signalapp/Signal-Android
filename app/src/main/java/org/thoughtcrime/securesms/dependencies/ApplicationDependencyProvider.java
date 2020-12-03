@@ -145,7 +145,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                                                .setJobFactories(JobManagerFactories.getJobFactories(context))
                                                                .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
                                                                .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
-                                                               .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context), SignalExecutors.newCachedSingleThreadExecutor("signal-fast-job-storage")))
+                                                               .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
                                                                .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
                                                                .addReservedJobRunner(new FactoryJobPredicate(PushDecryptMessageJob.KEY, PushProcessMessageJob.KEY, MarkerJob.KEY))
                                                                .addReservedJobRunner(new FactoryJobPredicate(PushTextSendJob.KEY, PushMediaSendJob.KEY, PushGroupSendJob.KEY, ReactionSendJob.KEY, TypingSendJob.KEY, GroupCallUpdateSendJob.KEY))

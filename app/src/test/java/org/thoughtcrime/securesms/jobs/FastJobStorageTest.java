@@ -36,7 +36,7 @@ public class FastJobStorageTest {
 
   @Test
   public void init_allStoredDataAvailable() {
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
 
     subject.init();
 
@@ -48,7 +48,7 @@ public class FastJobStorageTest {
   @Test
   public void insertJobs_writesToDatabase() {
     JobDatabase    database = noopDatabase();
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
 
     subject.insertJobs(DataSet1.FULL_SPECS);
 
@@ -58,7 +58,7 @@ public class FastJobStorageTest {
   @Test
   public void insertJobs_memoryOnlyJob_doesNotWriteToDatabase() {
     JobDatabase    database = noopDatabase();
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
 
     subject.insertJobs(DataSetMemory.FULL_SPECS);
 
@@ -67,7 +67,7 @@ public class FastJobStorageTest {
 
   @Test
   public void insertJobs_dataCanBeFound() {
-    FastJobStorage subject = new FastJobStorage(noopDatabase(), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(noopDatabase());
 
     subject.insertJobs(DataSet1.FULL_SPECS);
 
@@ -78,7 +78,7 @@ public class FastJobStorageTest {
 
   @Test
   public void insertJobs_individualJobCanBeFound() {
-    FastJobStorage subject = new FastJobStorage(noopDatabase(), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(noopDatabase());
 
     subject.insertJobs(DataSet1.FULL_SPECS);
 
@@ -89,7 +89,7 @@ public class FastJobStorageTest {
   @Test
   public void updateAllJobsToBePending_writesToDatabase() {
     JobDatabase    database = noopDatabase();
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
 
     subject.updateAllJobsToBePending();
 
@@ -105,7 +105,7 @@ public class FastJobStorageTest {
                                       Collections.emptyList(),
                                       Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
 
     subject.init();
     subject.updateAllJobsToBePending();
@@ -117,7 +117,7 @@ public class FastJobStorageTest {
   @Test
   public void updateJobs_writesToDatabase() {
     JobDatabase    database = fixedDataDatabase(DataSet1.FULL_SPECS);
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
     List<JobSpec>  jobs     = Collections.singletonList(new JobSpec("id1", "f1", null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, null, false, false));
 
     subject.init();
@@ -129,7 +129,7 @@ public class FastJobStorageTest {
   @Test
   public void updateJobs_memoryOnly_doesNotWriteToDatabase() {
     JobDatabase    database = fixedDataDatabase(DataSetMemory.FULL_SPECS);
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
     List<JobSpec>  jobs     = Collections.singletonList(new JobSpec("id1", "f1", null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, null, false, false));
 
     subject.init();
@@ -150,7 +150,7 @@ public class FastJobStorageTest {
                                       Collections.emptyList(),
                                       Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2, fullSpec3)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2, fullSpec3)));
 
     JobSpec update1 = new JobSpec("1", "g1", "q1", 2, 2, 2, 2, 2, 2, 2, "abc", null, true, false);
     JobSpec update2 = new JobSpec("2", "g2", "q2", 3, 3, 3, 3, 3, 3, 3, "def", "ghi", true, false);
@@ -166,7 +166,7 @@ public class FastJobStorageTest {
   @Test
   public void updateJobRunningState_writesToDatabase() {
     JobDatabase    database = fixedDataDatabase(DataSet1.FULL_SPECS);
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
 
     subject.init();
     subject.updateJobRunningState("id1", true);
@@ -176,7 +176,7 @@ public class FastJobStorageTest {
 
   @Test
   public void updateJobRunningState_stateUpdated() {
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
     subject.init();
 
     subject.updateJobRunningState(DataSet1.JOB_1.getId(), true);
@@ -189,7 +189,7 @@ public class FastJobStorageTest {
   @Test
   public void updateJobAfterRetry_writesToDatabase() {
     JobDatabase    database = fixedDataDatabase(DataSet1.FULL_SPECS);
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
 
     subject.init();
     subject.updateJobAfterRetry("id1", true, 1, 10, "a");
@@ -200,7 +200,7 @@ public class FastJobStorageTest {
   @Test
   public void updateJobAfterRetry_memoryOnly_doesNotWriteToDatabase() {
     JobDatabase    database = fixedDataDatabase(DataSetMemory.FULL_SPECS);
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
 
     subject.init();
     subject.updateJobAfterRetry("id1", true, 1, 10, "a");
@@ -214,7 +214,7 @@ public class FastJobStorageTest {
                                      Collections.emptyList(),
                                      Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
 
     subject.init();
     subject.updateJobAfterRetry("1", false, 1, 10, "a");
@@ -237,7 +237,7 @@ public class FastJobStorageTest {
                                       Collections.emptyList(),
                                       Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
     assertEquals(0, subject.getPendingJobsWithNoDependenciesInCreatedOrder(1).size());
@@ -249,7 +249,7 @@ public class FastJobStorageTest {
                                      Collections.emptyList(),
                                      Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
     subject.init();
 
     assertEquals(0, subject.getPendingJobsWithNoDependenciesInCreatedOrder(10).size());
@@ -261,7 +261,7 @@ public class FastJobStorageTest {
                                      Collections.emptyList(),
                                      Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
     subject.init();
 
     assertEquals(0, subject.getPendingJobsWithNoDependenciesInCreatedOrder(0).size());
@@ -277,7 +277,7 @@ public class FastJobStorageTest {
                                       Collections.singletonList(new DependencySpec("2", "1", false)));
 
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
     assertEquals(0, subject.getPendingJobsWithNoDependenciesInCreatedOrder(0).size());
@@ -289,7 +289,7 @@ public class FastJobStorageTest {
                                      Collections.emptyList(),
                                      Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
     subject.init();
 
     assertEquals(1, subject.getPendingJobsWithNoDependenciesInCreatedOrder(10).size());
@@ -305,7 +305,7 @@ public class FastJobStorageTest {
                                       Collections.emptyList());
 
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
     assertEquals(2, subject.getPendingJobsWithNoDependenciesInCreatedOrder(10).size());
@@ -321,7 +321,7 @@ public class FastJobStorageTest {
                                       Collections.emptyList());
 
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
     List<JobSpec> jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10);
@@ -340,7 +340,7 @@ public class FastJobStorageTest {
                                       Collections.emptyList());
 
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
     List<JobSpec> jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10);
@@ -358,7 +358,7 @@ public class FastJobStorageTest {
                                           Collections.emptyList(),
                                           Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(plainSpec, migrationSpec)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(plainSpec, migrationSpec)));
     subject.init();
 
     List<JobSpec> jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10);
@@ -376,7 +376,7 @@ public class FastJobStorageTest {
                                           Collections.emptyList(),
                                           Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(plainSpec, migrationSpec)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(plainSpec, migrationSpec)));
     subject.init();
 
     List<JobSpec> jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10);
@@ -393,7 +393,7 @@ public class FastJobStorageTest {
                                            Collections.emptyList(),
                                            Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(migrationSpec1, migrationSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(migrationSpec1, migrationSpec2)));
     subject.init();
 
     List<JobSpec> jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10);
@@ -410,7 +410,7 @@ public class FastJobStorageTest {
                                            Collections.emptyList(),
                                            Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(migrationSpec1, migrationSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(migrationSpec1, migrationSpec2)));
     subject.init();
 
     List<JobSpec> jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10);
@@ -428,7 +428,7 @@ public class FastJobStorageTest {
         Collections.emptyList(),
         Collections.emptyList());
 
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(migrationSpec1, migrationSpec2)), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(migrationSpec1, migrationSpec2)));
     subject.init();
 
     List<JobSpec> jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10);
@@ -439,7 +439,7 @@ public class FastJobStorageTest {
   @Test
   public void deleteJobs_writesToDatabase() {
     JobDatabase    database = fixedDataDatabase(DataSet1.FULL_SPECS);
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
     List<String>   ids      = Arrays.asList("id1", "id2");
 
     subject.init();
@@ -451,7 +451,7 @@ public class FastJobStorageTest {
   @Test
   public void deleteJobs_memoryOnly_doesNotWriteToDatabase() {
     JobDatabase    database = fixedDataDatabase(DataSetMemory.FULL_SPECS);
-    FastJobStorage subject  = new FastJobStorage(database, new DirectExecutor());
+    FastJobStorage subject  = new FastJobStorage(database);
     List<String>   ids      = Collections.singletonList("id1");
 
     subject.init();
@@ -462,7 +462,7 @@ public class FastJobStorageTest {
 
   @Test
   public void deleteJobs_deletesAllRelevantPieces() {
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
 
     subject.init();
     subject.deleteJobs(Collections.singletonList("id1"));
@@ -481,7 +481,7 @@ public class FastJobStorageTest {
 
   @Test
   public void getDependencySpecsThatDependOnJob_startOfChain() {
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
 
     subject.init();
 
@@ -494,7 +494,7 @@ public class FastJobStorageTest {
 
   @Test
   public void getDependencySpecsThatDependOnJob_midChain() {
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
 
     subject.init();
 
@@ -506,7 +506,7 @@ public class FastJobStorageTest {
 
   @Test
   public void getDependencySpecsThatDependOnJob_endOfChain() {
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
 
     subject.init();
 
@@ -517,7 +517,7 @@ public class FastJobStorageTest {
 
   @Test
   public void getJobsInQueue_empty() {
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
 
     subject.init();
 
@@ -528,7 +528,7 @@ public class FastJobStorageTest {
 
   @Test
   public void getJobsInQueue_singleJob() {
-    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS), new DirectExecutor());
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
 
     subject.init();
 
