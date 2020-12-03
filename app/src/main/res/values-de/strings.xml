@@ -1480,7 +1480,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_reacted_s_to_your_image">Hat mit %1$s auf dein Bild reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Hat mit %1$s auf deine Datei reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Hat mit %1$s auf dein Audio reagiert.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf deine einmalig anzeigbaren Medieninhalte reagiert.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf dein einmalig anzeigbaren Medieninhalt reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Hat mit %1$s auf deinen Sticker reagiert.</string>
   <string name="MessageNotifier_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Benachrichtigungen über neue Signal-Kontakte ausschalten? Du kannst sie wieder einschalten in Signal → Einstellungen → Benachrichtigungen.</string>

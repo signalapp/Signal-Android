@@ -146,8 +146,8 @@
   <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
   <string name="CommunicationActions_no_email_app_found">Aucune appli de courriel n’a été trouvée.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Un appel cellulaire est déjà en cours.</string>
-  <string name="CommunicationActions_start_video_call">Démarrer un appel vidéo ?</string>
-  <string name="CommunicationActions_start_voice_call">Démarrer un appel vocal ?</string>
+  <string name="CommunicationActions_start_video_call">Lancer un appel vidéo ?</string>
+  <string name="CommunicationActions_start_voice_call">Lancer un appel vocal ?</string>
   <string name="CommunicationActions_cancel">Annuler</string>
   <string name="CommunicationActions_call">Appeler</string>
   <string name="CommunicationActions_insecure_call">Appel non sécurisé</string>
@@ -551,7 +551,7 @@
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">Invitations de groupe en attente</string>
+  <string name="PendingMembersActivity_pending_group_invites">Invitations au groupe en attente</string>
   <string name="PendingMembersActivity_requests">Demandes</string>
   <string name="PendingMembersActivity_invites">Invitations</string>
   <string name="PendingMembersActivity_people_you_invited">Les personnes que vous avez invitées</string>
@@ -657,7 +657,7 @@
   <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est un groupe hérité. Les fonctions telles que l’administration des groupes ne sont proposées que pour les nouveaux groupes.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Ce groupe est un groupe hérité. Pour accéder aux nouvelles fonctions telles que les @mentions et l’administration,</string>
-  <string name="ManageGroupActivity_legacy_group_too_large">Ce groupe ne peut pas être converti en nouveau groupe, car il comporte trop de membres. La taille maximale du groupe est %1$d.</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Ce groupe hérité ne peut pas être converti en nouveau groupe, car il comporte trop de membres. Le nombre maximal de membres d’un groupe est %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">convertissez ce groupe</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ce groupe est un groupe de messages multimédias non sécurisé. Pour converser en toute confidentialité et accéder aux fonctions telles que les noms de groupe, invitez vos contacts sur Signal.</string>
   <string name="ManageGroupActivity_invite_now">Inviter maintenant</string>
@@ -751,7 +751,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Les liens de groupe arrivent bientôt</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Mettez Signal à jour pour utiliser les liens de groupe</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Mettre Signal à jour</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un ou plusieurs de vos appareils liés utilisent une version de Signal ne supportant pas les liens de groupes. Mettez à jour vos appareils pour vous joindre au groupe.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un ou plusieurs de vos appareils reliés utilisent une version de Signal qui ne prend pas en charge les liens de groupe. Mettez Signal à jour sur vos appareils reliés pour vous joindre à ce groupe.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Le lien de groupe est invalide</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Ajouter « %1$s » au groupe ?</string>
@@ -996,12 +996,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Le lien de groupe a été activé et l’approbation d’un administrateur est désactivée.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Le lien de groupe a été activé et l’approbation d’un administrateur est activée.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Le lien de groupe a été désactivé.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Vous avez désactivé l’approbation d’un administrateur pour le lien de groupe.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s a désactivé l\'approbation d\'un administrateur pour le lien du groupe.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">L\'approbation d\'un administrateur pour le lien du groupe a été désactivé.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Vous avez activé l’approbation d’un administrateur pour le lien de groupe.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s a activé d\'approbation d\'un administrateur pour le lien du groupe.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">L\'approbation d\'un administrateur pour le lien du groupe a été activée.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Vous avez désactivé l’approbation d’un administrateur pour le lien du groupe.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s a désactivé l’approbation d’un administrateur pour le lien du groupe.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">L’approbation d’un administrateur pour le lien du groupe a été désactivé.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Vous avez activé l’approbation d’un administrateur pour le lien du groupe.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s a activé l’approbation d’un administrateur pour le lien du groupe.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">L’approbation d’un administrateur a été activée pour le lien du groupe.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Vous avez réinitialisé le lien de groupe.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s a réinitialisé le lien de groupe.</string>
@@ -1036,11 +1036,12 @@
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s et %2$s font partie de l’appel de groupe · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s et  %3$s font partie de l’appel de groupe · %4$s</string>
   <string name="MessageRecord_group_call_s">Appel de groupe · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s a lancé un appel de groupe</string>
   <string name="MessageRecord_you_are_in_the_group_call">Vous faites partie de l’appel de groupe</string>
   <string name="MessageRecord_you">Vous</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-    <item quantity="one">%1$s, %2$s, et %3$d autre sont dans l\'appel de groupe · %4$s</item>
-    <item quantity="other">%1$s, %2$s, et %3$d autres sont dans l\'appel de groupe · %4$s</item>
+    <item quantity="one">%1$s, %2$s, et %3$d autre personne font partie de l’appel de groupe · %4$s</item>
+    <item quantity="other">%1$s, %2$s, et %3$d autres personnes font partie de l’appel de groupe · %4$s</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Accepter</string>
@@ -1051,9 +1052,9 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Ce contact ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Autoriser %1$s à échanger des messages et partager votre nom et votre photo avec ce contact ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Poursuivre votre conversation avec ce groupe et partager vos nom et photo avec ses membres ?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Mettez ce Groupe à niveau pour activer de nouvelles fonctions comme les @mentions et les administrateurs. Les Membres n\'ayant pas partagé leur nom ou photo avec ce group seront invités à le joindre.</string>
-  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ce groupe hérité ne peut plus être utilisé car il est trop grand. La taille maximum d\'un groupe est de %1$d.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Poursuivre votre conversation avec %1$s et partager votre nom et photo avec eux ?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Convertissez ce groupe pour activer de nouvelles fonctions telles que les @mentions et l’administration. Les membres qui n’ont pas partagé leur nom ou leur photo dans ce groupe seront invités à s’y joindre.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ce groupe hérité ne peut plus être utilisé, car il comporte trop de membres. Le nombre maximal de membres d’un groupe est %1$d.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Poursuivre votre conversation avec %1$s et partager vos nom et photo avec cette personne ?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vous joindre à ce groupe et partager votre nom et votre photo avec ses membres ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Vous joindre à ce groupe ? Ses membres ne sauront pas que vous avez lu leurs messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
@@ -1102,10 +1103,10 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Les messages envoyés et reçus de cette conversation disparaîtront %s après avoir été lus.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Mettre Signal à jour maintenant</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Cette version de Signal expirera aujourd\'hui. Mettez à jour vers une version plus récente.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Cette version de Signal expirera aujourd’hui. Passez à la version la plus récente.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="one">Cette version de Signal va expirer demain, il est recommandé de mettre à jour.</item>
-    <item quantity="other">Cette version de Signal va expirer dans %djours, il est recommandé de mettre à jour.</item>
+    <item quantity="one">Cette version de Signal expirera demain. Passez à la version la plus récente.</item>
+    <item quantity="other">Cette version de Signal expirera dans %d jours. Passez à la version la plus récente.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Saisissez la phrase de passe</string>
@@ -1188,14 +1189,14 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
-  <string name="WebRtcCallView__start_call">Démarrer un appel</string>
+  <string name="WebRtcCallView__start_call">Lancer un appel</string>
   <string name="WebRtcCallView__join_call">Me joindre à l’appel</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Appel de groupe</string>
+  <string name="WebRtcCallView__s_group_call">Appel de groupe « %1$s »</string>
   <string name="WebRtcCallView__view_participants_list">Afficher les participants</string>
-  <string name="WebRtcCallView__your_video_is_off">Votre video est désactivée</string>
+  <string name="WebRtcCallView__your_video_is_off">La vidéo est désactivée</string>
   <string name="WebRtcCallView__connecting">Connexion…</string>
   <string name="WebRtcCallView__reconnecting">Reconnexion…</string>
-  <string name="WebRtcCallView__joining">Adhésion en cours…</string>
+  <string name="WebRtcCallView__joining">Connexion…</string>
   <string name="WebRtcCallView__disconnected">L’application est déconnectée</string>
   <string name="WebRtcCallView__no_one_else_is_here">Il n’y a personne d’autre ici</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s est dans cet appel</string>
@@ -1573,7 +1574,7 @@
   <string name="ContactSelectionListFragment_maximum_group_size_reached">La taille maximale du groupe est atteinte</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal ne peuvent pas avoir plus de %1$dmembres.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">La limite de membres recommandée est atteinte</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Les Groupes fonctionnent mieux avec %1$d membres ou moins. En ajouter davantage peut causer des délais lors de l\'envoi et la réception de messages.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Les Groupes fonctionnent mieux avec %1$d membres ou moins. En ajouter davantage peut causer des délais lors de l’envoi et la réception de messages.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d membre</item>
     <item quantity="other">%1$d membres</item>
@@ -1619,7 +1620,7 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Chargement</string>
   <string name="ConversationUpdateItem_learn_more">En apprendre davantage</string>
-  <string name="ConversationUpdateItem_join_call">Rejoindre l\'appel</string>
+  <string name="ConversationUpdateItem_join_call">Rejoindre l’appel</string>
   <string name="ConversationUpdateItem_return_to_call">Revenir à l’appel</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
@@ -2033,7 +2034,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">Nouveau message à…</string>
-  <string name="contact_selection_list__unknown_contact_block">Bloquer l\'utilisateur</string>
+  <string name="contact_selection_list__unknown_contact_block">Bloquer l’utilisateur</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">Ajouter au groupe</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Appeler</string>
@@ -2417,7 +2418,7 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">Appel vocal non sécurisé</string>
   <string name="RecipientBottomSheet_video_call_description">Appel vidéo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Supprimer %1$s en tant qu’administrateur du groupe ?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">«%1$s» aura la possibilité d\'éditer ce groupe ainsi que ses membres.</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">«%1$s» aura la possibilité d’éditer ce groupe ainsi que ses membres.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Supprimer %1$s du groupe ? </string>
   <string name="RecipientBottomSheet_remove">Supprimer</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">A été copié dans le presse-papiers</string>
@@ -2429,7 +2430,7 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">Que sont les groupes hérités ?</string>
   <string name="GroupsLearnMore_paragraph_1">Les groupes hérités sont des groupes qui ne sont pas compatibles avec les fonctions des nouveaux groupes, telles que les administrateurs et les mises à jour plus descriptives des groupes.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Puis-je convertir un groupe hérité en nouveau groupe ?</string>
-  <string name="GroupsLearnMore_paragraph_2">Les groupes hérités ne peuvent pour l\'instant pas être mis à niveau vers des Nouveaux Groupes, mais vous pouvez créer un Nouveau Groupe avec des membres identiques s\'ils possèdent la version la plus récente de Signal.</string>
+  <string name="GroupsLearnMore_paragraph_2">Les groupes hérités ne peuvent pour l’instant pas être mis à niveau vers des Nouveaux Groupes, mais vous pouvez créer un Nouveau Groupe avec des membres identiques s’ils possèdent la version la plus récente de Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal offrira dans le futur un moyen de convertir les groupes hérités.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Partager avec Signal</string>
@@ -2451,7 +2452,7 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Examiner les membres</string>
   <string name="ReviewCardDialogFragment__review_request">Examiner la requête</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membres du groupes ont le meme nom, passez les en revue ci-dessous, et choisissez l\'action appropriée.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membres du groupes ont le meme nom, passez les en revue ci-dessous, et choisissez l’action appropriée.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Si vous n’êtes pas certain de qui la demande provient, examinez les contacts ci-dessous et agissez en conséquence.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Aucun autre groupe en commun.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>

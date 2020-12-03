@@ -151,6 +151,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nerasta jokios saityno naršyklės.</string>
   <string name="CommunicationActions_no_email_app_found">Nerasta jokios el. pašto programėlės.</string>
+  <string name="CommunicationActions_send_email">Siųsti el. laišką</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobilusis skambutis jau vyksta.</string>
   <string name="CommunicationActions_start_video_call">Pradėti vaizdo skambutį?</string>
   <string name="CommunicationActions_start_voice_call">Pradėti balso skambutį?</string>
@@ -1620,6 +1621,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Sureagavo į jūsų paveikslą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Sureagavo į jūsų failą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Sureagavo į jūsų garso įrašą: %1$s.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Sureagavo į jūsų vienkartinės peržiūros mediją: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Sureagavo į jūsų lipduką: %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Išjungti pranešimus apie tai, kad adresatai prisijungė prie Signal? Galėsite ir vėl įjungti šiuos pranešimus, perėję į Signal &gt; Nustatymai &gt; Pranešimai.</string>
