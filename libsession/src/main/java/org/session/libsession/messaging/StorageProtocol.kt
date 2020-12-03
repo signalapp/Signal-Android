@@ -17,6 +17,10 @@ interface StorageProtocol {
     fun getUserProfileKey(): ByteArray?
     fun getUserProfilePictureURL(): String?
 
+    // Signal Protocol
+
+    fun getOrGenerateRegistrationID(): Int //TODO needs impl
+
     // Shared Sender Keys
     fun getClosedGroupPrivateKey(publicKey: String): ECPrivateKey?
     fun isClosedGroup(publicKey: String): Boolean

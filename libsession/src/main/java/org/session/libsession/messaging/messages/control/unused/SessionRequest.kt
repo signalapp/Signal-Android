@@ -1,9 +1,10 @@
 package org.session.libsession.messaging.messages.control.unused
 
 import com.google.protobuf.ByteString
+import org.session.libsession.messaging.Configuration
 import org.session.libsession.messaging.messages.control.ControlMessage
-import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
-import org.session.libsession.messaging.messages.control.TypingIndicator
+import org.session.libsignal.libsignal.IdentityKey
+import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.libsignal.state.PreKeyBundle
 import org.session.libsignal.service.internal.push.SignalServiceProtos
@@ -19,8 +20,9 @@ class SessionRequest() : ControlMessage() {
         fun fromProto(proto: SignalServiceProtos.Content): SessionRequest? {
             if (proto.nullMessage == null) return null
             val preKeyBundleProto = proto.preKeyBundleMessage ?: return null
-            val registrationID: Int = 0
-            //TODO looks like database stuff here
+            var registrationID: Int = 0
+            registrationID = Configuration.shared.storage.getOrGenerateRegistrationID() //TODO no implementation for getOrGenerateRegistrationID yet
+            //TODO just confirm if the above code does the equivalent to swift below:
             /*iOS code: Configuration.shared.storage.with { transaction in
                     registrationID = Configuration.shared.storage.getOrGenerateRegistrationID(using: transaction)
             }*/
@@ -28,11 +30,11 @@ class SessionRequest() : ControlMessage() {
                     registrationID,
                     1,
                     preKeyBundleProto.preKeyId,
-                    null, //TODO preKeyBundleProto.preKey,
-                    0, //TODO preKeyBundleProto.signedKey,
-                    null, //TODO preKeyBundleProto.signedKeyId,
+                    DjbECPublicKey(preKeyBundleProto.preKey.toByteArray()),
+                    preKeyBundleProto.signedKeyId,
+                    DjbECPublicKey(preKeyBundleProto.signedKey.toByteArray()),
                     preKeyBundleProto.signature.toByteArray(),
-                    null, //TODO preKeyBundleProto.identityKey
+                    IdentityKey(DjbECPublicKey(preKeyBundleProto.identityKey.toByteArray()))
             )
             return SessionRequest(preKeyBundle)
         }
@@ -61,12 +63,12 @@ class SessionRequest() : ControlMessage() {
         val padding = ByteArray(paddingSize)
         nullMessageProto.padding = ByteString.copyFrom(padding)
         val preKeyBundleProto = SignalServiceProtos.PreKeyBundleMessage.newBuilder()
-        //TODO preKeyBundleProto.identityKey = preKeyBundle.identityKey
+        preKeyBundleProto.identityKey = ByteString.copyFrom(preKeyBundle.identityKey.publicKey.serialize())
         preKeyBundleProto.deviceId = preKeyBundle.deviceId
         preKeyBundleProto.preKeyId = preKeyBundle.preKeyId
-        //TODO preKeyBundleProto.preKey = preKeyBundle.preKeyPublic
+        preKeyBundleProto.preKey = ByteString.copyFrom(preKeyBundle.preKey.serialize())
         preKeyBundleProto.signedKeyId = preKeyBundle.signedPreKeyId
-        //TODO preKeyBundleProto.signedKey = preKeyBundle.signedPreKeyPublic
+        preKeyBundleProto.signedKey = ByteString.copyFrom(preKeyBundle.signedPreKey.serialize())
         preKeyBundleProto.signature = ByteString.copyFrom(preKeyBundle.signedPreKeySignature)
         val contentProto = SignalServiceProtos.Content.newBuilder()
         try {
