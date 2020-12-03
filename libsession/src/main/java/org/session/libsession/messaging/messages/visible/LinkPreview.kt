@@ -1,10 +1,9 @@
 package org.session.libsession.messaging.messages.visible
 
-import org.session.libsession.messaging.messages.control.TypingIndicator
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-class LinkPreview() : VisibleMessage<SignalServiceProtos.DataMessage.Preview?>(){
+class LinkPreview() : VisibleMessageProto<SignalServiceProtos.DataMessage.Preview?>(){
 
     var title: String? = null
     var url: String? = null

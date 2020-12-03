@@ -12,11 +12,7 @@ abstract class Message {
     var sender: String? = null
     var groupPublicKey: String? = null
     var openGroupServerMessageID: Long? = null
-
-    companion object {
-        @JvmStatic
-        val ttl = 2 * 24 * 60 * 60 * 1000 //TODO not sure about that declaration
-    }
+    val ttl: Long = 2 * 24 * 60 * 60 * 1000
 
     // validation
     open fun isValid(): Boolean {
