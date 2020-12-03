@@ -17,6 +17,8 @@ interface StorageProtocol {
     fun getUserProfileKey(): ByteArray?
     fun getUserProfilePictureURL(): String?
 
+    fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray?
+
     // Shared Sender Keys
     fun getClosedGroupPrivateKey(publicKey: String): ECPrivateKey?
     fun isClosedGroup(publicKey: String): Boolean

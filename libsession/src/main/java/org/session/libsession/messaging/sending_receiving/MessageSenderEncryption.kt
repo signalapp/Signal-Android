@@ -6,9 +6,11 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.utilities.UnidentifiedAccessUtil
 import org.session.libsession.utilities.AESGCM
+
 import org.session.libsignal.libsignal.SignalProtocolAddress
 import org.session.libsignal.libsignal.loki.ClosedGroupCiphertextMessage
 import org.session.libsignal.libsignal.util.Hex
+import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.crypto.SignalServiceCipher
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
@@ -26,8 +28,9 @@ object MessageSenderEncryption {
         val certificateValidator = Configuration.shared.certificateValidator
         val cipher = SignalServiceCipher(localAddress, storage, sskDatabase, sessionResetImp, certificateValidator)
         val signalProtocolAddress = SignalProtocolAddress(recipientPublicKey, 1)
-        val unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
-        val encryptedMessage = cipher.encrypt(signalProtocolAddress, unidentifiedAccess,plaintext)
+        val unidentifiedAccessPair = UnidentifiedAccessUtil.getAccessFor(recipientPublicKey)
+        val unidentifiedAccess = if (unidentifiedAccessPair != null) unidentifiedAccessPair.targetUnidentifiedAccess else Optional.absent()
+        val encryptedMessage = cipher.encrypt(signalProtocolAddress, unidentifiedAccess, plaintext)
         return Base64.decode(encryptedMessage.content)
     }
 
