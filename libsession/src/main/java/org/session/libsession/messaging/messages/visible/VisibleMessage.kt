@@ -46,13 +46,13 @@ class VisibleMessage() : VisibleMessageProto<SignalServiceProtos.Content?>() {
         return false
     }
 
-    override fun toProto(transaction: String): SignalServiceProtos.Content? {
+    override fun toProto(): SignalServiceProtos.Content? {
         val proto = SignalServiceProtos.Content.newBuilder()
         var attachmentIDs = this.attachmentIDs
         val dataMessage: SignalServiceProtos.DataMessage.Builder
         // Profile
         val profile = profile
-        val profileProto = profile?.toSSProto()
+        val profileProto = profile?.toProto()
         if (profileProto != null) {
             dataMessage = profileProto.toBuilder()
         } else {
@@ -68,7 +68,7 @@ class VisibleMessage() : VisibleMessageProto<SignalServiceProtos.Content?>() {
         }
         val quote = quote
         quote?.let {
-            val quoteProto = quote.toProto(transaction)
+            val quoteProto = quote.toProto()
             if (quoteProto != null) dataMessage.quote = quoteProto
         }
         //Link preview
@@ -79,7 +79,7 @@ class VisibleMessage() : VisibleMessageProto<SignalServiceProtos.Content?>() {
         }
         val linkPreview = linkPreview
         linkPreview?.let {
-            val linkPreviewProto = linkPreview.toProto(transaction)
+            val linkPreviewProto = linkPreview.toProto()
             linkPreviewProto?.let {
                 dataMessage.addAllPreview(listOf(linkPreviewProto))
             }
