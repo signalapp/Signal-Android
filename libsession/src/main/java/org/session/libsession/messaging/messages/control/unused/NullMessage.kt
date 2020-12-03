@@ -2,7 +2,6 @@ package org.session.libsession.messaging.messages.control.unused
 
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.messages.control.ControlMessage
-import org.session.libsession.messaging.messages.control.TypingIndicator
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.security.SecureRandom
