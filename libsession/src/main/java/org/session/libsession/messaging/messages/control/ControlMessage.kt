@@ -1,6 +1,6 @@
-package org.session.messaging.messages.control
+package org.session.libsession.messaging.messages.control
 
-import org.session.messaging.messages.Message
+import org.session.libsession.messaging.messages.Message
 
-open class ControlMessage : Message() {
+abstract class ControlMessage : Message() {
 }
