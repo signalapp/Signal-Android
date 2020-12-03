@@ -33,7 +33,7 @@ class LinkPreview() : VisibleMessageProto<SignalServiceProtos.DataMessage.Previe
         return (title != null && url != null && attachmentID != null)
     }
 
-    override fun toProto(transaction: String): SignalServiceProtos.DataMessage.Preview? {
+    override fun toProto(): SignalServiceProtos.DataMessage.Preview? {
         val url = url
         if (url == null) {
             Log.w(TAG, "Couldn't construct link preview proto from: $this")

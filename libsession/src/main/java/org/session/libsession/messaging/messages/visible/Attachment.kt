@@ -63,7 +63,7 @@ class Attachment : VisibleMessageProto<SignalServiceProtos.AttachmentPointer?>()
         return (contentType != null && kind != null && size != null && sizeInBytes != null && url != null)
     }
 
-    override fun toProto(transaction: String): SignalServiceProtos.AttachmentPointer? {
+    override fun toProto(): SignalServiceProtos.AttachmentPointer? {
         TODO("Not implemented")
     }
 }

@@ -35,11 +35,7 @@ class Profile() : VisibleMessageProto<SignalServiceProtos.DataMessage?>() {
         this.profilePictureURL = profilePictureURL
     }
 
-    fun toSSProto(): SignalServiceProtos.DataMessage? {
-        return this.toProto("")
-    }
-
-    override fun toProto(transaction: String): SignalServiceProtos.DataMessage? {
+    override fun toProto(): SignalServiceProtos.DataMessage? {
         val displayName = displayName
         if (displayName == null) {
             Log.w(TAG, "Couldn't construct link preview proto from: $this")

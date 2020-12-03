@@ -10,7 +10,7 @@ class Contact : VisibleMessageProto<SignalServiceProtos.DataMessage.Contact?>() 
         }
     }
 
-    override fun toProto(transaction: String): SignalServiceProtos.DataMessage.Contact? {
+    override fun toProto(): SignalServiceProtos.DataMessage.Contact? {
         TODO("Not yet implemented")
     }
 }

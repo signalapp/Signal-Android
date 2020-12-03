@@ -36,7 +36,7 @@ class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
         return (timestamp != null && publicKey != null)
     }
 
-    override fun toProto(transaction: String): SignalServiceProtos.DataMessage.Quote? {
+    override fun toProto(): SignalServiceProtos.DataMessage.Quote? {
         val timestamp = timestamp
         val publicKey = publicKey
         if (timestamp == null || publicKey == null) {
@@ -47,7 +47,7 @@ class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
         quoteProto.id = timestamp
         quoteProto.author = publicKey
         text?.let { quoteProto.text = text }
-        addAttachmentsIfNeeded(quoteProto, transaction)
+        addAttachmentsIfNeeded(quoteProto)
         // Build
         try {
             return quoteProto.build()
@@ -57,7 +57,7 @@ class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
         }
     }
 
-    private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder, transaction: String) {
+    private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder) {
         val attachmentID = attachmentID ?: return
         //TODO databas stuff
         val quotedAttachmentProto = SignalServiceProtos.DataMessage.Quote.QuotedAttachment.newBuilder()
