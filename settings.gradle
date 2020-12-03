@@ -1,8 +1,12 @@
 include ':app'
 include ':libsignal-service'
 include ':lintchecks'
+include ':paging'
+include ':paging-app'
 
 project(':app').name = 'Signal-Android'
+project(':paging').projectDir = file('paging/lib')
+project(':paging-app').projectDir = file('paging/app')
 
 project(':libsignal-service').projectDir = file('libsignal/service')
 

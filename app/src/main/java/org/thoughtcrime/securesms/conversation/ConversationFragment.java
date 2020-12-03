@@ -250,13 +250,9 @@ public class ConversationFragment extends LoggingFragment {
     this.conversationViewModel  = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
     conversationViewModel.getMessages().observe(this, list -> {
-      if (getListAdapter() != null && !list.getDataSource().isInvalid()) {
-        Log.i(TAG, "submitList");
-        getListAdapter().submitList(list);
-      } else if (list.getDataSource().isInvalid()) {
-        Log.i(TAG, "submitList skipped an invalid list");
-      }
+      getListAdapter().submitList(list);
     });
+
     conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
 
     conversationViewModel.getShowMentionsButton().observe(this, shouldShow -> {
@@ -506,6 +502,7 @@ public class ConversationFragment extends LoggingFragment {
     if (this.recipient != null && this.threadId != -1) {
       Log.d(TAG, "Initializing adapter for " + recipient.getId());
       ConversationAdapter adapter = new ConversationAdapter(this, GlideApp.with(this), locale, selectionClickListener, this.recipient.get());
+      adapter.setPagingController(conversationViewModel.getPagingController());
       list.setAdapter(adapter);
       setStickyHeaderDecoration(adapter);
       ConversationAdapter.initializePool(list.getRecycledViewPool());
@@ -1006,6 +1003,7 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private void moveToPosition(int position, @Nullable Runnable onMessageNotFound) {
+    Log.d(TAG, "moveToPosition(" + position + ")");
     conversationViewModel.onConversationDataAvailable(threadId, position);
     snapToTopDataObserver.buildScrollPosition(position)
                          .withOnPerformScroll(((layoutManager, p) ->

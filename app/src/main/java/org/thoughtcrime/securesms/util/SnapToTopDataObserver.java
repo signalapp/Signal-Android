@@ -6,6 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.thoughtcrime.securesms.logging.Log;
+
 import java.util.Objects;
 
 /**
@@ -19,6 +21,8 @@ import java.util.Objects;
  * </ul>
  */
 public class SnapToTopDataObserver extends RecyclerView.AdapterDataObserver {
+
+  private static final String TAG = Log.tag(SnapToTopDataObserver.class);
 
   private final RecyclerView           recyclerView;
   private final LinearLayoutManager    layoutManager;
@@ -83,13 +87,19 @@ public class SnapToTopDataObserver extends RecyclerView.AdapterDataObserver {
     Objects.requireNonNull(scrollRequestValidator, "Cannot request positions when SnapToTopObserver was initialized without a validator.");
 
     if (!scrollRequestValidator.isPositionStillValid(position)) {
+      Log.d(TAG, "requestScrollPositionInternal(" + position + ") Invalid");
       onInvalidPosition.run();
     } else if (scrollRequestValidator.isItemAtPositionLoaded(position)) {
-        onPerformScroll.onPerformScroll(layoutManager, position);
-        onScrollRequestComplete.run();
+      Log.d(TAG, "requestScrollPositionInternal(" + position + ") Scrolling");
+      onPerformScroll.onPerformScroll(layoutManager, position);
+      onScrollRequestComplete.run();
     } else {
+      Log.d(TAG, "requestScrollPositionInternal(" + position + ") Deferring");
       deferred.setDeferred(true);
-      deferred.defer(() -> requestScrollPositionInternal(position, onPerformScroll, onScrollRequestComplete, onInvalidPosition));
+      deferred.defer(() -> {
+        Log.d(TAG, "requestScrollPositionInternal(" + position + ") Executing deferred");
+        requestScrollPositionInternal(position, onPerformScroll, onScrollRequestComplete, onInvalidPosition);
+      });
     }
   }
 
@@ -111,7 +121,8 @@ public class SnapToTopDataObserver extends RecyclerView.AdapterDataObserver {
 
     if (newItemPosition != 0                                            ||
         recyclerView.getScrollState() != RecyclerView.SCROLL_STATE_IDLE ||
-        recyclerView.canScrollVertically(layoutManager.getReverseLayout() ? 1 : -1)) {
+        recyclerView.canScrollVertically(layoutManager.getReverseLayout() ? 1 : -1))
+    {
       return;
     }
 

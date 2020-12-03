@@ -31,8 +31,10 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -66,7 +68,7 @@ import java.util.Set;
  * the "footer" is at the top, and we refer to the "next" record as having a lower index.
  */
 public class ConversationAdapter
-    extends PagedListAdapter<ConversationMessage, RecyclerView.ViewHolder>
+    extends ListAdapter<ConversationMessage, RecyclerView.ViewHolder>
     implements StickyHeaderDecoration.StickyHeaderAdapter<ConversationAdapter.StickyHeaderViewHolder>
 {
 
@@ -100,6 +102,7 @@ public class ConversationAdapter
   private ConversationMessage recordToPulse;
   private View                headerView;
   private View                footerView;
+  private PagingController    pagingController;
 
   ConversationAdapter(@NonNull LifecycleOwner lifecycleOwner,
                       @NonNull GlideRequests glideRequests,
@@ -107,7 +110,18 @@ public class ConversationAdapter
                       @Nullable ItemClickListener clickListener,
                       @NonNull Recipient recipient)
   {
-    super(new DiffCallback());
+    super(new DiffUtil.ItemCallback<ConversationMessage>() {
+      @Override
+      public boolean areItemsTheSame(@NonNull ConversationMessage oldItem, @NonNull ConversationMessage newItem) {
+        return oldItem.getMessageRecord().getId() == newItem.getMessageRecord().getId();
+      }
+
+      @Override
+      public boolean areContentsTheSame(@NonNull ConversationMessage oldItem, @NonNull ConversationMessage newItem) {
+        return false;
+      }
+    });
+
     this.lifecycleOwner = lifecycleOwner;
 
     this.glideRequests       = glideRequests;
@@ -245,26 +259,6 @@ public class ConversationAdapter
   }
 
   @Override
-  public void submitList(@Nullable PagedList<ConversationMessage> pagedList) {
-    cleanFastRecords();
-    super.submitList(pagedList);
-  }
-
-  @Override
-  protected @Nullable ConversationMessage getItem(int position) {
-    position = hasHeader() ? position - 1 : position;
-
-    if (position == -1) {
-      return null;
-    } else if (position < fastRecords.size()) {
-      return fastRecords.get(position);
-    } else {
-      int correctedPosition = position - fastRecords.size();
-      return super.getItem(correctedPosition);
-    }
-  }
-
-  @Override
   public int getItemCount() {
     boolean hasHeader = headerView != null;
     boolean hasFooter = footerView != null;
@@ -306,12 +300,37 @@ public class ConversationAdapter
     viewHolder.setText(DateUtils.getRelativeDate(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateReceived()));
   }
 
+  public @Nullable ConversationMessage getItem(int position) {
+    position = hasHeader() ? position - 1 : position;
+
+    if (position == -1) {
+      return null;
+    } else if (position < fastRecords.size()) {
+      return fastRecords.get(position);
+    } else {
+      int correctedPosition = position - fastRecords.size();
+      if (pagingController != null) {
+        pagingController.onDataNeededAroundIndex(correctedPosition);
+      }
+      return super.getItem(correctedPosition);
+    }
+  }
+
+  public void submitList(@Nullable List<ConversationMessage> pagedList) {
+    cleanFastRecords();
+    super.submitList(pagedList);
+  }
+
+  public void setPagingController(@Nullable PagingController pagingController) {
+    this.pagingController = pagingController;
+  }
+
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {
     viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
   }
 
   boolean hasNoConversationMessages() {
-    return super.getItemCount() + fastRecords.size() == 0;
+    return getItemCount() + fastRecords.size() == 0;
   }
 
   /**
@@ -573,19 +592,6 @@ public class ConversationAdapter
   private static class PlaceholderViewHolder extends RecyclerView.ViewHolder {
     PlaceholderViewHolder(@NonNull View itemView) {
       super(itemView);
-    }
-  }
-
-  private static class DiffCallback extends DiffUtil.ItemCallback<ConversationMessage> {
-    @Override
-    public boolean areItemsTheSame(@NonNull ConversationMessage oldItem, @NonNull ConversationMessage newItem) {
-      return oldItem.getMessageRecord().isMms() == newItem.getMessageRecord().isMms() && oldItem.getMessageRecord().getId() == newItem.getMessageRecord().getId();
-    }
-
-    @Override
-    public boolean areContentsTheSame(@NonNull ConversationMessage oldItem, @NonNull ConversationMessage newItem) {
-      // Corner rounding is not part of the model, so we can't use this yet
-      return false;
     }
   }
 

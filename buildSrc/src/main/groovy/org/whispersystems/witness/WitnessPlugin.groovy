@@ -78,6 +78,15 @@ class WitnessPlugin implements Plugin<Project> {
         def configurationName = project.dependencyVerification.configuration
         project.configurations
                 .findAll { config -> config.name =~ configurationName }
-                .collectMany { it.resolvedConfiguration.resolvedArtifacts }
+                .collectMany {
+                    it.resolvedConfiguration.lenientConfiguration.allModuleDependencies
+                }
+                .findAll {
+                    // Exclude locally built modules
+                    it.module.id.group != 'Signal'
+                }
+                .collectMany {
+                    it.allModuleArtifacts
+                }
     }
 }

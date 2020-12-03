@@ -2,26 +2,6 @@ import org.signal.signing.ApkSignerUtil
 
 import java.security.MessageDigest
 
-buildscript {
-    repositories {
-        google()
-        maven {
-            url "https://repo1.maven.org/maven2"
-        }
-        jcenter {
-            content {
-                includeVersion 'org.jetbrains.trove4j', 'trove4j', '20160824'
-                includeGroupByRegex "com\\.archinamon.*"
-            }
-        }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
-        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0'
-        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'
-    }
-}
-
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'androidx.navigation.safeargs'
@@ -94,9 +74,10 @@ def abiPostFix = ['universal'   : 0,
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
 android {
+    buildToolsVersion BUILD_TOOL_VERSION
+    compileSdkVersion COMPILE_SDK
+
     flavorDimensions 'distribution', 'environment'
-    compileSdkVersion 30
-    buildToolsVersion '30.0.2'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
@@ -118,8 +99,9 @@ android {
         versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
 
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdkVersion MINIMUM_SDK
+        targetSdkVersion TARGET_SDK
+
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
@@ -167,8 +149,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JAVA_VERSION
+        targetCompatibility JAVA_VERSION
     }
 
     packagingOptions {
@@ -218,6 +200,7 @@ android {
             initWith debug
             isDefault false
             minifyEnabled false
+            matchingFallbacks = ['debug']
         }
         release {
             minifyEnabled true
@@ -350,6 +333,7 @@ dependencies {
     implementation 'org.signal:aesgcmprovider:0.0.3'
 
     implementation project(':libsignal-service')
+    implementation project(':paging')
     implementation 'org.signal:zkgroup-android:0.7.0'
     implementation 'org.whispersystems:signal-client-android:0.1.5'
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
