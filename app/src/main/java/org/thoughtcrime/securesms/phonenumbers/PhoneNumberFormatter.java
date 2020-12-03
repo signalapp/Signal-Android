@@ -87,11 +87,14 @@ public class PhoneNumberFormatter {
     this.localCountryCode = localCountryCode;
   }
 
-  public static @NonNull String prettyPrint(@NonNull String e164) {
+  public static String prettyPrint(String e164) {
     return get(ApplicationDependencies.getApplication()).prettyPrintFormat(e164);
   }
 
-  public @NonNull String prettyPrintFormat(@NonNull String e164) {
+  public String prettyPrintFormat(String e164) {
+    if (e164 == null) {
+      return e164;
+    }
     try {
       Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(e164, localCountryCode);
 
