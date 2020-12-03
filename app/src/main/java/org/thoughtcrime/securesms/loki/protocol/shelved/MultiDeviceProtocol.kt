@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol.shelved
 
 import android.content.Context
-import android.util.Log
+import org.thoughtcrime.securesms.logging.Log
 import nl.komponents.kovenant.Promise
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil

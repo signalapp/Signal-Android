@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
-import android.util.Log
+import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.PreKeyUtil

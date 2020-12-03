@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.api
 
 import android.content.Context
 import android.os.Handler
-import android.util.Log
+import org.thoughtcrime.securesms.logging.Log
 import androidx.annotation.WorkerThread
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind

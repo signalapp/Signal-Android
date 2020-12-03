@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.SystemClock;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import org.session.libsignal.service.api.util.SleepTimer;
 

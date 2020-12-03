@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.view.ContextThemeWrapper;
 
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 

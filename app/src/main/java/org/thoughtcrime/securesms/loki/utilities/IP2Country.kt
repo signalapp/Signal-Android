@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import android.util.Log
+import org.thoughtcrime.securesms.logging.Log
 import com.opencsv.CSVReader
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import java.io.File

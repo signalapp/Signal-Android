@@ -1,7 +1,7 @@
 @file:JvmName("PromiseUtilities")
 package org.thoughtcrime.securesms.loki.utilities
 
-import android.util.Log
+import org.thoughtcrime.securesms.logging.Log
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import java.util.concurrent.TimeoutException

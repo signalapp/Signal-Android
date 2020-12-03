@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol.shelved
 
 import android.content.Context
-import android.util.Log
+import org.thoughtcrime.securesms.logging.Log
 import androidx.annotation.WorkerThread
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData

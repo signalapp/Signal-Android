@@ -7,7 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
-import android.util.Log
+import org.thoughtcrime.securesms.logging.Log
 import android.widget.Toast
 import androidx.annotation.WorkerThread
 import androidx.documentfile.provider.DocumentFile

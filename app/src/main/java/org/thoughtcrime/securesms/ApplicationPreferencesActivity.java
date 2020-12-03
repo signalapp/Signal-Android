@@ -29,7 +29,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
-import android.util.Log;
+import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
