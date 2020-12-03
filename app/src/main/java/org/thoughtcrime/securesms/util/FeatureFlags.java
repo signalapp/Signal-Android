@@ -63,6 +63,7 @@ public final class FeatureFlags {
   private static final String GV1_AUTO_MIGRATE             = "android.groupsV1Migration.auto.3";
   private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
   private static final String GV1_FORCED_MIGRATE           = "android.groupsV1Migration.forced";
+  private static final String SEND_VIEWED_RECEIPTS         = "android.sendViewedReceipts";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -81,7 +82,8 @@ public final class FeatureFlags {
       GV1_AUTO_MIGRATE,
       GV1_MANUAL_MIGRATE,
       GV1_FORCED_MIGRATE,
-      GROUP_CALLING
+      GROUP_CALLING,
+      SEND_VIEWED_RECEIPTS
   );
 
   /**
@@ -242,6 +244,11 @@ public final class FeatureFlags {
   /** Whether or not forced migration from GV1->GV2 is enabled. */
   public static boolean groupsV1ForcedMigration() {
     return getBoolean(GV1_FORCED_MIGRATE, false) && groupsV1ManualMigration() && groupsV1AutoMigration();
+  }
+
+  /** Whether or not to send viewed receipts. */
+  public static boolean sendViewedReceipts() {
+    return getBoolean(SEND_VIEWED_RECEIPTS, false);
   }
 
   /** Only for rendering debug info. */
