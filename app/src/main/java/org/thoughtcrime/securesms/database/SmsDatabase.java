@@ -866,13 +866,16 @@ public class SmsDatabase extends MessageDatabase {
               db.insert(TABLE_NAME, null, values);
 
               notifyConversationListeners(threadId);
-              ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
             });
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
     }
+
+    Stream.of(threadIdsToUpdate)
+          .withoutNulls()
+          .forEach(threadId -> ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId)));
   }
 
   @Override

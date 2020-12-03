@@ -1302,7 +1302,6 @@ public class MmsDatabase extends MessageDatabase {
     }
 
     notifyConversationListeners(threadId);
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
 
     return Optional.of(new InsertResult(messageId, threadId));
   }
