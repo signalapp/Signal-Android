@@ -26,27 +26,53 @@ import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.security.MessageDigest;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public final class ConversationShortcutPhoto implements Key {
 
   private final Recipient recipient;
+  private final String    avatarObject;
 
   @WorkerThread
   public ConversationShortcutPhoto(@NonNull Recipient recipient) {
-    this.recipient = recipient.resolve();
+    this.recipient    = recipient.resolve();
+    this.avatarObject = Util.firstNonNull(recipient.getProfileAvatar(), "");
   }
 
   @Override
   public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
     messageDigest.update(recipient.getDisplayName(ApplicationDependencies.getApplication()).getBytes());
+    messageDigest.update(avatarObject.getBytes());
+    messageDigest.update(ByteUtil.longToByteArray(getFileLastModified()));
+  }
 
-    if (recipient.getProfileAvatar() != null) {
-      messageDigest.update(recipient.getProfileAvatar().getBytes());
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ConversationShortcutPhoto that = (ConversationShortcutPhoto) o;
+    return Objects.equals(recipient, that.recipient) &&
+           Objects.equals(avatarObject, that.avatarObject) &&
+           getFileLastModified() == that.getFileLastModified();
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(recipient, avatarObject, getFileLastModified());
+  }
+
+  private long getFileLastModified() {
+    if (!recipient.isSelf()) {
+      return 0;
     }
+
+    return AvatarHelper.getLastModified(ApplicationDependencies.getApplication(), recipient.getId());
   }
 
   public static final class Loader implements ModelLoader<ConversationShortcutPhoto, Bitmap> {
@@ -58,7 +84,7 @@ public final class ConversationShortcutPhoto implements Key {
     }
 
     @Override
-    public @Nullable LoadData<Bitmap> buildLoadData(@NonNull ConversationShortcutPhoto conversationShortcutPhoto, int width, int height, @NonNull Options options) {
+    public @NonNull LoadData<Bitmap> buildLoadData(@NonNull ConversationShortcutPhoto conversationShortcutPhoto, int width, int height, @NonNull Options options) {
       return new LoadData<>(conversationShortcutPhoto, new Fetcher(context, conversationShortcutPhoto));
     }
 
