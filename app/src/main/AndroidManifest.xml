@@ -101,7 +101,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar"/>
         <activity
-            android:name="org.thoughtcrime.securesms.loki.activities.RestoreActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.RecoveryPhraseRestoreActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />

@@ -3,25 +3,20 @@ package org.thoughtcrime.securesms.loki.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.Loader
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources
-import kotlinx.android.synthetic.main.activity_create_closed_group.*
-import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
-import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
-import kotlinx.android.synthetic.main.activity_edit_closed_group.*
-import kotlinx.android.synthetic.main.activity_edit_closed_group.loader
-import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
+import android.widget.*
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
+import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -32,10 +27,8 @@ import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThemeUtil
-import org.session.libsignal.service.loki.utilities.toHexString
 import java.io.IOException
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
@@ -60,6 +53,14 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         EditClosedGroupMembersAdapter(this, GlideApp.with(this), this::onMemberClick)
     }
 
+    private lateinit var mainContentContainer: LinearLayout
+    private lateinit var cntGroupNameEdit: LinearLayout
+    private lateinit var cntGroupNameDisplay: LinearLayout
+    private lateinit var edtGroupName: EditText
+    private lateinit var emptyStateContainer: LinearLayout
+    private lateinit var lblGroupNameDisplay: TextView
+    private lateinit var loaderContainer: View
+
     companion object {
         @JvmStatic val groupIDKey = "groupIDKey"
         private val loaderID = 0
@@ -79,15 +80,27 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         originalName = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title
         name = originalName
 
-        addMembersClosedGroupButton.setOnClickListener { onAddMembersClick() }
+        mainContentContainer = findViewById(R.id.mainContentContainer)
+        cntGroupNameEdit = findViewById(R.id.cntGroupNameEdit)
+        cntGroupNameDisplay = findViewById(R.id.cntGroupNameDisplay)
+        edtGroupName = findViewById(R.id.edtGroupName)
+        emptyStateContainer = findViewById(R.id.emptyStateContainer)
+        lblGroupNameDisplay = findViewById(R.id.lblGroupNameDisplay)
+        loaderContainer = findViewById(R.id.loaderContainer)
 
-        recyclerView.adapter = memberListAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        findViewById<View>(R.id.addMembersClosedGroupButton).setOnClickListener {
+            onAddMembersClick()
+        }
+
+        findViewById<RecyclerView>(R.id.rvUserList).apply {
+            adapter = memberListAdapter
+            layoutManager = LinearLayoutManager(this@EditClosedGroupActivity)
+        }
 
         lblGroupNameDisplay.text = originalName
         cntGroupNameDisplay.setOnClickListener { isEditingName = true }
-        btnCancelGroupNameEdit.setOnClickListener { isEditingName = false }
-        btnSaveGroupNameEdit.setOnClickListener { saveName() }
+        findViewById<Button>(R.id.btnCancelGroupNameEdit).setOnClickListener { isEditingName = false }
+        findViewById<Button>(R.id.btnSaveGroupNameEdit).setOnClickListener { saveName() }
         edtGroupName.setImeActionLabel(getString(R.string.save), EditorInfo.IME_ACTION_DONE)
         edtGroupName.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
@@ -247,9 +260,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
         if (isSSKBasedClosedGroup) {
             isLoading = true
-            loader.fadeIn()
+            loaderContainer.fadeIn()
             ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name).successUi {
-                loader.fadeOut()
+                loaderContainer.fadeOut()
                 isLoading = false
                 finish()
             }.failUi { exception ->

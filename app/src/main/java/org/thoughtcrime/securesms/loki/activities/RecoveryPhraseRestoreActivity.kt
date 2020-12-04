@@ -11,7 +11,7 @@ import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_restore.*
+import kotlinx.android.synthetic.main.activity_recovery_phrase_restore.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -28,13 +28,13 @@ import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.service.loki.crypto.MnemonicCodec
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 
-class RestoreActivity : BaseActionBarActivity() {
+class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
-        setContentView(R.layout.activity_restore)
+        setContentView(R.layout.activity_recovery_phrase_restore)
         mnemonicEditText.imeOptions = mnemonicEditText.imeOptions or 16777216 // Always use incognito keyboard
         restoreButton.setOnClickListener { restore() }
         val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms of Service and Privacy Policy")

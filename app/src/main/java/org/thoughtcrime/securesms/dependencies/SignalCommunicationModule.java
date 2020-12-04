@@ -12,7 +12,6 @@ import org.session.libsignal.service.api.util.UptimeSleepTimer;
 import org.session.libsignal.service.api.websocket.ConnectivityListener;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.CreateProfileActivity;
-import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -79,7 +78,6 @@ import network.loki.messenger.BuildConfig;
                                      MultiDeviceGroupUpdateJob.class,
                                      MultiDeviceReadUpdateJob.class,
                                      MultiDeviceBlockedUpdateJob.class,
-                                     DeviceListFragment.class,
                                      RefreshAttributesJob.class,
                                      RequestGroupInfoJob.class,
                                      PushGroupUpdateJob.class,

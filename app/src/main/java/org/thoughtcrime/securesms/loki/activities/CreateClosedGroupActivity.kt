@@ -13,7 +13,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_closed_group.*
-import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -31,6 +30,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
 import java.lang.ref.WeakReference
 
+//TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
     private var isLoading = false
         set(newValue) { field = newValue; invalidateOptionsMenu() }
@@ -121,9 +121,9 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         isLoading = true
-        loader.fadeIn()
+        loaderContainer.fadeIn()
         ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
-            loader.fadeOut()
+            loaderContainer.fadeOut()
             isLoading = false
             val threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
             if (!isFinishing) {

@@ -288,11 +288,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         push(intent)
     }
 
-    private fun showLinkedDevices() {
-        val intent = Intent(this, LinkedDevicesActivity::class.java)
-        push(intent)
-    }
-
     private fun sendInvitation() {
         val intent = Intent()
         intent.action = Intent.ACTION_SEND

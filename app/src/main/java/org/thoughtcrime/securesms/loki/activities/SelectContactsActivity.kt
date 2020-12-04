@@ -9,15 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
 import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
-import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
 import kotlinx.android.synthetic.main.activity_select_contacts.*
+import kotlinx.android.synthetic.main.activity_select_contacts.recyclerView
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.mms.GlideApp
 
+//TODO Refactor to avoid using kotlinx.android.synthetic
 class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
     private var members = listOf<String>()
         set(value) { field = value; selectContactsAdapter.members = value }
