@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
@@ -55,7 +55,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
       return media;
     } finally {
       bitmap.recycle();
-      Util.close(outputStream);
+      StreamUtil.close(outputStream);
     }
   }
 }

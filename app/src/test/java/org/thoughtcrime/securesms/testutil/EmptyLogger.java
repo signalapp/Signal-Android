@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.testutil;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 public class EmptyLogger extends Log.Logger {
   @Override

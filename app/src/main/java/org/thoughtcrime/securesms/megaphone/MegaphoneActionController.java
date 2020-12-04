@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
 
 public interface MegaphoneActionController {

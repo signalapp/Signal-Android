@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;

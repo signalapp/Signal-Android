@@ -36,6 +36,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -47,7 +49,6 @@ import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -60,7 +61,6 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
@@ -1046,7 +1046,7 @@ public class AttachmentDatabase extends Database {
       MessageDigest              messageDigest     = MessageDigest.getInstance("SHA-256");
       DigestInputStream          digestInputStream = new DigestInputStream(in, messageDigest);
       Pair<byte[], OutputStream> out               = ModernEncryptingPartOutputStream.createFor(attachmentSecret, destination, false);
-      long                       length            = Util.copy(digestInputStream, out.second);
+      long                       length            = StreamUtil.copy(digestInputStream, out.second);
       String                     hash              = Base64.encodeBytes(digestInputStream.getMessageDigest().digest());
 
       SQLiteDatabase     database       = databaseHelper.getWritableDatabase();

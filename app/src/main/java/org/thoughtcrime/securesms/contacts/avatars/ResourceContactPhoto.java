@@ -11,14 +11,12 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ContextUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public class ResourceContactPhoto implements FallbackContactPhoto {
 

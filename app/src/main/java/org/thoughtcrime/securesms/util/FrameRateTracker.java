@@ -6,7 +6,7 @@ import android.view.Display;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;

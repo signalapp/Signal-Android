@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util.views;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;

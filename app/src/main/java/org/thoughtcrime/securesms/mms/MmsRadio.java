@@ -7,8 +7,8 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.PowerManager;
-import org.thoughtcrime.securesms.logging.Log;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.lang.reflect.InvocationTargetException;

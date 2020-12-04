@@ -2,11 +2,12 @@ package org.thoughtcrime.securesms.preferences.widgets;
 
 
 import android.content.Context;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.preference.Preference;
+import androidx.preference.PreferenceViewHolder;
 
 import org.thoughtcrime.securesms.R;
 

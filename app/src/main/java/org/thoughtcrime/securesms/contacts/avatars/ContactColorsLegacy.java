@@ -2,11 +2,7 @@ package org.thoughtcrime.securesms.contacts.avatars;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Used for migrating legacy colors to modern colors. For normal color generation, use

@@ -55,6 +55,7 @@ import com.annimon.stream.Stream;
 import com.google.android.material.chip.ChipGroup;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
 import org.thoughtcrime.securesms.components.emoji.WarningTextView;
 import org.thoughtcrime.securesms.contacts.ContactChip;
@@ -66,7 +67,6 @@ import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;

@@ -2,14 +2,12 @@ package org.thoughtcrime.securesms.net;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.logging.Log;
-import org.whispersystems.signalservice.api.push.exceptions.DeprecatedVersionException;
 
 import java.io.IOException;
 
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Response;
 import okhttp3.ResponseBody;

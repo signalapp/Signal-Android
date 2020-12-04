@@ -6,9 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.pin.PinRestoreRepository;
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
-
-import java.io.IOException;
 
 public final class RegistrationService {
 

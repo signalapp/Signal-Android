@@ -6,10 +6,10 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BubbleUtil;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 public interface MessageNotifier {
   void setVisibleThread(long threadId);

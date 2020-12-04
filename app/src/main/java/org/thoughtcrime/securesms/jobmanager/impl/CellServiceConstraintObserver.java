@@ -2,10 +2,11 @@ package org.thoughtcrime.securesms.jobmanager.impl;
 
 import android.app.Application;
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
+
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 

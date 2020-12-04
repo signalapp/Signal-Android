@@ -17,9 +17,10 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
+import android.text.SpannableString;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;

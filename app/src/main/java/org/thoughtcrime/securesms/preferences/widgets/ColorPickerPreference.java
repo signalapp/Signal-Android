@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.widget.ImageView;
+
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.preference.DialogPreference;
 import androidx.preference.PreferenceViewHolder;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import com.takisoft.colorpicker.ColorPickerDialog;
 import com.takisoft.colorpicker.ColorPickerDialog.Size;

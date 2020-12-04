@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.util.List;
 import java.util.Map;
 
 public class LogSectionThreads implements LogSection {

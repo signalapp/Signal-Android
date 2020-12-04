@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.giph.net;
 
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 

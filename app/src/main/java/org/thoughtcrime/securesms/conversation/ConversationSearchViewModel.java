@@ -1,25 +1,18 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import android.content.Context;
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactRepository;
-import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
-import org.thoughtcrime.securesms.database.CursorList;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
-import org.thoughtcrime.securesms.util.CloseableLiveData;
+import org.thoughtcrime.securesms.database.CursorList;
+import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
-import java.io.Closeable;
 import java.util.List;
 
 public class ConversationSearchViewModel extends AndroidViewModel {

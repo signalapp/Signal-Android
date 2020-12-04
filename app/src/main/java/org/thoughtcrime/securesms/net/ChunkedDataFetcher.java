@@ -1,14 +1,15 @@
 package org.thoughtcrime.securesms.net;
 
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 import com.bumptech.glide.util.ContentLengthInputStream;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 

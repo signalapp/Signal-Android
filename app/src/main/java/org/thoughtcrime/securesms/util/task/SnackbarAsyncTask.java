@@ -11,7 +11,7 @@ import androidx.lifecycle.Lifecycle;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 public abstract class SnackbarAsyncTask<Params>
     extends AsyncTask<Params, Void, Void>

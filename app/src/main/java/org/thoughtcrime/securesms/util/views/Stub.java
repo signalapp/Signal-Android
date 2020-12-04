@@ -1,8 +1,9 @@
 package org.thoughtcrime.securesms.util.views;
 
 
-import androidx.annotation.NonNull;
 import android.view.ViewStub;
+
+import androidx.annotation.NonNull;
 
 public class Stub<T> {
 

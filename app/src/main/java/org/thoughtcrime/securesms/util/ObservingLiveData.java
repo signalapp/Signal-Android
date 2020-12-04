@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.util;
 
-import androidx.lifecycle.MutableLiveData;
 import android.database.ContentObserver;
-import androidx.annotation.NonNull;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+
+import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.database.ObservableContent;
 
 import java.io.Closeable;
@@ -22,7 +24,7 @@ public class ObservingLiveData<E extends ObservableContent> extends MutableLiveD
 
     if (previous != null) {
       previous.unregisterContentObserver(observer);
-      Util.close(previous);
+      StreamUtil.close(previous);
     }
 
     value.registerContentObserver(observer);
@@ -35,7 +37,7 @@ public class ObservingLiveData<E extends ObservableContent> extends MutableLiveD
 
     if (value != null) {
       value.unregisterContentObserver(observer);
-      Util.close(value);
+      StreamUtil.close(value);
     }
   }
 

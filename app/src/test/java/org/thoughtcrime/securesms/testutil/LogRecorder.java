@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.testutil;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 import java.util.ArrayList;
 import java.util.List;

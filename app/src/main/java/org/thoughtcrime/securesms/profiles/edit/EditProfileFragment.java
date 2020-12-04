@@ -27,11 +27,12 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -42,7 +43,6 @@ import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StringUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
@@ -151,7 +151,7 @@ public class EditProfileFragment extends LoggingFragment {
           Media       result = data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA);
           InputStream stream = BlobProvider.getInstance().getStream(requireContext(), result.getUri());
 
-          return Util.readFully(stream);
+          return StreamUtil.readFully(stream);
         } catch (IOException ioException) {
           Log.w(TAG, ioException);
           return null;

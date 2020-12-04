@@ -6,9 +6,7 @@ import android.database.CursorWrapper;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 
 /**
  * Wraps a {@link Cursor} that will be closed automatically when the {@link Lifecycle.Event}.ON_DESTROY

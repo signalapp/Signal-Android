@@ -9,10 +9,10 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.SystemClock;
 
-import java.util.concurrent.ConcurrentSkipListSet;
-
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.whispersystems.signalservice.api.util.SleepTimer;
+
+import java.util.concurrent.ConcurrentSkipListSet;
 
 /**
  * A sleep timer that is based on elapsed realtime, so

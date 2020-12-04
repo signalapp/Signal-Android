@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.registration.v2;
 
 import org.junit.Test;
+import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.registration.v2.testdata.PinSanitationVector;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.internal.registrationpin.PinHasher;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
@@ -32,7 +32,7 @@ public final class PinHasher_normalize_Test {
   private static PinSanitationVector[] getKbsPinSanitationTestVectorList() throws IOException {
     try (InputStream resourceAsStream = ClassLoader.getSystemClassLoader().getResourceAsStream("data/kbs_pin_normalization_vectors.json")) {
 
-      PinSanitationVector[] data = JsonUtil.fromJson(Util.readFullyAsString(resourceAsStream), PinSanitationVector[].class);
+      PinSanitationVector[] data = JsonUtil.fromJson(StreamUtil.readFullyAsString(resourceAsStream), PinSanitationVector[].class);
 
       assertTrue(data.length > 0);
 

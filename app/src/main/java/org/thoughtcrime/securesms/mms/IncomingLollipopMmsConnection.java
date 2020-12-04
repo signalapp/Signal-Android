@@ -21,14 +21,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.mms.InvalidHeaderValueException;
 import com.google.android.mms.pdu_alt.NotifyRespInd;
@@ -37,6 +35,8 @@ import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.RetrieveConf;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.providers.MmsBodyProvider;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Util;
@@ -118,7 +118,7 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
       waitForResult();
 
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      Util.copy(pointer.getInputStream(), baos);
+      StreamUtil.copy(pointer.getInputStream(), baos);
       pointer.close();
 
       Log.i(TAG, baos.size() + "-byte response: ");// + Hex.dump(baos.toByteArray()));

@@ -4,8 +4,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
-
 /**
  * Passes clicked Urls to the supplied {@link UrlClickHandler}.
  */

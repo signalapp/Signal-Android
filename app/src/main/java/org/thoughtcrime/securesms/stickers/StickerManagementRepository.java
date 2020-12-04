@@ -2,9 +2,10 @@ package org.thoughtcrime.securesms.stickers;
 
 import android.content.Context;
 import android.database.Cursor;
+
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.ApplicationContext;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.ArrayList;
 import java.util.List;

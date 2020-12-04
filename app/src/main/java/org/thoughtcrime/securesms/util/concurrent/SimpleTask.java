@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.util.concurrent;
 
-import androidx.lifecycle.Lifecycle;
 import android.os.AsyncTask;
-import androidx.annotation.NonNull;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.concurrent.Executor;

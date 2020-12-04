@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.components.recyclerview;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.DisplayMetrics;
 
 public class SmoothScrollingLinearLayoutManager extends LinearLayoutManager {
 

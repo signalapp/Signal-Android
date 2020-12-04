@@ -18,9 +18,6 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
 import android.telephony.PhoneNumberUtils;
 import android.text.Annotation;
 import android.text.Editable;
@@ -36,6 +33,9 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MotionEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.MultiAutoCompleteTextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientsFormatter;

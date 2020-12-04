@@ -23,7 +23,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
-import org.thoughtcrime.securesms.logging.Log;
+
+import org.signal.core.util.logging.Log;
 
 /**
  * This class is used to listen to the accelerometer to monitor the

@@ -17,14 +17,14 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 

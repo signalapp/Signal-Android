@@ -28,7 +28,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.StringDef;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.media.MediaInput;
 
 import java.io.File;

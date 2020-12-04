@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.imageeditor;
 
 import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 /**

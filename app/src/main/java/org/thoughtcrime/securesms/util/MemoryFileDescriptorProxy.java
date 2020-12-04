@@ -13,7 +13,7 @@ import android.system.OsConstants;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -2,10 +2,9 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.logging.Log;
-
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;

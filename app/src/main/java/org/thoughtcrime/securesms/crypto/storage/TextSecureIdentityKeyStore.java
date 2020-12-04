@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
-import org.thoughtcrime.securesms.logging.Log;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;

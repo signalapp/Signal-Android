@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 public final class RemoteConfigValues extends SignalStoreValues {
 

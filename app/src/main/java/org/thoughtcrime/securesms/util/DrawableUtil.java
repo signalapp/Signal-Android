@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.camera.core.impl.SingleImageProxyBundle;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 public final class DrawableUtil {

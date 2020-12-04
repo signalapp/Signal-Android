@@ -1,16 +1,13 @@
 package org.signal.paging;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import org.signal.paging.util.LinkedBlockingLifoQueue;
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 
 import java.util.List;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * The workhorse of managing page requests.
@@ -24,7 +21,7 @@ class FixedSizePagingController<E> implements PagingController {
 
   private static final String TAG = FixedSizePagingController.class.getSimpleName();
 
-  private static final Executor FETCH_EXECUTOR = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<>(), r -> new Thread(r, "signal-FixedSizedPagingController"));
+  private static final Executor FETCH_EXECUTOR = SignalExecutors.newFixedLifoThreadExecutor("signal-FixedSizePagingController", 1, 1);
   private static final boolean  DEBUG          = false;
 
   private final PagedDataSource<E>       dataSource;

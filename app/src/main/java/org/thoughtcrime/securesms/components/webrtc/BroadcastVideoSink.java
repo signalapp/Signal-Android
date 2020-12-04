@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.util.WeakHashMap;
 

@@ -5,9 +5,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.RecipientId;
-
-import java.util.List;
 
 /**
  * Shows a reminder to upgrade a group to GV2.

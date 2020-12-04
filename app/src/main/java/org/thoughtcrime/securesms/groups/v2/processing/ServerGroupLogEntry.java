@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.groups.v2.processing;
 
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.thoughtcrime.securesms.logging.Log;
 
 /**
  * Pair of a group state and optionally the corresponding change from the server.

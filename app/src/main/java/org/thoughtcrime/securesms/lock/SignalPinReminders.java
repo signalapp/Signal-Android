@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.lock;
 
 import androidx.annotation.StringRes;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.glide;
 
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Priority;

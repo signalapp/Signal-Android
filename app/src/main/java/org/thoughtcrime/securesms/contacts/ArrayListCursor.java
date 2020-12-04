@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.contacts;
 import android.database.AbstractCursor;
 import android.database.CursorWindow;
 
-import java.lang.System;
 import java.util.ArrayList;
 
 /**

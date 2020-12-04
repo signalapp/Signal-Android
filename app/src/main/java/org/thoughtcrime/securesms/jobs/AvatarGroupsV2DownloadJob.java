@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -15,10 +17,8 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.ByteUnit;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
@@ -121,7 +121,7 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
     try (FileInputStream inputStream = receiver.retrieveGroupsV2ProfileAvatar(cdnKey, attachment, AVATAR_DOWNLOAD_FAIL_SAFE_MAX_SIZE)) {
       encryptedData = new byte[(int) attachment.length()];
 
-      Util.readFully(inputStream, encryptedData);
+      StreamUtil.readFully(inputStream, encryptedData);
 
       GroupsV2Operations                 operations      = ApplicationDependencies.getGroupsV2Operations();
       GroupsV2Operations.GroupOperations groupOperations = operations.forGroup(groupSecretParams);

@@ -2,13 +2,11 @@ package org.thoughtcrime.securesms.lock.v2;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.core.util.Preconditions;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.whispersystems.signalservice.internal.registrationpin.PinValidityChecker;
 

@@ -3,11 +3,12 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.TaskStackBuilder;
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.Toast;
+import androidx.core.app.TaskStackBuilder;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;

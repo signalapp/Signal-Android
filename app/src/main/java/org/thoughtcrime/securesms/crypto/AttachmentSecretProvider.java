@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;

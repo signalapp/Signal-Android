@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;

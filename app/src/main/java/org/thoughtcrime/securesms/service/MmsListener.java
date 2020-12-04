@@ -21,10 +21,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.provider.Telephony;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.MmsReceiveJob;
 import org.thoughtcrime.securesms.util.Util;
 

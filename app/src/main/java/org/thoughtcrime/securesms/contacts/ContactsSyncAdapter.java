@@ -7,9 +7,8 @@ import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
-import org.thoughtcrime.securesms.logging.Log;
-
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;

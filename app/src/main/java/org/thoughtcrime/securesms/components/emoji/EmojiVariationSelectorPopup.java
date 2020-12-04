@@ -2,17 +2,16 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
 

@@ -1,12 +1,11 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BucketingUtilTest {
 

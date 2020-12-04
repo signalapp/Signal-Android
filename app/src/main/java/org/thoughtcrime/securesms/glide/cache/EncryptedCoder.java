@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.glide.cache;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -68,8 +68,8 @@ class EncryptedCoder {
       byte[]          theirRandom         = new byte[32];
       byte[]          theirEncryptedMagic = new byte[MAGIC_BYTES.length];
 
-      Util.readFully(fileInputStream, theirMagic);
-      Util.readFully(fileInputStream, theirRandom);
+      StreamUtil.readFully(fileInputStream, theirMagic);
+      StreamUtil.readFully(fileInputStream, theirRandom);
 
       if (!MessageDigest.isEqual(theirMagic, MAGIC_BYTES)) {
         throw new IOException("Not an encrypted cache file!");
@@ -82,7 +82,7 @@ class EncryptedCoder {
       cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
 
       CipherInputStream inputStream = new CipherInputStream(fileInputStream, cipher);
-      Util.readFully(inputStream, theirEncryptedMagic);
+      StreamUtil.readFully(inputStream, theirEncryptedMagic);
 
       if (!MessageDigest.isEqual(theirEncryptedMagic, MAGIC_BYTES)) {
         throw new IOException("Key change on encrypted cache file!");

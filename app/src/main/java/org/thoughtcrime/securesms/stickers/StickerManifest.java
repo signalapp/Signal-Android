@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.stickers;
 
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;

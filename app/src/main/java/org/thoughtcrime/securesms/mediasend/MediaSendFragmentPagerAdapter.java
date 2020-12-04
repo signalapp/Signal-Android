@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.net.Uri;
-import android.net.http.LoggingEventHandler;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,9 +13,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 

@@ -2,13 +2,9 @@ package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
-import org.thoughtcrime.securesms.logging.Log;
-
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class RetrieveProfileJobMigration extends JobMigration {
 

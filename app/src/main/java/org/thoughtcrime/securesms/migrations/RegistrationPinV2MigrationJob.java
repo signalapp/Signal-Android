@@ -4,24 +4,14 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.BaseJob;
-import org.thoughtcrime.securesms.keyvalue.KbsValues;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.PinHashing;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.signalservice.api.KeyBackupService;
-import org.whispersystems.signalservice.api.KeyBackupServicePinException;
-import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
-import org.whispersystems.signalservice.api.KbsPinData;
-import org.whispersystems.signalservice.api.kbs.HashedPin;
-import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;

@@ -2,13 +2,11 @@ package org.thoughtcrime.securesms.ringrtc;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
 
-import com.google.protobuf.ByteString;
+import androidx.annotation.NonNull;
 
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.IceCandidate;
-
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 
 /**

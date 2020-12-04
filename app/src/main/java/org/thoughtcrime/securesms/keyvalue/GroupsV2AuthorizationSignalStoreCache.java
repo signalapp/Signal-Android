@@ -5,12 +5,12 @@ import androidx.annotation.NonNull;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.auth.AuthCredentialResponse;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TemporalAuthCredentialResponse;
 import org.thoughtcrime.securesms.database.model.databaseprotos.TemporalAuthCredentialResponses;
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
-import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.Collections;
 import java.util.HashMap;

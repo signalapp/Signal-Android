@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms.crypto;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.backup.BackupProtos;

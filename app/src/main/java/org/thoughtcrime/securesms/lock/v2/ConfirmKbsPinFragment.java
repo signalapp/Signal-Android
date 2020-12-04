@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;
 

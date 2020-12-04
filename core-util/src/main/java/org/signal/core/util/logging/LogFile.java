@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.logging;
+package org.signal.core.util.logging;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.Conversions;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.Conversions;
+import org.signal.core.util.StreamUtil;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -75,7 +75,7 @@ class LogFile {
     }
 
     void close() {
-      Util.close(outputStream);
+      StreamUtil.close(outputStream);
     }
   }
 
@@ -113,13 +113,13 @@ class LogFile {
 
     private String readEntry() throws IOException {
       try {
-        Util.readFully(inputStream, ivBuffer);
-        Util.readFully(inputStream, intBuffer);
+        StreamUtil.readFully(inputStream, ivBuffer);
+        StreamUtil.readFully(inputStream, intBuffer);
 
         int    length     = Conversions.byteArrayToInt(intBuffer);
         byte[] ciphertext = ciphertextBuffer.get(length);
 
-        Util.readFully(inputStream, ciphertext, length);
+        StreamUtil.readFully(inputStream, ciphertext, length);
 
         try {
           cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(secret, "AES"), new IvParameterSpec(ivBuffer));

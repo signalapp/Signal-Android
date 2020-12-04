@@ -11,8 +11,6 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;

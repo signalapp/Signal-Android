@@ -12,6 +12,7 @@ import androidx.lifecycle.Transformations;
 import com.annimon.stream.ComparatorCompat;
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 

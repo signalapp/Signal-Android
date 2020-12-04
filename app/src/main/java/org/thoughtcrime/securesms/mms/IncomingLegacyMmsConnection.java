@@ -18,9 +18,9 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.InvalidHeaderValueException;
 import com.google.android.mms.pdu_alt.NotifyRespInd;
@@ -34,6 +34,7 @@ import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGetHC4;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.signal.core.util.logging.Log;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -8,8 +8,9 @@ import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
 import android.media.MediaRecorder;
 import android.os.Build;
-import org.thoughtcrime.securesms.logging.Log;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -81,7 +82,7 @@ public class AudioCodec {
           mediaCodec.release();
           audioRecord.release();
 
-          Util.close(outputStream);
+          StreamUtil.close(outputStream);
           setFinished();
         }
       }

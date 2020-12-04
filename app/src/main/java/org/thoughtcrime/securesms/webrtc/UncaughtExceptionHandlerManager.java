@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.webrtc;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 import java.util.ArrayList;
 import java.util.List;

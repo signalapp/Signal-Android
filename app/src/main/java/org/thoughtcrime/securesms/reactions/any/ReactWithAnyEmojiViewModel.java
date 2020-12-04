@@ -1,17 +1,14 @@
 package org.thoughtcrime.securesms.reactions.any;
 
-import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.reactions.ReactionsLoader;
 
-import java.util.Collections;
 import java.util.List;
 
 public final class ReactWithAnyEmojiViewModel extends ViewModel {

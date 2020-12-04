@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
-import org.whispersystems.signalservice.api.storage.StorageKey;
-
 public class TooltipValues extends SignalStoreValues {
 
   private static final String BLUR_HUD_ICON   = "tooltip.blur_hud_icon";

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.logging;
 
 import android.content.Context;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.KeyStoreHelper;
@@ -11,9 +12,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import java.io.IOException;
 import java.security.SecureRandom;
 
-class LogSecretProvider {
+public class LogSecretProvider {
 
-  static byte[] getOrCreateAttachmentSecret(@NonNull Context context) {
+  public static byte[] getOrCreateAttachmentSecret(@NonNull Context context) {
     String unencryptedSecret = TextSecurePreferences.getLogUnencryptedSecret(context);
     String encryptedSecret   = TextSecurePreferences.getLogEncryptedSecret(context);
 

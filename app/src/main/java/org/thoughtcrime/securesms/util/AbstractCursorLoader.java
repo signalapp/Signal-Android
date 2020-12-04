@@ -3,9 +3,10 @@ package org.thoughtcrime.securesms.util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
+
 import androidx.loader.content.AsyncTaskLoader;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 /**
  * A Loader similar to CursorLoader that doesn't require queries to go through the ContentResolver

@@ -7,10 +7,10 @@ import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.ResourceEncoder;
 import com.bumptech.glide.load.engine.Resource;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.glide.apng.decode.APNGDecoder;
 import org.signal.glide.common.loader.Loader;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class EncryptedApngCacheEncoder extends EncryptedCoder implements Resourc
       InputStream  input  = loader.obtain().toInputStream();
       OutputStream output = createEncryptedOutputStream(secret, file);
 
-      Util.copy(input, output);
+      StreamUtil.copy(input, output);
       return true;
     } catch (IOException e) {
       Log.w(TAG, e);

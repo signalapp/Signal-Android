@@ -11,8 +11,8 @@ import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import static android.provider.ContactsContract.Intents.Insert.NAME;
 import static android.provider.ContactsContract.Intents.Insert.EMAIL;
+import static android.provider.ContactsContract.Intents.Insert.NAME;
 import static android.provider.ContactsContract.Intents.Insert.PHONE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

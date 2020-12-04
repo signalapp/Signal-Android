@@ -2,9 +2,10 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
+
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 

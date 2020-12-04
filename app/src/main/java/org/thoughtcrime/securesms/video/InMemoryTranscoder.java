@@ -10,7 +10,7 @@ import androidx.annotation.RequiresApi;
 
 import com.google.android.exoplayer2.util.MimeTypes;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.media.MediaInput;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;

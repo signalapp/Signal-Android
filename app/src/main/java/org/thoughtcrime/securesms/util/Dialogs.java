@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+
 import androidx.appcompat.app.AlertDialog;
 
 import org.thoughtcrime.securesms.R;

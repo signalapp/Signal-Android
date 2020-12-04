@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;

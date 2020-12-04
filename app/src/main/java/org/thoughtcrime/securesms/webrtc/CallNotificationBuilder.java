@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * Manages the state of the WebRtc items in the Android notification bar.

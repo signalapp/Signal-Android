@@ -4,7 +4,8 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.os.PowerManager;
 import android.provider.Settings;
-import org.thoughtcrime.securesms.logging.Log;
+
+import org.signal.core.util.logging.Log;
 
 /**
  * Maintains wake lock state.

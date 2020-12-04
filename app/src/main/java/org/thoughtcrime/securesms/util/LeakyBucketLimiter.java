@@ -6,7 +6,7 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.core.os.HandlerCompat;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 /**
  * Imagine a bucket. Now imagine your tasks as little droplets. As your tasks are thrown into the

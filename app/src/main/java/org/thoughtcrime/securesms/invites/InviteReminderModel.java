@@ -6,9 +6,9 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.components.reminder.SecondInviteReminder;
 import org.thoughtcrime.securesms.components.reminder.FirstInviteReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
+import org.thoughtcrime.securesms.components.reminder.SecondInviteReminder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;

@@ -20,8 +20,6 @@
  */
 package org.thoughtcrime.securesms.blurhash;
 
-import android.text.TextUtils;
-
 import androidx.annotation.Nullable;
 
 final class Base83 {

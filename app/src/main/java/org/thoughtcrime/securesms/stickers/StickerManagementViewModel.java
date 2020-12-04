@@ -1,17 +1,17 @@
 package org.thoughtcrime.securesms.stickers;
 
 import android.app.Application;
+import android.database.ContentObserver;
+import android.os.Handler;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import android.database.ContentObserver;
-import android.os.Handler;
-import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.stickers.StickerManagementRepository.PackResult;
 
 import java.util.List;

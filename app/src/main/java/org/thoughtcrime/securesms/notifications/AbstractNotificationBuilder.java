@@ -4,11 +4,12 @@ import android.app.Notification;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;

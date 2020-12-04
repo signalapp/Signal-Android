@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import androidx.appcompat.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+
+import androidx.appcompat.widget.AppCompatImageButton;
 
 public class RepeatableImageKey extends AppCompatImageButton {
 

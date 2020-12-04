@@ -18,8 +18,8 @@
 package org.thoughtcrime.securesms.crypto;
 
 import androidx.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.InvalidMessageException;

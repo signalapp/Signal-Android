@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import androidx.core.content.ContextCompat;
 import android.text.Layout;
 import android.text.Selection;
 import android.text.Spannable;
@@ -12,6 +11,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 

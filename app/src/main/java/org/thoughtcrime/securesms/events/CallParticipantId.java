@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.events;
 
 import androidx.annotation.NonNull;
 
-import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 

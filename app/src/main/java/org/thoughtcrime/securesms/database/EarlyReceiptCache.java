@@ -2,12 +2,10 @@ package org.thoughtcrime.securesms.database;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class EarlyReceiptCache {

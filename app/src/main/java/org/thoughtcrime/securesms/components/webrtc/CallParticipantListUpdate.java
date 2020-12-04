@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import androidx.annotation.NonNull;
-import androidx.collection.LongSparseArray;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -10,12 +9,8 @@ import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SetUtil;
-import org.thoughtcrime.securesms.util.Util;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 

@@ -1,14 +1,15 @@
 package org.thoughtcrime.securesms.database.loaders;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.devicelist.Device;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -32,7 +33,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.thoughtcrime.securesms.devicelist.DeviceNameProtos.*;
+import static org.thoughtcrime.securesms.devicelist.DeviceNameProtos.DeviceName;
 
 public class DeviceListLoader extends AsyncLoader<List<Device>> {
 

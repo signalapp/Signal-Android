@@ -8,8 +8,8 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.GroupInviteLink;
 import org.signal.zkgroup.InvalidInputException;
-import org.whispersystems.util.Base64UrlSafe;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.util.Base64UrlSafe;
 
 import java.io.IOException;
 

@@ -9,8 +9,9 @@ import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.MemoryFileUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -52,7 +53,7 @@ public final class BlobContentProvider extends BaseContentProvider {
     MemoryFile memoryFile = new MemoryFile(null, fileSize);
 
     try (OutputStream out = memoryFile.getOutputStream()) {
-      Util.copy(in, out);
+      StreamUtil.copy(in, out);
     }
 
     return MemoryFileUtil.getParcelFileDescriptor(memoryFile);

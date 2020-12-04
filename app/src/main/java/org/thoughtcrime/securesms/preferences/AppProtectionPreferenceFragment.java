@@ -28,6 +28,8 @@ import androidx.preference.Preference;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
@@ -48,7 +50,6 @@ import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.lock.v2.RegistrationLockUtil;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.pin.RegistrationLockV2Dialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -59,7 +60,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

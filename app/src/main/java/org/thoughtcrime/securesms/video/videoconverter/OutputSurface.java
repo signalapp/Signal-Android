@@ -22,7 +22,7 @@ import android.graphics.SurfaceTexture;
 import android.opengl.EGL14;
 import android.view.Surface;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;

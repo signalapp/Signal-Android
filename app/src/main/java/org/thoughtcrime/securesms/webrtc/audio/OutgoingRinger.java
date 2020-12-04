@@ -8,8 +8,8 @@ import android.net.Uri;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 
 import java.io.IOException;

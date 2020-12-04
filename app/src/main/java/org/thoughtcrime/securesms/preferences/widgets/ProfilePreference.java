@@ -3,13 +3,14 @@ package org.thoughtcrime.securesms.preferences.widgets;
 
 import android.content.Context;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceViewHolder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceViewHolder;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -19,8 +20,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 public class ProfilePreference extends Preference {
 

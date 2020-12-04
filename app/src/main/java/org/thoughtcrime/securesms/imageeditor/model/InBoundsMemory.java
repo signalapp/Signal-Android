@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.imageeditor.model;
 
 import android.graphics.Matrix;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 

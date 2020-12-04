@@ -334,6 +334,7 @@ dependencies {
 
     implementation project(':libsignal-service')
     implementation project(':paging')
+    implementation project(':core-util')
     implementation 'org.signal:zkgroup-android:0.7.0'
     implementation 'org.whispersystems:signal-client-android:0.1.5'
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'

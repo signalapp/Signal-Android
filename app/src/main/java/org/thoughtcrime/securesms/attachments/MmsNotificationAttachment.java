@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.attachments;
 
 
 import android.net.Uri;
+
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;

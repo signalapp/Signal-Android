@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.FragmentActivity;
 
 public class PlayServicesProblemActivity extends FragmentActivity {

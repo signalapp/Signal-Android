@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.gcm;
 
-import androidx.annotation.WorkerThread;
 import android.text.TextUtils;
+
+import androidx.annotation.WorkerThread;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.CountDownLatch;

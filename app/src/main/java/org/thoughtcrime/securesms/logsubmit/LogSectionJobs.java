@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
-import java.util.List;
-
 public class LogSectionJobs implements LogSection {
 
   @Override

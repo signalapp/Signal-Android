@@ -7,9 +7,9 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.view.View;
 
 import androidx.annotation.NonNull;
-import android.view.View;
 
 public class CornerMask {
 

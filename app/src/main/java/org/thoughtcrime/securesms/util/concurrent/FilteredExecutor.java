@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.util.concurrent;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.Util;
-
 import java.util.concurrent.Executor;
 
 /**

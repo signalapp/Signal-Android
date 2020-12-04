@@ -6,7 +6,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import org.thoughtcrime.securesms.logging.Log;
+
+import org.signal.core.util.logging.Log;
 
 public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
 

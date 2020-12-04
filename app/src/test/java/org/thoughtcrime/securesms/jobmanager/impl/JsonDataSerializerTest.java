@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
 import org.junit.Test;
+import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public final class JsonDataSerializerTest {
 
@@ -14,7 +17,7 @@ public final class JsonDataSerializerTest {
 
   @Test
   public void deserialize_dataMatchesExpected() throws IOException {
-    Data data = new JsonDataSerializer().deserialize(Util.readFullyAsString(ClassLoader.getSystemClassLoader().getResourceAsStream("data/data_serialized.json")));
+    Data data = new JsonDataSerializer().deserialize(StreamUtil.readFullyAsString(ClassLoader.getSystemClassLoader().getResourceAsStream("data/data_serialized.json")));
 
     assertEquals("s1 value", data.getString("s1"));
     assertEquals("s2 value", data.getString("s2"));

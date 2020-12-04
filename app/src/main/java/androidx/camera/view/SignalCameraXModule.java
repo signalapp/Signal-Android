@@ -16,8 +16,6 @@
 
 package androidx.camera.view;
 
-import static androidx.camera.core.ImageCapture.FLASH_MODE_OFF;
-
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -29,7 +27,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
-import androidx.camera.core.AspectRatio;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraInfoUnavailableException;
 import androidx.camera.core.CameraSelector;
@@ -69,6 +66,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import static androidx.camera.core.ImageCapture.FLASH_MODE_OFF;
 
 /** CameraX use case operation built on @{link androidx.camera.core}. */
 @RequiresApi(21)

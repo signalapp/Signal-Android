@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.sharing.ShareIntents;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 import java.util.ArrayList;

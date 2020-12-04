@@ -3,14 +3,15 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.RetrieveConf;
 import com.google.android.mms.pdu_alt.SendConf;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 
 import java.io.IOException;

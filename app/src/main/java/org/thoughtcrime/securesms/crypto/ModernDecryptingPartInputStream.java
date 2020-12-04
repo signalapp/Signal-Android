@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.Conversions;
+import org.signal.core.util.Conversions;
 
 import java.io.File;
 import java.io.FileInputStream;

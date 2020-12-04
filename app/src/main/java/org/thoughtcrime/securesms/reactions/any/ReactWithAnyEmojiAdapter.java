@@ -15,13 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
-import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
-import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
-
-import java.util.Collections;
-import java.util.List;
 
 final class ReactWithAnyEmojiAdapter extends ListAdapter<ReactWithAnyEmojiPage, ReactWithAnyEmojiAdapter.ReactWithAnyEmojiPageViewHolder> {
 

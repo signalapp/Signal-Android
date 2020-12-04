@@ -9,7 +9,6 @@ import android.os.BatteryManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 

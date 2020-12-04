@@ -5,13 +5,13 @@ import androidx.annotation.Nullable;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKey;
-import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.LinkedHashMap;

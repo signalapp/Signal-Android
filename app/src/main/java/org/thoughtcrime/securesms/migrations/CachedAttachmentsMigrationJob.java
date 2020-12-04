@@ -2,14 +2,13 @@ package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.FileUtils;
 
 import java.io.File;
-import java.io.IOException;
 
 public class CachedAttachmentsMigrationJob extends MigrationJob {
 

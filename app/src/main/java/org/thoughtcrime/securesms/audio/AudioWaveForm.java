@@ -16,18 +16,18 @@ import androidx.core.util.Consumer;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
 import org.thoughtcrime.securesms.media.MediaInput;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.ringrtc;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 public class RingRtcLogger implements org.signal.ringrtc.Log.Logger {
   @Override

@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.stickers;
 
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.util.Hex;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 

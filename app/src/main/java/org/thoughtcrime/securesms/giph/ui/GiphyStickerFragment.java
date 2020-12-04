@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.giph.ui;
 
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.loader.content.Loader;
 

@@ -8,7 +8,7 @@ import android.media.MediaFormat;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.media.MediaInput;
 import org.thoughtcrime.securesms.video.VideoUtil;
 

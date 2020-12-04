@@ -5,11 +5,10 @@ import android.support.v4.media.MediaDescriptionCompat;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueEditor;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 import java.util.LinkedList;
 import java.util.List;

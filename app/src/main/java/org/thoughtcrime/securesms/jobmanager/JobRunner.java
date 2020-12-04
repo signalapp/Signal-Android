@@ -2,11 +2,12 @@ package org.thoughtcrime.securesms.jobmanager;
 
 import android.app.Application;
 import android.os.PowerManager;
+
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.WakeLockUtil;
 
 import java.util.List;

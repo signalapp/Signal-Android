@@ -17,9 +17,6 @@
 
 package org.thoughtcrime.securesms.contacts;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -30,6 +27,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
+
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
 
 /**
  * This adapter is used to filter contacts on both name and number.

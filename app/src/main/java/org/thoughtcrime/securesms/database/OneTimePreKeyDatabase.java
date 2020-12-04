@@ -4,9 +4,10 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import androidx.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
+import androidx.annotation.Nullable;
+
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.InvalidKeyException;

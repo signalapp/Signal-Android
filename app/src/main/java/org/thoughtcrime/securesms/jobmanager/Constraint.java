@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager;
 
 import android.app.job.JobInfo;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 

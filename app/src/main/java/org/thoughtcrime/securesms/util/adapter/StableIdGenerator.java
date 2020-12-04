@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util.adapter;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.storage;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyGenerator;
 import org.whispersystems.libsignal.util.guava.Optional;

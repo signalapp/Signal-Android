@@ -26,7 +26,6 @@ class DataStatus {
     return new DataStatus(size, bitset);
   }
 
-
   private DataStatus(int size, @NonNull BitSet bitset) {
     this.size  = size;
     this.state = bitset;

@@ -1,8 +1,9 @@
 package org.thoughtcrime.securesms.crypto;
 
 
-import androidx.annotation.NonNull;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.io.FileOutputStream;

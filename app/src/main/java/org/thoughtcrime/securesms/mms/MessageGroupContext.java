@@ -22,7 +22,6 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;

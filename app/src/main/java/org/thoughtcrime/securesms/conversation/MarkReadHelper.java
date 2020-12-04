@@ -4,15 +4,15 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.List;
 import java.util.concurrent.Executor;

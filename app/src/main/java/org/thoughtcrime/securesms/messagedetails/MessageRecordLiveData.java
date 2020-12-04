@@ -3,20 +3,18 @@ package org.thoughtcrime.securesms.messagedetails;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
-import android.os.Message;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 
-import org.thoughtcrime.securesms.database.Database;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 final class MessageRecordLiveData extends LiveData<MessageRecord> {
 

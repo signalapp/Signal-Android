@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.takisoft.colorpicker.ColorPickerDialog;
 import com.takisoft.colorpicker.ColorStateDrawable;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
@@ -53,7 +54,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.Locale;
 import java.util.Objects;

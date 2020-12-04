@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.logsubmit;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ListenableHorizontalScrollView;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.ArrayList;
 import java.util.List;

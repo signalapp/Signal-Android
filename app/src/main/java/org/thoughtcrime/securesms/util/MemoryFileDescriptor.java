@@ -6,7 +6,7 @@ import android.os.ParcelFileDescriptor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 import java.io.Closeable;
 import java.io.FileDescriptor;

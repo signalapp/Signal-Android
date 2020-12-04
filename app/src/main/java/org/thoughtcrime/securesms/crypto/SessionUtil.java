@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;

@@ -1,9 +1,10 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import com.google.android.material.tabs.TabLayout;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 

@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.load.Key;
 
-import org.thoughtcrime.securesms.util.Conversions;
+import org.signal.core.util.Conversions;
 
 import java.security.MessageDigest;
 

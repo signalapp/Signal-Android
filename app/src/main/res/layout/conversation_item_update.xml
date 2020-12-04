@@ -2,7 +2,6 @@
 <org.thoughtcrime.securesms.conversation.ConversationUpdateItem
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/conversation_update_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

@@ -1,14 +1,11 @@
-package org.thoughtcrime.securesms.logging;
+package org.signal.core.util.logging;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.AnyThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -22,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicReference;
 
 @SuppressLint("LogNotSignal")
 public final class PersistentLogger extends Log.Logger {
@@ -35,8 +33,6 @@ public final class PersistentLogger extends Log.Logger {
   private static final String LOG_E   = "E";
   private static final String LOG_WTF = "A";
 
-  private static final String VERSION_TAG = "[" + BuildConfig.VERSION_NAME + "]";
-
   private static final String           LOG_DIRECTORY   = "log";
   private static final String           FILENAME_PREFIX = "log-";
   private static final int              MAX_LOG_FILES   = 7;
@@ -46,12 +42,14 @@ public final class PersistentLogger extends Log.Logger {
   private final Context  context;
   private final Executor executor;
   private final byte[]   secret;
+  private final String   logTag;
 
   private LogFile.Writer writer;
 
-  public PersistentLogger(Context context) {
+  public PersistentLogger(@NonNull Context context, @NonNull byte[] secret, @NonNull String logTag) {
     this.context  = context.getApplicationContext();
-    this.secret   = LogSecretProvider.getOrCreateAttachmentSecret(context);
+    this.secret   = secret;
+    this.logTag   = logTag;
     this.executor = Executors.newSingleThreadExecutor(r -> {
       Thread thread = new Thread(r, "signal-PersistentLogger");
       thread.setPriority(Thread.MIN_PRIORITY);
@@ -105,38 +103,47 @@ public final class PersistentLogger extends Log.Logger {
   }
 
   @WorkerThread
-  public ListenableFuture<CharSequence> getLogs() {
-    final SettableFuture<CharSequence> future = new SettableFuture<>();
+  public @Nullable CharSequence getLogs() {
+    CountDownLatch                latch = new CountDownLatch(1);
+    AtomicReference<CharSequence> logs  = new AtomicReference<>();
 
     executor.execute(() -> {
       StringBuilder builder = new StringBuilder();
 
       try {
-        File[] logs = getSortedLogFiles();
-        for (int i = logs.length - 1; i >= 0; i--) {
+        File[] logFiles = getSortedLogFiles();
+        for (int i = logFiles.length - 1; i >= 0; i--) {
           try {
-            LogFile.Reader reader = new LogFile.Reader(secret, logs[i]);
+            LogFile.Reader reader = new LogFile.Reader(secret, logFiles[i]);
             builder.append(reader.readAll());
           } catch (IOException e) {
             android.util.Log.w(TAG, "Failed to read log at index " + i + ". Removing reference.");
-            logs[i].delete();
+            logFiles[i].delete();
           }
         }
 
-        future.set(builder);
-      } catch (NoExternalStorageException e) {
-        future.setException(e);
+        logs.set(builder);
+      } catch (IOException e) {
+        logs.set(null);
       }
+
+      latch.countDown();
     });
 
-    return future;
+    try {
+      latch.await();
+      return logs.get();
+    } catch (InterruptedException e) {
+      android.util.Log.w(TAG, "Failed to wait for logs to be retrieved.");
+      return null;
+    }
   }
 
   @WorkerThread
   private void initializeWriter() {
     try {
       writer = new LogFile.Writer(secret, getOrCreateActiveLogFile());
-    } catch (NoExternalStorageException | IOException e) {
+    } catch (IOException e) {
       android.util.Log.e(TAG, "Failed to initialize writer.", e);
     }
   }
@@ -159,8 +166,6 @@ public final class PersistentLogger extends Log.Logger {
           writer.writeEntry(entry);
         }
 
-      } catch (NoExternalStorageException e) {
-        android.util.Log.w(TAG, "Cannot persist logs.", e);
       } catch (IOException e) {
         android.util.Log.w(TAG, "Failed to write line. Deleting all logs and starting over.");
         deleteAllLogs();
@@ -169,7 +174,7 @@ public final class PersistentLogger extends Log.Logger {
     });
   }
 
-  private void trimLogFilesOverMax() throws NoExternalStorageException {
+  private void trimLogFilesOverMax() throws IOException {
     File[] logs = getSortedLogFiles();
     if (logs.length > MAX_LOG_FILES) {
       for (int i = MAX_LOG_FILES; i < logs.length; i++) {
@@ -184,12 +189,12 @@ public final class PersistentLogger extends Log.Logger {
       for (File log : logs) {
         log.delete();
       }
-    } catch (NoExternalStorageException e) {
+    } catch (IOException e) {
       android.util.Log.w(TAG, "Was unable to delete logs.", e);
     }
   }
 
-  private File getOrCreateActiveLogFile() throws NoExternalStorageException {
+  private File getOrCreateActiveLogFile() throws IOException {
     File[] logs = getSortedLogFiles();
     if (logs.length > 0) {
       return logs[0];
@@ -198,11 +203,11 @@ public final class PersistentLogger extends Log.Logger {
     return createNewLogFile();
   }
 
-  private File createNewLogFile() throws NoExternalStorageException {
+  private File createNewLogFile() throws IOException {
     return new File(getOrCreateLogDirectory(), FILENAME_PREFIX + System.currentTimeMillis());
   }
 
-  private File[] getSortedLogFiles() throws NoExternalStorageException {
+  private File[] getSortedLogFiles() throws IOException {
     File[] logs = getOrCreateLogDirectory().listFiles();
     if (logs != null) {
       Arrays.sort(logs, (o1, o2) -> o2.getName().compareTo(o1.getName()));
@@ -211,10 +216,10 @@ public final class PersistentLogger extends Log.Logger {
     return new File[0];
   }
 
-  private File getOrCreateLogDirectory() throws NoExternalStorageException {
+  private File getOrCreateLogDirectory() throws IOException {
     File logDir = new File(context.getCacheDir(), LOG_DIRECTORY);
     if (!logDir.exists() && !logDir.mkdir()) {
-      throw new NoExternalStorageException("Unable to create log directory.");
+      throw new IOException("Unable to create log directory.");
     }
 
     return logDir;
@@ -242,6 +247,6 @@ public final class PersistentLogger extends Log.Logger {
   }
 
   private String buildEntry(String level, String tag, String message, Date date) {
-    return VERSION_TAG + ' ' +DATE_FORMAT.format(date) + ' ' + level + ' ' + tag + ": " + message;
+    return logTag + ' ' + DATE_FORMAT.format(date) + ' ' + level + ' ' + tag + ": " + message;
   }
 }

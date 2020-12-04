@@ -21,7 +21,6 @@ import androidx.navigation.Navigation;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.PinOptOutDialog;
-import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 
 public final class KbsSplashFragment extends Fragment {

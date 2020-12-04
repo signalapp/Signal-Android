@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.video.VideoPlayer;
-
-import java.io.IOException;
 
 public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 

@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.contactshare;
 
+import android.net.Uri;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import android.net.Uri;
-import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 

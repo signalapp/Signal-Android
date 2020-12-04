@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.lifecycle.MutableLiveData;
 
+import org.signal.core.util.StreamUtil;
+
 import java.io.Closeable;
 
 /**
@@ -19,7 +21,7 @@ public class CloseableLiveData<E extends Closeable> extends MutableLiveData<E> {
     E previous = getValue();
 
     if (previous != null && closePrevious) {
-      Util.close(previous);
+      StreamUtil.close(previous);
     }
 
     super.setValue(value);
@@ -29,7 +31,7 @@ public class CloseableLiveData<E extends Closeable> extends MutableLiveData<E> {
     E value = getValue();
 
     if (value != null) {
-      Util.close(value);
+      StreamUtil.close(value);
     }
   }
 }

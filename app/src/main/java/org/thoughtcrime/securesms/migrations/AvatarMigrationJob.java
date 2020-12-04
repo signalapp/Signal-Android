@@ -2,14 +2,14 @@ package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -63,7 +63,7 @@ public class AvatarMigrationJob extends MigrationJob {
       try {
         if (isValidFileName(file.getName())) {
           Recipient recipient = Recipient.external(context, file.getName());
-          byte[]    data      = Util.readFully(new FileInputStream(file));
+          byte[]    data      = StreamUtil.readFully(new FileInputStream(file));
 
           AvatarHelper.setAvatar(context, recipient.getId(), new ByteArrayInputStream(data));
         } else {

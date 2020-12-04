@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager.persistence;
 
 import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 

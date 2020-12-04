@@ -2,8 +2,9 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
 import android.view.Window;
+
+import androidx.appcompat.app.AlertDialog;
 
 public class DeviceProvisioningActivity extends PassphraseRequiredActivity {
 

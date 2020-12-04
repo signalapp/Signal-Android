@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tools="http://schemas.android.com/tools">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:key="media_download" android:title="@string/preferences_chats__media_auto_download">
         <MultiSelectListPreference
                 android:title="@string/preferences_chats__when_using_mobile_data"

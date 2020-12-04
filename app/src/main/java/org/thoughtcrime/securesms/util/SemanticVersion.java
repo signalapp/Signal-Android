@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.util;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.ComparatorCompat;

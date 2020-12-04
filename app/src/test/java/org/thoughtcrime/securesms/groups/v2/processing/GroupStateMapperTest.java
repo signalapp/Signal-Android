@@ -2,11 +2,11 @@ package org.thoughtcrime.securesms.groups.v2.processing;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 

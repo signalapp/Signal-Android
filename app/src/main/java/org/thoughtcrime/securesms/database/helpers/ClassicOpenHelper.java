@@ -20,6 +20,8 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -37,7 +39,6 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
@@ -330,7 +331,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
               if (encrypted) is = ClassicDecryptingPartInputStream.createFor(attachmentSecret, dataFile);
               else           is = new FileInputStream(dataFile);
 
-              body = (body == null) ? Util.readFullyAsString(is) : body + " " + Util.readFullyAsString(is);
+              body = (body == null) ? StreamUtil.readFullyAsString(is) : body + " " + StreamUtil.readFullyAsString(is);
 
               //noinspection ResultOfMethodCallIgnored
               dataFile.delete();

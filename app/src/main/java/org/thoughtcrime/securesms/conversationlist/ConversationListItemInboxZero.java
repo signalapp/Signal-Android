@@ -3,11 +3,12 @@ package org.thoughtcrime.securesms.conversationlist;
 
 import android.content.Context;
 import android.os.Build;
+import android.util.AttributeSet;
+import android.widget.LinearLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import android.util.AttributeSet;
-import android.widget.LinearLayout;
 
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;

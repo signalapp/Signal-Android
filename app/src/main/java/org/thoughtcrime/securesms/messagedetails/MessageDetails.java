@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.ComparatorCompat;
 
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 import java.util.Collection;

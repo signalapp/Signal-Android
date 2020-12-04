@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mms;
 
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.attachments.Attachment;

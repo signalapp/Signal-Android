@@ -1,9 +1,10 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.net.Uri;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.view.View;
 
 /**
  * A page that sits in the {@link MediaSendFragmentPagerAdapter}.

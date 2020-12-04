@@ -17,10 +17,11 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import android.view.MenuItem;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.util.DynamicLanguage;

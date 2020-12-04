@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.CallSuper;

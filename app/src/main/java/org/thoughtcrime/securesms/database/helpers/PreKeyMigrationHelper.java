@@ -3,17 +3,18 @@ package org.thoughtcrime.securesms.database.helpers;
 
 import android.content.ContentValues;
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.core.util.Conversions;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidMessageException;

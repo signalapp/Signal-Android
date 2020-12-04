@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+
 import androidx.loader.content.CursorLoader;
 
 import org.thoughtcrime.securesms.permissions.Permissions;

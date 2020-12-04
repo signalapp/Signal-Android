@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
 /**

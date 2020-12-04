@@ -2,11 +2,7 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.storage.StorageKey;
-
-import java.security.SecureRandom;
 
 public class StorageServiceValues extends SignalStoreValues {
 

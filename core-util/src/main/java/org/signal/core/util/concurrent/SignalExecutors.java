@@ -1,18 +1,14 @@
-package org.thoughtcrime.securesms.util.concurrent;
+package org.signal.core.util.concurrent;
 
 import android.os.HandlerThread;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.LinkedBlockingLifoQueue;
+import org.signal.core.util.LinkedBlockingLifoQueue;
 
-import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.LinkedTransferQueue;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;

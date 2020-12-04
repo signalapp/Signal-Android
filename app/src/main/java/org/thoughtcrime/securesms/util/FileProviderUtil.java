@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 

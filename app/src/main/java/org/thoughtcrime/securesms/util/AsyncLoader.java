@@ -16,8 +16,9 @@ package org.thoughtcrime.securesms.util;
  * limitations under the License.
  */
 
-import androidx.loader.content.AsyncTaskLoader;
 import android.content.Context;
+
+import androidx.loader.content.AsyncTaskLoader;
 
 /**
  * Loader which extends AsyncTaskLoaders and handles caveats

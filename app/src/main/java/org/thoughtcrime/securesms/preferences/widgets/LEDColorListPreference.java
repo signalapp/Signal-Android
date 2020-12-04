@@ -18,11 +18,12 @@ package org.thoughtcrime.securesms.preferences.widgets;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
+import android.util.AttributeSet;
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.preference.ListPreference;
 import androidx.preference.PreferenceViewHolder;
-import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.R;
 

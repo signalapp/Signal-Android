@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.color;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Color;
 
 import androidx.annotation.ColorInt;

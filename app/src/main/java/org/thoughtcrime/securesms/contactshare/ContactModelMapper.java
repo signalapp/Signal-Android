@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.contactshare;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
@@ -12,7 +11,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.thoughtcrime.securesms.contactshare.Contact.*;
+import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
+import static org.thoughtcrime.securesms.contactshare.Contact.Email;
+import static org.thoughtcrime.securesms.contactshare.Contact.Name;
+import static org.thoughtcrime.securesms.contactshare.Contact.Phone;
+import static org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 
 public class ContactModelMapper {
 

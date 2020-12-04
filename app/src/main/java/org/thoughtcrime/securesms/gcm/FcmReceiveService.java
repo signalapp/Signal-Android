@@ -2,18 +2,15 @@ package org.thoughtcrime.securesms.gcm;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.messages.RestStrategy;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 

@@ -18,7 +18,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.LimitedInputStream;
 import org.thoughtcrime.securesms.util.Util;
 

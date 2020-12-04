@@ -8,7 +8,6 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.util.BucketInfo;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @RequiresApi(28)

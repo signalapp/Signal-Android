@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceDataStore;
 
-import java.util.Set;
-
 /**
  * An implementation of the {@link PreferenceDataStore} interface to let us link preference screens
  * to the {@link SignalStore}.

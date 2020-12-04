@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util.paging;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 
 import java.util.List;
 

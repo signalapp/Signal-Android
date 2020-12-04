@@ -15,17 +15,17 @@ import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.os.PowerManager;
 import android.os.Vibrator;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
-
 import android.os.storage.StorageManager;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 public class ServiceUtil {
   public static InputMethodManager getInputMethodManager(Context context) {

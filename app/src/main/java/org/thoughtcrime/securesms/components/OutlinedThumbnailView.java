@@ -3,21 +3,12 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.UiThread;
-import androidx.core.content.ContextCompat;
-
-import android.graphics.Color;
 import android.util.AttributeSet;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.GlideRequest;
-import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+import org.thoughtcrime.securesms.R;
 
 public class OutlinedThumbnailView extends ThumbnailView {
 

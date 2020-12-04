@@ -1,18 +1,19 @@
 package org.thoughtcrime.securesms.contactshare;
 
 import android.app.Activity;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
@@ -24,8 +25,9 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.thoughtcrime.securesms.contactshare.Contact.*;
-import static org.thoughtcrime.securesms.contactshare.ContactShareEditViewModel.*;
+import static org.thoughtcrime.securesms.contactshare.Contact.Name;
+import static org.thoughtcrime.securesms.contactshare.ContactShareEditViewModel.Event;
+import static org.thoughtcrime.securesms.contactshare.ContactShareEditViewModel.Factory;
 
 public class ContactShareEditActivity extends PassphraseRequiredActivity implements ContactShareEditAdapter.EventListener {
 

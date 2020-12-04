@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
 import org.thoughtcrime.securesms.util.Triple;
-import org.whispersystems.libsignal.util.Pair;
 
 public final class LiveDataTriple<A, B, C> extends MediatorLiveData<Triple<A, B, C>> {
   private A a;

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboardProvider;
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 public final class ImageEditorStickerSelectActivity extends FragmentActivity {
 

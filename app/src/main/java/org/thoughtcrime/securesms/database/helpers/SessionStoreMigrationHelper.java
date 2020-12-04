@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.database.helpers;
 
 import android.content.ContentValues;
 import android.content.Context;
-import org.thoughtcrime.securesms.logging.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.core.util.Conversions;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SessionDatabase;
-import org.thoughtcrime.securesms.util.Conversions;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.state.SessionState;
 import org.whispersystems.libsignal.state.StorageProtos.SessionStructure;

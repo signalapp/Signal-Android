@@ -23,10 +23,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.LinkedList;
 import java.util.List;

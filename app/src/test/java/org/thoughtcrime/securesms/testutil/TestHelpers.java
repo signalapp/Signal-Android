@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.testutil;
 import com.annimon.stream.Stream;
 import com.google.common.collect.Sets;
 
-import org.thoughtcrime.securesms.util.Conversions;
+import org.signal.core.util.Conversions;
 import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.nio.ByteBuffer;

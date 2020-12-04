@@ -4,12 +4,12 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import androidx.appcompat.app.AlertDialog;
-import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;

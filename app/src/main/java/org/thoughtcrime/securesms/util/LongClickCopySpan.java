@@ -3,12 +3,13 @@ package org.thoughtcrime.securesms.util;
 import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.Context;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
 

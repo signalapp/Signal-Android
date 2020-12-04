@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;

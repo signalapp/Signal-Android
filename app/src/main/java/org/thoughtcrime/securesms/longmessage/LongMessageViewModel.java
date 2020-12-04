@@ -1,15 +1,15 @@
 package org.thoughtcrime.securesms.longmessage;
 
 import android.app.Application;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.database.ContentObserver;
-import android.net.Uri;
-import android.os.Handler;
-import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.whispersystems.libsignal.util.guava.Optional;

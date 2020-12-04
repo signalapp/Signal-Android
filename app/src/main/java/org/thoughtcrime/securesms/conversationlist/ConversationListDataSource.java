@@ -11,6 +11,8 @@ import androidx.annotation.VisibleForTesting;
 import androidx.paging.DataSource;
 import androidx.paging.PositionalDataSource;
 
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
@@ -18,11 +20,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.thoughtcrime.securesms.util.paging.SizeFixResult;
 

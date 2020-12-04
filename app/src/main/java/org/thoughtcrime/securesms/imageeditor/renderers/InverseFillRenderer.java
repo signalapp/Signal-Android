@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.imageeditor.renderers;
 
 import android.graphics.Path;
 import android.os.Parcel;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 

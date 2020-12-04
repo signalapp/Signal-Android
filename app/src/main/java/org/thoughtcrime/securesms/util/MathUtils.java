@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.graphics.PointF;
+
 import androidx.annotation.NonNull;
 
 public class MathUtils {

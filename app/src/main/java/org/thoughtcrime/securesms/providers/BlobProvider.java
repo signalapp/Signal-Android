@@ -12,15 +12,15 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.IOFunction;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.video.ByteArrayMediaDataSource;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
@@ -224,7 +224,7 @@ public class BlobProvider {
     }
 
     try (InputStream stream = getStream(context, uri)) {
-      return Util.getStreamLength(stream);
+      return StreamUtil.getStreamLength(stream);
     } catch (IOException e) {
       Log.w(TAG, e);
       return 0;
@@ -271,7 +271,7 @@ public class BlobProvider {
 
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        Util.copy(blobSpec.getData(), outputStream);
+        StreamUtil.copy(blobSpec.getData(), outputStream);
 
         if (successListener != null) {
           successListener.onSuccess();

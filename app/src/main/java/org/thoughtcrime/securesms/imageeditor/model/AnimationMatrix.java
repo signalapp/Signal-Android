@@ -2,11 +2,12 @@ package org.thoughtcrime.securesms.imageeditor.model;
 
 import android.animation.ValueAnimator;
 import android.graphics.Matrix;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.imageeditor.CanvasMatrix;
 

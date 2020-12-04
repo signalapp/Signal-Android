@@ -7,8 +7,8 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.gcm.FcmUtil;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -57,7 +57,7 @@ public final class RegistrationCodeRequest {
 
           return new VerificationRequestResult(fcmToken.orNull(), Optional.absent());
         } catch (IOException e) {
-          org.thoughtcrime.securesms.logging.Log.w(TAG, "Error during account registration", e);
+          org.signal.core.util.logging.Log.w(TAG, "Error during account registration", e);
           return new VerificationRequestResult(null, Optional.of(e));
         }
       }

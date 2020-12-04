@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.messagedetails;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 

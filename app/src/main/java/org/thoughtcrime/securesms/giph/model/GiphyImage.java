@@ -7,8 +7,6 @@ import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.thoughtcrime.securesms.util.Util;
-
 public class GiphyImage {
 
   @JsonProperty

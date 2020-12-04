@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.preferences.widgets;
 
 import android.content.Context;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceViewHolder;
 
 import org.thoughtcrime.securesms.R;
 

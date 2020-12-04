@@ -9,8 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.annimon.stream.function.Predicate;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Function;
 
 import java.util.LinkedHashSet;

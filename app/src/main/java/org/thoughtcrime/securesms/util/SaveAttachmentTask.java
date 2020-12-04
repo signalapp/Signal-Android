@@ -16,8 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.Pair;
@@ -106,12 +107,12 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
       if (Objects.equals(outputUri.getScheme(), ContentResolver.SCHEME_FILE)) {
         try (OutputStream outputStream = new FileOutputStream(mediaUri.getPath())) {
-          Util.copy(inputStream, outputStream);
+          StreamUtil.copy(inputStream, outputStream);
           MediaScannerConnection.scanFile(context, new String[]{mediaUri.getPath()}, new String[]{contentType}, null);
         }
       } else {
         try (OutputStream outputStream = context.getContentResolver().openOutputStream(mediaUri, "w")) {
-          Util.copy(inputStream, outputStream);
+          StreamUtil.copy(inputStream, outputStream);
         }
       }
     }

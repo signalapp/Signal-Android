@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 import android.content.res.Configuration;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 

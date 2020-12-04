@@ -14,7 +14,6 @@ import com.google.android.flexbox.FlexboxLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 

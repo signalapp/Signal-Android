@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.preference.PreferenceDataStore;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.SignalUncaughtExceptionHandler;
+import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 
 /**
  * Simple, encrypted key-value store.

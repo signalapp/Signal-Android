@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 

@@ -1,9 +1,10 @@
 package org.thoughtcrime.securesms.util.spans;
 
 
-import androidx.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
+
+import androidx.annotation.NonNull;
 
 public class CenterAlignedRelativeSizeSpan extends MetricAffectingSpan {
 

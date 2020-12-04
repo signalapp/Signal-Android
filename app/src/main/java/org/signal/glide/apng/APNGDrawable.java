@@ -7,8 +7,8 @@ package org.signal.glide.apng;
 
 import android.content.Context;
 
-import org.signal.glide.common.FrameAnimationDrawable;
 import org.signal.glide.apng.decode.APNGDecoder;
+import org.signal.glide.common.FrameAnimationDrawable;
 import org.signal.glide.common.decode.FrameSeqDecoder;
 import org.signal.glide.common.loader.AssetStreamLoader;
 import org.signal.glide.common.loader.FileLoader;

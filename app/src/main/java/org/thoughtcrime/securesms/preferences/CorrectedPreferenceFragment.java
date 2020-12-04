@@ -3,8 +3,11 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import androidx.fragment.app.DialogFragment;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.core.view.ViewCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
@@ -12,8 +15,6 @@ import androidx.preference.PreferenceGroupAdapter;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.PreferenceViewHolder;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.CustomDefaultPreference;

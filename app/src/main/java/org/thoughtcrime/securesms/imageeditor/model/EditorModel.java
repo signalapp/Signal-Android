@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;
 import org.thoughtcrime.securesms.imageeditor.UndoRedoStackListener;
-import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.FaceBlurRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;

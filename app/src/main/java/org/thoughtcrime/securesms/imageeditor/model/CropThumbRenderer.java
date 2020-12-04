@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.imageeditor.model;
 
 import android.graphics.Matrix;
 import android.os.Parcel;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;

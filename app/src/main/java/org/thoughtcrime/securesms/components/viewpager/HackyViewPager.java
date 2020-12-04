@@ -2,10 +2,12 @@ package org.thoughtcrime.securesms.components.viewpager;
 
 
 import android.content.Context;
-import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.MotionEvent;
+
+import androidx.viewpager.widget.ViewPager;
+
+import org.signal.core.util.logging.Log;
 
 /**
  * Hacky fix for http://code.google.com/p/android/issues/detail?id=18990

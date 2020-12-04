@@ -20,9 +20,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.SendConf;
@@ -33,6 +33,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpPostHC4;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ByteArrayEntityHC4;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 
 import java.io.IOException;

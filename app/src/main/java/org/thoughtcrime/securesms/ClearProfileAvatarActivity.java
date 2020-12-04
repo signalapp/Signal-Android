@@ -3,15 +3,11 @@ package org.thoughtcrime.securesms;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public class ClearProfileAvatarActivity extends Activity {
 

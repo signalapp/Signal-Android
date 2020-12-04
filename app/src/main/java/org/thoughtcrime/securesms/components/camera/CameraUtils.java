@@ -5,11 +5,13 @@ import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
+import android.util.DisplayMetrics;
+import android.view.Surface;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.util.DisplayMetrics;
-import org.thoughtcrime.securesms.logging.Log;
-import android.view.Surface;
+
+import org.signal.core.util.logging.Log;
 
 import java.util.Collections;
 import java.util.Comparator;

@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+
 import androidx.core.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.MainActivity;

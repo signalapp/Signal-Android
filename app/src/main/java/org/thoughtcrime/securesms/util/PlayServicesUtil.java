@@ -4,10 +4,11 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+
+import org.signal.core.util.logging.Log;
 
 public class PlayServicesUtil {
 

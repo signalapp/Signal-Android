@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.identity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 

@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.registration.v2;
 
 import org.junit.Test;
+import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.registration.v2.testdata.KbsTestVector;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.KbsData;
@@ -50,7 +50,7 @@ public final class HashedPinKbsDataTest {
   private static KbsTestVector[] getKbsTestVectorList() throws IOException {
     try (InputStream resourceAsStream = ClassLoader.getSystemClassLoader().getResourceAsStream("data/kbs_vectors.json")) {
 
-      KbsTestVector[] data = JsonUtil.fromJson(Util.readFullyAsString(resourceAsStream), KbsTestVector[].class);
+      KbsTestVector[] data = JsonUtil.fromJson(StreamUtil.readFullyAsString(resourceAsStream), KbsTestVector[].class);
 
       assertTrue(data.length > 0);
 

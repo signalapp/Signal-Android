@@ -2,14 +2,13 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.graphics.Typeface;
-
-import androidx.annotation.Nullable;
-
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
+
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;

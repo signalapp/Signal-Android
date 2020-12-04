@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.groups;
 
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.Closeable;

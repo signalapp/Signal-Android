@@ -2,9 +2,7 @@ package org.thoughtcrime.securesms.profiles.spoofing;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
