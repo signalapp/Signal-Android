@@ -7,9 +7,11 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 
 import java.util.List;
+import java.util.Set;
 
 public class WebRtcViewModel {
 
@@ -91,6 +93,7 @@ public class WebRtcViewModel {
 
   private final CallParticipant       localParticipant;
   private final List<CallParticipant> remoteParticipants;
+  private final Set<RecipientId>      identityChangedRecipients;
 
   public WebRtcViewModel(@NonNull State state,
                          @NonNull GroupCallState groupState,
@@ -101,15 +104,17 @@ public class WebRtcViewModel {
                          boolean isMicrophoneEnabled,
                          boolean isRemoteVideoOffer,
                          long callConnectedTime,
-                         @NonNull List<CallParticipant> remoteParticipants)
+                         @NonNull List<CallParticipant> remoteParticipants,
+                         @NonNull Set<RecipientId> identityChangedRecipients)
   {
-    this.state                = state;
-    this.groupState           = groupState;
-    this.recipient            = recipient;
-    this.isBluetoothAvailable = isBluetoothAvailable;
-    this.isRemoteVideoOffer   = isRemoteVideoOffer;
-    this.callConnectedTime    = callConnectedTime;
-    this.remoteParticipants   = remoteParticipants;
+    this.state                     = state;
+    this.groupState                = groupState;
+    this.recipient                 = recipient;
+    this.isBluetoothAvailable      = isBluetoothAvailable;
+    this.isRemoteVideoOffer        = isRemoteVideoOffer;
+    this.callConnectedTime         = callConnectedTime;
+    this.remoteParticipants        = remoteParticipants;
+    this.identityChangedRecipients = identityChangedRecipients;
 
     localParticipant = CallParticipant.createLocal(localCameraState, localSink != null ? localSink : new BroadcastVideoSink(null), isMicrophoneEnabled);
   }
@@ -150,7 +155,12 @@ public class WebRtcViewModel {
     return remoteParticipants;
   }
 
-  @Override public @NonNull String toString() {
+  public @NonNull Set<RecipientId> getIdentityChangedParticipants() {
+    return identityChangedRecipients;
+  }
+
+  @Override
+  public @NonNull String toString() {
     return "WebRtcViewModel{" +
            "state=" + state +
            ", recipient=" + recipient.getId() +
@@ -159,6 +169,7 @@ public class WebRtcViewModel {
            ", callConnectedTime=" + callConnectedTime +
            ", localParticipant=" + localParticipant +
            ", remoteParticipants=" + remoteParticipants +
+           ", identityChangedRecipients=" + identityChangedRecipients +
            '}';
   }
 }

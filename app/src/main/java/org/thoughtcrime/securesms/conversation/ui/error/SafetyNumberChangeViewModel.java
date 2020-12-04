@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.ui.error;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -10,22 +11,26 @@ import androidx.lifecycle.ViewModelProvider;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeRepository.SafetyNumberChangeState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
 public final class SafetyNumberChangeViewModel extends ViewModel {
 
-  private final SafetyNumberChangeRepository      safetyNumberChangeRepository;
-  private final LiveData<SafetyNumberChangeState> safetyNumberChangeState;
+  private final SafetyNumberChangeRepository             safetyNumberChangeRepository;
+  private final MutableLiveData<Collection<RecipientId>> recipientIds;
+  private final LiveData<SafetyNumberChangeState>        safetyNumberChangeState;
 
   private SafetyNumberChangeViewModel(@NonNull List<RecipientId> recipientIds,
                                       @Nullable Long messageId,
                                       @Nullable String messageType,
-                                      SafetyNumberChangeRepository safetyNumberChangeRepository)
+                                      @NonNull SafetyNumberChangeRepository safetyNumberChangeRepository)
   {
     this.safetyNumberChangeRepository = safetyNumberChangeRepository;
-    safetyNumberChangeState           = this.safetyNumberChangeRepository.getSafetyNumberChangeState(recipientIds, messageId, messageType);
+    this.recipientIds                 = new MutableLiveData<>(recipientIds);
+    this.safetyNumberChangeState      = LiveDataUtil.mapAsync(this.recipientIds, ids -> this.safetyNumberChangeRepository.getSafetyNumberChangeState(ids, messageId, messageType));
   }
 
   @NonNull LiveData<List<ChangedRecipient>> getChangedRecipients() {
@@ -39,6 +44,10 @@ public final class SafetyNumberChangeViewModel extends ViewModel {
     } else {
       return safetyNumberChangeRepository.trustOrVerifyChangedRecipients(state.getChangedRecipients());
     }
+  }
+
+  void updateRecipients(Collection<RecipientId> recipientIds) {
+    this.recipientIds.setValue(recipientIds);
   }
 
   public static final class Factory implements ViewModelProvider.Factory {

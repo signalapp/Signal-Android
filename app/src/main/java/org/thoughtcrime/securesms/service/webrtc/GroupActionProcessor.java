@@ -9,16 +9,21 @@ import com.annimon.stream.Stream;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.VideoTrack;
+import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
@@ -202,6 +207,47 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
+  protected @NonNull WebRtcServiceState handleGroupMessageSentError(@NonNull WebRtcServiceState currentState,
+                                                                    @NonNull RemotePeer remotePeer,
+                                                                    @NonNull WebRtcViewModel.State errorCallState,
+                                                                    @NonNull Optional<IdentityKey> identityKey)
+  {
+    Log.w(tag, "handleGroupMessageSentError(): error: " + errorCallState);
+
+    if (errorCallState == WebRtcViewModel.State.UNTRUSTED_IDENTITY) {
+      return currentState.builder()
+                         .changeCallInfoState()
+                         .addIdentityChangedRecipient(remotePeer.getId())
+                         .build();
+    }
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleGroupApproveSafetyNumberChange(@NonNull WebRtcServiceState currentState,
+                                                                             @NonNull List<RecipientId> recipientIds)
+  {
+    Log.i(tag, "handleGroupApproveSafetyNumberChange():");
+
+    GroupCall groupCall = currentState.getCallInfoState().getGroupCall();
+
+    if (groupCall != null) {
+      currentState = currentState.builder()
+                                 .changeCallInfoState()
+                                 .removeIdentityChangedRecipients(recipientIds)
+                                 .build();
+
+      try {
+        groupCall.resendMediaKeys();
+      } catch (CallException e) {
+        return groupCallFailure(currentState, "Unable to resend media keys", e);
+      }
+    }
+
+    return currentState;
+  }
+
+  @Override
   protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull GroupCall.GroupCallEndReason groupCallEndReason) {
     Log.i(tag, "handleGroupCallEnded(): reason: " + groupCallEndReason);
 
@@ -268,6 +314,8 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
 
     WebRtcVideoUtil.deinitializeVideo(currentState);
+
+    GroupCallSafetyNumberChangeNotificationUtil.cancelNotification(context, currentState.getCallInfoState().getCallRecipient());
 
     return new WebRtcServiceState(new IdleActionProcessor(webRtcInteractor));
   }

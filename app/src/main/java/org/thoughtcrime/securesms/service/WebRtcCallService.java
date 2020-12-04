@@ -138,6 +138,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String EXTRA_GROUP_CALL_UPDATE_SENDER   = "group_call_update_sender";
   public static final String EXTRA_GROUP_CALL_UPDATE_GROUP    = "group_call_update_group";
   public static final String EXTRA_GROUP_CALL_ERA_ID          = "era_id";
+  public static final String EXTRA_RECIPIENT_IDS              = "recipient_ids";
 
   public static final String ACTION_PRE_JOIN_CALL                       = "CALL_PRE_JOIN";
   public static final String ACTION_CANCEL_PRE_JOIN_CALL                = "CANCEL_PRE_JOIN_CALL";
@@ -203,6 +204,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String ACTION_GROUP_CALL_ENDED                  = "GROUP_CALL_ENDED";
   public static final String ACTION_GROUP_CALL_UPDATE_MESSAGE         = "GROUP_CALL_UPDATE_MESSAGE";
   public static final String ACTION_GROUP_CALL_PEEK                   = "GROUP_CALL_PEEK";
+  public static final String ACTION_GROUP_MESSAGE_SENT_ERROR          = "GROUP_MESSAGE_SENT_ERROR";
+  public static final String ACTION_GROUP_APPROVE_SAFETY_CHANGE       = "GROUP_APPROVE_SAFETY_CHANGE";
 
   public static final int BUSY_TONE_LENGTH = 2000;
 
@@ -436,7 +439,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                                          state.getLocalDeviceState().isMicrophoneEnabled(),
                                                          state.getCallSetupState().isRemoteVideoOffer(),
                                                          state.getCallInfoState().getCallConnectedTime(),
-                                                         state.getCallInfoState().getRemoteCallParticipants()));
+                                                         state.getCallInfoState().getRemoteCallParticipants(),
+                                                         state.getCallInfoState().getIdentityChangedRecipients()));
   }
 
   private @NonNull ListenableFutureTask<Boolean> sendMessage(@NonNull final RemotePeer remotePeer,
@@ -669,7 +673,36 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   public void sendOpaqueCallMessage(@NonNull UUID uuid, @NonNull SignalServiceCallMessage opaqueMessage) {
-    sendMessage(new RemotePeer(RecipientId.from(uuid, null)), opaqueMessage);
+    RecipientId recipientId = RecipientId.from(uuid, null);
+    ListenableFutureTask<Boolean> listenableFutureTask = sendMessage(new RemotePeer(recipientId), opaqueMessage);
+    listenableFutureTask.addListener(new FutureTaskListener<Boolean>() {
+      @Override
+      public void onSuccess(Boolean result) {
+        // intentionally left blank
+      }
+
+      @Override
+      public void onFailure(ExecutionException exception) {
+        Throwable error = exception.getCause();
+
+        Log.i(TAG, "sendOpaqueCallMessage onFailure: ", error);
+
+        Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
+        intent.setAction(ACTION_GROUP_MESSAGE_SENT_ERROR);
+
+        WebRtcViewModel.State state = WebRtcViewModel.State.NETWORK_FAILURE;
+
+        if (error instanceof UntrustedIdentityException) {
+          intent.putExtra(EXTRA_ERROR_IDENTITY_KEY, new IdentityKeyParcelable(((UntrustedIdentityException) error).getIdentityKey()));
+          state = WebRtcViewModel.State.UNTRUSTED_IDENTITY;
+        }
+
+        intent.putExtra(EXTRA_ERROR_CALL_STATE, state);
+        intent.putExtra(EXTRA_REMOTE_PEER, new RemotePeer(recipientId));
+
+        startService(intent);
+      }
+    });
   }
 
   public void sendGroupCallMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId) {
@@ -739,13 +772,13 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   public void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {
-    DatabaseFactory.getSmsDatabase(this).insertOrUpdateGroupCall(groupId,
-                                                                 Recipient.self().getId(),
-                                                                 System.currentTimeMillis(),
-                                                                 null,
-                                                                 groupCallEraId,
-                                                                 joinedMembers,
-                                                                 isCallFull);
+    SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getSmsDatabase(this).insertOrUpdateGroupCall(groupId,
+                                                                                                       Recipient.self().getId(),
+                                                                                                       System.currentTimeMillis(),
+                                                                                                       null,
+                                                                                                       groupCallEraId,
+                                                                                                       joinedMembers,
+                                                                                                       isCallFull));
   }
 
   @Override

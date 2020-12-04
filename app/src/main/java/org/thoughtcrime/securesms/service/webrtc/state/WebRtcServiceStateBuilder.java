@@ -9,11 +9,14 @@ import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcActionProcessor;
 import org.webrtc.EglBase;
+
+import java.util.Collection;
 
 /**
  * Builder that creates a new {@link WebRtcServiceState} from an existing one and allows
@@ -241,6 +244,16 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull CallInfoStateBuilder groupCallState(@Nullable WebRtcViewModel.GroupCallState groupState) {
       toBuild.groupState = groupState;
+      return this;
+    }
+
+    public @NonNull CallInfoStateBuilder addIdentityChangedRecipient(@NonNull RecipientId id) {
+      toBuild.identityChangedRecipients.add(id);
+      return this;
+    }
+
+    public @NonNull CallInfoStateBuilder removeIdentityChangedRecipients(@NonNull Collection<RecipientId> ids) {
+      toBuild.identityChangedRecipients.removeAll(ids);
       return this;
     }
   }

@@ -8,15 +8,18 @@ import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * General state of ongoing calls.
@@ -31,13 +34,30 @@ public class CallInfoState {
   RemotePeer                              activePeer;
   GroupCall                               groupCall;
   WebRtcViewModel.GroupCallState          groupState;
+  Set<RecipientId>                        identityChangedRecipients;
 
   public CallInfoState() {
-    this(WebRtcViewModel.State.IDLE, Recipient.UNKNOWN, -1, Collections.emptyMap(), Collections.emptyMap(), null, null, WebRtcViewModel.GroupCallState.IDLE);
+    this(WebRtcViewModel.State.IDLE,
+         Recipient.UNKNOWN,
+         -1,
+         Collections.emptyMap(),
+         Collections.emptyMap(),
+         null,
+         null,
+         WebRtcViewModel.GroupCallState.IDLE,
+         Collections.emptySet());
   }
 
   public CallInfoState(@NonNull CallInfoState toCopy) {
-    this(toCopy.callState, toCopy.callRecipient, toCopy.callConnectedTime, toCopy.remoteParticipants, toCopy.peerMap, toCopy.activePeer, toCopy.groupCall, toCopy.groupState);
+    this(toCopy.callState,
+         toCopy.callRecipient,
+         toCopy.callConnectedTime,
+         toCopy.remoteParticipants,
+         toCopy.peerMap,
+         toCopy.activePeer,
+         toCopy.groupCall,
+         toCopy.groupState,
+         toCopy.identityChangedRecipients);
   }
 
   public CallInfoState(@NonNull WebRtcViewModel.State callState,
@@ -47,16 +67,18 @@ public class CallInfoState {
                        @NonNull Map<Integer, RemotePeer> peerMap,
                        @Nullable RemotePeer activePeer,
                        @Nullable GroupCall groupCall,
-                       @NonNull WebRtcViewModel.GroupCallState groupState)
+                       @NonNull WebRtcViewModel.GroupCallState groupState,
+                       @NonNull Set<RecipientId> identityChangedRecipients)
   {
-    this.callState          = callState;
-    this.callRecipient      = callRecipient;
-    this.callConnectedTime  = callConnectedTime;
-    this.remoteParticipants = new LinkedHashMap<>(remoteParticipants);
-    this.peerMap            = new HashMap<>(peerMap);
-    this.activePeer         = activePeer;
-    this.groupCall          = groupCall;
-    this.groupState         = groupState;
+    this.callState                 = callState;
+    this.callRecipient             = callRecipient;
+    this.callConnectedTime         = callConnectedTime;
+    this.remoteParticipants        = new LinkedHashMap<>(remoteParticipants);
+    this.peerMap                   = new HashMap<>(peerMap);
+    this.activePeer                = activePeer;
+    this.groupCall                 = groupCall;
+    this.groupState                = groupState;
+    this.identityChangedRecipients = new HashSet<>(identityChangedRecipients);
   }
 
   public @NonNull Recipient getCallRecipient() {
@@ -109,5 +131,9 @@ public class CallInfoState {
 
   public @NonNull WebRtcViewModel.GroupCallState getGroupCallState() {
     return groupState;
+  }
+
+  public @NonNull Set<RecipientId> getIdentityChangedRecipients() {
+    return identityChangedRecipients;
   }
 }

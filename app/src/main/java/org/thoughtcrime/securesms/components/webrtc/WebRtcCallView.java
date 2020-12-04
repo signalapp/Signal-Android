@@ -689,8 +689,4 @@ public class WebRtcCallView extends FrameLayout {
     void onShowParticipantsList();
     void onPageChanged(@NonNull CallParticipantsState.SelectedPage page);
   }
-
-  public interface EventListener {
-    void onPotentialLayoutChange();
-  }
 }

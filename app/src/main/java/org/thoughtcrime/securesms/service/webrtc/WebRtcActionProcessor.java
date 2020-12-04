@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CallState;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -60,11 +61,13 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_SIGNALING_FAILURE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_TIMEOUT;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_FLIP_CAMERA;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_APPROVE_SAFETY_CHANGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_ENDED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_PEEK;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_UPDATE_MESSAGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_JOINED_MEMBERSHIP_CHANGED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_LOCAL_DEVICE_STATE_CHANGED;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_MESSAGE_SENT_ERROR;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_REMOTE_DEVICE_STATE_CHANGED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_REQUEST_MEMBERSHIP_PROOF;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_REQUEST_UPDATE_MEMBERS;
@@ -108,6 +111,7 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ANSWER_
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_BLUETOOTH;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_IS_ALWAYS_TURN;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_MUTE;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_RECIPIENT_IDS;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_RESULT_RECEIVER;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_SPEAKER;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.AnswerMetadata;
@@ -240,6 +244,8 @@ public abstract class WebRtcActionProcessor {
       case ACTION_GROUP_CALL_ENDED:                    return handleGroupCallEnded(currentState, getGroupCallHash(intent), getGroupCallEndReason(intent));
       case ACTION_GROUP_CALL_UPDATE_MESSAGE:           return handleGroupCallUpdateMessage(currentState, GroupCallUpdateMetadata.fromIntent(intent));
       case ACTION_GROUP_CALL_PEEK:                     return handleGroupCallPeek(currentState, getRemotePeer(intent));
+      case ACTION_GROUP_MESSAGE_SENT_ERROR:            return handleGroupMessageSentError(currentState, getRemotePeer(intent), getErrorCallState(intent), getErrorIdentityKey(intent));
+      case ACTION_GROUP_APPROVE_SAFETY_CHANGE:         return handleGroupApproveSafetyNumberChange(currentState, RecipientId.fromSerializedList(intent.getStringExtra(EXTRA_RECIPIENT_IDS)));
 
       case ACTION_HTTP_SUCCESS:                        return handleHttpSuccess(currentState, HttpData.fromIntent(intent));
       case ACTION_HTTP_FAILURE:                        return handleHttpFailure(currentState, HttpData.fromIntent(intent));
@@ -731,6 +737,22 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleGroupCallPeek(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     webRtcInteractor.peekGroupCall(remotePeer.getId());
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleGroupMessageSentError(@NonNull WebRtcServiceState currentState,
+                                                                    @NonNull RemotePeer remotePeer,
+                                                                    @NonNull WebRtcViewModel.State errorCallState,
+                                                                    @NonNull Optional<IdentityKey> identityKey)
+  {
+    Log.i(tag, "handleGroupMessageSentError not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleGroupApproveSafetyNumberChange(@NonNull WebRtcServiceState currentState,
+                                                                             @NonNull List<RecipientId> recipientIds)
+  {
+    Log.i(tag, "handleGroupApproveSafetyNumberChange not processed");
     return currentState;
   }
 
