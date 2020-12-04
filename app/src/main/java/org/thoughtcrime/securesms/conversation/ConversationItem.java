@@ -53,13 +53,15 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.loki.api.opengroups.PublicChat;
+import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.ConversationItemAlertView;
-import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
 import org.thoughtcrime.securesms.components.DocumentView;
@@ -72,7 +74,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -85,8 +86,8 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
+import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
-import org.thoughtcrime.securesms.loki.views.TapJackingProofLinearLayout;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -107,9 +108,6 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
-import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -127,7 +125,7 @@ import network.loki.messenger.R;
  *
  */
 
-public class ConversationItem extends TapJackingProofLinearLayout
+public class ConversationItem extends LinearLayout
     implements RecipientModifiedListener, BindableConversationItem
 {
   private static final String TAG = ConversationItem.class.getSimpleName();
