@@ -62,9 +62,7 @@ public class SubmitDebugLogRepository {
     add(new LogSectionCapabilities());
     add(new LogSectionFeatureFlags());
     add(new LogSectionPermissions());
-    if (Tracer.getInstance().isEnabled()) {
-      add(new LogSectionTrace());
-    }
+    add(new LogSectionTrace());
     add(new LogSectionThreads());
     add(new LogSectionLogcat());
     add(new LogSectionLogger());

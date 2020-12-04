@@ -247,11 +247,11 @@ public class FlipperSqlCipherAdapter extends DatabaseDriver<FlipperSqlCipherAdap
     }
 
     public @NonNull SQLiteDatabase getReadable() {
-      return sqlCipherOpenHelper.getReadableDatabase();
+      return sqlCipherOpenHelper.getReadableDatabase().getSqlCipherDatabase();
     }
 
     public @NonNull SQLiteDatabase getWritable() {
-      return sqlCipherOpenHelper.getWritableDatabase();
+      return sqlCipherOpenHelper.getWritableDatabase().getSqlCipherDatabase();
     }
   }
 }

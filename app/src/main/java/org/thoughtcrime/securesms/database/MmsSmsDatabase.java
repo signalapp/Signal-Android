@@ -24,7 +24,6 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteQueryBuilder;
 
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;

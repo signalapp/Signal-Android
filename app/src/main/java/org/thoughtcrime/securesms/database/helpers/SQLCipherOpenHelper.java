@@ -1246,12 +1246,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
   }
 
-  public SQLiteDatabase getReadableDatabase() {
-    return getReadableDatabase(databaseSecret.asString());
+  public org.thoughtcrime.securesms.database.SQLiteDatabase getReadableDatabase() {
+    return new org.thoughtcrime.securesms.database.SQLiteDatabase(getReadableDatabase(databaseSecret.asString()));
   }
 
-  public SQLiteDatabase getWritableDatabase() {
-    return getWritableDatabase(databaseSecret.asString());
+  public org.thoughtcrime.securesms.database.SQLiteDatabase getWritableDatabase() {
+    return new org.thoughtcrime.securesms.database.SQLiteDatabase(getWritableDatabase(databaseSecret.asString()));
   }
 
   public void markCurrent(SQLiteDatabase db) {

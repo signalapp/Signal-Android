@@ -28,7 +28,6 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 
-import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
 
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;

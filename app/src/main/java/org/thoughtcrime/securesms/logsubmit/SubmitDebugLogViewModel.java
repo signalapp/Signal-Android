@@ -30,10 +30,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
     this.repo  = new SubmitDebugLogRepository();
     this.lines = new DefaultValueLiveData<>(Collections.emptyList());
     this.mode  = new MutableLiveData<>();
-
-    if (Tracer.getInstance().isEnabled()) {
-      this.trace = Tracer.getInstance().serialize();
-    }
+    this.trace = Tracer.getInstance().serialize();
 
     repo.getLogLines(result -> {
       sourceLines = result;

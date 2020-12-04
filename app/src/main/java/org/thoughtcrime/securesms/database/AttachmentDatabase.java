@@ -34,8 +34,6 @@ import com.bumptech.glide.Glide;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import net.sqlcipher.database.SQLiteDatabase;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.thoughtcrime.securesms.attachments.Attachment;

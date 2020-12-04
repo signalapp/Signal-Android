@@ -171,7 +171,7 @@ public class DatabaseFactory {
   }
 
   public static SQLiteDatabase getBackupDatabase(Context context) {
-    return getInstance(context).databaseHelper.getReadableDatabase();
+    return getInstance(context).databaseHelper.getReadableDatabase().getSqlCipherDatabase();
   }
 
   public static void upgradeRestored(Context context, SQLiteDatabase database){
@@ -241,7 +241,7 @@ public class DatabaseFactory {
 
       SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret,
                                                  legacyOpenHelper.getWritableDatabase(),
-                                                 databaseHelper.getWritableDatabase(),
+                                                 databaseHelper.getWritableDatabase().getSqlCipherDatabase(),
                                                  listener);
     }
   }
