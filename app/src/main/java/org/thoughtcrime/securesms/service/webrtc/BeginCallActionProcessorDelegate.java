@@ -8,6 +8,7 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
+import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -41,6 +42,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                .putRemotePeer(remotePeer)
                                .putParticipant(remotePeer.getRecipient(),
                                                CallParticipant.createRemote(
+                                                       new CallParticipantId(remotePeer.getRecipient()),
                                                        remotePeer.getRecipient(),
                                                        null,
                                                        new BroadcastVideoSink(currentState.getVideoState().getEglBase()),
@@ -82,6 +84,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                        .callState(WebRtcViewModel.State.CALL_INCOMING)
                        .putParticipant(remotePeer.getRecipient(),
                                        CallParticipant.createRemote(
+                                               new CallParticipantId(remotePeer.getRecipient()),
                                                remotePeer.getRecipient(),
                                                null,
                                                new BroadcastVideoSink(currentState.getVideoState().getEglBase()),

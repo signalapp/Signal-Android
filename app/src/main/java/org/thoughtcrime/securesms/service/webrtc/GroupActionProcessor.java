@@ -80,7 +80,8 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       }
 
       builder.putParticipant(callParticipantId,
-                             CallParticipant.createRemote(recipient,
+                             CallParticipant.createRemote(callParticipantId,
+                                                          recipient,
                                                           null,
                                                           videoSink,
                                                           Boolean.FALSE.equals(device.getAudioMuted()),

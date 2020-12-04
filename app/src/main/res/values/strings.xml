@@ -2967,6 +2967,18 @@
     <string name="ReviewCard__delete">Delete</string>
     <string name="ReviewCard__recently_changed">Recently changed their profile name from %1$s to %2$s</string>
 
+    <!-- CallParticipantsListUpdatePopupWindow -->
+    <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s joined</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s and %2$s joined</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s and %3$s joined</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s and %3$d others joined</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s left</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s and %2$s left</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s and %3$s left</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s and %3$d others left</string>
+    <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">You (on another device)</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (on another device)</string>
+
     <!-- EOF -->
 
 </resources>

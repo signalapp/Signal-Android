@@ -41,6 +41,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.components.TooltipPopup;
+import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
@@ -73,6 +74,8 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   public static final String END_CALL_ACTION = WebRtcCallActivity.class.getCanonicalName() + ".END_CALL_ACTION";
 
   public static final String EXTRA_ENABLE_VIDEO_IF_AVAILABLE = WebRtcCallActivity.class.getCanonicalName() + ".ENABLE_VIDEO_IF_AVAILABLE";
+
+  private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
 
   private WebRtcCallView      callScreen;
   private TooltipPopup        videoTooltip;
@@ -215,6 +218,8 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   private void initializeResources() {
     callScreen = findViewById(R.id.callScreen);
     callScreen.setControlsListener(new ControlsListener());
+
+    participantUpdateWindow = new CallParticipantsListUpdatePopupWindow(callScreen);
   }
 
   private void initializeViewModel() {
@@ -225,6 +230,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
     viewModel.getCallTime().observe(this, this::handleCallTime);
     viewModel.getCallParticipantsState().observe(this, callScreen::updateCallParticipants);
+    viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate);
 
     callScreen.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();

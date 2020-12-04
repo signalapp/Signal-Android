@@ -12,6 +12,7 @@ import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
+import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -114,7 +115,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                          .changeCallInfoState();
 
     for (Recipient recipient : callParticipants) {
-      builder.putParticipant(recipient, CallParticipant.createRemote(recipient, null, new BroadcastVideoSink(null), true, true, 0, false));
+      builder.putParticipant(recipient, CallParticipant.createRemote(new CallParticipantId(recipient), recipient, null, new BroadcastVideoSink(null), true, true, 0, false));
     }
 
     return builder.build();

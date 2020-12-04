@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public final class CallParticipantId {
 
-  private static final long DEFAULT_ID = -1;
+  public static final long DEFAULT_ID = -1;
 
   private final long        demuxId;
   private final RecipientId recipientId;

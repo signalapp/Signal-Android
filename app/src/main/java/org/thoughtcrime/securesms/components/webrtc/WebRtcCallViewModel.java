@@ -10,7 +10,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.events.CallParticipant;
+import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -18,24 +21,29 @@ import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
+import java.util.Collections;
+import java.util.List;
+
 public class WebRtcCallViewModel extends ViewModel {
 
-  private final MutableLiveData<Boolean>               microphoneEnabled  = new MutableLiveData<>(true);
-  private final MutableLiveData<Boolean>               isInPipMode        = new MutableLiveData<>(false);
-  private final MutableLiveData<WebRtcControls>        webRtcControls     = new MutableLiveData<>(WebRtcControls.NONE);
-  private final LiveData<WebRtcControls>               realWebRtcControls = LiveDataUtil.combineLatest(isInPipMode, webRtcControls, this::getRealWebRtcControls);
-  private final SingleLiveEvent<Event>                 events             = new SingleLiveEvent<Event>();
-  private final MutableLiveData<Long>                  elapsed            = new MutableLiveData<>(-1L);
-  private final MutableLiveData<LiveRecipient>         liveRecipient      = new MutableLiveData<>(Recipient.UNKNOWN.live());
-  private final MutableLiveData<CallParticipantsState> participantsState  = new MutableLiveData<>(CallParticipantsState.STARTING_STATE);
+  private final MutableLiveData<Boolean>                   microphoneEnabled         = new MutableLiveData<>(true);
+  private final MutableLiveData<Boolean>                   isInPipMode               = new MutableLiveData<>(false);
+  private final MutableLiveData<WebRtcControls>            webRtcControls            = new MutableLiveData<>(WebRtcControls.NONE);
+  private final LiveData<WebRtcControls>                   realWebRtcControls        = LiveDataUtil.combineLatest(isInPipMode, webRtcControls, this::getRealWebRtcControls);
+  private final SingleLiveEvent<Event>                     events                    = new SingleLiveEvent<Event>();
+  private final MutableLiveData<Long>                      elapsed                   = new MutableLiveData<>(-1L);
+  private final MutableLiveData<LiveRecipient>             liveRecipient             = new MutableLiveData<>(Recipient.UNKNOWN.live());
+  private final MutableLiveData<CallParticipantsState>     participantsState         = new MutableLiveData<>(CallParticipantsState.STARTING_STATE);
+  private final SingleLiveEvent<CallParticipantListUpdate> callParticipantListUpdate = new SingleLiveEvent<>();
 
-  private boolean  canDisplayTooltipIfNeeded = true;
-  private boolean  hasEnabledLocalVideo      = false;
-  private long     callConnectedTime         = -1;
-  private Handler  elapsedTimeHandler        = new Handler(Looper.getMainLooper());
-  private boolean  answerWithVideoAvailable  = false;
-  private Runnable elapsedTimeRunnable       = this::handleTick;
-  private boolean  canEnterPipMode           = false;
+  private boolean               canDisplayTooltipIfNeeded = true;
+  private boolean               hasEnabledLocalVideo      = false;
+  private long                  callConnectedTime         = -1;
+  private Handler               elapsedTimeHandler        = new Handler(Looper.getMainLooper());
+  private boolean               answerWithVideoAvailable  = false;
+  private Runnable              elapsedTimeRunnable       = this::handleTick;
+  private boolean               canEnterPipMode           = false;
+  private List<CallParticipant> previousParticipantsList  = Collections.emptyList();
 
   private final WebRtcCallRepository repository = new WebRtcCallRepository();
 
@@ -65,6 +73,10 @@ public class WebRtcCallViewModel extends ViewModel {
 
   public LiveData<CallParticipantsState> getCallParticipantsState() {
     return participantsState;
+  }
+
+  public LiveData<CallParticipantListUpdate> getCallParticipantListUpdate() {
+    return callParticipantListUpdate;
   }
 
   public boolean canEnterPipMode() {
@@ -104,6 +116,15 @@ public class WebRtcCallViewModel extends ViewModel {
     //noinspection ConstantConditions
     participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), webRtcViewModel, enableVideo));
 
+    if (webRtcViewModel.getGroupState().isConnected()) {
+      if (!containsPlaceholders(previousParticipantsList)) {
+        CallParticipantListUpdate update = CallParticipantListUpdate.computeDeltaUpdate(previousParticipantsList, webRtcViewModel.getRemoteParticipants());
+        callParticipantListUpdate.setValue(update);
+      }
+
+      previousParticipantsList = webRtcViewModel.getRemoteParticipants();
+    }
+
     updateWebRtcControls(webRtcViewModel.getState(),
                          webRtcViewModel.getGroupState(),
                          localParticipant.getCameraState().isEnabled(),
@@ -133,6 +154,10 @@ public class WebRtcCallViewModel extends ViewModel {
       canDisplayTooltipIfNeeded = false;
       events.setValue(Event.SHOW_VIDEO_TOOLTIP);
     }
+  }
+
+  private boolean containsPlaceholders(@NonNull List<CallParticipant> callParticipants) {
+    return Stream.of(callParticipants).anyMatch(p -> p.getCallParticipantId().getDemuxId() == CallParticipantId.DEFAULT_ID);
   }
 
   private void updateWebRtcControls(@NonNull WebRtcViewModel.State state,
