@@ -15,62 +15,83 @@ class WitnessPluginExtension {
 class WitnessPlugin implements Plugin<Project> {
 
     static String calculateSha256(file) {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        file.eachByte 4096, {bytes, size ->
-            md.update(bytes, 0, size);
+        MessageDigest md = MessageDigest.getInstance('SHA-256')
+        file.eachByte 4096, { bytes, size ->
+            md.update(bytes, 0, size)
         }
-        return md.digest().collect {String.format "%02x", it}.join();
+        return md.digest().collect { String.format '%02x', it }.join()
     }
 
     void apply(Project project) {
-        project.extensions.create("dependencyVerification", WitnessPluginExtension)
+        project.extensions.create('dependencyVerification', WitnessPluginExtension)
+
         project.afterEvaluate {
-            project.dependencyVerification.verify.each {
-                assertion ->
-                    List   parts = assertion[0].tokenize(':')
-                    String group = parts.get(0)
-                    String name  = parts.get(1)
-                    String hash  = assertion[1]
-
-                    def artifacts = allArtifacts(project).findAll {
-                        return it.name.equals(name) && it.moduleVersion.id.group.equals(group)
+            project.tasks
+                    .findAll { it.name =~ /compile/ }
+                    .each {
+                        it.dependsOn('verifyChecksums')
                     }
+        }
 
-                    artifacts.forEach { dependency ->
-                        println "Verifying " + group + ":" + name
+        project.task('verifyChecksums') {
+            group = 'Gradle Witness'
+            description = 'Verify the contents of dependencyVerification block in witness-verifications.gradle file(s) match the checksums of dependencies.'
 
-                        if (dependency == null) {
-                            throw new InvalidUserDataException("No dependency for integrity assertion found: " + group + ":" + name)
+            doLast {
+                def allArtifacts = allArtifacts(project)
+
+                project.dependencyVerification.verify.each {
+                    assertion ->
+                        List parts = assertion[0].tokenize(':')
+                        String group = parts.get(0)
+                        String name = parts.get(1)
+                        String hash = assertion[1]
+
+                        def artifacts = allArtifacts.findAll {
+                            it.moduleVersion.id.group == group && it.name == name
                         }
 
-                        if (!hash.equals(calculateSha256(dependency.file))) {
-                            throw new InvalidUserDataException("Checksum failed for " + assertion)
+                        artifacts.forEach { dependency ->
+                            println "Verifying $group:$name"
+
+                            if (dependency == null) {
+                                throw new InvalidUserDataException("No dependency for integrity assertion found: $group:$name")
+                            }
+
+                            if (hash != calculateSha256(dependency.file)) {
+                                throw new InvalidUserDataException("Checksum failed for $assertion")
+                            }
                         }
-                    }
+                }
             }
         }
 
-        project.task('calculateChecksums').doLast {
-            def stringBuilder = new StringBuilder()
+        project.task('calculateChecksums') {
+            group = 'Gradle Witness'
+            description = 'Recalculate checksums of dependencies and update the witness-verifications.gradle file(s).'
 
-            stringBuilder.append '// Auto-generated, use ./gradlew calculateChecksums to regenerate\n\n'
-            stringBuilder.append 'dependencyVerification {\n'
+            doLast {
+                def stringBuilder = new StringBuilder()
 
-            stringBuilder.append '    verify = [\n'
+                stringBuilder.append '// Auto-generated, use ./gradlew calculateChecksums to regenerate\n\n'
+                stringBuilder.append 'dependencyVerification {\n'
 
-            allArtifacts(project)
-                    .findAll { dep -> !dep.id.componentIdentifier.displayName.startsWith('project :') }
-                    .collect { dep -> "['$dep.moduleVersion.id.group:$dep.name:$dep.moduleVersion.id.version',\n         '${calculateSha256(dep.file)}']" }
-                    .sort()
-                    .unique()
-                    .each {
-                        dep -> stringBuilder.append "\n        $dep,\n"
-                    }
+                stringBuilder.append '    verify = [\n'
 
-            stringBuilder.append "    ]\n"
-            stringBuilder.append "}\n"
+                allArtifacts(project)
+                        .findAll { dep -> !dep.id.componentIdentifier.displayName.startsWith('project :') }
+                        .collect { dep -> "['$dep.moduleVersion.id.group:$dep.name:$dep.moduleVersion.id.version',\n         '${calculateSha256(dep.file)}']" }
+                        .sort()
+                        .unique()
+                        .each {
+                            dep -> stringBuilder.append "\n        $dep,\n"
+                        }
 
-            project.file("witness-verifications.gradle").write(stringBuilder.toString())
+                stringBuilder.append '    ]\n'
+                stringBuilder.append '}\n'
+
+                project.file('witness-verifications.gradle').write(stringBuilder.toString())
+            }
         }
     }
 
