@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -113,7 +114,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
 
     if (TextSecurePreferences.isPushRegistered(getActivity())) {
       preference.setChecked(true);
-      preference.setSummary(TextSecurePreferences.getLocalNumber(getActivity()));
+      preference.setSummary(PhoneNumberFormatter.prettyPrint(TextSecurePreferences.getLocalNumber(getActivity())));
     } else {
       preference.setChecked(false);
       preference.setSummary(R.string.preferences__free_private_messages_and_calls);
