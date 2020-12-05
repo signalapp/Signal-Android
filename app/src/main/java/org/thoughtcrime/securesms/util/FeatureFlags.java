@@ -59,7 +59,7 @@ public final class FeatureFlags {
   public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
   public  static final String DONATE_MEGAPHONE             = "android.donate";
   private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
-  private static final String GROUP_CALLING                = "android.groupsv2.calling";
+  private static final String GROUP_CALLING                = "android.groupsv2.calling.2";
   private static final String GV1_AUTO_MIGRATE             = "android.groupsV1Migration.auto.3";
   private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
   private static final String GV1_FORCED_MIGRATE           = "android.groupsV1Migration.forced";
