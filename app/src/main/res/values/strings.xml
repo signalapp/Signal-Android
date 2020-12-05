@@ -777,7 +777,7 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">This is a Legacy Group. To access new features like @mentions and admins,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">This Legacy Group can’t be upgraded to a New Group because it is too large. The maximum group size is %1$d.</string>
     <string name="ManageGroupActivity_upgrade_this_group">upgrade this group.</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">This is an insecure MMS Group. To chat privately and access features like group names, invite your contacts to Signal.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">This is an insecure MMS Group. To chat privately, invite your contacts to Signal.</string>
     <string name="ManageGroupActivity_invite_now">Invite now</string>
 
     <!-- GroupMentionSettingDialog -->
