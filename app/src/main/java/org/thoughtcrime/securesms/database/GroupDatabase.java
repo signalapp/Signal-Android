@@ -507,9 +507,10 @@ public final class GroupDatabase extends Database {
 
       List<RecipientId> newMembers     = Stream.of(DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList())).map(u -> RecipientId.from(u, null)).toList();
       List<RecipientId> pendingMembers = Stream.of(DecryptedGroupUtil.pendingToUuidList(decryptedGroup.getPendingMembersList())).map(u -> RecipientId.from(u, null)).toList();
-      List<RecipientId> droppedMembers = new ArrayList<>(SetUtil.difference(record.getMembers(), newMembers));
 
       newMembers.addAll(pendingMembers);
+
+      List<RecipientId> droppedMembers = new ArrayList<>(SetUtil.difference(record.getMembers(), newMembers));
 
       if (droppedMembers.size() > 0) {
         contentValues.put(FORMER_V1_MEMBERS, RecipientId.toSerializedList(record.getMembers()));
