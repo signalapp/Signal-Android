@@ -148,6 +148,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nije pronađen nijedan web preglednik.</string>
   <string name="CommunicationActions_no_email_app_found">Nije pronađena nijedna aplikacija za e-poštu.</string>
+  <string name="CommunicationActions_send_email">Pošalji e-poštu</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobilni poziv je već u tijeku.</string>
   <string name="CommunicationActions_start_video_call">Započni video poziv</string>
   <string name="CommunicationActions_start_voice_call">Započeti glasovni poziv?</string>
@@ -1552,6 +1553,7 @@ broj telefona</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagira s %1$s na vašu sliku.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagira s %1$s na vašu datoteku.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagira s %1$s na vaš zvuk.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagira s %1$s na vaš jednom vidljiv medijski zapis.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagira s %1$s na vašu naljepnicu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ova poruka je izbrisana.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Isključiti obavijesti o novim kontaktima na Signalu? Možete ih ponovo omogućiti u Signal &amp;gt Postavke &amp;gt Obavijesti.</string>

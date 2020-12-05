@@ -2141,7 +2141,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
   <string name="conversation__menu_add_shortcut">Aan thuisscherm toevoegen</string>
   <string name="conversation__menu_pending_members">Personen in afwachting</string>
-  <string name="conversation__menu_create_bubble">Bubbel weergeven</string>
+  <string name="conversation__menu_create_bubble">Bubbel aanmaken</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Pop-up vergroten</string>
   <!--conversation_callable_insecure-->

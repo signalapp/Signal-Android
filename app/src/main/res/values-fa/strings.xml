@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found"> مرورگر اینترنت یافت نشد.</string>
   <string name="CommunicationActions_no_email_app_found">برنامهٔ ایمیل یافت نشد.</string>
+  <string name="CommunicationActions_send_email">ارسال ایمیل</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">یک تماس تلفنی در جریان است.</string>
   <string name="CommunicationActions_start_video_call">شروع تماس تصویری؟</string>
   <string name="CommunicationActions_start_voice_call">شروع تماس صوتی؟</string>
@@ -377,7 +378,7 @@
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
   <string name="CustomDefaultPreference_using_default">استفاده از پیش‌فرض: %s</string>
-  <string name="CustomDefaultPreference_none">هیچکدام</string>
+  <string name="CustomDefaultPreference_none">هیچ‌کدام</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">انتخاب عکس</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">گرفتن عکس</string>
@@ -593,6 +594,7 @@
   <string name="AddGroupDetailsFragment__create">ایجاد</string>
   <string name="AddGroupDetailsFragment__members">اعضا</string>
   <string name="AddGroupDetailsFragment__group_name_required">نام گروه (ضروری)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">نام گروه (اختیاری)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">پر کردن این قسمت الزامی است.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">گروه‌ها باید حداقل دو عضو داشته باشند.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">ایجاد گروه موفق نبود.</string>
@@ -640,7 +642,7 @@
   <string name="ManageGroupActivity_on">روشن</string>
   <string name="ManageGroupActivity_view_all_members">نمایش همهٔ اعضا</string>
   <string name="ManageGroupActivity_see_all">مشاهدهٔ همه</string>
-  <string name="ManageGroupActivity_none">هیچکدام</string>
+  <string name="ManageGroupActivity_none">هیچ‌کدام</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d دعوت شد</item>
     <item quantity="other">%d دعوت شدند</item>
@@ -755,6 +757,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">پیوندهای گروه به زودی</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">برای استفاده از پیوند‌های گروه Signal را به‌روزرسانی کنید</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">این نسخه از Signal که از آن استفاده می‌کنید از این پیوند گروه استفاده نمی‌کند. برای پیوستن به این گروه از طریق پیوند به آخرین نسخه به‌روزرسانی کنید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">بروزرسانی Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">یک یا چند عدد از دستگاه‌های پیوند‌ داده شدهٔ شما در حال اجرای نسخه‌ای از Signal هستند که از پیوند‌های گروه پشتیبانی نمی‌کند. Signal را بر روی دستگاه‌های پیوند داده شده به‌روزرسانی کنید تا به این گروه بپیوندید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">پیوند گروه معتبر نیست</string>
@@ -909,6 +912,15 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان‌سنج پیام ناپدید شونده را روی %2$s تنظیم کرد.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">زمان‌سنج پیام ناپدید شونده روی %1$s تنظیم شد.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">این گروه به یک گروه جدید به‌روزرسانی شد.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">شما نمی‌توانستید به گروه اضافه شوید و برای پیوستن دعوت شدید.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">یک نفر از اعضا نمی‌توانست به گروه جدید اضافه شود و برای پیوستن دعوت شده است.</item>
+    <item quantity="other">%1$s نفر از اعضا نمی‌توانستند به گروه جدید اضافه شوند و برای پیوستن دعوت شده‌اند.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">یک نفر از اعضا نمی‌توانست به گروه جدید اضافه شود و از گروه حذف شده است.</item>
+    <item quantity="other">%1$s نفر از اعضا نمی‌توانستند به گروه جدید اضافه شوند و از گروه حذف شده‌اند.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s نام پروفایل خود را به %2$s تغییر داد.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s نام پروفایل خود را از %2$s  به %3$s تغییر داد.</string>
@@ -1038,13 +1050,24 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی حضور دارد · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">شما در تماس گروهی هستید · %1$s</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s و %2$s در تماس گروهی حضور دارند · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s، %2$s و %3$s در این تماس گروهی حضور دارند · %4$s</string>
   <string name="MessageRecord_group_call_s">تماس گروهی · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s یک تماس گروهی آغاز کرد</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s در تماس گروهی است</string>
+  <string name="MessageRecord_you_are_in_the_group_call">شما در تماس گروهی هستید</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s و %2$s در تماس گروهی هستند</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s، %2$s و %3$s در تماس گروهی هستند</string>
+  <string name="MessageRecord_group_call">تماس گروهی</string>
   <string name="MessageRecord_you">شما</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s، %2$s و %3$d نفر دیگر در این تماس گروهی حضور دارند · %4$s</item>
     <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در این تماس گروهی حضور دارند · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s، %2$s و %3$d نفر دیگر در تماس گروهی هستند</item>
+    <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در تماس گروهی هستند</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">پذیرفتن</string>
@@ -1466,6 +1489,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s به تصویر شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s به فایل شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s به فایل صوتی شما واکنش نشان داد.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s به رسانه‌ٔ یکبار مصرف شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s به استیکر شما واکنش نشان داد.</string>
   <string name="MessageNotifier_this_message_was_deleted">این پیام حذف شد</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به Signal را خاموش کنید؟ می‌توانید آن‌ها را دوباره در Signal &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>
@@ -1936,7 +1960,7 @@
   <string name="preferences__cyan">سایان</string>
   <string name="preferences__magenta">ارغوانی</string>
   <string name="preferences__white">سفید</string>
-  <string name="preferences__none">هیچکدام</string>
+  <string name="preferences__none">هیچ‌کدام</string>
   <string name="preferences__fast">سریع</string>
   <string name="preferences__normal">عادی</string>
   <string name="preferences__slow">آهسته</string>
@@ -1952,7 +1976,7 @@
   <string name="preferences__mmsc_username">نام کاربری MMSC</string>
   <string name="preferences__mmsc_password">رمز عبور MMSC</string>
   <string name="preferences__sms_delivery_reports">گزارش‌های تحویل پیامک</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیامک ارسالی از جانب شما</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیامکی که ارسال می‌کنید</string>
   <string name="preferences__chats">گفتگوها و رسانه‌ها</string>
   <string name="preferences__storage">حافظه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
@@ -2006,7 +2030,7 @@
   <string name="preferences_storage__one_year">۱ سال</string>
   <string name="preferences_storage__six_months">۶ ماه</string>
   <string name="preferences_storage__thirty_days">۳۰ روز</string>
-  <string name="preferences_storage__none">هیچکدام</string>
+  <string name="preferences_storage__none">هیچ‌کدام</string>
   <string name="preferences_storage__s_messages">%1$s پیام</string>
   <string name="preferences_storage__custom">دلخواه</string>
   <string name="preferences_advanced__use_system_emoji">استفاده از ایموجی‌های سیستم</string>
@@ -2109,6 +2133,7 @@
   <string name="conversation__menu_conversation_settings">تنظیمات مکالمه</string>
   <string name="conversation__menu_add_shortcut">افزودن به صفحهٔ اصلی</string>
   <string name="conversation__menu_pending_members">اعضای در حال انتظار</string>
+  <string name="conversation__menu_create_bubble">ایجاد حباب</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">گسترش پاپ آپ</string>
   <!--conversation_callable_insecure-->
@@ -2372,7 +2397,7 @@
   <string name="preferences_app_protection__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">فعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">غیرفعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
-  <string name="AppProtectionPreferenceFragment_none">هیچکدام</string>
+  <string name="AppProtectionPreferenceFragment_none">هیچ‌کدام</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">پین قفل ثبت‌نام همان کد تأییدی که الان از طریق پیامک دریافت کردید نیست. لطفاً رمزی را که قبلاً در برنامه تنظیم کرده بودید را وارد کنید.</string>
   <string name="registration_activity__registration_lock_pin">پین قفل ثبت‌نام</string>
   <string name="registration_activity__forgot_pin">پین را فراموش کردید؟</string>

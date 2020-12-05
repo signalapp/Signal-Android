@@ -476,7 +476,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">O que são os Novos Grupos?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Os Novos Grupos têm recursos como @menções e administradores de grupos, entre outros que serão implementados no futuro.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Todo o histórico de mensagens e mídia de antes da atualização foram preservados.</string>
-  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Você precisará aceitar um convite para entrar novamente neste grupo e não receberá mensagens do grupo até que você aceite.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Você precisará aceitar um convite para entrar novamente neste grupo e não receberá mensagens dele até que você aceite.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Este membro precisará aceitar um convite para participar novamente neste grupo e não receberá as mensagens do grupo até que aceite:</item>
     <item quantity="other">Estes membros precisarão aceitar um convite para participar novamente neste grupo e não receberão as mensagens do grupo até que aceitem:</item>
@@ -600,7 +600,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">A criação do grupo falhou.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Tente novamente mais tarde.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Você selecionou um contato que não tem suporte para grupos do Signal. Então este grupo será de MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nomes e fotos de grupos de MMS personalizados ficarão visíveis apenas para você.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nomes e fotos de grupos de MMS personalizados serão visíveis apenas para você.</string>
   <string name="AddGroupDetailsFragment__remove">Remover</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contato de SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Remover %1$s desse grupo?</string>
@@ -609,8 +609,8 @@
     <item quantity="other">%d membros não têm suporte aos Novos Grupos, portanto, este grupo será um Grupo Legado.</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="one">%d membro não tem suporte aos Novos Grupos, portanto este grupo não pode ser criado.</item>
-    <item quantity="other">%d membros não têm suporte aos Novos Grupos, portanto este grupo não pode ser criado.</item>
+    <item quantity="one">%d membro não tem suporte para Novos Grupos, portanto este grupo não pode ser criado.</item>
+    <item quantity="other">%d membros não têm suporte para Novos Grupos, portanto este grupo não pode ser criado.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Um Grupo Legado será criado porque \"%1$s\" está usando uma versão desatualizada do Signal. Você pode criar um Novo Grupo com ele depois dele atualizar o Signal, ou remova-o antes de criar o grupo.</string>
@@ -1067,7 +1067,7 @@
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
     <item quantity="one">%1$s, %2$s e %3$d outro está na chamada em grupo</item>
-    <item quantity="other">%1$s, %2$s e %3$d outros estão na chamada em grupo</item>
+    <item quantity="other">%1$s, %2$s e %3$d outras pessoas estão na chamada em grupo</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Aceitar</string>
@@ -1793,7 +1793,7 @@
   <string name="CreateProfileActivity_next">Avançar</string>
   <string name="CreateProfileActivity__username">Nome de usuário</string>
   <string name="CreateProfileActivity__create_a_username">Criar um nome de usuário</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nomes e fotos de grupos de MMS personalizados ficarão visíveis apenas para você.</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nomes e fotos de grupos de MMS personalizados serão visíveis apenas para você.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e foto do grupo</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>

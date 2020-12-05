@@ -1839,7 +1839,7 @@
   <string name="message_details_recipient_header__not_sent">Non inviato</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Invio fallito</string>
-  <string name="message_details_recipient__new_safety_number">Nuovo codice di sicurezza</string>
+  <string name="message_details_recipient__new_safety_number">Nuovo numero di sicurezza</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Crea password</string>
   <string name="AndroidManifest__select_contacts">Seleziona contatti</string>

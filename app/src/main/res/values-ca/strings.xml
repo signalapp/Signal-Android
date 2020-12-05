@@ -145,6 +145,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">No s\'ha trobat cap navegador web.</string>
   <string name="CommunicationActions_no_email_app_found">No s\'ha trobat cap aplicació de correu.</string>
+  <string name="CommunicationActions_send_email">Envia el correu</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ja hi ha una de mòbil en curs.</string>
   <string name="CommunicationActions_start_video_call">Inicio la trucada de vídeo?</string>
   <string name="CommunicationActions_start_voice_call">Inicio la trucada de veu?</string>
@@ -1484,6 +1485,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s ha reaccionat al vostre missatge.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s ha reaccionat al vostre fitxer.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ha reaccionat al vostre àudio.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">%1$s ha reaccionat al vostre contingut d\'una visualització.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ha reaccionat al vostre adhesiu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Voleu desactivar les notificacions de contactes afegits al Signal? Les podeu tornar a activar a Signal &gt; Configuració &gt; Notificacions.</string>

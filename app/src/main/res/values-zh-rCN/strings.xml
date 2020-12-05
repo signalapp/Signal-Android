@@ -142,6 +142,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">未找到网页浏览器。</string>
   <string name="CommunicationActions_no_email_app_found">找不到电子邮件应用程序。</string>
+  <string name="CommunicationActions_send_email">发送邮件</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">手机通话正在进行。</string>
   <string name="CommunicationActions_start_video_call">发起视频通话？</string>
   <string name="CommunicationActions_start_voice_call">发起语音通话？</string>
@@ -463,6 +464,9 @@
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="other">这些成员需要再次同意入群邀请来加入群组，其同意前不会收到群组消息：</item>
   </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="other">这些成员已被移出群组，其升级客户端前将无法加入新的群组：</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">升级到新版群组</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">升级此群组</string>
@@ -559,6 +563,7 @@
   <string name="AddGroupDetailsFragment__create">创建</string>
   <string name="AddGroupDetailsFragment__members">成员</string>
   <string name="AddGroupDetailsFragment__group_name_required">群名称（必填）</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">群组名称（可选）</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">必须填写此项。</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">群组至少得包含两位成员。</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">群组创建失败。</string>

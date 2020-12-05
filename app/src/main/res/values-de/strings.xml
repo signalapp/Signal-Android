@@ -600,7 +600,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Gruppe konnte nicht erstellt werden.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Versuche es später erneut.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du hast einen Kontakt ausgewählt, der Signal-Gruppen nicht unterstützt. Daher wird dies eine MMS-Gruppe sein.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Benutzerdefinierte MMS-Gruppennamen und -fotos sind nur für dich sichtbar.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Personalisierte MMS-Gruppennamen und -fotos sind nur für dich sichtbar.</string>
   <string name="AddGroupDetailsFragment__remove">Entfernen</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-Kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s aus dieser Gruppe entfernen?</string>
@@ -757,7 +757,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppen-Links kommen bald</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualisiere Signal zum Verwenden von Gruppen-Links</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Die von dir verwendete Signal-Version unterstützt diesen Gruppen-Link nicht. Aktualisiere auf die neueste Version, um dieser Gruppe über einen Link beizutreten.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Die von dir verwendete Signal-Version unterstützt nicht diesen Gruppen-Link. Aktualisiere auf die neueste Version, um dieser Gruppe über einen Link beizutreten.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal aktualisieren</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mindestens ein gekoppeltes Gerät verwendet eine Signal-Version, die keine Gruppen-Links unterstützt. Aktualisiere Signal auf deinen gekoppelten Geräten, um dieser Gruppe beizutreten.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppen-Link ist ungültig</string>
@@ -1056,7 +1056,7 @@
   <string name="MessageRecord_group_call_s">Gruppenanruf · »%1$s«</string>
   <string name="MessageRecord_s_started_a_group_call">»%1$s« hat einen Gruppenanruf gestartet</string>
   <string name="MessageRecord_s_is_in_the_group_call">»%1$s« nimmt am Gruppenanruf teil</string>
-  <string name="MessageRecord_you_are_in_the_group_call">Du nimmst am Anruf teil</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Du nimmst am Gruppenanruf teil</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call">»%1$s« und »%2$s« nehmen am Gruppenanruf teil</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call">»%1$s«, »%2$s« und »%3$s« nehmen am Gruppenanruf teil</string>
   <string name="MessageRecord_group_call">Gruppenanruf</string>
@@ -1480,7 +1480,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_reacted_s_to_your_image">Hat mit %1$s auf dein Bild reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Hat mit %1$s auf deine Datei reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Hat mit %1$s auf dein Audio reagiert.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf dein einmalig anzeigbaren Medieninhalt reagiert.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf deine einmalig anzeigbaren Medieninhalte reagiert.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Hat mit %1$s auf deinen Sticker reagiert.</string>
   <string name="MessageNotifier_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Benachrichtigungen über neue Signal-Kontakte ausschalten? Du kannst sie wieder einschalten in Signal → Einstellungen → Benachrichtigungen.</string>
@@ -1782,7 +1782,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreateProfileActivity_next">Weiter</string>
   <string name="CreateProfileActivity__username">Nutzername</string>
   <string name="CreateProfileActivity__create_a_username">Erstelle einen Nutzernamen</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Benutzerdefinierte MMS-Gruppennamen und -fotos sind nur für dich sichtbar.</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Personalisierte MMS-Gruppennamen und -fotos sind nur für dich sichtbar.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Gruppenname und -bild bearbeiten</string>
   <string name="EditProfileFragment__group_name">Gruppenname</string>
@@ -2124,7 +2124,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation__menu_conversation_settings">Unterhaltungseinstellungen</string>
   <string name="conversation__menu_add_shortcut">Zum Startbildschirm hinzufügen</string>
   <string name="conversation__menu_pending_members">Ausstehende Mitglieder</string>
-  <string name="conversation__menu_create_bubble">Erstelle Blase</string>
+  <string name="conversation__menu_create_bubble">Blase erstellen</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Unterhaltung maximieren</string>
   <!--conversation_callable_insecure-->
