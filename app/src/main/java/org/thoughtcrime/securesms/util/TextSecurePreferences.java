@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -1236,6 +1237,14 @@ public class TextSecurePreferences {
 
   public static void setHasSeenLightThemeIntroSheet(Context context) {
     setBooleanPreference(context, "has_seen_light_theme_intro_sheet", true);
+  }
+
+  public static long getLastSnodePoolRefreshDate(Context context) {
+    return getLongPreference(context, "last_snode_pool_refresh_date", 0);
+  }
+
+  public static void setLastSnodePoolRefreshDate(Context context, Date date) {
+    setLongPreference(context, "last_snode_pool_refresh_date", date.getTime());
   }
   // endregion
 

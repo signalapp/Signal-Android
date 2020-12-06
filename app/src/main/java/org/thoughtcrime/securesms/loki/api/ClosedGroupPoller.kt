@@ -29,7 +29,7 @@ class ClosedGroupPoller private constructor(private val context: Context, privat
 
     // region Settings
     companion object {
-        private val pollInterval: Long = 2 * 1000
+        private val pollInterval: Long = 4 * 1000
 
         public lateinit var shared: ClosedGroupPoller
 

@@ -11,6 +11,7 @@ import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.getRandomElement
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 import java.security.SecureRandom
+import java.util.*
 
 class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol) {
     internal var snodeFailureCount: MutableMap<Snode, Int> = mutableMapOf()
@@ -46,7 +47,12 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
     // region Swarm API
     internal fun getRandomSnode(): Promise<Snode, Exception> {
         val snodePool = this.snodePool
-        if (snodePool.count() < minimumSnodePoolCount) {
+        val lastRefreshDate = database.getLastSnodePoolRefreshDate()
+        val now = Date()
+        val needsRefresh = (snodePool.count() < minimumSnodePoolCount) || lastRefreshDate == null  || (now.time - lastRefreshDate.time) > 24 * 60 * 60 * 1000
+        if (needsRefresh) {
+            database.setLastSnodePoolRefreshDate(now)
+
             val target = seedNodePool.random()
             val url = "$target/json_rpc"
             Log.d("Loki", "Populating snode pool using: $target.")
