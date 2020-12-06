@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.StringUtil;
 
 public class ProfilePreference extends Preference {
 
@@ -79,6 +80,6 @@ public class ProfilePreference extends Preference {
       profileNameView.setText(profileName);
     }
 
-    profileSubtextView.setText(self.getUsername().transform(username -> "@" + username).or(self.getE164().transform(PhoneNumberFormatter::prettyPrint)).orNull());
+    profileSubtextView.setText(self.getUsername().transform(username -> "@" + username).or(self.getE164().transform(PhoneNumberFormatter::prettyPrint)).transform(StringUtil::isolateBidi).orNull());
   }
 }
