@@ -241,6 +241,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     viewModel.getCallParticipantsState().observe(this, callScreen::updateCallParticipants);
     viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate);
     viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent);
+    viewModel.getGroupMembers().observe(this, unused -> updateGroupMembersForGroupCall());
 
     callScreen.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
@@ -503,6 +504,10 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
         SafetyNumberChangeDialog.showForDuringGroupCall(getSupportFragmentManager(), safetyNumberChangeEvent.getRecipientIds());
       }
     }
+  }
+
+  private void updateGroupMembersForGroupCall() {
+    startService(new Intent(this, WebRtcCallService.class).setAction(WebRtcCallService.ACTION_GROUP_REQUEST_UPDATE_MEMBERS));
   }
 
   @Override

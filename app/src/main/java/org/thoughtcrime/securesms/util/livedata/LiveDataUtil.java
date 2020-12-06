@@ -130,6 +130,25 @@ public final class LiveDataUtil {
   }
 
   /**
+   * Skip the first {@param skip} emissions before emitting everything else.
+   */
+  public static @NonNull <T> LiveData<T> skip(@NonNull LiveData<T> source, int skip) {
+    return new MediatorLiveData<T>() {
+      int skipsRemaining = skip;
+
+      {
+        addSource(source, value -> {
+          if (skipsRemaining <= 0) {
+            setValue(value);
+          } else {
+            skipsRemaining--;
+          }
+        });
+      }
+    };
+  }
+
+  /**
    * After {@param delay} ms after observation, emits a single Object, {@param value}.
    */
   public static <T> LiveData<T> delay(long delay, T value) {
