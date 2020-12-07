@@ -4,13 +4,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.view.inputmethod.EditorInfoCompat;
-import androidx.core.view.inputmethod.InputConnectionCompat;
-import androidx.core.view.inputmethod.InputContentInfoCompat;
-import androidx.core.os.BuildCompat;
 import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -22,7 +15,14 @@ import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
-import org.thoughtcrime.securesms.TransportOption;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.os.BuildCompat;
+import androidx.core.view.inputmethod.EditorInfoCompat;
+import androidx.core.view.inputmethod.InputConnectionCompat;
+import androidx.core.view.inputmethod.InputContentInfoCompat;
+
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -121,15 +121,14 @@ public class ComposeText extends EmojiEditText {
     return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
   }
 
-  public void setTransport(TransportOption transport) {
+  public void setTransport() {
     final boolean useSystemEmoji = TextSecurePreferences.isSystemEmojiPreferred(getContext());
     final boolean isIncognito    = TextSecurePreferences.isIncognitoKeyboardEnabled(getContext());
 
     int imeOptions = (getImeOptions() & ~EditorInfo.IME_MASK_ACTION) | EditorInfo.IME_ACTION_SEND;
     int inputType  = getInputType();
 
-    if (isLandscape()) setImeActionLabel(transport.getComposeHint(), EditorInfo.IME_ACTION_SEND);
-    else               setImeActionLabel(null, 0);
+    setImeActionLabel(null, 0);
 
     if (useSystemEmoji) {
       inputType = (inputType & ~InputType.TYPE_MASK_VARIATION) | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE;

@@ -146,7 +146,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     return false;
   }
 
+  @Override
   public void onActivityResult(int requestCode, int resultcode, Intent data) {
+    super.onActivityResult(requestCode, resultcode, data);
     if (requestCode != 1) return;
 
     if (resultcode == RESULT_OK) {

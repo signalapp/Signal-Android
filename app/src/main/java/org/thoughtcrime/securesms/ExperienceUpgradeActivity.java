@@ -38,14 +38,6 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
   private static final int    NOTIFICATION_ID = 1339;
 
   private enum ExperienceUpgrade {
-    READ_RECEIPTS(299,
-                  new IntroPage(0xFF2090EA,
-                                ReadReceiptsIntroFragment.newInstance()),
-                  R.string.experience_upgrade_preference_fragment__read_receipts_are_here,
-                  R.string.experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read,
-                  R.string.experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read,
-                  null,
-                  false),
     TYPING_INDICATORS(432,
                       new IntroPage(0xFF2090EA,
                                     TypingIndicatorIntroFragment.newInstance()),

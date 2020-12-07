@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -26,13 +25,12 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.ControllableViewPager;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
-import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
@@ -47,6 +45,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -78,12 +77,10 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   private static final String TAG = MediaSendFragment.class.getSimpleName();
 
   private static final String KEY_ADDRESS   = "address";
-  private static final String KEY_TRANSPORT = "transport";
-  private static final String KEY_LOCALE    = "locale";
 
   private InputAwareLayout  hud;
   private View              captionAndRail;
-  private SendButton        sendButton;
+  private ImageButton       sendButton;
   private ComposeText       composeText;
   private ViewGroup         composeContainer;
   private EmojiEditText     captionText;
@@ -101,15 +98,14 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   private int                visibleHeight;
   private MediaSendViewModel viewModel;
   private Controller         controller;
-  private Locale             locale;
 
   private final Rect visibleBounds = new Rect();
 
-  public static MediaSendFragment newInstance(@NonNull Recipient recipient, @NonNull TransportOption transport, @NonNull Locale locale) {
+  private final PushCharacterCalculator characterCalculator = new PushCharacterCalculator();
+
+  public static MediaSendFragment newInstance(@NonNull Recipient recipient) {
     Bundle args = new Bundle();
     args.putParcelable(KEY_ADDRESS, recipient.getAddress());
-    args.putParcelable(KEY_TRANSPORT, transport);
-    args.putSerializable(KEY_LOCALE, locale);
 
     MediaSendFragment fragment = new MediaSendFragment();
     fragment.setArguments(args);
@@ -135,8 +131,6 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    locale = (Locale) getArguments().getSerializable(KEY_LOCALE);
 
     initViewModel();
   }
@@ -167,12 +161,12 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
       processMedia(fragmentPagerAdapter.getAllMedia(), fragmentPagerAdapter.getSavedState());
     });
 
-    sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
-      presentCharactersRemaining();
-      composeText.setTransport(newTransport);
-      sendButtonBkg.getBackground().setColorFilter(getResources().getColor(R.color.transparent), PorterDuff.Mode.MULTIPLY);
-      sendButtonBkg.getBackground().invalidateSelf();
-    });
+//    sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
+//      presentCharactersRemaining();
+//      composeText.setTransport(newTransport);
+//      sendButtonBkg.getBackground().setColorFilter(getResources().getColor(R.color.transparent), PorterDuff.Mode.MULTIPLY);
+//      sendButtonBkg.getBackground().invalidateSelf();
+//    });
 
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
 
@@ -205,11 +199,6 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
         viewModel.onCaptionChanged(text);
       }
     });
-
-    TransportOption transportOption = getArguments().getParcelable(KEY_TRANSPORT);
-
-    sendButton.setTransport(transportOption);
-    sendButton.disableTransport(transportOption.getType() == TransportOption.Type.SMS ? TransportOption.Type.TEXTSECURE : TransportOption.Type.SMS);
 
     composeText.append(viewModel.getBody());
 
@@ -283,40 +272,28 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   @Override
   public void onKeyboardShown() {
-    if (sendButton.getSelectedTransport().isSms()) {
-      mediaRail.setVisibility(View.GONE);
+    if (captionText.hasFocus()) {
+      mediaRail.setVisibility(View.VISIBLE);
+      composeContainer.setVisibility(View.GONE);
+      captionText.setVisibility(View.VISIBLE);
+    } else if (composeText.hasFocus()) {
+      mediaRail.setVisibility(View.VISIBLE);
       composeContainer.setVisibility(View.VISIBLE);
       captionText.setVisibility(View.GONE);
     } else {
-      if (captionText.hasFocus()) {
-        mediaRail.setVisibility(View.VISIBLE);
-        composeContainer.setVisibility(View.GONE);
-        captionText.setVisibility(View.VISIBLE);
-      } else if (composeText.hasFocus()) {
-        mediaRail.setVisibility(View.VISIBLE);
-        composeContainer.setVisibility(View.VISIBLE);
-        captionText.setVisibility(View.GONE);
-      } else {
-        mediaRail.setVisibility(View.GONE);
-        composeContainer.setVisibility(View.VISIBLE);
-        captionText.setVisibility(View.GONE);
-      }
+      mediaRail.setVisibility(View.GONE);
+      composeContainer.setVisibility(View.VISIBLE);
+      captionText.setVisibility(View.GONE);
     }
   }
 
   @Override
   public void onKeyboardHidden() {
     composeContainer.setVisibility(View.VISIBLE);
+    mediaRail.setVisibility(View.VISIBLE);
 
-    if (sendButton.getSelectedTransport().isSms()) {
-      mediaRail.setVisibility(View.GONE);
-      captionText.setVisibility(View.GONE);
-    } else {
-      mediaRail.setVisibility(View.VISIBLE);
-
-      if (!Util.isEmpty(viewModel.getSelectedMedia().getValue()) && viewModel.getSelectedMedia().getValue().size() > 1) {
-        captionText.setVisibility(View.VISIBLE);
-      }
+    if (!Util.isEmpty(viewModel.getSelectedMedia().getValue()) && viewModel.getSelectedMedia().getValue().size() > 1) {
+      captionText.setVisibility(View.VISIBLE);
     }
   }
 
@@ -345,7 +322,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
       fragmentPagerAdapter.setMedia(media);
 
-      mediaRail.setVisibility(sendButton.getSelectedTransport().isSms() ? View.GONE : View.VISIBLE);
+      mediaRail.setVisibility(View.VISIBLE);
       captionText.setVisibility((media.size() > 1 || media.get(0).getCaption().isPresent()) ? View.VISIBLE : View.GONE);
       mediaRailAdapter.setMedia(media);
     });
@@ -388,11 +365,10 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   private void presentCharactersRemaining() {
     String          messageBody     = composeText.getTextTrimmed();
-    TransportOption transportOption = sendButton.getSelectedTransport();
-    CharacterState  characterState  = transportOption.calculateCharacters(messageBody);
+    CharacterState  characterState  = characterCalculator.calculateCharacters(messageBody);
 
     if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
-      charactersLeft.setText(String.format(locale,
+      charactersLeft.setText(String.format(Locale.getDefault(),
                                            "%d/%d (%d)",
                                            characterState.charactersRemaining,
                                            characterState.maxTotalMessageSize,
@@ -496,7 +472,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
       @Override
       protected void onPostExecute(List<Media> media) {
-        controller.onSendClicked(media, composeText.getTextTrimmed(), sendButton.getSelectedTransport());
+        controller.onSendClicked(media, composeText.getTextTrimmed());
         Util.cancelRunnableOnMain(progressTimer);
         if (dialog != null) {
           dialog.dismiss();
@@ -568,7 +544,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   public interface Controller {
     void onAddMediaClicked(@NonNull String bucketId);
-    void onSendClicked(@NonNull List<Media> media, @NonNull String body, @NonNull TransportOption transport);
+    void onSendClicked(@NonNull List<Media> media, @NonNull String body);
     void onNoMediaAvailable();
   }
 }

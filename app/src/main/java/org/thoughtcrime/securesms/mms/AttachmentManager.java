@@ -39,7 +39,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.MediaPreviewActivity;
-import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
@@ -375,11 +374,11 @@ public class AttachmentManager {
     selectMediaType(activity, "*/*", null, requestCode);
   }
 
-  public static void selectGallery(Activity activity, int requestCode, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
+  public static void selectGallery(Activity activity, int requestCode, @NonNull Recipient recipient, @NonNull String body) {
     Permissions.with(activity)
                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body, transport), requestCode))
+               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body), requestCode))
                .execute();
   }
 
@@ -414,9 +413,9 @@ public class AttachmentManager {
      */
   }
 
-  public static void selectGif(Activity activity, int requestCode, boolean isForMms) {
+  public static void selectGif(Activity activity, int requestCode) {
     Intent intent = new Intent(activity, GiphyActivity.class);
-    intent.putExtra(GiphyActivity.EXTRA_IS_MMS, isForMms);
+    intent.putExtra(GiphyActivity.EXTRA_IS_MMS, false);
     activity.startActivityForResult(intent, requestCode);
   }
 

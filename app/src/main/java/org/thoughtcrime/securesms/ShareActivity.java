@@ -73,7 +73,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public static final String EXTRA_ADDRESS_MARSHALLED = "address_marshalled";
   public static final String EXTRA_DISTRIBUTION_TYPE  = "distribution_type";
 
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ContactSelectionListFragment contactsFragment;
   private SearchToolbar                searchToolbar;
@@ -82,11 +81,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private Uri                          resolvedExtra;
   private String                       mimeType;
   private boolean                      isPassingAlongMedia;
-
-  @Override
-  protected void onPreCreate() {
-    dynamicLanguage.onCreate(this);
-  }
 
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
@@ -110,13 +104,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     super.onNewIntent(intent);
     setIntent(intent);
     initializeMedia();
-  }
-
-  @Override
-  public void onResume() {
-    Log.i(TAG, "onResume()");
-    super.onResume();
-    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -291,7 +278,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
         InputStream inputStream;
 
         if ("file".equals(uris[0].getScheme())) {
-          inputStream = openFileUri(uris[0]);
+          inputStream = new FileInputStream(uris[0].getPath());
         } else {
           inputStream = context.getContentResolver().openInputStream(uris[0]);
         }
@@ -332,19 +319,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     protected void onPostExecute(Uri uri) {
       resolvedExtra = uri;
       handleResolvedMedia(getIntent(), true);
-    }
-
-    private InputStream openFileUri(Uri uri) throws IOException {
-      FileInputStream fin   = new FileInputStream(uri.getPath());
-      // TODO: Remove the commented code if there are no issues with reading shared files by October 2020
-//      int             owner = FileUtils.getFileDescriptorOwner(fin.getFD());
-
-//      if (owner == -1 || owner == Process.myUid()) {
-//        fin.close();
-//        throw new IOException("File owned by application");
-//      }
-
-      return fin;
     }
   }
 }
