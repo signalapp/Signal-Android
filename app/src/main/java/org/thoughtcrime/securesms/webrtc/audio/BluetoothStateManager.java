@@ -41,8 +41,9 @@ public class BluetoothStateManager {
   private final BluetoothStateListener      listener;
   private final AtomicBoolean               destroyed;
 
+  private volatile ScoConnection scoConnection = ScoConnection.DISCONNECTED;
+
   private BluetoothHeadset bluetoothHeadset = null;
-  private ScoConnection    scoConnection    = ScoConnection.DISCONNECTED;
   private boolean          wantsConnection  = false;
 
   public BluetoothStateManager(@NonNull Context context, @Nullable BluetoothStateListener listener) {
@@ -110,7 +111,17 @@ public class BluetoothStateManager {
   }
 
   private void handleBluetoothStateChange() {
-    if (listener != null && !destroyed.get()) listener.onBluetoothStateChanged(isBluetoothAvailable());
+    if (!destroyed.get()) {
+      boolean isBluetoothAvailable = isBluetoothAvailable();
+
+      if (!isBluetoothAvailable) {
+        setWantsConnection(false);
+      }
+
+      if (listener != null)  {
+        listener.onBluetoothStateChanged(isBluetoothAvailable);
+      }
+    }
   }
 
   private boolean isBluetoothAvailable() {
@@ -191,18 +202,11 @@ public class BluetoothStateManager {
 
               for (BluetoothDevice device : devices) {
                 if (bluetoothHeadset.isAudioConnected(device)) {
-                  int deviceClass = device.getBluetoothClass().getDeviceClass();
+                  scoConnection = ScoConnection.CONNECTED;
 
-                  if (deviceClass == BluetoothClass.Device.AUDIO_VIDEO_HANDSFREE ||
-                      deviceClass == BluetoothClass.Device.AUDIO_VIDEO_CAR_AUDIO ||
-                      deviceClass == BluetoothClass.Device.AUDIO_VIDEO_WEARABLE_HEADSET)
-                  {
-                    scoConnection = ScoConnection.CONNECTED;
-
-                    if (wantsConnection) {
-                      AudioManager audioManager = ServiceUtil.getAudioManager(context);
-                      audioManager.setBluetoothScoOn(true);
-                    }
+                  if (wantsConnection) {
+                    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+                    audioManager.setBluetoothScoOn(true);
                   }
                 }
               }
