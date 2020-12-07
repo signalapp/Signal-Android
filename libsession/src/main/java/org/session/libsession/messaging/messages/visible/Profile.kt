@@ -57,8 +57,4 @@ class Profile() {
             return null
         }
     }
-
-    override fun toProto(messageDataProvider: MessageDataProvider): SignalServiceProtos.DataMessage? {
-        return toProto()
-    }
 }

@@ -14,8 +14,4 @@ class Contact() {
     fun toProto(): SignalServiceProtos.DataMessage.Contact? {
         TODO("Not yet implemented")
     }
-
-    override fun toProto(messageDataProvider: MessageDataProvider): SignalServiceProtos.DataMessage.Contact? {
-        TODO("Not yet implemented")
-    }
 }

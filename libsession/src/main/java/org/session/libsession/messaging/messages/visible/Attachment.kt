@@ -66,8 +66,4 @@ class Attachment {
     fun toProto(): SignalServiceProtos.AttachmentPointer? {
         TODO("Not implemented")
     }
-
-    override fun toProto(messageDataProvider: MessageDataProvider): SignalServiceProtos.AttachmentPointer? {
-        TODO("Not implemented")
-    }
 }
