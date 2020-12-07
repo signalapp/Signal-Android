@@ -113,7 +113,7 @@ public class WebRtcAudioOutputToggleButton extends AppCompatImageView {
     rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     rv.setAdapter(adapter);
 
-    picker = new AlertDialog.Builder(getContext())
+    picker = new AlertDialog.Builder(getContext(), R.style.Theme_Signal_AlertDialog_Dark_Cornered)
                             .setTitle(R.string.WebRtcAudioOutputToggle__audio_output)
                             .setView(rv)
                             .setCancelable(true)

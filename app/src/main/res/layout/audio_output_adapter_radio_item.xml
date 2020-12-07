@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeight">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -13,10 +14,11 @@
         android:gravity="center_vertical"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:textColor="@color/black"
+        android:textColor="@color/signal_text_primary"
         android:textSize="16sp"
+        app:drawableTint="@color/signal_text_primary"
         tools:drawableStart="@drawable/ic_photo_24"
-        tools:text="@string/WebRtcAudioOutputToggle__phone" />
+        tools:text="@string/WebRtcAudioOutputToggle__phone_earpiece" />
 
     <RadioButton
         android:id="@+id/radio"
