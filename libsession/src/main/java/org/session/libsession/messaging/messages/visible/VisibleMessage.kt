@@ -3,6 +3,7 @@ package org.session.libsession.messaging.messages.visible
 import com.goterl.lazycode.lazysodium.BuildConfig
 
 import org.session.libsession.database.MessageDataProvider
+import org.session.libsession.messaging.Configuration
 import org.session.libsession.messaging.messages.Message
 
 import org.session.libsignal.libsignal.logging.Log
@@ -90,7 +91,7 @@ class VisibleMessage : Message()  {
             }
         }
         //Attachments
-        val attachments = attachmentIDs.mapNotNull { messageDataProvider.getAttachment(it) }
+        val attachments = attachmentIDs.mapNotNull { Configuration.shared.messageDataProvider.getAttachment(it) }
         if (!attachments.all { it.isUploaded }) {
             if (BuildConfig.DEBUG) {
                 //TODO equivalent to iOS's preconditionFailure
