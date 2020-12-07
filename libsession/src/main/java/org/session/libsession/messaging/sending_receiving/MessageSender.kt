@@ -1,5 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
+import com.google.protobuf.MessageOrBuilder
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 
@@ -17,6 +18,7 @@ import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeMessage
 
 import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.util.Base64
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
@@ -43,6 +45,11 @@ object MessageSender {
             is InvalidClosedGroupUpdate -> false
             else -> true
         }
+    }
+
+    // Preparation
+    fun prep(signalAttachments: List<SignalServiceAttachment>, message: VisibleMessage) {
+        // TODO: Deal with attachments
     }
 
     // Convenience

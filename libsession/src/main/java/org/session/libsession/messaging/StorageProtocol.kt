@@ -17,6 +17,8 @@ interface StorageProtocol {
     fun getUserProfileKey(): ByteArray?
     fun getUserProfilePictureURL(): String?
 
+    fun getProfileKeyForRecipient(recipientPublicKey: String): ByteArray?
+
     // Signal Protocol
 
     fun getOrGenerateRegistrationID(): Int //TODO needs impl
@@ -64,6 +66,10 @@ interface StorageProtocol {
     fun getOpenGroupProfilePictureURL(group: Long, server: String): String?
     fun updateTitle(groupID: String, newValue: String)
     fun updateProfilePicture(groupID: String, newValue: ByteArray)
+
+    // Message Handling
+    fun getReceivedMessageTimestamps(): Set<Long>
+    fun addReceivedMessageTimestamp(timestamp: Long)
 
 
 

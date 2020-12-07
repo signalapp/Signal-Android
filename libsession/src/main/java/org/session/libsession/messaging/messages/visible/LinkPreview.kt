@@ -1,9 +1,12 @@
 package org.session.libsession.messaging.messages.visible
 
+import android.content.Context
+import org.session.libsession.database.MessageDataProvider
+import org.session.libsession.messaging.Configuration
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-class LinkPreview() : VisibleMessageProto<SignalServiceProtos.DataMessage.Preview?>(){
+class LinkPreview() {
 
     var title: String? = null
     var url: String? = null
@@ -28,12 +31,11 @@ class LinkPreview() : VisibleMessageProto<SignalServiceProtos.DataMessage.Previe
 
 
     // validation
-    override fun isValid(): Boolean {
-        if (!super.isValid()) return false
+    fun isValid(): Boolean {
         return (title != null && url != null && attachmentID != null)
     }
 
-    override fun toProto(): SignalServiceProtos.DataMessage.Preview? {
+    fun toProto(): SignalServiceProtos.DataMessage.Preview? {
         val url = url
         if (url == null) {
             Log.w(TAG, "Couldn't construct link preview proto from: $this")
@@ -44,7 +46,8 @@ class LinkPreview() : VisibleMessageProto<SignalServiceProtos.DataMessage.Previe
         title?.let { linkPreviewProto.title = title }
         val attachmentID = attachmentID
         attachmentID?.let {
-            //TODO database stuff
+            val attachmentProto = Configuration.shared.messageDataProvider.getAttachment(attachmentID)
+            attachmentProto?.let { linkPreviewProto.image = attachmentProto.toProto() }
         }
         // Build
         try {

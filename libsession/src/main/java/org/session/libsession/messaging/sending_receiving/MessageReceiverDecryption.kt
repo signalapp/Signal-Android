@@ -1,35 +1,40 @@
 package org.session.libsession.messaging.sending_receiving
 
 import org.session.libsession.messaging.Configuration
-import org.session.libsignal.service.api.push.SignalServiceAddress
-import org.session.libsignal.service.loki.crypto.LokiServiceCipher
 import org.session.libsession.messaging.sending_receiving.MessageReceiver.Error
 import org.session.libsession.utilities.AESGCM
+
 import org.whispersystems.curve25519.Curve25519
+
 import org.session.libsignal.libsignal.loki.ClosedGroupCiphertextMessage
 import org.session.libsignal.libsignal.util.Pair
+import org.session.libsignal.service.api.crypto.SignalServiceCipher
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
+import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementation
 import org.session.libsignal.service.loki.utilities.toHexString
+
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 object MessageReceiverDecryption {
 
-    internal fun decryptWithSignalProtocol(envelope: SignalServiceEnvelope): Pair<ByteArray, String> {
+    internal fun decryptWithSignalProtocol(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
         val storage = Configuration.shared.signalStorage
-        val certificateValidator = Configuration.shared.certificateValidator
         val sskDatabase = Configuration.shared.sskDatabase
         val sessionResetImp = Configuration.shared.sessionResetImp
+        val certificateValidator = Configuration.shared.certificateValidator
         val data = envelope.content
         if (data.count() == 0) { throw Error.NoData }
         val userPublicKey = Configuration.shared.storage.getUserPublicKey() ?: throw Error.NoUserPublicKey
-        val cipher = LokiServiceCipher(SignalServiceAddress(userPublicKey), storage, sskDatabase, sessionResetImp, certificateValidator)
-        val result = cipher.decrypt(envelope)
+        val localAddress = SignalServiceAddress(userPublicKey)
+        val cipher = SignalServiceCipher(localAddress, storage, sskDatabase, sessionResetImp, certificateValidator)
+        val result = cipher.decrypt(SignalServiceEnvelope(envelope))
+        return Pair(result, result.sender)
     }
 
-    internal fun decryptWithSharedSenderKeys(envelope: SignalServiceEnvelope): Pair<ByteArray, String> {
+    internal fun decryptWithSharedSenderKeys(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
         // 1. ) Check preconditions
         val groupPublicKey = envelope.source
         if (!Configuration.shared.storage.isClosedGroup(groupPublicKey)) { throw Error.InvalidGroupPublicKey }

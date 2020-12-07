@@ -8,5 +8,8 @@ sealed class Destination {
 
     companion object {
         //TODO need to implement the equivalent to TSThread and then implement from(...)
+        fun from(threadID: String): Destination {
+            return Contact(threadID) // Fake for dev
+        }
     }
 }

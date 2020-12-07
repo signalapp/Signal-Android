@@ -497,6 +497,7 @@ public class AttachmentDatabase extends Database {
     database.update(TABLE_NAME, values, PART_ID_WHERE, ((DatabaseAttachment)attachment).getAttachmentId().toStrings());
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+    ((DatabaseAttachment) attachment).setUploaded(true);
   }
 
   public void setTransferState(long messageId, @NonNull Attachment attachment, int transferState) {

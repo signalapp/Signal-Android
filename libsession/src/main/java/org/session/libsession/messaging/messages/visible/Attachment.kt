@@ -2,10 +2,11 @@ package org.session.libsession.messaging.messages.visible
 
 import android.util.Size
 import android.webkit.MimeTypeMap
+import org.session.libsession.database.MessageDataProvider
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.io.File
 
-class Attachment : VisibleMessageProto<SignalServiceProtos.AttachmentPointer?>() {
+class Attachment {
 
     var fileName: String? = null
     var contentType: String? = null
@@ -32,7 +33,7 @@ class Attachment : VisibleMessageProto<SignalServiceProtos.AttachmentPointer?>()
             result.digest = proto.digest.toByteArray()
             val kind: Kind
             if (proto.hasFlags() && (proto.flags and SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) > 0) { //TODO validate that 'and' operator = swift '&'
-                kind = Kind.VOICEMESSAGE
+                kind = Kind.VOICE_MESSAGE
             } else {
                 kind = Kind.GENERIC
             }
@@ -52,18 +53,17 @@ class Attachment : VisibleMessageProto<SignalServiceProtos.AttachmentPointer?>()
     }
 
     enum class Kind {
-        VOICEMESSAGE,
+        VOICE_MESSAGE,
         GENERIC
     }
 
     // validation
-    override fun isValid(): Boolean {
-        if (!super.isValid()) return false
+    fun isValid(): Boolean {
         // key and digest can be nil for open group attachments
         return (contentType != null && kind != null && size != null && sizeInBytes != null && url != null)
     }
 
-    override fun toProto(): SignalServiceProtos.AttachmentPointer? {
+    fun toProto(): SignalServiceProtos.AttachmentPointer? {
         TODO("Not implemented")
     }
 }

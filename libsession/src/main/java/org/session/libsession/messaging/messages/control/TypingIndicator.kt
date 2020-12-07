@@ -5,10 +5,10 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class TypingIndicator() : ControlMessage() {
 
+    override val ttl: Long = 30 * 1000
+
     companion object {
         const val TAG = "TypingIndicator"
-
-        //val ttl:  30 * 1000 //TODO
 
         fun fromProto(proto: SignalServiceProtos.Content): TypingIndicator? {
             val typingIndicatorProto = proto.typingMessage ?: return null
