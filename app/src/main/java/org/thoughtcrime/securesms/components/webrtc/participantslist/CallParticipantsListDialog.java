@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +37,13 @@ public class CallParticipantsListDialog extends BottomSheetDialogFragment {
     CallParticipantsListDialog fragment = new CallParticipantsListDialog();
 
     fragment.show(manager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+  }
+
+  public static void dismiss(@NonNull FragmentManager manager) {
+    Fragment fragment = manager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+    if (fragment instanceof CallParticipantsListDialog) {
+      ((CallParticipantsListDialog) fragment).dismissAllowingStateLoss();
+    }
   }
 
   @Override
