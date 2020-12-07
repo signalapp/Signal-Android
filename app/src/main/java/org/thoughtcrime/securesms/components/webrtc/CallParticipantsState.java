@@ -87,7 +87,8 @@ public final class CallParticipantsState {
     List<CallParticipant> listParticipants = new ArrayList<>();
 
     if (isViewingFocusedParticipant && getAllRemoteParticipants().size() > 1) {
-      listParticipants.addAll(getAllRemoteParticipants().subList(1, getAllRemoteParticipants().size()));
+      listParticipants.addAll(getAllRemoteParticipants());
+      listParticipants.remove(focusedParticipant);
     } else if (getAllRemoteParticipants().size() > SMALL_GROUP_MAX) {
       listParticipants.addAll(getAllRemoteParticipants().subList(SMALL_GROUP_MAX, getAllRemoteParticipants().size()));
     } else {
