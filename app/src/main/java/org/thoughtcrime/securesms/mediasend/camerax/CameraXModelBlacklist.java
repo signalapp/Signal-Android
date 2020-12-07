@@ -92,7 +92,7 @@ public final class CameraXModelBlacklist {
     // Honor View 10
     add("BKL-AL20");
     add("BKL-L04");
-    add("BLK-L09");
+    add("BKL-L09");
     add("BKL-AL00");
 
     // Honor View 20
