@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.messages.visible
 
+import com.goterl.lazycode.lazysodium.BuildConfig
+import org.session.libsession.database.MessageDataProvider
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -29,14 +31,13 @@ class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
         this.attachmentID = attachmentID
     }
 
-
     // validation
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
         return (timestamp != null && publicKey != null)
     }
 
-    override fun toProto(): SignalServiceProtos.DataMessage.Quote? {
+    override fun toProto(messageDataProvider: MessageDataProvider): SignalServiceProtos.DataMessage.Quote? {
         val timestamp = timestamp
         val publicKey = publicKey
         if (timestamp == null || publicKey == null) {
@@ -47,7 +48,7 @@ class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
         quoteProto.id = timestamp
         quoteProto.author = publicKey
         text?.let { quoteProto.text = text }
-        addAttachmentsIfNeeded(quoteProto)
+        addAttachmentsIfNeeded(quoteProto, messageDataProvider)
         // Build
         try {
             return quoteProto.build()
@@ -57,16 +58,33 @@ class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
         }
     }
 
-    private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder) {
+    private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder, messageDataProvider: MessageDataProvider) {
         val attachmentID = attachmentID ?: return
-        //TODO databas stuff
+        val attachmentProto = messageDataProvider.getAttachment(attachmentID)
+        if (attachmentProto == null) {
+            Log.w(TAG, "Ignoring invalid attachment for quoted message.")
+            return
+        }
+        if (!attachmentProto.isUploaded) {
+            if (BuildConfig.DEBUG) {
+                //TODO equivalent to iOS's preconditionFailure
+                Log.d(TAG,"Sending a message before all associated attachments have been uploaded.")
+                return
+            }
+        }
         val quotedAttachmentProto = SignalServiceProtos.DataMessage.Quote.QuotedAttachment.newBuilder()
-        //TODO more database related stuff
-        //quotedAttachmentProto.contentType =
+        quotedAttachmentProto.contentType = attachmentProto.contentType
+        val fileName = attachmentProto.fileName
+        fileName?.let { quotedAttachmentProto.fileName = fileName }
+        quotedAttachmentProto.thumbnail = attachmentProto.toProto()
         try {
             quoteProto.addAttachments(quotedAttachmentProto.build())
         } catch (e: Exception) {
             Log.w(TAG, "Couldn't construct quoted attachment proto from: $this")
         }
+    }
+
+    override fun toProto(): SignalServiceProtos.DataMessage.Quote? {
+        TODO("Not implemented")
     }
 }

@@ -12,6 +12,7 @@ public class DatabaseAttachment extends Attachment {
   private final long         mmsId;
   private final boolean      hasData;
   private final boolean      hasThumbnail;
+  private boolean isUploaded = false;
 
   public DatabaseAttachment(AttachmentId attachmentId, long mmsId,
                             boolean hasData, boolean hasThumbnail,
@@ -74,5 +75,13 @@ public class DatabaseAttachment extends Attachment {
 
   public boolean hasThumbnail() {
     return hasThumbnail;
+  }
+
+  public boolean isUploaded() {
+    return isUploaded;
+  }
+
+  public void setUploaded(boolean uploaded) {
+    isUploaded = uploaded;
   }
 }

@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.messages.visible
 
+import android.content.Context
+import org.session.libsession.database.MessageDataProvider
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -33,7 +35,7 @@ class LinkPreview() : VisibleMessageProto<SignalServiceProtos.DataMessage.Previe
         return (title != null && url != null && attachmentID != null)
     }
 
-    override fun toProto(): SignalServiceProtos.DataMessage.Preview? {
+    override fun toProto(messageDataProvider: MessageDataProvider): SignalServiceProtos.DataMessage.Preview? {
         val url = url
         if (url == null) {
             Log.w(TAG, "Couldn't construct link preview proto from: $this")
@@ -44,7 +46,8 @@ class LinkPreview() : VisibleMessageProto<SignalServiceProtos.DataMessage.Previe
         title?.let { linkPreviewProto.title = title }
         val attachmentID = attachmentID
         attachmentID?.let {
-            //TODO database stuff
+            val attachmentProto = messageDataProvider.getAttachment(attachmentID)
+            attachmentProto?.let { linkPreviewProto.image = attachmentProto.toProto() }
         }
         // Build
         try {
@@ -53,5 +56,9 @@ class LinkPreview() : VisibleMessageProto<SignalServiceProtos.DataMessage.Previe
             Log.w(TAG, "Couldn't construct link preview proto from: $this")
             return null
         }
+    }
+
+    override fun toProto(): SignalServiceProtos.DataMessage.Preview? {
+        TODO("Not implemented")
     }
 }
