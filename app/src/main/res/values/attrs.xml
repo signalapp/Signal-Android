@@ -126,8 +126,6 @@
     <attr name="message_received_background_color" format="color|reference" />
     <attr name="message_sent_background_color" format="color|reference" />
 
-    <attr name="group_members_dialog_icon" format="reference"/>
-
     <attr name="verification_background" format="color"/>
 
     <attr name="media_overview_toolbar_background" format="color"/>

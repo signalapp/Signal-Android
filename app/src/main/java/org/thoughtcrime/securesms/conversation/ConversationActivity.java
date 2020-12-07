@@ -85,7 +85,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ExpirationDialog;
-import org.thoughtcrime.securesms.GroupMembersDialog;
 import org.thoughtcrime.securesms.MediaOverviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
@@ -1196,32 +1195,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
-  }
-
-  private void handleDisplayGroupRecipients() {
-    new GroupMembersDialog(this, getRecipient()).display();
-  }
-
-  private void handleAddToContacts() {
-    if (recipient.getAddress().isGroup()) return;
-
-    try {
-      startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), ADD_CONTACT);
-    } catch (ActivityNotFoundException e) {
-      Log.w(TAG, e);
-    }
-  }
-
-  private boolean handleDisplayQuickContact() {
-    return !recipient.getAddress().isGroup();
-
-    /*
-    if (recipient.getContactUri() != null) {
-      ContactsContract.QuickContact.showQuickContact(ConversationActivity.this, titleView, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
-    } else {
-      handleAddToContacts();
-    }
-     */
   }
 
   private void handleAddAttachment() {

@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
 
-public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity implements MasterSecretListener {
+public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarActivity {
   private static final String TAG = PassphraseRequiredActionBarActivity.class.getSimpleName();
 
   public static final String LOCALE_EXTRA = "locale_extra";
@@ -68,7 +68,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     removeClearKeyReceiver(this);
   }
 
-  @Override
   public void onMasterSecretCleared() {
     Log.i(TAG, "onMasterSecretCleared()");
     if (ApplicationContext.getInstance(this).isAppVisible()) routeApplicationState(true);

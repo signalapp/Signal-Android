@@ -139,7 +139,6 @@
 
         <item name="pref_icon_tint">@color/textsecure_primary_dark</item>
 
-        <item name="group_members_dialog_icon">@drawable/ic_group_grey600_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
         <item name="shared_contact_details_header_background">@color/grey_100</item>

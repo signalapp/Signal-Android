@@ -265,7 +265,6 @@
 
         <item name="pref_icon_tint">#FFFFFF</item>
 
-        <item name="group_members_dialog_icon">@drawable/ic_group_white_24dp</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
         <item name="shared_contact_details_header_background">@color/grey_800</item>
