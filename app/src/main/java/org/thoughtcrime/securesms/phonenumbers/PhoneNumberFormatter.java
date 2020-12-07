@@ -14,6 +14,7 @@ import com.google.i18n.phonenumbers.ShortNumberInfo;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
@@ -99,13 +100,13 @@ public class PhoneNumberFormatter {
           localNumber.get().countryCode == parsedNumber.getCountryCode() &&
           NATIONAL_FORMAT_COUNTRY_CODES.contains(localNumber.get().getCountryCode()))
       {
-        return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
+        return StringUtil.isolateBidi(phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
       } else {
-        return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
+        return StringUtil.isolateBidi(phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL));
       }
     } catch (NumberParseException e) {
       Log.w(TAG, "Failed to format number.");
-      return e164;
+      return StringUtil.isolateBidi(e164);
     }
   }
 
