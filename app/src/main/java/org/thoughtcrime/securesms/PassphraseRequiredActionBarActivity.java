@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.activities.LandingActivity;
 import org.thoughtcrime.securesms.loki.activities.SeedActivity;
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -35,13 +34,11 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   private static final int STATE_EXPERIENCE_UPGRADE       = 5;
   private static final int STATE_WELCOME_SCREEN           = 6;
 
-  private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
     Log.i(TAG, "onCreate(" + savedInstanceState + ")");
-    this.networkAccess = new SignalServiceNetworkAccess(this);
     onPreCreate();
 
     final boolean locked = KeyCachingService.isLocked(this);
@@ -57,16 +54,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   protected void onPreCreate() {}
   protected void onCreate(Bundle savedInstanceState, boolean ready) {}
-
-  @Override
-  protected void onResume() {
-    Log.i(TAG, "onResume()");
-    super.onResume();
-
-    if (networkAccess.isCensored(this)) {
-      ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
-    }
-  }
 
   @Override
   protected void onPause() {
@@ -186,11 +173,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getPushRegistrationIntent() {
-    return getRoutedIntent(SeedActivity.class, getCreateProfileIntent());
-  }
-
-  private Intent getCreateProfileIntent() {
-    return getRoutedIntent(CreateProfileActivity.class, getConversationListIntent());
+    return getRoutedIntent(SeedActivity.class, getConversationListIntent());
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent) {

@@ -328,15 +328,6 @@
             android:name="org.thoughtcrime.securesms.VerifyIdentityActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
         <activity
-            android:name="org.thoughtcrime.securesms.ApplicationPreferencesActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.NOTIFICATION_PREFERENCES" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="org.thoughtcrime.securesms.stickers.StickerManagementActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
@@ -380,10 +371,6 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat" />
-        <activity
-            android:name="org.thoughtcrime.securesms.CreateProfileActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:windowSoftInputMode="stateVisible" />
         <activity
             android:name="org.thoughtcrime.securesms.ClearProfileAvatarActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"

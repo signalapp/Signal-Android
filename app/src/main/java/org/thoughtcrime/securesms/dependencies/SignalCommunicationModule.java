@@ -11,7 +11,6 @@ import org.session.libsignal.service.api.util.SleepTimer;
 import org.session.libsignal.service.api.util.UptimeSleepTimer;
 import org.session.libsignal.service.api.websocket.ConnectivityListener;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -85,7 +84,6 @@ import network.loki.messenger.BuildConfig;
                                      RotateSignedPreKeyJob.class,
                                      RetrieveProfileJob.class,
                                      MultiDeviceVerifiedUpdateJob.class,
-                                     CreateProfileActivity.class,
                                      RetrieveProfileAvatarJob.class,
                                      MultiDeviceProfileKeyUpdateJob.class,
                                      SendReadReceiptJob.class,
@@ -121,6 +119,7 @@ public class SignalCommunicationModule {
   public SignalCommunicationModule(Context context, SignalServiceNetworkAccess networkAccess) {
     this.context       = context;
     this.networkAccess = networkAccess;
+
   }
 
   @Provides
