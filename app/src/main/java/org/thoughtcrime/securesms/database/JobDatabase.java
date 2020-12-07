@@ -177,7 +177,7 @@ public class JobDatabase extends Database {
               values.put(Jobs.RUN_ATTEMPT, job.getRunAttempt());
               values.put(Jobs.MAX_ATTEMPTS, job.getMaxAttempts());
               values.put(Jobs.MAX_BACKOFF, job.getMaxBackoff());
-              values.put(Jobs.MAX_INSTANCES, job.getMaxInstances());
+              values.put(Jobs.MAX_INSTANCES, job.getMaxInstancesForFactory());
               values.put(Jobs.LIFESPAN, job.getLifespan());
               values.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
               values.put(Jobs.SERIALIZED_INPUT_DATA, job.getSerializedInputData());
@@ -254,7 +254,7 @@ public class JobDatabase extends Database {
     contentValues.put(Jobs.RUN_ATTEMPT, job.getRunAttempt());
     contentValues.put(Jobs.MAX_ATTEMPTS, job.getMaxAttempts());
     contentValues.put(Jobs.MAX_BACKOFF, job.getMaxBackoff());
-    contentValues.put(Jobs.MAX_INSTANCES, job.getMaxInstances());
+    contentValues.put(Jobs.MAX_INSTANCES, job.getMaxInstancesForFactory());
     contentValues.put(Jobs.LIFESPAN, job.getLifespan());
     contentValues.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
     contentValues.put(Jobs.SERIALIZED_INPUT_DATA, job.getSerializedInputData());

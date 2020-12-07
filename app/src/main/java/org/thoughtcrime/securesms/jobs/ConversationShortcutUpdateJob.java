@@ -29,7 +29,7 @@ public class ConversationShortcutUpdateJob extends BaseJob {
     this(new Parameters.Builder()
                        .setQueue("ConversationShortcutUpdateJob")
                        .setLifespan(TimeUnit.MINUTES.toMillis(15))
-                       .setMaxInstances(1)
+                       .setMaxInstancesForFactory(1)
                        .build());
   }
 

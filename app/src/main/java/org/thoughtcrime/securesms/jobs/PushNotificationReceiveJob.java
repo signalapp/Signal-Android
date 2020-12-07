@@ -26,7 +26,7 @@ public class PushNotificationReceiveJob extends BaseJob {
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("__notification_received")
                            .setMaxAttempts(3)
-                           .setMaxInstances(1)
+                           .setMaxInstancesForFactory(1)
                            .build());
     setContext(context);
   }

@@ -51,7 +51,7 @@ public class StorageForcePushJob extends BaseJob {
   public StorageForcePushJob() {
     this(new Parameters.Builder().addConstraint(NetworkConstraint.KEY)
                                  .setQueue(StorageSyncJob.QUEUE_KEY)
-                                 .setMaxInstances(1)
+                                 .setMaxInstancesForFactory(1)
                                  .setLifespan(TimeUnit.DAYS.toMillis(1))
                                  .build());
   }

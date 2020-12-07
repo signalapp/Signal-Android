@@ -75,7 +75,7 @@ public class StorageSyncJob extends BaseJob {
   public StorageSyncJob() {
     this(new Job.Parameters.Builder().addConstraint(NetworkConstraint.KEY)
                                      .setQueue(QUEUE_KEY)
-                                     .setMaxInstances(2)
+                                     .setMaxInstancesForFactory(2)
                                      .setLifespan(TimeUnit.DAYS.toMillis(1))
                                      .build());
   }

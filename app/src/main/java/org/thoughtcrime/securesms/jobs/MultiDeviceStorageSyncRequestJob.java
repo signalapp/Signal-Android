@@ -22,7 +22,7 @@ public class MultiDeviceStorageSyncRequestJob extends BaseJob {
   public MultiDeviceStorageSyncRequestJob() {
     this(new Parameters.Builder()
                        .setQueue("MultiDeviceStorageSyncRequestJob")
-                       .setMaxInstances(2)
+                       .setMaxInstancesForFactory(2)
                        .addConstraint(NetworkConstraint.KEY)
                        .setMaxAttempts(10)
                        .build());

@@ -30,7 +30,7 @@ public class ServiceOutageDetectionJob extends BaseJob {
                            .setQueue("ServiceOutageDetectionJob")
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(5)
-                           .setMaxInstances(1)
+                           .setMaxInstancesForFactory(1)
                            .build());
   }
 

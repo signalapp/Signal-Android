@@ -22,7 +22,7 @@ abstract class MigrationJob extends Job {
   MigrationJob(@NonNull Parameters parameters) {
     super(parameters.toBuilder()
                     .setQueue(Parameters.MIGRATION_QUEUE_KEY)
-                    .setMaxInstances(1)
+                    .setMaxInstancesForFactory(1)
                     .setLifespan(Parameters.IMMORTAL)
                     .setMaxAttempts(Parameters.UNLIMITED)
                     .build());

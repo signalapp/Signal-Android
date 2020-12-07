@@ -30,7 +30,7 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
   public MultiDeviceKeysUpdateJob() {
     this(new Parameters.Builder()
                            .setQueue("MultiDeviceKeysUpdateJob")
-                           .setMaxInstances(2)
+                           .setMaxInstancesForFactory(2)
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(10)
                            .build());

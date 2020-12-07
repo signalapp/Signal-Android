@@ -38,7 +38,7 @@ public final class ProfileUploadJob extends BaseJob {
                             .setQueue(QUEUE)
                             .setLifespan(TimeUnit.DAYS.toMillis(30))
                             .setMaxAttempts(Parameters.UNLIMITED)
-                            .setMaxInstances(2)
+                            .setMaxInstancesForFactory(2)
                             .build());
   }
 

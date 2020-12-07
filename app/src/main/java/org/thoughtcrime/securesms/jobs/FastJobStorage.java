@@ -144,9 +144,16 @@ public class FastJobStorage implements JobStorage {
   }
 
   @Override
-  public synchronized int getJobInstanceCount(@NonNull String factoryKey) {
+  public synchronized int getJobCountForFactory(@NonNull String factoryKey) {
     return (int) Stream.of(jobs)
                        .filter(j -> j.getFactoryKey().equals(factoryKey))
+                       .count();
+  }
+
+  @Override
+  public synchronized int getJobCountForQueue(@NonNull String queueKey) {
+    return (int) Stream.of(jobs)
+                       .filter(j -> j.getQueueKey().equals(queueKey))
                        .count();
   }
 
@@ -171,7 +178,7 @@ public class FastJobStorage implements JobStorage {
                                       existing.getMaxAttempts(),
                                       existing.getMaxBackoff(),
                                       existing.getLifespan(),
-                                      existing.getMaxInstances(),
+                                      existing.getMaxInstancesForFactory(),
                                       existing.getSerializedData(),
                                       existing.getSerializedInputData(),
                                       isRunning,
@@ -202,7 +209,7 @@ public class FastJobStorage implements JobStorage {
                                       existing.getMaxAttempts(),
                                       existing.getMaxBackoff(),
                                       existing.getLifespan(),
-                                      existing.getMaxInstances(),
+                                      existing.getMaxInstancesForFactory(),
                                       serializedData,
                                       existing.getSerializedInputData(),
                                       isRunning,
@@ -229,7 +236,7 @@ public class FastJobStorage implements JobStorage {
                                      existing.getMaxAttempts(),
                                      existing.getMaxBackoff(),
                                      existing.getLifespan(),
-                                     existing.getMaxInstances(),
+                                     existing.getMaxInstancesForFactory(),
                                      existing.getSerializedData(),
                                      existing.getSerializedInputData(),
                                      false,

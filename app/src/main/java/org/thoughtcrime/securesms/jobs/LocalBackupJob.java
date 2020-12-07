@@ -46,7 +46,7 @@ public final class LocalBackupJob extends BaseJob {
     JobManager         jobManager = ApplicationDependencies.getJobManager();
     Parameters.Builder parameters = new Parameters.Builder()
                                                   .setQueue(QUEUE)
-                                                  .setMaxInstances(1)
+                                                  .setMaxInstancesForFactory(1)
                                                   .setMaxAttempts(3);
     if (force) {
       jobManager.cancelAllInQueue(QUEUE);

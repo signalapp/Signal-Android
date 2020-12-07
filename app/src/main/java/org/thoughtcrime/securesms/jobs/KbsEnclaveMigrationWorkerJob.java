@@ -29,7 +29,7 @@ public class KbsEnclaveMigrationWorkerJob extends BaseJob {
                        .setLifespan(Parameters.IMMORTAL)
                        .setMaxAttempts(Parameters.UNLIMITED)
                        .setQueue("KbsEnclaveMigrationWorkerJob")
-                       .setMaxInstances(1)
+                       .setMaxInstancesForFactory(1)
                        .build());
   }
 

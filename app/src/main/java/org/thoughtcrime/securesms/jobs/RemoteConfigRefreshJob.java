@@ -23,7 +23,7 @@ public class RemoteConfigRefreshJob extends BaseJob {
   public RemoteConfigRefreshJob() {
     this(new Job.Parameters.Builder()
                            .setQueue("RemoteConfigRefreshJob")
-                           .setMaxInstances(1)
+                           .setMaxInstancesForFactory(1)
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))

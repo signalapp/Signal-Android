@@ -58,7 +58,7 @@ public class FcmRefreshJob extends BaseJob {
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(1)
                            .setLifespan(TimeUnit.MINUTES.toMillis(5))
-                           .setMaxInstances(1)
+                           .setMaxInstancesForFactory(1)
                            .build());
   }
 

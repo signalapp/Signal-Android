@@ -36,7 +36,7 @@ public class RefreshPreKeysJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue("RefreshPreKeysJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxInstances(1)
+                           .setMaxInstancesForFactory(1)
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .setLifespan(TimeUnit.DAYS.toMillis(30))
                            .build());

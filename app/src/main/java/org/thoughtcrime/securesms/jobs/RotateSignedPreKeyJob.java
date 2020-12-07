@@ -28,7 +28,7 @@ public class RotateSignedPreKeyJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue("RotateSignedPreKeyJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxInstances(1)
+                           .setMaxInstancesForFactory(1)
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .setLifespan(TimeUnit.DAYS.toMillis(2))
                            .build());

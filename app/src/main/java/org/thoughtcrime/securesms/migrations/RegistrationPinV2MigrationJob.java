@@ -33,7 +33,7 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
   public RegistrationPinV2MigrationJob() {
     this(new Parameters.Builder()
                        .setQueue(KEY)
-                       .setMaxInstances(1)
+                       .setMaxInstancesForFactory(1)
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(Job.Parameters.IMMORTAL)
                        .setMaxAttempts(Job.Parameters.UNLIMITED)

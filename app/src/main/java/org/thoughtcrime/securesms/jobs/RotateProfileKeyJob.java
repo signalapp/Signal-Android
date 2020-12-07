@@ -20,7 +20,7 @@ public class RotateProfileKeyJob extends BaseJob {
   public RotateProfileKeyJob() {
     this(new Job.Parameters.Builder()
                            .setQueue("__ROTATE_PROFILE_KEY__")
-                           .setMaxInstances(2)
+                           .setMaxInstancesForFactory(2)
                            .build());
   }
 
