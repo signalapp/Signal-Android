@@ -177,9 +177,6 @@
             android:screenOrientation="portrait" />
         <!-- Session -->
         <activity
-            android:name="org.thoughtcrime.securesms.CountrySelectionActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
-        <activity
             android:name="org.thoughtcrime.securesms.ShareActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:excludeFromRecents="true"
@@ -276,11 +273,6 @@
             android:theme="@style/Theme.TextSecure.DayNight"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="org.thoughtcrime.securesms.DatabaseMigrationActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.DatabaseUpgradeActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -379,7 +371,6 @@
             android:theme="@style/Theme.AppCompat.Dialog.Alert">
             <intent-filter>
                 <action android:name="network.loki.securesms.action.CLEAR_PROFILE_PHOTO" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

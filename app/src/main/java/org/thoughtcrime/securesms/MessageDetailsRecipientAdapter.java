@@ -67,7 +67,7 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
 
   @Override
   public void onMovedToScrapHeap(View view) {
-    ((MessageRecipientListItem)view).unbind();
+    ((UserView)view).unbind();
   }
 
 

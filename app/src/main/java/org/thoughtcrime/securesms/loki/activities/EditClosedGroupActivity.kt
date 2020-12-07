@@ -99,8 +99,8 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
         lblGroupNameDisplay.text = originalName
         cntGroupNameDisplay.setOnClickListener { isEditingName = true }
-        findViewById<Button>(R.id.btnCancelGroupNameEdit).setOnClickListener { isEditingName = false }
-        findViewById<Button>(R.id.btnSaveGroupNameEdit).setOnClickListener { saveName() }
+        findViewById<View>(R.id.btnCancelGroupNameEdit).setOnClickListener { isEditingName = false }
+        findViewById<View>(R.id.btnSaveGroupNameEdit).setOnClickListener { saveName() }
         edtGroupName.setImeActionLabel(getString(R.string.save), EditorInfo.IME_ACTION_DONE)
         edtGroupName.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {

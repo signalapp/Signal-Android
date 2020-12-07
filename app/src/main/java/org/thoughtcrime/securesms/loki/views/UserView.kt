@@ -81,5 +81,9 @@ class UserView : LinearLayout {
             }
         }
     }
+
+    fun unbind() {
+
+    }
     // endregion
 }
