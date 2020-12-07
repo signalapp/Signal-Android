@@ -1,6 +1,10 @@
 package org.session.libsession.messaging.messages.visible
 
+import com.goterl.lazycode.lazysodium.BuildConfig
+
+import org.session.libsession.database.MessageDataProvider
 import org.session.libsession.messaging.messages.Message
+
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -47,7 +51,7 @@ class VisibleMessage : Message()  {
         return false
     }
 
-    override fun toProto(): SignalServiceProtos.Content? {
+    fun toProto(): SignalServiceProtos.Content? {
         val proto = SignalServiceProtos.Content.newBuilder()
         var attachmentIDs = this.attachmentIDs
         val dataMessage: SignalServiceProtos.DataMessage.Builder
@@ -86,9 +90,15 @@ class VisibleMessage : Message()  {
             }
         }
         //Attachments
-        // TODO I'm blocking on that one...
-        //swift: let attachments = attachmentIDs.compactMap { TSAttachmentStream.fetch(uniqueId: $0, transaction: transaction) }
-
+        val attachments = attachmentIDs.mapNotNull { messageDataProvider.getAttachment(it) }
+        if (!attachments.all { it.isUploaded }) {
+            if (BuildConfig.DEBUG) {
+                //TODO equivalent to iOS's preconditionFailure
+                Log.d(TAG,"Sending a message before all associated attachments have been uploaded.")
+            }
+        }
+        val attachmentProtos = attachments.mapNotNull { it.toProto() }
+        dataMessage.addAllAttachments(attachmentProtos)
         // TODO Contact
         // Build
         try {
@@ -99,5 +109,4 @@ class VisibleMessage : Message()  {
             return null
         }
     }
-
 }

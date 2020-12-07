@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.messages.visible
 
+import com.goterl.lazycode.lazysodium.BuildConfig
+import org.session.libsession.database.MessageDataProvider
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -29,7 +31,6 @@ class Quote() {
         this.attachmentID = attachmentID
     }
 
-
     // validation
     fun isValid(): Boolean {
         return (timestamp != null && publicKey != null)
@@ -46,7 +47,7 @@ class Quote() {
         quoteProto.id = timestamp
         quoteProto.author = publicKey
         text?.let { quoteProto.text = text }
-        addAttachmentsIfNeeded(quoteProto)
+        addAttachmentsIfNeeded(quoteProto, messageDataProvider)
         // Build
         try {
             return quoteProto.build()
@@ -56,12 +57,25 @@ class Quote() {
         }
     }
 
-    private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder) {
+    private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder, messageDataProvider: MessageDataProvider) {
         val attachmentID = attachmentID ?: return
-        //TODO databas stuff
+        val attachmentProto = messageDataProvider.getAttachment(attachmentID)
+        if (attachmentProto == null) {
+            Log.w(TAG, "Ignoring invalid attachment for quoted message.")
+            return
+        }
+        if (!attachmentProto.isUploaded) {
+            if (BuildConfig.DEBUG) {
+                //TODO equivalent to iOS's preconditionFailure
+                Log.d(TAG,"Sending a message before all associated attachments have been uploaded.")
+                return
+            }
+        }
         val quotedAttachmentProto = SignalServiceProtos.DataMessage.Quote.QuotedAttachment.newBuilder()
-        //TODO more database related stuff
-        //quotedAttachmentProto.contentType =
+        quotedAttachmentProto.contentType = attachmentProto.contentType
+        val fileName = attachmentProto.fileName
+        fileName?.let { quotedAttachmentProto.fileName = fileName }
+        quotedAttachmentProto.thumbnail = attachmentProto.toProto()
         try {
             quoteProto.addAttachments(quotedAttachmentProto.build())
         } catch (e: Exception) {

@@ -2,6 +2,7 @@ package org.session.libsession.messaging.messages.visible
 
 import android.util.Size
 import android.webkit.MimeTypeMap
+import org.session.libsession.database.MessageDataProvider
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.io.File
 
@@ -63,6 +64,10 @@ class Attachment {
     }
 
     fun toProto(): SignalServiceProtos.AttachmentPointer? {
+        TODO("Not implemented")
+    }
+
+    override fun toProto(messageDataProvider: MessageDataProvider): SignalServiceProtos.AttachmentPointer? {
         TODO("Not implemented")
     }
 }

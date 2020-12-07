@@ -1,6 +1,7 @@
 package org.session.libsession.messaging.messages.visible
 
 import com.google.protobuf.ByteString
+import org.session.libsession.database.MessageDataProvider
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -55,5 +56,9 @@ class Profile() {
             Log.w(TAG, "Couldn't construct profile proto from: $this")
             return null
         }
+    }
+
+    override fun toProto(messageDataProvider: MessageDataProvider): SignalServiceProtos.DataMessage? {
+        return toProto()
     }
 }
