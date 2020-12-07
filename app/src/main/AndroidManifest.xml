@@ -232,7 +232,7 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
             android:noHistory="true"
-            android:theme="@style/Theme.Session.DayNight.NoActionBar"
+            android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -372,10 +372,6 @@
             android:noHistory="true"
             android:stateNotNeeded="true"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity
-            android:name="org.thoughtcrime.securesms.RecipientPreferenceActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/Theme.Session.DayNight.NoActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.scribbles.StickerSelectActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
