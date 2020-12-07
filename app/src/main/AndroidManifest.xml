@@ -259,7 +259,8 @@
         </activity>
         <activity
             android:name="org.thoughtcrime.securesms.longmessage.LongMessageActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.TextSecure.DayNight"/>
         <activity
             android:name="org.thoughtcrime.securesms.conversation.ConversationPopupActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"

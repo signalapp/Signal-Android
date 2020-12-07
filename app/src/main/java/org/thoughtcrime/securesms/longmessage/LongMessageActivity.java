@@ -1,13 +1,9 @@
 package org.thoughtcrime.securesms.longmessage;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
@@ -19,33 +15,32 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.Stub;
 
-public class LongMessageActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
+import java.util.Locale;
+
+import network.loki.messenger.R;
+
+public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
 
   private static final String KEY_ADDRESS    = "address";
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_IS_MMS     = "is_mms";
 
   private static final int MAX_DISPLAY_LENGTH = 64 * 1024;
-
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
 
   private Stub<ViewGroup> sentBubble;
   private Stub<ViewGroup> receivedBubble;
@@ -61,13 +56,6 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
   }
 
   @Override
-  protected void onPreCreate() {
-    super.onPreCreate();
-    dynamicLanguage.onCreate(this);
-    dynamicTheme.onCreate(this);
-  }
-
-  @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     super.onCreate(savedInstanceState, ready);
     setContentView(R.layout.longmessage_activity);
@@ -76,19 +64,6 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
     receivedBubble = new Stub<>(findViewById(R.id.longmessage_received_stub));
 
     initViewModel(getIntent().getLongExtra(KEY_MESSAGE_ID, -1), getIntent().getBooleanExtra(KEY_IS_MMS, false));
-
-    Recipient conversationRecipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
-    conversationRecipient.addListener(this);
-    updateActionBarColor(conversationRecipient.getColor());
-
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicLanguage.onResume(this);
-    dynamicTheme.onResume(this);
   }
 
   @Override
@@ -104,21 +79,8 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
     return false;
   }
 
-  @Override
-  public void onModified(final Recipient recipient) {
-    Util.runOnMain(() -> updateActionBarColor(recipient.getColor()));
-  }
-
-  private void updateActionBarColor(@NonNull MaterialColor color) {
-    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(color.toStatusBarColor(this));
-    }
-  }
-
   private void initViewModel(long messageId, boolean isMms) {
-    viewModel = ViewModelProviders.of(this, new LongMessageViewModel.Factory(getApplication(), new LongMessageRepository(this), messageId, isMms))
+    viewModel = new ViewModelProvider(this, new LongMessageViewModel.Factory(getApplication(), new LongMessageRepository(this), messageId, isMms))
                                   .get(LongMessageViewModel.class);
 
     viewModel.getMessage().observe(this, message -> {
@@ -143,10 +105,10 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
 
       if (message.get().getMessageRecord().isOutgoing()) {
         bubble = sentBubble.get();
-        bubble.getBackground().setColorFilter(ThemeUtil.getThemedColor(this, R.attr.conversation_item_bubble_background), PorterDuff.Mode.MULTIPLY);
+        bubble.getBackground().setColorFilter(ThemeUtil.getThemedColor(this, R.attr.message_sent_background_color), PorterDuff.Mode.MULTIPLY);
       } else {
         bubble = receivedBubble.get();
-        bubble.getBackground().setColorFilter(message.get().getMessageRecord().getRecipient().getColor().toConversationColor(this), PorterDuff.Mode.MULTIPLY);
+        bubble.getBackground().setColorFilter(ThemeUtil.getThemedColor(this, R.attr.message_received_background_color), PorterDuff.Mode.MULTIPLY);
       }
 
       TextView               text   = bubble.findViewById(R.id.longmessage_text);
@@ -159,7 +121,7 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity imp
       text.setText(styledBody);
       text.setMovementMethod(LinkMovementMethod.getInstance());
       text.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(this));
-      footer.setMessageRecord(message.get().getMessageRecord(), dynamicLanguage.getCurrentLocale());
+      footer.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault());
     });
   }
 

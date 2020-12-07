@@ -160,7 +160,6 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setStatusBarColor(getResources().getColor(R.color.signal_primary_dark));
 
     final Optional<ExperienceUpgrade> upgrade = getExperienceUpgrade(this);
     if (!upgrade.isPresent()) {
