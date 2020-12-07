@@ -81,7 +81,6 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   public static final String EXTRA_ENABLE_VIDEO_IF_AVAILABLE = WebRtcCallActivity.class.getCanonicalName() + ".ENABLE_VIDEO_IF_AVAILABLE";
 
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
-  private CallParticipantsListDialog            participantsListDialog;
 
   private WebRtcCallView      callScreen;
   private TooltipPopup        videoTooltip;
@@ -189,6 +188,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   @Override
   public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig) {
     viewModel.setIsInPipMode(isInPictureInPictureMode);
+    participantUpdateWindow.setEnabled(!isInPictureInPictureMode);
   }
 
   private boolean enterPipModeIfPossible() {
@@ -198,6 +198,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
               .build();
       enterPictureInPictureMode(params);
       CallParticipantsListDialog.dismiss(getSupportFragmentManager());
+
       return true;
     }
     return false;

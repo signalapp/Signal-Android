@@ -34,6 +34,8 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
   private final Set<CallParticipantListUpdate.Holder> pendingAdditions = new HashSet<>();
   private final Set<CallParticipantListUpdate.Holder> pendingRemovals  = new HashSet<>();
 
+  private boolean isEnabled = true;
+
   public CallParticipantsListUpdatePopupWindow(@NonNull ViewGroup parent) {
     super(LayoutInflater.from(parent.getContext()).inflate(R.layout.call_participant_list_update, parent, false),
                                                            ViewGroup.LayoutParams.MATCH_PARENT,
@@ -56,6 +58,14 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
 
     if (!isShowing()) {
       showPending();
+    }
+  }
+
+  public void setEnabled(boolean isEnabled) {
+    this.isEnabled = isEnabled;
+
+    if (!isEnabled) {
+      dismiss();
     }
   }
 
@@ -82,6 +92,10 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
   }
 
   private void show() {
+    if (!isEnabled) {
+      return;
+    }
+
     showAtLocation(parent, Gravity.TOP | Gravity.START, 0, 0);
     measureChild();
     update();
