@@ -3,6 +3,7 @@ package org.session.libsession.messaging.sending_receiving.notifications
 import android.content.Context
 import nl.komponents.kovenant.functional.map
 import okhttp3.*
+import org.session.libsession.messaging.Configuration
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.util.JsonUtil
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
@@ -27,7 +28,7 @@ object PushNotificationAPI {
             }
     }
 
-    fun unregister(token: String, context: Context) {
+    fun unregister(token: String) {
         val parameters = mapOf( "token" to token )
         val url = "$server/unregister"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
@@ -45,14 +46,14 @@ object PushNotificationAPI {
             }
         }
         // Unsubscribe from all closed groups
-        val allClosedGroupPublicKeys = DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val allClosedGroupPublicKeys = Configuration.shared.sskDatabase.getAllClosedGroupPublicKeys()
+        val userPublicKey = Configuration.shared.storage.getUserPublicKey()!!
         allClosedGroupPublicKeys.forEach { closedGroup ->
-            performOperation(context, ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
+            performOperation(ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
         }
     }
 
-    fun register(token: String, publicKey: String, context: Context, force: Boolean) {
+    fun register(token: String, publicKey: String, force: Boolean) {
         val oldToken = TextSecurePreferences.getFCMToken(context)
         val lastUploadDate = TextSecurePreferences.getLastFCMUploadTime(context)
         if (!force && token == oldToken && System.currentTimeMillis() - lastUploadDate < tokenExpirationInterval) { return }
@@ -75,13 +76,13 @@ object PushNotificationAPI {
             }
         }
         // Subscribe to all closed groups
-        val allClosedGroupPublicKeys = DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
+        val allClosedGroupPublicKeys = Configuration.shared.sskDatabase.getAllClosedGroupPublicKeys()
         allClosedGroupPublicKeys.forEach { closedGroup ->
-            performOperation(context, ClosedGroupOperation.Subscribe, closedGroup, publicKey)
+            performOperation(ClosedGroupOperation.Subscribe, closedGroup, publicKey)
         }
     }
 
-    fun performOperation(context: Context, operation: ClosedGroupOperation, closedGroupPublicKey: String, publicKey: String) {
+    fun performOperation(operation: ClosedGroupOperation, closedGroupPublicKey: String, publicKey: String) {
         if (!TextSecurePreferences.isUsingFCM(context)) { return }
         val parameters = mapOf( "closedGroupPublicKey" to closedGroupPublicKey, "pubKey" to publicKey )
         val url = "$server/${operation.rawValue}"

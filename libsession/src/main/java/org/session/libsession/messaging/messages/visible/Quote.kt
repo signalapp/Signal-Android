@@ -3,7 +3,7 @@ package org.session.libsession.messaging.messages.visible
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
+class Quote() {
 
     var timestamp: Long? = 0
     var publicKey: String? = null
@@ -31,12 +31,11 @@ class Quote() : VisibleMessageProto<SignalServiceProtos.DataMessage.Quote?>() {
 
 
     // validation
-    override fun isValid(): Boolean {
-        if (!super.isValid()) return false
+    fun isValid(): Boolean {
         return (timestamp != null && publicKey != null)
     }
 
-    override fun toProto(): SignalServiceProtos.DataMessage.Quote? {
+    fun toProto(): SignalServiceProtos.DataMessage.Quote? {
         val timestamp = timestamp
         val publicKey = publicKey
         if (timestamp == null || publicKey == null) {

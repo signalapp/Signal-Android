@@ -71,11 +71,11 @@ object MessageWrapper {
     /**
      * `data` shouldn't be base 64 encoded.
      */
-    fun unwrap(data: ByteArray): Envelope {
+    fun unwrap(data: ByteArray): ByteArray {
         try {
             val webSocketMessage = WebSocketMessage.parseFrom(data)
             val envelopeAsData = webSocketMessage.request.body
-            return Envelope.parseFrom(envelopeAsData)
+            return envelopeAsData.toByteArray()
         } catch (e: Exception) {
             Log.d("Loki", "Failed to unwrap data: ${e.message}.")
             throw Error.FailedToUnwrapData

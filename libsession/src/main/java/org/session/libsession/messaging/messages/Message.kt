@@ -2,7 +2,7 @@ package org.session.libsession.messaging.messages
 
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-abstract class Message<T: com.google.protobuf.MessageOrBuilder?> {
+abstract class Message {
 
     var id: String? = null
     var threadID: String? = null
@@ -21,6 +21,6 @@ abstract class Message<T: com.google.protobuf.MessageOrBuilder?> {
         return sender != null && recipient != null
     }
 
-    abstract fun toProto(): T
+    abstract fun toProto(): SignalServiceProtos.Content?
 
 }

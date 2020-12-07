@@ -1,9 +1,10 @@
 package org.session.libsession.messaging.messages.visible
 
+import org.session.libsession.messaging.messages.Message
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-class VisibleMessage() : VisibleMessageProto<SignalServiceProtos.Content?>() {
+class VisibleMessage : Message()  {
 
     var text: String? = null
     var attachmentIDs = ArrayList<String>()

@@ -4,7 +4,7 @@ import com.google.protobuf.ByteString
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-class Profile() : VisibleMessageProto<SignalServiceProtos.DataMessage?>() {
+class Profile() {
 
     var displayName: String? = null
     var profileKey: ByteArray? = null
@@ -19,7 +19,6 @@ class Profile() : VisibleMessageProto<SignalServiceProtos.DataMessage?>() {
             val profileKey = proto.profileKey
             val profilePictureURL = profileProto.profilePictureURL
             profileKey?.let {
-                val profilePictureURL = profilePictureURL
                 profilePictureURL?.let {
                     return Profile(displayName = displayName, profileKey = profileKey.toByteArray(), profilePictureURL = profilePictureURL)
                 }
@@ -35,7 +34,7 @@ class Profile() : VisibleMessageProto<SignalServiceProtos.DataMessage?>() {
         this.profilePictureURL = profilePictureURL
     }
 
-    override fun toProto(): SignalServiceProtos.DataMessage? {
+    fun toProto(): SignalServiceProtos.DataMessage? {
         val displayName = displayName
         if (displayName == null) {
             Log.w(TAG, "Couldn't construct link preview proto from: $this")
