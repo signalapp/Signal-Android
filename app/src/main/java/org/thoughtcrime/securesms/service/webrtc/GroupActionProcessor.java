@@ -92,7 +92,8 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
                                                           Boolean.FALSE.equals(device.getAudioMuted()),
                                                           Boolean.FALSE.equals(device.getVideoMuted()),
                                                           device.getSpeakerTime(),
-                                                          device.getMediaKeysReceived()));
+                                                          device.getMediaKeysReceived(),
+                                                          device.getAddedTime()));
     }
 
     return builder.build();

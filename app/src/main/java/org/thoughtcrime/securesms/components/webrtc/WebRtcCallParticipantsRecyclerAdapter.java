@@ -60,6 +60,7 @@ class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant,
     @Override
     void bind(@NonNull CallParticipant callParticipant) {
       callParticipantView.setCallParticipant(callParticipant);
+      callParticipantView.setRenderInPip(true);
     }
   }
 

@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Encapsulates views needed to show a call participant including their
@@ -42,12 +43,14 @@ public class CallParticipantView extends ConstraintLayout {
 
   private static final FallbackPhotoProvider FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
 
-  private static final int SMALL_AVATAR = ViewUtil.dpToPx(96);
-  private static final int LARGE_AVATAR = ViewUtil.dpToPx(112);
+  private static final long DELAY_SHOWING_MISSING_MEDIA_KEYS = TimeUnit.SECONDS.toMillis(5);
+  private static final int  SMALL_AVATAR                     = ViewUtil.dpToPx(96);
+  private static final int  LARGE_AVATAR                     = ViewUtil.dpToPx(112);
 
   private RecipientId recipientId;
   private boolean     infoMode;
 
+  private AppCompatImageView  backgroundAvatar;
   private AvatarImageView     avatar;
   private TextureViewRenderer renderer;
   private ImageView           pipAvatar;
@@ -74,14 +77,15 @@ public class CallParticipantView extends ConstraintLayout {
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    avatar       = findViewById(R.id.call_participant_item_avatar);
-    pipAvatar    = findViewById(R.id.call_participant_item_pip_avatar);
-    renderer     = findViewById(R.id.call_participant_renderer);
-    audioMuted   = findViewById(R.id.call_participant_mic_muted);
-    infoOverlay  = findViewById(R.id.call_participant_info_overlay);
-    infoIcon     = findViewById(R.id.call_participant_info_icon);
-    infoMessage  = findViewById(R.id.call_participant_info_message);
-    infoMoreInfo = findViewById(R.id.call_participant_info_more_info);
+    backgroundAvatar = findViewById(R.id.call_participant_background_avatar);
+    avatar           = findViewById(R.id.call_participant_item_avatar);
+    pipAvatar        = findViewById(R.id.call_participant_item_pip_avatar);
+    renderer         = findViewById(R.id.call_participant_renderer);
+    audioMuted       = findViewById(R.id.call_participant_mic_muted);
+    infoOverlay      = findViewById(R.id.call_participant_info_overlay);
+    infoIcon         = findViewById(R.id.call_participant_info_icon);
+    infoMessage      = findViewById(R.id.call_participant_info_message);
+    infoMoreInfo     = findViewById(R.id.call_participant_info_more_info);
 
     avatar.setFallbackPhotoProvider(FALLBACK_PHOTO_PROVIDER);
     useLargeAvatar();
@@ -98,7 +102,7 @@ public class CallParticipantView extends ConstraintLayout {
   void setCallParticipant(@NonNull CallParticipant participant) {
     boolean participantChanged = recipientId == null || !recipientId.equals(participant.getRecipient().getId());
     recipientId = participant.getRecipient().getId();
-    infoMode    = participant.getRecipient().isBlocked() || !participant.isMediaKeysReceived();
+    infoMode    = participant.getRecipient().isBlocked() || (!participant.isMediaKeysReceived() && (System.currentTimeMillis() - participant.getAddedToCallTime()) > DELAY_SHOWING_MISSING_MEDIA_KEYS);
 
     if (infoMode) {
       renderer.setVisibility(View.GONE);
@@ -139,7 +143,7 @@ public class CallParticipantView extends ConstraintLayout {
 
     if (participantChanged || !Objects.equals(contactPhoto, participant.getRecipient().getContactPhoto())) {
       avatar.setAvatarUsingProfile(participant.getRecipient());
-      AvatarUtil.loadBlurredIconIntoViewBackground(participant.getRecipient(), this, true);
+      AvatarUtil.loadBlurredIconIntoImageView(participant.getRecipient(), backgroundAvatar);
       setPipAvatar(participant.getRecipient());
       contactPhoto = participant.getRecipient().getContactPhoto();
     }

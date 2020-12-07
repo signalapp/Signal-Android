@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.text.TextUtils;
@@ -12,15 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.IconCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
@@ -36,23 +36,18 @@ import java.util.concurrent.ExecutionException;
 
 public final class AvatarUtil {
 
-  private static final String TAG = Log.tag(AvatarUtil.class);
-
   private AvatarUtil() {
   }
 
-  public static void loadBlurredIconIntoViewBackground(@NonNull Recipient recipient, @NonNull View target) {
-    loadBlurredIconIntoViewBackground(recipient, target, false);
-  }
-
-  public static void loadBlurredIconIntoViewBackground(@NonNull Recipient recipient, @NonNull View target, boolean useSelfProfileAvatar) {
+  public static void loadBlurredIconIntoImageView(@NonNull Recipient recipient, @NonNull AppCompatImageView target) {
     Context context = target.getContext();
 
     ContactPhoto photo;
 
-    if (recipient.isSelf() && useSelfProfileAvatar) {
+    if (recipient.isSelf()) {
       photo = new ProfileContactPhoto(Recipient.self(), Recipient.self().getProfileAvatar());
     } else if (recipient.getContactPhoto() == null) {
+      target.setImageDrawable(null);
       target.setBackgroundColor(ContextCompat.getColor(target.getContext(), R.color.black));
       return;
     } else {
@@ -61,21 +56,22 @@ public final class AvatarUtil {
 
     GlideApp.with(target)
             .load(photo)
-            .transform(new CenterCrop(), new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS))
+            .transform(new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS))
             .into(new CustomViewTarget<View, Drawable>(target) {
               @Override
               public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                target.setImageDrawable(null);
                 target.setBackgroundColor(ContextCompat.getColor(target.getContext(), R.color.black));
               }
 
               @Override
               public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                target.setBackground(resource);
+                target.setImageDrawable(resource);
               }
 
               @Override
               protected void onResourceCleared(@Nullable Drawable placeholder) {
-                target.setBackground(placeholder);
+                target.setImageDrawable(placeholder);
               }
             });
   }

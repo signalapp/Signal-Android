@@ -115,7 +115,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                          .changeCallInfoState();
 
     for (Recipient recipient : callParticipants) {
-      builder.putParticipant(recipient, CallParticipant.createRemote(new CallParticipantId(recipient), recipient, null, new BroadcastVideoSink(null), true, true, 0, false));
+      builder.putParticipant(recipient, CallParticipant.createRemote(new CallParticipantId(recipient), recipient, null, new BroadcastVideoSink(null), true, true, 0, false, 0));
     }
 
     return builder.build();

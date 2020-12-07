@@ -59,8 +59,8 @@ public class BroadcastVideoSink implements VideoSink {
   }
 
   public @NonNull RequestedSize getMaxRequestingSize() {
-    int width  = 0;
-    int height = 0;
+    int width  = 1;
+    int height = 1;
 
     synchronized (requestingSizes) {
       for (Point size : requestingSizes.values()) {
