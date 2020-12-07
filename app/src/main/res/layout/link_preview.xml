@@ -79,7 +79,6 @@
             android:layout_marginTop="6dp"
             android:background="@color/signal_divider_major"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/linkpreview_thumbnail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
             app:layout_constraintTop_toBottomOf="@+id/linkpreview_content_barrier"
