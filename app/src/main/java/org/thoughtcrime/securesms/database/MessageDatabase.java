@@ -135,10 +135,13 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
                                                @NonNull RecipientId sender,
                                                long timestamp,
-                                               @Nullable String messageGroupCallEraId,
                                                @Nullable String peekGroupCallEraId,
                                                @NonNull Collection<UUID> peekJoinedUuids,
                                                boolean isCallFull);
+  public abstract void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
+                                               @NonNull RecipientId sender,
+                                               long timestamp,
+                                               @Nullable String messageGroupCallEraId);
   public abstract boolean updatePreviousGroupCall(long threadId, @Nullable String peekGroupCallEraId, @NonNull Collection<UUID> peekJoinedUuids, boolean isCallFull);
 
   public abstract Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type);

@@ -688,7 +688,6 @@ public class SmsDatabase extends MessageDatabase {
   public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
                                       @NonNull RecipientId sender,
                                       long timestamp,
-                                      @Nullable String messageGroupCallEraId,
                                       @Nullable String peekGroupCallEraId,
                                       @NonNull Collection<UUID> peekJoinedUuids,
                                       boolean isCallFull)
@@ -727,6 +726,83 @@ public class SmsDatabase extends MessageDatabase {
         values.put(DATE_RECEIVED, timestamp);
         values.put(DATE_SENT, timestamp);
         values.put(READ, markRead ? 1 : 0);
+        values.put(BODY, body);
+        values.put(TYPE, Types.GROUP_CALL_TYPE);
+        values.put(THREAD_ID, threadId);
+
+        db.insert(TABLE_NAME, null, values);
+
+        DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+      }
+
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    notifyConversationListeners(threadId);
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+  }
+
+  @Override
+  public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
+                                      @NonNull RecipientId sender,
+                                      long timestamp,
+                                      @Nullable String messageGroupCallEraId)
+  {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    long threadId;
+
+    try {
+      db.beginTransaction();
+
+      Recipient recipient = Recipient.resolved(groupRecipientId);
+
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+
+      String   where     = TYPE + " = ? AND " + THREAD_ID + " = ?";
+      String[] args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
+      boolean  sameEraId = false;
+
+      try (Reader reader = new Reader(db.query(TABLE_NAME, MESSAGE_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
+        MessageRecord record = reader.getNext();
+        if (record != null) {
+          GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.getBody());
+
+          sameEraId = groupCallUpdateDetails.getEraId().equals(messageGroupCallEraId) && !Util.isEmpty(messageGroupCallEraId);
+
+          if (!sameEraId) {
+            String body = GroupCallUpdateDetailsUtil.createUpdatedBody(groupCallUpdateDetails, Collections.emptyList(), false);
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(BODY, body);
+
+            db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(record.getId()));
+          }
+        }
+      }
+
+      if (!sameEraId && !Util.isEmpty(messageGroupCallEraId)) {
+        byte[] updateDetails = GroupCallUpdateDetails.newBuilder()
+                                                     .setEraId(Util.emptyIfNull(messageGroupCallEraId))
+                                                     .setStartedCallUuid(Recipient.resolved(sender).requireUuid().toString())
+                                                     .setStartedCallTimestamp(timestamp)
+                                                     .addAllInCallUuids(Collections.emptyList())
+                                                     .setIsCallFull(false)
+                                                     .build()
+                                                     .toByteArray();
+
+        String body = Base64.encodeBytes(updateDetails);
+
+        ContentValues values = new ContentValues();
+        values.put(RECIPIENT_ID, sender.serialize());
+        values.put(ADDRESS_DEVICE_ID, 1);
+        values.put(DATE_RECEIVED, timestamp);
+        values.put(DATE_SENT, timestamp);
+        values.put(READ, 0);
         values.put(BODY, body);
         values.put(TYPE, Types.GROUP_CALL_TYPE);
         values.put(THREAD_ID, threadId);

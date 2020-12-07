@@ -74,6 +74,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -661,17 +662,19 @@ public final class PushProcessMessageJob extends BaseJob {
       return;
     }
 
-    RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(groupId.get());
+    RecipientId                        groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(groupId.get());
+    WebRtcData.GroupCallUpdateMetadata updateMetadata   = new WebRtcData.GroupCallUpdateMetadata(RecipientId.from(content.getSender()),
+                                                                                                 groupRecipientId,
+                                                                                                 message.getGroupCallUpdate().get().getEraId(),
+                                                                                                 content.getServerReceivedTimestamp());
 
-    Intent intent = new Intent(context, WebRtcCallService.class);
+    DatabaseFactory.getSmsDatabase(context).insertOrUpdateGroupCall(updateMetadata.getGroupRecipientId(),
+                                                                    updateMetadata.getSender(),
+                                                                    updateMetadata.getServerReceivedTimestamp(),
+                                                                    updateMetadata.getGroupCallEraId());
 
-    intent.setAction(WebRtcCallService.ACTION_GROUP_CALL_UPDATE_MESSAGE)
-          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_SENDER, RecipientId.from(content.getSender()).serialize())
-          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_GROUP, groupRecipientId.serialize())
-          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_ERA_ID, message.getGroupCallUpdate().get().getEraId())
-          .putExtra(WebRtcCallService.EXTRA_SERVER_RECEIVED_TIMESTAMP, content.getServerReceivedTimestamp());
 
-    context.startService(intent);
+    GroupCallPeekJob.enqueue(updateMetadata);
   }
 
   private void handleEndSessionMessage(@NonNull SignalServiceContent content,
