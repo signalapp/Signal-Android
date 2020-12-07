@@ -96,6 +96,7 @@ public class WebRtcCallView extends FrameLayout {
   private MaterialButton                startCall;
   private TextView                      participantCount;
   private Stub<FrameLayout>             groupCallSpeakerHint;
+  private Stub<View>                    groupCallFullStub;
   private int                           pagerBottomMarginDp;
   private boolean                       controlsVisible = true;
 
@@ -152,6 +153,7 @@ public class WebRtcCallView extends FrameLayout {
     toolbar                       = findViewById(R.id.call_screen_toolbar);
     startCall                     = findViewById(R.id.call_screen_start_call_start_call);
     groupCallSpeakerHint          = new Stub<>(findViewById(R.id.call_screen_group_call_speaker_hint));
+    groupCallFullStub             = new Stub<>(findViewById(R.id.group_call_call_full_view));
 
     View      topGradient            = findViewById(R.id.call_screen_header_gradient);
     View      decline                = findViewById(R.id.call_screen_decline_call);
@@ -269,7 +271,7 @@ public class WebRtcCallView extends FrameLayout {
     if (state.getGroupCallState().isNotIdle() && participantCount != null) {
       boolean includeSelf = state.getGroupCallState() == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
 
-      participantCount.setText(String.valueOf(state.getAllRemoteParticipants().size() + (includeSelf ? 1 : 0)));
+      participantCount.setText(String.valueOf(state.getRemoteDevicesCount() + (includeSelf ? 1 : 0)));
     }
 
     pagerAdapter.submitList(pages);
@@ -421,7 +423,14 @@ public class WebRtcCallView extends FrameLayout {
       visibleViewSet.add(startCallControls);
 
       startCall.setText(webRtcControls.getStartCallButtonText());
-      startCall.setEnabled(true);
+      startCall.setEnabled(webRtcControls.isStartCallEnabled());
+    }
+
+    if (webRtcControls.displayGroupCallFull()) {
+      groupCallFullStub.get().setVisibility(View.VISIBLE);
+      ((TextView) groupCallFullStub.get().findViewById(R.id.group_call_call_full_message)).setText(webRtcControls.getGroupCallFullMessage(getContext()));
+    } else if (groupCallFullStub.resolved()) {
+      groupCallFullStub.get().setVisibility(View.GONE);
     }
 
     MenuItem item = toolbar.getMenu().findItem(R.id.menu_group_call_participants_list);

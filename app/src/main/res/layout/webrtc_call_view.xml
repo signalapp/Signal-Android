@@ -26,6 +26,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <ViewStub
+        android:id="@+id/group_call_call_full_view"
+        android:layout="@layout/group_call_call_full"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen"
         android:layout_width="match_parent"

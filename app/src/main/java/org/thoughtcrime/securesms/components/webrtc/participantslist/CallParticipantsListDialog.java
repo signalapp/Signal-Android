@@ -90,7 +90,7 @@ public class CallParticipantsListDialog extends BottomSheetDialogFragment {
 
     boolean includeSelf = callParticipantsState.getGroupCallState() == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
 
-    items.add(new CallParticipantsListHeader(callParticipantsState.getAllRemoteParticipants().size() + (includeSelf ? 1 : 0)));
+    items.add(new CallParticipantsListHeader((int) callParticipantsState.getRemoteDevicesCount() + (includeSelf ? 1 : 0)));
 
     if (includeSelf) {
       items.add(new CallParticipantViewState(callParticipantsState.getLocalParticipant()));

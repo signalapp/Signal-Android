@@ -34,7 +34,8 @@ public final class CallParticipantsState {
                                                                                         WebRtcLocalRenderState.GONE,
                                                                                         false,
                                                                                         false,
-                                                                                        false);
+                                                                                        false,
+                                                                                        0);
 
   private final WebRtcViewModel.State          callState;
   private final WebRtcViewModel.GroupCallState groupCallState;
@@ -45,6 +46,7 @@ public final class CallParticipantsState {
   private final boolean                        isInPipMode;
   private final boolean                        showVideoForOutgoing;
   private final boolean                        isViewingFocusedParticipant;
+  private final long                           remoteDevicesCount;
 
   public CallParticipantsState(@NonNull WebRtcViewModel.State callState,
                                @NonNull WebRtcViewModel.GroupCallState groupCallState,
@@ -54,7 +56,8 @@ public final class CallParticipantsState {
                                @NonNull WebRtcLocalRenderState localRenderState,
                                boolean isInPipMode,
                                boolean showVideoForOutgoing,
-                               boolean isViewingFocusedParticipant)
+                               boolean isViewingFocusedParticipant,
+                               long remoteDevicesCount)
   {
     this.callState                   = callState;
     this.groupCallState              = groupCallState;
@@ -65,6 +68,7 @@ public final class CallParticipantsState {
     this.isInPipMode                 = isInPipMode;
     this.showVideoForOutgoing        = showVideoForOutgoing;
     this.isViewingFocusedParticipant = isViewingFocusedParticipant;
+    this.remoteDevicesCount          = remoteDevicesCount;
   }
 
   public @NonNull WebRtcViewModel.State getCallState() {
@@ -154,6 +158,10 @@ public final class CallParticipantsState {
     return Stream.of(getAllRemoteParticipants()).anyMatch(p -> p.getVideoSink().needsNewRequestingSize());
   }
 
+  public long getRemoteDevicesCount() {
+    return remoteDevicesCount;
+  }
+
   public static @NonNull CallParticipantsState update(@NonNull CallParticipantsState oldState,
                                                       @NonNull WebRtcViewModel webRtcViewModel,
                                                       boolean enableVideo)
@@ -186,7 +194,8 @@ public final class CallParticipantsState {
                                      localRenderState,
                                      oldState.isInPipMode,
                                      newShowVideoForOutgoing,
-                                     oldState.isViewingFocusedParticipant);
+                                     oldState.isViewingFocusedParticipant,
+                                     webRtcViewModel.getRemoteDevicesCount());
   }
 
   public static @NonNull CallParticipantsState update(@NonNull CallParticipantsState oldState, boolean isInPip) {
@@ -208,7 +217,8 @@ public final class CallParticipantsState {
                                      localRenderState,
                                      isInPip,
                                      oldState.showVideoForOutgoing,
-                                     oldState.isViewingFocusedParticipant);
+                                     oldState.isViewingFocusedParticipant,
+                                     oldState.remoteDevicesCount);
   }
 
   public static @NonNull CallParticipantsState update(@NonNull CallParticipantsState oldState, @NonNull SelectedPage selectedPage) {
@@ -230,7 +240,8 @@ public final class CallParticipantsState {
                                      localRenderState,
                                      oldState.isInPipMode,
                                      oldState.showVideoForOutgoing,
-                                     selectedPage == SelectedPage.FOCUSED);
+                                     selectedPage == SelectedPage.FOCUSED,
+                                     oldState.remoteDevicesCount);
   }
 
   private static @NonNull WebRtcLocalRenderState determineLocalRenderMode(@NonNull CallParticipant localParticipant,

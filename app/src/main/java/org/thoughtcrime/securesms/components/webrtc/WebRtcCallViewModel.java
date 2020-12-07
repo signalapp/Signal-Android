@@ -5,6 +5,7 @@ import android.os.Looper;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -163,7 +164,9 @@ public class WebRtcCallViewModel extends ViewModel {
                          localParticipant.isMoreThanOneCameraAvailable(),
                          webRtcViewModel.isBluetoothAvailable(),
                          Util.hasItems(webRtcViewModel.getRemoteParticipants()),
-                         repository.getAudioOutput());
+                         repository.getAudioOutput(),
+                         webRtcViewModel.getRemoteDevicesCount(),
+                         webRtcViewModel.getParticipantLimit());
 
     if (webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED && callConnectedTime == -1) {
       callConnectedTime = webRtcViewModel.getCallConnectedTime();
@@ -206,7 +209,9 @@ public class WebRtcCallViewModel extends ViewModel {
                                     boolean isMoreThanOneCameraAvailable,
                                     boolean isBluetoothAvailable,
                                     boolean hasAtLeastOneRemote,
-                                    @NonNull WebRtcAudioOutput audioOutput)
+                                    @NonNull WebRtcAudioOutput audioOutput,
+                                    long remoteDevicesCount,
+                                    @Nullable Long participantLimit)
   {
     final WebRtcControls.CallState callState;
 
@@ -242,7 +247,8 @@ public class WebRtcCallViewModel extends ViewModel {
         break;
       case CONNECTING:
       case RECONNECTING:
-        groupCallState = WebRtcControls.GroupCallState.CONNECTING;
+        groupCallState = (participantLimit == null || remoteDevicesCount < participantLimit) ? WebRtcControls.GroupCallState.CONNECTING
+                                                                                             : WebRtcControls.GroupCallState.FULL;
         break;
       case CONNECTED:
       case CONNECTED_AND_JOINING:
@@ -262,7 +268,8 @@ public class WebRtcCallViewModel extends ViewModel {
                                                hasAtLeastOneRemote,
                                                callState,
                                                groupCallState,
-                                               audioOutput));
+                                               audioOutput,
+                                               participantLimit));
   }
 
   private @NonNull WebRtcControls getRealWebRtcControls(boolean isInPipMode, @NonNull WebRtcControls controls) {

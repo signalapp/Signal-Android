@@ -430,17 +430,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   public void sendMessage(@NonNull WebRtcServiceState state) {
-    EventBus.getDefault().postSticky(new WebRtcViewModel(state.getCallInfoState().getCallState(),
-                                                         state.getCallInfoState().getGroupCallState(),
-                                                         state.getCallInfoState().getCallRecipient(),
-                                                         state.getLocalDeviceState().getCameraState(),
-                                                         state.getVideoState().getLocalSink(),
-                                                         state.getLocalDeviceState().isBluetoothAvailable(),
-                                                         state.getLocalDeviceState().isMicrophoneEnabled(),
-                                                         state.getCallSetupState().isRemoteVideoOffer(),
-                                                         state.getCallInfoState().getCallConnectedTime(),
-                                                         state.getCallInfoState().getRemoteCallParticipants(),
-                                                         state.getCallInfoState().getIdentityChangedRecipients()));
+    EventBus.getDefault().postSticky(new WebRtcViewModel(state));
   }
 
   private @NonNull ListenableFutureTask<Boolean> sendMessage(@NonNull final RemotePeer remotePeer,

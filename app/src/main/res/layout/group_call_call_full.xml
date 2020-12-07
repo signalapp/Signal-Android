@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/transparent_black_40"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        style="@style/TextAppearance.Signal.Body1.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/WebRtcCallView__call_is_full"
+        android:gravity="center"
+        android:textColor="@color/core_white" />
+
+    <TextView
+        android:id="@+id/group_call_call_full_message"
+        style="@style/TextAppearance.Signal.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="The maximum number of 16 participants has been reached for this call. Try again later."
+        android:gravity="center"
+        android:textColor="@color/core_white" />
+
+</LinearLayout>

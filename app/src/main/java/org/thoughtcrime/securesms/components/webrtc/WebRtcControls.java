@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
@@ -8,7 +11,7 @@ import org.thoughtcrime.securesms.R;
 public final class WebRtcControls {
 
   public static final WebRtcControls NONE = new WebRtcControls();
-  public static final WebRtcControls PIP  = new WebRtcControls(false, false, false, false, true, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET);
+  public static final WebRtcControls PIP  = new WebRtcControls(false, false, false, false, true, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET, null);
 
   private final boolean           isRemoteVideoEnabled;
   private final boolean           isLocalVideoEnabled;
@@ -19,9 +22,10 @@ public final class WebRtcControls {
   private final CallState         callState;
   private final GroupCallState    groupCallState;
   private final WebRtcAudioOutput audioOutput;
+  private final Long              participantLimit;
 
   private WebRtcControls() {
-    this(false, false, false, false, false, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET);
+    this(false, false, false, false, false, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET, null);
   }
 
   WebRtcControls(boolean isLocalVideoEnabled,
@@ -32,7 +36,8 @@ public final class WebRtcControls {
                  boolean hasAtLeastOneRemote,
                  @NonNull CallState callState,
                  @NonNull GroupCallState groupCallState,
-                 @NonNull WebRtcAudioOutput audioOutput)
+                 @NonNull WebRtcAudioOutput audioOutput,
+                 @Nullable Long participantLimit)
   {
     this.isLocalVideoEnabled          = isLocalVideoEnabled;
     this.isRemoteVideoEnabled         = isRemoteVideoEnabled;
@@ -43,6 +48,7 @@ public final class WebRtcControls {
     this.callState                    = callState;
     this.groupCallState               = groupCallState;
     this.audioOutput                  = audioOutput;
+    this.participantLimit             = participantLimit;
   }
 
   boolean displayStartCallControls() {
@@ -50,10 +56,29 @@ public final class WebRtcControls {
   }
 
   @StringRes int getStartCallButtonText() {
-    if (isGroupCall() && hasAtLeastOneRemote) {
-      return R.string.WebRtcCallView__join_call;
+    if (isGroupCall()) {
+      if (groupCallState == GroupCallState.FULL) {
+        return R.string.WebRtcCallView__call_is_full;
+      } else if (hasAtLeastOneRemote) {
+        return R.string.WebRtcCallView__join_call;
+      }
     }
     return R.string.WebRtcCallView__start_call;
+  }
+
+  boolean isStartCallEnabled() {
+    return groupCallState != GroupCallState.FULL;
+  }
+
+  boolean displayGroupCallFull() {
+    return groupCallState == GroupCallState.FULL;
+  }
+
+  @NonNull String getGroupCallFullMessage(@NonNull Context context) {
+    if (participantLimit != null) {
+      return context.getString(R.string.WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call, participantLimit);
+    }
+    return "";
   }
 
   boolean displayGroupMembersButton() {
@@ -158,6 +183,7 @@ public final class WebRtcControls {
     DISCONNECTED,
     RECONNECTING,
     CONNECTING,
+    FULL,
     CONNECTED;
 
     boolean isAtLeast(@SuppressWarnings("SameParameterValue") @NonNull GroupCallState other) {

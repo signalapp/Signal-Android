@@ -256,5 +256,15 @@ public class WebRtcServiceStateBuilder {
       toBuild.identityChangedRecipients.removeAll(ids);
       return this;
     }
+
+    public @NonNull CallInfoStateBuilder remoteDevicesCount(long remoteDevicesCount) {
+      toBuild.remoteDevicesCount = remoteDevicesCount;
+      return this;
+    }
+
+    public @NonNull CallInfoStateBuilder participantLimit(@Nullable Long participantLimit) {
+      toBuild.participantLimit = participantLimit;
+      return this;
+    }
   }
 }

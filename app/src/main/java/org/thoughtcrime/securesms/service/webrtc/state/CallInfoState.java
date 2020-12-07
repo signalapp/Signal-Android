@@ -35,6 +35,8 @@ public class CallInfoState {
   GroupCall                               groupCall;
   WebRtcViewModel.GroupCallState          groupState;
   Set<RecipientId>                        identityChangedRecipients;
+  long                                    remoteDevicesCount;
+  Long                                    participantLimit;
 
   public CallInfoState() {
     this(WebRtcViewModel.State.IDLE,
@@ -45,7 +47,9 @@ public class CallInfoState {
          null,
          null,
          WebRtcViewModel.GroupCallState.IDLE,
-         Collections.emptySet());
+         Collections.emptySet(),
+         0L,
+         null);
   }
 
   public CallInfoState(@NonNull CallInfoState toCopy) {
@@ -57,7 +61,9 @@ public class CallInfoState {
          toCopy.activePeer,
          toCopy.groupCall,
          toCopy.groupState,
-         toCopy.identityChangedRecipients);
+         toCopy.identityChangedRecipients,
+         toCopy.remoteDevicesCount,
+         toCopy.participantLimit);
   }
 
   public CallInfoState(@NonNull WebRtcViewModel.State callState,
@@ -68,7 +74,9 @@ public class CallInfoState {
                        @Nullable RemotePeer activePeer,
                        @Nullable GroupCall groupCall,
                        @NonNull WebRtcViewModel.GroupCallState groupState,
-                       @NonNull Set<RecipientId> identityChangedRecipients)
+                       @NonNull Set<RecipientId> identityChangedRecipients,
+                       long remoteDevicesCount,
+                       @Nullable Long participantLimit)
   {
     this.callState                 = callState;
     this.callRecipient             = callRecipient;
@@ -79,6 +87,8 @@ public class CallInfoState {
     this.groupCall                 = groupCall;
     this.groupState                = groupState;
     this.identityChangedRecipients = new HashSet<>(identityChangedRecipients);
+    this.remoteDevicesCount        = remoteDevicesCount;
+    this.participantLimit          = participantLimit;
   }
 
   public @NonNull Recipient getCallRecipient() {
@@ -135,5 +145,13 @@ public class CallInfoState {
 
   public @NonNull Set<RecipientId> getIdentityChangedRecipients() {
     return identityChangedRecipients;
+  }
+
+  public long getRemoteDevicesCount() {
+    return remoteDevicesCount;
+  }
+
+  public @Nullable Long getParticipantLimit() {
+    return participantLimit;
   }
 }
