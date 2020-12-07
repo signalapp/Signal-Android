@@ -255,7 +255,7 @@ public class WebRtcCallView extends FrameLayout {
     List<WebRtcCallParticipantsPage> pages = new ArrayList<>(2);
 
     if (!state.getGridParticipants().isEmpty()) {
-      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.isInPipMode()));
+      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode()));
     }
 
     if (state.getFocusedParticipant() != null && state.getAllRemoteParticipants().size() > 1) {

@@ -84,7 +84,7 @@ class WebRtcCallParticipantsPagerAdapter extends ListAdapter<WebRtcCallParticipa
 
     @Override
     void bind(WebRtcCallParticipantsPage page) {
-      callParticipantsLayout.update(page.getCallParticipants(), page.isRenderInPip());
+      callParticipantsLayout.update(page.getCallParticipants(), page.getFocusedParticipant(), page.isRenderInPip());
     }
   }
 
