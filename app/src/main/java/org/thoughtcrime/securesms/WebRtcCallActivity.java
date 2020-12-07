@@ -283,6 +283,10 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
         videoTooltip.dismiss();
         videoTooltip = null;
       }
+    } else if (event instanceof WebRtcCallViewModel.Event.ShowSpeakerViewHint) {
+      callScreen.showSpeakerViewHint();
+    } else if (event instanceof WebRtcCallViewModel.Event.HideSpeakerViewHint) {
+      callScreen.hideSpeakerViewHint();
     } else {
       throw new IllegalArgumentException("Unknown event: " + event);
     }

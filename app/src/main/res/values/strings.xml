@@ -1805,6 +1805,7 @@
     <string name="WebRtcCallScreen_new_safety_number_title">New safety number</string>
     <string name="WebRtcCallScreen_accept">Accept</string>
     <string name="WebRtcCallScreen_end_call">End call</string>
+    <string name="WebRtcCallScreen_swipe_up_to_change_views">Swipe up to change views</string>
 
     <!-- WebRtcCallScreen V2 -->
     <string name="WebRtcCallScreen__decline">Decline</string>

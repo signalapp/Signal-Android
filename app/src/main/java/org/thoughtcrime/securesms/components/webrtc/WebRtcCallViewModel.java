@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -122,6 +123,10 @@ public class WebRtcCallViewModel extends ViewModel {
   public void setIsViewingFocusedParticipant(@NonNull CallParticipantsState.SelectedPage page) {
     //noinspection ConstantConditions
     participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), page));
+    if (page == CallParticipantsState.SelectedPage.FOCUSED) {
+      SignalStore.tooltips().markGroupCallSpeakerViewSeen();
+      events.setValue(new Event.HideSpeakerViewHint());
+    }
   }
 
   public void onDismissedVideoTooltip() {
@@ -178,6 +183,14 @@ public class WebRtcCallViewModel extends ViewModel {
     if (canDisplayTooltipIfNeeded && webRtcViewModel.isRemoteVideoEnabled() && !hasEnabledLocalVideo) {
       canDisplayTooltipIfNeeded = false;
       events.setValue(new Event.ShowVideoTooltip());
+    }
+
+    //noinspection ConstantConditions
+    if (!isInPipMode.getValue()                            &&
+        webRtcViewModel.getRemoteParticipants().size() > 1 &&
+        webRtcViewModel.getGroupState().isConnected()      &&
+        !SignalStore.tooltips().hasSeenGroupCallSpeakerView()) {
+      events.setValue(new Event.ShowSpeakerViewHint());
     }
   }
 
@@ -310,6 +323,12 @@ public class WebRtcCallViewModel extends ViewModel {
     }
 
     public static class DismissVideoTooltip extends Event {
+    }
+
+    public static class ShowSpeakerViewHint extends Event {
+    }
+
+    public static class HideSpeakerViewHint extends Event {
     }
 
     public static class StartCall extends Event {

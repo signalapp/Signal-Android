@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -47,6 +48,7 @@ import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.util.BlurTransformation;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.views.Stub;
 import org.webrtc.RendererCommon;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
@@ -93,6 +95,7 @@ public class WebRtcCallView extends FrameLayout {
   private Toolbar                       toolbar;
   private MaterialButton                startCall;
   private TextView                      participantCount;
+  private Stub<FrameLayout>             groupCallSpeakerHint;
   private int                           pagerBottomMarginDp;
   private boolean                       controlsVisible = true;
 
@@ -148,6 +151,7 @@ public class WebRtcCallView extends FrameLayout {
     callParticipantsRecycler      = findViewById(R.id.call_screen_participants_recycler);
     toolbar                       = findViewById(R.id.call_screen_toolbar);
     startCall                     = findViewById(R.id.call_screen_start_call_start_call);
+    groupCallSpeakerHint          = new Stub<>(findViewById(R.id.call_screen_group_call_speaker_hint));
 
     View      topGradient            = findViewById(R.id.call_screen_header_gradient);
     View      decline                = findViewById(R.id.call_screen_decline_call);
@@ -501,6 +505,16 @@ public class WebRtcCallView extends FrameLayout {
 
   public @NonNull View getVideoTooltipTarget() {
     return videoToggle;
+  }
+
+  public void showSpeakerViewHint() {
+    groupCallSpeakerHint.get();
+  }
+
+  public void hideSpeakerViewHint() {
+    if (groupCallSpeakerHint.resolved()) {
+      groupCallSpeakerHint.get().setVisibility(View.GONE);
+    }
   }
 
   private void animatePipToLargeRectangle() {

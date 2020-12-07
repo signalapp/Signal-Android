@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="48dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/TextAppearance.Signal.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/call_participant_update_window_background"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:text="@string/WebRtcCallScreen_swipe_up_to_change_views"
+        app:drawableStartCompat="@drawable/ic_arrow_up_16"
+        android:drawablePadding="8dp"
+        android:textColor="@color/core_grey_05"
+        app:drawableTint="@color/core_grey_05" />
+
+</FrameLayout>
