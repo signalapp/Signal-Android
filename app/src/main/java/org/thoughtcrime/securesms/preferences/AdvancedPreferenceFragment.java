@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.preferences;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,11 +9,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
 
@@ -24,11 +28,13 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
+import org.thoughtcrime.securesms.delete.DeleteAccountFragment;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -45,6 +51,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
   private static final String INTERNAL_PREF         = "pref_internal";
   private static final String ADVANCED_PIN_PREF     = "pref_advanced_pin_settings";
+  private static final String DELETE_ACCOUNT        = "pref_delete_account";
 
   private static final int PICK_IDENTITY_CONTACT = 1;
 
@@ -60,12 +67,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
 
     Preference pinSettings = this.findPreference(ADVANCED_PIN_PREF);
     pinSettings.setOnPreferenceClickListener(preference -> {
-      requireActivity().getSupportFragmentManager()
-                       .beginTransaction()
-                       .setCustomAnimations(R.anim.slide_from_end, R.anim.slide_to_start, R.anim.slide_from_start, R.anim.slide_to_end)
-                       .replace(android.R.id.content, new AdvancedPinPreferenceFragment())
-                       .addToBackStack(null)
-                       .commit();
+      getApplicationPreferencesActivity().pushFragment(new AdvancedPreferenceFragment());
       return false;
     });
 
@@ -73,17 +75,32 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
     internalPreference.setVisible(FeatureFlags.internalUser());
     internalPreference.setOnPreferenceClickListener(preference -> {
       if (FeatureFlags.internalUser()) {
-        requireActivity().getSupportFragmentManager()
-                         .beginTransaction()
-                         .setCustomAnimations(R.anim.slide_from_end, R.anim.slide_to_start, R.anim.slide_from_start, R.anim.slide_to_end)
-                         .replace(android.R.id.content, new InternalOptionsPreferenceFragment())
-                         .addToBackStack(null)
-                         .commit();
+        getApplicationPreferencesActivity().pushFragment(new InternalOptionsPreferenceFragment());
         return true;
       } else {
         return false;
       }
     });
+
+    Preference deleteAccount = this.findPreference(DELETE_ACCOUNT);
+    deleteAccount.setOnPreferenceClickListener(preference -> {
+      getApplicationPreferencesActivity().pushFragment(new DeleteAccountFragment());
+      return false;
+    });
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.signal_background_tertiary));
+
+    View                   list   = view.findViewById(R.id.recycler_view);
+    ViewGroup.LayoutParams params = list.getLayoutParams();
+
+    params.height = ActionBar.LayoutParams.WRAP_CONTENT;
+    list.setLayoutParams(params);
+    list.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.signal_background_primary));
   }
 
   @Override
@@ -94,7 +111,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__advanced);
+    getApplicationPreferencesActivity().getSupportActionBar().setTitle(R.string.preferences__advanced);
 
     initializePushMessagingToggle();
   }
@@ -107,6 +124,10 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
     if (resultCode == Activity.RESULT_OK && reqCode == PICK_IDENTITY_CONTACT) {
       handleIdentitySelection(data);
     }
+  }
+
+  private @NonNull ApplicationPreferencesActivity getApplicationPreferencesActivity() {
+    return (ApplicationPreferencesActivity) requireActivity();
   }
 
   private void initializePushMessagingToggle() {

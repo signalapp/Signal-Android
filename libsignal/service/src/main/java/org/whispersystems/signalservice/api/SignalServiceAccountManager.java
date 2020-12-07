@@ -682,6 +682,10 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.deleteUsername();
   }
 
+  public void deleteAccount() throws IOException {
+    this.pushServiceSocket.deleteAccount();
+  }
+
   public void setSoTimeoutMillis(long soTimeoutMillis) {
     this.pushServiceSocket.setSoTimeoutMillis(soTimeoutMillis);
   }

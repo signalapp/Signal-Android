@@ -27,4 +27,11 @@
         android:key="pref_submit_debug_logs"
         android:title="@string/preferences__submit_debug_log"/>
 
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <Preference
+        android:layout="@layout/preference_danger"
+        android:key="pref_delete_account"
+        android:title="@string/preferences__delete_account" />
+
 </PreferenceScreen>

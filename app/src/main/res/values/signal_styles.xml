@@ -17,6 +17,10 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
+    <style name="Signal.Widget.Button.Large.Danger" parent="@style/Signal.Widget.Button.Large.Primary">
+        <item name="backgroundTint">@color/signal_alert_primary</item>
+    </style>
+
     <style name="Signal.Widget.Button.Medium.Primary" parent="@style/Signal.Widget.Button.Base.Primary">
         <item name="android:minHeight">36dp</item>
         <item name="cornerRadius">8dp</item>
@@ -70,4 +74,8 @@
     <style name="Signal.DayNight.Toolbar.Overflow" parent="@style/Signal.Toolbar.Overflow.Light" />
 
     <style name="Signal.DayNight.TitleTextStyle" parent="@style/TextSecure.TitleTextStyle" />
+
+    <style name="Signal.DayNight.Dialog.FullScreen" parent="Signal.DayNight">
+        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
+    </style>
 </resources>

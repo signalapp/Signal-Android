@@ -164,6 +164,7 @@ public class PushServiceSocket {
   private static final String WHO_AM_I                  = "/v1/accounts/whoami";
   private static final String SET_USERNAME_PATH         = "/v1/accounts/username/%s";
   private static final String DELETE_USERNAME_PATH      = "/v1/accounts/username";
+  private static final String DELETE_ACCOUNT_PATH       = "/v1/accounts/me";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
@@ -747,6 +748,10 @@ public class PushServiceSocket {
 
   public void deleteUsername() throws IOException {
     makeServiceRequest(DELETE_USERNAME_PATH, "DELETE", null);
+  }
+
+  public void deleteAccount() throws IOException {
+    makeServiceRequest(DELETE_ACCOUNT_PATH, "DELETE", null);
   }
 
   public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens)

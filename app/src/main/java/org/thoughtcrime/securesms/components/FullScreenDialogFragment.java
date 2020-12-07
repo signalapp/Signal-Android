@@ -27,8 +27,7 @@ public abstract class FullScreenDialogFragment extends DialogFragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     
-    setStyle(STYLE_NO_FRAME, ThemeUtil.isDarkTheme(requireActivity()) ? R.style.TextSecure_DarkTheme_FullScreenDialog
-                                                                      : R.style.TextSecure_LightTheme_FullScreenDialog);
+    setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_FullScreen);
   }
 
   @Override

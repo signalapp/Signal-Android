@@ -6,6 +6,7 @@ import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
+import android.text.style.BulletSpan;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
@@ -47,6 +48,12 @@ public class SpanUtil {
   public static CharSequence color(int color, CharSequence sequence) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new ForegroundColorSpan(color), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    return spannable;
+  }
+
+  public static @NonNull CharSequence bullet(@NonNull CharSequence sequence) {
+    SpannableString spannable = new SpannableString(sequence);
+    spannable.setSpan(new BulletSpan(), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     return spannable;
   }
 
