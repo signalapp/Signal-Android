@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcInteractor;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcUtil;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
@@ -750,7 +751,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                                                        peekInfo.getJoinedMembers(),
                                                                        WebRtcUtil.isCallFull(peekInfo));
 
-          ApplicationDependencies.getMessageNotifier().updateNotification(this, threadId, true);
+          ApplicationDependencies.getMessageNotifier().updateNotification(this, threadId, true, 0, BubbleUtil.BubbleState.HIDDEN);
 
           EventBus.getDefault().postSticky(new GroupCallPeekEvent(id, peekInfo.getEraId(), peekInfo.getDeviceCount(), peekInfo.getMaxDevices()));
         });
