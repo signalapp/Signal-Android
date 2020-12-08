@@ -2134,7 +2134,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       joinGroupCallButton.setVisibility(hasActiveCall ? View.VISIBLE : View.GONE);
     });
 
-    groupCallViewModel.canJoinGroupCall().observe(this, canJoin -> joinGroupCallButton.setText(canJoin ? R.string.ConversationActivity_join : R.string.ConversationActivity_full));
+    groupCallViewModel.groupCallHasCapacity().observe(this, hasCapacity -> joinGroupCallButton.setText(hasCapacity ? R.string.ConversationActivity_join : R.string.ConversationActivity_full));
   }
 
   private void showStickerIntroductionTooltip() {

@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.Objects;
 
@@ -23,31 +24,37 @@ public class GroupCallViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(GroupCallViewModel.class);
 
-  private final MutableLiveData<Boolean> activeGroupCall;
-  private final MutableLiveData<Boolean> canJoin;
+  private final MutableLiveData<Boolean> activeGroup;
+  private final MutableLiveData<Boolean> ongoingGroupCall;
+  private final LiveData<Boolean>        activeGroupCall;
+  private final MutableLiveData<Boolean> groupCallHasCapacity;
 
   private @Nullable Recipient currentRecipient;
 
   GroupCallViewModel() {
-    this.activeGroupCall = new MutableLiveData<>(false);
-    this.canJoin         = new MutableLiveData<>(false);
+    this.activeGroup          = new MutableLiveData<>(false);
+    this.ongoingGroupCall     = new MutableLiveData<>(false);
+    this.groupCallHasCapacity = new MutableLiveData<>(false);
+    this.activeGroupCall      = LiveDataUtil.combineLatest(activeGroup, ongoingGroupCall, (active, ongoing) -> active && ongoing);
   }
 
   public @NonNull LiveData<Boolean> hasActiveGroupCall() {
     return activeGroupCall;
   }
 
-  public @NonNull LiveData<Boolean> canJoinGroupCall() {
-    return canJoin;
+  public @NonNull LiveData<Boolean> groupCallHasCapacity() {
+    return groupCallHasCapacity;
   }
 
   public void onRecipientChange(@NonNull Context context, @Nullable Recipient recipient) {
+    activeGroup.postValue(recipient != null && recipient.isActiveGroup());
+
     if (Objects.equals(currentRecipient, recipient)) {
       return;
     }
 
-    activeGroupCall.postValue(false);
-    canJoin.postValue(false);
+    ongoingGroupCall.postValue(false);
+    groupCallHasCapacity.postValue(false);
 
     currentRecipient = recipient;
 
@@ -67,10 +74,10 @@ public class GroupCallViewModel extends ViewModel {
 
   public void onGroupCallPeekEvent(@NonNull GroupCallPeekEvent groupCallPeekEvent) {
     if (isGroupCallCapable(currentRecipient) && groupCallPeekEvent.getGroupRecipientId().equals(currentRecipient.getId())) {
-      Log.i(TAG, "update UI with call event: active call: " + groupCallPeekEvent.hasActiveCall() + " canJoin: " + groupCallPeekEvent.canJoinCall());
+      Log.i(TAG, "update UI with call event: ongoing call: " + groupCallPeekEvent.isOngoing() + " hasCapacity: " + groupCallPeekEvent.callHasCapacity());
 
-      activeGroupCall.postValue(groupCallPeekEvent.hasActiveCall());
-      canJoin.postValue(groupCallPeekEvent.canJoinCall());
+      ongoingGroupCall.postValue(groupCallPeekEvent.isOngoing());
+      groupCallHasCapacity.postValue(groupCallPeekEvent.callHasCapacity());
     } else {
       Log.i(TAG, "Ignore call event for different recipient.");
     }

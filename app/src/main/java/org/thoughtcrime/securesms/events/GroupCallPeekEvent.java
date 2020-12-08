@@ -22,11 +22,11 @@ public final class GroupCallPeekEvent {
     return groupRecipientId;
   }
 
-  public boolean hasActiveCall() {
+  public boolean isOngoing() {
     return eraId != null && deviceCount > 0;
   }
 
-  public boolean canJoinCall() {
-    return hasActiveCall() && deviceCount < deviceLimit;
+  public boolean callHasCapacity() {
+    return isOngoing() && deviceCount < deviceLimit;
   }
 }
