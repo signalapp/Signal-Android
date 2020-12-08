@@ -47,6 +47,7 @@ public class WebRtcCallViewModel extends ViewModel {
   private final LiveData<SafetyNumberChangeEvent>           safetyNumberChangeEvent   = LiveDataUtil.combineLatest(isInPipMode, identityChangedRecipients, SafetyNumberChangeEvent::new);
   private final LiveData<Recipient>                         groupRecipient            = LiveDataUtil.filter(Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData), Recipient::isActiveGroup);
   private final LiveData<List<GroupMemberEntry.FullMember>> groupMembers              = LiveDataUtil.skip(Transformations.switchMap(groupRecipient, r -> Transformations.distinctUntilChanged(new LiveGroup(r.requireGroupId()).getFullMembers())), 1);
+  private final LiveData<Boolean>                           shouldShowSpeakerHint     = Transformations.map(participantsState, this::shouldShowSpeakerHint);
 
   private boolean               canDisplayTooltipIfNeeded = true;
   private boolean               hasEnabledLocalVideo      = false;
@@ -100,6 +101,10 @@ public class WebRtcCallViewModel extends ViewModel {
     return groupMembers;
   }
 
+  public LiveData<Boolean> shouldShowSpeakerHint() {
+    return shouldShowSpeakerHint;
+  }
+
   public boolean canEnterPipMode() {
     return canEnterPipMode;
   }
@@ -122,12 +127,12 @@ public class WebRtcCallViewModel extends ViewModel {
 
   @MainThread
   public void setIsViewingFocusedParticipant(@NonNull CallParticipantsState.SelectedPage page) {
-    //noinspection ConstantConditions
-    participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), page));
     if (page == CallParticipantsState.SelectedPage.FOCUSED) {
       SignalStore.tooltips().markGroupCallSpeakerViewSeen();
-      events.setValue(new Event.HideSpeakerViewHint());
     }
+
+    //noinspection ConstantConditions
+    participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), page));
   }
 
   public void onDismissedVideoTooltip() {
@@ -186,14 +191,6 @@ public class WebRtcCallViewModel extends ViewModel {
     if (canDisplayTooltipIfNeeded && webRtcViewModel.isRemoteVideoEnabled() && !hasEnabledLocalVideo) {
       canDisplayTooltipIfNeeded = false;
       events.setValue(new Event.ShowVideoTooltip());
-    }
-
-    //noinspection ConstantConditions
-    if (!isInPipMode.getValue()                            &&
-        webRtcViewModel.getRemoteParticipants().size() > 1 &&
-        webRtcViewModel.getGroupState().isConnected()      &&
-        !SignalStore.tooltips().hasSeenGroupCallSpeakerView()) {
-      events.setValue(new Event.ShowSpeakerViewHint());
     }
   }
 
@@ -276,6 +273,13 @@ public class WebRtcCallViewModel extends ViewModel {
     return isInPipMode ? WebRtcControls.PIP : controls;
   }
 
+  private boolean shouldShowSpeakerHint(@NonNull CallParticipantsState state) {
+    return !state.isInPipMode()                    &&
+           state.getRemoteDevicesCount() > 1       &&
+           state.getGroupCallState().isConnected() &&
+           !SignalStore.tooltips().hasSeenGroupCallSpeakerView();
+  }
+
   private void startTimer() {
     cancelTimer();
 
@@ -330,12 +334,6 @@ public class WebRtcCallViewModel extends ViewModel {
     }
 
     public static class DismissVideoTooltip extends Event {
-    }
-
-    public static class ShowSpeakerViewHint extends Event {
-    }
-
-    public static class HideSpeakerViewHint extends Event {
     }
 
     public static class StartCall extends Event {

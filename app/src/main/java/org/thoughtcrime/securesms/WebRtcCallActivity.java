@@ -245,6 +245,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
     viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate);
     viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent);
     viewModel.getGroupMembers().observe(this, unused -> updateGroupMembersForGroupCall());
+    viewModel.shouldShowSpeakerHint().observe(this, this::updateSpeakerHint);
 
     callScreen.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
@@ -286,10 +287,6 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
         videoTooltip.dismiss();
         videoTooltip = null;
       }
-    } else if (event instanceof WebRtcCallViewModel.Event.ShowSpeakerViewHint) {
-      callScreen.showSpeakerViewHint();
-    } else if (event instanceof WebRtcCallViewModel.Event.HideSpeakerViewHint) {
-      callScreen.hideSpeakerViewHint();
     } else {
       throw new IllegalArgumentException("Unknown event: " + event);
     }
@@ -515,6 +512,14 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
 
   private void updateGroupMembersForGroupCall() {
     startService(new Intent(this, WebRtcCallService.class).setAction(WebRtcCallService.ACTION_GROUP_REQUEST_UPDATE_MEMBERS));
+  }
+
+  private void updateSpeakerHint(boolean showSpeakerHint) {
+    if (showSpeakerHint) {
+      callScreen.showSpeakerViewHint();
+    } else {
+      callScreen.hideSpeakerViewHint();
+    }
   }
 
   @Override

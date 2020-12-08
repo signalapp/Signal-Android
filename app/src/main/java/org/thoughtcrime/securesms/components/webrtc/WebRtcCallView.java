@@ -517,7 +517,7 @@ public class WebRtcCallView extends FrameLayout {
   }
 
   public void showSpeakerViewHint() {
-    groupCallSpeakerHint.get();
+    groupCallSpeakerHint.get().setVisibility(View.VISIBLE);
   }
 
   public void hideSpeakerViewHint() {
