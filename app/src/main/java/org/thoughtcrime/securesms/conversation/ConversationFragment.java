@@ -1005,7 +1005,7 @@ public class ConversationFragment extends LoggingFragment {
 
   private void moveToPosition(int position, @Nullable Runnable onMessageNotFound) {
     Log.d(TAG, "moveToPosition(" + position + ")");
-    conversationViewModel.onConversationDataAvailable(threadId, position);
+    conversationViewModel.getPagingController().onDataNeededAroundIndex(position);
     snapToTopDataObserver.buildScrollPosition(position)
                          .withOnPerformScroll(((layoutManager, p) ->
                              list.post(() -> {

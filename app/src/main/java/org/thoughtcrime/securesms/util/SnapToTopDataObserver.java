@@ -127,6 +127,7 @@ public class SnapToTopDataObserver extends RecyclerView.AdapterDataObserver {
     }
 
     if (layoutManager.findFirstVisibleItemPosition() == 0) {
+      Log.d(TAG, "Scrolling to top.");
       scrollToTop.scrollToTop();
     }
   }
