@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.WebsocketDrainedConstraint;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 
 /**
  * Allows the enqueueing of one peek operation per group while the web socket is not drained.
@@ -19,35 +18,32 @@ public final class GroupCallPeekJob extends BaseJob {
 
   private static final String QUEUE = "__GroupCallPeekJob__";
 
-  private static final String KEY_SENDER                    = "sender";
-  private static final String KEY_GROUP_RECIPIENT_ID        = "group_recipient_id";
-  private static final String KEY_GROUP_CALL_ERA_ID         = "group_call_era_id";
-  private static final String KEY_SERVER_RECEIVED_TIMESTAMP = "server_timestamp";
+  private static final String KEY_GROUP_RECIPIENT_ID = "group_recipient_id";
 
-  @NonNull private final WebRtcData.GroupCallUpdateMetadata updateMetadata;
+  @NonNull private final RecipientId groupRecipientId;
 
-  public static void enqueue(@NonNull WebRtcData.GroupCallUpdateMetadata updateMetadata) {
+  public static void enqueue(@NonNull RecipientId groupRecipientId) {
     JobManager         jobManager = ApplicationDependencies.getJobManager();
-    String             queue      = QUEUE + updateMetadata.getGroupRecipientId().serialize();
+    String             queue      = QUEUE + groupRecipientId.serialize();
     Parameters.Builder parameters = new Parameters.Builder()
                                                   .setQueue(queue)
                                                   .addConstraint(WebsocketDrainedConstraint.KEY);
 
     jobManager.cancelAllInQueue(queue);
 
-    jobManager.add(new GroupCallPeekJob(parameters.build(), updateMetadata));
+    jobManager.add(new GroupCallPeekJob(parameters.build(), groupRecipientId));
   }
 
   private GroupCallPeekJob(@NonNull Parameters parameters,
-                           @NonNull WebRtcData.GroupCallUpdateMetadata updateMetadata)
+                           @NonNull RecipientId groupRecipientId)
   {
     super(parameters);
-    this.updateMetadata = updateMetadata;
+    this.groupRecipientId = groupRecipientId;
   }
 
   @Override
   protected void onRun() {
-    ApplicationDependencies.getJobManager().add(new GroupCallPeekWorkerJob(updateMetadata));
+    ApplicationDependencies.getJobManager().add(new GroupCallPeekWorkerJob(groupRecipientId));
   }
 
   @Override
@@ -58,10 +54,7 @@ public final class GroupCallPeekJob extends BaseJob {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder()
-                   .putString(KEY_SENDER, updateMetadata.getSender().serialize())
-                   .putString(KEY_GROUP_RECIPIENT_ID, updateMetadata.getGroupRecipientId().serialize())
-                   .putString(KEY_GROUP_CALL_ERA_ID, updateMetadata.getGroupCallEraId())
-                   .putLong(KEY_SERVER_RECEIVED_TIMESTAMP, updateMetadata.getServerReceivedTimestamp())
+                   .putString(KEY_GROUP_RECIPIENT_ID, groupRecipientId.serialize())
                    .build();
   }
 
@@ -78,12 +71,7 @@ public final class GroupCallPeekJob extends BaseJob {
 
     @Override
     public @NonNull GroupCallPeekJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      RecipientId sender          = RecipientId.from(data.getString(KEY_SENDER));
-      RecipientId group           = RecipientId.from(data.getString(KEY_GROUP_RECIPIENT_ID));
-      String      era             = data.getString(KEY_GROUP_CALL_ERA_ID);
-      long        serverTimestamp = data.getLong(KEY_SERVER_RECEIVED_TIMESTAMP);
-
-      return new GroupCallPeekJob(parameters, new WebRtcData.GroupCallUpdateMetadata(sender, group, era, serverTimestamp));
+      return new GroupCallPeekJob(parameters, RecipientId.from(data.getString(KEY_GROUP_RECIPIENT_ID)));
     }
   }
 }

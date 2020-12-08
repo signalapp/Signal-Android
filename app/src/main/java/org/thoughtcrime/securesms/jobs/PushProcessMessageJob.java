@@ -74,7 +74,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -662,19 +661,14 @@ public final class PushProcessMessageJob extends BaseJob {
       return;
     }
 
-    RecipientId                        groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(groupId.get());
-    WebRtcData.GroupCallUpdateMetadata updateMetadata   = new WebRtcData.GroupCallUpdateMetadata(RecipientId.from(content.getSender()),
-                                                                                                 groupRecipientId,
-                                                                                                 message.getGroupCallUpdate().get().getEraId(),
-                                                                                                 content.getServerReceivedTimestamp());
+    RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(groupId.get());
 
-    DatabaseFactory.getSmsDatabase(context).insertOrUpdateGroupCall(updateMetadata.getGroupRecipientId(),
-                                                                    updateMetadata.getSender(),
-                                                                    updateMetadata.getServerReceivedTimestamp(),
-                                                                    updateMetadata.getGroupCallEraId());
+    DatabaseFactory.getSmsDatabase(context).insertOrUpdateGroupCall(groupRecipientId,
+                                                                    RecipientId.from(content.getSender()),
+                                                                    content.getServerReceivedTimestamp(),
+                                                                    message.getGroupCallUpdate().get().getEraId());
 
-
-    GroupCallPeekJob.enqueue(updateMetadata);
+    GroupCallPeekJob.enqueue(groupRecipientId);
   }
 
   private void handleEndSessionMessage(@NonNull SignalServiceContent content,

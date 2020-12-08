@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata;
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.GroupCallUpdateMetadata;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.HttpData;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OfferMetadata;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedOfferMetadata;
@@ -64,7 +63,6 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_FLIP_C
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_APPROVE_SAFETY_CHANGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_ENDED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_PEEK;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_UPDATE_MESSAGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_JOINED_MEMBERSHIP_CHANGED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_LOCAL_DEVICE_STATE_CHANGED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_MESSAGE_SENT_ERROR;
@@ -242,7 +240,6 @@ public abstract class WebRtcActionProcessor {
       case ACTION_GROUP_REQUEST_UPDATE_MEMBERS:        return handleGroupRequestUpdateMembers(currentState);
       case ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS:   return handleUpdateRenderedResolutions(currentState);
       case ACTION_GROUP_CALL_ENDED:                    return handleGroupCallEnded(currentState, getGroupCallHash(intent), getGroupCallEndReason(intent));
-      case ACTION_GROUP_CALL_UPDATE_MESSAGE:           return handleGroupCallUpdateMessage(currentState, GroupCallUpdateMetadata.fromIntent(intent));
       case ACTION_GROUP_CALL_PEEK:                     return handleGroupCallPeek(currentState, getRemotePeer(intent));
       case ACTION_GROUP_MESSAGE_SENT_ERROR:            return handleGroupMessageSentError(currentState, getRemotePeer(intent), getErrorCallState(intent), getErrorIdentityKey(intent));
       case ACTION_GROUP_APPROVE_SAFETY_CHANGE:         return handleGroupApproveSafetyNumberChange(currentState, RecipientId.fromSerializedList(intent.getStringExtra(EXTRA_RECIPIENT_IDS)));
@@ -727,11 +724,6 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull GroupCall.GroupCallEndReason groupCallEndReason) {
     Log.i(tag, "handleGroupCallEnded not processed");
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleGroupCallUpdateMessage(@NonNull WebRtcServiceState currentState, @NonNull GroupCallUpdateMetadata groupCallUpdateMetadata) {
-    webRtcInteractor.peekGroupCall(groupCallUpdateMetadata);
     return currentState;
   }
 

@@ -309,44 +309,4 @@ public class WebRtcData {
       return messageAgeSeconds;
     }
   }
-
-  /**
-   * Metadata associated with a group call update message.
-   */
-  public static class GroupCallUpdateMetadata {
-    private final RecipientId sender;
-    private final RecipientId groupRecipientId;
-    private final String      groupCallEraId;
-    private final long        serverReceivedTimestamp;
-
-    static @NonNull GroupCallUpdateMetadata fromIntent(@NonNull Intent intent) {
-      return new GroupCallUpdateMetadata(getRecipientId(intent, EXTRA_GROUP_CALL_UPDATE_SENDER),
-                                         getRecipientId(intent, EXTRA_GROUP_CALL_UPDATE_GROUP),
-                                         intent.getStringExtra(EXTRA_GROUP_CALL_ERA_ID),
-                                         intent.getLongExtra(EXTRA_SERVER_RECEIVED_TIMESTAMP, 0));
-    }
-
-    public GroupCallUpdateMetadata(@NonNull RecipientId sender, @NonNull RecipientId groupRecipientId, @Nullable String groupCallEraId, long serverReceivedTimestamp) {
-      this.sender                  = sender;
-      this.groupRecipientId        = groupRecipientId;
-      this.groupCallEraId          = groupCallEraId;
-      this.serverReceivedTimestamp = serverReceivedTimestamp;
-    }
-
-    public @NonNull RecipientId getSender() {
-      return sender;
-    }
-
-    public @NonNull RecipientId getGroupRecipientId() {
-      return groupRecipientId;
-    }
-
-    public @Nullable String getGroupCallEraId() {
-      return groupCallEraId;
-    }
-
-    public long getServerReceivedTimestamp() {
-      return serverReceivedTimestamp;
-    }
-  }
 }

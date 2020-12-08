@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 
 /**
  * Runs in the same queue as messages for the group.
@@ -17,36 +17,28 @@ final class GroupCallPeekWorkerJob extends BaseJob {
 
   public static final String KEY = "GroupCallPeekWorkerJob";
 
-  private static final String KEY_SENDER                    = "sender";
   private static final String KEY_GROUP_RECIPIENT_ID        = "group_recipient_id";
-  private static final String KEY_GROUP_CALL_ERA_ID         = "group_call_era_id";
-  private static final String KEY_SERVER_RECEIVED_TIMESTAMP = "server_timestamp";
 
-  @NonNull private final WebRtcData.GroupCallUpdateMetadata updateMetadata;
+  @NonNull private final RecipientId groupRecipientId;
 
-  public GroupCallPeekWorkerJob(@NonNull WebRtcData.GroupCallUpdateMetadata updateMetadata) {
+  public GroupCallPeekWorkerJob(@NonNull RecipientId groupRecipientId) {
     this(new Parameters.Builder()
-                       .setQueue(PushProcessMessageJob.getQueueName(updateMetadata.getGroupRecipientId()))
+                       .setQueue(PushProcessMessageJob.getQueueName(groupRecipientId))
+                       .setMaxInstancesForQueue(2)
                        .build(),
-         updateMetadata);
+         groupRecipientId);
   }
 
-  private GroupCallPeekWorkerJob(@NonNull Parameters parameters,
-                                 @NonNull WebRtcData.GroupCallUpdateMetadata updateMetadata)
-  {
+  private GroupCallPeekWorkerJob(@NonNull Parameters parameters, @NonNull RecipientId groupRecipientId) {
     super(parameters);
-    this.updateMetadata = updateMetadata;
+    this.groupRecipientId = groupRecipientId;
   }
 
   @Override
   protected void onRun() {
     Intent intent = new Intent(context, WebRtcCallService.class);
-
-    intent.setAction(WebRtcCallService.ACTION_GROUP_CALL_UPDATE_MESSAGE)
-          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_SENDER, updateMetadata.getSender().serialize())
-          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_GROUP, updateMetadata.getGroupRecipientId().serialize())
-          .putExtra(WebRtcCallService.EXTRA_GROUP_CALL_ERA_ID, updateMetadata.getGroupCallEraId())
-          .putExtra(WebRtcCallService.EXTRA_SERVER_RECEIVED_TIMESTAMP, updateMetadata.getServerReceivedTimestamp());
+    intent.setAction(WebRtcCallService.ACTION_GROUP_CALL_PEEK)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(groupRecipientId));
 
     context.startService(intent);
   }
@@ -59,10 +51,7 @@ final class GroupCallPeekWorkerJob extends BaseJob {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder()
-                   .putString(KEY_SENDER, updateMetadata.getSender().serialize())
-                   .putString(KEY_GROUP_RECIPIENT_ID, updateMetadata.getGroupRecipientId().serialize())
-                   .putString(KEY_GROUP_CALL_ERA_ID, updateMetadata.getGroupCallEraId())
-                   .putLong(KEY_SERVER_RECEIVED_TIMESTAMP, updateMetadata.getServerReceivedTimestamp())
+                   .putString(KEY_GROUP_RECIPIENT_ID, groupRecipientId.serialize())
                    .build();
   }
 
@@ -79,12 +68,7 @@ final class GroupCallPeekWorkerJob extends BaseJob {
 
     @Override
     public @NonNull GroupCallPeekWorkerJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      RecipientId sender          = RecipientId.from(data.getString(KEY_SENDER));
-      RecipientId group           = RecipientId.from(data.getString(KEY_GROUP_RECIPIENT_ID));
-      String      era             = data.getString(KEY_GROUP_CALL_ERA_ID);
-      long        serverTimestamp = data.getLong(KEY_SERVER_RECEIVED_TIMESTAMP);
-
-      return new GroupCallPeekWorkerJob(parameters, new WebRtcData.GroupCallUpdateMetadata(sender, group, era, serverTimestamp));
+      return new GroupCallPeekWorkerJob(parameters, RecipientId.from(data.getString(KEY_GROUP_RECIPIENT_ID)));
     }
   }
 }

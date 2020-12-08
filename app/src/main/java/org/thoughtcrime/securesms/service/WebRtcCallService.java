@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.ringrtc.TurnServerInfoParcel;
 import org.thoughtcrime.securesms.service.webrtc.IdleActionProcessor;
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcInteractor;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcUtil;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
@@ -203,7 +202,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String ACTION_GROUP_REQUEST_UPDATE_MEMBERS      = "GROUP_REQUEST_UPDATE_MEMBERS";
   public static final String ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS = "GROUP_UPDATE_RENDERED_RESOLUTIONS";
   public static final String ACTION_GROUP_CALL_ENDED                  = "GROUP_CALL_ENDED";
-  public static final String ACTION_GROUP_CALL_UPDATE_MESSAGE         = "GROUP_CALL_UPDATE_MESSAGE";
   public static final String ACTION_GROUP_CALL_PEEK                   = "GROUP_CALL_PEEK";
   public static final String ACTION_GROUP_MESSAGE_SENT_ERROR          = "GROUP_MESSAGE_SENT_ERROR";
   public static final String ACTION_GROUP_APPROVE_SAFETY_CHANGE       = "GROUP_APPROVE_SAFETY_CHANGE";
@@ -700,37 +698,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     SignalExecutors.BOUNDED.execute(() -> ApplicationDependencies.getJobManager().add(GroupCallUpdateSendJob.create(recipient.getId(), groupCallEraId)));
   }
 
-  public void peekGroupCall(@NonNull WebRtcData.GroupCallUpdateMetadata groupCallUpdateMetadata) {
-    networkExecutor.execute(() -> {
-      try {
-        Recipient               group      = Recipient.resolved(groupCallUpdateMetadata.getGroupRecipientId());
-        GroupId.V2              groupId    = group.requireGroupId().requireV2();
-        GroupExternalCredential credential = GroupManager.getGroupExternalCredential(this, groupId);
-
-        List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(this, groupId))
-                                                        .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
-                                                        .toList();
-
-        callManager.peekGroupCall(BuildConfig.SIGNAL_SFU_URL, credential.getTokenBytes().toByteArray(), members, peekInfo -> {
-          DatabaseFactory.getSmsDatabase(this).insertOrUpdateGroupCall(group.getId(),
-                                                                       groupCallUpdateMetadata.getSender(),
-                                                                       groupCallUpdateMetadata.getServerReceivedTimestamp(),
-                                                                       peekInfo.getEraId(),
-                                                                       peekInfo.getJoinedMembers(),
-                                                                       WebRtcUtil.isCallFull(peekInfo));
-
-          long threadId = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(group);
-          ApplicationDependencies.getMessageNotifier().updateNotification(this, threadId, true);
-
-          EventBus.getDefault().postSticky(new GroupCallPeekEvent(group.getId(), peekInfo.getEraId(), peekInfo.getDeviceCount(), peekInfo.getMaxDevices()));
-        });
-
-      } catch (IOException | VerificationFailedException | CallException e) {
-        Log.e(TAG, "error peeking from message", e);
-      }
-    });
-  }
-
   public void peekGroupCall(@NonNull RecipientId id) {
     networkExecutor.execute(() -> {
       try {
@@ -742,6 +709,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                                         .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
                                                         .toList();
 
+        //noinspection ConstantConditions
         callManager.peekGroupCall(BuildConfig.SIGNAL_SFU_URL, credential.getTokenBytes().toByteArray(), members, peekInfo -> {
           long threadId = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(group);
 

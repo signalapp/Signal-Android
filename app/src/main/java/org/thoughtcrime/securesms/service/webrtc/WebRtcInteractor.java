@@ -154,10 +154,6 @@ public class WebRtcInteractor {
     audioManager.startCommunication(preserveSpeakerphone);
   }
 
-  void peekGroupCall(@NonNull WebRtcData.GroupCallUpdateMetadata groupCallUpdateMetadata) {
-    webRtcCallService.peekGroupCall(groupCallUpdateMetadata);
-  }
-
   void peekGroupCall(@NonNull RecipientId recipientId) {
     webRtcCallService.peekGroupCall(recipientId);
   }
