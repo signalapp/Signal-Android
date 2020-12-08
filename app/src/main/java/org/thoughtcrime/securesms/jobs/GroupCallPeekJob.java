@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobmanager.impl.WebsocketDrainedConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 /**
@@ -27,7 +27,7 @@ public final class GroupCallPeekJob extends BaseJob {
     String             queue      = QUEUE + groupRecipientId.serialize();
     Parameters.Builder parameters = new Parameters.Builder()
                                                   .setQueue(queue)
-                                                  .addConstraint(WebsocketDrainedConstraint.KEY);
+                                                  .addConstraint(DecryptionsDrainedConstraint.KEY);
 
     jobManager.cancelAllInQueue(queue);
 

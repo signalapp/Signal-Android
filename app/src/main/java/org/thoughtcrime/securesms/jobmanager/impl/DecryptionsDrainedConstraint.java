@@ -9,19 +9,19 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Constraint;
 
 /**
- * A constraint that is met once we have pulled down all messages from the websocket during initial
- * load. See {@link org.thoughtcrime.securesms.messages.IncomingMessageObserver}.
+ * A constraint that is met once we have pulled down and decrypted all messages from the websocket
+ * during initial load. See {@link org.thoughtcrime.securesms.messages.IncomingMessageObserver}.
  */
-public final class WebsocketDrainedConstraint implements Constraint {
+public final class DecryptionsDrainedConstraint implements Constraint {
 
   public static final String KEY = "WebsocketDrainedConstraint";
 
-  private WebsocketDrainedConstraint() {
+  private DecryptionsDrainedConstraint() {
   }
 
   @Override
   public boolean isMet() {
-    return ApplicationDependencies.getIncomingMessageObserver().isWebsocketDrained();
+    return ApplicationDependencies.getIncomingMessageObserver().isDecryptionDrained();
   }
 
   @Override
@@ -34,11 +34,11 @@ public final class WebsocketDrainedConstraint implements Constraint {
   public void applyToJobInfo(@NonNull JobInfo.Builder jobInfoBuilder) {
   }
 
-  public static final class Factory implements Constraint.Factory<WebsocketDrainedConstraint> {
+  public static final class Factory implements Constraint.Factory<DecryptionsDrainedConstraint> {
 
     @Override
-    public WebsocketDrainedConstraint create() {
-      return new WebsocketDrainedConstraint();
+    public DecryptionsDrainedConstraint create() {
+      return new DecryptionsDrainedConstraint();
     }
   }
 }

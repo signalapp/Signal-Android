@@ -6,17 +6,17 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 
 /**
- * An observer for {@link WebsocketDrainedConstraint}. Will fire when the websocket is drained
- * (i.e. it has received an empty response).
+ * An observer for {@link DecryptionsDrainedConstraint}. Will fire when the websocket is drained and
+ * the relevant decryptions have finished.
  */
-public class WebsocketDrainedConstraintObserver implements ConstraintObserver {
+public class DecryptionsDrainedConstraintObserver implements ConstraintObserver {
 
-  private static final String REASON = WebsocketDrainedConstraintObserver.class.getSimpleName();
+  private static final String REASON = DecryptionsDrainedConstraintObserver.class.getSimpleName();
 
   private volatile Notifier notifier;
 
-  public WebsocketDrainedConstraintObserver() {
-    ApplicationDependencies.getIncomingMessageObserver().addWebsocketDrainedListener(() -> {
+  public DecryptionsDrainedConstraintObserver() {
+    ApplicationDependencies.getIncomingMessageObserver().addDecryptionDrainedListener(() -> {
       if (notifier != null) {
         notifier.onConstraintMet(REASON);
       }

@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.WebsocketDrainedConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 
 /**
  * Schedules a {@link RequestGroupV2InfoWorkerJob} to happen after message queues are drained.
@@ -32,7 +32,7 @@ public final class RequestGroupV2InfoJob extends BaseJob {
   public RequestGroupV2InfoJob(@NonNull GroupId.V2 groupId, int toRevision) {
     this(new Parameters.Builder()
                        .setQueue("RequestGroupV2InfoSyncJob")
-                       .addConstraint(WebsocketDrainedConstraint.KEY)
+                       .addConstraint(DecryptionsDrainedConstraint.KEY)
                        .setMaxAttempts(Parameters.UNLIMITED)
                        .build(),
          groupId,
