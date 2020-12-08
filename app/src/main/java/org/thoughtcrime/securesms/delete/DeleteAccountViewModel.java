@@ -11,14 +11,15 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
+import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import java.util.List;
 
@@ -27,30 +28,21 @@ public class DeleteAccountViewModel extends ViewModel {
   private final DeleteAccountRepository    repository;
   private final List<Country>              allCountries;
   private final LiveData<List<Country>>    filteredCountries;
-  private final LiveData<String>           regionCode;
-  private final MutableLiveData<Integer>   countryCode;
-  private final MutableLiveData<String>    countryDisplayName;
+  private final MutableLiveData<String>    regionCode;
+  private final LiveData<String>           countryDisplayName;
   private final MutableLiveData<Long>      nationalNumber;
   private final MutableLiveData<String>    query;
   private final SingleLiveEvent<EventType> events;
-  private final LiveData<NumberViewState>  numberViewState;
 
   public DeleteAccountViewModel(@NonNull DeleteAccountRepository repository) {
     this.repository         = repository;
     this.allCountries       = repository.getAllCountries();
-    this.countryCode        = new DefaultValueLiveData<>(NumberViewState.INITIAL.getCountryCode());
-    this.nationalNumber     = new DefaultValueLiveData<>(NumberViewState.INITIAL.getNationalNumber());
-    this.countryDisplayName = new DefaultValueLiveData<>(NumberViewState.INITIAL.getCountryDisplayName());
+    this.regionCode         = new DefaultValueLiveData<>(PhoneNumberUtil.REGION_CODE_FOR_NON_GEO_ENTITY);
+    this.nationalNumber     = new MutableLiveData<>();
     this.query              = new DefaultValueLiveData<>("");
-    this.regionCode         = Transformations.map(countryCode, this::mapCountryCodeToRegionCode);
+    this.countryDisplayName = Transformations.map(regionCode, repository::getRegionDisplayName);
     this.filteredCountries  = Transformations.map(query, q -> Stream.of(allCountries).filter(country -> isMatch(q, country)).toList());
-
-    LiveData<NumberViewState> partialViewState = LiveDataUtil.combineLatest(countryCode,
-                                                                            countryDisplayName,
-                                                                            DeleteAccountViewModel::getPartialNumberViewState);
-
-    this.numberViewState = LiveDataUtil.combineLatest(partialViewState, nationalNumber, DeleteAccountViewModel::getCompleteNumberViewState);
-    this.events          = new SingleLiveEvent<>();
+    this.events             = new SingleLiveEvent<>();
   }
 
   @NonNull LiveData<List<Country>> getFilteredCountries() {
@@ -58,15 +50,11 @@ public class DeleteAccountViewModel extends ViewModel {
   }
 
   @NonNull LiveData<String> getCountryDisplayName() {
-    return Transformations.distinctUntilChanged(Transformations.map(numberViewState, NumberViewState::getCountryDisplayName));
+    return Transformations.distinctUntilChanged(countryDisplayName);
   }
 
   @NonNull LiveData<String> getRegionCode() {
     return Transformations.distinctUntilChanged(regionCode);
-  }
-
-  @NonNull LiveData<Integer> getCountryCode() {
-    return Transformations.distinctUntilChanged(Transformations.map(numberViewState, NumberViewState::getCountryCode));
   }
 
   @NonNull SingleLiveEvent<EventType> getEvents() {
@@ -74,12 +62,7 @@ public class DeleteAccountViewModel extends ViewModel {
   }
 
   @Nullable Long getNationalNumber() {
-    Long number = nationalNumber.getValue();
-    if (number == null || number == NumberViewState.INITIAL.getNationalNumber()) {
-      return null;
-    } else {
-      return number;
-    }
+    return nationalNumber.getValue();
   }
 
   void onQueryChanged(@NonNull String query) {
@@ -93,7 +76,8 @@ public class DeleteAccountViewModel extends ViewModel {
   }
 
   void submit() {
-    Integer countryCode    = this.countryCode.getValue();
+    String  region         = this.regionCode.getValue();
+    Integer countryCode    = region != null ? repository.getRegionCountryCode(region) : null;
     Long    nationalNumber = this.nationalNumber.getValue();
 
     if (countryCode == null || countryCode == 0) {
@@ -117,28 +101,31 @@ public class DeleteAccountViewModel extends ViewModel {
     }
   }
 
-  void onCountrySelected(@Nullable String countryDisplayName, int countryCode) {
-    if (countryDisplayName != null) {
-      this.countryDisplayName.setValue(countryDisplayName);
-    }
+  void onCountrySelected(int countryCode) {
+    String       region  = this.regionCode.getValue();
+    List<String> regions = PhoneNumberUtil.getInstance().getRegionCodesForCountryCode(countryCode);
 
-    this.countryCode.setValue(countryCode);
+    if (!regions.contains(region)) {
+      this.regionCode.setValue(PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode));
+    }
+  }
+
+  void onRegionSelected(@NonNull String region) {
+    this.regionCode.setValue(region);
   }
 
   void setNationalNumber(long nationalNumber) {
     this.nationalNumber.setValue(nationalNumber);
-  }
 
-  private @NonNull String mapCountryCodeToRegionCode(int countryCode) {
-    return PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode);
-  }
-
-  private static @NonNull NumberViewState getPartialNumberViewState(int countryCode, @Nullable String countryDisplayName) {
-    return new NumberViewState.Builder().countryCode(countryCode).selectedCountryDisplayName(countryDisplayName).build();
-  }
-
-  private static @NonNull NumberViewState getCompleteNumberViewState(@NonNull NumberViewState partial, long nationalNumber) {
-    return partial.toBuilder().nationalNumber(nationalNumber).build();
+    try {
+      String phoneNumberRegion = PhoneNumberUtil.getInstance()
+                                                .getRegionCodeForNumber(PhoneNumberUtil.getInstance().parse(String.valueOf(nationalNumber),
+                                                                        regionCode.getValue()));
+      if (phoneNumberRegion != null) {
+        regionCode.setValue(phoneNumberRegion);
+      }
+    } catch (NumberParseException ignored) {
+    }
   }
 
   private static boolean isMatch(@NonNull String query, @NonNull Country country) {

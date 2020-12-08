@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 public class DeleteAccountCountryPickerFragment extends DialogFragment {
@@ -61,7 +60,7 @@ public class DeleteAccountCountryPickerFragment extends DialogFragment {
   }
 
   private void onCountryPicked(@NonNull Country country) {
-    viewModel.onCountrySelected(country.getDisplayName(), country.getCode());
+    viewModel.onRegionSelected(country.getRegion());
     dismissAllowingStateLoss();
   }
 }

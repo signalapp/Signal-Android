@@ -28,6 +28,14 @@ class DeleteAccountRepository {
                  .toList();
   }
 
+  @NonNull String getRegionDisplayName(@NonNull String region) {
+    return PhoneNumberFormatter.getRegionDisplayName(region);
+  }
+
+  int getRegionCountryCode(@NonNull String region) {
+    return PhoneNumberUtil.getInstance().getCountryCodeForRegion(region);
+  }
+
   void deleteAccount(@NonNull Runnable onFailureToRemovePin,
                      @NonNull Runnable onFailureToDeleteFromService,
                      @NonNull Runnable onFailureToDeleteLocalData)
@@ -66,7 +74,8 @@ class DeleteAccountRepository {
 
   private static @NonNull Country getCountryForRegion(@NonNull String region) {
     return new Country(PhoneNumberFormatter.getRegionDisplayName(region),
-                       PhoneNumberUtil.getInstance().getCountryCodeForRegion(region));
+                       PhoneNumberUtil.getInstance().getCountryCodeForRegion(region),
+                       region);
   }
 
   private static class RegionComparator implements Comparator<Country> {

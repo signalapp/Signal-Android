@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -64,8 +65,7 @@ public class DeleteAccountFragment extends Fragment {
     viewModel = ViewModelProviders.of(requireActivity(), new DeleteAccountViewModel.Factory(new DeleteAccountRepository()))
                                   .get(DeleteAccountViewModel.class);
     viewModel.getCountryDisplayName().observe(getViewLifecycleOwner(), this::setCountryDisplay);
-    viewModel.getRegionCode().observe(getViewLifecycleOwner(), this::setCountryFormatter);
-    viewModel.getCountryCode().observe(getViewLifecycleOwner(), this::setCountryCode);
+    viewModel.getRegionCode().observe(getViewLifecycleOwner(), this::handleRegionUpdated);
     viewModel.getEvents().observe(getViewLifecycleOwner(), this::handleEvent);
 
     initializeNumberInput();
@@ -87,9 +87,7 @@ public class DeleteAccountFragment extends Fragment {
   private @NonNull CharSequence buildBulletsText() {
     return new SpannableStringBuilder().append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__delete_your_account_info_and_profile_photo)))
                                        .append("\n")
-                                       .append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__delete_all_your_messages)))
-                                       .append("\n")
-                                       .append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__remove_you_from_all_signal_groups)));
+                                       .append(SpanUtil.bullet(getString(R.string.DeleteAccountFragment__delete_all_your_messages)));
   }
 
   @SuppressLint("ClickableViewAccessibility")
@@ -114,11 +112,8 @@ public class DeleteAccountFragment extends Fragment {
   }
 
   private void pickCountry() {
+    countryCode.clearFocus();
     DeleteAccountCountryPickerFragment.show(requireFragmentManager());
-  }
-
-  private void setCountryCode(int countryCode) {
-    this.countryCode.setText(String.valueOf(countryCode));
   }
 
   private void setCountryDisplay(@NonNull String regionDisplayName) {
@@ -130,18 +125,20 @@ public class DeleteAccountFragment extends Fragment {
     }
   }
 
-  private void setCountryFormatter(@Nullable String regionCode) {
+  private void handleRegionUpdated(@Nullable String regionCode) {
     PhoneNumberUtil util = PhoneNumberUtil.getInstance();
 
     countryFormatter = regionCode != null ? util.getAsYouTypeFormatter(regionCode) : null;
 
     reformatText(number.getText());
 
-    if (!TextUtils.isEmpty(regionCode) && !regionCode.equals("ZZ")) {
+    if (!TextUtils.isEmpty(regionCode) && !"ZZ".equals(regionCode) && !countryCode.hasFocus()) {
       number.requestFocus();
 
       int numberLength = number.getText().length();
       number.getInput().setSelection(numberLength, numberLength);
+
+      countryCode.setText(String.valueOf(util.getCountryCodeForRegion(regionCode)));
     }
   }
 
@@ -202,11 +199,11 @@ public class DeleteAccountFragment extends Fragment {
 
   private void afterCountryCodeChanged(@Nullable Editable s) {
     if (TextUtils.isEmpty(s) || !TextUtils.isDigitsOnly(s)) {
-      viewModel.onCountrySelected(null, 0);
+      viewModel.onCountrySelected(0);
       return;
     }
 
-    viewModel.onCountrySelected(null, Integer.parseInt(s.toString()));
+    viewModel.onCountrySelected(Integer.parseInt(s.toString()));
   }
 
   private void afterNumberChanged(@Nullable Editable s) {
@@ -220,10 +217,10 @@ public class DeleteAccountFragment extends Fragment {
   private void handleEvent(@NonNull DeleteAccountViewModel.EventType eventType) {
     switch (eventType) {
       case NO_COUNTRY_CODE:
-        Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_country_code, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_country_code, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
         break;
       case NO_NATIONAL_NUMBER:
-        Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_number, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(requireView(), R.string.DeleteAccountFragment__no_number, Snackbar.LENGTH_SHORT).setTextColor(Color.WHITE).show();
         break;
       case NOT_A_MATCH:
         new AlertDialog.Builder(requireContext())

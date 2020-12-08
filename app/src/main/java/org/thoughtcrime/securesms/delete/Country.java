@@ -8,11 +8,13 @@ final class Country {
   private final String displayName;
   private final int    code;
   private final String normalized;
+  private final String region;
 
-  Country(@NonNull String displayName, int code) {
+  Country(@NonNull String displayName, int code, @NonNull String region) {
     this.displayName = displayName;
     this.code        = code;
     this.normalized  = displayName.toLowerCase();
+    this.region      = region;
   }
 
   int getCode() {
@@ -25,6 +27,10 @@ final class Country {
 
   public String getNormalizedDisplayName() {
     return normalized;
+  }
+
+  @NonNull String getRegion() {
+    return region;
   }
 
   @Override
