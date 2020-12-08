@@ -116,6 +116,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
           throw new IOException("Renaming temporary backup file failed!");
         }
       } catch (IOException e) {
+        Log.w(TAG, "Error during backup!", e);
         BackupFileIOError.postNotificationForException(context, e, getRunAttempt());
         throw e;
       } finally {
