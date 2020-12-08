@@ -139,8 +139,14 @@ dependencies {
 def canonicalVersionCode = 121
 def canonicalVersionName = "1.6.4"
 
+def postFixSize = 10
+def abiPostFix = ['armeabi-v7a' : 1,
+                  'arm64-v8a'   : 2,
+                  'x86'         : 3,
+                  'x86_64'      : 4,
+                  'universal'   : 5]
+
 android {
-    flavorDimensions "none"
     compileSdkVersion androidCompileSdkVersion
     buildToolsVersion androidBuildToolsVersion
     useLibrary 'org.apache.http.legacy'
@@ -149,8 +155,36 @@ android {
         javaMaxHeapSize "4g"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'LICENSE'
+        exclude 'NOTICE'
+        exclude 'asm-license.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            universalApk true
+        }
+    }
+
     defaultConfig {
-        versionCode canonicalVersionCode
+        versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
 
         minSdkVersion androidMinSdkVersion
@@ -176,25 +210,6 @@ android {
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
 
         resConfigs autoResConfig()
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    packagingOptions {
-        exclude 'LICENSE.txt'
-        exclude 'LICENSE'
-        exclude 'NOTICE'
-        exclude 'asm-license.txt'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 
     buildTypes {
@@ -236,26 +251,30 @@ android {
         }
     }
 
+    flavorDimensions "distribution"
     productFlavors {
         play {
-            dimension "none"
             ext.websiteUpdateUrl = "null"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
         }
 
         website {
-            dimension "none"
             ext.websiteUpdateUrl = "https://updates.signal.org/android"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
         }
     }
 
-    android.applicationVariants.all { variant ->
+    applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
-            output.versionCodeOverride = canonicalVersionCode
+            def abiName = output.getFilter("ABI") ?: 'universal'
+            def postFix = abiPostFix.get(abiName, 0)
+
+            if (postFix >= postFixSize) throw new AssertionError("postFix is too large")
+
+            output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
         }
     }
 
