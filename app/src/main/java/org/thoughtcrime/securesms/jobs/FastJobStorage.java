@@ -153,7 +153,7 @@ public class FastJobStorage implements JobStorage {
   @Override
   public synchronized int getJobCountForQueue(@NonNull String queueKey) {
     return (int) Stream.of(jobs)
-                       .filter(j -> j.getQueueKey().equals(queueKey))
+                       .filter(j -> queueKey.equals(j.getQueueKey()))
                        .count();
   }
 
