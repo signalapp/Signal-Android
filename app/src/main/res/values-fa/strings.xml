@@ -1219,6 +1219,7 @@
   <string name="WebRtcCallView__signal_video_call">تماس تصویری Signal</string>
   <string name="WebRtcCallView__start_call">شروع تماس</string>
   <string name="WebRtcCallView__join_call">پیوستن به تماس</string>
+  <string name="WebRtcCallView__call_is_full">ظرفیت تماس تکمیل است</string>
   <string name="WebRtcCallView__s_group_call">تماس گروهی «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">مشاهدهٔ شرکت کنندگان</string>
   <string name="WebRtcCallView__your_video_is_off">ویدئوی شما خاموش است</string>
@@ -2537,5 +2538,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s، %2$s و %3$d نفر دیگر ترک کردند</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">شما (روی دستگاه دیگر)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (روی دستگاه دیگر)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">آیا از پاک کردن حساب کاربری خود اطمینان دارید؟</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

@@ -1130,6 +1130,7 @@
   <string name="WebRtcCallView__signal_video_call">Signal görüntülü arama…</string>
   <string name="WebRtcCallView__start_call">Arama Başlat</string>
   <string name="WebRtcCallView__join_call">Çağrıya Katıl</string>
+  <string name="WebRtcCallView__call_is_full">Arama dolu</string>
   <string name="WebRtcCallView__view_participants_list">Katılımcıları Görüntüle</string>
   <string name="WebRtcCallView__your_video_is_off">Görüntünüz kapalı</string>
   <string name="WebRtcCallView__connecting">Bağlanıyor…</string>
@@ -2393,5 +2394,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ReviewCard__delete">Sil</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Siz (başka bir cihazda)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Hesabınızı silmek istediğinizden emin misiniz?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

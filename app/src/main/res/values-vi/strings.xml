@@ -2197,5 +2197,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ReviewCard__block">Chặn</string>
   <string name="ReviewCard__delete">Xóa</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Bạn có chắc muốn xoá tài khoản?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

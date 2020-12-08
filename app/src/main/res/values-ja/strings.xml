@@ -1156,6 +1156,8 @@
   <string name="WebRtcCallView__signal_video_call">Signalビデオ通話…</string>
   <string name="WebRtcCallView__start_call">通話を開始する</string>
   <string name="WebRtcCallView__join_call">通話に参加する</string>
+  <string name="WebRtcCallView__call_is_full">満席です</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">この通話の参加者が、上限の%1$d人に達しました。あとで再度試してください。</string>
   <string name="WebRtcCallView__s_group_call">「%1$s」グループ通話</string>
   <string name="WebRtcCallView__view_participants_list">参加者を確認する</string>
   <string name="WebRtcCallView__your_video_is_off">あなたの映像はオフです</string>
@@ -2444,5 +2446,16 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ほか%3$d名が退出しました</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">あなた (別端末)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (別端末)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__enter_your_phone_number">あなたの電話番号を入力してください</string>
+  <string name="DeleteAccountFragment__no_country_code">国番号が指定されていません</string>
+  <string name="DeleteAccountFragment__no_number">番号が指定されていません</string>
+  <string name="DeleteAccountFragment__the_phone_number">入力された電話番号は、あなたのアカウントのものと一致しません。</string>
+  <string name="DeleteAccountFragment__are_you_sure">アカウントを削除してよろしいですか?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">あなたのSignalアカウントを削除して、アプリを初期化します。処理が完了するとアプリを閉じます。</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">アカウントの削除に失敗しました。ネットワーク接続を確認してください。</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">ローカルデータの削除に失敗しました。これはシステムのアプリ設定にて、手動で削除できます。</string>
+  <string name="DeleteAccountFragment__launch_app_settings">アプリ設定を開く</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

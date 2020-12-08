@@ -2021,5 +2021,8 @@
   <string name="ReviewCard__block">រារាំង</string>
   <string name="ReviewCard__delete">លុប</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">តើអ្នកប្រាកដទេថា ចង់លុបគណនីរបស់អ្នក?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

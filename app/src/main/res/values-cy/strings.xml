@@ -1345,6 +1345,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallView__signal_video_call">Galwad fideo Signal</string>
   <string name="WebRtcCallView__start_call">Cychwyn Galwad</string>
   <string name="WebRtcCallView__join_call">Ymuno â\'r Alwad</string>
+  <string name="WebRtcCallView__call_is_full">Mae\'r alwad yn llawn</string>
   <string name="WebRtcCallView__s_group_call">Galwad Grŵp \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Gweld cyfranogwyr</string>
   <string name="WebRtcCallView__your_video_is_off">Mae\'ch fideo i ffwrdd</string>
@@ -2711,5 +2712,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Gadawodd %1$s, %2$s a %3$d eraill</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Chi (ar ddyfais arall)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ar ddyfais arall)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Ydych chi\'n siŵr eich bod chi am ddileu\'ch cyfrif?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

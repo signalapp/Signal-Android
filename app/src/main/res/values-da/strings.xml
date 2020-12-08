@@ -2488,5 +2488,8 @@ Der er %d dage tilbage</string>
   <string name="ReviewCard__recently_changed">Ændrede for nyligt deres profilnavn fra %1$s til %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Dig (på en anden enhed)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Er du sikker på, du vil slette din konto?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

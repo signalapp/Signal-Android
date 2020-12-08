@@ -2357,5 +2357,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ReviewCard__block">Estä</string>
   <string name="ReviewCard__delete">Poista</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Haluatko varmasti poistaa tilisi?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

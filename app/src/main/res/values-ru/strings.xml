@@ -1342,6 +1342,8 @@
   <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal…</string>
   <string name="WebRtcCallView__start_call">Начать звонок</string>
   <string name="WebRtcCallView__join_call">Присоединиться к звонку</string>
+  <string name="WebRtcCallView__call_is_full">Звонок заполнен</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Для этого звонка было достигнуто максимальное количество участников — %1$d. Попробуйте ещё раз позже.</string>
   <string name="WebRtcCallView__s_group_call">Групповой звонок «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">Просмотреть участников</string>
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
@@ -1683,6 +1685,7 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Новый код безопасности</string>
   <string name="WebRtcCallScreen_accept">Принять</string>
   <string name="WebRtcCallScreen_end_call">Завершить звонок</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Проведите вверх, чтобы изменить вид</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Отклонить</string>
   <string name="WebRtcCallScreen__answer">Ответить</string>
@@ -2159,6 +2162,7 @@
   <string name="preferences__advanced_pin_settings">Расширенные настройки PIN-кода</string>
   <string name="preferences__free_private_messages_and_calls">Бесплатные приватные сообщения и звонки пользователям Signal</string>
   <string name="preferences__submit_debug_log">Отправить журнал отладки</string>
+  <string name="preferences__delete_account">Удалить учётную запись</string>
   <string name="preferences__support_wifi_calling">Совместимость с Wi-Fi звонками</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включите, если ваше устройство отправляет и принимает SMS и MMS через WiFi (включайте, только если «Звонки по WiFi» включены на вашем устройстве)</string>
   <string name="preferences__incognito_keyboard">Инкогнито-клавиатура</string>
@@ -2702,5 +2706,22 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s и ещё %3$d человек(-а) покинули звонок</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Вы (на другом устройстве)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (на другом устройстве)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Удаление вашей учётной записи приведёт к:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Введите свой номер телефона</string>
+  <string name="DeleteAccountFragment__delete_account">Удалить учётную запись</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Удалению информации вашей учётной записи и фотографии профиля</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Удалению всех ваших сообщений</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Удалению вас из всех групп Signal</string> -->
+  <string name="DeleteAccountFragment__no_country_code">Не указан код страны</string>
+  <string name="DeleteAccountFragment__no_number">Не указан номер</string>
+  <string name="DeleteAccountFragment__the_phone_number">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
+  <string name="DeleteAccountFragment__are_you_sure">Вы действительно хотите удалить свою учётную запись?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ваша учётная запись Signal будет удалена, и приложение будет сброшено. Приложение закроется после завершения этого процесса.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Не удалось удалить учётную запись. Есть ли у вас подключение к сети?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Не удалось удалить локальные данные. Вы можете удалить их вручную в системных настройках приложения.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Запустить настройки приложения</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Поиск по странам</string>
   <!--EOF-->
 </resources>

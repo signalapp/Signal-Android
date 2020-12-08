@@ -2078,5 +2078,8 @@
   <string name="ReviewCard__block">차단</string>
   <string name="ReviewCard__delete">삭제</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">계정을 삭제하시겠습니까?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

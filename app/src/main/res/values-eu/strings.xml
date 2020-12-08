@@ -2467,5 +2467,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ReviewCard__recently_changed">Duela gutxi bere profilaren izena aldatu du. Lehen %1$s zen eta orain %2$s da.</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Zu (beste gailu batean)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Ziur zaude zure kontua ezabatu nahi duzula?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

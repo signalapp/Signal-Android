@@ -1216,6 +1216,7 @@
   <string name="WebRtcCallView__signal_video_call">Trucada de vídeo del Signal…</string>
   <string name="WebRtcCallView__start_call">Inicia una trucada</string>
   <string name="WebRtcCallView__join_call">Afegeix-me a la trucada</string>
+  <string name="WebRtcCallView__call_is_full">La trucada és plena</string>
   <string name="WebRtcCallView__s_group_call">Trucada de grup \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Mostra els participants</string>
   <string name="WebRtcCallView__your_video_is_off">El vídeo està desactivat.</string>
@@ -2515,5 +2516,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ReviewCard__recently_changed">Recentment han canviat el nom del perfil de %1$s a %2$s.</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vós (en un altre dispositiu)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Segur que voleu suprimir el compte?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

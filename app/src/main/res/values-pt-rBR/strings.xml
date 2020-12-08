@@ -723,15 +723,15 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gerenciar &amp; compartilhar</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Link do grupo</string>
   <string name="ShareableGroupLinkDialogFragment__share">Compartilhar</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">Resetar o link</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Redefinir o link</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Pedidos de membros</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprovar novos membros</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Habilitada</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Desabilitada</string>
   <string name="ShareableGroupLinkDialogFragment__default">Padrão</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Resetar link do grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Redefinir link do grupo</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Exigir que um administrador aprove pedidos de novos membros que entrarem através do link do grupo.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Tem certeza que quer resetar o link do grupo? As pessoas não poderão mais se conectar ao grupo usando o link atual.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Tem certeza que quer redefinir o link do grupo? As pessoas não poderão mais se conectar ao grupo usando o link atual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">As pessoas que escanearem este código poderão entrar no seu grupo. Os administradores ainda precisarão aprovar os novos membros, se você tiver ativado essa opção.</string>
@@ -1022,9 +1022,9 @@
   <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ativou a aprovação do admin para o link do grupo.</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">A aprovação do admin para o link do grupo foi ativada.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Você resetou o link do grupo.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s resetou o link do grupo.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">O link do grupo foi resetado.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Você redefiniu o link do grupo.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s redefiniu o link do grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">O link do grupo foi redefinido.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">Você entrou no grupo via o link do grupo.</string>
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s entrou no grupo via o link do grupo.</string>
@@ -1219,6 +1219,8 @@
   <string name="WebRtcCallView__signal_video_call">Chamada de vídeo Signal…</string>
   <string name="WebRtcCallView__start_call">Começar a chamada</string>
   <string name="WebRtcCallView__join_call">Participar da chamada</string>
+  <string name="WebRtcCallView__call_is_full">A chamada está lotada</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">O número máximo de %1$d participantes foi atingido nesta chamada. Tente mais tarde.</string>
   <string name="WebRtcCallView__s_group_call">Chamada em grupo \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Ver os participantes</string>
   <string name="WebRtcCallView__your_video_is_off">Seu vídeo está desligado</string>
@@ -1558,6 +1560,7 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Novo número de segurança</string>
   <string name="WebRtcCallScreen_accept">Aceitar</string>
   <string name="WebRtcCallScreen_end_call">Terminar chamada</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Deslize para cima para alterar a visualização</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Recusar</string>
   <string name="WebRtcCallScreen__answer">Atender</string>
@@ -2014,6 +2017,7 @@
   <string name="preferences__advanced_pin_settings">Configurações avançadas do PIN</string>
   <string name="preferences__free_private_messages_and_calls">Chamadas e mensagens privadas gratuitas para usuários do Signal</string>
   <string name="preferences__submit_debug_log">Enviar log de depuração</string>
+  <string name="preferences__delete_account">Excluir conta</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>
   <string name="preferences__incognito_keyboard">Teclado incógnito</string>
@@ -2539,5 +2543,22 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e %3$d outras pessoas saíram</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Você (em outro aparelho)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (em outro dispositivo)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Excluir sua conta vai:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Digite o seu número de telefone</string>
+  <string name="DeleteAccountFragment__delete_account">Excluir conta</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Excluir suas informações da conta e foto de perfil</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Apagar todas as suas mensagens</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Remover você de todos os seus grupos do Signal</string> -->
+  <string name="DeleteAccountFragment__no_country_code">Nenhum código do país informado</string>
+  <string name="DeleteAccountFragment__no_number">Nenhum número informado</string>
+  <string name="DeleteAccountFragment__the_phone_number">O número de telefone que você inseriu não corresponde ao da sua conta.</string>
+  <string name="DeleteAccountFragment__are_you_sure">Tem certeza que deseja excluir a sua conta?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Essa ação excluirá sua conta do Signal e apagará os dados do aplicativo. O aplicativo será fechado após a conclusão do processo.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Falha ao excluir a conta. Você está conectado à internet?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Falha ao excluir os dados locais. Você pode limpá-los manualmente nas configurações do aplicativo no sistema.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Acessar as configurações do aplicativo</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Pesquisar países</string>
   <!--EOF-->
 </resources>

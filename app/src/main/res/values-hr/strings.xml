@@ -1279,6 +1279,7 @@
   <string name="WebRtcCallView__signal_video_call">Signal video poziv…</string>
   <string name="WebRtcCallView__start_call">Započni poziv</string>
   <string name="WebRtcCallView__join_call">Pridruži se pozivu</string>
+  <string name="WebRtcCallView__call_is_full">Poziv je pun</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupni poziv</string>
   <string name="WebRtcCallView__view_participants_list">Prikaži sudionike</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš video je isključen</string>
@@ -2604,5 +2605,8 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="ReviewCard__recently_changed">Nedavno su promijenili ime svog profila iz %1$s u %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugom uređaju)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Jeste li sigurni da želite izbrisati svoj račun?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

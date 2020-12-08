@@ -1218,6 +1218,7 @@
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtal…</string>
   <string name="WebRtcCallView__start_call">Starta samtal</string>
   <string name="WebRtcCallView__join_call">Gå med i samtalet</string>
+  <string name="WebRtcCallView__call_is_full">Samtalet är fullt</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" gruppsamtal</string>
   <string name="WebRtcCallView__view_participants_list">Visa deltagare</string>
   <string name="WebRtcCallView__your_video_is_off">Din video är avstängd</string>
@@ -2533,5 +2534,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s och %3$d andra lämnade</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Du (på en annan enhet)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en annan enhet)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Är du säker på att du vill ta bort ditt konto?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

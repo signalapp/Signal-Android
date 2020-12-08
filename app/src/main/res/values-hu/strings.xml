@@ -1137,6 +1137,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="WebRtcCallView__signal_video_call">Signal videóhívás…</string>
   <string name="WebRtcCallView__start_call">Hívás indítása</string>
   <string name="WebRtcCallView__join_call">Belépés a hívásba</string>
+  <string name="WebRtcCallView__call_is_full">A hívás betelt</string>
   <string name="WebRtcCallView__view_participants_list">Résztvevők megtekintése</string>
   <string name="WebRtcCallView__your_video_is_off">A kamerád ki van kapcsolva</string>
   <string name="WebRtcCallView__connecting">Csatlakozás…</string>
@@ -2425,5 +2426,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ReviewCard__recently_changed">Nemrég megváltoztatta profilnevét erről: %1$s erre: %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Te (másik eszközön)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Biztosan törölni akarod a fiókod?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

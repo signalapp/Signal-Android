@@ -1218,6 +1218,8 @@
   <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal…</string>
   <string name="WebRtcCallView__start_call">Έναρξη κλήσης</string>
   <string name="WebRtcCallView__join_call">Είσοδος στην κλήση</string>
+  <string name="WebRtcCallView__call_is_full">Η κλήση είναι γεμάτη</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Έχει συμπληρωθεί ο μέγιστος αριθμός %1$d συμμετεχόντων για αυτή την κλήση. Δοκίμασε ξανά αργότερα.</string>
   <string name="WebRtcCallView__s_group_call">Ομαδική κλήση \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Προβολή συμμετέχοντων</string>
   <string name="WebRtcCallView__your_video_is_off">Το βίντεό σου είναι απενεργοποιημένο</string>
@@ -1553,6 +1555,7 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Νέος αριθμός ασφαλείας</string>
   <string name="WebRtcCallScreen_accept">Αποδοχή</string>
   <string name="WebRtcCallScreen_end_call">Τερματισμός κλήσης</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Σύρε προς τα πάνω για αλλαγή οπτικής</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Απόρριψη</string>
   <string name="WebRtcCallScreen__answer">Απάντηση</string>
@@ -2009,6 +2012,7 @@
   <string name="preferences__advanced_pin_settings">Ρυθμίσεις PIN για προχωρημένους</string>
   <string name="preferences__free_private_messages_and_calls">Δωρεάν προσωπικά μηνύματα και κλήσεις προς τους χρήστες και τις χρήστριες του Signal</string>
   <string name="preferences__submit_debug_log">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
+  <string name="preferences__delete_account">Διαγραφή λογαριασμού</string>
   <string name="preferences__support_wifi_calling">Λειτουργία συμβατότητας \"WiFi Calling\' </string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ενεργοποίησέ το αν η συσκευή σου χρησιμοποιεί παράδοση SMS/MMS μέσω WiFi (ενεργοποίηση μόνο αν το \'WiFi Calling\' είναι ενεργοποιημένο στη συσκευή σου)</string>
   <string name="preferences__incognito_keyboard">Κρυφό πληκτρολόγιο</string>
@@ -2535,5 +2539,22 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Οι %1$s, %2$s και %3$d ακόμα έφυγαν</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Εσύ (από άλλη συσκευή)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (από άλλη συσκευή)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Με τη διαγραφή του λογαριασμού σου θα γίνουν τα εξής:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Εισαγωγή αριθμού τηλεφώνου</string>
+  <string name="DeleteAccountFragment__delete_account">Διαγραφή λογαριασμού</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Διαγραφη των πληροφοριών του λογαριασμού σου και της φωτογραφίας προφίλ σου</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Διαγραφή όλων των μηνυμάτων σου</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Αφαίρεσή σου από όλες τις ομάδες Signal</string> -->
+  <string name="DeleteAccountFragment__no_country_code">Δεν διευκρινίστηκε κωδικός χώρας</string>
+  <string name="DeleteAccountFragment__no_number">Δεν διευκρινίστηκε αριθμός</string>
+  <string name="DeleteAccountFragment__the_phone_number">Ο αριθμός τηλεφώνου που έγραψες δεν αντιστοιχεί στο λογαριασμό σου.</string>
+  <string name="DeleteAccountFragment__are_you_sure">Είσαι σίγουρος/η ότι θέλεις να διαγράψεις το λογαριασμό σου;</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Αυτό θα διαγράψει το λογαριασμό Signal σου και θα επαναφέρει την εφαρμογή στις αρχικές ρυθμίσεις. Η εφαρμογή θα κλείσει με την ολοκλήρωση της διαδικασίας.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Αποτυχία διαγραφής λογαριασμού. Είσαι συνδεμένος/η στο διαδίκτυο;</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Αποτυχία διαγραφής τοπικών δεδομένων. Μπορείς να τα σβήσεις χειροκίνητα στις ρυθμίσεις εφαρμογής του συστήματος.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Άνοιγμα ρυθμίσεων εφαρμογής</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Εύρεση χωρών</string>
   <!--EOF-->
 </resources>

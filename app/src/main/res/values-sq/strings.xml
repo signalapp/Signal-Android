@@ -1221,6 +1221,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallView__signal_video_call">Thirrje Signal me video…</string>
   <string name="WebRtcCallView__start_call">Nise Thirrjen</string>
   <string name="WebRtcCallView__join_call">Hyni në Thirrje</string>
+  <string name="WebRtcCallView__call_is_full">Thirrja është plot</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Për këtë thirrje është mbërritur në numrin maksimum prej %1$dpjesëmarrësish. Riprovoni më vonë.</string>
   <string name="WebRtcCallView__s_group_call">Thirrje Grupi me \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Shihni pjesëmarrësit</string>
   <string name="WebRtcCallView__your_video_is_off">Videoja juaj është e fikur</string>
@@ -1557,6 +1559,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallScreen_new_safety_number_title">Numër i ri sigurie</string>
   <string name="WebRtcCallScreen_accept">Pranoje</string>
   <string name="WebRtcCallScreen_end_call">Përfundoje thirrjen</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Fërkojeni për sipër që të ndryshoni parjet</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Hidhet tej</string>
   <string name="WebRtcCallScreen__answer">Përgjigjuni</string>
@@ -2015,6 +2018,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__advanced_pin_settings">Rregullimet të mëtejshme PIN-i</string>
   <string name="preferences__free_private_messages_and_calls">Mesazhe dhe thirrje falas drejt përdoruesish të Signal-it</string>
   <string name="preferences__submit_debug_log">Parashtro regjistër diagnostikimi</string>
+  <string name="preferences__delete_account">Fshije llogarinë</string>
   <string name="preferences__support_wifi_calling">Mënyrë përputhshmëri me \'Thirrje Wifi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivizojeni nëse pajisja juaj përdor dërgim SMS/MMS-sh përmes WiFi (aktivizojeni vetëm kur \'Thirrje Wifi\' janë të aktivizuara në pajisjen tuaj).</string>
   <string name="preferences__incognito_keyboard">Tastiera inkonjito</string>
@@ -2542,5 +2546,22 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s dhe %3$d të tjerë ikën</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ju (në një tjetër pajisje)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (në tjetër pajisje)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Fshirja e llogarisë tuaj do të:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
+  <string name="DeleteAccountFragment__delete_account">Fshijë llogarinë</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Fshijë të dhënat e llogarisë tuaj dhe foton e profilit tuaj</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Fshijë krejt mesazhet tuaj</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Heqë ju prej krejt grupeve Signal</string> -->
+  <string name="DeleteAccountFragment__no_country_code">S’u dha kod vendi</string>
+  <string name="DeleteAccountFragment__no_number">S’u tregua numër</string>
+  <string name="DeleteAccountFragment__the_phone_number">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>
+  <string name="DeleteAccountFragment__are_you_sure">Jeni i sigurt se doni të fshihet llogaria juaj?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Kjo do të fshijë llogarinë tuaj Signal dhe do të kthejë aplikacionin te parazgjedhjet. Aplikacioni do të mbyllet pasi të plotësohet procesi.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">S’u arrit të fshihet llogaria. A jeni i lidhur në rrjet?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">S’u arrit të fshihen të dhëna vendore. Mund t’i spastroni dorazi, që nga rregullimet e sistemit.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Hap Rregullime Aplikacioni</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Kërkoni Te Vendet</string>
   <!--EOF-->
 </resources>

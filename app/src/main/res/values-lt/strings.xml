@@ -1343,6 +1343,8 @@
   <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis…</string>
   <string name="WebRtcCallView__start_call">Pradėti skambutį</string>
   <string name="WebRtcCallView__join_call">Prisijungti prie skambučio</string>
+  <string name="WebRtcCallView__call_is_full">Skambutis yra pilnas</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Šiame skambutyje yra pasiektas didžiausias %1$d dalyvių skaičius. Vėliau bandykite dar kartą.</string>
   <string name="WebRtcCallView__s_group_call">„%1$s“ grupės skambutis</string>
   <string name="WebRtcCallView__view_participants_list">Rodyti dalyvius</string>
   <string name="WebRtcCallView__your_video_is_off">Jūsų vaizdas yra išjungtas</string>
@@ -1690,6 +1692,7 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Naujas saugumo numeris</string>
   <string name="WebRtcCallScreen_accept">Priimti</string>
   <string name="WebRtcCallScreen_end_call">Baigti skambutį</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Perbraukite aukštyn, norėdami keisti rodinius</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Atmesti</string>
   <string name="WebRtcCallScreen__answer">Atsakyti</string>
@@ -2166,6 +2169,7 @@
   <string name="preferences__advanced_pin_settings">Išplėstiniai PIN kodo nustatymai</string>
   <string name="preferences__free_private_messages_and_calls">Nemokamos privačios žinutės ir skambučiai Signal naudotojams</string>
   <string name="preferences__submit_debug_log">Pateikti derinimo žurnalą</string>
+  <string name="preferences__delete_account">Ištrinti paskyrą</string>
   <string name="preferences__support_wifi_calling">„Wi-Fi skambučių“ suderinamumo veiksena</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Įjunkite, jeigu jūsų įrenginys siunčia SMS/MMS per belaidį (WiFi) tinklą (įjunkite tik tuo atveju, jeigu jūsų įrenginyje yra aktyvuota „WiFi skambučių“ funkcija)</string>
   <string name="preferences__incognito_keyboard">Inkognito klaviatūra</string>
@@ -2709,5 +2713,16 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ir dar %3$d žmonės(-ių) išėjo</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Jūs (kitame įrenginyje)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (kitame įrenginyje)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__no_country_code">Nenurodytas joks šalies kodas</string>
+  <string name="DeleteAccountFragment__no_number">Nenurodytas joks numeris</string>
+  <string name="DeleteAccountFragment__the_phone_number">Jūsų įvestas telefono numeris nesutampa su jūsų paskyros telefono numeriu.</string>
+  <string name="DeleteAccountFragment__are_you_sure">Ar tikrai norite ištrinti savo paskyrą?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tai ištrins jūsų Signal paskyrą ir atstatys programėlę. Užbaigus šį procesą, programėlė bus užverta.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Nepavyko ištrinti paskyros. Ar esate prisijungę prie tinklo?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepavyko ištrinti vietinių duomenų. Galite rankiniu būdu juos ištrinti sisteminiuose programėlės nustatymuose.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Paleisti programėlės nustatymus</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Ieškoti šalių</string>
   <!--EOF-->
 </resources>

@@ -1156,6 +1156,8 @@
   <string name="WebRtcCallView__signal_video_call">Signal 視訊電話…</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
   <string name="WebRtcCallView__join_call">加入通話</string>
+  <string name="WebRtcCallView__call_is_full">通話人數已滿</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">此通話已達到最大參加人數%1$d 人。 稍後再試。</string>
   <string name="WebRtcCallView__s_group_call">「%1$s」群組通話</string>
   <string name="WebRtcCallView__view_participants_list">查看參與者</string>
   <string name="WebRtcCallView__your_video_is_off">你的視訊已關閉</string>
@@ -1489,6 +1491,7 @@
   <string name="WebRtcCallScreen_new_safety_number_title">新的安全碼</string>
   <string name="WebRtcCallScreen_accept">接受</string>
   <string name="WebRtcCallScreen_end_call">結束通話</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">向上滑動即可變更顯示</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">拒絕</string>
   <string name="WebRtcCallScreen__answer">接聽</string>
@@ -1935,6 +1938,7 @@
   <string name="preferences__advanced_pin_settings">進階PIN碼設定</string>
   <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至 Signal 使用者</string>
   <string name="preferences__submit_debug_log">送出偵錯日誌</string>
+  <string name="preferences__delete_account">刪除帳號</string>
   <string name="preferences__support_wifi_calling">\"WiFi 呼叫\"相容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的裝置使用 WiFi 傳送簡訊或多媒體訊息，請啟用此選項 (僅當\"WiFi 語音呼叫\"在您的裝置上啟用的時候才可用)</string>
   <string name="preferences__incognito_keyboard">隱私鍵盤</string>
@@ -2451,5 +2455,22 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s 和 %3$d 及其他人已離開</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">你 (在其他的裝置上)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (在另一台裝置上)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">刪除你的帳戶將：</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">輸入你的電話號碼</string>
+  <string name="DeleteAccountFragment__delete_account">刪除帳號</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">刪除你的帳號資訊和個人資料照片</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">刪除所有訊息</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">從所有Signal 群組中刪除你</string> -->
+  <string name="DeleteAccountFragment__no_country_code">未指定國家/地區代碼</string>
+  <string name="DeleteAccountFragment__no_number">未指定號碼</string>
+  <string name="DeleteAccountFragment__the_phone_number">你輸入的電話號碼與你的帳號不符合。</string>
+  <string name="DeleteAccountFragment__are_you_sure">你確定要刪除你的帳號嗎？</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">這將刪除你的Signal帳號並重置應用程式。 該過程完成後，該應用程式將關閉。</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">無法刪除帳號。你有連接網路嗎？</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">刪除資料失敗。你可以在系統應用程式設定中手動清除。</string>
+  <string name="DeleteAccountFragment__launch_app_settings">啟動應用程式設定</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">搜索國家</string>
   <!--EOF-->
 </resources>

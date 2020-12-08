@@ -1281,6 +1281,7 @@
   <string name="WebRtcCallView__signal_video_call">Signal videopoziv…</string>
   <string name="WebRtcCallView__start_call">Nazovi</string>
   <string name="WebRtcCallView__join_call">Pridruži se pozivu</string>
+  <string name="WebRtcCallView__call_is_full">Poziv je popunjen</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" grupni poziv</string>
   <string name="WebRtcCallView__view_participants_list">Vidi učesnike</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš videoprikaz je isključen</string>
@@ -2624,5 +2625,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d drugih su otišli</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugom uređaju)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na drugom uređaju)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Da li ste sigurni da želite izbrisati vaš račun?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

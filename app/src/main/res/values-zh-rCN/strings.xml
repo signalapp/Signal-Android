@@ -2414,5 +2414,8 @@
   <string name="ReviewCard__recently_changed">最近更改了其用户名 %1$s 为 %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">您（其它设备）</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">您确定要删除您的账号吗？</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

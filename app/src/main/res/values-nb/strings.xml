@@ -468,6 +468,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Deaktiver</string>
   <!--LinkPreviewView-->
+  <string name="LinkPreviewView_this_group_link_is_not_active">Denne gruppelenken er ikke aktiv</string>
   <!--LinkPreviewRepository-->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_pending_group_invites">Ventende gruppeinvitasjoner</string>
@@ -477,6 +478,7 @@
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ingen ventende invitasjoner fra andre gruppemedlemmer.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Detaljer om personer invitert av andre gruppemedlemmer vises ikke. Om inviterte velger å bli med i gruppen vil dette ble delt med gruppen. De vil ikke se meldinger i gruppen, før de eventuelt blir med.</string>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_explanation">Folk på denne listen forsøker å bli medlem i denne gruppen via gruppelenken.</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Ferdig</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denne personen kan ikke legges til \"legacy\" grupper.</string>
@@ -504,6 +506,7 @@
   <string name="ManageGroupActivity_disappearing_messages">Forsvinnende meldinger</string>
   <string name="ManageGroupActivity_add_members">Legg til medlemmer</string>
   <string name="ManageGroupActivity_edit_group_info">Rediger gruppe info</string>
+  <string name="ManageGroupActivity_group_link">Gruppelenke</string>
   <string name="ManageGroupActivity_block_group">Blokker gruppen</string>
   <string name="ManageGroupActivity_unblock_group">Fjern blokkering av gruppen</string>
   <string name="ManageGroupActivity_leave_group">Forlat gruppe</string>
@@ -524,6 +527,9 @@
     <item quantity="one">%d medlem lagt til.</item>
     <item quantity="other">%d medlemmer lagt til.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Bare administratorer kan aktivere eller deaktivere den delbare gruppelenken.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Kun administratorer kan skru av eller på innstillingen for å godkjenne nye medlemmer.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Bare administratorer kan resette den delbare gruppelenken.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har ikke rettigheter for å gjøre dette</string>
   <string name="ManageGroupActivity_not_capable">Noen du la til har ikke støtte for nye grupper og må oppdatere Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Gruppeoppdatering feilet</string>
@@ -576,11 +582,15 @@
   <string name="CustomNotificationsDialogFragment__disabled">Deaktivert</string>
   <string name="CustomNotificationsDialogFragment__default">Forvalgt</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Delbar gruppelenke</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Gruppelenke</string>
   <string name="ShareableGroupLinkDialogFragment__share">Del</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Godkjenn nye medlemmer</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Aktivert</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Deaktivert</string>
   <string name="ShareableGroupLinkDialogFragment__default">Forvalgt</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Krev administratorgodkjenning for nye medlemmer som blir med via gruppelinken.</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Resett gruppelenke</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Krev administratorgodkjenning for nye medlemmer som blir med via gruppelenken.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Er du sikker på at du vil tilbakestille gruppelenken? Folk vil ikke lenger kunne bli med i gruppen ved hjelp av den nåværende lenken.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Folk som skanner denne koden vil være i stand til å bli med i gruppen din. Administratorer vil fremdeles trenge å godkjenne nye medlemmer om denne opsjonen er påslått.</string>
@@ -588,9 +598,16 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_join">Bli med</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Det oppstod en nettverksfeil.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denne gruppelenken er ikke aktiv</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ønsker du å bli medlem i denne gruppen samt dele navnet og bildet ditt med medlemmene?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administrator for gruppen må godkjenne forespørselen din før du kan bli med. Når du ber om å få bli med deles ditt navn og bilde med gruppemedlemmene.</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppelenker kommer snart</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Oppdater Signal for å bruke gruppelenker</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versjonen av Signal du bruker støtter ikke denne gruppelenken. Oppdater til siste versjon for å bli med i gruppen via lenke.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flere av dine koblede enheter kjøre en versjon av Signal som ikke støtter gruppelenker. Oppdater Signal på alle koblede enheter for å bli med i gruppen.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelenken er ikke gyldig</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">Legg til</string>
   <string name="RequestConfirmationDialog_deny">Avslå</string>
@@ -733,9 +750,9 @@
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du deaktiverte forsvinnende meldinger.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s deaktiverte forsvinnende meldinger.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satt utløpstid for meldinger til %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satt utløpstiden for meldinger til %2$s.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Utløpstid for meldinger er blit satt til %1$s.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte utløpstid for meldinger til %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satte utløpstiden for meldinger til %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Utløpstid for meldinger er blitt satt til %1$s.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s byttet profilnavnet sitt til %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s byttet profilnavnet sitt fra %2$s til %3$s.</string>
@@ -820,15 +837,34 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du slo på gruppelenken med administrativ godkjenning avslått.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du slo på gruppelenken med administrativ godkjenning skrudd på.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Du slo av gruppelenken.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s slo på gruppelenken med administrativ godkjenning avslått.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s slo på gruppelenken med administrativ godkjenning påslått.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s slo av gruppelenken.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Denne gruppelenken ble slått på med administrativ godkjenning avslått.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Denne gruppelenken ble slått på med administrativ godkjenning påslått.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Denne gruppelenken ble slått av.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du skrudde av administrativ godkjenning for gruppelenken.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s skrudde av administrativ godkjenning for gruppelenken.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Administrativ godkjenning for gruppelenken ble skrudd av.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du skrudde på administrativ godkjenning for gruppelenken.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s skrudde på administrativ godkjenning for gruppelenken.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Administrativ godkjenning for gruppelenken ble skrudd på.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du resatte gruppelenken.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s resatte gruppelenken.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Gruppelenken ble resatt.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du ble medlem i gruppen via gruppelinken.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du ble medlem i gruppen via gruppelenken.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s ble med i gruppen via gruppelenken.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du sendte en forespørsel om å bli med i gruppen.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ba om å bli medlem via gruppelenken.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s godtok forespørselen din om å bli medlem i gruppen.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s godkjente en forespørsel om å bli med i gruppen fra %2$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Du godkjente en forespørsel om å bli med i gruppen fra %1$s.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Forespørselen din om å bli med i gruppen ble godkjent.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">En forespørsel fra %1$s om å bli med i gruppen ble godkjent.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du kansellerte forespørselen din om å bli med i gruppen.</string>
   <!--End of GV2 specific update messages-->
@@ -2134,6 +2170,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavle</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
+  <string name="GroupRecipientListItem_approve_description">Godkjenn</string>
   <string name="GroupRecipientListItem_deny_description">Avslå</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Legacy vs nye grupper</string>
@@ -2159,5 +2196,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ReviewCard__delete">Slett</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Deg (på en annen enhet)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Er du sikker på at du vil slette kontoen din?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

@@ -1343,6 +1343,7 @@
   <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal…</string>
   <string name="WebRtcCallView__start_call">התחל שיחה</string>
   <string name="WebRtcCallView__join_call">הצטרף לשיחה</string>
+  <string name="WebRtcCallView__call_is_full">השיחה מלאה</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" שיחה קבוצתית</string>
   <string name="WebRtcCallView__view_participants_list">הצג משתתפים</string>
   <string name="WebRtcCallView__your_video_is_off">הוידאו שלך כבוי</string>
@@ -2709,5 +2710,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ועוד %3$d אחרים עזבו</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">את/ה (במכשיר אחר)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (במכשיר אחר)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">האם אתה בטוח שאתה רוצה למחוק את החשבון שלך?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

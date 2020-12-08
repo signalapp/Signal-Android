@@ -2348,5 +2348,8 @@
   <string name="ReviewCard__block">Blokeeri</string>
   <string name="ReviewCard__delete">Kustuta</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Kas sa tõesti soovid enda kontot kustutada?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

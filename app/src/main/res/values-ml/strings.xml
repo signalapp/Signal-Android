@@ -5,7 +5,7 @@
   <string name="delete">ഇല്ലാതാക്കുക </string>
   <string name="please_wait">കാത്തിരിക്കൂ…</string>
   <string name="save">സംരക്ഷിക്കുക</string>
-  <string name="note_to_self">സ്വന്തം കുറിപ്പുകൾ</string>
+  <string name="note_to_self">സ്വയം കുറിപ്പ്</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">പുതിയ സന്ദേശം</string>
   <!--AlbumThumbnailView-->
@@ -1218,6 +1218,7 @@
   <string name="WebRtcCallView__signal_video_call">സിഗ്നൽ വീഡിയോ കോൾ…</string>
   <string name="WebRtcCallView__start_call">കോൾ ആരംഭിക്കുക</string>
   <string name="WebRtcCallView__join_call">കോളിൽ ചേരുക</string>
+  <string name="WebRtcCallView__call_is_full">കോൾ നിറഞ്ഞു</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" ഗ്രൂപ്പ് കോൾ</string>
   <string name="WebRtcCallView__view_participants_list">പങ്കെടുക്കുന്നവരെ കാണുക</string>
   <string name="WebRtcCallView__your_video_is_off">നിങ്ങളുടെ വീഡിയോ ഓഫാണ്</string>
@@ -2007,6 +2008,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__advanced_pin_settings">വിപുലമായ പിൻ ക്രമീകരണങ്ങൾ</string>
   <string name="preferences__free_private_messages_and_calls">സിഗ്നൽ ഉപയോക്താക്കൾക്ക് സൗജന്യ സ്വകാര്യ സന്ദേശങ്ങളും കോളുകളും</string>
   <string name="preferences__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
+  <string name="preferences__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കുക</string>
   <string name="preferences__support_wifi_calling">\'WiFi കോളിംഗ്\' അനുയോജ്യത മോഡ്</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">നിങ്ങളുടെ ഉപകരണം WiFi വഴി SMS/MMS ഡെലിവറി ഉപയോഗിക്കുന്നുവെങ്കിൽ പ്രവർത്തനക്ഷമമാക്കുക (നിങ്ങളുടെ ഉപകരണത്തിൽ \'WiFi കോളിംഗ്\' പ്രവർത്തനക്ഷമമാക്കിയാൽ മാത്രം പ്രവർത്തനക്ഷമമാക്കുക)</string>
   <string name="preferences__incognito_keyboard">ഇൻകോഗ്നിറ്റോ കീബോർഡ്</string>
@@ -2533,5 +2535,13 @@ grūpp ap‌ḍē</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s-ഉം, %2$s-ഉം  %3$d-ഉം  മറ്റുള്ളവരും ഇറങ്ങി പോയിട്ടുണ്ട്</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">നിങ്ങൾ (മറ്റൊരു ഉപകരണത്തിൽ)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
+  <string name="DeleteAccountFragment__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കുക</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">നിങ്ങളുടെ സന്ദേശങ്ങൾ എല്ലാം ഇല്ലാതാക്കുക</string>
+  <string name="DeleteAccountFragment__no_country_code">രാജ്യ കോഡുകളൊന്നും വ്യക്തമാക്കിയിട്ടില്ല</string>
+  <string name="DeleteAccountFragment__are_you_sure">നിങ്ങൾക്ക് നിങ്ങളുടെ അക്കൌണ്ട് ഡിലീറ്റ് ചെയ്യണം എന്നത് ഉറപ്പാണോ?</string>
+  <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">രാജ്യങ്ങൾ തിരയുക</string>
   <!--EOF-->
 </resources>

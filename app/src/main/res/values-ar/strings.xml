@@ -2452,5 +2452,8 @@
   <string name="ReviewCard__block">حظر</string>
   <string name="ReviewCard__delete">حذف</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">هل أنت متأكد من أنك تريد حذف حسابك؟</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

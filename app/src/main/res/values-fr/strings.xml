@@ -1217,6 +1217,7 @@
   <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
   <string name="WebRtcCallView__start_call">Lancer un appel</string>
   <string name="WebRtcCallView__join_call">Me joindre à l’appel</string>
+  <string name="WebRtcCallView__call_is_full">L’appel est complet</string>
   <string name="WebRtcCallView__s_group_call">Appel de groupe « %1$s »</string>
   <string name="WebRtcCallView__view_participants_list">Afficher les participants</string>
   <string name="WebRtcCallView__your_video_is_off">La vidéo est désactivée</string>
@@ -2512,5 +2513,8 @@
   <string name="ReviewCard__recently_changed">%1$s a récemment changé le nom de son profil en %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vous (sur un autre appareil)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">Voulez-vous vraiment supprimer votre compte ?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

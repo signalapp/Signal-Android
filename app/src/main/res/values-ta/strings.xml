@@ -1219,6 +1219,7 @@
   <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு…</string>
   <string name="WebRtcCallView__start_call">அழைப்பைத் தொடங்கு</string>
   <string name="WebRtcCallView__join_call">அழைப்பில் சேர்</string>
+  <string name="WebRtcCallView__call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\"  குழு அழைப்பு</string>
   <string name="WebRtcCallView__view_participants_list">பங்கேற்பாளர்களைக் காண்க</string>
   <string name="WebRtcCallView__your_video_is_off">உங்கள் வீடியோ முடக்கப்பட்டுள்ளது</string>
@@ -2538,5 +2539,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s and மேலும்%3$d வெளியேறினர்</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">நீங்கள் (மற்றொரு சாதனத்தில்)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">உங்கள் கணக்கு நீக்க விரும்புகிறீர்களா?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>

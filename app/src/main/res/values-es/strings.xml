@@ -1219,6 +1219,7 @@
   <string name="WebRtcCallView__signal_video_call">Vídeollamada de Signal …</string>
   <string name="WebRtcCallView__start_call">Iniciar llamada</string>
   <string name="WebRtcCallView__join_call">Unirse</string>
+  <string name="WebRtcCallView__call_is_full">La llamada está llena</string>
   <string name="WebRtcCallView__s_group_call">«%1$s» llamada en grupo</string>
   <string name="WebRtcCallView__view_participants_list">Ver participantes</string>
   <string name="WebRtcCallView__your_video_is_off">Tu vídeo está desactivado</string>
@@ -2540,5 +2541,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s y %3$d más han abandonado</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tú (en otro dispositivo)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (en otro dispositivo)</string>
+  <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__are_you_sure">¿Estás segur@ de querer eliminar tu cuenta?</string>
+  <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->
 </resources>
