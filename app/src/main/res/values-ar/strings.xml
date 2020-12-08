@@ -265,6 +265,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">للاتصال ب%1$s يحتاج Signal الوصول إلى ميكروفونك.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">للاتصال ب%1$s يحتاج Signal الوصول إلى ميكروفونك وكاميرتك.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">ثمة خيارات إضافية الآن في \"إعدادات المجموعة\"</string>
+  <string name="ConversationActivity_join">انضم</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">%d رسالة غير مقروءة</item>
@@ -1185,6 +1186,8 @@
   <string name="WebRtcCallView__disconnected">غير متّصل</string>
   <string name="WebRtcCallView__no_one_else_is_here">لا يوجد أحد هنا</string>
   <!--CallParticipantsListDialog-->
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">معلومات أخرى</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك</string>
@@ -2448,5 +2451,6 @@
   <string name="ReviewCard__remove_from_group">أزل من المجموعة</string>
   <string name="ReviewCard__block">حظر</string>
   <string name="ReviewCard__delete">حذف</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
   <!--EOF-->
 </resources>

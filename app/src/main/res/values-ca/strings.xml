@@ -256,6 +256,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Per trucar a %1$s, el Signal necessita accés al micròfon.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Per trucar a %1$s, el Signal necessita accés al micròfon i a la càmera.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Ara hi ha més opcions a la configuració del grup.</string>
+  <string name="ConversationActivity_join">Afegeix-m\'hi</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -666,7 +667,6 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Aquest és un grup de llegat. Per accedir a funcions noves com ara les @mencions i als administradors,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Aquest grup de llegat no es pot actualitzar a un grup nou perquè és massa gros. La mida màxima d\'un grup és %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">actualitzeu aquest grup.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Aquest és un grup d\'MMS no segur. Per conversar privadament i accedir a funcions com ara els noms de grup, convideu els contactes al Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convida ara</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifica\'m les mencions</string>
@@ -1235,6 +1235,8 @@
     <item quantity="one">En aquesta trucada · %1$d persona</item>
     <item quantity="other">En aquesta trucada · %1$d persones</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Més informació</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Seleccioneu el país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Heu d\'especificar el
@@ -1652,6 +1654,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_learn_more">Més informació</string>
   <string name="ConversationUpdateItem_join_call">Afegeix-me a la trucada</string>
   <string name="ConversationUpdateItem_return_to_call">Torna a la trucada</string>
+  <string name="ConversationUpdateItem_call_is_full">La trucada és plena</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
@@ -1670,6 +1673,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="safety_number_change_dialog__safety_number_changes">Canvis en el número de seguretat</string>
   <string name="safety_number_change_dialog__send_anyway">Envia\'l tanmateix</string>
   <string name="safety_number_change_dialog__call_anyway">Truca-li tanmateix</string>
+  <string name="safety_number_change_dialog__join_call">Afegeix-me a la trucada</string>
+  <string name="safety_number_change_dialog__leave_call">Surt de la trucada</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Aquesta gent podria haver reinstallar o dispositius canviats. Comproveu vostre número de seguretat amb ells, per assegurar la privadesa.</string>
   <string name="safety_number_change_dialog__view">Mostra</string>
   <string name="safety_number_change_dialog__previous_verified">Verificat prèviament</string>
@@ -2508,5 +2513,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ReviewCard__block">Bloca</string>
   <string name="ReviewCard__delete">Suprimeix</string>
   <string name="ReviewCard__recently_changed">Recentment han canviat el nom del perfil de %1$s a %2$s.</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vós (en un altre dispositiu)</string>
   <!--EOF-->
 </resources>

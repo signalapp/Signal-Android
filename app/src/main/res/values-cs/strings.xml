@@ -262,6 +262,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal potřebuje přístup k vašemu mikrofonu, pro volání %1$s</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal potřebuje přístup k vašemu mikrofonu a fotoaparátu, pro volání %1$s.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Více možností nyní v \"Nastavení skupiny\"</string>
+  <string name="ConversationActivity_join">Připojit</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepřečtená zpráva</item>
@@ -740,7 +741,6 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Toto je starší verze skupiny. Pro přístup k novým funkcím jako @zmínky a správci,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Tuto starší verzi skupiny nelze aktualizovat na novou skupinu, protože je příliš velká. Maximální velikost skupiny je %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">Aktualizovat tuto skupinu.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nezabezpečená MMS skupina. Chcete-li komunikovat soukromě a mít přístup k funkcím jako jsou názvy skupin, pozvěte své kontakty do Signalu.</string>
   <string name="ManageGroupActivity_invite_now">Pozvat nyní</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky.</string>
@@ -1363,6 +1363,8 @@
     <item quantity="many">V tomto hovoru - %1$d lidi</item>
     <item quantity="other">V tomto hovoru - %1$d lidí</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Více informací</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zadejte kód
@@ -1793,6 +1795,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConversationUpdateItem_learn_more">Zjistit více</string>
   <string name="ConversationUpdateItem_join_call">Připojit se k hovoru</string>
   <string name="ConversationUpdateItem_return_to_call">Vrátit se k hovoru</string>
+  <string name="ConversationUpdateItem_call_is_full">Hovor je plný</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spustit … Pozastavit</string>
   <string name="audio_view__download_accessibility_description">Stáhnout</string>
@@ -1811,6 +1814,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="safety_number_change_dialog__safety_number_changes">Změny bezpečnostního čísla</string>
   <string name="safety_number_change_dialog__send_anyway">Přesto poslat</string>
   <string name="safety_number_change_dialog__call_anyway">Přesto zavolat</string>
+  <string name="safety_number_change_dialog__join_call">Připojit se k hovoru</string>
+  <string name="safety_number_change_dialog__leave_call">Opustit hovor</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Následující lidé možná přeinstalovali nebo změnili zařízení. Ověřte s nimi své bezpečnostní číslo pro zajištění soukromí.</string>
   <string name="safety_number_change_dialog__view">Zobrazit</string>
   <string name="safety_number_change_dialog__previous_verified">Předchozí ověřeno</string>
@@ -2683,5 +2688,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ReviewCard__block">Zablokovat</string>
   <string name="ReviewCard__delete">Smazat</string>
   <string name="ReviewCard__recently_changed">Nedávno změněno profilové jméno z %1$s na %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vy (na jiném zařízení)</string>
   <!--EOF-->
 </resources>

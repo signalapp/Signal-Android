@@ -256,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Por telefoni %1$s, Signal bezonas aliron al via mikrofono</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Por telefoni %1$s, Signal bezonas aliron al via mikrofono kaj fotilo.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Pli da elektoj nun en „Grup-agordoj“</string>
+  <string name="ConversationActivity_join">Aniĝi</string>
+  <string name="ConversationActivity_full">Plena</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nelegita mesaĝo</item>
@@ -666,7 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Tiu estas malnovtipa grupo. Por uzi eblojn (kiel grupadministrantojn kaj @menciojn),</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Jena malnovtipa grupo ne povas ĝisdatiĝi pro troa grandeco. Maksimuma grupgrando estas %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">ĝisdatigu tiun ĉi grupon.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tio estas nesekura MMS-grupo. Por mesaĝi private kaj uzi eblojn kiel grupnomon, invitu viajn kontaktojn al uzo de Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Tio estas nesekura MMS-grupo. Por mesaĝi private, invitu viajn kontaktojn al Signal.</string>
   <string name="ManageGroupActivity_invite_now">Inviti nun</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Sciigi al mi pri mencioj</string>
@@ -1236,6 +1238,13 @@
     <item quantity="one">En tiu ĉi alvoko ⋅ %1$d homo</item>
     <item quantity="other">En tiu ĉi alvoko ⋅ %1$d homoj</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s estas blokata.</string>
+  <string name="CallParticipantView__more_info">Pli da informoj</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Vi ne ricevos ilian sonon aŭ videon, kaj ili ne ricevos viajn.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Sono kaj video el %1$s ne riceveblas</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Sono kaj video el %1$s ne riceveblas</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Eble ili ne kontrolis vian ŝanĝon de sekuriga numero, aŭ estas problemo ĉe ilia aparato, aŭ ili blokis vin.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Elektu vian landon</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vi devas specifi vian
@@ -1541,6 +1550,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Respondita per ligita aparato.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Malakceptita per ligita aparato.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Okupita ĉe ligita aparato.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Iu eniris tiun ĉi alvokon uzante sekurigan numeron, kiu ŝanĝiĝis.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Via sekuriga numero pro via interparolo kun %1$s ŝanĝiĝis. Tio povas aŭ signifi, ke iu provas interkapti viajn komunikojn, aŭ ke %2$s simple reinstalis Signal-on.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vi certe volos kontroli vian sekurigan numeron kun ĉi tiu kontakto.</string>
@@ -1657,6 +1667,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConversationUpdateItem_learn_more">Scii pli</string>
   <string name="ConversationUpdateItem_join_call">Eniri la alvokon</string>
   <string name="ConversationUpdateItem_return_to_call">Reiri al la alvoko</string>
+  <string name="ConversationUpdateItem_call_is_full">La alvoko plenas</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Ludi … Paŭzigi</string>
   <string name="audio_view__download_accessibility_description">Elŝuti</string>
@@ -1675,6 +1686,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="safety_number_change_dialog__safety_number_changes">Ŝanĝoj pri la sekuriga numero</string>
   <string name="safety_number_change_dialog__send_anyway">Tamen sendi</string>
   <string name="safety_number_change_dialog__call_anyway">Tamen alvoki</string>
+  <string name="safety_number_change_dialog__join_call">Eniri la alvokon</string>
+  <string name="safety_number_change_dialog__continue_call">Daŭrigi la alvokon</string>
+  <string name="safety_number_change_dialog__leave_call">Forlasi la alvokon</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">La jenaj homoj eble restarigis aŭ ŝanĝis iliajn aparatojn. Kontrolu vian sekurigan numeron kun ili por certigi vian privatecon.</string>
   <string name="safety_number_change_dialog__view">Montri pli</string>
   <string name="safety_number_change_dialog__previous_verified">Antaŭe kontrolita</string>
@@ -2513,5 +2527,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ReviewCard__block">Bloki</string>
   <string name="ReviewCard__delete">Forigi</string>
   <string name="ReviewCard__recently_changed">Ŝanĝis sian profilnomon de %1$s al %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s eniris</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s kaj %2$s eniris</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s kaj %3$s eniris</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s kaj %3$d aliaj eniris</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s eliris</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s kaj %2$s eliris</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s kaj %3$s eliris</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s kaj %3$d aliaj eliris</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (ĉe alia aparato)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ĉe alia aparato)</string>
   <!--EOF-->
 </resources>

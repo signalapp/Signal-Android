@@ -261,6 +261,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pre volanie %1$s potrebuje Signal prístup k vášmu mikrofónu</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pre volanie %1$s potrebuje Signal prístup k vášmu mikrofónu a vašej kamere.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Viac nových možností v sekcii \"Nastavenia skupiny\"</string>
+  <string name="ConversationActivity_join">Pridať sa</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
@@ -716,7 +717,6 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Toto je Zastaraná skupina. Pre prístup k novým funkciám ako @spomenutia a administrátori</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Táto Zastaraná skupina nemôže byť modernizovaná na Novú skupinu, lebo je príliš veľká. Maximálna veľkosť skupiny je %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">modernizujte túto skupinu.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nezabezpečená MMS skupina. Ak si chcete dopisovať súkromne a mať prístup k funkciám ako názvy skupín, pozvite svoje kontakty do aplikácie Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozvať teraz</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozorni ma na Spomenutia</string>
@@ -1302,6 +1302,8 @@
     <item quantity="many">V tomto hovore · %1$d ľudí</item>
     <item quantity="other">V tomto hovore · %1$d ľudí</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Viac informácii</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vyberte svoju krajinu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Musíte zadať
@@ -2617,5 +2619,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ReviewCard__block">Blokovať</string>
   <string name="ReviewCard__delete">Vymazať</string>
   <string name="ReviewCard__recently_changed">Nedávno zmenil/a názov svojho profilu z %1$s na %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vy (na inom zariadení)</string>
   <!--EOF-->
 </resources>

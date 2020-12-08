@@ -253,6 +253,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal vajab kasutajale %1$s helistamiseks juurdepääsu seadme mikrofonile</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal vajab kasutajale %1$s helistamiseks ligipääsu seadme kaamerale ja mikrofonile.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">\"Grupi seadetes\" on nüüd rohkem valikuid</string>
+  <string name="ConversationActivity_join">Liitu</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lugemata sõnum</item>
@@ -1111,6 +1112,8 @@
     <item quantity="one">Selles kõnes · %1$d inimene</item>
     <item quantity="other">Selles kõnes · %1$d inimest</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Rohkem infot</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vali oma riik</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Sa pead määrama
@@ -1543,6 +1546,7 @@
   <string name="safety_number_change_dialog__safety_number_changes">Turvanumbri muudatused</string>
   <string name="safety_number_change_dialog__send_anyway">Saada siiski</string>
   <string name="safety_number_change_dialog__call_anyway">Helista siisk</string>
+  <string name="safety_number_change_dialog__join_call">Liitu kõnega</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Need inimised on võibolla rakendust reinstallinud või seadet vahetanud. Privaatsuse kindlustamiseks kontrolli nendega turvanumbrit.</string>
   <string name="safety_number_change_dialog__view">Näita</string>
   <string name="safety_number_change_dialog__previous_verified">Eelnevalt kinnitatud</string>
@@ -2343,5 +2347,6 @@
   <string name="ReviewCard__update_contact">Uuendatud kontakt</string>
   <string name="ReviewCard__block">Blokeeri</string>
   <string name="ReviewCard__delete">Kustuta</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
   <!--EOF-->
 </resources>

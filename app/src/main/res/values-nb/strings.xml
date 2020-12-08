@@ -250,6 +250,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal trenger tilgang til mikrofonen din for å ringe %1$s</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal trenger tilgang til mikrofon og kamera for å ringe %1$s.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Flere valg er nå tilgjengelig i \"Gruppeinnstillinger\".</string>
+  <string name="ConversationActivity_join">Bli med</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulest melding</item>
@@ -975,6 +976,8 @@
   <string name="WebRtcCallView__disconnected">Koplet fra</string>
   <string name="WebRtcCallView__no_one_else_is_here">Ingen andre er her</string>
   <!--CallParticipantsListDialog-->
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Mer informasjon</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Velg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgi
@@ -2154,5 +2157,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ReviewCard__remove_from_group">Fjern fra gruppen</string>
   <string name="ReviewCard__block">Blokker</string>
   <string name="ReviewCard__delete">Slett</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Deg (på en annen enhet)</string>
   <!--EOF-->
 </resources>

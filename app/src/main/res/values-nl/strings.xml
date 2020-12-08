@@ -257,6 +257,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal heeft toegang nodig tot je microfoon en camera om %1$s te bellen.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsinstellingen’</string>
+  <string name="ConversationActivity_join">Deelnemen</string>
+  <string name="ConversationActivity_full">Vol</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -1238,6 +1240,13 @@
     <item quantity="one">In deze oproep · %1$d persoon</item>
     <item quantity="other">In deze oproep · %1$d personen</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s is geblokkeerd</string>
+  <string name="CallParticipantView__more_info">Meer informatie</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Je zult hen niet kunnen zien of horen en zij zullen jou niet kunnen zien of horen.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan geen beeld &amp; geluid van %1$s ontvangen</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan geen beeld en geluid van %1$s ontvangen</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan gebeuren als je jullie veiligheidsnummer niet opnieuw hebt geverifieerd nadat die is veranderd, als er een probleem is met je apparaat of als hij of zij jou heeft geblokkeerd.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet jouw
@@ -1546,6 +1555,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Beantwoord vanaf een gekoppeld apparaat.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Geweigerd vanaf een gekoppeld apparaat.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Bezet omdat je al een gesprek voerde via een van je gekoppelde apparaten.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Iemand neemt nu deel aan het gesprek met een veiligheidsnummer dat is veranderd.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Het wordt aanbevolen de veiligheidsnummers met deze contactpersoon te verifiëren.</string>
@@ -1662,6 +1672,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationUpdateItem_learn_more">Meer leren hierover</string>
   <string name="ConversationUpdateItem_join_call">Aan oproep deelnemen</string>
   <string name="ConversationUpdateItem_return_to_call">Naar de oproep terugkeren</string>
+  <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -1680,6 +1691,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="safety_number_change_dialog__safety_number_changes">Veiligheidsnummer(s) veranderd</string>
   <string name="safety_number_change_dialog__send_anyway">Toch verzenden</string>
   <string name="safety_number_change_dialog__call_anyway">Toch bellen</string>
+  <string name="safety_number_change_dialog__join_call">Aan oproep deelnemen</string>
+  <string name="safety_number_change_dialog__continue_call">Oproep voortzetten</string>
+  <string name="safety_number_change_dialog__leave_call">Oproep verlaten</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">De volgende personen hebben mogelijk de app opnieuw geïnstalleerd of hebben een ander apparaat in gebruik genomen. Verifieer jullie veiligheidsnummers om zeker te zijn dat je met de juiste personen communiceert.</string>
   <string name="safety_number_change_dialog__view">Weergeven</string>
   <string name="safety_number_change_dialog__previous_verified">Was voorheen geverifieerd</string>
@@ -2520,5 +2534,16 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ReviewCard__block">Blokkeren</string>
   <string name="ReviewCard__delete">Wissen</string>
   <string name="ReviewCard__recently_changed">%1$s heeft recentelijk zijn of haar profielnaam naar %2$s gewijzigd.</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s neemt nu deel</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s en %2$s nemen nu deel</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s en %3$s nemen nu deel</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s en %3$d andere nemen nu deel</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s heeft de oproep verlaten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s en %2$s hebben de oproep verlaten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s en %3$s hebben de oproep verlaten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s en %3$d andere hebben de oproep verlaten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Jij (vanaf een ander apparaat)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (vanaf een ander apparaat)</string>
   <!--EOF-->
 </resources>

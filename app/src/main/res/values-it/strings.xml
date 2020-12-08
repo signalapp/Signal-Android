@@ -256,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Per chiamare %1$s, Signal necessita dell\'accesso al tuo microfono</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Per chiamare %1$s, Signal necessita dell\'accesso al tuo microfono e alla tua fotocamera.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Altre opzioni ora in \"Impostazioni gruppo\"</string>
+  <string name="ConversationActivity_join">Unisciti</string>
+  <string name="ConversationActivity_full">Piena</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>
@@ -666,7 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Questo è un Gruppo Legacy. Per accedere a nuove funzionalità come @menzioni e amministratori,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Questo Gruppo Legacy non può essere aggiornato a un Nuovo Gruppo perché è troppo grande. La dimensione massima del gruppo è %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">aggiorna questo gruppo.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Questo è un gruppo MMS non sicuro. Per chattare in privato e accedere a funzioni come i nomi dei gruppi, invita i tuoi contatti su Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Questo è un gruppo MMS non sicuro. Per chattare in privato, invita i tuoi contatti su Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invita ora</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificami per le menzioni</string>
@@ -682,7 +684,7 @@
   <string name="ManageRecipientActivity_chat_color">Colore chat</string>
   <string name="ManageRecipientActivity_block">Blocca</string>
   <string name="ManageRecipientActivity_unblock">Sblocca</string>
-  <string name="ManageRecipientActivity_view_safety_number">Mostra numero di sicurezza</string>
+  <string name="ManageRecipientActivity_view_safety_number">Mostra codice di sicurezza</string>
   <string name="ManageRecipientActivity_mute_notifications">Silenzia notifiche</string>
   <string name="ManageRecipientActivity_custom_notifications">Notifiche personalizzate</string>
   <string name="ManageRecipientActivity_until_s">Fino a %1$s</string>
@@ -1236,6 +1238,13 @@
     <item quantity="one">In questa chiamata · %1$d persona</item>
     <item quantity="other">In questa chiamata · %1$d persone</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s è bloccato</string>
+  <string name="CallParticipantView__more_info">Ulteriori informazioni</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Non riceverai il loro audio o video e loro non riceveranno il tuo.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Non è possibile ricevere audio &amp; video da %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Non è possibile ricevere audio e video da %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ciò potrebbe essere dovuto al fatto che non hanno verificato la modifica del codice di sicurezza, c\'è un problema con il loro dispositivo o ti hanno bloccato.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Seleziona il tuo paese</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">È necessario specificare il
@@ -1432,7 +1441,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Negli appunti non c\'è un codice di sicurezza da confrontare</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossibile scannerizzare i codici QR senza il permesso all\'uso della fotocamera</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">È necessario prima scambiarsi messaggi per poter visualizzare il numero di sicurezza di %1$s.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">È necessario prima scambiarsi messaggi per poter visualizzare il codice di sicurezza di %1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1542,6 +1551,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Hai risposto su un dispositivo collegato.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Hai rifiutato su un dispositivo collegato.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Occupato su un dispositivo collegato.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Qualcuno si è unito a questa chiamata con un codice di sicurezza che è cambiato.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Il codice di sicurezza per le tue conversazioni con %1$s è cambiato. Questo può significare che qualcuno sta provando ad intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Dovresti verificare il codice di sicurezza con questo contatto.</string>
@@ -1658,6 +1668,7 @@
   <string name="ConversationUpdateItem_learn_more">Scopri di più</string>
   <string name="ConversationUpdateItem_join_call">Unisciti alla chiamata</string>
   <string name="ConversationUpdateItem_return_to_call">Torna alla chiamata</string>
+  <string name="ConversationUpdateItem_call_is_full">La chiamata è piena</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Riproduci … Metti in pausa</string>
   <string name="audio_view__download_accessibility_description">Scarica</string>
@@ -1673,10 +1684,13 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Salta alla fine</string>
   <!--safety_number_change_dialog-->
-  <string name="safety_number_change_dialog__safety_number_changes">Modifiche al numero di sicurezza</string>
+  <string name="safety_number_change_dialog__safety_number_changes">Modifiche al codice di sicurezza</string>
   <string name="safety_number_change_dialog__send_anyway">Invia comunque</string>
   <string name="safety_number_change_dialog__call_anyway">Chiama comunque</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Le seguenti persone potrebbero aver reinstallato o cambiato i dispositivi. Verifica il tuo numero di sicurezza con loro per garantire la privacy.</string>
+  <string name="safety_number_change_dialog__join_call">Unisciti alla chiamata</string>
+  <string name="safety_number_change_dialog__continue_call">Continua chiamata</string>
+  <string name="safety_number_change_dialog__leave_call">Abbandona chiamata</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Le seguenti persone potrebbero aver reinstallato o cambiato i dispositivi. Verifica il tuo codice di sicurezza con loro per garantire la privacy.</string>
   <string name="safety_number_change_dialog__view">Mostra</string>
   <string name="safety_number_change_dialog__previous_verified">Verificato in precedenza</string>
   <!--country_selection_fragment-->
@@ -1839,7 +1853,7 @@
   <string name="message_details_recipient_header__not_sent">Non inviato</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Invio fallito</string>
-  <string name="message_details_recipient__new_safety_number">Nuovo numero di sicurezza</string>
+  <string name="message_details_recipient__new_safety_number">Nuovo codice di sicurezza</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Crea password</string>
   <string name="AndroidManifest__select_contacts">Seleziona contatti</string>
@@ -2447,7 +2461,7 @@
   <string name="RecipientBottomSheet_add_to_contacts">Aggiungi ai contatti</string>
   <string name="RecipientBottomSheet_add_to_a_group">Aggiungi a un gruppo</string>
   <string name="RecipientBottomSheet_add_to_another_group">Aggiungi a un altro gruppo</string>
-  <string name="RecipientBottomSheet_view_safety_number">Mostra numero di sicurezza</string>
+  <string name="RecipientBottomSheet_view_safety_number">Mostra codice di sicurezza</string>
   <string name="RecipientBottomSheet_make_group_admin">Rendi amministratore del gruppo</string>
   <string name="RecipientBottomSheet_remove_as_admin">Rimuovi come amministratore</string>
   <string name="RecipientBottomSheet_remove_from_group">Rimuovi dal gruppo</string>
@@ -2514,5 +2528,16 @@
   <string name="ReviewCard__block">Blocca</string>
   <string name="ReviewCard__delete">Elimina</string>
   <string name="ReviewCard__recently_changed">Ha recentemente cambiato il suo nome profilo da %1$s a %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s si è unito</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s e %2$s si sono uniti</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s e %3$s si sono uniti</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s e altri %3$d si sono uniti</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ha abbandonato</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s e %2$s hanno abbandonato</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s e %3$s hanno abbandonato</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e altri %3$d hanno abbandonato</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (su un altro dispositivo)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (su un altro dispositivo)</string>
   <!--EOF-->
 </resources>

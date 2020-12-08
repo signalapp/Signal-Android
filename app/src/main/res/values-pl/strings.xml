@@ -262,6 +262,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Aby zadzwonić do %1$s, Signal potrzebuje dostępu do mikrofonu</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Aby zadzwonić do %1$s, Signal potrzebuje dostępu do mikrofonu i aparatu.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Teraz więcej opcji w \"Ustawienia grupy\"</string>
+  <string name="ConversationActivity_join">Dołącz</string>
+  <string name="ConversationActivity_full">Pełne</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nieprzeczytana wiadomość</item>
@@ -740,7 +742,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">To Stara grupa. Aby móc korzystać z takich funkcji jak @wzmianki i administratorzy grup, </string>
   <string name="ManageGroupActivity_legacy_group_too_large">Ta Stara grupa nie może zostać zaktualizowana do Nowej grupy, ponieważ jest zbyt duża. Maksymalny rozmiar grupy to %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">zaktualizuj tę grupę.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To niezabezpieczona grupa MMS. Zaproś swoje kontakty do używania z Signal, aby korzystać z prywatnych rozmów i mieć dostęp do takich funkcji jak nazwy grup.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To niezabezpieczona grupa MMS. Zaproś swoje kontakty do używania z Signal, aby korzystać z prywatnych rozmów.</string>
   <string name="ManageGroupActivity_invite_now">Zaproś teraz</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Powiadom mnie o wzmiankach</string>
@@ -1363,6 +1365,13 @@
     <item quantity="many">W tej rozmowie · %1$d osób</item>
     <item quantity="other">W tej rozmowie · %1$d osoby</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s jest zablokowany(a)</string>
+  <string name="CallParticipantView__more_info">Więcej informacji</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Nie odbierzesz audio i wideo od tej osoby, a ona nie odbierze Twojego.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Nie można odebrać audio i wideo od %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nie można odebrać audio i wideo od %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">To może być spowodowane tym, że ta osoba nie zweryfikowała Twojego numeru bezpieczeństwa, problemu z urządzeniem, albo Cię zablokowała.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Wybierz swój kraj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Podaj kod telefoniczny kraju</string>
@@ -1666,6 +1675,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Odebrane na połączonym urządzeniu.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Odrzucone na połączonym urządzeniu.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Zajęte na połączonym urządzeniu.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Ktoś ze zmienionym numerem bezpieczeństwa dołączył do tej rozmowy.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numer bezpieczeństwa dla konwersacji z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub po prostu %2$s przeinstalował Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Możesz zweryfikować numer bezpieczeństwa dla tego kontaktu.</string>
@@ -1786,6 +1796,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationUpdateItem_learn_more">Dowiedz się więcej</string>
   <string name="ConversationUpdateItem_join_call">Dołącz do rozmowy</string>
   <string name="ConversationUpdateItem_return_to_call">Wróć do rozmowy</string>
+  <string name="ConversationUpdateItem_call_is_full">Połączenie jest pełne</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
@@ -1804,6 +1815,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="safety_number_change_dialog__safety_number_changes">Zmiany numeru bezpieczeństwa</string>
   <string name="safety_number_change_dialog__send_anyway">Wyślij mimo to</string>
   <string name="safety_number_change_dialog__call_anyway">Zadzwoń mimo to</string>
+  <string name="safety_number_change_dialog__join_call">Dołącz do rozmowy</string>
+  <string name="safety_number_change_dialog__continue_call">Kontynuuj rozmowę</string>
+  <string name="safety_number_change_dialog__leave_call">Opuść rozmowę</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Następujące osoby mogły ponownie zainstalować aplikację lub zmienić urządzenie. Zweryfikuj wasze numery bezpieczeństwa, aby zapewnić prywatność.</string>
   <string name="safety_number_change_dialog__view">Zobacz</string>
   <string name="safety_number_change_dialog__previous_verified">Wcześniej zweryfikowane</string>
@@ -2676,5 +2690,16 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ReviewCard__block">Zablokuj</string>
   <string name="ReviewCard__delete">Usuń</string>
   <string name="ReviewCard__recently_changed">Ostatnio zmienił(a) nazwę profilu z %1$s na %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s dołączył(a)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s i %2$s dołączyli(ły)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s i %3$s dołączyli(ły)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s i %3$d innych dołączyło</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s opuścił(a) rozmowę</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s i %2$s opuścii(ły) rozmowę</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s i %3$s opuścili(ły) rozmowę</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d innych opuściło rozmowę</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ty (na innym urządzeniu)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na innym urządzeniu)</string>
   <!--EOF-->
 </resources>

@@ -89,7 +89,7 @@
   <string name="BlockedUsersActivity__block">Blockera</string>
   <string name="BlockedUsersActivity__unblock_user">Avblockera användare?</string>
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Vill du avblockera \"%1$s\"?</string>
-  <string name="BlockedUsersActivity__unblock">Sluta blockera</string>
+  <string name="BlockedUsersActivity__unblock">Avblockera</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blockera och lämna %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blockera %1$s?</string>
@@ -98,8 +98,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppmedlemmar kommer att kunna lägga till dig i denna grupp igen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Du kommer att kunna meddela och ringa varandra och ditt namn och foto delas med dem.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blockerade personer kommer inte att kunna ringa eller skicka meddelanden till dig.</string>
-  <string name="BlockUnblockDialog_unblock_s">Sluta blockera %1$s?</string>
-  <string name="BlockUnblockDialog_unblock">Sluta blockera</string>
+  <string name="BlockUnblockDialog_unblock_s">Avblockera %1$s?</string>
+  <string name="BlockUnblockDialog_unblock">Avblockera</string>
   <string name="BlockUnblockDialog_block">Blockera</string>
   <string name="BlockUnblockDialog_block_and_leave">Blockera och lämna</string>
   <string name="BlockUnblockDialog_block_and_delete">Blockera och ta bort</string>
@@ -217,11 +217,11 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Låt oss använda Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Sluta blockera denna kontakt?</string>
-  <string name="ConversationActivity_unblock_this_group_question">Sluta blockera denna grupp?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Avblockera denna kontakt?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Avblockera denna grupp?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du kommer att kunna ta emot meddelanden och samtal från den här kontakten igen.</string>
   <string name="ConversationActivity_unblock_this_group_description">Befintliga medlemmar kommer att kunna lägga dig till gruppen igen.</string>
-  <string name="ConversationActivity_unblock">Sluta blockera</string>
+  <string name="ConversationActivity_unblock">Avblockera</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bilagan överskrider storleksgränserna för den typ av meddelande du skickar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera otillgänglig</string>
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
@@ -256,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">För att ringa %1$s behöver Signal åtkomst till din mikrofon</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">För att ringa %1$s behöver Signal åtkomst till din mikrofon och kamera.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Fler alternativ nu i \"Gruppinställningar\"</string>
+  <string name="ConversationActivity_join">Gå med</string>
+  <string name="ConversationActivity_full">Fullt</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d oläst meddelande</item>
@@ -632,7 +634,7 @@
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Vem kan redigera denna grupps information?</string>
   <string name="ManageGroupActivity_group_link">Grupplänk</string>
   <string name="ManageGroupActivity_block_group">Blockera grupp</string>
-  <string name="ManageGroupActivity_unblock_group">Sluta blockera grupp</string>
+  <string name="ManageGroupActivity_unblock_group">Avblockera grupp</string>
   <string name="ManageGroupActivity_leave_group">Lämna grupp</string>
   <string name="ManageGroupActivity_mute_notifications">Tysta aviseringar</string>
   <string name="ManageGroupActivity_custom_notifications">Anpassade aviseringar</string>
@@ -666,7 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Detta är en Äldre grupp. För att komma åt nya funktioner som @omnämnanden och administratörer,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Den här Äldre gruppen kan inte uppgraderas till en Ny grupp eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">uppgradera denna grupp.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Det här är en osäker MMS-grupp. Om du vill samtala privat och få tillgång till funktioner som gruppnamn, bjud in dina kontakter till Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Det här är en osäker MMS-grupp. Om du vill samtala privat bjuder du in dina kontakter till Signal.</string>
   <string name="ManageGroupActivity_invite_now">Bjud in nu</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meddela mig om omnämnanden</string>
@@ -681,7 +683,7 @@
   <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageRecipientActivity_chat_color">Konversationsfärg</string>
   <string name="ManageRecipientActivity_block">Blockera</string>
-  <string name="ManageRecipientActivity_unblock">Sluta blockera</string>
+  <string name="ManageRecipientActivity_unblock">Avblockera</string>
   <string name="ManageRecipientActivity_view_safety_number">Visa säkerhetsnummer</string>
   <string name="ManageRecipientActivity_mute_notifications">Tysta aviseringar</string>
   <string name="ManageRecipientActivity_custom_notifications">Anpassade aviseringar</string>
@@ -1074,16 +1076,16 @@
   <string name="MessageRequestBottomView_continue">Fortsätt</string>
   <string name="MessageRequestBottomView_delete">Ta bort</string>
   <string name="MessageRequestBottomView_block">Blockera</string>
-  <string name="MessageRequestBottomView_unblock">Sluta blockera</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Låt %1$s meddela dig och dela ditt namn och foto med dem? De vet inte att du har sett deras meddelande förrän du accepterar.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Låt %1$s meddela dig och dela ditt namn och foto med dem? Du får inte några meddelanden förrän du har slutat blockerat dem.</string>
+  <string name="MessageRequestBottomView_unblock">Avblockera</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Tillåt att %1$s meddelar dig och dela ditt namn och foto med dem? De vet inte att du har sett deras meddelande förrän du accepterar.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Tillåt att %1$s meddelar dig och dela ditt namn och foto med dem? Du får inte några meddelanden förrän du har avblockerat dem.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsätta din konversation med den här gruppen och dela ditt namn och foto med dess medlemmar?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppgradera denna grupp för att aktivera nya funktioner som @omnämnanden och administratörer. Medlemmar som inte har delat sitt namn eller foto i den här gruppen kommer att inbjudas att gå med.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Den här Äldre gruppen kan inte längre användas eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsätt din konversation med %1$s och dela ditt namn och foto med dem?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? De kommer inte att veta att du har sett deras meddelanden förrän du accepterar.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i den här gruppen? De vet inte att du har sett deras meddelanden förrän du accepterar det.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ta bort blockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har blockerat dem.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ta bort blockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har avblockerat dem.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s och %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, och %3$s</string>
@@ -1187,7 +1189,7 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockera</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Fel vid lämnande av grupp</string>
-  <string name="RecipientPreferenceActivity_unblock">Sluta blockera</string>
+  <string name="RecipientPreferenceActivity_unblock">Avblockera</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiverad</string>
   <string name="RecipientPreferenceActivity_disabled">Inaktiverad</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Tillgängliga när ett meddelande har skickats eller tagits emot.</string>
@@ -1235,6 +1237,13 @@
     <item quantity="one">I detta samtal · %1$d person</item>
     <item quantity="other">I detta samtal · %1$d personer</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s är blockerad</string>
+  <string name="CallParticipantView__more_info">Mer information</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Du kommer inte att ta emot deras ljud eller video och de kommer inte att ta emot dina.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Det går inte att ta emot ljud &amp; video från %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Det går inte att ta emot ljud och video från %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Det kan bero på att de inte har verifierat ditt säkerhetsnummerbyte, det finns ett problem med deras enhet eller att de har blockerat dig.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din 
@@ -1536,6 +1545,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvarades på en länkad enhet.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Avböjde på en länkad enhet.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Upptagen på en länkad enhet.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Någon har gått med i detta samtal med ett säkerhetsnummer som har ändrats.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Säkerhetsnumret för din konversation med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation eller att %2$s helt enkelt har installerat om Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du kan vilja verifiera ditt säkerhetsnummer med denna kontakt.</string>
@@ -1652,6 +1662,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationUpdateItem_learn_more">Läs mer</string>
   <string name="ConversationUpdateItem_join_call">Gå med i samtalet</string>
   <string name="ConversationUpdateItem_return_to_call">Återgå till samtal</string>
+  <string name="ConversationUpdateItem_call_is_full">Samtalet är fullt</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
@@ -1670,6 +1681,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="safety_number_change_dialog__safety_number_changes">Säkerhetsnummerändringar</string>
   <string name="safety_number_change_dialog__send_anyway">Skicka ändå</string>
   <string name="safety_number_change_dialog__call_anyway">Ring ändå</string>
+  <string name="safety_number_change_dialog__join_call">Gå med i samtalet</string>
+  <string name="safety_number_change_dialog__continue_call">Fortsätt samtalet</string>
+  <string name="safety_number_change_dialog__leave_call">Lämna samtalet</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Följande personer kan ha installerat om eller bytt enheter. Verifiera ditt säkerhetsnummer med dem för att säkerställa integriteten.</string>
   <string name="safety_number_change_dialog__view">Visa</string>
   <string name="safety_number_change_dialog__previous_verified">Tidigare verifierad</string>
@@ -2437,7 +2451,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Recipient_unknown">Okänt</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blockera</string>
-  <string name="RecipientBottomSheet_unblock">Sluta blockera</string>
+  <string name="RecipientBottomSheet_unblock">Avblockera</string>
   <string name="RecipientBottomSheet_add_to_contacts">Lägg till som kontakt</string>
   <string name="RecipientBottomSheet_add_to_a_group">Lägg till i en grupp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lägg till i en annan grupp</string>
@@ -2508,5 +2522,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ReviewCard__block">Blockera</string>
   <string name="ReviewCard__delete">Ta bort</string>
   <string name="ReviewCard__recently_changed">Nyligen ändrat sitt profilnamn från %1$s till %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s gick med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s och %2$s gick med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s och %3$s gick med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s och %3$d andra gick med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s lämnade</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s och %2$s lämnade</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s och %3$s lämnade</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s och %3$d andra lämnade</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Du (på en annan enhet)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en annan enhet)</string>
   <!--EOF-->
 </resources>

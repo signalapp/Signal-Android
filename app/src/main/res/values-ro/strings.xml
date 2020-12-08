@@ -259,6 +259,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pentru a apela pe %1$s, Signal are nevoie de acces la microfonul dvs.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pentru a apela pe %1$s, Signal are nevoie de acces la microfonul și camera dvs.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Acum mai multe opțiuni în \"Setări grup\"</string>
+  <string name="ConversationActivity_join">Alăturați-vă</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesaj necitit</item>
@@ -648,7 +649,6 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Funcții precum administratorii de grup sunt disponibile doar grupurilor noi.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Acesta este un grup vechi. Pentru a accesa funcții precum @mențiuni și administratorii de grup,</string>
   <string name="ManageGroupActivity_upgrade_this_group">actualizați acest grup.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Acesta este un grup MMS nesigur. Pentru a comunica în mod privat și a accesa funcții precum numele de grupuri, invitați-vă contactele la Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invită acum</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
@@ -1222,6 +1222,8 @@
     <item quantity="few">În acest apel · %1$d persoane</item>
     <item quantity="other">În acest apel · %1$d persoane</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Mai multe informații</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Alegeți ţara dvs.</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie să introduceți
@@ -1662,6 +1664,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="safety_number_change_dialog__safety_number_changes">Modificări ale numărului de siguranță</string>
   <string name="safety_number_change_dialog__send_anyway">Trimite oricum</string>
   <string name="safety_number_change_dialog__call_anyway">Sunați oricum</string>
+  <string name="safety_number_change_dialog__join_call">Alăturați-vă apelului</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Este posibil ca următoarele persoane să fi reinstalat sau schimbat dispozitivele. Verificați numărul de siguranță cu acestea pentru a vă asigura confidențialitatea.</string>
   <string name="safety_number_change_dialog__view">Vizualizare</string>
   <string name="safety_number_change_dialog__previous_verified">Verificat anterior</string>
@@ -2514,5 +2517,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ReviewCard__block">Blochează</string>
   <string name="ReviewCard__delete">Șterge</string>
   <string name="ReviewCard__recently_changed">Recent și-au schimbat numele profilului din %1$s în %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (pe alt dispozitiv)</string>
   <!--EOF-->
 </resources>

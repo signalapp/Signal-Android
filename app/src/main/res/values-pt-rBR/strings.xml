@@ -44,7 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de Tela %1$s, Desbloqueio de Cadastro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueio de tela %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Os PINs são necessários para impedir o novo registro. Para desativar os PINs, por favor, primeiro desative o bloqueio de registro.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Um PIN é necessário para o bloqueio de registro. Para desabilitar o PIN, por favor, primeiro desabilite o bloqueio de registro.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
   <string name="ApplicationPreferencesActivity_hide">Ocultar</string>
@@ -256,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para chamar %1$s, Signal precisa acessar seu microfone</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar %1$s, Signal precisa acessar seu microfone e câmera.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Mais opções agora em \"Configurações de grupo\"</string>
+  <string name="ConversationActivity_join">Entrar</string>
+  <string name="ConversationActivity_full">Lotada</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -666,7 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Este é um Grupo Legado. Para acessar novos recursos como @menções e administradores,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Este Grupo Legado não pode ser atualizado para um Grupo Novo porque é muito grande. O tamanho máximo de grupos é %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">atualizar este grupo.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é um Grupo MMS inseguro. Para conversar em privado e acessar recursos como nomes de grupos, convide seus contatos para usar o Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é um grupo MMS inseguro. Para conversar com privacidade, convide seus contatos para o Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convide agora</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifique-me ao ser mencionado</string>
@@ -1236,6 +1238,13 @@
     <item quantity="one">Nesta chamada · %1$d pessoa</item>
     <item quantity="other">Nesta chamada · %1$d pessoas</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s está bloqueado</string>
+  <string name="CallParticipantView__more_info">Detalhes</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Você não receberá o áudio ou o vídeo dessa pessoa, e ela não receberá os seus.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Não é possível receber áudio &amp; vídeo de %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Não é possível receber áudio e vídeo de %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Isso pode acontecer porque: ou essa pessoa não verificou a alteração do seu número de segurança, ou há um problema com o dispositivo dela, ou ela bloqueou você.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve especificar o
@@ -1280,8 +1289,8 @@
   <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Ligar</string>
   <!--RegistrationLockV2Dialog-->
-  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Ativar o Bloqueio de Registro?</string>
-  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desativar o Bloqueio de Registro?</string>
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Habilitar Bloqueio de registro?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desabilitar Bloqueio de registro?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se você esquecer seu PIN ao se registrar novamente no Signal, ficará sem acesso à sua conta por sete dias.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Ativar</string>
   <string name="RegistrationLockV2Dialog_turn_off">Desativar</string>
@@ -1494,7 +1503,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagiu com %1$s à sua mídia efêmera.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu com %1$s à sua figurinha.</string>
   <string name="MessageNotifier_this_message_was_deleted">Essa mensagem foi apagada.</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desativar notificações de contatos que entram no Signal? Você pode ativá-las novamente em Signal &gt; Configurações &gt; Notificações.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desabilitar notificações de contatos que entram no Signal? Você pode habilitá-las novamente em Signal &gt; Configurações &gt; Notificações.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Padrão</string>
   <string name="NotificationChannel_calls">Ligações</string>
@@ -1542,6 +1551,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendido em um dispositivo vinculado.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Recusado em um dispositivo vinculado.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Ocupado em um dispositivo vinculado.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Alguém entrou nessa chamada com um número de segurança que foi alterado.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança da sua conversa com %1$s mudou. Isto pode significar que alguém está tentando interceptar sua comunicação, ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
@@ -1658,6 +1668,7 @@
   <string name="ConversationUpdateItem_learn_more">Saiba mais</string>
   <string name="ConversationUpdateItem_join_call">Participar da chamada</string>
   <string name="ConversationUpdateItem_return_to_call">Voltar para a chamada</string>
+  <string name="ConversationUpdateItem_call_is_full">A chamada está lotada</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Tocar … Pausar</string>
   <string name="audio_view__download_accessibility_description">Baixar</string>
@@ -1676,6 +1687,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">Mudanças no Número de Segurança</string>
   <string name="safety_number_change_dialog__send_anyway">Enviar mesmo assim</string>
   <string name="safety_number_change_dialog__call_anyway">Ligar mesmo assim</string>
+  <string name="safety_number_change_dialog__join_call">Participar da chamada</string>
+  <string name="safety_number_change_dialog__continue_call">Continuar a chamada</string>
+  <string name="safety_number_change_dialog__leave_call">Sair da chamada</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">As seguintes pessoas podem ter reinstalado o Signal ou mudado de aparelho. Verifique o seu número de segurança com elas para garantir a sua privacidade e a delas.</string>
   <string name="safety_number_change_dialog__view">Exibir</string>
   <string name="safety_number_change_dialog__previous_verified">Já verificado</string>
@@ -2082,7 +2096,7 @@
   <string name="conversation_context__menu_message_details">Detalhes da mensagem</string>
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
   <string name="conversation_context__menu_delete_message">Excluir mensagem</string>
-  <string name="conversation_context__menu_forward_message">Reencaminhar mensagem</string>
+  <string name="conversation_context__menu_forward_message">Encaminhar mensagem</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensagem</string>
   <string name="conversation_context__menu_reply_to_message">Responder à mensagem</string>
   <!--conversation_context_reacction-->
@@ -2129,7 +2143,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Adicionar anexo</string>
   <string name="conversation__menu_edit_group">Editar grupo</string>
-  <string name="conversation__menu_group_settings">Configurações do grupo</string>
+  <string name="conversation__menu_group_settings">Configurações de grupo</string>
   <string name="conversation__menu_leave_group">Sair do grupo</string>
   <string name="conversation__menu_view_all_media">Todas as mídias</string>
   <string name="conversation__menu_conversation_settings">Configurações de conversa</string>
@@ -2171,7 +2185,7 @@
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvar</string>
-  <string name="media_preview__forward_title">Avançar</string>
+  <string name="media_preview__forward_title">Encaminhar</string>
   <string name="media_preview__share_title">Compartilhar</string>
   <string name="media_preview__all_media_title">Todas as mídias</string>
   <!--media_preview_activity-->
@@ -2397,8 +2411,8 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Certifique-se de memorizar ou armazenar seu PIN com segurança, pois ele não pode ser recuperado. Se você esquecer seu PIN, poderá perder dados ao recadastrar sua conta do Signal.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
-  <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o bloqueio de registro.</string>
-  <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o bloqueio de registro.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao habilitar Bloqueio de registro.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desabilitar Bloqueio de registro.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de Cadastro não é igual ao código de verificação que você acabou de receber. Por favor, insira o PIN definido anteriormente por meio do aplicativo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
@@ -2514,5 +2528,16 @@
   <string name="ReviewCard__block">Bloquear</string>
   <string name="ReviewCard__delete">Excluir</string>
   <string name="ReviewCard__recently_changed">Mudou recentemente o nome de perfil de %1$s para %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s entrou</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s e %2$s entraram</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s e %3$s entraram</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s e %3$d outras pessoas entraram</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s saiu</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s e %2$s saíram</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s e %3$s saíram</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e %3$d outras pessoas saíram</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Você (em outro aparelho)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (em outro dispositivo)</string>
   <!--EOF-->
 </resources>

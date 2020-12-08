@@ -245,6 +245,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s에게 통화하려면, 시그널에서 마이크 권한이 필요합니다.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s에게 통화하려면, 시그널에서 마이크와 카메라 권한이 필요합니다.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">더 많은 옵션은 \'그룹 설정\'에서 가능합니다.</string>
+  <string name="ConversationActivity_join">참가</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">읽지 않은 메시지 %d개</item>
@@ -924,6 +925,8 @@
   <string name="WebRtcCallView__disconnected">연결 끊김</string>
   <string name="WebRtcCallView__no_one_else_is_here">아무도 없음</string>
   <!--CallParticipantsListDialog-->
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">자세한 정보</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">국가 선택</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">국가 번호를
@@ -2074,5 +2077,6 @@
   <string name="ReviewCard__update_contact">연락처 업데이트</string>
   <string name="ReviewCard__block">차단</string>
   <string name="ReviewCard__delete">삭제</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
   <!--EOF-->
 </resources>

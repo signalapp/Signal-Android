@@ -144,6 +144,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Hiçbir web tarayıcısı bulunamadı.</string>
   <string name="CommunicationActions_no_email_app_found">Eposta uygulaması bulunamadı.</string>
+  <string name="CommunicationActions_send_email">E-posta gönder</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Zaten bir hücresel arama sürmekte.</string>
   <string name="CommunicationActions_start_video_call">Görüntülü arama başlat?</string>
   <string name="CommunicationActions_start_voice_call">Sesli arama başlat?</string>
@@ -254,6 +255,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ile arama yapmanız için, Signal\'in mikrofonunuza erişime ihtiyacı var.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s ile arama yapmanız için, Signal\'in mikrofonunuza ve kameranıza erişime ihtiyacı var.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">\"Grup ayarları\" artık daha fazla seçeneğe sahip</string>
+  <string name="ConversationActivity_join">Katıl</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d okunmamış ileti</item>
@@ -303,6 +305,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Gönderilen tek görümlük içerik dosyaları gönderim tamamlandıktan sonra kendiliğinden silinir</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Bu iletiyi zaten görüntülediniz</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bu konuşmada kendinize notlar ekleyebilirsiniz. \nEğer hesabınıza bağlı cihaz varsa, yeni notlar eşzamanlanacaktır.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dgrup üyeleri aynı isme sahiptir.</string>
+  <string name="ConversationFragment__tap_to_review">Gözden geçirmek için dokunun</string>
+  <string name="ConversationFragment__review_requests_carefully">İstekleri dikkatlice inceleyin</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal aynı isimde başka bir kişi buldu.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
@@ -379,6 +385,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Galeriden seç</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fotoğrafı kaldır</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Fotoğraf çekmek kameraya erişim izni gerektirir.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Galerinizi görüntülemek için depolama izni gereklidir.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Şimdi</string>
   <string name="DateUtils_minutes_ago">%dd</string>
@@ -406,7 +413,9 @@
   <string name="DocumentView_unnamed_file">İsimsiz dosya</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signal\'e Bağış Yap</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal, sizin gibi insanlar tarafından desteklenmektedir. Desteğinizi bugün gösterin!</string>
   <string name="DonateMegaphone_donate">Bağış yapın</string>
+  <string name="DonateMegaphone_no_thanks">Hayır teşekkürler</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Eksik Google Play Hizmetleri için optimize et</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Hizmetlerini desteklemiyor. Signal etkin değilken ileti almasını engelleyebilecek pil iyileştirmelerini devre dışı bırakmak için dokunun.</string>
@@ -467,13 +476,25 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Yeni Gruplar nedir?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Yeni Gruplar @bahsetmeler ve grup yöneticileri gibi özellikleri içeriyor ve gelecekte daha fazla özellik destekleyecektir.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Yükseltme öncesi tüm ileti geçmişi ve içerik saklandı.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Bu gruba tekrar katılmak için bir daveti kabul etmeniz gerekecek ve kabul edene kadar grup mesajlarını almayacaksınız.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Bu üyeler gruptan çıkarıldı ve yeni sürüme geçene kadar yeniden katılamayacaklar:</item>
+    <item quantity="other">Bu üyeler gruptan çıkarıldı ve yeni sürüme geçene kadar yeniden katılamayacaklar:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Yeni Gruba Yükselt</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Yeni Gruplar @bahsetmeler ve grup yöneticileri gibi özellikleri içeriyor ve gelecekte daha fazla özellik destekleyecektir.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Yükseltme öncesi tüm ileti geçmişi ve içerik saklanacak.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Bir ağ hatasıyla karşılaşıldı. Daha sonra tekrar deneyin.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Yükseltme başarısız oldu.</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">Şimdi değil</string>
+  <string name="GroupsV1MigrationInitiationReminder_update_group">Grubu güncelle</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Üye ekle</item>
+    <item quantity="other">Üye ekle</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">Şimdi değil</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
@@ -593,7 +614,6 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Adı ve resmi düzenleyin</string>
   <string name="ManageGroupActivity_legacy_group">Eski Grup</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Bu bir Eski Gruptur. Grup yöneticisi gibi özellikler sadece Yeni Gruplarda mevcuttur.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Bu şifresiz MMS Grubudur. Özel olarak sohbet etmek ve grup adları gibi özelliklere erişmek için kişilerinizi Signal\'e davet edin.</string>
   <string name="ManageGroupActivity_invite_now">Şimdi davet et</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Bahsedilmeleri bana bildir</string>
@@ -1121,6 +1141,8 @@
     <item quantity="one">Bu aramada · %1$d kişi</item>
     <item quantity="other">Bu aramada · %1$d kişi</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Daha Fazla Bilgi</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu
@@ -1537,6 +1559,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Yükleniyor</string>
   <string name="ConversationUpdateItem_learn_more">Dahasını öğrenin</string>
+  <string name="ConversationUpdateItem_call_is_full">Arama dolu</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Oynat … Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
@@ -1555,6 +1578,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="safety_number_change_dialog__safety_number_changes">Güvenlik Numarası Değişiklikleri</string>
   <string name="safety_number_change_dialog__send_anyway">Yine de gönder</string>
   <string name="safety_number_change_dialog__call_anyway">Yine de ara</string>
+  <string name="safety_number_change_dialog__leave_call">Aramadan ayrıl</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Aşağıdaki kişiler cihazd değiştirmiş veya yeniden yükleme yapmış olabilir. Gizliliğinizden emin olmak için güvenlik numaranızı doğrulayın.</string>
   <string name="safety_number_change_dialog__view">Görüntüle</string>
   <string name="safety_number_change_dialog__previous_verified">Daha önce doğrulandı</string>
@@ -2367,5 +2391,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ReviewCard__remove_from_group">Gruptan çıkart</string>
   <string name="ReviewCard__block">Engelle</string>
   <string name="ReviewCard__delete">Sil</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Siz (başka bir cihazda)</string>
   <!--EOF-->
 </resources>

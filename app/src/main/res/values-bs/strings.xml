@@ -148,6 +148,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nije pronađen internet-preglednik.</string>
   <string name="CommunicationActions_no_email_app_found">Nije pronađena aplikacija za email.</string>
+  <string name="CommunicationActions_send_email">Pošalji email</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Telefonski poziv već je u toku.</string>
   <string name="CommunicationActions_start_video_call">Započeti videopoziv?</string>
   <string name="CommunicationActions_start_voice_call">Započeti poziv?</string>
@@ -258,6 +259,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Da biste nazvali %1$s, Signalu je potreban pristup Vašem mikrofonu</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Da biste nazvali %1$s, Signalu je potreban pristup Vašem mikrofonu i kameri.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Više opcija sada u \"Podešavanja grupe\"</string>
+  <string name="ConversationActivity_join">Pristupi</string>
+  <string name="ConversationActivity_full">Popunjeno</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>
@@ -491,10 +494,16 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Šta su nove grupe?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nove grupe posjeduju mogućnosti poput @spomena i administratora grupe, a više će mogućnosti dobiti u budućnosti.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Historija poruka i datoteke sačuvane su prije nadogradnje.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Morate prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učinite nećete primati grupne poruke.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Ovaj član mora prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učini neće primati grupne poruke.</item>
     <item quantity="few">Ovi članovi moraju prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učine neće primati grupne poruke.</item>
     <item quantity="other">Ovi članovi moraju prihvatiti novu pozivnicu za pristupanje grupi i dok to ne učine neće primati grupne poruke.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Ovaj član odstranjen je iz grupe i neće joj moći ponovo pristupiti dok izvrši nadogradnju:</item>
+    <item quantity="few">Ovi članovi odstranjeni su iz grupe i neće joj moći ponovo pristupiti dok izvrše nadogradnju:</item>
+    <item quantity="other">Ovi članovi odstranjeni su iz grupe i neće joj moći ponovo pristupiti dok izvrše nadogradnju:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Preinači staru u novu grupu</string>
@@ -618,11 +627,13 @@
   <string name="AddGroupDetailsFragment__create">Kreiraj</string>
   <string name="AddGroupDetailsFragment__members">Članovi</string>
   <string name="AddGroupDetailsFragment__group_name_required">Naziv grupe (obavezno)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Naziv grupe (neobavezno)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Ovo se polje mora ispuniti.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupu moraju sačinjavati barem dva člana.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Neuspjelo kreiranje grupe.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Pokušajte ponovo kasnije.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Odabrali ste kontakt koji ne podržava Signal grupe, stoga će ovo biti MMS grupa.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vlastiti nazivi dodijeljeni MMS grupama i slike bit će vidljivi samo Vama.</string>
   <string name="AddGroupDetailsFragment__remove">Ukloni</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Udaljiti %1$s iz ove grupe?</string>
@@ -694,7 +705,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Ovo je stara grupa. Da biste mogli koristiti opcije poput @spomena i administracije grupe,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Ova grupa ne može se preinačiti u novu grupu jer je prevelika. Maksimum za grupu iznosi %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">nadogradi ovu grupu.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ovo je nezaštićena MMS grupa. Da biste razgovarali u privatnosti i imali pristup opcijama poput naziva grupe, pozovite svoje kontakte da koriste Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ovo je nezaštićena MMS grupa. Da biste razgovarali u privatnosti, pozovite svoje kontakte da koriste Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozovi odmah</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me kad me neko spomene</string>
@@ -789,6 +800,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Uskoro: linkovi za grupe</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste mogli koristiti grupne linkove</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju koristite ne podržava ovaj link za grupu. Instalirajte zadnju verziju da biste se mogli priključiti ovoj grupi putem linka.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ažurirajte Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedan ili više Vaših povezanih uređaja koriste verziju Signala koja ne podržava linkove za grupe. Ažurirajte Signal na svojim povezanim uređajima da biste pristupili ovoj grupi.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link za grupu nije ispravan</string>
@@ -950,6 +962,17 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme za nestajanje poruka na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Vrijeme za nestajanje poruka podešeno je na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ova je grupa ažurirana u novu grupu.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nije bilo moguće dodati Vas u novu grupu i pozvani ste da se pridružite.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Člana nije bilo moguće dodati u novu grupu, pa je pozvan/a da se pridruži.</item>
+    <item quantity="few">%1$s člana nije bilo moguće dodati u novu grupu, pa su pozvani da se pridruže.</item>
+    <item quantity="other">%1$s članova nije bilo moguće dodati u novu grupu, pa su pozvani da se pridruže.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Člana nije bilo moguće dodati u novu grupu, pa je odstranjen.</item>
+    <item quantity="few">%1$s člana nije bilo moguće dodati u novu grupu, pa su odstranjeni.</item>
+    <item quantity="other">%1$s članova nije bilo moguće dodati u novu grupu, pa su odstranjeni.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s promijenio/la je ime na svom profilu u %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s promijenio/la je ime na svom profilu iz %2$s u %3$s.</string>
@@ -962,7 +985,7 @@
   <string name="MessageRecord_s_added_s">%1$s je uvrstio/la %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s Vas je uvrstio/la u grupu.</string>
   <string name="MessageRecord_you_joined_the_group">Pridružili ste se grupi.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s se pridružila/lo grupi.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s se pridružio/la grupi.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Odstranili ste %1$s.</string>
   <string name="MessageRecord_s_removed_s">%1$s je odstranio/la %2$s.</string>
@@ -1084,14 +1107,26 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s učestvuje u grupnom pozivu · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Učestvujete u grupnom pozivu · %1$s</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s i %2$s učestvuju u grupnom pozivu · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s i %3$s učestvuju u grupnom pozivu · %4$s</string>
   <string name="MessageRecord_group_call_s">Grupni poziv · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s je započeo/la grupni poziv</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s učestvuje u grupnom pozivu</string>
+  <string name="MessageRecord_you_are_in_the_group_call">Učestvujete u grupnom pozivu</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s i %2$s učestvuju u grupnom pozivu</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s i %3$s učestvuju u grupnom pozivu</string>
+  <string name="MessageRecord_group_call">Grupni poziv</string>
   <string name="MessageRecord_you">Vi</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s i još %3$d osoba učestvuju u grupnom pozivu · %4$s</item>
     <item quantity="few">%1$s, %2$s i još %3$d osobe učestvuju u grupnom pozivu · %4$s</item>
     <item quantity="other">%1$s, %2$s i %3$d drugih učestvuje u grupnom pozivu · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s i %3$d osoba učestvuju u grupnom pozivu</item>
+    <item quantity="few">%1$s, %2$s i %3$d drugih učestvuje u grupnom pozivu</item>
+    <item quantity="other">%1$s, %2$s i %3$d drugih učestvuje u grupnom pozivu</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Prihvati</string>
@@ -1267,6 +1302,13 @@
     <item quantity="few">U ovom pozivu · %1$d osobe</item>
     <item quantity="other">U ovom pozivu · %1$d osoba</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s je blokiran/a</string>
+  <string name="CallParticipantView__more_info">Više informacija</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Nećete primiti njihov zvuk i sliku a ni oni neće primiti Vaše.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Nije moguće primiti zvuk i sliku od %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nije moguće primiti zvuk i sliku od %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Mogući razlog jeste taj što nisu verifikovali promjenu Vašeg sigurnosnog broja, ili postoji problem s njihovim uređajem, ili su Vas blokirali.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Odaberite svoju zemlju</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Morate precizirati
@@ -1523,6 +1565,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">Reagovao/la je sa %1$s na Vašu sliku.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagovao/la je sa %1$s na Vašu datoteku.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagovao/la je sa %1$s na Vaš audiozapis.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagovao/la je sa %1$s na Vaš jednokratni zapis.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagovao/la je sa %1$s na Vašu naljepnicu.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Isključiti obavještenja o tome da se kontakt prijavio na Signal? Možete ih ponovo aktivirati kroz Signal &gt; Podešavanja &gt; Obavještenja.</string>
@@ -1574,6 +1617,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Odgovoreno na povezanom uređaju.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Odbijeno na povezanom uređaju.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Zauzeto na povezanom uređaju.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Pozivu se priključio neko čiji je sigurnosni broj promijenjen.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Promijenjen je sigurnosni broj za Vašu konverzaciju sa %1$s. Ovo može značiti da neko pokušava presresti Vašu komunikaciju ili da je %2$s iznova instalirao/la Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Trebali biste provjeriti svoj sigurnosni broj s ovom osobom.</string>
@@ -1692,6 +1736,7 @@
   <string name="ConversationUpdateItem_learn_more">Saznajte više</string>
   <string name="ConversationUpdateItem_join_call">Pridruži se pozivu</string>
   <string name="ConversationUpdateItem_return_to_call">Vrati se pozivu</string>
+  <string name="ConversationUpdateItem_call_is_full">Poziv je popunjen</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Sviraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
@@ -1710,6 +1755,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">Promjene sigurnosnog broja</string>
   <string name="safety_number_change_dialog__send_anyway">Svakako pošalji</string>
   <string name="safety_number_change_dialog__call_anyway">Svakako nazovi</string>
+  <string name="safety_number_change_dialog__join_call">Pridruži se pozivu</string>
+  <string name="safety_number_change_dialog__continue_call">Nastavi s pozivom</string>
+  <string name="safety_number_change_dialog__leave_call">Završi poziv</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Ove su osobe možda iznova instalirale Signal ili promijenile uređaj. Potvrdite svoj sigurnosni broj s njima da osigurate privatnost.</string>
   <string name="safety_number_change_dialog__view">Pregled</string>
   <string name="safety_number_change_dialog__previous_verified">Ranije potvrđeno</string>
@@ -1820,7 +1868,7 @@
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s se pridružio/la grupi.</item>
     <item quantity="few">%1$s se pridružila/le grupi.</item>
-    <item quantity="other">%1$s se pridružila/lo grupi.</item>
+    <item quantity="other">%1$s se pridružio/la grupi.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Naziv grupe sada glasi \'%1$s\'.</string>
   <!--prompt_passphrase_activity-->
@@ -1834,6 +1882,7 @@
   <string name="CreateProfileActivity_next">Dalje</string>
   <string name="CreateProfileActivity__username">Korisničko ime</string>
   <string name="CreateProfileActivity__create_a_username">Kreirajte korisničko ime</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vlastiti nazivi dodijeljeni MMS grupama i slike bit će vidljivi samo Vama.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Upišite naziv grupe i dodajte sliku</string>
   <string name="EditProfileFragment__group_name">Naziv grupe</string>
@@ -2176,6 +2225,7 @@
   <string name="conversation__menu_conversation_settings">Podešavanja</string>
   <string name="conversation__menu_add_shortcut">Stavi na početni ekran</string>
   <string name="conversation__menu_pending_members">Članovi na čekanju</string>
+  <string name="conversation__menu_create_bubble">Kreiraj balončić</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Proširi iskočni prozor</string>
   <!--conversation_callable_insecure-->
@@ -2563,5 +2613,16 @@
   <string name="ReviewCard__block">Blokiraj</string>
   <string name="ReviewCard__delete">Izbriši</string>
   <string name="ReviewCard__recently_changed">Nedavno je promijenio/la ime na svom profilu iz %1$s u %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s se pridružio/la</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s i %2$s su se pridružili</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s i %3$s su se pridružili</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s i %3$d drugih su se pridružili</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s je otišao/la</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s i %2$s su otišli</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s i %3$s su otišli</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d drugih su otišli</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugom uređaju)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na drugom uređaju)</string>
   <!--EOF-->
 </resources>

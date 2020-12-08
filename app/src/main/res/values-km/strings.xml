@@ -896,6 +896,8 @@
   <string name="WebRtcCallView__reconnecting">កំពុងតភ្ជាប់ម្តងទៀត…</string>
   <string name="WebRtcCallView__disconnected">បានផ្តាច់ការភ្ចាប់</string>
   <!--CallParticipantsListDialog-->
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">ព័ត៌មានបន្ថែម</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">ជ្រើសរើសប្រទេសរបស់អ្នក</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">អ្នកត្រូវបញ្ជាក់
@@ -2018,5 +2020,6 @@
   <string name="ReviewCard__remove_from_group">លុបចេញពីក្រុម</string>
   <string name="ReviewCard__block">រារាំង</string>
   <string name="ReviewCard__delete">លុប</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
   <!--EOF-->
 </resources>

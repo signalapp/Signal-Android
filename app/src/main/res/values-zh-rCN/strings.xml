@@ -253,6 +253,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal 需要访问您的麦克风来呼叫 %1$s</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal 需要使用您的麦克风和照相机来呼叫 %1$s。</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">“群组设置”现增加了更多选项</string>
+  <string name="ConversationActivity_join">加入</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读消息</item>
@@ -628,7 +629,6 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">这是一个旧版群组，要是使用@提醒和管理员功能，</string>
   <string name="ManageGroupActivity_legacy_group_too_large">由于人数太多，此旧版群组无法升级成新版群组。升级要求人数在%1$d以下。</string>
   <string name="ManageGroupActivity_upgrade_this_group">升级此群组。</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">这是个未加密的彩信群组。要使用加密聊天和群组名称等功能，请邀请您的联系人加入 Signal。</string>
   <string name="ManageGroupActivity_invite_now">现在邀请</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">提到我时通知我</string>
@@ -1154,6 +1154,8 @@
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">此通话 · %1$d位用户</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">更多信息</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">选择国家</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">必须指定
@@ -1590,6 +1592,7 @@
   <string name="safety_number_change_dialog__safety_number_changes">安全码更变</string>
   <string name="safety_number_change_dialog__send_anyway">仍要发送</string>
   <string name="safety_number_change_dialog__call_anyway">仍要呼叫</string>
+  <string name="safety_number_change_dialog__join_call">加入通话</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下用户可能重新安装了 Signal 或更换了设备，请重新与之验证安全码以保护您的隐私。</string>
   <string name="safety_number_change_dialog__view">查看</string>
   <string name="safety_number_change_dialog__previous_verified">已验证</string>
@@ -2409,5 +2412,7 @@
   <string name="ReviewCard__block">屏蔽</string>
   <string name="ReviewCard__delete">删除</string>
   <string name="ReviewCard__recently_changed">最近更改了其用户名 %1$s 为 %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">您（其它设备）</string>
   <!--EOF-->
 </resources>

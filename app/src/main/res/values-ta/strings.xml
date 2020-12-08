@@ -80,8 +80,15 @@
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ஒலி இயக்குவதில் பிழை!</string>
   <!--BlockedUsersActivity-->
+  <string name="BlockedUsersActivity__blocked_users">தடைசெய்த பயனர்கள்</string>
+  <string name="BlockedUsersActivity__add_blocked_user">தடுக்கப்பட்ட பயனரைச் சேர்க்கவும்</string>
   <string name="BlockedUsersActivity__blocked_users_will">தடுக்கப்பட்ட பயனர்கள் உங்களை அழைக்கவோ அல்லது செய்திகளை அனுப்பவோ முடியாது.</string>
+  <string name="BlockedUsersActivity__no_blocked_users">தடைசெய்த பயனர்கள் எவருமில்லை</string>
+  <string name="BlockedUsersActivity__block_user">பயனர் அணுகலைத் தடு</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" உங்களை அழைக்கவோ அல்லது செய்திகளை அனுப்பவோ முடியாது.</string>
   <string name="BlockedUsersActivity__block">தடு </string>
+  <string name="BlockedUsersActivity__unblock_user">பயனரை தடைநீக்கவா?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">\"%1$s\" ஐ தடைநீக்க விரும்புகிறீர்களா?</string>
   <string name="BlockedUsersActivity__unblock">தடைநீக்கு </string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">தடுத்து %1$sஐ விடவா?</string>
@@ -130,11 +137,15 @@
   <string name="ClearProfileActivity_remove_group_photo">குழு புகைப்படத்தை அகற்றவா?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">பயன்பாட்டின் இந்த பதிப்பு இனி ஆதரிக்கப்படாது. செய்திகளை அனுப்புவதையும் பெறுவதையும் தொடர, சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</string>
   <string name="ClientDeprecatedActivity_update">புதுப்பிக்கப்பட்டது</string>
+  <string name="ClientDeprecatedActivity_dont_update">புதுப்பிக்க வேண்டாம்</string>
   <string name="ClientDeprecatedActivity_warning">எச்சரிக்கை</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal லின் உங்கள் பதிப்பு காலாவதியானது. உங்கள் செய்தி வரலாற்றை நீங்கள் காணலாம், ஆனால் நீங்கள் புதுப்பிக்கும் வரை செய்திகளை அனுப்பவோ பெறவோ முடியாது.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">இணைய உலாவி இல்லை.</string>
   <string name="CommunicationActions_no_email_app_found">மின்னஞ்சல் பயன்பாடு எதுவும் கிடைக்கவில்லை.</string>
+  <string name="CommunicationActions_send_email">மின்னஞ்சலை அனுப்பவும்</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ஒரு செல்லுலார் அழைப்பு ஏற்கனவே செயல்பாட்டில் உள்ளது.</string>
   <string name="CommunicationActions_start_video_call">காணொளி அழைப்பைத் தொடங்கவா?</string>
   <string name="CommunicationActions_start_voice_call">குரல் அழைப்பைத் தொடங்கவா?</string>
@@ -245,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$sஐ அழைக்க, சிக்னலுக்கு உங்கள் மைக்ரோஃபோனுக்கு அனுமதி தேவை microphone access and permission for Signal</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$sஐ அழைக்க, உங்கள் மைக்ரோஃபோன் மற்றும் கேமராவிற்கு சிக்னலுக்கு அனுமதி தேவை. Signal needs permission to your microphone and camera.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">கூடுதல் அம்சங்கள் இப்போது \"குழு அமைப்புகளில்\"</string>
+  <string name="ConversationActivity_join">சேரவும்</string>
+  <string name="ConversationActivity_full">நிரம்பியது</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d படிக்காத செய்தி</item>
@@ -285,6 +298,7 @@
   <string name="ConversationFragment_deleting_messages">செய்திகள் நீக்கப்படுகிறது…</string>
   <string name="ConversationFragment_delete_for_me">எனக்கு மட்டும் நீக்கு</string>
   <string name="ConversationFragment_delete_for_everyone">அனைவருக்கும் நீக்கு</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">சிக்னலின் சமீபத்திய பதிப்பில் இருந்தால், உரையாடலில் உள்ள அனைவருக்கும் இந்த செய்தி நீக்கப்படும். நீங்கள் ஒரு செய்தியை நீக்கியுள்ளதை அவர்களால் பார்க்க முடியும்.</string>
   <string name="ConversationFragment_quoted_message_not_found">அசல் செய்தி கிடைக்கவில்லை</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">அசல் செய்தி இனி கிடப்பில்  இல்லை  </string>
   <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
@@ -293,6 +307,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
   <string name="ConversationFragment_you_already_viewed_this_message">நீங்கள் ஏற்கனவே இந்த செய்தியைப் பார்த்தீர்கள்</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">இந்த உரையாடலில் உங்களுக்காக குறிப்புகளைச் சேர்க்கலாம். உங்கள் கணக்கில் இணைக்கப்பட்ட பிற சாதனங்கள் இருந்தால், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dகுழு உறுப்பினர்களுக்கு ஒரே பெயர் உண்டு.</string>
+  <string name="ConversationFragment__tap_to_review">மதிப்பாய்வு செய்ய தட்டவும்</string>
+  <string name="ConversationFragment__review_requests_carefully">கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">அதே பெயருடன் மற்றொரு தொடர்பை Signal கண்டறிந்தது.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">உங்கள் சாதனத்தில் எந்த உலாவியும் நிறுவப்படவில்லை.</string>
   <!--ConversationListFragment-->
@@ -336,18 +354,28 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">காப்புப்பதிவு பயனர் தரவு  மீட்டமைக்கவா?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">உள்ளூர் காப்புப்பதிவு பயனர் தரவு உங்கள் செய்திகளையும் ஊடகத்தையும் மீட்டெடுக்கவும். நீங்கள் இப்போது மீட்டமைக்கவில்லை என்றால், நீங்கள் பின்னர் மீட்டெடுக்க முடியாது.</string>
+  <string name="ChooseBackupFragment__icon_content_description">மறுபிரதி ஐகானிலிருந்து மீட்டெடு</string>
+  <string name="ChooseBackupFragment__choose_backup">மறுபிரதியைத் தேர்வுசெய்க</string>
   <string name="ChooseBackupFragment__learn_more">மேலும் அறிக</string>
   <!--RestoreBackupFragment-->
+  <string name="RestoreBackupFragment__restore_complete">மீட்டெடுப்பு முடிந்தது</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">மறுபிரதிகளை இயக்க, ஒரு கோப்புறையைத் தேர்வுசெய்க. புதிய மறுபிரதிகள் இந்த இருப்பிடத்தில் சேமிக்கப்படும்.</string>
   <string name="RestoreBackupFragment__choose_folder">கோப்புறையைத் தேர்வுசெய்க</string>
   <string name="RestoreBackupFragment__not_now">இப்போது இல்லை</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">அரட்டை காப்புப்பிரதிகள்</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">காப்புப்பிரதிகள் கடவுத்தொடருடன் குறியாக்கம் செய்யப்பட்டு உங்கள் சாதனத்தில் சேமிக்கப்படும்.</string>
   <string name="BackupsPreferenceFragment__create_backup">காப்புப்பதிவு பயனர் தரவு உருவாக்கவும்</string>
+  <string name="BackupsPreferenceFragment__last_backup">கடைசியாக மறுபிரதி எடுக்கப்பட்டது:%1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">மறுபிரதி கோப்புறை</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">காப்புப்பிரதி கடவுச்சொற்றொடரை சரிபார்க்கவும்</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரைச் சோதித்து, அது பொருந்துமா என்பதைச் சரிபார்க்கவும்</string>
   <string name="BackupsPreferenceFragment__turn_on">இயக்கவும்</string>
   <string name="BackupsPreferenceFragment__turn_off">அணைக்க</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">மறுபிரதியை மீட்டமைக்க, சிக்னலின் புதிய நகலை நிறுவவும். பயன்பாட்டைத் திறந்து \"மறுபிரதியை மீட்டமை\" என்பதைத் தட்டவும், பின்னர் மறுபிரதி கோப்பைக் கண்டறியவும்.%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">மேலும் அறிக</string>
+  <string name="BackupsPreferenceFragment__in_progress">செயல்நிலையில் உள்ளது…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$dஇதுவரை…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">காப்புப்பிரதிகளை உருவாக்க Signal கு வெளிப்புற சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் வழக்கம் : %s</string>
@@ -359,6 +387,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">கேலரியில் இருந்து தேர்வு செய்யவும்</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">புகைப்படத்தை அகற்று</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">புகைப்படம் எடுக்க புகைப்பட கருவி அனுமதி தேவை.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">உங்கள் கேலரியைப் பார்க்க சேமிப்பு அனுமதி தேவை.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">இப்போது</string>
   <string name="DateUtils_minutes_ago">%d மீ</string>
@@ -386,12 +415,20 @@
   <string name="DocumentView_unnamed_file">பெயரிடப்படாத கோப்பு</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signal-க்கு நன்கொடை அளி</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal லை உங்களைப் போன்றவர்கள் ஆதரிக்கிறார்கள். இன்று உங்கள் ஆதரவைக் காட்டுங்கள்!</string>
   <string name="DonateMegaphone_donate">நன்கொடை</string>
+  <string name="DonateMegaphone_no_thanks">வேண்டாம், நன்றி</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">காணாமல் போன விளையாட்டு சேவைகளை மேம்படுத்தவும்</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>
   <!--ExpiredBuildReminder-->
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal லின் இந்த பதிப்பு காலாவதியானது. செய்திகளை அனுப்ப மற்றும் பெற பயன்பாட்டைப் புதுப்பிக்கவும்.</string>
+  <string name="ExpiredBuildReminder_update_now">இப்பொழுது மேம்படுத்து</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">%dஉறுப்பினர் கோரிக்கை நிலுவையில் உள்ளது</item>
+    <item quantity="other">%dஉறுப்பினர் கோரிக்கைகள் நிலுவையில் உள்ளன</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">காண்க</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">பகிர்</string>
@@ -413,6 +450,7 @@
   <string name="AddToGroupActivity_add_to_group">குழுவில் சேர்</string>
   <string name="AddToGroupActivity_add_to_groups">குழுக்களில் சேர்க்கவும்</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
+  <string name="AddToGroupActivity_add">சேர்க்கவும்</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">புதிய நிர்வாகியைத் தேர்வுசெய்க</string>
   <string name="ChooseNewAdminActivity_done">முடிந்தது</string>
@@ -437,13 +475,68 @@
   <string name="GroupManagement_learn_more">மேலும் அறிக</string>
   <string name="GroupManagement_invite_multiple_users">இந்த பயனர்களை இந்த குழுவில் தானாக உங்களால் சேர்க்க முடியாது. குழுவில் சேர அவர்கள் அழைக்கப்பட்டுள்ளனர், அவர்கள் ஏற்றுக்கொள்ளும் வரை எந்த குழு செய்திகளையும் பார்க்க மாட்டார்கள்.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">புதிய குழுக்கள் என்றால் என்ன?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">புதிய குழுக்களில் @குறிப்புகள் மற்றும் குழு நிர்வாகிகள் போன்ற அம்சங்கள் உள்ளன. எதிர்காலத்தில் கூடுதல் அம்சங்கள் இருக்கும்.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">மேம்படுத்தலுக்கு முன்பிருந்தே அனைத்து செய்தி வரலாறும் ஊடகமும் தக்கவைக்கப்பட்டுள்ளன.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">இந்த குழுவில் மீண்டும் சேர நீங்கள் அழைப்பை ஏற்க வேண்டும், நீங்கள் ஏற்றுக்கொள்ளும் வரை குழு செய்திகளைப் பெற மாட்டீர்கள்.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">இந்த உறுப்பினர் மீண்டும் இந்த குழுவில் சேர அழைப்பை ஏற்க வேண்டும், அவர்கள் ஏற்றுக்கொள்ளும் வரை குழு செய்திகளைப் பெற மாட்டார்கள்:</item>
+    <item quantity="other">இந்த உறுப்பினர்கள் மீண்டும் இந்த குழுவில் சேர அழைப்பை ஏற்க வேண்டும், மேலும் அவர்கள் ஏற்றுக்கொள்ளும் வரை குழு செய்திகளைப் பெற மாட்டார்கள்:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">இந்த உறுப்பினர் குழுவிலிருந்து நீக்கப்பட்டார், மேலும் அவர்கள் பயன்பாட்டை மேம்படுத்தும் வரை அவர்களால் மீண்டும் சேர முடியாது.</item>
+    <item quantity="other">இந்த உறுப்பினர்கள் குழுவிலிருந்து நீக்கப்பட்டனர், மேலும் அவர்கள் பயன்பாட்டை மேம்படுத்தும் வரை அவர்களால் மீண்டும் சேர முடியாது.</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">புதிய குழுவிற்கு மேம்படுத்தவும்</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">இந்த குழுவைப் புதுப்பிக்கவும்</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">புதிய குழுக்களில் @குறிப்புகள் மற்றும் குழு நிர்வாகிகள் போன்ற அம்சங்கள் உள்ளன. எதிர்காலத்தில் கூடுதல் அம்சங்கள் இருக்கும்.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">மேம்படுத்தலுக்கு முன்பிருந்தே அனைத்து செய்தி வரலாறும் ஊடகமும் தக்கவைக்கப்பட்டுள்ளன.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">பிணைய பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">மேம்பாடு தோல்வியடைந்தது</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">இந்த உறுப்பினர் மீண்டும் இந்த குழுவில் சேர அழைப்பை ஏற்க வேண்டும், அவர்கள் ஏற்றுக்கொள்ளும் வரை குழு செய்திகளைப் பெற மாட்டார்கள்:</item>
+    <item quantity="other">இந்த உறுப்பினர்கள் மீண்டும் இந்த குழுவில் சேர அழைப்பை ஏற்க வேண்டும், அவர்கள் ஏற்றுக்கொள்ளும் வரை குழு செய்திகளைப் பெற மாட்டார்கள்:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">இந்த உறுப்பினர் புதிய குழுவில் சேர்க்கப்படமாட்டார். அவர் குழுவிலிருந்து அகற்றப்படுவார்:</item>
+    <item quantity="other">இந்த உறுப்பினர்கள் புதிய குழுவில் சேர்க்கப்பட மாட்டார்கள். அவர்கள் குழுவிலிருந்து அகற்றப்படுவார்கள்:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை அணுக, இந்த குழுவை மேம்படுத்தவும்.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">இப்போது இல்லை</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">குழுவை மேம்படுத்து</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">புதிய குழுவில் %1$dஉறுப்பினரை மீண்டும் சேர்க்க முடியவில்லை. இப்போது அந்த உறுப்பினரை சேர்க்க விரும்புகிறீர்களா?</item>
+    <item quantity="other">புதிய குழுவில் %1$dஉறுப்பினர்களை மீண்டும் சேர்க்க முடியவில்லை. இப்போது அந்த உறுப்பினர்களைச் சேர்க்க விரும்புகிறீர்களா?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">உறுப்பினரைச் சேர்க்கவும்</item>
+    <item quantity="other">உறுப்பினர்களைச் சேர்க்கவும்</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_not_now">இப்போது இல்லை</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">உறுப்பினரைச் சேர்க்கவா?</item>
+    <item quantity="other">உறுப்பினர்களைச் சேர்க்கவா?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">இது மேம்படுத்தப்பட்டபோது, இந்த உறுப்பினர் தானாகவே புதிய குழுவில் சேர்க்கப்படவில்லை</item>
+    <item quantity="other">இது மேம்படுத்தப்பட்டபோது, இந்த உறுப்பினர்கள் தானாகவே புதிய குழுவில் சேர்க்கப்படவில்லை</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">உறுப்பினரைச் சேர்க்கவும்</item>
+    <item quantity="other">உறுப்பினர்களைச் சேர்க்கவும்</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">குழு உறுப்பினரைச் சேர்ப்பதில் தோல்வி. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</item>
+    <item quantity="other">குழு உறுப்பினர்களைச் சேர்ப்பதில் தோல்வி. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">உறுப்பினரைச் சேர்க்க முடியாது.</item>
+    <item quantity="other">உறுப்பினர்களைச் சேர்க்க முடியாது.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">குழுவிலுருந்து விலகலாமா?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">இந்த குழுவில் நீங்கள் இனி செய்திகளை அனுப்பவோ பெறவோ முடியாது.</string>
@@ -486,6 +579,9 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">நிலுவையில் உள்ள உறுப்பினர் கோரிக்கைகள் </string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">காண்பிக்க - உறுப்பினர் கோரிக்கைகள் இல்லை</string>
+  <string name="RequestingMembersFragment_explanation">இந்த பட்டியலில் உள்ளவர்கள் குழு இணைப்பு வழியாக இந்த குழுவில் சேர முயற்சிக்கின்றனர்.</string>
+  <string name="RequestingMembersFragment_added_s">சேர்க்கப்பட்டது \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">மறுக்கப்பட்டது \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">முடிந்தது</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
@@ -493,17 +589,20 @@
     <item quantity="one">\"%1$s\" உறுப்பினர்களை \"%2$s\" இல் சேர்க்கவா?</item>
     <item quantity="other">\"%3$d\" உறுப்பினர்களை %2$s\" இல் சேர்க்கவா?</item>
   </plurals>
+  <string name="AddMembersActivity__add">சேர்க்கவும்</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">இந்த குழுவிற்கு பெயரிடுங்கள்</string>
   <string name="AddGroupDetailsFragment__create_group">குழு உருவாக்குக</string>
   <string name="AddGroupDetailsFragment__create">உருவாக்கவும்</string>
   <string name="AddGroupDetailsFragment__members">உறுப்பினர்கள்</string>
   <string name="AddGroupDetailsFragment__group_name_required">குழு பெயர் (தேவை)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">குழு பெயர் (கட்டாயமற்றது)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">இந்த தகவல் தேவை.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">குழுக்களுக்கு குறைந்தது இரண்டு உறுப்பினர்கள் தேவை.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">குழு உருவாக்கம் தோல்வியடைந்தது.</string>
   <string name="AddGroupDetailsFragment__try_again_later">பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal அல்லாத பயனர் தொடர்பை நீங்கள் தேர்ந்தெடுத்துள்ளீர்கள், எனவே இந்த குழு எம்.எம்.எஸ்.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">தனிப்பயன் எம்.எம்.எஸ் குழு பெயர்கள் மற்றும் புகைப்படங்கள் உங்களுக்கு மட்டுமே தெரியும்.</string>
   <string name="AddGroupDetailsFragment__remove">நீக்கு</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS தொடர்பு</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">இந்த குழுவிலிருந்து %1$s ஐ அகற்றவா?</string>
@@ -511,16 +610,29 @@
     <item quantity="one">%d இந்த உறுப்பினர்கள் புதிய குழுக்களை ஆதரிக்கவில்லை, எனவே இந்த குழு ஒரு மரபு குழுவாக இருக்கும்.</item>
     <item quantity="other">%d இந்த உறுப்பினர்கள் புதிய குழுக்களை ஆதரிக்கவில்லை, எனவே இந்த குழு ஒரு பழைய மரபு குழுவாக இருக்கும்.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d உறுப்பினர் புதிய குழுக்களை ஆதரிக்கவில்லை, எனவே இந்த குழுவை உருவாக்க முடியாது.</item>
+    <item quantity="other">%dஉறுப்பினர்கள் புதிய குழுக்களை ஆதரிக்க மாட்டார்கள், எனவே இந்த குழுவை உருவாக்க முடியாது.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” பழைய Signal பதிப்பைப் பயன்படுத்துவதால் ஒரு பழைய மரபு குழு உருவாக்கப்படும். அவர்கள் Signal புதுப்பித்த பிறகு அவர்களுடன் ஒரு புதிய பாணி குழுவை உருவாக்கலாம் அல்லது குழுவை உருவாக்கும் முன் இந்த உறுப்பினரை அகற்றலாம்.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">%1$d உறுப்பினர் பழைய Signal பதிப்பைப் பயன்படுத்துவதால் பழைய மரபு குழு உருவாக்கப்படும். அவர்கள் Signal புதுப்பித்த பிறகு அவர்களுடன் புதிய பாணி குழுவை உருவாக்கலாம் அல்லது குழுவை உருவாக்கும் முன் அவரை அகற்றலாம்.</item>
     <item quantity="other">%1$d உறுப்பினர்கள் பழைய Signal பதிப்பைப் பயன்படுத்துவதால் பழைய மரபு குழு உருவாக்கப்படும். அவர்கள் Signal புதுப்பித்த பிறகு அவர்களுடன் புதிய பாணி குழுவை உருவாக்கலாம் அல்லது குழுவை உருவாக்கும் முன் அவர்களை அகற்றலாம்.</item>
   </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">இந்த குழுவை உருவாக்க முடியாது, ஏனென்றால் \"%1$s\" சிக்னலின் பழைய பதிப்பைப் பயன்படுத்துகிறார். குழுவை உருவாக்கும் முன் அத்தகைய உறுப்பினர்களை நீக்க வேண்டும்.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">இந்த குழுவை உருவாக்க முடியாது, ஏனெனில் %1$d உறுப்பினர் சிக்னலின் பழைய பதிப்பைப் பயன்படுத்துகிறார். குழுவை உருவாக்கும் முன் உறுப்பினரை நீக்க வேண்டும்.</item>
+    <item quantity="other">இந்த குழுவை உருவாக்க முடியாது, ஏனெனில் %1$d உறுப்பினர்கள் சிக்னலின் பழைய பதிப்பைப் பயன்படுத்துகின்றனர். குழுவை உருவாக்கும் முன் அந்த உறுப்பினர்களை நீக்க வேண்டும்.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">உறுப்பினர் கோரிக்கைகள் மற்றும் அழைப்புகள்</string>
   <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்தல்</string>
   <string name="ManageGroupActivity_edit_group_info">குழு தகவலைத் திருத்தல்</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">புதிய உறுப்பினர்களை யார் சேர்க்க முடியும்?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">இந்த குழுவின் தகவலை யார் திருத்தலாம்?</string>
+  <string name="ManageGroupActivity_group_link">குழு இணைப்பு</string>
   <string name="ManageGroupActivity_block_group">குழுவைத் தடு</string>
   <string name="ManageGroupActivity_unblock_group">குழுவைத் தடைநீக்கு</string>
   <string name="ManageGroupActivity_leave_group">குழுவிலுருந்து விலகு</string>
@@ -541,6 +653,9 @@
     <item quantity="one">%d உறுப்பினர்கள் சேர்க்கப்பட்டனர்.</item>
     <item quantity="other">%d உறுப்பினர்கள் சேர்க்கப்பட்டனர்.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">நிர்வாகிகள் மட்டுமே பகிரக்கூடிய குழு இணைப்பை இயக்க அல்லது முடக்க முடியும்.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">புதிய உறுப்பினர்களை அங்கீகரிப்பதற்கான அமைப்பை நிர்வாகிகளால் மட்டுமே இயக்க முடியும் அல்லது முடக்க முடியும்.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">நிர்வாகிகள் மட்டுமே பகிரக்கூடிய குழு இணைப்பை மீட்டமைக்க முடியும்.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">இதைச் செய்ய உங்களுக்கு உரிமை இல்லை</string>
   <string name="ManageGroupActivity_not_capable">நீங்கள் சேர்த்த ஒருவரின் தொலைபேசி புதிய குழுக்களை ஆதரிக்காது, அவர்கள் சிக்னல் பயன்பாட்டைப் Signal update புதுப்பிக்க வேண்டும்</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">குழுவைப் புதுப்பிப்பதில் தோல்வி</string>
@@ -549,6 +664,12 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">இணைய பிழை காரணமாக குழுவைப் புதுப்பிப்பதில் தோல்வி, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்</string>
   <string name="ManageGroupActivity_edit_name_and_picture">பெயர் மற்றும் படத்தைத் திருத்தவும்</string>
   <string name="ManageGroupActivity_legacy_group">பழைய மரபு குழு</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">இது ஒரு மரபு குழு. குழு நிர்வாகிகள் போன்ற அம்சங்கள் புதிய குழுக்களுக்கு மட்டுமே கிடைக்கும்.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">இது ஒரு மரபு குழு. @குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை அணுக,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">இந்த மரபு குழுவை புதிய குழுவாக மேம்படுத்த முடியாது, ஏனெனில் அது அளவு மிகப் பெரியது. அதிகபட்ச குழு அளவு%1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">இந்த குழுவை மேம்படுத்தவும்.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">இது பாதுகாப்பற்ற எம்.எம்.எஸ் குழு. தனிப்பட்ட முறையில் அரட்டையடிக்க, உங்கள் தொடர்புகளை Signal க்கு அழைக்கவும்.</string>
+  <string name="ManageGroupActivity_invite_now">இப்போது அழைக்கவும்</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">என் பெயர் குறிப்புகளை எனக்கு அறிவி</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">முடக்கிய அரட்டைகளில் மற்றவர்களால் நீங்கள் குறிப்பிடப்படும்போது அறிவிப்புகள் பெறலாமா?</string>
@@ -598,12 +719,23 @@
   <string name="CustomNotificationsDialogFragment__disabled">முடக்கப்பட்டது</string>
   <string name="CustomNotificationsDialogFragment__default">இயல்புநிலை</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">பகிரக்கூடிய குழு இணைப்பு</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">நிர்வகிக்கவும் மற்றும் பகிரவும்</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">குழு இணைப்பு</string>
   <string name="ShareableGroupLinkDialogFragment__share">பகிர்</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">இணைப்பை மீட்டமைக்கவும்</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">உறுப்பினர் கோரிக்கைகள்</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">புதிய உறுப்பினர்களை அங்கீகரிக்கவும்</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">இயக்கப்பட்டது</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">முடக்கப்பட்டது</string>
   <string name="ShareableGroupLinkDialogFragment__default">இயல்புநிலை</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">குழு இணைப்பை மீட்டமைக்கவும்</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">குழு இணைப்பு வழியாக குழுவில் சேர விரும்பும் புதிய உறுப்பினர்களுக்கு நிர்வாகி ஒப்புதல் தேவை.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">குழு இணைப்பை மீட்டமைக்க விரும்புகிறீர்களா? தற்போதைய இணைப்பைப் பயன்படுத்தி மக்கள் இனி குழுவில் சேர முடியாது.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR குறியீடு</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">இந்த குறியீட்டை ஸ்கேன் செய்யும் நபர்கள் உங்கள் குழுவில் சேர முடியும். நீங்கள் அந்த அமைப்பை இயக்கியிருந்தால், நிர்வாகிகள் புதிய உறுப்பினர்களை அங்கீகரிக்க வேண்டும்.</string>
+  <string name="GroupLinkShareQrDialogFragment__share_code">குறியீட்டைப் பகிரவும்</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">நீங்கள் %1$s அவர்களுக்கு அனுப்பிய அழைப்பை ரத்து செய்ய விரும்புகிறீர்களா?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
@@ -612,14 +744,29 @@
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">நீங்கள் ஏற்கனவே உறுப்பினராக உள்ளீர்கள்</string>
+  <string name="GroupJoinBottomSheetDialogFragment_join">சேரவும்</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">சேர கோரிக்கை</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">இந்த குழுவில் சேர முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">இந்த குழு இணைப்பு செயலில் இல்லை</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">குழு தகவல்களைப் பெற முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">இந்த குழுவில் சேர்ந்து உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">இந்த குழுவில் சேருவதற்கு முன்பு இந்த குழுவின் நிர்வாகி உங்கள் கோரிக்கையை அங்கீகரிக்க வேண்டும். நீங்கள் சேரக் கோரும்போது, உங்கள் பெயர் மற்றும் புகைப்படம் அதன் உறுப்பினர்களுடன் பகிரப்படும்.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">குழு: %1$d உறுப்பினர்</item>
+    <item quantity="other">குழு %1$d உறுப்பினர்கள்</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">குழு இணைப்புகள் விரைவில் வருகின்றன</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">குழு இணைப்புகளைப் பயன்படுத்த சிக்னலைப் புதுப்பிக்கவும்</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">நீங்கள் பயன்படுத்தும் Signal லின் பதிப்பு இந்த குழு இணைப்பை ஆதரிக்காது. இணைப்பு வழியாக இந்த குழுவில் சேர சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">இணைக்கப்பட்ட சாதனங்களில் ஒன்று அல்லது அதற்கு மேற்பட்டவை, குழு இணைப்புகளை ஆதரிக்காத சிக்னலின் பதிப்பை இயக்குகின்றன. இந்த குழுவில் சேர உங்கள் இணைக்கப்பட்ட சாதனம் (களில்) சிக்னலைப் புதுப்பிக்கவும்.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">குழு இணைப்புகள் செல்லுபடியாகாது.</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">குழுவில் \"%1$s\" ஐ சேர்க்கவா?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" இன் கோரிக்கையை மறுக்கவா?</string>
+  <string name="RequestConfirmationDialog_add">சேர்க்கவும்</string>
   <string name="RequestConfirmationDialog_deny">மறுக்க</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">குழு சின்னம்</string>
@@ -754,7 +901,11 @@
   <string name="MessageRecord_left_group">நீங்கள் குழுவை விட்டு விலகினீர்கள்.</string>
   <string name="MessageRecord_you_updated_group">நீங்கள் குழுவைப் புதுப்பித்தீர்கள்.</string>
   <string name="MessageRecord_the_group_was_updated">குழு புதுப்பிக்கப்பட்டது.</string>
+  <string name="MessageRecord_you_called_date">இந்த நபரை அழைத்தீர்கள் %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">தவறவிட்ட ஆடியோ அழைப்பு %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">தவறவிட்ட வீடியோ அழைப்பு . %1$s</string>
   <string name="MessageRecord_s_updated_group">%s குழு புதுப்பிக்கப்பட்டது .</string>
+  <string name="MessageRecord_s_called_you_date">%1$sஉங்களை அழைத்தார்%2$s</string>
   <string name="MessageRecord_called_s">%sயை அழைத்தீர்கள்</string>
   <string name="MessageRecord_s_joined_signal">%s Signal லில் உள்ளது!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">காணாமல் போகும் செய்திகளை முடக்கியுள்ளீர்கள்.</string>
@@ -762,6 +913,16 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">காணாமல் போகும் செய்திகளின் நேரத்தை %1$s ஆக அமைத்துள்ளீர்கள்.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s காணாமல் போகும் செய்திகளின் நேரத்தை %2$s ஆக அமைத்தார்.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">காணாமல் போகக்கூடிய செய்தி டைமர் %1$s நேரத்தில் அமைக்கப்பட்டுள்ளது .</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">இந்த குழு புதிய குழுவாக புதுப்பிக்கப்பட்டது.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">நீங்கள் புதிய குழுவில் சேர்க்கப்படவில்லை. நீங்கள் இந்தக் குழுவில் சேருவதற்கு அழைக்கப்பட்டுள்ளீர்கள்</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">புதிய குழுவில் ஒரு உறுப்பினரை சேர்க்க முடியவில்லை. அவர் குழுவில் சேர அழைக்கப்பட்டுள்ளார்.</item>
+    <item quantity="other">புதிய குழுவில் %1$s உறுப்பினர்களை சேர்க்க முடியவில்லை. அவர்கள் குழுவில் சேர அழைக்கப்பட்டுள்ளனர்.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">புதிய குழுவில் ஒரு உறுப்பினரைச் சேர்க்க முடியவில்லை, அவர் அகற்றப்பட்டார்.</item>
+    <item quantity="other">புதிய குழுவில் %1$s உறுப்பினர்களைச் சேர்க்க முடியவில்லை, அவர்கள் அகற்றப்பட்டனர்.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s அவர்களின் சுயவிவரப் பெயரை %2$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s அவர்களின் சுயவிவரப் பெயரை %2$s இருந்து %3$s பெயருக்கு மாற்றப்பட்டுள்ளது .</string>
@@ -845,11 +1006,43 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s"> குழு உறுப்பினர்களை தங்களுக்கு யார் திருத்தலாம் என்பதை %1$s அவர்கள் \"%2$s\" அவர்களுக்கு மாற்றினர்.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">குழு உறுப்பினர்களை யார் திருத்தலாம் என்பது \"%1$s\" கு மாற்றப்பட்டுள்ளது</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">நிர்வாகி ஒப்புதல் இல்லாமல் குழு இணைப்பை இயக்கியுள்ளீர்கள்.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">நிர்வாகி ஒப்புதலுடன் குழு இணைப்பை இயக்கியுள்ளீர்கள்.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">குழு இணைப்பை முடக்கியுள்ளீர்கள்.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s நிர்வாகி ஒப்புதலுடன் குழு இணைப்பை இயக்கியுள்ளார்.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">நிர்வாகி ஒப்புதலுடன் குழு இணைப்பை %1$s இயக்கியுள்ளார்.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s குழு இணைப்பை முடக்கியுள்ளார்.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">நிர்வாகி ஒப்புதல் இல்லாமல் குழு இணைப்பு இயக்கப்பட்டது.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">நிர்வாகி ஒப்புதலுடன் குழு இணைப்பு இயக்கப்பட்டுள்ளது.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">குழு இணைப்பு முடக்கப்பட்டுள்ளது.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">குழு இணைப்புக்கான நிர்வாகியின் அங்கீகாரத்தை முடக்கியுள்ளீர்கள்.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">குழு இணைப்புக்கான நிர்வாகியின் ஒப்புதலை %1$s முடக்கியுள்ளார்.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">குழு இணைப்புக்கான நிர்வாகியின் அங்கீகாரத்தை முடக்கியுள்ளீர்கள்.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">குழு இணைப்பிற்கான நிர்வாகி ஒப்புதல் அமைப்பை இயக்கியுள்ளீர்கள்.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">குழு இணைப்புக்கான நிர்வாகியின் ஒப்புதலை%1$s இயக்கியுள்ளார்.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">குழு இணைப்பிற்கான நிர்வாகியின் ஒப்புதல் இயக்கப்பட்டது.</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">நீங்கள் குழு இணைப்பை மீட்டமைத்துள்ளீர்கள்.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$sகுழு இணைப்பை மீட்டமைத்தார்.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">குழு இணைப்பு மீட்டமைக்கப்பட்டது.</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">குழு இணைப்பு வழியாக நீங்கள் குழுவில் சேர்ந்தீர்கள்.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s குழு இணைப்பு வழியாக குழுவில் சேர்ந்தார்.</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">குழுவில் சேர கோரிக்கை அனுப்பியுள்ளீர்கள்.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$sகுழு இணைப்பைப் பயன்படுத்தி குழுவில் சேர அவர் கோரியுள்ளார்.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">குழுவில் சேர உங்கள் கோரிக்கையை%1$s ஏற்றுக்கொண்டார்.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">குழுவில் சேர%2$s அனுப்பப்பட்ட உங்கள் கோரிக்கையை %1$s ஏற்றுக்கொண்டார்.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">குழுவில் சேர %1$s கோரிக்கையை நீங்கள் அங்கீகரித்தீர்கள்</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">குழுவில் சேர உங்கள் கோரிக்கை அங்கீகரிக்கப்பட்டுள்ளது.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">குழுவில் சேர %1$s இன் கோரிக்கைக்கு ஒப்புதல் அளிக்கப்பட்டுள்ளது.</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">குழுவில் சேர உங்கள் கோரிக்கை நிர்வாகியால் மறுக்கப்பட்டுள்ளது.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">குழுவில் சேர %2$s வின் கோரிக்கையை%1$s மறுத்தார்.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">குழுவில் சேர%1$s கோரிக்கை மறுக்கப்பட்டது.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">குழுவில் சேர உங்கள் கோரிக்கையை ரத்து செய்துள்ளீர்கள்.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">குழுவில் சேர கோரிக்கையை %1$s ரத்து செய்தார்.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s உடன் உங்கள் பாதுகாப்பு எண் மாறிவிட்டது.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்பட்டதாக குறித்தீர்கள்</string>
@@ -857,7 +1050,27 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்படாததாக குறித்தீர்கள்</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்படாததாக வேறொரு சாதனத்திலிருந்து குறித்தீர்கள்</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$sகுழு அழைப்பைத் தொடங்கினார்%2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s குழு அழைப்பில் உள்ளார் %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">நீங்கள் குழு அழைப்பில் இருக்கிறீர்கள். %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s மற்றும் %2$s குழு அழைப்பில் உள்ளனர் %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, மற்றும் %3$s நபர்கள் அழைப்பில் உள்ளனர். %4$s</string>
+  <string name="MessageRecord_group_call_s">குழு அழைப்பு . %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s குழு அழைப்பைத் தொடங்கினார்</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s குழு அழைப்பில் இருக்கிறார்</string>
+  <string name="MessageRecord_you_are_in_the_group_call">நீங்கள் குழு அழைப்பில் இருக்கிறீர்கள்</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s மற்றும் %2$s குழு அழைப்பில் உள்ளனர்</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s மற்றும்%3$s குழு அழைப்பில் உள்ளனர்</string>
+  <string name="MessageRecord_group_call">குழு அழைப்பு</string>
   <string name="MessageRecord_you">நீங்கள்</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s,. மற்றும் கூடுதலாக%3$d குழு உறுப்பினர் அழைப்பில் உள்ளனர் %4$s</item>
+    <item quantity="other">%1$s, %2$s மற்றும் கூடுதலாக%3$d குழு உறுப்பினர்கள் அழைப்பில் உள்ளனர் %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s, மற்றும் %3$dகூடுதலாக குழு உறுப்பினர்கள் அழைப்பில் உள்ளனர்</item>
+    <item quantity="other">%1$s, %2$s, மற்றும்  கூடுதலாக %3$d குழு உறுப்பினர்கள் அழைப்பில் உள்ளனர்</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">ஒப்புக்கொள்</string>
   <string name="MessageRequestBottomView_continue">தொடர்ந்து செல் </string>
@@ -866,6 +1079,10 @@
   <string name="MessageRequestBottomView_unblock">தடைநீக்கு </string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s உங்களுக்கு செய்தி அனுப்ப அனுமதித்து, உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்தியை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s உங்களுக்கு செய்தி அனுப்ப அனுமதித்து, உங்கள் பெயரையும் புகைப்படத்தையும் அவர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் அவரை தடை நீக்கம் செய்யும் வரை எந்த செய்திகளையும் பெற மாட்டீர்கள்.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">இந்த குழுவுடன் உங்கள் உரையாடலைத் தொடர, உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ளவா?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை செயல்படுத்த இந்த குழுவை மேம்படுத்தவும். இந்த குழுவில் தங்கள் பெயரையோ புகைப்படத்தையோ பகிர்ந்து கொள்ளாத உறுப்பினர்கள் சேர அழைக்கப்படுவார்கள்.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">இந்த மரபு குழு மிகப் பெரியது, எனவே இதை இனி பயன்படுத்த முடியாது. அதிகபட்ச குழு அளவு: %1$d</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s உடன் உங்கள் உரையாடலைத் தொடரவும். அவருடன் உங்கள் பெயரையும் புகைப்படத்தையும் பகிர்ந்து கொள்ளலாமா?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">இந்த குழுவில் சேர்ந்து உங்கள் பெயர் மற்றும் புகைப்படத்தை அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளை நீங்கள் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">இந்த குழுவில் சேரவா? நீங்கள் ஏற்றுக்கொள்ளும் வரை அவர்களின் செய்திகளைப் பார்த்திருப்பதை அவர்கள் அறிய மாட்டார்கள்.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">இந்த குழுவைத் தடை நீக்கம் செய்து, உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ளலாமா? நீங்கள் தடை நீக்கம் செய்யும் வரை எந்த செய்திகளையும் பெற மாட்டீர்கள்.</string>
@@ -913,6 +1130,12 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">உங்கள் செய்திகள் காலாவதியாகாது.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">இந்த உரையாடலில் அனுப்பப்பட்ட மற்றும் பெறப்பட்ட செய்திகள் காணப்பட்ட பிறகு %s மறைந்துவிடும்.</string>
   <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_update_now">இப்பொழுது மேம்படுத்து</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">சிக்னலின் இந்த பதிப்பு இன்று காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">சிக்னலின் இந்த பதிப்பு நாளை காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</item>
+    <item quantity="other">சிக்னலின் இந்த பதிப்பு %d நாட்களில் காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">கடவுச்சொல்லை உள்ளிடவும். </string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ஐகான்</string>
@@ -990,13 +1213,38 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ஐ அழைக்க, சிக்னலுக்கு உங்கள் கேமரா அனுமதி தேவை Signal Camera permission</string>
   <string name="WebRtcCallActivity__signal_s">சிக்னல் Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">அழைக்கிறது…</string>
+  <string name="WebRtcCallActivity__group_call">குழு அழைப்பு</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal குரல் அழைப்பு…</string>
   <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு…</string>
+  <string name="WebRtcCallView__start_call">அழைப்பைத் தொடங்கு</string>
+  <string name="WebRtcCallView__join_call">அழைப்பில் சேர்</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\"  குழு அழைப்பு</string>
+  <string name="WebRtcCallView__view_participants_list">பங்கேற்பாளர்களைக் காண்க</string>
+  <string name="WebRtcCallView__your_video_is_off">உங்கள் வீடியோ முடக்கப்பட்டுள்ளது</string>
   <string name="WebRtcCallView__connecting">இணைக்கிறது …</string>
   <string name="WebRtcCallView__reconnecting">மீண்டும் இணைக்கிறது …</string>
+  <string name="WebRtcCallView__joining">சேர்கிறீர்கள்</string>
   <string name="WebRtcCallView__disconnected">துண்டிக்கப்பட்டது</string>
+  <string name="WebRtcCallView__no_one_else_is_here">வேறு யாரும் இங்கு இல்லை</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s இந்த அழைப்பில் இருக்கிறார்</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s மற்றும் %2$sஇந்த அழைப்பில் உள்ளனர்</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s, மற்றும் %3$dநபர்கள் அழைப்பில் உள்ளனர்</item>
+    <item quantity="other">%1$s, %2$s, மற்றும் கூடுதலாக%3$d நபர்கள் அழைப்பில் உள்ளனர்</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">இந்த அழைப்பில் %1$d நபர் இருக்கிறார்</item>
+    <item quantity="other">இந்த அழைப்பில் %1$d பேர் உள்ளனர்</item>
+  </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s தடுக்கப்பட்டார்</string>
+  <string name="CallParticipantView__more_info">மேலும் தகவல்</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">அவர்களின் ஆடியோ அல்லது வீடியோவை நீங்கள் பெற மாட்டீர்கள். மேலும், அவர்கள் உங்களுடையதைப் பெற மாட்டார்கள்.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$sஇலிருந்து ஆடியோ மற்றும் வீடியோவைப் பெற முடியவில்லை</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$sஇலிருந்து ஆடியோ மற்றும் வீடியோவைப் பெற முடியவில்லை </string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">இது உங்கள் பாதுகாப்பு எண் மாற்றத்தை அவர்கள் சரிபார்க்கவில்லை அல்லது அவர்களின் சாதனத்தில் சிக்கல் இருப்பதால் அல்லது அவர்கள் உங்களைத் தடுத்ததால் இருக்கலாம்.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக  குறிப்பிடவேண்டியது உங்கள்:
@@ -1018,6 +1266,7 @@
   <string name="RegistrationActivity_more_information">மேலும் தகவல்</string>
   <string name="RegistrationActivity_less_information">குறைந்த தகவல்</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">நண்பர்களுடன் இணைவதற்கும், செய்திகளைப் பரிமாறிக் கொள்வதற்கும், பாதுகாப்பான அழைப்புகளைச் செய்வதற்கும் Signal உங்கள் தொடர்புகள் மற்றும் ஊடகங்களுக்கான அணுகல் தேவை</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">உங்கள் நண்பர்களுடன் தொடர்புகொள்வதற்கும், செய்திகளைப் பரிமாறிக்கொள்வதற்கும், பாதுகாப்பான அழைப்புகளைச் செய்வதற்கும், சிக்னலுக்கு உங்கள் தொடர்புகள் பிரிவுக்கு அணுகல் அனுமதி தேவை.</string>
   <string name="RegistrationActivity_rate_limited_to_service">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">உங்கள் தொலைபேசி எண்ணை எளிதில் சரிபார்க்க, SMS செய்திகளைக் காண Signal அனுமதித்தால் Signal தானாகவே உங்கள் சரிபார்ப்புக் குறியீட்டைக் கண்டறிய முடியும்.</string>
@@ -1189,6 +1438,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ஒப்பிடுவதற்கான பாதுகாப்பு எண் எதுவும் கிளிப்போர்டில் காணப்படவில்லை</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR குறியீட்டை ஸ்கேன் செய்ய சிக்னலுக்கு கேமரா அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாட்டு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"கேமரா\" ஐ இயக்கவும்.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">கேமரா அனுமதியின்றி QR குறியீட்டை ஸ்கேன் செய்ய முடியவில்லை</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$sவின் பாதுகாப்பு எண்ணைக் காண, நீங்கள் முதலில் உங்கள் இருவருக்கும் இடையில் செய்திகளைப் பரிமாறிக் கொள்ள வேண்டும்.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1219,6 +1469,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">இது இந்த செய்தியை நிரந்தரமாக நீக்கும்.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">இந்த ஊடகம் சேமிப்பகத்தில் இல்லை.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">இந்த மீடியாவைப் பகிரக்கூடிய பயன்பாட்டைக் கண்டுபிடிக்க முடியவில்லை.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d உரையாடல்களில் %1$d புதிய செய்திகள்</string>
   <string name="MessageNotifier_most_recent_from_s">இதிலிருந்து மிக சமீபத்தியது: %1$s</string>
@@ -1246,6 +1497,7 @@
   <string name="MessageNotifier_reacted_s_to_your_image">உங்கள் படத்திற்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">உங்கள் கோப்பிற்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">உங்கள் கேட்பொலிக்கு %1$s என வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">  %1$sஉங்கள் பார்வைக்கு ஒரு முறை ஊடகங்களுக்கு அவர் பதில்செயல் காட்டியுள்ளீர்கள்</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஒட்டிக்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">இணைந்த சிக்னல் Signal அறிவிப்புகளை முடக்குவதா? அமைப்புகள் மற்றும் அறிவிப்புகளுக்குச் சென்று அவற்றை Signal settings சிக்னலில் மீண்டும் இயக்கலாம்.</string>
@@ -1259,6 +1511,7 @@
   <string name="NotificationChannel_other">மற்றவை</string>
   <string name="NotificationChannel_group_messages">செய்திகள்</string>
   <string name="NotificationChannel_missing_display_name">முன் தெரிந்திராத</string>
+  <string name="NotificationChannel_voice_notes">குரல் குறிப்புகள்</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">சுயவிவரப் பெயர் வெற்றிகரமாக அமைக்கப்பட்டது .</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
@@ -1295,6 +1548,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">இணைக்கப்பட்ட சாதனத்தில் பதிலளிக்கப்பட்டது.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">இணைக்கப்பட்ட சாதனத்தில் மறுக்கப்பட்டது.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">இணைக்கப்பட்ட சாதனத்தில் பயனர் அழைப்பில் இருக்கிறார்.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">மாற்றப்பட்ட பாதுகாப்பு எண்ணுடன் யாரோ இந்த அழைப்பில் சேர்ந்துள்ளனர்.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s உடனான உங்கள் உரையாடலுக்கான பாதுகாப்பு எண் மாறிவிட்டது. இது, உங்கள் தகவல்தொடர்புகளை யாரேனும் இடைமறிக்க முயற்சிக்கிறார்கள் அல்லது %2$s Signal-ஐ மீண்டும் நிறுவியிருக்கிறார்கள், என்பதை குறிக்கும்.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">இந்த தொடர்புடன் உங்கள் பாதுகாப்பு எண்ணைச் நீங்கள் சரிபார்க்க முடியும்</string>
@@ -1360,6 +1614,14 @@
   <string name="ContactSelectionListFragment_username_not_found">பயனர்பெயர் கிடைக்கவில்லை</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal பயனர் அல்ல. தயவுசெய்து பயனர்பெயரை சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">உங்களை நீங்களே குழுவில் சேர்க்க தேவையில்லை</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">அதிகபட்ச குழு அளவு எட்டப்பட்டுள்ளது</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">சிக்னல் குழுக்கள் அதிகபட்சம் %1$d உறுப்பினர்களைக் கொண்டிருக்கலாம்.</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">குழு உறுப்பினர் அளவு பரிந்துரைக்கப்பட்ட வரம்பை எட்டியுள்ளது</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">சிக்னல் குழுக்கள் %1$d உறுப்பினர்கள் அல்லது குறைவானவர்களுடன் சிறப்பாக செயல்படுகின்றன. அதிகமான உறுப்பினர்களைச் சேர்ப்பது செய்திகளை அனுப்புவதையும் பெறுவதையும் தாமதப்படுத்தும்.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d உறுப்பினர்</item>
+    <item quantity="other">%1$d உறுப்பினர்கள்</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">தடுக்கப்பட்ட தொடர்புகள் இல்லை</string>
   <!--contact_selection_list_fragment-->
@@ -1401,6 +1663,9 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">ஏற்றுதல்</string>
   <string name="ConversationUpdateItem_learn_more">மேலும் அறிக</string>
+  <string name="ConversationUpdateItem_join_call">அழைப்பில் சேரவும்</string>
+  <string name="ConversationUpdateItem_return_to_call">அழைப்புக்குத் திரும்பு</string>
+  <string name="ConversationUpdateItem_call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">விளையாடு … இடைநிறுத்து</string>
   <string name="audio_view__download_accessibility_description">பதிவிறக்க</string>
@@ -1419,6 +1684,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">பாதுகாப்பு எண் மாற்றங்கள்</string>
   <string name="safety_number_change_dialog__send_anyway">இருந்தாலும் அனுப்பு</string>
   <string name="safety_number_change_dialog__call_anyway">இருந்தாலும் அழைக்கவும்</string>
+  <string name="safety_number_change_dialog__join_call">அழைப்பில் சேரவும்</string>
+  <string name="safety_number_change_dialog__continue_call">அழைப்பைத் தொடரவும்</string>
+  <string name="safety_number_change_dialog__leave_call">அழைப்பை விடுங்கள்</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">பின்வரும் நபர்கள் தொலைபேசிகளை மீண்டும் நிறுவியிருக்கலாம் அல்லது மாற்றியிருக்கலாம். தனியுரிமையை உறுதிப்படுத்த அவர்களுடன் உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்.</string>
   <string name="safety_number_change_dialog__view">காண்க</string>
   <string name="safety_number_change_dialog__previous_verified">முன்பு சரிபார்க்கப்பட்டது</string>
@@ -1537,6 +1805,7 @@
   <string name="CreateProfileActivity_next">அடுத்தது</string>
   <string name="CreateProfileActivity__username">பயனர்பெயர்</string>
   <string name="CreateProfileActivity__create_a_username">பயனர்பெயரை உருவாக்கவும்</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">தனிப்பயன் எம்.எம்.எஸ் குழு பெயர்கள் மற்றும் புகைப்படங்கள் உங்களுக்கு மட்டுமே தெரியும்.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">குழு பெயர் மற்றும் புகைப்படத்தைத் தொகு அல்லது திருத்தவும்</string>
   <string name="EditProfileFragment__group_name">குழுவின் பெயர்</string>
@@ -1752,6 +2021,7 @@
   <string name="preferences__typing_indicators">தட்டச்சு குறிகாட்டிகள்</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">தட்டச்சு குறிகாட்டிகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து தட்டச்சு குறிகாட்டிகளை நீங்கள் பார்க்க முடியாது.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">தனிப்பயனாக்கப்பட்ட கற்றலை முடக்க விசைப்பலகை கோருங்கள்</string>
+  <string name="preferences_app_protection__blocked_users">தடைசெய்த பயனர்கள்</string>
   <string name="preferences_chats__when_using_mobile_data">மொபைல் தரவைப் பயன்படுத்தும் போது</string>
   <string name="preferences_chats__when_using_wifi">வைஃபை பயன்படுத்தும் போது</string>
   <string name="preferences_chats__when_roaming">ரோமிங் செய்யும் போது</string>
@@ -1814,6 +2084,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact"> புதிய செய்தி இவருக்கு…</string>
+  <string name="contact_selection_list__unknown_contact_block">பயனரை தடை செய்</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">குழுவில் சேர்</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">அழை</string>
@@ -1877,6 +2148,7 @@
   <string name="conversation__menu_conversation_settings">உரையாடல் அமைப்புகள்</string>
   <string name="conversation__menu_add_shortcut">முகப்புத் திரையில் சேர்க்கவும்</string>
   <string name="conversation__menu_pending_members">நிலுவையில் உள்ள உறுப்பினர்கள்</string>
+  <string name="conversation__menu_create_bubble">பபுளை உருவாக்கவும்</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">பாப்அப்பை விரிவாக்கு</string>
   <!--conversation_callable_insecure-->
@@ -2040,9 +2312,15 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம். PIN ஐ உருவாக்குவது %1$dநாட்களில் கட்டாயமாகிவிடும்.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம்.%1$dநாட்களில் உங்கள் பின்னை உறுதிப்படுத்துவது கட்டாயமாகிவிடும்.</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">நீங்கள் என்ன நினைக்கிறீர்கள் என்று Signal லிடம் சொல்லுங்கள்</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">சிக்னலை உலகின் சிறந்த செய்தியிடல் பயன்பாடாக மாற்ற, உங்கள் கருத்தைக் கேட்க நாங்கள் விரும்புகிறோம்.</string>
   <string name="ResearchMegaphone_learn_more">மேலும் அறிக</string>
   <string name="ResearchMegaphone_dismiss">நிராகரி</string>
+  <string name="ResearchMegaphoneDialog_signal_research">சிக்னல் ஆராய்ச்சி</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy">&lt;p&gt;&lt;b&gt;நாங்கள் தனியுரிமையை நம்புகிறோம்.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;சிக்னல் உங்கள் செயல்பாட்டைக் கண்காணிக்காது அல்லது உங்கள் தரவை சேகரிக்காது. அனைவருக்கும் சிக்னலை மேம்படுத்த, பயனர் கருத்தை நாங்கள் நம்புகிறோம்&lt;b&gt; உங்கள் கருத்தை நாங்கள் விரும்புகிறோம்! &lt;/b&gt;&lt;/p&gt;&lt;p&gt;நீங்கள் சிக்னலை எவ்வாறு பயன்படுத்துகிறீர்கள் என்பதைப் புரிந்துகொள்ள நாங்கள் ஒரு கணக்கெடுப்பை நடத்துகிறோம். உங்களை அடையாளம் காணும் எந்த தரவையும் எங்கள் கணக்கெடுப்பு சேகரிக்கவில்லை. கூடுதல் கருத்துகளைப் பகிர ஆர்வமாக இருந்தால், உங்கள் தொடர்பு தகவலை வழங்கவும்.&lt;/p&gt;&lt;p&gt;உங்களிடமிருந்து கருத்துக்களைக் கேட்க நாங்கள் விரும்புகிறோம்.</string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">கணக்கெடுப்பில் பங்கேற்கவும்</string>
   <string name="ResearchMegaphoneDialog_no_thanks">தேவையில்லை,நன்றி</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">surveys.signalusers.org என்ற பாதுகாப்பான களத்தில் கணக்கெடுப்பை ஆல்கமீர் வழங்கியுள்ளது</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
@@ -2058,6 +2336,8 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">நிலுவையிலுள்ள செய்திகளைக் காண திறக்கவும்</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">கடவுச்சொல்லை காப்புப்பிரதி  செய்க </string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">காப்புப்பதிவு கோப்புகள் வெளிப்புற சேமிப்பகத்தில் சேமிக்கப்பட்டு கீழே உள்ள கடவுச்சொற்றொடருடன் மறையாக்கப்படும். காப்புப்பதிவு கோப்பை மீட்டமைக்க இந்த கடவுச்சொற்றொடரை நீங்கள் கொண்டிருக்க வேண்டும்.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">மறுபிரதியை மீட்டமைக்க இந்த கடவுத்தொடர் உங்களுக்குத் தேவைப்படும்.</string>
+  <string name="backup_enable_dialog__folder">கோப்புறை</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">இந்த கடவுச்சொற்றொடரை நான் எழுதியுள்ளேன். இது இல்லாமல், என்னால் ஒரு காப்புப்பதிவு பயனர் தரவு மீட்டெடுக்க முடியாது.</string>
   <string name="registration_activity__restore_backup">காப்புப்பதிவு பயனர் தரவு மீட்டமை</string>
   <string name="registration_activity__skip">தவிர்</string>
@@ -2083,6 +2363,7 @@
   <string name="BackupDialog_delete_backups">காப்புப்பிரதிகளை நீக்கவா?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">எல்லா உள்ளூர் காப்புப்பிரதிகளையும் முடக்கி நீக்கவா?</string>
   <string name="BackupDialog_delete_backups_statement">காப்புப்பிரதிகளை நீக்கு</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">மறுபிரதிகளை இயக்க, ஒரு கோப்புறையைத் தேர்வுசெய்க. மறுபிரதிகள் இந்த இருப்பிடத்தில் சேமிக்கப்படும்.</string>
   <string name="BackupDialog_choose_folder">கோப்புறையைத் தேர்வுசெய்க</string>
   <string name="BackupDialog_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">சரிபார்க்க உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரை உள்ளிடவும்</string>
@@ -2093,6 +2374,11 @@
   <string name="ChatsPreferenceFragment_last_backup_s">கடைசி காப்புப்பதிவு பயனர் தரவு: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">நடந்து கொண்டிருக்கிறது</string>
   <string name="LocalBackupJob_creating_backup">காப்புப்பதிவு பயனர் தரவு உருவாக்குகிறது …</string>
+  <string name="LocalBackupJobApi29_backup_failed">மறுபிரதி தோல்வியுற்றது</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">உங்கள் மறுபிரதி கோப்புறை நீக்கப்பட்டது அல்லது வேறு இடத்திற்கு நகர்த்தப்பட்டது.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">உங்கள் மறுபிரதி கோப்பின் அளவு இந்த தொகுதியில் சேமிக்க முடியாத அளவுக்கு பெரியது.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">உங்கள் காப்புப்பிரதியை சேமிக்க போதுமான இடம் இல்லை.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">மறுபிரதிகளை நிர்வகிக்க தட்டவும்</string>
   <string name="ProgressPreference_d_messages_so_far">இதுவரை 1%d செய்திகள்</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s க்கு அனுப்பப்பட்ட சரிபார்ப்புக் குறியீட்டை உள்ளிடவும்.</string>
   <string name="RegistrationActivity_wrong_number">தவறான எண்</string>
@@ -2183,6 +2469,8 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">பாதுகாப்பற்ற குரல் அழைப்பு </string>
   <string name="RecipientBottomSheet_video_call_description">காணொளி அழைப்பு</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">குழு நிர்வாக நிலையாக %1$sஐ அகற்றவா?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" இந்த குழுவையும் அதன் உறுப்பினர்களையும் திருத்த முடியும்</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s குழுவிலிருந்து நீக்கவா? </string>
   <string name="RecipientBottomSheet_remove">நீக்கு</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="GroupRecipientListItem_admin">நிர்வாகி</string>
@@ -2192,6 +2480,9 @@
   <string name="GroupsLearnMore_legacy_vs_new_groups">பழைய மரபு vs புதிய குழுக்கள்</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">பழைய மரபு குழுக்கள் என்றால் என்ன?</string>
   <string name="GroupsLearnMore_paragraph_1">பழைய மரபு குழுக்கள் என்பது நிர்வாகிகள் மற்றும் மேம்பட்ட குழு புதுப்பிப்பு விளக்கங்கள் போன்ற புதிய குழு அம்சங்களுடன் பொருந்தாத குழுக்கள்.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">நான் ஒரு மரபு குழுவை மேம்படுத்த முடியுமா?</string>
+  <string name="GroupsLearnMore_paragraph_2">மரபு குழுக்களை புதிய குழுக்களாக மேம்படுத்த முடியாது, ஆனால் குழு உறுப்பினர்கள் சிக்னலின் சமீபத்திய பதிப்பில் இருந்தால் அதே உறுப்பினர்களுடன் புதிய குழுவை உருவாக்கலாம்.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal எதிர்காலத்தில் மரபு குழுக்களை மேம்படுத்த ஒரு வழியை வழங்கும்.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">சிக்னல் Signal வழியாக பகிரவும்</string>
   <string name="GroupLinkBottomSheet_copy">நகல்</string>
@@ -2200,15 +2491,52 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">இணைப்பு தற்போது செயலில் இல்லை</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">பிளேபேக்கைத் தொடங்க முடியவில்லை.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">குரல் செய்தி:%1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s to %2$s</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\"தடுக்கப்பட்டார்</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\" தடுப்பதில் தோல்வி</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" தடைநீக்கப்பட்டார்</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">மதிப்பாய்வு உறுப்பினர்கள்</string>
+  <string name="ReviewCardDialogFragment__review_request">கோரிக்கையை மதிப்பாய்வு செய்யவும்</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$dகுழு உறுப்பினர்களுக்கு ஒரே பெயர் உள்ளது, கீழே உள்ள உறுப்பினர்களை மதிப்பாய்வு செய்து நடவடிக்கை எடுக்க முடிவு செய்யுங்கள்</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">உங்களுக்கு யார் கோரிக்கையை அனுப்பினார்கள் என்பது உங்களுக்குத் தெரியாவிட்டால், கீழே உள்ள தொடர்புகளை மதிப்பாய்வு செய்து நடவடிக்கை எடுக்கவும்.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">பொதுவான குழுக்கள் இல்லை</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">பொதுவான குழுக்கள் இல்லை</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%dபொதுவான குழு</item>
+    <item quantity="other">%dபொதுவான குழுக்கள்</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d பொதுவான குழு</item>
+    <item quantity="other">%dபொதுவான குழுக்கள்</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">குழுவிலிருந்து %1$s அகற்றவா?</string>
   <string name="ReviewCardDialogFragment__remove">நீக்கு</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">குழு உறுப்பினரை அகற்றுவதில் தோல்வி.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">உறுப்பினர்</string>
+  <string name="ReviewCard__request">கோரிக்கை</string>
+  <string name="ReviewCard__your_contact">உங்கள் தொடர்பு</string>
   <string name="ReviewCard__remove_from_group">குழுவிலிருந்து அகற்று</string>
+  <string name="ReviewCard__update_contact">தொடர்பைப் புதுப்பிக்கவும்</string>
   <string name="ReviewCard__block">தடு </string>
   <string name="ReviewCard__delete">அழி</string>
+  <string name="ReviewCard__recently_changed">சமீபத்தில் அவர்கள் தங்கள் சுயவிவரப் பெயரை %1$s இலிருந்து %2$s ஆக மாற்றினர்</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s சேர்ந்தார்</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s மற்றும் %2$sசேர்ந்தார்</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s மற்றும் %3$s சேர்ந்தார்</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s and %3$dஅதிக உறுப்பினர்கள் இணைந்தனர்</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s வெளியேறினர்</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s மற்றும் %2$s வெளியேறினர்</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s மற்றும் %3$sவெளியேறினர்</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s and மேலும்%3$d வெளியேறினர்</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">நீங்கள் (மற்றொரு சாதனத்தில்)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string>
   <!--EOF-->
 </resources>

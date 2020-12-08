@@ -262,6 +262,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Чтобы позвонить %1$s, Signal необходим доступ к вашему микрофону</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Чтобы позвонить %1$s, Signal необходим доступ к вашим микрофону и камере.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Больше опций теперь в «Настройках группы»</string>
+  <string name="ConversationActivity_join">Войти</string>
+  <string name="ConversationActivity_full">Заполнен</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитанное сообщение</item>
@@ -740,7 +742,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Это Старая группа. Чтобы получить доступ к таким функциям, как @упоминания и администраторы групп,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Эта Старая группа не может быть обновлена до Новой группы, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">обновите эту группу.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Это небезопасная группа MMS. Чтобы общаться конфиденциально и получить доступ к таким функциям, как имена групп, пригласите своих контактов в Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Это небезопасная группа MMS. Чтобы общаться конфиденциально, пригласите своих контактов в Signal.</string>
   <string name="ManageGroupActivity_invite_now">Пригласить сейчас</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Уведомлять меня об упоминаниях</string>
@@ -1363,6 +1365,13 @@
     <item quantity="many">В этом звонке · %1$d человек</item>
     <item quantity="other">В этом звонке · %1$d человек</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s заблокирован(-а)</string>
+  <string name="CallParticipantView__more_info">Подробнее</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Вы не будете получать аудио и видео этого участника, и он не будет получать ваши.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Невозможно получать аудио и видео от %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Невозможно получать аудио и видео от %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Причина может заключаться в том, что этот участник не проверил изменение вашего кода безопасности, что есть какая-то проблема с его устройством или что он вас заблокировал.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Выберите вашу страну</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Необходимо указать код страны</string>
@@ -1667,6 +1676,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Принят на привязанном устройстве.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Отклонён на привязанном устройстве.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Занято на привязанном устройстве.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Кто-то с изменившимся кодом безопасности присоединился к этому звонку.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Код безопасности вашего разговора с %1$s изменился. Это может означать, что кто-то пытается перехватить вашу переписку и звонки или что %2$s просто переустановил(-а) Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
@@ -1787,6 +1797,7 @@
   <string name="ConversationUpdateItem_learn_more">Узнать больше</string>
   <string name="ConversationUpdateItem_join_call">Присоединиться к звонку</string>
   <string name="ConversationUpdateItem_return_to_call">Вернуться к звонку</string>
+  <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
@@ -1805,6 +1816,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">Изменения кода безопасности</string>
   <string name="safety_number_change_dialog__send_anyway">Всё равно отправить</string>
   <string name="safety_number_change_dialog__call_anyway">Всё равно позвонить</string>
+  <string name="safety_number_change_dialog__join_call">Присоединиться к звонку</string>
+  <string name="safety_number_change_dialog__continue_call">Продолжить звонок</string>
+  <string name="safety_number_change_dialog__leave_call">Покинуть звонок</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следующие люди могли переустановить Signal или сменить устройства. Подтвердите ваш код безопасности с ними, чтобы обеспечить конфиденциальность.</string>
   <string name="safety_number_change_dialog__view">Просмотреть</string>
   <string name="safety_number_change_dialog__previous_verified">Ранее проверенный(-ая)</string>
@@ -2677,5 +2691,16 @@
   <string name="ReviewCard__block">Заблокировать</string>
   <string name="ReviewCard__delete">Удалить</string>
   <string name="ReviewCard__recently_changed">Недавно изменил(-а) своё имя профиля с %1$s на %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s присоединился(-лась)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s и %2$s присоединились</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s и %3$s присоединились</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s и ещё %3$d человек(-а) присоединились</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s покинул(-а) звонок</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s и %2$s покинули звонок</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s и %3$s покинули звонок</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s и ещё %3$d человек(-а) покинули звонок</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Вы (на другом устройстве)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (на другом устройстве)</string>
   <!--EOF-->
 </resources>

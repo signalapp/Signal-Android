@@ -256,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal treng tilgang til mikrofonen din for å ringa %1$s</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal treng tilgang til mikrofon og kamera for å ringa %1$s</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Fleire val no i «Gruppeinnstillingar»</string>
+  <string name="ConversationActivity_join">Bli med</string>
+  <string name="ConversationActivity_full">Fullt</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulesen melding</item>
@@ -671,7 +673,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Dette er ei Eldre gruppe. For å få nye funksjonar som @nemningar og administratorar,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Denne Eldre gruppa kan ikkje oppgraderast til ei Ny gruppe sidan ho er for stor. Maksimal gruppestorleik er %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">oppgrader denne gruppa.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er ei usikker MMS-gruppe. For å ha ei privat samtale og få tilgang til funksjonar som gruppenamn kan du invitera kontaktane dine til Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er ei usikker MMS-gruppe. Inviter kontaktane dine til Signal for å prata privat.</string>
   <string name="ManageGroupActivity_invite_now">Inviter no</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Varsla meg ved Omtalar</string>
@@ -1242,6 +1244,13 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
     <item quantity="one">I denne samtalen · %1$d person</item>
     <item quantity="other">I denne samtalen · %1$d personar</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s er blokkert</string>
+  <string name="CallParticipantView__more_info">Meir info</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Du får ikkje deira lyd eller video, og dei får ikkje din.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan ikkje motta lyd &amp; video frå %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan ikkje motta lyd og video frå %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan vera fordi dei ikkje har godkjend det nye tryggleiksnummeret ditt, dei har eit problem med eininga si, eller dei har blokkert deg.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vel land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgje
@@ -1546,6 +1555,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Svarte på ei tilkopla eining.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Avslo frå ei tilkopla eining.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Oppteken på ei tilkopla eining.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Nokon har blitt med i denne samtalen med eit endra tryggleiksnummer.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Tryggleiksnummeret for samtalen din med %1$s har endra seg. Dette kan tyda på at nokon prøver å overvaka kommunikasjonen, eller at %2$s berre har installert Signal på nytt.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ynskjer kanskje å stadfesta tryggleiksnummeret ditt med denne kontakten.</string>
@@ -1662,6 +1672,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ConversationUpdateItem_learn_more">Lær meir</string>
   <string name="ConversationUpdateItem_join_call">Bli med i samtalen</string>
   <string name="ConversationUpdateItem_return_to_call">Tilbake til samtalen</string>
+  <string name="ConversationUpdateItem_call_is_full">Samtalen er fylt opp</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spel … pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -1680,6 +1691,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="safety_number_change_dialog__safety_number_changes">Endringar med tryggleiksnummer.</string>
   <string name="safety_number_change_dialog__send_anyway">Send uansett</string>
   <string name="safety_number_change_dialog__call_anyway">Ring uansett</string>
+  <string name="safety_number_change_dialog__join_call">Bli med i samtalen</string>
+  <string name="safety_number_change_dialog__continue_call">Fortset samtalen</string>
+  <string name="safety_number_change_dialog__leave_call">Forlat samtalen</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Desse personane kan ha reinstallert eller bytta einingar. Stadfest tryggleiksnummeret ditt med dei for å sikra personvernet.</string>
   <string name="safety_number_change_dialog__view">Sjå</string>
   <string name="safety_number_change_dialog__previous_verified">Tidlegare stadfesta</string>
@@ -2522,5 +2536,16 @@ Du er à jour!</string>
   <string name="ReviewCard__block">Blokker</string>
   <string name="ReviewCard__delete">Slett</string>
   <string name="ReviewCard__recently_changed">Endra nyleg profilnamnet sitt frå %1$s til %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s blei med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s og %2$s blei med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s og %3$s blei med </string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s og %3$d til blei med </string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s la på</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s og %2$s la på</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s og %3$s la på</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s og %3$d til la på</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Du (på ei anna eining)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på ei anna eining)</string>
   <!--EOF-->
 </resources>

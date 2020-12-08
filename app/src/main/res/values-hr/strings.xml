@@ -259,6 +259,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Da biste uputili poziv za %1$s, omogućite Signalu pristup vašem mikrofonu</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Da biste uputili poziv za %1$s, omogućite Signalu pristup vašem mikrofonu i kameri.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Više opcija je sada u \"Postavke grupe\"</string>
+  <string name="ConversationActivity_join">Pridruži se</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>
@@ -703,7 +704,6 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Ovo je Naslijeđena grupa. Da biste pristupili novim značajkama poput @spominjanja i administratora,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Ova Naslijeđena grupa ne može se nadograditi u Novu grupu jer je prevelika. Maksimalna veličina grupe je %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">nadogradi ovu grupu.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ovo je nesigurna MMS grupa. Da biste privatno razgovarali i pristupili značajkama poput naziva grupa, pozovite svoje kontakte u Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozovi sada</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me samo za Spominjanja</string>
@@ -1300,6 +1300,8 @@
     <item quantity="few">U ovom pozivu · %1$d osobe</item>
     <item quantity="other">U ovom pozivu · %1$d osoba</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Više informacija</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Odaberite svoju državu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Unesite pozivni broj
@@ -1723,6 +1725,7 @@ broj telefona</string>
   <string name="ConversationUpdateItem_learn_more">Saznaj više</string>
   <string name="ConversationUpdateItem_join_call">Pridruži se pozivu</string>
   <string name="ConversationUpdateItem_return_to_call">Povratak na poziv</string>
+  <string name="ConversationUpdateItem_call_is_full">Poziv je pun</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reproduciraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
@@ -1741,6 +1744,8 @@ broj telefona</string>
   <string name="safety_number_change_dialog__safety_number_changes">Promjene sigurnosnog broja</string>
   <string name="safety_number_change_dialog__send_anyway">Svejedno pošalji</string>
   <string name="safety_number_change_dialog__call_anyway">Svejedno nazovi</string>
+  <string name="safety_number_change_dialog__join_call">Pridruži se pozivu</string>
+  <string name="safety_number_change_dialog__leave_call">Napusti poziv</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Sljedeće su osobe možda ponovo instalirale ili promijenile uređaje. Provjerite svoj sigurnosni broj s njima kako biste osigurali privatnost.</string>
   <string name="safety_number_change_dialog__view">Pregledaj</string>
   <string name="safety_number_change_dialog__previous_verified">Prethodno provjereno</string>
@@ -2597,5 +2602,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="ReviewCard__block">Blokiraj</string>
   <string name="ReviewCard__delete">Izbriši</string>
   <string name="ReviewCard__recently_changed">Nedavno su promijenili ime svog profila iz %1$s u %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugom uređaju)</string>
   <!--EOF-->
 </resources>

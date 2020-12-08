@@ -256,6 +256,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s hívásához a Signalnak hozzá kell férnie mikrofonodhoz</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s hívásához a Signalnak hozzá kell férnie mikrofonodhoz és kamerádhoz.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">További opciók mostantól a \"Csoportbeállítások\" menüben</string>
+  <string name="ConversationActivity_join">Belépés</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d olvasatlan üzenet</item>
@@ -616,7 +617,6 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Név és kép szerkesztése</string>
   <string name="ManageGroupActivity_legacy_group">Régi típusú csoport</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Ez egy régi típusú csoport. Az újabb funkciók (pl. csoport-adminok) csak az újabb típusú csoportokban érhetőek el.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ez egy nem biztonságos MMS-csoport. Titkosított társalgáshoz és pl. a csoportok elnevezésének használatához hívd meg kontaktjaidat a Signalra!</string>
   <string name="ManageGroupActivity_invite_now">Meghívás most</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Értesítsen említés esetén</string>
@@ -1148,6 +1148,8 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
     <item quantity="one">Ebben a hívásban · %1$d személy</item>
     <item quantity="other">Ebben a hívásban · %1$d személy</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Részletek</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Saját ország kiválasztása </string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Meg kell adnod az
@@ -1568,6 +1570,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Betöltés</string>
   <string name="ConversationUpdateItem_learn_more">További információ</string>
+  <string name="ConversationUpdateItem_call_is_full">A hívás betelt</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lejátszás … Szünet</string>
   <string name="audio_view__download_accessibility_description">Letöltés</string>
@@ -1586,6 +1589,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="safety_number_change_dialog__safety_number_changes">Biztonságiszám-változások</string>
   <string name="safety_number_change_dialog__send_anyway">Küldés így is</string>
   <string name="safety_number_change_dialog__call_anyway">Hívás ennek ellenére</string>
+  <string name="safety_number_change_dialog__leave_call">Kilépés a hívásból</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">A következő személyek lehet, hogy újratelepítették a Signalt vagy készüléket cseréltek. Ellenőrizd biztonsági számotokat a privacy megőrzése érdekében!</string>
   <string name="safety_number_change_dialog__view">Megtekintés</string>
   <string name="safety_number_change_dialog__previous_verified">Korábban megerősítve</string>
@@ -2419,5 +2423,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ReviewCard__block">Letiltás</string>
   <string name="ReviewCard__delete">Törlés</string>
   <string name="ReviewCard__recently_changed">Nemrég megváltoztatta profilnevét erről: %1$s erre: %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Te (másik eszközön)</string>
   <!--EOF-->
 </resources>

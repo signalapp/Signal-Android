@@ -255,6 +255,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s erabiltzaileari deitzeko, Signalek zure mikrofonoa erabiltzeko baimena behar du</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s erabiltzaileari deitzeko, Signalek zure mikrofono eta kamera erabiltzeko baimena behar du.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Aukera gehiago orain \"Taldeko ezarpenak\" atalean</string>
+  <string name="ConversationActivity_join">Batu</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mezu irakurri gabe</item>
@@ -650,7 +651,6 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Hau Jarauntsitako Talde bat da. Talde administratzaile eta @aipamenak moduko ezaugarriak erabili ahal izateko, </string>
   <string name="ManageGroupActivity_legacy_group_too_large">Jarauntsitako Talde Hau ezin da Talde Berrira eguneratu oso handia delako. Gehienezko talde tamaina %1$d da.</string>
   <string name="ManageGroupActivity_upgrade_this_group">eguneratu talde hau.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Hau segurtasunik gabeko MMS Talde bat da. Modu pribatuan txateatzeko eta talde izenak moduko ezaugarriak erabili ahal izateko, Signalera gonbidatu zure kontaktuak.</string>
   <string name="ManageGroupActivity_invite_now">Gonbidatu orain</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
@@ -1190,6 +1190,8 @@
     <item quantity="one">Dei honetan - pertsona %1$d</item>
     <item quantity="other">Dei honetan - %1$d pertsona</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Informazio gehiago</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Aukeratu zure herrialdea</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zure herrialdearen 
@@ -2463,5 +2465,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ReviewCard__block">Blokeatu</string>
   <string name="ReviewCard__delete">Ezabatu</string>
   <string name="ReviewCard__recently_changed">Duela gutxi bere profilaren izena aldatu du. Lehen %1$s zen eta orain %2$s da.</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Zu (beste gailu batean)</string>
   <!--EOF-->
 </resources>

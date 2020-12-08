@@ -256,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal necesita acceder a tu micrófono para llamar a %1$s.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal necesita acceder a tu micrófono y cámara para llamar a %1$s.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Ahora con más opciones en «Ajustes del grupo»</string>
+  <string name="ConversationActivity_join">Unirse</string>
+  <string name="ConversationActivity_full">Lleno</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -347,7 +349,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema al crear el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto de perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de punto a punto. Sólo es visible para tus contactos, para personas con las que inicies o aceptes un chat nuevo y cuando te unas a nuevos grupos. Nadie más tiene acceso, ni siquiera l@s creador@s de Signal.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de extremo a extremo. Sólo es visible para tus contactos, para personas con las que inicies o aceptes un chat nuevo y cuando te unas a nuevos grupos. Nadie más tiene acceso, ni siquiera l@s creador@s de Signal.</string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">¿Restaurar desde copia de seguridad?</string>
@@ -666,7 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Este es un grupo del sistema antiguo. Para acceder a funciones como @menciones y admins,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Este grupo no se puede actualizar al nuevo sistema porque es demasiado grande. El tamaño máximo de grupo es de%1$d participantes.</string>
   <string name="ManageGroupActivity_upgrade_this_group">actualiza este grupo.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este es un grupo de MMS sin cifrar. Para chatear en privado y acceder a funciones como nombre e imagen de grupo, invita a tus amistades a usar Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este es un grupo de MMS sin cifrar. Para chatear en privado, invita a tus amistades a usar Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invitar ahora</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar cuando alguien me mencione</string>
@@ -1236,6 +1238,13 @@
     <item quantity="one">En esta llamada · %1$d persona</item>
     <item quantity="other">En esta llamada · %1$d personas</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s está bloqueado</string>
+  <string name="CallParticipantView__more_info">Más detalles</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No recibirás su audio o vídeo y ellos no recibirán ul tuyo</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio y vídeo de %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No se puede recibir ni audio ni vídeo de %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto puede deberse a que no han verificado el cambio de tus cifra de seguridad, hay un problema con su dispositivo, o te han bloqueado.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecciona tu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Debes especificar el
@@ -1542,6 +1551,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendida en dispositivo enlazado.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Rechazada en dispositivo enlazado.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Ocupado en dispositivo enlazado.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Alguien se ha unido a esta llamada con una cifra de seguridad que ha cambiado.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Las cifras de seguridad del chat con %1$s han cambiado. Esto podría significar que alguien está tratando de interceptar la comunicación, o bien que %2$s simplemente ha reinstalado Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Puede que desees verificar tus cifras de seguridad con esta persona.</string>
@@ -1658,6 +1668,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_learn_more">Saber más</string>
   <string name="ConversationUpdateItem_join_call">Unirse a la llamada</string>
   <string name="ConversationUpdateItem_return_to_call">Volver a la llamada</string>
+  <string name="ConversationUpdateItem_call_is_full">La llamada está llena</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -1676,6 +1687,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="safety_number_change_dialog__safety_number_changes">Cambios en cifras de seguridad</string>
   <string name="safety_number_change_dialog__send_anyway">Enviar de todas formas</string>
   <string name="safety_number_change_dialog__call_anyway">Llamar de todas formas</string>
+  <string name="safety_number_change_dialog__join_call">Unirse a la llamada</string>
+  <string name="safety_number_change_dialog__continue_call">Continuar llamada</string>
+  <string name="safety_number_change_dialog__leave_call">Abandonar llamada</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Las siguentes personas pueden haber reinstalado Signal o cambiado su dispositivo. Verifica tus cifras de seguridas con ellas para asegurar vuestra privacidad.</string>
   <string name="safety_number_change_dialog__view">Ver</string>
   <string name="safety_number_change_dialog__previous_verified">Identidad previamente verificada</string>
@@ -2515,5 +2529,16 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ReviewCard__block">Bloquear</string>
   <string name="ReviewCard__delete">Eliminar</string>
   <string name="ReviewCard__recently_changed">Ha cambiado su nombre de perfil recientemente de %1$s a %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s se ha unido</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s y %2$s se han unido</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s y %3$s se han unido</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s y %3$d más se han unido</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s abandonó</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s y %2$s han abandonado</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s y %3$s han abandonado</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s y %3$d más han abandonado</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tú (en otro dispositivo)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (en otro dispositivo)</string>
   <!--EOF-->
 </resources>

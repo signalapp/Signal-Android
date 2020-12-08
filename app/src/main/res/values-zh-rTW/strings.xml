@@ -253,6 +253,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">如要與 %1$s 通話，Signal 需要存取你的麥克風</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">如要與 %1$s 通話，Signal 需要存取你的麥克風與相機。</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">「群組設定」中現有更多選項</string>
+  <string name="ConversationActivity_join">加入</string>
+  <string name="ConversationActivity_full">已滿</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -629,7 +631,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">這是一個舊版群組。 要連結@提及和管理員等新功能，</string>
   <string name="ManageGroupActivity_legacy_group_too_large">這個舊版群組太大，因此無法升級為新版群組。 最大群組大小為%1$d。</string>
   <string name="ManageGroupActivity_upgrade_this_group">升級此群組。</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">這是一個不安全的多媒體訊息群組。要私密聊天並存取群組名稱等功能，請邀請你的聯絡人加入 Signal。</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">這是一個不安全的MMS群組。 要私下聊天，請邀請你的聯絡人加入Signal。</string>
   <string name="ManageGroupActivity_invite_now">立即邀請</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">通知我提及。</string>
@@ -1171,6 +1173,13 @@
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">在此通話中·%1$d個人</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s 已經被封鎖</string>
+  <string name="CallParticipantView__more_info">更多資訊</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">你將不會收到他們的語音或影片，他們也不會收到你的聲音或影片。</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">無法從 %1$s收到語音 &amp; 影片</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">無法從 %1$s 收到語音或影片</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">這可能是因為他們尚未驗證你的變更的安全號碼，他們的裝置有問題或已封鎖了你。</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">選擇您的國家</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">您必須輸入
@@ -1473,6 +1482,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">在已連結的裝置回答。</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">拒絕在已連結的裝置。</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">已連結的裝置忙線。</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">有人加入了此通話，並更改了一個安全碼。</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
@@ -1587,6 +1597,7 @@
   <string name="ConversationUpdateItem_learn_more">了解更多</string>
   <string name="ConversationUpdateItem_join_call">加入通話</string>
   <string name="ConversationUpdateItem_return_to_call">返回通話</string>
+  <string name="ConversationUpdateItem_call_is_full">通話人數已滿</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
@@ -1605,6 +1616,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">安全碼變更</string>
   <string name="safety_number_change_dialog__send_anyway">仍然傳送</string>
   <string name="safety_number_change_dialog__call_anyway">無論如何要打電話</string>
+  <string name="safety_number_change_dialog__join_call">加入通話</string>
+  <string name="safety_number_change_dialog__continue_call">繼續通話</string>
+  <string name="safety_number_change_dialog__leave_call">離開通話</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下使用者可能已重新安裝或更換了裝置。與他們一起驗證你的安全碼，以確保隱私性。</string>
   <string name="safety_number_change_dialog__view">檢視</string>
   <string name="safety_number_change_dialog__previous_verified">先前已驗證</string>
@@ -2426,5 +2440,16 @@
   <string name="ReviewCard__block">封鎖</string>
   <string name="ReviewCard__delete">刪除</string>
   <string name="ReviewCard__recently_changed">最近將他們的個人資料名稱從%1$s更改為%2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s 已加入</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s 和 %2$s 已加入</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s 和 %3$s已加入</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s 和 %3$d 及其他人已加入</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s 離開了</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s 和 %2$s 已離開</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s 和 %3$s 已離開</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s 和 %3$d 及其他人已離開</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">你 (在其他的裝置上)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (在另一台裝置上)</string>
   <!--EOF-->
 </resources>

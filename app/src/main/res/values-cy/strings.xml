@@ -151,6 +151,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Heb ganfod porwr gwe.</string>
   <string name="CommunicationActions_no_email_app_found">Heb ganfod ap e-bost.</string>
+  <string name="CommunicationActions_send_email">Anfon e-bost</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mae galwad ffôn eisoes ar waith.</string>
   <string name="CommunicationActions_start_video_call">Cychwyn galwad fideo?</string>
   <string name="CommunicationActions_start_voice_call">Cychwyn galwad llais?</string>
@@ -263,6 +264,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">I alw %1$s mae angen i Signal gael mynediad i\'ch meicroffon.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">I alw %1$s, mae angen i Signal gael mynediad i\'ch meicroffon a\'ch camera.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Rhagor o ddewisiadau yn \"Gosodiadau Grŵp\"</string>
+  <string name="ConversationActivity_join">Ymuno</string>
+  <string name="ConversationActivity_full">Llawn</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neges heb ei ddarllen</item>
@@ -516,6 +519,12 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
     <item quantity="other">Bydd angen i\'r aelodau hyn dderbyn gwahoddiad i ymuno â\'r grŵp hwn eto ac ni fyddant yn derbyn negeseuon grŵp nes eu bod yn derbyn:</item>
   </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Tynnwyd yr aelod hwn o\'r grŵp ac ni fydd yn gallu ailymuno nes iddo/i uwchraddio:</item>
+    <item quantity="two">Tynnwyd yr aelodau hyn o\'r grŵp ac ni fyddant yn gallu ailymuno nes iddyn nhw uwchraddio:</item>
+    <item quantity="many">Tynnwyd yr aelodau hyn o\'r grŵp ac ni fyddant yn gallu ailymuno nes iddyn nhw uwchraddio:</item>
+    <item quantity="other">Tynnwyd yr aelodau hyn o\'r grŵp ac ni fyddant yn gallu ailymuno nes iddyn nhw uwchraddio:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Uwchraddio i Grŵp Newydd</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Uwchraddio\'r grŵp hwn</string>
@@ -651,11 +660,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddGroupDetailsFragment__create">Creu</string>
   <string name="AddGroupDetailsFragment__members">Aelodau</string>
   <string name="AddGroupDetailsFragment__group_name_required">Enw\'r grŵp (angenrheidiol)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Enw\'r grŵp (dewisol)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Mae angen y maes yma.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Mae angen o leiaf dau aelod i greu grwpiau.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Methodd creu grŵp.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Ceisiwch eto</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Rydych wedi dewis cyswllt nad yw\'n cynnal grwpiau Signal, felly bydd y grŵp hwn yn MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Dim ond i chi y bydd enwau a lluniau grŵp MMS cyfaddas yn weladwy.</string>
   <string name="AddGroupDetailsFragment__remove">Tynnu</string>
   <string name="AddGroupDetailsFragment__sms_contact">Cyswllt SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Tynnu %1$s o\'r grŵp hwn?</string>
@@ -733,7 +744,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Hen Grŵp yw hwn. I gael mynediad at nodweddion newydd fel @mentions a gweinyddwyr,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Nid oes modd uwchraddio\'r Hen Grŵp hwn i Grŵp Newydd oherwydd ei fod yn rhy fawr. Uchafswm maint y grŵp yw %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">uwchraddio\'r grŵp hwn.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Mae hwn yn Grŵp MMS anniogel. I sgwrsio\'n breifat a chael nodweddion fel enwau grwpiau, gwahoddwch eich cysylltiadau i Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Mae hwn yn Grŵp MMS aniogel. I sgwrsio\'n breifat, gwahoddwch eich cysylltiadau i Signal.</string>
   <string name="ManageGroupActivity_invite_now">Gwahodd nawr</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Rhowch wybod i mi am Grybwylliadau</string>
@@ -832,6 +843,7 @@ Send neges heb ei ddiogelu?</string>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Dolenni grŵp yn dod yn fuan</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Diweddarwch Signal i ddefnyddio dolenni grŵp</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Nid yw\'r fersiwn o Signal rydych chi\'n ei defnyddio yn cefnogi\'r dolen grŵp hwn. Diweddarwch i\'r fersiwn ddiweddaraf i ymuno â\'r grŵp hwn trwy ddolen.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Diweddaru Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mae un neu fwy o\'ch dyfeisiau cysylltiedig yn rhedeg fersiwn o Signal nad yw\'n cefnogi cysylltiadau grŵp. Diweddarwch y Signal ar eich dyfais\dyfeisiau cysylltiedig i ymuno â\'r grŵp hwn.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Nid yw\'r cyswllt grŵp yn ddilys</string>
@@ -1000,6 +1012,19 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Gosododd %1$s amserydd y neges diflannu i %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Mae\'r amserydd neges sy\'n diflannu wedi\'i osod i %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Diweddarwyd y grŵp hwn i Grŵp Newydd.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nid oedd modd eich ychwanegu at y Grŵp Newydd ac rydych wedi cael gwahoddiad i ymuno.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Nid oedd modd ychwanegu aelod at y Grŵp Newydd ac mae wedi cael gwahoddiad i ymuno.</item>
+    <item quantity="two">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae nhw wedi cael gwahoddiad i ymuno.</item>
+    <item quantity="many">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae nhw wedi cael gwahoddiad i ymuno.</item>
+    <item quantity="other">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae nhw wedi cael gwahoddiad i ymuno.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Nid oedd modd ychwanegu aelod at y Grŵp Newydd ac mae wedi cael ei dynnu.</item>
+    <item quantity="two">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae nhw wedi cael eu tynnu.</item>
+    <item quantity="many">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae nhw wedi cael eu tynnu.</item>
+    <item quantity="other">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae nhw wedi cael eu tynnu.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">Newidiodd %1$s eu henwau proffil i %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">Newidiodd %1$s eu henwau proffil o %2$s i %3$s.</string>
@@ -1139,16 +1164,28 @@ Send neges heb ei ddiogelu?</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Dechreuodd %1$s alwad grŵp · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Mae %1$s mewn galwad grŵp · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Nid oedd modd ychwanegu %1$s aelod at y Grŵp Newydd ac mae nhw wedi cael gwahoddiad i ymuno.</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Mae %1$s a %2$s yn yr alwad grŵp · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">Mae %1$s, %2$s, a %3$s yn yr alwad grŵp · %4$s</string>
   <string name="MessageRecord_group_call_s">Galwad grŵp · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">Dechreuodd %1$s alwad grŵp</string>
+  <string name="MessageRecord_s_is_in_the_group_call">Mae %1$s yn yr alwad grŵp</string>
   <string name="MessageRecord_you_are_in_the_group_call">Rydych chi yn y galwad grŵp</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">Mae %1$s a %2$s yn yr alwad grŵp</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">Mae %1$s, %2$s, a %3$s yn yr alwad grŵp</string>
+  <string name="MessageRecord_group_call">Galwad grŵp</string>
   <string name="MessageRecord_you">Chi</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">Mae %1$s, %2$s, a %3$d arall yn yr alwad grŵp · %4$s</item>
     <item quantity="two">Mae %1$s, %2$s, a %3$d eraill yn yr alwad grŵp · %4$s</item>
     <item quantity="many">Mae %1$s, %2$s, a %3$d eraill yn yr alwad grŵp · %4$s</item>
     <item quantity="other">Mae %1$s, %2$s, a %3$d eraill yn yr alwad grŵp · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">Mae %1$s, %2$s, a %3$d arall yn yr alwad grŵp · %4$s</item>
+    <item quantity="two">Mae %1$s, %2$s, a %3$d eraill yn yr alwad grŵp</item>
+    <item quantity="many">Mae %1$s, %2$s, a %3$d eraill yn yr alwad grŵp</item>
+    <item quantity="other">Mae %1$s, %2$s, a %3$d eraill yn yr alwad grŵp</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Derbyn</string>
@@ -1331,6 +1368,13 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Yn yr alwad hon · %1$d o bobl</item>
     <item quantity="other">Yn yr alwad hon · %1$d o bobl</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">Mae %1$s wedi\'i rwystro</string>
+  <string name="CallParticipantView__more_info">Rhagor o Wybodaeth</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Fyddwch chi ddim yn derbyn eu sain na fideo a fyddan nhw ddim yn derbyn eich un chi.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Methu derbyn sain a fideo gan %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Methu derbyn sain a fideo gan %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Gall hyn fod oherwydd nad ydyn nhw wedi gwirio\'ch newid rhif diogelwch, mae problem gyda\'u dyfais, neu maen nhw wedi\'ch rhwystro chi.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Dewiswch eich gwlad</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Rhaid i chi roi
@@ -1588,6 +1632,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Ymatebodd %1$s i\'ch delwedd.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Ymatebodd %1$s i\'ch ffeil.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">%1$si\'ch sain.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Wedi ymateb %1$s i\'ch cyfryngau gweld-unwaith.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ymatebodd %1$s i\'ch sticer.</string>
   <string name="MessageNotifier_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Diffodd hysbysiadau cysylltiadau Signal? Gallwch eu galluogi eto yn Signal Hysbysiadau &gt; Gosodiadau &gt;.</string>
@@ -1640,6 +1685,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Wedi\'i ateb ar ddyfais gysylltiedig.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Wedi\'i werthod ar ddyfais gysylltiedig.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Yn brysur ar ddyfais gysylltiedig.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Mae rhywun wedi ymuno â\'r alwad hon gyda rhif diogelwch sydd wedi newid.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Mae\'r rhif diogelwch ar gyfer eich sgwrs gyda %1$s wedi newid. Gallai hyn olygu bod rhywun yn ceisio atal eich cyfathrebu, neu bod %2$s wedi ail-osod Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Efallai yr hoffech wirio\'ch rhif diogelwch gyda\'r cyswllt hwn.</string>
@@ -1760,6 +1806,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationUpdateItem_learn_more">Dysgu rhagor</string>
   <string name="ConversationUpdateItem_join_call">Ymuno â\'r alwad</string>
   <string name="ConversationUpdateItem_return_to_call">Dychwelwch i\'r alwad</string>
+  <string name="ConversationUpdateItem_call_is_full">Mae\'r alwad yn llawn</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Chwarae … Oedi</string>
   <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
@@ -1778,6 +1825,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="safety_number_change_dialog__safety_number_changes">Newidiadau Rhifau Diogelwch</string>
   <string name="safety_number_change_dialog__send_anyway">Anfon beth bynnag</string>
   <string name="safety_number_change_dialog__call_anyway">Galw beth bynnag</string>
+  <string name="safety_number_change_dialog__join_call">Ymuno â\'r alwad</string>
+  <string name="safety_number_change_dialog__continue_call">Parhau gyda\'r alwad</string>
+  <string name="safety_number_change_dialog__leave_call">Gadael yr alwad</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Gall fod y bobl ganlynol fod wedi ailosod neu newid dyfeisiau. Gwiriwch eich rhif diogelwch gyda nhw i sicrhau preifatrwydd.</string>
   <string name="safety_number_change_dialog__view">Golwg</string>
   <string name="safety_number_change_dialog__previous_verified">Wedi\'u dilysu\'n flaenorol</string>
@@ -1909,6 +1959,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateProfileActivity_next">Nesaf</string>
   <string name="CreateProfileActivity__username">Enw defnyddiwr</string>
   <string name="CreateProfileActivity__create_a_username">Creu enw defnyddiwr</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Dim ond i chi y bydd enwau a lluniau grŵp MMS cyfaddas yn weladwy.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Golygu enw a llun grŵp</string>
   <string name="EditProfileFragment__group_name">Enw\'r grŵp</string>
@@ -2252,6 +2303,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation__menu_conversation_settings">Gosodiadau sgwrsio</string>
   <string name="conversation__menu_add_shortcut">Ychwanegu at y sgrin gartref</string>
   <string name="conversation__menu_pending_members">Aelodau yn yr arfaeth</string>
+  <string name="conversation__menu_create_bubble">Creu swigen</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Ehangu llamlen</string>
   <!--conversation_callable_insecure-->
@@ -2648,5 +2700,16 @@ Send neges heb ei ddiogelu?</string>
   <string name="ReviewCard__block">Rhwystro</string>
   <string name="ReviewCard__delete">Dileu</string>
   <string name="ReviewCard__recently_changed">Wedi newid eu henw proffil yn ddiweddar o %1$s i %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">Ymunodd %1$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">Ymunodd %1$s a %2$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">Ymunodd %1$s, %2$s a %3$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">Ymunodd %1$s, %2$s a %3$d eraill</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">Gadawodd %1$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Gadawodd %1$s a %2$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Gadawodd %1$s, %2$s a %3$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Gadawodd %1$s, %2$s a %3$d eraill</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Chi (ar ddyfais arall)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ar ddyfais arall)</string>
   <!--EOF-->
 </resources>

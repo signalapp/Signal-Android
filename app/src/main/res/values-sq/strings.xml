@@ -255,7 +255,8 @@
   <string name="ConversationActivity_delete_and_leave">Fshije dhe braktise</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Për të thirrur %1$s, Signal-i lyp leje përdorimi të mikrofonit tuaj</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Për të thirrur %1$s, Signal-i lyp leje përdorimi të mikrofonit dhe kamerës tuaj.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">Tanimë më tepër mundësi te \"Rregullime grupi\"</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">Tanimë më tepër mundësi te “Rregullime grupi”</string>
+  <string name="ConversationActivity_join">Merrni pjesë</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
@@ -670,7 +671,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_legacy_group_upgrade">Ky është një Grup i Dikurshëm. Që të përdorni veçori të reja, të tilla si @përmendje dhe përgjegjës,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Ky Grup i Dikurshëm s’mund të përmirësohet si Grup i Ri, ngaqë është shumë i madh. Madhësia maksimum për grupet është %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">përmirësoni këtë grup.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht dhe të përdorni veçori të tilla si emra grupesh, për shembull, ftojini kontaktet tuaj te Signal-i.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ky është një grup MMS i pasigurt. Që të fjaloseni privatisht, ftojini kontaktet tuaj te Signal-i.</string>
   <string name="ManageGroupActivity_invite_now">Ftojini tani</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
@@ -1239,6 +1240,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="one">Në këtë thirrje · %1$d person</item>
     <item quantity="other">Në këtë thirrje · %1$d vetë</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s është bllokuar</string>
+  <string name="CallParticipantView__more_info">Më Tepër të Dhëna</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">S’do të merrni audio ose video prej tyre dhe as ata prej jush.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">S’mund të merret audio &amp; video prej %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">S’mund të merret audio dhe video prej %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Kjo mund të vijë ngaqë s’kanë verifikuar ndryshimin e numrit tuaj të sigurisë, ka një problem me pajisjen e tyre, ose ju kanë bllokuar.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Përzgjidhni vendin tuaj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet të specifikoni
@@ -1542,6 +1550,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">U përgjigj në një pajisje të lidhur.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Hedhur tej në një pajisje të lidhur.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">I zënë në një pajisje të lidhur.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Dikush ka hyrë në këtë thirrje me një numër sigurie që ka ndryshuar.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numri i sigurisë për bisedën tuaj me %1$s ka ndryshuar. Kjo mund të jetë shenjë se ose sepse dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mund të donit të verifikonit numrin tuaj të sigurisë me këtë kontakt.</string>
@@ -1658,6 +1667,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_learn_more">Mësoni më tepër</string>
   <string name="ConversationUpdateItem_join_call">Hyni në thirrje</string>
   <string name="ConversationUpdateItem_return_to_call">Kthehuni te thirrja</string>
+  <string name="ConversationUpdateItem_call_is_full">Thirrja është plot</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -1676,6 +1686,9 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="safety_number_change_dialog__safety_number_changes">Ndryshime Numri Sigurie</string>
   <string name="safety_number_change_dialog__send_anyway">Dërgoje, sido qoftë</string>
   <string name="safety_number_change_dialog__call_anyway">Thirre, sido qoftë</string>
+  <string name="safety_number_change_dialog__join_call">Hyni në thirrje</string>
+  <string name="safety_number_change_dialog__continue_call">Vazhdoje thirrjen</string>
+  <string name="safety_number_change_dialog__leave_call">Dilni nga thirrja</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Personat vijues mund të kenë riinstaluar ose ndryshuar pajisjet. Për të siguruar privatësi, verifikoni me ta numrin tuaj të sigurisë.</string>
   <string name="safety_number_change_dialog__view">Shihni</string>
   <string name="safety_number_change_dialog__previous_verified">Verifikuar më herët</string>
@@ -2518,5 +2531,16 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ReviewCard__block">Bllokoje</string>
   <string name="ReviewCard__delete">Fshije</string>
   <string name="ReviewCard__recently_changed">Ndryshoi së fundi emrin e vet të profilit nga %1$s në %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">Erdhi %1$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">Erdhën %1$s dhe %2$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">Erdhën %1$s, %2$s dhe %3$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">Erdhën %1$s, %2$s dhe %3$d të tjerë</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s iku</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s dhe %2$s ikën</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s dhe %3$s ikën</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s dhe %3$d të tjerë ikën</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ju (në një tjetër pajisje)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (në tjetër pajisje)</string>
   <!--EOF-->
 </resources>

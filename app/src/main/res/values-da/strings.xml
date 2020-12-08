@@ -256,6 +256,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">For at ringe til %1$s kræver Signal tilladelse til at tilgå din mikrofon</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">For at ringe til %1$s, kræver Signal tilladelse til at tilgå din mikrofon og dit kamera</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Nu flere funktioner under \"Gruppe indstillinger\"</string>
+  <string name="ConversationActivity_join">Deltag</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>
@@ -659,7 +660,6 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Dette er en forældet gruppe. For adgang til nye funktioner som @omtaler og administrator,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Denne forældede gruppe er for stor til at kunne opgraderes til en Ny gruppe. Den maksimale størrelse på grupper er %1$d</string>
   <string name="ManageGroupActivity_upgrade_this_group">opgrader gruppen</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikker MMS-gruppe. For at chatte privat og få adgang til funktioner som gruppenavne, skal du invitere dine kontakter til Signal</string>
   <string name="ManageGroupActivity_invite_now">Invitér nu</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Underret mig ved omtaler</string>
@@ -1208,6 +1208,8 @@
     <item quantity="one">I dette opkald · %1$d person</item>
     <item quantity="other">I dette opkald · %1$d personer</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Mere info</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vælg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din
@@ -1646,6 +1648,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="safety_number_change_dialog__safety_number_changes">Sikkerhedsnummer ændringer</string>
   <string name="safety_number_change_dialog__send_anyway">Send alligevel</string>
   <string name="safety_number_change_dialog__call_anyway">Ring alligevel</string>
+  <string name="safety_number_change_dialog__join_call">Deltag i samtalen</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan have geninstalleret eller skiftet enheder. Bekræft dit sikkerhedsnummer med dem for at sikre privatlivets fred</string>
   <string name="safety_number_change_dialog__view">Vis</string>
   <string name="safety_number_change_dialog__previous_verified">Tidligere bekræftet</string>
@@ -2483,5 +2486,7 @@ Der er %d dage tilbage</string>
   <string name="ReviewCard__block">Blokér</string>
   <string name="ReviewCard__delete">Slet</string>
   <string name="ReviewCard__recently_changed">Ændrede for nyligt deres profilnavn fra %1$s til %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Dig (på en anden enhed)</string>
   <!--EOF-->
 </resources>

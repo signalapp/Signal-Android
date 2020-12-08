@@ -253,6 +253,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$sと通話するには、Signalにマイクへのアクセスを許可してください。</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$sと通話するには、Signal にマイクとカメラへのアクセスを許可してください。</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">「グループ設定」のオプションが増えました</string>
+  <string name="ConversationActivity_join">参加する</string>
+  <string name="ConversationActivity_full">フル</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d件の未読メッセージ</item>
@@ -629,7 +631,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">これはレガシーグループです。@メンションや管理者などの新機能を使用するには、</string>
   <string name="ManageGroupActivity_legacy_group_too_large">このレガシーグループは大きすぎるため、新しいグループにアップグレードできません。グループの最大人数は%1$d人です。</string>
   <string name="ManageGroupActivity_upgrade_this_group">このグループをアップグレードしてください。</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットしたりグループ名などの機能を利用するには、連絡先をSignalに招待してください。</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットするには、連絡先をSignalに招待してください。</string>
   <string name="ManageGroupActivity_invite_now">招待する</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
@@ -993,24 +995,24 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s に対する安全番号を未検証にしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s に対する安全番号を他の端末で未検証にしました</string>
   <!--Group Calling update messages-->
-  <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始 · %2$s</string>
-  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s がグループ通話に参加 · %2$s</string>
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始しました · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s はグループ通話中です · %2$s</string>
   <string name="MessageRecord_you_are_in_the_group_call_s1">グループ通話中です · %1$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s と %2$s がグループ通話に参加 · %3$s</string>
-  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s 、%2$s 、%3$s がグループ通話に参加 · %4$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s と %2$s はグループ通話中です · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s および %3$s がグループ通話中です · %4$s</string>
   <string name="MessageRecord_group_call_s">グループ通話 · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">%1$s がグループ通話を開始しました</string>
   <string name="MessageRecord_s_is_in_the_group_call">%1$s はグループ通話中です</string>
   <string name="MessageRecord_you_are_in_the_group_call">グループ通話中です</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s と %2$s はグループ通話中です</string>
-  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, %3$s はグループ通話中です</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s および %3$s はグループ通話中です</string>
   <string name="MessageRecord_group_call">グループ通話</string>
   <string name="MessageRecord_you">あなた</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-    <item quantity="other">%1$s 、%2$s 、%3$d などがグループ通話に参加 · %4$s</item>
+    <item quantity="other">%1$s, %2$s ほか%3$d名がグループ通話中です · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-    <item quantity="other">%1$s, %2$s, %3$d などがグループ通話中です</item>
+    <item quantity="other">%1$s, %2$s ほか%3$d名がグループ通話中です</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">承認する</string>
@@ -1171,6 +1173,13 @@
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">参加者 · %1$d人</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s はブロックされました</string>
+  <string name="CallParticipantView__more_info">詳細</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">相手との音声や映像の送受信を行いません。</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s からの音声と映像を受信できません</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s からの音声と映像を受信できません</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">相手があなたの安全番号の変更を検証していないか、相手の端末に問題があるか、あなたがブロックされている可能性があります。</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">国を選択してください</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力してください</string>
@@ -1466,6 +1475,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">リンクした端末で応答しました。</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">リンクした端末で拒否しました。</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">リンクした端末で通話中です。</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">安全番号を変更したメンバーが、この通話に参加しています。</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s との会話に対する安全番号が変更されました。だれかが通信を傍受しようとしているかも知れませんし、%2$s がSignalを再インストールしただけかも知れません。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先に対する安全番号を検証しておくとよいでしょう。</string>
@@ -1580,6 +1590,7 @@
   <string name="ConversationUpdateItem_learn_more">詳しく見る</string>
   <string name="ConversationUpdateItem_join_call">通話に参加する</string>
   <string name="ConversationUpdateItem_return_to_call">通話に戻る</string>
+  <string name="ConversationUpdateItem_call_is_full">満席です</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -1598,6 +1609,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">安全番号の変更</string>
   <string name="safety_number_change_dialog__send_anyway">とにかく送信する</string>
   <string name="safety_number_change_dialog__call_anyway">とにかく発信する</string>
+  <string name="safety_number_change_dialog__join_call">通話に参加する</string>
+  <string name="safety_number_change_dialog__continue_call">通話を続ける</string>
+  <string name="safety_number_change_dialog__leave_call">通話から抜ける</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下の方はアプリを再インストールしたか端末を変更した可能性があります。プライバシーを保証するために安全番号を検証してください。</string>
   <string name="safety_number_change_dialog__view">表示する</string>
   <string name="safety_number_change_dialog__previous_verified">以前に検証済み</string>
@@ -2419,5 +2433,16 @@
   <string name="ReviewCard__block">ブロックする</string>
   <string name="ReviewCard__delete">削除する</string>
   <string name="ReviewCard__recently_changed">最近、プロフィール名を %1$s から %2$s に変更しました。</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s が参加しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s と %2$s が参加しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s および %3$s が参加しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s ほか%3$d名が参加しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s が退出しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s と %2$s が退出しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s および %3$s が退出しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ほか%3$d名が退出しました</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">あなた (別端末)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (別端末)</string>
   <!--EOF-->
 </resources>

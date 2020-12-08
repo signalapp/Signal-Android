@@ -256,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στο μικρόφωνό σου.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στο μικρόφωνο και την κάμερά σου.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Περισσότερες επιλογές στις \"Ρυθμίσεις ομάδας\"</string>
+  <string name="ConversationActivity_join">Γίνε μέλος</string>
+  <string name="ConversationActivity_full">Γεμάτο</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d μη αναγνωσμένο μήνυμα</item>
@@ -666,7 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Αυτή είναι μια ομάδα παλαιού τύπου. Για πρόσβαση σε χαρακτηριστικά όπως οι @αναφορές και οι διαχειριστές ομάδας,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Αυτή η ομάδα παλαιού τύπου δεν μπορεί να αναβαθμιστεί σε Ομάδα νέου τύπου επειδή είναι πολύ μεγάλη. Το μέγιστο μέγεθος της ομάδας είναι %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">αναβάθμισε την ομάδα.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Αυτή είναι μια ομάδα με μη ασφαλή MMS. Για προστατευμένες ιδιωτικές συνομιλίες και χαρακτηριστικά όπως τα ονόματα ομάδας, προσκάλεσε τις επαφές σου στο Signal. </string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Αυτή είναι μια ομάδα με μη ασφαλή MMS. Για προστατευμένες ιδιωτικές συνομιλίες, προσκάλεσε τις επαφές σου στο Signal.</string>
   <string name="ManageGroupActivity_invite_now">Πρόσκληση τώρα</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Να ειδοποιούμαι για αναφορές</string>
@@ -1235,6 +1237,13 @@
     <item quantity="one">Σε αυτή τη κλήση · %1$d άτομο</item>
     <item quantity="other">Σε αυτή τη κλήση · %1$d άτομα</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">Ο/Η %1$s έχει φραγεί</string>
+  <string name="CallParticipantView__more_info">Περισσότερες πληροφορίες</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Δεν θα μπορείς να λάβεις τον ήχο ή την εικόνα του/της και αυτός/ή δεν θα λαμβάνει τα δικά σου.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Δεν μπορείς να λάβεις ήχο &amp; βίντεο από τον/την %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Δεν μπορείς να λάβεις ήχο και βίντεο από τον/την %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Αυτό ίσως οφείλεται στο ότι δεν έχει επιβεβαιώσει την αλλαγή του αριθμού ασφαλείας σου, ότι υπάρχει πρόβλημα με τη συσκευή του/της ή ότι σε έχει μπλοκάρει.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Διάλεξε τη χώρα σου</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να γράψεις τον
@@ -1537,6 +1546,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Απαντήθηκε από συνδεμένη συσκευή.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Απορρίφθηκε απο συνδεμένη συσκευή.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Απασχολημένος/η από συνδεμένη συσκευή.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Κάποιος μπήκε στην κλήση με κάποιον αριθμό ασφαλείας που έχει αλλάξει.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Ο αριθμός ασφαλείας για τη συνομιλία σου με τον/την %1$s έχει αλλάξει. Αυτό μπορεί να σημαίνει πως είτε κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σου, είτε απλά ο/η %2$s επανεγκατέστησε το Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Ίσως να θέλεις να επιβεβαιώσετε τον αριθμό ασφαλείας σου με αυτή την επαφή.</string>
@@ -1653,6 +1663,7 @@
   <string name="ConversationUpdateItem_learn_more">Μάθε περισσότερα</string>
   <string name="ConversationUpdateItem_join_call">Είσοδος στην κλήση</string>
   <string name="ConversationUpdateItem_return_to_call">Επιστροφή στην κλήση</string>
+  <string name="ConversationUpdateItem_call_is_full">Η κλήση είναι γεμάτη</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Αναπαραγωγή … Παύση</string>
   <string name="audio_view__download_accessibility_description">Λήψη</string>
@@ -1671,6 +1682,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">Αλλαγές αριθμού ασφαλείας</string>
   <string name="safety_number_change_dialog__send_anyway">Αποστόλη παρ\' όλα αυτά</string>
   <string name="safety_number_change_dialog__call_anyway">Κλήση παρ\' όλα αυτά</string>
+  <string name="safety_number_change_dialog__join_call">Είσοδος στην κλήση</string>
+  <string name="safety_number_change_dialog__continue_call">Συνέχεια κλήσης</string>
+  <string name="safety_number_change_dialog__leave_call">Αποχώρηση από την κλήση</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Τα παρακάτω άτομα ίσως επανεγκατεστησαν το Signal ή άλλαξαν συσκευή. Επαλήθευσε τους αριθμούς ασφαλείας με αυτά, για να διασφαλίσεις την ιδιωτικότητα.</string>
   <string name="safety_number_change_dialog__view">Εμφάνιση</string>
   <string name="safety_number_change_dialog__previous_verified">Προηγουμένως επαληθευμένοι</string>
@@ -2510,5 +2524,16 @@
   <string name="ReviewCard__block">Φραγή</string>
   <string name="ReviewCard__delete">Διαγραφή</string>
   <string name="ReviewCard__recently_changed">Άλλαξε πρόσφατα το όνομα προφίλ του/της από %1$s σε %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">Ο/Η %1$s μπήκε</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">Οι %1$s και %2$s μπήκαν</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">Οι %1$s, %2$s και %3$s μπήκαν</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">Οι %1$s, %2$s και %3$d ακόμα μπήκαν</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">Ο/Η %1$s έφυγε</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Οι %1$s και %2$s έφυγαν</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Οι %1$s, %2$s και %3$s έφυγαν</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Οι %1$s, %2$s και %3$d ακόμα έφυγαν</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Εσύ (από άλλη συσκευή)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (από άλλη συσκευή)</string>
   <!--EOF-->
 </resources>

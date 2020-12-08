@@ -256,6 +256,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone et à votre appareil photo.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Désormais plus d’options dans paramètre « Paramètres du groupe »</string>
+  <string name="ConversationActivity_join">Me joindre</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -666,7 +667,6 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Ce groupe est un groupe hérité. Pour accéder aux nouvelles fonctions telles que les @mentions et l’administration,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Ce groupe hérité ne peut pas être converti en nouveau groupe, car il comporte trop de membres. Le nombre maximal de membres d’un groupe est %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">convertissez ce groupe</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ce groupe est un groupe de messages multimédias non sécurisé. Pour converser en toute confidentialité et accéder aux fonctions telles que les noms de groupe, invitez vos contacts sur Signal.</string>
   <string name="ManageGroupActivity_invite_now">Inviter maintenant</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
@@ -1236,6 +1236,8 @@
     <item quantity="one">Dans cet appel · %1$d personne</item>
     <item quantity="other">Dans cet appel · %1$d personnes</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__more_info">Plus de précisions</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vous devez indiquer votre indicatif de pays</string>
@@ -1649,6 +1651,7 @@
   <string name="ConversationUpdateItem_learn_more">En apprendre davantage</string>
   <string name="ConversationUpdateItem_join_call">Rejoindre l’appel</string>
   <string name="ConversationUpdateItem_return_to_call">Revenir à l’appel</string>
+  <string name="ConversationUpdateItem_call_is_full">L’appel est complet</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
@@ -1667,6 +1670,8 @@
   <string name="safety_number_change_dialog__safety_number_changes">Changements des numéros de sécurité</string>
   <string name="safety_number_change_dialog__send_anyway">Envoyer quand même</string>
   <string name="safety_number_change_dialog__call_anyway">Appeler quand même</string>
+  <string name="safety_number_change_dialog__join_call">Rejoindre l’appel</string>
+  <string name="safety_number_change_dialog__leave_call">Quitter l’appel</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Les personnes suivantes ont peut-être réinstallé Signal ou changé d’appareil. Pour assurer la confidentialité, confirmez votre numéro de sécurité avec elles.</string>
   <string name="safety_number_change_dialog__view">Afficher</string>
   <string name="safety_number_change_dialog__previous_verified">Précédement vérifé</string>
@@ -2505,5 +2510,7 @@
   <string name="ReviewCard__block">Bloquer</string>
   <string name="ReviewCard__delete">Supprimer</string>
   <string name="ReviewCard__recently_changed">%1$s a récemment changé le nom de son profil en %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vous (sur un autre appareil)</string>
   <!--EOF-->
 </resources>

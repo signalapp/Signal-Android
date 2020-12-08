@@ -256,6 +256,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">برای تماس با %1$s، Signal به دسترسی میکروفون شما نیاز دارد.</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">برای تماس با %1$s، سیگنال به دسترسی میکروفون و دوربین شما نیاز دارد.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">امکانات بیشتر هم‌اکنون در «تنظیمات گروه»</string>
+  <string name="ConversationActivity_join">پیوستن</string>
+  <string name="ConversationActivity_full">پر شده</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d پیام خوانده نشده</item>
@@ -666,7 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">این گروه یک گروه قدیمی است. برای دسترسی به قابلیت‌های جدید همانند اشاره‌ها@ و مدیران،</string>
   <string name="ManageGroupActivity_legacy_group_too_large">این گروه قدیمی نمی‌تواند به یک گروه جدید ارتقا پیدا کند چون بسیار بزرگ است. حداکثر اندازهٔ گروه %1$d است.</string>
   <string name="ManageGroupActivity_upgrade_this_group">این گروه را ارتقا دهید.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">این یک گروه فراپیامی ناامن است. برای گفتگوی خصوصی و دسترسی به قابلیت‌هایی مثل نام‌ گروه، مخاطبین خود را به Signal دعوت کنید.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">این یک گروه فراپیامی ناامن است. برای گفتگوی خصوصی، مخاطبین خود را به Signal دعوت کنید.</string>
   <string name="ManageGroupActivity_invite_now">همین حالا دعوت کنید</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">به من در مورد اشاره‌ها خبر بده</string>
@@ -689,7 +691,7 @@
   <string name="ManageRecipientActivity_off">خاموش</string>
   <string name="ManageRecipientActivity_on">روشن</string>
   <string name="ManageRecipientActivity_add_to_a_group">اضافه کردن به گروه</string>
-  <string name="ManageRecipientActivity_view_all_groups">مشاهدهٔ همهٔ گروه‌ها</string>
+  <string name="ManageRecipientActivity_view_all_groups">دیدن همهٔ گروه‌ها</string>
   <string name="ManageRecipientActivity_see_all">مشاهدهٔ همه</string>
   <string name="ManageRecipientActivity_no_groups_in_common">هیچ گروه مشترکی وجود ندارد</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1236,6 +1238,13 @@
     <item quantity="one">در این تماس · %1$d نفر</item>
     <item quantity="other">در این تماس · %1$d نفر</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s مسدود شده است</string>
+  <string name="CallParticipantView__more_info">اطلاعات بیشتر</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">شما صدا و تصویر آ‌ن‌ها را دریافت نمی‌کنید و آن‌ها هم صدا و تصویر شما را دریافت نخواهند کرد.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">این می‌تواند به این خاطر باشد که آن‌ها تغییر شمارهٔ امنیتی شما را تأیید نکرده‌اند، مشکلی برای دستگاه‌شان پیش آمده یا شما را مسدود کرده‌اند.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">کشور خود را انتخاب کنید</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">شما باید کد کشور خود را
@@ -1285,8 +1294,8 @@
   <string name="RegistrationLockV2Dialog_turn_on">روشن</string>
   <string name="RegistrationLockV2Dialog_turn_off">خاموش</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">مشاهدهٔ عکس</string>
-  <string name="RevealableMessageView_view_video">مشاهدهٔ ویدئو</string>
+  <string name="RevealableMessageView_view_photo">نمایش عکس</string>
+  <string name="RevealableMessageView_view_video">نمایش ویدئو</string>
   <string name="RevealableMessageView_viewed">دیده شد</string>
   <string name="RevealableMessageView_media">رسانه</string>
   <!--ScribbleActivity-->
@@ -1540,6 +1549,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">برروی دستگاه پیوند داده شده پاسخ داده شد.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">بر روی دستگاه پیوند داده شده رد شد.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">مشغول برروی دستگاه پیوند داده شده.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">شخصی با شمارهٔ امنیتی تغییر یافته به این تماس پیوسته است.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">شمارهٔ امنیتی مکالمهٔ شما با %1$s تغییر یافته است. این می‌تواند به این معنا باشد که شخصی سعی دارد تا مکالمه شما را شنود کند یا %2$s برنامهٔ Signal را دوباره نصب کرده است.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">شاید بخواهید شمارهٔ امنیتی خود را با این مخاطب تأیید کنید.</string>
@@ -1656,6 +1666,7 @@
   <string name="ConversationUpdateItem_learn_more">بیشتر یاد بگیرید</string>
   <string name="ConversationUpdateItem_join_call">پیوستن به تماس</string>
   <string name="ConversationUpdateItem_return_to_call">بازگشت به تماس</string>
+  <string name="ConversationUpdateItem_call_is_full">ظرفیت تماس تکمیل است</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پخش … وقفه</string>
   <string name="audio_view__download_accessibility_description">دریافت</string>
@@ -1674,6 +1685,9 @@
   <string name="safety_number_change_dialog__safety_number_changes">تغییرات شمارهٔ امنیتی</string>
   <string name="safety_number_change_dialog__send_anyway">در هر صورت ارسال کن</string>
   <string name="safety_number_change_dialog__call_anyway">در هر صورت تماس بگیر</string>
+  <string name="safety_number_change_dialog__join_call">پیوستن به تماس</string>
+  <string name="safety_number_change_dialog__continue_call">ادامهٔ تماس</string>
+  <string name="safety_number_change_dialog__leave_call">ترک کردن تماس</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">افراد زیر ممکن است دستگاه خود را تغییر داده یا نصب مجدد انجام داده باشند. برای اطمینان از حفظ حریم خصوصی شمارهٔ امنیتی خود را با آنان تأیید کنید.</string>
   <string name="safety_number_change_dialog__view">نمایش</string>
   <string name="safety_number_change_dialog__previous_verified">قبلاً تأیید شد</string>
@@ -2512,5 +2526,16 @@
   <string name="ReviewCard__block">مسدود کردن</string>
   <string name="ReviewCard__delete">حذف</string>
   <string name="ReviewCard__recently_changed">اخیراً نام پروفایل خود را از %1$s به %2$s تغییر داد</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s به تماس پیوست</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s و %2$s پیوستند</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s، %2$s و %3$s پیوستند</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s، %2$s و %3$d نفر دیگر پیوستند</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s ترک کرد</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s و %2$s ترک کردند</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s، %2$s و %3$s ترک کردند</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s، %2$s و %3$d نفر دیگر ترک کردند</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">شما (روی دستگاه دیگر)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (روی دستگاه دیگر)</string>
   <!--EOF-->
 </resources>

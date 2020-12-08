@@ -262,6 +262,8 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Za klic uporabnika/ce %1$s, potrebuje Signal dostop do mikrofona</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Za klic uporabnika/ce %1$s, potrebuje Signal dostop do mikrofona in kamere.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Več možnosti odslej v \"Nastavitvah skupine\"</string>
+  <string name="ConversationActivity_join">Pridruži se</string>
+  <string name="ConversationActivity_full">Polno</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprebrano sporočilo</item>
@@ -740,7 +742,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">To je Stara skupina. Za dostop do naprednih funkcij, kot so @omembe in skrbniki skupin,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Ta Stara skupina je prevelika, da bi bila lahko nadgrajena v Novo skupino. Največja velikost skupine je %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">nadgradite to skupino.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To je nezavarovana skupina MMS. Za bolj zasebno komunikacijo in napredne funkcije, kot so imena skupin, povabite svoje stike na Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To je nezavarovana skupina MMS. Za bolj zasebno komunikacijo povabite svoje stike na Signal.</string>
   <string name="ManageGroupActivity_invite_now">Povabi zdaj</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščajte me o omembah</string>
@@ -1363,6 +1365,13 @@
     <item quantity="few">Na tem klicu · %1$d ljudje</item>
     <item quantity="other">Na tem klicu · %1$d ljudi</item>
   </plurals>
+  <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">Uporabnik/ca %1$s je blokiran/a</string>
+  <string name="CallParticipantView__more_info">Več informacij</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Njihovega zvoka in slike ne boste prejemali in oni ne vaših.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Ne morete prejemati zvoka &amp; videa od uporabnika/ce %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ne morete prejemati zvoka in videa od uporabnika/ce %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">To je zato, ker niso overili vašega spremenjenega varnostnega števila, ker je nek problem na njihovi napravi ali pa so vas blokirali.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Izberite svojo državo</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Navesti morate mednarodno kodo svoje države</string>
@@ -1665,6 +1674,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Odgovorjeno na povezani napravi.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Zavrnjeno na povezani napravi.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Zasedeno na povezani napravi.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Klicu se je pridružil nekdo s spremenjenim varnostnim številom.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Vaše varnostno število z uporabnikom/co %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil/a aplikacijo Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
@@ -1785,6 +1795,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationUpdateItem_learn_more">Več o funkciji zakriti pošiljatelj</string>
   <string name="ConversationUpdateItem_join_call">Pridruži se klicu</string>
   <string name="ConversationUpdateItem_return_to_call">Zopet se pridruži klicu</string>
+  <string name="ConversationUpdateItem_call_is_full">Klic je polno zaseden</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Predvajanje … pavza</string>
   <string name="audio_view__download_accessibility_description">Prenesi</string>
@@ -1803,6 +1814,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="safety_number_change_dialog__safety_number_changes">Spremembe varnostnega števila</string>
   <string name="safety_number_change_dialog__send_anyway">Vseeno pošlji</string>
   <string name="safety_number_change_dialog__call_anyway">Vseeno kliči</string>
+  <string name="safety_number_change_dialog__join_call">Pridruži se klicu</string>
+  <string name="safety_number_change_dialog__continue_call">Nadaljuj s klicem</string>
+  <string name="safety_number_change_dialog__leave_call">Zapusti klic</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Našteti uporabniki/ce so najbrž ponovno namestili Signal ali zamenjali napravo. Za potrditev istovetnosti ponovno preverite varnostno število z njimi.</string>
   <string name="safety_number_change_dialog__view">Preglej</string>
   <string name="safety_number_change_dialog__previous_verified">Prej potrjeno</string>
@@ -2675,5 +2689,16 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ReviewCard__block">Blokiraj</string>
   <string name="ReviewCard__delete">Izbriši</string>
   <string name="ReviewCard__recently_changed">Uporabnik/ca je pred kratkim spremenil/a ime profila iz %1$s v %2$s</string>
+  <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">Pridružil/a se je %1$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">Pridružila/i sta se %1$s in %2$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">Pridružili/e so se %1$s, %2$s in %3$s</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">Pridružila/i sta se %1$s, %2$s in še %3$d drugi/h</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">Uporabnik/ca %1$s je odšel/a</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Uporabnika/ci %1$s in %2$s sta odšla/i</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Uporabniki/ce %1$s, %2$s in %3$s so odšli</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Uporabnika %1$s, %2$s in še %3$d drugi/h so odšli</string>
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugi napravi)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">Uporabnik/ca %1$s (na drugi napravi)</string>
   <!--EOF-->
 </resources>
