@@ -93,7 +93,7 @@ class ConversationViewModel extends ViewModel {
       ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId());
       PagingConfig           config     = new PagingConfig.Builder()
                                                           .setPageSize(25)
-                                                          .setBufferPages(1)
+                                                          .setBufferPages(3)
                                                           .setStartIndex(Math.max(startPosition, 0))
                                                           .build();
 
