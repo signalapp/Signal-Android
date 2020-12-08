@@ -67,7 +67,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
 
     Preference pinSettings = this.findPreference(ADVANCED_PIN_PREF);
     pinSettings.setOnPreferenceClickListener(preference -> {
-      getApplicationPreferencesActivity().pushFragment(new AdvancedPreferenceFragment());
+      getApplicationPreferencesActivity().pushFragment(new AdvancedPinPreferenceFragment());
       return false;
     });
 
