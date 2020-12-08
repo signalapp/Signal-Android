@@ -763,9 +763,17 @@ final class GroupManagerV2 {
         alreadyAMember = true;
       }
 
+      Optional<GroupDatabase.GroupRecord> unmigratedV1Group = groupDatabase.getGroupV1ByExpectedV2(groupId);
+
+      if (unmigratedV1Group.isPresent()) {
+        Log.i(TAG, "Group link was for a migrated V1 group we know about! Migrating it and using that as the base.");
+        GroupsV1MigrationUtil.performLocalMigration(context, unmigratedV1Group.get().getId().requireV1());
+      }
+
       DecryptedGroup decryptedGroup = createPlaceholderGroup(joinInfo, requestToJoin);
 
       Optional<GroupDatabase.GroupRecord> group = groupDatabase.getGroup(groupId);
+
       if (group.isPresent()) {
         Log.i(TAG, "Group already present locally");
 
