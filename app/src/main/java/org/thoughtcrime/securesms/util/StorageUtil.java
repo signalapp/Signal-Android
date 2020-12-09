@@ -130,7 +130,7 @@ public class StorageUtil {
   }
 
   public static @NonNull Uri getAudioUri() {
-    if (Build.VERSION.SDK_INT < 21) {
+    if (Build.VERSION.SDK_INT < 29) {
       return getLegacyUri(Environment.DIRECTORY_MUSIC);
     } else {
       return MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
