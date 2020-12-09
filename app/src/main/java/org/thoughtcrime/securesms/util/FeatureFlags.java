@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -229,7 +230,7 @@ public final class FeatureFlags {
 
   /** Whether or not group calling is enabled. */
   public static boolean groupCalling() {
-    return getBoolean(GROUP_CALLING, false);
+    return Build.VERSION.SDK_INT > 19 && getBoolean(GROUP_CALLING, false);
   }
 
   /** Whether or not auto-migration from GV1->GV2 is enabled. */
