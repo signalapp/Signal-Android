@@ -994,6 +994,8 @@ public final class PushProcessMessageJob extends BaseJob {
       } else if (message.getMessage().isGroupV2Update()) {
         handleSynchronizeSentGv2Update(content, message);
         threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
+      } else if (FeatureFlags.groupCalling() && message.getMessage().getGroupCallUpdate().isPresent()) {
+        handleGroupCallUpdateMessage(content, message.getMessage(), GroupUtil.idFromGroupContext(message.getMessage().getGroupContext()));
       } else if (message.getMessage().isEmptyGroupV2Message()) {
         // Do nothing
       } else if (message.getMessage().isExpirationUpdate()) {
