@@ -293,24 +293,24 @@ public class SignalServiceMessageSender {
                                        SignalServiceDataMessage         message)
       throws UntrustedIdentityException, IOException
   {
-    byte[]            content                         = createMessageContent(message, recipient);
-    long              timestamp                       = message.getTimestamp();
-    boolean           useFallbackEncryption           = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
-    boolean           isClosedGroup                   = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
-    SendMessageResult result                          = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), message.getDeviceLink().isPresent(), useFallbackEncryption, isClosedGroup, false, message.hasVisibleContent());
+    byte[]            content               = createMessageContent(message, recipient);
+    long              timestamp             = message.getTimestamp();
+    boolean           useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
+    boolean           isClosedGroup         = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
+    SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), message.getDeviceLink().isPresent(), useFallbackEncryption, isClosedGroup, false, message.hasVisibleContent());
 
-    // Loki - This shouldn't get invoked for note to self
-    boolean wouldSignalSendSyncMessage = (result.getSuccess() != null && result.getSuccess().isNeedsSync()) || unidentifiedAccess.isPresent();
-    if (wouldSignalSendSyncMessage && SyncMessagesProtocol.shared.shouldSyncMessage(message)) {
-      byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.of(recipient), timestamp, Collections.singletonList(result));
-      // Loki - Customize multi device logic
-      Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-      for (String device : linkedDevices) {
-        SignalServiceAddress deviceAsAddress = new SignalServiceAddress(device);
-        boolean useFallbackEncryptionForSyncMessage = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(syncMessage, device, store);
-        sendMessage(deviceAsAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, message.getTTL(), useFallbackEncryptionForSyncMessage, true);
-      }
-    }
+//    // Loki - This shouldn't get invoked for note to self
+//    boolean wouldSignalSendSyncMessage = (result.getSuccess() != null && result.getSuccess().isNeedsSync()) || unidentifiedAccess.isPresent();
+//    if (wouldSignalSendSyncMessage && SyncMessagesProtocol.shared.shouldSyncMessage(message)) {
+//      byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.of(recipient), timestamp, Collections.singletonList(result));
+//      // Loki - Customize multi device logic
+//      Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
+//      for (String device : linkedDevices) {
+//        SignalServiceAddress deviceAsAddress = new SignalServiceAddress(device);
+//        boolean useFallbackEncryptionForSyncMessage = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(syncMessage, device, store);
+//        sendMessage(deviceAsAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, message.getTTL(), useFallbackEncryptionForSyncMessage, true);
+//      }
+//    }
 
     // Loki - Start a session reset if needed
     if (message.isEndSession()) {
@@ -495,36 +495,36 @@ public class SignalServiceMessageSender {
     return container.setReceiptMessage(builder).build().toByteArray();
   }
 
-  private byte[] createMessageContent(SignalServiceDataMessage message, SignalServiceAddress recipient)
+  private byte[]  createMessageContent(SignalServiceDataMessage message, SignalServiceAddress recipient)
       throws IOException
   {
     Content.Builder container = Content.newBuilder();
 
-    if (message.getPreKeyBundle().isPresent()) {
-      PreKeyBundle preKeyBundle = message.getPreKeyBundle().get();
-      PreKeyBundleMessage.Builder preKeyBundleMessageBuilder = PreKeyBundleMessage.newBuilder()
-          .setDeviceId(preKeyBundle.getDeviceId())
-          .setIdentityKey(ByteString.copyFrom(preKeyBundle.getIdentityKey().serialize()))
-          .setPreKeyId(preKeyBundle.getPreKeyId())
-          .setPreKey(ByteString.copyFrom(preKeyBundle.getPreKey().serialize()))
-          .setSignedKeyId(preKeyBundle.getSignedPreKeyId())
-          .setSignedKey(ByteString.copyFrom(preKeyBundle.getSignedPreKey().serialize()))
-          .setSignature(ByteString.copyFrom(preKeyBundle.getSignedPreKeySignature()))
-          .setIdentityKey(ByteString.copyFrom(preKeyBundle.getIdentityKey().serialize()));
-      container.setPreKeyBundleMessage(preKeyBundleMessageBuilder);
-    }
+//    if (message.getPreKeyBundle().isPresent()) {
+//      PreKeyBundle preKeyBundle = message.getPreKeyBundle().get();
+//      PreKeyBundleMessage.Builder preKeyBundleMessageBuilder = PreKeyBundleMessage.newBuilder()
+//          .setDeviceId(preKeyBundle.getDeviceId())
+//          .setIdentityKey(ByteString.copyFrom(preKeyBundle.getIdentityKey().serialize()))
+//          .setPreKeyId(preKeyBundle.getPreKeyId())
+//          .setPreKey(ByteString.copyFrom(preKeyBundle.getPreKey().serialize()))
+//          .setSignedKeyId(preKeyBundle.getSignedPreKeyId())
+//          .setSignedKey(ByteString.copyFrom(preKeyBundle.getSignedPreKey().serialize()))
+//          .setSignature(ByteString.copyFrom(preKeyBundle.getSignedPreKeySignature()))
+//          .setIdentityKey(ByteString.copyFrom(preKeyBundle.getIdentityKey().serialize()));
+//      container.setPreKeyBundleMessage(preKeyBundleMessageBuilder);
+//    }
 
-    if (message.getDeviceLink().isPresent()) {
-      DeviceLink deviceLink = message.getDeviceLink().get();
-      SignalServiceProtos.DeviceLinkMessage.Builder deviceLinkMessageBuilder = SignalServiceProtos.DeviceLinkMessage.newBuilder()
-          .setPrimaryPublicKey(deviceLink.getMasterPublicKey())
-          .setSecondaryPublicKey(deviceLink.getSlavePublicKey())
-          .setRequestSignature(ByteString.copyFrom(Objects.requireNonNull(deviceLink.getRequestSignature())));
-      if (deviceLink.getAuthorizationSignature() != null) {
-          deviceLinkMessageBuilder.setAuthorizationSignature(ByteString.copyFrom(deviceLink.getAuthorizationSignature()));
-      }
-      container.setDeviceLinkMessage(deviceLinkMessageBuilder.build());
-    }
+//    if (message.getDeviceLink().isPresent()) {
+//      DeviceLink deviceLink = message.getDeviceLink().get();
+//      SignalServiceProtos.DeviceLinkMessage.Builder deviceLinkMessageBuilder = SignalServiceProtos.DeviceLinkMessage.newBuilder()
+//          .setPrimaryPublicKey(deviceLink.getMasterPublicKey())
+//          .setSecondaryPublicKey(deviceLink.getSlavePublicKey())
+//          .setRequestSignature(ByteString.copyFrom(Objects.requireNonNull(deviceLink.getRequestSignature())));
+//      if (deviceLink.getAuthorizationSignature() != null) {
+//          deviceLinkMessageBuilder.setAuthorizationSignature(ByteString.copyFrom(deviceLink.getAuthorizationSignature()));
+//      }
+//      container.setDeviceLinkMessage(deviceLinkMessageBuilder.build());
+//    }
 
     DataMessage.Builder builder = DataMessage.newBuilder();
     List<AttachmentPointer> pointers = createAttachmentPointers(message.getAttachments(), recipient);
@@ -1365,13 +1365,17 @@ public class SignalServiceMessageSender {
     if (!recipient.equals(localAddress) || unidentifiedAccess.isPresent()) {
       if (sskDatabase.isSSKBasedClosedGroup(recipient.getNumber()) && unidentifiedAccess.isPresent()) {
         messages.add(getSSKEncryptedMessage(recipient.getNumber(), unidentifiedAccess.get(), plaintext));
-      } else if (useFallbackEncryption) {
-        messages.add(getFallbackCipherEncryptedMessage(recipient.getNumber(), plaintext, unidentifiedAccess));
+//      } else if (useFallbackEncryption) {
+//        messages.add(getFallbackCipherEncryptedMessage(recipient.getNumber(), plaintext, unidentifiedAccess));
+//      } else {
+//        OutgoingPushMessage message = getEncryptedMessage(socket, recipient, unidentifiedAccess, plaintext, isClosedGroup);
+//        if (message != null) { // May be null in a closed group context
+//          messages.add(message);
+//        }
+//      }
       } else {
-        OutgoingPushMessage message = getEncryptedMessage(socket, recipient, unidentifiedAccess, plaintext, isClosedGroup);
-        if (message != null) { // May be null in a closed group context
-          messages.add(message);
-        }
+        OutgoingPushMessage message = getFallbackCipherEncryptedMessage(recipient.getNumber(), plaintext, unidentifiedAccess);
+        messages.add(message);
       }
     }
 
@@ -1383,17 +1387,19 @@ public class SignalServiceMessageSender {
   {
     Log.d("Loki", "Using fallback cipher.");
     int deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(publicKey, deviceID);
-    byte[] userPrivateKey = store.getIdentityKeyPair().getPrivateKey().serialize();
-    FallbackSessionCipher cipher = new FallbackSessionCipher(userPrivateKey, publicKey);
+//    SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(publicKey, deviceID);
+//    byte[] userPrivateKey = store.getIdentityKeyPair().getPrivateKey().serialize();
+//    FallbackSessionCipher cipher = new FallbackSessionCipher(userPrivateKey, publicKey);
     PushTransportDetails transportDetails = new PushTransportDetails(FallbackSessionCipher.getSessionVersion());
-    byte[] bytes = cipher.encrypt(transportDetails.getPaddedMessageBody(plaintext));
-    if (bytes == null) { bytes = new byte[0]; }
+//    byte[] bytes = cipher.encrypt(transportDetails.getPaddedMessageBody(plaintext));
+    byte[] bytes = transportDetails.getPaddedMessageBody(plaintext);
+//    if (bytes == null) { bytes = new byte[0]; }
     if (unidentifiedAccess.isPresent()) {
-      SealedSessionCipher sealedSessionCipher = new SealedSessionCipher(store, null, signalProtocolAddress);
-      FallbackMessage message = new FallbackMessage(bytes);
-      byte[] ciphertext = sealedSessionCipher.encrypt(signalProtocolAddress, unidentifiedAccess.get().getUnidentifiedCertificate(), message);
-      return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(ciphertext));
+//      SealedSessionCipher sealedSessionCipher = new SealedSessionCipher(store, null, signalProtocolAddress);
+//      FallbackMessage message = new FallbackMessage(bytes);
+//      byte[] ciphertext = sealedSessionCipher.encrypt(signalProtocolAddress, unidentifiedAccess.get().getUnidentifiedCertificate(), message);
+//      return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(ciphertext));
+      return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(bytes));
     } else {
       return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.FALLBACK_MESSAGE_VALUE, deviceID, 0, Base64.encodeBytes(bytes));
     }
