@@ -78,7 +78,7 @@ public final class StreamUtil {
   }
 
   public static long copy(InputStream in, OutputStream out) throws IOException {
-    byte[] buffer = new byte[8192];
+    byte[] buffer = new byte[64 * 1024];
     int read;
     long total = 0;
 
