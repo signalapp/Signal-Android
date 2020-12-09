@@ -264,8 +264,10 @@ public class WebRtcCallView extends FrameLayout {
       pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode()));
     }
 
-    if (state.getGroupCallState().isConnected()) {
+    if ((state.getGroupCallState().isNotIdle() && state.getRemoteDevicesCount() > 0) || state.getGroupCallState().isConnected()) {
       recipientName.setText(state.getRemoteParticipantsDescription(getContext()));
+    } else if (state.getGroupCallState().isNotIdle()) {
+      recipientName.setText(getContext().getString(R.string.WebRtcCallView__s_group_call, Recipient.resolved(recipientId).getDisplayName(getContext())));
     }
 
     if (state.getGroupCallState().isNotIdle() && participantCount != null) {
@@ -356,7 +358,6 @@ public class WebRtcCallView extends FrameLayout {
     recipientId = recipient.getId();
 
     if (recipient.isGroup()) {
-      recipientName.setText(getContext().getString(R.string.WebRtcCallView__s_group_call, recipient.getDisplayName(getContext())));
       if (toolbar.getMenu().findItem(R.id.menu_group_call_participants_list) == null) {
         toolbar.inflateMenu(R.menu.group_call);
 
