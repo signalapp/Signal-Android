@@ -29,7 +29,7 @@ public final class CountryListLoader extends AsyncTaskLoader<ArrayList<Map<Strin
 
     for (String region : regions) {
       Map<String, String> data = new HashMap<>(2);
-      data.put("country_name", PhoneNumberFormatter.getRegionDisplayName(region));
+      data.put("country_name", PhoneNumberFormatter.getRegionDisplayNameLegacy(region));
       data.put("country_code", "+" +PhoneNumberUtil.getInstance().getCountryCodeForRegion(region));
       results.add(data);
     }

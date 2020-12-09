@@ -58,7 +58,7 @@ public final class NumberViewState implements Parcelable {
     }
 
     String regionCode = util.getRegionCodeForCountryCode(countryCode);
-    return PhoneNumberFormatter.getRegionDisplayName(regionCode);
+    return PhoneNumberFormatter.getRegionDisplayNameLegacy(regionCode);
   }
 
   /**
@@ -70,7 +70,7 @@ public final class NumberViewState implements Parcelable {
       String                  regionCode  = util.getRegionCodeForNumber(phoneNumber);
 
       if (regionCode != null) {
-        return PhoneNumberFormatter.getRegionDisplayName(regionCode);
+        return PhoneNumberFormatter.getRegionDisplayNameLegacy(regionCode);
       }
 
     } catch (NumberParseException e) {

@@ -12,6 +12,8 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
 import org.whispersystems.libsignal.logging.Log;
+import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -113,9 +115,22 @@ public class PhoneNumberFormatter {
     }
   }
 
-  public static String getRegionDisplayName(String regionCode) {
-    return (regionCode == null || regionCode.equals("ZZ") || regionCode.equals(PhoneNumberUtil.REGION_CODE_FOR_NON_GEO_ENTITY))
-        ? "Unknown country" : new Locale("", regionCode).getDisplayCountry(Locale.getDefault());
+  /**
+   * @deprecated Use {@link #getRegionDisplayName} as it can be localized when the region is not found.
+   */
+  @Deprecated
+  public static String getRegionDisplayNameLegacy(String regionCode) {
+    return getRegionDisplayName(regionCode).or("Unknown country");
+  }
+
+  public static Optional<String> getRegionDisplayName(String regionCode) {
+    if (regionCode != null && !regionCode.equals("ZZ") && !regionCode.equals(PhoneNumberUtil.REGION_CODE_FOR_NON_GEO_ENTITY)) {
+      String displayCountry = new Locale("", regionCode).getDisplayCountry(Locale.getDefault());
+      if (!Util.isEmpty(displayCountry)) {
+        return Optional.of(displayCountry);
+      }
+    }
+    return Optional.absent();
   }
 
   public static String formatE164(String countryCode, String number) {
