@@ -1304,6 +1304,7 @@
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">Viac informácii</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Môže to byť pre to, že dotyčný používateľ nepotvrdil zmenu vášho bezpečnostného čísla, že sa vyskytol problém s jeho zariadením, alebo že vás zablokoval.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vyberte svoju krajinu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Musíte zadať
@@ -1613,12 +1614,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Prijaté na pripojenom zariadení.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Odmietnuté na pripojenom zariadení.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Zaneprázdnené na pripojenom zariadení.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">K tomuto hovoru sa pripojil niekto so zmeneným bezpečnostným číslom.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostné číslo pre konverzáciu s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mali by ste overiť vaše bezpečnostné číslo s týmto kontaktom.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nové bezpečnostné číslo</string>
   <string name="WebRtcCallScreen_accept">Potvrdiť</string>
   <string name="WebRtcCallScreen_end_call">Ukončiť hovor</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Posuňte smerom hore pre zmenu zobrazenia</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Odmietnuť</string>
   <string name="WebRtcCallScreen__answer">Odpovedať</string>

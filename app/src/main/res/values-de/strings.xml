@@ -2538,7 +2538,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DeleteAccountFragment__delete_account">Nutzerkonto löschen</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Deine Kontodetails und dein Profilfoto löschen</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Alle deine Nachrichten löschen</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Dich aus allen Signal-Gruppen entfernen</string> -->
   <string name="DeleteAccountFragment__no_country_code">Keine Ländervorwahl angegeben</string>
   <string name="DeleteAccountFragment__no_number">Keine Rufnummer angegeben</string>
   <string name="DeleteAccountFragment__the_phone_number">Die eingegebene Rufnummer entspricht nicht der deines Kontos.</string>
@@ -2548,6 +2547,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Die lokalen Daten konnten nicht gelöscht werden. In den Androids App-Einstellungen kannst du diese manuell löschen.</string>
   <string name="DeleteAccountFragment__launch_app_settings">App-Einstellungen öffnen</string>
   <!--DeleteAccountCountryPickerFragment-->
-  <string name="DeleteAccountCountryPickerFragment__search_countries">Länder durchsuchen</string>
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Länder suchen</string>
   <!--EOF-->
 </resources>

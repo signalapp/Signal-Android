@@ -1693,6 +1693,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Rhif diogelwch newydd</string>
   <string name="WebRtcCallScreen_accept">Derbyn</string>
   <string name="WebRtcCallScreen_end_call">Gorffen galwad</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Llusgo i fyny i newid golwg</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Gwrthod</string>
   <string name="WebRtcCallScreen__answer">Ateb</string>

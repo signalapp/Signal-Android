@@ -2549,7 +2549,6 @@
   <string name="DeleteAccountFragment__delete_account">Excluir conta</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Excluir suas informações da conta e foto de perfil</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Apagar todas as suas mensagens</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Remover você de todos os seus grupos do Signal</string> -->
   <string name="DeleteAccountFragment__no_country_code">Nenhum código do país informado</string>
   <string name="DeleteAccountFragment__no_number">Nenhum número informado</string>
   <string name="DeleteAccountFragment__the_phone_number">O número de telefone que você inseriu não corresponde ao da sua conta.</string>

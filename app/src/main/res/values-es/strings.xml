@@ -1220,6 +1220,7 @@
   <string name="WebRtcCallView__start_call">Iniciar llamada</string>
   <string name="WebRtcCallView__join_call">Unirse</string>
   <string name="WebRtcCallView__call_is_full">La llamada está llena</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Se alcanzó el número máximo de participantes (%1$d) para esta llamada. Inténtalo más tarde.</string>
   <string name="WebRtcCallView__s_group_call">«%1$s» llamada en grupo</string>
   <string name="WebRtcCallView__view_participants_list">Ver participantes</string>
   <string name="WebRtcCallView__your_video_is_off">Tu vídeo está desactivado</string>
@@ -1240,12 +1241,12 @@
     <item quantity="other">En esta llamada · %1$d personas</item>
   </plurals>
   <!--CallParticipantView-->
-  <string name="CallParticipantView__s_is_blocked">%1$s está bloqueado</string>
+  <string name="CallParticipantView__s_is_blocked">%1$s está bloquead@</string>
   <string name="CallParticipantView__more_info">Más detalles</string>
-  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No recibirás su audio o vídeo y ellos no recibirán ul tuyo</string>
-  <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio y vídeo de %1$s</string>
-  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No se puede recibir ni audio ni vídeo de %1$s</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto puede deberse a que no han verificado el cambio de tus cifra de seguridad, hay un problema con su dispositivo, o te han bloqueado.</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No recibirás su audio ni vídeo y ni ell@s el tuyo.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto se puede deber a que no han verificado el cambio de tus cifras de seguridad, hay un problema con su dispositivo, o te han bloqueado.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecciona tu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Debes especificar el
@@ -1552,13 +1553,14 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendida en dispositivo enlazado.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Rechazada en dispositivo enlazado.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Ocupado en dispositivo enlazado.</string>
-  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Alguien se ha unido a esta llamada con una cifra de seguridad que ha cambiado.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Las cifras de seguridad de alguien que se ha unido a esta llamada han cambiado.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Las cifras de seguridad del chat con %1$s han cambiado. Esto podría significar que alguien está tratando de interceptar la comunicación, o bien que %2$s simplemente ha reinstalado Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Puede que desees verificar tus cifras de seguridad con esta persona.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nuevas cifras de seguridad</string>
   <string name="WebRtcCallScreen_accept">Aceptar</string>
   <string name="WebRtcCallScreen_end_call">Finalizar llamada</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Desliza hacia arriba para cambiar la vista</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Rechazar</string>
   <string name="WebRtcCallScreen__answer">Atender</string>
@@ -2015,6 +2017,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__advanced_pin_settings">Ajustes avanzados del PIN</string>
   <string name="preferences__free_private_messages_and_calls">Llamadas y mensajes cifrados a través de Signal ¡gratis! </string>
   <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
+  <string name="preferences__delete_account">Eliminar cuenta</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidad «Llamada por WiFi»</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Actívalo si tu dispositivo utiliza entrega de SMS/MMS vía WiFi (actívalo sólo cuando «Llamada por WiFi» esté activada en el dispositivo)</string>
   <string name="preferences__incognito_keyboard">Teclado incógnito</string>
@@ -2535,14 +2538,27 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s y %2$s se han unido</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s y %3$s se han unido</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s y %3$d más se han unido</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s abandonó</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s y %2$s han abandonado</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s y %3$s han abandonado</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s y %3$d más han abandonado</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s se ha ido</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s y %2$s se han ido</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s y %3$s se han ido</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s y %3$d más se han ido</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tú (en otro dispositivo)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (en otro dispositivo)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Eliminar tu cuenta significa:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Introduce tu número de teléfono</string>
+  <string name="DeleteAccountFragment__delete_account">Eliminar cuenta</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminar la información de tu cuenta y foto de perfil</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Eliminar todos tus mensajes</string>
+  <string name="DeleteAccountFragment__no_country_code">Código de país no especificado</string>
+  <string name="DeleteAccountFragment__no_number">Número no especificado</string>
+  <string name="DeleteAccountFragment__the_phone_number">El número introducido no coincide con el de tu cuenta.</string>
   <string name="DeleteAccountFragment__are_you_sure">¿Estás segur@ de querer eliminar tu cuenta?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción elimina tu cuenta de Signal y restablece la aplicación. Signal se cerrará después de completarse el proceso.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Fallo al eliminar la cuenta. Comprueba la conexión.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Fallo al eliminar los datos locales. Puedes hacerlo manualmente desde los ajustes del sistema para la aplicación.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Ir a los ajustes de aplicaciones</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Buscar país</string>
   <!--EOF-->
 </resources>

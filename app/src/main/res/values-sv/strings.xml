@@ -1219,6 +1219,7 @@
   <string name="WebRtcCallView__start_call">Starta samtal</string>
   <string name="WebRtcCallView__join_call">Gå med i samtalet</string>
   <string name="WebRtcCallView__call_is_full">Samtalet är fullt</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Det maximala antalet %1$d deltagare har nåtts för detta samtal. Försök igen senare.</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" gruppsamtal</string>
   <string name="WebRtcCallView__view_participants_list">Visa deltagare</string>
   <string name="WebRtcCallView__your_video_is_off">Din video är avstängd</string>
@@ -1242,8 +1243,8 @@
   <string name="CallParticipantView__s_is_blocked">%1$s är blockerad</string>
   <string name="CallParticipantView__more_info">Mer information</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Du kommer inte att ta emot deras ljud eller video och de kommer inte att ta emot dina.</string>
-  <string name="CallParticipantView__cant_receive_audio_video_from_s">Det går inte att ta emot ljud &amp; video från %1$s</string>
-  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Det går inte att ta emot ljud och video från %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan inte ta emot ljud &amp; video från %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan inte ta emot ljud och video från %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Det kan bero på att de inte har verifierat ditt säkerhetsnummerbyte, det finns ett problem med deras enhet eller att de har blockerat dig.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
@@ -1553,6 +1554,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nytt säkerhetsnummer</string>
   <string name="WebRtcCallScreen_accept">Acceptera</string>
   <string name="WebRtcCallScreen_end_call">Avsluta samtal</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Svep uppåt för att ändra vyer</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Avvisa</string>
   <string name="WebRtcCallScreen__answer">Svara</string>
@@ -2009,6 +2011,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__advanced_pin_settings">Avancerade PIN-kodsinställningar</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privata meddelanden och samtal med andra Signal-användare</string>
   <string name="preferences__submit_debug_log">Skicka in felsökningslogg</string>
+  <string name="preferences__delete_account">Ta bort konto</string>
   <string name="preferences__support_wifi_calling">\"Wi-Fi-samtal\"-kompatibilitetsläge</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivera om din enhet använder SMS/MMS sändning över Wi-Fi (aktivera endast när \"Wi-Fi-samtal\" är aktiverat på din enhet)</string>
   <string name="preferences__incognito_keyboard">Inkognito-tangentbord</string>
@@ -2535,7 +2538,20 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Du (på en annan enhet)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en annan enhet)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Om du tar bort ditt konto kommer du att:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Ange ditt telefonnummer</string>
+  <string name="DeleteAccountFragment__delete_account">Ta bort konto</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ta bort din kontoinformation och profilfoto</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Ta bort alla dina meddelanden</string>
+  <string name="DeleteAccountFragment__no_country_code">Ingen landskod specificerad</string>
+  <string name="DeleteAccountFragment__no_number">Inget nummer specificerat</string>
+  <string name="DeleteAccountFragment__the_phone_number">Det angivna telefonnumret matchar inte ditt kontos.</string>
   <string name="DeleteAccountFragment__are_you_sure">Är du säker på att du vill ta bort ditt konto?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Detta tar bort ditt Signal-konto och återställer applikationen. Appen stängs när processen är klar.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Det gick inte att ta bort kontot. Har du en nätverksanslutning?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Det gick inte att ta bort lokala data. Du kan rensa det manuellt i systemapplikationsinställningarna.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Starta appinställningar</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Sök länder</string>
   <!--EOF-->
 </resources>

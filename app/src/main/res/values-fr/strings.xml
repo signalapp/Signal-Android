@@ -1239,6 +1239,8 @@
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">Plus de précisions</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Vous ne recevrez pas leur son ou leur vidéo et ils ne recevront pas les vôtres.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Cela peut être dû au fait qu\'ils n\'ont pas vérifié votre changement de numéro de sécurité, qu\'il y a un problème avec leur appareil ou qu\'ils vous ont bloqué.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vous devez indiquer votre indicatif de pays</string>
@@ -1536,12 +1538,14 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">L’appel a été pris sur un appareil relié.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">L’appel a été refusé sur un appareil relié.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Occupé sur un appareil relié.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Quelqu\'un s\'est joint à cet appel avec un numéro de sécurité qui a été modifié.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Le numéro de sécurité de votre conversation avec %1$s a changé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous devriez peut-être confirmer votre numéro de sécurité avec ce contact.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nouveau numéro de sécurité</string>
   <string name="WebRtcCallScreen_accept">Accepter</string>
   <string name="WebRtcCallScreen_end_call">Raccrocher</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Glissez vers le haut pour changer de vue</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Refuser</string>
   <string name="WebRtcCallScreen__answer">Répondre</string>

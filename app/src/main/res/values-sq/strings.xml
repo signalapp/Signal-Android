@@ -2552,7 +2552,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DeleteAccountFragment__delete_account">Fshijë llogarinë</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Fshijë të dhënat e llogarisë tuaj dhe foton e profilit tuaj</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Fshijë krejt mesazhet tuaj</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Heqë ju prej krejt grupeve Signal</string> -->
   <string name="DeleteAccountFragment__no_country_code">S’u dha kod vendi</string>
   <string name="DeleteAccountFragment__no_number">S’u tregua numër</string>
   <string name="DeleteAccountFragment__the_phone_number">Numri i telefonit që dhatë nuk përputhet me atë të llogarisë tuaj.</string>

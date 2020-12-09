@@ -2544,12 +2544,11 @@
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (su un altro dispositivo)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (su un altro dispositivo)</string>
   <!--DeleteAccountFragment-->
-  <string name="DeleteAccountFragment__deleting_your_account_will">Eliminare il tuo account comporterà:</string>
+  <string name="DeleteAccountFragment__deleting_your_account_will">Eliminando il tuo account verranno:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Inserisci il tuo numero di telefono</string>
   <string name="DeleteAccountFragment__delete_account">Elimina account</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">L\'eliminazione delle informazioni del tuo account e della foto profilo</string>
-  <string name="DeleteAccountFragment__delete_all_your_messages">L\'eliminazione di tutti i tuoi messaggi</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">La tua rimozione da tutti i gruppi Signal</string> -->
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminate le informazioni del tuo account e la foto profilo</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Eliminati tutti i tuoi messaggi</string>
   <string name="DeleteAccountFragment__no_country_code">Nessun prefisso telefonico specificato</string>
   <string name="DeleteAccountFragment__no_number">Nessun numero specificato</string>
   <string name="DeleteAccountFragment__the_phone_number">Il numero di telefono che hai inserito non corrisponde a quello del tuo account.</string>

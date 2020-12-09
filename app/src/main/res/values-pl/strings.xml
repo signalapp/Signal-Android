@@ -2711,7 +2711,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DeleteAccountFragment__delete_account">Usuń konto</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Usunięcie informacji o Twoim koncie i zdjęcia profilowego</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Usunięcie wszystkich, Twoich wiadomości</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Usunięcie Cię ze wszystkich grup Signal</string> -->
   <string name="DeleteAccountFragment__no_country_code">Nie podano kodu kraju</string>
   <string name="DeleteAccountFragment__no_number">Nie podano numeru</string>
   <string name="DeleteAccountFragment__the_phone_number">Podany numer telefonu nie należy do Twojego konta.</string>

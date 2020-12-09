@@ -2548,7 +2548,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeleteAccountFragment__delete_account">Forviŝi konton</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Forviŝi vian konton kaj profilfoton</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Forviŝado de ĉiuj viajn mesaĝojn</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Forigado de ĉiuj viajn Signal-grupoj</string> -->
   <string name="DeleteAccountFragment__no_country_code">Neniu landkodo specifita</string>
   <string name="DeleteAccountFragment__no_number">Neniu numero specifita</string>
   <string name="DeleteAccountFragment__the_phone_number">La telefonnumero, kiu vi entajpis ne kongruas kun tiu de via konto.</string>

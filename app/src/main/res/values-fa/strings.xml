@@ -465,7 +465,7 @@
   <string name="GroupManagement_access_level_anyone">همه</string>
   <string name="GroupManagement_access_level_all_members">همهٔ اعضا</string>
   <string name="GroupManagement_access_level_only_admins">فقط مدیران</string>
-  <string name="GroupManagement_access_level_no_one">هیچکس</string>
+  <string name="GroupManagement_access_level_no_one">هیچ‌کس</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">دعوت‌نامه ارسال شد</item>
@@ -1220,6 +1220,7 @@
   <string name="WebRtcCallView__start_call">شروع تماس</string>
   <string name="WebRtcCallView__join_call">پیوستن به تماس</string>
   <string name="WebRtcCallView__call_is_full">ظرفیت تماس تکمیل است</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">به حداکثر تعداد %1$d شرکت کننده برای این تماس رسیده‌اید، بعد‌اً دوباره امتحان کنید. </string>
   <string name="WebRtcCallView__s_group_call">تماس گروهی «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">مشاهدهٔ شرکت کنندگان</string>
   <string name="WebRtcCallView__your_video_is_off">ویدئوی شما خاموش است</string>
@@ -1227,7 +1228,7 @@
   <string name="WebRtcCallView__reconnecting">در حال اتصال دوباره…</string>
   <string name="WebRtcCallView__joining">در حال پیوستن…</string>
   <string name="WebRtcCallView__disconnected">ارتباط قطع شد</string>
-  <string name="WebRtcCallView__no_one_else_is_here">هیچکس دیگری اینجا نیست</string>
+  <string name="WebRtcCallView__no_one_else_is_here">هیچ‌کس دیگری اینجا نیست</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s در این تماس حضور دارد</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s و %2$s در این تماس حضور دارند</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1557,6 +1558,7 @@
   <string name="WebRtcCallScreen_new_safety_number_title">شمارهٔ امنیتی جدید</string>
   <string name="WebRtcCallScreen_accept">پذیرفتن</string>
   <string name="WebRtcCallScreen_end_call">پایان دادن به تماس</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">برای تغییر دادن نماها به بالا بکشید.</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">رد کردن</string>
   <string name="WebRtcCallScreen__answer">پاسخ دهید</string>
@@ -2013,6 +2015,7 @@
   <string name="preferences__advanced_pin_settings">تنظیمات پیشرفتهٔ پین</string>
   <string name="preferences__free_private_messages_and_calls">تماس‌ها و پیام‌های خصوصی رایگان برای کاربران Signal</string>
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
+  <string name="preferences__delete_account">حذف حساب کاربری</string>
   <string name="preferences__support_wifi_calling">حالت سازگاری «تماس WiFi»</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل پیامک/فراپیام بر روی شبکهٔ WiFi استفاده می‌کند، این گزینه را فعال کنید (فقط زمانی فعال کنید، که «تماس WiFi» بر روی دستگاه شما فعال است)</string>
   <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
@@ -2539,7 +2542,20 @@
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">شما (روی دستگاه دیگر)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (روی دستگاه دیگر)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">حذف حساب کاربری شما:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">شمارهٔ خود را وارد کنید</string>
+  <string name="DeleteAccountFragment__delete_account">حذف حساب کاربری</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب کاربری و عکس پروفایل خود را پاک کنید</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">تمام پیام‌های خود را حذف کنید</string>
+  <string name="DeleteAccountFragment__no_country_code">هیچ کد کشوری وارد نشده است</string>
+  <string name="DeleteAccountFragment__no_number">هیچ شماره‌ای وارد نشده است</string>
+  <string name="DeleteAccountFragment__the_phone_number">شماره‌ تلفنی که وارد کردید با حساب کاربری‌تان همخوانی ندارد.</string>
   <string name="DeleteAccountFragment__are_you_sure">آیا از پاک کردن حساب کاربری خود اطمینان دارید؟</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری Signal شما را حذف کرده و برنامه را بازنشانی می‌کند.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">حذف حساب کاربری ناموفق بود. آیا اتصال شبکه دارید؟</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید به صورت دستی آن را در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">جستجوی کشورها</string>
   <!--EOF-->
 </resources>

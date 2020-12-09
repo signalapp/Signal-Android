@@ -2545,7 +2545,6 @@
   <string name="DeleteAccountFragment__delete_account">Διαγραφή λογαριασμού</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Διαγραφη των πληροφοριών του λογαριασμού σου και της φωτογραφίας προφίλ σου</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Διαγραφή όλων των μηνυμάτων σου</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeleteAccountFragment__remove_you_from_all_signal_groups">Αφαίρεσή σου από όλες τις ομάδες Signal</string> -->
   <string name="DeleteAccountFragment__no_country_code">Δεν διευκρινίστηκε κωδικός χώρας</string>
   <string name="DeleteAccountFragment__no_number">Δεν διευκρινίστηκε αριθμός</string>
   <string name="DeleteAccountFragment__the_phone_number">Ο αριθμός τηλεφώνου που έγραψες δεν αντιστοιχεί στο λογαριασμό σου.</string>
