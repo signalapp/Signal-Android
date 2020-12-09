@@ -43,16 +43,13 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
-import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
-import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
@@ -66,7 +63,6 @@ import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.api.ClosedGroupPoller;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
-import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
@@ -89,7 +85,6 @@ import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
-import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -229,7 +224,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeExpiringMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
-    initializeSignedPreKeyCheck();
     initializePeriodicTasks();
     initializeWebRtc();
     initializePendingMessages();
@@ -241,7 +235,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onStart(@NonNull LifecycleOwner owner) {
     isAppVisible = true;
     Log.i(TAG, "App is now visible.");
-    executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     // Loki
     if (poller != null) { poller.setCaughtUp(false); }
@@ -365,14 +358,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeDependencyInjection() {
     communicationModule = new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this));
-    this.objectGraph = ObjectGraph.create(communicationModule, new AxolotlStorageModule(this));
+    this.objectGraph = ObjectGraph.create(communicationModule);
   }
 
-  private void initializeSignedPreKeyCheck() {
-    if (!TextSecurePreferences.isSignedPreKeyRegistered(this)) {
-      jobManager.add(new CreateSignedPreKeyJob(this));
-    }
-  }
 
   private void initializeExpiringMessageManager() {
     this.expiringMessageManager = new ExpiringMessageManager(this);
@@ -387,7 +375,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializePeriodicTasks() {
-    RotateSignedPreKeyListener.schedule(this);
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
     BackgroundPollWorker.schedulePeriodic(this); // Loki
@@ -429,12 +416,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       PeerConnectionFactory.initialize(InitializationOptions.builder(this).createInitializationOptions());
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
-    }
-  }
-
-  private void executePendingContactSync() {
-    if (TextSecurePreferences.needsFullContactSync(this)) {
-      ApplicationContext.getInstance(this).getJobManager().add(new MultiDeviceContactUpdateJob(this, true));
     }
   }
 

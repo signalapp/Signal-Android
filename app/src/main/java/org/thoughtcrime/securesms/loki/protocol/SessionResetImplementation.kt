@@ -36,8 +36,8 @@ class SessionResetImplementation(private val context: Context) : SessionResetPro
     }
 
     override fun validatePreKeySignalMessage(publicKey: String, message: PreKeySignalMessage) {
-        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getPreKeyRecord(publicKey) ?: return
-        // TODO: Checking that the pre key record isn't null is causing issues when it shouldn't
-        check(preKeyRecord.id == (message.preKeyId ?: -1)) { "Received a background message from an unknown source." }
+//        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getPreKeyRecord(publicKey) ?: return
+//        // TODO: Checking that the pre key record isn't null is causing issues when it shouldn't
+//        check(preKeyRecord.id == (message.preKeyId ?: -1)) { "Received a background message from an unknown source." }
     }
 }

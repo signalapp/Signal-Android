@@ -483,11 +483,6 @@
                 <action android:name="network.loki.securesms.RESTART" />
             </intent-filter>
         </receiver>
-        <receiver android:name="org.thoughtcrime.securesms.service.RotateSignedPreKeyListener">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
         <receiver android:name="org.thoughtcrime.securesms.service.RotateSenderCertificateListener">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

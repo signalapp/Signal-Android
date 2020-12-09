@@ -19,14 +19,14 @@ import java.util.List;
 
 public class SignalProtocolStoreImpl implements SignalProtocolStore {
 
-  private final PreKeyStore       preKeyStore;
-  private final SignedPreKeyStore signedPreKeyStore;
+//  private final PreKeyStore       preKeyStore;
+//  private final SignedPreKeyStore signedPreKeyStore;
   private final IdentityKeyStore  identityKeyStore;
   private final SessionStore      sessionStore;
 
   public SignalProtocolStoreImpl(Context context) {
-    this.preKeyStore       = new TextSecurePreKeyStore(context);
-    this.signedPreKeyStore = new TextSecurePreKeyStore(context);
+//    this.preKeyStore       = new TextSecurePreKeyStore(context);
+//    this.signedPreKeyStore = new TextSecurePreKeyStore(context);
     this.identityKeyStore  = new TextSecureIdentityKeyStore(context);
     this.sessionStore      = new TextSecureSessionStore(context);
   }
@@ -58,22 +58,26 @@ public class SignalProtocolStoreImpl implements SignalProtocolStore {
 
   @Override
   public PreKeyRecord loadPreKey(int preKeyId) throws InvalidKeyIdException {
-    return preKeyStore.loadPreKey(preKeyId);
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    return preKeyStore.loadPreKey(preKeyId);
   }
 
   @Override
   public void storePreKey(int preKeyId, PreKeyRecord record) {
-    preKeyStore.storePreKey(preKeyId, record);
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    preKeyStore.storePreKey(preKeyId, record);
   }
 
   @Override
   public boolean containsPreKey(int preKeyId) {
-    return preKeyStore.containsPreKey(preKeyId);
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    return preKeyStore.containsPreKey(preKeyId);
   }
 
   @Override
   public void removePreKey(int preKeyId) {
-    preKeyStore.removePreKey(preKeyId);
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    preKeyStore.removePreKey(preKeyId);
   }
 
   @Override
@@ -108,26 +112,31 @@ public class SignalProtocolStoreImpl implements SignalProtocolStore {
 
   @Override
   public SignedPreKeyRecord loadSignedPreKey(int signedPreKeyId) throws InvalidKeyIdException {
-    return signedPreKeyStore.loadSignedPreKey(signedPreKeyId);
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    return signedPreKeyStore.loadSignedPreKey(signedPreKeyId);
   }
 
   @Override
   public List<SignedPreKeyRecord> loadSignedPreKeys() {
-    return signedPreKeyStore.loadSignedPreKeys();
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    return signedPreKeyStore.loadSignedPreKeys();
   }
 
   @Override
   public void storeSignedPreKey(int signedPreKeyId, SignedPreKeyRecord record) {
-    signedPreKeyStore.storeSignedPreKey(signedPreKeyId, record);
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    signedPreKeyStore.storeSignedPreKey(signedPreKeyId, record);
   }
 
   @Override
   public boolean containsSignedPreKey(int signedPreKeyId) {
-    return signedPreKeyStore.containsSignedPreKey(signedPreKeyId);
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    return signedPreKeyStore.containsSignedPreKey(signedPreKeyId);
   }
 
   @Override
   public void removeSignedPreKey(int signedPreKeyId) {
-    signedPreKeyStore.removeSignedPreKey(signedPreKeyId);
+    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    signedPreKeyStore.removeSignedPreKey(signedPreKeyId);
   }
 }

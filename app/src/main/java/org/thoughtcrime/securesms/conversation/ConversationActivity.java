@@ -140,7 +140,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
-import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
@@ -954,10 +953,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                          DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
                              .setBlocked(recipient, false);
 
-                         ApplicationContext.getInstance(ConversationActivity.this)
-                             .getJobManager()
-                             .add(new MultiDeviceBlockedUpdateJob());
-
                          return null;
                        }
                      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -1015,10 +1010,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 protected Void doInBackground(Void... params) {
                   DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
                           .setBlocked(recipient, true);
-
-                  ApplicationContext.getInstance(ConversationActivity.this)
-                          .getJobManager()
-                          .add(new MultiDeviceBlockedUpdateJob());
 
                   Util.runOnMain(() -> finish());
 

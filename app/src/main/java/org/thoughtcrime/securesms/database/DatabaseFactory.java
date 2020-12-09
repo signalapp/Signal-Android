@@ -33,8 +33,6 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
@@ -68,8 +66,8 @@ public class DatabaseFactory {
 
   // Loki
   private final LokiAPIDatabase lokiAPIDatabase;
-  private final LokiPreKeyRecordDatabase lokiContactPreKeyDatabase;
-  private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
+//  private final LokiPreKeyRecordDatabase lokiContactPreKeyDatabase;
+//  private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
   private final LokiMessageDatabase lokiMessageDatabase;
   private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDatabase lokiUserDatabase;
@@ -166,13 +164,13 @@ public class DatabaseFactory {
     return getInstance(context).lokiAPIDatabase;
   }
 
-  public static LokiPreKeyRecordDatabase getLokiPreKeyRecordDatabase(Context context) {
-    return getInstance(context).lokiContactPreKeyDatabase;
-  }
+//  public static LokiPreKeyRecordDatabase getLokiPreKeyRecordDatabase(Context context) {
+//    return getInstance(context).lokiContactPreKeyDatabase;
+//  }
 
-  public static LokiPreKeyBundleDatabase getLokiPreKeyBundleDatabase(Context context) {
-    return getInstance(context).lokiPreKeyBundleDatabase;
-  }
+//  public static LokiPreKeyBundleDatabase getLokiPreKeyBundleDatabase(Context context) {
+//    return getInstance(context).lokiPreKeyBundleDatabase;
+//  }
 
   public static LokiMessageDatabase getLokiMessageDatabase(Context context) {
     return getInstance(context).lokiMessageDatabase;
@@ -226,8 +224,8 @@ public class DatabaseFactory {
     this.jobDatabase               = new JobDatabase(context, databaseHelper);
     this.stickerDatabase           = new StickerDatabase(context, databaseHelper, attachmentSecret);
     this.lokiAPIDatabase           = new LokiAPIDatabase(context, databaseHelper);
-    this.lokiContactPreKeyDatabase = new LokiPreKeyRecordDatabase(context, databaseHelper);
-    this.lokiPreKeyBundleDatabase  = new LokiPreKeyBundleDatabase(context, databaseHelper);
+//    this.lokiContactPreKeyDatabase = new LokiPreKeyRecordDatabase(context, databaseHelper);
+//    this.lokiPreKeyBundleDatabase  = new LokiPreKeyBundleDatabase(context, databaseHelper);
     this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
     this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);

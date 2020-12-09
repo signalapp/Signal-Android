@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.loki.protocol
 import com.google.protobuf.ByteString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -124,7 +123,8 @@ class ClosedGroupUpdateMessageSendJob private constructor(parameters: Parameters
         val recipient = recipient(context, destination)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         val ttl = TTLUtilities.getTTL(TTLUtilities.MessageType.ClosedGroupUpdate)
-        val useFallbackEncryption = SignalProtocolStoreImpl(context).containsSession(SignalProtocolAddress(destination, 1))
+//        val useFallbackEncryption = SignalProtocolStoreImpl(context).containsSession(SignalProtocolAddress(destination, 1))
+        val useFallbackEncryption = true
         try {
             // isClosedGroup can always be false as it's only used in the context of legacy closed groups
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,

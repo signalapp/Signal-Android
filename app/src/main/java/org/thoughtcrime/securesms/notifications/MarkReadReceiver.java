@@ -17,11 +17,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
-import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
@@ -76,15 +74,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     for (MarkedMessageInfo messageInfo : markedReadMessages) {
       scheduleDeletion(context, messageInfo.getExpirationInfo());
-
-      if (SyncMessagesProtocol.shouldSyncReadReceipt(messageInfo.getSyncMessageId().getAddress())) {
-        syncMessageIds.add(messageInfo.getSyncMessageId());
-      }
     }
-
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new MultiDeviceReadUpdateJob(syncMessageIds));
 
     Map<Address, List<SyncMessageId>> addressMap = Stream.of(markedReadMessages)
                                                          .map(MarkedMessageInfo::getSyncMessageId)

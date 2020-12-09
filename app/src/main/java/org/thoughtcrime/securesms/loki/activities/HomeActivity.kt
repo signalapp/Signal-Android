@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.database.Cursor
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -32,10 +31,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
 import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
 import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
@@ -329,7 +325,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             .setPositiveButton(R.string.RecipientPreferenceActivity_block) { dialog, _ ->
                 Thread {
                     DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, true)
-                    ApplicationContext.getInstance(this).jobManager.add(MultiDeviceBlockedUpdateJob())
                     Util.runOnMain {
                         recyclerView.adapter!!.notifyDataSetChanged()
                         dialog.dismiss()
@@ -346,7 +341,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             .setPositiveButton(R.string.RecipientPreferenceActivity_unblock) { dialog, _ ->
                 Thread {
                     DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, false)
-                    ApplicationContext.getInstance(this).jobManager.add(MultiDeviceBlockedUpdateJob())
                     Util.runOnMain {
                         recyclerView.adapter!!.notifyDataSetChanged()
                         dialog.dismiss()

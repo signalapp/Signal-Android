@@ -67,7 +67,6 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.qr.QrCode;
@@ -188,6 +187,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
 
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
@@ -601,13 +601,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
                                           remoteIdentity,
                                           VerifiedStatus.DEFAULT);
             }
-
-            ApplicationContext.getInstance(getActivity())
-                              .getJobManager()
-                              .add(new MultiDeviceVerifiedUpdateJob(recipient.getAddress(),
-                                                                    remoteIdentity,
-                                                                    isChecked ? VerifiedStatus.VERIFIED :
-                                                                                VerifiedStatus.DEFAULT));
 
             IdentityUtil.markIdentityVerified(getActivity(), recipient, isChecked, false);
           }

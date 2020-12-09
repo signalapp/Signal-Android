@@ -71,13 +71,13 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   protected final void onSend() throws Exception {
-    if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RotateSignedPreKeyJob());
-
-      throw new TextSecureExpiredException("Too many signed prekey rotation failures");
-    }
+//    if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
+//      ApplicationContext.getInstance(context)
+//                        .getJobManager()
+//                        .add(new RotateSignedPreKeyJob());
+//
+//      throw new TextSecureExpiredException("Too many signed prekey rotation failures");
+//    }
 
     onPushSend();
   }

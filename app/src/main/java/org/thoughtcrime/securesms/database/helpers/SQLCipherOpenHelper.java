@@ -14,7 +14,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
-import org.thoughtcrime.securesms.ApplicationContext;
+import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.Address;
@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -35,12 +34,10 @@ import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
@@ -48,10 +45,8 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import java.io.File;
-import java.util.Arrays;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -161,8 +156,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestProcessedTimestampTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupPublicKeyTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
-    db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
-    db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageIDTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateErrorMessageTableCommand());
@@ -195,12 +188,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (masterSecret != null) SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret, legacyDb, db, null);
       else                      TextSecurePreferences.setNeedsSqlCipherMigration(context, true);
 
-      if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
-        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
-      }
-
       SessionStoreMigrationHelper.migrateSessions(context, db);
-      PreKeyMigrationHelper.cleanUpPreKeys(context);
     }
   }
 
@@ -229,10 +217,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < MIGRATE_PREKEYS_VERSION) {
         db.execSQL("CREATE TABLE signed_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL, signature TEXT NOT NULL, timestamp INTEGER DEFAULT 0)");
         db.execSQL("CREATE TABLE one_time_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL)");
-
-        if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
-        }
       }
 
       if (oldVersion < MIGRATE_SESSIONS_VERSION) {
@@ -671,7 +655,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     }
 
     if (oldVersion < MIGRATE_PREKEYS_VERSION) {
-      PreKeyMigrationHelper.cleanUpPreKeys(context);
+//      PreKeyMigrationHelper.cleanUpPreKeys(context);
     }
   }
 

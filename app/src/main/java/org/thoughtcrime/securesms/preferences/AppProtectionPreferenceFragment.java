@@ -12,19 +12,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
 
-import org.session.libsignal.service.api.SignalServiceAccountManager;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
-
-import javax.inject.Inject;
 
 import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
 import network.loki.messenger.R;
@@ -32,9 +28,6 @@ import network.loki.messenger.R;
 public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment implements InjectableType {
 
   private CheckBoxPreference disablePassphrase;
-
-  @Inject
-  SignalServiceAccountManager accountManager;
 
   @Override
   public void onAttach(Activity activity) {
@@ -147,13 +140,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(enabled,
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
-
       return true;
     }
   }
@@ -162,13 +148,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
-
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
-                                                                   enabled,
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
 
       if (!enabled) {
         ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().clear();
@@ -191,23 +170,10 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
         builder.setNegativeButton("Cancel", (dialog, which) -> {
           TextSecurePreferences.setLinkPreviewsEnabled(requireContext(), false);
           ((SwitchPreferenceCompat)AppProtectionPreferenceFragment.this.findPreference(TextSecurePreferences.LINK_PREVIEWS)).setChecked(false);
-          ApplicationContext.getInstance(requireContext())
-                  .getJobManager()
-                  .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
-                          TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
-                          TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(requireContext()),
-                          false));
           dialog.dismiss();
         });
         builder.create().show();
       }
-
-      ApplicationContext.getInstance(requireContext())
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(requireContext()),
-                                                                   enabled));
 
       return true;
     }

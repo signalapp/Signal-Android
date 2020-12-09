@@ -70,8 +70,6 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
-import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceProtocol;
-import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -265,13 +263,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
       if (content.getDeviceLink().isPresent()) {
-        MultiDeviceProtocol.handleDeviceLinkMessageIfNeeded(context, content.getDeviceLink().get(), content);
+        throw new UnsupportedOperationException("Device link operations are not supported!");
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
         if (message.isDeviceUnlinkingRequest()) {
-          MultiDeviceProtocol.handleUnlinkingRequestIfNeeded(context, content);
+          throw new UnsupportedOperationException("Device link operations are not supported!");
         } else {
 
           if (message.getClosedGroupUpdate().isPresent()) {
@@ -303,20 +301,22 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           }
         }
       } else if (content.getSyncMessage().isPresent()) {
-        TextSecurePreferences.setMultiDevice(context, true);
+        throw new UnsupportedOperationException("Device link operations are not supported!");
 
-        SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
-
-        if      (syncMessage.getSent().isPresent())                  handleSynchronizeSentMessage(content, syncMessage.getSent().get());
-        else if (syncMessage.getRequest().isPresent())               handleSynchronizeRequestMessage(syncMessage.getRequest().get());
-        else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
-        else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
-        else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
-        else if (syncMessage.getContacts().isPresent())              SyncMessagesProtocol.handleContactSyncMessage(context, content, syncMessage.getContacts().get());
-        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleClosedGroupSyncMessage(context, content, syncMessage.getGroups().get());
-        else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
-        else if (syncMessage.getBlockedList().isPresent())           SyncMessagesProtocol.handleBlockedContactsSyncMessage(context, content, syncMessage.getBlockedList().get());
-        else                                                         Log.w(TAG, "Contains no known sync types...");
+//        TextSecurePreferences.setMultiDevice(context, true);
+//
+//        SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
+//
+//        if      (syncMessage.getSent().isPresent())                  handleSynchronizeSentMessage(content, syncMessage.getSent().get());
+//        else if (syncMessage.getRequest().isPresent())               handleSynchronizeRequestMessage(syncMessage.getRequest().get());
+//        else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
+//        else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
+//        else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
+//        else if (syncMessage.getContacts().isPresent())              SyncMessagesProtocol.handleContactSyncMessage(context, content, syncMessage.getContacts().get());
+//        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleClosedGroupSyncMessage(context, content, syncMessage.getGroups().get());
+//        else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
+//        else if (syncMessage.getBlockedList().isPresent())           SyncMessagesProtocol.handleBlockedContactsSyncMessage(context, content, syncMessage.getBlockedList().get());
+//        else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getReceiptMessage().isPresent()) {
         SignalServiceReceiptMessage message = content.getReceiptMessage().get();
 
@@ -330,9 +330,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       resetRecipientToPush(Recipient.from(context, Address.fromSerialized(content.getSender()), false));
 
-      if (envelope.isPreKeySignalMessage()) {
-        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
-      }
+//      if (envelope.isPreKeySignalMessage()) {
+//        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
+//      }
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
       handleInvalidVersionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
@@ -558,68 +558,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
     }
-  }
-
-  private void handleSynchronizeRequestMessage(@NonNull RequestMessage message)
-  {
-    if (message.isContactsRequest()) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceContactUpdateJob(context, true));
-
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RefreshUnidentifiedDeliveryAbilityJob());
-    }
-
-    if (message.isGroupsRequest()) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceGroupUpdateJob());
-    }
-
-    if (message.isBlockedListRequest()) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceBlockedUpdateJob());
-    }
-
-    if (message.isConfigurationRequest()) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(context),
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(context),
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(context)));
-
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceStickerPackSyncJob());
-    }
-  }
-
-  private void handleSynchronizeReadMessage(@NonNull List<ReadMessage> readMessages, long envelopeTimestamp)
-  {
-    for (ReadMessage readMessage : readMessages) {
-      List<Pair<Long, Long>> expiringText = DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromSerialized(readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
-      List<Pair<Long, Long>> expiringMedia = DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromSerialized(readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
-
-      for (Pair<Long, Long> expiringMessage : expiringText) {
-        ApplicationContext.getInstance(context)
-                          .getExpiringMessageManager()
-                          .scheduleDeletion(expiringMessage.first, false, envelopeTimestamp, expiringMessage.second);
-      }
-
-      for (Pair<Long, Long> expiringMessage : expiringMedia) {
-        ApplicationContext.getInstance(context)
-                          .getExpiringMessageManager()
-                          .scheduleDeletion(expiringMessage.first, true, envelopeTimestamp, expiringMessage.second);
-      }
-    }
-
-    messageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
-    messageNotifier.cancelDelayedNotifications();
-    messageNotifier.updateNotification(context);
   }
 
   public void handleMediaMessage(@NonNull SignalServiceContent content,
@@ -1413,7 +1351,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return sender.isBlocked();
       }
     } else if (content.getSyncMessage().isPresent()) {
-      return SyncMessagesProtocol.shouldIgnoreSyncMessage(context, sender);
+      throw new UnsupportedOperationException("Device link operations are not supported!");
     }
 
     return false;

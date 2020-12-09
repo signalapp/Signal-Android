@@ -44,16 +44,16 @@ class SessionRequestMessageSendJob private constructor(parameters: Parameters, p
         // Prepare
         val contentMessage = SignalServiceProtos.Content.newBuilder()
         // Attach the pre key bundle message
-        val preKeyBundleMessage = SignalServiceProtos.PreKeyBundleMessage.newBuilder()
-        val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(publicKey) ?: return
-        preKeyBundleMessage.identityKey = ByteString.copyFrom(preKeyBundle.identityKey.serialize())
-        preKeyBundleMessage.deviceId = preKeyBundle.deviceId
-        preKeyBundleMessage.preKeyId = preKeyBundle.preKeyId
-        preKeyBundleMessage.signedKeyId = preKeyBundle.signedPreKeyId
-        preKeyBundleMessage.preKey = ByteString.copyFrom(preKeyBundle.preKey.serialize())
-        preKeyBundleMessage.signedKey = ByteString.copyFrom(preKeyBundle.signedPreKey.serialize())
-        preKeyBundleMessage.signature = ByteString.copyFrom(preKeyBundle.signedPreKeySignature)
-        contentMessage.preKeyBundleMessage = preKeyBundleMessage.build()
+//        val preKeyBundleMessage = SignalServiceProtos.PreKeyBundleMessage.newBuilder()
+//        val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(publicKey) ?: return
+//        preKeyBundleMessage.identityKey = ByteString.copyFrom(preKeyBundle.identityKey.serialize())
+//        preKeyBundleMessage.deviceId = preKeyBundle.deviceId
+//        preKeyBundleMessage.preKeyId = preKeyBundle.preKeyId
+//        preKeyBundleMessage.signedKeyId = preKeyBundle.signedPreKeyId
+//        preKeyBundleMessage.preKey = ByteString.copyFrom(preKeyBundle.preKey.serialize())
+//        preKeyBundleMessage.signedKey = ByteString.copyFrom(preKeyBundle.signedPreKey.serialize())
+//        preKeyBundleMessage.signature = ByteString.copyFrom(preKeyBundle.signedPreKeySignature)
+//        contentMessage.preKeyBundleMessage = preKeyBundleMessage.build()
         // Attach the null message
         val nullMessage = SignalServiceProtos.NullMessage.newBuilder()
         val sr = SecureRandom()

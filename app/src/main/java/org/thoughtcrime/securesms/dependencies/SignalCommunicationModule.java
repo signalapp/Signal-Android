@@ -16,17 +16,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
-import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
-import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
@@ -34,14 +23,12 @@ import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
-import org.thoughtcrime.securesms.jobs.RotateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.jobs.StickerDownloadJob;
@@ -50,7 +37,6 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
-import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -64,34 +50,23 @@ import dagger.Module;
 import dagger.Provides;
 import network.loki.messenger.BuildConfig;
 
-@Module(complete = false, injects = {CleanPreKeysJob.class,
-                                     CreateSignedPreKeyJob.class,
-                                     PushGroupSendJob.class,
+@Module(complete = false, injects = {PushGroupSendJob.class,
                                      PushTextSendJob.class,
                                      PushMediaSendJob.class,
                                      AttachmentDownloadJob.class,
-                                     RefreshPreKeysJob.class,
                                      IncomingMessageObserver.class,
                                      PushNotificationReceiveJob.class,
-                                     MultiDeviceContactUpdateJob.class,
-                                     MultiDeviceGroupUpdateJob.class,
-                                     MultiDeviceReadUpdateJob.class,
-                                     MultiDeviceBlockedUpdateJob.class,
                                      RefreshAttributesJob.class,
                                      RequestGroupInfoJob.class,
                                      PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
-                                     RotateSignedPreKeyJob.class,
                                      RetrieveProfileJob.class,
-                                     MultiDeviceVerifiedUpdateJob.class,
                                      RetrieveProfileAvatarJob.class,
-                                     MultiDeviceProfileKeyUpdateJob.class,
                                      SendReadReceiptJob.class,
                                      AppProtectionPreferenceFragment.class,
                                      RotateCertificateJob.class,
                                      SendDeliveryReceiptJob.class,
                                      RotateProfileKeyJob.class,
-                                     MultiDeviceConfigurationUpdateJob.class,
                                      RefreshUnidentifiedDeliveryAbilityJob.class,
                                      TypingSendJob.class,
                                      AttachmentUploadJob.class,
@@ -100,10 +75,7 @@ import network.loki.messenger.BuildConfig;
                                      StickerPackPreviewRepository.class,
                                      StickerRemoteUriLoader.Factory.class,
                                      StickerPackDownloadJob.class,
-                                     MultiDeviceStickerPackOperationJob.class,
-                                     MultiDeviceStickerPackSyncJob.class,
-                                     LinkPreviewRepository.class,
-                                     MultiDeviceOpenGroupUpdateJob.class})
+                                     LinkPreviewRepository.class})
 
 public class SignalCommunicationModule {
 
@@ -149,7 +121,8 @@ public class SignalCommunicationModule {
                                                           DatabaseFactory.getSSKDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageDatabase(context),
-                                                          DatabaseFactory.getLokiPreKeyBundleDatabase(context),
+//                                                          DatabaseFactory.getLokiPreKeyBundleDatabase(context),
+                                                          null,
                                                           new SessionResetImplementation(context),
                                                           DatabaseFactory.getLokiUserDatabase(context),
                                                           DatabaseFactory.getGroupDatabase(context),

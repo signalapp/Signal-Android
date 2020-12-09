@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -227,9 +226,9 @@ public class DatabaseUpgradeActivity extends BaseActivity {
       }
 
       if (params[0] < SIGNED_PREKEY_VERSION) {
-        ApplicationContext.getInstance(getApplicationContext())
-                          .getJobManager()
-                          .add(new CreateSignedPreKeyJob(context));
+//        ApplicationContext.getInstance(getApplicationContext())
+//                          .getJobManager()
+//                          .add(new CreateSignedPreKeyJob(context));
       }
 
       if (params[0] < NO_DECRYPT_QUEUE_VERSION) {

@@ -3,12 +3,9 @@ package org.thoughtcrime.securesms.loki.protocol
 import android.content.Context
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.SecurityEvent
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.jobs.CleanPreKeysJob
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage
@@ -41,18 +38,18 @@ object SessionManagementProtocol {
         lokiThreadDB.removeAllSessionRestoreDevices(threadID)
     }
 
-    @JvmStatic
-    fun refreshSignedPreKey(context: Context) {
-        if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-            Log.d("Loki", "Skipping signed pre key refresh; using existing signed pre key.")
-        } else {
-            Log.d("Loki", "Signed pre key refreshed successfully.")
-            val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
-            PreKeyUtil.generateSignedPreKey(context, identityKeyPair, true)
-            TextSecurePreferences.setSignedPreKeyRegistered(context, true)
-            ApplicationContext.getInstance(context).jobManager.add(CleanPreKeysJob())
-        }
-    }
+//    @JvmStatic
+//    fun refreshSignedPreKey(context: Context) {
+//        if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
+//            Log.d("Loki", "Skipping signed pre key refresh; using existing signed pre key.")
+//        } else {
+//            Log.d("Loki", "Signed pre key refreshed successfully.")
+//            val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
+//            PreKeyUtil.generateSignedPreKey(context, identityKeyPair, true)
+//            TextSecurePreferences.setSignedPreKeyRegistered(context, true)
+//            ApplicationContext.getInstance(context).jobManager.add(CleanPreKeysJob())
+//        }
+//    }
 
     @JvmStatic
     fun shouldProcessSessionRequest(context: Context, publicKey: String, timestamp: Long): Boolean {
@@ -74,9 +71,9 @@ object SessionManagementProtocol {
             return
         }
         val registrationID = TextSecurePreferences.getLocalRegistrationId(context)
-        val lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context)
+//        val lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context)
         val preKeyBundle = preKeyBundleMessage.getPreKeyBundle(registrationID)
-        lokiPreKeyBundleDatabase.setPreKeyBundle(publicKey, preKeyBundle)
+//        lokiPreKeyBundleDatabase.setPreKeyBundle(publicKey, preKeyBundle)
         DatabaseFactory.getLokiAPIDatabase(context).setSessionRequestProcessedTimestamp(publicKey, Date().time)
         val job = NullMessageSendJob(publicKey)
         ApplicationContext.getInstance(context).jobManager.add(job)

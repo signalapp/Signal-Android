@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
-import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import network.loki.messenger.R;
@@ -60,12 +59,6 @@ public class TypingIndicatorIntroFragment extends Fragment {
 
   private void onButtonClicked(boolean typingEnabled) {
     TextSecurePreferences.setTypingIndicatorsEnabled(getContext(), typingEnabled);
-    ApplicationContext.getInstance(requireContext())
-                      .getJobManager()
-                      .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
-                                                                 typingEnabled,
-                                                                 TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
-                                                                 TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
 
     controller.onTypingIndicatorsFinished();
   }
