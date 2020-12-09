@@ -297,6 +297,11 @@ public class DirectoryHelper {
                                              boolean removeMissing,
                                              @NonNull Map<String, String> rewrites)
   {
+    if (!Permissions.hasAll(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+      Log.w(TAG, "[updateContactsDatabase] No contact permissions. Skipping.");
+      return;
+    }
+
     AccountHolder account = getOrCreateSystemAccount(context);
 
     if (account == null) {
