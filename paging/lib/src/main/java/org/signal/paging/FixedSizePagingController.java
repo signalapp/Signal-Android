@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -54,6 +55,11 @@ class FixedSizePagingController<E> implements PagingController {
   public void onDataNeededAroundIndex(int aroundIndex) {
     if (invalidated) {
       Log.w(TAG, buildLog(aroundIndex, "Invalidated! At very beginning."));
+      return;
+    }
+
+    if (loadState.size() == 0) {
+      liveData.postValue(Collections.emptyList());
       return;
     }
 

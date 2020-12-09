@@ -250,8 +250,11 @@ public class ConversationFragment extends LoggingFragment {
     this.messageCountsViewModel = ViewModelProviders.of(requireActivity()).get(MessageCountsViewModel.class);
     this.conversationViewModel  = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
-    conversationViewModel.getMessages().observe(this, list -> {
-      getListAdapter().submitList(list);
+    conversationViewModel.getMessages().observe(this, messages -> {
+      ConversationAdapter adapter = getListAdapter();
+      if (adapter != null) {
+        getListAdapter().submitList(messages);
+      }
     });
 
     conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
