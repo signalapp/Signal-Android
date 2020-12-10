@@ -1,6 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
@@ -39,7 +39,7 @@ object MessageReceiver {
     }
 
     internal fun parse(data: ByteArray, openGroupServerID: Long?): Pair<Message, SignalServiceProtos.Content> {
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         val isOpenGroupMessage = openGroupServerID != null
         // Parse the envelope
