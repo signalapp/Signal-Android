@@ -4,9 +4,12 @@ import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.GroupRecord
 
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.ecc.ECPrivateKey
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 
 interface StorageProtocol {
 
@@ -21,7 +24,7 @@ interface StorageProtocol {
 
     // Signal Protocol
 
-    fun getOrGenerateRegistrationID(): Int //TODO needs impl
+    fun getOrGenerateRegistrationID(): Int
 
     // Shared Sender Keys
     fun getClosedGroupPrivateKey(publicKey: String): ECPrivateKey?
@@ -71,8 +74,20 @@ interface StorageProtocol {
     fun getReceivedMessageTimestamps(): Set<Long>
     fun addReceivedMessageTimestamp(timestamp: Long)
 
+    // Closed Groups
+    fun getGroup(groupID: String): GroupRecord?
+    fun createGroup(groupId: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>)
+    fun setActive(groupID: String, value: Boolean)
+    fun removeMember(groupID: String, member: Address)
+    fun updateMembers(groupID: String, members: List<Address>)
 
 
+    // Settings
+    fun setProfileSharing(address: Address, value: Boolean)
+
+    // Thread
+    fun getOrCreateThreadIdFor(address: Address): String
+    fun getThreadIdFor(address: Address): String?
 
     fun getSessionRequestSentTimestamp(publicKey: String): Long?
     fun setSessionRequestSentTimestamp(publicKey: String, newValue: Long)
