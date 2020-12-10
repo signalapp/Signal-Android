@@ -212,6 +212,7 @@ public class MediaKeyboard extends FrameLayout implements InputView,
       public void onPageSelected(int i) {
         categoryTabAdapter.setActivePosition(i);
         categoryTabs.smoothScrollToPosition(i);
+        providers[providerIndex].setCurrentPosition(i);
       }
 
       @Override
