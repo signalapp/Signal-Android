@@ -135,7 +135,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onPushSend()
-      throws IOException, MmsException, NoSuchMessageException,  RetryLaterException
+      throws IOException, MmsException, NoSuchMessageException, RetryLaterException
   {
     MmsDatabase               database                   = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage      message                    = database.getOutgoingMessage(messageId);
