@@ -2,8 +2,7 @@ package org.session.libsession.messaging.messages.visible
 
 import com.goterl.lazycode.lazysodium.BuildConfig
 
-import org.session.libsession.database.MessageDataProvider
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 
 import org.session.libsignal.libsignal.logging.Log
@@ -52,7 +51,7 @@ class VisibleMessage : Message()  {
         return false
     }
 
-    fun toProto(): SignalServiceProtos.Content? {
+    override fun toProto(): SignalServiceProtos.Content? {
         val proto = SignalServiceProtos.Content.newBuilder()
         var attachmentIDs = this.attachmentIDs
         val dataMessage: SignalServiceProtos.DataMessage.Builder
@@ -91,7 +90,7 @@ class VisibleMessage : Message()  {
             }
         }
         //Attachments
-        val attachments = attachmentIDs.mapNotNull { Configuration.shared.messageDataProvider.getAttachment(it) }
+        val attachments = attachmentIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getAttachment(it) }
         if (!attachments.all { it.isUploaded }) {
             if (BuildConfig.DEBUG) {
                 //TODO equivalent to iOS's preconditionFailure

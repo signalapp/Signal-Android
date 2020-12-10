@@ -1,8 +1,6 @@
 package org.session.libsession.messaging.messages.visible
 
-import android.content.Context
-import org.session.libsession.database.MessageDataProvider
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -46,7 +44,7 @@ class LinkPreview() {
         title?.let { linkPreviewProto.title = title }
         val attachmentID = attachmentID
         attachmentID?.let {
-            val attachmentProto = Configuration.shared.messageDataProvider.getAttachment(attachmentID)
+            val attachmentProto = MessagingConfiguration.shared.messageDataProvider.getAttachment(attachmentID)
             attachmentProto?.let { linkPreviewProto.image = attachmentProto.toProto() }
         }
         // Build
