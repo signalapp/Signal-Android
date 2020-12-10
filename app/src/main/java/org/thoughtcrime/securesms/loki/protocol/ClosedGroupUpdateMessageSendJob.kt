@@ -22,10 +22,10 @@ import java.util.concurrent.TimeUnit
 class ClosedGroupUpdateMessageSendJob private constructor(parameters: Parameters, private val destination: String, private val kind: Kind) : BaseJob(parameters) {
 
     sealed class Kind {
-        class New(val groupPublicKey: ByteArray, val name: String, val groupPrivateKey: ByteArray, val senderKeys: Collection<ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
-        class Info(val groupPublicKey: ByteArray, val name: String, val senderKeys: Collection<ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
-        class SenderKeyRequest(val groupPublicKey: ByteArray) : Kind()
-        class SenderKey(val groupPublicKey: ByteArray, val senderKey: ClosedGroupSenderKey) : Kind()
+        data class New(val groupPublicKey: ByteArray, val name: String, val groupPrivateKey: ByteArray, val senderKeys: Collection<ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
+        data class Info(val groupPublicKey: ByteArray, val name: String, val senderKeys: Collection<ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
+        data class SenderKeyRequest(val groupPublicKey: ByteArray) : Kind()
+        data class SenderKey(val groupPublicKey: ByteArray, val senderKey: ClosedGroupSenderKey) : Kind()
     }
 
     companion object {
