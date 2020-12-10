@@ -4,7 +4,7 @@ import kotlin.math.min
 import kotlin.math.pow
 import java.util.Timer
 
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 
 import org.session.libsignal.libsignal.logging.Log
 import kotlin.concurrent.schedule
@@ -25,7 +25,7 @@ class JobQueue : JobDelegate {
 
     fun addWithoutExecuting(job: Job) {
         job.id = System.currentTimeMillis().toString()
-        Configuration.shared.storage.persist(job)
+        MessagingConfiguration.shared.storage.persist(job)
         job.delegate = this
     }
 
@@ -37,7 +37,7 @@ class JobQueue : JobDelegate {
         hasResumedPendingJobs = true
         val allJobTypes = listOf(AttachmentDownloadJob.collection, AttachmentDownloadJob.collection, MessageReceiveJob.collection, MessageSendJob.collection, NotifyPNServerJob.collection)
         allJobTypes.forEach { type ->
-            val allPendingJobs = Configuration.shared.storage.getAllPendingJobs(type)
+            val allPendingJobs = MessagingConfiguration.shared.storage.getAllPendingJobs(type)
             allPendingJobs.sortedBy { it.id }.forEach { job ->
                 Log.i("Jobs", "Resuming pending job of type: ${job::class.simpleName}.")
                 job.delegate = this
@@ -47,12 +47,12 @@ class JobQueue : JobDelegate {
     }
 
     override fun handleJobSucceeded(job: Job) {
-        Configuration.shared.storage.markJobAsSucceeded(job)
+        MessagingConfiguration.shared.storage.markJobAsSucceeded(job)
     }
 
     override fun handleJobFailed(job: Job, error: Exception) {
         job.failureCount += 1
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         if (storage.isJobCanceled(job)) { return Log.i("Jobs", "${job::class.simpleName} canceled.")}
         storage.persist(job)
         if (job.failureCount == job.maxFailureCount) {
@@ -69,7 +69,7 @@ class JobQueue : JobDelegate {
 
     override fun handleJobFailedPermanently(job: Job, error: Exception) {
         job.failureCount += 1
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         storage.persist(job)
         storage.markJobAsFailed(job)
     }

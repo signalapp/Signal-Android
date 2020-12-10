@@ -1,6 +1,6 @@
 package org.session.libsession.messaging.jobs
 
-class MessageReceiveJob : Job {
+class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
