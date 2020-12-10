@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob;
 import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
-import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -54,7 +53,6 @@ public final class JobManagerFactories {
       put(RotateProfileKeyJob.KEY,                   new RotateProfileKeyJob.Factory());
       put(SendDeliveryReceiptJob.KEY,                new SendDeliveryReceiptJob.Factory());
       put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory());
-      put(SessionRequestMessageSendJob.KEY,          new SessionRequestMessageSendJob.Factory());
       put(SmsReceiveJob.KEY,                         new SmsReceiveJob.Factory());
       put(SmsSendJob.KEY,                            new SmsSendJob.Factory());
       put(SmsSentJob.KEY,                            new SmsSentJob.Factory());

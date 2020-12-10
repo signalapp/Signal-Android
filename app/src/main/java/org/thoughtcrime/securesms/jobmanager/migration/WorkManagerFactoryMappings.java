@@ -36,11 +36,11 @@ import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob;
 import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
-import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
 
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO AC: Looks like we don't use it anymore. Make sure it's abandoned and delete.
 public class WorkManagerFactoryMappings {
 
   private static final Map<String, String> FACTORY_MAP = new HashMap<String, String>() {{
@@ -69,7 +69,6 @@ public class WorkManagerFactoryMappings {
     put(RotateProfileKeyJob.class.getName(), RotateProfileKeyJob.KEY);
     put(SendDeliveryReceiptJob.class.getName(), SendDeliveryReceiptJob.KEY);
     put(SendReadReceiptJob.class.getName(), SendReadReceiptJob.KEY);
-    put(SessionRequestMessageSendJob.class.getName(), SessionRequestMessageSendJob.KEY);
     put(SmsReceiveJob.class.getName(), SmsReceiveJob.KEY);
     put(SmsSendJob.class.getName(), SmsSendJob.KEY);
     put(SmsSentJob.class.getName(), SmsSentJob.KEY);

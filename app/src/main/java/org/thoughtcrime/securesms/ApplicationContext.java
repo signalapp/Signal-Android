@@ -33,6 +33,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
+import org.session.libsignal.libsignal.state.SessionRecord;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -68,7 +69,6 @@ import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
-import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
@@ -595,39 +595,51 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Runtime.getRuntime().exit(0);
   }
 
-  public boolean hasSentSessionRequestExpired(@NotNull String publicKey) {
-    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-    Long timestamp = apiDB.getSessionRequestSentTimestamp(publicKey);
-    if (timestamp != null) {
-      long expiration = timestamp + TTLUtilities.getTTL(TTLUtilities.MessageType.SessionRequest);
-      return new Date().getTime() > expiration;
-    } else {
-      return false;
-    }
-  }
+//  public boolean hasSentSessionRequestExpired(@NotNull String publicKey) {
+//    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
+//    Long timestamp = apiDB.getSessionRequestSentTimestamp(publicKey);
+//    if (timestamp != null) {
+//      long expiration = timestamp + TTLUtilities.getTTL(TTLUtilities.MessageType.SessionRequest);
+//      return new Date().getTime() > expiration;
+//    } else {
+//      return false;
+//    }
+//  }
 
   @Override
   public void sendSessionRequestIfNeeded(@NotNull String publicKey) {
+//    // It's never necessary to establish a session with self
+//    String userPublicKey = TextSecurePreferences.getLocalNumber(this);
+//    if (publicKey.equals(userPublicKey)) { return; }
+//    // Check that we don't already have a session
+//    SignalProtocolAddress address = new SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID);
+//    boolean hasSession = new TextSecureSessionStore(this).containsSession(address);
+//    if (hasSession) { return; }
+//    // Check that we didn't already send a session request
+//    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
+//    boolean hasSentSessionRequest = (apiDB.getSessionRequestSentTimestamp(publicKey) != null);
+//    boolean hasSentSessionRequestExpired = hasSentSessionRequestExpired(publicKey);
+//    if (hasSentSessionRequestExpired) {
+//      apiDB.setSessionRequestSentTimestamp(publicKey, 0);
+//    }
+//    if (hasSentSessionRequest && !hasSentSessionRequestExpired) { return; }
+//    // Send the session request
+//    long timestamp = new Date().getTime();
+//    apiDB.setSessionRequestSentTimestamp(publicKey, timestamp);
+//    SessionRequestMessageSendJob job = new SessionRequestMessageSendJob(publicKey, timestamp);
+//    jobManager.add(job);
+
+
     // It's never necessary to establish a session with self
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (publicKey.equals(userPublicKey)) { return; }
     // Check that we don't already have a session
     SignalProtocolAddress address = new SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID);
-    boolean hasSession = new TextSecureSessionStore(this).containsSession(address);
-    if (hasSession) { return; }
-    // Check that we didn't already send a session request
-    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-    boolean hasSentSessionRequest = (apiDB.getSessionRequestSentTimestamp(publicKey) != null);
-    boolean hasSentSessionRequestExpired = hasSentSessionRequestExpired(publicKey);
-    if (hasSentSessionRequestExpired) {
-      apiDB.setSessionRequestSentTimestamp(publicKey, 0);
+    TextSecureSessionStore sessionStore = new TextSecureSessionStore(this);
+    boolean hasSession = sessionStore.containsSession(address);
+    if (!hasSession) {
+      sessionStore.storeSession(address, new SessionRecord());
     }
-    if (hasSentSessionRequest && !hasSentSessionRequestExpired) { return; }
-    // Send the session request
-    long timestamp = new Date().getTime();
-    apiDB.setSessionRequestSentTimestamp(publicKey, timestamp);
-    SessionRequestMessageSendJob job = new SessionRequestMessageSendJob(publicKey, timestamp);
-    jobManager.add(job);
   }
 
   @Override

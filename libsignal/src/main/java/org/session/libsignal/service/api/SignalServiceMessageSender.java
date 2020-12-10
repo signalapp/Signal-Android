@@ -495,7 +495,7 @@ public class SignalServiceMessageSender {
     return container.setReceiptMessage(builder).build().toByteArray();
   }
 
-  private byte[]  createMessageContent(SignalServiceDataMessage message, SignalServiceAddress recipient)
+  private byte[] createMessageContent(SignalServiceDataMessage message, SignalServiceAddress recipient)
       throws IOException
   {
     Content.Builder container = Content.newBuilder();
@@ -1186,8 +1186,8 @@ public class SignalServiceMessageSender {
       final String senderID;
       if (type == SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT) {
           senderID = recipient.getNumber();
-      } else if (type == SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER) {
-          senderID = "";
+//      } else if (type == SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER) {
+//          senderID = "";
       } else {
           senderID = userPublicKey;
       }
