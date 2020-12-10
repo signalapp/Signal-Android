@@ -3,7 +3,7 @@ package org.session.libsession.messaging.utilities
 import com.goterl.lazycode.lazysodium.LazySodiumAndroid
 import com.goterl.lazycode.lazysodium.SodiumAndroid
 
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.metadata.SignalProtos
@@ -37,12 +37,12 @@ object UnidentifiedAccessUtil {
     }
 
     private fun getTargetUnidentifiedAccessKey(recipientPublicKey: String): ByteArray? {
-        val theirProfileKey = Configuration.shared.storage.getProfileKeyForRecipient(recipientPublicKey) ?: return sodium.randomBytesBuf(16)
+        val theirProfileKey = MessagingConfiguration.shared.storage.getProfileKeyForRecipient(recipientPublicKey) ?: return sodium.randomBytesBuf(16)
         return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey)
     }
 
     private fun getSelfUnidentifiedAccessKey(): ByteArray? {
-        val userPublicKey = Configuration.shared.storage.getUserPublicKey()
+        val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey()
         if (userPublicKey != null) {
             return sodium.randomBytesBuf(16)
         }
@@ -50,7 +50,7 @@ object UnidentifiedAccessUtil {
     }
 
     private fun getUnidentifiedAccessCertificate(): ByteArray? {
-        val userPublicKey = Configuration.shared.storage.getUserPublicKey()
+        val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey()
         if (userPublicKey != null) {
             val certificate = SignalProtos.SenderCertificate.newBuilder().setSender(userPublicKey).setSenderDevice(1).build()
             return certificate.toByteArray()

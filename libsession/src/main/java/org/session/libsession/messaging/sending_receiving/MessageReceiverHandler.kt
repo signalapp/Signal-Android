@@ -1,6 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
@@ -9,9 +9,9 @@ import org.session.libsession.messaging.messages.control.ReadReceipt
 import org.session.libsession.messaging.messages.control.TypingIndicator
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
-import org.session.libsession.utilities.LKGroupUtilities
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.libsignal.util.Hex
-import org.session.libsignal.service.api.messages.SignalServiceGroup
 
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchet
@@ -37,7 +37,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
 }
 
 private fun MessageReceiver.handleReadReceipt(message: ReadReceipt) {
-
+    // TODO
 }
 
 private fun MessageReceiver.handleTypingIndicator(message: TypingIndicator) {
@@ -89,8 +89,8 @@ private fun MessageReceiver.handleClosedGroupUpdate(message: ClosedGroupUpdate) 
 }
 
 private fun MessageReceiver.handleNewGroup(message: ClosedGroupUpdate) {
-    val storage = Configuration.shared.storage
-    val sskDatabase = Configuration.shared.sskDatabase
+    val storage = MessagingConfiguration.shared.storage
+    val sskDatabase = MessagingConfiguration.shared.sskDatabase
     val kind = message.kind!! as ClosedGroupUpdate.Kind.New
     val groupPublicKey = kind.groupPublicKey.toHexString()
     val name = kind.name
@@ -122,27 +122,24 @@ private fun MessageReceiver.handleNewGroup(message: ClosedGroupUpdate) {
         MessageSender.requestSenderKey(groupPublicKey, publicKey)
     }
     // Create the group
-    val groupID = LKGroupUtilities.getEncodedClosedGroupIDAsData(groupPublicKey)
-    val groupDB = DatabaseFactory.getGroupDatabase(context)
-    if (groupDB.getGroup(groupID).orNull() != null) {
+    val groupID = GroupUtil.getEncodedClosedGroupID(groupPublicKey)
+    if (storage.getGroup(groupID) != null) {
         // Update the group
-        groupDB.updateTitle(groupID, name)
-        groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        storage.updateTitle(groupID, name)
+        storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
     } else {
-        groupDB.create(groupID, name, LinkedList<Address>(members.map { Address.fromSerialized(it) }),
-                null, null, LinkedList<Address>(admins.map { Address.fromSerialized(it) }))
+        storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
+                null, null, LinkedList(admins.map { Address.fromSerialized(it) }))
     }
-    DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
+    storage.setProfileSharing(Address.fromSerialized(groupID), true)
     // Add the group to the user's set of public keys to poll for
     sskDatabase.setClosedGroupPrivateKey(groupPublicKey, groupPrivateKey.toHexString())
     // Notify the PN server
-    PushNotificationAPI.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
+    PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
     // Notify the user
+    /* TODO
     insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
-    // Establish sessions if needed
-    establishSessionsWithMembersIfNeeded(context, members)
-
-
+    */
 }
 
 private fun MessageReceiver.handleGroupUpdate(message: ClosedGroupUpdate) {

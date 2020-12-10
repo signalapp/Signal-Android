@@ -1,12 +1,14 @@
 package org.session.libsession.messaging
 
+import android.content.Context
 import org.session.libsession.database.MessageDataProvider
 import org.session.libsignal.libsignal.loki.SessionResetProtocol
 import org.session.libsignal.libsignal.state.*
 import org.session.libsignal.metadata.certificate.CertificateValidator
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
 
-class Configuration(
+class MessagingConfiguration(
+        val context: Context,
         val storage: StorageProtocol,
         val signalStorage: SignalProtocolStore,
         val sskDatabase: SharedSenderKeysDatabaseProtocol,
@@ -15,9 +17,10 @@ class Configuration(
         val certificateValidator: CertificateValidator)
 {
     companion object {
-        lateinit var shared: Configuration
+        lateinit var shared: MessagingConfiguration
 
-        fun configure(storage: StorageProtocol,
+        fun configure(context: Context,
+                      storage: StorageProtocol,
                       signalStorage: SignalProtocolStore,
                       sskDatabase: SharedSenderKeysDatabaseProtocol,
                       messageDataProvider: MessageDataProvider,
@@ -25,7 +28,7 @@ class Configuration(
                       certificateValidator: CertificateValidator
         ) {
             if (Companion::shared.isInitialized) { return }
-            shared = Configuration(storage, signalStorage, sskDatabase, messageDataProvider, sessionResetImp, certificateValidator)
+            shared = MessagingConfiguration(context, storage, signalStorage, sskDatabase, messageDataProvider, sessionResetImp, certificateValidator)
         }
     }
 }

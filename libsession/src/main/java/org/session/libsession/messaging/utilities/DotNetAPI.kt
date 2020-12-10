@@ -9,7 +9,7 @@ import okhttp3.MultipartBody
 import okhttp3.Request
 import okhttp3.RequestBody
 
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.messaging.fileserver.FileServerAPI
@@ -57,7 +57,7 @@ open class DotNetAPI {
     public data class UploadResult(val id: Long, val url: String, val digest: ByteArray?)
 
     public fun getAuthToken(server: String): Promise<String, Exception> {
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         val token = storage.getAuthToken(server)
         if (token != null) { return Promise.of(token) }
         // Avoid multiple token requests to the server by caching
@@ -76,7 +76,7 @@ open class DotNetAPI {
 
     private fun requestNewAuthToken(server: String): Promise<String, Exception> {
         Log.d("Loki", "Requesting auth token for server: $server.")
-        val userKeyPair = Configuration.shared.storage.getUserKeyPair() ?: throw Error.Generic
+        val userKeyPair = MessagingConfiguration.shared.storage.getUserKeyPair() ?: throw Error.Generic
         val parameters: Map<String, Any> = mapOf( "pubKey" to userKeyPair.hexEncodedPublicKey )
         return execute(HTTPVerb.GET, server, "loki/v1/get_challenge", false, parameters).map(SnodeAPI.sharedContext) { json ->
             try {
@@ -102,7 +102,7 @@ open class DotNetAPI {
 
     private fun submitAuthToken(token: String, server: String): Promise<String, Exception> {
         Log.d("Loki", "Submitting auth token for server: $server.")
-        val userPublicKey = Configuration.shared.storage.getUserPublicKey() ?: throw Error.Generic
+        val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: throw Error.Generic
         val parameters = mapOf( "pubKey" to userPublicKey, "token" to token )
         return execute(HTTPVerb.POST, server, "loki/v1/submit_challenge", false, parameters, isJSONRequired = false).map { token }
     }
@@ -141,7 +141,7 @@ open class DotNetAPI {
                     if (exception is HTTP.HTTPRequestFailedException) {
                         val statusCode = exception.statusCode
                         if (statusCode == 401 || statusCode == 403) {
-                            Configuration.shared.storage.setAuthToken(server, null)
+                            MessagingConfiguration.shared.storage.setAuthToken(server, null)
                             throw Error.TokenExpired
                         }
                     }
@@ -256,7 +256,7 @@ open class DotNetAPI {
             if (exception is HTTP.HTTPRequestFailedException) {
                 val statusCode = exception.statusCode
                 if (statusCode == 401 || statusCode == 403) {
-                    Configuration.shared.storage.setAuthToken(server, null)
+                    MessagingConfiguration.shared.storage.setAuthToken(server, null)
                 }
                 throw NonSuccessfulResponseCodeException("Request returned with status code ${exception.statusCode}.")
             }

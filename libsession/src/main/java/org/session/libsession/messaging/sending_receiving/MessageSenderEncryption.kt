@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.sending_receiving
 
 import com.google.protobuf.ByteString
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.utilities.UnidentifiedAccessUtil
@@ -21,11 +21,11 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 object MessageSenderEncryption {
 
     internal fun encryptWithSignalProtocol(plaintext: ByteArray, message: Message, recipientPublicKey: String): ByteArray{
-        val storage = Configuration.shared.signalStorage
-        val sskDatabase = Configuration.shared.sskDatabase
-        val sessionResetImp = Configuration.shared.sessionResetImp
+        val storage = MessagingConfiguration.shared.signalStorage
+        val sskDatabase = MessagingConfiguration.shared.sskDatabase
+        val sessionResetImp = MessagingConfiguration.shared.sessionResetImp
         val localAddress = SignalServiceAddress(recipientPublicKey)
-        val certificateValidator = Configuration.shared.certificateValidator
+        val certificateValidator = MessagingConfiguration.shared.certificateValidator
         val cipher = SignalServiceCipher(localAddress, storage, sskDatabase, sessionResetImp, certificateValidator)
         val signalProtocolAddress = SignalProtocolAddress(recipientPublicKey, 1)
         val unidentifiedAccessPair = UnidentifiedAccessUtil.getAccessFor(recipientPublicKey)
@@ -36,7 +36,7 @@ object MessageSenderEncryption {
 
     internal fun encryptWithSharedSenderKeys(plaintext: ByteArray, groupPublicKey: String): ByteArray {
         // 1. ) Encrypt the data with the user's sender key
-        val userPublicKey = Configuration.shared.storage.getUserPublicKey() ?: throw Error.NoUserPublicKey
+        val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: throw Error.NoUserPublicKey
         val ciphertextAndKeyIndex = SharedSenderKeysImplementation.shared.encrypt(plaintext, groupPublicKey, userPublicKey)
         val ivAndCiphertext = ciphertextAndKeyIndex.first
         val keyIndex = ciphertextAndKeyIndex.second

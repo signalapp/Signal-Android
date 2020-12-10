@@ -1,6 +1,6 @@
 package org.session.libsession.utilities
 
-object LKGroupUtilities {
+object GroupUtil {
     const val CLOSED_GROUP_PREFIX = "__textsecure_group__!"
     const val MMS_GROUP_PREFIX = "__signal_mms_group__!"
     const val OPEN_GROUP_PREFIX = "__loki_public_chat_group__!"
@@ -43,5 +43,21 @@ object LKGroupUtilities {
 
     fun getDecodedGroupIDAsData(groupID: ByteArray): ByteArray {
         return getDecodedGroupID(groupID).toByteArray()
+    }
+
+    fun isEncodedGroup(groupId: String): Boolean {
+        return groupId.startsWith(CLOSED_GROUP_PREFIX) || groupId.startsWith(MMS_GROUP_PREFIX) || groupId.startsWith(OPEN_GROUP_PREFIX)
+    }
+
+    fun isMmsGroup(groupId: String): Boolean {
+        return groupId.startsWith(MMS_GROUP_PREFIX)
+    }
+
+    fun isOpenGroup(groupId: String): Boolean {
+        return groupId.startsWith(OPEN_GROUP_PREFIX)
+    }
+
+    fun isClosedGroup(groupId: String): Boolean {
+        return groupId.startsWith(CLOSED_GROUP_PREFIX)
     }
 }

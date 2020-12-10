@@ -2,17 +2,13 @@
 
 package org.session.libsession.snode
 
-import nl.komponents.kovenant.Kovenant
-import nl.komponents.kovenant.Promise
-import nl.komponents.kovenant.deferred
+import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
-import nl.komponents.kovenant.task
 
 import org.session.libsession.snode.utilities.getRandomElement
 
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.util.Base64
 import org.session.libsignal.service.loki.api.MessageWrapper
 import org.session.libsignal.service.loki.api.utilities.HTTP
@@ -24,8 +20,8 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope
 import java.security.SecureRandom
 
 object SnodeAPI {
-    val database = Configuration.shared.storage
-    val broadcaster = Configuration.shared.broadcaster
+    val database = SnodeConfiguration.shared.storage
+    val broadcaster = SnodeConfiguration.shared.broadcaster
     val sharedContext = Kovenant.createContext("LokiAPISharedContext")
     val messageSendingContext = Kovenant.createContext("LokiAPIMessageSendingContext")
     val messagePollingContext = Kovenant.createContext("LokiAPIMessagePollingContext")
@@ -245,14 +241,13 @@ object SnodeAPI {
         }
     }
 
-    private fun parseRawMessagesResponse(rawResponse: RawResponse, snode: Snode, publicKey: String): List<Envelope> {
+    fun parseRawMessagesResponse(rawResponse: RawResponse, snode: Snode, publicKey: String): List<*> {
         val messages = rawResponse["messages"] as? List<*>
         return if (messages != null) {
             updateLastMessageHashValueIfPossible(snode, publicKey, messages)
-            val newRawMessages = removeDuplicates(publicKey, messages)
-            parseEnvelopes(newRawMessages)
+            removeDuplicates(publicKey, messages)
         } else {
-            listOf()
+            listOf<Map<*,*>>()
         }
     }
 
@@ -280,25 +275,6 @@ object SnodeAPI {
             } else {
                 Log.d("Loki", "Missing hash value for message: ${rawMessage?.prettifiedDescription()}.")
                 false
-            }
-        }
-    }
-
-    private fun parseEnvelopes(rawMessages: List<*>): List<Envelope> {
-        return rawMessages.mapNotNull { rawMessage ->
-            val rawMessageAsJSON = rawMessage as? Map<*, *>
-            val base64EncodedData = rawMessageAsJSON?.get("data") as? String
-            val data = base64EncodedData?.let { Base64.decode(it) }
-            if (data != null) {
-                try {
-                    MessageWrapper.unwrap(data)
-                } catch (e: Exception) {
-                    Log.d("Loki", "Failed to unwrap data for message: ${rawMessage.prettifiedDescription()}.")
-                    null
-                }
-            } else {
-                Log.d("Loki", "Failed to decode data for message: ${rawMessage?.prettifiedDescription()}.")
-                null
             }
         }
     }
@@ -366,5 +342,5 @@ object SnodeAPI {
 
 // Type Aliases
 typealias RawResponse = Map<*, *>
-typealias MessageListPromise = Promise<List<Envelope>, Exception>
+typealias MessageListPromise = Promise<List<*>, Exception>
 typealias RawResponsePromise = Promise<RawResponse, Exception>

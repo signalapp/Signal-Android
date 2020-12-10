@@ -1,16 +1,16 @@
 package org.session.libsession.messaging.sending_receiving.notifications
 
-import android.content.Context
 import nl.komponents.kovenant.functional.map
 import okhttp3.*
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.util.JsonUtil
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
-import java.io.IOException
 
 object PushNotificationAPI {
+    val context = MessagingConfiguration.shared.context
     val server = "https://live.apns.getsession.org"
     val serverPublicKey = "642a6585919742e5a2d4dc51244964fbcd8bcab2b75612407de58b810740d049"
     private val maxRetryCount = 4
@@ -46,8 +46,8 @@ object PushNotificationAPI {
             }
         }
         // Unsubscribe from all closed groups
-        val allClosedGroupPublicKeys = Configuration.shared.sskDatabase.getAllClosedGroupPublicKeys()
-        val userPublicKey = Configuration.shared.storage.getUserPublicKey()!!
+        val allClosedGroupPublicKeys = MessagingConfiguration.shared.sskDatabase.getAllClosedGroupPublicKeys()
+        val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey()!!
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
         }
@@ -76,7 +76,7 @@ object PushNotificationAPI {
             }
         }
         // Subscribe to all closed groups
-        val allClosedGroupPublicKeys = Configuration.shared.sskDatabase.getAllClosedGroupPublicKeys()
+        val allClosedGroupPublicKeys = MessagingConfiguration.shared.sskDatabase.getAllClosedGroupPublicKeys()
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(ClosedGroupOperation.Subscribe, closedGroup, publicKey)
         }

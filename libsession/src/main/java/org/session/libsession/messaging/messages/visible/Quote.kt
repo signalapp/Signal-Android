@@ -2,7 +2,7 @@ package org.session.libsession.messaging.messages.visible
 
 import com.goterl.lazycode.lazysodium.BuildConfig
 import org.session.libsession.database.MessageDataProvider
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -48,7 +48,7 @@ class Quote() {
         quoteProto.id = timestamp
         quoteProto.author = publicKey
         text?.let { quoteProto.text = text }
-        addAttachmentsIfNeeded(quoteProto, Configuration.shared.messageDataProvider)
+        addAttachmentsIfNeeded(quoteProto, MessagingConfiguration.shared.messageDataProvider)
         // Build
         try {
             return quoteProto.build()

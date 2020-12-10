@@ -1,10 +1,9 @@
 package org.session.libsession.messaging.sending_receiving
 
-import com.google.protobuf.MessageOrBuilder
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
@@ -64,7 +63,7 @@ object MessageSender {
     fun sendToSnodeDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val promise = deferred.promise
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         val preconditionFailure = Exception("Destination should not be open groups!")
         var snodeMessage: SnodeMessage? = null
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
@@ -152,7 +151,7 @@ object MessageSender {
     fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val promise = deferred.promise
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         val preconditionFailure = Exception("Destination should not be contacts or closed groups!")
         message.sentTimestamp = System.currentTimeMillis()
         message.sender = storage.getUserPublicKey()

@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.control.unused
 
 import com.google.protobuf.ByteString
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.control.ControlMessage
 import org.session.libsignal.libsignal.IdentityKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
@@ -21,7 +21,7 @@ class SessionRequest() : ControlMessage() {
             if (proto.nullMessage == null) return null
             val preKeyBundleProto = proto.preKeyBundleMessage ?: return null
             var registrationID: Int = 0
-            registrationID = Configuration.shared.storage.getOrGenerateRegistrationID() //TODO no implementation for getOrGenerateRegistrationID yet
+            registrationID = MessagingConfiguration.shared.storage.getOrGenerateRegistrationID() //TODO no implementation for getOrGenerateRegistrationID yet
             //TODO just confirm if the above code does the equivalent to swift below:
             /*iOS code: Configuration.shared.storage.with { transaction in
                     registrationID = Configuration.shared.storage.getOrGenerateRegistrationID(using: transaction)

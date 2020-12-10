@@ -5,11 +5,10 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.then
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.messaging.fileserver.FileServerAPI
-import org.session.libsession.snode.SnodeAPI
 
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.util.Base64
@@ -56,7 +55,7 @@ object OpenGroupAPI: DotNetAPI() {
     // region Public API
     public fun getMessages(channel: Long, server: String): Promise<List<OpenGroupMessage>, Exception> {
         Log.d("Loki", "Getting messages for open group with ID: $channel on server: $server.")
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         val parameters = mutableMapOf<String, Any>( "include_annotations" to 1 )
         val lastMessageServerID = storage.getLastMessageServerID(channel, server)
         if (lastMessageServerID != null) {
@@ -161,7 +160,7 @@ object OpenGroupAPI: DotNetAPI() {
 
     public fun getDeletedMessageServerIDs(channel: Long, server: String): Promise<List<Long>, Exception> {
         Log.d("Loki", "Getting deleted messages for open group with ID: $channel on server: $server.")
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         val parameters = mutableMapOf<String, Any>()
         val lastDeletionServerID = storage.getLastDeletionServerID(channel, server)
         if (lastDeletionServerID != null) {
@@ -193,7 +192,7 @@ object OpenGroupAPI: DotNetAPI() {
 
     public fun sendMessage(message: OpenGroupMessage, channel: Long, server: String): Promise<OpenGroupMessage, Exception> {
         val deferred = deferred<OpenGroupMessage, Exception>()
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         val userKeyPair = storage.getUserKeyPair() ?: throw Error.Generic
         val userDisplayName = storage.getUserDisplayName() ?: throw Error.Generic
         Thread {
@@ -287,7 +286,7 @@ object OpenGroupAPI: DotNetAPI() {
                     val memberCount = countInfo["subscribers"] as? Int ?: (countInfo["subscribers"] as? Long)?.toInt() ?: (countInfo["subscribers"] as String).toInt()
                     val profilePictureURL = info["avatar"] as String
                     val publicChatInfo = OpenGroupInfo(displayName, profilePictureURL, memberCount)
-                    Configuration.shared.storage.setUserCount(channel, server, memberCount)
+                    MessagingConfiguration.shared.storage.setUserCount(channel, server, memberCount)
                     publicChatInfo
                 } catch (exception: Exception) {
                     Log.d("Loki", "Couldn't parse info for open group with ID: $channel on server: $server.")
@@ -298,7 +297,7 @@ object OpenGroupAPI: DotNetAPI() {
     }
 
     public fun updateProfileIfNeeded(channel: Long, server: String, groupID: String, info: OpenGroupInfo, isForcedUpdate: Boolean) {
-        val storage = Configuration.shared.storage
+        val storage = MessagingConfiguration.shared.storage
         storage.setUserCount(channel, server, info.memberCount)
         storage.updateTitle(groupID, info.displayName)
         // Download and update profile picture if needed

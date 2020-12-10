@@ -1,6 +1,6 @@
 package org.session.libsession.messaging.opengroups
 
-import org.session.libsession.messaging.Configuration
+import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.util.Hex
@@ -24,7 +24,7 @@ public data class OpenGroupMessage(
     // region Settings
     companion object {
         fun from(message: VisibleMessage, server: String): OpenGroupMessage? {
-            val storage = Configuration.shared.storage
+            val storage = MessagingConfiguration.shared.storage
             val userPublicKey = storage.getUserPublicKey() ?: return null
             // Validation
             if (!message.isValid()) { return null } // Should be valid at this point
