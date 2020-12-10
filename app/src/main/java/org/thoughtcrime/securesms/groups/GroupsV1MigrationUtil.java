@@ -96,12 +96,15 @@ public final class GroupsV1MigrationUtil {
           throw new InvalidMigrationStateException();
         }
 
-        RecipientUtil.ensureUuidsAreAvailable(context, groupRecipient.getParticipants());
-        groupRecipient = groupRecipient.fresh();
-
         List<Recipient> registeredMembers = RecipientUtil.getEligibleForSending(groupRecipient.getParticipants());
-        List<Recipient> possibleMembers   = forced ? getMigratableManualMigrationMembers(registeredMembers)
-                                                   : getMigratableAutoMigrationMembers(registeredMembers);
+
+        if (RecipientUtil.ensureUuidsAreAvailable(context, registeredMembers)) {
+          Log.i(TAG, "Newly-discovered UUIDs. Getting fresh recipients.");
+          registeredMembers = Stream.of(registeredMembers).map(Recipient::fresh).toList();
+        }
+
+        List<Recipient> possibleMembers = forced ? getMigratableManualMigrationMembers(registeredMembers)
+                                                 : getMigratableAutoMigrationMembers(registeredMembers);
 
         if (!forced && possibleMembers.size() != registeredMembers.size()) {
           Log.w(TAG, "Not allowed to invite or leave registered users behind in an auto-migration! Skipping.");

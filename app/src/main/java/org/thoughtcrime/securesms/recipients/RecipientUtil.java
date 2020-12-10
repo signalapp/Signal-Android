@@ -93,7 +93,7 @@ public class RecipientUtil {
                  .toList();
   }
 
-  public static void ensureUuidsAreAvailable(@NonNull Context context, @NonNull Collection<Recipient> recipients)
+  public static boolean ensureUuidsAreAvailable(@NonNull Context context, @NonNull Collection<Recipient> recipients)
       throws IOException
   {
     List<Recipient> recipientsWithoutUuids = Stream.of(recipients)
@@ -103,6 +103,9 @@ public class RecipientUtil {
 
     if (recipientsWithoutUuids.size() > 0) {
       DirectoryHelper.refreshDirectoryFor(context, recipientsWithoutUuids, false);
+      return true;
+    } else {
+      return false;
     }
   }
 

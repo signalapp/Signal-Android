@@ -64,6 +64,7 @@ public final class FeatureFlags {
   private static final String GV1_AUTO_MIGRATE             = "android.groupsV1Migration.auto.4";
   private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
   private static final String GV1_FORCED_MIGRATE           = "android.groupsV1Migration.forced";
+  private static final String GV1_MIGRATION_JOB            = "android.groupsV1Migration.job";
   private static final String SEND_VIEWED_RECEIPTS         = "android.sendViewedReceipts";
 
   /**
@@ -81,6 +82,7 @@ public final class FeatureFlags {
       DONATE_MEGAPHONE,
       VIEWED_RECEIPTS,
       GV1_AUTO_MIGRATE,
+      GV1_MIGRATION_JOB,
       GV1_MANUAL_MIGRATE,
       GV1_FORCED_MIGRATE,
       GROUP_CALLING,
@@ -107,7 +109,8 @@ public final class FeatureFlags {
   private static final Set<String> HOT_SWAPPABLE = SetUtil.newHashSet(
       VERIFY_V2,
       CLIENT_EXPIRATION,
-      GROUP_CALLING
+      GROUP_CALLING,
+      GV1_MIGRATION_JOB
   );
 
   /**
@@ -236,6 +239,11 @@ public final class FeatureFlags {
   /** Whether or not auto-migration from GV1->GV2 is enabled. */
   public static boolean groupsV1AutoMigration() {
     return getBoolean(GV1_AUTO_MIGRATE, false);
+  }
+
+  /** Whether or not we should run the job to proactively migrate groups. */
+  public static boolean groupsV1MigrationJob() {
+    return getBoolean(GV1_MIGRATION_JOB, false);
   }
 
   /** Whether or not manual migration from GV1->GV2 is enabled. */

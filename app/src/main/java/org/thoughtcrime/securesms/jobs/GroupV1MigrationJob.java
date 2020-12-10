@@ -61,6 +61,11 @@ public class GroupV1MigrationJob extends BaseJob {
   }
 
   public static void enqueuePossibleAutoMigrate(@NonNull RecipientId recipientId) {
+    if (!FeatureFlags.groupsV1MigrationJob()) {
+      Log.w(TAG, "Migration job is disabled.");
+      return;
+    }
+
     SignalExecutors.BOUNDED.execute(() -> {
       if (Recipient.resolved(recipientId).isPushV1Group()) {
         ApplicationDependencies.getJobManager().add(new GroupV1MigrationJob(recipientId));
@@ -69,6 +74,11 @@ public class GroupV1MigrationJob extends BaseJob {
   }
 
   public static void enqueueRoutineMigrationsIfNecessary(@NonNull Application application) {
+    if (!FeatureFlags.groupsV1MigrationJob()) {
+      Log.w(TAG, "Migration job is disabled.");
+      return;
+    }
+
     if (!SignalStore.registrationValues().isRegistrationComplete() ||
         !TextSecurePreferences.isPushRegistered(application)       ||
         TextSecurePreferences.getLocalUuid(application) == null)
@@ -82,11 +92,14 @@ public class GroupV1MigrationJob extends BaseJob {
       return;
     }
 
-    long timeSinceRefresh = System.currentTimeMillis() - SignalStore.misc().getLastProfileRefreshTime();
+    long timeSinceRefresh = System.currentTimeMillis() - SignalStore.misc().getLastGv1RoutineMigrationTime();
+
     if (timeSinceRefresh < REFRESH_INTERVAL) {
       Log.i(TAG, "Too soon to refresh. Did the last refresh " + timeSinceRefresh + " ms ago.");
       return;
     }
+
+    SignalStore.misc().setLastGv1RoutineMigrationTime(System.currentTimeMillis());
 
     SignalExecutors.BOUNDED.execute(() -> {
       JobManager         jobManager   = ApplicationDependencies.getJobManager();
