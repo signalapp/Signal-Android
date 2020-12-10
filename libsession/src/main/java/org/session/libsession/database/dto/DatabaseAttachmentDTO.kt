@@ -33,7 +33,7 @@ class DatabaseAttachmentDTO {
     val isUploaded: Boolean = false
 
     fun toProto(): SignalServiceProtos.AttachmentPointer? {
-        val builder = org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.newBuilder()
+        val builder = SignalServiceProtos.AttachmentPointer.newBuilder()
         builder.contentType = this.contentType
 
         if (!this.fileName.isNullOrEmpty()) {
@@ -46,12 +46,12 @@ class DatabaseAttachmentDTO {
         builder.size = this.size
         builder.key = this.key
         builder.digest = this.digest
-        builder.flags = if (this.isVoiceNote) org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE.number else 0
+        builder.flags = if (this.isVoiceNote) SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE.number else 0
 
         //TODO I did copy the behavior of iOS below, not sure if that's relevant here...
         if (this.shouldHaveImageSize) {
-            if (this.width < kotlin.Int.MAX_VALUE && this.height < kotlin.Int.MAX_VALUE) {
-                val imageSize: Size = Size(this.width, this.height)
+            if (this.width < Int.MAX_VALUE && this.height < Int.MAX_VALUE) {
+                val imageSize= Size(this.width, this.height)
                 val imageWidth = round(imageSize.width.toDouble())
                 val imageHeight = round(imageSize.height.toDouble())
                 if (imageWidth > 0 && imageHeight > 0) {
