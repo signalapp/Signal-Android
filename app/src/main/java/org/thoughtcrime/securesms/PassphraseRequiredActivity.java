@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.tracing.Tracer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
@@ -49,6 +50,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
+    Tracer.getInstance().start(Log.tag(getClass()) + "#onCreate()");
     this.networkAccess = new SignalServiceNetworkAccess(this);
     onPreCreate();
 
@@ -61,6 +63,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       initializeClearKeyReceiver();
       onCreate(savedInstanceState, true);
     }
+    Tracer.getInstance().end(Log.tag(getClass()) + "#onCreate()");
   }
 
   protected void onPreCreate() {}

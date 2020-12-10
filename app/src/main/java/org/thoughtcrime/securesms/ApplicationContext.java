@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.tracing.Trace;
+import org.thoughtcrime.securesms.tracing.Tracer;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
@@ -110,8 +111,11 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   @Override
   public void onCreate() {
+    Tracer.getInstance().start("Application#onCreate()");
     long startTime = System.currentTimeMillis();
+
     super.onCreate();
+
     initializeSecurityProvider();
     initializeLogging();
     Log.i(TAG, "onCreate()");
@@ -148,6 +152,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     DynamicTheme.setDefaultDayNightMode(this);
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
+    Tracer.getInstance().end("Application#onCreate()");
   }
 
   @Override
