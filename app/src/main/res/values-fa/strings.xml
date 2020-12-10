@@ -2378,7 +2378,7 @@
   <string name="ChatsPreferenceFragment_in_progress">در حال انجام</string>
   <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string>
   <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری ناموفق بود</string>
-  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس پشتیبان‌ شما حذف شده یا انتقال یافته است.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس ذخیره‌سازی پشتیبان شما حذف شده یا به جای دیگری انتقال یافته است.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">حجم فایل پشتیبان شما برای نگهداری در این محل زیاد است.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">فضای کافی برای نگهداری پشتیبان شما وجود ندارد.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">برای مدیریت پشتیبان‌ها ضربه بزنید.</string>
@@ -2390,7 +2390,7 @@
   <string name="RegistrationActivity_code_support_subject">ثبت‌نام Signal - کد تأیید برای اندروید</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
-  <string name="preferences_app_protection__see_my_phone_number">رؤیت شماره تلفن من</string>
+  <string name="preferences_app_protection__see_my_phone_number">دیدن شمارهٔ تلفن من</string>
   <string name="preferences_app_protection__find_me_by_phone_number">پیدا کردن من با شمارهٔ تلفن</string>
   <string name="PhoneNumberPrivacy_everyone">همه</string>
   <string name="PhoneNumberPrivacy_my_contacts">مخاطبین من</string>
@@ -2424,7 +2424,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">پین را تأیید کنید</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">پین قفل ثبت‌نام خود را وارد کنید</string>
   <string name="registration_lock_reminder_view__enter_pin">پین را وارد کنید</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">فعال‌سازی پین قفل ثبت‌نام که بعداً برای ثبت نام با این شماره‌تلفن در Signal ضروری خواهد بود.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">فعال‌سازی پین قفل ثبت‌نام که بعداً برای ثبت نام با این شمارهٔ تلفن در Signal ضروری خواهد بود.</string>
   <string name="preferences_app_protection__registration_lock_pin">پین قفل ثبت‌نام</string>
   <string name="preferences_app_protection__registration_lock">قفل ثبت‌نام</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">شما باید پین قفل ثبت‌نام خود را وارد کنید</string>
@@ -2435,7 +2435,7 @@
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later"> تلاش‌های ناموفق بیش از حد زیاد بودند. لطفاً بعداً دوباره سعی کنید.</string>
   <string name="RegistrationActivity_error_connecting_to_service">خطا در برقراری ارتباط با سرویس</string>
   <string name="RegistrationActivity_oh_no">وای نه!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">ثبت‌نام این شماره‌تلفن بدون پین قفل ثبت‌نام شما بعد از 7 روز از آخرین فعالیت شما روی Signal ممکن خواهد بود. %d روز باقی مانده است.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">ثبت‌نام این شمارهٔ تلفن بدون پین قفل ثبت‌نام ۷ روز بعد از آخرین فعالیت این شماره روی Signal ممکن خواهد بود. %d روز باقی مانده است.</string>
   <string name="RegistrationActivity_registration_lock_pin">پین قفل ثبت‌نام</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">قفل ثبت‌نام برای این شماره فعال است. لطفاً پین قفل ثبت‌نام را وارد کنید.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">قفل ثبت‌نام برای شماره‌ٔ شما فعال شد. برای کمک به شما در بخاطر سپردن پین قفل ثبت‌نام، Signal به صورت دوره‌ای از شما می‌خواهد تا آن را تأیید کنید.</string>
@@ -2545,15 +2545,15 @@
   <string name="DeleteAccountFragment__deleting_your_account_will">حذف حساب کاربری شما:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">شمارهٔ خود را وارد کنید</string>
   <string name="DeleteAccountFragment__delete_account">حذف حساب کاربری</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب کاربری و عکس پروفایل خود را پاک کنید</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب کاربری و عکس پروفایل خود را حذف کنید</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">تمام پیام‌های خود را حذف کنید</string>
   <string name="DeleteAccountFragment__no_country_code">هیچ کد کشوری وارد نشده است</string>
   <string name="DeleteAccountFragment__no_number">هیچ شماره‌ای وارد نشده است</string>
-  <string name="DeleteAccountFragment__the_phone_number">شماره‌ تلفنی که وارد کردید با حساب کاربری‌تان همخوانی ندارد.</string>
+  <string name="DeleteAccountFragment__the_phone_number">شمارهٔ تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
   <string name="DeleteAccountFragment__are_you_sure">آیا از پاک کردن حساب کاربری خود اطمینان دارید؟</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری Signal شما را حذف کرده و برنامه را بازنشانی می‌کند.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">حذف حساب کاربری ناموفق بود. آیا اتصال شبکه دارید؟</string>
-  <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید به صورت دستی آن را در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید  آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
   <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">جستجوی کشورها</string>

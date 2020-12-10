@@ -257,6 +257,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone et à votre appareil photo.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Désormais plus d’options dans paramètre « Paramètres du groupe »</string>
   <string name="ConversationActivity_join">Me joindre</string>
+  <string name="ConversationActivity_full">Complet</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -667,6 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Ce groupe est un groupe hérité. Pour accéder aux nouvelles fonctions telles que les @mentions et l’administration,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Ce groupe hérité ne peut pas être converti en nouveau groupe, car il comporte trop de membres. Le nombre maximal de membres d’un groupe est %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">convertissez ce groupe</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ce groupe est un groupe de messages multimédias non sécurisé. Pour converser en toute confidentialité, invitez vos contacts sur Signal.</string>
   <string name="ManageGroupActivity_invite_now">Inviter maintenant</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
@@ -1238,8 +1240,10 @@
     <item quantity="other">Dans cet appel · %1$d personnes</item>
   </plurals>
   <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s est bloqué</string>
   <string name="CallParticipantView__more_info">Plus de précisions</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Vous ne recevrez pas leur son ou leur vidéo et ils ne recevront pas les vôtres.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Impossible de recevoir le son &amp; la vidéo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Cela peut être dû au fait qu\'ils n\'ont pas vérifié votre changement de numéro de sécurité, qu\'il y a un problème avec leur appareil ou qu\'ils vous ont bloqué.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
@@ -1676,6 +1680,7 @@
   <string name="safety_number_change_dialog__send_anyway">Envoyer quand même</string>
   <string name="safety_number_change_dialog__call_anyway">Appeler quand même</string>
   <string name="safety_number_change_dialog__join_call">Rejoindre l’appel</string>
+  <string name="safety_number_change_dialog__continue_call">Poursuivre l\'appel</string>
   <string name="safety_number_change_dialog__leave_call">Quitter l’appel</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Les personnes suivantes ont peut-être réinstallé Signal ou changé d’appareil. Pour assurer la confidentialité, confirmez votre numéro de sécurité avec elles.</string>
   <string name="safety_number_change_dialog__view">Afficher</string>
@@ -2001,6 +2006,7 @@
   <string name="preferences__advanced_pin_settings">Paramètres de NIP avancés</string>
   <string name="preferences__free_private_messages_and_calls">Messages et appels gratuits et confidentiels vers les utilisateurs de Signal</string>
   <string name="preferences__submit_debug_log">Envoyer le journal de débogage</string>
+  <string name="preferences__delete_account">Supprimer le compte </string>
   <string name="preferences__support_wifi_calling">Mode de compatibilité « Appels Wi-Fi »</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activer si votre appareil transmet les textos et les messages multimédias par Wi-Fi (n’activer que si les « Appels Wi-Fi » sont activés sur votre appareil)</string>
   <string name="preferences__incognito_keyboard">Clavier incognito</string>
@@ -2516,8 +2522,13 @@
   <string name="ReviewCard__delete">Supprimer</string>
   <string name="ReviewCard__recently_changed">%1$s a récemment changé le nom de son profil en %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s s\'est joint</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s et %2$s se sont joints</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s et %3$s se sont joints</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s a quitté</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vous (sur un autre appareil)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__delete_account">Supprimer le compte </string>
   <string name="DeleteAccountFragment__are_you_sure">Voulez-vous vraiment supprimer votre compte ?</string>
   <!--DeleteAccountCountryPickerFragment-->
   <!--EOF-->

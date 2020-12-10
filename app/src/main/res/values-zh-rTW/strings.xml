@@ -694,7 +694,7 @@
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">需要管理員批准通過群組連結加入新成員。</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">你確定要重置群組連結嗎？ 人們將無法再使用當前連結加入該群組。</string>
   <!--GroupLinkShareQrDialogFragment-->
-  <string name="GroupLinkShareQrDialogFragment__qr_code">QR code</string>
+  <string name="GroupLinkShareQrDialogFragment__qr_code">QR 碼</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">掃描此代碼的人將可以加入你的群組。 如果你啟用了該裝置，則管理員仍需要批准新成員。</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">分享代碼</string>
   <!--GV2 Invite Revoke confirmation dialog-->
@@ -1062,8 +1062,8 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，這不是有效的裝置連結 QR 碼。</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">連結 Signal 裝置？</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起來您正在嘗試使用第 3 方掃描器連結 Signal 裝置。為了安全著想，請使用 Signal 重新掃描代碼一次。</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">因為沒有相機的使用權限，所以無法掃描 QR code。</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機的權限以掃描 QR 碼，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">因為沒有相機的使用權限，所以無法掃描 QR 碼。</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">自動銷毀訊息</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">您的訊息將不會過期。</string>
@@ -1366,16 +1366,15 @@
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal上的使用者名稱是可選的。 如果你選擇建立使用者名稱，則其他Signal使用者可以透過該用使用者名找到你，並在不知道你的電話號碼的情況下與你聯絡。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
-請升級您的 Signal。</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼格式不正確。請重新掃一次。</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人正使用較新版本的 Signal，QR 碼格式並不相容。請升級以作比對。</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼並非正確格式的安全碼驗證碼。請試著再掃一次。</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">分享安全碼到…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">我方 Signal 安全碼：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">沒有在剪貼簿中發現安全碼，因此無法進行比較</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
-  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">因為沒有「相機」的權限，無法掃描 QR code</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">你必須先交換訊息才能查看%1$s的安全號碼。</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機的權限以掃描 QR 碼，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">因為沒有「相機」的權限，無法掃描 QR 碼</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">你必須先交換訊息才能查看 %1$s 的安全碼。</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1622,7 +1621,7 @@
   <string name="safety_number_change_dialog__join_call">加入通話</string>
   <string name="safety_number_change_dialog__continue_call">繼續通話</string>
   <string name="safety_number_change_dialog__leave_call">離開通話</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">以下使用者可能已重新安裝或更換了裝置。與他們一起驗證你的安全碼，以確保隱私性。</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">下列的人可能已重新安裝或更換了裝置。請驗證你與他們的安全碼，以確保隱私。</string>
   <string name="safety_number_change_dialog__view">檢視</string>
   <string name="safety_number_change_dialog__previous_verified">先前已驗證</string>
   <!--country_selection_fragment-->
@@ -1754,7 +1753,7 @@
   <string name="unknown_sender_view__add_to_contacts">加入聯絡人</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">不要加入，但讓我的個人資訊可以被看見</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[如果你希望用 %s 來驗證你的加密的安全性，比對上面的號碼與他們裝置上的號碼。或者，你可以掃描在他們手機上的 QR code，或讓他們掃描您的 QR Code。<a href="https://signal.org/redirect/safety-numbers">瞭解更多</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若你希望驗證你與 %s 之間的加密安全性，請比對上面的號碼與他們裝置上的號碼。又或者，你可以掃描在他們手機上的 QR 碼，或讓他們掃描你的 QR 碼。<a href="https://signal.org/redirect/safety-numbers">瞭解更多</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
   <string name="verify_display_fragment__loading">載入中…</string>
   <string name="verify_display_fragment__verified">已驗證</string>
@@ -2405,7 +2404,7 @@
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">透過 Signal 分享</string>
   <string name="GroupLinkBottomSheet_copy">複製</string>
-  <string name="GroupLinkBottomSheet_qr_code">QR Code</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR 碼</string>
   <string name="GroupLinkBottomSheet_share">分享</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">已複製到剪貼簿</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">連結目前無效</string>

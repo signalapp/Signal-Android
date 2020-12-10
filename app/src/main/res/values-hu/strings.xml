@@ -861,6 +861,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s beállította, hogy az üzenetek ennyi idő után tűnjenek el: %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Az eltűnő üzenetek új beállítása: %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ez a csoport új típusú csoporttá lett alakítva.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nem tudtak közvetlenül hozzáadni az új típusú csoporthoz, ezért helyette meghívót kaptál.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s megváltoztatta profilnevét erre: %2$s</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s megváltoztatta profilnevét. Korábbi név: %2$s, új név: %3$s</string>
@@ -1151,6 +1152,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">Részletek</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Nem fogod hallani és látni őket, illetve ők sem téged</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Saját ország kiválasztása </string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Meg kell adnod az

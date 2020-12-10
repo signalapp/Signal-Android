@@ -160,8 +160,8 @@
   <string name="CommunicationActions_insecure_call">Nezabezpečený hovor</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Mohou vám být účtovány telefonní poplatky. Číslo, které voláte, není registrováno u Signalu a hovor tak bude uskutečněn prostřednictvím mobilního operátora, nikoli přes internet.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Váš bezpečnostní kód pro %1$s se změnil. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo si %2$s jednoduše přeinstaloval Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostní číslo pro %1$s se změnilo. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo si %2$s jednoduše přeinstaloval Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní číslo pro tento kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Přijmout</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedávné konverzace</string>
@@ -233,7 +233,7 @@
   <string name="ConversationActivity_unable_to_record_audio">Nemohu nahrávat audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Do této skupiny nemůžete zasílat zprávy, jelikož už nejste jejím členem.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Není zde žádná aplikace, která by dokázala zpracovat tento odkaz.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Váš požadavek na připojení ke skupině byl zaslán administrátorovi. Budete upozorněn(a) jakmile zareaguje.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Váš požadavek na připojení ke skupině byl zaslán správci. Budete upozorněni jakmile zareaguje.</string>
   <string name="ConversationActivity_cancel_request">Zrušit požadavek</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pro posílání audio zpráv potřebuje Signal přístup k mikrofonu.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal potřebuje oprávnění pro přístup k mikrofonu, aby mohl poslat audio zprávu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Mikrofon\".</string>
@@ -263,6 +263,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal potřebuje přístup k vašemu mikrofonu a fotoaparátu, pro volání %1$s.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Více možností nyní v \"Nastavení skupiny\"</string>
   <string name="ConversationActivity_join">Připojit</string>
+  <string name="ConversationActivity_full">Plno</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepřečtená zpráva</item>
@@ -481,7 +482,7 @@
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tohoto člověka nemůžete přidat do starších skupin.</string>
   <string name="AddToGroupActivity_add">Přidat</string>
   <!--ChooseNewAdminActivity-->
-  <string name="ChooseNewAdminActivity_choose_new_admin">Vyberte nového administrátora.</string>
+  <string name="ChooseNewAdminActivity_choose_new_admin">Vyberte nového správce.</string>
   <string name="ChooseNewAdminActivity_done">Hotovo</string>
   <string name="ChooseNewAdminActivity_you_left">Opustili jste \"%1$s\".</string>
   <!--GroupShareProfileView-->
@@ -594,9 +595,9 @@
   <string name="LeaveGroupDialog_leave_group">Opustit skupinu?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nebudete dále moci odesílat nebo přijímat zprávy v této skupině.</string>
   <string name="LeaveGroupDialog_leave">Opustit</string>
-  <string name="LeaveGroupDialog_choose_new_admin">Vyberte nového administrátora.</string>
-  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Než opustíte skupinu, vyberte nového administrátora.</string>
-  <string name="LeaveGroupDialog_choose_admin">Vyberte administrátora</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Vyberte nového správce.</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Než opustíte skupinu, musíte vybrat alespoň jednoho nového správce.</string>
+  <string name="LeaveGroupDialog_choose_admin">Vyberte správce</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Deaktivovat</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Náhled každého odkazu</string>
@@ -741,6 +742,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Toto je starší verze skupiny. Pro přístup k novým funkcím jako @zmínky a správci,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Tuto starší verzi skupiny nelze aktualizovat na novou skupinu, protože je příliš velká. Maximální velikost skupiny je %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">Aktualizovat tuto skupinu.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nešifrovaná MMS skupina. Pozvěte své kontakty do Signal pro soukromou komunikace.</string>
   <string name="ManageGroupActivity_invite_now">Pozvat nyní</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky.</string>
@@ -756,7 +758,7 @@
   <string name="ManageRecipientActivity_chat_color">Barva konverzace</string>
   <string name="ManageRecipientActivity_block">Zablokovat</string>
   <string name="ManageRecipientActivity_unblock">Odblokovat</string>
-  <string name="ManageRecipientActivity_view_safety_number">Zobrazit bezpečnostní kód</string>
+  <string name="ManageRecipientActivity_view_safety_number">Zobrazit bezpečnostní číslo</string>
   <string name="ManageRecipientActivity_mute_notifications">Ztišit upozornění</string>
   <string name="ManageRecipientActivity_custom_notifications">Vlastní oznámení</string>
   <string name="ManageRecipientActivity_until_s">Do %1$s</string>
@@ -1050,7 +1052,7 @@
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s odebral vaše správcovská oprávnění.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odebral správcovská oprávnění %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s je nyní správcem.</string>
-  <string name="MessageRecord_you_are_now_an_admin">Stali jste se administrátorem</string>
+  <string name="MessageRecord_you_are_now_an_admin">Stali jste se správcem</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s už není správcem.</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">Už nejste správcem.</string>
   <!--GV2 invitations-->
@@ -1146,17 +1148,17 @@
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Požadavek na vstup do skupiny byl schválen.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Požadavek na připojení ke skupině od %1$s byl schválen.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Požadavek na vstup do skupiny byl  zamítnut administrátorem.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Požadavek na vstup do skupiny byl správcem zamítnut.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s odmítl požadavek na připojení ke skupině od %2$s.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Požadavek na vstup do skupiny od  %1$s byl  zamítnut.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Zrušili jste svůj požadavek na připojení ke skupině.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s zrušili svůj požadavek na připojení ke skupině.</string>
   <!--End of GV2 specific update messages-->
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili jste vaše bezpečnostní kódy pro komunikaci s %s jako ověřené.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní kódy pro komunikaci s %s jako ověřené.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili jste vaše bezpečnostní kódy pro komunikaci s %s jako neověřené.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní kódy pro komunikaci s %s jako neověřené.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Váše bezpečnostní číslo s %s se změnilo.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili jste vaše bezpečnostní číslo pro komunikaci s %s jako ověřené.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní číslo pro komunikaci s %s jako ověřené.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili jste vaše bezpečnostní číslo pro komunikaci s %s jako neověřené.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní číslo pro komunikaci s %s jako neověřené.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s se účastní skupinového hovoru · %2$s</string>
@@ -1240,7 +1242,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Omlouváme se, ale toto není platný QR kód pro propojení zařízení.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Propojit zařízení Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Zdá se, že se snažíte propojit zařízení Signal použitím jiné skenovací aplikace. Pro vaši ochranu, prosím oskenujete kód ještě jednou z aplikace Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signál potřebuje oprávnění pro přístup k fotoaparátu, aby mohl naskenovat QR kód, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal potřebuje oprávnění pro přístup k fotoaparátu, aby mohl naskenovat QR kód, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nelze naskenovat QR kód bez přístupu k fotoaparátu.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Zmizení zpráv</string>
@@ -1341,6 +1343,7 @@
   <string name="WebRtcCallView__start_call">Zahájit hovor</string>
   <string name="WebRtcCallView__join_call">Připojit se k hovoru</string>
   <string name="WebRtcCallView__call_is_full">Hovor je plný</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maximální počet účastníků hovoru %1$d byl naplněn. Zkuste to prosím později.</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" skupinový hovor</string>
   <string name="WebRtcCallView__view_participants_list">Zobrazit účastníky</string>
   <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
@@ -1365,7 +1368,12 @@
     <item quantity="other">V tomto hovoru - %1$d lidí</item>
   </plurals>
   <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s je zablokován</string>
   <string name="CallParticipantView__more_info">Více informací</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Nebudete přijímat jejich audio ani video a oni vaše.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Nemohu přijmout ani audio ani video od %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nemohu přijmout audio ani video od %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">K tomu může dojít v situaci, kdy jste neprovedli ověření bezpečnostního čísla, jejich zařízení je porouchané nebo vás zablokovali.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Zvolte svou zemi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zadejte kód
@@ -1457,7 +1465,7 @@ požadavek na výměnu klíčů!
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
 </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Přijata zpráva s novým bezpečnostním kódem. Klepněte pro její zpracování a zobrazení.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Přijata zpráva s novým bezpečnostním číslem. Klepněte pro její zpracování a zobrazení.</string>
   <string name="SmsMessageRecord_secure_session_reset">Resetovali jste zabezpečenou konverzaci.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval zabezpečenou konverzaci.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
@@ -1518,8 +1526,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ThreadRecord_s_is_on_signal">%s má Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zmizení zpráv je zakázáno</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
-  <string name="ThreadRecord_safety_number_changed">Bezpečnostní kód se změnil</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Váš bezpečnostní kód s %s se změnil</string>
+  <string name="ThreadRecord_safety_number_changed">Bezpečnostní číslo se změnilo</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaše bezpečnostní číslo s %s se změnilo.</string>
   <string name="ThreadRecord_you_marked_verified">Označen jako ověřený</string>
   <string name="ThreadRecord_you_marked_unverified">Označen jako neověřený</string>
   <string name="ThreadRecord_message_could_not_be_processed">Zprávu nelze zpracovat</string>
@@ -1555,16 +1563,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uživatelská jména musí mít %1$d až %2$dznaků.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uživatelská jména v Signalu jsou volitelná. Pokud si vytvoříte uživatelské jméno, ostatní uživatelé Signalu vás budou schopni podle něj najít a kontaktovat bez znalosti vašeho telefonního čísla.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou bezpečnostních kódů jej prosím požádejte, aby si aplikaci aktualizoval.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou bezpečnostního čísla jej prosím požádejte, aby si aplikaci aktualizoval.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi aplikace Signal s nekompatibilním formátem QR kódu. Prosím aktualizujte svou verzi, abyste mohli QR kódy porovnat.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Naskenovaný QR kód nemá správný formát bezpečnostního kódu. Prosím naskenujte QR kód znovu.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Sdílet bezpečnostní kód prostřednictvím …</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Náš bezpečnostní kód Signal:</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Sdílet bezpečnostní číslo prostřednictvím …</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Naše bezpečnostní číslo Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
-  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ve schránce nebyl nalezen žádný bezpečnostní kód pro porovnání.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ve schránce nebyl nalezeno žádný bezpečnostní číslo pro porovnání.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k fotoaparátu, aby mohl naskenovat QR kód, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nelze naskenovat QR kód bez přístupu k fotoaparátu.</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Musíte si nejprve vyměnit zprávy, abyste viděli bezpečnostní kód pro%1$s.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Musíte si nejprve vyměnit zprávy, abyste viděli bezpečnostní číslo pro%1$s.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1676,12 +1684,14 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Odpovězeno na připojeném zařízení.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Odmítnuto na propojeném zařízení.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Obsazeno na propojeném zařízení.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Někdo se přidal k tomuto hovoru s bezpečnostním číslem, které se změnilo.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostní kódy pro vaši konverzaci s %1$s se změnily. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že %2$s si jednoduše přeinstaloval Signal.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">Nové bezpečnostní kódy</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostní číslo pro vaši konverzaci s %1$s se změnilo. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že %2$s si jednoduše přeinstaloval Signal.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní číslo pro tento kontakt.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Nové bezpečnostní číslo</string>
   <string name="WebRtcCallScreen_accept">Přijmout</string>
   <string name="WebRtcCallScreen_end_call">Ukončit hovor</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Potáhněte nahoru pro změnu pohledu.</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Odmítnout</string>
   <string name="WebRtcCallScreen__answer">Odpovědět</string>
@@ -1816,8 +1826,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="safety_number_change_dialog__send_anyway">Přesto poslat</string>
   <string name="safety_number_change_dialog__call_anyway">Přesto zavolat</string>
   <string name="safety_number_change_dialog__join_call">Připojit se k hovoru</string>
+  <string name="safety_number_change_dialog__continue_call">Pokračovat v hovoru</string>
   <string name="safety_number_change_dialog__leave_call">Opustit hovor</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Následující lidé možná přeinstalovali nebo změnili zařízení. Ověřte s nimi své bezpečnostní číslo pro zajištění soukromí.</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Následující lidé možná přeinstalovali nebo změnili zařízení. Ověřte s nimi svoje bezpečnostní číslo pro zajištění soukromí.</string>
   <string name="safety_number_change_dialog__view">Zobrazit</string>
   <string name="safety_number_change_dialog__previous_verified">Předchozí ověřeno</string>
   <!--country_selection_fragment-->
@@ -1875,15 +1886,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="expiration_weeks_abbreviated">%dtýd.</string>
   <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">Váš bezpečnostní kód pro komunikaci s %s již není ověřený.</string>
-  <string name="IdentityUtil_unverified_banner_two">Vaše bezpečnostní kódy pro komunikaci s %1$s a %2$s již nejsou ověřené.</string>
-  <string name="IdentityUtil_unverified_banner_many">Vaše bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené.</string>
-  <string name="IdentityUtil_unverified_dialog_one">Vášš bezpečnostní kód pro komunikaci s %1$s se změnil a již není ověřený. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si %1$s jednoduše přeinstaloval Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Vaše bezpečnostní kódy pro komunikaci s %1$s a %2$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si jednoduše přeinstalovali Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Vaše bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si jednoduše přeinstalovali Signal.</string>
-  <string name="IdentityUtil_untrusted_dialog_one">Váš bezpečnostní kód s %s se právě změnil.</string>
-  <string name="IdentityUtil_untrusted_dialog_two">Vaše bezpečnostní kódy pro komunikaci s %1$s a %2$s se právě změnily.</string>
-  <string name="IdentityUtil_untrusted_dialog_many">Vaše bezpečnostní kódy pro komunikaci s %1$s, %2$s a %3$s se právě změnily.</string>
+  <string name="IdentityUtil_unverified_banner_one">Vaše bezpečnostní číslo pro komunikaci s %s již není ověřené.</string>
+  <string name="IdentityUtil_unverified_banner_two">Vaše bezpečnostní čísla pro komunikaci s %1$s a %2$s již nejsou ověřené.</string>
+  <string name="IdentityUtil_unverified_banner_many">Vaše bezpečnostní čísla pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Vaše bezpečnostní číslo pro komunikaci s %1$s se změnilo a již není ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si %1$s jednoduše přeinstaloval Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Vaše bezpečnostní čísla pro komunikaci s %1$s a %2$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si jednoduše přeinstalovali Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Vaše bezpečnostní číslo pro komunikaci s %1$s, %2$s a %3$s již nejsou ověřené. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo že si jednoduše přeinstalovali Signal.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Vaše bezpečnostní číslo s %s se právě změnilo.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Vaše bezpečnostní čísla pro komunikaci s %1$s a %2$s se právě změnila.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Vaše bezpečnostní čísla pro komunikaci s %1$s, %2$s a %3$s se právě změnila.</string>
   <plurals name="identity_others">
     <item quantity="one">%d ostatní</item>
     <item quantity="few">%d ostatní</item>
@@ -1970,12 +1981,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="unknown_sender_view__add_to_contacts">PŘIDAT DO KONTAKTŮ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEPŘIDÁVAT, ALE PONECHAT MŮJ PROFIL VIDITELNÝ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://signal.org/redirect/safety-numbers">Zjistěte více o kontrolních kódech.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://signal.org/redirect/safety-numbers">Zjistěte více o bezpečnostních číslech.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
   <string name="verify_display_fragment__loading">Načítání…</string>
   <string name="verify_display_fragment__verified">Ověřeno</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_number">Sdílet bezpečnostní kód</string>
+  <string name="verify_identity__share_safety_number">Sdílet bezpečnostní číslo</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pro odpověď přejeďte prstem nahoru</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pro odmítnutí přejeďte prstem dolů</string>
@@ -1994,12 +2005,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="message_details_recipient_header__not_sent">Neodesláno</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Nepodařilo se odeslat</string>
-  <string name="message_details_recipient__new_safety_number">Nový bezpečnostní kód</string>
+  <string name="message_details_recipient__new_safety_number">Nové bezpečnostní číslo</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Vytvořit heslo</string>
   <string name="AndroidManifest__select_contacts">Výběr kontaktů</string>
   <string name="AndroidManifest__change_passphrase">Změnit heslo</string>
-  <string name="AndroidManifest__verify_safety_number">Oveření bezpečnostního kódu</string>
+  <string name="AndroidManifest__verify_safety_number">Ověření bezpečnostního čísla</string>
   <string name="AndroidManifest__log_submit">Odeslat ladicí log</string>
   <string name="AndroidManifest__media_preview">Náhled multimédií</string>
   <string name="AndroidManifest__message_details">Podrobnosti zprávy</string>
@@ -2157,6 +2168,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__advanced_pin_settings">Pokročilá nastavení PIN</string>
   <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladicí log</string>
+  <string name="preferences__delete_account">Smazat účet</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \"WiFi volání\"</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit, pokud vaše zařízení používá doručování SMS/MMS přes WiFi (povolte pouze, když vaše zařízení umožňuje \"WiFi volání\")</string>
   <string name="preferences__incognito_keyboard">Inkognito klávesnice</string>
@@ -2542,7 +2554,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationActivity_wrong_number">Chybné číslo</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Raději mi zavolejte \n (V době %1$02d: %2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontaktujte podporu Signalu</string>
-  <string name="RegistrationActivity_code_support_subject">Registrace Signalu - ověřovací kód pro Android</string>
+  <string name="RegistrationActivity_code_support_subject">Registrace Signal - ověřovací kód pro Android</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
   <string name="preferences_app_protection__see_my_phone_number">Vidět mé telefonní číslo</string>
@@ -2618,7 +2630,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RecipientBottomSheet_add_to_contacts">Přidat do kontaktů</string>
   <string name="RecipientBottomSheet_add_to_a_group">Přidat do skupiny</string>
   <string name="RecipientBottomSheet_add_to_another_group">Přidat do jiné skupiny</string>
-  <string name="RecipientBottomSheet_view_safety_number">Zobrazit bezpečnostní kód</string>
+  <string name="RecipientBottomSheet_view_safety_number">Zobrazit bezpečnostní číslo</string>
   <string name="RecipientBottomSheet_make_group_admin">Nastavit správce skupiny</string>
   <string name="RecipientBottomSheet_remove_as_admin">Odebrat jako správce</string>
   <string name="RecipientBottomSheet_remove_from_group">Odebrat ze skupiny</string>
@@ -2637,7 +2649,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Starší a nové skupiny</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Co jsou starší skupiny?</string>
-  <string name="GroupsLearnMore_paragraph_1">Starší skupiny neumí vlastnosti nových skupin, jako je nastavení administrátorů a popisnější aktualizace skupin,</string>
+  <string name="GroupsLearnMore_paragraph_1">Starší skupiny nepodporují vlastnosti nových skupin, jako je nastavení správců a popisnější aktualizace skupin.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Mohu aktualizovat starší skupinu?</string>
   <string name="GroupsLearnMore_paragraph_2">Starší skupiny zatím nelze aktualizovat na nové skupiny, ale můžete vytvořit novou skupinu se stejnými členy, pokud používají poslední verzi Signalu.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal nabídne možnost aktualizovat starší skupiny v budoucnosti.</string>
@@ -2690,9 +2702,31 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ReviewCard__delete">Smazat</string>
   <string name="ReviewCard__recently_changed">Nedávno změněno profilové jméno z %1$s na %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$sse připojil</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s a %2$s se připojili</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s a %3$s se připojili.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s, %3$d a další se připojili</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s odešel</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s a %2$s odešli</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s a %3$s odešli</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ,%3$d a další odešli</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vy (na jiném zařízení)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na jiném zařízení)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Vymazání vašeho účtu způsobí:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Zadejte vaše tel. číslo</string>
+  <string name="DeleteAccountFragment__delete_account">Smazat účet</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Vymazání vašeho účtu a profilové fotografie</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Vymazání všech vašich zprávy</string>
+  <string name="DeleteAccountFragment__no_country_code">Kód země nebyl zadán</string>
+  <string name="DeleteAccountFragment__no_number">Číslo nebylo zadáno</string>
+  <string name="DeleteAccountFragment__the_phone_number">Zadané tel. číslo neodpovídá tomu v účtu.</string>
   <string name="DeleteAccountFragment__are_you_sure">Opravdu chcete smazat váš účet?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dojde ke smazání účtu Signal a resetování aplikace, které se po ukončení tohoto procesu vypne.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Došlo k chybě při mazání účtu. Jste připojeni k internetu?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Došlo k chybě při mazání lokálních dat. Můžete je smazat ručně v nastavení systému.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Spustit nastavení aplikace</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Hledat země</string>
   <!--EOF-->
 </resources>
