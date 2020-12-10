@@ -1374,7 +1374,8 @@ public class SignalServiceMessageSender {
 //        }
 //      }
       } else {
-        OutgoingPushMessage message = getFallbackCipherEncryptedMessage(recipient.getNumber(), plaintext, unidentifiedAccess);
+        //AC: Use unencrypted messages for private chats.
+        OutgoingPushMessage message = getUnencryptedMessage(plaintext);
         messages.add(message);
       }
     }
@@ -1382,24 +1383,30 @@ public class SignalServiceMessageSender {
     return new OutgoingPushMessageList(recipient.getNumber(), timestamp, messages, online);
   }
 
+  private OutgoingPushMessage getUnencryptedMessage(byte[] plaintext) {
+    Log.d("Loki", "Bypassing cipher and preparing a plaintext message.");
+    int deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID;
+    PushTransportDetails transportDetails = new PushTransportDetails(FallbackSessionCipher.getSessionVersion());
+    byte[] bytes = transportDetails.getPaddedMessageBody(plaintext);
+    return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(bytes));
+  }
+
   private OutgoingPushMessage getFallbackCipherEncryptedMessage(String publicKey, byte[] plaintext, Optional<UnidentifiedAccess> unidentifiedAccess)
       throws InvalidKeyException
   {
     Log.d("Loki", "Using fallback cipher.");
     int deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID;
-//    SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(publicKey, deviceID);
-//    byte[] userPrivateKey = store.getIdentityKeyPair().getPrivateKey().serialize();
-//    FallbackSessionCipher cipher = new FallbackSessionCipher(userPrivateKey, publicKey);
+    SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(publicKey, deviceID);
+    byte[] userPrivateKey = store.getIdentityKeyPair().getPrivateKey().serialize();
+    FallbackSessionCipher cipher = new FallbackSessionCipher(userPrivateKey, publicKey);
     PushTransportDetails transportDetails = new PushTransportDetails(FallbackSessionCipher.getSessionVersion());
-//    byte[] bytes = cipher.encrypt(transportDetails.getPaddedMessageBody(plaintext));
-    byte[] bytes = transportDetails.getPaddedMessageBody(plaintext);
-//    if (bytes == null) { bytes = new byte[0]; }
+    byte[] bytes = cipher.encrypt(transportDetails.getPaddedMessageBody(plaintext));
+    if (bytes == null) { bytes = new byte[0]; }
     if (unidentifiedAccess.isPresent()) {
-//      SealedSessionCipher sealedSessionCipher = new SealedSessionCipher(store, null, signalProtocolAddress);
-//      FallbackMessage message = new FallbackMessage(bytes);
-//      byte[] ciphertext = sealedSessionCipher.encrypt(signalProtocolAddress, unidentifiedAccess.get().getUnidentifiedCertificate(), message);
-//      return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(ciphertext));
-      return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(bytes));
+      SealedSessionCipher sealedSessionCipher = new SealedSessionCipher(store, null, signalProtocolAddress);
+      FallbackMessage message = new FallbackMessage(bytes);
+      byte[] ciphertext = sealedSessionCipher.encrypt(signalProtocolAddress, unidentifiedAccess.get().getUnidentifiedCertificate(), message);
+      return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(ciphertext));
     } else {
       return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.FALLBACK_MESSAGE_VALUE, deviceID, 0, Base64.encodeBytes(bytes));
     }
