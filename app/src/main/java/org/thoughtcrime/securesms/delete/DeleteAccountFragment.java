@@ -132,7 +132,7 @@ public class DeleteAccountFragment extends Fragment {
 
     reformatText(number.getText());
 
-    if (!TextUtils.isEmpty(regionCode) && !"ZZ".equals(regionCode) && !countryCode.hasFocus()) {
+    if (!TextUtils.isEmpty(regionCode) && !"ZZ".equals(regionCode)) {
       number.requestFocus();
 
       int numberLength = number.getText().length();
