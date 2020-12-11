@@ -41,7 +41,7 @@
                     android:textAllCaps="false"
                     android:visibility="gone"
                     app:backgroundTint="@color/core_white"
-                    app:cornerRadius="1000dp"
+                    app:cornerRadius="@dimen/material_button_full_round_corner_radius"
                     app:icon="@drawable/ic_video_solid_18"
                     app:iconGravity="textStart"
                     tools:iconTint="@color/core_ultramarine"
