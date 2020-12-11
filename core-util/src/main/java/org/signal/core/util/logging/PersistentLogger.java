@@ -247,6 +247,6 @@ public final class PersistentLogger extends Log.Logger {
   }
 
   private String buildEntry(String level, String tag, String message, Date date) {
-    return logTag + ' ' + DATE_FORMAT.format(date) + ' ' + level + ' ' + tag + ": " + message;
+    return '[' + logTag + "] " + DATE_FORMAT.format(date) + ' ' + level + ' ' + tag + ": " + message;
   }
 }
