@@ -36,4 +36,16 @@ public final class CallParticipantViewState extends RecipientMappingModel<CallPa
   public int getAudioMutedVisibility() {
     return callParticipant.isMicrophoneEnabled() ? View.GONE : View.VISIBLE;
   }
+
+  @Override
+  public boolean areItemsTheSame(@NonNull CallParticipantViewState newItem) {
+    return callParticipant.getCallParticipantId().equals(newItem.callParticipant.getCallParticipantId());
+  }
+
+  @Override
+  public boolean areContentsTheSame(@NonNull CallParticipantViewState newItem) {
+    return super.areContentsTheSame(newItem)                                            &&
+           callParticipant.isVideoEnabled() == newItem.callParticipant.isVideoEnabled() &&
+           callParticipant.isMicrophoneEnabled() == newItem.callParticipant.isMicrophoneEnabled();
+  }
 }
