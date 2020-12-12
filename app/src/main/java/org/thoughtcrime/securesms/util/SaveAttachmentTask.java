@@ -4,9 +4,11 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
+import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
@@ -97,7 +99,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     fileName = sanitizeOutputFileName(fileName);
 
     Uri outputUri = getMediaStoreContentUriForType(contentType);
-    Uri mediaUri  = createOutputUri(outputUri, fileName);
+    Uri mediaUri  = createOutputUri(outputUri, contentType, fileName);
 
     try (InputStream inputStream = PartAuthority.getAttachmentStream(context, attachment.uri)) {
 
@@ -138,6 +140,20 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     }
   }
 
+  public String getExternalPathToFileForType(String contentType) {
+    File storage;
+    if (contentType.startsWith("video/")) {
+      storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
+    } else if (contentType.startsWith("audio/")) {
+      storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+    } else if (contentType.startsWith("image/")) {
+      storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+    } else {
+      storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+    }
+    return storage.getAbsolutePath();
+  }
+
   private String generateOutputFileName(@NonNull String contentType, long timestamp) {
     MimeTypeMap      mimeTypeMap   = MimeTypeMap.getSingleton();
     String           extension     = mimeTypeMap.getExtensionFromMimeType(contentType);
@@ -153,13 +169,16 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     return new File(fileName).getName();
   }
 
-  private Uri createOutputUri(@NonNull Uri outputUri, @NonNull String fileName) throws IOException {
+  private Uri createOutputUri(@NonNull Uri outputUri, @NonNull String contentType, @NonNull String fileName)
+      throws IOException
+  {
     String[] fileParts = getFileNameParts(fileName);
     String   base      = fileParts[0];
     String   extension = fileParts[1];
     String   mimeType  = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
 
-    ContentValues contentValues = new ContentValues();
+    ContentResolver contentResolver = getContext().getContentResolver();
+    ContentValues contentValues     = new ContentValues();
     contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
     contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
     contentValues.put(MediaStore.MediaColumns.DATE_ADDED, System.currentTimeMillis());
@@ -167,11 +186,9 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
     if (Build.VERSION.SDK_INT > 28) {
       contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1);
-    }
-
-    if (Build.VERSION.SDK_INT <= 28 && Objects.equals(outputUri.getScheme(), ContentResolver.SCHEME_FILE)) {
-      File     outputDirectory = new File(outputUri.getPath());
-      File     outputFile      = new File(outputDirectory, base + "." + extension);
+    } else if (Objects.equals(outputUri.getScheme(), ContentResolver.SCHEME_FILE)) {
+      File outputDirectory = new File(outputUri.getPath());
+      File outputFile      = new File(outputDirectory, base + "." + extension);
 
       int i = 0;
       while (outputFile.exists()) {
@@ -183,9 +200,33 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       }
 
       return Uri.fromFile(outputFile);
+    } else {
+      String outputFileName = fileName;
+      String dataPath       = String.format("%s/%s", getExternalPathToFileForType(contentType), outputFileName);
+      int    i              = 0;
+      while (true) {
+        try (Cursor cursor = contentResolver.query(
+            outputUri,
+            new String[]{MediaStore.MediaColumns.DATA},
+            MediaStore.MediaColumns.DATA + " = ?",
+            new String[]{dataPath},
+            null)) {
+          if (cursor == null) {
+            throw new IOException("Something is wrong with the filename to save");
+          }
+          if (cursor.moveToFirst()) {
+            // The content exists. Rename and check again.
+            outputFileName = base + "-" + (++i) + "." + extension;
+            dataPath       = String.format("%s/%s", getExternalPathToFileForType(contentType), outputFileName);
+          } else {
+            break;
+          }
+        }
+      }
+      contentValues.put(MediaStore.MediaColumns.DATA, dataPath);
     }
 
-    return getContext().getContentResolver().insert(outputUri, contentValues);
+    return contentResolver.insert(outputUri, contentValues);
   }
 
   private String[] getFileNameParts(String fileName) {
