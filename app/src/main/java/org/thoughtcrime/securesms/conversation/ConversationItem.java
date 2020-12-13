@@ -55,7 +55,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BindableConversationItem;
-import org.thoughtcrime.securesms.ConfirmIdentityDialog;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -1036,16 +1035,6 @@ public class ConversationItem extends TapJackingProofLinearLayout
 
   /// Event handlers
 
-  private void handleApproveIdentity() {
-    List<IdentityKeyMismatch> mismatches = messageRecord.getIdentityKeyMismatches();
-
-    if (mismatches.size() != 1) {
-      throw new AssertionError("Identity mismatch count: " + mismatches.size());
-    }
-
-    new ConfirmIdentityDialog(context, messageRecord, mismatches.get(0)).show();
-  }
-
   private Spannable getLongMessageSpan(@NonNull MessageRecord messageRecord) {
     String   message;
     Runnable action;
@@ -1238,7 +1227,7 @@ public class ConversationItem extends TapJackingProofLinearLayout
         intent.putExtra(MessageDetailsActivity.ADDRESS_EXTRA, conversationRecipient.getAddress());
         context.startActivity(intent);
       } else if (!messageRecord.isOutgoing() && messageRecord.isIdentityMismatchFailure()) {
-        handleApproveIdentity();
+//        handleApproveIdentity();
       } else if (messageRecord.isPendingInsecureSmsFallback()) {
         handleMessageApproval();
       }

@@ -39,6 +39,7 @@ import java.util.concurrent.ExecutionException;
 
 import network.loki.messenger.R;
 
+//TODO Remove this class.
 public class ConversationUpdateItem extends LinearLayout
     implements RecipientModifiedListener, BindableConversationItem
 {
@@ -255,24 +256,24 @@ public class ConversationUpdateItem extends LinearLayout
 
       final Recipient sender = ConversationUpdateItem.this.sender;
 
-      IdentityUtil.getRemoteIdentityKey(getContext(), sender).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
-        @Override
-        public void onSuccess(Optional<IdentityRecord> result) {
-          if (result.isPresent()) {
-            Intent intent = new Intent(getContext(), VerifyIdentityActivity.class);
-            intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, sender.getAddress());
-            intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(result.get().getIdentityKey()));
-            intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, result.get().getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
-
-            getContext().startActivity(intent);
-          }
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          Log.w(TAG, e);
-        }
-      });
+//      IdentityUtil.getRemoteIdentityKey(getContext(), sender).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
+//        @Override
+//        public void onSuccess(Optional<IdentityRecord> result) {
+//          if (result.isPresent()) {
+//            Intent intent = new Intent(getContext(), VerifyIdentityActivity.class);
+//            intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, sender.getAddress());
+//            intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(result.get().getIdentityKey()));
+//            intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, result.get().getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
+//
+//            getContext().startActivity(intent);
+//          }
+//        }
+//
+//        @Override
+//        public void onFailure(ExecutionException e) {
+//          Log.w(TAG, e);
+//        }
+//      });
     }
   }
 

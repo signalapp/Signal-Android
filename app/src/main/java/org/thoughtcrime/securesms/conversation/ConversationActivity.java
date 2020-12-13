@@ -98,7 +98,6 @@ import org.thoughtcrime.securesms.MediaOverviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
-import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
@@ -1466,15 +1465,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Log.i(TAG, "Got identity records: " + result.first.isUnverified());
         identityRecords.replaceWith(result.first);
 
-        if (result.second != null) {
-          Log.d(TAG, "Replacing banner...");
-          unverifiedBannerView.get().display(result.second, result.first.getUnverifiedRecords(),
-                                             new UnverifiedClickedListener(),
-                                             new UnverifiedDismissedListener());
-        } else if (unverifiedBannerView.resolved()) {
-          Log.d(TAG, "Clearing banner...");
-          unverifiedBannerView.get().hide();
-        }
+        //TODO Remove it.
+//        if (result.second != null) {
+//          Log.d(TAG, "Replacing banner...");
+//          unverifiedBannerView.get().display(result.second, result.first.getUnverifiedRecords(),
+//                                             new UnverifiedClickedListener(),
+//                                             new UnverifiedDismissedListener());
+//        } else if (unverifiedBannerView.resolved()) {
+//          Log.d(TAG, "Clearing banner...");
+//          unverifiedBannerView.get().hide();
+//        }
 
 //        titleView.setVerified(isSecureText && identityRecords.isVerified());
 
@@ -2743,40 +2743,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           initializeIdentityRecords();
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    }
-  }
-
-  private class UnverifiedClickedListener implements UnverifiedBannerView.ClickListener {
-    @Override
-    public void onClicked(final List<IdentityRecord> unverifiedIdentities) {
-      Log.i(TAG, "onClicked: " + unverifiedIdentities.size());
-      if (unverifiedIdentities.size() == 1) {
-        Intent intent = new Intent(ConversationActivity.this, VerifyIdentityActivity.class);
-        intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, unverifiedIdentities.get(0).getAddress());
-        intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(unverifiedIdentities.get(0).getIdentityKey()));
-        intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, false);
-
-        startActivity(intent);
-      } else {
-        String[] unverifiedNames = new String[unverifiedIdentities.size()];
-
-        for (int i=0;i<unverifiedIdentities.size();i++) {
-          unverifiedNames[i] = Recipient.from(ConversationActivity.this, unverifiedIdentities.get(i).getAddress(), false).toShortString();
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);
-        builder.setIconAttribute(R.attr.dialog_alert_icon);
-        builder.setTitle("No longer verified");
-        builder.setItems(unverifiedNames, (dialog, which) -> {
-          Intent intent = new Intent(ConversationActivity.this, VerifyIdentityActivity.class);
-          intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, unverifiedIdentities.get(which).getAddress());
-          intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(unverifiedIdentities.get(which).getIdentityKey()));
-          intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, false);
-
-          startActivity(intent);
-        });
-        builder.show();
-      }
     }
   }
 
