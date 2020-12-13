@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -82,6 +83,9 @@ public class ApplicationMigrations {
       Log.d(TAG, "Not an update. Skipping.");
       VersionTracker.updateLastSeenVersion(context);
       return;
+    } else {
+      Log.d(TAG, "About to update. Clearing deprecation flag.");
+      SignalStore.misc().clearClientDeprecated();
     }
 
     final int lastSeenVersion = TextSecurePreferences.getAppMigrationVersion(context);
