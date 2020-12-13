@@ -717,9 +717,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     inflater.inflate(R.menu.conversation, menu);
 
-    if (isSingleConversation()) {
-      inflater.inflate(R.menu.conversation_secure, menu);
-    }
+//    if (isSingleConversation()) {
+//      inflater.inflate(R.menu.conversation_secure, menu);
+//    }
 
     if (recipient != null && recipient.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
     else                                          inflater.inflate(R.menu.conversation_unmuted, menu);
@@ -810,7 +810,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
 //    case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
-    case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
+//    case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
 //    case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
