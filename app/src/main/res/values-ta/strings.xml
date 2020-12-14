@@ -1848,7 +1848,7 @@
   <string name="message_details_recipient_header__sent_to">அனுப்பப்பட்டது</string>
   <string name="message_details_recipient_header__sent_from">அனுப்புனர்</string>
   <string name="message_details_recipient_header__delivered_to">வழங்கப்பட்டது</string>
-  <string name="message_details_recipient_header__read_by">படிப்பவர்கள்</string>
+  <string name="message_details_recipient_header__read_by">படித்தவர்கள்</string>
   <string name="message_details_recipient_header__not_sent">அனுப்ப முடியவில்லை</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">அனுப்ப முடியவில்லை</string>

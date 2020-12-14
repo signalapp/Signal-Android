@@ -1458,6 +1458,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Fogadva egy társított eszközön.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Elutasítva egy társított eszközön.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Foglalt jelzés egy társított eszközön.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Valaki olyan csatlakozott a híváshoz, akinek biztonsági azonosítója megváltozott. </string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">A biztonsági számod megváltozott a vele folytatott beszélgetésedhez: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, vagy azt, hogy %2$s egyszerűen újratelepítette a Signal-t.
     </string>
@@ -1465,6 +1466,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="WebRtcCallScreen_new_safety_number_title">Új biztonsági szám</string>
   <string name="WebRtcCallScreen_accept">Elfogadás</string>
   <string name="WebRtcCallScreen_end_call">Hívás befejezése</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Nézetváltás felfelé suhintással</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Elutasítás</string>
   <string name="WebRtcCallScreen__answer">Válasz</string>

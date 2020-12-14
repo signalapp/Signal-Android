@@ -96,7 +96,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du kommer inte längre att få meddelanden eller uppdateringar från denna grupp och medlemmarna kommer inte att kunna lägga till dig i denna grupp igen.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppmedlemmar kommer inte att kunna lägga till dig i denna grupp igen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppmedlemmar kommer att kunna lägga till dig i denna grupp igen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Du kommer att kunna meddela och ringa varandra och ditt namn och foto delas med dem.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ni kommer att kunna meddela och ringa varandra och ditt namn och foto delas.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blockerade personer kommer inte att kunna ringa eller skicka meddelanden till dig.</string>
   <string name="BlockUnblockDialog_unblock_s">Avblockera %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Avblockera</string>
@@ -508,7 +508,7 @@
   <string name="GroupsV1MigrationInitiationReminder_update_group">Uppdatera grupp</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="one">%1$d medlem kunde inte läggas till igen i den Nya gruppen. Vill du lägga till dem nu?</item>
+    <item quantity="one">%1$d medlem kunde inte läggas till igen i den Nya gruppen. Vill du lägga till medlemmen nu?</item>
     <item quantity="other">%1$d medlemmar kunde inte läggas till igen i den Nya gruppen. Vill du lägga till dem nu?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
@@ -615,12 +615,12 @@
     <item quantity="other">%d medlemmar stöder inte Nya grupper, så denna grupp kan inte skapas.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">En äldre grupp skapas eftersom \"%1$s\" använder en gammal version av Signal. Du kan skapa en ny stilgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">En Äldre grupp skapas eftersom \"%1$s\" använder en gammal version av Signal. Du kan skapa en Ny formatgrupp med medlemmen när medlemmen har uppdaterat Signal eller ta bort medlemmen före du skapar gruppen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">En äldre grupp skapas eftersom %1$d medlem använder en gammal version av Signal. Du kan skapa en ny stilgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</item>
-    <item quantity="other">En äldre grupp skapas eftersom %1$d medlemmar använder en gammal version av Signal. Du kan skapa en ny stilgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</item>
+    <item quantity="one">En äldre grupp skapas eftersom %1$d medlem använder en gammal version av Signal. Du kan skapa en ny formatgrupp med medlemmen när medlemmen har uppdaterat Signal eller ta bort medlemmen innan du skapar gruppen.</item>
+    <item quantity="other">En Äldre grupp skapas eftersom %1$d medlemmar använder en gammal version av Signal. Du kan skapa en Ny formatgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denna grupp kan inte skapas eftersom “%1$s” använder en gammal version av Signal. Du måste ta bort dem innan du skapar gruppen.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denna grupp kan inte skapas eftersom \"%1$s\" använder en gammal version av Signal. Du måste ta bort medlemmen innan du skapar gruppen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Denna grupp kan inte skapas eftersom %1$d medlem använder en gammal version av Signal. Du måste ta bort dem innan du skapar gruppen.</item>
     <item quantity="other">Denna grupp kan inte skapas eftersom %1$d medlemmar använder en gammal version av Signal. Du måste ta bort dem innan du skapar gruppen.</item>
@@ -1077,15 +1077,15 @@
   <string name="MessageRequestBottomView_delete">Ta bort</string>
   <string name="MessageRequestBottomView_block">Blockera</string>
   <string name="MessageRequestBottomView_unblock">Avblockera</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Tillåt att %1$s meddelar dig och dela ditt namn och foto med dem? De vet inte att du har sett deras meddelande förrän du accepterar.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Tillåt att %1$s meddelar dig och dela ditt namn och foto med dem? Du får inte några meddelanden förrän du har avblockerat dem.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Tillåt att %1$s meddelar dig och dela ditt namn och foto? Personen vet inte att du har sett personens meddelande förrän du accepterar.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Tillåt att %1$s meddelar dig och dela ditt namn och foto? Du får inte några meddelanden förrän du har avblockerat personen.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsätta din konversation med den här gruppen och dela ditt namn och foto med dess medlemmar?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppgradera denna grupp för att aktivera nya funktioner som @omnämnanden och administratörer. Medlemmar som inte har delat sitt namn eller foto i den här gruppen kommer att inbjudas att gå med.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Den här Äldre gruppen kan inte längre användas eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsätt din konversation med %1$s och dela ditt namn och foto med dem?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsätt din konversation med %1$s och dela ditt namn och foto?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? De kommer inte att veta att du har sett deras meddelanden förrän du accepterar.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i den här gruppen? De vet inte att du har sett deras meddelanden förrän du accepterar det.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ta bort blockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har avblockerat dem.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Avblockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har avblockerat dem.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s och %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, och %3$s</string>
@@ -1428,7 +1428,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Användarnamn på Signal är valfria. Om du väljer att skapa ett användarnamn kan andra Signal-användare hitta dig med detta användarnamn och kontakta dig utan att veta ditt telefonnummer.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be dem uppdatera innan de verifierar ditt säkerhetsnummer.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be kontakten att uppdatera innan de verifierar ditt säkerhetsnummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Vänligen uppdatera för att jämföra dem.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannade QR-koden är inte en korrekt formaterad verifieringskod för säkerhetsnummer. Vänligen försök att skanna den igen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Dela säkerhetsnummer via…</string>

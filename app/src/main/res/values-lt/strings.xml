@@ -2714,6 +2714,11 @@
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Jūs (kitame įrenginyje)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (kitame įrenginyje)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Ištrinant jūsų paskyrą bus:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Įvestas jūsų telefono numeris</string>
+  <string name="DeleteAccountFragment__delete_account">Ištrinta paskyra</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ištrinta jūsų paskyros informacija ir profilio nuotrauka</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Ištrintos visos jūsų žinutės</string>
   <string name="DeleteAccountFragment__no_country_code">Nenurodytas joks šalies kodas</string>
   <string name="DeleteAccountFragment__no_number">Nenurodytas joks numeris</string>
   <string name="DeleteAccountFragment__the_phone_number">Jūsų įvestas telefono numeris nesutampa su jūsų paskyros telefono numeriu.</string>

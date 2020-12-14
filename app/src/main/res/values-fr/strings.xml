@@ -1220,6 +1220,7 @@
   <string name="WebRtcCallView__start_call">Lancer un appel</string>
   <string name="WebRtcCallView__join_call">Me joindre à l’appel</string>
   <string name="WebRtcCallView__call_is_full">L’appel est complet</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Le nombre maximal de %1$d participants a été atteint pour cet appel. Veuillez réessayer plus tard.</string>
   <string name="WebRtcCallView__s_group_call">Appel de groupe « %1$s »</string>
   <string name="WebRtcCallView__view_participants_list">Afficher les participants</string>
   <string name="WebRtcCallView__your_video_is_off">La vidéo est désactivée</string>
@@ -1244,6 +1245,7 @@
   <string name="CallParticipantView__more_info">Plus de précisions</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Vous ne recevrez pas leur son ou leur vidéo et ils ne recevront pas les vôtres.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Impossible de recevoir le son &amp; la vidéo de %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Impossible de recevoir le son et la vidéo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Cela peut être dû au fait qu\'ils n\'ont pas vérifié votre changement de numéro de sécurité, qu\'il y a un problème avec leur appareil ou qu\'ils vous ont bloqué.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
@@ -1628,7 +1630,7 @@
     <item quantity="other">%1$d membres</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Message Signal</string>
+  <string name="conversation_activity__type_message_push">Message Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Texto non sécurisé</string>
   <string name="conversation_activity__type_message_mms_insecure">Message multimédia non sécurisé</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
@@ -2525,11 +2527,28 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s s\'est joint</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s et %2$s se sont joints</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s et %3$s se sont joints</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s et %3$d se sont joints</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s a quitté</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s et %2$s ont quitté</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s et %3$s ont quitté</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s et %3$d autres ont quitté</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vous (sur un autre appareil)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (sur un autre appareil)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Supprimer votre compte va :</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Saisissez votre numéro de téléphone</string>
   <string name="DeleteAccountFragment__delete_account">Supprimer le compte </string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Supprimer les informations de votre compte et votre photo de profil</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Supprimer tous vos messages</string>
+  <string name="DeleteAccountFragment__no_country_code">Aucun indicatif de pays spécifié</string>
+  <string name="DeleteAccountFragment__no_number">Aucun numéro spécifié</string>
+  <string name="DeleteAccountFragment__the_phone_number">Le numéro de téléphone saisi ne correspond pas à celui de votre compte.</string>
   <string name="DeleteAccountFragment__are_you_sure">Voulez-vous vraiment supprimer votre compte ?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Cela supprimera votre compte Signal et réinitialisera l\'application. L\'appli se fermera une fois le processus terminé.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Impossible de supprimer le compte. Avez-vous une connexion réseau ?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Impossible de supprimer les données locales. Vous pouvez les effacer manuellement dans les paramètres système de l\'application.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Lancer les paramètres de l\'appli</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Chercher le pays</string>
   <!--EOF-->
 </resources>

@@ -1095,7 +1095,7 @@
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d membro (+%2$d convidado)</item>
-    <item quantity="other">%1$d membros (+%2$d comvidados)</item>
+    <item quantity="other">%1$d membros (+%2$d convidados)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d grupo adicional</item>

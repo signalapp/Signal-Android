@@ -47,7 +47,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Zámek obrazovky %1$s, Zámek registrace %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Zámek obrazovky %1$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, Jazyk %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, jazyk %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je vyžadován pro zámek registrace. Nejprve prosím zakažte zámek registrace, aby bylo možné PIN deaktivovat.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN vytvořen.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN zakázán</string>
@@ -91,7 +91,7 @@
   <string name="BlockedUsersActivity__blocked_users_will">Zablokovaní uživatelé vám nebudou moci zavolat nebo posílat zprávy.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Žádní zablokovaní uživatelé</string>
   <string name="BlockedUsersActivity__block_user">Zablokovat uživatele?</string>
-  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" nebude moci vám volat nebo posílat zprávy.</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vám nebude moci volat nebo posílat zprávy.</string>
   <string name="BlockedUsersActivity__block">Zablokovat</string>
   <string name="BlockedUsersActivity__unblock_user">Odblokovat uživatele?</string>
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Chcete odblokovat \"%1$s\"?</string>
@@ -101,7 +101,7 @@
   <string name="BlockUnblockDialog_block_s">Zablokovat %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Od této skupiny již nebudete dostávat zprávy ani aktualizace a členové vás do této skupiny už nebudou moci znovu přidat.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Členové skupiny vás nebudou moci znovu do této skupiny přidat.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členové skupiny budou moci přidat vás znovu do této skupiny.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členové skupiny vás budou moci znovu přidat do této skupiny.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete moct si vzájemně posílat zprávy a volat, a budou s nimi sdíleny vaše jméno a fotografie.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudou moci volat ani posílat zprávy.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokovat %1$s?</string>
@@ -130,12 +130,12 @@
   <string name="CameraContacts_recent_contacts">Nedávné kontakty</string>
   <string name="CameraContacts_signal_contacts">Signal kontakty</string>
   <string name="CameraContacts_signal_groups">Signal skupiny</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Lze sdílet maximálně s tímto počtem konverzací: %d.</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Lze sdílet maximálně s %d konverzacemi.</string>
   <string name="CameraContacts_select_signal_recipients">Vyberte Signal příjemce</string>
   <string name="CameraContacts_no_signal_contacts">Žádné Signal kontakty</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Pro odeslání fotografií Signal kontaktům můžete použít pouze tlačítko fotoaparátu.</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Tlačítko fotoaparátu můžete použit pouze pro odeslání fotografií kontaktům Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nemůžete najít, koho jste hledali?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Pozvěte kontakt do Signalu</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Pozvěte kontakt do Signal</string>
   <string name="CameraContacts__menu_search">Hledat</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odebrat</string>
@@ -147,7 +147,7 @@
   <string name="ClientDeprecatedActivity_update">Aktualizovat</string>
   <string name="ClientDeprecatedActivity_dont_update">Neaktualizovat</string>
   <string name="ClientDeprecatedActivity_warning">Varování</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Verze Signalu, kterou používáte, je zastaralá. Můžete zobrazit svoji historii zpráv, ale nebudete moci zprávy odesílat ani přijímat, dokud neprovedete aktualizaci.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Verze Signal, kterou používáte, je zastaralá. Můžete zobrazit svoji historii zpráv, ale nebudete moci zprávy odesílat ani přijímat, dokud neprovedete aktualizaci.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nebyl nalezen žádný webový prohlížeč.</string>
   <string name="CommunicationActions_no_email_app_found">Nenalezena žádná emailová aplikace.</string>
@@ -158,7 +158,7 @@
   <string name="CommunicationActions_cancel">Storno</string>
   <string name="CommunicationActions_call">Volat</string>
   <string name="CommunicationActions_insecure_call">Nezabezpečený hovor</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Mohou vám být účtovány telefonní poplatky. Číslo, které voláte, není registrováno u Signalu a hovor tak bude uskutečněn prostřednictvím mobilního operátora, nikoli přes internet.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Mohou vám být účtovány telefonní poplatky. Číslo, které voláte, není registrováno u Signal a hovor tak bude uskutečněn prostřednictvím mobilního operátora, nikoli přes internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostní číslo pro %1$s se změnilo. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo si %2$s jednoduše přeinstaloval Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní číslo pro tento kontakt.</string>
@@ -189,7 +189,7 @@
   <string name="ConversationItem_error_partially_not_delivered">Odesláno částečně, klepněte pro zobrazení detailů</string>
   <string name="ConversationItem_error_network_not_delivered">Odeslání selhalo</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Byla vám doručena zpráva s klíčem, klepněte pro jeho zpracování.</string>
-  <string name="ConversationItem_group_action_left">%1$s opustil(a) skupinu.</string>
+  <string name="ConversationItem_group_action_left">%1$s opustil skupinu.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Odeslání se nezdařilo, klepněte pro odeslání nešifrovaným způsobem</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Použít záložní způsob přes nešifrovanou SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Použít záložní způsob přes nešifrovanou MMS?</string>
@@ -318,12 +318,12 @@
   <string name="ConversationFragment_deleting_messages">Mažu zprávy…</string>
   <string name="ConversationFragment_delete_for_me">Smazat u mne</string>
   <string name="ConversationFragment_delete_for_everyone">Smazat u každého</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tato zpráva bude smazána pro všechny účastníky konverzace, pokud používají poslední verzi Signalu. Budou vidět, že jste smazali zprávu.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tato zpráva bude smazána pro všechny účastníky konverzace, pokud používají poslední verzi Signal. Budou vidět, že jste smazali zprávu.</string>
   <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
   <string name="ConversationFragment_failed_to_open_message">Zprávu se nepovedlo otevřít</string>
-  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě do prava </string>
-  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě do leva</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě doprava </string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě doleva</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchozí soubory médií pro jednorázové zobrazení jsou po odeslání automaticky odstraněny</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Tuto zprávu jste už zobrazili</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Do této konverzace si můžete přidat své poznámky.\nPokud má váš účet nějaká propojená zařízení, tak budou nové poznámky synchronizovány.</string>
@@ -400,7 +400,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Otestujte přístupovou frázi pro vaši zálohu a ověřte, že se shoduje</string>
   <string name="BackupsPreferenceFragment__turn_on">Zapnout</string>
   <string name="BackupsPreferenceFragment__turn_off">Vypnout</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Pro obnovení ze zálohy nainstalujte novou kopii Signalu. Spusťte aplikaci a klepněte na \"Obnovení ze zálohy, pak najděte soubor se zálohou. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Pro obnovení ze zálohy znovu nainstalujte aplikaci Signal. Spusťte aplikaci a klepněte na \"Obnovení ze zálohy\", pak najděte soubor se zálohou. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Zjistit více</string>
   <string name="BackupsPreferenceFragment__in_progress">Probíhá…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d dosud…</string>
@@ -448,9 +448,9 @@
   <string name="DonateMegaphone_no_thanks">Ne, děkuji</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimlizovat pro chybějící Google Play službu</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Klepnutím zakážete systémové optimalizace baterie, které způsobují nemožnost Signalu přijímat zprávy v době nečinnosti.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Klepnutím zakážete systémové optimalizace baterie, které způsobují nemožnost aplikaci Signal přijímat zprávy v době nečinnosti.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Tato verze Signalu je zastaralá. Proveďte aktualizaci, abyste mohli odesílat a přijímat zprávy.</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Tato verze aplikace Signal je zastaralá. Proveďte aktualizaci, abyste mohli odesílat a přijímat zprávy.</string>
   <string name="ExpiredBuildReminder_update_now">Aktualizovat nyní</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -479,7 +479,7 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" přidán do \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Přidat do skupiny</string>
   <string name="AddToGroupActivity_add_to_groups">Přidat do skupin</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tohoto člověka nemůžete přidat do starších skupin.</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tento člověk nemůže být přidán do starších skupin.</string>
   <string name="AddToGroupActivity_add">Přidat</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Vyberte nového správce.</string>
@@ -638,8 +638,8 @@
   </plurals>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Čekající žádosti o členství</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">Ždáné žádosti o členství k zobrazení</string>
-  <string name="RequestingMembersFragment_explanation">Lidé na tomto seznamu se pokouší připojit k této skupině pomocí skupinového odkazu.</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Žádné žádosti o členství k zobrazení</string>
+  <string name="RequestingMembersFragment_explanation">Lidé na tomto seznamu se pokouší připojit k této skupině pomocí odkazu skupiny.</string>
   <string name="RequestingMembersFragment_added_s">Přidán \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Odmítnut \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -681,28 +681,28 @@
     <item quantity="other">%d členů nepodporuje nové skupiny, takže tuto skupinu nelze vytvořit.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Bude vytvořena starší skupina, protože \"%1$s\" používá zastaralou verzi Signalu. Novou verzi skupiny s ním budete moci vytvořit, až si zaktualizuje Signal, nebo jej před vytvořením skupiny odeberte.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Bude vytvořena starší skupina, protože \"%1$s\" používá zastaralou verzi aplikace Signal. Novou verzi skupiny s ním budete moci vytvořit, až si zaktualizuje Signal, nebo jej před vytvořením skupiny odeberte.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Bude vytvořena starší skupina, protože %1$d člen používá zastaralou verzi Signalu. Novou verzi skupiny s ním budete moci vytvořit, až si zaktualizuje Signal, nebo jej před vytvořením skupiny odeberte.</item>
     <item quantity="few">Bude vytvořena starší skupina, protože %1$d členové používají zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny odeberte.</item>
     <item quantity="many">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny odeberte.</item>
-    <item quantity="other">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi Signalu. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny  odeberte.</item>
+    <item quantity="other">Bude vytvořena starší skupina, protože %1$d členů používá zastaralou verzi aplikaci Signal. Novou verzi skupiny můžete s nimi vytvořit, až si zaktualizují Signal, nebo je před vytvořením skupiny  odeberte.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tuto skupinu nelze vytvořit, protože \"%1$s\" používá starou verzi Signalu. Musíte je odstranit před vytvořením skupiny.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tuto skupinu nelze vytvořit, protože \"%1$s\" používá starou verzi aplikace Signal. Musíte je odstranit před vytvořením skupiny.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Tuto skupinu nelze vytvořit, protože %1$d člen používá starou verzi Signalu. Musíte ho odstranit před vytvořením skupiny.</item>
     <item quantity="few">Tuto skupinu nelze vytvořit, protože %1$d členové používají starou verzi Signalu. Musíte je odstranit před vytvořením skupiny.</item>
     <item quantity="many">Tuto skupinu nelze vytvořit, protože %1$d členů používá starou verzi Signalu. Musíte je odstranit před vytvořením skupiny.</item>
-    <item quantity="other">Tuto skupinu nelze vytvořit, protože %1$d členů používá starou verzi Signalu. Musíte je odstranit před vytvořením skupiny.</item>
+    <item quantity="other">Tuto skupinu nelze vytvořit, protože %1$d členů používá starou verzi aplikace Signal. Musíte je odstranit před vytvořením skupiny.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Zmizení zpráv</string>
-  <string name="ManageGroupActivity_member_requests_and_invites">Požadavky &amp; pozvánky členů</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Požadavky na členství a pozvánky</string>
   <string name="ManageGroupActivity_add_members">Přidat členy</string>
   <string name="ManageGroupActivity_edit_group_info">Upravit informace o skupině</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Kdo může přidávat nové členy?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kdo může upravovat informace o této skupině?</string>
-  <string name="ManageGroupActivity_group_link">Skupinový odkaz</string>
+  <string name="ManageGroupActivity_group_link">Odkaz skupiny</string>
   <string name="ManageGroupActivity_block_group">Zablokovat skupinu</string>
   <string name="ManageGroupActivity_unblock_group">Odblokovat skupinu</string>
   <string name="ManageGroupActivity_leave_group">Opustit skupinu</string>
@@ -727,9 +727,9 @@
     <item quantity="many">%d členů přidáno.</item>
     <item quantity="other">%d členů přidáno.</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Pouze správci mohou povolit nebo zakázat sdílený skupinový odkaz.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Pouze správci mohou povolit nebo zakázat sdílící odkaz skupiny.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Pouze správci mohou povolit nebo zakázat možnost schvalovat nové členy.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Pouze správci mohou obnovit sdílený skupinový odkaz.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Pouze správci mohou obnovit sdílící odkaz skupiny.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnění toto provést</string>
   <string name="ManageGroupActivity_not_capable">Přidali jste někoho, kdo nepodporuje nové skupiny a musí aktualizovat Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepodařilo se aktualizovat skupinu</string>
@@ -741,12 +741,12 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">Toto je starší skupina. Funkce jako správci skupin jsou dostupné pouze pro nové skupiny.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Toto je starší verze skupiny. Pro přístup k novým funkcím jako @zmínky a správci,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Tuto starší verzi skupiny nelze aktualizovat na novou skupinu, protože je příliš velká. Maximální velikost skupiny je %1$d.</string>
-  <string name="ManageGroupActivity_upgrade_this_group">Aktualizovat tuto skupinu.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">aktualizovat tuto skupinu.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nešifrovaná MMS skupina. Pozvěte své kontakty do Signal pro soukromou komunikace.</string>
   <string name="ManageGroupActivity_invite_now">Pozvat nyní</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky.</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Přijmout upozornění při zmínce ve ztišených rozhovorech?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Zobrazit upozornění při zmínce ve ztišených konverzacích?</string>
   <string name="GroupMentionSettingDialog_default_notify_me">Výchozí (upozornit mne)</string>
   <string name="GroupMentionSettingDialog_default_dont_notify_me">Výchozí (neupozorňovat mne)</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Vždy mne upozornit</string>
@@ -797,9 +797,9 @@
   <string name="CustomNotificationsDialogFragment__disabled">Zakázáno</string>
   <string name="CustomNotificationsDialogFragment__default">Výchozí</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Sdílený skupinový odkaz</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Sdílící odkaz skupiny</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Spravovat &amp; sdílet</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Skupinový odkaz</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Odkaz skupiny</string>
   <string name="ShareableGroupLinkDialogFragment__share">Sdílet</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Obnovit odkaz</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Žádosti o členství</string>
@@ -807,9 +807,9 @@
   <string name="ShareableGroupLinkDialogFragment__enabled">Povoleno</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Zakázáno</string>
   <string name="ShareableGroupLinkDialogFragment__default">Výchozí</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Obnovit skupinový odkaz</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Požadovat, aby správce schválil nové členy, kteří se připojují přes skupinový odkaz.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Opravdu chcete obnovit skupinový odkaz? Pomocí současného odkazu se pak už lidé nebudou schopni ke skupině připojit.</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Obnovit odkaz skupiny</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Požadovat, aby správce schválil nové členy, kteří se připojují přes odkaz skupiny.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Opravdu chcete obnovit odkaz skupiny? Pomocí současného odkazu se pak už lidé nebudou schopni ke skupině připojit.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR kód</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Lidé, kteří naskenují tento kód, budou schopni připojit se k vaší skupině. Správci stále budou muset schválit nové členy, pokud jste to tak nastavili.</string>
@@ -828,7 +828,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Žádost o připojení</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nelze se připojit ke skupině. Prosím zkuste to znovu později</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Došlo k chybě v síti.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tento odkaz na skupinu není aktivní</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tento odkaz skupiny není aktivní</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nelze získat informace o skupině, zkuste to, prosím, později.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Připojit se k této skupině a sdílet vaše jméno a fotografii s jejími členy?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Správce této skupiny musí schválit váš požadavek na přístup, než budete  moci do této skupiny vstoupit. Součástí požadavku je poskytnutí vašeho jména a fotografie členům skupiny.</string>
@@ -840,18 +840,18 @@
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Těšte se na skupinové odkazy</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualizujte Signal pro používání skupinových odkazů</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verze aplikace Signal, kterou používáte, nepodporuje skupinové odkazy. Aktualizujte na nejnovější verzi pro připojení k této skupině pomocí odkazu.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aktualizujte Signal pro používání odkazů skupiny</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verze aplikace Signal, kterou používáte, nepodporuje odkazy skupin. Aktualizujte na nejnovější verzi pro připojení k této skupině pomocí odkazu.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovat Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na jednom nebo více vašich propojených zařízeních běží verze Signalu, která nepodporuje skupinové odkazy. Aktualizujte Signal na propojeném zařízení či zařízeních, abyste se mohli připojit k této skupině. </string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Skupinový odkaz je neplatný</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na jednom nebo více vašich propojených zařízeních běží verze aplikace Signal, která nepodporuje odkazy skupiny. Aktualizujte Signal na propojeném zařízení či zařízeních, abyste se mohli připojit k této skupině. </string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Odkaz skupiny je neplatný</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Přidat \"%1$s\" do skupiny?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Odmítnout požadavek od \"%1$s\"?</string>
   <string name="RequestConfirmationDialog_add">Přidat</string>
   <string name="RequestConfirmationDialog_deny">Odmítnout</string>
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">Skupinový avatar</string>
+  <string name="CropImageActivity_group_avatar">Avatar skupiny</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Rozostřit tváře</string>
@@ -869,7 +869,7 @@
   <string name="InviteActivity_sending">Odesílaní…</string>
   <string name="InviteActivity_heart_content_description">Srdíčko</string>
   <string name="InviteActivity_invitations_sent">Pozvánka odeslána!</string>
-  <string name="InviteActivity_invite_to_signal">Pozvat do Signalu</string>
+  <string name="InviteActivity_invite_to_signal">Pozvat do Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">POSLAT SMS %d PŘÍTELI</item>
     <item quantity="few">POSLAT SMS %d PŘÁTELŮM</item>
@@ -915,8 +915,8 @@
     <item quantity="many">Tímto trvale smažete všech %1$d vybraných souborů. Veškerý text zpráv spojený s těmito položkami bude také smazán.</item>
     <item quantity="other">Tímto trvale smažete všech %1$d vybraných souborů. Veškerý text zpráv spojený s těmito položkami bude také smazán.</item>
   </plurals>
-  <string name="MediaOverviewActivity_Media_delete_progress_title">Mažu</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Mažu zprávy…</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Mazání</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Mazání zpráv…</string>
   <string name="MediaOverviewActivity_Select_all">Vybrat vše</string>
   <string name="MediaOverviewActivity_collecting_attachments">Shromažďuji přílohy…</string>
   <string name="MediaOverviewActivity_Sort_by">Seřadit podle</string>
@@ -955,9 +955,9 @@
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Budeme vás příležitostně žádat o ověření vašeho PIN, abyste si jej zapamatovali.</string>
   <string name="Megaphones_verify_pin">Ověřit PIN</string>
   <!--NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Probíhá Signal volání</string>
-  <string name="NotificationBarManager__establishing_signal_call">Navazuji Signal hovor</string>
-  <string name="NotificationBarManager__incoming_signal_call">Příchozí Signal hovor</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Probíhá hovor Signal</string>
+  <string name="NotificationBarManager__establishing_signal_call">Navazuji hovor Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Příchozí hovor Signal</string>
   <string name="NotificationBarManager__deny_call">Zakázat volání</string>
   <string name="NotificationBarManager__answer_call">Přijmout hovor</string>
   <string name="NotificationBarManager__end_call">Ukončit hovor</string>
@@ -978,8 +978,8 @@
   <string name="MediaSendActivity_message_to_s">Zpráva pro %s</string>
   <string name="MediaSendActivity_message">Zpráva</string>
   <string name="MediaSendActivity_select_recipients">Vyberte příjemce</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal potřebuje přístup k vašim kontaktům, aby je mohl zobrazit.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal potřebuje oprávnění pro přístup ke kontaktům, aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal potřebuje přístup k vašim kontaktům, aby vám je mohl zobrazit.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal potřebuje oprávnění pro přístup ke kontaktům, aby vám je mohl zobrazit, ale toto oprávnění je nyní trvale zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nemůžete sdílet více než  %d položku.</item>
     <item quantity="few">Nemůžete sdílet více než  %d položky.</item>
@@ -1000,17 +1000,17 @@
   <string name="MessageRecord_you_called_date">Volali jste · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Zmeškaný hovor · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Zmeškaný videohovor · %1$s</string>
-  <string name="MessageRecord_s_updated_group">%s upravil(a) skupinu.</string>
-  <string name="MessageRecord_s_called_you_date">%1$s vám volal(a) · %2$s</string>
+  <string name="MessageRecord_s_updated_group">%s upravil skupinu.</string>
+  <string name="MessageRecord_s_called_you_date">%1$s vám volal · %2$s</string>
   <string name="MessageRecord_called_s">Volán %s</string>
   <string name="MessageRecord_s_joined_signal">%s má Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Zakázali jste zmizení zpráv.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$szakázal(a) zmizení zpráv.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$szakázal zmizení zpráv.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili jste časovač pro zmizení zpráv na %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil(a) časovač pro zmizení zpráv na %2$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil časovač pro zmizení zpráv na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač pro zmizení zprávy byl nastaven na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Tato skupina byla aktualizována na novou verzi.</string>
-  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Byl jste pozván k nové verzi skupiny, ale nemohl jste být přidán.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Byli jste pozváni k nové verzi skupiny, ale nemohli jste být přidáni.</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Člena nebylo možné přidat do nové verze skupiny a byl pozván, aby se připojil.</item>
     <item quantity="few">%1$s členů nebylo možné přidat do nové verze skupiny a byli pozváni, aby se připojili.</item>
@@ -1045,9 +1045,9 @@
   <string name="MessageRecord_you_are_no_longer_in_the_group">Už nejste členem skupiny.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s už není členem skupiny.</string>
   <!--GV2 role change-->
-  <string name="MessageRecord_you_made_s_an_admin">Udělali jste %1$s správcem.</string>
-  <string name="MessageRecord_s_made_s_an_admin">%1$s udělal %2$s správcem.</string>
-  <string name="MessageRecord_s_made_you_an_admin">%1$s vás udělal správcem.</string>
+  <string name="MessageRecord_you_made_s_an_admin">Učinili jste %1$s správcem.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s učinil %2$s správcem.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s vás učinil správcem.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Odebrali jste správcovská oprávnění %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s odebral vaše správcovská oprávnění.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odebral správcovská oprávnění %2$s.</string>
@@ -1116,31 +1116,31 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s změnil, kdo může upravovat členství ve skupině, na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Osoba oprávněná upravovat členství ve skupině byla změněna na \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Zapnuli jste skupinový odkaz bez schvalování správcem.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Zapnuli jste skupinový odkaz se schvalováním správcem.</string>
-  <string name="MessageRecord_you_turned_off_the_group_link">Vypnuli jste skupinový odkaz.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s zapnul skupinový odkaz bez schvalování správcem.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s zapnul skupinový odkaz se schvalováním správcem.</string>
-  <string name="MessageRecord_s_turned_off_the_group_link">%1$s vypnul skupinový odkaz.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Skupinový odkaz bez schvalování správcem byl zapnut.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Skupinový odkaz se schvalováním správcem byl zapnut.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_off">Skupinový odkaz byl vypnut.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Vypnuli jste schvalování skupinového odkazu správcem.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s vypnul schvalování skupinového odkazu správcem.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Schvalování skupinového odkazu správcem bylo vypnuto.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Zapnuli jste schvalování skupinového odkazu správcem.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s zapnul schvalování skupinového odkazu správcem.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Schvalování skupinového odkazu správcem bylo zapnuto.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Zapnuli jste odkaz skupiny bez schvalování správcem.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Zapnuli jste odkaz skupiny se schvalováním správcem.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Vypnuli jste odkaz skupiny.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s zapnul odkaz skupiny bez schvalování správcem.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s zapnul odkaz skupiny se schvalováním správcem.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s vypnul odkaz skupiny.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Odkaz skupiny bez schvalování správcem byl zapnut.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Odkaz skupiny se schvalováním správcem byl zapnut.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Odkaz skupiny byl vypnut.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Vypnuli jste schvalování odkazu skupiny správcem.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s vypnul schvalování odkazu skupiny správcem.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Schvalování odkazu skupiny správcem bylo vypnuto.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Zapnuli jste schvalování odkazu skupiny správcem.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s zapnul schvalování odkazu skupiny správcem.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Schvalování odkazu skupiny správcem bylo zapnuto.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Obnovili jste skupinový odkaz.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s obnovil skupinový odkaz.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">Skupinový odkaz byl obnoven.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Obnovili jste odkaz skupiny.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s obnovil odkaz skupiny.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Odkaz skupiny byl obnoven.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Připojili jste se ke skupině pomocí skupinového odkazu.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se připojil ke skupině pomocí skupinového odkazu.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Připojili jste se ke skupině pomocí odkazu skupiny.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se připojil ke skupině pomocí odkazu skupiny.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Odeslali jste požadavek na vstup do skupiny.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s požádal o připojení pomocí skupinového odkazu.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s požádal o připojení pomocí odkazu skupiny.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s schválil váš požadavek na připojení ke skupině.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s schválil požadavek na připojení ke skupině od %2$s.</string>
@@ -1250,12 +1250,12 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Zprávy odeslané a přijaté v této konverzaci zmizí za %s po jejich shlédnutí.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Aktualizovat nyní</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tato verze Signalu dnes vyprší. Aktualizujte na nejnovější verzi.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tato verze aplikace Signal dnes vyprší. Aktualizujte na nejnovější verzi.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="one">Tato verze Signalu vyprší zítra. Aktualizujte na nejnovější verzi.</item>
     <item quantity="few">Tato verze Signalu vyprší za %d dny. Aktualizujte na nejnovější verzi.</item>
     <item quantity="many">Tato verze Signalu vyprší za %d dnů. Aktualizujte na nejnovější verzi.</item>
-    <item quantity="other">Tato verze Signalu vyprší za %d dnů. Aktualizujte na nejnovější verzi.</item>
+    <item quantity="other">Tato verze aplikace Signal vyprší za %d dnů. Aktualizujte na nejnovější verzi.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadat heslo</string>
@@ -1286,7 +1286,7 @@
     <item quantity="many">Zbývá vám %1$d pokusů. Pokud vám pokusy dojdou, můžete si vytvořit nový PIN. Můžete se zaregistrovat a používat svůj účet, ale ztratíte některá uložená nastavení, jako jsou vaše profilové informace.</item>
     <item quantity="other">Zbývá vám %1$d pokusů. Pokud vám pokusy dojdou, můžete si vytvořit nový PIN. Můžete se zaregistrovat a používat svůj účet, ale ztratíte některá uložená nastavení, jako jsou vaše profilové informace.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registrace Signalu - Potřebuji pomoc s PIN pro Android</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registrace Signal - Potřebuji pomoc s PIN pro Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Zadejte alfanumerický PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Zadejte číselný PIN</string>
   <!--PinRestoreLockedFragment-->
@@ -1295,7 +1295,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Vytvořit nový PIN?</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Varování</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signalu ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
   <string name="PinOptOutDialog_disable_pin">Deaktivovat PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotit tuto aplikaci</string>
@@ -1422,7 +1422,7 @@ telefonní číslo
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Zapnout zámek registrace?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Vypnout zámek registrace?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Pokud při opakované registraci Signalu zapomenete váš PIN, bude váš účet zablokován na 7 dní.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Pokud při opakované registraci Signal zapomenete váš PIN, bude váš účet zablokován na 7 dní.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Zapnout</string>
   <string name="RegistrationLockV2Dialog_turn_off">Vypnout</string>
   <!--RevealableMessageView-->
@@ -1439,12 +1439,12 @@ telefonní číslo
   <string name="SearchFragment_header_messages">Zprávy</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Přidat do kontaktů</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Pozvat do Signalu</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Pozvat do Signal</string>
   <string name="SharedContactDetailsActivity_signal_message">Zpráva Signal</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal volání</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Přidat do kontaktů</string>
-  <string name="SharedContactView_invite_to_signal">Pozvat do Signalu</string>
+  <string name="SharedContactView_invite_to_signal">Pozvat do Signal</string>
   <string name="SharedContactView_message">Zpráva Signal</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Připomeneme se vám později.</string>
@@ -1469,7 +1469,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SmsMessageRecord_secure_session_reset">Resetovali jste zabezpečenou konverzaci.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval zabezpečenou konverzaci.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Zprávu se nepodařilo zpracovat, protože byla odeslána z novější verze Signalu. Požádejte váš kontakt, aby vám poslal zprávu znovu, až provedete aktualizaci.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Zprávu se nepodařilo zpracovat, protože byla odeslána z novější verze aplikace Signal. Požádejte váš kontakt, aby vám poslal zprávu znovu, až provedete aktualizaci.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Chyba při zpracování příchozí zprávy</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Nálepky</string>
@@ -1503,7 +1503,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SupportEmailUtil_signal_android_support_request">Požadavek na podporu Signal Android</string>
   <string name="SupportEmailUtil_device_info">Informace o zařízení:</string>
   <string name="SupportEmailUtil_android_version">Verze Androidu:</string>
-  <string name="SupportEmailUtil_signal_version">Verze Signalu:</string>
+  <string name="SupportEmailUtil_signal_version">Verze Signal:</string>
   <string name="SupportEmailUtil_signal_package">Signal balíček:</string>
   <string name="SupportEmailUtil_registration_lock">Zámek registrace:</string>
   <string name="SupportEmailUtil_locale">Jazyk:</string>
@@ -1561,7 +1561,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uživatelská jména nesmí začínat číslicí.</string>
   <string name="UsernameEditFragment_username_is_invalid">Uživatelské jméno je neplatné.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uživatelská jména musí mít %1$d až %2$dznaků.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uživatelská jména v Signalu jsou volitelná. Pokud si vytvoříte uživatelské jméno, ostatní uživatelé Signalu vás budou schopni podle něj najít a kontaktovat bez znalosti vašeho telefonního čísla.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uživatelská jména v Signal jsou volitelná. Pokud si vytvoříte uživatelské jméno, ostatní uživatelé Signal vás budou schopni podle něj najít a kontaktovat bez znalosti vašeho telefonního čísla.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou bezpečnostního čísla jej prosím požádejte, aby si aplikaci aktualizoval.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi aplikace Signal s nekompatibilním formátem QR kódu. Prosím aktualizujte svou verzi, abyste mohli QR kódy porovnat.</string>
@@ -1634,7 +1634,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval %1$s na vaše média pro jednorázové zobrazení.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval %1$s na vaši nálepku.</string>
   <string name="MessageNotifier_this_message_was_deleted">Tato zpráva byla smazána.</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnout upozornění, že se kontakt připojil k Signalu? Můžete je znovu zapnout v Signal &gt; Nastavení &gt; Upozornění.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnout upozornění, že se kontakt připojil k Signal? Můžete je znovu zapnout v Signal &gt; Nastavení &gt; Upozornění.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Výchozí</string>
   <string name="NotificationChannel_calls">Volání</string>
@@ -1675,11 +1675,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Zařízení už není registrováno</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je proto, že jste registrovali vaše telefonní číslo u Signalu z jiného zařízení. Klepněte pro přeregistraci.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je proto, že jste registrovali vaše telefonní číslo u Signal z jiného zařízení. Klepněte pro přeregistraci.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Chyba při přehrávání videa</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Chcete-li přijmout hovor od %s, povolte Signalu přístup k mikrofonu.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Chcete-li přijmout hovor od %s, povolte aplikaci Signal přístup k mikrofonu.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal potřebuje oprávnění pro přístup k mikrofonu a fotoaparátu, abyste mohli volat nebo přijímat hovory, ale tato oprávnění jsou nyní zakázána. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Mikrofon\" a \"Fotoaparát\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Odpovězeno na připojeném zařízení.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Odmítnuto na propojeném zařízení.</string>
@@ -1734,7 +1734,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="change_passphrase_activity__repeat_new_passphrase">Zopakujte nové heslo</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Zadejte jméno nebo číslo</string>
-  <string name="contact_selection_activity__invite_to_signal">Pozvat do Signalu</string>
+  <string name="contact_selection_activity__invite_to_signal">Pozvat do Signal</string>
   <string name="contact_selection_activity__new_group">Nová skupina</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Vymazat zadaný text</string>
@@ -1749,12 +1749,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal potřebuje oprávnění pro přístup ke kontaktům, aby vám je mohl zobrazit, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Nepodařilo se načíst kontakty, zkontrolujte připojení k síti.</string>
   <string name="ContactSelectionListFragment_username_not_found">Uživatelské jméno nebylo nalezeno</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" není uživatel Signalu. Prosím zkontrolujte uživatelské jméno a zkuste to znovu.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" není uživatel Signal. Prosím zkontrolujte uživatelské jméno a zkuste to znovu.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nemusíte se přidávat do skupiny</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Dosažena maximální velikost skupiny</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Skupiny Signalu mohou mít maximálně %1$d členů.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Skupiny Signal mohou mít maximálně %1$d členů.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Dosažen doporučený limit členů</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Skupiny Signalu fungují nejlépe pro %1$d nebo méně členů. Přidání více členů povede k prodlevám při odesílání a přijímání zpráv.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Skupiny Signal fungují nejlépe pro %1$d nebo méně členů. Přidání více členů povede k prodlevám při odesílání a přijímání zpráv.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d člen</item>
     <item quantity="few">%1$d členové</item>
@@ -2039,7 +2039,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="HelpFragment__debug_log">Ladicí log</string>
   <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
-  <string name="HelpFragment__signal_support">Podpora Signalu</string>
+  <string name="HelpFragment__signal_support">Podpora Signal</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
   <string name="HelpFragment__no_email_app_found">Nenalezena žádná emailová aplikace.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -2159,8 +2159,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__theme">Motiv</string>
   <string name="preferences__disable_pin">Deaktivovat PIN</string>
   <string name="preferences__enable_pin">Povolit PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signalu ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN uchovává informace uložené v Signal zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
   <string name="preferences__system_default">Podle systému</string>
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
@@ -2221,7 +2221,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_chats__show_invitation_prompts">Zobrazovat pozvánky</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobrazovat pozvánky pro kontakty bez aplikace Signal</string>
   <string name="preferences_chats__message_text_size">Velikost písma zprávy</string>
-  <string name="preferences_events__contact_joined_signal">Kontakt se připojil k Signalu</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt se připojil k Signal</string>
   <string name="preferences_notifications__priority">Priorita</string>
   <string name="preferences_communication__category_sealed_sender">Utajený odesílatel</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Zobrazit indikátory</string>
@@ -2331,10 +2331,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="reminder_header_sms_import_text">Klepněte pro zkopírování SMS z telefonu do šifrované databáze Signal.</string>
   <string name="reminder_header_push_title">Povolit Signal zprávy a volání</string>
   <string name="reminder_header_push_text">Lepší zážitky z komunikace.</string>
-  <string name="reminder_header_invite_title">Pozvat do Signalu</string>
+  <string name="reminder_header_invite_title">Pozvat do Signal</string>
   <string name="reminder_header_invite_text">Posuňte vaši konverzaci s %1$s na vyšší úroveň.</string>
   <string name="reminder_header_share_title">Pozvěte vaše přátele!</string>
-  <string name="reminder_header_share_text">Čím víc bude uživatelů Signalu, tím bude lepší.</string>
+  <string name="reminder_header_share_text">Čím víc bude uživatelů Signal, tím bude lepší.</string>
   <string name="reminder_header_service_outage_text">Signal zaznamenal technické potíže. Pracujeme tvrdě na co nejrychlejší obnově služby.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Nejnovější funkce aplikace Signal nebudou fungovat s touto verzí Androidu. Prosím aktualizujte své zařízení, abyste mohli používat nové verze aplikace Signal.</string>
   <string name="reminder_header_progress">%1$d%%</string>
@@ -2356,20 +2356,20 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Postřehy</string>
   <string name="InsightsDashboardFragment__title">Postřehy</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky ochráněno %1$d%% vašich odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signalu jsou vždy koncově šifrovány.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky ochráněno %1$d%% vašich odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signal jsou vždy koncově šifrovány.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Podpořte Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procento je vypočteno na základě odchozích zpráv za posledních %1$d dnů, které nezmizely ani nebyly smazány. </string>
   <string name="InsightsDashboardFragment__start_a_conversation">Zahájit konverzaci</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Pozvěte více kontaktů, aby se připojily k Signalu, a začněte komunikovat bezpečně s využitím nových funkcí, které překonávají omezení nezašifrovaných SMS zpráv.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Pozvěte více kontaktů, aby se připojily k Signal, a začněte komunikovat bezpečně s využitím nových funkcí, které překonávají omezení nezašifrovaných SMS zpráv.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tyto statistiky jsou vytvořeny lokálně na vašem zařízení a pouze vy je můžete vidět. Nejsou nikdy nikam odesílány.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Zašifrované zprávy</string>
   <string name="InsightsDashboardFragment__cancel">Storno</string>
   <string name="InsightsDashboardFragment__send">Odeslat</string>
   <string name="InsightsModalFragment__title">Představujeme postřehy</string>
-  <string name="InsightsModalFragment__description">Zjistěte, kolik vašich odchozích zpráv bylo odesláno zabezpečeně, a pak rychle pozvěte další kontakty, abyste procento Signalu zvýšili.</string>
+  <string name="InsightsModalFragment__description">Zjistěte, kolik vašich odchozích zpráv bylo odesláno zabezpečeně, a pak rychle pozvěte další kontakty, abyste procento Signal zvýšili.</string>
   <string name="InsightsModalFragment__view_insights">Prohlédnout postřehy</string>
-  <string name="FirstInviteReminder__title">Pozvat do Signalu</string>
+  <string name="FirstInviteReminder__title">Pozvat do Signal</string>
   <string name="FirstInviteReminder__description">Můžete zvýšit počet odesílaných zašifrovaných zpráv o %1$d %%</string>
   <string name="SecondInviteReminder__title">Podpořte svůj Signal</string>
   <string name="SecondInviteReminder__description">Pozvat %1$s</string>
@@ -2396,7 +2396,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CreateKbsPinFragment__create_a_new_pin">Vytvořit nový PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Můžete měnit váš PIN, dokud je toto zařízení registrováno.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvořit váš PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené v Signal zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Zvolte silnější PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se neshodují. Zkuste to znovu.</string>
@@ -2408,7 +2408,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConfirmKbsPinFragment__creating_pin">Vytvářím PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Představujeme PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené v Signal zašifrované, takže pouze vy k nim můžete přistupovat. Váš profil, nastavení a kontakty budou při reinstalaci obnoveny. Pro spuštění aplikace PIN nebudete potřebovat. </string>
   <string name="KbsSplashFragment__learn_more">Dozvědět se více</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Zámek registrace = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Váš zámek registrace se nyní nazývá PIN a umí toho víc. Aktualizujte jej nyní.</string>
@@ -2418,7 +2418,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="KbsSplashFragment__learn_more_about_pins">Zjistěte víc o PINech</string>
   <string name="KbsSplashFragment__disable_pin">Deaktivovat PIN</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Zadejte váš PIN k Signalu</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Zadejte váš PIN k Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Abychom vám pomohli zapamatovat si PIN, budeme vás opakovaně žádat o jeho zadání. Postupem času vás budeme žádat méně.</string>
   <string name="KbsReminderDialog__skip">Přeskočit</string>
   <string name="KbsReminderDialog__submit">Odeslat</string>
@@ -2438,7 +2438,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Nesprávný PIN. Zkuste to znovu.</string>
   <string name="RegistrationLockFragment__forgot_pin">Zapomněli jste PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Nesprávný PIN</string>
-  <string name="RegistrationLockFragment__forgot_your_pin">Zapomněl(a) jste váš PIN?</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Zapomněli jste váš PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Mnoho pokusů už nezbývá!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Kvůli vašemu soukromí a bezpečnosti neexistuje žádný způsob, jak obnovit váš PIN. Pokud si nepamatujete váš PIN, můžete se znovu zaregistrovat pomocí SMS po %1$d dni nečinnosti. V takovém případě bude váš účet vymazán a veškerý obsah smazán.</item>
@@ -2475,18 +2475,18 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s od vás obdrží požadavek na zprávu. Po přijetí požadavku na zprávu můžete volat.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Vytvořit PIN</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN uchovává informace uložené u Signalu zašifrované.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN uchovává informace uložené v Signal zašifrované.</string>
   <string name="KbsMegaphone__create_pin">Vytvořit PIN</string>
   <string name="KbsMegaphone__introducing_pins">Představujeme PIN</string>
   <string name="KbsMegaphone__update_pin">Aktualizovat PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Připomeneme se vám později. Vytvoření PIN bude povinné během %1$d dnů.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Připomeneme se vám později. Potvrzení vašeho PIN bude povinné během %1$d  dnů.</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Řekněte Signalu, co si myslíte</string>
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Řekněte Signal, co si myslíte</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Aby byl Signal nejlepší aplikací pro zasílání zpráv na planetě, rádi bychom získali vaši zpětnou vazbu.</string>
   <string name="ResearchMegaphone_learn_more">Zjistit více</string>
   <string name="ResearchMegaphone_dismiss">Zavřít</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Průzkum Signalu</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Průzkum Signal</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Věříme v soukromí.</b></p><p>Signal vás nesleduje ani nesbírá vaše data. Abychom Signal vylepšili pro všechny, spoléháme na zpětnou vazbu uživatelů, <b>a rádi bychom ji od vás získali.</b></p><p>Pořádáme anketu, abychom porozuměli, jak Signal používáte. Naše anketa neshromažďuje žádná data, která by vás identifikovala. Pokud byste měli zájem sdílet další zpětnou vazbu, budete mít možnost poskytnout kontaktní informace.</p><p>Jestli máte pár minut a zpětnou vazbu, kterou můžete nabídnout, rádi ji od vás získáme.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Zúčastnit se ankety</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Ne díky</string>
@@ -2553,7 +2553,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím vložte ověřovací kód zaslaný %s</string>
   <string name="RegistrationActivity_wrong_number">Chybné číslo</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Raději mi zavolejte \n (V době %1$02d: %2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Kontaktujte podporu Signalu</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontaktujte podporu Signal</string>
   <string name="RegistrationActivity_code_support_subject">Registrace Signal - ověřovací kód pro Android</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
@@ -2563,17 +2563,17 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="PhoneNumberPrivacy_my_contacts">Moje kontakty</string>
   <string name="PhoneNumberPrivacy_nobody">Nikdo</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Vaše telefonní číslo bude viditelné pro všechny lidi a skupiny, kterým pošlete zprávu.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Kdokoli, kdo má vaše telefonní číslo ve svých kontaktech, vás bude vidět jako kontakt v Signalu. Ostatní vás budou schopni najít vyhledáváním.</string>
-  <string name="PhoneNumberPrivacy_my_contacts_see_description">Pouze vaše kontakty budou v Signalu vidět vaše telefonní číslo.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Kdokoli, kdo má vaše telefonní číslo ve svých kontaktech, vás bude vidět jako kontakt v Signal. Ostatní vás budou schopni najít vyhledáváním.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Pouze vaše kontakty budou v Signal vidět vaše telefonní číslo.</string>
   <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zamknout přístup k Signalu zámkem obrazovky Androidu nebo otiskem prstu</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zamknout přístup k Signal zámkem obrazovky Androidu nebo otiskem prstu</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časový limit neaktivity zámku obrazovky</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">Vytvořit PIN</string>
   <string name="preferences_app_protection__change_your_pin">Změnit váš PIN</string>
   <string name="preferences_app_protection__pin_reminders">Připomínání PIN</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy se k nim můžete dostat. Váš profil, nastavení a kontakty budou při reinstalaci Signalu obnoveny.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zvyšte zabezpečení tím, že budete požadovat PIN pro opakovanou registraci vašeho telefonního čísla u Signalu.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené v Signal zašifrované, takže pouze vy se k nim můžete dostat. Váš profil, nastavení a kontakty budou při reinstalaci aplikace Signal obnoveny.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zvyšte zabezpečení tím, že budete požadovat PIN pro opakovanou registraci vašeho telefonního čísla u Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Upomínky vám pomohou zapamatovat si váš PIN, protože ten nelze obnovit. V průběhu času vás budeme žádat méně často.</string>
   <string name="preferences_app_protection__turn_off">Vypnout</string>
   <string name="preferences_app_protection__confirm_pin">Potvrďte PIN</string>
@@ -2591,7 +2591,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="registration_lock_dialog_view__confirm_pin">Potvrďte PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Zadejte PIN zámku registrace</string>
   <string name="registration_lock_reminder_view__enter_pin">Zadejte PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Povolit PIN zámku registrace, který bude vyžadován při nové registraci vašeho telefoního čísla do Signalu. </string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Povolit PIN zámku registrace, který bude vyžadován při nové registraci vašeho telefoního čísla do Signal. </string>
   <string name="preferences_app_protection__registration_lock_pin">PIN zámku registrace</string>
   <string name="preferences_app_protection__registration_lock">Zámek registrace</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musíte zadat PIN zámku registrace</string>
@@ -2602,13 +2602,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Uskutečnili jste příliš mnoho pokusů. Prosím zkuste to znovu později</string>
   <string name="RegistrationActivity_error_connecting_to_service">Chyba při připojování k službě</string>
   <string name="RegistrationActivity_oh_no">Ale ne!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrace tohoto telefonního čísla bude možná bez vašeho PIN zámku registrace po 7 dnech od poslední aktivity na Signalu. Zbývá ještě %ddnů.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrace tohoto telefonního čísla bude možná bez vašeho PIN zámku registrace po 7 dnech od poslední aktivity na Signal. Zbývá ještě %ddnů.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN zámku registrace</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Toto telefonní číslo má registraci zabezpečenou pomocí PIN. Prosím zadejte PIN zámku registrace.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Pro vaše telefonní číslo je povolen zámek registrace. Abyste si lépe zapamatovali PIN zámku registrace, Signal bude občas chtít jeho potvrzení.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Zapomněl jsem svůj PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Zapomenutý PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zámek registrace chrání vaše telefonní číslo před pokusy o jeho nepovolenou registraci. Tato vlastnost může být vypnuta kdykoliv v nastavení zabezpečení Signalu.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zámek registrace chrání vaše telefonní číslo před pokusy o jeho nepovolenou registraci. Tato vlastnost může být vypnuta kdykoliv v nastavení zabezpečení Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">Zámek registrace</string>
   <string name="RegistrationLockDialog_enable">Povolit</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN zámku registrace musí mít alespoň %dčíslic.</string>
@@ -2651,7 +2651,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="GroupsLearnMore_what_are_legacy_groups">Co jsou starší skupiny?</string>
   <string name="GroupsLearnMore_paragraph_1">Starší skupiny nepodporují vlastnosti nových skupin, jako je nastavení správců a popisnější aktualizace skupin.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Mohu aktualizovat starší skupinu?</string>
-  <string name="GroupsLearnMore_paragraph_2">Starší skupiny zatím nelze aktualizovat na nové skupiny, ale můžete vytvořit novou skupinu se stejnými členy, pokud používají poslední verzi Signalu.</string>
+  <string name="GroupsLearnMore_paragraph_2">Starší skupiny zatím nelze aktualizovat na nové skupiny, ale můžete vytvořit novou skupinu se stejnými členy, pokud používají poslední verzi Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal nabídne možnost aktualizovat starší skupiny v budoucnosti.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Sdílet přes Signal</string>

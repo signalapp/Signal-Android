@@ -1228,7 +1228,7 @@
   <string name="WebRtcCallView__reconnecting">Reconectando …</string>
   <string name="WebRtcCallView__joining">Uniéndose …</string>
   <string name="WebRtcCallView__disconnected">Desconectada</string>
-  <string name="WebRtcCallView__no_one_else_is_here">Nadie más está aquí</string>
+  <string name="WebRtcCallView__no_one_else_is_here">No hay nadie más</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s en esta llamada</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s y %2$s en esta llamada</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
