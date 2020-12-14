@@ -21,7 +21,6 @@ import com.google.android.material.tabs.TabLayout;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -42,18 +41,11 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
   public static final String EXTRA_WIDTH  = "extra_width";
   public static final String EXTRA_HEIGHT = "extra_height";
 
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
   private GiphyGifFragment     gifFragment;
   private GiphyStickerFragment stickerFragment;
   private boolean              forMms;
 
   private GiphyAdapter.GiphyViewHolder finishingImage;
-
-  @Override
-  public void onPreCreate() {
-    dynamicLanguage.onCreate(this);
-  }
 
   @Override
   public void onCreate(Bundle bundle, boolean ready) {

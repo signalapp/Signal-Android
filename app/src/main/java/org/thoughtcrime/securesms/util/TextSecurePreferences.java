@@ -136,7 +136,7 @@ public class TextSecurePreferences {
   private static final String DATABASE_UNENCRYPTED_SECRET   = "pref_database_unencrypted_secret";
   private static final String ATTACHMENT_ENCRYPTED_SECRET   = "pref_attachment_encrypted_secret";
   private static final String ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret";
-  private static final String NEEDS_SQLCIPHER_MIGRATION     = "pref_needs_sql_cipher_migration";
+  private static final String NEEDS_SQLCIPHER_MIGRATION     = "pref_needs_sql_cipher_migration";  //TODO AC: Delete
 
   private static final String NEXT_PRE_KEY_ID          = "pref_next_pre_key_id";
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";

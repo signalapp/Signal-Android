@@ -55,7 +55,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -102,14 +101,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private ListView         recipientsList;
   private LayoutInflater   inflater;
 
-  private DynamicLanguage  dynamicLanguage = new DynamicLanguage();
-
   private boolean running;
-
-  @Override
-  protected void onPreCreate() {
-    dynamicLanguage.onCreate(this);
-  }
 
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
@@ -125,7 +117,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   @Override
   protected void onResume() {
     super.onResume();
-    dynamicLanguage.onResume(this);
 
     assert getSupportActionBar() != null;
     getSupportActionBar().setTitle("Message Details");
@@ -211,7 +202,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       sentDate.setText("-");
       receivedContainer.setVisibility(View.GONE);
     } else {
-      Locale           dateLocale    = dynamicLanguage.getCurrentLocale();
+      Locale           dateLocale    = Locale.getDefault();
       SimpleDateFormat dateFormatter = DateUtils.getDetailedDateFormatter(this, dateLocale);
       sentDate.setText(dateFormatter.format(new Date(messageRecord.getDateSent())));
       sentDate.setOnLongClickListener(v -> {
@@ -271,7 +262,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
       toFrom.setVisibility(View.GONE);
       separator.setVisibility(View.GONE);
     }
-    conversationItem.bind(messageRecord, Optional.absent(), Optional.absent(), glideRequests, dynamicLanguage.getCurrentLocale(), new HashSet<>(), recipient, null, false);
+    conversationItem.bind(messageRecord, Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), recipient, null, false);
     recipientsList.setAdapter(new MessageDetailsRecipientAdapter(this, glideRequests, messageRecord, recipients, isPushGroup));
   }
 

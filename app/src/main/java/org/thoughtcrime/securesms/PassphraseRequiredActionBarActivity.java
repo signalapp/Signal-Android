@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.activities.LandingActivity;
@@ -27,7 +25,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   public static final String LOCALE_EXTRA = "locale_extra";
 
   private static final int STATE_NORMAL                   = 0;
-  private static final int STATE_CREATE_PASSPHRASE        = 1;
   private static final int STATE_PROMPT_PASSPHRASE        = 2;
   private static final int STATE_UPGRADE_DATABASE         = 3;
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 4;
@@ -118,7 +115,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     Log.i(TAG, "routeApplicationState(), state: " + state);
 
     switch (state) {
-    case STATE_CREATE_PASSPHRASE:        return getCreatePassphraseIntent();
     case STATE_PROMPT_PASSPHRASE:        return getPromptPassphraseIntent();
     case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent();
     case STATE_WELCOME_SCREEN:           return getWelcomeIntent();
@@ -129,9 +125,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private int getApplicationState(boolean locked) {
-    if (!MasterSecretUtil.isPassphraseInitialized(this)) {
-      return STATE_CREATE_PASSPHRASE;
-    } else if (locked) {
+    if (locked) {
       return STATE_PROMPT_PASSPHRASE;
     } else if (DatabaseUpgradeActivity.isUpdate(this)) {
       return STATE_UPGRADE_DATABASE;
@@ -146,10 +140,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     else {
       return STATE_NORMAL;
     }
-  }
-
-  private Intent getCreatePassphraseIntent() {
-    return getRoutedIntent(PassphraseCreateActivity.class, getIntent());
   }
 
   private Intent getPromptPassphraseIntent() {

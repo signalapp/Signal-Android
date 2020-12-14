@@ -38,7 +38,6 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
@@ -112,7 +111,6 @@ import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeys
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementationDelegate;
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
@@ -582,7 +580,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     boolean wasUnlinked = TextSecurePreferences.getWasUnlinked(this);
     TextSecurePreferences.clearAll(this);
     TextSecurePreferences.setWasUnlinked(this, wasUnlinked);
-    MasterSecretUtil.clear(this);
+//    MasterSecretUtil.clear(this);
     if (!deleteDatabase("signal.db")) {
       Log.d("Loki", "Failed to delete database.");
     }

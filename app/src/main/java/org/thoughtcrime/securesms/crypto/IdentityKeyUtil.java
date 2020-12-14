@@ -40,14 +40,13 @@ import java.util.List;
  * 
  * @author Moxie Marlinspike
  */
-
+//TODO AC: Delete
 public class IdentityKeyUtil {
+
+  private static final String MASTER_SECRET_UTIL_PREFERENCES_NAME = "SecureSMS-Preferences";
 
   @SuppressWarnings("unused")
   private static final String TAG = IdentityKeyUtil.class.getSimpleName();
-
-  private static final String IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF  = "pref_identity_public_curve25519";
-  private static final String IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF = "pref_identity_private_curve25519";
 
   public static final String IDENTITY_PUBLIC_KEY_PREF                    = "pref_identity_public_v3";
   public static final String IDENTITY_PRIVATE_KEY_PREF                   = "pref_identity_private_v3";
@@ -56,7 +55,7 @@ public class IdentityKeyUtil {
   public static final String LOKI_SEED                                   = "loki_seed";
 
   public static boolean hasIdentityKey(Context context) {
-    SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
+    SharedPreferences preferences = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
 
     return
         preferences.contains(IDENTITY_PUBLIC_KEY_PREF) &&
@@ -87,63 +86,38 @@ public class IdentityKeyUtil {
     }
   }
 
-  public static void generateIdentityKeyPair(Context context) {
-    ECKeyPair keyPair = Curve.generateKeyPair();;
-    IdentityKey publicKey = new IdentityKey(keyPair.getPublicKey());
-    ECPrivateKey privateKey = keyPair.getPrivateKey();
-    save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(publicKey.serialize()));
-    save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(privateKey.serialize()));
-  }
-
-  public static void migrateIdentityKeys(@NonNull Context context,
-                                         @NonNull MasterSecret masterSecret)
-  {
-    if (!hasIdentityKey(context)) {
-      if (hasLegacyIdentityKeys(context)) {
-        IdentityKeyPair legacyPair = getLegacyIdentityKeyPair(context, masterSecret);
-
-        save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(legacyPair.getPublicKey().serialize()));
-        save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(legacyPair.getPrivateKey().serialize()));
-
-        delete(context, IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF);
-        delete(context, IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF);
-      } else {
-        generateIdentityKeyPair(context);
-      }
-    }
-  }
-
   public static List<BackupProtos.SharedPreference> getBackupRecords(@NonNull Context context) {
-    SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
+    final String prefName = MASTER_SECRET_UTIL_PREFERENCES_NAME;
+    SharedPreferences preferences = context.getSharedPreferences(prefName, 0);
 
     LinkedList<BackupProtos.SharedPreference> prefList = new LinkedList<>();
 
     prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(MasterSecretUtil.PREFERENCES_NAME)
+            .setFile(prefName)
             .setKey(IDENTITY_PUBLIC_KEY_PREF)
             .setValue(preferences.getString(IDENTITY_PUBLIC_KEY_PREF, null))
             .build());
     prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(MasterSecretUtil.PREFERENCES_NAME)
+            .setFile(prefName)
             .setKey(IDENTITY_PRIVATE_KEY_PREF)
             .setValue(preferences.getString(IDENTITY_PRIVATE_KEY_PREF, null))
             .build());
     if (preferences.contains(ED25519_PUBLIC_KEY)) {
       prefList.add(BackupProtos.SharedPreference.newBuilder()
-              .setFile(MasterSecretUtil.PREFERENCES_NAME)
+              .setFile(prefName)
               .setKey(ED25519_PUBLIC_KEY)
               .setValue(preferences.getString(ED25519_PUBLIC_KEY, null))
               .build());
     }
     if (preferences.contains(ED25519_SECRET_KEY)) {
       prefList.add(BackupProtos.SharedPreference.newBuilder()
-              .setFile(MasterSecretUtil.PREFERENCES_NAME)
+              .setFile(prefName)
               .setKey(ED25519_SECRET_KEY)
               .setValue(preferences.getString(ED25519_SECRET_KEY, null))
               .build());
     }
     prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(MasterSecretUtil.PREFERENCES_NAME)
+            .setFile(prefName)
             .setKey(LOKI_SEED)
             .setValue(preferences.getString(LOKI_SEED, null))
             .build());
@@ -151,34 +125,13 @@ public class IdentityKeyUtil {
     return prefList;
   }
 
-  private static boolean hasLegacyIdentityKeys(Context context) {
-    return
-        retrieve(context, IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF) != null &&
-        retrieve(context, IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF) != null;
-  }
-
-  private static IdentityKeyPair getLegacyIdentityKeyPair(@NonNull Context context,
-                                                          @NonNull MasterSecret masterSecret)
-  {
-    try {
-      MasterCipher masterCipher   = new MasterCipher(masterSecret);
-      byte[]       publicKeyBytes = Base64.decode(retrieve(context, IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF));
-      IdentityKey  identityKey    = new IdentityKey(publicKeyBytes, 0);
-      ECPrivateKey privateKey     = masterCipher.decryptKey(Base64.decode(retrieve(context, IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF)));
-
-      return new IdentityKeyPair(identityKey, privateKey);
-    } catch (IOException | InvalidKeyException e) {
-      throw new AssertionError(e);
-    }
-  }
-
   public static String retrieve(Context context, String key) {
-    SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
+    SharedPreferences preferences = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
     return preferences.getString(key, null);
   }
 
   public static void save(Context context, String key, String value) {
-    SharedPreferences preferences   = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
+    SharedPreferences preferences   = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
     Editor preferencesEditor        = preferences.edit();
 
     preferencesEditor.putString(key, value);
@@ -186,6 +139,6 @@ public class IdentityKeyUtil {
   }
 
   public static void delete(Context context, String key) {
-    context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0).edit().remove(key).commit();
+    context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0).edit().remove(key).commit();
   }
 }

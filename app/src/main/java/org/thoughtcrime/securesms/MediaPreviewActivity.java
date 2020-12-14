@@ -68,12 +68,12 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.WeakHashMap;
 
 import network.loki.messenger.R;
@@ -94,8 +94,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public static final String CAPTION_EXTRA        = "caption";
   public static final String OUTGOING_EXTRA       = "outgoing";
   public static final String LEFT_IS_RECENT_EXTRA = "left_is_recent";
-
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ViewPager             mediaPager;
   private View                  detailsContainer;
@@ -120,8 +118,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @SuppressWarnings("ConstantConditions")
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
-    dynamicLanguage.onCreate(this);
-
     viewModel = new ViewModelProvider(this).get(MediaPreviewViewModel.class);
 
     setContentView(R.layout.media_preview_activity);
@@ -172,7 +168,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       CharSequence relativeTimeSpan;
 
       if (mediaItem.date > 0) {
-        relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(), mediaItem.date);
+        relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this, Locale.getDefault(), mediaItem.date);
       } else {
         relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
       }
@@ -189,7 +185,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public void onResume() {
     super.onResume();
 
-    dynamicLanguage.onResume(this);
     initializeMedia();
   }
 

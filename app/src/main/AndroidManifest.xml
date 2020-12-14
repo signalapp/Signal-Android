@@ -313,10 +313,6 @@
             android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="org.thoughtcrime.securesms.PassphraseChangeActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:label="@string/AndroidManifest__change_passphrase" />
-        <activity
             android:name="org.thoughtcrime.securesms.stickers.StickerManagementActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"

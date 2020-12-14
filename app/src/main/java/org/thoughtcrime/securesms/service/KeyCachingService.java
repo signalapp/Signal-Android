@@ -34,13 +34,9 @@ import androidx.core.app.NotificationCompat;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.DummyActivity;
-import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -67,30 +63,17 @@ public class KeyCachingService extends Service {
   private static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
   public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
   public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
-  public  static final String LOCALE_CHANGE_EVENT      = "org.thoughtcrime.securesms.service.action.LOCALE_CHANGE_EVENT";
-
-  private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private final IBinder binder  = new KeySetBinder();
 
-  private static MasterSecret masterSecret;
+  // AC: This is a temporal drop off replacement for the refactoring time being.
+  // This field only indicates if the app was unlocked or not (null means locked).
+  private static Object masterSecret;
 
   public KeyCachingService() {}
 
   public static synchronized boolean isLocked(Context context) {
     return getMasterSecret(context) == null;
-  }
-
-  public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {
-    if (masterSecret == null && (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context))) {
-      try {
-        return MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-      } catch (InvalidPassphraseException e) {
-        Log.w("KeyCachingService", e);
-      }
-    }
-
-    return masterSecret;
   }
 
   public static void onAppForegrounded(@NonNull Context context) {
@@ -101,8 +84,22 @@ public class KeyCachingService extends Service {
     startTimeoutIfAppropriate(context);
   }
 
+  //TODO AC: Delete
+  public static synchronized @Nullable Object getMasterSecret(Context context) {
+//    if (masterSecret == null && (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context))) {
+//      try {
+//        return MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+//      } catch (InvalidPassphraseException e) {
+//        Log.w("KeyCachingService", e);
+//      }
+//    }
+
+    return masterSecret;
+  }
+
+  //TODO AC: Delete
   @SuppressLint("StaticFieldLeak")
-  public void setMasterSecret(final MasterSecret masterSecret) {
+  public void setMasterSecret(final Object masterSecret) {
     synchronized (KeyCachingService.class) {
       KeyCachingService.masterSecret = masterSecret;
 
@@ -132,7 +129,6 @@ public class KeyCachingService extends Service {
         case CLEAR_KEY_ACTION:         handleClearKey();        break;
         case PASSPHRASE_EXPIRED_EVENT: handleClearKey();        break;
         case DISABLE_ACTION:           handleDisableService();  break;
-        case LOCALE_CHANGE_EVENT:      handleLocaleChanged();   break;
         case LOCK_TOGGLED_EVENT:       handleLockToggled();     break;
       }
     }
@@ -146,12 +142,12 @@ public class KeyCachingService extends Service {
     super.onCreate();
 
     if (TextSecurePreferences.isPasswordDisabled(this) && !TextSecurePreferences.isScreenLockEnabled(this)) {
-      try {
-        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-        setMasterSecret(masterSecret);
-      } catch (InvalidPassphraseException e) {
-        Log.w("KeyCachingService", e);
-      }
+//      try {
+//        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+        setMasterSecret(new Object());
+//      } catch (InvalidPassphraseException e) {
+//        Log.w("KeyCachingService", e);
+//      }
     }
   }
 
@@ -196,12 +192,12 @@ public class KeyCachingService extends Service {
   private void handleLockToggled() {
     stopForeground(true);
 
-    try {
-      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+//    try {
+//      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
       setMasterSecret(masterSecret);
-    } catch (InvalidPassphraseException e) {
-      Log.w(TAG, e);
-    }
+//    } catch (InvalidPassphraseException e) {
+//      Log.w(TAG, e);
+//    }
   }
 
   private void handleDisableService() {
@@ -210,11 +206,6 @@ public class KeyCachingService extends Service {
     {
       stopForeground(true);
     }
-  }
-
-  private void handleLocaleChanged() {
-    dynamicLanguage.updateServiceLocale(this);
-    foregroundService();
   }
 
   private static void startTimeoutIfAppropriate(@NonNull Context context) {
