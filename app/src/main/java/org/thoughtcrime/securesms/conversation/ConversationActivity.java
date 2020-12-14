@@ -374,6 +374,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   View                     cancelJoinRequest;
   private   Stub<View>               mentionsSuggestions;
   private   MaterialButton           joinGroupCallButton;
+  private   boolean                  callingTooltipShown;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -830,6 +831,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         if (groupCallViewModel != null && Boolean.TRUE.equals(groupCallViewModel.hasActiveGroupCall().getValue())) {
           hideMenuItem(menu, R.id.menu_video_secure);
         }
+        showGroupCallingTooltip();
       }
 
       inflater.inflate(R.menu.conversation_group_options, menu);
@@ -2135,6 +2137,28 @@ public class ConversationActivity extends PassphraseRequiredActivity
     });
 
     groupCallViewModel.groupCallHasCapacity().observe(this, hasCapacity -> joinGroupCallButton.setText(hasCapacity ? R.string.ConversationActivity_join : R.string.ConversationActivity_full));
+  }
+
+  private void showGroupCallingTooltip() {
+    if (!FeatureFlags.groupCalling() || !SignalStore.tooltips().shouldShowGroupCallingTooltip() || callingTooltipShown) {
+      return;
+    }
+
+    View anchor = findViewById(R.id.menu_video_secure);
+    if (anchor == null) {
+      Log.w(TAG, "Video Call tooltip anchor is null. Skipping tooltip...");
+      return;
+    }
+
+    callingTooltipShown = true;
+
+    SignalStore.tooltips().markGroupCallSpeakerViewSeen();
+    TooltipPopup.forTarget(anchor)
+                .setBackgroundTint(ContextCompat.getColor(this, R.color.signal_accent_green))
+                .setTextColor(getResources().getColor(R.color.core_white))
+                .setText(R.string.ConversationActivity__tap_here_to_start_a_group_call)
+                .setOnDismissListener(() -> SignalStore.tooltips().markGroupCallingTooltipSeen())
+                .show(TooltipPopup.POSITION_BELOW);
   }
 
   private void showStickerIntroductionTooltip() {

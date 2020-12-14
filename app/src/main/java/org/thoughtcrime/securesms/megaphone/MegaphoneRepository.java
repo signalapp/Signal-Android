@@ -54,6 +54,7 @@ public class MegaphoneRepository {
       database.markFinished(Event.MESSAGE_REQUESTS);
       database.markFinished(Event.LINK_PREVIEWS);
       database.markFinished(Event.RESEARCH);
+      database.markFinished(Event.GROUP_CALLING);
       resetDatabaseCache();
     });
   }
