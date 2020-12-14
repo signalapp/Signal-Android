@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
-import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
@@ -64,7 +63,6 @@ public class WorkManagerFactoryMappings {
     put(RefreshUnidentifiedDeliveryAbilityJob.class.getName(), RefreshUnidentifiedDeliveryAbilityJob.KEY);
     put(RequestGroupInfoJob.class.getName(), RequestGroupInfoJob.KEY);
     put(RetrieveProfileAvatarJob.class.getName(), RetrieveProfileAvatarJob.KEY);
-    put(RetrieveProfileJob.class.getName(), RetrieveProfileJob.KEY);
     put(RotateCertificateJob.class.getName(), RotateCertificateJob.KEY);
     put(RotateProfileKeyJob.class.getName(), RotateProfileKeyJob.KEY);
     put(SendDeliveryReceiptJob.class.getName(), SendDeliveryReceiptJob.KEY);

@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
@@ -91,9 +90,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV16                          = 37;
   private static final int lokiV17                          = 38;
   private static final int lokiV18_CLEAR_BG_POLL_JOBS       = 39;
-  private static final int lokiV19_OLD_CODE_CLEANUP         = 40; //TODO Change back to 40 when the refactoring is over.
+  //TODO Merge all "refactor" migrations to one before pushing to the main repo.
+  private static final int lokiV19_REFACTOR0                = 40;
+  private static final int lokiV19_REFACTOR1                = 41;
 
-  private static final int    DATABASE_VERSION = lokiV19_OLD_CODE_CLEANUP; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV19_REFACTOR1;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -124,7 +126,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(MmsDatabase.CREATE_TABLE);
     db.execSQL(AttachmentDatabase.CREATE_TABLE);
     db.execSQL(ThreadDatabase.CREATE_TABLE);
-    db.execSQL(IdentityDatabase.CREATE_TABLE);
     db.execSQL(DraftDatabase.CREATE_TABLE);
     db.execSQL(PushDatabase.CREATE_TABLE);
     db.execSQL(GroupDatabase.CREATE_TABLE);
@@ -637,16 +638,14 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM constraint_spec WHERE factory_key = 'BackgroundPollJob'");
       }
 
-      if (oldVersion < lokiV19_OLD_CODE_CLEANUP) {
-        // Many classes were removed. We need to update D structure and data to match the code changes.
-
-        String[] deletedJobKeys = {
-                "ServiceOutageDetectionJob",
-        };
-        for (String jobKey : deletedJobKeys) {
-          db.execSQL("DELETE FROM job_spec WHERE factory_key = ?", new String[]{jobKey});
-          db.execSQL("DELETE FROM constraint_spec WHERE factory_key = ?", new String[]{jobKey});
-        }
+      // Many classes were removed. We need to update DB structure and data to match the code changes.
+      //TODO Merge "refactor" changes in one migration.
+      if (oldVersion < lokiV19_REFACTOR0) {
+        deleteJobRecords(db, "ServiceOutageDetectionJob");
+      }
+      if (oldVersion < lokiV19_REFACTOR1) {
+        db.execSQL("DROP TABLE identities");
+        deleteJobRecords(db, "RetrieveProfileJob");
       }
 
       db.setTransactionSuccessful();
@@ -690,5 +689,16 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     }
 
     return false;
+  }
+
+  /**
+   * Cleans up all the records related to the job keys specified.
+   * This method should be called once the Signal job class is deleted from the project.
+   */
+  private static void deleteJobRecords(SQLiteDatabase db, String... jobKeys) {
+    for (String jobKey : jobKeys) {
+      db.execSQL("DELETE FROM job_spec WHERE factory_key = ?", new String[]{jobKey});
+      db.execSQL("DELETE FROM constraint_spec WHERE factory_key = ?", new String[]{jobKey});
+    }
   }
 }

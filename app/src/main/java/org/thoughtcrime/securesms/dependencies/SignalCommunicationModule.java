@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
-import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
@@ -60,7 +59,6 @@ import network.loki.messenger.BuildConfig;
                                      RequestGroupInfoJob.class,
                                      PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
-                                     RetrieveProfileJob.class,
                                      RetrieveProfileAvatarJob.class,
                                      SendReadReceiptJob.class,
                                      AppProtectionPreferenceFragment.class,

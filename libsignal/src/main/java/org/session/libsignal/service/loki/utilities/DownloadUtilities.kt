@@ -16,6 +16,7 @@ object DownloadUtilities {
     /**
      * Blocks the calling thread.
      */
+    @JvmStatic
     fun downloadFile(destination: File, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
         val outputStream = FileOutputStream(destination) // Throws
         var remainingAttempts = 4
@@ -36,6 +37,7 @@ object DownloadUtilities {
     /**
      * Blocks the calling thread.
      */
+    @JvmStatic
     fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
         // We need to throw a PushNetworkException or NonSuccessfulResponseCodeException
         // because the underlying Signal logic requires these to work correctly

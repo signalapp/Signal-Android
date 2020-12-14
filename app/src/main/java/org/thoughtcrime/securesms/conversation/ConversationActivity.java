@@ -112,29 +112,21 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.components.identity.UntrustedSendDialog;
-import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
-import org.thoughtcrime.securesms.components.identity.UnverifiedSendDialog;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
-import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
@@ -200,7 +192,6 @@ import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -218,7 +209,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -229,7 +219,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import kotlin.Unit;
 import network.loki.messenger.R;
 
-import static org.session.libsignal.libsignal.SessionCipher.SESSION_LOCK;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
@@ -290,7 +279,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Button                      unblockButton;
   private   Button                      makeDefaultSmsButton;
   private   InputAwareLayout            container;
-  private   Stub<UnverifiedBannerView>  unverifiedBannerView;
   private   Stub<GroupShareProfileView> groupShareProfileView;
   private   TypingStatusTextWatcher     typingTextWatcher;
   private   MentionTextWatcher          mentionTextWatcher;
@@ -326,8 +314,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private int        expandedKeyboardHeight  = 0;
   private int        collapsedKeyboardHeight = Integer.MAX_VALUE;
   private int        keyboardHeight          = 0;
-
-  private final IdentityRecordList      identityRecords = new IdentityRecordList();
 
   // Message status bar
   private ArrayList<BroadcastReceiver> broadcastReceivers = new ArrayList<>();
@@ -505,7 +491,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     EventBus.getDefault().register(this);
     initializeEnabledCheck();
     initializeMmsEnabledCheck();
-    initializeIdentityRecords();
     composeText.setTransport();
 
     updateTitleTextView(recipient);
@@ -513,7 +498,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateSubtitleTextView();
     updateInputUI(recipient);
     setGroupShareProfileReminder(recipient);
-    calculateCharactersRemaining();
 
     ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
@@ -1178,52 +1162,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void handleUnverifiedRecipients() {
-    List<Recipient>      unverifiedRecipients = identityRecords.getUnverifiedRecipients(this);
-    List<IdentityRecord> unverifiedRecords    = identityRecords.getUnverifiedRecords();
-    String               message              = IdentityUtil.getUnverifiedSendDialogDescription(this, unverifiedRecipients);
-
-    if (message == null) return;
-
-    //noinspection CodeBlock2Expr
-    new UnverifiedSendDialog(this, message, unverifiedRecords, () -> {
-      initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          sendMessage();
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          throw new AssertionError(e);
-        }
-      });
-    }).show();
-  }
-
-  private void handleUntrustedRecipients() {
-    List<Recipient>      untrustedRecipients = identityRecords.getUntrustedRecipients(this);
-    List<IdentityRecord> untrustedRecords    = identityRecords.getUntrustedRecords();
-    String               untrustedMessage    = IdentityUtil.getUntrustedSendDialogDescription(this, untrustedRecipients);
-
-    if (untrustedMessage == null) return;
-
-    //noinspection CodeBlock2Expr
-    new UntrustedSendDialog(this, untrustedMessage, untrustedRecords, () -> {
-      initializeIdentityRecords().addListener(new ListenableFuture.Listener<Boolean>() {
-        @Override
-        public void onSuccess(Boolean result) {
-          sendMessage();
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          throw new AssertionError(e);
-        }
-      });
-    }).show();
-  }
-
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
     Log.i(TAG, "handleSecurityChange(" + isSecureText + ", " + isDefaultSms + ")");
     if (isSecurityInitialized && isSecureText == true && isDefaultSms == this.isDefaultSms) {
@@ -1249,7 +1187,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
     */
 
-    calculateCharactersRemaining();
     supportInvalidateOptionsMenu();
     updateInputUI(recipient);
   }
@@ -1429,63 +1366,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
-  private ListenableFuture<Boolean> initializeIdentityRecords() {
-    final SettableFuture<Boolean> future = new SettableFuture<>();
-
-    new AsyncTask<Recipient, Void, Pair<IdentityRecordList, String>>() {
-      @Override
-      protected @NonNull Pair<IdentityRecordList, String> doInBackground(Recipient... params) {
-        IdentityDatabase   identityDatabase   = DatabaseFactory.getIdentityDatabase(ConversationActivity.this);
-        IdentityRecordList identityRecordList = new IdentityRecordList();
-        List<Recipient>    recipients         = new LinkedList<>();
-
-        if (params[0].isGroupRecipient()) {
-          recipients.addAll(DatabaseFactory.getGroupDatabase(ConversationActivity.this)
-                                           .getGroupMembers(params[0].getAddress().toGroupString(), false));
-        } else {
-          recipients.add(params[0]);
-        }
-
-        for (Recipient recipient : recipients) {
-          Log.i(TAG, "Loading identity for: " + recipient.getAddress());
-          identityRecordList.add(identityDatabase.getIdentity(recipient.getAddress()));
-        }
-
-        String message = null;
-
-        if (identityRecordList.isUnverified()) {
-          message = IdentityUtil.getUnverifiedBannerDescription(ConversationActivity.this, identityRecordList.getUnverifiedRecipients(ConversationActivity.this));
-        }
-
-        return new Pair<>(identityRecordList, message);
-      }
-
-      @Override
-      protected void onPostExecute(@NonNull Pair<IdentityRecordList, String> result) {
-        Log.i(TAG, "Got identity records: " + result.first.isUnverified());
-        identityRecords.replaceWith(result.first);
-
-        //TODO Remove it.
-//        if (result.second != null) {
-//          Log.d(TAG, "Replacing banner...");
-//          unverifiedBannerView.get().display(result.second, result.first.getUnverifiedRecords(),
-//                                             new UnverifiedClickedListener(),
-//                                             new UnverifiedDismissedListener());
-//        } else if (unverifiedBannerView.resolved()) {
-//          Log.d(TAG, "Clearing banner...");
-//          unverifiedBannerView.get().hide();
-//        }
-
-//        titleView.setVerified(isSecureText && identityRecords.isVerified());
-
-        future.set(true);
-      }
-
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient);
-
-    return future;
-  }
-
   private void initializeViews() {
     profilePictureView                     = findViewById(R.id.profilePictureView);
     titleTextView                          = findViewById(R.id.titleTextView);
@@ -1498,7 +1378,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     unblockButton                          = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton                   = ViewUtil.findById(this, R.id.make_default_sms_button);
     container                              = ViewUtil.findById(this, R.id.layout_container);
-    unverifiedBannerView                   = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
     groupShareProfileView                  = ViewUtil.findStubById(this, R.id.group_share_profile_view_stub);
     quickAttachmentToggle                  = ViewUtil.findById(this, R.id.quick_attachment_toggle);
     inlineAttachmentToggle                 = ViewUtil.findById(this, R.id.inline_attachment_container);
@@ -1700,11 +1579,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  public void onIdentityRecordUpdate(final IdentityRecord event) {
-    initializeIdentityRecords();
-  }
-
   @Subscribe(threadMode =  ThreadMode.MAIN, sticky = true)
   public void onStickerPackInstalled(final StickerPackInstallEvent event) {
     if (!TextSecurePreferences.hasSeenStickerIntroTooltip(this)) return;
@@ -1731,7 +1605,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       public void onReceive(Context context, Intent intent) {
         initializeSecurity(true, isDefaultSms);
-        calculateCharactersRemaining();
       }
     };
 
@@ -1931,25 +1804,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void calculateCharactersRemaining() {
-    /*
-    String          messageBody     = composeText.getTextTrimmed();
-    TransportOption transportOption = sendButton.getSelectedTransport();
-    CharacterState  characterState  = transportOption.calculateCharacters(messageBody);
-
-    if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
-      charactersLeft.setText(String.format(dynamicLanguage.getCurrentLocale(),
-                                           "%d/%d (%d)",
-                                           characterState.charactersRemaining,
-                                           characterState.maxTotalMessageSize,
-                                           characterState.messagesSpent));
-      charactersLeft.setVisibility(View.VISIBLE);
-    } else {
-      charactersLeft.setVisibility(View.GONE);
-    }
-     */
-  }
-
   private void initializeMediaKeyboardProviders(@NonNull MediaKeyboard mediaKeyboard, boolean stickersAvailable) {
     boolean isSystemEmojiPreferred   = TextSecurePreferences.isSystemEmojiPreferred(this);
 
@@ -2127,9 +1981,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                        LinkPreviewUtil.isValidMediaUrl(message) || // Loki - Send GIFs as media messages
                                        needsSplit;
 
-      if (identityRecords.isUnverified()) {
-        handleUnverifiedRecipients();
-      } else if (isMediaMessage) {
+      if (isMediaMessage) {
         sendMediaMessage(expiresIn, subscriptionId, initiating);
       } else {
         sendTextMessage(expiresIn, subscriptionId, initiating);
@@ -2552,7 +2404,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void afterTextChanged(Editable s) {
-      calculateCharactersRemaining();
 
       if (composeText.getTextTrimmed().length() == 0 || beforeLength == 0) {
         composeText.postDelayed(ConversationActivity.this::updateToggleButtonState, 50);
@@ -2717,33 +2568,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     handleSecurityChange(true, isDefaultSms);
     updateToggleButtonState();
     updateLinkPreviewState();
-  }
-
-  private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {
-    @Override
-    public void onDismissed(final List<IdentityRecord> unverifiedIdentities) {
-      final IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(ConversationActivity.this);
-
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          synchronized (SESSION_LOCK) {
-            for (IdentityRecord identityRecord : unverifiedIdentities) {
-              identityDatabase.setVerified(identityRecord.getAddress(),
-                                           identityRecord.getIdentityKey(),
-                                           VerifiedStatus.DEFAULT);
-            }
-          }
-
-          return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-          initializeIdentityRecords();
-        }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    }
   }
 
   private class QuoteRestorationTask extends AsyncTask<Void, Void, MessageRecord> {

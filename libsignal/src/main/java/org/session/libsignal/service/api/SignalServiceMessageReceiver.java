@@ -117,7 +117,7 @@ public class SignalServiceMessageReceiver {
   public InputStream retrieveProfileAvatar(String path, File destination, byte[] profileKey, int maxSizeBytes)
     throws IOException
   {
-    DownloadUtilities.INSTANCE.downloadFile(destination, path, maxSizeBytes, null);
+    DownloadUtilities.downloadFile(destination, path, maxSizeBytes, null);
     return new ProfileCipherInputStream(new FileInputStream(destination), profileKey);
   }
 
@@ -138,7 +138,7 @@ public class SignalServiceMessageReceiver {
   {
     // Loki - Fetch attachment
     if (pointer.getUrl().isEmpty()) throw new InvalidMessageException("Missing attachment URL.");
-    DownloadUtilities.INSTANCE.downloadFile(destination, pointer.getUrl(), maxSizeBytes, listener);
+    DownloadUtilities.downloadFile(destination, pointer.getUrl(), maxSizeBytes, listener);
 
     // Loki - Assume we're retrieving an attachment for an open group server if the digest is not set
     if (!pointer.getDigest().isPresent()) { return new FileInputStream(destination); }
