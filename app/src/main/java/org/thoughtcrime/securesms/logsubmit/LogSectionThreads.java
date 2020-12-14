@@ -4,34 +4,29 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class LogSectionThreads implements LogSection {
 
   @Override
   public @NonNull String getTitle() {
-    return "BLOCKED THREADS";
+    return "THREADS";
   }
 
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
-    Map<Thread, StackTraceElement[]> traces = Thread.getAllStackTraces();
-    StringBuilder                    out    = new StringBuilder();
+    StringBuilder builder = new StringBuilder();
 
-    for (Map.Entry<Thread, StackTraceElement[]> entry : traces.entrySet()) {
-      if (entry.getKey().getState() == Thread.State.BLOCKED) {
-        Thread thread = entry.getKey();
-        out.append("-- [").append(thread.getId()).append("] ")
-           .append(thread.getName()).append(" (").append(thread.getState().toString()).append(")\n");
+    List<Thread> threads = new ArrayList<>(Thread.getAllStackTraces().keySet());
+    Collections.sort(threads, (lhs, rhs) -> Long.compare(lhs.getId(), rhs.getId()));
 
-        for (StackTraceElement element : entry.getValue()) {
-          out.append(element.toString()).append("\n");
-        }
-
-        out.append("\n");
-      }
+    for (Thread thread : threads) {
+      builder.append("[").append(thread.getId()).append("] ").append(thread.getName()).append("\n");
     }
 
-    return out.length() == 0 ? "None" : out;
+    return builder;
   }
 }
