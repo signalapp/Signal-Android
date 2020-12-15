@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.app.Application;
-import android.database.ContentObserver;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -16,7 +15,7 @@ import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.signal.paging.ProxyPagingController;
-import org.thoughtcrime.securesms.database.DatabaseContentProviders;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
@@ -41,11 +40,10 @@ class ConversationViewModel extends ViewModel {
   private final MutableLiveData<Boolean>            hasUnreadMentions;
   private final LiveData<Boolean>                   canShowAsBubble;
   private final ProxyPagingController               pagingController;
-  private final ContentObserver                     messageObserver;
+  private final DatabaseObserver.Observer           messageObserver;
 
   private ConversationIntents.Args args;
   private int                      jumpToPosition;
-  private boolean                  hasRegisteredObserver;
 
   private ConversationViewModel() {
     this.context                = ApplicationDependencies.getApplication();
@@ -56,12 +54,7 @@ class ConversationViewModel extends ViewModel {
     this.showScrollButtons      = new MutableLiveData<>(false);
     this.hasUnreadMentions      = new MutableLiveData<>(false);
     this.pagingController       = new ProxyPagingController();
-    this.messageObserver        = new ContentObserver(null) {
-      @Override
-      public void onChange(boolean selfChange) {
-        pagingController.onDataInvalidated();
-      }
-    };
+    this.messageObserver        = pagingController::onDataInvalidated;
 
     LiveData<ConversationData> metadata = Transformations.switchMap(threadId, thread -> {
       LiveData<ConversationData> conversationData = conversationRepository.getConversationData(thread, jumpToPosition);
@@ -83,12 +76,8 @@ class ConversationViewModel extends ViewModel {
         startPosition = data.getThreadSize();
       }
 
-      if (hasRegisteredObserver) {
-        context.getContentResolver().unregisterContentObserver(messageObserver);
-      }
-
-      context.getContentResolver().registerContentObserver(DatabaseContentProviders.Conversation.getUriForThread(data.getThreadId()), true, messageObserver);
-      hasRegisteredObserver = true;
+      ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver);
+      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(data.getThreadId(), messageObserver);
 
       ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId());
       PagingConfig           config     = new PagingConfig.Builder()
@@ -182,7 +171,7 @@ class ConversationViewModel extends ViewModel {
   @Override
   protected void onCleared() {
     super.onCleared();
-    context.getContentResolver().unregisterContentObserver(messageObserver);
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver);
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {

@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.conversationlist;
 
 import android.app.Application;
-import android.database.ContentObserver;
-import android.os.Handler;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -19,8 +17,8 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
-import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
@@ -36,32 +34,27 @@ class ConversationListViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ConversationListViewModel.class);
 
-  private final Application                       application;
   private final MutableLiveData<Megaphone>        megaphone;
   private final MutableLiveData<SearchResult>     searchResult;
   private final LiveData<ConversationList>        conversationList;
   private final SearchRepository                  searchRepository;
   private final MegaphoneRepository               megaphoneRepository;
   private final Debouncer                         debouncer;
-  private final ContentObserver                   observer;
+  private final DatabaseObserver.Observer observer;
   private final Invalidator                       invalidator;
 
   private String lastQuery;
 
   private ConversationListViewModel(@NonNull Application application, @NonNull SearchRepository searchRepository, boolean isArchived) {
-    this.application         = application;
     this.megaphone           = new MutableLiveData<>();
     this.searchResult        = new MutableLiveData<>();
     this.searchRepository    = searchRepository;
     this.megaphoneRepository = ApplicationDependencies.getMegaphoneRepository();
     this.debouncer           = new Debouncer(300);
     this.invalidator         = new Invalidator();
-    this.observer            = new ContentObserver(new Handler()) {
-      @Override
-      public void onChange(boolean selfChange) {
-        if (!TextUtils.isEmpty(getLastQuery())) {
-          searchRepository.query(getLastQuery(), searchResult::postValue);
-        }
+    this.observer            = () -> {
+      if (!TextUtils.isEmpty(getLastQuery())) {
+        searchRepository.query(getLastQuery(), searchResult::postValue);
       }
     };
 
@@ -76,7 +69,7 @@ class ConversationListViewModel extends ViewModel {
                                                                                                     .setInitialLoadKey(0)
                                                                                                     .build();
 
-    application.getContentResolver().registerContentObserver(DatabaseContentProviders.ConversationList.CONTENT_URI, true, observer);
+    ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(observer);
 
     this.conversationList = Transformations.switchMap(conversationList, conversation -> {
       if (conversation.getDataSource().isInvalid()) {
@@ -122,6 +115,7 @@ class ConversationListViewModel extends ViewModel {
 
   void onVisible() {
     megaphoneRepository.getNextMegaphone(megaphone::postValue);
+    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   void onMegaphoneCompleted(@NonNull Megaphones.Event event) {
@@ -157,7 +151,7 @@ class ConversationListViewModel extends ViewModel {
   protected void onCleared() {
     invalidator.invalidate();
     debouncer.clear();
-    application.getContentResolver().unregisterContentObserver(observer);
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
 
   public static class Factory extends ViewModelProvider.NewInstanceFactory {

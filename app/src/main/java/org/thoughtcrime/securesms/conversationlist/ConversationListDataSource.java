@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversationlist;
 
 import android.content.Context;
-import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
@@ -15,8 +14,8 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
-import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -42,20 +41,20 @@ abstract class ConversationListDataSource extends PositionalDataSource<Conversat
   protected ConversationListDataSource(@NonNull Context context, @NonNull Invalidator invalidator) {
     this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
 
-    ContentObserver contentObserver = new ContentObserver(null) {
+    DatabaseObserver.Observer observer = new DatabaseObserver.Observer() {
       @Override
-      public void onChange(boolean selfChange) {
+      public void onChanged() {
         invalidate();
-        context.getContentResolver().unregisterContentObserver(this);
+        ApplicationDependencies.getDatabaseObserver().unregisterObserver(this);
       }
     };
 
     invalidator.observe(() -> {
       invalidate();
-      context.getContentResolver().unregisterContentObserver(contentObserver);
+      ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
     });
 
-    context.getContentResolver().registerContentObserver(DatabaseContentProviders.ConversationList.CONTENT_URI,  true, contentObserver);
+    ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(observer);
   }
 
   private static ConversationListDataSource create(@NonNull Context context, @NonNull Invalidator invalidator, boolean isArchived) {

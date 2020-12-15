@@ -16,6 +16,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
@@ -34,7 +35,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
 @PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "androidx.*" })
-@PrepareForTest({ ApplicationDependencies.class, DatabaseFactory.class })
+@PrepareForTest({ ApplicationDependencies.class, DatabaseFactory.class, DatabaseObserver.class })
 public class UnarchivedConversationListDataSourceTest {
 
   @Rule
@@ -52,6 +53,7 @@ public class UnarchivedConversationListDataSourceTest {
     threadDatabase = mock(ThreadDatabase.class);
 
     when(DatabaseFactory.getThreadDatabase(any())).thenReturn(threadDatabase);
+    when(ApplicationDependencies.getDatabaseObserver()).thenReturn(mock(DatabaseObserver.class));
 
     testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ApplicationProvider.getApplicationContext(), mock(Invalidator.class));
   }
