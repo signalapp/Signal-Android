@@ -81,8 +81,8 @@ public class ComposeText extends EmojiEditText {
   }
 
   @Override
-  protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-    super.onLayout(changed, left, top, right, bottom);
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
     if (!TextUtils.isEmpty(hint)) {
       if (!TextUtils.isEmpty(subHint)) {
@@ -92,6 +92,7 @@ public class ComposeText extends EmojiEditText {
       } else {
         setHint(ellipsizeToWidth(hint));
       }
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
   }
 
