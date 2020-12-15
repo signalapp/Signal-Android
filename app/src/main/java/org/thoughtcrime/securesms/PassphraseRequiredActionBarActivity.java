@@ -38,7 +38,9 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     Log.i(TAG, "onCreate(" + savedInstanceState + ")");
     onPreCreate();
 
-    final boolean locked = KeyCachingService.isLocked(this);
+    final boolean locked = KeyCachingService.isLocked(this) &&
+            TextSecurePreferences.isScreenLockEnabled(this) &&
+            TextSecurePreferences.getLocalNumber(this) != null;
     routeApplicationState(locked);
 
     super.onCreate(savedInstanceState);
