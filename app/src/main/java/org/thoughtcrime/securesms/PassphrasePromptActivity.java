@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import network.loki.messenger.R;
 
-//TODO Rename to screen lock activity and refactor to Kotlin.
+//TODO Rename to ScreenLockActivity and refactor to Kotlin.
 public class PassphrasePromptActivity extends BaseActionBarActivity {
 
   private static final String TAG = PassphrasePromptActivity.class.getSimpleName();

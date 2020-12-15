@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.views.FakeChatView
+import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 
@@ -37,6 +38,9 @@ class LandingActivity : BaseActionBarActivity() {
         TextSecurePreferences.setPasswordDisabled(this, true)
         TextSecurePreferences.setReadReceiptsEnabled(this, true)
         TextSecurePreferences.setTypingIndicatorsEnabled(this, true)
+
+        //AC: This is a temporary workaround to trick the old code that the screen is unlocked.
+        KeyCachingService.setMasterSecret(applicationContext, Object())
     }
 
     private fun register() {

@@ -21,8 +21,10 @@ import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
@@ -49,7 +51,8 @@ import network.loki.messenger.R;
  *
  * @author Moxie Marlinspike
  */
-
+//TODO AC: This service does only serve one purpose now - to track the screen lock state and handle the timer.
+// We need to refactor it and cleanup from all the old Signal code.
 public class KeyCachingService extends Service {
 
   private static final String TAG = KeyCachingService.class.getSimpleName();
@@ -57,18 +60,41 @@ public class KeyCachingService extends Service {
   public static final int SERVICE_RUNNING_ID = 4141;
 
   public  static final String KEY_PERMISSION           = "network.loki.messenger.ACCESS_SESSION_SECRETS";
-  public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
+//  public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
   public  static final String CLEAR_KEY_EVENT          = "org.thoughtcrime.securesms.service.action.CLEAR_KEY_EVENT";
   public  static final String LOCK_TOGGLED_EVENT       = "org.thoughtcrime.securesms.service.action.LOCK_ENABLED_EVENT";
   private static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
   public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
-  public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
+//  public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
 
   private final IBinder binder  = new KeySetBinder();
 
   // AC: This is a temporal drop off replacement for the refactoring time being.
   // This field only indicates if the app was unlocked or not (null means locked).
   private static Object masterSecret;
+
+  /**
+   * A temporal utility method to quickly call {@link KeyCachingService#setMasterSecret(Object)}
+   * without explicitly binding to the service.
+   */
+  public static void setMasterSecret(Context context, Object masterSecret) {
+    // Start and bind to the KeyCachingService instance.
+    Intent bindIntent = new Intent(context, KeyCachingService.class);
+    context.startService(bindIntent);
+    context.bindService(bindIntent, new ServiceConnection() {
+      @Override
+      public void onServiceConnected(ComponentName name, IBinder binder) {
+        KeyCachingService service = ((KeySetBinder) binder).getService();
+        service.setMasterSecret(masterSecret);
+        context.unbindService(this);
+      }
+      @Override
+      public void onServiceDisconnected(ComponentName name) {
+
+      }
+    }, Context.BIND_AUTO_CREATE);
+
+  }
 
   public KeyCachingService() {}
 
@@ -84,7 +110,6 @@ public class KeyCachingService extends Service {
     startTimeoutIfAppropriate(context);
   }
 
-  //TODO AC: Delete
   public static synchronized @Nullable Object getMasterSecret(Context context) {
 //    if (masterSecret == null && (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context))) {
 //      try {
@@ -97,14 +122,13 @@ public class KeyCachingService extends Service {
     return masterSecret;
   }
 
-  //TODO AC: Delete
   @SuppressLint("StaticFieldLeak")
   public void setMasterSecret(final Object masterSecret) {
     synchronized (KeyCachingService.class) {
       KeyCachingService.masterSecret = masterSecret;
 
       foregroundService();
-      broadcastNewSecret();
+//      broadcastNewSecret();
       startTimeoutIfAppropriate(this);
       
       new AsyncTask<Void, Void, Void>() {
@@ -128,7 +152,7 @@ public class KeyCachingService extends Service {
       switch (intent.getAction()) {
         case CLEAR_KEY_ACTION:         handleClearKey();        break;
         case PASSPHRASE_EXPIRED_EVENT: handleClearKey();        break;
-        case DISABLE_ACTION:           handleDisableService();  break;
+//        case DISABLE_ACTION:           handleDisableService();  break;
         case LOCK_TOGGLED_EVENT:       handleLockToggled();     break;
       }
     }
@@ -259,14 +283,14 @@ public class KeyCachingService extends Service {
     startForeground(SERVICE_RUNNING_ID, builder.build());
   }
 
-  private void broadcastNewSecret() {
-    Log.i(TAG, "Broadcasting new secret...");
-
-    Intent intent = new Intent(NEW_KEY_EVENT);
-    intent.setPackage(getApplicationContext().getPackageName());
-
-    sendBroadcast(intent, KEY_PERMISSION);
-  }
+//  private void broadcastNewSecret() {
+//    Log.i(TAG, "Broadcasting new secret...");
+//
+//    Intent intent = new Intent(NEW_KEY_EVENT);
+//    intent.setPackage(getApplicationContext().getPackageName());
+//
+//    sendBroadcast(intent, KEY_PERMISSION);
+//  }
 
   private PendingIntent buildLockIntent() {
     Intent intent = new Intent(this, KeyCachingService.class);
