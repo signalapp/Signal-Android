@@ -6,6 +6,8 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 import kotlin.math.round
 
 class DatabaseAttachmentDTO {
+    var attachmentId: Long = 0
+
     var contentType: String? = null
 
     var fileName: String? = null

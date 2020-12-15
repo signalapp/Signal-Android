@@ -11,7 +11,7 @@ class Quote() {
     var timestamp: Long? = 0
     var publicKey: String? = null
     var text: String? = null
-    var attachmentID: String? = null
+    var attachmentID: Long? = null
 
     companion object {
         const val TAG = "Quote"
@@ -25,7 +25,7 @@ class Quote() {
     }
 
     //constructor
-    internal constructor(timestamp: Long, publicKey: String, text: String?, attachmentID: String?) : this() {
+    internal constructor(timestamp: Long, publicKey: String, text: String?, attachmentID: Long?) : this() {
         this.timestamp = timestamp
         this.publicKey = publicKey
         this.text = text

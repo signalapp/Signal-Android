@@ -11,7 +11,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 class VisibleMessage : Message()  {
 
     var text: String? = null
-    var attachmentIDs = ArrayList<String>()
+    var attachmentIDs = ArrayList<Long>()
     var quote: Quote? = null
     var linkPreview: LinkPreview? = null
     var contact: Contact? = null
