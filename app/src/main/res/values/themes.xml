@@ -78,6 +78,7 @@
 
         <item name="android:textColorHint">@color/white</item>
         <item name="android:windowBackground">@color/core_grey_95</item>
+
     </style>
 
     <style name="TextSecure.LightTheme.Popup" parent="TextSecure.LightTheme">
