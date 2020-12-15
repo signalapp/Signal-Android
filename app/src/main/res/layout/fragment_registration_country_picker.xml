@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:orientation="vertical"
-              android:background="#ffffff">
+              android:orientation="vertical">
 
-    <EditText android:id="@+id/country_search"
+    <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+              android:id="@+id/country_search"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:drawableStart="@drawable/ic_menu_search_holo_light"
-              android:hint="@string/country_selection_fragment__search" />
+              android:layout_marginStart="4dp"
+              android:layout_marginEnd="4dp"
+              android:drawablePadding="2dp"
+              android:hint="@string/country_selection_fragment__search"
+              app:drawableStartCompat="@drawable/ic_search_24" />
 
     <ListView android:id="@android:id/list"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:divider="#ffdddddd"
-              android:dividerHeight="1.0px"
+              android:dividerHeight="1dp"
               android:choiceMode="singleChoice" />
 
     <TextView android:id="@android:id/empty"

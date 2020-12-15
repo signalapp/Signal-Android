@@ -70,7 +70,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
   {
     ((TextView) getListView().getEmptyView()).setText(
             R.string.country_selection_fragment__no_matching_countries);
-    String[] from = { "country_name", "country_code" };
+    String[] from = { "flag_and_country_name", "country_code" };
     int[]    to   = { R.id.country_name, R.id.country_code };
 
     setListAdapter(new SimpleAdapter(getActivity(), results, R.layout.country_list_item, from, to));

@@ -28,15 +28,24 @@ public final class CountryListLoader extends AsyncTaskLoader<ArrayList<Map<Strin
     ArrayList<Map<String, String>> results = new ArrayList<>(regions.size());
 
     for (String region : regions) {
-      Map<String, String> data = new HashMap<>(2);
-      data.put("country_name", PhoneNumberFormatter.getRegionDisplayNameLegacy(region));
-      data.put("country_code", "+" +PhoneNumberUtil.getInstance().getCountryCodeForRegion(region));
+      Map<String, String> data = new HashMap<>(3);
+      String countryName = PhoneNumberFormatter.getRegionDisplayNameLegacy(region);
+      data.put("country_name", countryName);
+      data.put("country_code", "+" + PhoneNumberUtil.getInstance().getCountryCodeForRegion(region));
+      data.put("flag_and_country_name", getCountryFlag(region) + " " + countryName);
       results.add(data);
     }
 
     Collections.sort(results, new RegionComparator());
 
     return results;
+  }
+
+  private String getCountryFlag(String region) {
+    int firstLetter  = Character.codePointAt(region, 0) - 0x41 + 0x1F1E6;
+    int secondLetter = Character.codePointAt(region, 1) - 0x41 + 0x1F1E6;
+
+    return new String(Character.toChars(firstLetter)) + new String(Character.toChars(secondLetter));
   }
 
   private static class RegionComparator implements Comparator<Map<String, String>> {
