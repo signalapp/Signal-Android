@@ -189,7 +189,6 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
                 TextSecurePreferences.setRestorationTime(context, System.currentTimeMillis())
                 TextSecurePreferences.setHasViewedSeed(context, true)
                 TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
-                TextSecurePreferences.setPromptedPushRegistration(context, true)
                 TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(context)
                 TextSecurePreferences.setHasSeenLightThemeIntroSheet(context)
                 val application = ApplicationContext.getInstance(context)

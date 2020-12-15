@@ -22,6 +22,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import androidx.annotation.NonNull;
 
+import org.session.libsignal.libsignal.ecc.ECPublicKey;
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.util.Base64;
 import org.session.libsignal.libsignal.IdentityKey;
@@ -40,7 +41,6 @@ import java.util.List;
  * 
  * @author Moxie Marlinspike
  */
-//TODO AC: Delete
 public class IdentityKeyUtil {
 
   private static final String MASTER_SECRET_UTIL_PREFERENCES_NAME = "SecureSMS-Preferences";
@@ -84,6 +84,14 @@ public class IdentityKeyUtil {
     } catch (IOException e) {
       throw new AssertionError(e);
     }
+  }
+
+  public static void generateIdentityKeyPair(@NonNull Context context) {
+    ECKeyPair keyPair = Curve.generateKeyPair();
+    ECPublicKey publicKey = keyPair.getPublicKey();
+    ECPrivateKey privateKey = keyPair.getPrivateKey();
+    save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(publicKey.serialize()));
+    save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(privateKey.serialize()));
   }
 
   public static List<BackupProtos.SharedPreference> getBackupRecords(@NonNull Context context) {

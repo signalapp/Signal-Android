@@ -15,12 +15,6 @@ object KeyPairUtilities {
 
     private val sodium = LazySodiumAndroid(SodiumAndroid())
 
-    data class KeyPairGenerationResult(
-        val seed: ByteArray,
-        val ed25519KeyPair: KeyPair,
-        val x25519KeyPair: ECKeyPair
-    )
-
     fun generate(): KeyPairGenerationResult {
         val seed = sodium.randomBytesBuf(16)
         try {
@@ -45,4 +39,10 @@ object KeyPairUtilities {
         IdentityKeyUtil.save(context, IdentityKeyUtil.ED25519_PUBLIC_KEY, Base64.encodeBytes(ed25519KeyPair.publicKey.asBytes))
         IdentityKeyUtil.save(context, IdentityKeyUtil.ED25519_SECRET_KEY, Base64.encodeBytes(ed25519KeyPair.secretKey.asBytes))
     }
+
+    data class KeyPairGenerationResult(
+            val seed: ByteArray,
+            val ed25519KeyPair: KeyPair,
+            val x25519KeyPair: ECKeyPair
+    )
 }

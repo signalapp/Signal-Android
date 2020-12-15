@@ -2,15 +2,17 @@ package org.thoughtcrime.securesms.loki.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_landing.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
+import org.thoughtcrime.securesms.loki.views.FakeChatView
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.Util
 
 class LandingActivity : BaseActionBarActivity() {
 
@@ -18,13 +20,23 @@ class LandingActivity : BaseActionBarActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
         setUpActionBarSessionLogo(true)
-        fakeChatView.startAnimating()
-        registerButton.setOnClickListener { register() }
-        restoreButton.setOnClickListener { restoreFromRecoveryPhrase() }
-        restoreBackupButton.setOnClickListener { restoreFromBackup() }
+        findViewById<FakeChatView>(R.id.fakeChatView).startAnimating()
+
+        findViewById<View>(R.id.registerButton).setOnClickListener { register() }
+        findViewById<View>(R.id.restoreButton).setOnClickListener { restoreFromRecoveryPhrase() }
+        findViewById<View>(R.id.restoreBackupButton).setOnClickListener { restoreFromBackup() }
+
         if (TextSecurePreferences.getWasUnlinked(this)) {
             Toast.makeText(this, R.string.activity_landing_device_unlinked_dialog_title, Toast.LENGTH_LONG).show()
         }
+
+        // Setup essentials for a new user.
+        IdentityKeyUtil.generateIdentityKeyPair(this)
+
+        TextSecurePreferences.setLastExperienceVersionCode(this, Util.getCanonicalVersionCode())
+        TextSecurePreferences.setPasswordDisabled(this, true)
+        TextSecurePreferences.setReadReceiptsEnabled(this, true)
+        TextSecurePreferences.setTypingIndicatorsEnabled(this, true)
     }
 
     private fun register() {
@@ -46,7 +58,6 @@ class LandingActivity : BaseActionBarActivity() {
         IdentityKeyUtil.delete(this, IdentityKeyUtil.LOKI_SEED)
         TextSecurePreferences.removeLocalNumber(this)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
-        TextSecurePreferences.setPromptedPushRegistration(this, false)
         val application = ApplicationContext.getInstance(this)
         application.stopPolling()
     }
