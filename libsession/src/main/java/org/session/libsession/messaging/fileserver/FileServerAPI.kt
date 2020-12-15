@@ -4,12 +4,12 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
+import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.libsignal.util.Hex
 import org.session.libsignal.service.internal.util.Base64
 import org.session.libsignal.service.internal.util.JsonUtil
 import org.session.libsignal.service.loki.api.SnodeAPI
-import org.session.libsignal.service.loki.api.LokiDotNetAPI
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
@@ -18,7 +18,7 @@ import java.net.URL
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.collections.set
 
-class FileServerAPI(public val server: String, userPublicKey: String, userPrivateKey: ByteArray, private val database: LokiAPIDatabaseProtocol) : LokiDotNetAPI(userPublicKey, userPrivateKey, database) {
+class FileServerAPI(public val server: String, userPublicKey: String, userPrivateKey: ByteArray, private val database: LokiAPIDatabaseProtocol) : DotNetAPI() {
 
     companion object {
         // region Settings
@@ -49,6 +49,7 @@ class FileServerAPI(public val server: String, userPublicKey: String, userPrivat
          * possible after proof of work has been calculated and the onion request encryption has happened, which takes several seconds.
          */
         public val fileSizeORMultiplier = 2 // TODO: It should be possible to set this to 1.5?
+        val server = "https://file.getsession.org"
         public val fileStorageBucketURL = "https://file-static.lokinet.org"
         // endregion
 
