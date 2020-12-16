@@ -14,14 +14,16 @@ import org.session.libsignal.libsignal.state.SessionStore;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.state.SignedPreKeyRecord;
 import org.session.libsignal.libsignal.state.SignedPreKeyStore;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 
 import java.util.List;
 
 public class SignalProtocolStoreImpl implements SignalProtocolStore {
 
-//  private final PreKeyStore       preKeyStore;
-//  private final SignedPreKeyStore signedPreKeyStore;
-//  private final IdentityKeyStore  identityKeyStore;
+  private final Context context;
+  //  private final PreKeyStore       preKeyStore;
+  //  private final SignedPreKeyStore signedPreKeyStore;
+  //  private final IdentityKeyStore  identityKeyStore;
   private final SessionStore      sessionStore;
 
   public SignalProtocolStoreImpl(Context context) {
@@ -29,12 +31,14 @@ public class SignalProtocolStoreImpl implements SignalProtocolStore {
 //    this.signedPreKeyStore = new TextSecurePreKeyStore(context);
 //    this.identityKeyStore  = new TextSecureIdentityKeyStore(context);
     this.sessionStore      = new TextSecureSessionStore(context);
+    this.context = context;
   }
 
   @Override
   public IdentityKeyPair getIdentityKeyPair() {
+    return IdentityKeyUtil.getIdentityKeyPair(context);
 //    return identityKeyStore.getIdentityKeyPair();
-    throw new UnsupportedOperationException("This method will be removed with refactor.");
+//    throw new UnsupportedOperationException("This method will be removed with refactor.");
   }
 
   @Override
