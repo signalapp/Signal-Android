@@ -38,6 +38,7 @@ public class EditProfileActivity extends BaseActivity implements EditProfileFrag
 
   public static @NonNull Intent getIntentForUserProfileEdit(@NonNull Context context) {
     Intent intent = new Intent(context, EditProfileActivity.class);
+    intent.putExtra(EditProfileActivity.SHOW_TOOLBAR, true);
     intent.putExtra(EditProfileActivity.EXCLUDE_SYSTEM, true);
     intent.putExtra(EditProfileActivity.DISPLAY_USERNAME, true);
     intent.putExtra(EditProfileActivity.NEXT_BUTTON_TEXT, R.string.save);

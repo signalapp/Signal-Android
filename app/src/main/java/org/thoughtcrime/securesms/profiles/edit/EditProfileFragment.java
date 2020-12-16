@@ -253,7 +253,7 @@ public class EditProfileFragment extends LoggingFragment {
       Navigation.findNavController(v).navigate(action);
     });
 
-    if (arguments.getBoolean(SHOW_TOOLBAR, true)) {
+    if (arguments.getBoolean(SHOW_TOOLBAR, false)) {
       this.toolbar.setVisibility(View.VISIBLE);
       this.toolbar.setNavigationOnClickListener(v -> requireActivity().finish());
       this.title.setVisibility(View.GONE);
