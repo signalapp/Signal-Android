@@ -25,6 +25,6 @@
         android:id="@+id/pinLockedFragment"
         android:name="org.thoughtcrime.securesms.pin.PinRestoreLockedFragment"
         android:label="fragment_pin_locked"
-        tools:layout="@layout/account_locked_fragment"/>
+        tools:layout="@layout/pin_restore_locked_fragment"/>
 
 </navigation>
