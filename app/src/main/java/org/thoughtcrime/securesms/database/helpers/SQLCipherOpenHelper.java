@@ -56,6 +56,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   //TODO Merge all "refactor" migrations to one before pushing to the main repo.
   private static final int lokiV19_REFACTOR0                = 40;
   private static final int lokiV19_REFACTOR1                = 41;
+  private static final int lokiV19_REFACTOR2                = 42;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final int    DATABASE_VERSION = lokiV19_REFACTOR1;
@@ -222,6 +223,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV19_REFACTOR1) {
         db.execSQL("DROP TABLE identities");
         deleteJobRecords(db, "RetrieveProfileJob");
+      }
+      if (oldVersion < lokiV19_REFACTOR2) {
+        deleteJobRecords(db,
+                "RefreshAttributesJob",
+                "RotateProfileKeyJob"
+        );
       }
 
       db.setTransactionSuccessful();

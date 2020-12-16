@@ -22,12 +22,10 @@ import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
-import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.jobs.StickerDownloadJob;
@@ -55,7 +53,6 @@ import network.loki.messenger.BuildConfig;
                                      AttachmentDownloadJob.class,
                                      IncomingMessageObserver.class,
                                      PushNotificationReceiveJob.class,
-                                     RefreshAttributesJob.class,
                                      RequestGroupInfoJob.class,
                                      PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
@@ -64,7 +61,6 @@ import network.loki.messenger.BuildConfig;
                                      AppProtectionPreferenceFragment.class,
                                      RotateCertificateJob.class,
                                      SendDeliveryReceiptJob.class,
-                                     RotateProfileKeyJob.class,
                                      RefreshUnidentifiedDeliveryAbilityJob.class,
                                      TypingSendJob.class,
                                      AttachmentUploadJob.class,

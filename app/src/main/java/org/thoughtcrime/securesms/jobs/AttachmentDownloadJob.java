@@ -6,6 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import org.greenrobot.eventbus.EventBus;
+import org.session.libsignal.libsignal.InvalidMessageException;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream;
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
+import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
+import org.session.libsignal.service.loki.utilities.DownloadUtilities;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -23,18 +30,11 @@ import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.Util;
-import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceMessageReceiver;
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
-import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.inject.Inject;
 
 public class AttachmentDownloadJob extends BaseJob implements InjectableType {
 
@@ -47,8 +47,6 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
   private static final String KEY_PART_ROW_ID   = "part_row_id";
   private static final String KEY_PAR_UNIQUE_ID = "part_unique_id";
   private static final String KEY_MANUAL        = "part_manual";
-
-  @Inject SignalServiceMessageReceiver messageReceiver;
 
   private long    messageId;
   private long    partRowId;
@@ -166,7 +164,21 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
       attachmentFile = createTempFile();
 
       SignalServiceAttachmentPointer pointer = createAttachmentPointer(attachment);
-      InputStream                    stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)));
+//      InputStream                    stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)));
+
+      if (pointer.getUrl().isEmpty()) throw new InvalidMessageException("Missing attachment URL.");
+
+      DownloadUtilities.downloadFile(attachmentFile, pointer.getUrl(), MAX_ATTACHMENT_SIZE, (total, progress) -> {
+        EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
+      });
+
+      final InputStream stream;
+      // Assume we're retrieving an attachment for an open group server if the digest is not set
+      if (!pointer.getDigest().isPresent()) {
+        stream = new FileInputStream(attachmentFile);
+      } else {
+        stream = AttachmentCipherInputStream.createForAttachment(attachmentFile, pointer.getSize().or(0), pointer.getKey(), pointer.getDigest().get());
+      }
 
       database.insertAttachmentsForPlaceholder(messageId, attachmentId, stream);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
