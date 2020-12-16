@@ -203,6 +203,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottaker er ikke et gyldig nummer eller e-post-adresse.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meldingen er tom!</string>
   <string name="ConversationActivity_group_members">Gruppemedlemmer</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Trykk her for å gjøre et gruppeanrop</string>
   <string name="ConversationActivity_invalid_recipient">Ugyldig mottaker.</string>
   <string name="ConversationActivity_added_to_home_screen">Lagt til startskjermen</string>
   <string name="ConversationActivity_calls_not_supported">Samtaler støttes ikke</string>
@@ -395,6 +396,8 @@
   <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string>
   <string name="DonateMegaphone_donate">Doner</string>
   <string name="DonateMegaphone_no_thanks">Nei takk</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Åpne en ny gruppe for å gjøre et gratis gruppeanrop</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglende Play Tjenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enheten støtter ikke Play-tjenester. Trykk én gang for å slå av batterioptimalisering som kan hindre Signal i å motta meldinger når det kjører i bakgrunnen.</string>
@@ -457,7 +460,7 @@
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ikke nå</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Oppdater gruppe</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ikke nå</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ikke nå</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Vil du forlate gruppen?</string>
@@ -1656,8 +1659,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="arrays__enabled">Slått på</string>
   <string name="arrays__disabled">Slått av</string>
   <string name="arrays__name_and_message">Navn og melding</string>
-  <string name="arrays__name_only">Bare navn</string>
-  <string name="arrays__no_name_or_message">Ingen navn eller melding</string>
+  <string name="arrays__name_only">Kun navn</string>
+  <string name="arrays__no_name_or_message">Verken navn eller melding</string>
   <string name="arrays__images">Bilder</string>
   <string name="arrays__audio">Lyd</string>
   <string name="arrays__video">Video</string>

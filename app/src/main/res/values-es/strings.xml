@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">¡Esta persona no tiene un número que pueda recibir SMS o un correo válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
   <string name="ConversationActivity_group_members">Participantes del grupo</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Toca aquí para iniciar una llamada en grupo</string>
   <string name="ConversationActivity_invalid_recipient">¡Destinatari@ inválid@!</string>
   <string name="ConversationActivity_added_to_home_screen">Añadido a la pantalla de inicio</string>
   <string name="ConversationActivity_calls_not_supported">Llamadas no disponibles</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal se mantiene por gente como tú. ¡Muestra hoy tu apoyo!</string>
   <string name="DonateMegaphone_donate">Donar</string>
   <string name="DonateMegaphone_no_thanks">No, gracias</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">¡Las llamadas en grupo están aquí!</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Entra en un grupo del nuevo sistema para iniciar una llamada en grupo cifrada</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizar sin servicios de Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no dispone de los servicios de Google Play. Toca para desactivar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
@@ -515,7 +519,7 @@
     <item quantity="one">Añadir participante</item>
     <item quantity="other">Añadir participantes</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ahora no</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ahora no</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">¿Añadir participante?</item>
@@ -2550,7 +2554,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DeleteAccountFragment__delete_account">Eliminar cuenta</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminar la información de tu cuenta y foto de perfil</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Eliminar todos tus mensajes</string>
-  <string name="DeleteAccountFragment__no_country_code">Código de país no especificado</string>
+  <string name="DeleteAccountFragment__no_country_code">Código de país sin especificar</string>
   <string name="DeleteAccountFragment__no_number">Número no especificado</string>
   <string name="DeleteAccountFragment__the_phone_number">El número introducido no coincide con el de tu cuenta.</string>
   <string name="DeleteAccountFragment__are_you_sure">¿Estás segur@ de querer eliminar tu cuenta?</string>

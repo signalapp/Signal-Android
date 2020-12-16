@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mobilrufnummer oder E-Mail-Adresse des Empfängers ist ungültig!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Die Nachricht ist leer!</string>
   <string name="ConversationActivity_group_members">Gruppenmitglieder</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Hier antippen, um einen Gruppenanruf zu starten</string>
   <string name="ConversationActivity_invalid_recipient">Ungültiger Empfänger!</string>
   <string name="ConversationActivity_added_to_home_screen">Zum Startbildschirm hinzugefügt</string>
   <string name="ConversationActivity_calls_not_supported">Anrufe nicht unterstützt</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal existiert dank Menschen wie dir. Zeig heute deine Unterstützung!</string>
   <string name="DonateMegaphone_donate">Spenden</string>
   <string name="DonateMegaphone_no_thanks">Nein danke</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Einführung von Gruppenanrufen</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öffne eine Gruppe neuen Typs, um einen kostenlosen und verschlüsselten Gruppenanruf zu starten</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für Betrieb ohne Google-Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungen zu deaktivieren, die Signal daran hindern, Nachrichten im Hintergrund zu empfangen.</string>
@@ -515,7 +519,7 @@
     <item quantity="one">Mitglied hinzufügen</item>
     <item quantity="other">Mitglieder hinzufügen</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Jetzt nicht</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Jetzt nicht</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Mitglied hinzufügen?</item>

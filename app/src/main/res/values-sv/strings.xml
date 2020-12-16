@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagaren är inte en giltig SMS eller e-postadress!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meddelandet är tomt!</string>
   <string name="ConversationActivity_group_members">Gruppmedlemmar</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Tryck här för att starta ett gruppsamtal</string>
   <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
   <string name="ConversationActivity_added_to_home_screen">Lagt till på hemskärmen</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds inte</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drivs av människor som du. Visa ditt stöd idag!</string>
   <string name="DonateMegaphone_donate">Donera</string>
   <string name="DonateMegaphone_no_thanks">Nej tack</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Vi presenterar gruppsamtal</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öppna en Ny grupp för att starta ett gratis krypterat gruppsamtal</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheten stöder inte Play-tjänster. Tryck för att inaktivera systembatterioptimeringar som hindrar Signal från att hämta meddelanden vid inaktivitet.</string>
@@ -477,7 +481,7 @@
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Vad är Nya grupper?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nya grupper har funktioner som @omnämnanden och gruppadministratörer och kommer att stöda fler funktioner i framtiden.</string>
-  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All meddelandeshistorik och media har sparats från före uppgraderingen.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All meddelandehistorik och media har sparats från före uppgraderingen.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Du måste acceptera en inbjudan för att gå med i denna grupp igen och kommer inte att få gruppmeddelanden förrän du accepterar.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Denna medlem måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
@@ -515,7 +519,7 @@
     <item quantity="one">Lägg till medlem</item>
     <item quantity="other">Lägg till medlemmar</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Inte nu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Inte nu</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Lägg till medlem?</item>
@@ -1994,7 +1998,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
   <string name="preferences__keep_messages">Spara meddelanden</string>
-  <string name="preferences__clear_message_history">Rensa meddelandeshistorik</string>
+  <string name="preferences__clear_message_history">Rensa meddelandehistorik</string>
   <string name="preferences__linked_devices">Länkade enheter</string>
   <string name="preferences__light_theme">Ljust</string>
   <string name="preferences__dark_theme">Mörkt</string>
@@ -2025,7 +2029,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_chats__when_using_wifi">Vid användning av Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Vid roaming</string>
   <string name="preferences_chats__media_auto_download">Automatisk hämtning av media</string>
-  <string name="preferences_chats__message_history">Meddelandeshistorik</string>
+  <string name="preferences_chats__message_history">Meddelandehistorik</string>
   <string name="preferences_storage__storage_usage">Lagringsutrymme</string>
   <string name="preferences_storage__photos">Foton</string>
   <string name="preferences_storage__videos">Videor</string>
@@ -2033,12 +2037,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_storage__audio">Ljud</string>
   <string name="preferences_storage__review_storage">Granska lagring</string>
   <string name="preferences_storage__delete_older_messages">Ta bort äldre meddelanden?</string>
-  <string name="preferences_storage__clear_message_history">Rensa meddelandeshistorik?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Detta tar bort all meddelandeshistorik och media från din enhet som är äldre än %1$s.</string>
+  <string name="preferences_storage__clear_message_history">Rensa meddelandehistorik?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Detta tar bort all meddelandehistorik och media från din enhet som är äldre än %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Detta kommer omedelbart att korta ner alla konversationer till de %1$s senaste meddelandena.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Detta tar bort all meddelandeshistorik och media permanent från din enhet.</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Är du säker på att du vill ta bort all meddelandeshistorik?</string>
-  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meddelandeshistorik tas bort permanent. Denna åtgärd kan inte ångras.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Detta tar bort all meddelandehistorik och media permanent från din enhet.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Är du säker på att du vill ta bort all meddelandehistorik?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meddelandehistorik tas bort permanent. Denna åtgärd kan inte ångras.</string>
   <string name="preferences_storage__delete_all_now">Ta bort allt nu</string>
   <string name="preferences_storage__forever">För alltid</string>
   <string name="preferences_storage__one_year">1 år</string>

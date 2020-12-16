@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">സ്വീകർത്താവ് സാധുവായ ഒരു SMS അല്ലെങ്കിൽ ഇമെയിൽ വിലാസമല്ല!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">സന്ദേശം ശൂന്യമാണ്!</string>
   <string name="ConversationActivity_group_members">ഗ്രൂപ്പിലെ അംഗങ്ങൾ</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ ഇവിടെ ടാപ്പ് ചെയ്യുക</string>
   <string name="ConversationActivity_invalid_recipient">അസാധുവായ സ്വീകർത്താവ്!</string>
   <string name="ConversationActivity_added_to_home_screen">ഹോം സ്‌ക്രീനിൽ ചേർത്തു</string>
   <string name="ConversationActivity_calls_not_supported">കോളുകൾ അനുവദനീയമല്ല</string>
@@ -418,6 +419,8 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">നിങ്ങളെപ്പോലുള്ള ആളുകളാണ് Signal - ന് ശക്തി  നൽകുന്നത്. ഇന്ന് നിങ്ങളുടെ പിന്തുണ കാണിക്കുക!</string>
   <string name="DonateMegaphone_donate">സംഭാവനചെയ്യുക</string>
   <string name="DonateMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">ഗ്രൂപ്പ് കോളുകൾ അവതരിപ്പിക്കുന്നു</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Play Services ഇല്ലാത്തതിനാൽ ഡിവൈസ് ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ഈ ഉപകരണം Play Services പിന്തുണയ്ക്കുന്നില്ല. നിഷ്‌ക്രിയമായിരിക്കുമ്പോൾ സന്ദേശങ്ങൾ വീണ്ടെടുക്കുന്നതിൽ നിന്ന് Signal നെ തടയുന്ന സിസ്റ്റം ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കാൻ ടാപ്പുചെയ്യുക.</string>
@@ -515,7 +518,7 @@
     <item quantity="one">അംഗത്തെ ചേർക്കണോ?</item>
     <item quantity="other">അംഗങ്ങളെ ചേർക്കുക</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">ഇപ്പോൾ വേണ്ട</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">ഇപ്പോൾ വേണ്ട</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">അംഗത്തെ ചേർക്കണോ?</item>

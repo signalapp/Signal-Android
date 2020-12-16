@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ο παραλήπτης δεν είναι έγκυρη διεύθυνση SMS ή email!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Το μήνυμα είναι κενό!</string>
   <string name="ConversationActivity_group_members">Μέλη ομάδας</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Πάτα εδώ για να ξεκινήσεις μια ομαδική κλήση</string>
   <string name="ConversationActivity_invalid_recipient">Μη έγκυρος/η παραλήπτης/τρια!</string>
   <string name="ConversationActivity_added_to_home_screen">Προστέθηκε στην κεντρική οθόνη</string>
   <string name="ConversationActivity_calls_not_supported">Οι κλήσεις δεν υποστηρίζονται</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Το Signal στηρίζεται σε άτομα σαν και σένα. Δείξε την υποστήριξή σου!</string>
   <string name="DonateMegaphone_donate">Δωρεά</string>
   <string name="DonateMegaphone_no_thanks">Όχι ευχαριστώ</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Ήρθαν οι Ομαδικές κλήσεις</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Δημιούργησε μια Ομάδα νέου τύπου για να κάνεις μια ελεύθερη, κρυπτογραφημένη ομαδική κλήση.</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Βελτιστοποίηση για τις υπηρεσίες Play που λείπουν</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Αυτή η συσκευή δεν υποστηρίζει τις υπηρεσίες Play. Πάτα για απενεργοποίηση των βελτιστοποιήσεων μπαταρίας του συστήματος που εμποδίζουν το Signal από το να λαμβάνει μηνύματα όταν είναι ανενεργό.</string>
@@ -515,7 +519,7 @@
     <item quantity="one">Προσθήκη μέλους</item>
     <item quantity="other">Προσθήκη μελών</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Όχι τώρα</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Όχι τώρα</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Προσθήκη μέλους;</item>

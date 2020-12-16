@@ -205,6 +205,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人並不是一個有效的簡訊或電子郵件地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">訊息內容是空的！</string>
   <string name="ConversationActivity_group_members">群組成員</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">點按此處發起群組聊天</string>
   <string name="ConversationActivity_invalid_recipient">無效的收件人！</string>
   <string name="ConversationActivity_added_to_home_screen">新增到主畫面</string>
   <string name="ConversationActivity_calls_not_supported">不支援的通話</string>
@@ -404,6 +405,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 由像你這樣的人提供動力。這顯示了你的支持！</string>
   <string name="DonateMegaphone_donate">捐贈</string>
   <string name="DonateMegaphone_no_thanks">在心中</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">群組通話簡介</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">開啟新版群組以發起免費的加密的群組通話</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
@@ -493,7 +497,7 @@
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">新增成員</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">稍後</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">稍後</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="other">要新增成員嗎?</item>

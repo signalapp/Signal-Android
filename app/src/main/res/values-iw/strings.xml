@@ -214,6 +214,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">המקבל אינו כתובת תקפה של מסרון או כתובת דוא״ל!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">ההודעה ריקה!</string>
   <string name="ConversationActivity_group_members">חברי קבוצה</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">הקש כאן כדי להתחיל שיחה קבוצתית</string>
   <string name="ConversationActivity_invalid_recipient">מקבל בלתי תקף!</string>
   <string name="ConversationActivity_added_to_home_screen">התווסף אל מסך הבית</string>
   <string name="ConversationActivity_calls_not_supported">שיחות אינן נתמכות</string>
@@ -446,6 +447,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ממונע על ידי אנשים כמוך. הראה לנו את תמיכתך היום!</string>
   <string name="DonateMegaphone_donate">תרום</string>
   <string name="DonateMegaphone_no_thanks">לא תודה</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">היכרות עם שיחה קבוצתית</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">פתח קבוצה חדשה כדי להתחיל שיחה קבוצתית חינמית מוצפנת</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">מטב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ־Signal לאחזר הודעות בעת אי־פעילות.</string>
@@ -559,7 +563,7 @@
     <item quantity="many">הוסף חברי קבוצה</item>
     <item quantity="other">הוסף חברי קבוצה</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">לא עכשיו</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">לא עכשיו</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">להוסיף חבר קבוצה?</item>

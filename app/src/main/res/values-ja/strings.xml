@@ -2,7 +2,7 @@
 <resources>
   <string name="yes">はい</string>
   <string name="no">いいえ</string>
-  <string name="delete">削除</string>
+  <string name="delete">削除する</string>
   <string name="please_wait">お待ち下さい…</string>
   <string name="save">保存</string>
   <string name="note_to_self">自分用メモ</string>
@@ -25,7 +25,7 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">パスフレーズを無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signalとメッセージ通知のロックを恒久的に解除します。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
-  <string name="ApplicationPreferencesActivity_unregistering">登録解除中</string>
+  <string name="ApplicationPreferencesActivity_unregistering">登録を解除しています</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signalメッセージと通話の登録を解除しています…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signalでのメッセージや通話を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバから登録を削除することで、Signalでのメッセージや通話を無効にします。再びSignalを使用するには、電話番号を再登録する必要があります。</string>
@@ -129,7 +129,7 @@
   <string name="CameraContacts_invite_a_contact_to_join_signal">連絡先をSignalへ招待する</string>
   <string name="CameraContacts__menu_search">検索</string>
   <!--ClearProfileActivity-->
-  <string name="ClearProfileActivity_remove">削除</string>
+  <string name="ClearProfileActivity_remove">削除する</string>
   <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を削除しますか？</string>
   <string name="ClearProfileActivity_remove_group_photo">グループ写真を削除しますか？</string>
   <!--ClientDeprecatedActivity-->
@@ -205,6 +205,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">宛先のSMSまたはEメールアドレスが不正です！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です！</string>
   <string name="ConversationActivity_group_members">グループメンバー</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">タップしてグループ通話を開始</string>
   <string name="ConversationActivity_invalid_recipient">不正な宛先です！</string>
   <string name="ConversationActivity_added_to_home_screen">ホーム画面に追加しました</string>
   <string name="ConversationActivity_calls_not_supported">通話はサポートされていません</string>
@@ -284,7 +285,7 @@
   <string name="ConversationFragment_push">データ (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">削除中</string>
+  <string name="ConversationFragment_deleting">削除しています</string>
   <string name="ConversationFragment_deleting_messages">メッセージを削除しています…</string>
   <string name="ConversationFragment_delete_for_me">自分の分だけ削除</string>
   <string name="ConversationFragment_delete_for_everyone">全員分を削除</string>
@@ -311,7 +312,7 @@
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="other">選択した%1$d個の会話が完全に削除されます。</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">削除中</string>
+  <string name="ConversationListFragment_deleting">削除しています</string>
   <string name="ConversationListFragment_deleting_selected_conversations">選択した会話を削除しています…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="other">%d件の会話をアーカイブしました</item>
@@ -404,6 +405,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalはユーザの皆様によって支えられています。Signalを支援してください！</string>
   <string name="DonateMegaphone_donate">寄付する</string>
   <string name="DonateMegaphone_no_thanks">しない</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">グループ通話のご紹介</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">新しいグループで暗号化されたグループ通話を始めましょう</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Google Play開発者サービスの不在に対応する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。Signalがいつでもメッセージを受信できるよう、タップしてバッテリー最適化機能を無効にしてください。</string>
@@ -493,7 +497,7 @@
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">メンバーを追加する</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">いまはしない</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">いまはしない</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="other">メンバーを追加しますか？</item>
@@ -780,7 +784,7 @@
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="other">選択した%1$d個のファイルを完全に削除します。これらのアイテムに関連付けられているメッセージテキストもすべて削除されます。</item>
   </plurals>
-  <string name="MediaOverviewActivity_Media_delete_progress_title">削除中</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">削除しています</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除しています…</string>
   <string name="MediaOverviewActivity_Select_all">すべて選択</string>
   <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを収集しています…</string>
@@ -1052,7 +1056,7 @@
   <string name="DeviceProvisioningActivity_content_bullets">
 ・自分のすべてのメッセージを読む
 \n・自分の名前でメッセージを送る</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">端末をリンク中</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">端末をリンクしています</string>
   <string name="DeviceProvisioningActivity_content_progress_content">新しい端末をリンクしています…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">端末が承認されました！</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">端末がありません。</string>
@@ -1169,7 +1173,7 @@
   <string name="WebRtcCallView__s_is_in_this_call">%1$s が参加中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s と %2$s が参加中</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="other">%1$s, %2$s, %3$d などが参加中</item>
+    <item quantity="other">%1$s, %2$s ほか%3$d人が参加中</item>
   </plurals>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1281,7 +1285,7 @@
   <string name="StickerPackPreviewActivity_untitled">無題</string>
   <string name="StickerPackPreviewActivity_unknown">不明</string>
   <string name="StickerPackPreviewActivity_install">インストール</string>
-  <string name="StickerPackPreviewActivity_remove">削除</string>
+  <string name="StickerPackPreviewActivity_remove">削除する</string>
   <string name="StickerPackPreviewActivity_stickers">ステッカー</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ステッカーパックを読み込めませんでした</string>
   <!--SubmitDebugLogActivity-->
@@ -1677,7 +1681,7 @@
   <!--log_submit_activity-->
   <string name="log_submit_activity__log_fetch_failed">端末上のログを読めませんでした。代わりにADBを使ってデバッグログを取得できます。</string>
   <string name="log_submit_activity__thanks">ご協力ありがとうございます！</string>
-  <string name="log_submit_activity__submitting">送信中</string>
+  <string name="log_submit_activity__submitting">送信しています</string>
   <string name="log_submit_activity__no_browser_installed">ブラウザがインストールされていません</string>
   <string name="log_submit_activity__button_dont_submit">送信しない</string>
   <string name="log_submit_activity__button_submit">送信する</string>
@@ -1702,7 +1706,7 @@
   <string name="import_fragment__import_a_plaintext_backup_file">テキストのバックアップファイルをインポートします。「SMSのバックアップと復元」と互換性があります。</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">会話全体を見る</string>
-  <string name="load_more_header__loading">読み込み中</string>
+  <string name="load_more_header__loading">読み込んでいます</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">メディアがありません</string>
   <!--message_recipients_list_item-->
@@ -1914,7 +1918,7 @@
   <string name="preferences__storage">ストレージ</string>
   <string name="preferences__conversation_length_limit">会話の最大メッセージ件数</string>
   <string name="preferences__keep_messages">メッセージの保存期間</string>
-  <string name="preferences__clear_message_history">メッセージ履歴を消去する</string>
+  <string name="preferences__clear_message_history">メッセージ履歴を削除する</string>
   <string name="preferences__linked_devices">リンク済み端末</string>
   <string name="preferences__light_theme">ライト</string>
   <string name="preferences__dark_theme">ダーク</string>
@@ -1953,7 +1957,7 @@
   <string name="preferences_storage__audio">音声</string>
   <string name="preferences_storage__review_storage">ストレージを確認</string>
   <string name="preferences_storage__delete_older_messages">より古いメッセージを消去しますか？</string>
-  <string name="preferences_storage__clear_message_history">メッセージ履歴を消去しますか？</string>
+  <string name="preferences_storage__clear_message_history">メッセージ履歴を削除しますか？</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$sより古いすべてのメッセージ履歴とメディアを、この端末から完全に削除します。</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">すべての会話で最新%1$s件のメッセージを残して完全に削除します。</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">すべてのメッセージ履歴とメディアを、この端末から完全に削除します。</string>
@@ -2383,7 +2387,7 @@
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s をグループ管理者から外しますか？</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">「%1$s」がこのグループの設定やメンバーを編集できるようになります。</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">このグループから %1$s を削除しますか？</string>
-  <string name="RecipientBottomSheet_remove">削除</string>
+  <string name="RecipientBottomSheet_remove">削除する</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="GroupRecipientListItem_admin">管理者</string>
   <string name="GroupRecipientListItem_approve_description">承認する</string>
@@ -2455,7 +2459,7 @@
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">あなたのアカウント情報とプロフィール画像を削除します</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">あなたのメッセージをすべて削除します</string>
   <string name="DeleteAccountFragment__no_country_code">国番号が指定されていません</string>
-  <string name="DeleteAccountFragment__no_number">番号が指定されていません</string>
+  <string name="DeleteAccountFragment__no_number">電話番号が指定されていません</string>
   <string name="DeleteAccountFragment__the_phone_number">入力された電話番号は、あなたのアカウントのものと一致しません。</string>
   <string name="DeleteAccountFragment__are_you_sure">本当にアカウントを削除しますか？</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">あなたのSignalアカウントを削除して、アプリを初期化します。処理が完了するとアプリを閉じます。</string>
@@ -2463,6 +2467,6 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">ローカルデータの削除に失敗しました。これはシステムのアプリ設定にて、手動で削除できます。</string>
   <string name="DeleteAccountFragment__launch_app_settings">アプリ設定を開く</string>
   <!--DeleteAccountCountryPickerFragment-->
-  <string name="DeleteAccountCountryPickerFragment__search_countries">国を検索する</string>
+  <string name="DeleteAccountCountryPickerFragment__search_countries">国を検索します</string>
   <!--EOF-->
 </resources>

@@ -403,6 +403,7 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal 的进步离不开用户的支持，如果您觉得获益良多可以考虑捐助我们。</string>
   <string name="DonateMegaphone_donate">捐</string>
   <string name="DonateMegaphone_no_thanks">不用，谢谢</string>
+  <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">缺失 Google Play 服务时优化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">该设备不支持 Google Play 服务。点击禁用系统电池优化，防止 Signal 非活动时无法获取新消息。</string>
@@ -492,7 +493,7 @@
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">添加成员</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">稍后再说</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">稍后再说</string> -->
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="other">要添加成员吗？</item>
