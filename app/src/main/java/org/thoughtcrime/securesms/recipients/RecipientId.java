@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -94,7 +95,7 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     id = in.readLong();
   }
 
-  public static @NonNull String toSerializedList(@NonNull List<RecipientId> ids) {
+  public static @NonNull String toSerializedList(@NonNull Collection<RecipientId> ids) {
     return Util.join(Stream.of(ids).map(RecipientId::serialize).toList(), String.valueOf(DELIMITER));
   }
 

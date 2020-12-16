@@ -1782,8 +1782,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       reminderView.get().setOnActionClickListener(actionId -> {
         if (actionId == R.id.reminder_action_gv1_suggestion_add_members) {
           GroupsV1MigrationSuggestionsDialog.show(this, recipient.get().requireGroupId().requireV2(), gv1MigrationSuggestions);
-        } else if (actionId == R.id.reminder_action_gv1_suggestion_not_now) {
-          groupViewModel.onSuggestedMembersBannerDismissed(recipient.get().requireGroupId());
+        } else if (actionId == R.id.reminder_action_gv1_suggestion_no_thanks) {
+          groupViewModel.onSuggestedMembersBannerDismissed(recipient.get().requireGroupId(), gv1MigrationSuggestions);
         }
       });
       reminderView.get().setOnDismissListener(() -> {

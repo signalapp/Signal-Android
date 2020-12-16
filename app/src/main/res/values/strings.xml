@@ -613,7 +613,7 @@
         <item quantity="one">Add member</item>
         <item quantity="other">Add members</item>
     </plurals>
-    <string name="GroupsV1MigrationSuggestionsReminder_not_now">Not now</string>
+    <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">No thanks</string>
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
