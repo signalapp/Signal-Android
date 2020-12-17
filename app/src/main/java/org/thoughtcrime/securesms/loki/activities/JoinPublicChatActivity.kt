@@ -20,6 +20,7 @@ import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
@@ -73,6 +74,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
             try {
                 OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
             } catch (e: Exception) {
+                Log.e("JoinPublicChatActivity", "Fialed to join open group.", e)
                 withContext(Dispatchers.Main) {
                     hideLoader()
                     Toast.makeText(this@JoinPublicChatActivity, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()

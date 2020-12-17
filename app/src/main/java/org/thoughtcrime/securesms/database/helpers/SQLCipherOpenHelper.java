@@ -227,7 +227,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV19_REFACTOR2) {
         deleteJobRecords(db,
                 "RefreshAttributesJob",
-                "RotateProfileKeyJob"
+                "RotateProfileKeyJob",
+                "RefreshUnidentifiedDeliveryAbilityJob",
+                "RotateCertificateJob"
         );
       }
 

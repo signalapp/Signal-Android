@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
@@ -83,7 +82,6 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
-import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -225,7 +223,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializePeriodicTasks();
     initializeWebRtc();
     initializePendingMessages();
-    initializeUnidentifiedDeliveryAbilityRefresh();
     initializeBlobProvider();
   }
 
@@ -374,7 +371,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializePeriodicTasks() {
     LocalBackupListener.schedule(this);
-    RotateSenderCertificateListener.schedule(this);
     BackgroundPollWorker.schedulePeriodic(this); // Loki
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
@@ -422,12 +418,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       Log.i(TAG, "Scheduling a message fetch.");
       ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
       TextSecurePreferences.setNeedsMessagePull(this, false);
-    }
-  }
-
-  private void initializeUnidentifiedDeliveryAbilityRefresh() {
-    if (TextSecurePreferences.isMultiDevice(this) && !TextSecurePreferences.isUnidentifiedDeliveryEnabled(this)) {
-      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob());
     }
   }
 

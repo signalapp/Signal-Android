@@ -22,10 +22,8 @@ import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
-import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.jobs.StickerDownloadJob;
@@ -59,9 +57,7 @@ import network.loki.messenger.BuildConfig;
                                      RetrieveProfileAvatarJob.class,
                                      SendReadReceiptJob.class,
                                      AppProtectionPreferenceFragment.class,
-                                     RotateCertificateJob.class,
                                      SendDeliveryReceiptJob.class,
-                                     RefreshUnidentifiedDeliveryAbilityJob.class,
                                      TypingSendJob.class,
                                      AttachmentUploadJob.class,
                                      PushDecryptJob.class,
@@ -86,17 +82,6 @@ public class SignalCommunicationModule {
     this.context       = context;
     this.networkAccess = networkAccess;
 
-  }
-
-  @Provides
-  synchronized SignalServiceAccountManager provideSignalAccountManager() {
-    if (this.accountManager == null) {
-      this.accountManager = new SignalServiceAccountManager(networkAccess.getConfiguration(context),
-                                                            new DynamicCredentialsProvider(context),
-                                                            BuildConfig.USER_AGENT);
-    }
-
-    return this.accountManager;
   }
 
   @Provides
