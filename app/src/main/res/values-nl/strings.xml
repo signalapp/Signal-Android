@@ -520,7 +520,7 @@
     <item quantity="one">Groepslid toevoegen</item>
     <item quantity="other">Groepsleden toevoegen</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Niet nu</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nee bedankt</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Groepslid toevoegen?</item>

@@ -519,7 +519,7 @@
     <item quantity="one">افزودن عضو</item>
     <item quantity="other">افزودن اعضا</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">حالا نه</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">نه ممنون</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">افزودن عضو؟</item>

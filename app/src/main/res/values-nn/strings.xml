@@ -524,7 +524,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="one">Legg til medlem</item>
     <item quantity="other">Legg til medlemmar</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ikkje no</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nei takk</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Legg til medlem?</item>

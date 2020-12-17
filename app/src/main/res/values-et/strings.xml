@@ -294,6 +294,7 @@
   <string name="ConversationFragment_deleting_messages">Sõnumite kustutamine…</string>
   <string name="ConversationFragment_delete_for_me">Kustuta minu jaoks</string>
   <string name="ConversationFragment_delete_for_everyone">Kustuta kõigi jaoks</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">See sõnum kustutatakse kõigilt vestluse liikmetelt, kui nad kasutavad Signal-i värsket versiooni. Nad näevad, et sa kustutasid sõnumi.</string>
   <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
   <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
@@ -490,7 +491,7 @@
     <item quantity="one">Lisa liige</item>
     <item quantity="other">Lisa liikmeid</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Mitte praegu</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Tänan, ei</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Lisad liikme?</item>
@@ -1119,6 +1120,7 @@
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">Rohkem infot</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Sina ei saa nende heli või videot ja nemad ei saa sinu oma.</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">See võib juhtuda, sest nad ei ole kinnitanud sinu turvanumbri muutmist, nende seadmetega on probleeme või nad on sinu blokeerinud.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vali oma riik</string>

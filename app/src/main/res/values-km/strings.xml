@@ -417,7 +417,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">ពេលក្រោយ</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">ពេលក្រោយ</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">ទេ អរគុណ</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ចាកចេញពីក្រុម?</string>

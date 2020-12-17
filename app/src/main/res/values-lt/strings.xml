@@ -563,7 +563,7 @@
     <item quantity="many">Pridėti narius</item>
     <item quantity="other">Pridėti narius</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne dabar</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Ne, ačiū</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Pridėti narį?</item>

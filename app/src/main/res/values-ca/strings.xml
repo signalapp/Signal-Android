@@ -519,7 +519,7 @@
     <item quantity="one">Afegeix-hi un membre</item>
     <item quantity="other">Afegeix-hi membres</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ara no</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">No, gràcies.</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Voleu afegir-hi un membre?</item>

@@ -563,7 +563,7 @@
     <item quantity="many">הוסף חברי קבוצה</item>
     <item quantity="other">הוסף חברי קבוצה</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">לא עכשיו</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">לא תודה</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">להוסיף חבר קבוצה?</item>

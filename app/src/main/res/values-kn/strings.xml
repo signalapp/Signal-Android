@@ -501,7 +501,7 @@
     <item quantity="one">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</item>
     <item quantity="other">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">ಈಗಲ್ಲ</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">ಸದಸ್ಯ ಸೇರಿಸುವುದೇ?</item>

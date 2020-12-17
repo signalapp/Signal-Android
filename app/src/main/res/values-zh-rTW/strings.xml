@@ -497,7 +497,7 @@
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">新增成員</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">稍後</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">不用了，謝謝</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="other">要新增成員嗎?</item>

@@ -512,7 +512,7 @@
     <item quantity="few">Adăugați membrii</item>
     <item quantity="other">Adăugați membrii</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Nu acum</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nu, mulţumesc</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Adăugați membru?</item>

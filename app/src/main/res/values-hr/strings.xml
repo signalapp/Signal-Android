@@ -541,7 +541,7 @@
     <item quantity="few">Dodaj članove</item>
     <item quantity="other">Dodaj članove</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne sada</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Ne, hvala</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Dodaj člana?</item>

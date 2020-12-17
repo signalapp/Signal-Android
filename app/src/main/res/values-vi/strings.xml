@@ -431,7 +431,7 @@
   <string name="GroupsV1MigrationInitiationReminder_not_now">Để sau</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Cập nhật nhóm</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Để sau</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Xin miễn</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Rời nhóm?</string>

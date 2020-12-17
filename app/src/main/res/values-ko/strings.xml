@@ -442,7 +442,7 @@
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">멤버 추가하기</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">나중에</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">괜찮습니다</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="other">멤버를 추가하시겠습니까?</item>

@@ -198,9 +198,9 @@
   <string name="ConversationItem_this_message_was_deleted">Este mensaje ha sido eliminado.</string>
   <string name="ConversationItem_you_deleted_this_message">Has eliminado este mensaje.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">¿Restablecer sesión segura?</string>
+  <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar sesión segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto puede ayudar si estás teniendo problemas de cifrado con este chat. Tus mensajes se mantendrán.</string>
-  <string name="ConversationActivity_reset">Restablecer</string>
+  <string name="ConversationActivity_reset">Reiniciar</string>
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Redactar mensaje</string>
@@ -519,7 +519,7 @@
     <item quantity="one">Añadir participante</item>
     <item quantity="other">Añadir participantes</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ahora no</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">No gracias</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">¿Añadir participante?</item>
@@ -2144,7 +2144,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_list_fragment__open_camera_description">Abrir cámara</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dale a tu buzón de entrada una razón de ser. Comienza a chatear con tus amistades.</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Restablecer sesión segura</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sesión segura</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">No silenciar</string>
   <!--conversation_unmuted-->
@@ -2558,7 +2558,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DeleteAccountFragment__no_number">Número no especificado</string>
   <string name="DeleteAccountFragment__the_phone_number">El número introducido no coincide con el de tu cuenta.</string>
   <string name="DeleteAccountFragment__are_you_sure">¿Estás segur@ de querer eliminar tu cuenta?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción elimina tu cuenta de Signal y restablece la aplicación. Signal se cerrará después de completarse el proceso.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción elimina tu cuenta de Signal y reinicia la aplicación. Signal se cerrará después de completarse el proceso.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Fallo al eliminar la cuenta. Comprueba la conexión.</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Fallo al eliminar los datos locales. Puedes hacerlo manualmente desde los ajustes del sistema para la aplicación.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Ir a los ajustes de aplicaciones</string>

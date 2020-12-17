@@ -510,7 +510,7 @@
     <item quantity="one">Tilføj medlem</item>
     <item quantity="other">Tilføj medlemmer</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ikke nu</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nej tak</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Tilføj medlem?</item>

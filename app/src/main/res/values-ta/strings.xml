@@ -516,7 +516,7 @@
     <item quantity="one">உறுப்பினரைச் சேர்க்கவும்</item>
     <item quantity="other">உறுப்பினர்களைச் சேர்க்கவும்</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">இப்போது இல்லை</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">தேவையில்லை,நன்றி</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">உறுப்பினரைச் சேர்க்கவா?</item>

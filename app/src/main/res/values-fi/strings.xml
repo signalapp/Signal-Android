@@ -466,7 +466,7 @@
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ei nyt</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Päivitä ryhmää</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ei nyt</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Ei kiitos</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Poistu ryhmästä?</string>

@@ -520,7 +520,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="one">Shtoni anëtar</item>
     <item quantity="other">Shtoni anëtarë</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Jo tani</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Jo, faleminderit</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Të shtohet anëtari?</item>

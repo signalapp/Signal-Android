@@ -563,7 +563,7 @@
     <item quantity="many">Dodaj członków</item>
     <item quantity="other">Dodaj członków</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Nie teraz</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nie, dzięki</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Dodać członka?</item>

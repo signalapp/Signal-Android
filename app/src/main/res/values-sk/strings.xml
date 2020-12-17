@@ -555,7 +555,7 @@
     <item quantity="many">Pridať členov</item>
     <item quantity="other">Pridať členov</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Teraz nie</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nie, ďakujem</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Pridať člena?</item>
@@ -1134,9 +1134,13 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bezpečnostné číslo s %s ste označili ako neoverené z iného zariadenia</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil(a) skupinový hovor · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je v skupinovom hovore · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Ste v skupinovom hovore · %1$s</string>
   <string name="MessageRecord_group_call_s">Skupinový hovor · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">%1$s zahájil(a) skupinový hovor</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s je v skupinovom hovore</string>
   <string name="MessageRecord_you_are_in_the_group_call">Ste v skupinovom hovore</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s a %2$s sú v skupinovom hovore</string>
   <string name="MessageRecord_group_call">Skupinový hovor</string>
   <string name="MessageRecord_you">Vy</string>
   <!--MessageRequestBottomView-->
@@ -2659,8 +2663,16 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s a %3$s sa pripojili</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vy (na inom zariadení)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Vymazanie účtu spôsobí:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">Zadajte svoje telefónne číslo</string>
   <string name="DeleteAccountFragment__delete_account">Vymazať účet</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Váš účet a profilová fotka budú zmazané</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Vymažú sa všetky vaše správy</string>
+  <string name="DeleteAccountFragment__no_country_code">Chýba kód krajiny</string>
+  <string name="DeleteAccountFragment__no_number">Chýba telefónne číslo</string>
   <string name="DeleteAccountFragment__are_you_sure">Naozaj chcete vymazať svoj účet?</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Spustiť nastavenía aplikácie</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Vyhľadať krajinu</string>
   <!--EOF-->
 </resources>

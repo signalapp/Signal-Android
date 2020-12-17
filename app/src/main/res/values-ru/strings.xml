@@ -563,7 +563,7 @@
     <item quantity="many">Добавить участников</item>
     <item quantity="other">Добавить участников</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Не сейчас</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Нет, спасибо</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Добавить участника?</item>

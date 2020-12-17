@@ -510,7 +510,7 @@
     <item quantity="one">Gehitu kidea</item>
     <item quantity="other">Gehitu kideak</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Orain ez</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Ez, eskerrik asko</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Kidea gehitu?</item>

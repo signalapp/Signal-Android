@@ -519,7 +519,7 @@
     <item quantity="one">Προσθήκη μέλους</item>
     <item quantity="other">Προσθήκη μελών</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">Όχι τώρα</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Όχι, ευχαριστώ</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Προσθήκη μέλους;</item>
@@ -1094,7 +1094,7 @@
   <string name="MessageRequestProfileView_member_of_two_groups">Μέλος των %1$s και %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Μέλος των %1$s, %2$s, και %3$s</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="one">%1$d μέλος</item>
+    <item quantity="one"> %1$dμέλος</item>
     <item quantity="other">%1$d μέλη</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
@@ -2107,7 +2107,7 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Αποθήκευση συνημμένου</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Μηνήματα που εξαφανίζονται</string>
+  <string name="conversation_expiring_off__disappearing_messages">Μηνύματα που εξαφανίζονται</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Μηνύματα που λήγουν</string>
   <!--conversation_insecure-->

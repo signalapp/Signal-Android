@@ -516,7 +516,7 @@
   <string name="GroupsV1MigrationInitiationReminder_not_now">ليس الآن</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">تحديث المجموعة</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationSuggestionsReminder_not_now">ليس الآن</string> -->
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">لا شكرا</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ترك المجموعة؟</string>
