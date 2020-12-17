@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.attachments
 import android.content.Context
 import com.google.protobuf.ByteString
 import org.session.libsession.database.MessageDataProvider
-import org.session.libsession.database.dto.AttachmentState
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
 import org.session.libsignal.libsignal.util.guava.Optional

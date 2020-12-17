@@ -12,7 +12,7 @@ abstract class SessionServiceAttachment protected constructor(val contentType: S
     var isImage: Boolean = false
     var isVideo: Boolean = false
     var isAudio: Boolean = false
-    var url: String? = null
+    var url: String = ""
     var key: ByteString? = null
 
     abstract fun isStream(): Boolean
