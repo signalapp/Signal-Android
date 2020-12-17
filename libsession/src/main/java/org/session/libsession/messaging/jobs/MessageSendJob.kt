@@ -27,7 +27,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         val message = message as? VisibleMessage
         message?.let {
             if(!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
-            val attachments = message.attachmentIDs.map { messageDataProvider.getAttachment(it) }.filterNotNull()
+            val attachments = message.attachmentIDs.map { messageDataProvider.getAttachmentStream(it) }.filterNotNull()
             val attachmentsToUpload = attachments.filter { !it.isUploaded }
             attachmentsToUpload.forEach {
                 if(MessagingConfiguration.shared.storage.getAttachmentUploadJob(it.attachmentId) != null) {

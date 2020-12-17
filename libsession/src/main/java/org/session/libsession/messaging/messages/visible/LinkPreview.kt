@@ -44,7 +44,7 @@ class LinkPreview() {
         title?.let { linkPreviewProto.title = title }
         val attachmentID = attachmentID
         attachmentID?.let {
-            val attachmentProto = MessagingConfiguration.shared.messageDataProvider.getAttachment(attachmentID)
+            val attachmentProto = MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(attachmentID)
             attachmentProto?.let { linkPreviewProto.image = attachmentProto.toProto() }
         }
         // Build

@@ -90,7 +90,7 @@ class VisibleMessage : Message()  {
             }
         }
         //Attachments
-        val attachments = attachmentIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getAttachment(it) }
+        val attachments = attachmentIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(it) }
         if (!attachments.all { it.isUploaded }) {
             if (BuildConfig.DEBUG) {
                 //TODO equivalent to iOS's preconditionFailure
