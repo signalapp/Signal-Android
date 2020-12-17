@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +19,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieProperty;
 import com.airbnb.lottie.model.KeyPath;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -185,20 +185,16 @@ public class ConversationItemFooter extends LinearLayout {
           ApplicationContext.getInstance(getContext()).getExpiringMessageManager().checkSchedule();
         }
       } else if (!messageRecord.isOutgoing() && !messageRecord.isMediaPending()) {
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... params) {
-            ExpiringMessageManager expirationManager = ApplicationContext.getInstance(getContext()).getExpiringMessageManager();
-            long                   id                = messageRecord.getId();
-            boolean                mms               = messageRecord.isMms();
+        SignalExecutors.BOUNDED.execute(() -> {
+          ExpiringMessageManager expirationManager = ApplicationContext.getInstance(getContext()).getExpiringMessageManager();
+          long                   id                = messageRecord.getId();
+          boolean                mms               = messageRecord.isMms();
 
-            if (mms) DatabaseFactory.getMmsDatabase(getContext()).markExpireStarted(id);
-            else     DatabaseFactory.getSmsDatabase(getContext()).markExpireStarted(id);
+          if (mms) DatabaseFactory.getMmsDatabase(getContext()).markExpireStarted(id);
+          else     DatabaseFactory.getSmsDatabase(getContext()).markExpireStarted(id);
 
-            expirationManager.scheduleDeletion(id, mms, messageRecord.getExpiresIn());
-            return null;
-          }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+          expirationManager.scheduleDeletion(id, mms, messageRecord.getExpiresIn());
+        });
       }
     } else {
       this.timerView.setVisibility(View.GONE);

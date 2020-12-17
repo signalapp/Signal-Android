@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -335,21 +334,15 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   @SuppressLint("StaticFieldLeak")
   private void initializeCircumvention() {
-    AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        if (new SignalServiceNetworkAccess(ApplicationContext.this).isCensored(ApplicationContext.this)) {
-          try {
-            ProviderInstaller.installIfNeeded(ApplicationContext.this);
-          } catch (Throwable t) {
-            Log.w(TAG, t);
-          }
+    SignalExecutors.BOUNDED.execute(() -> {
+      if (new SignalServiceNetworkAccess(ApplicationContext.this).isCensored(ApplicationContext.this)) {
+        try {
+          ProviderInstaller.installIfNeeded(ApplicationContext.this);
+        } catch (Throwable t) {
+          Log.w(TAG, t);
         }
-        return null;
       }
-    };
-
-    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    });
   }
 
   private void executePendingContactSync() {

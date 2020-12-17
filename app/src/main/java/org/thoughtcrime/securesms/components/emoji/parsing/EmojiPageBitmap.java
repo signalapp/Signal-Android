@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 
@@ -14,6 +13,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,16 +56,11 @@ public class EmojiPageBitmap {
         return null;
       };
       task = new ListenableFutureTask<>(callable);
-      new AsyncTask<Void, Void, Void>() {
-        @Override protected Void doInBackground(Void... params) {
-          task.run();
-          return null;
-        }
-
-        @Override protected void onPostExecute(Void aVoid) {
-          task = null;
-        }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      SimpleTask.run(() -> {
+                       task.run();
+                       return null;
+                     },
+                     unused -> task = null);
     }
     return task;
   }
