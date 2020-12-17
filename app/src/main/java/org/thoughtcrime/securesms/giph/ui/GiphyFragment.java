@@ -44,9 +44,9 @@ public abstract class GiphyFragment extends LoggingFragment implements LoaderMan
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     ViewGroup container = ViewUtil.inflate(inflater, viewGroup, R.layout.giphy_fragment);
-    this.recyclerView    = ViewUtil.findById(container, R.id.giphy_list);
-    this.loadingProgress = ViewUtil.findById(container, R.id.loading_progress);
-    this.noResultsView   = ViewUtil.findById(container, R.id.no_results);
+    this.recyclerView    = container.findViewById(R.id.giphy_list);
+    this.loadingProgress = container.findViewById(R.id.loading_progress);
+    this.noResultsView   = container.findViewById(R.id.no_results);
 
     return container;
   }

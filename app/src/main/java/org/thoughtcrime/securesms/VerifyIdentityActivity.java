@@ -258,24 +258,24 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container        = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_display_fragment);
-      this.numbersContainer = ViewUtil.findById(container, R.id.number_table);
-      this.qrCode           = ViewUtil.findById(container, R.id.qr_code);
-      this.verified         = ViewUtil.findById(container, R.id.verified_switch);
-      this.qrVerified       = ViewUtil.findById(container, R.id.qr_verified);
-      this.description      = ViewUtil.findById(container, R.id.description);
-      this.tapLabel         = ViewUtil.findById(container, R.id.tap_label);
-      this.codes[0]         = ViewUtil.findById(container, R.id.code_first);
-      this.codes[1]         = ViewUtil.findById(container, R.id.code_second);
-      this.codes[2]         = ViewUtil.findById(container, R.id.code_third);
-      this.codes[3]         = ViewUtil.findById(container, R.id.code_fourth);
-      this.codes[4]         = ViewUtil.findById(container, R.id.code_fifth);
-      this.codes[5]         = ViewUtil.findById(container, R.id.code_sixth);
-      this.codes[6]         = ViewUtil.findById(container, R.id.code_seventh);
-      this.codes[7]         = ViewUtil.findById(container, R.id.code_eighth);
-      this.codes[8]         = ViewUtil.findById(container, R.id.code_ninth);
-      this.codes[9]         = ViewUtil.findById(container, R.id.code_tenth);
-      this.codes[10]        = ViewUtil.findById(container, R.id.code_eleventh);
-      this.codes[11]        = ViewUtil.findById(container, R.id.code_twelth);
+      this.numbersContainer = container.findViewById(R.id.number_table);
+      this.qrCode           = container.findViewById(R.id.qr_code);
+      this.verified         = container.findViewById(R.id.verified_switch);
+      this.qrVerified       = container.findViewById(R.id.qr_verified);
+      this.description      = container.findViewById(R.id.description);
+      this.tapLabel         = container.findViewById(R.id.tap_label);
+      this.codes[0]         = container.findViewById(R.id.code_first);
+      this.codes[1]         = container.findViewById(R.id.code_second);
+      this.codes[2]         = container.findViewById(R.id.code_third);
+      this.codes[3]         = container.findViewById(R.id.code_fourth);
+      this.codes[4]         = container.findViewById(R.id.code_fifth);
+      this.codes[5]         = container.findViewById(R.id.code_sixth);
+      this.codes[6]         = container.findViewById(R.id.code_seventh);
+      this.codes[7]         = container.findViewById(R.id.code_eighth);
+      this.codes[8]         = container.findViewById(R.id.code_ninth);
+      this.codes[9]         = container.findViewById(R.id.code_tenth);
+      this.codes[10]        = container.findViewById(R.id.code_eleventh);
+      this.codes[11]        = container.findViewById(R.id.code_twelth);
 
       this.qrCode.setOnClickListener(clickListener);
       this.registerForContextMenu(numbersContainer);
@@ -664,7 +664,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container  = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_scan_fragment);
-      this.cameraView = ViewUtil.findById(container, R.id.scanner);
+      this.cameraView = container.findViewById(R.id.scanner);
 
       return container;
     }

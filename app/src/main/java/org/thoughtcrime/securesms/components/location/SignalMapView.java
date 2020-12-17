@@ -18,7 +18,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
@@ -47,9 +46,9 @@ public class SignalMapView extends LinearLayout {
     setOrientation(LinearLayout.VERTICAL);
     LayoutInflater.from(context).inflate(R.layout.signal_map_view, this, true);
 
-    this.mapView   = ViewUtil.findById(this, R.id.map_view);
-    this.imageView = ViewUtil.findById(this, R.id.image_view);
-    this.textView  = ViewUtil.findById(this, R.id.address_view);
+    this.mapView   = findViewById(R.id.map_view);
+    this.imageView = findViewById(R.id.image_view);
+    this.textView  = findViewById(R.id.address_view);
   }
 
   public ListenableFuture<Bitmap> display(final SignalPlace place) {

@@ -20,7 +20,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -78,29 +77,9 @@ public final class ViewUtil {
     }
   }
 
-  public static void setBackground(final @NonNull View v, final @Nullable Drawable drawable) {
-    v.setBackground(drawable);
-  }
-
   @SuppressWarnings("unchecked")
   public static <T extends View> T inflateStub(@NonNull View parent, @IdRes int stubId) {
     return (T)((ViewStub)parent.findViewById(stubId)).inflate();
-  }
-
-  /**
-   * @deprecated Use {@link View#findViewById} directly.
-   */
-  @Deprecated
-  public static <T extends View> T findById(@NonNull View parent, @IdRes int resId) {
-    return parent.findViewById(resId);
-  }
-
-  /**
-   * @deprecated Use {@link Activity#findViewById} directly.
-   */
-  @Deprecated
-  public static <T extends View> T findById(@NonNull Activity parent, @IdRes int resId) {
-    return parent.findViewById(resId);
   }
 
   public static <T extends View> Stub<T> findStubById(@NonNull Activity parent, @IdRes int resId) {

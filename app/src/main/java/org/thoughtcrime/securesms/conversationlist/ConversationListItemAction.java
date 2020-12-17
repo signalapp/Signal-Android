@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Locale;
 import java.util.Set;
@@ -38,7 +37,7 @@ public class ConversationListItemAction extends LinearLayout implements Bindable
   @Override
   public void onFinishInflate() {
     super.onFinishInflate();
-    this.description = ViewUtil.findById(this, R.id.description);
+    this.description = findViewById(R.id.description);
   }
 
   @Override

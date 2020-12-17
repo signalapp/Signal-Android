@@ -23,7 +23,6 @@ import androidx.core.view.ViewCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 public final class MicrophoneRecorderView extends FrameLayout implements View.OnTouchListener {
 
@@ -55,7 +54,7 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     floatingRecordButton = new FloatingRecordButton(getContext(), findViewById(R.id.quick_audio_fab));
     lockDropTarget       = new LockDropTarget      (getContext(), findViewById(R.id.lock_drop_target));
 
-    View recordButton = ViewUtil.findById(this, R.id.quick_audio_toggle);
+    View recordButton = findViewById(R.id.quick_audio_toggle);
     recordButton.setOnTouchListener(this);
   }
 

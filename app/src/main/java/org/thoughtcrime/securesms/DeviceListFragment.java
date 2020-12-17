@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
@@ -68,7 +67,7 @@ public class DeviceListFragment extends ListFragment
 
     this.empty             = view.findViewById(R.id.empty);
     this.progressContainer = view.findViewById(R.id.progress_container);
-    this.addDeviceButton   = ViewUtil.findById(view, R.id.add_device);
+    this.addDeviceButton   = view.findViewById(R.id.add_device);
     this.addDeviceButton.setOnClickListener(this);
 
     return view;

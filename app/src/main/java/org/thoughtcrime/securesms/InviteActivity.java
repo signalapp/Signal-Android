@@ -93,14 +93,14 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     slideInAnimation  = loadAnimation(R.anim.slide_from_bottom);
     slideOutAnimation = loadAnimation(R.anim.slide_to_bottom);
 
-    View                 shareButton     = ViewUtil.findById(this, R.id.share_button);
-    View                 smsButton       = ViewUtil.findById(this, R.id.sms_button);
-    Button               smsCancelButton = ViewUtil.findById(this, R.id.cancel_sms_button);
-    ContactFilterToolbar contactFilter   = ViewUtil.findById(this, R.id.contact_filter);
+    View                 shareButton     = findViewById(R.id.share_button);
+    View                 smsButton       = findViewById(R.id.sms_button);
+    Button               smsCancelButton = findViewById(R.id.cancel_sms_button);
+    ContactFilterToolbar contactFilter   = findViewById(R.id.contact_filter);
 
-    inviteText        = ViewUtil.findById(this, R.id.invite_text);
-    smsSendFrame      = ViewUtil.findById(this, R.id.sms_send_frame);
-    smsSendButton     = ViewUtil.findById(this, R.id.send_sms_button);
+    inviteText        = findViewById(R.id.invite_text);
+    smsSendFrame      = findViewById(R.id.sms_send_frame);
+    smsSendButton     = findViewById(R.id.send_sms_button);
     contactsFragment  = (ContactSelectionListFragment)getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
 
     inviteText.setText(getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));

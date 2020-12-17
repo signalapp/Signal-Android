@@ -104,11 +104,11 @@ public class AttachmentManager {
     if (!attachmentViewStub.resolved()) {
       View root = attachmentViewStub.get();
 
-      this.thumbnail          = ViewUtil.findById(root, R.id.attachment_thumbnail);
-      this.audioView          = ViewUtil.findById(root, R.id.attachment_audio);
-      this.documentView       = ViewUtil.findById(root, R.id.attachment_document);
-      this.mapView            = ViewUtil.findById(root, R.id.attachment_location);
-      this.removableMediaView = ViewUtil.findById(root, R.id.removable_media_view);
+      this.thumbnail          = root.findViewById(R.id.attachment_thumbnail);
+      this.audioView          = root.findViewById(R.id.attachment_audio);
+      this.documentView       = root.findViewById(R.id.attachment_document);
+      this.mapView            = root.findViewById(R.id.attachment_location);
+      this.removableMediaView = root.findViewById(R.id.removable_media_view);
 
       removableMediaView.setRemoveClickListener(new RemoveButtonListener());
       thumbnail.setOnClickListener(new ThumbnailClickListener());

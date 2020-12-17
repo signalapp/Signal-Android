@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.io.IOException;
@@ -74,7 +73,7 @@ public class GiphyActivity extends PassphraseRequiredActivity
 
   private void initializeToolbar() {
 
-    GiphyActivityToolbar toolbar = ViewUtil.findById(this, R.id.giphy_toolbar);
+    GiphyActivityToolbar toolbar = findViewById(R.id.giphy_toolbar);
     toolbar.setOnFilterChangedListener(this);
     toolbar.setOnLayoutChangedListener(this);
     toolbar.setPersistence(GiphyActivityToolbarTextSecurePreferencesPersistence.fromContext(this));
@@ -90,8 +89,8 @@ public class GiphyActivity extends PassphraseRequiredActivity
   }
 
   private void initializeResources() {
-    ViewPager viewPager = ViewUtil.findById(this, R.id.giphy_pager);
-    TabLayout tabLayout = ViewUtil.findById(this, R.id.tab_layout);
+    ViewPager viewPager = findViewById(R.id.giphy_pager);
+    TabLayout tabLayout = findViewById(R.id.tab_layout);
 
     this.gifFragment     = new GiphyGifFragment();
     this.stickerFragment = new GiphyStickerFragment();
