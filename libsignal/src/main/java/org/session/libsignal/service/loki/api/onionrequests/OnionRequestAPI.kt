@@ -44,11 +44,11 @@ public object OnionRequestAPI {
     /**
      * The number of times a path can fail before it's replaced.
      */
-    private val pathFailureThreshold = 2
+    private val pathFailureThreshold = 1
     /**
      * The number of times a snode can fail before it's replaced.
      */
-    private val snodeFailureThreshold = 2
+    private val snodeFailureThreshold = 1
     /**
      * The number of paths to maintain.
      */
@@ -293,10 +293,10 @@ public object OnionRequestAPI {
      */
     private fun sendOnionRequest(destination: Destination, payload: Map<*, *>, isJSONRequired: Boolean = true): Promise<Map<*, *>, Exception> {
         val deferred = deferred<Map<*, *>, Exception>()
-        lateinit var guardSnode: Snode
+        var guardSnode: Snode? = null
         buildOnionForDestination(payload, destination).success { result ->
             guardSnode = result.guardSnode
-            val url = "${guardSnode.address}:${guardSnode.port}/onion_req/v2"
+            val url = "${guardSnode!!.address}:${guardSnode!!.port}/onion_req/v2"
             val finalEncryptionResult = result.finalEncryptionResult
             val onion = finalEncryptionResult.ciphertext
             if (destination is Destination.Server && onion.count().toDouble() > 0.75 * FileServerAPI.maxFileSize.toDouble()) {
@@ -365,14 +365,14 @@ public object OnionRequestAPI {
         }
         val promise = deferred.promise
         promise.fail { exception ->
-            val path = paths.firstOrNull { it.contains(guardSnode) }
+            val path = if (guardSnode != null) paths.firstOrNull { it.contains(guardSnode!!) } else null
             if (exception is HTTP.HTTPRequestFailedException) {
                 fun handleUnspecificError() {
                     if (path == null) { return }
                     var pathFailureCount = OnionRequestAPI.pathFailureCount[path] ?: 0
                     pathFailureCount += 1
                     if (pathFailureCount >= pathFailureThreshold) {
-                        dropGuardSnode(guardSnode)
+                        dropGuardSnode(guardSnode!!)
                         path.forEach { snode ->
                             @Suppress("ThrowableNotThrown")
                             SnodeAPI.shared.handleSnodeError(exception.statusCode, exception.json, snode, null) // Intentionally don't throw

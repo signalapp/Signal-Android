@@ -10,6 +10,7 @@ import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.getRandomElement
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
+import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import java.security.SecureRandom
 import java.util.*
 
@@ -27,11 +28,12 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
         private val minimumSnodePoolCount = 64
         private val minimumSwarmSnodeCount = 2
         private val targetSwarmSnodeCount = 2
+        private val maxRetryCount = 6
 
         /**
          * A snode is kicked out of a swarm and/or the snode pool if it fails this many times.
          */
-        internal val snodeFailureThreshold = 4
+        internal val snodeFailureThreshold = 2
         // endregion
 
         // region Initialization
@@ -115,7 +117,10 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
         } else {
             val parameters = mapOf( "pubKey" to publicKey )
             return getRandomSnode().bind {
-                SnodeAPI.shared.invoke(Snode.Method.GetSwarm, it, publicKey, parameters)
+                retryIfNeeded(maxRetryCount) {
+                    SnodeAPI.shared.invoke(Snode.Method.GetSwarm, it, publicKey, parameters)
+                }
+
             }.map(SnodeAPI.sharedContext) {
                 parseSnodes(it).toSet()
             }.success {
