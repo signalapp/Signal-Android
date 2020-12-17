@@ -40,6 +40,11 @@ object KeyPairUtilities {
         IdentityKeyUtil.save(context, IdentityKeyUtil.ED25519_SECRET_KEY, Base64.encodeBytes(ed25519KeyPair.secretKey.asBytes))
     }
 
+    fun hasV2KeyPair(context: Context): Boolean {
+        return (IdentityKeyUtil.retrieve(context, IdentityKeyUtil.ED25519_SECRET_KEY) != null)
+    }
+
+
     data class KeyPairGenerationResult(
             val seed: ByteArray,
             val ed25519KeyPair: KeyPair,
