@@ -441,7 +441,7 @@ public class Recipient {
     String name = getName(context);
 
     if (Util.isEmpty(name)) {
-      name = getProfileName().toString();
+      name = StringUtil.isolateBidi(getProfileName().toString());
     }
 
     if (Util.isEmpty(name) && !Util.isEmpty(e164)) {
@@ -449,25 +449,27 @@ public class Recipient {
     }
 
     if (Util.isEmpty(name)) {
-      name = email;
+      name = StringUtil.isolateBidi(email);
     }
 
     if (Util.isEmpty(name)) {
-      name = username;
+      name = StringUtil.isolateBidi(username);
     }
 
     if (Util.isEmpty(name)) {
-      name = context.getString(R.string.Recipient_unknown);
+      name = StringUtil.isolateBidi(context.getString(R.string.Recipient_unknown));
     }
 
-    return StringUtil.isolateBidi(name);
+    return name;
   }
 
   public @NonNull String getMentionDisplayName(@NonNull Context context) {
     String name = isSelf ? getProfileName().toString() : getName(context);
+    name = StringUtil.isolateBidi(name);
 
     if (Util.isEmpty(name)) {
       name = isSelf ? getName(context) : getProfileName().toString();
+      name = StringUtil.isolateBidi(name);
     }
 
     if (Util.isEmpty(name) && !Util.isEmpty(e164)) {
@@ -475,14 +477,14 @@ public class Recipient {
     }
 
     if (Util.isEmpty(name)) {
-      name = email;
+      name = StringUtil.isolateBidi(email);
     }
 
     if (Util.isEmpty(name)) {
-      name = context.getString(R.string.Recipient_unknown);
+      name = StringUtil.isolateBidi(context.getString(R.string.Recipient_unknown));
     }
 
-    return StringUtil.isolateBidi(name);
+    return name;
   }
 
   public @NonNull String getShortDisplayName(@NonNull Context context) {
