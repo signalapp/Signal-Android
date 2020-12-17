@@ -5,7 +5,7 @@ import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import java.io.InputStream
 
-abstract class SignalServiceAttachment protected constructor(val contentType: String?) {
+abstract class SessionServiceAttachment protected constructor(val contentType: String?) {
 
     var attachmentId: Long = 0
     var isGif: Boolean = false
@@ -17,12 +17,12 @@ abstract class SignalServiceAttachment protected constructor(val contentType: St
 
     abstract fun isStream(): Boolean
     abstract fun isPointer(): Boolean
-    fun asStream(): SignalServiceAttachmentStream {
-        return this as SignalServiceAttachmentStream
+    fun asStream(): SessionServiceAttachmentStream {
+        return this as SessionServiceAttachmentStream
     }
 
-    fun asPointer(): SignalServiceAttachmentPointer {
-        return this as SignalServiceAttachmentPointer
+    fun asPointer(): SessionServiceAttachmentPointer {
+        return this as SessionServiceAttachmentPointer
     }
 
     fun shouldHaveImageSize(): Boolean {
@@ -84,11 +84,11 @@ abstract class SignalServiceAttachment protected constructor(val contentType: St
             return this
         }
 
-        fun build(): SignalServiceAttachmentStream {
+        fun build(): SessionServiceAttachmentStream {
             requireNotNull(inputStream) { "Must specify stream!" }
             requireNotNull(contentType) { "No content type specified!" }
             require(length != 0L) { "No length specified!" }
-            return SignalServiceAttachmentStream(inputStream, contentType, length, Optional.fromNullable(fileName), voiceNote, Optional.absent(), width, height, Optional.fromNullable(caption), listener)
+            return SessionServiceAttachmentStream(inputStream, contentType, length, Optional.fromNullable(fileName), voiceNote, Optional.absent(), width, height, Optional.fromNullable(caption), listener)
         }
     }
 

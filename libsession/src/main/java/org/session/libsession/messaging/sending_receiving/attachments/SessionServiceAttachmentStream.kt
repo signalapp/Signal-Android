@@ -16,7 +16,7 @@ import kotlin.math.round
 /**
  * Represents a local SignalServiceAttachment to be sent.
  */
-class SignalServiceAttachmentStream(val inputStream: InputStream?, contentType: String?, val length: Long, val fileName: Optional<String?>?, val voiceNote: Boolean, val preview: Optional<ByteArray?>, val width: Int, val height: Int, val caption: Optional<String?>, val listener: SAttachment.ProgressListener?) : SignalServiceAttachment(contentType) {
+class SessionServiceAttachmentStream(val inputStream: InputStream?, contentType: String?, val length: Long, val fileName: Optional<String?>?, val voiceNote: Boolean, val preview: Optional<ByteArray?>, val width: Int, val height: Int, val caption: Optional<String?>, val listener: SAttachment.ProgressListener?) : SessionServiceAttachment(contentType) {
 
     constructor(inputStream: InputStream?, contentType: String?, length: Long, fileName: Optional<String?>?, voiceNote: Boolean, listener: SAttachment.ProgressListener?) : this(inputStream, contentType, length, fileName, voiceNote, Optional.absent<ByteArray?>(), 0, 0, Optional.absent<String?>(), listener) {}
 

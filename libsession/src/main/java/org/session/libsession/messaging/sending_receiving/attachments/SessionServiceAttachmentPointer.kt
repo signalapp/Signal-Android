@@ -6,7 +6,6 @@
 package org.session.libsession.messaging.sending_receiving.attachments
 
 import org.session.libsignal.libsignal.util.guava.Optional
-import org.session.libsignal.service.api.messages.SignalServiceAttachment
 
 /**
  * Represents a received SignalServiceAttachment "handle."  This
@@ -15,11 +14,11 @@ import org.session.libsignal.service.api.messages.SignalServiceAttachment
  *
  * @author Moxie Marlinspike
  */
-class SignalServiceAttachmentPointer(val id: Long, contentType: String?, val key: ByteArray?,
-                                     val size: Optional<Int>, val preview: Optional<ByteArray>,
-                                     val width: Int, val height: Int,
-                                     val digest: Optional<ByteArray>, val fileName: Optional<String>,
-                                     val voiceNote: Boolean, val caption: Optional<String>, val url: String) : SignalServiceAttachment(contentType) {
+class SessionServiceAttachmentPointer(val id: Long, contentType: String?, key: ByteArray?,
+                                      val size: Optional<Int>, val preview: Optional<ByteArray>,
+                                      val width: Int, val height: Int,
+                                      val digest: Optional<ByteArray>, val fileName: Optional<String>,
+                                      val voiceNote: Boolean, val caption: Optional<String>, url: String) : SessionServiceAttachment(contentType) {
     override fun isStream(): Boolean {
         return false
     }
