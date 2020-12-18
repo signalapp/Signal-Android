@@ -38,7 +38,6 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
@@ -53,7 +52,6 @@ import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
@@ -84,7 +82,6 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
-import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -112,7 +109,6 @@ import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeys
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementationDelegate;
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
@@ -227,7 +223,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializePeriodicTasks();
     initializeWebRtc();
     initializePendingMessages();
-    initializeUnidentifiedDeliveryAbilityRefresh();
     initializeBlobProvider();
   }
 
@@ -376,7 +371,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializePeriodicTasks() {
     LocalBackupListener.schedule(this);
-    RotateSenderCertificateListener.schedule(this);
     BackgroundPollWorker.schedulePeriodic(this); // Loki
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
@@ -424,12 +418,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       Log.i(TAG, "Scheduling a message fetch.");
       ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
       TextSecurePreferences.setNeedsMessagePull(this, false);
-    }
-  }
-
-  private void initializeUnidentifiedDeliveryAbilityRefresh() {
-    if (TextSecurePreferences.isMultiDevice(this) && !TextSecurePreferences.isUnidentifiedDeliveryEnabled(this)) {
-      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob());
     }
   }
 
@@ -574,7 +562,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     });
   }
 
-  public void clearData() {
+  //FIXME AC: Using this method to cleanup app data is unsafe due to potential concurrent
+  // activity that still might be using the data that is being deleted here.
+  // The most reliable and safe way to do this is to use official API call:
+  // https://developer.android.com/reference/android/app/ActivityManager.html#clearApplicationUserData()
+  // The downside is it kills the app in the process and there's no any conventional way to start
+  // another activity when the task is done.
+  // Dev community is in demand for such a feature, so check on it some time in the feature
+  // and replace our implementation with the API call when it's safe to do so.
+  // Here's a feature request related https://issuetracker.google.com/issues/174903931
+  public void clearAllData() {
     String token = TextSecurePreferences.getFCMToken(this);
     if (token != null && !token.isEmpty()) {
       LokiPushNotificationManager.unregister(token, this);
@@ -582,7 +579,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     boolean wasUnlinked = TextSecurePreferences.getWasUnlinked(this);
     TextSecurePreferences.clearAll(this);
     TextSecurePreferences.setWasUnlinked(this, wasUnlinked);
-    MasterSecretUtil.clear(this);
+//    MasterSecretUtil.clear(this);
     if (!deleteDatabase("signal.db")) {
       Log.d("Loki", "Failed to delete database.");
     }

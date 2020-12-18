@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,6 +63,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
@@ -92,7 +92,6 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.session.libsignal.libsignal.InvalidMessageException;
@@ -107,10 +106,7 @@ import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
-import org.session.libsignal.service.api.messages.multidevice.ReadMessage;
-import org.session.libsignal.service.api.messages.multidevice.RequestMessage;
 import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage;
-import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
 import org.session.libsignal.service.api.messages.multidevice.StickerPackOperationMessage;
 import org.session.libsignal.service.api.messages.multidevice.VerifiedMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
@@ -249,7 +245,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
       SessionResetProtocol sessionResetProtocol = new SessionResetImplementation(context);
       SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, DatabaseFactory.getSSKDatabase(context), sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
+      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, DatabaseFactory.getSSKDatabase(context), new SessionProtocolImpl(context), sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -477,10 +473,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
     }
-  }
-
-  private void handleSynchronizeVerifiedMessage(@NonNull VerifiedMessage verifiedMessage) {
-    IdentityUtil.processVerifiedMessage(context, verifiedMessage);
   }
 
   private void handleSynchronizeStickerPackOperation(@NonNull List<StickerPackOperationMessage> stickerPackOperations) {

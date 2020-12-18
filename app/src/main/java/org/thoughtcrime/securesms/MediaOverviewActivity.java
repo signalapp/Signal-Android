@@ -62,7 +62,6 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.Util;
@@ -86,17 +85,10 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
   public static final String ADDRESS_EXTRA   = "address";
 
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
   private Toolbar      toolbar;
   private TabLayout    tabLayout;
   private ViewPager    viewPager;
   private Recipient    recipient;
-
-  @Override
-  protected void onPreCreate() {
-    dynamicLanguage.onCreate(this);
-  }
 
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
@@ -107,12 +99,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
     this.tabLayout.setupWithViewPager(viewPager);
     this.viewPager.setAdapter(new MediaOverviewPagerAdapter(getSupportFragmentManager()));
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -172,7 +158,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
       Bundle args = new Bundle();
       args.putString(MediaOverviewGalleryFragment.ADDRESS_EXTRA, recipient.getAddress().serialize());
-      args.putSerializable(MediaOverviewGalleryFragment.LOCALE_EXTRA, dynamicLanguage.getCurrentLocale());
+      args.putSerializable(MediaOverviewGalleryFragment.LOCALE_EXTRA, Locale.getDefault());
 
       fragment.setArguments(args);
 

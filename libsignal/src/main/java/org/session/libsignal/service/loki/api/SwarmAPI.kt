@@ -10,7 +10,9 @@ import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.getRandomElement
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
+import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import java.security.SecureRandom
+import java.util.*
 
 class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol) {
     internal var snodeFailureCount: MutableMap<Snode, Int> = mutableMapOf()
@@ -26,11 +28,12 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
         private val minimumSnodePoolCount = 64
         private val minimumSwarmSnodeCount = 2
         private val targetSwarmSnodeCount = 2
+        private val maxRetryCount = 6
 
         /**
          * A snode is kicked out of a swarm and/or the snode pool if it fails this many times.
          */
-        internal val snodeFailureThreshold = 4
+        internal val snodeFailureThreshold = 2
         // endregion
 
         // region Initialization
@@ -46,7 +49,12 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
     // region Swarm API
     internal fun getRandomSnode(): Promise<Snode, Exception> {
         val snodePool = this.snodePool
-        if (snodePool.count() < minimumSnodePoolCount) {
+        val lastRefreshDate = database.getLastSnodePoolRefreshDate()
+        val now = Date()
+        val needsRefresh = (snodePool.count() < minimumSnodePoolCount) || lastRefreshDate == null  || (now.time - lastRefreshDate.time) > 24 * 60 * 60 * 1000
+        if (needsRefresh) {
+            database.setLastSnodePoolRefreshDate(now)
+
             val target = seedNodePool.random()
             val url = "$target/json_rpc"
             Log.d("Loki", "Populating snode pool using: $target.")
@@ -109,7 +117,10 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
         } else {
             val parameters = mapOf( "pubKey" to publicKey )
             return getRandomSnode().bind {
-                SnodeAPI.shared.invoke(Snode.Method.GetSwarm, it, publicKey, parameters)
+                retryIfNeeded(maxRetryCount) {
+                    SnodeAPI.shared.invoke(Snode.Method.GetSwarm, it, publicKey, parameters)
+                }
+
             }.map(SnodeAPI.sharedContext) {
                 parseSnodes(it).toSet()
             }.success {

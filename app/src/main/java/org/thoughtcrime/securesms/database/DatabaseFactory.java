@@ -17,18 +17,15 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
@@ -36,7 +33,6 @@ import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DatabaseFactory {
 
@@ -51,7 +47,6 @@ public class DatabaseFactory {
   private final MediaDatabase         media;
   private final ThreadDatabase        thread;
   private final MmsSmsDatabase        mmsSmsDatabase;
-  private final IdentityDatabase      identityDatabase;
   private final DraftDatabase         draftDatabase;
   private final PushDatabase          pushDatabase;
   private final GroupDatabase         groupDatabase;
@@ -105,10 +100,6 @@ public class DatabaseFactory {
 
   public static MediaDatabase getMediaDatabase(Context context) {
     return getInstance(context).media;
-  }
-
-  public static IdentityDatabase getIdentityDatabase(Context context) {
-    return getInstance(context).identityDatabase;
   }
 
   public static DraftDatabase getDraftDatabase(Context context) {
@@ -211,7 +202,6 @@ public class DatabaseFactory {
     this.media                     = new MediaDatabase(context, databaseHelper);
     this.thread                    = new ThreadDatabase(context, databaseHelper);
     this.mmsSmsDatabase            = new MmsSmsDatabase(context, databaseHelper);
-    this.identityDatabase          = new IdentityDatabase(context, databaseHelper);
     this.draftDatabase             = new DraftDatabase(context, databaseHelper);
     this.pushDatabase              = new PushDatabase(context, databaseHelper);
     this.groupDatabase             = new GroupDatabase(context, databaseHelper);
@@ -231,30 +221,6 @@ public class DatabaseFactory {
     this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
     this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
     this.sskDatabase               = new SharedSenderKeysDatabase(context, databaseHelper);
-  }
-
-  public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,
-                                        int fromVersion, DatabaseUpgradeActivity.DatabaseUpgradeListener listener)
-  {
-    databaseHelper.getWritableDatabase();
-
-    ClassicOpenHelper legacyOpenHelper = null;
-
-    if (fromVersion < DatabaseUpgradeActivity.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
-      legacyOpenHelper = new ClassicOpenHelper(context);
-      legacyOpenHelper.onApplicationLevelUpgrade(context, masterSecret, fromVersion, listener);
-    }
-
-    if (fromVersion < DatabaseUpgradeActivity.SQLCIPHER && TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
-      if (legacyOpenHelper == null) {
-        legacyOpenHelper = new ClassicOpenHelper(context);
-      }
-
-      SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret,
-                                                 legacyOpenHelper.getWritableDatabase(),
-                                                 databaseHelper.getWritableDatabase(),
-                                                 listener);
-    }
   }
 
 }

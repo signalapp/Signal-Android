@@ -204,7 +204,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         // Clear all data if this is a secondary device
         if (TextSecurePreferences.getMasterHexEncodedPublicKey(this) != null) {
             TextSecurePreferences.setWasUnlinked(this, true)
-            ApplicationContext.getInstance(this).clearData()
+            ApplicationContext.getInstance(this).clearAllData()
         }
 
         // Perform chat sessions reset if requested (usually happens after backup restoration).
@@ -219,36 +219,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (hasViewedSeed || !isMasterDevice) {
             seedReminderView.visibility = View.GONE
-        }
-
-        // Multi device removal sheet
-        if (!TextSecurePreferences.getHasSeenMultiDeviceRemovalSheet(this)) {
-            TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
-            val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-            val deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey)
-            if (deviceLinks.isNotEmpty()) {
-                val bottomSheet = MultiDeviceRemovalBottomSheet()
-                bottomSheet.onOKTapped = {
-                    bottomSheet.dismiss()
-                }
-                bottomSheet.onLinkTapped = {
-                    bottomSheet.dismiss()
-                    val url = "https://getsession.org/faq"
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    startActivity(intent)
-                }
-                bottomSheet.show(supportFragmentManager, bottomSheet.tag)
-                return
-            }
-        }
-
-        // Light theme introduction sheet
-        if (!TextSecurePreferences.hasSeenLightThemeIntroSheet(this) &&
-                UiModeUtilities.isDayUiMode(this)) {
-            TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)
-            val bottomSheet = LightThemeFeatureIntroBottomSheet()
-            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
-            return
         }
     }
 

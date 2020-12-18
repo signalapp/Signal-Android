@@ -18,66 +18,43 @@ package org.thoughtcrime.securesms;
 
 import android.animation.Animator;
 import android.app.KeyguardManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.InputType;
+import android.os.IBinder;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.TypefaceSpan;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.os.CancellationSignal;
 
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
-import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import network.loki.messenger.R;
 
-/**
- * Activity that prompts for a user's passphrase.
- *
- * @author Moxie Marlinspike
- */
-public class PassphrasePromptActivity extends PassphraseActivity {
+//TODO Rename to ScreenLockActivity and refactor to Kotlin.
+public class PassphrasePromptActivity extends BaseActionBarActivity {
 
   private static final String TAG = PassphrasePromptActivity.class.getSimpleName();
 
-  private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
-
-  private View                   passphraseAuthContainer;
   private ImageView              fingerprintPrompt;
   private Button                 lockScreenButton;
 
-  private EditText        passphraseText;
-  private ImageButton     showButton;
-  private ImageButton     hideButton;
   private AnimatingToggle visibilityToggle;
 
   private FingerprintManagerCompat fingerprintManager;
@@ -87,20 +64,34 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private boolean authenticated;
   private boolean failure;
 
+  private KeyCachingService keyCachingService;
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     Log.i(TAG, "onCreate()");
-    dynamicLanguage.onCreate(this);
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.prompt_passphrase_activity);
     initializeResources();
+
+    // Start and bind to the KeyCachingService instance.
+    Intent bindIntent = new Intent(this, KeyCachingService.class);
+    startService(bindIntent);
+    bindService(bindIntent, new ServiceConnection() {
+      @Override
+      public void onServiceConnected(ComponentName name, IBinder service) {
+        keyCachingService = ((KeyCachingService.KeySetBinder)service).getService();
+      }
+      @Override
+      public void onServiceDisconnected(ComponentName name) {
+        keyCachingService = null;
+      }
+    }, Context.BIND_AUTO_CREATE);
   }
 
   @Override
   public void onResume() {
     super.onResume();
-    dynamicLanguage.onResume(this);
 
     setLockTypeVisibility();
 
@@ -127,26 +118,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
-    MenuInflater inflater = this.getMenuInflater();
-    menu.clear();
-
-    // inflater.inflate(R.menu.log_submit, menu);
-    super.onPrepareOptionsMenu(menu);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    super.onOptionsItemSelected(item);
-    switch (item.getItemId()) {
-    case R.id.menu_submit_debug_logs: handleLogSubmit(); return true;
-    }
-
-    return false;
-  }
-
-  @Override
   public void onActivityResult(int requestCode, int resultcode, Intent data) {
     super.onActivityResult(requestCode, resultcode, data);
     if (requestCode != 1) return;
@@ -159,57 +130,26 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     }
   }
 
-  private void handleLogSubmit() {
-    Intent intent = new Intent(this, LogSubmitActivity.class);
-    startActivity(intent);
-  }
-
-  private void handlePassphrase() {
-    try {
-      Editable text             = passphraseText.getText();
-      String passphrase         = (text == null ? "" : text.toString());
-      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, passphrase);
-
-      setMasterSecret(masterSecret);
-    } catch (InvalidPassphraseException ipe) {
-      passphraseText.setText("");
-      passphraseText.setError(
-              getString(R.string.PassphrasePromptActivity_invalid_passphrase_exclamation));
-    }
-  }
-
   private void handleAuthenticated() {
-    try {
-      authenticated = true;
-      
-      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-      setMasterSecret(masterSecret);
-    } catch (InvalidPassphraseException e) {
-      throw new AssertionError(e);
-    }
-  }
+    authenticated = true;
+    //TODO Replace with a proper call.
+    keyCachingService.setMasterSecret(new Object());
 
-  private void setPassphraseVisibility(boolean visibility) {
-    int cursorPosition = passphraseText.getSelectionStart();
-    if (visibility) {
-      passphraseText.setInputType(InputType.TYPE_CLASS_TEXT |
-                                  InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-    } else {
-      passphraseText.setInputType(InputType.TYPE_CLASS_TEXT |
-                                  InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    // Finish and proceed with the next intent.
+    Intent nextIntent = getIntent().getParcelableExtra("next_intent");
+    if (nextIntent != null) {
+      startActivity(nextIntent);
+//      try {
+//        startActivity(nextIntent);
+//      } catch (java.lang.SecurityException e) {
+//        Log.w(TAG, "Access permission not passed from PassphraseActivity, retry sharing.");
+//      }
     }
-    passphraseText.setSelection(cursorPosition);
+    finish();
   }
 
   private void initializeResources() {
-
-    ImageButton okButton = findViewById(R.id.ok_button);
-
-    showButton                    = findViewById(R.id.passphrase_visibility);
-    hideButton                    = findViewById(R.id.passphrase_visibility_off);
     visibilityToggle              = findViewById(R.id.button_toggle);
-    passphraseText                = findViewById(R.id.passphrase_edit);
-    passphraseAuthContainer       = findViewById(R.id.password_auth_container);
     fingerprintPrompt             = findViewById(R.id.fingerprint_auth_container);
     lockScreenButton              = findViewById(R.id.lock_screen_auth_container);
     fingerprintManager            = FingerprintManagerCompat.from(this);
@@ -220,13 +160,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     hint.setSpan(new RelativeSizeSpan(0.9f), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     hint.setSpan(new TypefaceSpan("sans-serif"), 0, hint.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 
-    passphraseText.setHint(hint);
-    okButton.setOnClickListener(new OkButtonClickListener());
-    showButton.setOnClickListener(new ShowButtonOnClickListener());
-    hideButton.setOnClickListener(new HideButtonOnClickListener());
-    passphraseText.setOnEditorActionListener(new PassphraseActionListener());
-    passphraseText.setImeActionLabel(getString(R.string.prompt_passphrase_activity__unlock), EditorInfo.IME_ACTION_DONE);
-
     fingerprintPrompt.setImageResource(R.drawable.ic_fingerprint_white_48dp);
     fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.signal_primary), PorterDuff.Mode.SRC_IN);
 
@@ -235,8 +168,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   private void setLockTypeVisibility() {
     if (TextSecurePreferences.isScreenLockEnabled(this)) {
-      passphraseAuthContainer.setVisibility(View.GONE);
-
       if (fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
         fingerprintPrompt.setVisibility(View.VISIBLE);
         lockScreenButton.setVisibility(View.GONE);
@@ -245,7 +176,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
         lockScreenButton.setVisibility(View.VISIBLE);
       }
     } else {
-      passphraseAuthContainer.setVisibility(View.VISIBLE);
       fingerprintPrompt.setVisibility(View.GONE);
       lockScreenButton.setVisibility(View.GONE);
     }
@@ -266,13 +196,10 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       Log.i(TAG, "Listening for fingerprints...");
       fingerprintCancellationSignal = new CancellationSignal();
       fingerprintManager.authenticate(null, 0, fingerprintCancellationSignal, fingerprintListener, null);
-    } else if (Build.VERSION.SDK_INT >= 21){
+    } else {
       Log.i(TAG, "firing intent...");
       Intent intent = keyguardManager.createConfirmDeviceCredentialIntent("Unlock Session", "");
       startActivityForResult(intent, 1);
-    } else {
-      Log.w(TAG, "Not compatible...");
-      handleAuthenticated();
     }
   }
 
@@ -280,54 +207,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     if (fingerprintCancellationSignal != null) {
       fingerprintCancellationSignal.cancel();
     }
-  }
-
-  private class PassphraseActionListener implements TextView.OnEditorActionListener {
-    @Override
-    public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent keyEvent) {
-      if ((keyEvent == null && actionId == EditorInfo.IME_ACTION_DONE) ||
-          (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_DOWN &&
-              (actionId == EditorInfo.IME_NULL)))
-      {
-        handlePassphrase();
-        return true;
-      } else if (keyEvent != null && keyEvent.getAction() == KeyEvent.ACTION_UP &&
-                 actionId == EditorInfo.IME_NULL)
-      {
-        return true;
-      }
-
-      return false;
-    }
-  }
-
-  private class OkButtonClickListener implements OnClickListener {
-    @Override
-    public void onClick(View v) {
-      handlePassphrase();
-    }
-  }
-
-  private class ShowButtonOnClickListener implements OnClickListener {
-    @Override
-    public void onClick(View v) {
-      visibilityToggle.display(hideButton);
-      setPassphraseVisibility(true);
-    }
-  }
-
-  private class HideButtonOnClickListener implements OnClickListener {
-    @Override
-    public void onClick(View v) {
-      visibilityToggle.display(showButton);
-      setPassphraseVisibility(false);
-    }
-  }
-
-  @Override
-  protected void cleanup() {
-    this.passphraseText.setText("");
-    System.gc();
   }
 
   private class FingerprintListener extends FingerprintManagerCompat.AuthenticationCallback {
@@ -356,7 +235,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     @Override
     public void onAuthenticationFailed() {
       Log.w(TAG, "onAuthenticatoinFailed()");
-      FingerprintManagerCompat.AuthenticationCallback callback = this;
 
       fingerprintPrompt.setImageResource(R.drawable.ic_close_white_48dp);
       fingerprintPrompt.getBackground().setColorFilter(getResources().getColor(R.color.red_500), PorterDuff.Mode.SRC_IN);
@@ -380,6 +258,5 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
       fingerprintPrompt.startAnimation(shake);
     }
-
   }
 }

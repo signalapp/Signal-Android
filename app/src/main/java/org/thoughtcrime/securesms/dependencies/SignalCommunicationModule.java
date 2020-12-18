@@ -22,13 +22,8 @@ import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
-import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
-import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
-import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.jobs.StickerDownloadJob;
@@ -36,6 +31,7 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
@@ -56,18 +52,13 @@ import network.loki.messenger.BuildConfig;
                                      AttachmentDownloadJob.class,
                                      IncomingMessageObserver.class,
                                      PushNotificationReceiveJob.class,
-                                     RefreshAttributesJob.class,
                                      RequestGroupInfoJob.class,
                                      PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
-                                     RetrieveProfileJob.class,
                                      RetrieveProfileAvatarJob.class,
                                      SendReadReceiptJob.class,
                                      AppProtectionPreferenceFragment.class,
-                                     RotateCertificateJob.class,
                                      SendDeliveryReceiptJob.class,
-                                     RotateProfileKeyJob.class,
-                                     RefreshUnidentifiedDeliveryAbilityJob.class,
                                      TypingSendJob.class,
                                      AttachmentUploadJob.class,
                                      PushDecryptJob.class,
@@ -95,17 +86,6 @@ public class SignalCommunicationModule {
   }
 
   @Provides
-  synchronized SignalServiceAccountManager provideSignalAccountManager() {
-    if (this.accountManager == null) {
-      this.accountManager = new SignalServiceAccountManager(networkAccess.getConfiguration(context),
-                                                            new DynamicCredentialsProvider(context),
-                                                            BuildConfig.USER_AGENT);
-    }
-
-    return this.accountManager;
-  }
-
-  @Provides
   public synchronized SignalServiceMessageSender provideSignalMessageSender() {
     if (this.messageSender == null) {
       this.messageSender = new SignalServiceMessageSender(networkAccess.getConfiguration(context),
@@ -121,8 +101,8 @@ public class SignalCommunicationModule {
                                                           DatabaseFactory.getSSKDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageDatabase(context),
-//                                                          DatabaseFactory.getLokiPreKeyBundleDatabase(context),
-                                                          null,
+                                                          null, // DatabaseFactory.getLokiPreKeyBundleDatabase(context)
+                                                          new SessionProtocolImpl(context),
                                                           new SessionResetImplementation(context),
                                                           DatabaseFactory.getLokiUserDatabase(context),
                                                           DatabaseFactory.getGroupDatabase(context),

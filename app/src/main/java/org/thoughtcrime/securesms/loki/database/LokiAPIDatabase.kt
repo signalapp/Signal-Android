@@ -9,6 +9,8 @@ import org.thoughtcrime.securesms.loki.utilities.*
 import org.session.libsignal.service.loki.api.Snode
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
+import org.thoughtcrime.securesms.util.TextSecurePreferences
+import java.util.*
 
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
 
@@ -373,6 +375,16 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
         return database.delete(openGroupProfilePictureTable, "$publicChatID = ?", arrayOf(index)) > 0
+    }
+
+    override fun getLastSnodePoolRefreshDate(): Date? {
+        val time = TextSecurePreferences.getLastSnodePoolRefreshDate(context)
+        if (time <= 0) { return null }
+        return Date(time)
+    }
+
+    override fun setLastSnodePoolRefreshDate(date: Date) {
+        TextSecurePreferences.setLastSnodePoolRefreshDate(context, date)
     }
 
     // region Deprecated

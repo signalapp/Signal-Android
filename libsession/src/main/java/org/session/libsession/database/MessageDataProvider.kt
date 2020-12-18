@@ -1,14 +1,28 @@
 package org.session.libsession.database
 
-import org.session.libsession.database.dto.DatabaseAttachmentDTO
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
+import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
+import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 
 interface MessageDataProvider {
 
-    fun getAttachment(uniqueID: String): DatabaseAttachmentDTO?
+    //fun getAttachment(attachmentId: Long): SignalServiceAttachmentStream?
+
     fun getAttachmentPointer(attachmentID: String): SignalServiceAttachmentPointer?
 
     fun getMessageID(serverID: Long): Long?
     fun deleteMessage(messageID: Long)
+
+    fun getAttachmentStream(attachmentId: Long): SessionServiceAttachmentStream?
+
+    fun getAttachmentPointer(attachmentId: Long): SessionServiceAttachmentPointer?
+
+    fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long)
+
+    fun isOutgoingMessage(timestamp: Long): Boolean
+
+    @Throws(Exception::class)
+    fun uploadAttachment(attachmentId: Long)
 
 }

@@ -151,7 +151,6 @@ class PNModeActivity : BaseActionBarActivity() {
             return
         }
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
-        TextSecurePreferences.setPromptedPushRegistration(this, true)
         TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
         TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
         TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)

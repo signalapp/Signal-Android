@@ -11,7 +11,7 @@ class Quote() {
     var timestamp: Long? = 0
     var publicKey: String? = null
     var text: String? = null
-    var attachmentID: String? = null
+    var attachmentID: Long? = null
 
     companion object {
         const val TAG = "Quote"
@@ -25,7 +25,7 @@ class Quote() {
     }
 
     //constructor
-    internal constructor(timestamp: Long, publicKey: String, text: String?, attachmentID: String?) : this() {
+    internal constructor(timestamp: Long, publicKey: String, text: String?, attachmentID: Long?) : this() {
         this.timestamp = timestamp
         this.publicKey = publicKey
         this.text = text
@@ -60,7 +60,7 @@ class Quote() {
 
     private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder, messageDataProvider: MessageDataProvider) {
         val attachmentID = attachmentID ?: return
-        val attachmentProto = messageDataProvider.getAttachment(attachmentID)
+        val attachmentProto = messageDataProvider.getAttachmentStream(attachmentID)
         if (attachmentProto == null) {
             Log.w(TAG, "Ignoring invalid attachment for quoted message.")
             return
@@ -74,7 +74,7 @@ class Quote() {
         }
         val quotedAttachmentProto = SignalServiceProtos.DataMessage.Quote.QuotedAttachment.newBuilder()
         quotedAttachmentProto.contentType = attachmentProto.contentType
-        val fileName = attachmentProto.fileName
+        val fileName = attachmentProto.fileName?.get()
         fileName?.let { quotedAttachmentProto.fileName = fileName }
         quotedAttachmentProto.thumbnail = attachmentProto.toProto()
         try {

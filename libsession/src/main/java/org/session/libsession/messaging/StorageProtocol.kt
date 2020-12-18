@@ -38,7 +38,7 @@ interface StorageProtocol {
     fun markJobAsSucceeded(job: Job)
     fun markJobAsFailed(job: Job)
     fun getAllPendingJobs(type: String): List<Job>
-    fun getAttachmentUploadJob(attachmentID: String): AttachmentUploadJob?
+    fun getAttachmentUploadJob(attachmentID: Long): AttachmentUploadJob?
     fun getMessageSendJob(messageSendJobID: String): MessageSendJob?
     fun resumeMessageSendJobIfNeeded(messageSendJobID: String)
     fun isJobCanceled(job: Job): Boolean

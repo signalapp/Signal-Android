@@ -8,7 +8,7 @@ class LinkPreview() {
 
     var title: String? = null
     var url: String? = null
-    var attachmentID: String? = null
+    var attachmentID: Long? = 0
 
     companion object {
         const val TAG = "LinkPreview"
@@ -21,7 +21,7 @@ class LinkPreview() {
     }
 
     //constructor
-    internal constructor(title: String?, url: String, attachmentID: String?) : this() {
+    internal constructor(title: String?, url: String, attachmentID: Long?) : this() {
         this.title = title
         this.url = url
         this.attachmentID = attachmentID
@@ -44,7 +44,7 @@ class LinkPreview() {
         title?.let { linkPreviewProto.title = title }
         val attachmentID = attachmentID
         attachmentID?.let {
-            val attachmentProto = MessagingConfiguration.shared.messageDataProvider.getAttachment(attachmentID)
+            val attachmentProto = MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(attachmentID)
             attachmentProto?.let { linkPreviewProto.image = attachmentProto.toProto() }
         }
         // Build

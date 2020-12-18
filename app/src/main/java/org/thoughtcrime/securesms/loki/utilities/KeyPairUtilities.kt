@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.Context
 import com.goterl.lazycode.lazysodium.LazySodiumAndroid
 import com.goterl.lazycode.lazysodium.SodiumAndroid
+import com.goterl.lazycode.lazysodium.utils.Key
 import com.goterl.lazycode.lazysodium.utils.KeyPair
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.util.Base64
@@ -14,12 +15,6 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 object KeyPairUtilities {
 
     private val sodium = LazySodiumAndroid(SodiumAndroid())
-
-    data class KeyPairGenerationResult(
-        val seed: ByteArray,
-        val ed25519KeyPair: KeyPair,
-        val x25519KeyPair: ECKeyPair
-    )
 
     fun generate(): KeyPairGenerationResult {
         val seed = sodium.randomBytesBuf(16)
@@ -45,4 +40,22 @@ object KeyPairUtilities {
         IdentityKeyUtil.save(context, IdentityKeyUtil.ED25519_PUBLIC_KEY, Base64.encodeBytes(ed25519KeyPair.publicKey.asBytes))
         IdentityKeyUtil.save(context, IdentityKeyUtil.ED25519_SECRET_KEY, Base64.encodeBytes(ed25519KeyPair.secretKey.asBytes))
     }
+
+    fun hasV2KeyPair(context: Context): Boolean {
+        return (IdentityKeyUtil.retrieve(context, IdentityKeyUtil.ED25519_SECRET_KEY) != null)
+    }
+
+    fun getUserED25519KeyPair(context: Context): KeyPair? {
+        val hexEncodedED25519PublicKey = IdentityKeyUtil.retrieve(context, IdentityKeyUtil.ED25519_PUBLIC_KEY) ?: return null
+        val hexEncodedED25519SecretKey = IdentityKeyUtil.retrieve(context, IdentityKeyUtil.ED25519_SECRET_KEY) ?: return null
+        val ed25519PublicKey = Key.fromBase64String(hexEncodedED25519PublicKey)
+        val ed25519SecretKey = Key.fromBase64String(hexEncodedED25519SecretKey)
+        return KeyPair(ed25519PublicKey, ed25519SecretKey)
+    }
+
+    data class KeyPairGenerationResult(
+            val seed: ByteArray,
+            val ed25519KeyPair: KeyPair,
+            val x25519KeyPair: ECKeyPair
+    )
 }

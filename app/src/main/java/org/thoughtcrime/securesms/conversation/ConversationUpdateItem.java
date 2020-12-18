@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -16,12 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.BindableConversationItem;
-import org.thoughtcrime.securesms.VerifyIdentityActivity;
-import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -29,17 +23,15 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 import network.loki.messenger.R;
 
+//TODO Remove this class.
 public class ConversationUpdateItem extends LinearLayout
     implements RecipientModifiedListener, BindableConversationItem
 {
@@ -256,24 +248,24 @@ public class ConversationUpdateItem extends LinearLayout
 
       final Recipient sender = ConversationUpdateItem.this.sender;
 
-      IdentityUtil.getRemoteIdentityKey(getContext(), sender).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
-        @Override
-        public void onSuccess(Optional<IdentityRecord> result) {
-          if (result.isPresent()) {
-            Intent intent = new Intent(getContext(), VerifyIdentityActivity.class);
-            intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, sender.getAddress());
-            intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(result.get().getIdentityKey()));
-            intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, result.get().getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
-
-            getContext().startActivity(intent);
-          }
-        }
-
-        @Override
-        public void onFailure(ExecutionException e) {
-          Log.w(TAG, e);
-        }
-      });
+//      IdentityUtil.getRemoteIdentityKey(getContext(), sender).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
+//        @Override
+//        public void onSuccess(Optional<IdentityRecord> result) {
+//          if (result.isPresent()) {
+//            Intent intent = new Intent(getContext(), VerifyIdentityActivity.class);
+//            intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, sender.getAddress());
+//            intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(result.get().getIdentityKey()));
+//            intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, result.get().getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
+//
+//            getContext().startActivity(intent);
+//          }
+//        }
+//
+//        @Override
+//        public void onFailure(ExecutionException e) {
+//          Log.w(TAG, e);
+//        }
+//      });
     }
   }
 

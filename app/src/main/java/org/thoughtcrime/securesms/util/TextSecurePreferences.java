@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -81,7 +82,6 @@ public class TextSecurePreferences {
   public  static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String SEEN_WELCOME_SCREEN_PREF         = "pref_seen_welcome_screen";
-  private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_DEFAULT_SMS_PREF        = "pref_prompted_default_sms";
   private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
   private static final String PROMPTED_SHARE_PREF              = "pref_prompted_share";
@@ -136,7 +136,7 @@ public class TextSecurePreferences {
   private static final String DATABASE_UNENCRYPTED_SECRET   = "pref_database_unencrypted_secret";
   private static final String ATTACHMENT_ENCRYPTED_SECRET   = "pref_attachment_encrypted_secret";
   private static final String ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret";
-  private static final String NEEDS_SQLCIPHER_MIGRATION     = "pref_needs_sql_cipher_migration";
+  private static final String NEEDS_SQLCIPHER_MIGRATION     = "pref_needs_sql_cipher_migration";  //TODO AC: Delete
 
   private static final String NEXT_PRE_KEY_ID          = "pref_next_pre_key_id";
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
@@ -879,19 +879,11 @@ public class TextSecurePreferences {
   }
 
   public static boolean hasSeenWelcomeScreen(Context context) {
-    return getBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, true);
+    return getBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, false);
   }
 
   public static void setHasSeenWelcomeScreen(Context context, boolean value) {
     setBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, value);
-  }
-
-  public static boolean hasPromptedPushRegistration(Context context) {
-    return getBooleanPreference(context, PROMPTED_PUSH_REGISTRATION_PREF, false);
-  }
-
-  public static void setPromptedPushRegistration(Context context, boolean value) {
-    setBooleanPreference(context, PROMPTED_PUSH_REGISTRATION_PREF, value);
   }
 
   public static boolean hasPromptedDefaultSmsProvider(Context context) {
@@ -1245,6 +1237,14 @@ public class TextSecurePreferences {
 
   public static void setHasSeenLightThemeIntroSheet(Context context) {
     setBooleanPreference(context, "has_seen_light_theme_intro_sheet", true);
+  }
+
+  public static long getLastSnodePoolRefreshDate(Context context) {
+    return getLongPreference(context, "last_snode_pool_refresh_date", 0);
+  }
+
+  public static void setLastSnodePoolRefreshDate(Context context, Date date) {
+    setLongPreference(context, "last_snode_pool_refresh_date", date.getTime());
   }
   // endregion
 

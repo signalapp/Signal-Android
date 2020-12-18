@@ -44,13 +44,8 @@ public final class JobManagerFactories {
       put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
       put(PushNotificationReceiveJob.KEY,            new PushNotificationReceiveJob.Factory());
       put(PushTextSendJob.KEY,                       new PushTextSendJob.Factory());
-      put(RefreshAttributesJob.KEY,                  new RefreshAttributesJob.Factory());
-      put(RefreshUnidentifiedDeliveryAbilityJob.KEY, new RefreshUnidentifiedDeliveryAbilityJob.Factory());
       put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory(application));
-      put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory(application));
-      put(RotateCertificateJob.KEY,                  new RotateCertificateJob.Factory());
-      put(RotateProfileKeyJob.KEY,                   new RotateProfileKeyJob.Factory());
       put(SendDeliveryReceiptJob.KEY,                new SendDeliveryReceiptJob.Factory());
       put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory());
       put(SmsReceiveJob.KEY,                         new SmsReceiveJob.Factory());
