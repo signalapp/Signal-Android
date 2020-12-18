@@ -151,17 +151,20 @@ public class PinRestoreEntryFragment extends LoggingFragment {
         cancelSpinning(pinButton);
         pinEntry.getText().clear();
         enableAndFocusPinEntry();
+        skipButton.setVisibility(View.VISIBLE);
         break;
       case PIN_TOO_SHORT:
         Toast.makeText(requireContext(), getString(R.string.RegistrationActivity_your_pin_has_at_least_d_digits_or_characters, MINIMUM_PIN_LENGTH), Toast.LENGTH_LONG).show();
         cancelSpinning(pinButton);
         pinEntry.getText().clear();
         enableAndFocusPinEntry();
+        skipButton.setVisibility(View.VISIBLE);
         break;
       case PIN_INCORRECT:
         cancelSpinning(pinButton);
         pinEntry.getText().clear();
         enableAndFocusPinEntry();
+        skipButton.setVisibility(View.VISIBLE);
         break;
       case PIN_LOCKED:
         onAccountLocked();
@@ -169,8 +172,8 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       case NETWORK_ERROR:
         Toast.makeText(requireContext(), R.string.RegistrationActivity_error_connecting_to_service, Toast.LENGTH_LONG).show();
         cancelSpinning(pinButton);
-        pinEntry.setEnabled(true);
         enableAndFocusPinEntry();
+        skipButton.setVisibility(View.VISIBLE);
         break;
     }
   }
@@ -185,6 +188,9 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     pinEntry.setEnabled(false);
     viewModel.onPinSubmitted(pinEntry.getText().toString(), getPinEntryKeyboardType());
     setSpinning(pinButton);
+    errorLabel.setText("");
+    helpButton.setVisibility(View.GONE);
+    skipButton.setVisibility(View.GONE);
   }
 
   private void onNeedHelpClicked() {
