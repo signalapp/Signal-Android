@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.jobs
 
+import nl.komponents.kovenant.Promise
+
 class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
     override var delegate: JobDelegate? = null
     override var id: String? = null
@@ -12,6 +14,10 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     }
 
     override fun execute() {
+        executeAsync().get()
+    }
+
+    fun executeAsync(): Promise<Unit, Exception> {
         TODO("Not yet implemented")
     }
 }
