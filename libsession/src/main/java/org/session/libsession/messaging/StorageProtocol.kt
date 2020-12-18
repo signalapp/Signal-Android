@@ -3,6 +3,8 @@ package org.session.libsession.messaging
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.messages.Message
+import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
@@ -10,6 +12,7 @@ import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.ecc.ECPrivateKey
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
+import java.security.PublicKey
 
 interface StorageProtocol {
 
@@ -53,6 +56,10 @@ interface StorageProtocol {
     fun getOpenGroupPublicKey(server: String): String?
     fun setOpenGroupPublicKey(server: String, newValue: String)
 
+    // Open Group User Info
+    fun setOpenGroupDisplayName(publicKey: String, channel: Long, server: String, displayName: String)
+    fun getOpenGroupDisplayName(publicKey: String, channel: Long, server: String): String?
+
     // Last Message Server ID
     fun getLastMessageServerID(group: Long, server: String): Long?
     fun setLastMessageServerID(group: Long, server: String, newValue: Long)
@@ -73,6 +80,11 @@ interface StorageProtocol {
     // Message Handling
     fun getReceivedMessageTimestamps(): Set<Long>
     fun addReceivedMessageTimestamp(timestamp: Long)
+    // Returns the IDs of the saved attachments.
+    fun persist(attachments: List<Attachment>): List<String>
+    fun insertMessageOutbox(message: Message)
+    fun insertMessageInbox(message: Message)
+    fun setErrorMessage(message: Message, error: Exception)
 
     // Closed Groups
     fun getGroup(groupID: String): GroupRecord?
@@ -81,14 +93,15 @@ interface StorageProtocol {
     fun removeMember(groupID: String, member: Address)
     fun updateMembers(groupID: String, members: List<Address>)
 
-
     // Settings
     fun setProfileSharing(address: Address, value: Boolean)
 
     // Thread
     fun getOrCreateThreadIdFor(address: Address): String
+    fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): String?
     fun getThreadIdFor(address: Address): String?
 
+    // Session Request
     fun getSessionRequestSentTimestamp(publicKey: String): Long?
     fun setSessionRequestSentTimestamp(publicKey: String, newValue: Long)
     fun getSessionRequestProcessedTimestamp(publicKey: String): Long?

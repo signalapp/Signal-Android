@@ -15,7 +15,7 @@ public data class OpenGroupMessage(
         public val timestamp: Long,
         public val type: String,
         public val quote: Quote?,
-        public val attachments: List<Attachment>,
+        public val attachments: MutableList<Attachment>,
         public val profilePicture: ProfilePicture?,
         public val signature: Signature?,
         public val serverTimestamp: Long,
@@ -26,14 +26,18 @@ public data class OpenGroupMessage(
         fun from(message: VisibleMessage, server: String): OpenGroupMessage? {
             val storage = MessagingConfiguration.shared.storage
             val userPublicKey = storage.getUserPublicKey() ?: return null
+            var attachmentIDs = message.attachmentIDs
             // Validation
             if (!message.isValid()) { return null } // Should be valid at this point
             // Quote
             val quote: Quote? = {
                 val quote = message.quote
                 if (quote != null && quote.isValid()) {
-                    val quotedMessageServerID = storage.getQuoteServerID(quote.id, quote.publicKey)
-                    Quote(quote.timestamp!!, quote.publicKey!!, quote.text!!, quotedMessageServerID)
+                    val quotedMessageBody = quote.text ?: quote.timestamp!!.toString()
+                    val quotedAttachmentID = quote.attachmentID
+                    if (quotedAttachmentID != null) { attachmentIDs.remove(quotedAttachmentID) }
+                    // FIXME: For some reason the server always returns a 500 if quotedMessageServerID is set...
+                    Quote(quote.timestamp!!, quote.publicKey!!, quotedMessageBody, null)
                 } else {
                     null
                 }
@@ -46,41 +50,43 @@ public data class OpenGroupMessage(
             val linkPreview = message.linkPreview
             linkPreview?.let {
                 if (!linkPreview.isValid()) { return@let }
-                val attachment = linkPreview.getImage() ?: return@let
+                val attachmentID = linkPreview.attachmentID ?: return@let
+                val attachment = MessagingConfiguration.shared.messageDataProvider.getAttachmentPointer(attachmentID) ?: return@let
                 val openGroupLinkPreview = Attachment(
                         Attachment.Kind.LinkPreview,
                         server,
-                        attachment.getId(),
-                        attachment.getContentType(),
-                        attachment.getSize(),
-                        attachment.getFileName(),
-                        attachment.getFlags(),
-                        attachment.getWidth(),
-                        attachment.getHeight(),
-                        attachment.getCaption(),
-                        attachment.getUrl(),
+                        attachment.id,
+                        attachment.contentType,
+                        attachment.size.get(),
+                        attachment.fileName.get(),
+                        0,
+                        attachment.width,
+                        attachment.height,
+                        attachment.caption.get(),
+                        attachment.url,
                         linkPreview.url,
                         linkPreview.title)
                 result.attachments.add(openGroupLinkPreview)
             }
             // Attachments
-            val attachments = message.getAttachemnts().forEach {
-                val attachement = Attachment(
+            val attachments = message.attachmentIDs.mapNotNull {
+                val attachment = MessagingConfiguration.shared.messageDataProvider.getAttachmentPointer(it) ?: return@mapNotNull null
+                return@mapNotNull Attachment(
                         Attachment.Kind.Attachment,
                         server,
-                        it.getId(),
-                        it.getContentType(),
-                        it.getSize(),
-                        it.getFileName(),
-                        it.getFlags(),
-                        it.getWidth(),
-                        it.getHeight(),
-                        it.getCaption(),
-                        it.getUrl(),
-                        linkPreview.getUrl(),
-                        linkPreview.getTitle())
-                result.attachments.add(attachement)
+                        attachment.id,
+                        attachment.contentType,
+                        attachment.size.get(),
+                        attachment.fileName.get(),
+                        0,
+                        attachment.width,
+                        attachment.height,
+                        attachment.caption.get(),
+                        attachment.url,
+                        null,
+                        null)
             }
+            result.attachments.addAll(attachments)
             // Return
             return result
         }
@@ -145,7 +151,7 @@ public data class OpenGroupMessage(
 
     // region Initialization
     constructor(hexEncodedPublicKey: String, displayName: String, body: String, timestamp: Long, type: String, quote: Quote?, attachments: List<Attachment>)
-        : this(null, hexEncodedPublicKey, displayName, body, timestamp, type, quote, attachments, null, null, 0)
+        : this(null, hexEncodedPublicKey, displayName, body, timestamp, type, quote, attachments as MutableList<Attachment>, null, null, 0)
     // endregion
 
     // region Crypto
