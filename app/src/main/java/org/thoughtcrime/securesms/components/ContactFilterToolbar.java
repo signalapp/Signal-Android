@@ -130,6 +130,10 @@ public final class ContactFilterToolbar extends DarkOverflowToolbar {
     ViewUtil.focusAndShowKeyboard(searchText);
   }
 
+  public void hideKeyboard() {
+    ViewUtil.hideKeyboard(getContext(), searchText);
+  }
+
   public void clear() {
     searchText.setText("");
     notifyListener();

@@ -62,12 +62,13 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
     });
     contactFilterToolbar.setHint(R.string.BlockedUsersActivity__add_blocked_user);
 
-    //noinspection CodeBlock2Expr
     getSupportFragmentManager().addOnBackStackChangedListener(() -> {
       viewSwitcher.setDisplayedChild(getSupportFragmentManager().getBackStackEntryCount());
 
       if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
         contactFilterToolbar.focusAndShowKeyboard();
+      } else {
+        contactFilterToolbar.hideKeyboard();
       }
     });
 
@@ -105,6 +106,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
                                                     .setCancelable(true)
                                                     .create();
 
+    //noinspection CodeBlock2Expr
     confirmationDialog.setOnShowListener(dialog -> {
       confirmationDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
     });
