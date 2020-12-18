@@ -36,4 +36,9 @@ public final class PinRestoreActivity extends AppCompatActivity {
     startActivity(chained);
     finish();
   }
+
+  @Override
+  public void onBackPressed() {
+    finish();
+  }
 }
