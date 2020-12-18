@@ -28,7 +28,7 @@ import java.util.Objects;
 
 public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewModel> {
 
-  private ConfirmKbsPinViewModel    viewModel;
+  private ConfirmKbsPinViewModel viewModel;
 
   @Override
   protected void initializeViewStates() {
@@ -164,9 +164,11 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
     if (saveAnimation == ConfirmKbsPinViewModel.SaveAnimation.NONE) {
       getInput().setVisibility(View.VISIBLE);
       getLottieProgress().setVisibility(View.GONE);
+      setMenuVisibility(true);
     } else {
       getInput().setVisibility(View.GONE);
       getLottieProgress().setVisibility(View.VISIBLE);
+      setMenuVisibility(false);
     }
   }
 
