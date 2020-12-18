@@ -9,6 +9,8 @@ import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.jobs.NotifyPNServerJob
+import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
+import org.session.libsession.messaging.messages.visible.Profile
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
 import org.session.libsession.messaging.utilities.MessageWrapper
@@ -64,8 +66,10 @@ object MessageSender {
         val deferred = deferred<Unit, Exception>()
         val promise = deferred.promise
         val storage = MessagingConfiguration.shared.storage
+        val userPublicKey = storage.getUserPublicKey()
         val preconditionFailure = Exception("Destination should not be open groups!")
         var snodeMessage: SnodeMessage? = null
+        // Set the timestamp, sender and recipient
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
         message.sender = storage.getUserPublicKey()
         try {
@@ -74,13 +78,42 @@ object MessageSender {
                 is Destination.ClosedGroup -> message.recipient = destination.groupPublicKey
                 is Destination.OpenGroup -> throw preconditionFailure
             }
+            val isSelfSend = (message.recipient == userPublicKey)
+            // Set the failure handler (need it here already for precondition failure handling)
+            fun handleFailure(error: Exception) {
+                handleFailedMessageSend(message, error)
+                if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
+                    //TODO Notify user for send failure
+                }
+                deferred.reject(error)
+            }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
+            // Stop here if this is a self-send
+            if (isSelfSend) {
+                handleSuccessfulMessageSend(message, destination)
+                deferred.resolve(Unit)
+                return promise
+            }
+            // Attach the user's profile if needed
+            if (message is VisibleMessage) {
+                val displayName = storage.getUserDisplayName()!!
+                val profileKey = storage.getUserProfileKey()
+                val profilePrictureUrl = storage.getUserProfilePictureURL()
+                if (profileKey != null && profilePrictureUrl != null) {
+                    message.profile = Profile(displayName, profileKey, profilePrictureUrl)
+                } else {
+                    message.profile = Profile(displayName)
+                }
+            }
             // Convert it to protobuf
             val proto = message.toProto() ?: throw Error.ProtoConversionFailed
             // Serialize the protobuf
             val plaintext = proto.toByteArray()
             // Encrypt the serialized protobuf
+            if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
+                //TODO Notify user for encrypting message
+            }
             val ciphertext: ByteArray
             when (destination) {
                 is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSignalProtocol(plaintext, message, destination.publicKey)
@@ -103,6 +136,9 @@ object MessageSender {
             }
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Calculate proof of work
+            if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
+                //TODO Notify user for proof of work calculating
+            }
             val recipient = message.recipient!!
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
             val timestamp = System.currentTimeMillis()
@@ -117,11 +153,25 @@ object MessageSender {
                     promise.success {
                         if (isSuccess) { return@success } // Succeed as soon as the first promise succeeds
                         isSuccess = true
-                        deferred.resolve(Unit)
+                        if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
+                            //TODO Notify user for message sent
+                        }
+                        handleSuccessfulMessageSend(message, destination)
+                        var shouldNotify = (message is VisibleMessage)
+                        if (message is ClosedGroupUpdate && message.kind is ClosedGroupUpdate.Kind.New) {
+                            shouldNotify = true
+                        }
+                        if (shouldNotify) {
+                            val notifyPNServerJob = NotifyPNServerJob(snodeMessage)
+                            JobQueue.shared.add(notifyPNServerJob)
+                            deferred.resolve(Unit)
+                        }
+
                     }
                     promise.fail {
                         errorCount += 1
                         if (errorCount != promiseCount) { return@fail } // Only error out if all promises failed
+                        handleFailure(it)
                         deferred.reject(it)
                     }
                 }
@@ -132,18 +182,6 @@ object MessageSender {
         } catch (exception: Exception) {
             deferred.reject(exception)
         }
-        // Handle completion
-        promise.success {
-            handleSuccessfulMessageSend(message)
-            if (message is VisibleMessage && snodeMessage != null) {
-                val notifyPNServerJob = NotifyPNServerJob(snodeMessage)
-                JobQueue.shared.add(notifyPNServerJob)
-            }
-        }
-        promise.fail {
-            handleFailedMessageSend(message, it)
-        }
-
         return promise
     }
 
@@ -153,7 +191,7 @@ object MessageSender {
         val promise = deferred.promise
         val storage = MessagingConfiguration.shared.storage
         val preconditionFailure = Exception("Destination should not be contacts or closed groups!")
-        message.sentTimestamp = System.currentTimeMillis()
+        message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() }
         message.sender = storage.getUserPublicKey()
         try {
             val server: String
@@ -167,38 +205,42 @@ object MessageSender {
                     channel = destination.channel
                 }
             }
+            // Set the failure handler (need it here already for precondition failure handling)
+            fun handleFailure(error: Exception,) {
+                handleFailedMessageSend(message, error)
+                deferred.reject(error)
+            }
             // Validate the message
             if (message !is VisibleMessage || !message.isValid()) {
+                handleFailure(Error.InvalidMessage)
                 throw Error.InvalidMessage
             }
             // Convert the message to an open group message
-            val openGroupMessage = OpenGroupMessage.from(message, server) ?: throw Error.InvalidMessage
+            val openGroupMessage = OpenGroupMessage.from(message, server) ?: kotlin.run {
+                handleFailure(Error.InvalidMessage)
+                throw Error.InvalidMessage
+            }
             // Send the result
             OpenGroupAPI.sendMessage(openGroupMessage, channel, server).success {
                 message.openGroupServerMessageID = it.serverID
+                handleSuccessfulMessageSend(message, destination)
                 deferred.resolve(Unit)
             }.fail {
-                deferred.reject(it)
+                handleFailure(it)
             }
         } catch (exception: Exception) {
             deferred.reject(exception)
-        }
-        // Handle completion
-        promise.success {
-            handleSuccessfulMessageSend(message)
-        }
-        promise.fail {
-            handleFailedMessageSend(message, it)
         }
         return deferred.promise
     }
 
     // Result Handling
-    fun handleSuccessfulMessageSend(message: Message) {
-
+    fun handleSuccessfulMessageSend(message: Message, destination: Destination) {
+        MessagingConfiguration.shared.storage.insertMessageOutbox(message)
+        // TODO
     }
 
     fun handleFailedMessageSend(message: Message, error: Exception) {
-
+        MessagingConfiguration.shared.storage.setErrorMessage(message, error)
     }
 }
