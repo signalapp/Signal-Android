@@ -60,7 +60,7 @@ class Quote() {
 
     private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder, messageDataProvider: MessageDataProvider) {
         val attachmentID = attachmentID ?: return
-        val attachmentProto = messageDataProvider.getAttachment(attachmentID)
+        val attachmentProto = messageDataProvider.getAttachmentStream(attachmentID)
         if (attachmentProto == null) {
             Log.w(TAG, "Ignoring invalid attachment for quoted message.")
             return
@@ -74,7 +74,7 @@ class Quote() {
         }
         val quotedAttachmentProto = SignalServiceProtos.DataMessage.Quote.QuotedAttachment.newBuilder()
         quotedAttachmentProto.contentType = attachmentProto.contentType
-        val fileName = attachmentProto.fileName
+        val fileName = attachmentProto.fileName?.get()
         fileName?.let { quotedAttachmentProto.fileName = fileName }
         quotedAttachmentProto.thumbnail = attachmentProto.toProto()
         try {
