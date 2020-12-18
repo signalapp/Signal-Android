@@ -81,7 +81,7 @@ interface StorageProtocol {
     fun getReceivedMessageTimestamps(): Set<Long>
     fun addReceivedMessageTimestamp(timestamp: Long)
     // Returns the IDs of the saved attachments.
-    fun persist(attachments: List<Attachment>): List<String>
+    fun persist(attachments: List<Attachment>): List<Long>
     fun insertMessageOutbox(message: Message)
     fun insertMessageInbox(message: Message)
     fun setErrorMessage(message: Message, error: Exception)
