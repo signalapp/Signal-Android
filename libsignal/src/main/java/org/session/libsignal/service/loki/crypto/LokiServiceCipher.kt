@@ -9,15 +9,23 @@ import org.session.libsignal.service.api.crypto.SignalServiceCipher
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.PushTransportDetails
+import org.session.libsignal.service.loki.api.crypto.SessionProtocol
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
 
 class LokiServiceCipher(
         localAddress: SignalServiceAddress,
         private val signalProtocolStore: SignalProtocolStore,
         private val sskDatabase: SharedSenderKeysDatabaseProtocol,
+        sessionProtocolImpl: SessionProtocol,
         sessionResetProtocol: SessionResetProtocol,
         certificateValidator: CertificateValidator?)
-    : SignalServiceCipher(localAddress, signalProtocolStore, sskDatabase, sessionResetProtocol, certificateValidator) {
+    : SignalServiceCipher(
+        localAddress,
+        signalProtocolStore,
+        sskDatabase,
+        sessionResetProtocol,
+        sessionProtocolImpl,
+        certificateValidator) {
 
     private val userPrivateKey get() = signalProtocolStore.identityKeyPair.privateKey.serialize()
 

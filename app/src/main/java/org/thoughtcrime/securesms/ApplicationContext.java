@@ -562,7 +562,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     });
   }
 
-  public void clearData() {
+  //FIXME AC: Using this method to cleanup app data is unsafe due to potential concurrent
+  // activity that still might be using the data that is being deleted here.
+  // The most reliable and safe way to do this is to use official API call:
+  // https://developer.android.com/reference/android/app/ActivityManager.html#clearApplicationUserData()
+  // The downside is it kills the app in the process and there's no any conventional way to start
+  // another activity when the task is done.
+  // Dev community is in demand for such a feature, so check on it some time in the feature
+  // and replace our implementation with the API call when it's safe to do so.
+  // Here's a feature request related https://issuetracker.google.com/issues/174903931
+  public void clearAllData() {
     String token = TextSecurePreferences.getFCMToken(this);
     if (token != null && !token.isEmpty()) {
       LokiPushNotificationManager.unregister(token, this);
