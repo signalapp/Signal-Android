@@ -34,5 +34,6 @@ public final class PinRestoreActivity extends AppCompatActivity {
     final Intent chained   = PassphraseRequiredActivity.chainIntent(createPin, main);
 
     startActivity(chained);
+    finish();
   }
 }
