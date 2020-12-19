@@ -58,6 +58,7 @@ public class SearchToolbar extends LinearLayout {
     EditText   searchText = searchView.findViewById(R.id.search_src_text);
 
     searchView.setSubmitButtonEnabled(false);
+    searchView.setMaxWidth(Integer.MAX_VALUE);
 
     if (searchText != null) searchText.setHint(R.string.SearchToolbar_search);
     else                    searchView.setQueryHint(getResources().getString(R.string.SearchToolbar_search));
