@@ -150,7 +150,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActivity {
         startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       } else {
         // TODO [greyson] Navigation
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(MainActivity.clearTop(this));
       }
     }
 

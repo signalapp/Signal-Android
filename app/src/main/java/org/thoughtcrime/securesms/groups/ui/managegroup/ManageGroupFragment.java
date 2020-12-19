@@ -264,7 +264,7 @@ public class ManageGroupFragment extends LoggingFragment {
     });
 
     leaveGroup.setVisibility(groupId.isPush() ? View.VISIBLE : View.GONE);
-    leaveGroup.setOnClickListener(v -> LeaveGroupDialog.handleLeavePushGroup(requireActivity(), groupId.requirePush(), () -> startActivity(new Intent(requireActivity(), MainActivity.class))));
+    leaveGroup.setOnClickListener(v -> LeaveGroupDialog.handleLeavePushGroup(requireActivity(), groupId.requirePush(), () -> startActivity(MainActivity.clearTop(context))));
 
     viewModel.getDisappearingMessageTimer().observe(getViewLifecycleOwner(), string -> disappearingMessages.setText(string));
 

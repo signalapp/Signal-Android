@@ -409,7 +409,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (ConversationIntents.isInvalid(getIntent())) {
       Log.w(TAG, "[onCreate] Missing recipientId!");
       // TODO [greyson] Navigation
-      startActivity(new Intent(this, MainActivity.class));
+      startActivity(MainActivity.clearTop(this));
       finish();
       return;
     }
@@ -488,7 +488,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (ConversationIntents.isInvalid(intent)) {
       Log.w(TAG, "[onNewIntent] Missing recipientId!");
       // TODO [greyson] Navigation
-      startActivity(new Intent(this, MainActivity.class));
+      startActivity(MainActivity.clearTop(this));
       finish();
       return;
     }
@@ -1982,7 +1982,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (isInBubble()) {
       supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_notification));
-      toolbar.setNavigationOnClickListener(unused -> startActivity(new Intent(Intent.ACTION_MAIN).setClass(this, MainActivity.class)));
+      toolbar.setNavigationOnClickListener(unused -> startActivity(MainActivity.clearTop(this)));
     }
   }
 

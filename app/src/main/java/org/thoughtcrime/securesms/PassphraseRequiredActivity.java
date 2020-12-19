@@ -221,7 +221,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private Intent getConversationListIntent() {
     // TODO [greyson] Navigation
-    return new Intent(this, MainActivity.class);
+    return MainActivity.clearTop(this);
   }
 
   private void initializeClearKeyReceiver() {

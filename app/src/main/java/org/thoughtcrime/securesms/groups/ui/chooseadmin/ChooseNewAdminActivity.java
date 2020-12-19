@@ -112,7 +112,7 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
     if (updateResult.isSuccess()) {
       String title = Recipient.externalGroupExact(this, groupId).getDisplayName(this);
       Toast.makeText(this, getString(R.string.ChooseNewAdminActivity_you_left, title), Toast.LENGTH_LONG).show();
-      startActivity(new Intent(this, MainActivity.class));
+      startActivity(MainActivity.clearTop(this));
       finish();
     } else {
       done.setClickable(true);

@@ -231,7 +231,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     Activity activity = requireActivity();
 
     if (Recipient.self().getProfileName().isEmpty() || !AvatarHelper.hasAvatar(activity, Recipient.self().getId())) {
-      final Intent main    = new Intent(activity, MainActivity.class);
+      final Intent main    = MainActivity.clearTop(activity);
       final Intent profile = EditProfileActivity.getIntentForUserProfile(activity);
 
       profile.putExtra("next_intent", main);
@@ -239,7 +239,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     } else {
       RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
       ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
-      startActivity(new Intent(activity, MainActivity.class));
+      startActivity(MainActivity.clearTop(activity));
     }
 
     activity.finish();

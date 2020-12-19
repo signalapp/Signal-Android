@@ -136,7 +136,7 @@ public class ApplicationMigrationService extends Service
     builder.setOngoing(true);
     builder.setProgress(100, 0, false);
     // TODO [greyson] Navigation
-    builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0));
+    builder.setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), 0));
 
     stopForeground(true);
     startForeground(NotificationIds.APPLICATION_MIGRATION, builder.build());
@@ -188,7 +188,7 @@ public class ApplicationMigrationService extends Service
       builder.setContentTitle(context.getString(R.string.ApplicationMigrationService_import_complete));
       builder.setContentText(context.getString(R.string.ApplicationMigrationService_system_database_import_is_complete));
       // TODO [greyson] Navigation
-      builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0));
+      builder.setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), 0));
       builder.setWhen(System.currentTimeMillis());
       builder.setDefaults(Notification.DEFAULT_VIBRATE);
       builder.setAutoCancel(true);

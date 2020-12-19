@@ -287,9 +287,7 @@ public class KeyCachingService extends Service {
 
   private PendingIntent buildLaunchIntent() {
     // TODO [greyson] Navigation
-    Intent intent              = new Intent(this, MainActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    return PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+    return PendingIntent.getActivity(getApplicationContext(), 0, MainActivity.clearTop(this), 0);
   }
 
   private static PendingIntent buildExpirationPendingIntent(@NonNull Context context) {
