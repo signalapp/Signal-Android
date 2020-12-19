@@ -65,7 +65,11 @@ public final class LiveDataUtil {
     MediatorLiveData<B> outputLiveData   = new MediatorLiveData<>();
     Executor            liveDataExecutor = new SerialMonoLifoExecutor(executor);
 
-    outputLiveData.addSource(source, currentValue -> liveDataExecutor.execute(() -> outputLiveData.postValue(backgroundFunction.apply(currentValue))));
+    outputLiveData.addSource(source, currentValue -> {
+      liveDataExecutor.execute(() -> {
+        outputLiveData.postValue(backgroundFunction.apply(currentValue));
+      });
+    });
 
     return outputLiveData;
   }

@@ -242,8 +242,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                  .execute();
     });
 
-    initializeListAdapters();
     initializeViewModel();
+    initializeListAdapters();
     initializeTypingObserver();
     initializeSearchListener();
 
@@ -500,6 +500,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     if (oldAdapter == activeAdapter) {
       return;
+    }
+
+    if (adapter instanceof ConversationListAdapter) {
+      ((ConversationListAdapter) adapter).setPagingController(viewModel.getPagingController());
     }
 
     list.setAdapter(adapter);
@@ -820,13 +824,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
 
-  private void onSubmitList(@NonNull ConversationListViewModel.ConversationList conversationList) {
-    if (conversationList.getConversations().isDetached()) {
-      return;
-    }
-
-    defaultAdapter.submitList(conversationList.getConversations());
-
+  private void onSubmitList(@NonNull List<Conversation> conversationList) {
+    defaultAdapter.submitList(conversationList);
     onPostSubmitList();
   }
 
