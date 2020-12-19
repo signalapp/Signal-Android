@@ -1,18 +1,26 @@
 package org.thoughtcrime.securesms.util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.Insets;
+import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 /**
  * Encapsulates logic to properly show/hide system UI/chrome in a full screen setting. Also
- * handles adjusting to notched devices as long as you call {@link #configureToolbarSpacer(View)}.
+ * handles adjusting to notched devices as long as you call {@link #configureToolbarLayout(View, View)}.
  */
 public final class FullscreenHelper {
 
@@ -28,14 +36,22 @@ public final class FullscreenHelper {
     showSystemUI();
   }
 
-  public void configureToolbarSpacer(@NonNull View spacer) {
+  public void configureToolbarLayout(@NonNull View spacer, @NonNull View toolbar) {
     if (Build.VERSION.SDK_INT == 19) {
       setSpacerHeight(spacer, ViewUtil.getStatusBarHeight(spacer));
+      int[] padding = makePaddingValuesForAPI19();
+      toolbar.setPadding(padding[0], 0, padding[1], 0);
       return;
     }
 
     ViewCompat.setOnApplyWindowInsetsListener(spacer, (view, insets) -> {
       setSpacerHeight(view, insets.getSystemWindowInsetTop());
+      return insets;
+    });
+
+    ViewCompat.setOnApplyWindowInsetsListener(toolbar, (view, insets) -> {
+      int[] padding = makePaddingValues(insets);
+      toolbar.setPadding(padding[0], 0, padding[1], 0);
       return insets;
     });
   }
@@ -47,6 +63,41 @@ public final class FullscreenHelper {
 
     spacer.setLayoutParams(params);
     spacer.setVisibility(View.VISIBLE);
+  }
+
+  @SuppressLint("SwitchIntDef")
+  private int[] makePaddingValuesForAPI19() {
+    int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+    if (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) {
+      return new int[]{0, 0};
+    }
+
+    Resources resources   = activity.getResources();
+    int statusBarHeightId = resources.getIdentifier("status_bar_height", "dimen", "android");
+    int navBarHeightId    = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+    int statusBarHeight   = resources.getDimensionPixelSize(statusBarHeightId);
+    int navBarHeight      = resources.getDimensionPixelSize(navBarHeightId);
+
+    switch (rotation) {
+      case Surface.ROTATION_90:
+        return new int[]{statusBarHeight, navBarHeight};
+      case Surface.ROTATION_270:
+        return new int[]{navBarHeight, statusBarHeight};
+      default:
+        return new int[]{0, 0};
+    }
+  }
+
+  private int[] makePaddingValues(WindowInsetsCompat insets) {
+    Insets              tappable = insets.getTappableElementInsets();
+    DisplayCutoutCompat cutout   = insets.getDisplayCutout();
+
+    int leftPad  = cutout == null ? tappable.left
+                                  : Math.max(tappable.left, cutout.getSafeInsetLeft());
+    int rightPad = cutout == null ? tappable.right
+                                  : Math.max(tappable.right, cutout.getSafeInsetRight());
+
+    return new int[]{leftPad, rightPad};
   }
 
   public void showAndHideWithSystemUI(@NonNull Window window, @NonNull View... views) {
