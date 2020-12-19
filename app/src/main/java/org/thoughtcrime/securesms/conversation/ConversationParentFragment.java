@@ -1098,6 +1098,8 @@ public class ConversationParentFragment extends Fragment
       }
     });
 
+    searchView.setMaxWidth(Integer.MAX_VALUE);
+
     if (isSearchRequested) {
       if (searchViewItem.expandActionView()) {
           searchViewModel.onSearchOpened();
