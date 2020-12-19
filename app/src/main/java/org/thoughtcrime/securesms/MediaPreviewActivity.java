@@ -288,7 +288,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
     anchorMarginsToBottomInsets(detailsContainer);
 
-    fullscreenHelper.configureToolbarSpacer(findViewById(R.id.toolbar_cutout_spacer));
+    fullscreenHelper.configureToolbarLayout(findViewById(R.id.toolbar_cutout_spacer), findViewById(R.id.toolbar));
 
     fullscreenHelper.showAndHideWithSystemUI(getWindow(), detailsContainer, toolbarLayout);
   }
