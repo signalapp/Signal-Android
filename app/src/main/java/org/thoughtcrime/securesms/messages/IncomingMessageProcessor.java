@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.messages;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -27,10 +28,10 @@ public class IncomingMessageProcessor {
 
   private static final String TAG = Log.tag(IncomingMessageProcessor.class);
 
-  private final Context       context;
+  private final Application   context;
   private final ReentrantLock lock;
 
-  public IncomingMessageProcessor(@NonNull Context context) {
+  public IncomingMessageProcessor(@NonNull Application context) {
     this.context = context;
     this.lock    = new ReentrantLock();
   }

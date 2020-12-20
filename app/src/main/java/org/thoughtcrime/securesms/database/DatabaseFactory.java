@@ -38,7 +38,7 @@ public class DatabaseFactory {
 
   private static final Object lock = new Object();
 
-  private static DatabaseFactory instance;
+  private static volatile DatabaseFactory instance;
 
   private final SQLCipherOpenHelper     databaseHelper;
   private final SmsDatabase             sms;
@@ -67,12 +67,14 @@ public class DatabaseFactory {
   private final MentionDatabase         mentionDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
-    synchronized (lock) {
-      if (instance == null)
-        instance = new DatabaseFactory(context.getApplicationContext());
-
-      return instance;
+    if (instance == null) {
+      synchronized (lock) {
+        if (instance == null) {
+          instance = new DatabaseFactory(context.getApplicationContext());
+        }
+      }
     }
+    return instance;
   }
 
   public static MmsSmsDatabase getMmsSmsDatabase(Context context) {
@@ -193,8 +195,8 @@ public class DatabaseFactory {
   private DatabaseFactory(@NonNull Context context) {
     SQLiteDatabase.loadLibs(context);
 
-    DatabaseSecret      databaseSecret   = new DatabaseSecretProvider(context).getOrCreateDatabaseSecret();
-    AttachmentSecret    attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
+    DatabaseSecret   databaseSecret   = new DatabaseSecretProvider(context).getOrCreateDatabaseSecret();
+    AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 
     this.databaseHelper          = new SQLCipherOpenHelper(context, databaseSecret);
     this.sms                     = new SmsDatabase(context, databaseHelper);

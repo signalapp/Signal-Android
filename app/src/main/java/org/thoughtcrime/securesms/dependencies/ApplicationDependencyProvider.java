@@ -15,10 +15,14 @@ import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.jobmanager.Constraint;
+import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.FactoryJobPredicate;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
+import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
@@ -140,16 +144,17 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull JobManager provideJobManager() {
-    return new JobManager(context, new JobManager.Configuration.Builder()
-                                                               .setDataSerializer(new JsonDataSerializer())
-                                                               .setJobFactories(JobManagerFactories.getJobFactories(context))
-                                                               .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
-                                                               .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
-                                                               .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
-                                                               .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
-                                                               .addReservedJobRunner(new FactoryJobPredicate(PushDecryptMessageJob.KEY, PushProcessMessageJob.KEY, MarkerJob.KEY))
-                                                               .addReservedJobRunner(new FactoryJobPredicate(PushTextSendJob.KEY, PushMediaSendJob.KEY, PushGroupSendJob.KEY, ReactionSendJob.KEY, TypingSendJob.KEY, GroupCallUpdateSendJob.KEY))
-                                                               .build());
+    JobManager.Configuration config = new JobManager.Configuration.Builder()
+                                                                  .setDataSerializer(new JsonDataSerializer())
+                                                                  .setJobFactories(JobManagerFactories.getJobFactories(context))
+                                                                  .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
+                                                                  .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
+                                                                  .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
+                                                                  .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
+                                                                  .addReservedJobRunner(new FactoryJobPredicate(PushDecryptMessageJob.KEY, PushProcessMessageJob.KEY, MarkerJob.KEY))
+                                                                  .addReservedJobRunner(new FactoryJobPredicate(PushTextSendJob.KEY, PushMediaSendJob.KEY, PushGroupSendJob.KEY, ReactionSendJob.KEY, TypingSendJob.KEY, GroupCallUpdateSendJob.KEY))
+                                                                  .build();
+    return new JobManager(context, config);
   }
 
   @Override
@@ -188,7 +193,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull TypingStatusSender provideTypingStatusSender() {
-    return new TypingStatusSender(context);
+    return new TypingStatusSender();
   }
 
   @Override

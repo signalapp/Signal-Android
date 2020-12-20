@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
-import org.signal.core.util.tracing.Tracer;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
@@ -24,7 +23,6 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IasKeyStore;
@@ -47,11 +45,11 @@ public class ApplicationDependencies {
 
   private static final Object LOCK                    = new Object();
   private static final Object FRAME_RATE_TRACKER_LOCK = new Object();
+  private static final Object JOB_MANAGER_LOCK        = new Object();
 
-  private static Application              application;
-  private static Provider                 provider;
-  private static MessageNotifier          messageNotifier;
-  private static TrimThreadsByDateManager trimThreadsByDateManager;
+  private static Application     application;
+  private static Provider        provider;
+  private static MessageNotifier messageNotifier;
 
   private static volatile SignalServiceAccountManager  accountManager;
   private static volatile SignalServiceMessageSender   messageSender;
@@ -70,7 +68,7 @@ public class ApplicationDependencies {
   private static volatile TypingStatusRepository       typingStatusRepository;
   private static volatile TypingStatusSender           typingStatusSender;
   private static volatile DatabaseObserver             databaseObserver;
-  private static volatile Tracer                       tracer;
+  private static volatile TrimThreadsByDateManager     trimThreadsByDateManager;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -82,7 +80,6 @@ public class ApplicationDependencies {
       ApplicationDependencies.application              = application;
       ApplicationDependencies.provider                 = provider;
       ApplicationDependencies.messageNotifier          = provider.provideMessageNotifier();
-      ApplicationDependencies.trimThreadsByDateManager = provider.provideTrimThreadsByDateManager();
     }
   }
 
@@ -222,7 +219,7 @@ public class ApplicationDependencies {
 
   public static @NonNull JobManager getJobManager() {
     if (jobManager == null) {
-      synchronized (LOCK) {
+      synchronized (JOB_MANAGER_LOCK) {
         if (jobManager == null) {
           jobManager = provider.provideJobManager();
         }
@@ -285,7 +282,15 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull TrimThreadsByDateManager getTrimThreadsByDateManager() {
-      return trimThreadsByDateManager;
+    if (trimThreadsByDateManager == null) {
+      synchronized (LOCK) {
+        if (trimThreadsByDateManager == null) {
+          trimThreadsByDateManager = provider.provideTrimThreadsByDateManager();
+        }
+      }
+    }
+
+    return trimThreadsByDateManager;
   }
 
   public static TypingStatusRepository getTypingStatusRepository() {
