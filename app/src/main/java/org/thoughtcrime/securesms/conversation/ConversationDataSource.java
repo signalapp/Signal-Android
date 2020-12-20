@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Stopwatch;
 
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ import java.util.Map;
 /**
  * Core data source for loading an individual conversation.
  */
-@Trace
 class ConversationDataSource implements PagedDataSource<ConversationMessage> {
 
   private static final String TAG = Log.tag(ConversationDataSource.class);

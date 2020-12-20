@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
@@ -22,7 +21,6 @@ import java.util.List;
  * A list of storage keys whose types we do not currently have syncing logic for. We need to
  * remember that these keys exist so that we don't blast any data away.
  */
-@Trace
 public class StorageKeyDatabase extends Database {
 
   private static final String TABLE_NAME = "storage_key";

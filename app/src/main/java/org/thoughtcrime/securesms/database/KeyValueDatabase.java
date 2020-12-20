@@ -8,12 +8,10 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
-import org.thoughtcrime.securesms.tracing.Trace;
 
 import java.util.Collection;
 import java.util.Map;
 
-@Trace
 public class KeyValueDatabase extends Database {
 
   public static final String TABLE_NAME = "key_value";
