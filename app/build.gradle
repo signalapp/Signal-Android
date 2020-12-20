@@ -205,6 +205,12 @@ android {
             minifyEnabled true
             proguardFiles = buildTypes.debug.proguardFiles
         }
+        perf {
+            initWith debug
+            isDefault false
+            debuggable false
+            matchingFallbacks = ['debug']
+        }
     }
 
     productFlavors {
