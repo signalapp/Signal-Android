@@ -40,7 +40,11 @@ abstract class ConversationListDataSource implements PagedDataSource<Conversatio
 
   @Override
   public int size() {
-    return getTotalCount();
+    long startTime = System.currentTimeMillis();
+    int  count     = getTotalCount();
+
+    Log.d(TAG, "[size(), " + getClass().getSimpleName() + "] " + (System.currentTimeMillis() - startTime) + " ms");
+    return count;
   }
 
   @Override

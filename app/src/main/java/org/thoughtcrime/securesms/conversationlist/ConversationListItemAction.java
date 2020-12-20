@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import java.util.Locale;
 import java.util.Set;
 
-public class ConversationListItemAction extends LinearLayout implements BindableConversationListItem {
+public class ConversationListItemAction extends FrameLayout implements BindableConversationListItem {
 
   private TextView description;
 
