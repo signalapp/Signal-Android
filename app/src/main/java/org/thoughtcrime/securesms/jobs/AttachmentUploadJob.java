@@ -89,6 +89,11 @@ public final class AttachmentUploadJob extends BaseJob {
   }
 
   @Override
+  protected boolean shouldTrace() {
+    return true;
+  }
+
+  @Override
   public void onRun() throws Exception {
     Data inputData = getInputData();
 

@@ -105,6 +105,11 @@ public final class AttachmentCompressionJob extends BaseJob {
   }
 
   @Override
+  protected boolean shouldTrace() {
+    return true;
+  }
+
+  @Override
   public void onRun() throws Exception {
     Log.d(TAG, "Running for: " + attachmentId);
 

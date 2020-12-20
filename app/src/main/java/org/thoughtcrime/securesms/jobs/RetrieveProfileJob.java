@@ -231,6 +231,11 @@ public class RetrieveProfileJob extends BaseJob {
   }
 
   @Override
+  protected boolean shouldTrace() {
+    return true;
+  }
+
+  @Override
   public void onRun() throws IOException, RetryLaterException {
     Stopwatch         stopwatch         = new Stopwatch("RetrieveProfile");
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);

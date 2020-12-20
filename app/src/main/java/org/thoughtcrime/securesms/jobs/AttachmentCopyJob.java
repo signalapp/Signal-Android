@@ -69,6 +69,11 @@ public class AttachmentCopyJob extends BaseJob {
   }
 
   @Override
+  protected boolean shouldTrace() {
+    return true;
+  }
+
+  @Override
   protected void onRun() throws Exception {
     AttachmentDatabase database = DatabaseFactory.getAttachmentDatabase(context);
 
