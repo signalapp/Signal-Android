@@ -33,6 +33,8 @@ class ConversationListViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ConversationListViewModel.class);
 
+  private static boolean coldStart = true;
+
   private final MutableLiveData<Megaphone>     megaphone;
   private final MutableLiveData<SearchResult>  searchResult;
   private final PagedData<Conversation>        pagedData;
@@ -104,7 +106,12 @@ class ConversationListViewModel extends ViewModel {
 
   void onVisible() {
     megaphoneRepository.getNextMegaphone(megaphone::postValue);
-    ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
+
+    if (!coldStart) {
+      ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
+    }
+
+    coldStart = false;
   }
 
   void onMegaphoneCompleted(@NonNull Megaphones.Event event) {
