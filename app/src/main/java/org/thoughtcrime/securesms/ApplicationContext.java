@@ -36,6 +36,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.logging.PersistentLogger;
+import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -68,7 +69,6 @@ import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.tracing.Tracer;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
@@ -109,7 +109,12 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   @Override
   public void onCreate() {
     Tracer.getInstance().start("Application#onCreate()");
+
     long startTime = System.currentTimeMillis();
+
+    if (FeatureFlags.internalUser()) {
+      Tracer.getInstance().setMaxBufferSize(35_000);
+    }
 
     super.onCreate();
 

@@ -1,19 +1,18 @@
-package org.thoughtcrime.securesms.tracing;
+package org.signal.core.util.tracing;
 
 import android.os.SystemClock;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.protobuf.ByteString;
 
-import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.trace.TraceProtos;
-import org.thoughtcrime.securesms.trace.TraceProtos.Trace;
-import org.thoughtcrime.securesms.trace.TraceProtos.TracePacket;
-import org.thoughtcrime.securesms.trace.TraceProtos.TrackDescriptor;
-import org.thoughtcrime.securesms.trace.TraceProtos.TrackEvent;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.signal.core.util.tracing.TraceProtos.Trace;
+import org.signal.core.util.tracing.TraceProtos.TracePacket;
+import org.signal.core.util.tracing.TraceProtos.TrackDescriptor;
+import org.signal.core.util.tracing.TraceProtos.TrackEvent;
 
+import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Queue;
@@ -59,7 +58,7 @@ public final class Tracer {
   private static final Tracer INSTANCE = new Tracer();
 
   private static final int    TRUSTED_SEQUENCE_ID      = 1;
-  private static final byte[] SYNCHRONIZATION_MARKER   = UuidUtil.toByteArray(UUID.fromString("82477a76-b28d-42ba-81dc-33326d57a079"));
+  private static final byte[] SYNCHRONIZATION_MARKER   = toByteArray(UUID.fromString("82477a76-b28d-42ba-81dc-33326d57a079"));
   private static final long   SYNCHRONIZATION_INTERVAL = TimeUnit.SECONDS.toNanos(3);
 
   private final Clock                  clock;
@@ -68,16 +67,22 @@ public final class Tracer {
   private final AtomicInteger          eventCount;
 
   private long lastSyncTime;
+  private long maxBufferSize;
 
-  Tracer() {
+  private Tracer() {
     this.clock         = SystemClock::elapsedRealtimeNanos;
     this.threadPackets = new ConcurrentHashMap<>();
     this.eventPackets  = new ConcurrentLinkedQueue<>();
     this.eventCount    = new AtomicInteger(0);
+    this.maxBufferSize = 3_500;
   }
 
   public static @NonNull Tracer getInstance() {
     return INSTANCE;
+  }
+
+  public void setMaxBufferSize(long maxBufferSize) {
+    this.maxBufferSize = maxBufferSize;
   }
 
   public void start(@NonNull String methodName) {
@@ -153,7 +158,7 @@ public final class Tracer {
 
     int size = eventCount.incrementAndGet();
 
-    for (int i = size; i > BuildConfig.TRACE_EVENT_MAX; i--) {
+    for (int i = size; i > maxBufferSize; i--) {
       eventPackets.poll();
       eventCount.decrementAndGet();
     }
@@ -221,6 +226,14 @@ public final class Tracer {
                       .setTimestamp(time)
                       .setSynchronizationMarker(ByteString.copyFrom(SYNCHRONIZATION_MARKER))
                       .build();
+  }
+
+  public static byte[] toByteArray(UUID uuid) {
+    ByteBuffer buffer = ByteBuffer.wrap(new byte[16]);
+    buffer.putLong(uuid.getMostSignificantBits());
+    buffer.putLong(uuid.getLeastSignificantBits());
+
+    return buffer.array();
   }
 
   private interface Clock {

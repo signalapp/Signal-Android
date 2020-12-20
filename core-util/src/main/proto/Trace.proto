@@ -19,7 +19,7 @@ syntax = "proto2";
 
 package signal;
 
-option java_package         = "org.thoughtcrime.securesms.trace";
+option java_package         = "org.signal.core.util.tracing";
 option java_outer_classname = "TraceProtos";
 
 /*
