@@ -5,8 +5,6 @@ import android.content.ContentValues;
 
 import androidx.annotation.Nullable;
 
-import com.google.android.gms.vision.Tracker;
-
 import net.sqlcipher.Cursor;
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteQueryStats;
