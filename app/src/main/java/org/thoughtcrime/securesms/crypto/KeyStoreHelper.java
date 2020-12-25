@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.crypto;
 
 
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
+import android.security.keystore.StrongBoxUnavailableException;
 import android.util.Base64;
 
 import androidx.annotation.NonNull;
@@ -92,7 +92,13 @@ public final class KeyStoreHelper {
           .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE);
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-        keyGenParameterSpec.setIsStrongBoxBacked(getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_STRONGBOX_KEYSTORE));
+        keyGenParameterSpec.setIsStrongBoxBacked(true);
+        try {
+          keyGenerator.init(keyGenParameterSpec.build());
+          return keyGenerator.generateKey();
+        } catch (StrongBoxUnavailableException e2) {
+          keyGenParameterSpec.setIsStrongBoxBacked(false);
+        }
       }
       keyGenerator.init(keyGenParameterSpec.build());
 
