@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
@@ -86,12 +87,14 @@ public final class KeyStoreHelper {
   private static SecretKey createKeyStoreEntry() {
     try {
       KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE);
-      KeyGenParameterSpec keyGenParameterSpec = new KeyGenParameterSpec.Builder(KEY_ALIAS, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+      KeyGenParameterSpec.Builder keyGenParameterSpec = new KeyGenParameterSpec.Builder(KEY_ALIAS, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
           .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-          .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-          .build();
+          .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE);
 
-      keyGenerator.init(keyGenParameterSpec);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        keyGenParameterSpec.setIsStrongBoxBacked(getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_STRONGBOX_KEYSTORE));
+      }
+      keyGenerator.init(keyGenParameterSpec.build());
 
       return keyGenerator.generateKey();
     } catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
