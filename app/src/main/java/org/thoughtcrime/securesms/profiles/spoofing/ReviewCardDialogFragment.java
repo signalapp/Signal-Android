@@ -30,6 +30,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
   private static final String EXTRA_NO_GROUPS_IN_COMMON_RES_ID = "extra.no.groups.in.common.res.id";
   private static final String EXTRA_RECIPIENT_ID               = "extra.recipient.id";
   private static final String EXTRA_GROUP_ID                   = "extra.group.id";
+  private static final String EXTRA_IS_GROUP_ADMIN             = "extra.is.group.admin";
 
   private ReviewCardViewModel viewModel;
 
@@ -39,16 +40,18 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
                   R.string.ReviewCardDialogFragment__no_groups_in_common,
                   R.plurals.ReviewCardDialogFragment__d_groups_in_common,
                   recipientId,
-                  null);
+                  null,
+                  false);
   }
 
-  public static ReviewCardDialogFragment createForReviewMembers(@NonNull GroupId.V2 groupId) {
+  public static ReviewCardDialogFragment createForReviewMembers(@NonNull GroupId.V2 groupId, boolean isGroupAdmin) {
     return create(R.string.ReviewCardDialogFragment__review_members,
                   R.string.ReviewCardDialogFragment__d_group_members_have_the_same_name,
                   R.string.ReviewCardDialogFragment__no_other_groups_in_common,
                   R.plurals.ReviewCardDialogFragment__d_other_groups_in_common,
                   null,
-                  groupId);
+                  groupId,
+                  isGroupAdmin);
   }
 
   private static ReviewCardDialogFragment create(@StringRes int titleResId,
@@ -56,7 +59,8 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
                                                  @StringRes int noGroupsInCommonResId,
                                                  @PluralsRes int groupsInCommonResId,
                                                  @Nullable RecipientId recipientId,
-                                                 @Nullable GroupId.V2 groupId)
+                                                 @Nullable GroupId.V2 groupId,
+                                                 boolean isGroupAdmin)
   {
     ReviewCardDialogFragment fragment = new ReviewCardDialogFragment();
     Bundle                   args     = new Bundle();
@@ -67,6 +71,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
     args.putInt(EXTRA_NO_GROUPS_IN_COMMON_RES_ID, noGroupsInCommonResId);
     args.putParcelable(EXTRA_RECIPIENT_ID, recipientId);
     args.putString(EXTRA_GROUP_ID, groupId != null ? groupId.toString() : null);
+    args.putBoolean(EXTRA_IS_GROUP_ADMIN, isGroupAdmin);
 
     fragment.setArguments(args);
 
@@ -97,7 +102,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
 
   private void initializeViewModel() throws BadGroupIdException {
     ReviewCardRepository        repository = getRepository();
-    ReviewCardViewModel.Factory factory    = new ReviewCardViewModel.Factory(repository, getGroupId() != null);
+    ReviewCardViewModel.Factory factory    = new ReviewCardViewModel.Factory(repository, getGroupId() != null, isGroupAdmin());
 
     viewModel = ViewModelProviders.of(this, factory).get(ReviewCardViewModel.class);
   }
@@ -126,6 +131,10 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
     } else {
       return null;
     }
+  }
+
+  private boolean isGroupAdmin() {
+    return requireArguments().getBoolean(EXTRA_IS_GROUP_ADMIN, false);
   }
 
   private @NonNull ReviewCardRepository getRepository() throws BadGroupIdException {

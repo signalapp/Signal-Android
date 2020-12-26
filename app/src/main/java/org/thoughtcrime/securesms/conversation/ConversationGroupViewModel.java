@@ -71,10 +71,14 @@ final class ConversationGroupViewModel extends ViewModel {
     this.gv1MigrationReminder        = Transformations.distinctUntilChanged(LiveDataUtil.mapAsync(groupRecord, ConversationGroupViewModel::mapToGroupV1MigrationReminder));
     this.reviewState                 = LiveDataUtil.combineLatest(groupRecord,
                                                                   duplicates,
-                                                                  (record, dups) -> dups.isEmpty()
+                                                                  selfMembershipLevel,
+                                                                  (record, dups, membership) -> dups.isEmpty()
                                                                                     ? ReviewState.EMPTY
-                                                                                    : new ReviewState(record.getId().requireV2(), dups.get(0), dups.size()));
-
+                                                                                    : new ReviewState(
+                                                                                            record.getId().requireV2(),
+                                                                                            dups.get(0),
+                                                                                            dups.size(),
+                                                                                            membership == GroupDatabase.MemberLevel.ADMINISTRATOR));
   }
 
   void onRecipientChange(Recipient recipient) {
@@ -227,16 +231,18 @@ final class ConversationGroupViewModel extends ViewModel {
 
   static final class ReviewState {
 
-    private static final ReviewState EMPTY = new ReviewState(null, Recipient.UNKNOWN, 0);
+    private static final ReviewState EMPTY = new ReviewState(null, Recipient.UNKNOWN, 0, false);
 
     private final GroupId.V2 groupId;
     private final Recipient  recipient;
     private final int        count;
+    private final boolean    isGroupAdmin;
 
-    ReviewState(@Nullable GroupId.V2 groupId, @NonNull Recipient recipient, int count) {
+    ReviewState(@Nullable GroupId.V2 groupId, @NonNull Recipient recipient, int count, boolean isGroupAdmin) {
       this.groupId   = groupId;
       this.recipient = recipient;
       this.count     = count;
+      this.isGroupAdmin = isGroupAdmin;
     }
 
     public @Nullable GroupId.V2 getGroupId() {
@@ -249,6 +255,10 @@ final class ConversationGroupViewModel extends ViewModel {
 
     public int getCount() {
       return count;
+    }
+
+    public boolean isGroupAdmin() {
+      return isGroupAdmin;
     }
   }
 

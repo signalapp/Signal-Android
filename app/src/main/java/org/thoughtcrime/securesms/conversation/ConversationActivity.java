@@ -3273,7 +3273,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       reviewBanner.get().setVisibility(View.VISIBLE);
       reviewBanner.get().setBannerMessage(getString(R.string.ConversationFragment__d_group_members_have_the_same_name, groupReviewState.getCount()));
       reviewBanner.get().setBannerRecipient(groupReviewState.getRecipient());
-      reviewBanner.get().setOnClickListener(unused -> handleReviewGroupMembers(groupReviewState.getGroupId()));
+      reviewBanner.get().setOnClickListener(unused -> handleReviewGroupMembers(groupReviewState.getGroupId(), groupReviewState.isGroupAdmin()));
     } else if (reviewBanner.resolved()) {
       reviewBanner.get().setVisibility(View.GONE);
     }
@@ -3287,12 +3287,12 @@ public class ConversationActivity extends PassphraseRequiredActivity
     messageRequestBottomView.hideBusy();
   }
 
-  private void handleReviewGroupMembers(@Nullable GroupId.V2 groupId) {
+  private void handleReviewGroupMembers(@Nullable GroupId.V2 groupId, boolean isGroupAdmin) {
     if (groupId == null) {
       return;
     }
 
-    ReviewCardDialogFragment.createForReviewMembers(groupId)
+    ReviewCardDialogFragment.createForReviewMembers(groupId, isGroupAdmin)
                             .show(getSupportFragmentManager(), null);
   }
 
