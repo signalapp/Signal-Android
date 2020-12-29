@@ -96,21 +96,45 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintTop_toBottomOf="@id/edit_kbs_pin_input_label"
-            app:layout_constraintBottom_toTopOf="@id/edit_kbs_pin_confirm"
+            app:layout_constraintBottom_toTopOf="@id/lay"
             app:layout_constraintVertical_bias="1.0"
             tools:text="Create Alphanumeric Pin" />
-
-        <Button
-            android:id="@+id/edit_kbs_pin_confirm"
-            style="@style/Button.Primary"
+        <LinearLayout
+            android:id="@+id/lay"
+            android:padding="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal">
+        <Button
+            android:id="@+id/back"
+            style="@style/Button.Primary"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/cta_button_background"
-            android:text="@string/BaseKbsPinFragment__next"
-            android:textColor="@color/core_white"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:background="@drawable/cta_button_backgroundback"
+            android:text="@string/back"
+            android:textColor="@color/black"
+           />
+            <Button
+                android:id="@+id/edit_kbs_pin_confirm"
+                style="@style/Button.Primary"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/cta_button_background"
+                android:text="@string/BaseKbsPinFragment__next"
+                android:textColor="@color/core_white"
+                />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -3005,6 +3005,7 @@
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">Search Countries</string>
+    <string name="back">Back</string>
 
     <!-- EOF -->
 

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.PinOptOutDialog;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -39,6 +41,7 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
   private TextView            label;
   private TextView            keyboardToggle;
   private TextView            confirm;
+  private TextView            back;
   private LottieAnimationView lottieProgress;
   private LottieAnimationView lottieEnd;
   private ViewModel           viewModel;
@@ -173,6 +176,7 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     label          = view.findViewById(R.id.edit_kbs_pin_input_label);
     keyboardToggle = view.findViewById(R.id.edit_kbs_pin_keyboard_toggle);
     confirm        = view.findViewById(R.id.edit_kbs_pin_confirm);
+    back        = view.findViewById(R.id.back);
     lottieProgress = view.findViewById(R.id.edit_kbs_pin_lottie_progress);
     lottieEnd      = view.findViewById(R.id.edit_kbs_pin_lottie_end);
 
@@ -185,6 +189,12 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     input.setOnEditorActionListener(this::handleEditorAction);
     keyboardToggle.setOnClickListener(v -> viewModel.toggleAlphaNumeric());
     confirm.setOnClickListener(v -> viewModel.confirm());
+    back.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        requireActivity().startActivity(EditProfileActivity.getIntentForUserProfileEdit(requireContext()));
+      }
+    });
   }
 
   private boolean handleEditorAction(@NonNull View view, int actionId, @NonNull KeyEvent event) {
