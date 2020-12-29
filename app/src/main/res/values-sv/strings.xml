@@ -96,7 +96,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du kommer inte längre att få meddelanden eller uppdateringar från denna grupp och medlemmarna kommer inte att kunna lägga till dig i denna grupp igen.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppmedlemmar kommer inte att kunna lägga till dig i denna grupp igen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppmedlemmar kommer att kunna lägga till dig i denna grupp igen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Du kommer att kunna meddela och ringa varandra och ditt namn och foto delas med dem.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ni kommer att kunna meddela och ringa varandra och ditt namn och foto delas.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blockerade personer kommer inte att kunna ringa eller skicka meddelanden till dig.</string>
   <string name="BlockUnblockDialog_unblock_s">Avblockera %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Avblockera</string>
@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mottagaren är inte en giltig SMS eller e-postadress!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Meddelandet är tomt!</string>
   <string name="ConversationActivity_group_members">Gruppmedlemmar</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Tryck här för att starta ett gruppsamtal</string>
   <string name="ConversationActivity_invalid_recipient">Ogiltig mottagare!</string>
   <string name="ConversationActivity_added_to_home_screen">Lagt till på hemskärmen</string>
   <string name="ConversationActivity_calls_not_supported">Samtal stöds inte</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drivs av människor som du. Visa ditt stöd idag!</string>
   <string name="DonateMegaphone_donate">Donera</string>
   <string name="DonateMegaphone_no_thanks">Nej tack</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Vi presenterar gruppsamtal</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öppna en Ny grupp för att starta ett gratis krypterat gruppsamtal</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheten stöder inte Play-tjänster. Tryck för att inaktivera systembatterioptimeringar som hindrar Signal från att hämta meddelanden vid inaktivitet.</string>
@@ -477,7 +481,7 @@
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Vad är Nya grupper?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nya grupper har funktioner som @omnämnanden och gruppadministratörer och kommer att stöda fler funktioner i framtiden.</string>
-  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All meddelandeshistorik och media har sparats från före uppgraderingen.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All meddelandehistorik och media har sparats från före uppgraderingen.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Du måste acceptera en inbjudan för att gå med i denna grupp igen och kommer inte att få gruppmeddelanden förrän du accepterar.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Denna medlem måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
@@ -508,14 +512,14 @@
   <string name="GroupsV1MigrationInitiationReminder_update_group">Uppdatera grupp</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="one">%1$d medlem kunde inte läggas till igen i den Nya gruppen. Vill du lägga till dem nu?</item>
+    <item quantity="one">%1$d medlem kunde inte läggas till igen i den Nya gruppen. Vill du lägga till medlemmen nu?</item>
     <item quantity="other">%1$d medlemmar kunde inte läggas till igen i den Nya gruppen. Vill du lägga till dem nu?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Lägg till medlem</item>
     <item quantity="other">Lägg till medlemmar</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Inte nu</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nej tack</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Lägg till medlem?</item>
@@ -615,12 +619,12 @@
     <item quantity="other">%d medlemmar stöder inte Nya grupper, så denna grupp kan inte skapas.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">En äldre grupp skapas eftersom \"%1$s\" använder en gammal version av Signal. Du kan skapa en ny stilgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">En Äldre grupp skapas eftersom \"%1$s\" använder en gammal version av Signal. Du kan skapa en Ny formatgrupp med medlemmen när medlemmen har uppdaterat Signal eller ta bort medlemmen före du skapar gruppen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">En äldre grupp skapas eftersom %1$d medlem använder en gammal version av Signal. Du kan skapa en ny stilgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</item>
-    <item quantity="other">En äldre grupp skapas eftersom %1$d medlemmar använder en gammal version av Signal. Du kan skapa en ny stilgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</item>
+    <item quantity="one">En äldre grupp skapas eftersom %1$d medlem använder en gammal version av Signal. Du kan skapa en ny formatgrupp med medlemmen när medlemmen har uppdaterat Signal eller ta bort medlemmen innan du skapar gruppen.</item>
+    <item quantity="other">En Äldre grupp skapas eftersom %1$d medlemmar använder en gammal version av Signal. Du kan skapa en Ny formatgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denna grupp kan inte skapas eftersom “%1$s” använder en gammal version av Signal. Du måste ta bort dem innan du skapar gruppen.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denna grupp kan inte skapas eftersom \"%1$s\" använder en gammal version av Signal. Du måste ta bort medlemmen innan du skapar gruppen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Denna grupp kan inte skapas eftersom %1$d medlem använder en gammal version av Signal. Du måste ta bort dem innan du skapar gruppen.</item>
     <item quantity="other">Denna grupp kan inte skapas eftersom %1$d medlemmar använder en gammal version av Signal. Du måste ta bort dem innan du skapar gruppen.</item>
@@ -1077,15 +1081,15 @@
   <string name="MessageRequestBottomView_delete">Ta bort</string>
   <string name="MessageRequestBottomView_block">Blockera</string>
   <string name="MessageRequestBottomView_unblock">Avblockera</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Tillåt att %1$s meddelar dig och dela ditt namn och foto med dem? De vet inte att du har sett deras meddelande förrän du accepterar.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Tillåt att %1$s meddelar dig och dela ditt namn och foto med dem? Du får inte några meddelanden förrän du har avblockerat dem.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Tillåt att %1$s meddelar dig och dela ditt namn och foto? Personen vet inte att du har sett personens meddelande förrän du accepterar.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Tillåt att %1$s meddelar dig och dela ditt namn och foto? Du får inte några meddelanden förrän du har avblockerat personen.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsätta din konversation med den här gruppen och dela ditt namn och foto med dess medlemmar?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppgradera denna grupp för att aktivera nya funktioner som @omnämnanden och administratörer. Medlemmar som inte har delat sitt namn eller foto i den här gruppen kommer att inbjudas att gå med.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Den här Äldre gruppen kan inte längre användas eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsätt din konversation med %1$s och dela ditt namn och foto med dem?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsätt din konversation med %1$s och dela ditt namn och foto?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? De kommer inte att veta att du har sett deras meddelanden förrän du accepterar.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i den här gruppen? De vet inte att du har sett deras meddelanden förrän du accepterar det.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ta bort blockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har avblockerat dem.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Avblockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har avblockerat dem.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s och %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, och %3$s</string>
@@ -1428,7 +1432,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Användarnamn på Signal är valfria. Om du väljer att skapa ett användarnamn kan andra Signal-användare hitta dig med detta användarnamn och kontakta dig utan att veta ditt telefonnummer.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be dem uppdatera innan de verifierar ditt säkerhetsnummer.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be kontakten att uppdatera innan de verifierar ditt säkerhetsnummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Vänligen uppdatera för att jämföra dem.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannade QR-koden är inte en korrekt formaterad verifieringskod för säkerhetsnummer. Vänligen försök att skanna den igen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Dela säkerhetsnummer via…</string>
@@ -1994,7 +1998,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
   <string name="preferences__keep_messages">Spara meddelanden</string>
-  <string name="preferences__clear_message_history">Rensa meddelandeshistorik</string>
+  <string name="preferences__clear_message_history">Rensa meddelandehistorik</string>
   <string name="preferences__linked_devices">Länkade enheter</string>
   <string name="preferences__light_theme">Ljust</string>
   <string name="preferences__dark_theme">Mörkt</string>
@@ -2025,7 +2029,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_chats__when_using_wifi">Vid användning av Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Vid roaming</string>
   <string name="preferences_chats__media_auto_download">Automatisk hämtning av media</string>
-  <string name="preferences_chats__message_history">Meddelandeshistorik</string>
+  <string name="preferences_chats__message_history">Meddelandehistorik</string>
   <string name="preferences_storage__storage_usage">Lagringsutrymme</string>
   <string name="preferences_storage__photos">Foton</string>
   <string name="preferences_storage__videos">Videor</string>
@@ -2033,12 +2037,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_storage__audio">Ljud</string>
   <string name="preferences_storage__review_storage">Granska lagring</string>
   <string name="preferences_storage__delete_older_messages">Ta bort äldre meddelanden?</string>
-  <string name="preferences_storage__clear_message_history">Rensa meddelandeshistorik?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Detta tar bort all meddelandeshistorik och media från din enhet som är äldre än %1$s.</string>
+  <string name="preferences_storage__clear_message_history">Rensa meddelandehistorik?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Detta tar bort all meddelandehistorik och media från din enhet som är äldre än %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Detta kommer omedelbart att korta ner alla konversationer till de %1$s senaste meddelandena.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Detta tar bort all meddelandeshistorik och media permanent från din enhet.</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Är du säker på att du vill ta bort all meddelandeshistorik?</string>
-  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meddelandeshistorik tas bort permanent. Denna åtgärd kan inte ångras.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Detta tar bort all meddelandehistorik och media permanent från din enhet.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Är du säker på att du vill ta bort all meddelandehistorik?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meddelandehistorik tas bort permanent. Denna åtgärd kan inte ångras.</string>
   <string name="preferences_storage__delete_all_now">Ta bort allt nu</string>
   <string name="preferences_storage__forever">För alltid</string>
   <string name="preferences_storage__one_year">1 år</string>

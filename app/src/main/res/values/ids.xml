@@ -9,7 +9,7 @@
     <item name="reminder_action_update_now" type="id" />
     <item name="reminder_action_review_join_requests" type="id" />
 
-    <item name="reminder_action_gv1_suggestion_not_now" type="id" />
+    <item name="reminder_action_gv1_suggestion_no_thanks" type="id" />
     <item name="reminder_action_gv1_suggestion_add_members" type="id" />
 
     <item name="reminder_action_gv1_initiation_not_now" type="id" />

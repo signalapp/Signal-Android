@@ -418,6 +418,7 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal லை உங்களைப் போன்றவர்கள் ஆதரிக்கிறார்கள். இன்று உங்கள் ஆதரவைக் காட்டுங்கள்!</string>
   <string name="DonateMegaphone_donate">நன்கொடை</string>
   <string name="DonateMegaphone_no_thanks">வேண்டாம், நன்றி</string>
+  <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">காணாமல் போன விளையாட்டு சேவைகளை மேம்படுத்தவும்</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>
@@ -515,7 +516,7 @@
     <item quantity="one">உறுப்பினரைச் சேர்க்கவும்</item>
     <item quantity="other">உறுப்பினர்களைச் சேர்க்கவும்</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">இப்போது இல்லை</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">தேவையில்லை,நன்றி</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">உறுப்பினரைச் சேர்க்கவா?</item>
@@ -1848,7 +1849,7 @@
   <string name="message_details_recipient_header__sent_to">அனுப்பப்பட்டது</string>
   <string name="message_details_recipient_header__sent_from">அனுப்புனர்</string>
   <string name="message_details_recipient_header__delivered_to">வழங்கப்பட்டது</string>
-  <string name="message_details_recipient_header__read_by">படிப்பவர்கள்</string>
+  <string name="message_details_recipient_header__read_by">படித்தவர்கள்</string>
   <string name="message_details_recipient_header__not_sent">அனுப்ப முடியவில்லை</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">அனுப்ப முடியவில்லை</string>

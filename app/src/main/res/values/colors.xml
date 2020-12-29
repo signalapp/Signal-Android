@@ -3,6 +3,8 @@
     <color name="white">@color/core_white</color>
     <color name="black">@color/core_black</color>
 
+    <color name="signal_accent_green">#4CAF50</color>
+
     <color name="transparent_black_05">#0D000000</color>
     <color name="transparent_black_10">#18000000</color>
     <color name="transparent_black_15">#26000000</color>

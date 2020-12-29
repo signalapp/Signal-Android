@@ -32,7 +32,6 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
@@ -67,10 +66,9 @@ import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.List;
 
-public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumberChangeDialog.Callback {
+public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback {
 
-
-  private static final String TAG = WebRtcCallActivity.class.getSimpleName();
+  private static final String TAG = Log.tag(WebRtcCallActivity.class);
 
   private static final int STANDARD_DELAY_FINISH = 1000;
 
@@ -128,7 +126,7 @@ public class WebRtcCallActivity extends AppCompatActivity implements SafetyNumbe
   }
 
   @Override
-  public void onNewIntent(Intent intent){
+  public void onNewIntent(Intent intent) {
     Log.i(TAG, "onNewIntent");
     super.onNewIntent(intent);
     processIntent(intent);

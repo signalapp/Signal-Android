@@ -214,6 +214,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Podany numer lub adres e-mail jest niepoprawny!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Wiadomość jest pusta!</string>
   <string name="ConversationActivity_group_members">Członkowie grupy</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Stuknij tutaj, aby rozpocząć połączenie grupowe</string>
   <string name="ConversationActivity_invalid_recipient">Nieprawidłowy adresat!</string>
   <string name="ConversationActivity_added_to_home_screen">Dodano do ekranu głównego</string>
   <string name="ConversationActivity_calls_not_supported">Połączenia nie są obsługiwane</string>
@@ -446,6 +447,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal funkcjonuje dzięki ludziom takim jak Ty. Wesprzyj nas już dziś!</string>
   <string name="DonateMegaphone_donate">Podaruj</string>
   <string name="DonateMegaphone_no_thanks">Nie, dzięki</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Przedstawiamy rozmowy grupowe</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otwórz Nową grupę, aby rozpocząć darmowe, zaszyfrowane połączenie grupowe</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optymalizacja dla brakujących Usług Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Urządzenie nie wspiera Usług Play. Dotknij, aby wyłączyć systemową optymalizację baterii uniemożliwiającą odbieranie wiadomości w czasie braku aktywności.</string>
@@ -559,7 +563,7 @@
     <item quantity="many">Dodaj członków</item>
     <item quantity="other">Dodaj członków</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Nie teraz</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nie, dzięki</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Dodać członka?</item>

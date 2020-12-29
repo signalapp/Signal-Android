@@ -86,11 +86,6 @@ public final class GroupsV1MigrationUtil {
           throw new InvalidMigrationStateException();
         }
 
-        if (!forced && !FeatureFlags.groupsV1AutoMigration()) {
-          Log.w(TAG, "Auto migration is not enabled! Skipping.");
-          throw new InvalidMigrationStateException();
-        }
-
         if (forced && !FeatureFlags.groupsV1ManualMigration()) {
           Log.w(TAG, "Manual migration is not enabled! Skipping.");
           throw new InvalidMigrationStateException();

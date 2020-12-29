@@ -198,9 +198,9 @@
   <string name="ConversationItem_this_message_was_deleted">Este mensaje ha sido eliminado.</string>
   <string name="ConversationItem_you_deleted_this_message">Has eliminado este mensaje.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">¿Restablecer sesión segura?</string>
+  <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar sesión segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto puede ayudar si estás teniendo problemas de cifrado con este chat. Tus mensajes se mantendrán.</string>
-  <string name="ConversationActivity_reset">Restablecer</string>
+  <string name="ConversationActivity_reset">Reiniciar</string>
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
   <string name="ConversationActivity_compose_message">Redactar mensaje</string>
@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">¡Esta persona no tiene un número que pueda recibir SMS o un correo válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">¡El mensaje está vacío!</string>
   <string name="ConversationActivity_group_members">Participantes del grupo</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Toca aquí para iniciar una llamada en grupo</string>
   <string name="ConversationActivity_invalid_recipient">¡Destinatari@ inválid@!</string>
   <string name="ConversationActivity_added_to_home_screen">Añadido a la pantalla de inicio</string>
   <string name="ConversationActivity_calls_not_supported">Llamadas no disponibles</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal se mantiene por gente como tú. ¡Muestra hoy tu apoyo!</string>
   <string name="DonateMegaphone_donate">Donar</string>
   <string name="DonateMegaphone_no_thanks">No, gracias</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">¡Las llamadas en grupo están aquí!</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Entra en un grupo del nuevo sistema para iniciar una llamada en grupo cifrada</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizar sin servicios de Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no dispone de los servicios de Google Play. Toca para desactivar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
@@ -515,7 +519,7 @@
     <item quantity="one">Añadir participante</item>
     <item quantity="other">Añadir participantes</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ahora no</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">No gracias</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">¿Añadir participante?</item>
@@ -1228,7 +1232,7 @@
   <string name="WebRtcCallView__reconnecting">Reconectando …</string>
   <string name="WebRtcCallView__joining">Uniéndose …</string>
   <string name="WebRtcCallView__disconnected">Desconectada</string>
-  <string name="WebRtcCallView__no_one_else_is_here">Nadie más está aquí</string>
+  <string name="WebRtcCallView__no_one_else_is_here">No hay nadie más</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s en esta llamada</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s y %2$s en esta llamada</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -2140,7 +2144,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_list_fragment__open_camera_description">Abrir cámara</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dale a tu buzón de entrada una razón de ser. Comienza a chatear con tus amistades.</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Restablecer sesión segura</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sesión segura</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">No silenciar</string>
   <!--conversation_unmuted-->
@@ -2550,11 +2554,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DeleteAccountFragment__delete_account">Eliminar cuenta</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Eliminar la información de tu cuenta y foto de perfil</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Eliminar todos tus mensajes</string>
-  <string name="DeleteAccountFragment__no_country_code">Código de país no especificado</string>
+  <string name="DeleteAccountFragment__no_country_code">Código de país sin especificar</string>
   <string name="DeleteAccountFragment__no_number">Número no especificado</string>
   <string name="DeleteAccountFragment__the_phone_number">El número introducido no coincide con el de tu cuenta.</string>
   <string name="DeleteAccountFragment__are_you_sure">¿Estás segur@ de querer eliminar tu cuenta?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción elimina tu cuenta de Signal y restablece la aplicación. Signal se cerrará después de completarse el proceso.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción elimina tu cuenta de Signal y reinicia la aplicación. Signal se cerrará después de completarse el proceso.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Fallo al eliminar la cuenta. Comprueba la conexión.</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Fallo al eliminar los datos locales. Puedes hacerlo manualmente desde los ajustes del sistema para la aplicación.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Ir a los ajustes de aplicaciones</string>

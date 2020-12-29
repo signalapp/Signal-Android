@@ -243,6 +243,7 @@
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Recipient is not a valid SMS or email address!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message is empty!</string>
     <string name="ConversationActivity_group_members">Group members</string>
+    <string name="ConversationActivity__tap_here_to_start_a_group_call">Tap here to start a group call</string>
 
     <string name="ConversationActivity_invalid_recipient">Invalid recipient!</string>
     <string name="ConversationActivity_added_to_home_screen">Added to home screen</string>
@@ -484,6 +485,10 @@
     <string name="DonateMegaphone_donate">Donate</string>
     <string name="DonateMegaphone_no_thanks">No Thanks</string>
 
+    <!-- GroupCallingMegaphone -->
+    <string name="GroupCallingMegaphone__introducing_group_calls">Introducing Group Calls</string>
+    <string name="GroupCallingMegaphone__open_a_new_group_to_start">Open a New Group to start a free encrypted group call</string>
+
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
     <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
@@ -608,7 +613,7 @@
         <item quantity="one">Add member</item>
         <item quantity="other">Add members</item>
     </plurals>
-    <string name="GroupsV1MigrationSuggestionsReminder_not_now">Not now</string>
+    <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">No thanks</string>
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">

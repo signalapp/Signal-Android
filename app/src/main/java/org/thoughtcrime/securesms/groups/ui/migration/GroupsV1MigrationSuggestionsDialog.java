@@ -75,15 +75,15 @@ public final class GroupsV1MigrationSuggestionsDialog {
     SimpleTask.run(SignalExecutors.UNBOUNDED, () -> {
       try {
         GroupManager.addMembers(fragmentActivity, groupId.requirePush(), suggestions);
-        Log.i(TAG, "Successfully added members! Clearing former members.");
-        DatabaseFactory.getGroupDatabase(fragmentActivity).clearFormerV1Members(groupId);
+        Log.i(TAG, "Successfully added members! Removing these dropped members from the list.");
+        DatabaseFactory.getGroupDatabase(fragmentActivity).removeUnmigratedV1Members(groupId, suggestions);
         return Result.SUCCESS;
       } catch (IOException | GroupChangeBusyException e) {
         Log.w(TAG, "Temporary failure.", e);
         return Result.NETWORK_ERROR;
       } catch (GroupNotAMemberException | GroupInsufficientRightsException | MembershipNotSuitableForV2Exception | GroupChangeFailedException e) {
-        Log.w(TAG, "Permanent failure! Clearing former members.", e);
-        DatabaseFactory.getGroupDatabase(fragmentActivity).clearFormerV1Members(groupId);
+        Log.w(TAG, "Permanent failure! Removing these dropped members from the list.", e);
+        DatabaseFactory.getGroupDatabase(fragmentActivity).removeUnmigratedV1Members(groupId, suggestions);
         return Result.IMPOSSIBLE;
       }
     }, result -> {

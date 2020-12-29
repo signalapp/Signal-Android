@@ -294,6 +294,7 @@
   <string name="ConversationFragment_deleting_messages">Sõnumite kustutamine…</string>
   <string name="ConversationFragment_delete_for_me">Kustuta minu jaoks</string>
   <string name="ConversationFragment_delete_for_everyone">Kustuta kõigi jaoks</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">See sõnum kustutatakse kõigilt vestluse liikmetelt, kui nad kasutavad Signal-i värsket versiooni. Nad näevad, et sa kustutasid sõnumi.</string>
   <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
   <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
@@ -410,6 +411,7 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalit hoiavad käimas sinusarnased inimesed. Näita oma toetust täna!</string>
   <string name="DonateMegaphone_donate">Anneta</string>
   <string name="DonateMegaphone_no_thanks">Tänan, ei</string>
+  <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
@@ -478,8 +480,10 @@
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Täienda uuele grupile</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Täienda seda gruppi</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Uutel gruppidel on funktsioonid nagu @mainimised ja grupiadminid, ning need toetavad tulevikus veel rohkem funktsioone.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Kogu sõnumite ajalugu ja meediafailid jäävad alles.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Täiendamine ebaõnnestus.</string>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Uuenda seda gruppi, et saada ligipääs uuele funktsionaalsusele, nt @mainimised ja administraatorid.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Mitte praegu</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Uuenda gruppi</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
@@ -487,7 +491,7 @@
     <item quantity="one">Lisa liige</item>
     <item quantity="other">Lisa liikmeid</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Mitte praegu</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Tänan, ei</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Lisad liikme?</item>
@@ -954,6 +958,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Sa märkisid oma turvanumbri kontaktiga %s mittekinnitatuks</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Sa märkisid teisest seadmest oma turvanumbri kontaktiga %s mittekinnitatuks</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_you_are_in_the_group_call">Sa oled grupikõnes</string>
   <string name="MessageRecord_you">Sina</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Nõustun</string>
@@ -1094,6 +1099,7 @@
   <string name="WebRtcCallView__signal_video_call">Signal-i videokõne…</string>
   <string name="WebRtcCallView__start_call">Alusta kõnet</string>
   <string name="WebRtcCallView__join_call">Ühine kõnega</string>
+  <string name="WebRtcCallView__call_is_full">Kõne on täis</string>
   <string name="WebRtcCallView__view_participants_list">Vaata osalejaid</string>
   <string name="WebRtcCallView__your_video_is_off">Sinu video on väljas</string>
   <string name="WebRtcCallView__connecting">Ühendumine…</string>
@@ -1114,6 +1120,8 @@
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">Rohkem infot</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Sina ei saa nende heli või videot ja nemad ei saa sinu oma.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">See võib juhtuda, sest nad ei ole kinnitanud sinu turvanumbri muutmist, nende seadmetega on probleeme või nad on sinu blokeerinud.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vali oma riik</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Sa pead määrama
@@ -1415,12 +1423,14 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Vastatud ühendatud seadmes.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Keeldutud ühendatud seadmes.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Hõivatud ühendatud seadmes.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Keegi liitus sellesse kõnesse turvanumbriga, mida on muudetud.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Turvanumber sinu vestluses kontaktiga %1$s on muutunud. See võib tähendada, et keegi üritab su vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Uus turvanumber</string>
   <string name="WebRtcCallScreen_accept">Nõustu</string>
   <string name="WebRtcCallScreen_end_call">Lõpeta kõne</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Vaadete muutmiseks pühi üles</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Keeldu</string>
   <string name="WebRtcCallScreen__answer">Vasta</string>
@@ -1481,6 +1491,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Sa ei pea ennast gruppi lisama</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimaalne grupisuurus täitunud</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">Jõuti soovitatava liikmete arvu piirini</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d liige</item>
     <item quantity="other">%1$d liiget</item>
@@ -1528,6 +1539,7 @@
   <string name="ConversationUpdateItem_learn_more">Rohkem infot</string>
   <string name="ConversationUpdateItem_join_call">Liitu kõnega</string>
   <string name="ConversationUpdateItem_return_to_call">Pöördu kõnne tagasi</string>
+  <string name="ConversationUpdateItem_call_is_full">Kõne on täis</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
   <string name="audio_view__download_accessibility_description">Laadi alla</string>
@@ -1547,6 +1559,7 @@
   <string name="safety_number_change_dialog__send_anyway">Saada siiski</string>
   <string name="safety_number_change_dialog__call_anyway">Helista siisk</string>
   <string name="safety_number_change_dialog__join_call">Liitu kõnega</string>
+  <string name="safety_number_change_dialog__leave_call">Lahku kõnest</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Need inimised on võibolla rakendust reinstallinud või seadet vahetanud. Privaatsuse kindlustamiseks kontrolli nendega turvanumbrit.</string>
   <string name="safety_number_change_dialog__view">Näita</string>
   <string name="safety_number_change_dialog__previous_verified">Eelnevalt kinnitatud</string>
@@ -2348,6 +2361,7 @@
   <string name="ReviewCard__block">Blokeeri</string>
   <string name="ReviewCard__delete">Kustuta</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Sina (teisest seadmest)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__are_you_sure">Kas sa tõesti soovid enda kontot kustutada?</string>
   <!--DeleteAccountCountryPickerFragment-->

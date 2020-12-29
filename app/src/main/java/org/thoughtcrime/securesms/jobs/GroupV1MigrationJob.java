@@ -87,11 +87,6 @@ public class GroupV1MigrationJob extends BaseJob {
       return;
     }
 
-    if (!FeatureFlags.groupsV1AutoMigration()) {
-      Log.i(TAG, "Auto-migration disabled. Not proactively searching for groups.");
-      return;
-    }
-
     long timeSinceRefresh = System.currentTimeMillis() - SignalStore.misc().getLastGv1RoutineMigrationTime();
 
     if (timeSinceRefresh < REFRESH_INTERVAL) {

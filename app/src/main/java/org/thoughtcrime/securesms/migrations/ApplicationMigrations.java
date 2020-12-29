@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -39,7 +40,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 23;
+  public static final int CURRENT_VERSION = 24;
 
   private static final class Version {
     static final int LEGACY              = 1;
@@ -65,6 +66,7 @@ public class ApplicationMigrations {
     static final int GV2_2               = 21;
     static final int CDS                 = 22;
     static final int BACKUP_NOTIFICATION = 23;
+    static final int GV1_MIGRATION       = 24;
   }
 
   /**
@@ -82,6 +84,9 @@ public class ApplicationMigrations {
       Log.d(TAG, "Not an update. Skipping.");
       VersionTracker.updateLastSeenVersion(context);
       return;
+    } else {
+      Log.d(TAG, "About to update. Clearing deprecation flag.");
+      SignalStore.misc().clearClientDeprecated();
     }
 
     final int lastSeenVersion = TextSecurePreferences.getAppMigrationVersion(context);
@@ -270,6 +275,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.BACKUP_NOTIFICATION) {
       jobs.put(Version.BACKUP_NOTIFICATION, new BackupNotificationMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.GV1_MIGRATION) {
+      jobs.put(Version.GV1_MIGRATION, new AttributesMigrationJob());
     }
 
     return jobs;

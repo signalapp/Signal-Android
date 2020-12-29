@@ -417,6 +417,7 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal er drevet af personer som dig. Vis din støtte i dag!</string>
   <string name="DonateMegaphone_donate">Doner</string>
   <string name="DonateMegaphone_no_thanks">Nej tak</string>
+  <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheden understøtter ikke Play Services. Tap for at slå batterioptimering fra, som forhindrer Signal i at modtage beskeder i baggrunden</string>
@@ -509,7 +510,7 @@
     <item quantity="one">Tilføj medlem</item>
     <item quantity="other">Tilføj medlemmer</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ikke nu</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nej tak</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Tilføj medlem?</item>

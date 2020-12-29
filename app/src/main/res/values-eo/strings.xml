@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Ricevonto ne estas valida SMS-numero aŭ retpoŝtadreso!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mesaĝo malplenas!</string>
   <string name="ConversationActivity_group_members">Grupanoj</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Tuŝetu ĉi tie por komenci grupalvokon</string>
   <string name="ConversationActivity_invalid_recipient">Nevalida ricevonto!</string>
   <string name="ConversationActivity_added_to_home_screen">Aldonita al la ĉefekrano</string>
   <string name="ConversationActivity_calls_not_supported">Alvokoj ne subtenataj</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ekzistas pro la subteno de homoj kiel vi. Montru vian subtenon hodiaŭ!</string>
   <string name="DonateMegaphone_donate">Donaci</string>
   <string name="DonateMegaphone_no_thanks">Ne, dankon</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Jen la grupalvokoj</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Kreu novtipan grupon por komenci senpagan ĉifritan grupalvokon</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumigi por mankantaj „Play Services“</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tiu aparato ne subtenas „Play Services“. Tuŝetu por malebligi baterian optimumigon, kiu alie malhelpus al Signal ricevi mesaĝojn dum neaktiva.</string>
@@ -515,7 +519,7 @@
     <item quantity="one">Aldoni anon</item>
     <item quantity="other">Aldoni anojn</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne nun</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Ne, dankon</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Ĉu aldoni anon?</item>

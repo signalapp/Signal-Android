@@ -381,6 +381,7 @@
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signal에 후원</string>
   <string name="DonateMegaphone_donate">기부</string>
+  <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">누락된 Play Services에 최적화</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">기기에서는 Play Services를 지원하지 않습니다. 탭하여 시스템 배터리 최적화 기능을 사용하지 않을 수 있습니다. 해당 기능은 Signal이 비활성화된 동안에 메시지를 검색하지 못하게 합니다.</string>
@@ -441,7 +442,7 @@
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">멤버 추가하기</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">나중에</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">괜찮습니다</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="other">멤버를 추가하시겠습니까?</item>

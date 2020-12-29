@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobMigrator;
@@ -188,6 +189,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull TypingStatusSender provideTypingStatusSender() {
     return new TypingStatusSender(context);
+  }
+
+  @Override
+  public @NonNull DatabaseObserver provideDatabaseObserver() {
+    return new DatabaseObserver(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

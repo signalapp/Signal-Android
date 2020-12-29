@@ -214,6 +214,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
   <string name="ConversationActivity_group_members">Участники группы</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Нажмите здесь, чтобы начать групповой звонок</string>
   <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
   <string name="ConversationActivity_added_to_home_screen">Добавлено на главный экран</string>
   <string name="ConversationActivity_calls_not_supported">Звонки не поддерживаются</string>
@@ -446,6 +447,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Покажите свою поддержку уже сегодня!</string>
   <string name="DonateMegaphone_donate">Пожертвовать</string>
   <string name="DonateMegaphone_no_thanks">Нет, спасибо</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Представляем групповые звонки</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Откройте любую Новую группу, чтобы начать бесплатный зашифрованный групповой звонок</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизация при отсутствии Служб Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Это устройство не поддерживает Службы Google Play. Нажмите для отключения оптимизации энергопотребления, которая не позволяет Signal получать сообщения, когда он неактивен.</string>
@@ -559,7 +563,7 @@
     <item quantity="many">Добавить участников</item>
     <item quantity="other">Добавить участников</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Не сейчас</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Нет, спасибо</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Добавить участника?</item>

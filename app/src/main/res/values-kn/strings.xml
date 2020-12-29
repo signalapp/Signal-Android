@@ -422,6 +422,7 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ನಿಮ್ಮಂತಹ ಜನರಿಂದ ನಡೆಯುತ್ತದೆ . ಇಂದು ನಿಮ್ಮ ಬೆಂಬಲವನ್ನು ತೋರಿಸಿ!</string>
   <string name="DonateMegaphone_donate">ದಾನ</string>
   <string name="DonateMegaphone_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
+  <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ಕಾಣೆಯಾದ ಪ್ಲೇ ಸೇವೆಗಳನ್ನು ಅತ್ಯುತ್ತಮವಾಗಿಸಿ</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ಈ ಸಾಧನವು ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ನಿಷ್ಕ್ರಿಯವಾಗಿದ್ದಾಗ Signal ಸಂದೇಶಗಳನ್ನು ಹಿಂದಕ್ಕೆ ಪಡೆಯದಂತೆ ತಡೆಯಲು ಸಿಸ್ಟಂ ಬ್ಯಾಟರಿ ಆಪ್ಟಿಮೈಸೇಶನ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ ಅನ್ನು ಒತ್ತಿ.</string>
@@ -500,7 +501,7 @@
     <item quantity="one">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</item>
     <item quantity="other">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">ಈಗಲ್ಲ</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">ಸದಸ್ಯ ಸೇರಿಸುವುದೇ?</item>

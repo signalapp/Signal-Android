@@ -402,6 +402,7 @@
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Lahjoita Signalille</string>
   <string name="DonateMegaphone_no_thanks">Ei kiitos</string>
+  <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimoi Play Servicesin puuttumista</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tämä laite ei tue Play Servicesiä. Napauta tästä ottaaksesi pois päältä virransäästöominaisuudet, jotka estävät Signalia hakemasta viestejä taustalla.</string>
@@ -465,7 +466,7 @@
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ei nyt</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Päivitä ryhmää</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ei nyt</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Ei kiitos</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Poistu ryhmästä?</string>

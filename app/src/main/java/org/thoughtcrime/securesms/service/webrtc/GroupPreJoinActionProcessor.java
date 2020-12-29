@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
@@ -57,6 +58,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
       return groupCallFailure(currentState, "Unable to connect to group call", e);
     }
 
+    SignalStore.tooltips().markGroupCallingLobbyEntered();
     return currentState.builder()
                        .changeCallInfoState()
                        .groupCall(groupCall)

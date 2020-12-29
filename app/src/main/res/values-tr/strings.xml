@@ -88,6 +88,7 @@
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" sizi arayamayacak veya size ileti gönderemeyecek.</string>
   <string name="BlockedUsersActivity__block">Engelle</string>
   <string name="BlockedUsersActivity__unblock_user">Kişinin engelini kaldır?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">\"%1$s\" kişisinin engelini kaldırmak istiyor musunuz?</string>
   <string name="BlockedUsersActivity__unblock">Engeli kaldır</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s grubunu engelle ve ayrıl?</string>
@@ -207,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Alıcı geçerli bir SMS veya e-posta adresi değil!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">İleti boş!</string>
   <string name="ConversationActivity_group_members">Grup üyeleri</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Grup araması başlatmak için buraya dokunun</string>
   <string name="ConversationActivity_invalid_recipient">Geçersiz alıcı!</string>
   <string name="ConversationActivity_added_to_home_screen">Ana ekrana eklendi</string>
   <string name="ConversationActivity_calls_not_supported">Aramalar desteklenmiyor</string>
@@ -416,6 +418,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal, sizin gibi insanlar tarafından desteklenmektedir. Desteğinizi bugün gösterin!</string>
   <string name="DonateMegaphone_donate">Bağış yapın</string>
   <string name="DonateMegaphone_no_thanks">Hayır teşekkürler</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Karşınızda Grup Aramaları</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ücretsiz ve şifreli grup araması başlatmak için yeni bir Grup açın.</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Eksik Google Play Hizmetleri için optimize et</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Hizmetlerini desteklemiyor. Signal etkin değilken ileti almasını engelleyebilecek pil iyileştirmelerini devre dışı bırakmak için dokunun.</string>
@@ -483,6 +488,7 @@
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Yeni Gruba Yükselt</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Bu grubu yükseltin</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Yeni Gruplar @bahsetmeler ve grup yöneticileri gibi özellikleri içeriyor ve gelecekte daha fazla özellik destekleyecektir.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Yükseltme öncesi tüm ileti geçmişi ve içerik saklanacak.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Bir ağ hatasıyla karşılaşıldı. Daha sonra tekrar deneyin.</string>
@@ -495,8 +501,28 @@
     <item quantity="one">Üye ekle</item>
     <item quantity="other">Üye ekle</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Şimdi değil</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Hayır teşekkürler</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Üye ekle?</item>
+    <item quantity="other">Üyeleri ekle?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Bu üye yükseltme sırasında Yeni Gruba otomatik olarak eklenemedi:</item>
+    <item quantity="other">Bu üyeler yükseltme sırasında Yeni Gruba otomatik olarak eklenemedi:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Üye ekle</item>
+    <item quantity="other">Üye ekle</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Üye eklenemedi. Daha sonra tekrar deneyin.</item>
+    <item quantity="other">Üyeler eklenemedi. Daha sonra tekrar deneyin.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Üye eklenemedi.</item>
+    <item quantity="other">Üyeler eklenemedi.</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Gruptan ayrıl?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Bu gruptan artık ileti almayacak ve gönderemeyeceksiniz.</string>
@@ -556,11 +582,13 @@
   <string name="AddGroupDetailsFragment__create">Oluştur</string>
   <string name="AddGroupDetailsFragment__members">Üyeler</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grup adı (gereklidir)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">Grup adı (isteğe bağlı)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Bu alanın doldurulması gereklidir.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Gruplar en az iki üye gerektirir.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Grup yaratma başarısız oldu.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Daha sonra tekrar dene.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal gruplarını desteklemeyen bir kişiyi seçtiniz, bu nedenle bu grup MMS olacaktır. </string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Özel MMS grup adı ve resimlerini yalnızca siz görebilirsiniz</string>
   <string name="AddGroupDetailsFragment__remove">Kaldır</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kişisi</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s bu gruptan çıkartılsın mı?</string>
@@ -568,11 +596,20 @@
     <item quantity="one">%d üye Yeni Grupları desteklemiyor, bu yüzden bu grup Eski Grup olacaktır.</item>
     <item quantity="other">%d üye Yeni Grupları desteklemiyor, bu yüzden bu grup Eski Grup olacaktır.</item>
   </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d üye Yeni Grupları desteklemiyor, bu grup oluşturulamaz.</item>
+    <item quantity="other">%d üye Yeni Grupları desteklemiyor, bu grup oluşturulamaz.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\" eski bir Signal sürümü kullandığı için bir Eski Grup oluşturulacaktır. Bu kişilerle Yeni Grup Türünü Signal sürümlerini güncelleyince veya grubu oluşturmadan önce kişiyi silerek oluşturabilirsiniz.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">%1$d üye Signal\'ın eski bir sürümünü kullandığı için eski bir grup oluşturulacaktır. Signal\'i güncelledikten sonra üyeler ile yeni bir grup oluşturabilir veya grubu oluşturmadan önce üyeleri kaldırabilirsiniz.</item>
     <item quantity="other">%1$d üye Signal\'ın eski bir sürümünü kullandığı için eski bir grup oluşturulacaktır. Signal\'i güncelledikten sonra üyeler ile yeni bir grup oluşturabilir veya grubu oluşturmadan önce üyeleri kaldırabilirsiniz.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Bu grup \"%1$s\" eski bir Signal sürümü kullandığı için oluşturulamaz. Grubu oluşturmadan önce kendisini çıkartmalısınız.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Bu grup %1$d üyenin eski bir Signal sürümü kullandığı için oluşturulamaz. Grubu oluşturmadan önce kendisini çıkartmalısınız.</item>
+    <item quantity="other">Bu grup %1$d üyenin eski bir Signal sürümü kullandığı için oluşturulamaz. Grubu oluşturmadan önce kendilerini çıkartmalısınız.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaybolan iletiler</string>
@@ -614,6 +651,10 @@
   <string name="ManageGroupActivity_edit_name_and_picture">Adı ve resmi düzenleyin</string>
   <string name="ManageGroupActivity_legacy_group">Eski Grup</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Bu bir Eski Gruptur. Grup yöneticisi gibi özellikler sadece Yeni Gruplarda mevcuttur.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Bu bir Eski Gruptur. Bahsedilmeler ve yöneticiler gibi özelliklere erişmek için,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Bu eski grup, boyutu çok büyük olduğu için Yeni Gruba yükseltilemiyor. Azami grup boyutu %1$d.</string>
+  <string name="ManageGroupActivity_upgrade_this_group">bu grubu yükseltin.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Bu şifresiz MMS Grubudur. Özel olarak sohbet etmek için kişilerinizi Signal\'e davet edin.</string>
   <string name="ManageGroupActivity_invite_now">Şimdi davet et</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Bahsedilmeleri bana bildir</string>
@@ -704,6 +745,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grup bağlantıları çok yakında</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Grup bağlantılarını kullanabilmek için Signal\'i güncelleyin</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Kullandığınız bu Signal sürümü bu grup bağlantısını desteklemiyor. Bu gruba bağlantı aracılığıyla katılmak için son sürüme güncelleyin.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal\'i Güncelle</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Bağlı aygıtlarınızdan bir veya daha fazla grup bağlantılarını desteklemeyen Signal sürümü kullanıyor. Bu gruba katılabilmek için bağlı aygıtlarınızdaki Signal\'i güncelleyin.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grup bağlantısı geçersiz</string>
@@ -846,6 +888,8 @@
   <string name="MessageRecord_you_updated_group">Grubu güncellediniz.</string>
   <string name="MessageRecord_the_group_was_updated">Grup güncellendi</string>
   <string name="MessageRecord_you_called_date">Aradınız · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Yanıtsız sesli arama · %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Yanıtsız görüntülü arama · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s grubu güncelledi.</string>
   <string name="MessageRecord_s_called_you_date">%1$s sizi aradı · %2$s</string>
   <string name="MessageRecord_called_s">%s arandı</string>
@@ -855,6 +899,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Kaybolan ileti zamanlayıcısını %1$s olarak ayarladınız.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s kaybolan ileti zamanlayıcısını %2$s olarak ayarladı.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Kaybolan ileti süresi %1$s olarak ayarlandı.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Bu grup Yeni Gruba yükseltildi.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Yeni gruba eklenemediğiniz için davet edildiniz.</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s profil adını %2$s olarak değiştirdi.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s profile ismini %2$s yerine %3$s olarak değiştirdi.</string>
@@ -1144,6 +1190,8 @@
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">Daha Fazla Bilgi</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Birbirinizin sesini veya görüntüsünü alamayacaksınız.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bunun sebebi, güvenlik numaranızın değişimini doğrulamamaları, cihazlarıyla ilgili bir sorun olması veya sizi engellemesi olabilir.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu
@@ -1446,12 +1494,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Bağlı cihazdan yanıtlandı.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Bağlı cihazdan reddedildi.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Bağlı cihazda meşgul.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Güvenlik numarası değişen biri bu aramaya katıldı.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s ile konuşmanızın güvenlik numarası değişti. Bu, birisinin iletişiminizi kesmeye çalıştığı ya da %2$s Signal\'i yeniden yüklemiş olduğu anlamına gelebilir.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu kişi ile güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Yeni güvenlik numarası</string>
   <string name="WebRtcCallScreen_accept">Kabul et</string>
   <string name="WebRtcCallScreen_end_call">Aramayı sonlandır</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Görünümü değiştirmek için yukarı kaydırın</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Reddet</string>
   <string name="WebRtcCallScreen__answer">Yanıtla</string>
@@ -1697,6 +1747,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CreateProfileActivity_next">İleri</string>
   <string name="CreateProfileActivity__username">Kullanıcı adı</string>
   <string name="CreateProfileActivity__create_a_username">Bir kullanıcı adı oluşturun</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Özel MMS grup adı ve resimlerini yalnızca siz görebilirsiniz</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Grup adını ve resmini düzenleyin</string>
   <string name="EditProfileFragment__group_name">Grup adı</string>
@@ -1725,10 +1776,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Güvenlik numarasını paylaş</string>
   <!--webrtc_answer_decline_button-->
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Yanıtlamak için yukarı kaydır</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Reddetmek için aşağı kaydır</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Yanıtlamak için yukarı kaydırın</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Reddetmek için aşağı kaydırın</string>
   <!--message_details_header-->
-  <string name="message_details_header__issues_need_your_attention">Bazı sorunlar ilginizi gerektiriyor.</string>
+  <string name="message_details_header__issues_need_your_attention">İlgilenmenizi gerektiren sorunlar var.</string>
   <string name="message_details_header__sent">Gönderildi</string>
   <string name="message_details_header__received">Alındı</string>
   <string name="message_details_header__disappears">Kaybolacak</string>

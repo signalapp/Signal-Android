@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Marrësi s\’është adresë SMS ose email e vlefshme!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mesazhi është i zbrazët!</string>
   <string name="ConversationActivity_group_members">Anëtarë grupi</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Prekni këtu që të nisë një thirrje grupi</string>
   <string name="ConversationActivity_invalid_recipient">Marrës i pavlefshëm!</string>
   <string name="ConversationActivity_added_to_home_screen">U shtua te skena e kreut</string>
   <string name="ConversationActivity_calls_not_supported">Thirrjet nuk mbulohen</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-i bazohet në njerëz si ju. Shpaloseni përkrahjen tuaj sot!</string>
   <string name="DonateMegaphone_donate">Dhuroni</string>
   <string name="DonateMegaphone_no_thanks">Jo Falemnderit</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Ju paraqesim Thirrje Grupi</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Që të nisni një thirrje të lirë, të fshehtëzuar, në grup, hapni një Grup të Ri</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizoje për Shërbime Play që mungojnë</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Signal-in të marrë mesazhe teksa është joaktiv.</string>
@@ -516,7 +520,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="one">Shtoni anëtar</item>
     <item quantity="other">Shtoni anëtarë</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Jo tani</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Jo, faleminderit</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Të shtohet anëtari?</item>

@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">O destinatário não é um número de SMS ou endereço de e-mail válido!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">A mensagem encontra-se vazia!</string>
   <string name="ConversationActivity_group_members">Membros do grupo</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Toque aqui para iniciar uma chamada de grupo</string>
   <string name="ConversationActivity_invalid_recipient">Destinatário inválido!</string>
   <string name="ConversationActivity_added_to_home_screen">Adicionado ao ecrã inicial</string>
   <string name="ConversationActivity_calls_not_supported">Chamadas não suportadas</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">O Signal é feito por pessoas como você. Mostre mesmo hoje o seu apoio!</string>
   <string name="DonateMegaphone_donate">Doar</string>
   <string name="DonateMegaphone_no_thanks">Não, obrigado</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Introdução às \'Chamadas de grupo\'</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Abra um \'Novo grupo\' para iniciar uma chamada de grupo encriptada e gratuita</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para os \"Play Services\" em falta.</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não suporta os Play Services. Toque para desativar o sistema de otimização de bateria que impede o Signal de recolher mensagens enquanto inativo.</string>
@@ -515,7 +519,7 @@
     <item quantity="one">Adicionar membro</item>
     <item quantity="other">Adicionar membros</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Agora não</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Não, obrigado</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Adicionar membro?</item>
@@ -1095,7 +1099,7 @@
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d membro (+%2$d convidado)</item>
-    <item quantity="other">%1$d membros (+%2$d comvidados)</item>
+    <item quantity="other">%1$d membros (+%2$d convidados)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d grupo adicional</item>

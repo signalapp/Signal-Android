@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Il destinatario non è un indirizzo valido per l\'SMS o per l\'email!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Il messaggio è vuoto!</string>
   <string name="ConversationActivity_group_members">Membri del gruppo</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Clicca qui per iniziare una chiamata di gruppo</string>
   <string name="ConversationActivity_invalid_recipient">Destinatario non valido!</string>
   <string name="ConversationActivity_added_to_home_screen">Aggiunto alla schermata principale</string>
   <string name="ConversationActivity_calls_not_supported">Chiamate non supportate</string>
@@ -418,6 +419,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal è sostenuto da persone come te. Mostra il tuo sostegno oggi!</string>
   <string name="DonateMegaphone_donate">Dona</string>
   <string name="DonateMegaphone_no_thanks">No grazie</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Ti presentiamo le chiamate di gruppo</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Apri un Nuovo Gruppo per avviare una chiamata di gruppo criptata gratuita</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Ottimizza per la mancanza di Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Questo dispositivo non supporta Google Play Services. Premi per disabilitare l\'ottimizzazione di sistema del consumo della batteria che impedisce a Signal di ricevere messaggi quando è inattivo.</string>
@@ -515,7 +519,7 @@
     <item quantity="one">Aggiungi membro</item>
     <item quantity="other">Aggiungi membri</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Non ora</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">No grazie</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Aggiungere membro?</item>

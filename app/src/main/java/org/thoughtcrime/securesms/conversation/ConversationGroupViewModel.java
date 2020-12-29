@@ -31,13 +31,11 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 final class ConversationGroupViewModel extends ViewModel {
@@ -83,10 +81,10 @@ final class ConversationGroupViewModel extends ViewModel {
     liveRecipient.setValue(recipient);
   }
 
-  void onSuggestedMembersBannerDismissed(@NonNull GroupId groupId) {
+  void onSuggestedMembersBannerDismissed(@NonNull GroupId groupId, @NonNull List<RecipientId> suggestions) {
     SignalExecutors.BOUNDED.execute(() -> {
       if (groupId.isV2()) {
-        DatabaseFactory.getGroupDatabase(ApplicationDependencies.getApplication()).clearFormerV1Members(groupId.requireV2());
+        DatabaseFactory.getGroupDatabase(ApplicationDependencies.getApplication()).removeUnmigratedV1Members(groupId.requireV2(), suggestions);
         liveRecipient.postValue(liveRecipient.getValue());
       }
     });
@@ -177,9 +175,9 @@ final class ConversationGroupViewModel extends ViewModel {
       return Collections.emptyList();
     }
 
-    Set<RecipientId> difference = SetUtil.difference(record.getFormerV1Members(), record.getMembers());
-
-    return Stream.of(Recipient.resolvedList(difference))
+    return Stream.of(record.getUnmigratedV1Members())
+                 .filterNot(m -> record.getMembers().contains(m))
+                 .map(Recipient::resolved)
                  .filter(GroupsV1MigrationUtil::isAutoMigratable)
                  .map(Recipient::getId)
                  .toList();

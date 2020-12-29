@@ -164,8 +164,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int GV1_MIGRATION_LAST_SEEN          = 82;
   private static final int VIEWED_RECEIPTS                  = 83;
   private static final int CLEAN_UP_GV1_IDS                 = 84;
+  private static final int GV1_MIGRATION_REFACTOR           = 85;
 
-  private static final int    DATABASE_VERSION = 84;
+  private static final int    DATABASE_VERSION = 85;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1232,6 +1233,15 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
           db.update("recipient", values, "_id = ?", new String[] { String.valueOf(recipientId) });
           Log.d(TAG, String.format("Replaced group id on recipient %s now %s", recipientId, newId));
         }
+      }
+
+      if (oldVersion < GV1_MIGRATION_REFACTOR) {
+        ContentValues values = new ContentValues(1);
+        values.putNull("former_v1_members");
+
+        int count = db.update("groups", values, "former_v1_members NOT NULL", null);
+
+        Log.i(TAG, "Cleared former_v1_members for " + count + " rows");
       }
 
       db.setTransactionSuccessful();

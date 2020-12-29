@@ -4,11 +4,9 @@ import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -120,7 +118,7 @@ public class WebRtcCallView extends FrameLayout {
   public WebRtcCallView(@NonNull Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
 
-    LayoutInflater.from(context).inflate(R.layout.webrtc_call_view, this, true);
+    inflate(context, R.layout.webrtc_call_view, this);
   }
 
   @SuppressWarnings("CodeBlock2Expr")

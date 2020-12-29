@@ -214,6 +214,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Naslov prejemnika ni veljaven SMS oz. email naslov!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Sporočilo je prazno!</string>
   <string name="ConversationActivity_group_members">Člani/ce skupine</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Za začetek skupinskega klica tapnite tukaj</string>
   <string name="ConversationActivity_invalid_recipient">Neveljaven prejemnik!</string>
   <string name="ConversationActivity_added_to_home_screen">Dodano na domači zaslon</string>
   <string name="ConversationActivity_calls_not_supported">Klici niso podprti</string>
@@ -446,6 +447,9 @@
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Podprite ga tudi vi!</string>
   <string name="DonateMegaphone_donate">Podpri Signal!</string>
   <string name="DonateMegaphone_no_thanks">Ne hvala</string>
+  <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo vam skupinske klice</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Za šifriran skupinski klic odprite Novo skupino</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za manjkajočo aplikacijo Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Naprava ne podpira storitev Play Services. Tapnite za izklop optimizacije baterije, ki aplikaciji Signal preprečuje povezavo v času neaktivnosti naprave.</string>
@@ -559,7 +563,7 @@
     <item quantity="few">Dodaj člane/ice</item>
     <item quantity="other">Dodaj člane/ice</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_not_now">Ne zdaj</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Ne, hvala!</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Želite dodati člana/ico?</item>
