@@ -604,10 +604,6 @@ public class ThreadDatabase extends Database {
     return threadRecords;
   }
 
-  public Cursor getConversationList() {
-    return getConversationList("0");
-  }
-
   public Cursor getArchivedConversationList() {
     return getConversationList("1");
   }

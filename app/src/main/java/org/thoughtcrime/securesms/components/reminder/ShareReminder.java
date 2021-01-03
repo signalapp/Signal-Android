@@ -40,12 +40,6 @@ public class ShareReminder extends Reminder {
       return false;
     }
 
-    Cursor cursor = null;
-    try {
-      cursor = DatabaseFactory.getThreadDatabase(context).getConversationList();
-      return cursor.getCount() >= 1;
-    } finally {
-      if (cursor != null) cursor.close();
-    }
+    return DatabaseFactory.getThreadDatabase(context).getUnarchivedConversationListCount() >= 1;
   }
 }
