@@ -1518,6 +1518,14 @@
     <string name="SearchFragment_header_contacts">Contacts</string>
     <string name="SearchFragment_header_messages">Messages</string>
 
+    <!-- ShakeToReport -->
+    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
+    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
+    <string name="ShakeToReport_submit" translatable="false">Submit</string>
+    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
+    <string name="ShakeToReport_success" translatable="false">Success!</string>
+    <string name="ShakeToReport_share" translatable="false">Share</string>
+
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Add to Contacts</string>
     <string name="SharedContactDetailsActivity_invite_to_signal">Invite to Signal</string>

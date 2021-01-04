@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
+import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.Hex;
@@ -69,6 +70,7 @@ public class ApplicationDependencies {
   private static volatile TypingStatusSender           typingStatusSender;
   private static volatile DatabaseObserver             databaseObserver;
   private static volatile TrimThreadsByDateManager     trimThreadsByDateManager;
+  private static volatile ShakeToReport                shakeToReport;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -321,6 +323,18 @@ public class ApplicationDependencies {
     return databaseObserver;
   }
 
+  public static @NonNull ShakeToReport getShakeToReport() {
+    if (shakeToReport == null) {
+      synchronized (LOCK) {
+        if (shakeToReport == null) {
+          shakeToReport = provider.provideShakeToReport();
+        }
+      }
+    }
+
+    return shakeToReport;
+  }
+
   public interface Provider {
     @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
@@ -340,5 +354,6 @@ public class ApplicationDependencies {
     @NonNull TypingStatusRepository provideTypingStatusRepository();
     @NonNull TypingStatusSender provideTypingStatusSender();
     @NonNull DatabaseObserver provideDatabaseObserver();
+    @NonNull ShakeToReport provideShakeToReport();
   }
 }

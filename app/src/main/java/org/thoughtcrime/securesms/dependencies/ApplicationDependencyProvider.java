@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
+import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
@@ -199,6 +200,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull DatabaseObserver provideDatabaseObserver() {
     return new DatabaseObserver(context);
+  }
+
+  @Override
+  public @NonNull ShakeToReport provideShakeToReport() {
+    return new ShakeToReport(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

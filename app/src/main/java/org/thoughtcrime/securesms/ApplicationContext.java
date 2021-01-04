@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.hardware.SensorManager;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
+import org.signal.core.util.ShakeDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
 import org.signal.core.util.logging.Log;
@@ -69,6 +71,7 @@ import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
+import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -177,6 +180,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
       executePendingContactSync();
       KeyCachingService.onAppForegrounded(this);
       ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
+      ApplicationDependencies.getShakeToReport().enable();
       checkBuildExpiration();
     });
 
@@ -190,6 +194,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     KeyCachingService.onAppBackgrounded(this);
     ApplicationDependencies.getMessageNotifier().clearVisibleThread();
     ApplicationDependencies.getFrameRateTracker().end();
+    ApplicationDependencies.getShakeToReport().disable();
   }
 
   public ExpiringMessageManager getExpiringMessageManager() {

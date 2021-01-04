@@ -41,8 +41,8 @@ public final class ShareIntents {
                  @Nullable StickerLocator extraSticker,
                  boolean isBorderless)
     {
-      this.extraText = extraText;
-      this.extraMedia = extraMedia;
+      this.extraText    = extraText;
+      this.extraMedia   = extraMedia;
       this.extraSticker = extraSticker;
       this.isBorderless = isBorderless;
     }
