@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.SqlCipherDatabaseHook;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.StorageKeyDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -174,19 +175,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private final DatabaseSecret databaseSecret;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
-    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SQLiteDatabaseHook() {
-      @Override
-      public void preKey(SQLiteDatabase db) {
-        db.rawExecSQL("PRAGMA cipher_default_kdf_iter = 1;");
-        db.rawExecSQL("PRAGMA cipher_default_page_size = 4096;");
-      }
-
-      @Override
-      public void postKey(SQLiteDatabase db) {
-        db.rawExecSQL("PRAGMA kdf_iter = '1';");
-        db.rawExecSQL("PRAGMA cipher_page_size = 4096;");
-      }
-    });
+    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook());
 
     this.context        = context.getApplicationContext();
     this.databaseSecret = databaseSecret;
@@ -209,7 +198,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(SessionDatabase.CREATE_TABLE);
     db.execSQL(StickerDatabase.CREATE_TABLE);
     db.execSQL(StorageKeyDatabase.CREATE_TABLE);
-    db.execSQL(MegaphoneDatabase.CREATE_TABLE);
     db.execSQL(MentionDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, JobDatabase.CREATE_TABLE);

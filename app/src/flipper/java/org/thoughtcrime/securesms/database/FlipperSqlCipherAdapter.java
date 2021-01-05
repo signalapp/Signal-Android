@@ -45,11 +45,13 @@ public class FlipperSqlCipherAdapter extends DatabaseDriver<FlipperSqlCipherAdap
       Field databaseHelperField = DatabaseFactory.class.getDeclaredField("databaseHelper");
       databaseHelperField.setAccessible(true);
 
-      SignalDatabase mainOpenHelper     = Objects.requireNonNull((SQLCipherOpenHelper) databaseHelperField.get(DatabaseFactory.getInstance(getContext())));
-      SignalDatabase keyValueOpenHelper = KeyValueDatabase.getInstance((Application) getContext());
+      SignalDatabase mainOpenHelper      = Objects.requireNonNull((SQLCipherOpenHelper) databaseHelperField.get(DatabaseFactory.getInstance(getContext())));
+      SignalDatabase keyValueOpenHelper  = KeyValueDatabase.getInstance((Application) getContext());
+      SignalDatabase megaphoneOpenHelper = MegaphoneDatabase.getInstance((Application) getContext());
 
-      return Arrays.asList(new Descriptor(mainOpenHelper), new Descriptor(keyValueOpenHelper));
-
+      return Arrays.asList(new Descriptor(mainOpenHelper),
+                           new Descriptor(keyValueOpenHelper),
+                           new Descriptor(megaphoneOpenHelper));
     } catch (Exception e) {
       Log.i(TAG, "Unable to use reflection to access raw database.", e);
     }

@@ -62,7 +62,6 @@ public class DatabaseFactory {
   private final JobDatabase             jobDatabase;
   private final StickerDatabase         stickerDatabase;
   private final StorageKeyDatabase      storageKeyDatabase;
-  private final MegaphoneDatabase       megaphoneDatabase;
   private final RemappedRecordsDatabase remappedRecordsDatabase;
   private final MentionDatabase         mentionDatabase;
 
@@ -157,10 +156,6 @@ public class DatabaseFactory {
     return getInstance(context).storageKeyDatabase;
   }
 
-  public static MegaphoneDatabase getMegaphoneDatabase(Context context) {
-    return getInstance(context).megaphoneDatabase;
-  }
-
   static RemappedRecordsDatabase getRemappedRecordsDatabase(Context context) {
     return getInstance(context).remappedRecordsDatabase;
   }
@@ -179,6 +174,7 @@ public class DatabaseFactory {
       getInstance(context).databaseHelper.markCurrent(database);
       getInstance(context).mms.trimEntriesForExpiredMessages();
       getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS key_value");
+      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS megaphone");
 
       instance.databaseHelper.close();
       instance = null;
@@ -216,7 +212,6 @@ public class DatabaseFactory {
     this.jobDatabase             = new JobDatabase(context, databaseHelper);
     this.stickerDatabase         = new StickerDatabase(context, databaseHelper, attachmentSecret);
     this.storageKeyDatabase      = new StorageKeyDatabase(context, databaseHelper);
-    this.megaphoneDatabase       = new MegaphoneDatabase(context, databaseHelper);
     this.remappedRecordsDatabase = new RemappedRecordsDatabase(context, databaseHelper);
     this.mentionDatabase         = new MentionDatabase(context, databaseHelper);
   }

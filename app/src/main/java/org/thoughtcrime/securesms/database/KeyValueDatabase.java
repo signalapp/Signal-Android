@@ -61,19 +61,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
   }
 
   public KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, null, DATABASE_VERSION, new SQLiteDatabaseHook() {
-      @Override
-      public void preKey(SQLiteDatabase db) {
-        db.rawExecSQL("PRAGMA cipher_default_kdf_iter = 1;");
-        db.rawExecSQL("PRAGMA cipher_default_page_size = 4096;");
-      }
-
-      @Override
-      public void postKey(SQLiteDatabase db) {
-        db.rawExecSQL("PRAGMA kdf_iter = '1';");
-        db.rawExecSQL("PRAGMA cipher_page_size = 4096;");
-      }
-    });
+    super(application, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook());
 
     this.application    = application;
     this.databaseSecret = databaseSecret;

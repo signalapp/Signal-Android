@@ -39,7 +39,7 @@ public class MegaphoneRepository {
   public MegaphoneRepository(@NonNull Application context) {
     this.context       = context;
     this.executor      = SignalExecutors.SERIAL;
-    this.database      = DatabaseFactory.getMegaphoneDatabase(context);
+    this.database      = MegaphoneDatabase.getInstance(context);
     this.databaseCache = new HashMap<>();
 
     executor.execute(this::init);
