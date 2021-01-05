@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
+import java.io.InputStream
 
 class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), MessageDataProvider {
 
@@ -39,6 +40,11 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         attachmentUploadJob.onRun()
     }
 
+    override fun insertAttachment(messageId: Long, attachmentId: Long, stream : InputStream) {
+        val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
+        attachmentDatabase.insertAttachmentsForPlaceholder(messageId, AttachmentId(attachmentId,0), stream)
+    }
+
     override fun isOutgoingMessage(timestamp: Long): Boolean {
         val smsDatabase = DatabaseFactory.getSmsDatabase(context)
         return smsDatabase.isOutgoingMessage(timestamp)
@@ -61,9 +67,10 @@ fun DatabaseAttachment.toAttachmentStream(context: Context): SessionServiceAttac
 
     attachmentStream.key = ByteString.copyFrom(this.key?.toByteArray())
     attachmentStream.digest = this.digest
-    //attachmentStream.flags = if (this.isVoiceNote) SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE.number else 0
 
     attachmentStream.url = this.url
+
+    //TODO attachmentStream.listener
 
     return attachmentStream
 }
