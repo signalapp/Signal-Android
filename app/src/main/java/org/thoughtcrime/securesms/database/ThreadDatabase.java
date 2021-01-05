@@ -562,6 +562,8 @@ public class ThreadDatabase extends Database {
       query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.GROUP_TYPE + " != " + RecipientDatabase.GroupType.SIGNAL_V1.getId();
     }
 
+    query += " AND " + ARCHIVED + " = 0";
+
     return db.rawQuery(createQuery(query, 0, limit, true), null);
   }
 
