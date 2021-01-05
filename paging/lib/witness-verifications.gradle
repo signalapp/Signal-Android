@@ -95,5 +95,8 @@ dependencyVerification {
 
         ['com.google.android.material:material:1.2.1',
          'd3d0cc776f2341da8e572586c7d390a5b356ce39a0deb2768071dc40b364ac80'],
+
+        ['com.google.protobuf:protobuf-javalite:3.10.0',
+         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
     ]
 }

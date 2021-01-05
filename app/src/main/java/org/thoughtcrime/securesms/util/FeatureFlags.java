@@ -65,6 +65,7 @@ public final class FeatureFlags {
   private static final String GV1_FORCED_MIGRATE           = "android.groupsV1Migration.forced";
   private static final String GV1_MIGRATION_JOB            = "android.groupsV1Migration.job";
   private static final String SEND_VIEWED_RECEIPTS         = "android.sendViewedReceipts";
+  private static final String DISABLE_CUSTOM_VIDEO_MUXER   = "android.disableCustomVideoMuxer";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -108,7 +109,8 @@ public final class FeatureFlags {
       VERIFY_V2,
       CLIENT_EXPIRATION,
       GROUP_CALLING,
-      GV1_MIGRATION_JOB
+      GV1_MIGRATION_JOB,
+      DISABLE_CUSTOM_VIDEO_MUXER
   );
 
   /**
@@ -251,6 +253,11 @@ public final class FeatureFlags {
   /** Whether or not to send viewed receipts. */
   public static boolean sendViewedReceipts() {
     return getBoolean(SEND_VIEWED_RECEIPTS, false);
+  }
+
+  /** Whether to use the custom streaming muxer or built in android muxer. */
+  public static boolean useStreamingVideoMuxer() {
+    return !getBoolean(DISABLE_CUSTOM_VIDEO_MUXER, false);
   }
 
   /** Only for rendering debug info. */

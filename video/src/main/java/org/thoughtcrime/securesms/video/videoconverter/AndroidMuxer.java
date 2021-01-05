@@ -12,7 +12,7 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-public final class AndroidMuxer implements Muxer {
+final class AndroidMuxer implements Muxer {
 
     private final MediaMuxer muxer;
 
@@ -20,12 +20,10 @@ public final class AndroidMuxer implements Muxer {
         muxer = new MediaMuxer(file.getAbsolutePath(), MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
     }
 
-
     @RequiresApi(26)
     AndroidMuxer(final @NonNull FileDescriptor fileDescriptor) throws IOException {
         muxer = new MediaMuxer(fileDescriptor, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
     }
-
 
     @Override
     public void start() {

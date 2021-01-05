@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.video;
 
-import android.content.Context;
 import android.media.MediaDataSource;
 import android.media.MediaMetadataRetriever;
 
@@ -8,28 +7,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.google.android.exoplayer2.util.MimeTypes;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.media.MediaInput;
-import org.thoughtcrime.securesms.mms.MediaStream;
-import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
 
-import java.io.Closeable;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
+import java.io.FilterOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.NumberFormat;
 import java.util.Locale;
 
 @RequiresApi(26)
-public final class InMemoryTranscoder implements Closeable {
+public final class StreamingTranscoder {
 
-  private static final String TAG = Log.tag(InMemoryTranscoder.class);
+  private static final String TAG = Log.tag(StreamingTranscoder.class);
 
-  private final           Context                        context;
   private final           MediaDataSource                dataSource;
   private final           long                           upperSizeLimit;
   private final           long                           inSize;
@@ -41,13 +34,14 @@ public final class InMemoryTranscoder implements Closeable {
   private final           long                           fileSizeEstimate;
   private final @Nullable TranscoderOptions              options;
 
-  private @Nullable MemoryFileDescriptor memoryFile;
-
   /**
    * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
    */
-  public InMemoryTranscoder(@NonNull Context context, @NonNull MediaDataSource dataSource, @Nullable TranscoderOptions options, long upperSizeLimit) throws IOException, VideoSourceException {
-    this.context    = context;
+  public StreamingTranscoder(@NonNull MediaDataSource dataSource,
+                             @Nullable TranscoderOptions options,
+                             long upperSizeLimit)
+      throws IOException, VideoSourceException
+  {
     this.dataSource = dataSource;
     this.options    = options;
 
@@ -74,12 +68,11 @@ public final class InMemoryTranscoder implements Closeable {
     this.memoryFileEstimate = (long) (fileSizeEstimate * 1.1);
   }
 
-  public @NonNull MediaStream transcode(@NonNull Progress progress,
-                                        @Nullable TranscoderCancelationSignal cancelationSignal)
-      throws IOException, EncodingException, VideoSizeException
+  public void transcode(@NonNull Progress progress,
+                        @NonNull OutputStream stream,
+                        @Nullable TranscoderCancelationSignal cancelationSignal)
+      throws IOException, EncodingException
   {
-    if (memoryFile != null) throw new AssertionError("Not expecting to reuse transcoder");
-
     float durationSec = duration / 1000f;
 
     NumberFormat numberFormat = NumberFormat.getInstance(Locale.US);
@@ -107,17 +100,13 @@ public final class InMemoryTranscoder implements Closeable {
       throw new VideoSizeException("Size constraints could not be met!");
     }
 
-    memoryFile = MemoryFileDescriptor.newMemoryFileDescriptor(context,
-                                                              "TRANSCODE",
-                                                              memoryFileEstimate);
     final long startTime = System.currentTimeMillis();
 
-    final FileDescriptor memoryFileFileDescriptor = memoryFile.getFileDescriptor();
-
-    final MediaConverter converter = new MediaConverter();
+    final MediaConverter          converter               = new MediaConverter();
+    final LimitedSizeOutputStream limitedSizeOutputStream = new LimitedSizeOutputStream(stream, upperSizeLimit);
 
     converter.setInput(new MediaInput.MediaDataSourceMediaInput(dataSource));
-    converter.setOutput(memoryFileFileDescriptor);
+    converter.setOutput(limitedSizeOutputStream);
     converter.setVideoResolution(targetQuality.getOutputResolution());
     converter.setVideoBitrate(targetQuality.getTargetVideoBitRate());
     converter.setAudioBitrate(targetQuality.getTargetAudioBitRate());
@@ -138,8 +127,7 @@ public final class InMemoryTranscoder implements Closeable {
 
     converter.convert();
 
-    // output details of the transcoding
-    long  outSize           = memoryFile.size();
+    long  outSize           = limitedSizeOutputStream.written;
     float encodeDurationSec = (System.currentTimeMillis() - startTime) / 1000f;
 
     Log.i(TAG, String.format(Locale.US,
@@ -162,20 +150,11 @@ public final class InMemoryTranscoder implements Closeable {
       throw new VideoSizeException("Size constraints could not be met!");
     }
 
-    memoryFile.seek(0);
-
-    return new MediaStream(new FileInputStream(memoryFileFileDescriptor), MimeTypes.VIDEO_MP4, 0, 0);
+    stream.flush();
   }
 
   public boolean isTranscodeRequired() {
     return transcodeRequired;
-  }
-
-  @Override
-  public void close() throws IOException {
-    if (memoryFile != null) {
-      memoryFile.close();
-    }
   }
 
   private static long getDuration(MediaMetadataRetriever mediaMetadataRetriever) throws VideoSourceException {
@@ -201,5 +180,35 @@ public final class InMemoryTranscoder implements Closeable {
 
   public interface Progress {
     void onProgress(int percent);
+  }
+
+  private static class LimitedSizeOutputStream extends FilterOutputStream {
+
+    private final long sizeLimit;
+    private       long written;
+
+    LimitedSizeOutputStream(@NonNull OutputStream inner, long sizeLimit) {
+      super(inner);
+      this.sizeLimit = sizeLimit;
+    }
+
+    @Override public void write(int b) throws IOException {
+      incWritten(1);
+      out.write(b);
+    }
+
+    @Override public void write(byte[] b, int off, int len) throws IOException {
+      incWritten(len);
+      out.write(b, off, len);
+    }
+
+    private void incWritten(int len) throws IOException {
+      long newWritten = written + len;
+      if (newWritten > sizeLimit) {
+        Log.w(TAG, String.format(Locale.US, "File size limit hit. Wrote %d, tried to write %d more. Limit is %d", written, len, sizeLimit));
+        throw new VideoSizeException("File size limit hit");
+      }
+      written = newWritten;
+    }
   }
 }

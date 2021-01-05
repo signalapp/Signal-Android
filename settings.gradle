@@ -4,6 +4,7 @@ include ':lintchecks'
 include ':paging'
 include ':paging-app'
 include ':core-util'
+include ':video'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')

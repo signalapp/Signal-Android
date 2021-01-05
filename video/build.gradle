@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.google.protobuf'
 apply plugin: 'witness'
 apply from: 'witness-verifications.gradle'
 
@@ -22,27 +21,16 @@ dependencyVerification {
     configuration = '(debug|release)RuntimeClasspath'
 }
 
-protobuf {
-    protoc {
-        artifact = 'com.google.protobuf:protoc:3.10.0'
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option "lite"
-                }
-            }
-        }
-    }
-}
-
 dependencies {
     lintChecks project(':lintchecks')
 
     api 'androidx.annotation:annotation:1.1.0'
 
-    implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+    implementation project(':core-util')
 
-    testImplementation 'junit:junit:4.13.1'
+    implementation 'org.mp4parser:isoparser:1.9.39'
+    implementation 'org.mp4parser:streaming:1.9.39'
+    implementation('org.mp4parser:muxer:1.9.39') {
+        exclude group: 'junit', module: 'junit'
+    }
 }

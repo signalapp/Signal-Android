@@ -1,0 +1,24 @@
+// Auto-generated, use ./gradlew calculateChecksums to regenerate
+
+dependencyVerification {
+    verify = [
+
+        ['androidx.annotation:annotation:1.1.0',
+         'd38d63edb30f1467818d50aaf05f8a692dea8b31392a049bfa991b159ad5b692'],
+
+        ['com.google.protobuf:protobuf-javalite:3.10.0',
+         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+
+        ['org.mp4parser:isoparser:1.9.39',
+         'a3a7172648f1ac4b2a369ecca2861317e472179c842a5217b08643ba0a1dfa12'],
+
+        ['org.mp4parser:muxer:1.9.39',
+         '4befe68d411cd889628b53bab211d395899a9ce893ae6766ec2f4fefec5b7835'],
+
+        ['org.mp4parser:streaming:1.9.39',
+         'da5151cfc3bf491d550fb9127bba22736f4b7416058d58a1a5fcfdfa3673876d'],
+
+        ['org.slf4j:slf4j-api:1.7.24',
+         'baf3c7fe15fefeaf9e5b000d94547379dc48370f22a8797e239c127e7d7756ec'],
+    ]
+}
