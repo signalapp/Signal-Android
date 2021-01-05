@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.backup;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -126,7 +127,12 @@ public class BackupDialog {
                                      Intent.FLAG_GRANT_WRITE_URI_PERMISSION       |
                                      Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-                     fragment.startActivityForResult(intent, requestCode);
+                    try {
+                       fragment.startActivityForResult(intent, requestCode);
+                     } catch (ActivityNotFoundException e) {
+                       Toast.makeText(fragment.requireContext(), R.string.BackupDialog_no_file_picker_available, Toast.LENGTH_LONG)
+                            .show();
+                     }
 
                      dialog.dismiss();
                    }))
