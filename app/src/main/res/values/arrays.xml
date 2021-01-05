@@ -329,7 +329,8 @@
     </string-array>
 
     <string-array name="pref_notification_priority_entries">
-        <!-- Use 'Silent' for NotificationManager#IMPORTANCE_LOW -->
+        <!-- Use 'Silent' for NotificationManager#IMPORTANCE_LOW and IMPORTANCE_MIN-->
+        <item>@string/preferences__silent</item>
         <item>@string/preferences__silent</item>
         <item>@string/arrays__default</item>
         <item>@string/arrays__high</item>
@@ -337,6 +338,7 @@
     </string-array>
 
     <string-array name="pref_notification_priority_values">
+        <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
