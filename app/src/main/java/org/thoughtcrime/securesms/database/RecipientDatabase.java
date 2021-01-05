@@ -10,11 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
+import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import net.sqlcipher.database.SQLiteConstraintException;
 
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
+import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
@@ -25,6 +28,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileKeyCredentialColumnData;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
@@ -1257,9 +1261,9 @@ public class RecipientDatabase extends Database {
     String  storageKeyRaw              = CursorUtil.requireString(cursor, STORAGE_SERVICE_ID);
     int     mentionSettingId           = CursorUtil.requireInt(cursor, MENTION_SETTING);
 
-    MaterialColor color;
-    byte[]        profileKey           = null;
-    byte[]        profileKeyCredential = null;
+    MaterialColor        color;
+    byte[]               profileKey           = null;
+    ProfileKeyCredential profileKeyCredential = null;
 
     try {
       color = serializedColor == null ? null : MaterialColor.fromSerialized(serializedColor);
@@ -1278,10 +1282,17 @@ public class RecipientDatabase extends Database {
 
       if (profileKeyCredentialString != null) {
         try {
-          profileKeyCredential = Base64.decode(profileKeyCredentialString);
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          profileKeyCredential = null;
+          byte[] columnDataBytes = Base64.decode(profileKeyCredentialString);
+
+          ProfileKeyCredentialColumnData columnData = ProfileKeyCredentialColumnData.parseFrom(columnDataBytes);
+
+          if (Arrays.equals(columnData.getProfileKey().toByteArray(), profileKey)) {
+            profileKeyCredential = new ProfileKeyCredential(columnData.getProfileKeyCredential().toByteArray());
+          } else {
+            Log.i(TAG, "Out of date profile key credential data ignored on read");
+          }
+        } catch (InvalidInputException | IOException e) {
+          Log.w(TAG, "Profile key credential column data could not be read", e);
         }
       }
     }
@@ -1581,23 +1592,30 @@ public class RecipientDatabase extends Database {
   /**
    * Updates the profile key credential as long as the profile key matches.
    */
-  public void setProfileKeyCredential(@NonNull RecipientId id,
-                                      @NonNull ProfileKey profileKey,
-                                      @NonNull ProfileKeyCredential profileKeyCredential)
+  public boolean setProfileKeyCredential(@NonNull RecipientId id,
+                                         @NonNull ProfileKey profileKey,
+                                         @NonNull ProfileKeyCredential profileKeyCredential)
   {
     String        selection = ID + " = ? AND " + PROFILE_KEY + " = ?";
     String[]      args      = new String[]{id.serialize(), Base64.encodeBytes(profileKey.serialize())};
     ContentValues values    = new ContentValues(1);
 
-    values.put(PROFILE_KEY_CREDENTIAL, Base64.encodeBytes(profileKeyCredential.serialize()));
+    ProfileKeyCredentialColumnData columnData = ProfileKeyCredentialColumnData.newBuilder()
+                                                                              .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
+                                                                              .setProfileKeyCredential(ByteString.copyFrom(profileKeyCredential.serialize()))
+                                                                              .build();
+
+    values.put(PROFILE_KEY_CREDENTIAL, Base64.encodeBytes(columnData.toByteArray()));
 
     SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
-    if (update(updateQuery, values)) {
-      // TODO [greyson] If we sync this in future, mark dirty
-      //markDirty(id, DirtyState.UPDATE);
+    boolean updated = update(updateQuery, values);
+
+    if (updated) {
       Recipient.live(id).refresh();
     }
+
+    return updated;
   }
 
   private void clearProfileKeyCredential(@NonNull RecipientId id) {
@@ -2596,7 +2614,7 @@ public class RecipientDatabase extends Database {
 
   private static void updateProfileValuesForMerge(@NonNull ContentValues values, @NonNull RecipientSettings settings) {
     values.put(PROFILE_KEY, settings.getProfileKey() != null ? Base64.encodeBytes(settings.getProfileKey()) : null);
-    values.put(PROFILE_KEY_CREDENTIAL, settings.getProfileKeyCredential() != null ? Base64.encodeBytes(settings.getProfileKeyCredential()) : null);
+    values.putNull(PROFILE_KEY_CREDENTIAL);
     values.put(SIGNAL_PROFILE_AVATAR, settings.getProfileAvatar());
     values.put(PROFILE_GIVEN_NAME, settings.getProfileName().getGivenName());
     values.put(PROFILE_FAMILY_NAME, settings.getProfileName().getFamilyName());
@@ -2718,7 +2736,7 @@ public class RecipientDatabase extends Database {
     private final int                             expireMessages;
     private final RegisteredState                 registered;
     private final byte[]                          profileKey;
-    private final byte[]                          profileKeyCredential;
+    private final ProfileKeyCredential            profileKeyCredential;
     private final String                          systemDisplayName;
     private final String                          systemContactPhoto;
     private final String                          systemPhoneLabel;
@@ -2757,7 +2775,7 @@ public class RecipientDatabase extends Database {
                       int expireMessages,
                       @NonNull  RegisteredState registered,
                       @Nullable byte[] profileKey,
-                      @Nullable byte[] profileKeyCredential,
+                      @Nullable ProfileKeyCredential profileKeyCredential,
                       @Nullable String systemDisplayName,
                       @Nullable String systemContactPhoto,
                       @Nullable String systemPhoneLabel,
@@ -2892,7 +2910,7 @@ public class RecipientDatabase extends Database {
       return profileKey;
     }
 
-    public @Nullable byte[] getProfileKeyCredential() {
+    public @Nullable ProfileKeyCredential getProfileKeyCredential() {
       return profileKeyCredential;
     }
 

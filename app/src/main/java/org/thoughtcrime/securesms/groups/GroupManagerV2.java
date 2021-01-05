@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -461,12 +462,15 @@ final class GroupManagerV2 {
       if (Arrays.equals(profileKey.serialize(), selfInGroup.get().getProfileKey().toByteArray())) {
         Log.i(TAG, "Own Profile Key is already up to date in group " + groupId);
         return null;
+      } else {
+        Log.i(TAG, "Profile Key does not match that in group " + groupId);
       }
 
       GroupCandidate groupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
       if (!groupCandidate.hasProfileKeyCredential()) {
-        Log.w(TAG, "No credential available");
+        Log.w(TAG, "No credential available, repairing");
+        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
         return null;
       }
 

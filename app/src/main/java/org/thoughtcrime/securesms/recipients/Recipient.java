@@ -14,6 +14,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
@@ -84,7 +85,7 @@ public class Recipient {
   private final int                    expireMessages;
   private final RegisteredState        registered;
   private final byte[]                 profileKey;
-  private final byte[]                 profileKeyCredential;
+  private final ProfileKeyCredential   profileKeyCredential;
   private final String                 name;
   private final Uri                    systemContactPhoto;
   private final String                 customLabel;
@@ -813,7 +814,7 @@ public class Recipient {
     return profileKey;
   }
 
-  public @Nullable byte[] getProfileKeyCredential() {
+  public @Nullable ProfileKeyCredential getProfileKeyCredential() {
     return profileKeyCredential;
   }
 

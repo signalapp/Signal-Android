@@ -82,10 +82,6 @@ public final class ProfileKeyUtil {
     return Optional.of(profileKeyOrThrow(profileKey));
   }
 
-  public static @NonNull Optional<ProfileKeyCredential> profileKeyCredentialOptional(@Nullable byte[] profileKey) {
-    return Optional.fromNullable(profileKeyCredentialOrNull(profileKey));
-  }
-
   public static @NonNull ProfileKey createNew() {
     try {
       return new ProfileKey(Util.getSecretBytes(32));

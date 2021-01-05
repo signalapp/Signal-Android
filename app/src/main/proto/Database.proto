@@ -77,3 +77,8 @@ message GroupCallUpdateDetails {
     repeated string inCallUuids          = 4;
              bool   isCallFull           = 5;
 }
+
+message ProfileKeyCredentialColumnData {
+    bytes profileKey           = 1;
+    bytes profileKeyCredential = 2;
+}

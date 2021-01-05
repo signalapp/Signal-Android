@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
@@ -49,7 +50,7 @@ public class RecipientDetails {
   final Optional<Integer>      defaultSubscriptionId;
   final RegisteredState        registered;
   final byte[]                 profileKey;
-  final byte[]                 profileKeyCredential;
+  final ProfileKeyCredential   profileKeyCredential;
   final String                 profileAvatar;
   final boolean                hasProfileImage;
   final boolean                profileSharing;
