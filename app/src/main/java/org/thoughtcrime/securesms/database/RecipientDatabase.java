@@ -1217,7 +1217,11 @@ public class RecipientDatabase extends Database {
   }
 
   static @NonNull RecipientSettings getRecipientSettings(@NonNull Context context, @NonNull Cursor cursor) {
-    long    id                         = CursorUtil.requireLong(cursor, ID);
+    return getRecipientSettings(context, cursor, ID);
+  }
+
+  static @NonNull RecipientSettings getRecipientSettings(@NonNull Context context, @NonNull Cursor cursor, @NonNull String idColumnName) {
+    long    id                         = CursorUtil.requireLong(cursor, idColumnName);
     UUID    uuid                       = UuidUtil.parseOrNull(CursorUtil.requireString(cursor, UUID));
     String  username                   = CursorUtil.requireString(cursor, USERNAME);
     String  e164                       = CursorUtil.requireString(cursor, PHONE);

@@ -1418,7 +1418,7 @@ public class ThreadDatabase extends Database {
 
     public ThreadRecord getCurrent() {
       RecipientId       recipientId       = RecipientId.from(CursorUtil.requireLong(cursor, ThreadDatabase.RECIPIENT_ID));
-      RecipientSettings recipientSettings = RecipientDatabase.getRecipientSettings(context, cursor);
+      RecipientSettings recipientSettings = RecipientDatabase.getRecipientSettings(context, cursor, ThreadDatabase.RECIPIENT_ID);
 
       Recipient recipient;
 
