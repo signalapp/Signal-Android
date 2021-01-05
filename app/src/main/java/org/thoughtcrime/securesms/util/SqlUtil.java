@@ -27,6 +27,16 @@ public final class SqlUtil {
     }
   }
 
+  public static boolean isEmpty(@NonNull SQLiteDatabase db, @NonNull String table) {
+    try (Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + table, null)) {
+      if (cursor.moveToFirst()) {
+        return cursor.getInt(0) == 0;
+      } else {
+        return true;
+      }
+    }
+  }
+
   public static boolean columnExists(@NonNull SQLiteDatabase db, @NonNull String table, @NonNull String column) {
     try (Cursor cursor = db.rawQuery("PRAGMA table_info(" + table + ")", null)) {
       int nameColumnIndex = cursor.getColumnIndexOrThrow("name");

@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RemappedRecordsDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
@@ -76,7 +77,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-public class SQLCipherOpenHelper extends SQLiteOpenHelper {
+public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatabase {
 
   @SuppressWarnings("unused")
   private static final String TAG = SQLCipherOpenHelper.class.getSimpleName();
@@ -208,7 +209,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(SessionDatabase.CREATE_TABLE);
     db.execSQL(StickerDatabase.CREATE_TABLE);
     db.execSQL(StorageKeyDatabase.CREATE_TABLE);
-    db.execSQL(KeyValueDatabase.CREATE_TABLE);
     db.execSQL(MegaphoneDatabase.CREATE_TABLE);
     db.execSQL(MentionDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
@@ -1262,6 +1262,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
   public org.thoughtcrime.securesms.database.SQLiteDatabase getWritableDatabase() {
     return new org.thoughtcrime.securesms.database.SQLiteDatabase(getWritableDatabase(databaseSecret.asString()));
+  }
+
+  @Override
+  public @NonNull SQLiteDatabase getSqlCipherDatabase() {
+    return getWritableDatabase().getSqlCipherDatabase();
   }
 
   public void markCurrent(SQLiteDatabase db) {

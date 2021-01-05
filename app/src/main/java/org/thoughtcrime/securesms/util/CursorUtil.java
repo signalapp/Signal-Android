@@ -18,6 +18,10 @@ public final class CursorUtil {
     return cursor.getInt(cursor.getColumnIndexOrThrow(column));
   }
 
+  public static float requireFloat(@NonNull Cursor cursor, @NonNull String column) {
+    return cursor.getFloat(cursor.getColumnIndexOrThrow(column));
+  }
+
   public static long requireLong(@NonNull Cursor cursor, @NonNull String column) {
     return cursor.getLong(cursor.getColumnIndexOrThrow(column));
   }
