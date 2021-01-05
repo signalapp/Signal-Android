@@ -329,15 +329,18 @@
     </string-array>
 
     <string-array name="pref_notification_priority_entries">
+        <!-- Use 'Silent' for NotificationManager#IMPORTANCE_LOW -->
+        <item>@string/preferences__silent</item>
         <item>@string/arrays__default</item>
         <item>@string/arrays__high</item>
         <item>@string/arrays__max</item>
     </string-array>
 
     <string-array name="pref_notification_priority_values">
-        <item>0</item>
-        <item>1</item>
         <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="MediaOverviewActivity_Sort_by">

@@ -309,6 +309,17 @@ public class NotificationChannels {
   }
 
   /**
+   * @return The user specified importance e.g. NotificationManager#IMPORTANCE_LOW for the default
+   * message channel. Returns -1 if channels are not supported.
+   */
+  public static synchronized int getChannelImportance(@NonNull Context context) {
+    if (!supported()) {
+      return -1;
+    }
+    return ServiceUtil.getNotificationManager(context).getNotificationChannel(getMessagesChannel(context)).getImportance();
+  }
+
+  /**
    * @return The vibrate settings for the default message channel.
    */
   public static synchronized boolean getMessageVibrate(@NonNull Context context) {

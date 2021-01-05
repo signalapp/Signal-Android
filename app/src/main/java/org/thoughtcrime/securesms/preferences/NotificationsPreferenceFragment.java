@@ -99,18 +99,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF));
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF));
 
-    if (NotificationChannels.supported()) {
-      this.findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF)
-          .setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-            intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getMessagesChannel(getContext()));
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, getContext().getPackageName());
-            startActivity(intent);
-            return true;
-          });
-    } else {
-      initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
-    }
+    initializePrioritySummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
 
     initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
     initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
@@ -127,6 +116,8 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
   public void onResume() {
     super.onResume();
     ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__notifications);
+    /* Always check to see if the NotificationChannel priority has been updated */
+    initializePrioritySummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
   }
 
   @Override
@@ -196,6 +187,22 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
 
   private void initializeCallVibrateSummary(SwitchPreferenceCompat pref) {
     pref.setChecked(TextSecurePreferences.isCallNotificationVibrateEnabled(getContext()));
+  }
+
+  private void initializePrioritySummary(ListPreference pref) {
+    if (NotificationChannels.supported()) {
+      pref.setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+                intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getMessagesChannel(getContext()));
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, getContext().getPackageName());
+                startActivity(intent);
+                return true;
+              });
+      pref.setValue(String.valueOf(NotificationChannels.getChannelImportance(getContext())));
+      pref.setSummary(pref.getEntry());
+    } else {
+      initializeListSummary(pref);
+    }
   }
 
   public static CharSequence getSummary(Context context) {
