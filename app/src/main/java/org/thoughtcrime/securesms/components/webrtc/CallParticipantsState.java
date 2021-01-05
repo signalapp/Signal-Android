@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.ComparatorCompat;
+import com.annimon.stream.OptionalLong;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
@@ -35,7 +36,7 @@ public final class CallParticipantsState {
                                                                                         false,
                                                                                         false,
                                                                                         false,
-                                                                                        0);
+                                                                                        OptionalLong.empty());
 
   private final WebRtcViewModel.State          callState;
   private final WebRtcViewModel.GroupCallState groupCallState;
@@ -46,7 +47,7 @@ public final class CallParticipantsState {
   private final boolean                        isInPipMode;
   private final boolean                        showVideoForOutgoing;
   private final boolean                        isViewingFocusedParticipant;
-  private final long                           remoteDevicesCount;
+  private final OptionalLong                   remoteDevicesCount;
 
   public CallParticipantsState(@NonNull WebRtcViewModel.State callState,
                                @NonNull WebRtcViewModel.GroupCallState groupCallState,
@@ -57,7 +58,7 @@ public final class CallParticipantsState {
                                boolean isInPipMode,
                                boolean showVideoForOutgoing,
                                boolean isViewingFocusedParticipant,
-                               long remoteDevicesCount)
+                               OptionalLong remoteDevicesCount)
   {
     this.callState                   = callState;
     this.groupCallState              = groupCallState;
@@ -158,8 +159,15 @@ public final class CallParticipantsState {
     return Stream.of(getAllRemoteParticipants()).anyMatch(p -> p.getVideoSink().needsNewRequestingSize());
   }
 
-  public long getRemoteDevicesCount() {
+  public @NonNull OptionalLong getRemoteDevicesCount() {
     return remoteDevicesCount;
+  }
+
+  public @NonNull OptionalLong getParticipantCount() {
+    boolean includeSelf = groupCallState == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
+
+    return remoteDevicesCount.map(l -> l + (includeSelf ? 1L : 0L))
+                             .or(() -> includeSelf ? OptionalLong.of(1L) : OptionalLong.empty());
   }
 
   public static @NonNull CallParticipantsState update(@NonNull CallParticipantsState oldState,

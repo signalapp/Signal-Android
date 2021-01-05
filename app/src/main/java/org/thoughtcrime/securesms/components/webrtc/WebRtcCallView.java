@@ -28,6 +28,7 @@ import androidx.transition.TransitionSet;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.annimon.stream.OptionalLong;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
@@ -262,16 +263,16 @@ public class WebRtcCallView extends FrameLayout {
       pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode()));
     }
 
-    if ((state.getGroupCallState().isNotIdle() && state.getRemoteDevicesCount() > 0) || state.getGroupCallState().isConnected()) {
+    if ((state.getGroupCallState().isNotIdle() && state.getRemoteDevicesCount().orElse(0) > 0) || state.getGroupCallState().isConnected()) {
       recipientName.setText(state.getRemoteParticipantsDescription(getContext()));
     } else if (state.getGroupCallState().isNotIdle()) {
       recipientName.setText(getContext().getString(R.string.WebRtcCallView__s_group_call, Recipient.resolved(recipientId).getDisplayName(getContext())));
     }
 
     if (state.getGroupCallState().isNotIdle() && participantCount != null) {
-      boolean includeSelf = state.getGroupCallState() == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
-
-      participantCount.setText(String.valueOf(state.getRemoteDevicesCount() + (includeSelf ? 1 : 0)));
+      participantCount.setText(state.getParticipantCount()
+                                    .mapToObj(String::valueOf).orElse("\u2014"));
+      participantCount.setEnabled(state.getParticipantCount().isPresent());
     }
 
     pagerAdapter.submitList(pages);

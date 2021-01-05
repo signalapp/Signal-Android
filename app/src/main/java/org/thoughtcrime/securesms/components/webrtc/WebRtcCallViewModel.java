@@ -170,7 +170,7 @@ public class WebRtcCallViewModel extends ViewModel {
                          webRtcViewModel.isBluetoothAvailable(),
                          Util.hasItems(webRtcViewModel.getRemoteParticipants()),
                          repository.getAudioOutput(),
-                         webRtcViewModel.getRemoteDevicesCount(),
+                         webRtcViewModel.getRemoteDevicesCount().orElse(0),
                          webRtcViewModel.getParticipantLimit());
 
     if (webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED && callConnectedTime == -1) {
@@ -274,9 +274,9 @@ public class WebRtcCallViewModel extends ViewModel {
   }
 
   private boolean shouldShowSpeakerHint(@NonNull CallParticipantsState state) {
-    return !state.isInPipMode()                    &&
-           state.getRemoteDevicesCount() > 1       &&
-           state.getGroupCallState().isConnected() &&
+    return !state.isInPipMode()                        &&
+           state.getRemoteDevicesCount().orElse(0) > 1 &&
+           state.getGroupCallState().isConnected()     &&
            !SignalStore.tooltips().hasSeenGroupCallSpeakerView();
   }
 

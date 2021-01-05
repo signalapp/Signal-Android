@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.service.webrtc.state;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.OptionalLong;
+
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -258,7 +260,7 @@ public class WebRtcServiceStateBuilder {
     }
 
     public @NonNull CallInfoStateBuilder remoteDevicesCount(long remoteDevicesCount) {
-      toBuild.remoteDevicesCount = remoteDevicesCount;
+      toBuild.remoteDevicesCount = OptionalLong.of(remoteDevicesCount);
       return this;
     }
 
