@@ -1436,7 +1436,7 @@ public class ThreadDatabase extends Database {
         }
       } else {
         RecipientDetails details = RecipientDetails.forIndividual(context, recipientSettings);
-        recipient = new Recipient(recipientId, details, false);
+        recipient = new Recipient(recipientId, details, true);
       }
 
       int readReceiptCount = TextSecurePreferences.isReadReceiptsEnabled(context) ? cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.READ_RECEIPT_COUNT))

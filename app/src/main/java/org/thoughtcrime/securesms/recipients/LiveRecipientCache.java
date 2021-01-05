@@ -160,8 +160,7 @@ public final class LiveRecipientCache {
       }
 
       Log.d(TAG, "Warming up " + recipients.size() + " recipients.");
-      Collections.reverse(recipients);
-      Stream.of(recipients).map(Recipient::getId).forEach(this::getLive);
+      addToCache(recipients);
     });
   }
 
