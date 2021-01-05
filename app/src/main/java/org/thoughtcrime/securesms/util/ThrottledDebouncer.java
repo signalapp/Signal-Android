@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
 import androidx.annotation.MainThread;
@@ -51,6 +52,10 @@ public class ThrottledDebouncer {
   }
 
   private static class OverflowHandler extends Handler {
+
+    public OverflowHandler() {
+      super(Looper.getMainLooper());
+    }
 
     private Runnable runnable;
 

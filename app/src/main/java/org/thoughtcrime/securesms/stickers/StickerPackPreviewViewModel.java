@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.stickers;
 
 import android.app.Application;
 import android.database.ContentObserver;
-import android.os.Handler;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -34,7 +33,7 @@ final class StickerPackPreviewViewModel extends ViewModel {
     this.previewRepository    = previewRepository;
     this.managementRepository = managementRepository;
     this.stickerManifest      = new MutableLiveData<>();
-    this.packObserver         = new ContentObserver(new Handler()) {
+    this.packObserver         = new ContentObserver(null) {
       @Override
       public void onChange(boolean selfChange) {
         if (!TextUtils.isEmpty(packId) && !TextUtils.isEmpty(packKey)) {

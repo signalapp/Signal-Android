@@ -22,6 +22,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
 import org.signal.core.util.logging.Log;
@@ -141,7 +142,7 @@ public final class AccelerometerListener {
         }
     };
 
-    Handler mHandler = new Handler() {
+    Handler mHandler = new Handler(Looper.getMainLooper()) {
         public void handleMessage(Message msg) {
             switch (msg.what) {
             case ORIENTATION_CHANGED:

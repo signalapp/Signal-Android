@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.stickers;
 
 import android.app.Application;
 import android.database.ContentObserver;
-import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -27,7 +26,7 @@ final class StickerManagementViewModel extends ViewModel {
     this.application = application;
     this.repository  = repository;
     this.packs       = new MutableLiveData<>();
-    this.observer    = new ContentObserver(new Handler()) {
+    this.observer    = new ContentObserver(null) {
       @Override
       public void onChange(boolean selfChange) {
         repository.deleteOrphanedStickerPacks();
