@@ -60,8 +60,8 @@ public class TextSecureSessionStore implements SessionStore {
         SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(recipientId, address.getDeviceId());
 
         return sessionRecord != null &&
-               sessionRecord.getSessionState().hasSenderChain() &&
-               sessionRecord.getSessionState().getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
+               sessionRecord.hasSenderChain() &&
+               sessionRecord.getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
       } else {
         return false;
       }
