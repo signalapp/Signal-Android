@@ -1,14 +1,10 @@
 package org.session.libsession.messaging.jobs
 
-import org.greenrobot.eventbus.EventBus
-import org.session.libsession.events.AttachmentProgressEvent
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
-import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachment
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
-import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import java.io.File
 import java.io.FileInputStream
 
@@ -33,7 +29,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
 
     override fun execute() {
         val messageDataProvider = MessagingConfiguration.shared.messageDataProvider
-        val attachmentPointer = messageDataProvider.getAttachmentPointer(attachmentID) ?: return handleFailure(Error.NoAttachment)
+        val attachmentStream = messageDataProvider.getAttachmentStream(attachmentID) ?: return handleFailure(Error.NoAttachment)
         messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.tsIncomingMessageID)
         val tempFile = createTempFile()
         val handleFailure: (java.lang.Exception) -> Unit = { exception ->
@@ -51,18 +47,20 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
             }
         }
         try {
-            //TODO find how to implement a functional interface in kotlin + use it here & on AttachmentUploadJob (see TODO in DatabaseAttachmentProvider.kt on app side)
-            val listener = SessionServiceAttachment.ProgressListener { override fun onAttachmentProgress(total: Long, progress: Long) { EventBus.getDefault().postSticky(AttachmentProgressEvent(attachmentPointer, total, progress)) } }
-            FileServerAPI.shared.downloadFile(tempFile, attachmentPointer.url, MAX_ATTACHMENT_SIZE, listener)
+            FileServerAPI.shared.downloadFile(tempFile, attachmentStream.url, MAX_ATTACHMENT_SIZE, attachmentStream.listener)
         } catch (e: Exception) {
             return handleFailure(e)
         }
 
+        // DECRYPTION
+
         // Assume we're retrieving an attachment for an open group server if the digest is not set
-        var stream = if (!attachmentPointer.digest.isPresent) FileInputStream(tempFile)
-            else AttachmentCipherInputStream.createForAttachment(tempFile, attachmentPointer.size.or(0).toLong(), attachmentPointer.key?.toByteArray(), attachmentPointer.digest.get())
+        var stream = if (!attachmentStream.digest.isPresent || attachmentStream.key == null) FileInputStream(tempFile)
+            else AttachmentCipherInputStream.createForAttachment(tempFile, attachmentStream.length.or(0).toLong(), attachmentStream.key?.toByteArray(), attachmentStream?.digest.get())
 
         messageDataProvider.insertAttachment(tsIncomingMessageID, attachmentID, stream)
+
+        tempFile.delete()
 
     }
 

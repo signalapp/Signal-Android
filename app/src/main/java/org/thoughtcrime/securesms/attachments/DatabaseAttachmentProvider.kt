@@ -2,14 +2,18 @@ package org.thoughtcrime.securesms.attachments
 
 import android.content.Context
 import com.google.protobuf.ByteString
+import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
+import org.session.libsession.events.AttachmentProgressEvent
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
 import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -58,7 +62,9 @@ fun DatabaseAttachment.toAttachmentPointer(): SessionServiceAttachmentPointer {
 
 fun DatabaseAttachment.toAttachmentStream(context: Context): SessionServiceAttachmentStream {
     val stream = PartAuthority.getAttachmentStream(context, this.dataUri!!)
-    var attachmentStream = SessionServiceAttachmentStream(stream, this.contentType, this.size, Optional.fromNullable(this.fileName), this.isVoiceNote, Optional.absent(), this.width, this.height, Optional.fromNullable(this.caption), null)
+    val listener = SignalServiceAttachment.ProgressListener { total: Long, progress: Long -> EventBus.getDefault().postSticky(PartProgressEvent(this, total, progress))}
+
+    var attachmentStream = SessionServiceAttachmentStream(stream, this.contentType, this.size, Optional.fromNullable(this.fileName), this.isVoiceNote, Optional.absent(), this.width, this.height, Optional.fromNullable(this.caption), listener)
     attachmentStream.attachmentId = this.attachmentId.rowId
     attachmentStream.isAudio = MediaUtil.isAudio(this)
     attachmentStream.isGif = MediaUtil.isGif(this)
@@ -66,11 +72,9 @@ fun DatabaseAttachment.toAttachmentStream(context: Context): SessionServiceAttac
     attachmentStream.isImage = MediaUtil.isImage(this)
 
     attachmentStream.key = ByteString.copyFrom(this.key?.toByteArray())
-    attachmentStream.digest = this.digest
+    attachmentStream.digest = Optional.fromNullable(this.digest)
 
     attachmentStream.url = this.url
-
-    //TODO attachmentStream.listener
 
     return attachmentStream
 }

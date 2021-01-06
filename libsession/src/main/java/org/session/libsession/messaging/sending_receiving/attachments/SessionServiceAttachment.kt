@@ -92,39 +92,11 @@ abstract class SessionServiceAttachment protected constructor(val contentType: S
         }
     }
 
-    /**
-     * An interface to receive progress information on upload/download of
-     * an attachment.
-     */
-    /*interface ProgressListener {
-        /**
-         * Called on a progress change event.
-         *
-         * @param total The total amount to transmit/receive in bytes.
-         * @param progress The amount that has been transmitted/received in bytes thus far
-         */
-        fun onAttachmentProgress(total: Long, progress: Long)
-    }*/
-
     companion object {
         @JvmStatic
         fun newStreamBuilder(): Builder {
             return Builder()
         }
-    }
-
-    /**
-     * An interface to receive progress information on upload/download of
-     * an attachment.
-     */
-    interface ProgressListener {
-        /**
-         * Called on a progress change event.
-         *
-         * @param total The total amount to transmit/receive in bytes.
-         * @param progress The amount that has been transmitted/received in bytes thus far
-         */
-        fun onAttachmentProgress(total: Long, progress: Long)
     }
 }
 

@@ -185,7 +185,7 @@ open class DotNetAPI {
     /**
      * Blocks the calling thread.
      */
-    fun downloadFile(destination: File, url: String, maxSize: Int, listener: SessionServiceAttachment.ProgressListener?) {
+    fun downloadFile(destination: File, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
         val outputStream = FileOutputStream(destination) // Throws
         var remainingAttempts = 4
         var exception: Exception? = null
@@ -205,7 +205,7 @@ open class DotNetAPI {
     /**
      * Blocks the calling thread.
      */
-    fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SessionServiceAttachment.ProgressListener?) {
+    fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
         // We need to throw a PushNetworkException or NonSuccessfulResponseCodeException
         // because the underlying Signal logic requires these to work correctly
         val oldPrefixedHost = "https://" + HttpUrl.get(url).host()
