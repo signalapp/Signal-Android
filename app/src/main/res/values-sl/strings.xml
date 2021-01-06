@@ -385,7 +385,7 @@
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Obnovite svoja sporočila in multimedijske datoteke, shranjene na lokalni varnostni kopiji. Če tega ne boste storili zdaj, kasneje ne bo več mogoče.</string>
   <string name="ChooseBackupFragment__icon_content_description">Obnovi iz ikone varnostne kopije</string>
   <string name="ChooseBackupFragment__choose_backup">Izberi varnostno kopijo</string>
-  <string name="ChooseBackupFragment__learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <string name="ChooseBackupFragment__learn_more">Izvedite več</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Obnovitev uspešna</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Če želite nadaljevati z varnostnim kopiranjem, izberite željeno mapo. Nove varnostne kopije bodo shranjene na to mesto.</string>
@@ -402,7 +402,7 @@
   <string name="BackupsPreferenceFragment__turn_on">Vklopi</string>
   <string name="BackupsPreferenceFragment__turn_off">Izklopi</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Za obnovo iz varnostne kopije morate najprej namestiti novo kopijo aplikacije Signal. Nato odprite aplikacijo in tapnite \"Obnovi iz varnostne kopije\", ter poiščite svojo varnostno kopijo. %1$s</string>
-  <string name="BackupsPreferenceFragment__learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <string name="BackupsPreferenceFragment__learn_more">Izvedite več</string>
   <string name="BackupsPreferenceFragment__in_progress">V teku …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d do zdaj …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Dovoljenja za dostop do zunanjega pomnilnika, ki ga aplikacija Signal potrebuje za varnostno kopiranje, je bilo trajno odvzeto. Prosimo, pojdite v sistemski meni z nastavitvami za aplikacije, izberite \"Dovoljenja\" in označite polje \"Zunanja shramba\".</string>
@@ -508,7 +508,7 @@
     <item quantity="other">%d vabil poslanih</item>
   </plurals>
   <string name="GroupManagement_invite_single_user">Uporabnika/ce “%1$s” ne morete avtomatično dodati k skupini.\n\nPoslano mu/ji je bilo vabilo in dokler ga ne potrdi, ne bo videl/a sporočil skupine.</string>
-  <string name="GroupManagement_learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <string name="GroupManagement_learn_more">Izvedite več</string>
   <string name="GroupManagement_invite_multiple_users">Teh uporabnikov/ic ne morete avtomatično dodati v skupino.\n\nPoslano jim je bilo vabilo in dokler ga ne potrdijo, ne bodo videli/e sporočil skupine.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Kaj so Nove skupine?</string>
@@ -892,7 +892,7 @@
   <!--Job-->
   <string name="Job_working_in_the_background">Delovanje v ozadju …</string>
   <!--LearnMoreTextView-->
-  <string name="LearnMoreTextView_learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <string name="LearnMoreTextView_learn_more">Izvedite več</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Sporočilo ni bilo najdeno</string>
   <string name="LongMessageActivity_message_from_s">Sporočilo uporabnika/ce %1$s</string>
@@ -1799,7 +1799,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_item_received__contact_photo_description">Fotografija stika</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Nalagam</string>
-  <string name="ConversationUpdateItem_learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <string name="ConversationUpdateItem_learn_more">Izvedite več</string>
   <string name="ConversationUpdateItem_join_call">Pridruži se klicu</string>
   <string name="ConversationUpdateItem_return_to_call">Zopet se pridruži klicu</string>
   <string name="ConversationUpdateItem_call_is_full">Klic je polno zaseden</string>
@@ -2224,7 +2224,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_communication__sealed_sender_display_indicators_description">Prikaz ikone v statusni vrstici, kadar izberete \"Podrobnosti sporočila\" za sporočila, ki so bila dostavljana z uporabo zakritega pošiljatelja.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Dovoli za vse pošiljatelje</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Vklop zakritega pošiljatelja za dohodna sporočila uporabnikov/ic, ki niso v imeniku in tistih, s katerimi ne delite svojega profila.</string>
-  <string name="preferences_communication__sealed_sender_learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Izvedite več</string>
   <string name="preferences_notifications__mentions">Omembe</string>
   <string name="preferences_notifications__notify_me">Obveščaj me</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Prejemajte obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali</string>
@@ -2480,7 +2480,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Sporočite Signalu svoje mnenje</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Da bi bil Signal najboljša aplikacije za sporočanje v vesolju, pa tudi širše, bi radi slišali vaše mnenje.</string>
-  <string name="ResearchMegaphone_learn_more">Več o funkciji zakriti pošiljatelj</string>
+  <string name="ResearchMegaphone_learn_more">Izvedite več</string>
   <string name="ResearchMegaphone_dismiss">Prekini</string>
   <string name="ResearchMegaphoneDialog_signal_research">Raziskava Signal</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Verjamemo v zasebno komunikacijo.</b></p><p>Signal vam ne sledi in ne zbira vaših podatkov. Za izboljšave aplikacije se zanašamo na vaše povratne informacije, <b>ki jih zelo cenimo.</b></p><p>Zato delamo raziskavo, da bi ugotovili, kako uporabljate aplikacijo Signal. Raziskava ne zahteva od vas nobenih podatkov, po katerih bi vas lahko prepoznali. Če pa bi radi z nami delili dodatne informacije, nam lahko tudi posredujete svoj kontakt.</p><p>Če imate nekaj minut časa in izdelano mnenje o nas, vam bomo z veseljem prisluhnili.</p>]]></string>

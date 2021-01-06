@@ -421,7 +421,7 @@
   <string name="DonateMegaphone_no_thanks">نه ،‌ ممنون</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">معرفی تماس‌های گروهی</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">برای شروع یک تماس گروهیِ رایگان و رمزگذاری شده یک گروه جدید باز کنید</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">برای شروع تماس گروهی رایگان و رمزگذاری شده یک گروه جدید باز کنید</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">بهینه‌سازی به علت ناموجود بودن خدمات Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">این دستگاه از خدمات Play پشتیبانی نمی‌کند. برای غیرفعال کردن بهینه‌سازی باتری سیستم که از دریافت پیام‌ها هنگامی که Signal غیرفعال است ممانعت می‌کند، ضربه بزنید.</string>
@@ -2394,7 +2394,7 @@
   <string name="RegistrationActivity_code_support_subject">ثبت‌نام Signal - کد تأیید برای اندروید</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
-  <string name="preferences_app_protection__see_my_phone_number">دیدن شمارهٔ تلفن من</string>
+  <string name="preferences_app_protection__see_my_phone_number">مشاهدهٔ شمارهٔ تلفن من</string>
   <string name="preferences_app_protection__find_me_by_phone_number">پیدا کردن من با شمارهٔ تلفن</string>
   <string name="PhoneNumberPrivacy_everyone">همه</string>
   <string name="PhoneNumberPrivacy_my_contacts">مخاطبین من</string>
@@ -2428,7 +2428,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">پین را تأیید کنید</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">پین قفل ثبت‌نام خود را وارد کنید</string>
   <string name="registration_lock_reminder_view__enter_pin">پین را وارد کنید</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">فعال‌سازی پین قفل ثبت‌نام که بعداً برای ثبت نام با این شمارهٔ تلفن در Signal ضروری خواهد بود.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">فعال‌سازی پین قفل ثبت‌نام که بعداً برای ثبت‌نام با این شمارهٔ تلفن در Signal ضروری خواهد بود.</string>
   <string name="preferences_app_protection__registration_lock_pin">پین قفل ثبت‌نام</string>
   <string name="preferences_app_protection__registration_lock">قفل ثبت‌نام</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">شما باید پین قفل ثبت‌نام خود را وارد کنید</string>
@@ -2557,7 +2557,7 @@
   <string name="DeleteAccountFragment__are_you_sure">آیا از پاک کردن حساب کاربری خود اطمینان دارید؟</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری Signal شما را حذف کرده و برنامه را بازنشانی می‌کند.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">حذف حساب کاربری ناموفق بود. آیا اتصال شبکه دارید؟</string>
-  <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید  آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
   <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">جستجوی کشورها</string>

@@ -626,6 +626,10 @@
     <item quantity="other">Régi típusú csoport lesz létrehozva, mivel %1$d tag a Signal egy régi verzióját használja. Új típusú csoportot csak azután fogsz tudni létrehozni, hogy ők is frissítették Signaljukat, vagy ha eltávolítod őket a felvételre kerülő tagok közül.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ez a csoport sajnos nem hozható létre, mivel \"%1$s\" tag még a Signal egy régi verzióját használja. El kell távolítanod őket mielőtt létrehozod a csoportot</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Ez a csoport nem hozható létre, mivel %1$d tag még a Signal egy régi verzióját használja. El kell távolítanod mielőtt létrehozod a csoportot</item>
+    <item quantity="other">Ez a csoport nem hozható létre, mivel %1$d tag még a Signal egy régi verzióját használja. El kell távolítanod őket mielőtt létrehozod a csoportot</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Eltűnő üzenetek</string>
   <string name="ManageGroupActivity_member_requests_and_invites">Tagsági kérések és meghívók</string>

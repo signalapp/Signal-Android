@@ -57,7 +57,7 @@
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(ചിത്രം)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ശബ്ദം)</string>
-  <string name="DraftDatabase_Draft_video_snippet">(ദൃശ്യം)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(വീഡിയോ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(സ്ഥലം)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(മറുപടി)</string>
   <!--AttachmentKeyboard-->
@@ -82,7 +82,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">തടഞ്ഞ ഉപയോക്താക്കൾ</string>
   <string name="BlockedUsersActivity__add_blocked_user">തടഞ്ഞ ഉപയോക്താവിനെ ചേർക്കുക</string>
-  <string name="BlockedUsersActivity__blocked_users_will">ബ്ലോക്ക് ചെയ്യപ്പെറ്റ ഉപയോക്താക്കൾക്ക് നിങ്ങളെ വിളിക്കാനോ മെസേജുകൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">ബ്ലോക്ക് ചെയ്യപ്പെട്ട ഉപയോക്താക്കൾക്ക് നിങ്ങളെ വിളിക്കാനോ മെസേജുകൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
   <string name="BlockedUsersActivity__no_blocked_users">തടഞ്ഞ ഉപയോക്താക്കളൊന്നുമില്ല</string>
   <string name="BlockedUsersActivity__block_user">ഉപയോക്താവിനെ തടയണോ?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\"ന് നിങ്ങളെ വിളിക്കാനോ സന്ദേശങ്ങൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
@@ -92,13 +92,13 @@
   <string name="BlockedUsersActivity__unblock">തടഞ്ഞത് മാറ്റുക</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s-നെ ബ്ലോക്ക്യും ഉപേക്ഷിക്കുകയും ചെയ്യണോ?</string>
-  <string name="BlockUnblockDialog_block_s">%1$s-നെ ബ്ലോക്ക് ചെയ്യണോ?</string>
+  <string name="BlockUnblockDialog_block_s">%1$s-നെ തടയണോ?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">ഈ ഗ്രൂപ്പിൽ നിന്ന് നിങ്ങൾക്ക് മേലിൽ സന്ദേശങ്ങളോ അപ്‌ഡേറ്റുകളോ ലഭിക്കില്ല, അംഗങ്ങൾക്ക് നിങ്ങളെ ഈ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് നിങ്ങളെ വീണ്ടും ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് നിങ്ങളെ വീണ്ടും ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിയും.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">നിങ്ങൾക്ക് പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും കഴിയും ഒപ്പം നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടും.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ബ്ലോക്ക് ചെയ്ത ആളുകൾക്ക് നിങ്ങളെ വിളിക്കാനോ സന്ദേശങ്ങൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
-  <string name="BlockUnblockDialog_unblock_s">%1$s-നെ ബ്ലോക്ക് ചെയ്തത് മാറ്റണോ?</string>
+  <string name="BlockUnblockDialog_unblock_s">%1$s-നെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="BlockUnblockDialog_block">ബ്ലോക്ക്</string>
   <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത് വിടുക</string>
@@ -114,7 +114,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ഇൻകമിംഗ് കോൾ</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">ചിത്രം സേവ് ചെയ്യാൻ കഴിഞ്ഞില്ല.</string>
+  <string name="CameraActivity_image_save_failure">ചിത്രം സംരക്ഷിക്കാൻ കഴിഞ്ഞില്ല. </string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">ഫോട്ടോയ്‌ക്കായി ടാപ്പുചെയ്യുക, വീഡിയോയ്‌ക്കായി പിടിക്കുക</string>
   <string name="CameraXFragment_capture_description">ക്യാപ്‌ചർ ചെയ്യുക</string>
@@ -127,9 +127,9 @@
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">നിങ്ങൾക്ക് പരമാവധി %d സംഭാഷണങ്ങളുമായി പങ്കിടാൻ കഴിയും.</string>
   <string name="CameraContacts_select_signal_recipients">Signal സ്വീകർത്താക്കളെ തിരഞ്ഞെടുക്കുക</string>
   <string name="CameraContacts_no_signal_contacts">Signal കോൺടാക്റ്റുകളൊന്നുമില്ല</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Signal കോൺടാക്റ്റുകളിലേക്ക് ഫോട്ടോകൾ അയയ്ക്കാൻ മാത്രമേ നിങ്ങൾക്ക് ക്യാമറ ബട്ടൺ ഉപയോഗിക്കാൻ കഴിയൂ.</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">നിങ്ങൾക്ക് Signal കോൺടാക്റ്റുകളിലേക്ക് ഫോട്ടോകൾ അയയ്ക്കാൻ മാത്രമേ ക്യാമറ ബട്ടൺ ഉപയോഗിക്കാൻ കഴിയൂ.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">നിങ്ങൾ ആരെയാണ് തിരയുന്നതെന്ന് കണ്ടെത്താൻ കഴിയുന്നില്ലേ?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Signal ൽ ചേരാൻ ഒരു കോൺടാക്റ്റിനെ ക്ഷണിക്കുക</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Signal-ൽ ചേരാൻ ഒരു കോൺടാക്റ്റിനെ ക്ഷണിക്കുക</string>
   <string name="CameraContacts__menu_search">തിരയൽ</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ഒഴിവാക്കുക</string>
@@ -158,11 +158,11 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ഈ കോൺടാക്റ്റുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ വെരിഫിക്കേഷന്‍ ചെയ്യാന്‍ നിങ്ങൾ ആഗ്രഹമുണ്ടോ.</string>
   <string name="ConfirmIdentityDialog_accept">സ്വീകരിക്കുക</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">സമീപകാല സല്ലാപങ്ങൾ</string>
+  <string name="ContactsCursorLoader_recent_chats">സമീപകാല ചാറ്റുകൾ</string>
   <string name="ContactsCursorLoader_contacts">കോൺ‌ടാക്റ്റുകൾ</string>
   <string name="ContactsCursorLoader_groups">ഗ്രൂപ്പുകൾ</string>
   <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
-  <string name="ContactsCursorLoader_username_search">യൂസേർനേമ് തിരയൽ</string>
+  <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമ തിരയൽ</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">സന്ദേശ൦ %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal കോള്‍ %s</string>
@@ -221,7 +221,7 @@
   <string name="ConversationActivity_unblock_this_contact_question">ഈ കോൺ‌ടാക്റ്റ് തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="ConversationActivity_unblock_this_group_question">ഈ ഗ്രൂപ്പ് തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">ഈ കോൺ‌ടാക്റ്റിൽ നിന്ന് നിങ്ങൾക്ക് വീണ്ടും സന്ദേശങ്ങളും കോളുകളും സ്വീകരിക്കാൻ കഴിയും.</string>
-  <string name="ConversationActivity_unblock_this_group_description">നിലവിലുള്ള അംഗങ്ങൾക്ക് നിങ്ങളെ വീണ്ടും ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിയും.</string>
+  <string name="ConversationActivity_unblock_this_group_description">നിലവിലുള്ള അംഗങ്ങൾക്ക് നിങ്ങളെ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ കഴിയും.</string>
   <string name="ConversationActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">അറ്റാച്ചുമെന്റ് നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശത്തിന്റെ വലുപ്പ പരിധി കവിയുന്നു.</string>
   <string name="ConversationActivity_quick_camera_unavailable">ക്യാമറ ലഭ്യമല്ല</string>
@@ -256,7 +256,7 @@
   <string name="ConversationActivity_delete_and_leave">ഇല്ലാതാക്കി വിടുക</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s-നെ വിളിക്കാൻ, Signal-ന് നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് ആക്സസ് ആവശ്യമാണ്</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s-നെ വിളിക്കാൻ, Signal-ന് നിങ്ങളുടെ മൈക്രോഫോണിലേക്കും ക്യാമറയിലേക്കും ആക്സസ് ആവശ്യമാണ്.</string>
-  <string name="ConversationActivity__more_options_now_in_group_settings">കൂടുതൽ ഓപ്ഷനുകൾ ഇപ്പോൾ \"ഗ്രൂപ്പ് ക്രമീകരണ\"ങ്ങളിൽ</string>
+  <string name="ConversationActivity__more_options_now_in_group_settings">കൂടുതൽ ഓപ്ഷനുകൾ ഇപ്പോൾ \"ഗ്രൂപ്പ് ക്രമീകരണങ്ങളിൽ\"</string>
   <string name="ConversationActivity_join">ചേരുക</string>
   <string name="ConversationActivity_full">പൂർണ്ണമായി</string>
   <!--ConversationAdapter-->
@@ -273,7 +273,7 @@
     <item quantity="one">ഇത് തിരഞ്ഞെടുത്ത സന്ദേശം ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
     <item quantity="other">ഇത് തിരഞ്ഞെടുത്ത എല്ലാ %1$d സന്ദേശങ്ങളും ശാശ്വതമായി ഇല്ലാതാക്കും.</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">സ്റ്റോറേജിലെക് സേവ് ചെയ്യണോ?</string>
+  <string name="ConversationFragment_save_to_sd_card">സ്റ്റോറേജിലേക്ക് സംരക്ഷിക്കണോ?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">ഈ മീഡിയയെ സ്റ്റോറേജിലെക് സേവ് ചെയുന്നത് നിങ്ങളുടെ ഉപകരണത്തിലെ മറ്റേതെങ്കിലും അപ്ലിക്കേഷനുകളിലേക്ക് ഇത് ആക്‌സസ് ചെയ്യാൻ അനുവദിക്കും.\n\nതുടരുക?</item>
     <item quantity="other">എല്ലാ %1$d മീഡിയയും സ്റ്റോറേജിലെക് സേവ് ചെയുന്നത് നിങ്ങളുടെ ഉപകരണത്തിലെ മറ്റേതൊരു അപ്ലിക്കേഷനുകളിലേക്കും അവ ആക്‌സസ് ചെയ്യാൻ അനുവദിക്കും.\n\nതുടരുക?</item>
@@ -284,15 +284,15 @@
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">സ്റ്റോറേജിലേക്ക് എഴുതാൻ കഴിയില്ല!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
-    <item quantity="one">അറ്റാച്ചുമെന്റ് സേവ് ചെയ്യുന്നു</item>
-    <item quantity="other">%1$d അറ്റാച്ചുമെന്റുകൾ സേവ് ചെയ്യുന്നു</item>
+    <item quantity="one">അറ്റാച്ചുമെന്റ് സംരക്ഷിക്കുന്നു</item>
+    <item quantity="other">%1$d അറ്റാച്ചുമെന്റുകൾ സംരക്ഷിക്കുന്നു</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">അറ്റാച്ചുമെന്റ് സ്റ്റോറേജിലെക് സേവ് ചെയ്യുന്നു</item>
-    <item quantity="other">%1$d അറ്റാച്ചുമെന്റുകൾ സ്റ്റോറേജിലെക് സേവ് ചെയ്യുന്നു</item>
+    <item quantity="one">അറ്റാച്ചുമെന്റ് സ്റ്റോറേജിൽ സംരക്ഷിക്കുന്നു…</item>
+    <item quantity="other">%1$d അറ്റാച്ചുമെന്റുകൾ സ്റ്റോറേജിൽ സംരക്ഷിക്കുന്നു…</item>
   </plurals>
   <string name="ConversationFragment_pending">ശേഷിക്കുന്നു…</string>
-  <string name="ConversationFragment_push">Data (Signal)</string>
+  <string name="ConversationFragment_push">ഡാറ്റ (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">ഇല്ലാതാക്കുന്നു</string>
@@ -311,7 +311,7 @@
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് ഒരേ പേരാണ്.</string>
   <string name="ConversationFragment__tap_to_review">അവലോകനം ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
   <string name="ConversationFragment__review_requests_carefully">അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">സിഗ്നല്‍ ഇതേ പേരിൽ മറ്റൊരു കോൺ‌ടാക്റ്റ് കണ്ടെത്തി.</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ഇതേ പേരിൽ മറ്റൊരു കോൺ‌ടാക്റ്റ് കണ്ടെത്തി.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഒരു ബ്രൌസർ ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല.</string>
   <!--ConversationListFragment-->
@@ -353,7 +353,7 @@
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ  ആദ്യാവസാന എന്‍ക്രിപ്ഷന്‍ ചെയ്തിരിക്കുന്നു. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
+  <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യണോ?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">ഒരു ലോക്കൽ ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും റിസ്റ്റോർ ചെയ്യുക. നിങ്ങൾ ഇപ്പോൾ റിസ്റ്റോർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
   <string name="ChooseBackupFragment__icon_content_description">ബാക്കപ്പ് ഐക്കണിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യുക</string>
   <string name="ChooseBackupFragment__choose_backup">ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
@@ -421,6 +421,7 @@
   <string name="DonateMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">ഗ്രൂപ്പ് കോളുകൾ അവതരിപ്പിക്കുന്നു</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ, ഒരു പുതിയ ഗ്രൂപ്പ് ചാറ്റ് തുറക്കുക</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Play Services ഇല്ലാത്തതിനാൽ ഡിവൈസ് ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ഈ ഉപകരണം Play Services പിന്തുണയ്ക്കുന്നില്ല. നിഷ്‌ക്രിയമായിരിക്കുമ്പോൾ സന്ദേശങ്ങൾ വീണ്ടെടുക്കുന്നതിൽ നിന്ന് Signal നെ തടയുന്ന സിസ്റ്റം ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കാൻ ടാപ്പുചെയ്യുക.</string>
@@ -457,7 +458,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
   <string name="ChooseNewAdminActivity_done">ചെയ്‌തു</string>
-  <string name="ChooseNewAdminActivity_you_left">നിങ്ങൾ%1$sവിട്ടു</string>
+  <string name="ChooseNewAdminActivity_you_left">നിങ്ങൾ \"%1$s\" വിട്ടു</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ഈ ഗ്രൂപ്പുമായി നിങ്ങളുടെ പ്രൊഫൈൽ പേരും ഫോട്ടോയും പങ്കിടണോ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ഈ ഗ്രൂപ്പിലെ നിലവിലുള്ളതും ഭാവിയിലുള്ളതുമായ എല്ലാ അംഗങ്ങൾക്കും നിങ്ങളുടെ പ്രൊഫൈൽ പേരും ഫോട്ടോയും ദൃശ്യമാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
@@ -569,8 +570,8 @@
   <string name="PendingMembersActivity_invites_by_other_group_members">മറ്റ് ഗ്രൂപ്പ് അംഗങ്ങളുടെ ക്ഷണങ്ങൾ</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">മറ്റ് ഗ്രൂപ്പ് അംഗങ്ങളുടെ ക്ഷണങ്ങൾ ശേഷിക്കുന്നില്ല.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">മറ്റ് ഗ്രൂപ്പ് അംഗങ്ങൾ ക്ഷണിച്ച ആളുകളുടെ വിശദാംശങ്ങൾ കാണിക്കില്ല. ക്ഷണിതാക്കൾ ചേരാൻ തിരഞ്ഞെടുക്കുകയാണെങ്കിൽ, അവരുടെ വിവരങ്ങൾ ആ സമയത്ത് ഗ്രൂപ്പുമായി പങ്കിടും. ചേരുന്നതുവരെ അവർ ഗ്രൂപ്പിൽ സന്ദേശങ്ങളൊന്നും കാണില്ല.</string>
-  <string name="PendingMembersActivity_revoke_invite">ക്ഷണം അസാധുവാക്കുക</string>
-  <string name="PendingMembersActivity_revoke_invites">ക്ഷണങ്ങൾ അസാധുവാക്കുക</string>
+  <string name="PendingMembersActivity_revoke_invite">ക്ഷണം റദ്ദാക്കുക</string>
+  <string name="PendingMembersActivity_revoke_invites">ക്ഷണങ്ങൾ റദ്ദാക്കുക</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
     <item quantity="one">ക്ഷണം അസാധുവാക്കുക</item>
     <item quantity="other">%1$d ക്ഷണങ്ങൾ അസാധുവാക്കുക</item>
@@ -583,8 +584,8 @@
   <string name="RequestingMembersFragment_pending_member_requests">തീർപ്പുകൽപ്പിക്കാത്ത അംഗത അഭ്യര്‍ത്ഥനകള്‍.</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">കാണിക്കാൻ അംഗ അഭ്യർത്ഥനകളൊന്നുമില്ല.</string>
   <string name="RequestingMembersFragment_explanation">ഈ പട്ടികയിലുള്ള ആളുകൾ ഗ്രൂപ്പ് ലിങ്ക് വഴി ഈ ഗ്രൂപ്പിൽ ചേരാൻ ശ്രമിക്കുന്നു.</string>
-  <string name="RequestingMembersFragment_added_s">\"%1$s\" ചേർത്തു</string>
-  <string name="RequestingMembersFragment_denied_s">\"%1$s\" നിരസിച്ചു</string>
+  <string name="RequestingMembersFragment_added_s">\"%1$s\"--നെ ചേർത്തു</string>
+  <string name="RequestingMembersFragment_denied_s">\"%1$s\"-നെ നിരസിച്ചു</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ചെയ്‌തു</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
@@ -636,7 +637,7 @@
   <string name="ManageGroupActivity_who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
   <string name="ManageGroupActivity_group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
-  <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് ബ്ലോക്ക് ചെയ്യുക</string>
+  <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് തടയുക</string>
   <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_leave_group">ഗ്രൂപ്പ് വിടുക</string>
   <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
@@ -685,7 +686,7 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ഈ വ്യക്തി നിങ്ങളുടെ കോണ്ടാക്ടുകളിലുണ്ട് </string>
   <string name="ManageRecipientActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="ManageRecipientActivity_chat_color">ചാറ്റ് നിറം</string>
-  <string name="ManageRecipientActivity_block">ബ്ലോക്ക്</string>
+  <string name="ManageRecipientActivity_block">തടയുക</string>
   <string name="ManageRecipientActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="ManageRecipientActivity_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
   <string name="ManageRecipientActivity_mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
@@ -775,7 +776,7 @@
   <string name="CropImageActivity_group_avatar">ഗ്രൂപ്പ് അവതാർ</string>
   <string name="CropImageActivity_profile_avatar">അവതാർ</string>
   <!--ImageEditorHud-->
-  <string name="ImageEditorHud_blur_faces">മുഖം മങ്ങിക്കുക</string>
+  <string name="ImageEditorHud_blur_faces">മുഖങ്ങൾ മങ്ങിക്കുക</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">പുതിയത്: മുഖങ്ങൾ മങ്ങിക്കുക അല്ലെങ്കിൽ മങ്ങിക്കാൻ എവിടെയെങ്കിലും വരയ്ക്കുക</string>
   <string name="ImageEditorHud_draw_anywhere_to_blur">മങ്ങിക്കാൻ എവിടെയും വരയ്‌ക്കുക</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">അധിക മുഖങ്ങളോ പ്രദേശങ്ങളോ മങ്ങിക്കാൻ വരയ്‌ക്കുക</string>
@@ -801,7 +802,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal ലേക്ക് മാറാം: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">നിങ്ങൾക്ക് പങ്കിടാൻ അപ്ലിക്കേഷനുകളൊന്നുമില്ലെന്ന് തോന്നുന്നു.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത ചാറ്റുചെയ്യാൻ ചങ്ങാതിമാരെ നിങ്ങൾ അനുവദിക്കരുത്.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">എൻക്രിപ്ഷനില്ലാതെ ചാറ്റുചെയ്യാൻ ചങ്ങാതിമാരെ നിങ്ങൾ അനുവദിക്കരുത്.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">പശ്ചാത്തലത്തിൽ പ്രവർത്തിക്കുന്നു…</string>
   <!--LearnMoreTextView-->
@@ -2013,7 +2014,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
   <string name="preferences__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കുക</string>
   <string name="preferences__support_wifi_calling">\'WiFi കോളിംഗ്\' അനുയോജ്യത മോഡ്</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">നിങ്ങളുടെ ഉപകരണം WiFi വഴി SMS/MMS ഡെലിവറി ഉപയോഗിക്കുന്നുവെങ്കിൽ പ്രവർത്തനക്ഷമമാക്കുക (നിങ്ങളുടെ ഉപകരണത്തിൽ \'WiFi കോളിംഗ്\' പ്രവർത്തനക്ഷമമാക്കിയാൽ മാത്രം പ്രവർത്തനക്ഷമമാക്കുക)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">നിങ്ങളുടെ ഉപകരണം WiFi വഴി SMS/MMS ഡെലിവറി ഉപയോഗിക്കുന്നുവെങ്കിൽ പ്രവർത്തനക്ഷമമാക്കുക (ഉപകരണത്തിൽ \'WiFi കോളിംഗ്\' പ്രാപ്‌തമാക്കിയാൽ മാത്രം ഇത് പ്രവർത്തനക്ഷമമാക്കുക)</string>
   <string name="preferences__incognito_keyboard">ഇൻകോഗ്നിറ്റോ കീബോർഡ്</string>
   <string name="preferences__read_receipts">വായന രസീതുകൾ</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">വായന രസീതുകൾ അപ്രാപ്തമാക്കിയിട്ടുണ്ടെങ്കിൽ, മറ്റുള്ളവരിൽ നിന്നുള്ള വായന രസീതുകൾ നിങ്ങൾക്ക് കാണാൻ കഴിയില്ല.</string>
@@ -2022,7 +2023,7 @@ grūpp ap‌ḍē</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">വ്യക്തിഗത പഠനം അപ്രാപ്‌തമാക്കുന്നതിന് കീബോർഡിനോട് അഭ്യർത്ഥിക്കുക</string>
   <string name="preferences_app_protection__blocked_users">തടഞ്ഞ ഉപയോക്താക്കൾ</string>
   <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
-  <string name="preferences_chats__when_using_wifi">വൈഫൈ ഉപയോഗിക്കുമ്പോൾ</string>
+  <string name="preferences_chats__when_using_wifi">Wi-Fi ഉപയോഗിക്കുമ്പോൾ</string>
   <string name="preferences_chats__when_roaming">റോമിംഗ് ചെയ്യുമ്പോൾ</string>
   <string name="preferences_chats__media_auto_download">മീഡിയ യാന്ത്രിക-ഡൗൺലോഡ്</string>
   <string name="preferences_chats__message_history">സന്ദേശ ചരിത്രം </string>
@@ -2116,7 +2117,7 @@ grūpp ap‌ḍē</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">തിരഞ്ഞെടുത്തത് അനാർക്കൈവ് ചെയ്യുക</string>
   <string name="conversation_list_batch__menu_unarchive_selected">അനാർക്കൈവ് തിരഞ്ഞെടുത്തു</string>
   <string name="conversation_list_batch__menu_mark_as_read">വായിച്ചതായി അടയാളപ്പെടുത്തുക</string>
-  <string name="conversation_list_batch__menu_mark_as_unread">വായിച്ചിട്ടില്ലാത്തതായി അടയാളപ്പെടുത്തുക</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">വായിച്ചിട്ടില്ല എന്ന് അടയാളപ്പെടുത്തുക</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ഷോർറ്റ്കറ്റ് ക്രമീകരിക്കുന്നു</string>
   <string name="conversation_list_search_description">തിരയൽ</string>
@@ -2539,11 +2540,19 @@ grūpp ap‌ḍē</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">നിങ്ങൾ (മറ്റൊരു ഉപകരണത്തിൽ)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നത്:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
   <string name="DeleteAccountFragment__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കുക</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">നിങ്ങളുടെ അക്കൗണ്ട് വിവരവും പ്രൊഫൈൽ ഫോട്ടോയും ഇല്ലാതാക്കുക</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">നിങ്ങളുടെ സന്ദേശങ്ങൾ എല്ലാം ഇല്ലാതാക്കുക</string>
   <string name="DeleteAccountFragment__no_country_code">രാജ്യ കോഡുകളൊന്നും വ്യക്തമാക്കിയിട്ടില്ല</string>
+  <string name="DeleteAccountFragment__no_number">നമ്പർ വ്യക്തമാക്കിയിട്ടില്ല</string>
+  <string name="DeleteAccountFragment__the_phone_number">നിങ്ങൾ നൽകിയ ഫോൺ നമ്പർ നിങ്ങളുടെ അക്കൗണ്ടുമായി പൊരുത്തപ്പെടുന്നില്ല.</string>
   <string name="DeleteAccountFragment__are_you_sure">നിങ്ങൾക്ക് നിങ്ങളുടെ അക്കൌണ്ട് ഡിലീറ്റ് ചെയ്യണം എന്നത് ഉറപ്പാണോ?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ഇത് നിങ്ങളുടെ Signal അക്കൗണ്ട് ഇല്ലാതാക്കുകയും അപ്ലിക്കേഷൻ പുനഃസജ്ജമാക്കുകയും ചെയ്യും. പ്രക്രിയ പൂർത്തിയായ ശേഷം അപ്ലിക്കേഷൻ അടയ്‌ക്കും. </string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കുന്നതിൽ പരാജയപ്പെട്ടു. നിങ്ങൾക്ക് ഒരു നെറ്റ്‌വർക്ക് കണക്ഷൻ ഉണ്ടോ?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">പ്രാദേശിക ഡാറ്റ നീക്കംചെയ്യാൻ പരാജയപെട്ടു. സിസ്റ്റം അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ നിങ്ങൾക്ക് ഇത് സ്വമേധയാ മായ്‌ക്കാനാകും.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">ആപ്പ് ക്രമീകരണങ്ങൾ തുറക്കുക</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">രാജ്യങ്ങൾ തിരയുക</string>
   <!--EOF-->

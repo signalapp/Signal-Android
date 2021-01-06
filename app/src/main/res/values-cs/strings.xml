@@ -449,6 +449,7 @@
   <string name="DonateMegaphone_no_thanks">Ne, děkuji</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Představujeme skupinové hovory</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Zahájit bezplatné skupinové hovory lze po otevření nové skupiny.</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimlizovat pro chybějící Google Play službu</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Klepnutím zakážete systémové optimalizace baterie, které způsobují nemožnost aplikaci Signal přijímat zprávy v době nečinnosti.</string>
@@ -716,7 +717,7 @@
   <string name="ManageGroupActivity_off">Vyp.</string>
   <string name="ManageGroupActivity_on">Zap.</string>
   <string name="ManageGroupActivity_view_all_members">Zobrazit všechny členy</string>
-  <string name="ManageGroupActivity_see_all">Vidět vše</string>
+  <string name="ManageGroupActivity_see_all">Zobrazit vše</string>
   <string name="ManageGroupActivity_none">Nic</string>
   <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d pozvaný</item>
@@ -769,7 +770,7 @@
   <string name="ManageRecipientActivity_on">Zap.</string>
   <string name="ManageRecipientActivity_add_to_a_group">Přidat do skupiny</string>
   <string name="ManageRecipientActivity_view_all_groups">Zobrazit všechny skupiny</string>
-  <string name="ManageRecipientActivity_see_all">Vidět vše</string>
+  <string name="ManageRecipientActivity_see_all">Zobrazit vše</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Žádné společné skupiny</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d společná skupina</item>
@@ -2560,7 +2561,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationActivity_code_support_subject">Registrace Signal - ověřovací kód pro Android</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
-  <string name="preferences_app_protection__see_my_phone_number">Vidět mé telefonní číslo</string>
+  <string name="preferences_app_protection__see_my_phone_number">Zobrazit mé telefonní číslo</string>
   <string name="preferences_app_protection__find_me_by_phone_number">Najít mě podle telefonního čísla</string>
   <string name="PhoneNumberPrivacy_everyone">Všichni</string>
   <string name="PhoneNumberPrivacy_my_contacts">Moje kontakty</string>

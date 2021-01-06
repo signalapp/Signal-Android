@@ -264,6 +264,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pre volanie %1$s potrebuje Signal prístup k vášmu mikrofónu a vašej kamere.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Viac nových možností v sekcii \"Nastavenia skupiny\"</string>
   <string name="ConversationActivity_join">Pridať sa</string>
+  <string name="ConversationActivity_full">Plný</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
@@ -443,6 +444,7 @@
   <string name="DocumentView_unnamed_file">Nepomenovaný súbor</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Prispieť na Signal</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal poháňajú ľudia ako ste vy. Podporte nás ešte dnes!</string>
   <string name="DonateMegaphone_donate">Prispieť</string>
   <string name="DonateMegaphone_no_thanks">Nie, ďakujem</string>
   <!--GroupCallingMegaphone-->
@@ -518,6 +520,12 @@
     <item quantity="few">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
     <item quantity="many">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
     <item quantity="other">Títo členovia musia znova prijať pozvánku do skupiny a kým ju neprijmú, nebudú dostávať skupinové správy:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Tento člen bol odstránený zo skupiny a nebude sa môcť do nej znova pridať, pokým si Signal neaktualizuje:</item>
+    <item quantity="few">Títo členovia boli odstránení zo skupiny a nebudú sa môcť do nej znovu pridať, pokým si Signal neaktualizujú:</item>
+    <item quantity="many">Títo členovia boli odstránení zo skupiny a nebudú sa môcť do nej znovu pridať, pokým si Signal neaktualizujú:</item>
+    <item quantity="other">Títo členovia boli odstránení zo skupiny a nebudú sa môcť do nej znovu pridať, pokým si Signal neaktualizujú:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Modernizovať na Novú skupinu</string>
@@ -660,6 +668,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Vytvorenie skupiny zlyhalo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Skúsiť znova neskôr.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vybrali ste kontakt, ktorý nepodporuje skupiny Signal, takže táto skupina bude MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vlastné názvy a fotky MMS skupín budú viditeľné len pre vás.</string>
   <string name="AddGroupDetailsFragment__remove">Odstrániť</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Odstrániť %1$s z tejto skupiny?</string>
@@ -682,6 +691,13 @@
     <item quantity="few">Vytvorí sa Zastaraná skupina, pretože %1$d členovia používajú starú verziu aplikácie Signal. Po tom, ako si aktualizujú Signal, s nimi budete môcť vytvoriť skupinu nového typu alebo ich pred vytvorením skupiny môžete odstrániť.</item>
     <item quantity="many">Vytvorí sa Zastaraná skupina, pretože %1$d členov používa starú verziu aplikácie Signal. Po tom, ako si aktualizujú Signal, s nimi budete môcť vytvoriť skupinu nového typu alebo ich pred vytvorením skupiny môžete odstrániť.</item>
     <item quantity="other">Vytvorí sa Zastaraná skupina, pretože %1$d členov používa starú verziu aplikácie Signal. Po tom, ako si aktualizujú Signal, s nimi budete môcť vytvoriť skupinu nového typu alebo ich pred vytvorením skupiny môžete odstrániť.</item>
+  </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Nie je možné vytvoriť túto skupinu pretože %1$s používa starú verziu aplikácie Signal. Musíte ich odstrániť pred vytvorením skupiny.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Nie je možné vytvoriť túto skupinu pretože %1$d člen používa starú verziu aplikácie Signal. Musíte ho odstrániť pred vytvorením skupiny.</item>
+    <item quantity="few">Nie je možné vytvoriť túto skupinu pretože %1$d členov používa starú verziu aplikácie Signal. Musíte ich odstrániť pred vytvorením skupiny.</item>
+    <item quantity="many">Nie je možné vytvoriť túto skupinu pretože %1$d členov používa starú verziu aplikácie Signal. Musíte ich odstrániť pred vytvorením skupiny.</item>
+    <item quantity="other">Nie je možné vytvoriť túto skupinu pretože %1$d členov používa starú verziu aplikácie Signal. Musíte ich odstrániť pred vytvorením skupiny.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Miznúce správy</string>
@@ -730,6 +746,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Toto je Zastaraná skupina. Pre prístup k novým funkciám ako @spomenutia a administrátori</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Táto Zastaraná skupina nemôže byť modernizovaná na Novú skupinu, lebo je príliš veľká. Maximálna veľkosť skupiny je %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">modernizujte túto skupinu.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Toto je nezabezpečené MMS skupina. Ak si chcete písať súkromne, pozvite svoje kontakty na Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozvať teraz</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozorni ma na Spomenutia</string>
@@ -828,6 +845,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Odkazy do skupiny budú onedlho dostupné</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Pre používanie odkazov do skupín aktualizujte Signal.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzia aplikácie Signal, ktorú používate, nepodporuje pripojenie do skupín cez odkazy. Ak sa chcete pridať do tejto skupiny cez odkaz, aktualizujte na najnovšiu verziu.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovať Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedno alebo viac pripojených zariadení používa verziu Signalu, ktorá nepodporuje odkazy do skupín. Ak sa chcete pridať do tejto skupiny, aktualizujte Signal na svojom pripojenom zariadení/iach.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Odkaz do skupiny nie je platný</string>
@@ -996,6 +1014,19 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil/a časovač miznúcich správ na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač miznúcich správ bol nastavený na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Táto skupina bola modernizovaná na Novú skupinu.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nepodarilo sa vás pridať do Novej skupiny a boli ste do nej pozvaný.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Jedného člena sa nepodarilo pridať do Novej skupiny a bol do nej pozvaný.</item>
+    <item quantity="few">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
+    <item quantity="many">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
+    <item quantity="other">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Jedného člena sa nepodarilo pridať do Novej skupiny a bol do nej pozvaný.</item>
+    <item quantity="few">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
+    <item quantity="many">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
+    <item quantity="other">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s zmenil/a svoj názov profilu na %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s zmenil/a svoj názov profilu z %2$s na %3$s.</string>
@@ -1136,13 +1167,28 @@
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil(a) skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je v skupinovom hovore · %2$s</string>
   <string name="MessageRecord_you_are_in_the_group_call_s1">Ste v skupinovom hovore · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s a %2$s sú v skupinovom hovore · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s a %3$s sú v skupinovom hovore · %4$s</string>
   <string name="MessageRecord_group_call_s">Skupinový hovor · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">%1$s zahájil(a) skupinový hovor</string>
   <string name="MessageRecord_s_is_in_the_group_call">%1$s je v skupinovom hovore</string>
   <string name="MessageRecord_you_are_in_the_group_call">Ste v skupinovom hovore</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s a %2$s sú v skupinovom hovore</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s a %3$s sú v skupinovom hovore</string>
   <string name="MessageRecord_group_call">Skupinový hovor</string>
   <string name="MessageRecord_you">Vy</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s a %3$d ďalší sú v skupinovom hovore · %4$s</item>
+    <item quantity="few">%1$s, %2$s a %3$d ďalší sú v skupinovom hovore · %4$s</item>
+    <item quantity="many">%1$s, %2$s a %3$d ďalší sú v skupinovom hovore · %4$s</item>
+    <item quantity="other">%1$s, %2$s a %3$d ďalší sú v skupinovom hovore · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s a %3$d ďalší sú v skupinovom hovore</item>
+    <item quantity="few">%1$s, %2$s a %3$d ďalší sú v skupinovom hovore</item>
+    <item quantity="many">%1$s, %2$s a %3$d ďalší sú v skupinovom hovore</item>
+    <item quantity="other">%1$s, %2$s a %3$d ďalší sú v skupinovom hovore</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Potvrdiť</string>
   <string name="MessageRequestBottomView_continue">Pokračovať</string>
@@ -1328,6 +1374,7 @@
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">Používateľ %1$s je blokovaný</string>
   <string name="CallParticipantView__more_info">Viac informácii</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Od tohto používateľa nebudete prijímať zvuk a video a ani on neprijme od vás.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Môže to byť pre to, že dotyčný používateľ nepotvrdil zmenu vášho bezpečnostného čísla, že sa vyskytol problém s jeho zariadením, alebo že vás zablokoval.</string>
@@ -1916,6 +1963,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="CreateProfileActivity_next">Ďalší</string>
   <string name="CreateProfileActivity__username">Používateľské meno</string>
   <string name="CreateProfileActivity__create_a_username">Vytvoriť používateľské meno</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vlastné názvy a fotky MMS skupín budú viditeľné len pre vás.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Upraviť názov a fotku skupiny</string>
   <string name="EditProfileFragment__group_name">Názov skupiny</string>
@@ -2658,10 +2706,16 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ReviewCard__delete">Vymazať</string>
   <string name="ReviewCard__recently_changed">Nedávno zmenil/a názov svojho profilu z %1$s na %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
-  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s sa pripojil(a)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s a %2$s sa pripojili</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s a %3$s sa pripojili</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s sa pripojil(a) k hovoru</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s a %2$s sa pripojili k hovoru</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s a %3$s sa pripojili k hovoru</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s a %3$d ďalší sa pripojili k hovoru</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s opustil(a) hovor</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s a %2$s opustili hovor</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s a %3$s opustili hovor</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s a %3$d ďalší opusili hovor  </string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vy (na inom zariadení)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na inom zariadení)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Vymazanie účtu spôsobí:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Zadajte svoje telefónne číslo</string>
@@ -2670,7 +2724,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DeleteAccountFragment__delete_all_your_messages">Vymažú sa všetky vaše správy</string>
   <string name="DeleteAccountFragment__no_country_code">Chýba kód krajiny</string>
   <string name="DeleteAccountFragment__no_number">Chýba telefónne číslo</string>
+  <string name="DeleteAccountFragment__the_phone_number">Zadané telefónne číslo sa nezhoduje s telefónnym číslom vášho účtu.</string>
   <string name="DeleteAccountFragment__are_you_sure">Naozaj chcete vymazať svoj účet?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tým sa odstráni váš účet Signal a obnoví sa aplikácia. Aplikácia sa po dokončení procesu zavrie. </string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Nepodarilo sa odstrániť účet. Máte v poriadku sieťové pripojenie?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepodarilo sa odstrániť lokálne údaje. Manuálne ich môžete vymazať v systémových nastaveniach aplikácie.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Spustiť nastavenía aplikácie</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Vyhľadať krajinu</string>

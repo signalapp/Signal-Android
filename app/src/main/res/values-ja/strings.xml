@@ -2233,10 +2233,10 @@
   <string name="ResearchMegaphone_learn_more">詳しく見る</string>
   <string name="ResearchMegaphone_dismiss">キャンセル</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signalリサーチ</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法について調査しています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">調査に参加する</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法についてアンケート調査を行っています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
+  <string name="ResearchMegaphoneDialog_take_the_survey">アンケートに参加する</string>
   <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">この調査は、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">このアンケートは、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>
@@ -2313,7 +2313,7 @@
   <string name="PhoneNumberPrivacy_my_contacts_see_description">あなたの連絡先だけが、Signal上であなたの電話番号を確認できます。</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">SignalをAndroidの画面ロックや指紋認証でロックします</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックの無操作タイムアウト</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックまでの無操作時間</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">PINを作成する</string>
   <string name="preferences_app_protection__change_your_pin">PINを変更する</string>

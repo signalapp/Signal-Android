@@ -42,9 +42,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">螢幕鎖定%1$s，註冊鎖定%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">螢幕鎖定%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主題：%1$s，語言：%2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN碼是註冊鎖定所必需的。 要停用PIN碼，請先關閉註冊鎖功能。</string>
-  <string name="ApplicationPreferencesActivity_pin_created">PIN碼已建立。</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN碼功能已停用</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN 碼是註冊鎖定所必需的。如要停用 PIN 碼，請先關閉註冊鎖定功能。</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN 碼已建立。</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN 碼已停用。</string>
   <string name="ApplicationPreferencesActivity_hide">隱藏</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">隱藏提醒?</string>
   <!--AppProtectionPreferenceFragment-->
@@ -205,7 +205,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">收件人並不是一個有效的簡訊或電子郵件地址！</string>
   <string name="ConversationActivity_message_is_empty_exclamation">訊息內容是空的！</string>
   <string name="ConversationActivity_group_members">群組成員</string>
-  <string name="ConversationActivity__tap_here_to_start_a_group_call">點按此處發起群組聊天</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">輕觸此處開始群組通話</string>
   <string name="ConversationActivity_invalid_recipient">無效的收件人！</string>
   <string name="ConversationActivity_added_to_home_screen">新增到主畫面</string>
   <string name="ConversationActivity_calls_not_supported">不支援的通話</string>
@@ -541,7 +541,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">你沒有待處理的邀請</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">被其他群組成員邀請</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">沒有其他群組成員的待處理的邀請。</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">未顯示其他群組成員邀請的成員的詳細資息。 如果被邀請者選擇加入，他們的訊息將在那時與群組共享。 除非他們加入，否則他們不會在群組中看到任何訊息。</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">未顯示其他群組成員邀請的人的詳細資訊。如果被邀請者選擇加入，其個人資訊屆時將與群組共享。他們在加入之前，不會看到群組中的任何訊息。</string>
   <string name="PendingMembersActivity_revoke_invite">撤銷邀請</string>
   <string name="PendingMembersActivity_revoke_invites">撤銷多個邀請</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -1093,7 +1093,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您目前安裝的 Google Play 服務版本無法正常運作。請重新安裝 Google Play 服務然後重試。</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">錯誤的 PIN 碼</string>
-  <string name="PinRestoreEntryFragment_skip_pin_entry">略過 PIN碼輸入嗎?</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">略過 PIN 碼輸入嗎？</string>
   <string name="PinRestoreEntryFragment_need_help">需要幫助嗎？</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN碼是你建立的%1$d+字元代碼，可以是數字或字母數字。\n\n如果你忘記了PIN碼，則可以建立一個新的PIN碼。你可以註冊和使用帳號，但會遺失一些已儲存的設定，例如個人訊息資料。</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">如果你忘記了PIN碼，則可以建立一個新的PIN碼。 你可以註冊和使用帳號，但會遺失一些已保存的設定，例如個人訊息資料。</string>
