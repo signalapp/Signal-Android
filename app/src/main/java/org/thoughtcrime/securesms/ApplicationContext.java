@@ -331,6 +331,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
         add("Redmi Note 5");
         add("FP2"); // Fairphone FP2
         add("MI 5");
+        add("SHIFT6mq");
       }};
 
       Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{
