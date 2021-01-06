@@ -59,7 +59,6 @@ public class DatabaseFactory {
   private final SignedPreKeyDatabase    signedPreKeyDatabase;
   private final SessionDatabase         sessionDatabase;
   private final SearchDatabase          searchDatabase;
-  private final JobDatabase             jobDatabase;
   private final StickerDatabase         stickerDatabase;
   private final StorageKeyDatabase      storageKeyDatabase;
   private final RemappedRecordsDatabase remappedRecordsDatabase;
@@ -144,10 +143,6 @@ public class DatabaseFactory {
     return getInstance(context).searchDatabase;
   }
 
-  public static JobDatabase getJobDatabase(Context context) {
-    return getInstance(context).jobDatabase;
-  }
-
   public static StickerDatabase getStickerDatabase(Context context) {
     return getInstance(context).stickerDatabase;
   }
@@ -175,6 +170,9 @@ public class DatabaseFactory {
       getInstance(context).mms.trimEntriesForExpiredMessages();
       getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS key_value");
       getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS megaphone");
+      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS job_spec");
+      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS constraint_spec");
+      getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS dependency_spec");
 
       instance.databaseHelper.close();
       instance = null;
@@ -209,7 +207,6 @@ public class DatabaseFactory {
     this.signedPreKeyDatabase    = new SignedPreKeyDatabase(context, databaseHelper);
     this.sessionDatabase         = new SessionDatabase(context, databaseHelper);
     this.searchDatabase          = new SearchDatabase(context, databaseHelper);
-    this.jobDatabase             = new JobDatabase(context, databaseHelper);
     this.stickerDatabase         = new StickerDatabase(context, databaseHelper, attachmentSecret);
     this.storageKeyDatabase      = new StorageKeyDatabase(context, databaseHelper);
     this.remappedRecordsDatabase = new RemappedRecordsDatabase(context, databaseHelper);

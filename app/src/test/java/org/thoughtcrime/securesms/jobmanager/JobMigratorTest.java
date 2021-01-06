@@ -88,7 +88,7 @@ public class JobMigratorTest {
 
   private static JobStorage simpleJobStorage() {
     JobStorage jobStorage = mock(JobStorage.class);
-    when(jobStorage.getAllJobSpecs()).thenReturn(new ArrayList<>(Collections.singletonList(new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, 1, 1, "", null, false, false))));
+    when(jobStorage.getAllJobSpecs()).thenReturn(new ArrayList<>(Collections.singletonList(new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, 1, "", null, false, false))));
     return jobStorage;
   }
 

@@ -201,7 +201,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(StorageKeyDatabase.CREATE_TABLE);
     db.execSQL(MentionDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
-    executeStatements(db, JobDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
 
     executeStatements(db, RecipientDatabase.CREATE_INDEXS);

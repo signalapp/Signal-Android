@@ -67,7 +67,6 @@ final class WorkManagerDatabase extends SQLiteOpenHelper {
                                                          Job.Parameters.UNLIMITED,
                                                          TimeUnit.SECONDS.toMillis(30),
                                                          TimeUnit.DAYS.toMillis(1),
-                                                         Job.Parameters.UNLIMITED,
                                                          dataSerializer.serialize(DataMigrator.convert(data)),
                                                          null,
                                                          false,
