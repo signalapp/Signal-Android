@@ -116,11 +116,13 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -180,6 +182,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private Drawable                          archiveDrawable;
   private LifecycleObserver                 visibilityLifecycleObserver;
 
+  private Stopwatch startupStopwatch;
+
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
   }
@@ -188,6 +192,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
     setHasOptionsMenu(true);
+    startupStopwatch = new Stopwatch("startup");
   }
 
   @Override
@@ -488,6 +493,19 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false);
 
     setAdapter(defaultAdapter);
+
+    defaultAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+      @Override
+      public void onItemRangeInserted(int positionStart, int itemCount) {
+        startupStopwatch.split("data-set");
+        defaultAdapter.unregisterAdapterDataObserver(this);
+        list.post(() -> {
+          AppStartup.getInstance().onCriticalRenderEventEnd();
+          startupStopwatch.split("first-render");
+          startupStopwatch.stop(TAG);
+        });
+      }
+    });
   }
 
   @SuppressWarnings("rawtypes")

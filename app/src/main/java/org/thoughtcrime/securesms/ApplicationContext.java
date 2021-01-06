@@ -114,6 +114,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   @Override
   public void onCreate() {
     Tracer.getInstance().start("Application#onCreate()");
+    AppStartup.getInstance().onApplicationCreate();
 
     long startTime = System.currentTimeMillis();
 
@@ -123,42 +124,42 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
     super.onCreate();
 
-    new AppStartup().addBlocking("security-provider", this::initializeSecurityProvider)
-                    .addBlocking("logging", () -> {
-                      initializeLogging();
-                      Log.i(TAG, "onCreate()");
-                    })
-                    .addBlocking("crash-handling", this::initializeCrashHandling)
-                    .addBlocking("eat-db", () -> DatabaseFactory.getInstance(this))
-                    .addBlocking("app-dependencies", this::initializeAppDependencies)
-                    .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
-                    .addBlocking("app-migrations", this::initializeApplicationMigrations)
-                    .addBlocking("ring-rtc", this::initializeRingRtc)
-                    .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete(this))
-                    .addBlocking("lifecycle-observer", () -> ProcessLifecycleOwner.get().getLifecycle().addObserver(this))
-                    .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
-                    .addBlocking("vector-compat", () -> {
-                      if (Build.VERSION.SDK_INT < 21) {
-                        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-                      }
-                    })
-                    .addDeferred(this::initializeMessageRetrieval)
-                    .addDeferred(this::initializeExpiringMessageManager)
-                    .addDeferred(this::initializeRevealableMessageManager)
-                    .addDeferred(this::initializeGcmCheck)
-                    .addDeferred(this::initializeSignedPreKeyCheck)
-                    .addDeferred(this::initializePeriodicTasks)
-                    .addDeferred(this::initializeCircumvention)
-                    .addDeferred(this::initializePendingMessages)
-                    .addDeferred(this::initializeBlobProvider)
-                    .addDeferred(this::initializeCleanup)
-                    .addDeferred(this::initializeGlideCodecs)
-                    .addDeferred(FeatureFlags::init)
-                    .addDeferred(() -> NotificationChannels.create(this))
-                    .addDeferred(RefreshPreKeysJob::scheduleIfNecessary)
-                    .addDeferred(StorageSyncHelper::scheduleRoutineSync)
-                    .addDeferred(() -> ApplicationDependencies.getJobManager().beginJobLoop())
-                    .execute();
+    AppStartup.getInstance().addBlocking("security-provider", this::initializeSecurityProvider)
+                            .addBlocking("logging", () -> {
+                                initializeLogging();
+                                Log.i(TAG, "onCreate()");
+                            })
+                            .addBlocking("crash-handling", this::initializeCrashHandling)
+                            .addBlocking("eat-db", () -> DatabaseFactory.getInstance(this))
+                            .addBlocking("app-dependencies", this::initializeAppDependencies)
+                            .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
+                            .addBlocking("app-migrations", this::initializeApplicationMigrations)
+                            .addBlocking("ring-rtc", this::initializeRingRtc)
+                            .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete(this))
+                            .addBlocking("lifecycle-observer", () -> ProcessLifecycleOwner.get().getLifecycle().addObserver(this))
+                            .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
+                            .addBlocking("vector-compat", () -> {
+                              if (Build.VERSION.SDK_INT < 21) {
+                                AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+                              }
+                            })
+                            .addNonBlocking(this::initializeMessageRetrieval)
+                            .addNonBlocking(this::initializeRevealableMessageManager)
+                            .addNonBlocking(this::initializeGcmCheck)
+                            .addNonBlocking(this::initializeSignedPreKeyCheck)
+                            .addNonBlocking(this::initializePeriodicTasks)
+                            .addNonBlocking(this::initializeCircumvention)
+                            .addNonBlocking(this::initializePendingMessages)
+                            .addNonBlocking(this::initializeCleanup)
+                            .addNonBlocking(this::initializeGlideCodecs)
+                            .addNonBlocking(FeatureFlags::init)
+                            .addNonBlocking(RefreshPreKeysJob::scheduleIfNecessary)
+                            .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
+                            .addNonBlocking(() -> ApplicationDependencies.getJobManager().beginJobLoop())
+                            .addPostRender(this::initializeExpiringMessageManager)
+                            .addPostRender(this::initializeBlobProvider)
+                            .addPostRender(() -> NotificationChannels.create(this))
+                            .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     Tracer.getInstance().end("Application#onCreate()");

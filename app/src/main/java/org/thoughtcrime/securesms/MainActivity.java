@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -33,6 +34,7 @@ public class MainActivity extends PassphraseRequiredActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
+    AppStartup.getInstance().onCriticalRenderEventStart();
     super.onCreate(savedInstanceState, ready);
     setContentView(R.layout.main_activity);
 
