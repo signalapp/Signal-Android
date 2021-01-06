@@ -322,6 +322,25 @@
 
         </LinearLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/call_screen_error_cancel"
+            style="@style/Widget.Signal.Button.Flat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/core_white"
+            android:visibility="gone"
+            app:backgroundTint="@color/transparent_white_40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
         <ViewStub
             android:id="@+id/call_screen_group_call_speaker_hint"
             android:layout="@layout/group_call_speaker_hint"

@@ -77,6 +77,7 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_LOCAL_
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_LOCAL_RINGING;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_MESSAGE_SENT_ERROR;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_MESSAGE_SENT_SUCCESS;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_NETWORK_CHANGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_OUTGOING_CALL;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_PRE_JOIN_CALL;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVED_OFFER_EXPIRED;
@@ -213,6 +214,7 @@ public abstract class WebRtcActionProcessor {
       case ACTION_SET_AUDIO_BLUETOOTH:                 return handleSetBluetoothAudio(currentState, intent.getBooleanExtra(EXTRA_BLUETOOTH, false));
       case ACTION_BLUETOOTH_CHANGE:                    return handleBluetoothChange(currentState, getAvailable(intent));
       case ACTION_CAMERA_SWITCH_COMPLETED:             return handleCameraSwitchCompleted(currentState, getCameraState(intent));
+      case ACTION_NETWORK_CHANGE:                      return handleNetworkChanged(currentState, getAvailable(intent));
 
       // End Call Actions
       case ACTION_ENDED_REMOTE_HANGUP:
@@ -595,6 +597,11 @@ public abstract class WebRtcActionProcessor {
 
   public @NonNull WebRtcServiceState handleCameraSwitchCompleted(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
     Log.i(tag, "handleCameraSwitchCompleted not processed");
+    return currentState;
+  }
+
+  public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
+    Log.i(tag, "handleNetworkChanged not processed");
     return currentState;
   }
 

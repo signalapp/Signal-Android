@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.ResultReceiver;
@@ -41,6 +43,7 @@ import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -148,6 +151,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String ACTION_SET_MUTE_AUDIO                      = "SET_MUTE_AUDIO";
   public static final String ACTION_FLIP_CAMERA                         = "FLIP_CAMERA";
   public static final String ACTION_BLUETOOTH_CHANGE                    = "BLUETOOTH_CHANGE";
+  public static final String ACTION_NETWORK_CHANGE                      = "NETWORK_CHANGE";
   public static final String ACTION_WIRED_HEADSET_CHANGE                = "WIRED_HEADSET_CHANGE";
   public static final String ACTION_SCREEN_OFF                          = "SCREEN_OFF";
   public static final String ACTION_IS_IN_CALL_QUERY                    = "IS_IN_CALL";
@@ -212,6 +216,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   private SignalServiceAccountManager     accountManager;
   private BluetoothStateManager           bluetoothStateManager;
   private WiredHeadsetStateReceiver       wiredHeadsetStateReceiver;
+  private NetworkReceiver                 networkReceiver;
   private PowerButtonReceiver             powerButtonReceiver;
   private LockManager                     lockManager;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
@@ -241,6 +246,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     registerUncaughtExceptionHandler();
     registerWiredHeadsetStateReceiver();
+    registerNetworkReceiver();
 
     TelephonyUtil.getManager(this)
                  .listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE);
@@ -328,6 +334,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       powerButtonReceiver = null;
     }
 
+    unregisterNetworkReceiver();
+
     TelephonyUtil.getManager(this)
                  .listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_NONE);
   }
@@ -369,6 +377,22 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
 
     registerReceiver(wiredHeadsetStateReceiver, new IntentFilter(action));
+  }
+
+  private void registerNetworkReceiver() {
+    if (networkReceiver == null) {
+      networkReceiver = new NetworkReceiver();
+
+      registerReceiver(networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+  }
+
+  private void unregisterNetworkReceiver() {
+    if (networkReceiver != null) {
+      unregisterReceiver(networkReceiver);
+
+      networkReceiver = null;
+    }
   }
 
   public void registerPowerButtonReceiver() {
@@ -498,6 +522,19 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       Intent serviceIntent = new Intent(context, WebRtcCallService.class);
       serviceIntent.setAction(ACTION_WIRED_HEADSET_CHANGE);
       serviceIntent.putExtra(WebRtcCallService.EXTRA_AVAILABLE, state != 0);
+      context.startService(serviceIntent);
+    }
+  }
+
+  private static class NetworkReceiver extends BroadcastReceiver {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+      NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
+      Intent              serviceIntent       = new Intent(context, WebRtcCallService.class);
+
+      serviceIntent.setAction(ACTION_NETWORK_CHANGE);
+      serviceIntent.putExtra(EXTRA_AVAILABLE, activeNetworkInfo != null && activeNetworkInfo.isConnected());
       context.startService(serviceIntent);
     }
   }
@@ -1057,8 +1094,11 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
               .putExtra(EXTRA_GROUP_CALL_HASH, groupCall.hashCode());
 
         startService(intent);
-      } catch (IOException | VerificationFailedException e) {
-        Log.w(TAG, "Unable to fetch group membership proof", e);
+      } catch (IOException e) {
+        Log.w(TAG, "Unable to get group membership proof from service", e);
+        onEnded(groupCall, GroupCall.GroupCallEndReason.SFU_CLIENT_FAILED_TO_JOIN);
+      } catch (VerificationFailedException e) {
+        Log.w(TAG, "Unable to verify group membership proof", e);
         onEnded(groupCall, GroupCall.GroupCallEndReason.DEVICE_EXPLICITLY_DISCONNECTED);
       }
     });

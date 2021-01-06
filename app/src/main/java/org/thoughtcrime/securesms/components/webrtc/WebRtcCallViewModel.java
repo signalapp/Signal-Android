@@ -56,8 +56,8 @@ public class WebRtcCallViewModel extends ViewModel {
   private boolean               answerWithVideoAvailable  = false;
   private Runnable              elapsedTimeRunnable       = this::handleTick;
   private boolean               canEnterPipMode           = false;
-  private List<CallParticipant> previousParticipantsList  = Collections.emptyList();
-  private boolean               callingStarted            = false;
+  private List<CallParticipant> previousParticipantsList = Collections.emptyList();
+  private boolean               callStarting             = false;
 
   private final WebRtcCallRepository repository = new WebRtcCallRepository(ApplicationDependencies.getApplication());
 
@@ -113,8 +113,8 @@ public class WebRtcCallViewModel extends ViewModel {
     return answerWithVideoAvailable;
   }
 
-  public boolean isCallingStarted() {
-    return callingStarted;
+  public boolean isCallStarting() {
+    return callStarting;
   }
 
   @MainThread
@@ -141,7 +141,10 @@ public class WebRtcCallViewModel extends ViewModel {
 
   @MainThread
   public void updateFromWebRtcViewModel(@NonNull WebRtcViewModel webRtcViewModel, boolean enableVideo) {
-    canEnterPipMode = webRtcViewModel.getState() != WebRtcViewModel.State.CALL_PRE_JOIN;
+    canEnterPipMode = !webRtcViewModel.getState().isPreJoinOrNetworkUnavailable();
+    if (callStarting && webRtcViewModel.getState().isPassedPreJoin()) {
+      callStarting = false;
+    }
 
     CallParticipant localParticipant = webRtcViewModel.getLocalParticipant();
 
@@ -232,6 +235,9 @@ public class WebRtcCallViewModel extends ViewModel {
       case CALL_DISCONNECTED:
         callState = WebRtcControls.CallState.ENDING;
         break;
+      case NETWORK_FAILURE:
+        callState = WebRtcControls.CallState.ERROR;
+        break;
       default:
         callState = WebRtcControls.CallState.ONGOING;
     }
@@ -309,7 +315,7 @@ public class WebRtcCallViewModel extends ViewModel {
   }
 
   public void startCall(boolean isVideoCall) {
-    callingStarted = true;
+    callStarting = true;
     Recipient recipient = getRecipient().get();
     if (recipient.isGroup()) {
       repository.getIdentityRecords(recipient, identityRecords -> {

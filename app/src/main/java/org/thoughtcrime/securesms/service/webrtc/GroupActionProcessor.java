@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
+import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
@@ -271,6 +272,28 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       return groupCallFailure(currentState, "Unable to disconnect from group call", e);
     }
 
+    if (groupCallEndReason != GroupCall.GroupCallEndReason.DEVICE_EXPLICITLY_DISCONNECTED) {
+      Log.i(tag, "Group call ended unexpectedly, reinitializing and dropping back to lobby");
+      Recipient  currentRecipient = currentState.getCallInfoState().getCallRecipient();
+      VideoState videoState       = currentState.getVideoState();
+
+      currentState = terminateGroupCall(currentState, false).builder()
+                                                            .actionProcessor(new GroupNetworkUnavailableActionProcessor(webRtcInteractor))
+                                                            .changeVideoState()
+                                                            .eglBase(videoState.getEglBase())
+                                                            .camera(videoState.getCamera())
+                                                            .localSink(videoState.getLocalSink())
+                                                            .commit()
+                                                            .changeCallInfoState()
+                                                            .callState(WebRtcViewModel.State.CALL_PRE_JOIN)
+                                                            .callRecipient(currentRecipient)
+                                                            .build();
+
+      currentState = WebRtcVideoUtil.initializeVanityCamera(WebRtcVideoUtil.reinitializeCamera(context, webRtcInteractor.getCameraEventListener(), currentState));
+
+      return currentState.getActionProcessor().handlePreJoinCall(currentState, new RemotePeer(currentRecipient.getId()));
+    }
+
     currentState = currentState.builder()
                                .changeCallInfoState()
                                .callState(WebRtcViewModel.State.CALL_DISCONNECTED)
@@ -313,6 +336,10 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
   }
 
   public synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState) {
+    return terminateGroupCall(currentState, true);
+  }
+
+  public synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState, boolean terminateVideo) {
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
     webRtcInteractor.stopForegroundService();
     boolean playDisconnectSound = currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED;
@@ -321,7 +348,9 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
 
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
 
-    WebRtcVideoUtil.deinitializeVideo(currentState);
+    if (terminateVideo) {
+      WebRtcVideoUtil.deinitializeVideo(currentState);
+    }
 
     GroupCallSafetyNumberChangeNotificationUtil.cancelNotification(context, currentState.getCallInfoState().getCallRecipient());
 

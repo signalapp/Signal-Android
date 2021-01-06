@@ -46,6 +46,14 @@ public class WebRtcViewModel {
              this == NO_SUCH_USER          ||
              this == UNTRUSTED_IDENTITY;
     }
+
+    public boolean isPreJoinOrNetworkUnavailable() {
+      return this == CALL_PRE_JOIN || this == NETWORK_FAILURE;
+    }
+
+    public boolean isPassedPreJoin() {
+      return this.ordinal() > CALL_PRE_JOIN.ordinal();
+    }
   }
 
   public enum GroupCallState {

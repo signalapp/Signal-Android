@@ -96,6 +96,7 @@ public class WebRtcCallView extends FrameLayout {
   private TextView                      participantCount;
   private Stub<FrameLayout>             groupCallSpeakerHint;
   private Stub<View>                    groupCallFullStub;
+  private View                          errorButton;
   private int                           pagerBottomMarginDp;
   private boolean                       controlsVisible = true;
 
@@ -151,6 +152,7 @@ public class WebRtcCallView extends FrameLayout {
     callParticipantsRecycler      = findViewById(R.id.call_screen_participants_recycler);
     toolbar                       = findViewById(R.id.call_screen_toolbar);
     startCall                     = findViewById(R.id.call_screen_start_call_start_call);
+    errorButton                   = findViewById(R.id.call_screen_error_cancel);
     groupCallSpeakerHint          = new Stub<>(findViewById(R.id.call_screen_group_call_speaker_hint));
     groupCallFullStub             = new Stub<>(findViewById(R.id.group_call_call_full_view));
 
@@ -227,6 +229,12 @@ public class WebRtcCallView extends FrameLayout {
 
     int statusBarHeight = ViewUtil.getStatusBarHeight(this);
     statusBarGuideline.setGuidelineBegin(statusBarHeight);
+
+    errorButton.setOnClickListener(v -> {
+      if (controlsListener != null) {
+        controlsListener.onCancelStartCall();
+      }
+    });
   }
 
   @Override
@@ -424,6 +432,11 @@ public class WebRtcCallView extends FrameLayout {
 
       startCall.setText(webRtcControls.getStartCallButtonText());
       startCall.setEnabled(webRtcControls.isStartCallEnabled());
+    }
+
+    if (webRtcControls.displayErrorControls()) {
+      visibleViewSet.add(footerGradient);
+      visibleViewSet.add(errorButton);
     }
 
     if (webRtcControls.displayGroupCallFull()) {

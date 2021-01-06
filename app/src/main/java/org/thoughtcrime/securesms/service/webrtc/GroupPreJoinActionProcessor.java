@@ -187,4 +187,17 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                        .isMicrophoneEnabled(!muted)
                        .build();
   }
+
+  @Override
+  public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
+    if (!available) {
+      return currentState.builder()
+                         .actionProcessor(new GroupNetworkUnavailableActionProcessor(webRtcInteractor))
+                         .changeCallInfoState()
+                         .callState(WebRtcViewModel.State.NETWORK_FAILURE)
+                         .build();
+    } else {
+      return currentState;
+    }
+  }
 }
