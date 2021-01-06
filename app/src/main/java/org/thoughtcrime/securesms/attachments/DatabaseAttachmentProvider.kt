@@ -4,7 +4,6 @@ import android.content.Context
 import com.google.protobuf.ByteString
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
-import org.session.libsession.events.AttachmentProgressEvent
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
