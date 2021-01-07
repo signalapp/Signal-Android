@@ -22,11 +22,6 @@ public class FeatureFlagsTest extends BaseUnitTest {
   private static final String B = "B";
 
   @Test
-  public void disallowForcedFlags() {
-    assertTrue(FeatureFlags.getForcedValues().isEmpty());
-  }
-
-  @Test
   public void updateInternal_newValue_ignoreNotInRemoteCapable() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true,
                                                             B, true),
