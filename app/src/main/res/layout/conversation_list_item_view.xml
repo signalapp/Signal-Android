@@ -127,7 +127,6 @@
       style="@style/Signal.Text.Caption"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="5dp"
       android:background="@drawable/archived_indicator_background"
       android:paddingStart="6dp"
       android:paddingTop="2dp"
@@ -144,8 +143,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center_vertical"
+      android:layout_marginEnd="5dp"
+      app:layout_goneMarginEnd="0dp"
       app:iconColor="@color/signal_icon_tint_secondary"
-      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/conversation_list_item_archived"
       app:layout_constraintTop_toTopOf="@id/conversation_list_item_summary"
       app:layout_constraintBottom_toBottomOf="@id/conversation_list_item_summary"/>
 
