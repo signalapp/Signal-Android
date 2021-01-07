@@ -112,14 +112,27 @@ abstract class ConversationListDataSource implements PagedDataSource<Conversatio
       pinnedCount   = threadDatabase.getPinnedConversationListCount();
       archivedCount = threadDatabase.getArchivedConversationListCount();
       unpinnedCount = unarchivedCount - pinnedCount;
-      totalCount    = unarchivedCount + (archivedCount != 0 ? 1 : 0) + (pinnedCount != 0 ? (unpinnedCount != 0 ? 2 : 1) : 0);
+      totalCount    = unarchivedCount;
+
+      if (archivedCount != 0) {
+        totalCount++;
+      }
+
+      if (pinnedCount != 0) {
+        if (unpinnedCount != 0) {
+          totalCount += 2;
+        } else {
+          totalCount += 1;
+        }
+      }
 
       return totalCount;
     }
 
     @Override
     protected Cursor getCursor(long offset, long limit) {
-      List<Cursor> cursors = new ArrayList<>(5);
+      List<Cursor> cursors       = new ArrayList<>(5);
+      long         originalLimit = limit;
 
       if (offset == 0 && hasPinnedHeader()) {
         MatrixCursor pinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
@@ -143,7 +156,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Conversatio
       Cursor unpinnedCursor = threadDatabase.getUnarchivedConversationList(false, unpinnedOffset, limit);
       cursors.add(unpinnedCursor);
 
-      if (offset + limit >= totalCount && hasArchivedFooter()) {
+      if (offset + originalLimit >= totalCount && hasArchivedFooter()) {
         MatrixCursor archivedFooterCursor = new MatrixCursor(ConversationReader.ARCHIVED_COLUMNS);
         archivedFooterCursor.addRow(ConversationReader.createArchivedFooterRow(archivedCount));
         cursors.add(archivedFooterCursor);
