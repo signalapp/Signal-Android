@@ -46,6 +46,13 @@ public class MainActivity extends PassphraseRequiredActivity {
   }
 
   @Override
+  public Intent getIntent() {
+    return super.getIntent().setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                      Intent.FLAG_ACTIVITY_NEW_TASK  |
+                                      Intent.FLAG_ACTIVITY_SINGLE_TOP);
+  }
+
+  @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     handleGroupLinkInIntent(intent);
