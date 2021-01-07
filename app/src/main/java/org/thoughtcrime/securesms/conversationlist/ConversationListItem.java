@@ -152,19 +152,17 @@ public final class ConversationListItem extends ConstraintLayout
                    boolean batchMode,
                    @Nullable String highlightSubstring)
   {
-    if (this.recipient != null) this.recipient.removeForeverObserver(this);
+    observeRecipient(thread.getRecipient().live());
     observeDisplayBody(null);
     setSubjectViewText(null);
 
     this.selectedThreads = selectedThreads;
-    this.recipient       = thread.getRecipient().live();
     this.threadId        = thread.getThreadId();
     this.glideRequests   = glideRequests;
     this.unreadCount     = thread.getUnreadCount();
     this.lastSeen        = thread.getLastSeen();
     this.thread          = thread;
 
-    this.recipient.observeForever(this);
     if (highlightSubstring != null) {
       String name = recipient.get().isSelf() ? getContext().getString(R.string.note_to_self) : recipient.get().getDisplayName(getContext());
 
@@ -209,15 +207,13 @@ public final class ConversationListItem extends ConstraintLayout
                    @NonNull  Locale        locale,
                    @Nullable String        highlightSubstring)
   {
-    if (this.recipient != null) this.recipient.removeForeverObserver(this);
+    observeRecipient(contact.live());
     observeDisplayBody(null);
     setSubjectViewText(null);
 
     this.selectedThreads = Collections.emptySet();
-    this.recipient       = contact.live();
     this.glideRequests   = glideRequests;
 
-    this.recipient.observeForever(this);
 
     fromView.setText(contact);
     fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), new SpannableString(fromView.getText()), highlightSubstring));
@@ -239,15 +235,12 @@ public final class ConversationListItem extends ConstraintLayout
                    @NonNull  Locale        locale,
                    @Nullable String        highlightSubstring)
   {
-    if (this.recipient != null) this.recipient.removeForeverObserver(this);
+    observeRecipient(messageResult.conversationRecipient.live());
     observeDisplayBody(null);
     setSubjectViewText(null);
 
     this.selectedThreads = Collections.emptySet();
-    this.recipient       = messageResult.conversationRecipient.live();
     this.glideRequests   = glideRequests;
-
-    this.recipient.observeForever(this);
 
     fromView.setText(recipient.get(), true);
     setSubjectViewText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), messageResult.bodySnippet, highlightSubstring));
@@ -266,9 +259,7 @@ public final class ConversationListItem extends ConstraintLayout
   @Override
   public void unbind() {
     if (this.recipient != null) {
-      this.recipient.removeForeverObserver(this);
-      this.recipient = null;
-
+      observeRecipient(null);
       setBatchMode(false);
       contactPhotoImage.setAvatar(glideRequests, null, !batchMode);
     }
@@ -315,6 +306,18 @@ public final class ConversationListItem extends ConstraintLayout
 
   public long getLastSeen() {
     return lastSeen;
+  }
+
+  private void observeRecipient(@Nullable LiveRecipient newRecipient) {
+    if (this.recipient != null) {
+      this.recipient.removeForeverObserver(this);
+    }
+
+    this.recipient = newRecipient;
+
+    if (this.recipient != null) {
+      this.recipient.observeForever(this);
+    }
   }
 
   private void observeDisplayBody(@Nullable LiveData<SpannableString> displayBody) {
@@ -404,6 +407,11 @@ public final class ConversationListItem extends ConstraintLayout
 
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
+    if (this.recipient == null || !this.recipient.getId().equals(recipient.getId())) {
+      Log.w(TAG, "Bad change! Local recipient doesn't match. Ignoring. Local: " + (this.recipient == null ? "null" : this.recipient.getId()) + ", Changed: " + recipient.getId());
+      return;
+    }
+
     fromView.setText(recipient, unreadCount == 0);
     contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
     setRippleColor(recipient);

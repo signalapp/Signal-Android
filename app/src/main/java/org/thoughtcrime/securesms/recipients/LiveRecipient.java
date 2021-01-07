@@ -87,11 +87,10 @@ public final class LiveRecipient {
    */
   public void observeForever(@NonNull RecipientForeverObserver observer) {
     Util.postToMain(() -> {
-      observers.add(observer);
-
-      if (observers.size() == 1) {
+      if (observers.isEmpty()) {
         liveData.observeForever(foreverObserver);
       }
+      observers.add(observer);
     });
   }
 
