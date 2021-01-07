@@ -10,6 +10,7 @@ import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.whispersystems.libsignal.state.SessionRecord;
+import org.whispersystems.libsignal.state.SessionState;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.File;
@@ -63,7 +64,9 @@ class SessionStoreMigrationHelper {
 
             if (versionMarker == SINGLE_STATE_VERSION) {
               Log.i(TAG, "Migrating single state version: " + sessionFile.getAbsolutePath());
-              sessionRecord = SessionRecord.fromSingleSessionState(serialized);
+              SessionState sessionState = new SessionState(serialized);
+
+              sessionRecord = new SessionRecord(sessionState);
             } else if (versionMarker >= ARCHIVE_STATES_VERSION) {
               Log.i(TAG, "Migrating session: " + sessionFile.getAbsolutePath());
               sessionRecord = new SessionRecord(serialized);
