@@ -1442,6 +1442,7 @@
   <string name="SearchFragment_header_conversations">Pokalbiai</string>
   <string name="SearchFragment_header_contacts">Adresatai</string>
   <string name="SearchFragment_header_messages">Žinutės</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Pridėti į adresatus</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pakviesti į Signal</string>

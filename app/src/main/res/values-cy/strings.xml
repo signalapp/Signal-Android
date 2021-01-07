@@ -1444,6 +1444,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SearchFragment_header_conversations">Sgyrsiau</string>
   <string name="SearchFragment_header_contacts">Cysylltiadau</string>
   <string name="SearchFragment_header_messages">Negeseuon</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Ychwanegu at Cysylltiadau</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Gwahodd i Signal</string>

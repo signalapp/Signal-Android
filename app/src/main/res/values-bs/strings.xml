@@ -1377,6 +1377,7 @@
   <string name="SearchFragment_header_conversations">Konverzacije</string>
   <string name="SearchFragment_header_contacts">Kontakti</string>
   <string name="SearchFragment_header_messages">Poruke</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj među kontakte</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pozovite na Signal</string>
@@ -2458,6 +2459,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Da biste aktivirali kreiranje rezervnih kopija, izaberite direktorij. Rezervne kopije bit će pohranjene na toj lokaciji.</string>
   <string name="BackupDialog_choose_folder">Odaberi direktorij</string>
   <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
+  <string name="BackupDialog_no_file_picker_available">Nema aplikacije za biranje datoteka.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Unesite svoju lozinku za rezervne kopije da potvrdite</string>
   <string name="BackupDialog_verify">Verifikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli svoju lozinku za rezervne kopije</string>

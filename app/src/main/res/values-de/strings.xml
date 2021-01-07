@@ -1304,6 +1304,7 @@
   <string name="SearchFragment_header_conversations">Unterhaltungen</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
   <string name="SearchFragment_header_messages">Nachrichten</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Zu Kontakten hinzufügen</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Zu Signal einladen</string>
@@ -2364,6 +2365,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Um Datensicherungen zu aktivieren, wähle einen Ordner. Sicherungen werden dort gespeichert.</string>
   <string name="BackupDialog_choose_folder">Ordner wählen</string>
   <string name="BackupDialog_copied_to_clipboard">In Zwischenablage kopiert</string>
+  <string name="BackupDialog_no_file_picker_available">Keine Dateiauswahl verfügbar.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Gib deine Sicherungspassphrase ein</string>
   <string name="BackupDialog_verify">Bestätigen</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du hast deine Sicherungspassphrase erfolgreich eingegeben</string>

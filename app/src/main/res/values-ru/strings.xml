@@ -1435,6 +1435,7 @@
   <string name="SearchFragment_header_conversations">Разговоры</string>
   <string name="SearchFragment_header_contacts">Контакты</string>
   <string name="SearchFragment_header_messages">Сообщения</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Пригласить в Signal</string>
@@ -2534,6 +2535,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Чтобы включить резервное копирование, выберите папку. Резервные копии будут сохраняться в этом месте.</string>
   <string name="BackupDialog_choose_folder">Выбрать папку</string>
   <string name="BackupDialog_copied_to_clipboard">Скопировано в буфер обмена</string>
+  <string name="BackupDialog_no_file_picker_available">Нет доступного приложения для выбора файлов.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Введите парольную фразу своей резервной копии, чтобы проверить её</string>
   <string name="BackupDialog_verify">Подтверждение</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Вы успешно ввели парольную фразу своей резервной копии</string>

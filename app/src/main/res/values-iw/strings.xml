@@ -1442,6 +1442,7 @@
   <string name="SearchFragment_header_conversations">שיחות</string>
   <string name="SearchFragment_header_contacts">אנשי קשר</string>
   <string name="SearchFragment_header_messages">הודעות</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">הוסף לאנשי קשר</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">הזמן אל Signal</string>

@@ -1306,6 +1306,7 @@
   <string name="SearchFragment_header_conversations">گفتگو</string>
   <string name="SearchFragment_header_contacts">رابطے</string>
   <string name="SearchFragment_header_messages">پیغامات</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">رابطوں میں شامل کریں</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal میں مدعو کریں</string>

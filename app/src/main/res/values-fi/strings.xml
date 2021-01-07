@@ -1264,6 +1264,7 @@ puhelinnumero</string>
   <string name="SearchFragment_header_conversations">Keskustelut</string>
   <string name="SearchFragment_header_contacts">Yhteystiedot</string>
   <string name="SearchFragment_header_messages">Viestit</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Kutsu Signaliin</string>

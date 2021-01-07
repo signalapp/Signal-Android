@@ -1311,6 +1311,7 @@
   <string name="SearchFragment_header_conversations">உரையாடல்கள்</string>
   <string name="SearchFragment_header_contacts">தொடர்புகள்</string>
   <string name="SearchFragment_header_messages">செய்திகள்</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">தொடர்பு பட்டியலில் சேர்க்க</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signalக்கு அழை</string>

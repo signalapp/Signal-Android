@@ -1374,6 +1374,7 @@ broj telefona</string>
   <string name="SearchFragment_header_conversations">Razgovori</string>
   <string name="SearchFragment_header_contacts">Kontakti</string>
   <string name="SearchFragment_header_messages">Poruke</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj u kontakte</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pozovi u Signal</string>
@@ -2456,6 +2457,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Da biste omogućili sigurnosne kopije, odaberite mapu. Sigurnosne kopije bit će spremljene na ovo mjesto.</string>
   <string name="BackupDialog_choose_folder">Odaberi mapu</string>
   <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
+  <string name="BackupDialog_no_file_picker_available">Nije dostupan alat za odabir datoteka.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Unesi vašu lozinku sigurnosne kopije za provjeru</string>
   <string name="BackupDialog_verify">Potvrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli lozinku sigurnosne kopije</string>

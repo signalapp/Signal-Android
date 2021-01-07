@@ -658,7 +658,7 @@
   <string name="ManageRecipientActivity_off">關</string>
   <string name="ManageRecipientActivity_on">開</string>
   <string name="ManageRecipientActivity_add_to_a_group">新增到群組</string>
-  <string name="ManageRecipientActivity_view_all_groups">檢視所有的群組</string>
+  <string name="ManageRecipientActivity_view_all_groups">檢視全部群組</string>
   <string name="ManageRecipientActivity_see_all">查看全部</string>
   <string name="ManageRecipientActivity_no_groups_in_common">沒有共同的群組</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -849,7 +849,7 @@
   <string name="MediaSendActivity_select_recipients_description">選擇收件人</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">點擊此處使該訊息在查看後消失。</string>
   <!--MediaRepository-->
-  <string name="MediaRepository_all_media">所有的媒體</string>
+  <string name="MediaRepository_all_media">全部媒體</string>
   <string name="MediaRepository__camera">相機</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">未知</string>
@@ -1244,6 +1244,7 @@
   <string name="SearchFragment_header_conversations">對話</string>
   <string name="SearchFragment_header_contacts">聯絡人</string>
   <string name="SearchFragment_header_messages">訊息</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">新增至連絡人</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">邀請至 Signal</string>
@@ -2073,7 +2074,7 @@
   <string name="conversation__menu_edit_group">編輯群組</string>
   <string name="conversation__menu_group_settings">群組設定</string>
   <string name="conversation__menu_leave_group">離開對話群組</string>
-  <string name="conversation__menu_view_all_media">所有的媒體</string>
+  <string name="conversation__menu_view_all_media">全部媒體</string>
   <string name="conversation__menu_conversation_settings">對話設定</string>
   <string name="conversation__menu_add_shortcut">新增到主畫面</string>
   <string name="conversation__menu_pending_members">待處理的成員</string>
@@ -2115,7 +2116,7 @@
   <string name="media_preview__save_title">儲存</string>
   <string name="media_preview__forward_title">轉寄</string>
   <string name="media_preview__share_title">分享</string>
-  <string name="media_preview__all_media_title">所有的媒體</string>
+  <string name="media_preview__all_media_title">全部媒體</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">媒體預覽</string>
   <!--new_conversation_activity-->
@@ -2288,6 +2289,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">要啟用備份，請選擇一個資料夾。 備份將儲存到該位置。</string>
   <string name="BackupDialog_choose_folder">選擇資料夾</string>
   <string name="BackupDialog_copied_to_clipboard">已複製到剪貼簿</string>
+  <string name="BackupDialog_no_file_picker_available">無可用的檔案挑選器。</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">輸入你的備份碼以確認</string>
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">你已成功的輸入你的備份碼</string>

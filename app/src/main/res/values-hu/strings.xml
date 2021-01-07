@@ -1314,6 +1314,7 @@ szám (%s) érvénytelen.
   <string name="SearchFragment_header_conversations">Beszélgetések</string>
   <string name="SearchFragment_header_contacts">Kontaktok</string>
   <string name="SearchFragment_header_messages">Üzenetek</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Hozzáadás a Névjegyzékhez</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Meghívás a Signal-ba</string>

@@ -1312,6 +1312,7 @@
   <string name="SearchFragment_header_conversations">Konuşmalar</string>
   <string name="SearchFragment_header_contacts">Kişiler</string>
   <string name="SearchFragment_header_messages">İletiler</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Kişilere Ekle</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal\'e davet et</string>
@@ -2373,6 +2374,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Yedekleri etkinleştirmek için, bir dizin seçin. Yedekler bu konuma kaydedilecektir.</string>
   <string name="BackupDialog_choose_folder">Klasör seçin</string>
   <string name="BackupDialog_copied_to_clipboard">Panoya kopyalandı</string>
+  <string name="BackupDialog_no_file_picker_available">Herhangi bir dosya seçicisi yok</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Doğrulamak için yedek parolanızı girin</string>
   <string name="BackupDialog_verify">Doğrula</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Yedek parolanızı doğru girdiniz</string>

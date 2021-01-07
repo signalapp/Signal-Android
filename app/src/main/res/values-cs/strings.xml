@@ -1441,6 +1441,7 @@ telefonní číslo
   <string name="SearchFragment_header_conversations">Konverzace</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Zprávy</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Přidat do kontaktů</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pozvat do Signal</string>
@@ -2540,6 +2541,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Pro povolení záloh vyberte složku. Zálohy budou uloženy do tohoto umístění.</string>
   <string name="BackupDialog_choose_folder">Vybrat složku</string>
   <string name="BackupDialog_copied_to_clipboard">Zkopírováno do schránky</string>
+  <string name="BackupDialog_no_file_picker_available">Není k dispozici žádná aplikace pro výběr souborů.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Pro ověření zadejte přístupovou frázi pro vaši zálohu</string>
   <string name="BackupDialog_verify">Ověřit</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Úspěšně jste zadali přístupovou frázi pro vaši zálohu</string>

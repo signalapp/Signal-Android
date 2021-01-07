@@ -1254,6 +1254,7 @@ zenbakia (%s) baliogabea da.
   <string name="SearchFragment_header_conversations">Txatak</string>
   <string name="SearchFragment_header_contacts">Kontaktuak</string>
   <string name="SearchFragment_header_messages">Mezuak</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Gehitu kontaktu-zerrendan</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>

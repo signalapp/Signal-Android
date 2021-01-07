@@ -1305,6 +1305,7 @@
   <string name="SearchFragment_header_conversations">സംഭാഷണങ്ങൾ</string>
   <string name="SearchFragment_header_contacts">കോൺ‌ടാക്റ്റുകൾ</string>
   <string name="SearchFragment_header_messages">സന്ദേശങ്ങൾ</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signalലേക്ക് ക്ഷണിക്കുക</string>

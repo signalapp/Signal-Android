@@ -482,7 +482,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Què són els grups nous?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Els grups nous tenen funcions com ara @mencions i administradors de grups, i admetran més funcions en el futur.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">S\'han conservat tot l\'historial de missatges i el contingut anteriors a l\'actualització.</string>
-  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Haureu d\'acceptar una invitació per a unir-vos al grup de nou, i no rebreu missatges del grup fins que ho feu.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Haureu d\'acceptar una invitació per tornar-vos a afegir al grup i no en rebreu missatges fins que no ho feu.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Aquest membre haurà d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebrà missatges fins que no l\'accepti:</item>
     <item quantity="other">Aquests membres hauran d\'acceptar una invitació per tornar a afegir-se a aquest grup i no en rebran missatges fins que no l\'acceptin:</item>
@@ -1212,7 +1212,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">El número que heu marcat no pot rebre trucades de veu segures!</string>
   <string name="RedPhone_got_it">Entesos</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toqueu aquí per a activar el vídeo</string>
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toqueu aquí per activar el vídeo</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Per trucar a %1$s, el Signal necessita accés a la càmera.</string>
   <string name="WebRtcCallActivity__signal_s">Trucada del Signal: %1$s</string>
   <string name="WebRtcCallActivity__calling">Es truca…</string>
@@ -1308,6 +1308,7 @@ especificat (%s) no és vàlid.</string>
   <string name="SearchFragment_header_conversations">Converses</string>
   <string name="SearchFragment_header_contacts">Contactes</string>
   <string name="SearchFragment_header_messages">Missatges</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Afegeix als contactes</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Convida al Signal</string>
@@ -1837,8 +1838,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Comparteix el número de seguretat</string>
   <!--webrtc_answer_decline_button-->
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per a respondre</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per a rebutjar</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Llisqueu amunt per respondre</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Llisqueu avall per rebutjar-la</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Certs problemes necessiten la vostra atenció.</string>
   <string name="message_details_header__sent">Enviat</string>
@@ -2182,7 +2183,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="reminder_header_invite_text">Eleva la conversa amb %1$s al nivell següent.</string>
   <string name="reminder_header_share_title">Convideu-hi amistats!</string>
   <string name="reminder_header_share_text">Com més amistats usin el Signal, millor.</string>
-  <string name="reminder_header_service_outage_text">El Signal està patint problemes tècnics. Este treballant per a recuperar el servei tan ràpid com sigui possible.</string>
+  <string name="reminder_header_service_outage_text">El Signal té problemes tècnics. Estem treballant per recuperar el servei tan ràpidament com sigui possible.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Les darreres novetats del Signal no funcionaran en aquesta versió d\'Android. Si us plau, actualitzeu el dispositiu per rebre les futures actualitzacions del Signal.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
@@ -2369,6 +2370,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Per activar les còpies de seguretat, trieu una carpeta. Les còpies de seguretat s\'hi desaran.</string>
   <string name="BackupDialog_choose_folder">Trieu una carpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiat al porta-retalls</string>
+  <string name="BackupDialog_no_file_picker_available">No hi ha selector de fitxers disponible.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Escriviu la contrasenya de còpia de seguretat per verificar-la.</string>
   <string name="BackupDialog_verify">Verificació</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Heu escrit correctament la contrasenya de còpia de seguretat.</string>
@@ -2438,7 +2440,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registre d\'aquest número de telèfon serà possible sense el PIN de bloqueig del registre 7 dies després des de l\'últim cop que el número es va usar al Signal. Us manquen %d dies.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de bloqueig del registre</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Aquest número de telèfon té el bloqueig de registre activat. Si us plau, escriviu el PIN de bloqueig del registre.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueig de registre està activat per al vostre número de telèfon.  Per a ajudar-vos a memoritzar el PIN de bloqueig de registre, el Signal us demanarà periòdicament que el confirmeu.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">El bloqueig de registre està activat per al vostre número de telèfon. Per ajudar-vos a memoritzar aquest PIN, el Signal us demanarà periòdicament que el confirmeu.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">He oblidat el PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN oblidat?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">El bloqueig de registre ajuda a protegir el número de telèfon d\'intents de registre no autoritzats. Aquesta funció es pot desactivar en qualsevol moment a la configuració de privadesa del Signal.</string>

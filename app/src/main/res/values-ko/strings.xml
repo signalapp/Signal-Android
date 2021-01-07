@@ -986,6 +986,7 @@
   <string name="SearchFragment_header_conversations">대화</string>
   <string name="SearchFragment_header_contacts">연락처</string>
   <string name="SearchFragment_header_messages">메시지</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">연락처에 추가</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal로 초대</string>

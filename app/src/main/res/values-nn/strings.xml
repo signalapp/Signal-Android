@@ -1318,6 +1318,7 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="SearchFragment_header_conversations">Samtalar</string>
   <string name="SearchFragment_header_contacts">Kontaktar</string>
   <string name="SearchFragment_header_messages">Meldingar</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Legg til som kontakt</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Inviter til Signal</string>
@@ -2382,6 +2383,7 @@ Du er à jour!</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">For å skru på reservekopiar må du velja ei mappe. Kopiar blir lagra der.</string>
   <string name="BackupDialog_choose_folder">Vel mappe</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavla</string>
+  <string name="BackupDialog_no_file_picker_available">Fann ingen filveljar</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Skriv inn passordfrasen for reservekopiane dine for å stadfesta</string>
   <string name="BackupDialog_verify">Stadfest</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du skreiv inn rett passordfrase for reservekopiane dine</string>

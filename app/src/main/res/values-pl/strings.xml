@@ -1437,6 +1437,7 @@
   <string name="SearchFragment_header_conversations">Rozmowy</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Wiadomości</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj do kontaktów</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Zaproś do używania Signal</string>
@@ -2533,6 +2534,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Wybierz folder, aby włączyć kopie zapasowe. Nowe kopie będą zapisywane w wybranym miejscu.</string>
   <string name="BackupDialog_choose_folder">Wybierz folder</string>
   <string name="BackupDialog_copied_to_clipboard">Skopiowane do schowka</string>
+  <string name="BackupDialog_no_file_picker_available">Brak dostępnej aplikacji do wyboru plików.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Wprowadź hasło kopii zapasowej, aby je zweryfikować</string>
   <string name="BackupDialog_verify">Zweryfikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Podałeś(aś) poprawne hasło kopii zapasowej</string>

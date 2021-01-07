@@ -1312,6 +1312,7 @@
   <string name="SearchFragment_header_conversations">Conversazioni</string>
   <string name="SearchFragment_header_contacts">Contatti</string>
   <string name="SearchFragment_header_messages">Messaggi</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Aggiungi ai contatti</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invita su Signal</string>
@@ -2375,6 +2376,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Per attivare i backup, scegli una cartella. I nuovi backup verranno salvati in questa posizione.</string>
   <string name="BackupDialog_choose_folder">Scegli la cartella</string>
   <string name="BackupDialog_copied_to_clipboard">Aggiunto agli appunti</string>
+  <string name="BackupDialog_no_file_picker_available">Nessun selettore di file disponibile.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Inserisci la passphrase del tuo backup per verificarla</string>
   <string name="BackupDialog_verify">Verifica</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Hai inserito correttamente la passphrase del tuo backup</string>

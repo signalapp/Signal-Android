@@ -1302,6 +1302,7 @@ furnizat (%s) este invalid.</string>
   <string name="SearchFragment_header_conversations">Conversații</string>
   <string name="SearchFragment_header_contacts">Contacte</string>
   <string name="SearchFragment_header_messages">Mesaje</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Adăugați la contacte</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitați la Signal</string>

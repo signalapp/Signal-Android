@@ -1572,6 +1572,7 @@
   <string name="SearchFragment_header_conversations">المحادثات</string>
   <string name="SearchFragment_header_contacts">جهات الإتصال</string>
   <string name="SearchFragment_header_messages">الرسائل</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">الإضافة إلى جهات الاتصال</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">الدعوة إلى Signal</string>

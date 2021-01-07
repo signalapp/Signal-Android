@@ -1308,6 +1308,7 @@ especificou (%s) é inválido.</string>
   <string name="SearchFragment_header_conversations">Conversas</string>
   <string name="SearchFragment_header_contacts">Contactos</string>
   <string name="SearchFragment_header_messages">Mensagens</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Adicionar aos contactos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Convidar para o Signal</string>

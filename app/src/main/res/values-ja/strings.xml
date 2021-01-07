@@ -1240,6 +1240,7 @@
   <string name="SearchFragment_header_conversations">会話</string>
   <string name="SearchFragment_header_contacts">連絡先</string>
   <string name="SearchFragment_header_messages">メッセージ</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">連絡先に追加</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signalに招待する</string>

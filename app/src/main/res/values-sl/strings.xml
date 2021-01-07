@@ -1435,6 +1435,7 @@
   <string name="SearchFragment_header_conversations">Pogovori</string>
   <string name="SearchFragment_header_contacts">Stiki</string>
   <string name="SearchFragment_header_messages">Sporočila</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj med stike</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Povabi na Signal</string>
@@ -2532,6 +2533,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Če želite omogočiti varnostno kopiranje, izberite željeno mapo. Varnostne kopije bodo shranjene na to mesto.</string>
   <string name="BackupDialog_choose_folder">Izberite mapo</string>
   <string name="BackupDialog_copied_to_clipboard">Kopirano v odložišče</string>
+  <string name="BackupDialog_no_file_picker_available">Ni nameščene aplikacije za upravljanje datotek.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Vnesite geslo svoje varnostne kopije</string>
   <string name="BackupDialog_verify">Potrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspešno ste vnesli geslo svoje varnostne kopije</string>

@@ -955,6 +955,7 @@
   <string name="SearchFragment_header_conversations">ការសន្ទនា</string>
   <string name="SearchFragment_header_contacts">បញ្ជីទំនាក់ទំនង</string>
   <string name="SearchFragment_header_messages">សារ</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">បន្ថែមចូល បញ្ជីទំនាក់ទំនង</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>

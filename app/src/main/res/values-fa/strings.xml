@@ -1311,6 +1311,7 @@
   <string name="SearchFragment_header_conversations">مکالمه‌ها</string>
   <string name="SearchFragment_header_contacts">مخاطبین</string>
   <string name="SearchFragment_header_messages">پیام‌ها</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">افزودن به مخاطبین</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">دعوت به Signal</string>

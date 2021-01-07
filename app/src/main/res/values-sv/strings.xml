@@ -1308,6 +1308,7 @@ angav (%s) är ogiltigt.</string>
   <string name="SearchFragment_header_conversations">Konversationer</string>
   <string name="SearchFragment_header_contacts">Kontakter</string>
   <string name="SearchFragment_header_messages">Meddelanden</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Lägg till i kontakter</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Bjud in till Signal</string>
@@ -2369,6 +2370,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Välj en mapp för att aktivera säkerhetskopior. Säkerhetskopior sparas på den här platsen.</string>
   <string name="BackupDialog_choose_folder">Välj mapp</string>
   <string name="BackupDialog_copied_to_clipboard">Kopierade till urklipp</string>
+  <string name="BackupDialog_no_file_picker_available">Ingen filväljare tillgänglig.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Ange säkerhetskopians lösenord för att verifiera</string>
   <string name="BackupDialog_verify">Verifiera</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har angett ditt lösenord för säkerhetskopian</string>
@@ -2405,7 +2407,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__create_a_pin">Skapa en PIN-kod</string>
   <string name="preferences_app_protection__change_your_pin">Ändra din PIN-kod</string>
   <string name="preferences_app_protection__pin_reminders">PIN-kodspåminnelser</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder håller information lagrad med Signal krypterad så bara du kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder håller information som lagras med Signal krypterad så bara du kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Lägg till extra säkerhet genom att kräva din Signal PIN-kod för att registrera ditt telefonnummer med Signal igen.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påminnelser hjälper dig att memorera din PIN-kod eftersom den inte kan återställas. Du blir frågad mindre ofta med tiden.</string>
   <string name="preferences_app_protection__turn_off">Inaktivera</string>

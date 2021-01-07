@@ -1441,6 +1441,7 @@ telefónne číslo
   <string name="SearchFragment_header_conversations">Konverzácie</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Správy</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Pridať medzi kontakty</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pozvať do Signalu</string>

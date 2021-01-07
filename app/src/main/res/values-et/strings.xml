@@ -1312,6 +1312,7 @@
   <string name="SearchFragment_header_conversations">Vestlused</string>
   <string name="SearchFragment_header_contacts">Kontaktid</string>
   <string name="SearchFragment_header_messages">Sõnumid</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Lisa kontaktidesse</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Kutsu Signalisse</string>

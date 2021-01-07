@@ -1140,6 +1140,7 @@ isikan (%s) tidak valid.
   <string name="SearchFragment_header_conversations">Percakapan</string>
   <string name="SearchFragment_header_contacts">Kontak</string>
   <string name="SearchFragment_header_messages">Pesan</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Tambahkan ke Kontak</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Undang ke Signal</string>

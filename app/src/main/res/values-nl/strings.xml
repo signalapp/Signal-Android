@@ -1316,6 +1316,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SearchFragment_header_conversations">Gesprekken</string>
   <string name="SearchFragment_header_contacts">Contacten</string>
   <string name="SearchFragment_header_messages">Berichten</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Aan contactenlijst toevoegen</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Uitnodigen voor Signal</string>
@@ -2381,6 +2382,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-up-bestanden te kunnen inschakelen.</string>
   <string name="BackupDialog_choose_folder">Kies een map</string>
   <string name="BackupDialog_copied_to_clipboard">Gekopieerd naar klembord</string>
+  <string name="BackupDialog_no_file_picker_available">Er is geen bestandskiezer beschikbaar.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Voer je back-up-wachtwoord in om deze te verifiëren</string>
   <string name="BackupDialog_verify">Verifiëren</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-up-wachtwoord ingevoerd</string>

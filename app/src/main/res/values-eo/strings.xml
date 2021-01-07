@@ -1312,6 +1312,7 @@
   <string name="SearchFragment_header_conversations">Interparoloj</string>
   <string name="SearchFragment_header_contacts">Kontaktaro</string>
   <string name="SearchFragment_header_messages">Mesaĝoj</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Aldoni al kontaktaro</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Inviti al Signal</string>

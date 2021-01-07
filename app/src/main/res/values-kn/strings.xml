@@ -979,6 +979,7 @@
   <string name="SearchFragment_header_conversations">ಸಂಭಾಷಣೆಗಳು</string>
   <string name="SearchFragment_header_contacts">ಸಂಪರ್ಕಗಳು</string>
   <string name="SearchFragment_header_messages">ಸಂದೇಶಗಳು</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸಿ</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal ಗೆ ಆಮಂತ್ರಿಸಿ</string>

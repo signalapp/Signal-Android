@@ -1314,6 +1314,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SearchFragment_header_conversations">Biseda</string>
   <string name="SearchFragment_header_contacts">Kontakte</string>
   <string name="SearchFragment_header_messages">Mesazhe</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Shtoje te Kontaktet</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Ftoje në Signal</string>
@@ -2379,6 +2380,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Që të aktivizohen kopjeruajtje, zgjidhni një dosje. Kopjeruajtjet do të ruhen te kjo vendndodhje.</string>
   <string name="BackupDialog_choose_folder">Zgjidhni dosje</string>
   <string name="BackupDialog_copied_to_clipboard">U kopjua në të papastër</string>
+  <string name="BackupDialog_no_file_picker_available">S’ka zgjedhës kartelash.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Jepni frazëkalimin tuaj të kopjeruajtjes që duhet verifikuar</string>
   <string name="BackupDialog_verify">Verifikoje</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">E dhatë me sukses frazëkalimin tuaj të kopjeruajtjes</string>

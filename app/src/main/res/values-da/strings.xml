@@ -1312,6 +1312,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SearchFragment_header_conversations">Samtaler</string>
   <string name="SearchFragment_header_contacts">Kontakter</string>
   <string name="SearchFragment_header_messages">Beskeder</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Føj til kontakter</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitér til Signal</string>

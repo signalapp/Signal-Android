@@ -1308,6 +1308,7 @@
   <string name="SearchFragment_header_conversations">Συνομιλίες</string>
   <string name="SearchFragment_header_contacts">Επαφές</string>
   <string name="SearchFragment_header_messages">Μηνύματα</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Προσθήκη στις επαφές</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Πρόσκληση στο Signal</string>
