@@ -106,13 +106,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
     toolbar.setNavigationOnClickListener(unused -> callback.onNavigationButtonPressed());
     create.setOnClickListener(v -> handleCreateClicked());
-    viewModel.getMembers().observe(getViewLifecycleOwner(), recipients -> {
-      members.setMembers(recipients);
-      if (recipients.isEmpty()) {
-        toast(R.string.AddGroupDetailsFragment__groups_require_at_least_two_members);
-        callback.onNavigationButtonPressed();
-      }
-    });
+    viewModel.getMembers().observe(getViewLifecycleOwner(), members::setMembers);
     viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), isFormValid -> setCreateEnabled(isFormValid, true));
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);
@@ -229,10 +223,6 @@ public class AddGroupDetailsFragment extends LoggingFragment {
         break;
       case ERROR_INVALID_NAME:
         name.setError(getString(R.string.AddGroupDetailsFragment__this_field_is_required));
-        break;
-      case ERROR_INVALID_MEMBER_COUNT:
-        toast(R.string.AddGroupDetailsFragment__groups_require_at_least_two_members);
-        callback.onNavigationButtonPressed();
         break;
       default:
         throw new IllegalStateException("Unexpected error: " + error.getErrorType().name());
