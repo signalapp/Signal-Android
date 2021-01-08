@@ -110,6 +110,12 @@ public class PhoneNumberFormatter {
     }
   }
 
+  public static int getLocalCountryCode() {
+    Optional<PhoneNumber> localNumber = get(ApplicationDependencies.getApplication()).localNumber;
+    return localNumber != null && localNumber.isPresent() ? localNumber.get().countryCode : 0;
+  }
+
+
   public String format(@Nullable String number) {
     if (number == null)                       return "Unknown";
     if (GroupId.isEncodedGroup(number))     return number;
