@@ -1,20 +1,20 @@
 package org.session.libsession.messaging
 
+
+import android.net.Uri
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.opengroups.OpenGroup
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings
-
-
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.ecc.ECPrivateKey
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
-import java.security.PublicKey
 
 interface StorageProtocol {
 
@@ -114,6 +114,10 @@ interface StorageProtocol {
     fun getServerDisplayName(serverID: String, publicKey: String): String?
     fun getProfilePictureURL(publicKey: String): String?
 
-    //Recipient
+    // Recipient
     fun getRecipientSettings(address: Address): RecipientSettings?
+
+    // PartAuthority
+    fun getAttachmentDataUri(attachmentId: AttachmentId): Uri
+    fun getAttachmentThumbnailUri(attachmentId: AttachmentId): Uri
 }

@@ -3,6 +3,7 @@ package org.session.libsession.utilities
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
+import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
@@ -69,6 +70,11 @@ object Util {
     @JvmStatic
     fun equals(a: Any?, b: Any?): Boolean {
         return a === b || a != null && a == b
+    }
+
+    @JvmStatic
+    fun hashCode(vararg objects: Any?): Int {
+        return Arrays.hashCode(objects)
     }
 
 }
