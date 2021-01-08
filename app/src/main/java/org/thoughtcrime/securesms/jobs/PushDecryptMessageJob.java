@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -179,22 +180,11 @@ public final class PushDecryptMessageJob extends BaseJob {
                                                                  smsMessageId,
                                                                  envelope.getTimestamp()));
 
-    } catch (ProtocolInvalidMessageException | ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
+    } catch (ProtocolInvalidMessageException | ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException | ProtocolNoSessionException e) {
       Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
-      return Collections.singletonList(new PushProcessMessageJob(PushProcessMessageJob.MessageState.CORRUPT_MESSAGE,
-                                                                 toExceptionMetadata(e),
-                                                                 messageId,
-                                                                 smsMessageId,
-                                                                 envelope.getTimestamp()));
-
-    } catch (ProtocolNoSessionException e) {
-      Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
-      return Collections.singletonList(new PushProcessMessageJob(PushProcessMessageJob.MessageState.NO_SESSION,
-                                                                 toExceptionMetadata(e),
-                                                                 messageId,
-                                                                 smsMessageId,
-                                                                 envelope.getTimestamp()));
-
+      return Collections.singletonList(new AutomaticSessionResetJob(Recipient.external(context, e.getSender()).getId(),
+                                                                    e.getSenderDevice(),
+                                                                    envelope.getTimestamp()));
     } catch (ProtocolLegacyMessageException e) {
       Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
       return Collections.singletonList(new PushProcessMessageJob(PushProcessMessageJob.MessageState.LEGACY_MESSAGE,

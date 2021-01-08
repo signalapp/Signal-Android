@@ -66,6 +66,7 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
@@ -1413,6 +1414,23 @@ public class ConversationFragment extends LoggingFragment {
     @Override
     public void onGroupMigrationLearnMoreClicked(@NonNull GroupMigrationMembershipChange membershipChange) {
       GroupsV1MigrationInfoBottomSheetDialogFragment.show(requireFragmentManager(), membershipChange);
+    }
+
+    @Override
+    public void onDecryptionFailedLearnMoreClicked() {
+      new AlertDialog.Builder(requireContext())
+          .setView(R.layout.decryption_failed_dialog)
+          .setPositiveButton(android.R.string.ok, (d, w) -> {
+            d.dismiss();
+          })
+          .setNeutralButton(R.string.ConversationFragment_contact_us, (d, w) -> {
+            Intent intent = new Intent(requireContext(), ApplicationPreferencesActivity.class);
+            intent.putExtra(ApplicationPreferencesActivity.LAUNCH_TO_HELP_FRAGMENT, true);
+
+            startActivity(intent);
+            d.dismiss();
+          })
+          .show();
     }
 
     @Override

@@ -191,6 +191,8 @@ public abstract class MessageRecord extends DisplayRecord {
       else              return fromRecipient(getIndividualRecipient(), r-> context.getString(R.string.SmsMessageRecord_secure_session_reset_s, r.getDisplayName(context)), R.drawable.ic_update_info_16);
     } else if (isGroupV1MigrationEvent()) {
       return getGroupMigrationEventDescription(context);
+    } else if (isFailedDecryptionType()) {
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_chat_session_refreshed), R.drawable.ic_refresh_16);
     }
 
     return null;
@@ -436,7 +438,7 @@ public abstract class MessageRecord extends DisplayRecord {
   public boolean isUpdate() {
     return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
            isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
-           isProfileChange() || isGroupV1MigrationEvent();
+           isProfileChange() || isGroupV1MigrationEvent() || isFailedDecryptionType();
   }
 
   public boolean isMediaPending() {
@@ -469,6 +471,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean hasFailedWithNetworkFailures() {
     return isFailed() && ((getRecipient().isPushGroup() && hasNetworkFailures()) || !isIdentityMismatchFailure());
+  }
+
+  public boolean isFailedDecryptionType() {
+    return MmsSmsColumns.Types.isFailedDecryptType(type);
   }
 
   protected static SpannableString emphasisAdded(String sequence) {

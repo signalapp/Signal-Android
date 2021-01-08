@@ -356,6 +356,7 @@
     <string name="ConversationFragment__tap_to_review">Tap to review</string>
     <string name="ConversationFragment__review_requests_carefully">Review requests carefully</string>
     <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal found another contact with the same name.</string>
+    <string name="ConversationFragment_contact_us">Contact us</string>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
@@ -453,6 +454,10 @@
     <string name="DateUtils_minutes_ago">%dm</string>
     <string name="DateUtils_today">Today</string>
     <string name="DateUtils_yesterday">Yesterday</string>
+
+    <!-- DecryptionFailedDialog -->
+    <string name="DecryptionFailedDialog_chat_session_refreshed">Chat session refreshed</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal uses end-to-end encryption and it may need to refresh your chat session sometimes. This doesn\'t affect your chat\'s security, but you may have missed a message from this contact, and you can ask them to resend it.</string>
 
     <!-- DeliveryStatus -->
     <string name="DeliveryStatus_sending">Sending</string>
@@ -1080,6 +1085,7 @@
     <string name="MessageRecord_disappearing_message_time_set_to_s">The disappearing message timer has been set to %1$s.</string>
     <string name="MessageRecord_this_group_was_updated_to_a_new_group">This group was updated to a New Group.</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">You couldn\'t be added to the New Group and have been invited to join.</string>
+    <string name="MessageRecord_chat_session_refreshed">Chat session refreshed</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
         <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
         <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
@@ -1660,6 +1666,7 @@
     <string name="ThreadRecord_contact">Contact</string>
     <string name="ThreadRecord_file">File</string>
     <string name="ThreadRecord_video">Video</string>
+    <string name="ThreadRecord_chat_session_refreshed">Chat session refreshed</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal update</string>
@@ -1711,7 +1718,6 @@
     <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
 
     <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
 
     <!-- MmsMessageRecord -->

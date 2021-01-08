@@ -61,6 +61,7 @@ public interface BindableConversationItem extends Unbindable {
     void onVoiceNotePlay(@NonNull Uri uri, long messageId, double position);
     void onVoiceNoteSeekTo(@NonNull Uri uri, double position);
     void onGroupMigrationLearnMoreClicked(@NonNull GroupMigrationMembershipChange membershipChange);
+    void onDecryptionFailedLearnMoreClicked();
     void onJoinGroupCallClicked();
     void onInviteFriendsToGroupClicked(@NonNull GroupId.V2 groupId);
 
