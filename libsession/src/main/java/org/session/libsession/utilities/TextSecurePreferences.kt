@@ -386,6 +386,7 @@ object TextSecurePreferences {
         setIntegerPrefrence(context, PROFILE_AVATAR_ID_PREF, id)
     }
 
+    @JvmStatic
     fun getProfileAvatarId(context: Context): Int {
         return getIntegerPreference(context, PROFILE_AVATAR_ID_PREF, 0)
     }
@@ -606,6 +607,7 @@ object TextSecurePreferences {
         return getStringPreference(context, UPDATE_APK_DIGEST, null)
     }
 
+    @JvmStatic
     fun getLocalNumber(context: Context): String? {
         return getStringPreference(context, LOCAL_NUMBER_PREF, null)
     }
@@ -820,6 +822,7 @@ object TextSecurePreferences {
         setIntegerPrefrence(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval)
     }
 
+    @JvmStatic
     fun getLanguage(context: Context): String? {
         return getStringPreference(context, LANGUAGE_PREF, "zz")
     }
@@ -1100,6 +1103,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, "is_chat_set_up?chat=$id", true)
     }
 
+    @JvmStatic
     fun getMasterHexEncodedPublicKey(context: Context): String? {
         return getStringPreference(context, "master_hex_encoded_public_key", null)
     }

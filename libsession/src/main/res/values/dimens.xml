@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Session -->
+
+    <!-- Font Sizes -->
+    <dimen name="very_small_font_size">12sp</dimen>
+    <dimen name="small_font_size">15sp</dimen>
+    <dimen name="medium_font_size">17sp</dimen>
+    <dimen name="large_font_size">22sp</dimen>
+    <dimen name="very_large_font_size">26sp</dimen>
+    <dimen name="massive_font_size">50sp</dimen>
+
+    <!-- Element Sizes -->
+    <dimen name="small_button_height">34dp</dimen>
+    <dimen name="medium_button_height">38dp</dimen>
+    <dimen name="medium_button_corner_radius">22dp</dimen>
+    <dimen name="accent_line_thickness">4dp</dimen>
+    <dimen name="very_small_profile_picture_size">26dp</dimen>
+    <dimen name="small_profile_picture_size">36dp</dimen>
+    <dimen name="medium_profile_picture_size">46dp</dimen>
+    <dimen name="large_profile_picture_size">76dp</dimen>
+    <dimen name="conversation_view_status_indicator_size">14dp</dimen>
+    <dimen name="border_thickness">1dp</dimen>
+    <dimen name="profile_picture_border_thickness">1dp</dimen>
+    <dimen name="new_conversation_button_collapsed_size">60dp</dimen>
+    <dimen name="new_conversation_button_expanded_size">72dp</dimen>
+    <dimen name="tab_bar_height">36dp</dimen>
+    <dimen name="text_view_corner_radius">8dp</dimen>
+    <dimen name="fake_chat_view_bubble_width">224dp</dimen>
+    <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>
+    <dimen name="fake_chat_view_height">250dp</dimen>
+    <dimen name="setting_button_height">56dp</dimen>
+    <dimen name="dialog_corner_radius">8dp</dimen>
+    <dimen name="dialog_button_corner_radius">4dp</dimen>
+    <dimen name="pn_option_corner_radius">8dp</dimen>
+    <dimen name="path_status_view_size">8dp</dimen>
+    <dimen name="path_row_height">56dp</dimen>
+    <dimen name="path_row_dot_size">8dp</dimen>
+    <dimen name="path_row_expanded_dot_size">16dp</dimen>
+
+    <!-- Distances -->
+    <dimen name="small_spacing">8dp</dimen>
+    <dimen name="medium_spacing">16dp</dimen>
+    <dimen name="large_spacing">24dp</dimen>
+    <dimen name="very_large_spacing">35dp</dimen>
+    <dimen name="massive_spacing">64dp</dimen>
+    <dimen name="new_conversation_button_bottom_offset">56dp</dimen>
+    <dimen name="onboarding_button_bottom_offset">40dp</dimen>
+
+    <!-- Session -->
+
+    <dimen name="emoji_drawer_size">32sp</dimen>
+    <dimen name="min_keyboard_size">50dp</dimen>
+    <dimen name="default_custom_keyboard_size">220dp</dimen>
+    <dimen name="min_custom_keyboard_size">110dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin_landscape">50dp</dimen>
+    <dimen name="emoji_drawer_item_padding">5dp</dimen>
+    <dimen name="emoji_drawer_indicator_height">1.5dp</dimen>
+    <dimen name="emoji_drawer_left_right_padding">5dp</dimen>
+    <dimen name="emoji_drawer_item_width">48dp</dimen>
+    <dimen name="conversation_item_body_text_size">16sp</dimen>
+    <dimen name="conversation_item_date_text_size">12sp</dimen>
+    <dimen name="transport_selection_popup_width">200sp</dimen>
+    <dimen name="transport_selection_popup_xoff">2dp</dimen>
+    <dimen name="transport_selection_popup_yoff">2dp</dimen>
+    <dimen name="contact_photo_target_size">64dp</dimen>
+    <dimen name="contact_selection_photo_size">50dp</dimen>
+
+    <dimen name="album_total_width">210dp</dimen>
+    <dimen name="album_2_total_height">105dp</dimen>
+    <dimen name="album_2_cell_width">104dp</dimen>
+    <dimen name="album_3_total_height">140dp</dimen>
+    <dimen name="album_3_cell_width_big">139dp</dimen>
+    <dimen name="album_3_cell_size_small">69dp</dimen>
+    <dimen name="album_4_total_height">210dp</dimen>
+    <dimen name="album_4_cell_size">104dp</dimen>
+    <dimen name="album_5_total_height">175dp</dimen>
+    <dimen name="album_5_cell_size_big">104dp</dimen>
+    <dimen name="album_5_cell_size_small">69dp</dimen>
+
+    <dimen name="message_corner_radius">10dp</dimen>
+    <dimen name="message_corner_collapse_radius">4dp</dimen>
+    <dimen name="message_bubble_corner_radius">2dp</dimen>
+    <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
+    <dimen name="message_bubble_horizontal_padding">@dimen/medium_spacing</dimen>
+    <dimen name="message_bubble_top_padding">@dimen/medium_spacing</dimen>
+    <dimen name="message_bubble_collapsed_footer_padding">@dimen/small_spacing</dimen>
+    <dimen name="message_bubble_edge_margin">32dp</dimen>
+    <dimen name="message_bubble_bottom_padding">@dimen/medium_spacing</dimen>
+    <dimen name="media_bubble_remove_button_size">24dp</dimen>
+    <dimen name="media_bubble_edit_button_size">24dp</dimen>
+    <dimen name="media_bubble_default_dimens">210dp</dimen>
+    <dimen name="media_bubble_min_width">150dp</dimen>
+    <dimen name="media_bubble_max_width">240dp</dimen>
+    <dimen name="media_bubble_min_height">100dp</dimen>
+    <dimen name="media_bubble_max_height">320dp</dimen>
+    <dimen name="media_bubble_sticker_dimens">128dp</dimen>
+
+    <dimen name="media_picker_folder_width">175dp</dimen>
+    <dimen name="media_picker_item_width">85dp</dimen>
+
+    <dimen name="media_keyboard_provider_icon_padding">5dp</dimen>
+    <dimen name="media_keyboard_provider_icon_margin">4dp</dimen>
+
+    <dimen name="mediasend_progress_dialog_size">120dp</dimen>
+
+    <dimen name="thumbnail_default_radius">4dp</dimen>
+
+    <dimen name="conversation_compose_height">40dp</dimen>
+    <dimen name="conversation_individual_right_gutter">@dimen/large_spacing</dimen>
+    <dimen name="conversation_individual_left_gutter">@dimen/large_spacing</dimen>
+    <dimen name="conversation_group_left_gutter">60dp</dimen>
+    <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
+    <dimen name="conversation_vertical_message_spacing_collapse">1dp</dimen>
+
+    <dimen name="conversation_item_avatar_size">36dp</dimen>
+
+    <dimen name="quote_corner_radius_large">10dp</dimen>
+    <dimen name="quote_corner_radius_bottom">2dp</dimen>
+    <dimen name="quote_corner_radius_preview">16dp</dimen>
+
+    <integer name="media_overview_cols">3</integer>
+    <dimen name="message_details_table_row_pad">10dp</dimen>
+
+    <dimen name="quick_camera_shutter_ring_size">52dp</dimen>
+
+    <dimen name="sticker_page_item_padding">8dp</dimen>
+    <dimen name="sticker_page_item_divisor">88dp</dimen>
+    <dimen name="sticker_page_item_multiplier">8dp</dimen>
+    <dimen name="sticker_preview_sticker_size">96dp</dimen>
+
+    <dimen name="sticker_management_horizontal_margin">16dp</dimen>
+
+    <dimen name="tooltip_popup_margin">8dp</dimen>
+
+    <dimen name="transfer_controls_expanded_width">150dp</dimen>
+    <dimen name="transfer_controls_contracted_width">70dp</dimen>
+    <dimen name="conversation_list_fragment_archive_padding">16dp</dimen>
+    <dimen name="contact_selection_actions_tap_area">10dp</dimen>
+
+    <dimen name="unread_count_bubble_radius">13sp</dimen>
+    <dimen name="unread_count_bubble_diameter">26sp</dimen>
+
+    <!-- RedPhone -->
+
+    <!-- Height of the main row of in-call buttons. -->
+
+    <!-- Padding at the left and right edges of the incall_touch_ui button
+         cluster.  This padding is necessary because we can't allow the
+         buttons to be very close to the edges of the screen, due to the
+         risk of false touches (from your finger wrapping around while
+         holding the phone, *before* moving it up to your face and having
+         the prox sensor kick in.) -->
+
+    <dimen name="onboarding_title_size">34sp</dimen>
+    <dimen name="onboarding_subtitle_size">20sp</dimen>
+
+    <dimen name="scribble_stroke_size">2dp</dimen>
+
+    <dimen name="floating_action_button_margin">16dp</dimen>
+
+    <dimen name="alertview_small_icon_size">14dp</dimen>
+
+    <dimen name="recording_voice_lock_target">-96dp</dimen>
+
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="drawable_padding">24dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="normal_padding">16dp</dimen>
+    <dimen name="action_item_height">56dp</dimen>
+
+</resources>

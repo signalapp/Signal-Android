@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="theme_type" format="string"/>
+
+    <attr name="attachment_type_selector_background" format="color"/>
+    <attr name="attachment_type_selector_hide_button_background" format="color"/>
+    <attr name="attachment_document_icon_small" format="reference" />
+    <attr name="attachment_document_icon_large" format="reference" />
+    <attr name="attachment_document_extension_text_color" format="color" />
+
+    <attr name="conversation_list_item_background" format="reference"/>
+    <attr name="conversation_list_item_contact_color" format="reference|color"/>
+    <attr name="conversation_list_item_subject_color" format="reference|color"/>
+    <attr name="conversation_list_item_delivery_icon_color" format="reference|color"/>
+    <attr name="conversation_list_item_date_color" format="reference|color"/>
+    <attr name="conversation_list_item_unread_color" format="reference|color"/>
+    <attr name="conversation_list_item_unread_background" format="reference"/>
+    <attr name="conversation_list_item_divider" format="reference"/>
+    <attr name="conversation_list_toolbar_background" format="reference"/>
+    <attr name="conversation_list_typing_tint" format="color"/>
+
+    <attr name="conversation_group_member_name" format="reference|color"/>
+
+    <attr name="fab_color" format="reference|color" />
+    <attr name="lower_right_divet" format="reference" />
+
+    <attr name="ic_arrow_forward" format="reference" />
+    <attr name="ic_visibility_on" format="reference" />
+    <attr name="ic_visibility_off" format="reference" />
+
+    <attr name="conversation_background" format="reference|color"/>
+    <attr name="conversation_editor_background" format="reference|color"/>
+    <attr name="conversation_editor_text_color" format="reference|color"/>
+    <attr name="conversation_input_background" format="reference"/>
+    <attr name="conversation_input_inline_attach_icon_tint" format="reference"/>
+    <attr name="conversation_transport_sms_indicator" format="reference"/>
+    <attr name="conversation_transport_push_indicator" format="reference"/>
+    <attr name="conversation_transport_popup_background" format="reference"/>
+    <attr name="conversation_emoji_toggle" format="reference"/>
+    <attr name="conversation_sticker_toggle" format="reference"/>
+    <attr name="conversation_keyboard_toggle" format="reference"/>
+    <attr name="conversation_attach_camera" format="reference"/>
+    <attr name="conversation_attach_image" format="reference"/>
+    <attr name="conversation_attach_video" format="reference"/>
+    <attr name="conversation_attach_sound" format="reference"/>
+    <attr name="conversation_attach_contact_info" format="reference"/>
+    <attr name="conversation_attach" format="reference"/>
+    <attr name="conversation_number_picker_text_color_normal" format="reference|color"/>
+    <attr name="conversation_number_picker_text_color_selected" format="reference|color"/>
+    <attr name="conversation_sticker_footer_text_color" format="reference|color"/>
+    <attr name="conversation_sticker_footer_icon_color" format="reference|color"/>
+    <attr name="conversation_sticker_author_color" format="reference|color"/>
+
+    <attr name="emoji_tab_strip_background" format="color" />
+    <attr name="emoji_tab_indicator" format="color" />
+    <attr name="emoji_tab_underline" format="color" />
+    <attr name="emoji_tab_seperator" format="color" />
+    <attr name="emoji_drawer_background" format="color" />
+    <attr name="emoji_text_color" format="color" />
+
+    <attr name="emoji_category_recent" format="reference"/>
+    <attr name="emoji_category_people" format="reference"/>
+    <attr name="emoji_category_nature" format="reference"/>
+    <attr name="emoji_category_foods"  format="reference"/>
+    <attr name="emoji_category_activity" format="reference"/>
+    <attr name="emoji_category_places" format="reference"/>
+    <attr name="emoji_category_objects" format="reference"/>
+    <attr name="emoji_category_symbol" format="reference"/>
+    <attr name="emoji_category_flags" format="reference"/>
+    <attr name="emoji_category_emoticons" format="reference"/>
+    <attr name="emoji_variation_selector_background" format="reference|color" />
+
+    <attr name="quick_camera_icon" format="reference"/>
+    <attr name="quick_mic_icon" format="reference"/>
+
+    <attr name="conversation_item_bubble_background" format="reference|color"/>
+    <attr name="conversation_item_sent_text_primary_color" format="reference|color"/>
+    <attr name="conversation_item_sent_text_secondary_color" format="reference|color"/>
+    <attr name="conversation_item_received_text_primary_color" format="reference|color"/>
+    <attr name="conversation_item_received_text_secondary_color" format="reference|color"/>
+    <attr name="conversation_item_sent_text_indicator_tab_color" format="reference|color"/>
+    <attr name="conversation_item_sent_indicator_text_background" format="reference" />
+    <attr name="conversation_item_sent_icon_color" format="color" />
+    <attr name="conversation_item_sticky_date_background" format="reference" />
+    <attr name="conversation_item_sticky_date_text_color" format="color" />
+    <attr name="conversation_item_image_outline_color" format="color" />
+    <attr name="conversation_item_audio_seek_bar_color_incoming" format="reference|color" />
+    <attr name="conversation_item_audio_seek_bar_color_outgoing" format="reference|color" />
+    <attr name="conversation_item_audio_seek_bar_background_color" format="reference|color" />
+
+    <attr name="dialog_info_icon" format="reference" />
+    <attr name="dialog_alert_icon" format="reference" />
+    <attr name="dialog_background_color" format="reference|color" />
+
+    <attr name="conversation_icon_attach_audio" format="reference"/>
+    <attr name="conversation_icon_attach_video" format="reference" />
+
+    <attr name="device_link_item_card_background" format="reference|color" />
+
+    <attr name="linkpreview_background_color" format="color" />
+    <attr name="linkpreview_primary_text_color" format="color" />
+    <attr name="linkpreview_secondary_text_color" format="color" />
+    <attr name="linkpreview_divider_color" format="color" />
+
+    <attr name="media_keyboard_button_color" format="color" />
+
+    <attr name="menu_popup_expand" format="reference"/>
+    <attr name="menu_trash_icon" format="reference" />
+    <attr name="menu_selectall_icon" format="reference" />
+    <attr name="menu_split_icon" format="reference" />
+    <attr name="menu_accept_icon" format="reference" />
+    <attr name="menu_copy_icon" format="reference" />
+    <attr name="menu_forward_icon" format="reference" />
+    <attr name="menu_save_icon" format="reference" />
+    <attr name="menu_reply_icon" format="reference" />
+    <attr name="menu_block_icon" format="reference" />
+    <attr name="menu_photo_library_icon" format="reference" />
+    <attr name="menu_delete_icon" format="reference" />
+    <attr name="menu_info_icon" format="reference" />
+
+    <attr name="pref_icon_tint" format="color"/>
+
+    <attr name="home_gradient_start" format="color|reference" />
+    <attr name="home_gradient_end" format="color|reference" />
+
+    <attr name="message_received_background_color" format="color|reference" />
+    <attr name="message_sent_background_color" format="color|reference" />
+
+    <attr name="verification_background" format="color"/>
+
+    <attr name="media_overview_toolbar_background" format="color"/>
+    <attr name="media_overview_header_foreground" format="color"/>
+
+    <attr name="shared_contact_details_header_background" format="color"/>
+    <attr name="shared_contact_details_titlebar" format="color"/>
+    <attr name="shared_contact_item_button_color" format="color"/>
+
+    <attr name="sticker_management_icon" format="reference" />
+    <attr name="sticker_management_divider_color" format="color" />
+    <attr name="sticker_management_empty_background_color" format="color" />
+    <attr name="sticker_management_action_button_color" format="color" />
+    <attr name="sticker_popup_background" format="color" />
+    <attr name="sticker_preview_toolbar_background" format="color" />
+    <attr name="sticker_preview_status_bar_color" format="color" />
+    <attr name="sticker_view_missing_background" format="reference|color" />
+
+    <attr name="tooltip_default_color" format="reference|color" />
+
+    <declare-styleable name="CustomDefaultPreference">
+        <attr name="custom_pref_toggle" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="AvatarImageView">
+        <attr name="inverted" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ThumbnailView">
+        <attr name="minWidth" format="dimension" />
+        <attr name="maxWidth" format="dimension" />
+        <attr name="minHeight" format="dimension" />
+        <attr name="maxHeight" format="dimension" />
+        <attr name="thumbnail_radius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="DeliveryStatusView">
+        <attr name="iconColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="AlertView">
+        <attr name="useSmallIcon" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="MessageAudioView">
+        <attr name="widgetBackground" format="color"/>
+        <attr name="foregroundTintColor" format="color" />
+        <attr name="waveformFillColor" format="reference|color" />
+        <attr name="waveformBackgroundColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleColorImageView">
+        <attr name="circleColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShapeScrim">
+        <attr name="shape" format="string"/>
+        <attr name="radius" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="CameraView">
+        <attr name="camera" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="HourglassView">
+        <attr name="full" format="reference"/>
+        <attr name="empty" format="reference"/>
+        <attr name="tint" format="color"/>
+        <attr name="percentage" format="integer"/>
+        <attr name="offset" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="SquareFrameLayout">
+        <attr name="square_height" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="VerticalSlideColorPicker">
+        <attr name="pickerBorderColor" format="color" />
+        <attr name="pickerBorderWidth" format="dimension" />
+        <attr name="pickerColors" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="EmojiTextView">
+        <attr name="scaleEmojis" format="boolean" />
+        <attr name="emoji_maxLength" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="ColorPickerPreference">
+        <attr name="currentColor" format="reference" />
+        <attr name="colors" format="reference" />
+        <attr name="sortColors" format="boolean|reference" />
+        <attr name="colorDescriptions" format="reference" />
+        <attr name="columns" format="integer|reference" />
+        <attr name="colorSize" format="enum|reference">
+            <enum name="large" value="1" />
+            <enum name="small" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="VerificationCodeView">
+        <attr name="vcv_spacing" format="dimension"/>
+        <attr name="vcv_inputWidth" format="dimension"/>
+        <attr name="vcv_inputHeight" format="dimension"/>
+        <attr name="vcv_inputColor" format="color"/>
+        <attr name="vcv_textSize" format="dimension"/>
+        <attr name="vcv_textColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="QuoteView">
+        <attr name="message_type" format="enum">
+            <enum name="preview" value="0" />
+            <enum name="outgoing" value="1" />
+            <enum name="incoming" value="2" />
+        </attr>
+        <attr name="quote_colorPrimary" format="color" />
+        <attr name="quote_colorSecondary" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="LinkPreviewView">
+        <attr name="linkpreview_type" format="enum">
+            <enum name="conversation" value="0" />
+            <enum name="compose" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="DocumentView">
+        <attr name="doc_titleColor" format="color" />
+        <attr name="doc_captionColor" format="color" />
+        <attr name="doc_downloadButtonTint" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ConversationItemFooter">
+        <attr name="footer_text_color" format="color" />
+        <attr name="footer_icon_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ConversationItemThumbnail">
+        <attr name="conversationThumbnail_minWidth" format="dimension" />
+        <attr name="conversationThumbnail_maxWidth" format="dimension" />
+        <attr name="conversationThumbnail_minHeight" format="dimension" />
+        <attr name="conversationThumbnail_maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TypingIndicatorView">
+        <attr name="typingIndicator_tint" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="scrollView_maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="LabeledEditText">
+        <attr name="labeledEditText_label" format="string" />
+        <attr name="labeledEditText_background" format="color" />
+        <attr name="labeledEditText_textLayout" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="WaveformSeekBar">
+        <attr name="progress" format="float"/>
+        <attr name="bar_width" format="dimension"/>
+        <attr name="bar_gap" format="dimension"/>
+        <attr name="bar_min_height" format="dimension"/>
+        <attr name="bar_corner_radius" format="dimension"/>
+        <attr name="bar_background_color" format="color"/>
+        <attr name="bar_progress_color" format="color"/>
+        <!-- Corresponds to WaveformSeekBar.WaveGravity enum. -->
+        <attr name="bar_gravity" format="enum">
+            <enum name="top" value="1" />
+            <enum name="center" value="2" />
+            <enum name="bottom" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>
