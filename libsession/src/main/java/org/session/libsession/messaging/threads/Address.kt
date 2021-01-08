@@ -9,10 +9,8 @@ import org.session.libsession.utilities.DelimiterUtil.escape
 import org.session.libsession.utilities.DelimiterUtil.split
 import org.session.libsession.utilities.DelimiterUtil.unescape
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.NumberUtil.isValidEmail
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.internal.util.Util
-import java.lang.AssertionError
 import java.util.*
 import java.util.concurrent.atomic.AtomicReference
 import java.util.regex.Matcher
@@ -39,6 +37,11 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
             if (isGroup) throw AssertionError("Not e164, is group")
             throw AssertionError("Not e164, unknown")
         }
+        return address
+    }
+
+    fun toGroupString(): String {
+        if (!isGroup) throw AssertionError("Not group")
         return address
     }
 
