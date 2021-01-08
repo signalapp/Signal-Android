@@ -143,7 +143,7 @@ object OpenGroupAPI: DotNetAPI() {
                         val dateAsString = message["created_at"] as String
                         val serverTimestamp = format.parse(dateAsString).time
                         // Verify the message
-                        val groupMessage = OpenGroupMessage(serverID, publicKey, displayName, body, timestamp, openGroupMessageType, quote, attachments, profilePicture, signature, serverTimestamp)
+                        val groupMessage = OpenGroupMessage(serverID, publicKey, displayName, body, timestamp, openGroupMessageType, quote, attachments.toMutableList(), profilePicture, signature, serverTimestamp)
                         if (groupMessage.hasValidSignature()) groupMessage else null
                     } catch (exception: Exception) {
                         Log.d("Loki", "Couldn't parse message for open group with ID: $channel on server: $server from: ${JsonUtil.toJson(message)}. Exception: ${exception.message}")
