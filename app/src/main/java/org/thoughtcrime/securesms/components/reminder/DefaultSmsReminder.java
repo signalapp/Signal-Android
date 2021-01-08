@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -41,6 +42,6 @@ public class DefaultSmsReminder extends Reminder {
       TextSecurePreferences.setPromptedDefaultSmsProvider(context, false);
     }
 
-    return !isDefault && !TextSecurePreferences.hasPromptedDefaultSmsProvider(context);
+    return !isDefault && !TextSecurePreferences.hasPromptedDefaultSmsProvider(context) && PhoneNumberFormatter.getLocalCountryCode() != 91;
   }
 }
