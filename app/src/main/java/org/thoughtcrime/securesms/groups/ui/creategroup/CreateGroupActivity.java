@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups.ui.creategroup;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -40,7 +41,6 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
   private static final String TAG = Log.tag(CreateGroupActivity.class);
 
-  private static final int   MINIMUM_GROUP_SIZE       = 1;
   private static final short REQUEST_CODE_ADD_DETAILS = 17275;
 
   private View next;
@@ -68,7 +68,6 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
     next = findViewById(R.id.next);
 
-    disableNext();
     next.setOnClickListener(v -> handleNextPressed());
   }
 
@@ -106,10 +105,6 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
     if (contactsFragment.hasQueryFilter()) {
       getToolbar().clear();
-    }
-
-    if (contactsFragment.getSelectedContactsCount() < MINIMUM_GROUP_SIZE) {
-      disableNext();
     }
   }
 
@@ -167,28 +162,33 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       resolved = Recipient.resolvedList(ids);
 
+      Pair<Boolean, List<RecipientId>> result;
+
       boolean gv2 = Stream.of(recipientsAndSelf).allMatch(r -> r.getGroupsV2Capability() == Recipient.Capability.SUPPORTED);
       if (!gv2 && Stream.of(resolved).anyMatch(r -> !r.hasE164()))
       {
         Log.w(TAG, "Invalid GV1 group...");
         ids = Collections.emptyList();
+        result = Pair.create(false, ids);
+      } else {
+        result = Pair.create(true, ids);
       }
 
       stopwatch.split("gv1-check");
 
-      return ids;
-    }, ids -> {
+      return result;
+    }, result -> {
       dismissibleDialog.dismiss();
 
       stopwatch.stop(TAG);
 
-      if (ids.isEmpty()) {
+      if (result.first) {
+        startActivityForResult(AddGroupDetailsActivity.newIntent(this, result.second), REQUEST_CODE_ADD_DETAILS);
+      } else {
         new AlertDialog.Builder(this)
                        .setMessage(R.string.CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups)
                        .setPositiveButton(android.R.string.ok, (d, w) -> d.dismiss())
                        .show();
-      } else {
-        startActivityForResult(AddGroupDetailsActivity.newIntent(this, ids), REQUEST_CODE_ADD_DETAILS);
       }
     });
   }

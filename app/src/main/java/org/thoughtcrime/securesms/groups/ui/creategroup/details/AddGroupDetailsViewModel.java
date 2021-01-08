@@ -124,11 +124,6 @@ public final class AddGroupDetailsViewModel extends ViewModel {
       return;
     }
 
-    if (memberIds.isEmpty()) {
-      groupCreateResult.postValue(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_INVALID_MEMBER_COUNT));
-      return;
-    }
-
     repository.createGroup(memberIds,
                            avatarBytes,
                            groupName,
