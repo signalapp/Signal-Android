@@ -2,6 +2,7 @@ package org.session.libsession.messaging.sending_receiving
 
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
+import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
@@ -12,7 +13,10 @@ import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.SSKEnvironment
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.libsignal.util.Hex
 
@@ -22,12 +26,12 @@ import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatch
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementation
 import org.session.libsignal.service.loki.utilities.toHexString
+import java.security.MessageDigest
 import java.util.*
 import kotlin.collections.ArrayList
 
 internal fun MessageReceiver.isBlock(publicKey: String): Boolean {
-    // TODO: move isBlocked from Recipient to BlockManager
-    return false
+    return SSKEnvironment.shared.blockManager.isRecipientIdBlocked(publicKey)
 }
 
 fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content, openGroupID: String?) {
@@ -41,7 +45,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
 }
 
 private fun MessageReceiver.handleReadReceipt(message: ReadReceipt) {
-    // TODO
+    SSKEnvironment.shared.readReceiptManager.processReadReceipts(message.sender!!, message.timestamps!!.asList(), message.receivedTimestamp!!)
 }
 
 private fun MessageReceiver.handleTypingIndicator(message: TypingIndicator) {
@@ -52,15 +56,24 @@ private fun MessageReceiver.handleTypingIndicator(message: TypingIndicator) {
 }
 
 fun MessageReceiver.showTypingIndicatorIfNeeded(senderPublicKey: String) {
-
+    val context = MessagingConfiguration.shared.context
+    val address = Address.fromSerialized(senderPublicKey)
+    val threadID = MessagingConfiguration.shared.storage.getThreadIdFor(address) ?: return
+    SSKEnvironment.shared.typingIndicators.didReceiveTypingStartedMessage(context, threadID.toLong(), address, 1)
 }
 
 fun MessageReceiver.hideTypingIndicatorIfNeeded(senderPublicKey: String) {
-
+    val context = MessagingConfiguration.shared.context
+    val address = Address.fromSerialized(senderPublicKey)
+    val threadID = MessagingConfiguration.shared.storage.getThreadIdFor(address) ?: return
+    SSKEnvironment.shared.typingIndicators.didReceiveTypingStoppedMessage(context, threadID.toLong(), address, 1, false)
 }
 
 fun MessageReceiver.cancelTypingIndicatorsIfNeeded(senderPublicKey: String) {
-
+    val context = MessagingConfiguration.shared.context
+    val address = Address.fromSerialized(senderPublicKey)
+    val threadID = MessagingConfiguration.shared.storage.getThreadIdFor(address) ?: return
+    SSKEnvironment.shared.typingIndicators.didReceiveIncomingMessage(context, threadID.toLong(), address, 1)
 }
 
 private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimerUpdate) {
@@ -81,6 +94,7 @@ fun MessageReceiver.disableExpirationTimer(senderPublicKey: String, groupPublicK
 
 fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
     val storage = MessagingConfiguration.shared.storage
+    val context = MessagingConfiguration.shared.context
     // Parse & persist attachments
     val attachments = proto.dataMessage.attachmentsList.mapNotNull { proto ->
         val attachment = Attachment.fromProto(proto)
@@ -96,7 +110,24 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     // Update profile if needed
     val newProfile = message.profile
     if (newProfile != null) {
-
+        val profileManager = SSKEnvironment.shared.profileManager
+        val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
+        val displayName = newProfile.displayName!!
+        val userPublicKey = storage.getUserPublicKey()
+        if (userPublicKey == message.sender) {
+            // Update the user's local name if the message came from their master device
+            TextSecurePreferences.setProfileName(context, displayName)
+        }
+        profileManager.setDisplayName(recipient, displayName)
+        if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
+            profileManager.setProfileKey(recipient, newProfile.profileKey!!)
+            profileManager.setUnidentifiedAccessMode(recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
+            val url = newProfile.profilePictureURL.orEmpty()
+            profileManager.setProfilePictureURL(recipient, url)
+            if (userPublicKey == message.sender) {
+                profileManager.updateOpenGroupProfilePicturesIfNeeded()
+            }
+        }
     }
     // Get or create thread
     val threadID = storage.getOrCreateThreadIdFor(message.sender!!, message.groupPublicKey, openGroupID) ?: throw MessageSender.Error.NoThread
@@ -245,9 +276,44 @@ private fun MessageReceiver.handleGroupUpdate(message: ClosedGroupUpdate) {
 }
 
 private fun MessageReceiver.handleSenderKeyRequest(message: ClosedGroupUpdate) {
-
+    if (message.kind !is ClosedGroupUpdate.Kind.SenderKeyRequest) { return }
+    val kind = message.kind!! as ClosedGroupUpdate.Kind.SenderKeyRequest
+    val storage = MessagingConfiguration.shared.storage
+    val sskDatabase = MessagingConfiguration.shared.sskDatabase
+    val userPublicKey = storage.getUserPublicKey()!!
+    val groupPublicKey = kind.groupPublicKey.toHexString()
+    val groupID = GroupUtil.getEncodedClosedGroupID(groupPublicKey)
+    val group = storage.getGroup(groupID)
+    if (group == null) {
+        Log.d("Loki", "Ignoring closed group sender key request for nonexistent group.")
+        return
+    }
+    // Check that the requesting user is a member of the group
+    if (!group.members.map { it.serialize() }.contains(message.sender!!)) {
+        Log.d("Loki", "Ignoring closed group sender key request from non-member.")
+        return
+    }
+    // Respond to the request
+    Log.d("Loki", "Responding to sender key request from: ${message.sender!!}.")
+    val userRatchet = sskDatabase.getClosedGroupRatchet(groupPublicKey, userPublicKey, ClosedGroupRatchetCollectionType.Current)
+            ?: SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, userPublicKey)
+    val userSenderKey = ClosedGroupSenderKey(Hex.fromStringCondensed(userRatchet.chainKey), userRatchet.keyIndex, Hex.fromStringCondensed(userPublicKey))
+    val closedGroupUpdateKind = ClosedGroupUpdate.Kind.SenderKey(Hex.fromStringCondensed(groupPublicKey), userSenderKey)
+    val closedGroupUpdate = ClosedGroupUpdate()
+    closedGroupUpdate.kind = closedGroupUpdateKind
+    MessageSender.send(closedGroupUpdate, Address.fromSerialized(groupID))
 }
 
 private fun MessageReceiver.handleSenderKey(message: ClosedGroupUpdate) {
-
+    if (message.kind !is ClosedGroupUpdate.Kind.SenderKey) { return }
+    val kind = message.kind!! as ClosedGroupUpdate.Kind.SenderKey
+    val groupPublicKey = kind.groupPublicKey.toHexString()
+    val senderKey = kind.senderKey
+    if (senderKey.publicKey.toHexString() != message.sender!!) {
+        Log.d("Loki", "Ignoring invalid closed group sender key.")
+        return
+    }
+    Log.d("Loki", "Received a sender key from: ${message.sender!!}.")
+    val ratchet = ClosedGroupRatchet(senderKey.chainKey.toHexString(), senderKey.keyIndex, listOf())
+    MessagingConfiguration.shared.sskDatabase.setClosedGroupRatchet(groupPublicKey, senderKey.publicKey.toHexString(), ratchet, ClosedGroupRatchetCollectionType.Current)
 }
