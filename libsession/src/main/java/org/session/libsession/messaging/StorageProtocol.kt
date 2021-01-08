@@ -8,6 +8,8 @@ import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
+import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings
+
 
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.ecc.ECPrivateKey
@@ -106,4 +108,12 @@ interface StorageProtocol {
     fun setSessionRequestSentTimestamp(publicKey: String, newValue: Long)
     fun getSessionRequestProcessedTimestamp(publicKey: String): Long?
     fun setSessionRequestProcessedTimestamp(publicKey: String, newValue: Long)
+
+    // Loki User
+    fun getDisplayName(publicKey: String): String?
+    fun getServerDisplayName(serverID: String, publicKey: String): String?
+    fun getProfilePictureURL(publicKey: String): String?
+
+    //Recipient
+    fun getRecipientSettings(address: Address): RecipientSettings?
 }
