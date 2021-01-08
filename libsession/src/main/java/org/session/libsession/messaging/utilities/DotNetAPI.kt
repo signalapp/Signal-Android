@@ -4,19 +4,19 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.then
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.Request
-import okhttp3.RequestBody
+import okhttp3.*
 
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.messaging.fileserver.FileServerAPI
+import org.session.libsession.messaging.sending_receiving.MessageReceiver
+import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachment
 
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.libsignal.loki.DiffieHellman
 import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
+import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException
 import org.session.libsignal.service.api.util.StreamDetails
@@ -29,6 +29,9 @@ import org.session.libsignal.service.internal.util.Hex
 import org.session.libsignal.service.internal.util.JsonUtil
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.utilities.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 import java.util.*
 
 /**
@@ -48,6 +51,8 @@ open class DotNetAPI {
         object DecryptionFailed : Error("Couldn't decrypt file.")
         object MaxFileSizeExceeded : Error("Maximum file size exceeded.")
         object TokenExpired: Error("Token expired.") // Session Android
+
+        internal val isRetryable: Boolean = false
     }
 
     companion object {
@@ -56,7 +61,7 @@ open class DotNetAPI {
 
     public data class UploadResult(val id: Long, val url: String, val digest: ByteArray?)
 
-    public fun getAuthToken(server: String): Promise<String, Exception> {
+    fun getAuthToken(server: String): Promise<String, Exception> {
         val storage = MessagingConfiguration.shared.storage
         val token = storage.getAuthToken(server)
         if (token != null) { return Promise.of(token) }
@@ -174,6 +179,80 @@ open class DotNetAPI {
         val parameters = mapOf( "annotations" to listOf( annotation ) )
         return execute(HTTPVerb.PATCH, server, "users/me", parameters = parameters)
     }
+
+    // DOWNLOAD
+
+    /**
+     * Blocks the calling thread.
+     */
+    fun downloadFile(destination: File, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
+        val outputStream = FileOutputStream(destination) // Throws
+        var remainingAttempts = 4
+        var exception: Exception? = null
+        while (remainingAttempts > 0) {
+            remainingAttempts -= 1
+            try {
+                downloadFile(outputStream, url, maxSize, listener)
+                exception = null
+                break
+            } catch (e: Exception) {
+                exception = e
+            }
+        }
+        if (exception != null) { throw exception }
+    }
+
+    /**
+     * Blocks the calling thread.
+     */
+    fun downloadFile(outputStream: OutputStream, url: String, maxSize: Int, listener: SignalServiceAttachment.ProgressListener?) {
+        // We need to throw a PushNetworkException or NonSuccessfulResponseCodeException
+        // because the underlying Signal logic requires these to work correctly
+        val oldPrefixedHost = "https://" + HttpUrl.get(url).host()
+        var newPrefixedHost = oldPrefixedHost
+        if (oldPrefixedHost.contains(FileServerAPI.fileStorageBucketURL)) {
+            newPrefixedHost = FileServerAPI.shared.server
+        }
+        // Edge case that needs to work: https://file-static.lokinet.org/i1pNmpInq3w9gF3TP8TFCa1rSo38J6UM
+        // → https://file.getsession.org/loki/v1/f/XLxogNXVEIWHk14NVCDeppzTujPHxu35
+        val fileID = url.substringAfter(oldPrefixedHost).substringAfter("/f/")
+        val sanitizedURL = "$newPrefixedHost/loki/v1/f/$fileID"
+        val request = Request.Builder().url(sanitizedURL).get()
+        try {
+            val serverPublicKey = if (newPrefixedHost.contains(FileServerAPI.shared.server)) FileServerAPI.fileServerPublicKey
+            else FileServerAPI.shared.getPublicKeyForOpenGroupServer(newPrefixedHost).get()
+            val json = OnionRequestAPI.sendOnionRequest(request.build(), newPrefixedHost, serverPublicKey, isJSONRequired = false).get()
+            val result = json["result"] as? String
+            if (result == null) {
+                Log.d("Loki", "Couldn't parse attachment from: $json.")
+                throw PushNetworkException("Missing response body.")
+            }
+            val body = Base64.decode(result)
+            if (body.size > maxSize) {
+                Log.d("Loki", "Attachment size limit exceeded.")
+                throw PushNetworkException("Max response size exceeded.")
+            }
+            val input = body.inputStream()
+            val buffer = ByteArray(32768)
+            var count = 0
+            var bytes = input.read(buffer)
+            while (bytes >= 0) {
+                outputStream.write(buffer, 0, bytes)
+                count += bytes
+                if (count > maxSize) {
+                    Log.d("Loki", "Attachment size limit exceeded.")
+                    throw PushNetworkException("Max response size exceeded.")
+                }
+                listener?.onAttachmentProgress(body.size.toLong(), count.toLong())
+                bytes = input.read(buffer)
+            }
+        } catch (e: Exception) {
+            Log.d("Loki", "Couldn't download attachment due to error: $e.")
+            throw if (e is NonSuccessfulResponseCodeException) e else PushNetworkException(e)
+        }
+    }
+
+    // UPLOAD
 
     @Throws(PushNetworkException::class, NonSuccessfulResponseCodeException::class)
     fun uploadAttachment(server: String, attachment: PushAttachmentData): UploadResult {

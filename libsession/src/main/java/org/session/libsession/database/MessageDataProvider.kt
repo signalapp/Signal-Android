@@ -4,6 +4,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
+import java.io.InputStream
 
 interface MessageDataProvider {
 
@@ -19,6 +20,8 @@ interface MessageDataProvider {
     fun getAttachmentPointer(attachmentId: Long): SessionServiceAttachmentPointer?
 
     fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long)
+
+    fun insertAttachment(messageId: Long, attachmentId: Long, stream : InputStream)
 
     fun isOutgoingMessage(timestamp: Long): Boolean
 

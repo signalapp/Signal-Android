@@ -22,7 +22,7 @@ class SessionServiceAttachmentStream(val inputStream: InputStream?, contentType:
 
     // Though now required, `digest` may be null for pre-existing records or from
     // messages received from other clients
-    var digest: ByteArray? = null
+    var digest: Optional<ByteArray> = Optional.absent()
 
     // This only applies for attachments being uploaded.
     var isUploaded: Boolean = false
@@ -48,7 +48,7 @@ class SessionServiceAttachmentStream(val inputStream: InputStream?, contentType:
 
         builder.size = this.length.toInt()
         builder.key = this.key
-        builder.digest = ByteString.copyFrom(this.digest)
+        builder.digest = ByteString.copyFrom(this.digest.get())
         builder.flags = if (this.voiceNote) SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE.number else 0
 
         //TODO I did copy the behavior of iOS below, not sure if that's relevant here...
