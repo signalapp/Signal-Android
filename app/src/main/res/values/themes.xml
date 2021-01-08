@@ -282,6 +282,8 @@
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_black</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">

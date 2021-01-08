@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.webrtc;
 import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +29,6 @@ import androidx.transition.TransitionSet;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.annimon.stream.OptionalLong;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
@@ -160,7 +160,6 @@ public class WebRtcCallView extends FrameLayout {
     View      decline                = findViewById(R.id.call_screen_decline_call);
     View      answerLabel            = findViewById(R.id.call_screen_answer_call_label);
     View      declineLabel           = findViewById(R.id.call_screen_decline_call_label);
-    Guideline statusBarGuideline     = findViewById(R.id.call_screen_status_bar_guideline);
     View      cancelStartCall        = findViewById(R.id.call_screen_start_call_cancel);
 
     callParticipantsPager.setPageTransformer(new MarginPageTransformer(ViewUtil.dpToPx(4)));
@@ -227,9 +226,6 @@ public class WebRtcCallView extends FrameLayout {
     largeLocalRenderNoVideoAvatar.setAlpha(0.6f);
     largeLocalRenderNoVideoAvatar.setColorFilter(new ColorMatrixColorFilter(greyScaleMatrix));
 
-    int statusBarHeight = ViewUtil.getStatusBarHeight(this);
-    statusBarGuideline.setGuidelineBegin(statusBarHeight);
-
     errorButton.setOnClickListener(v -> {
       if (controlsListener != null) {
         controlsListener.onCancelStartCall();
@@ -243,6 +239,26 @@ public class WebRtcCallView extends FrameLayout {
 
     if (controls.isFadeOutEnabled()) {
       scheduleFadeOut();
+    }
+  }
+
+  @Override
+  protected boolean fitSystemWindows(Rect insets) {
+    Guideline statusBarGuideline     = findViewById(R.id.call_screen_status_bar_guideline);
+    Guideline navigationBarGuideline = findViewById(R.id.call_screen_navigation_bar_guideline);
+
+    statusBarGuideline.setGuidelineBegin(insets.top);
+    navigationBarGuideline.setGuidelineEnd(insets.bottom);
+
+    return true;
+  }
+
+  @Override
+  public void onWindowSystemUiVisibilityChanged(int visible) {
+    if ((visible & SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
+      pictureInPictureGestureHelper.setVerticalBoundaries(toolbar.getBottom(), videoToggle.getTop());
+    } else {
+      pictureInPictureGestureHelper.clearVerticalBoundaries();
     }
   }
 
@@ -515,6 +531,10 @@ public class WebRtcCallView extends FrameLayout {
       }
     } else {
       cancelFadeOut();
+
+      if (controlsListener != null) {
+        controlsListener.showSystemUI();
+      }
     }
 
     controls = webRtcControls;
@@ -581,12 +601,10 @@ public class WebRtcCallView extends FrameLayout {
   private void fadeOutControls() {
     fadeControls(ConstraintSet.GONE);
     controlsListener.onControlsFadeOut();
-    pictureInPictureGestureHelper.clearVerticalBoundaries();
   }
 
   private void fadeInControls() {
     fadeControls(ConstraintSet.VISIBLE);
-    pictureInPictureGestureHelper.setVerticalBoundaries(toolbar.getBottom(), videoToggle.getTop());
 
     scheduleFadeOut();
   }
@@ -630,6 +648,15 @@ public class WebRtcCallView extends FrameLayout {
                                                 .setDuration(TRANSITION_DURATION_MILLIS);
 
     TransitionManager.endTransitions(parent);
+
+    if (controlsListener != null) {
+      if (controlsVisible) {
+        controlsListener.showSystemUI();
+      } else {
+        controlsListener.hideSystemUI();
+      }
+    }
+
     TransitionManager.beginDelayedTransition(parent, transition);
 
     ConstraintSet constraintSet = new ConstraintSet();
@@ -714,6 +741,8 @@ public class WebRtcCallView extends FrameLayout {
     void onStartCall(boolean isVideoCall);
     void onCancelStartCall();
     void onControlsFadeOut();
+    void showSystemUI();
+    void hideSystemUI();
     void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput);
     void onVideoChanged(boolean isVideoEnabled);
     void onMicChanged(boolean isMicEnabled);
