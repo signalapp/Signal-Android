@@ -99,6 +99,13 @@ public final class CameraXModelBlacklist {
     add("PCT-AL10");
     add("PCT-TL10");
     add("PCT-L29");
+
+    // Honor Play
+    add("COR-L29");
+    add("COR-L09");
+    add("COR-AL00");
+    add("COR-AL10");
+    add("COR-TL10");
   }};
 
   private CameraXModelBlacklist() {
