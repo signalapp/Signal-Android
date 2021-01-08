@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
+import org.thoughtcrime.securesms.service.webrtc.collections.ParticipantCollection;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +30,7 @@ public final class CallParticipantsState {
 
   public static final CallParticipantsState STARTING_STATE  = new CallParticipantsState(WebRtcViewModel.State.CALL_DISCONNECTED,
                                                                                         WebRtcViewModel.GroupCallState.IDLE,
-                                                                                        Collections.emptyList(),
+                                                                                        new ParticipantCollection(SMALL_GROUP_MAX),
                                                                                         CallParticipant.createLocal(CameraState.UNKNOWN, new BroadcastVideoSink(null), false),
                                                                                         null,
                                                                                         WebRtcLocalRenderState.GONE,
@@ -40,7 +41,7 @@ public final class CallParticipantsState {
 
   private final WebRtcViewModel.State          callState;
   private final WebRtcViewModel.GroupCallState groupCallState;
-  private final List<CallParticipant>          remoteParticipants;
+  private final ParticipantCollection          remoteParticipants;
   private final CallParticipant                localParticipant;
   private final CallParticipant                focusedParticipant;
   private final WebRtcLocalRenderState         localRenderState;
@@ -51,7 +52,7 @@ public final class CallParticipantsState {
 
   public CallParticipantsState(@NonNull WebRtcViewModel.State callState,
                                @NonNull WebRtcViewModel.GroupCallState groupCallState,
-                               @NonNull List<CallParticipant> remoteParticipants,
+                               @NonNull ParticipantCollection remoteParticipants,
                                @NonNull CallParticipant localParticipant,
                                @Nullable CallParticipant focusedParticipant,
                                @NonNull WebRtcLocalRenderState localRenderState,
@@ -81,11 +82,7 @@ public final class CallParticipantsState {
   }
 
   public @NonNull List<CallParticipant> getGridParticipants() {
-    if (getAllRemoteParticipants().size() > SMALL_GROUP_MAX) {
-      return getAllRemoteParticipants().subList(0, SMALL_GROUP_MAX);
-    } else {
-      return getAllRemoteParticipants();
-    }
+    return remoteParticipants.getGridParticipants();
   }
 
   public @NonNull List<CallParticipant> getListParticipants() {
@@ -94,14 +91,11 @@ public final class CallParticipantsState {
     if (isViewingFocusedParticipant && getAllRemoteParticipants().size() > 1) {
       listParticipants.addAll(getAllRemoteParticipants());
       listParticipants.remove(focusedParticipant);
-    } else if (getAllRemoteParticipants().size() > SMALL_GROUP_MAX) {
-      listParticipants.addAll(getAllRemoteParticipants().subList(SMALL_GROUP_MAX, getAllRemoteParticipants().size()));
     } else {
-      return Collections.emptyList();
+      listParticipants.addAll(remoteParticipants.getListParticipants());
     }
 
     listParticipants.add(CallParticipant.EMPTY);
-
     Collections.reverse(listParticipants);
 
     return listParticipants;
@@ -132,7 +126,7 @@ public final class CallParticipantsState {
   }
 
   public @NonNull List<CallParticipant> getAllRemoteParticipants() {
-    return remoteParticipants;
+    return remoteParticipants.getAllParticipants();
   }
 
   public @NonNull CallParticipant getLocalParticipant() {
@@ -196,7 +190,7 @@ public final class CallParticipantsState {
 
     return new CallParticipantsState(webRtcViewModel.getState(),
                                      webRtcViewModel.getGroupState(),
-                                     webRtcViewModel.getRemoteParticipants(),
+                                     oldState.remoteParticipants.getNext(webRtcViewModel.getRemoteParticipants()),
                                      webRtcViewModel.getLocalParticipant(),
                                      focused,
                                      localRenderState,
