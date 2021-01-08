@@ -15,6 +15,7 @@ import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -300,13 +301,13 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static void setGroupLinkEnabledState(@NonNull Context context,
-                                              @NonNull GroupId.V2 groupId,
-                                              @NonNull GroupLinkState state)
+  public static GroupInviteLinkUrl setGroupLinkEnabledState(@NonNull Context context,
+                                                            @NonNull GroupId.V2 groupId,
+                                                            @NonNull GroupLinkState state)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      editor.setJoinByGroupLinkState(state);
+      return editor.setJoinByGroupLinkState(state);
     }
   }
 

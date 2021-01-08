@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -25,12 +26,14 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.io.IOException;
@@ -49,6 +52,8 @@ final class ConversationGroupViewModel extends ViewModel {
   private final LiveData<ReviewState>               reviewState;
   private final LiveData<List<RecipientId>>         gv1MigrationSuggestions;
   private final LiveData<Boolean>                   gv1MigrationReminder;
+
+  private boolean firstTimeInviteFriendsTriggered;
 
   private ConversationGroupViewModel() {
     this.liveRecipient = new MutableLiveData<>();
@@ -223,6 +228,28 @@ final class ConversationGroupViewModel extends ViewModel {
         callback.onError(GroupChangeFailureReason.fromException(e));
       }
     });
+  }
+
+  void inviteFriendsOneTimeIfJustSelfInGroup(@NonNull FragmentManager supportFragmentManager, @NonNull GroupId.V2 groupId) {
+    if (firstTimeInviteFriendsTriggered) {
+      return;
+    }
+
+    firstTimeInviteFriendsTriggered = true;
+
+    SimpleTask.run(() -> DatabaseFactory.getGroupDatabase(ApplicationDependencies.getApplication())
+                                        .requireGroup(groupId)
+                                        .getMembers().equals(Collections.singletonList(Recipient.self().getId())),
+                   justSelf -> {
+                     if (justSelf) {
+                       inviteFriends(supportFragmentManager, groupId);
+                     }
+                   }
+    );
+  }
+
+  void inviteFriends(@NonNull FragmentManager supportFragmentManager, @NonNull GroupId.V2 groupId) {
+    GroupLinkInviteFriendsBottomSheetDialogFragment.show(supportFragmentManager, groupId);
   }
 
   static final class ReviewState {

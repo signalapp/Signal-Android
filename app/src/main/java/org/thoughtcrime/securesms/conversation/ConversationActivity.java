@@ -536,6 +536,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
                              .startChain(new RequestGroupV2InfoJob(groupId))
                              .then(new GroupV2UpdateSelfProfileKeyJob(groupId))
                              .enqueue();
+
+      if (viewModel.getArgs().isFirstTimeInSelfCreatedGroup()) {
+        groupViewModel.inviteFriendsOneTimeIfJustSelfInGroup(getSupportFragmentManager(), groupId);
+      }
     }
 
     if (groupCallViewModel != null) {

@@ -889,6 +889,18 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">One or more of your linked devices are running a version of Signal that doesn\'t support group links. Update Signal on your linked device(s) to join this group.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Group link is not valid</string>
 
+    <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invite friends</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Share a link with friends to let them quickly join this group.</string>
+
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Enable and share link</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Share link</string>
+
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Unable to enable group link. Please try again later</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Encountered a network error.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">You don\'t have the right to enable the group link. Please ask an admin.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">You are not currently a member of the group.</string>
+
     <!-- GV2 Request confirmation dialog -->
     <string name="RequestConfirmationDialog_add_s_to_the_group">Add “%1$s” to the group?</string>
     <string name="RequestConfirmationDialog_deny_request_from_s">Deny request from “%1$s”?</string>

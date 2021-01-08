@@ -238,8 +238,7 @@ public final class ConversationUpdateItem extends LinearLayout
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
-          // TODO [alan]
-          Log.i(TAG, "TODO");
+          eventListener.onInviteFriendsToGroupClicked(conversationRecipient.requireGroupId().requireV2());
         }
       });
     } else {

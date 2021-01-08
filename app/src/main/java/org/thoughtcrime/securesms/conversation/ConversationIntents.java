@@ -18,15 +18,16 @@ import java.util.Objects;
 
 public class ConversationIntents {
 
-  private static final String BUBBLE_AUTHORITY        = "bubble";
-  private static final String EXTRA_RECIPIENT         = "recipient_id";
-  private static final String EXTRA_THREAD_ID         = "thread_id";
-  private static final String EXTRA_TEXT              = "draft_text";
-  private static final String EXTRA_MEDIA             = "media_list";
-  private static final String EXTRA_STICKER           = "sticker_extra";
-  private static final String EXTRA_BORDERLESS        = "borderless_extra";
-  private static final String EXTRA_DISTRIBUTION_TYPE = "distribution_type";
-  private static final String EXTRA_STARTING_POSITION = "starting_position";
+  private static final String BUBBLE_AUTHORITY                       = "bubble";
+  private static final String EXTRA_RECIPIENT                        = "recipient_id";
+  private static final String EXTRA_THREAD_ID                        = "thread_id";
+  private static final String EXTRA_TEXT                             = "draft_text";
+  private static final String EXTRA_MEDIA                            = "media_list";
+  private static final String EXTRA_STICKER                          = "sticker_extra";
+  private static final String EXTRA_BORDERLESS                       = "borderless_extra";
+  private static final String EXTRA_DISTRIBUTION_TYPE                = "distribution_type";
+  private static final String EXTRA_STARTING_POSITION                = "starting_position";
+  private static final String EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP = "first_time_in_group";
 
   private ConversationIntents() {
   }
@@ -63,7 +64,8 @@ public class ConversationIntents {
     private final StickerLocator   stickerLocator;
     private final boolean          isBorderless;
     private final int              distributionType;
-    private final int              startingPosition;
+    private final int     startingPosition;
+    private final boolean firstTimeInSelfCreatedGroup;
 
     static Args from(@NonNull Intent intent) {
       if (isBubbleIntent(intent)) {
@@ -74,7 +76,8 @@ public class ConversationIntents {
                         null,
                         false,
                         ThreadDatabase.DistributionTypes.DEFAULT,
-                        -1);
+                        -1,
+                        false);
       }
 
       return new Args(RecipientId.from(Objects.requireNonNull(intent.getStringExtra(EXTRA_RECIPIENT))),
@@ -84,7 +87,8 @@ public class ConversationIntents {
                       intent.getParcelableExtra(EXTRA_STICKER),
                       intent.getBooleanExtra(EXTRA_BORDERLESS, false),
                       intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT),
-                      intent.getIntExtra(EXTRA_STARTING_POSITION, -1));
+                      intent.getIntExtra(EXTRA_STARTING_POSITION, -1),
+                      intent.getBooleanExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false));
     }
 
     private Args(@NonNull RecipientId recipientId,
@@ -94,16 +98,18 @@ public class ConversationIntents {
                  @Nullable StickerLocator stickerLocator,
                  boolean isBorderless,
                  int distributionType,
-                 int startingPosition)
+                 int startingPosition,
+                 boolean firstTimeInSelfCreatedGroup)
     {
-      this.recipientId      = recipientId;
-      this.threadId         = threadId;
-      this.draftText        = draftText;
-      this.media            = media;
-      this.stickerLocator   = stickerLocator;
-      this.isBorderless     = isBorderless;
-      this.distributionType = distributionType;
-      this.startingPosition = startingPosition;
+      this.recipientId                 = recipientId;
+      this.threadId                    = threadId;
+      this.draftText                   = draftText;
+      this.media                       = media;
+      this.stickerLocator              = stickerLocator;
+      this.isBorderless                = isBorderless;
+      this.distributionType            = distributionType;
+      this.startingPosition            = startingPosition;
+      this.firstTimeInSelfCreatedGroup = firstTimeInSelfCreatedGroup;
     }
 
     public @NonNull RecipientId getRecipientId() {
@@ -137,6 +143,10 @@ public class ConversationIntents {
     public boolean isBorderless() {
       return isBorderless;
     }
+
+    public boolean isFirstTimeInSelfCreatedGroup() {
+      return firstTimeInSelfCreatedGroup;
+    }
   }
 
   public final static class Builder {
@@ -153,6 +163,7 @@ public class ConversationIntents {
     private int              startingPosition = -1;
     private Uri              dataUri;
     private String           dataType;
+    private boolean          firstTimeInSelfCreatedGroup;
 
     private Builder(@NonNull Context context,
                     @NonNull RecipientId recipientId,
@@ -212,6 +223,11 @@ public class ConversationIntents {
       return this;
     }
 
+    public Builder firstTimeInSelfCreatedGroup() {
+      this.firstTimeInSelfCreatedGroup = true;
+      return this;
+    }
+
     public @NonNull Intent build() {
       if (stickerLocator != null && media != null) {
         throw new IllegalStateException("Cannot have both sticker and media array");
@@ -235,6 +251,7 @@ public class ConversationIntents {
       intent.putExtra(EXTRA_DISTRIBUTION_TYPE, distributionType);
       intent.putExtra(EXTRA_STARTING_POSITION, startingPosition);
       intent.putExtra(EXTRA_BORDERLESS, isBorderless);
+      intent.putExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, firstTimeInSelfCreatedGroup);
 
       if (draftText != null) {
         intent.putExtra(EXTRA_TEXT, draftText);

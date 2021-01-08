@@ -93,6 +93,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
+import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
@@ -1417,6 +1418,11 @@ public class ConversationFragment extends LoggingFragment {
     @Override
     public void onJoinGroupCallClicked() {
       CommunicationActions.startVideoCall(requireActivity(), recipient.get());
+    }
+
+    @Override
+    public void onInviteFriendsToGroupClicked(@NonNull GroupId.V2 groupId) {
+      GroupLinkInviteFriendsBottomSheetDialogFragment.show(requireActivity().getSupportFragmentManager(), groupId);
     }
   }
 

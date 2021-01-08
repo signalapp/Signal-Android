@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
+import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
@@ -507,7 +508,7 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    public GroupManager.GroupActionResult setJoinByGroupLinkState(@NonNull GroupManager.GroupLinkState state)
+    public @Nullable GroupInviteLinkUrl setJoinByGroupLinkState(@NonNull GroupManager.GroupLinkState state)
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
       AccessControl.AccessRequired access;
@@ -519,7 +520,7 @@ final class GroupManagerV2 {
         default:                    throw new AssertionError();
       }
 
-      GroupChange.Actions.Builder  change = groupOperations.createChangeJoinByLinkRights(access);
+      GroupChange.Actions.Builder change = groupOperations.createChangeJoinByLinkRights(access);
 
       if (state != GroupManager.GroupLinkState.DISABLED) {
         DecryptedGroup group = groupDatabase.requireGroup(groupId).requireV2GroupProperties().getDecryptedGroup();
@@ -530,7 +531,17 @@ final class GroupManagerV2 {
         }
       }
 
-      return commitChangeWithConflictResolution(change);
+      commitChangeWithConflictResolution(change);
+
+      if (state != GroupManager.GroupLinkState.DISABLED) {
+        GroupDatabase.V2GroupProperties v2GroupProperties = groupDatabase.requireGroup(groupId).requireV2GroupProperties();
+        GroupMasterKey                  groupMasterKey    = v2GroupProperties.getGroupMasterKey();
+        DecryptedGroup                  decryptedGroup    = v2GroupProperties.getDecryptedGroup();
+
+        return GroupInviteLinkUrl.forGroup(groupMasterKey, decryptedGroup);
+      } else {
+        return null;
+      }
     }
 
     private @NonNull GroupManager.GroupActionResult commitChangeWithConflictResolution(@NonNull GroupChange.Actions.Builder change)
