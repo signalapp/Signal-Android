@@ -172,6 +172,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     Log.i(TAG, "App is now visible.");
 
     ApplicationDependencies.getFrameRateTracker().begin();
+    ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
 
     SignalExecutors.BOUNDED.execute(() -> {
       FeatureFlags.refreshIfNecessary();
@@ -180,7 +181,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
       GroupV1MigrationJob.enqueueRoutineMigrationsIfNecessary(this);
       executePendingContactSync();
       KeyCachingService.onAppForegrounded(this);
-      ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
       ApplicationDependencies.getShakeToReport().enable();
       checkBuildExpiration();
     });
