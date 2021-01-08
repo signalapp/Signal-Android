@@ -233,6 +233,15 @@ public final class ConversationUpdateItem extends LinearLayout
         actionButton.setVisibility(GONE);
         actionButton.setOnClickListener(null);
       }
+    } else if (conversationMessage.getMessageRecord().isSelfCreatedGroup()) {
+      actionButton.setText(R.string.ConversationUpdateItem_invite_friends);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          // TODO [alan]
+          Log.i(TAG, "TODO");
+        }
+      });
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);

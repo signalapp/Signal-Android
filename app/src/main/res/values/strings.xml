@@ -1081,6 +1081,7 @@
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">You created the group.</string>
     <string name="MessageRecord_group_updated">Group updated.</string>
+    <string name="MessageRecord_invite_friends_to_this_group">Invite friends to this group via a group link</string>
 
     <!-- GV2 member additions -->
     <string name="MessageRecord_you_added_s">You added %1$s.</string>
@@ -1954,6 +1955,7 @@
     <string name="ConversationUpdateItem_join_call">Join call</string>
     <string name="ConversationUpdateItem_return_to_call">Return to call</string>
     <string name="ConversationUpdateItem_call_is_full">Call is full</string>
+    <string name="ConversationUpdateItem_invite_friends">Invite friends</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>

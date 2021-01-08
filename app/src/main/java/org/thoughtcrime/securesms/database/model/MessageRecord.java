@@ -32,6 +32,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -56,6 +57,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -194,6 +196,26 @@ public abstract class MessageRecord extends DisplayRecord {
     return null;
   }
 
+  public boolean isSelfCreatedGroup() {
+    if (!isGroupUpdate() || !isGroupV2()) return false;
+
+    try {
+      byte[]               decoded = Base64.decode(getBody());
+      DecryptedGroupChange change  = DecryptedGroupV2Context.parseFrom(decoded)
+                                                               .getChange();
+
+      return selfCreatedGroup(change);
+    } catch (IOException e) {
+      Log.w(TAG, "GV2 Message update detail could not be read", e);
+      return false;
+    }
+  }
+
+  private static boolean selfCreatedGroup(@NonNull DecryptedGroupChange change) {
+    return change.getRevision() == 0 &&
+           change.getEditor().equals(UuidUtil.toByteString(Recipient.self().requireUuid()));
+  }
+
   public static @NonNull UpdateDescription getGv2ChangeDescription(@NonNull Context context, @NonNull String body) {
     try {
       ShortStringDescriptionStrategy descriptionStrategy     = new ShortStringDescriptionStrategy(context);
@@ -203,6 +225,9 @@ public abstract class MessageRecord extends DisplayRecord {
 
       if (decryptedGroupV2Context.hasChange() && (decryptedGroupV2Context.getGroupState().getRevision() != 0 || decryptedGroupV2Context.hasPreviousGroupState())) {
         return UpdateDescription.concatWithNewLines(updateMessageProducer.describeChanges(decryptedGroupV2Context.getPreviousGroupState(), decryptedGroupV2Context.getChange()));
+      } else if (selfCreatedGroup(decryptedGroupV2Context.getChange())) {
+        return UpdateDescription.concatWithNewLines(Arrays.asList(updateMessageProducer.describeNewGroup(decryptedGroupV2Context.getGroupState(), decryptedGroupV2Context.getChange()),
+                                                                  staticUpdateDescription(context.getString(R.string.MessageRecord_invite_friends_to_this_group), 0)));
       } else {
         return updateMessageProducer.describeNewGroup(decryptedGroupV2Context.getGroupState(), decryptedGroupV2Context.getChange());
       }
