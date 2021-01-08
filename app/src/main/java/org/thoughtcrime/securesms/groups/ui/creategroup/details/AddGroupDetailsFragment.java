@@ -92,6 +92,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     ImageView           avatar     = view.findViewById(R.id.group_avatar);
     View                mmsWarning = view.findViewById(R.id.mms_warning);
     LearnMoreTextView   gv2Warning = view.findViewById(R.id.gv2_warning);
+    View                addLater   = view.findViewById(R.id.add_later);
 
     avatarPlaceholder = VectorDrawableCompat.create(getResources(), R.drawable.ic_camera_outline_32_ultramarine, requireActivity().getTheme());
 
@@ -106,7 +107,10 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
     toolbar.setNavigationOnClickListener(unused -> callback.onNavigationButtonPressed());
     create.setOnClickListener(v -> handleCreateClicked());
-    viewModel.getMembers().observe(getViewLifecycleOwner(), members::setMembers);
+    viewModel.getMembers().observe(getViewLifecycleOwner(), list -> {
+      addLater.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
+      members.setMembers(list);
+    });
     viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), isFormValid -> setCreateEnabled(isFormValid, true));
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);

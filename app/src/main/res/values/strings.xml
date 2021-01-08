@@ -703,6 +703,7 @@
     <string name="AddGroupDetailsFragment__create_group">Create group</string>
     <string name="AddGroupDetailsFragment__create">Create</string>
     <string name="AddGroupDetailsFragment__members">Members</string>
+    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">You can add or invite friends after creating this group.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Group name (required)</string>
     <string name="AddGroupDetailsFragment__group_name_optional">Group name (optional)</string>
     <string name="AddGroupDetailsFragment__this_field_is_required">This field is required.</string>
