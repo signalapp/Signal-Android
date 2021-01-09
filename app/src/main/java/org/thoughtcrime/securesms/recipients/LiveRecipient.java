@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public final class LiveRecipient {
 
   private final Context                       context;
   private final MutableLiveData<Recipient>    liveData;
+  private final LiveData<Recipient>           observableLiveData;
   private final Set<RecipientForeverObserver> observers;
   private final Observer<Recipient>           foreverObserver;
   private final AtomicReference<Recipient>    recipient;
@@ -50,6 +52,7 @@ public final class LiveRecipient {
         o.onRecipientChanged(recipient);
       }
     };
+    this.observableLiveData = LiveDataUtil.distinctUntilChanged(liveData, Recipient::hasSameContent);
   }
 
   public @NonNull RecipientId getId() {
@@ -70,14 +73,14 @@ public final class LiveRecipient {
    * use {@link #removeObservers(LifecycleOwner)}.
    */
   public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<Recipient> observer) {
-    Util.postToMain(() -> liveData.observe(owner, observer));
+    Util.postToMain(() -> observableLiveData.observe(owner, observer));
   }
 
   /**
    * Removes all observers of this data registered for the given LifecycleOwner.
    */
   public void removeObservers(@NonNull LifecycleOwner owner) {
-    Util.runOnMain(() -> liveData.removeObservers(owner));
+    Util.runOnMain(() -> observableLiveData.removeObservers(owner));
   }
 
   /**
@@ -88,7 +91,7 @@ public final class LiveRecipient {
   public void observeForever(@NonNull RecipientForeverObserver observer) {
     Util.postToMain(() -> {
       if (observers.isEmpty()) {
-        liveData.observeForever(foreverObserver);
+        observableLiveData.observeForever(foreverObserver);
       }
       observers.add(observer);
     });
@@ -102,7 +105,7 @@ public final class LiveRecipient {
       observers.remove(observer);
 
       if (observers.isEmpty()) {
-        liveData.removeObserver(foreverObserver);
+        observableLiveData.removeObserver(foreverObserver);
       }
     });
   }
@@ -172,7 +175,7 @@ public final class LiveRecipient {
   }
 
   public @NonNull LiveData<Recipient> getLiveData() {
-    return liveData;
+    return observableLiveData;
   }
 
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {

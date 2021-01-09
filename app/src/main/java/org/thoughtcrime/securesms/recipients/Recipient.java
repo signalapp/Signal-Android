@@ -47,6 +47,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -873,6 +874,12 @@ public class Recipient {
     return id.equals(recipient.id);
   }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
+  }
+
+
   public enum Capability {
     UNKNOWN(0),
     SUPPORTED(1),
@@ -902,10 +909,63 @@ public class Recipient {
     }
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id);
+  public boolean hasSameContent(@NonNull Recipient other) {
+    return Objects.equals(id, other.id) &&
+           resolving == other.resolving &&
+           isSelf == other.isSelf &&
+           blocked == other.blocked &&
+           muteUntil == other.muteUntil &&
+           expireMessages == other.expireMessages &&
+           hasProfileImage == other.hasProfileImage &&
+           profileSharing == other.profileSharing &&
+           lastProfileFetch == other.lastProfileFetch &&
+           forceSmsSelection == other.forceSmsSelection &&
+           Objects.equals(id, other.id) &&
+           Objects.equals(uuid, other.uuid) &&
+           Objects.equals(username, other.username) &&
+           Objects.equals(e164, other.e164) &&
+           Objects.equals(email, other.email) &&
+           Objects.equals(groupId, other.groupId) &&
+           allContentsAreTheSame(participants, other.participants) &&
+           Objects.equals(groupAvatarId, other.groupAvatarId) &&
+           messageVibrate == other.messageVibrate &&
+           callVibrate == other.callVibrate &&
+           Objects.equals(messageRingtone, other.messageRingtone) &&
+           Objects.equals(callRingtone, other.callRingtone) &&
+           color == other.color &&
+           Objects.equals(defaultSubscriptionId, other.defaultSubscriptionId) &&
+           registered == other.registered &&
+           Arrays.equals(profileKey, other.profileKey) &&
+           Objects.equals(profileKeyCredential, other.profileKeyCredential) &&
+           Objects.equals(name, other.name) &&
+           Objects.equals(systemContactPhoto, other.systemContactPhoto) &&
+           Objects.equals(customLabel, other.customLabel) &&
+           Objects.equals(contactUri, other.contactUri) &&
+           Objects.equals(profileName, other.profileName) &&
+           Objects.equals(profileAvatar, other.profileAvatar) &&
+           Objects.equals(notificationChannel, other.notificationChannel) &&
+           unidentifiedAccessMode == other.unidentifiedAccessMode &&
+           groupsV2Capability == other.groupsV2Capability &&
+           groupsV1MigrationCapability == other.groupsV1MigrationCapability &&
+           insightsBannerTier == other.insightsBannerTier &&
+           Arrays.equals(storageId, other.storageId) &&
+           mentionSetting == other.mentionSetting;
   }
+
+  private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {
+    if (a.size() != b.size()) {
+      return false;
+    }
+
+    for (int i = 0, len = a.size(); i < len; i++) {
+      if (!a.get(i).hasSameContent(b.get(i))) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
 
   public static class FallbackPhotoProvider {
     public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {

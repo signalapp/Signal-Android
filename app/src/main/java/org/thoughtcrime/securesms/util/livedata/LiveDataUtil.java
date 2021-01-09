@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.annimon.stream.function.Predicate;
 
@@ -169,8 +170,40 @@ public final class LiveDataUtil {
     };
   }
 
+  public static <T> LiveData<T> distinctUntilChanged(@NonNull LiveData<T> source, @NonNull EqualityChecker<T> checker) {
+    final MediatorLiveData<T> outputLiveData = new MediatorLiveData<>();
+    outputLiveData.addSource(source, new Observer<T>() {
+
+      boolean firstChange = true;
+
+      @Override
+      public void onChanged(T nextValue) {
+        T currentValue = outputLiveData.getValue();
+
+        if (currentValue == null && nextValue == null) {
+          return;
+        }
+
+        if (firstChange          ||
+            currentValue == null ||
+            nextValue    == null ||
+            !checker.contentsMatch(currentValue, nextValue))
+        {
+          firstChange = false;
+          outputLiveData.setValue(nextValue);
+        }
+      }
+    });
+
+    return outputLiveData;
+  }
+
   public interface Combine<A, B, R> {
     @NonNull R apply(@NonNull A a, @NonNull B b);
+  }
+
+  public interface EqualityChecker<T> {
+    boolean contentsMatch(@NonNull T current, @NonNull T next);
   }
 
   private static final class CombineLiveData<A, B, R> extends MediatorLiveData<R> {
